@@ -138,7 +138,125 @@ public class ModItems {
 	public static Item munny;
 	
 	//CHAINS
-	public static Item Chain_AbaddonPlasma;
+	public static Item 
+		Chain_AbaddonPlasma,
+		Chain_AbyssalTide,
+		Chain_AllforOne,
+		Chain_AnguisForetellersKeyblade,
+		Chain_AstralBlast,
+		Chain_Aubade,
+		Chain_BondofFlame,
+		Chain_Brightcrest,
+		Chain_ChaosRipper,
+		Chain_CircleofLife,
+		Chain_Counterpoint,
+		Chain_Crabclaw,
+		Chain_CrownofGuilt,
+		Chain_DarkerThanDark,
+		Chain_Darkgnaw,
+		Chain_DecisivePumpkin,
+		Chain_DestinysEmbrace,
+		Chain_DiamondDust,
+		Chain_Divewing,
+		Chain_DivineRose,
+		Chain_DreamSword,
+		Chain_DualDisc,
+		Chain_Earthshaker,
+		Chain_EndofPain,
+		Chain_EndsoftheEarth,
+		Chain_FairyHarp,
+		Chain_FairyStars,
+		Chain_FatalCrest,
+		Chain_Fenrir,
+		Chain_FerrisGear,
+		Chain_FollowtheWind,
+		Chain_FrolicFlame,
+		Chain_GlimpseofDarkness,
+		Chain_GuardianBell,
+		Chain_GuardianSoul,
+		Chain_GullWing,
+		Chain_HerosCrest,
+		Chain_HiddenDragon,
+		Chain_Hyperdrive,
+		Chain_IncompleteKiblade,
+		Chain_JungleKing,
+		Chain_KeybladeofPeoplesHearts,
+		Chain_Kiblade,
+		Chain_KingdomKey,
+		Chain_KingdomKeyD,
+		Chain_KnockoutPunch,
+		Chain_LadyLuck,
+		Chain_LeasKeyblade,
+		Chain_LeopardosForetellersKeyblade,
+		Chain_Leviathan,
+		Chain_Lionheart,
+		Chain_LostMemory,
+		Chain_LunarEclipse,
+		Chain_MarkofaHero,
+		Chain_MasterXehanortsKeyblade,
+		Chain_MastersDefender,
+		Chain_MaverickFlare,
+		Chain_MetalChocobo,
+		Chain_MidnightRoar,
+		Chain_MissingAche,
+		Chain_Monochrome,
+		Chain_MysteriousAbyss,
+		Chain_NoName,
+		Chain_Oathkeeper,
+		Chain_Oblivion,
+		Chain_OceanRage,
+		Chain_Olympia,
+		Chain_OmegaWeapon,
+		Chain_OminousBlight,
+		Chain_OneWingedAngel,
+		Chain_PainofSolitude,
+		Chain_PhotonDebugger,
+		Chain_PixiePetal,
+		Chain_Pumpkinhead,
+		Chain_Rainfell,
+		Chain_RejectionofFate,
+		Chain_RoyalRadiance,
+		Chain_RumblingRose,
+		Chain_SignofInnocence,
+		Chain_SilentDirge,
+		Chain_SkullNoise,
+		Chain_SleepingLion,
+		Chain_SoulEater,
+		Chain_Spellbinder,
+		Chain_StarSeeker,
+		Chain_Starlight,
+		Chain_Stormfall,
+		Chain_StrokeofMidnight,
+		Chain_SweetDreams,
+		Chain_SweetMemories,
+		Chain_Sweetstack,
+		Chain_ThreeWishes,
+		Chain_TotalEclipse,
+		Chain_TreasureTrove,
+		Chain_TrueLightsFlight,
+		Chain_TwilightBlaze,
+		Chain_TwoBecomeOne,
+		Chain_UltimaWeaponKH1,
+		Chain_UltimaWeaponKH2,
+		Chain_UltimaWeaponBBS,
+		Chain_UltimaWeaponDDD,
+		Chain_Umbrella,
+		Chain_Unbound,
+		Chain_UnicornisForetellersKeyblade,
+		Chain_UrsusForetellersKeyblade,
+		Chain_VictoryLine,
+		Chain_VoidGear,
+		Chain_VulpeusForetellersKeyblade,
+		Chain_WaytotheDawn,
+		Chain_WaywardWind,
+		Chain_WinnersProof,
+		Chain_WishingLamp,
+		Chain_WishingStar,
+		Chain_WoodenKeyblade,
+		Chain_WoodenStick,
+		Chain_YoungXehanortsKeyblade,
+		Chain_ZeroOne
+		;
 	
 	public static CreativeTabs tabKingdomKeys;
 	
@@ -265,7 +383,122 @@ public class ModItems {
 
 		//CHAINS
 		Chain_AbaddonPlasma = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
-		
+		Chain_AbyssalTide = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_AllforOne = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_AnguisForetellersKeyblade = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_AstralBlast = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Aubade = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_BondofFlame = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Brightcrest = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_ChaosRipper = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_CircleofLife = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Counterpoint = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Crabclaw = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_CrownofGuilt = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_DarkerThanDark = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Darkgnaw = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_DecisivePumpkin = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_DestinysEmbrace = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_DiamondDust = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Divewing = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_DivineRose = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_DreamSword = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_DualDisc = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Earthshaker = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_EndofPain = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_EndsoftheEarth = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_FairyHarp = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_FairyStars = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_FatalCrest = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Fenrir = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_FerrisGear = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_FollowtheWind = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_FrolicFlame = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_GlimpseofDarkness = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_GuardianBell = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_GuardianSoul = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_GullWing = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_HerosCrest = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_HiddenDragon = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Hyperdrive = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_IncompleteKiblade = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_JungleKing = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_KeybladeofPeoplesHearts = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Kiblade = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_KingdomKey = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_KingdomKeyD = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_KnockoutPunch = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_LadyLuck = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_LeasKeyblade = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_LeopardosForetellersKeyblade = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Leviathan = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_Lionheart = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_LostMemory = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_LunarEclipse = new Item().setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
+		Chain_MarkofaHero = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_MasterXehanortsKeyblade = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_MastersDefender = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_MaverickFlare = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_MetalChocobo = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_MidnightRoar = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_MissingAche = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Monochrome = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_MysteriousAbyss = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_NoName = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Oathkeeper = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Oblivion = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_OceanRage = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Olympia = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_OmegaWeapon = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_OminousBlight = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_OneWingedAngel = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_PainofSolitude = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_PhotonDebugger = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_PixiePetal = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Pumpkinhead = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Rainfell = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_RejectionofFate = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_RoyalRadiance = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_RumblingRose = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_SignofInnocence = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_SilentDirge = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_SkullNoise = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_SleepingLion = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_SoulEater = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Spellbinder = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_StarSeeker = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Starlight = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Stormfall = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_StrokeofMidnight = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_SweetDreams = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_SweetMemories = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Sweetstack = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_ThreeWishes = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_TotalEclipse = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_TreasureTrove = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_TrueLightsFlight = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_TwilightBlaze = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_TwoBecomeOne = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_UltimaWeaponKH1 = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_UltimaWeaponKH2 = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_UltimaWeaponBBS = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_UltimaWeaponDDD = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Umbrella = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_Unbound = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_UnicornisForetellersKeyblade = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_UrsusForetellersKeyblade = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_VictoryLine = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_VoidGear = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_VulpeusForetellersKeyblade = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_WaytotheDawn = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_WaywardWind = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_WinnersProof = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_WishingLamp = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_WishingStar = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_WoodenKeyblade = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_WoodenStick = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_YoungXehanortsKeyblade = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
+		Chain_ZeroOne = new Item().setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
 	}
 	
 	public static void initItemSword(Item item, String[] toolmaterial, String name, CreativeTabs tab){
