@@ -20,6 +20,7 @@ import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.network.ClientProxy;
 import wehavecookies56.kk.network.CommonProxy;
 
 @Mod(name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER)
@@ -27,6 +28,7 @@ public class KingdomKeys {
 	
 	@SidedProxy(clientSide = Reference.CLIENTPROXY, serverSide = Reference.COMMONPROXY)
 	public static CommonProxy proxy;
+	public static ClientProxy cproxy;
 	
 	public static Configuration config;
 		
@@ -50,7 +52,7 @@ public class KingdomKeys {
     public static void init(FMLInitializationEvent e){
 		ModItems.init();
 		ModItems.register();
-		proxy.registerRenders();
+		proxy.init();
 	}
 	
 	@EventHandler
