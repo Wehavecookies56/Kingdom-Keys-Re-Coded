@@ -124,5 +124,9 @@ item.woodenstick.name=Wooden Stick
 item.youngxehanortskeyblade.name=Young Xehanort's Keyblade
 item.zeroone.name=Zero/One
 
+#GUI
+gui.reports.title.main=Reports
+gui.reports.keyblades.title.main=Keyblades
+
 #CHAINS
 item.chain_abaddonplasma.name=Abaddon Plasma Chain

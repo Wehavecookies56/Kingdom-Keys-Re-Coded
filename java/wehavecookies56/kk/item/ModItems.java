@@ -257,17 +257,11 @@ public class ModItems {
 		;
 	
 	public static Item
-	munny1, 
-	munny5, 
-	munny10, 
-	munny50, 
-	munny100, 
-	munny500, 
-	munny1000,
-	emptyPotion,
-	potion,
-	hpOrb,
-	driveOrb
+	Munny,
+	EmptyPotion,
+	Potion,
+	HpOrb,
+	DriveOrb
 	;
 	
 	public static CreativeTabs tabKingdomKeys;
@@ -511,6 +505,12 @@ public class ModItems {
 		Chain_WoodenStick = new Item().setUnlocalizedName(Strings.Chain_WoodenStick).setCreativeTab(tabKingdomKeys);
 		Chain_YoungXehanortsKeyblade = new Item().setUnlocalizedName(Strings.Chain_YoungXehanortsKeyblade).setCreativeTab(tabKingdomKeys);
 		Chain_ZeroOne = new Item().setUnlocalizedName(Strings.Chain_ZeroOne).setCreativeTab(tabKingdomKeys);
+		
+		Munny = new Item().setUnlocalizedName(Strings.Munny).setCreativeTab(tabKingdomKeys);
+		EmptyPotion = new Item().setUnlocalizedName(Strings.EmptyPotion).setCreativeTab(tabKingdomKeys);
+		Potion = new Item().setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys);
+		HpOrb = new Item().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys);
+		DriveOrb = new Item().setUnlocalizedName(Strings.DriveOrb).setCreativeTab(tabKingdomKeys);
 	}
 	
 	public static void initItemSword(Item item, String[] toolmaterial, String name, CreativeTabs tab){
@@ -762,17 +762,11 @@ public class ModItems {
 		GameRegistry.registerItem(Chain_ZeroOne, Strings.Chain_ZeroOne);
 
 		//ITEMS
-		GameRegistry.registerItem(munny1, Strings.munny1);
-		GameRegistry.registerItem(munny5, Strings.munny5);
-		GameRegistry.registerItem(munny10, Strings.munny10);
-		GameRegistry.registerItem(munny50, Strings.munny50);
-		GameRegistry.registerItem(munny100, Strings.munny100);
-		GameRegistry.registerItem(munny500, Strings.munny500);
-		GameRegistry.registerItem(munny1000, Strings.munny1000);
-		GameRegistry.registerItem(emptyPotion, Strings.emptyPotion);
-		GameRegistry.registerItem(potion, Strings.potion);
-		GameRegistry.registerItem(hpOrb, Strings.hpOrb);
-		GameRegistry.registerItem(driveOrb, Strings.driveOrb);
+		GameRegistry.registerItem(Munny, Strings.Munny);
+		GameRegistry.registerItem(EmptyPotion, Strings.EmptyPotion);
+		GameRegistry.registerItem(Potion, Strings.Potion);
+		GameRegistry.registerItem(HpOrb, Strings.HpOrb);
+		GameRegistry.registerItem(DriveOrb, Strings.DriveOrb);
 
 	}
 	
@@ -1015,6 +1009,12 @@ public class ModItems {
 		registerRender(Chain_WoodenStick);
 		registerRender(Chain_YoungXehanortsKeyblade);
 		registerRender(Chain_ZeroOne);
+		
+		registerRender(Munny);
+		registerRender(EmptyPotion);
+		registerRender(Potion);
+		registerRender(HpOrb);
+		registerRender(DriveOrb);
 	}
 	
 	public static void registerRender(Item item){

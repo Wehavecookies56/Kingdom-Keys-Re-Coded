@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "kk:items/chains/chain_abaddonplasma"
+		"layer0": "kk:items/chains/abyssaltidechain"
 	},
 	"display": {
 		"thirdperson": {

@@ -6,17 +6,11 @@ public class Strings {
 	
 	//Items
 	public static final String
-	munny1 = "munny1",
-	munny5 = "munny5",
-	munny10 = "munny10",
-	munny50 = "munny50",
-	munny100 = "munny100",
-	munny500 = "munny500",
-	munny1000 = "munny1000",
-	emptyPotion = "emptypotion",
-	potion = "potion",
-	hpOrb = "hporb",
-	driveOrb = "driveorb";
+	Munny = "munny",
+	EmptyPotion = "emptypotion",
+	Potion = "potion",
+	HpOrb = "hporb",
+	DriveOrb = "driveorb";
 
 	//CHAINS
 	public static final String
