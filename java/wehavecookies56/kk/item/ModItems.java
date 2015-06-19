@@ -134,9 +134,7 @@ public class ModItems {
 		YoungXehanortsKeyblade,
 		ZeroOne
 	;
-	
-	public static Item munny;
-	
+		
 	//CHAINS
 	public static Item 
 		Chain_AbaddonPlasma,
@@ -257,6 +255,20 @@ public class ModItems {
 		Chain_YoungXehanortsKeyblade,
 		Chain_ZeroOne
 		;
+	
+	public static Item
+	munny1, 
+	munny5, 
+	munny10, 
+	munny50, 
+	munny100, 
+	munny500, 
+	munny1000,
+	emptyPotion,
+	potion,
+	hpOrb,
+	driveOrb
+	;
 	
 	public static CreativeTabs tabKingdomKeys;
 	
@@ -628,6 +640,8 @@ public class ModItems {
 		GameRegistry.registerItem(YoungXehanortsKeyblade, Strings.YoungXehanortsKeyblade);
 		GameRegistry.registerItem(ZeroOne, Strings.ZeroOne);
 		
+		
+		
 		//CHAINS
 		GameRegistry.registerItem(Chain_AbaddonPlasma, Strings.Chain_AbaddonPlasma);
 		GameRegistry.registerItem(Chain_AbyssalTide, Strings.Chain_AbyssalTide);
@@ -746,7 +760,20 @@ public class ModItems {
 		GameRegistry.registerItem(Chain_WoodenStick, Strings.Chain_WoodenStick);
 		GameRegistry.registerItem(Chain_YoungXehanortsKeyblade, Strings.Chain_YoungXehanortsKeyblade);
 		GameRegistry.registerItem(Chain_ZeroOne, Strings.Chain_ZeroOne);
-		
+
+		//ITEMS
+		GameRegistry.registerItem(munny1, Strings.munny1);
+		GameRegistry.registerItem(munny5, Strings.munny5);
+		GameRegistry.registerItem(munny10, Strings.munny10);
+		GameRegistry.registerItem(munny50, Strings.munny50);
+		GameRegistry.registerItem(munny100, Strings.munny100);
+		GameRegistry.registerItem(munny500, Strings.munny500);
+		GameRegistry.registerItem(munny1000, Strings.munny1000);
+		GameRegistry.registerItem(emptyPotion, Strings.emptyPotion);
+		GameRegistry.registerItem(potion, Strings.potion);
+		GameRegistry.registerItem(hpOrb, Strings.hpOrb);
+		GameRegistry.registerItem(driveOrb, Strings.driveOrb);
+
 	}
 	
 	public static void registerRenders(){
