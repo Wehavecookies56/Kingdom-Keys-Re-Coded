@@ -20,7 +20,7 @@ public class KeybindHandler {
 		if(key != null){
 			switch(key){
 				case OPENMENU:
-					GuiHelper.openBook();
+					GuiHelper.openMenu(Minecraft.getMinecraft().thePlayer);
 					break;
 			}
 		}

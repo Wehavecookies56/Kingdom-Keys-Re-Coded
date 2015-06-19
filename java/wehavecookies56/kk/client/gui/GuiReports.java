@@ -70,7 +70,7 @@ public class GuiReports extends GuiScreen {
         buttonList.add(synthesis = new GuiButtonChapterChange(BOOK_BTN_SYNTHESIS, bookXStart + 7, 51, false, "Synthesis"));
         buttonList.add(next = new GuiButtonPageChange(BOOK_BTN_NEXT, bookXStart + WIDTH - 26, 210, false));
         buttonList.add(prev = new GuiButtonPageChange(BOOK_BTN_PREV, bookXStart + 10, 210, true));
-        buttonList.add(back = new GuiButton(BOOK_BTN_BACK, bookXStart + (WIDTH /2) - 30, 180, 60, 20, "Back"));
+        buttonList.add(back = new GuiButton(BOOK_BTN_BACK, bookXStart + (WIDTH /2) - 30, 205, 60, 20, "Back"));
 
         updateButtons();
     }
@@ -117,16 +117,24 @@ public class GuiReports extends GuiScreen {
         this.next.visible = (this.mainPageIndex < this.bookTotalPages - 1) && this.chapterIndex == CHAPTER_KEYBLADES;
         this.prev.visible = this.mainPageIndex > 0 && this.chapterIndex == CHAPTER_KEYBLADES;
         this.keyblades.visible = this.chapterIndex == CHAPTER_MAIN;
-        this.synthesis.visible = this.chapterIndex == CHAPTER_KEYBLADES;
         switch(chapterIndex){
         case CHAPTER_MAIN:
         	this.back.visible = false;
+        	this.summon.visible = false;
+        	this.keyblades.visible = true;
+        	this.synthesis.visible = true;
         	break;
         case CHAPTER_SUMMON:
         	this.back.visible = true;
+        	this.summon.visible = false;
+        	this.keyblades.visible = false;
+        	this.synthesis.visible = false;
         	break;
         case CHAPTER_KEYBLADES:
         	this.back.visible = true;
+        	this.summon.visible = true;
+        	this.keyblades.visible = false;
+        	this.synthesis.visible = false;
         	break;
         }
     }
@@ -162,54 +170,53 @@ public class GuiReports extends GuiScreen {
         	case CHAPTER_MAIN:
         		switch (mainPageIndex) {
         		case 0:
-        			buildPage("gui." + Reference.MODID + ".reports.title.main", "", 1, chapterPages);
+        			buildPage("gui." + Reference.MODID + ".reports.title.main", "", 1, chapterPages, CHAPTER_MAIN);
             		break;
         		}
         	case CHAPTER_KEYBLADES:
         		switch (keybladesPageIndex) {
                 case 0:
-                    drawCenteredString(fontRendererObj, TextHelper.localize("Kingdom Hearts"), bookXStart + 85, 20, 0x666666);
-                    buildPage("gui." + Reference.MODID + ".reports.keyblades.title.main", "", 1, keybladesPages);
+                    //drawCenteredString(fontRendererObj, TextHelper.localize("Kingdom Hearts"), bookXStart + 85, 20, 0x666666);
+                    buildPage("gui." + Reference.MODID + ".reports.keyblades.title.main", "", 1, keybladesPages, CHAPTER_KEYBLADES);
                     break;
                 case 1:
-                    buildPage("gui." + Reference.MODID + ".reports.title.1", "gui." + Reference.MODID + ".reports.content.1", 2, keybladesPages);
+                    buildPage("gui." + Reference.MODID + ".reports.title.1", "gui." + Reference.MODID + ".reports.content.1", 2, keybladesPages, CHAPTER_KEYBLADES);
                     break;
                 case 2:
-                    buildPage("gui." + Reference.MODID + ".reports.title.2", "gui." + Reference.MODID + ".reports.content.2", 3, keybladesPages);
+                    buildPage("gui." + Reference.MODID + ".reports.title.2", "gui." + Reference.MODID + ".reports.content.2", 3, keybladesPages, CHAPTER_KEYBLADES);
                     break;
                 case 3:
-                    buildPage("gui." + Reference.MODID + ".reports.title.3", "gui." + Reference.MODID + ".reports.content.3", 4, keybladesPages);
+                    buildPage("gui." + Reference.MODID + ".reports.title.3", "gui." + Reference.MODID + ".reports.content.3", 4, keybladesPages, CHAPTER_KEYBLADES);
                     break;
                 case 4:
-                    buildPage("gui." + Reference.MODID + ".reports.title.4", "gui." + Reference.MODID + ".reports.content.4", 5, keybladesPages);
+                    buildPage("gui." + Reference.MODID + ".reports.title.4", "gui." + Reference.MODID + ".reports.content.4", 5, keybladesPages, CHAPTER_KEYBLADES);
                     break;
                 case 5:
-                    buildPage("gui." + Reference.MODID + ".reports.title.5", "gui." + Reference.MODID + ".reports.content.5", 6, keybladesPages);
+                    buildPage("gui." + Reference.MODID + ".reports.title.5", "gui." + Reference.MODID + ".reports.content.5", 6, keybladesPages, CHAPTER_KEYBLADES);
                     break;
                 case 6:
-                    buildPage("gui." + Reference.MODID + ".reports.title.6", "gui." + Reference.MODID + ".reports.content.6", 7, keybladesPages);
+                    buildPage("gui." + Reference.MODID + ".reports.title.6", "gui." + Reference.MODID + ".reports.content.6", 7, keybladesPages, CHAPTER_KEYBLADES);
                     break;
                 case 7:
-                    buildPage("gui." + Reference.MODID + ".reports.title.7", "gui." + Reference.MODID + ".reports.content.7", 8, keybladesPages);
+                    buildPage("gui." + Reference.MODID + ".reports.title.7", "gui." + Reference.MODID + ".reports.content.7", 8, keybladesPages, CHAPTER_KEYBLADES);
                     break;
                 case 8:
-                    buildPage("gui." + Reference.MODID + ".reports.title.8", "gui." + Reference.MODID + ".reports.content.8", 9, keybladesPages);
+                    buildPage("gui." + Reference.MODID + ".reports.title.8", "gui." + Reference.MODID + ".reports.content.8", 9, keybladesPages, CHAPTER_KEYBLADES);
                     break;
                 case 9:
-                    buildPage("gui." + Reference.MODID + ".reports.title.9", "gui." + Reference.MODID + ".reports.content.9", 10, keybladesPages);
+                    buildPage("gui." + Reference.MODID + ".reports.title.9", "gui." + Reference.MODID + ".reports.content.9", 10, keybladesPages, CHAPTER_KEYBLADES);
                     break;
                 case 10:
-                    buildPage("gui." + Reference.MODID + ".reports.title.10", "gui." + Reference.MODID + ".reports.content.10", 11, keybladesPages);
+                    buildPage("gui." + Reference.MODID + ".reports.title.10", "gui." + Reference.MODID + ".reports.content.10", 11, keybladesPages, CHAPTER_KEYBLADES);
                     break;
                 default:
-                    buildPage("gui." + Reference.MODID + ".reports.title.default", "gui." + Reference.MODID + ".reports.content.default", 11, keybladesPages);
                     break;
             }
         	break;
         case CHAPTER_SUMMON:
         	switch(summonPageIndex){
         	case 0:
-        		buildPage("gui." + Reference.MODID + ".reports.keyblades.summon.title.main", "", 1, summonPages);
+        		buildPage("gui." + Reference.MODID + ".reports.keyblades.summon.title.main", "", 1, summonPages, CHAPTER_SUMMON);
                 break;
         	}
         	break;
@@ -217,11 +224,13 @@ public class GuiReports extends GuiScreen {
     	
     }
 
-    private void buildPage(String unlocTitle, String unlocBody, int page, int totalPages) {
+    private void buildPage(String unlocTitle, String unlocBody, int page, int totalPages, int desiredChapter) {
         RenderHelper.disableStandardItemLighting();
-        drawCenteredString(fontRendererObj, TextHelper.localize(unlocTitle), bookXStart + 85, 20, 0x666666);
-        fontRendererObj.setUnicodeFlag(false);
-        fontRendererObj.drawSplitString(TextHelper.localize(unlocBody), bookXStart + 20, 60, WIDTH - 40, 0x666666);
+        if(chapterIndex == desiredChapter){
+        	drawCenteredString(fontRendererObj, TextHelper.localize(unlocTitle), bookXStart + 85, 20, 0x666666);
+            fontRendererObj.setUnicodeFlag(false);
+            fontRendererObj.drawSplitString(TextHelper.localize(unlocBody), bookXStart + 20, 60, WIDTH - 40, 0x666666);
+        }
         //drawCenteredString(fontRendererObj, page + " / " + totalPages, bookXStart + 85, 215, 0x666666);
         RenderHelper.enableStandardItemLighting();
     }
