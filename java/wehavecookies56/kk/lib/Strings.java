@@ -10,7 +10,11 @@ public class Strings {
 	EmptyPotion = "emptypotion",
 	Potion = "potion",
 	HpOrb = "hporb",
-	DriveOrb = "driveorb";
+	DriveOrb = "driveorb",
+	Heart= "heart",
+	DarkHeart = "darkheart",
+	PureHeart = "pureheart",
+	KingdomHearts = "kingdomhearts";
 
 	//CHAINS
 	public static final String
@@ -258,7 +262,7 @@ public class Strings {
 	
 	//Materials
 	public static final String 
-	TM_KingdomKey_DEFAULT = "kingdomkey, 1, 1, 1f, 1f, 1",
+	TM_KingdomKey_DEFAULT = "kingdomkey, 3, -1, 6.0F, 5, 30",
 	TM_Oathkeeper_DEFAULT = "oathkeeper, 1, 1, 1f, 1f, 1",
 	TM_Oblivion_DEFAULT = "oblivion, 1, 1, 1f, 1f, 1",
 	TM_UltimaWeaponKH1_DEFAULT = "ultimaweaponkh1, 1, 1, 1f, 1f, 1",

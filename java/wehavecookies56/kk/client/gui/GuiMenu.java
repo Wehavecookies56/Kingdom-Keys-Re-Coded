@@ -9,6 +9,7 @@ import net.minecraft.client.gui.GuiScreen;
 public class GuiMenu extends GuiScreen {
 
 	public GuiMenu() {
+	
 	}
 	
 	@Override

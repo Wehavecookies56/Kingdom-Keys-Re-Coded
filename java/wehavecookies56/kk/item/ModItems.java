@@ -257,12 +257,16 @@ public class ModItems {
 		;
 	
 	public static Item
-	Munny,
-	EmptyPotion,
-	Potion,
-	HpOrb,
-	DriveOrb
-	;
+		Munny,
+		EmptyPotion,
+		Potion,
+		HpOrb,
+		DriveOrb,
+		Heart,
+		DarkHeart,
+		PureHeart,
+		KingdomHearts
+		;
 	
 	public static CreativeTabs tabKingdomKeys;
 	
@@ -511,6 +515,10 @@ public class ModItems {
 		Potion = new Item().setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys);
 		HpOrb = new Item().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys);
 		DriveOrb = new Item().setUnlocalizedName(Strings.DriveOrb).setCreativeTab(tabKingdomKeys);
+		Heart = new Item().setUnlocalizedName(Strings.Heart).setCreativeTab(tabKingdomKeys);
+		DarkHeart = new Item().setUnlocalizedName(Strings.DarkHeart).setCreativeTab(tabKingdomKeys);
+		PureHeart = new Item().setUnlocalizedName(Strings.PureHeart).setCreativeTab(tabKingdomKeys);
+		KingdomHearts = new Item().setUnlocalizedName(Strings.KingdomHearts).setCreativeTab(tabKingdomKeys);
 	}
 	
 	public static void initItemSword(Item item, String[] toolmaterial, String name, CreativeTabs tab){
@@ -640,8 +648,6 @@ public class ModItems {
 		GameRegistry.registerItem(YoungXehanortsKeyblade, Strings.YoungXehanortsKeyblade);
 		GameRegistry.registerItem(ZeroOne, Strings.ZeroOne);
 		
-		
-		
 		//CHAINS
 		GameRegistry.registerItem(Chain_AbaddonPlasma, Strings.Chain_AbaddonPlasma);
 		GameRegistry.registerItem(Chain_AbyssalTide, Strings.Chain_AbyssalTide);
@@ -767,6 +773,10 @@ public class ModItems {
 		GameRegistry.registerItem(Potion, Strings.Potion);
 		GameRegistry.registerItem(HpOrb, Strings.HpOrb);
 		GameRegistry.registerItem(DriveOrb, Strings.DriveOrb);
+		GameRegistry.registerItem(Heart, Strings.Heart);
+		GameRegistry.registerItem(DarkHeart, Strings.DarkHeart);
+		GameRegistry.registerItem(PureHeart, Strings.PureHeart);
+		GameRegistry.registerItem(KingdomHearts, Strings.KingdomHearts);
 
 	}
 	
@@ -1010,11 +1020,17 @@ public class ModItems {
 		registerRender(Chain_YoungXehanortsKeyblade);
 		registerRender(Chain_ZeroOne);
 		
+		//Other items
 		registerRender(Munny);
 		registerRender(EmptyPotion);
 		registerRender(Potion);
 		registerRender(HpOrb);
 		registerRender(DriveOrb);
+		registerRender(Heart);
+		registerRender(DarkHeart);
+		registerRender(PureHeart);
+		registerRender(KingdomHearts);
+
 	}
 	
 	public static void registerRender(Item item){

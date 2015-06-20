@@ -14,7 +14,7 @@ public class TabKingdomKeys extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem() {
-		return ModItems.AbaddonPlasma;
+		return ModItems.KingdomHearts;
 	}
 	
 }
