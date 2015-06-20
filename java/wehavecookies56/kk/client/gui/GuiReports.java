@@ -150,7 +150,7 @@ public class GuiReports extends GuiScreen {
     @Override
     @SideOnly(Side.CLIENT)
     public boolean doesGuiPauseGame() {
-        return false;
+        return true;
     }
 
     @Override

@@ -3,10 +3,13 @@ package wehavecookies56.kk.client.keys;
 import net.minecraft.client.settings.KeyBinding;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 
 public enum Keybinds {
 
-	OPENMENU("key.kingdomkeys.openmenu", Keyboard.KEY_M);
+	OPENMENU("key.kingdomkeys.openmenu", Keyboard.KEY_M),
+	SCROLL_UP("key.kingdomkeys.scrollup", Keyboard.KEY_UP),
+	SCROLL_DOWN("key.kingdomkeys.scrolldown", Keyboard.KEY_DOWN);
 	
 	private final KeyBinding keybinding;
 	

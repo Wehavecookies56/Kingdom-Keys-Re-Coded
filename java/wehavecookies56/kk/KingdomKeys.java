@@ -8,6 +8,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
@@ -50,6 +52,8 @@ public class KingdomKeys {
 	
 	@EventHandler
     public static void init(FMLInitializationEvent e){
+		FMLCommonHandler.instance().bus().register(instance);
+		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());
 		ModItems.init();
 		ModItems.register();
 		proxy.init();
