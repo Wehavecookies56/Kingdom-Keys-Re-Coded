@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.omg.CORBA.REBIND;
 
+import wehavecookies56.kk.lib.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.Gui;
@@ -47,7 +48,7 @@ public class GuiMenu extends GuiScreen {
 		
 	}
 
-    public static final ResourceLocation optionsBackground = new ResourceLocation("textures/gui/options_background.png");
+	public static final ResourceLocation optionsBackground = new ResourceLocation(Reference.MODID, "textures/gui/menubg.png");
 
     
     @Override
