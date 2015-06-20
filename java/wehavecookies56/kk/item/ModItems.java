@@ -250,8 +250,6 @@ public class ModItems {
 		Chain_WinnersProof,
 		Chain_WishingLamp,
 		Chain_WishingStar,
-		Chain_WoodenKeyblade,
-		Chain_WoodenStick,
 		Chain_YoungXehanortsKeyblade,
 		Chain_ZeroOne
 		;
@@ -505,8 +503,6 @@ public class ModItems {
 		Chain_WinnersProof = new Item().setUnlocalizedName(Strings.Chain_WinnersProof).setCreativeTab(tabKingdomKeys);
 		Chain_WishingLamp = new Item().setUnlocalizedName(Strings.Chain_WishingLamp).setCreativeTab(tabKingdomKeys);
 		Chain_WishingStar = new Item().setUnlocalizedName(Strings.Chain_WishingStar).setCreativeTab(tabKingdomKeys);
-		Chain_WoodenKeyblade = new Item().setUnlocalizedName(Strings.Chain_WoodenKeyblade).setCreativeTab(tabKingdomKeys);
-		Chain_WoodenStick = new Item().setUnlocalizedName(Strings.Chain_WoodenStick).setCreativeTab(tabKingdomKeys);
 		Chain_YoungXehanortsKeyblade = new Item().setUnlocalizedName(Strings.Chain_YoungXehanortsKeyblade).setCreativeTab(tabKingdomKeys);
 		Chain_ZeroOne = new Item().setUnlocalizedName(Strings.Chain_ZeroOne).setCreativeTab(tabKingdomKeys);
 		
@@ -762,8 +758,6 @@ public class ModItems {
 		GameRegistry.registerItem(Chain_WinnersProof, Strings.Chain_WinnersProof);
 		GameRegistry.registerItem(Chain_WishingLamp, Strings.Chain_WishingLamp);
 		GameRegistry.registerItem(Chain_WishingStar, Strings.Chain_WishingStar);
-		GameRegistry.registerItem(Chain_WoodenKeyblade, Strings.Chain_WoodenKeyblade);
-		GameRegistry.registerItem(Chain_WoodenStick, Strings.Chain_WoodenStick);
 		GameRegistry.registerItem(Chain_YoungXehanortsKeyblade, Strings.Chain_YoungXehanortsKeyblade);
 		GameRegistry.registerItem(Chain_ZeroOne, Strings.Chain_ZeroOne);
 
@@ -1015,8 +1009,6 @@ public class ModItems {
 		registerRender(Chain_WinnersProof);
 		registerRender(Chain_WishingLamp);
 		registerRender(Chain_WishingStar);
-		registerRender(Chain_WoodenKeyblade);
-		registerRender(Chain_WoodenStick);
 		registerRender(Chain_YoungXehanortsKeyblade);
 		registerRender(Chain_ZeroOne);
 		

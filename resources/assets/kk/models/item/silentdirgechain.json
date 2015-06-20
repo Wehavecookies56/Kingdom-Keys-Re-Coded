@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "kk:items/keyblades/guardianbell"
+		"layer0": "kk:items/chains/silentdirgechain"
 	},
 	"display": {
 		"thirdperson": {
