@@ -18,14 +18,16 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
+import scala.Console;
 import wehavecookies56.kk.client.keys.Keybinds;
 import wehavecookies56.kk.lib.Reference;
 
 public class GuiCommandMenu extends GuiScreen {
 	Minecraft mc = Minecraft.getMinecraft();
-	final static int TOP = 5, ATTACK = 4, MAGIC = 3, ITEMS = 2, DRIVE = 1;
-	final int FIRE = 7, BLIZZARD = 6, THUNDER = 5, CURE = 4, GRAVITY = 3, AERO = 2, STOP = 1;
-	final int VALOR=5, WISDOM=4, LIMIT=3, MASTER=2, FINAL=1;
+	public static final int TOP = 5, ATTACK = 4, MAGIC = 3, ITEMS = 2, DRIVE = 1;
+	
+	public static final int FIRE = 7, BLIZZARD = 6, THUNDER = 5, CURE = 4, GRAVITY = 3, AERO = 2, STOP = 1;
+	public static final int VALOR=5, WISDOM=4, LIMIT=3, MASTER=2, FINAL=1;
 	//int selected = ATTACK;
 	
 	final int TOP_WIDTH = 70;
@@ -35,6 +37,10 @@ public class GuiCommandMenu extends GuiScreen {
 	final int MENU_HEIGHT = 15;
 	
 	public static int selected = ATTACK;
+	public static int submenu = 0;
+	public static int magicselected = -1;
+	public static int itemselected = -1;
+	public static int driveselected = -1;
 	
 	ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/commandmenu.png");
 	
@@ -66,28 +72,7 @@ public class GuiCommandMenu extends GuiScreen {
 		
 		super.handleMouseInput();
 	}
-	
-	@Override
-	protected void keyTyped(char c, int key) throws IOException {
-		if(key == Keybinds.SCROLL_UP.getKeybind().getKeyCode()){
-			System.out.println("UP");
-			if(selected == ATTACK){
-				selected = DRIVE;
-			}else{
-				selected++;
-			}
-		}
-		if(key == Keybinds.SCROLL_DOWN.getKeybind().getKeyCode()){
-			if(key == Keybinds.SCROLL_DOWN.getKeybind().getKeyCode()){
-				if(selected == DRIVE){
-					selected = ATTACK;
-				}else{
-					selected--;
-				}
-			}
-		}
-	}
-	
+		
 	public void drawCommandMenu(int width, int height){
 		//System.out.println(this.height);
 

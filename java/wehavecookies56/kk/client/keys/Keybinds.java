@@ -9,7 +9,9 @@ public enum Keybinds {
 
 	OPENMENU("key.kingdomkeys.openmenu", Keyboard.KEY_M),
 	SCROLL_UP("key.kingdomkeys.scrollup", Keyboard.KEY_UP),
-	SCROLL_DOWN("key.kingdomkeys.scrolldown", Keyboard.KEY_DOWN);
+	SCROLL_DOWN("key.kingdomkeys.scrolldown", Keyboard.KEY_DOWN),
+	ENTER("key.kingdomkeys.enter", Keyboard.KEY_RIGHT),
+	BACK("key.kingdomkeys.back", Keyboard.KEY_LEFT);
 	
 	private final KeyBinding keybinding;
 	
