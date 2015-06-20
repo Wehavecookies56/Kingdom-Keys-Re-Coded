@@ -330,7 +330,7 @@ public class Strings {
 	TM_OmegaWeapon_DEFAULT = "omegaweapon, 3, -1, 6.0F, 13, 30",
 	TM_Umbrella_DEFAULT = "umbrella, 3, -1, 6.0F, 4, 30",
 	TM_Aubade_DEFAULT = "aubade, 3, -1, 6.0F, 9, 30",
-	TM_WoodenStick_DEFAULT = "woodenstick, 3, -1, 6.0F, 1, 30",
+	TM_WoodenStick_DEFAULT = "woodenstick, 3, -1, 6.0F, -4, 30",
 	TM_DreamSword_DEFAULT = "dreamsword, 3, -1, 6.0F, 5, 30",
 	TM_ZeroOne_DEFAULT = "zeroone, 3, -1, 6.0F, 12, 30",
 	TM_Earthshaker_DEFAULT = "earthshaker, 3, -1, 6.0F, 10, 30",
