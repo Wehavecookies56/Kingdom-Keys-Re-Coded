@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "kk:items/chains/glimpseofdarknesschain"
+		"layer0": "kk:items/chains/endsoftheearthchain"
 	},
 	"display": {
 		"thirdperson": {
