@@ -81,7 +81,7 @@ public class GuiCommandMenu extends GuiScreen {
 		//System.out.println(this.height);
 
 		//float height = mc.displayHeight/2*1.75f;
-		float scale = 0.75f;
+		float scale = 1.05f;
 		int colour;
 		//DRIVE
 		GL11.glPushMatrix();{

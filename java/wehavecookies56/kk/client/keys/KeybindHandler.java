@@ -53,7 +53,7 @@ public class KeybindHandler {
 						if(GuiCommandMenu.driveselected == GuiCommandMenu.VALOR){
 							GuiCommandMenu.driveselected = GuiCommandMenu.FINAL;
 						}else{
-							GuiCommandMenu.driveselected--;
+							GuiCommandMenu.driveselected++;
 						}
 					}
 					
@@ -73,7 +73,7 @@ public class KeybindHandler {
 						if(GuiCommandMenu.magicselected == GuiCommandMenu.STOP){
 							GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
 						}else{
-							GuiCommandMenu.magicselected++;
+							GuiCommandMenu.magicselected--;
 						}
 					}
 					
@@ -87,7 +87,7 @@ public class KeybindHandler {
 						if(GuiCommandMenu.driveselected == GuiCommandMenu.FINAL){
 							GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
 						}else{
-							GuiCommandMenu.driveselected++;
+							GuiCommandMenu.driveselected--;
 						}
 					}
 					break;
@@ -105,6 +105,7 @@ public class KeybindHandler {
 						break;
 					
 					case GuiCommandMenu.DRIVE:
+						GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
 						break;
 					}
