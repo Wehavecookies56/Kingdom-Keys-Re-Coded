@@ -31,12 +31,12 @@ public class ModBlocks {
 		
 	public static void init(){
 		tabKingdomKeysBlocks = new TabKingdomKeysBlocks(CreativeTabs.getNextID(), Strings.tabKingdomKeysBlocks);
-		NormalBlox = new BlockNormalBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.NormalBlox).setCreativeTab(tabKingdomKeysBlocks);
-		HardBlox = new BlockHardBlox(Material.iron, "pickaxe", 1, 6f, 10f).setUnlocalizedName(Strings.HardBlox).setCreativeTab(tabKingdomKeysBlocks);
-		MetalBlox = new BlockMetalBlox(Material.iron, "pickaxe", 2, 10f, 25f).setUnlocalizedName(Strings.MetalBlox).setCreativeTab(tabKingdomKeysBlocks);
+		NormalBlox = new BlockNormalBlox(Material.iron, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.NormalBlox).setCreativeTab(tabKingdomKeysBlocks);
+		HardBlox = new BlockHardBlox(Material.iron, "pickaxe", 1, 6f, 30f).setUnlocalizedName(Strings.HardBlox).setCreativeTab(tabKingdomKeysBlocks);
+		MetalBlox = new BlockMetalBlox(Material.iron, "pickaxe", 2, 10f, 600f).setUnlocalizedName(Strings.MetalBlox).setCreativeTab(tabKingdomKeysBlocks);
 		DangerBlox = new BlockDangerBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DangerBlox).setCreativeTab(tabKingdomKeysBlocks);
 		BounceBlox = new BlockBounceBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BounceBlox).setCreativeTab(tabKingdomKeysBlocks);
-		BlastBlox = new BlockBlastBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BlastBlox).setCreativeTab(tabKingdomKeysBlocks);
+		BlastBlox = new BlockBlastBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BlastBlox).setCreativeTab(tabKingdomKeysBlocks);		
 		PrizeBlox = new BlockPrizeBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.PrizeBlox).setCreativeTab(tabKingdomKeysBlocks);
 		RarePrizeBlox = new BlockRarePrizeBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.RarePrizeBlox).setCreativeTab(tabKingdomKeysBlocks);
 	}
@@ -52,6 +52,8 @@ public class ModBlocks {
 		GameRegistry.registerBlock(DangerBlox, Strings.DangerBlox);
 		GameRegistry.registerBlock(BounceBlox, Strings.BounceBlox);
 		GameRegistry.registerBlock(BlastBlox, Strings.BlastBlox);
+		GameRegistry.registerBlock(PrizeBlox, Strings.PrizeBlox);
+		GameRegistry.registerBlock(RarePrizeBlox, Strings.RarePrizeBlox);
 	}
 	
 	public static void registerRenders(){
@@ -61,6 +63,8 @@ public class ModBlocks {
 		registerRender(DangerBlox);
 		registerRender(BounceBlox);
 		registerRender(BlastBlox);
+		registerRender(PrizeBlox);
+		registerRender(RarePrizeBlox);
 	}
 	
 	public static void registerRender(Block block){
