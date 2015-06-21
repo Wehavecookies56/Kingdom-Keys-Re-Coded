@@ -284,7 +284,7 @@ public class GuiCommandMenu extends GuiScreen {
 		GL11.glPushMatrix();{
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*DRIVE_TOP), 0);
-			GL11.glScalef(1, scale, scale);
+			GL11.glScalef(1.25f, scale, scale);
 			if(submenu == SUB_DRIVE){	
 				//(int x, int y, int textureX, int textureY, int width, int height)
 				//drawModalRectWithCustomSizedTexture(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT, MENU_WIDTH, MENU_HEIGHT);
@@ -313,7 +313,7 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*VALOR), 0);
-			GL11.glScalef(1, scale, scale);
+			GL11.glScalef(1.25f, scale, scale);
 			if(submenu == SUB_DRIVE){	
 				//(int x, int y, int textureX, int textureY, int width, int height)
 				//drawModalRectWithCustomSizedTexture(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT, MENU_WIDTH, MENU_HEIGHT);
@@ -342,7 +342,7 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*WISDOM), 0);
-			GL11.glScalef(1, scale, scale);
+			GL11.glScalef(1.25f, scale, scale);
 			if(submenu == SUB_DRIVE){	
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
@@ -367,7 +367,7 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*LIMIT), 0);
-			GL11.glScalef(1, scale, scale);
+			GL11.glScalef(1.25f, scale, scale);
 			if(submenu == SUB_DRIVE){	
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
@@ -392,7 +392,7 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*MASTER), 0);
-			GL11.glScalef(1, scale, scale);
+			GL11.glScalef(1.25f, scale, scale);
 			if(submenu == SUB_DRIVE){	
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
@@ -417,7 +417,7 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*FINAL), 0);
-			GL11.glScalef(1, scale, scale);
+			GL11.glScalef(1.25f, scale, scale);
 			if(submenu == SUB_DRIVE){	
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
