@@ -1,40 +1,41 @@
-#English (US) language file for Kingdom Keys Re:Coded
-#Version 0.7.5
-#Created by Wehavecookies56
+#キングダムキースリー：コデッドの日本語言語ファイル
+#バション0.7.5
+#著　Wehavecookies56
 #
 
 ############################
 #Creative Tabs
 ############################
 
-itemGroup.tabKingdomKeys=Kingdom Keys (Items)
-itemGroup.tabKingdomKeysblocks=Kingdom Keys (Blocks)
+itemGroup.tabKingdomKeys=キングダムキース (アイテム)
+itemGroup.tabKingdomKeysblocks=キングダムキース (ブロック)
 
 ############################
 #Blocks
 ############################
 #Blox
-tile.normalblox.name=Normal Blox
-tile.hardblox.name=Hard Blox
-tile.metalblox.name=Metal Blox
-tile.dangerblox.name=Danger Blox
-tile.bounceblox.name=Bounce Blox
-tile.blastblox.name=Blast Blox
+tile.normalblox.name=ノーマルブロック 
+tile.hardblox.name=ハードブロック 
+tile.metalblox.name=メタルブロック
+tile.dangerblox.name=ダメージブロック
+tile.bounceblox.name=バウンドブロック 
+tile.blastblox.name=ボムブロック
+
 
 ############################
 #Items
 ############################
 
 #Misc
-item.emptypotion.name=Empty Potion
-item.potion.name=Potion
-item.hporb.name=HP Orb
-item.driveorb.name=Drive Orb
-item.munny.name=Munny
-item.heart.name=Heart
-item.pureheart.name=Pure Heart
-item.kingdomhearts.name=Kingdom Hearts
-item.darkheart.name=Dark Heart
+item.emptypotion.name=空のポーション
+item.potion.name=ポーション
+item.hporb.name=HPのオーブ
+item.driveorb.name=ドライブオーブ
+item.munny.name=マニー
+item.heart.name=心
+item.pureheart.name=純情
+item.kingdomhearts.name=キングダムハーツ
+item.darkheart.name=暗い心
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
@@ -285,34 +286,34 @@ gui.kk.reports.keyblades.title.main=Keyblades
 #Command Menu#
 #Commands
 gui.commandmenu.command=COMMANDS
-gui.commandmenu.attack=Attack
-gui.commandmenu.magic=Magic
-gui.commandmenu.items=Items
-gui.commandmenu.drive=Drive
+gui.commandmenu.attack=たたかう
+gui.commandmenu.magic=まほう
+gui.commandmenu.items=アイテム
+gui.commandmenu.drive=ドライヴ
 
 #Magic
 gui.commandmenu.magic.title=MAGIC
-gui.commandmenu.magic.fire=Fire
-gui.commandmenu.magic.blizzard=Blizzard
-gui.commandmenu.magic.thunder=Thunder
-gui.commandmenu.magic.cure=Cure
-gui.commandmenu.magic.gravity=Gravity
-gui.commandmenu.magic.aero=Aero
-gui.commandmenu.magic.stop=Stop
+gui.commandmenu.magic.fire=ファイア
+gui.commandmenu.magic.blizzard=ブリザド
+gui.commandmenu.magic.thunder=サンダー
+gui.commandmenu.magic.cure=ケアル
+gui.commandmenu.magic.gravity=グラビデ
+gui.commandmenu.magic.aero=エアロ
+gui.commandmenu.magic.stop=ストップ
 
 #Drive Forms
 gui.commandmenu.drive.title=TRANSFORM
-gui.commandmenu.drive.valor=Valor Form
-gui.commandmenu.drive.wisdom=Wisdom Form
-gui.commandmenu.drive.limit=Limit Form
-gui.commandmenu.drive.master=Master Form
-gui.commandmenu.drive.final=Final Form
+gui.commandmenu.drive.valor=ブレイヴフォーム
+gui.commandmenu.drive.wisdom=ウィズダムフォーム
+gui.commandmenu.drive.limit=リミットフィーム
+gui.commandmenu.drive.master=マスターフォーム
+gui.commandmenu.drive.final=ファナルフォーム
 
 #Menu#
 #Main
-gui.menu.main.title=Menu
-gui.menu.main.time=Time
-gui.menu.main.button.items=Items
+gui.menu.main.title=献立
+gui.menu.main.time=時
+gui.menu.main.button.items=アイテム
 gui.menu.main.button.abilities=Abilities
 gui.menu.main.button.customize=Customize
 gui.menu.main.button.party=Party
@@ -321,7 +322,7 @@ gui.menu.main.button.journal=Journal
 gui.menu.main.button.config=Config
 
 #Items
-gui.menu.items.title=Items
+gui.menu.items.title=アイテム
 gui.menu.items.button.stock=Stock
 gui.menu.items.button.back=Back
 

@@ -7,6 +7,8 @@ import org.lwjgl.opengl.GL12;
 import org.omg.CORBA.REBIND;
 
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.TextHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.Gui;
@@ -95,16 +97,16 @@ public class GuiMenu extends GuiScreen {
     	int button_items_stockY = button_items_playerY + 22;
     	int button_items_backY = button_items_stockY + 22;
     	
-    	buttonList.add(items = new GuiButton(ITEMS, 5, button_itemsY, 100, 20, "Items"));
-    	buttonList.add(abilities = new GuiButton(ABILITIES, 5, button_abilitiesY, 100, 20, "Abilities"));
-    	buttonList.add(customize = new GuiButton(CUSTOMIZE, 5, button_customizeY, 100, 20, "Customize"));
-    	buttonList.add(party = new GuiButton(PARTY, 5, button_partyY, 100, 20, "Party"));
-    	buttonList.add(status = new GuiButton(STATUS, 5, button_statusY, 100, 20, "Status"));
-    	buttonList.add(journal = new GuiButton(JOURNAL, 5, button_journalY, 100, 20, "Journal"));
-    	buttonList.add(config = new GuiButton(CONFIG, 5, button_configY, 100, 20, "Config"));
+    	buttonList.add(items = new GuiButton(ITEMS, 5, button_itemsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Items)));
+    	buttonList.add(abilities = new GuiButton(ABILITIES, 5, button_abilitiesY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Abilities)));
+    	buttonList.add(customize = new GuiButton(CUSTOMIZE, 5, button_customizeY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Customize)));
+    	buttonList.add(party = new GuiButton(PARTY, 5, button_partyY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Party)));
+    	buttonList.add(status = new GuiButton(STATUS, 5, button_statusY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Status)));
+    	buttonList.add(journal = new GuiButton(JOURNAL, 5, button_journalY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Journal)));
+    	buttonList.add(config = new GuiButton(CONFIG, 5, button_configY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Config)));
     	buttonList.add(items_player = new GuiButton(ITEMS_PLAYER, 5, button_items_playerY, 100, 20, mc.thePlayer.getDisplayNameString()));
-    	buttonList.add(items_stock = new GuiButton(ITEMS_STOCK, 5, button_items_stockY, 100, 20, "Stock"));
-    	buttonList.add(items_back = new GuiButton(ITEMS_BACK, 5, button_items_backY, 100, 20, "Back"));
+    	buttonList.add(items_stock = new GuiButton(ITEMS_STOCK, 5, button_items_stockY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Stock)));
+    	buttonList.add(items_back = new GuiButton(ITEMS_BACK, 5, button_items_backY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
 
     	updateButtons();
     }
@@ -166,11 +168,11 @@ public class GuiMenu extends GuiScreen {
         GL11.glPushMatrix();
         {
         GL11.glScalef(2, 2, 2);
-        String title = "Menu";
+        String title = TextHelper.localize(Strings.Gui_Menu_Main_Title);
         if(submenuIndex == SUBMENU_ITEMS){
-        	title = "Items";
+        	title = TextHelper.localize(Strings.Gui_Menu_Items_Title);
         }else{
-        	title = "Menu";
+        	title = TextHelper.localize(Strings.Gui_Menu_Main_Title);
         }
         drawString(fontRendererObj, title, 5, 5, 0xFFFFFF);
         }
@@ -179,7 +181,7 @@ public class GuiMenu extends GuiScreen {
         {
         	drawString(fontRendererObj, mc.thePlayer.worldObj.provider.getDimensionName(), screenWidth - 60, 5, 0xFFFFFF);
             drawString(fontRendererObj, mc.thePlayer.worldObj.getBiomeGenForCoords(mc.thePlayer.getPosition()).biomeName, screenWidth - 60, 20, 0xFFFFFF);
-            drawString(fontRendererObj, "Time: " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight/8)-100/16), 0xFFFFFF);
+            drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Time) +": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight/8)-100/16), 0xFFFFFF);
         }
         GL11.glPopMatrix();
 	}

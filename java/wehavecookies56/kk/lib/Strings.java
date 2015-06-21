@@ -5,6 +5,51 @@ public class Strings {
 	public static String tabKingdomKeys = "tabKingdomKeys";
 	public static String tabKingdomKeysBlocks = "tabKingdomKeysblocks";
 	
+	//Gui
+	public static String
+	//Command Menu
+	Gui_CommandMenu = "gui.commandmenu",
+	Gui_CommandMenu_Command = Gui_CommandMenu + ".command",
+	Gui_CommandMenu_Attack = Gui_CommandMenu + ".attack",
+	Gui_CommandMenu_Magic = Gui_CommandMenu + ".magic",
+	Gui_CommandMenu_Items = Gui_CommandMenu + ".items",
+	Gui_CommandMenu_Drive = Gui_CommandMenu + ".drive",
+	Gui_CommandMenu_Magic_Title = Gui_CommandMenu_Magic + ".title",
+	Gui_CommandMenu_Magic_Fire = Gui_CommandMenu_Magic + ".fire",
+	Gui_CommandMenu_Magic_Blizzard = Gui_CommandMenu_Magic + ".blizzard",
+	Gui_CommandMenu_Magic_Thunder = Gui_CommandMenu_Magic + ".thunder",
+	Gui_CommandMenu_Magic_Cure = Gui_CommandMenu_Magic + ".cure",
+	Gui_CommandMenu_Magic_Gravity = Gui_CommandMenu_Magic + ".gravity",
+	Gui_CommandMenu_Magic_Aero = Gui_CommandMenu_Magic + ".aero",
+	Gui_CommandMenu_Magic_Stop = Gui_CommandMenu_Magic + ".stop",
+	Gui_CommandMenu_Drive_Title = Gui_CommandMenu_Drive + ".title",
+	Gui_CommandMenu_Drive_Valor = Gui_CommandMenu_Drive + ".valor",
+	Gui_CommandMenu_Drive_Wisdom = Gui_CommandMenu_Drive + ".wisdom",
+	Gui_CommandMenu_Drive_Limit = Gui_CommandMenu_Drive + ".limit",
+	Gui_CommandMenu_Drive_Master = Gui_CommandMenu_Drive + ".master",
+	Gui_CommandMenu_Drive_Final = Gui_CommandMenu_Drive + ".final",
+	//Menu
+	Gui_Menu = "gui.menu",
+	Gui_Menu_Main = Gui_Menu + ".main",
+	Gui_Menu_Main_Title = Gui_Menu_Main + ".title",
+	Gui_Menu_Main_Button = Gui_Menu_Main + ".button",
+	Gui_Menu_Main_Button_Items = Gui_Menu_Main_Button + ".items",
+	Gui_Menu_Main_Button_Abilities = Gui_Menu_Main_Button + ".abilities",
+	Gui_Menu_Main_Button_Customize = Gui_Menu_Main_Button + ".customize",
+	Gui_Menu_Main_Button_Party = Gui_Menu_Main_Button + ".party",
+	Gui_Menu_Main_Button_Status = Gui_Menu_Main_Button + ".status",
+	Gui_Menu_Main_Button_Journal = Gui_Menu_Main_Button + ".journal",
+	Gui_Menu_Main_Button_Config = Gui_Menu_Main_Button + ".config",
+	Gui_Menu_Main_Time = Gui_Menu_Main + ".time",
+	Gui_Menu_Items = Gui_Menu + ".items",
+	Gui_Menu_Items_Title = Gui_Menu_Items + ".title",
+	Gui_Menu_Items_Button = Gui_Menu_Items + ".button",
+	Gui_Menu_Items_Button_Stock = Gui_Menu_Items_Button + ".stock",
+	Gui_Menu_Items_Button_Back = Gui_Menu_Items_Button + ".back";
+
+
+
+	
 	//Blocks
 	public static String
 	NormalBlox = "normalblox",
@@ -12,7 +57,9 @@ public class Strings {
 	MetalBlox = "metalblox",
 	DangerBlox = "dangerblox",
 	BounceBlox = "bounceblox",
-	BlastBlox = "blastblox";
+	BlastBlox = "blastblox",
+	PrizeBlox = "prizeblox",
+	RarePrizeBlox = "rareprizeblox";
 	
 	//Items
 	public static final String

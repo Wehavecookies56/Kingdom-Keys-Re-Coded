@@ -1,5 +1,5 @@
 {
-	"parent": "kk:block/DangeRBlox",
+	"parent": "kk:block/dangerblox",
 	"display": {
 		"thirdperson": {
 			"rotation": [ 10, -45, 170 ],
