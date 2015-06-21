@@ -1,13 +1,8 @@
 package wehavecookies56.kk;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemSword;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -18,14 +13,13 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import wehavecookies56.kk.block.ModBlocks;
-import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.ClientProxy;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.util.ScrollHandler;
+import wehavecookies56.kk.worldgen.WorldGenBlox;
 
 @Mod(name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER)
 public class KingdomKeys {
@@ -43,6 +37,8 @@ public class KingdomKeys {
 	public static void preInit(FMLPreInitializationEvent e){
 		config = new Configuration(e.getSuggestedConfigurationFile());
 		Config.syncConfig();
+		GameRegistry.registerWorldGenerator(new WorldGenBlox(), 2);
+
 	}
 	
 	@SubscribeEvent
@@ -54,6 +50,7 @@ public class KingdomKeys {
 	
 	@EventHandler
     public static void init(FMLInitializationEvent e){
+		WorldGenBlox worldGen = new WorldGenBlox();
 		FMLCommonHandler.instance().bus().register(instance);
 		MinecraftForge.EVENT_BUS.register(new ScrollHandler());
 		ModItems.init();
