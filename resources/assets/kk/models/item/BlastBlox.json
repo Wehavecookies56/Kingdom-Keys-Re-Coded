@@ -1,5 +1,5 @@
 {
-	"parent": "kk:block/NormalBlox",
+	"parent": "kk:block/BlastBlox",
 	"display": {
 		"thirdperson": {
 			"rotation": [ 10, -45, 170 ],

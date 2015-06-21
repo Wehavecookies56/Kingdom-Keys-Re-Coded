@@ -7,7 +7,12 @@ public class Strings {
 	
 	//Blocks
 	public static String
-	NormalBlox = "normalblox";
+	NormalBlox = "normalblox",
+	HardBlox = "hardblox",
+	MetalBlox = "metalblox",
+	DangerBlox = "dangerblox",
+	BounceBlox = "bounceblox",
+	BlastBlox = "blastblox";
 	
 	//Items
 	public static final String
