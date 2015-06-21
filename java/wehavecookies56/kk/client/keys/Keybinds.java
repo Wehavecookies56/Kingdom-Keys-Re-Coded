@@ -11,7 +11,8 @@ public enum Keybinds {
 	SCROLL_UP("key.kingdomkeys.scrollup", Keyboard.KEY_UP),
 	SCROLL_DOWN("key.kingdomkeys.scrolldown", Keyboard.KEY_DOWN),
 	ENTER("key.kingdomkeys.enter", Keyboard.KEY_RIGHT),
-	BACK("key.kingdomkeys.back", Keyboard.KEY_LEFT);
+	BACK("key.kingdomkeys.back", Keyboard.KEY_LEFT),
+	SCROLL_ACTIVATOR("key.kingdomkeys.scrollactivator", Keyboard.KEY_LMENU);
 	
 	private final KeyBinding keybinding;
 	

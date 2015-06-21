@@ -25,36 +25,33 @@ public class KeybindHandler {
 					GuiHelper.openMenu(Minecraft.getMinecraft().thePlayer);
 					break;
 				case SCROLL_UP:
-					if(GuiCommandMenu.submenu == 0) //Mainmenu
+					if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) //Mainmenu
 					{
 						if(GuiCommandMenu.selected == GuiCommandMenu.ATTACK){
 							GuiCommandMenu.selected = GuiCommandMenu.DRIVE;
-							System.out.println("up");
 						}else{
 							GuiCommandMenu.selected++;
 						}
 					}
 
-					else if(GuiCommandMenu.submenu == 1)//InsideMagic
+					else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)//InsideMagic
 					{
 						if(GuiCommandMenu.magicselected == GuiCommandMenu.FIRE){
 							GuiCommandMenu.magicselected = GuiCommandMenu.STOP;
-							System.out.println("UP MAGIC");
 						}else{
 							GuiCommandMenu.magicselected++;
 						}
 					}
 					
-					else if(GuiCommandMenu.submenu == 2)//InsideItems
+					else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)//InsideItems
 					{
 						
 					}
 					
-					else if(GuiCommandMenu.submenu == 3)//InsideDrive
+					else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)//InsideDrive
 					{
 						if(GuiCommandMenu.driveselected == GuiCommandMenu.VALOR){
 							GuiCommandMenu.driveselected = GuiCommandMenu.FINAL;
-							System.out.println("UP DRIVE");
 						}else{
 							GuiCommandMenu.driveselected--;
 						}
@@ -62,36 +59,33 @@ public class KeybindHandler {
 					
 					break;
 				case SCROLL_DOWN:
-					if(GuiCommandMenu.submenu == 0) //Mainmenu
+					if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) //Mainmenu
 					{
 						if(GuiCommandMenu.selected == GuiCommandMenu.DRIVE){
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-							System.out.println("down");
 						}else{
 							GuiCommandMenu.selected--;
 						}
 					}
 
-					else if(GuiCommandMenu.submenu == 1)//InsideMagic
+					else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)//InsideMagic
 					{
 						if(GuiCommandMenu.magicselected == GuiCommandMenu.STOP){
 							GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
-							System.out.println("DOWN MAGIC");
 						}else{
 							GuiCommandMenu.magicselected++;
 						}
 					}
 					
-					else if(GuiCommandMenu.submenu == 2)//InsideItems
+					else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)//InsideItems
 					{
 						
 					}
 					
-					else if(GuiCommandMenu.submenu == 3)//InsideDrive
+					else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)//InsideDrive
 					{
 						if(GuiCommandMenu.driveselected == GuiCommandMenu.FINAL){
 							GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
-							System.out.println("DOWN DRIVE");
 						}else{
 							GuiCommandMenu.driveselected++;
 						}
@@ -101,42 +95,40 @@ public class KeybindHandler {
 				case ENTER:
 					switch(GuiCommandMenu.selected)
 					{
-					case 3:
-						System.out.println("magic");
-						GuiCommandMenu.submenu = 1;
+					case GuiCommandMenu.MAGIC:
+						GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
 						break;
 					
-					case 2:
-						System.out.println("items");
-						GuiCommandMenu.submenu = 2;
+					case GuiCommandMenu.ITEMS:
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
 						break;
 					
-					case 1:
-						System.out.println("drive");
-						GuiCommandMenu.submenu = 3;
+					case GuiCommandMenu.DRIVE:
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
 						break;
 					}
 					break;
 				
 				case BACK:
-					if (GuiCommandMenu.submenu == 0)
+					if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
 					{
-						GuiCommandMenu.submenu = 0;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					}
-					else if (GuiCommandMenu.submenu == 1)
+					else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)
 					{
-						GuiCommandMenu.submenu -= 1;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					}
-					else if (GuiCommandMenu.submenu == 2)
+					else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)
 					{
-						GuiCommandMenu.submenu -= 2;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					}
-					else if (GuiCommandMenu.submenu == 3)
+					else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)
 					{
-						GuiCommandMenu.submenu -= 3;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					}
-					GuiCommandMenu.magicselected = -1;
-					GuiCommandMenu.driveselected = -1;
+					GuiCommandMenu.magicselected = GuiCommandMenu.MAGIC;
+					GuiCommandMenu.driveselected = GuiCommandMenu.DRIVE;
 					break;
 			}
 		}

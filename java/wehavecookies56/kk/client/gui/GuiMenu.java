@@ -70,6 +70,10 @@ public class GuiMenu extends GuiScreen {
 			break;
 		case ITEMS_STOCK:
 			mc.displayGuiScreen(new GuiInventory(mc.thePlayer));
+			break;
+		case JOURNAL:
+			mc.displayGuiScreen(new GuiReports());
+			break;
 		}
 		updateButtons();
 	}

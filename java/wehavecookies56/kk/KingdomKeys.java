@@ -24,6 +24,7 @@ import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.ClientProxy;
 import wehavecookies56.kk.network.CommonProxy;
+import wehavecookies56.kk.util.ScrollHandler;
 
 @Mod(name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER)
 public class KingdomKeys {
@@ -54,6 +55,7 @@ public class KingdomKeys {
     public static void init(FMLInitializationEvent e){
 		FMLCommonHandler.instance().bus().register(instance);
 		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());
+		MinecraftForge.EVENT_BUS.register(new ScrollHandler());
 		ModItems.init();
 		ModItems.register();
 		proxy.init();
