@@ -54,7 +54,6 @@ public class KingdomKeys {
 	@EventHandler
     public static void init(FMLInitializationEvent e){
 		FMLCommonHandler.instance().bus().register(instance);
-		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());
 		MinecraftForge.EVENT_BUS.register(new ScrollHandler());
 		ModItems.init();
 		ModItems.register();

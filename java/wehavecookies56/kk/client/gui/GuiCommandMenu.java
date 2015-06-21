@@ -1,28 +1,23 @@
 package wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import scala.Console;
-import wehavecookies56.kk.client.keys.Keybinds;
 import wehavecookies56.kk.lib.Reference;
 
+@SideOnly(Side.CLIENT)
 public class GuiCommandMenu extends GuiScreen {
 	Minecraft mc = Minecraft.getMinecraft();
 	public static final int TOP = 5, ATTACK = 4, MAGIC = 3, ITEMS = 2, DRIVE = 1;
