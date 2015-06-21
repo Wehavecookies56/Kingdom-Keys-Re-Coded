@@ -3,6 +3,11 @@ package wehavecookies56.kk.lib;
 public class Strings {
 	
 	public static String tabKingdomKeys = "tabKingdomKeys";
+	public static String tabKingdomKeysBlocks = "tabKingdomKeysblocks";
+	
+	//Blocks
+	public static String
+	NormalBlox = "normalblox";
 	
 	//Items
 	public static final String

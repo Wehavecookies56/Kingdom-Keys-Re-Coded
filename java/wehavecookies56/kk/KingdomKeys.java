@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Config;
@@ -57,6 +58,8 @@ public class KingdomKeys {
 		MinecraftForge.EVENT_BUS.register(new ScrollHandler());
 		ModItems.init();
 		ModItems.register();
+		ModBlocks.init();
+		ModBlocks.register();
 		proxy.init();
 	}
 	
