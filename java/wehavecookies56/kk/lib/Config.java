@@ -13,6 +13,9 @@ public class Config {
 	
 	public static String[] items;
 	
+	public static boolean
+	EnableWorldGen;
+	
 	public static String
 	TM_KingdomKey,
 	TM_Oathkeeper,
@@ -258,7 +261,10 @@ public class Config {
 	public static void syncConfig(){
 		FMLCommonHandler.instance().bus().register(KingdomKeys.instance);
 		config.load();
-
+		/**WORLDGEN******************************/
+		final String WORLDGEN = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "Worldgen";
+		EnableWorldGen = config.getBoolean("Enable World Gen", WORLDGEN, Booleans.ENABLEWORLDGEN_DEFAULT, "Toggles all world generation performed by this mod");
+		
 		/**ITEMS*********************************/
 		final String ITEMS = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "Items";
 		//items = config.get(ITEMS, "", "").getStringList();
