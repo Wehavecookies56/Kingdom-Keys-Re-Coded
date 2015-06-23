@@ -34,10 +34,19 @@ public class WorldGenBlox implements IWorldGenerator{
             int firstBlockXCoord = chunkX + rand.nextInt(16);
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int quisqueY = rand.nextInt(world.getHeight() - 40) + 40;
-
             BlockPos quisquePos = new BlockPos(firstBlockXCoord, quisqueY, firstBlockZCoord);
+            
+
             if (Config.EnableWorldGen)
-                (new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 4, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
+            {
+                (new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
+            	(new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
+                (new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
+                (new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
+                (new WorldGenMinable(ModBlocks.PrizeBlox.getDefaultState(), 5, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
+                (new WorldGenMinable(ModBlocks.RarePrizeBlox.getDefaultState(), 5, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
+
+            }
         }
     }
 }

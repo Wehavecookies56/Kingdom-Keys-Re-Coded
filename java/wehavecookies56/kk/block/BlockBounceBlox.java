@@ -18,6 +18,7 @@ public class BlockBounceBlox extends BlockBlox {
             entityIn.motionX *= d0;
             entityIn.motionZ *= d0;
             entityIn.motionY++;
+            entityIn.fallDistance=0;
             super.onEntityCollidedWithBlock(worldIn, pos, entityIn);
     }
 }
