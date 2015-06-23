@@ -6,9 +6,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.network.CommonProxy;
-import wehavecookies56.kk.network.PacketMunny;
+import wehavecookies56.kk.network.PacketDispatcher;
+import wehavecookies56.kk.network.PacketMunnyClient;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
 
@@ -16,11 +16,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	private final EntityPlayer player;
 
-	public int munny;
+	public int munny, maxMunny;
 
 	public ExtendedPlayer(EntityPlayer player){
 		this.player = player;
 		this.munny = 0;
+		this.maxMunny = Integer.MAX_VALUE;
 	}
 
 	@Override
@@ -49,26 +50,44 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void addMunny(int amount){
 		this.munny += amount;
 		this.sync();
+		//PacketDispatcher.sendTo(new PacketMunnyClient(player), ((EntityPlayerMP) player));
 	}
 
 	public void removeMunny(int amount){
 		this.munny -= amount;
 		this.sync();
+		//PacketDispatcher.sendTo(new PacketMunnyClient(player), ((EntityPlayerMP) player));
 	}
 
 	public int getMunny(){
 		return this.munny;
 	}
 	
+	public void setMunny(int amount){
+		this.munny = amount;
+		this.sync();
+		//PacketDispatcher.sendTo(new PacketMunnyClient(player), ((EntityPlayerMP) player));
+	}
+	
+	public void setMaxMunny(int max){
+		this.maxMunny = max;
+		this.sync();
+		//PacketDispatcher.sendTo(new PacketMunnyClient(player), ((EntityPlayerMP) player));
+	}
+	
+	public int getMaxMunny(){
+		return this.maxMunny;
+	}
+	
 
 	public final void sync(){
-		PacketMunny packetMunny = new PacketMunny(this.munny);
-         	KingdomKeys.kkPacketHandler.sendToServer(packetMunny);
+		PacketMunnyClient packetMunny = new PacketMunnyClient(player);
+        PacketDispatcher.sendToServer(packetMunny);
 		
 
 		if(!player.worldObj.isRemote){
 			EntityPlayerMP player1 = (EntityPlayerMP) player;
-			KingdomKeys.kkPacketHandler.sendTo(packetMunny, player1);
+			PacketDispatcher.sendTo(packetMunny, player1);
 		}
 	}
 	
@@ -86,10 +105,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public static void loadProxyData (EntityPlayer player){
 		ExtendedPlayer playerData = ExtendedPlayer.get(player);
-		NBTTagCompound SavedData = CommonProxy.getEntityData(getSaveKey(player));
+		NBTTagCompound savedData = CommonProxy.getEntityData(getSaveKey(player));
 
-		if(SavedData != null) {
-			playerData.loadNBTData(SavedData);
+		if(savedData != null) {
+			playerData.loadNBTData(savedData);
 		}
 		playerData.sync();
 	}

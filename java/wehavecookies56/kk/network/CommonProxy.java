@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IThreadListener;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -21,14 +22,18 @@ public class CommonProxy implements IGuiHandler {
 		return ctx.getServerHandler().playerEntity;
 	}
 	
-	private  static  final  Map < String ,  NBTTagCompound > extendedEntityData =  new  HashMap < String ,  NBTTagCompound > ();
+	public IThreadListener getThreadFromContext(MessageContext ctx) {
+		return ctx.getServerHandler().playerEntity.getServerForPlayer();
+	}
+	
+	private  static  final  Map <String, NBTTagCompound> extendedEntityData = new HashMap <String, NBTTagCompound>();
 
 	
-	public  static  void storeEntityData ( String name , NBTTagCompound compound )  {
+	public  static  void storeEntityData (String name, NBTTagCompound compound){
 		extendedEntityData.put(name, compound);
 	}
 
-	public  static  NBTTagCompound getEntityData ( String name )  {
+	public  static  NBTTagCompound getEntityData (String name){
 		return extendedEntityData.remove(name);
 	}
 
