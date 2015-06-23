@@ -168,7 +168,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public final void sync(){
 		SyncExtendedPlayer packet = new SyncExtendedPlayer(player);
-        PacketDispatcher.sendToServer(packet);
+        if(player.worldObj.isRemote){
+    		PacketDispatcher.sendToServer(packet);
+        }
 		
 
 		if(!player.worldObj.isRemote){

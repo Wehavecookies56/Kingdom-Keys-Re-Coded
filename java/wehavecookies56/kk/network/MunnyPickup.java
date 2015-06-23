@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
 
-public class MunnyPickup extends AbstractServerMessage<MunnyPickup> {
+public class MunnyPickup extends AbstractMessage<MunnyPickup> {
 
 	public MunnyPickup() {}
 	
@@ -22,7 +22,7 @@ public class MunnyPickup extends AbstractServerMessage<MunnyPickup> {
 	
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
-		this.toRemove = buffer.readItemStackFromBuffer();
+		toRemove = buffer.readItemStackFromBuffer();
 	}
 
 	@Override
@@ -32,7 +32,8 @@ public class MunnyPickup extends AbstractServerMessage<MunnyPickup> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		player.inventory.consumeInventoryItem(toRemove.getItem());
+		System.out.println(toRemove.getItem().toString());
+		toRemove.stackSize--;
 		ExtendedPlayer.get(player).addMunny(toRemove.getTagCompound().getInteger("amount"));
 	}
 

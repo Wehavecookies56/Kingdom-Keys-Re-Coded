@@ -96,8 +96,16 @@ public class EventHandler {
 	
 	@SubscribeEvent
 	public void onEntityItemPickUp(EntityItemPickupEvent event){
+		
 		if(event.item.getEntityItem().getItem() instanceof ItemMunny){
-			PacketDispatcher.sendToServer(new MunnyPickup(event.item.getEntityItem()));
+			MunnyPickup packet = new MunnyPickup(event.item.getEntityItem());
+			if(event.entityPlayer.worldObj.isRemote){
+	    		PacketDispatcher.sendToServer(packet);
+	        }else if (!event.entityPlayer.worldObj.isRemote){
+				EntityPlayerMP player1 = (EntityPlayerMP) event.entityPlayer;
+				PacketDispatcher.sendToAll(packet);
+				event.item.getEntityItem().stackSize--;
+			}
 		}
 	}
 	

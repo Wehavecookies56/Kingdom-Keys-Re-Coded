@@ -15,7 +15,7 @@ public class ItemMunny extends Item {
 
 	int munny;
 	
-	public ItemMunny() {}
+	public ItemMunny() {this.setMaxStackSize(1);}
 	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
