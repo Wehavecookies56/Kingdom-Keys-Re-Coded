@@ -1,17 +1,14 @@
 package wehavecookies56.kk.util;
 
-<<<<<<< HEAD
 import java.util.Random;
 
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityPig;
-=======
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
->>>>>>> origin/master
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
