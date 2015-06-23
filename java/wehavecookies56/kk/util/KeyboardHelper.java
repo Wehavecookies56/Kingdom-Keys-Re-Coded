@@ -13,7 +13,7 @@ public class KeyboardHelper {
     }
 
     public static boolean isControlDown() {
-        return Keyboard.isKeyDown(Keyboard.KEY_RCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_LCONTROL);
+        return Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL);
     }
     
     public static boolean isScrollActivatorDown() {

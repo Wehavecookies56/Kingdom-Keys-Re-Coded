@@ -1,4 +1,4 @@
-#Spanish (US) language file for Kingdom Keys Re:Coded
+#Spanish (ES) language file for Kingdom Keys Re:Coded
 #Version 0.7.5
 #Created by Abelatox
 #
@@ -37,6 +37,7 @@ item.heart.name=Corazón
 item.pureheart.name=Corazón puro
 item.kingdomhearts.name=Kingdom Hearts
 item.darkheart.name=Corazón oscuro
+item.darkleather.name=Cuero oscuro
 
 #Keyblades
 item.abaddonplasma.name=Plasma de Abadón
