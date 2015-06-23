@@ -72,7 +72,8 @@ public class Strings {
 	Heart= "heart",
 	DarkHeart = "darkheart",
 	PureHeart = "pureheart",
-	KingdomHearts = "kingdomhearts";
+	KingdomHearts = "kingdomhearts",
+	DarkLeather = "darkleather";
 
 	//CHAINS
 	public static final String

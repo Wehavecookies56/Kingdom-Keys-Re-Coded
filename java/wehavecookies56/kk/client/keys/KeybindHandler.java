@@ -21,7 +21,6 @@ public class KeybindHandler {
 		if(key != null){
 			switch(key){
 				case OPENMENU:
-					//GuiHelper.openBook();
 					GuiHelper.openMenu(Minecraft.getMinecraft().thePlayer);
 					break;
 				case SCROLL_UP:
@@ -101,7 +100,7 @@ public class KeybindHandler {
 						break;
 					
 					case GuiCommandMenu.ITEMS:
-						GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
+						//GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
 						break;
 					
 					case GuiCommandMenu.DRIVE:

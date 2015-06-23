@@ -1,22 +1,28 @@
 package wehavecookies56.kk.util;
 
+<<<<<<< HEAD
 import java.util.Random;
 
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityPig;
+=======
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityAnimal;
+>>>>>>> origin/master
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
@@ -56,26 +62,39 @@ public class EventHandler {
 	}
 	
 	@SubscribeEvent
-	public void onLivingDrops(LivingDropsEvent event){
-		if(event.entity instanceof EntityPig){
-			if(event.source.getSourceOfDamage() instanceof EntityPlayer){
-				ItemStack munny = new ItemStack(ModItems.Munny, 1);
-				munny.setTagCompound(new NBTTagCompound());
-				munny.getTagCompound().setInteger("amount", 100);
-				event.entityLiving.entityDropItem(munny, 1);
-			}
-		}
-		
-		if(event.entity instanceof EntityZombie){
-			if(event.source.getSourceOfDamage() instanceof EntityPlayer){
-				EntityPlayer player = (EntityPlayer)event.source.getSourceOfDamage();
-				if(player.getCurrentEquippedItem() != null){
-					if(player.getCurrentEquippedItem().getItem() instanceof ItemKeyblade){
+	public void onLivingDrops(LivingDropsEvent event)
+	{
+		if(event.source.getSourceOfDamage() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)event.source.getSourceOfDamage();
+			if(player.getCurrentEquippedItem() != null)
+			{
+				if(player.getCurrentEquippedItem().getItem() instanceof ItemKeyblade)
+				{
+					if(event.entity instanceof EntityAnimal)
+					{
+						event.entityLiving.entityDropItem(new ItemStack(ModItems.Heart), 2);
+
+					}
+					else if(event.entity instanceof EntityMob)
+					{
 						event.entityLiving.entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
+					}
+					else if(event.entity instanceof EntityAgeable)
+					{
+						event.entityLiving.entityDropItem(new ItemStack(ModItems.PureHeart), 2);
+					}
+					else if(event.entity instanceof EntityDragon||event.entity instanceof EntityWither)
+					{
+						event.entityLiving.entityDropItem(new ItemStack(ModItems.KingdomHearts), 2);
 					}
 				}
 			}
-		}
+			ItemStack munny = new ItemStack(ModItems.Munny, 1);
+			munny.setTagCompound(new NBTTagCompound());
+			munny.getTagCompound().setInteger("amount", 100);
+			event.entityLiving.entityDropItem(munny, 1);
+		}		
 	}
 	
 	@SubscribeEvent

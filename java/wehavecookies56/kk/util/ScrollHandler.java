@@ -34,7 +34,7 @@ public class ScrollHandler {
 				break;
 
 			case GuiCommandMenu.ITEMS:
-				GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
+				//GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
 				break;
 
 			case GuiCommandMenu.DRIVE:
