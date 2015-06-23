@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.PacketDispatcher;
-import wehavecookies56.kk.network.PacketMunnyClient;
+import wehavecookies56.kk.network.SyncExtendedPlayer;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
 
@@ -16,12 +16,18 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	private final EntityPlayer player;
 
-	public int munny, maxMunny;
+	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp;
 
 	public ExtendedPlayer(EntityPlayer player){
 		this.player = player;
 		this.munny = 0;
+		this.level = 1;
+		this.experience = 0;
+		this.mp = 0;
 		this.maxMunny = Integer.MAX_VALUE;
+		this.maxLevel = 99;
+		this.maxExperience = 10;
+		this.maxMp = 100;
 	}
 
 	@Override
@@ -29,7 +35,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		NBTTagCompound properties = new NBTTagCompound();
 
 		properties.setInteger("Munny", this.munny);
-
+		properties.setInteger("Level", level);
+		properties.setInteger("Experience", experience);
+		properties.setInteger("MP", mp);
+		properties.setInteger("MaxExperience", maxExperience);
+		properties.setInteger("MaxMP", maxMp);
+		
 		compound.setTag(EXT_PROP_NAME, properties);
 	}
 
@@ -38,8 +49,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
 
 		this.munny = properties.getInteger("Munny");
+		this.level = properties.getInteger("Level");
+		this.experience = properties.getInteger("Experience");
+		this.mp = properties.getInteger("MP");
+		this.maxExperience = properties.getInteger("MaxExperience");
+		this.maxMp = properties.getInteger("MaxMP");
 
-		System.out.println("[TUT PROPS] Munny from NBT: " + this.munny);
 	}
 
 	@Override
@@ -47,16 +62,89 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	}
 
-	public void addMunny(int amount){
-		this.munny += amount;
-		this.sync();
-		//PacketDispatcher.sendTo(new PacketMunnyClient(player), ((EntityPlayerMP) player));
+	public int getLevel() {
+		return level;
 	}
 
-	public void removeMunny(int amount){
-		this.munny -= amount;
+	public void setLevel(int level) {
 		this.sync();
-		//PacketDispatcher.sendTo(new PacketMunnyClient(player), ((EntityPlayerMP) player));
+		this.level = level;
+	}
+
+	public int getMaxLevel() {
+		return maxLevel;
+	}
+
+	public void setMaxLevel(int maxLevel) {
+		this.sync();
+		this.maxLevel = maxLevel;
+	}
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.sync();
+		this.experience = experience;
+	}
+
+	public int getMaxExperience() {
+		return maxExperience;
+	}
+
+	public void setMaxExperience(int maxExperience) {
+		this.sync();
+		this.maxExperience = maxExperience;
+	}
+
+	public int getMp() {
+		return mp;
+	}
+
+	public void setMp(int mp) {
+		this.sync();
+		this.mp = mp;
+	}
+
+	public int getMaxMp() {
+		return maxMp;
+	}
+
+	public void setMaxMp(int maxMp) {
+		this.sync();
+		this.maxMp = maxMp;
+	}
+
+	public boolean addMunny(int amount){
+		boolean sufficient = true;
+
+		if(amount + this.munny > this.maxMunny || amount > this.maxMunny){
+			sufficient = false;
+		}
+		
+		if (sufficient) {
+			this.munny += amount;
+			this.sync();
+		} else {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean removeMunny(int amount){
+		boolean sufficient = true;
+		
+		if(amount - this.maxMunny < 0 || amount > this.maxMunny){
+			sufficient = false;
+		}
+		if(sufficient){
+			this.munny -= amount;
+			this.sync();
+		} else {
+			return false;
+		}
+		return true;
 	}
 
 	public int getMunny(){
@@ -66,13 +154,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void setMunny(int amount){
 		this.munny = amount;
 		this.sync();
-		//PacketDispatcher.sendTo(new PacketMunnyClient(player), ((EntityPlayerMP) player));
 	}
 	
 	public void setMaxMunny(int max){
 		this.maxMunny = max;
 		this.sync();
-		//PacketDispatcher.sendTo(new PacketMunnyClient(player), ((EntityPlayerMP) player));
 	}
 	
 	public int getMaxMunny(){
@@ -81,13 +167,13 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	
 
 	public final void sync(){
-		PacketMunnyClient packetMunny = new PacketMunnyClient(player);
-        PacketDispatcher.sendToServer(packetMunny);
+		SyncExtendedPlayer packet = new SyncExtendedPlayer(player);
+        PacketDispatcher.sendToServer(packet);
 		
 
 		if(!player.worldObj.isRemote){
 			EntityPlayerMP player1 = (EntityPlayerMP) player;
-			PacketDispatcher.sendTo(packetMunny, player1);
+			PacketDispatcher.sendTo(packet, player1);
 		}
 	}
 	

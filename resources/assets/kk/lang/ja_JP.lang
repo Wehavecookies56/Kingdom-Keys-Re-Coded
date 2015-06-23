@@ -312,18 +312,19 @@ gui.commandmenu.drive.final=ファナルフォーム
 #Menu#
 #Main
 gui.menu.main.title=献立
-gui.menu.main.time=時
+gui.menu.main.time=TIME
 gui.menu.main.button.items=アイテム
-gui.menu.main.button.abilities=Abilities
-gui.menu.main.button.customize=Customize
-gui.menu.main.button.party=Party
-gui.menu.main.button.status=Status
-gui.menu.main.button.journal=Journal
-gui.menu.main.button.config=Config
+gui.menu.main.button.abilities=アビリティ
+gui.menu.main.button.customize=カスタマイズ
+gui.menu.main.button.party=パーティー
+gui.menu.main.button.status=ステータス
+gui.menu.main.button.journal=ジミニーメモ
+gui.menu.main.button.config=コンフィグ
+gui.menu.main.munny=MUNNIES
 
 #Items
 gui.menu.items.title=アイテム
-gui.menu.items.button.stock=Stock
+gui.menu.items.button.stock=バックヤード
 gui.menu.items.button.back=Back
 
 ############################

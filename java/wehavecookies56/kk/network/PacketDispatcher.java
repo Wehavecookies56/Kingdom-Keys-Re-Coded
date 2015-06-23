@@ -27,7 +27,7 @@ public class PacketDispatcher
 	 */
 	public static final void registerPackets() {
 		// Packets handled on CLIENT
-		registerMessage(PacketMunnyClient.class);
+		registerMessage(SyncExtendedPlayer.class);
 	}
 
 	/**

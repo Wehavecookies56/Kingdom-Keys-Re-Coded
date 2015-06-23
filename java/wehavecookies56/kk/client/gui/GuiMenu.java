@@ -186,7 +186,7 @@ public class GuiMenu extends GuiScreen {
             drawString(fontRendererObj, mc.thePlayer.worldObj.getBiomeGenForCoords(mc.thePlayer.getPosition()).biomeName, screenWidth - 60, 20, 0xFFFFFF);
             drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Time) +": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight/8)-300/16), 0xFFFFFF);
 			ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
-            drawString(fontRendererObj, Strings.Gui_Menu_Main_Munny + ": " + props.getMunny(), 5, screenHeight - ((screenHeight/8)-100/16), 0xFFD000);
+            drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Munny) + ": " + props.getMunny(), 5, screenHeight - ((screenHeight/8)-100/16), 0xFFD000);
         }
         GL11.glPopMatrix();
 	}

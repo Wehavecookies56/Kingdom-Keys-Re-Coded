@@ -9,13 +9,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.network.AbstractMessage.AbstractClientMessage;
 
-public class PacketMunnyClient extends AbstractClientMessage<PacketMunnyClient> {
+public class SyncExtendedPlayer extends AbstractClientMessage<SyncExtendedPlayer> {
 
 	private NBTTagCompound data;
 	
-	public PacketMunnyClient() {}
+	public SyncExtendedPlayer() {}
 	
-	public PacketMunnyClient(EntityPlayer player){
+	public SyncExtendedPlayer(EntityPlayer player){
 		data = new NBTTagCompound();
 		ExtendedPlayer.get(player).saveNBTData(data);
 	}
