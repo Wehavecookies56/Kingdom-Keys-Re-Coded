@@ -29,12 +29,14 @@ public class WorldGenBlox implements IWorldGenerator{
 
     //The actual generation method.
     private void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
-        for (int k = 0; k < 16; k++)
+        for (int k = 0; k < 10; k++)
         {
             int firstBlockXCoord = chunkX + rand.nextInt(16);
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int quisqueY = rand.nextInt(world.getHeight() - 40) + 40;
+            int OreY = rand.nextInt(100);
             BlockPos quisquePos = new BlockPos(firstBlockXCoord, quisqueY, firstBlockZCoord);
+            BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
             
 
             if (Config.EnableWorldGen)
@@ -46,6 +48,28 @@ public class WorldGenBlox implements IWorldGenerator{
                 (new WorldGenMinable(ModBlocks.PrizeBlox.getDefaultState(), 5, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
                 (new WorldGenMinable(ModBlocks.RarePrizeBlox.getDefaultState(), 5, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
 
+                (new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                (new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                (new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                (new WorldGenMinable(ModBlocks.FrostOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                (new WorldGenMinable(ModBlocks.LucidOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                (new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                (new WorldGenMinable(ModBlocks.RemembranceOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                (new WorldGenMinable(ModBlocks.TranquilOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                (new WorldGenMinable(ModBlocks.TwilightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+
+                /*In case we need it
+                private void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
+			        for (int k = 0; k < 10; k++) {
+			            int firstBlockXCoord = chunkX + rand.nextInt(16);
+			            int firstBlockZCoord = chunkZ + rand.nextInt(16);
+			            int quisqueY = rand.nextInt(20);
+			
+			            if (ConfigHandler.enableGeneration)
+			                (new WorldGenMinable(BlockRegistry.quisqueLapisOre, 0, 4, Blocks.stone)).generate(world, rand, firstBlockXCoord, quisqueY, firstBlockZCoord);
+			        }
+			    }
+                */
             }
         }
     }

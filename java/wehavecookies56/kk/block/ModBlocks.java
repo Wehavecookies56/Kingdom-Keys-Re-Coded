@@ -25,7 +25,17 @@ public class ModBlocks {
 		BounceBlox,
 		BlastBlox,
 		PrizeBlox,
-		RarePrizeBlox;
+		RarePrizeBlox,
+		BlazingOre,
+		BrightOre,
+		DenseOre,
+		FrostOre,
+		LucidOre,
+		PowerOre,
+		RemembranceOre,
+		SerenityOre,
+		TranquilOre,
+		TwilightOre;
 	
 	public static CreativeTabs tabKingdomKeysBlocks;
 		
@@ -39,6 +49,16 @@ public class ModBlocks {
 		BlastBlox = new BlockBlastBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BlastBlox).setCreativeTab(tabKingdomKeysBlocks);		
 		PrizeBlox = new BlockPrizeBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.PrizeBlox).setCreativeTab(tabKingdomKeysBlocks);
 		RarePrizeBlox = new BlockRarePrizeBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.RarePrizeBlox).setCreativeTab(tabKingdomKeysBlocks);
+		BlazingOre = new BlockBlazingOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BlazingOre).setCreativeTab(tabKingdomKeysBlocks);
+		BrightOre = new BlockBrightOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BrightOre).setCreativeTab(tabKingdomKeysBlocks);
+		DenseOre = new BlockDenseOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DenseOre).setCreativeTab(tabKingdomKeysBlocks);
+		FrostOre = new BlockFrostOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.FrostOre).setCreativeTab(tabKingdomKeysBlocks);
+		LucidOre = new BlockLucidOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.LucidOre).setCreativeTab(tabKingdomKeysBlocks);
+		PowerOre = new BlockPowerOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.PowerOre).setCreativeTab(tabKingdomKeysBlocks);
+		RemembranceOre = new BlockRemembranceOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.RemembranceOre).setCreativeTab(tabKingdomKeysBlocks);
+		SerenityOre = new BlockSerenityOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.SerenityOre).setCreativeTab(tabKingdomKeysBlocks);
+		TranquilOre = new BlockTranquilOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.TranquilOre).setCreativeTab(tabKingdomKeysBlocks);
+		TwilightOre = new BlockTwilightOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.TwilightOre).setCreativeTab(tabKingdomKeysBlocks);
 	}
 	
 	public static void registerBlock(Block block){
@@ -54,6 +74,16 @@ public class ModBlocks {
 		GameRegistry.registerBlock(BlastBlox, Strings.BlastBlox);
 		GameRegistry.registerBlock(PrizeBlox, Strings.PrizeBlox);
 		GameRegistry.registerBlock(RarePrizeBlox, Strings.RarePrizeBlox);
+		GameRegistry.registerBlock(BlazingOre, Strings.BlazingOre);
+		GameRegistry.registerBlock(BrightOre, Strings.BrightOre);
+		GameRegistry.registerBlock(DenseOre, Strings.DenseOre);
+		GameRegistry.registerBlock(FrostOre, Strings.FrostOre);
+		GameRegistry.registerBlock(LucidOre, Strings.LucidOre);
+		GameRegistry.registerBlock(PowerOre, Strings.PowerOre);
+		GameRegistry.registerBlock(RemembranceOre, Strings.RemembranceOre);
+		GameRegistry.registerBlock(SerenityOre, Strings.SerenityOre);
+		GameRegistry.registerBlock(TranquilOre, Strings.TranquilOre);
+		GameRegistry.registerBlock(TwilightOre, Strings.TwilightOre);
 	}
 	
 	public static void registerRenders(){
@@ -65,6 +95,17 @@ public class ModBlocks {
 		registerRender(BlastBlox);
 		registerRender(PrizeBlox);
 		registerRender(RarePrizeBlox);
+		registerRender(BlazingOre);
+		registerRender(BrightOre);
+		registerRender(DenseOre);
+		registerRender(FrostOre);
+		registerRender(LucidOre);
+		registerRender(PowerOre);
+		registerRender(RemembranceOre);
+		registerRender(SerenityOre);
+		registerRender(TranquilOre);
+		registerRender(TwilightOre);
+		
 	}
 	
 	public static void registerRender(Block block){

@@ -47,9 +47,6 @@ public class Strings {
 	Gui_Menu_Items_Button_Stock = Gui_Menu_Items_Button + ".stock",
 	Gui_Menu_Items_Button_Back = Gui_Menu_Items_Button + ".back",
 	Gui_Menu_Main_Munny = Gui_Menu_Main + ".munny";
-
-
-
 	
 	//Blocks
 	public static String
@@ -60,7 +57,17 @@ public class Strings {
 	BounceBlox = "bounceblox",
 	BlastBlox = "blastblox",
 	PrizeBlox = "prizeblox",
-	RarePrizeBlox = "rareprizeblox";
+	RarePrizeBlox = "rareprizeblox",
+	BlazingOre = "blazingore",
+	BrightOre ="brightore",
+	DenseOre = "denseore",
+	FrostOre = "frostore",
+	LucidOre = "lucidore",
+	PowerOre = "powerore",
+	RemembranceOre = "remembranceore",
+	SerenityOre = "serenityore",
+	TranquilOre = "tranquilore",
+	TwilightOre = "twilightore";
 	
 	//Items
 	public static final String
