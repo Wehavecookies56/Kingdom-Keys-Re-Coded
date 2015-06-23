@@ -319,6 +319,7 @@ gui.menu.main.button.party=Party
 gui.menu.main.button.status=Status
 gui.menu.main.button.journal=Journal
 gui.menu.main.button.config=Config
+gui.menu.main.munny=Munny
 
 #Items
 gui.menu.items.title=Items

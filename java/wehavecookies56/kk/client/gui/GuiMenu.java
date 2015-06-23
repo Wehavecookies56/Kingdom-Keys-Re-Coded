@@ -2,25 +2,20 @@ package wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-import org.omg.CORBA.REBIND;
-
-import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.util.TextHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiInventory;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
+
+import org.lwjgl.opengl.GL11;
+
+import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.TextHelper;
 
 public class GuiMenu extends GuiScreen {
 
@@ -28,6 +23,8 @@ public class GuiMenu extends GuiScreen {
 	final int SUBMENU_MAIN = 0, SUBMENU_ITEMS = 1;
 	
 	GuiButton items, abilities, customize, party, status, journal, config, items_player, items_stock, items_back;
+	
+	static int munny;
 	
 	int submenuIndex = SUBMENU_MAIN;
 
@@ -80,7 +77,13 @@ public class GuiMenu extends GuiScreen {
 		updateButtons();
 	}
 	
+	public static int getMunny(){
+		return munny;
+	}
 	
+	public static void setMunny(int amount){
+		munny = amount;
+	}
 	
     @Override
     public void initGui() {
@@ -181,7 +184,9 @@ public class GuiMenu extends GuiScreen {
         {
         	drawString(fontRendererObj, mc.thePlayer.worldObj.provider.getDimensionName(), screenWidth - 60, 5, 0xFFFFFF);
             drawString(fontRendererObj, mc.thePlayer.worldObj.getBiomeGenForCoords(mc.thePlayer.getPosition()).biomeName, screenWidth - 60, 20, 0xFFFFFF);
-            drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Time) +": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight/8)-100/16), 0xFFFFFF);
+            drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Time) +": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight/8)-300/16), 0xFFFFFF);
+			ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
+            drawString(fontRendererObj, Strings.Gui_Menu_Main_Munny + ": " + props.getMunny(), 5, screenHeight - ((screenHeight/8)-100/16), 0xFFD000);
         }
         GL11.glPopMatrix();
 	}

@@ -506,7 +506,7 @@ public class ModItems {
 		Chain_YoungXehanortsKeyblade = new Item().setUnlocalizedName(Strings.Chain_YoungXehanortsKeyblade).setCreativeTab(tabKingdomKeys);
 		Chain_ZeroOne = new Item().setUnlocalizedName(Strings.Chain_ZeroOne).setCreativeTab(tabKingdomKeys);
 		
-		Munny = new Item().setUnlocalizedName(Strings.Munny).setCreativeTab(tabKingdomKeys);
+		Munny = new ItemMunny().setUnlocalizedName(Strings.Munny).setCreativeTab(tabKingdomKeys);
 		EmptyPotion = new Item().setUnlocalizedName(Strings.EmptyPotion).setCreativeTab(tabKingdomKeys);
 		Potion = new Item().setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys);
 		HpOrb = new Item().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys);

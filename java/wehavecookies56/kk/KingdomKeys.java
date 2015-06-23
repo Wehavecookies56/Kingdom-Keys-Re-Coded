@@ -13,11 +13,15 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import wehavecookies56.kk.block.ModBlocks;
+import wehavecookies56.kk.event.EventOnJoinWorld;
+import wehavecookies56.kk.event.EventOnLivingDeath;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.ClientProxy;
 import wehavecookies56.kk.network.CommonProxy;
+import wehavecookies56.kk.network.PacketHandler;
+import wehavecookies56.kk.network.PacketMunny;
 import wehavecookies56.kk.util.ScrollHandler;
 import wehavecookies56.kk.worldgen.WorldGenBlox;
 
@@ -32,6 +36,8 @@ public class KingdomKeys {
 		
 	@Mod.Instance(Reference.MODID)
 	public static KingdomKeys instance;
+	
+	public static final PacketHandler kkPacketHandler = new PacketHandler("wehavecookies56.kk.network");
 	
 	@EventHandler
 	public static void preInit(FMLPreInitializationEvent e){
@@ -50,9 +56,14 @@ public class KingdomKeys {
 	
 	@EventHandler
     public static void init(FMLInitializationEvent e){
+		kkPacketHandler.initialise(Reference.MODCHANNEL);
+		kkPacketHandler.registerPacket(PacketMunny.class);
 		WorldGenBlox worldGen = new WorldGenBlox();
 		FMLCommonHandler.instance().bus().register(instance);
 		MinecraftForge.EVENT_BUS.register(new ScrollHandler());
+		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.EventHandler());
+		MinecraftForge.EVENT_BUS.register(new EventOnJoinWorld());
+		MinecraftForge.EVENT_BUS.register(new EventOnLivingDeath());
 		ModItems.init();
 		ModItems.register();
 		ModBlocks.init();

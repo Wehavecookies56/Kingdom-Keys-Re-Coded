@@ -45,7 +45,8 @@ public class Strings {
 	Gui_Menu_Items_Title = Gui_Menu_Items + ".title",
 	Gui_Menu_Items_Button = Gui_Menu_Items + ".button",
 	Gui_Menu_Items_Button_Stock = Gui_Menu_Items_Button + ".stock",
-	Gui_Menu_Items_Button_Back = Gui_Menu_Items_Button + ".back";
+	Gui_Menu_Items_Button_Back = Gui_Menu_Items_Button + ".back",
+	Gui_Menu_Main_Munny = Gui_Menu_Main + ".munny";
 
 
 
