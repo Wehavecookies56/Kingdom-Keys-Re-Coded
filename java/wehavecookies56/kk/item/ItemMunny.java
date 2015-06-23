@@ -18,20 +18,6 @@ public class ItemMunny extends Item {
 	public ItemMunny() {}
 	
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-		if(!world.isRemote){
-			if(itemStack.hasTagCompound()){
-				ExtendedPlayer props = ExtendedPlayer.get(player);
-				props.addMunny(itemStack.getTagCompound().getInteger("amount"));
-				System.out.println("Munny: " + props.getMunny());
-			}
-			
-		}
-		return itemStack;
-		
-	}
-	
-	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
 		if(stack.hasTagCompound()){
 			int amount = stack.getTagCompound().getInteger("amount");

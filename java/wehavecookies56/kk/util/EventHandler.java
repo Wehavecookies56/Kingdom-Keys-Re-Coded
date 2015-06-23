@@ -1,5 +1,7 @@
 package wehavecookies56.kk.util;
 
+import java.util.Random;
+
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +21,7 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
 import wehavecookies56.kk.item.ModItems;
+import wehavecookies56.kk.network.MunnyPickup;
 import wehavecookies56.kk.network.PacketDispatcher;
 import wehavecookies56.kk.network.SyncExtendedPlayer;
 
@@ -47,6 +50,11 @@ public class EventHandler {
 		} else {}
 	}
 	
+	public static int randInt(int min, int max, Random rand) {
+	    int randomNum = rand.nextInt((max - min) + 1) + min;
+	    return randomNum;
+	}
+	
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event){
 		if(event.entity instanceof EntityPig){
@@ -72,7 +80,9 @@ public class EventHandler {
 	
 	@SubscribeEvent
 	public void onEntityItemPickUp(EntityItemPickupEvent event){
-		
+		if(event.item.getEntityItem().getItem() instanceof ItemMunny){
+			PacketDispatcher.sendToServer(new MunnyPickup(event.item.getEntityItem()));
+		}
 	}
 	
 	@SubscribeEvent
