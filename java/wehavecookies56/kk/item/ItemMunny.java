@@ -28,9 +28,4 @@ public class ItemMunny extends Item {
 		
 	}
 	
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-		super.addInformation(stack, playerIn, tooltip, advanced);
-	}
-	
 }
