@@ -15,28 +15,34 @@ public class ItemMunny extends Item {
 
 	int munny;
 	
-	public ItemMunny() {this.setMaxStackSize(1);}
+	public ItemMunny() 
+	{
+		this.setMaxStackSize(1);
+	}
 	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-		if(stack.hasTagCompound()){
+		if(stack.hasTagCompound())
+		{
 			int amount = stack.getTagCompound().getInteger("amount");
 			tooltip.add("" + amount);
 		}
 	}
 	
 	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+	{
 		
 	}
 	
 	@Override
-	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems) {
+	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
+	{
 		
 	}
 	
-	public void setMunny(int munny){
+	public void setMunny(int munny)
+	{
 		this.munny = munny;
 	}
-	
 }
