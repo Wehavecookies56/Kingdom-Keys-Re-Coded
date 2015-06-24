@@ -1,10 +1,18 @@
 package wehavecookies56.kk.client.keys;
 
-import wehavecookies56.kk.client.gui.GuiCommandMenu;
-import wehavecookies56.kk.util.GuiHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import wehavecookies56.kk.client.gui.GuiCommandMenu;
+import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.item.ItemKeyblade;
+import wehavecookies56.kk.item.ItemKeychain;
+import wehavecookies56.kk.network.CommonProxy;
+import wehavecookies56.kk.network.DeSummonKeyblade;
+import wehavecookies56.kk.network.SummonKeyblade;
+import wehavecookies56.kk.network.PacketDispatcher;
+import wehavecookies56.kk.network.SyncExtendedPlayer;
+import wehavecookies56.kk.util.GuiHelper;
 
 public class KeybindHandler {
 
@@ -17,11 +25,13 @@ public class KeybindHandler {
 	
 	@SubscribeEvent
 	public void handleKeyInputEvent(InputEvent.KeyInputEvent event){
+		System.out.println(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getSummonedKeyblade());
+
 		Keybinds key = getPressedKey();
 		if(key != null){
 			switch(key){
 				case OPENMENU:
-					GuiHelper.openMenu(Minecraft.getMinecraft().thePlayer);
+					GuiHelper.openMenu();
 					break;
 				case SCROLL_UP:
 					if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) //Mainmenu
@@ -129,6 +139,22 @@ public class KeybindHandler {
 					}
 					GuiCommandMenu.magicselected = GuiCommandMenu.MAGIC;
 					GuiCommandMenu.driveselected = GuiCommandMenu.DRIVE;
+					break;
+				case SUMMON_KEYBLADE:
+					if(Minecraft.getMinecraft().thePlayer.inventory.getCurrentItem() == null && ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).inventory.getStackInSlot(0).getItem() instanceof ItemKeychain && ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getSummonedKeyblade() == 0){
+						PacketDispatcher.sendToServer(new SyncExtendedPlayer(Minecraft.getMinecraft().thePlayer));
+						PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).inventory.getStackInSlot(0).getItem()).getKeyblade()));
+						System.out.println(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getSummonedKeyblade());
+					} else if(Minecraft.getMinecraft().thePlayer.inventory.getCurrentItem() != null){
+						if(Minecraft.getMinecraft().thePlayer.inventory.getCurrentItem().getItem() instanceof ItemKeyblade && ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getSummonedKeyblade() == 1){
+							PacketDispatcher.sendToServer(new SyncExtendedPlayer(Minecraft.getMinecraft().thePlayer));
+
+							PacketDispatcher.sendToServer(new DeSummonKeyblade(Minecraft.getMinecraft().thePlayer.inventory.getCurrentItem()));
+							System.out.println(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getSummonedKeyblade());
+						}
+					} else {
+						break;
+					}
 					break;
 			}
 		}

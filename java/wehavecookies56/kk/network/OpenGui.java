@@ -3,37 +3,34 @@ package wehavecookies56.kk.network;
 import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
-import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
 
-public class MunnyPickup extends AbstractMessage<MunnyPickup> {
+public class OpenGui extends AbstractServerMessage<OpenGui> {
 
-	public MunnyPickup() {}
+	private int id;
 	
-	ItemStack toRemove;
+	public OpenGui() {}
 	
-	public MunnyPickup(ItemStack toRemove){
-		this.toRemove = toRemove;
+	public OpenGui(int id){
+		this.id = id;
 	}
-	
+
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStackFromBuffer();
+		id = buffer.readInt();
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeItemStackToBuffer(toRemove);
+		buffer.writeInt(id);
 	}
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		toRemove.stackSize--;
-		ExtendedPlayer.get(player).addMunny(toRemove.getTagCompound().getInteger("amount"));
+		player.openGui(KingdomKeys.instance, this.id, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
 	}
 
 }

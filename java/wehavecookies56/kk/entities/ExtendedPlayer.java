@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import wehavecookies56.kk.inventory.InventoryKeychain;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.PacketDispatcher;
 import wehavecookies56.kk.network.SyncExtendedPlayer;
@@ -15,8 +16,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "KKExtendedPlayer";
 
 	private final EntityPlayer player;
+	
+	public final InventoryKeychain inventory = new InventoryKeychain();
 
-	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp;
+	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, keybladeSummoned;
 
 	public ExtendedPlayer(EntityPlayer player){
 		this.player = player;
@@ -28,11 +31,13 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.maxLevel = 99;
 		this.maxExperience = 10;
 		this.maxMp = 100;
+		this.keybladeSummoned = 0;
 	}
 
 	@Override
 	public void saveNBTData(NBTTagCompound compound){
 		NBTTagCompound properties = new NBTTagCompound();
+		this.inventory.writeToNBT(properties);
 
 		properties.setInteger("Munny", this.munny);
 		properties.setInteger("Level", level);
@@ -40,13 +45,16 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("MP", mp);
 		properties.setInteger("MaxExperience", maxExperience);
 		properties.setInteger("MaxMP", maxMp);
+		properties.setInteger("KeybladeSummoned", keybladeSummoned);
 		
 		compound.setTag(EXT_PROP_NAME, properties);
+
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound compound){
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
+		this.inventory.readFromNBT(properties);
 
 		this.munny = properties.getInteger("Munny");
 		this.level = properties.getInteger("Level");
@@ -54,12 +62,22 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.mp = properties.getInteger("MP");
 		this.maxExperience = properties.getInteger("MaxExperience");
 		this.maxMp = properties.getInteger("MaxMP");
+		this.keybladeSummoned = properties.getInteger("KeybladeSummoned");
 
 	}
 
 	@Override
 	public void init(Entity entity, World world) {
 
+	}
+	
+	public int getSummonedKeyblade() {
+		return this.keybladeSummoned;
+	}
+
+	public void setSummonedKeyblade(int summoned) {
+		this.sync();
+		this.keybladeSummoned = summoned;
 	}
 
 	public int getLevel() {

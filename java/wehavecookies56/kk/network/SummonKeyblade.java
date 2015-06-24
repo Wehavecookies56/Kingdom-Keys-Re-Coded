@@ -3,37 +3,39 @@ package wehavecookies56.kk.network;
 import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.item.ItemKeyblade;
+import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
 
-public class MunnyPickup extends AbstractMessage<MunnyPickup> {
+public class SummonKeyblade extends AbstractMessage<SummonKeyblade> {
 
-	public MunnyPickup() {}
+	ItemStack stack;
 	
-	ItemStack toRemove;
+	public SummonKeyblade() {}
 	
-	public MunnyPickup(ItemStack toRemove){
-		this.toRemove = toRemove;
+	public SummonKeyblade(ItemKeyblade itemKeyblade) {
+		this.stack = new ItemStack(itemKeyblade);
 	}
-	
+
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStackFromBuffer();
+		this.stack = buffer.readItemStackFromBuffer();
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeItemStackToBuffer(toRemove);
+		buffer.writeItemStackToBuffer(this.stack);
 	}
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		toRemove.stackSize--;
-		ExtendedPlayer.get(player).addMunny(toRemove.getTagCompound().getInteger("amount"));
+		System.out.println("Summon");
+		player.inventory.addItemStackToInventory(stack);
+		ExtendedPlayer.get(player).setSummonedKeyblade(1);
 	}
 
 }

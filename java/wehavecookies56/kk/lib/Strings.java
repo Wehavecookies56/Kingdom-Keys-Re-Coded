@@ -575,6 +575,7 @@ public class Strings {
 	TM_UrsusForetellersKeyblade_NAME = TOOLMATERIAL + UrsusForetellersKeyblade,
 	TM_VulpeusForetellersKeyblade_NAME = TOOLMATERIAL + VulpeusForetellersKeyblade
 	;
+	public static final String KeychainInventory = "container.keychain";
 	
 	//Keyblades
 }

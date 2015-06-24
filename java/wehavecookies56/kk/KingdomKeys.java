@@ -11,8 +11,11 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import wehavecookies56.kk.block.ModBlocks;
+import wehavecookies56.kk.block.ModBlocksRecipes;
+import wehavecookies56.kk.item.ModItemsRecipes;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
@@ -31,14 +34,18 @@ public class KingdomKeys {
 	
 	public static Configuration config;
 		
+	private static int modGuiIndex = 0;
+	public static final int GUI_KEYCHAIN_INV = modGuiIndex++;
+
 	@Mod.Instance(Reference.MODID)
 	public static KingdomKeys instance;
 	
 	@EventHandler
-	public static void preInit(FMLPreInitializationEvent e){
+	public void preInit(FMLPreInitializationEvent e){
 		config = new Configuration(e.getSuggestedConfigurationFile());
 		Config.syncConfig();
 		GameRegistry.registerWorldGenerator(new WorldGenBlox(), 2);
+		PacketDispatcher.registerPackets();
 
 	}
 	
@@ -50,8 +57,7 @@ public class KingdomKeys {
 	}
 	
 	@EventHandler
-    public static void init(FMLInitializationEvent e){
-		PacketDispatcher.registerPackets();
+    public void init(FMLInitializationEvent e){
 		//kkPacketHandler.registerPacket(PacketMunny.class);
 		WorldGenBlox worldGen = new WorldGenBlox();
 		FMLCommonHandler.instance().bus().register(instance);
@@ -60,11 +66,14 @@ public class KingdomKeys {
 		ModItems.register();
 		ModBlocks.init();
 		ModBlocks.register();
+		ModItemsRecipes.init();
+		ModBlocksRecipes.init();
 		proxy.init();
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 	}
 	
 	@EventHandler
-	public static void postInit(FMLPostInitializationEvent e){
+	public void postInit(FMLPostInitializationEvent e){
 		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.EventHandler());
 	}
 	

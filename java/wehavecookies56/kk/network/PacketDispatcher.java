@@ -19,6 +19,9 @@ public class PacketDispatcher
 	public static final void registerPackets() {
 		registerMessage(SyncExtendedPlayer.class);
 		registerMessage(MunnyPickup.class);
+		registerMessage(OpenGui.class);
+		registerMessage(SummonKeyblade.class);
+		registerMessage(DeSummonKeyblade.class);
 	}
 
 	private static final <T extends AbstractMessage<T> & IMessageHandler<T, IMessage>> void registerMessage(Class<T> clazz) {

@@ -6,7 +6,7 @@ import net.minecraft.item.ItemSword;
 public class ItemKeyblade extends ItemSword {
 
 	public ItemKeyblade(ToolMaterial material) {
-		super(material);
+		super(material); this.setMaxStackSize(1);
 	}
 
 }

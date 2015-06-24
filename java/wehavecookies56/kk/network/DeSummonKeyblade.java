@@ -8,15 +8,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
 
-public class MunnyPickup extends AbstractMessage<MunnyPickup> {
+public class DeSummonKeyblade extends AbstractMessage<DeSummonKeyblade> {
 
-	public MunnyPickup() {}
+	public DeSummonKeyblade() {}
 	
 	ItemStack toRemove;
 	
-	public MunnyPickup(ItemStack toRemove){
+	public DeSummonKeyblade(ItemStack toRemove){
 		this.toRemove = toRemove;
 	}
 	
@@ -32,8 +33,9 @@ public class MunnyPickup extends AbstractMessage<MunnyPickup> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		toRemove.stackSize--;
-		ExtendedPlayer.get(player).addMunny(toRemove.getTagCompound().getInteger("amount"));
+		System.out.println("Desummon");
+		ExtendedPlayer.get(player).setSummonedKeyblade(0);
+		player.inventory.consumeInventoryItem(toRemove.getItem());
 	}
 
 }
