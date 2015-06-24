@@ -37,9 +37,9 @@ public class ContainerKeychain extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		if(ExtendedPlayer.get(player).getSummonedKeyblade() == 1){
-			return true;
-		}else{
 			return false;
+		}else{
+			return true;
 		}
 	}
 	

@@ -39,9 +39,9 @@ public class InventoryKeychain extends AbstractInventory {
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
 		if(ExtendedPlayer.get(player).getSummonedKeyblade() == 1){
-			return true;
-		}else{
 			return false;
+		}else{
+			return true;
 		}
 	}
 
