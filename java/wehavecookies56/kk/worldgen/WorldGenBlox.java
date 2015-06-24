@@ -49,6 +49,16 @@ public class WorldGenBlox implements IWorldGenerator{
                 (new WorldGenMinable(ModBlocks.PrizeBlox.getDefaultState(), 4, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
                 (new WorldGenMinable(ModBlocks.RarePrizeBlox.getDefaultState(), 2, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
 
+                (new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand))).generate(world, rand, quisquePos);
+            	(new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand))).generate(world, rand, quisquePos);
+                (new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand))).generate(world, rand, quisquePos);
+                (new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand))).generate(world, rand, quisquePos);
+                
+                (new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
+            	(new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
+                (new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
+                (new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
+                
                 (new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
                 (new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
                 (new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
