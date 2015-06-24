@@ -36,11 +36,7 @@ public class ContainerKeychain extends Container
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		if(ExtendedPlayer.get(player).getSummonedKeyblade() == 1){
-			return false;
-		}else{
-			return true;
-		}
+		return true;
 	}
 	
 	public ItemStack transferStackInSlot(EntityPlayer player, int par2) {

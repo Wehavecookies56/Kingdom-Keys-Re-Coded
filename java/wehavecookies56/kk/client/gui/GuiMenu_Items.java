@@ -40,8 +40,12 @@ public class GuiMenu_Items extends GuiMenu_Bars {
 	}
 	
     private void updateButtons() {
-		//items_player.enabled = ExtendedPlayer.get(mc.thePlayer).getSummonedKeyblade();
+		items_player.enabled = ExtendedPlayer.get(mc.thePlayer).getSummonedKeyblade() == 0;
+		this.updateScreen();
 	}
+    
+	
+	
 
 	@Override
     public void initGui() {

@@ -14,28 +14,28 @@ import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
 public class SummonKeyblade extends AbstractMessage<SummonKeyblade> {
 
 	ItemStack stack;
-	
+
 	public SummonKeyblade() {}
-	
+
 	public SummonKeyblade(ItemKeyblade itemKeyblade) {
 		this.stack = new ItemStack(itemKeyblade);
 	}
 
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
-		this.stack = buffer.readItemStackFromBuffer();
+		stack = buffer.readItemStackFromBuffer();
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeItemStackToBuffer(this.stack);
+		buffer.writeItemStackToBuffer(stack);
 	}
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		System.out.println("Summon");
-		player.inventory.addItemStackToInventory(stack);
-		ExtendedPlayer.get(player).setSummonedKeyblade(1);
+		player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
+		PacketDispatcher.sendToServer(new SyncExtendedPlayer(player));
+
 	}
 
 }

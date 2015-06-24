@@ -9,18 +9,19 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
+import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
 
 public class DeSummonKeyblade extends AbstractMessage<DeSummonKeyblade> {
 
 	public DeSummonKeyblade() {}
-	
+
 	ItemStack toRemove;
-	
+
 	public DeSummonKeyblade(ItemStack toRemove){
 		this.toRemove = toRemove;
 	}
-	
+
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
 		toRemove = buffer.readItemStackFromBuffer();
@@ -33,9 +34,8 @@ public class DeSummonKeyblade extends AbstractMessage<DeSummonKeyblade> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		System.out.println("Desummon");
-		ExtendedPlayer.get(player).setSummonedKeyblade(0);
-		player.inventory.consumeInventoryItem(toRemove.getItem());
+		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+		PacketDispatcher.sendToServer(new SyncExtendedPlayer(player));
 	}
 
 }
