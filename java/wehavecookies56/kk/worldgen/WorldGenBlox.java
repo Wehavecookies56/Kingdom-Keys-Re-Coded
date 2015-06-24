@@ -64,15 +64,16 @@ public class WorldGenBlox implements IWorldGenerator{
                 (new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
                 (new WorldGenMinable(ModBlocks.FrostOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
                 (new WorldGenMinable(ModBlocks.LucidOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                (new WorldGenMinable(ModBlocks.RemembranceOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                (new WorldGenMinable(ModBlocks.TranquilOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                (new WorldGenMinable(ModBlocks.TwilightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+
                 if(OreY < 20)
                 {
                     (new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
                 	(new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
                 }
-                (new WorldGenMinable(ModBlocks.RemembranceOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.TranquilOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.TwilightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
-
+                
                 /*In case we need it
                 private void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
 			        for (int k = 0; k < 10; k++) {
