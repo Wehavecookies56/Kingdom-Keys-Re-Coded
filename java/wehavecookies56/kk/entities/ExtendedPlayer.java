@@ -40,12 +40,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.inventory.writeToNBT(properties);
 
 		properties.setInteger("Munny", this.munny);
-		properties.setInteger("Level", level);
-		properties.setInteger("Experience", experience);
-		properties.setInteger("MP", mp);
-		properties.setInteger("MaxExperience", maxExperience);
-		properties.setInteger("MaxMP", maxMp);
-		properties.setInteger("KeybladeSummoned", keybladeSummoned);
+		properties.setInteger("Level", this.level);
+		properties.setInteger("Experience", this.experience);
+		properties.setInteger("MP", this.mp);
+		properties.setInteger("MaxExperience", this.maxExperience);
+		properties.setInteger("MaxMP", this.maxMp);
+		properties.setInteger("KeybladeSummoned", this.keybladeSummoned);
 		
 		compound.setTag(EXT_PROP_NAME, properties);
 
@@ -63,6 +63,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.maxExperience = properties.getInteger("MaxExperience");
 		this.maxMp = properties.getInteger("MaxMP");
 		this.keybladeSummoned = properties.getInteger("KeybladeSummoned");
+		
+		System.out.println(this.keybladeSummoned);
 
 	}
 
@@ -76,8 +78,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void setSummonedKeyblade(int summoned) {
-		this.sync();
 		this.keybladeSummoned = summoned;
+		this.sync();
 	}
 
 	public int getLevel() {
@@ -186,9 +188,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public final void sync(){
 		SyncExtendedPlayer packet = new SyncExtendedPlayer(player);
-        if(player.worldObj.isRemote){
-    		PacketDispatcher.sendToServer(packet);
-        }
+    	PacketDispatcher.sendToServer(packet);
 		
 
 		if(!player.worldObj.isRemote){

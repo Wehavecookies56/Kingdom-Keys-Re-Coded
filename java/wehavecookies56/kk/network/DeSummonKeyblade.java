@@ -12,7 +12,7 @@ import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
 
-public class DeSummonKeyblade extends AbstractMessage<DeSummonKeyblade> {
+public class DeSummonKeyblade extends AbstractServerMessage<DeSummonKeyblade> {
 
 	public DeSummonKeyblade() {}
 
@@ -35,7 +35,7 @@ public class DeSummonKeyblade extends AbstractMessage<DeSummonKeyblade> {
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-		PacketDispatcher.sendToServer(new SyncExtendedPlayer(player));
+		ExtendedPlayer.get(player).setSummonedKeyblade(0);
 	}
 
 }

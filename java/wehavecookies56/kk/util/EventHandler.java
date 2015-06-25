@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -103,13 +104,14 @@ public class EventHandler {
 		
 		if(event.item.getEntityItem().getItem() instanceof ItemMunny){
 			MunnyPickup packet = new MunnyPickup(event.item.getEntityItem());
-			if(event.entityPlayer.worldObj.isRemote){
-	    		PacketDispatcher.sendToServer(packet);
-	        }else if (!event.entityPlayer.worldObj.isRemote){
-				EntityPlayerMP player1 = (EntityPlayerMP) event.entityPlayer;
-				PacketDispatcher.sendToAll(packet);
-				event.item.getEntityItem().stackSize--;
-			}
+	    	PacketDispatcher.sendToServer(packet);
+		}
+	}
+	
+	@SubscribeEvent
+	public void onItemTossEvent(ItemTossEvent event){
+		if(event.player.inventory.getCurrentItem().getItem() instanceof ItemKeyblade){
+			event.setCanceled(true);
 		}
 	}
 	

@@ -143,14 +143,12 @@ public class KeybindHandler {
 				GuiCommandMenu.driveselected = GuiCommandMenu.DRIVE;
 				break;
 			case SUMMON_KEYBLADE:
-				//ExtendedPlayer.get(player).sync();
-				if(ExtendedPlayer.get(player).getSummonedKeyblade() == 0 && player.inventory.getCurrentItem() == null && ExtendedPlayer.get(player).inventory.getStackInSlot(0).getItem() instanceof ItemKeychain){
-					PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) ExtendedPlayer.get(player).inventory.getStackInSlot(0).getItem()).getKeyblade()));
-					ExtendedPlayer.get(player).setSummonedKeyblade(1);
+				ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
+				if(props.getSummonedKeyblade() == 0 && player.inventory.getCurrentItem() == null && props.inventory.getStackInSlot(0).getItem() instanceof ItemKeychain){
+					PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) props.inventory.getStackInSlot(0).getItem()).getKeyblade()));
 					PacketDispatcher.sendToServer(new SyncExtendedPlayer(player));
-				} else if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemKeyblade && ExtendedPlayer.get(player).getSummonedKeyblade() == 1){
+				} else if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemKeyblade && props.getSummonedKeyblade() == 1){
 					PacketDispatcher.sendToServer(new DeSummonKeyblade(player.inventory.getCurrentItem()));
-					ExtendedPlayer.get(player).setSummonedKeyblade(0);
 					PacketDispatcher.sendToServer(new SyncExtendedPlayer(player));
 				} else {
 					break;

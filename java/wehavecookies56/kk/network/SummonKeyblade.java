@@ -11,7 +11,7 @@ import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
 
-public class SummonKeyblade extends AbstractMessage<SummonKeyblade> {
+public class SummonKeyblade extends AbstractServerMessage<SummonKeyblade> {
 
 	ItemStack stack;
 
@@ -34,8 +34,7 @@ public class SummonKeyblade extends AbstractMessage<SummonKeyblade> {
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
-		PacketDispatcher.sendToServer(new SyncExtendedPlayer(player));
-
+		ExtendedPlayer.get(player).setSummonedKeyblade(1);
 	}
 
 }
