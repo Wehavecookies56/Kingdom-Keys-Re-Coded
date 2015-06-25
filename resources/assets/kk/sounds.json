@@ -1,0 +1,126 @@
+{
+    "kupo": {
+    	"category": "master", 
+    	"sounds": [
+    		{"name": "kupo", "stream": false}
+    	]
+    },
+
+    "summon": {
+    	"category": "player",
+    	"sounds": [
+    		{"name": "summon", "stream": false}
+    	]
+    },
+
+	"alarm": {
+		"category": "player",
+		"sounds": [
+			{"name": "alarm", "stream": false}
+		]
+	},
+
+    "unsummon": {
+    	"category": "player", 
+    	"sounds": [
+    		{"name": "unsummon", "stream": false}
+    	]
+    },
+
+    "sharpshooterbullet": {
+    	"category": "player", 
+    	"sounds": [
+    		{"name": "sharpshooterbullet", "stream": false}
+    	]
+    },
+
+    "records.Birth by Sleep -A Link to the Future-": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/Birth by Sleep -A Link to the Future-", "stream": true}
+    	]
+    },
+
+    "records.Dream Drop Distance -The Next Awakening-": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/Dream Drop Distance -The Next Awakening-", "stream": true}
+    	]
+    },
+
+    "records.Hikari -KINGDOM Instrumental Version-": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/Hikari -KINGDOM Instrumental Version-", "stream": true}
+    	]
+    },
+    "records.Musique pour la tristesse de Xion": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/Musique pour la tristesse de Xion", "stream": true}
+    	]
+    },
+
+    "records.No More Bugs -Bug Version-": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/No More Bugs -Bug Version-", "stream": true}
+    	]
+    },
+
+    "records.Organization XIII": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/Organization XIII", "stream": true}
+    	]
+    },
+
+    "records.Sanctuary": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/Sanctuary", "stream": true}
+    	]
+    },
+
+    "records.Simple And Clean PLANITb Remix": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/Simple And Clean PLANITb Remix", "stream": true}
+    	]
+    },
+
+    "records.Sinister Sundown": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/Sinister Sundown", "stream": true}
+    	]
+    },
+
+    "records.The 13th Anthology": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/The 13th Anthology", "stream": true}
+    	]
+    },
+
+    "records.Dearly Beloved -Symphony Version-": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/Dearly Beloved -Symphony Version-", "stream": true}
+    	]
+    },
+
+    "records.L'Oscurita Dell'Ignoto": {
+    	"category": "record", 
+    	"sounds": [
+    		{"name": "records/L'Oscurita Dell'Ignoto", "stream": true}
+    	]
+    },
+
+    "records.Darkness of the Unknown": {
+    	"category": "record", 
+    	"sounds": [
+			{"name": "records/Darkness of the Unknown", "stream": true}
+		]
+	}
+}

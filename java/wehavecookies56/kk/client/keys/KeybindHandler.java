@@ -144,6 +144,9 @@ public class KeybindHandler {
 				break;
 			case SUMMON_KEYBLADE:
 				ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
+				if(props.inventory.getStackInSlot(0) == null){
+					break;
+				}
 				if(props.getSummonedKeyblade() == 0 && player.inventory.getCurrentItem() == null && props.inventory.getStackInSlot(0).getItem() instanceof ItemKeychain){
 					PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) props.inventory.getStackInSlot(0).getItem()).getKeyblade()));
 					PacketDispatcher.sendToServer(new SyncExtendedPlayer(player));

@@ -110,9 +110,12 @@ public class EventHandler {
 	
 	@SubscribeEvent
 	public void onItemTossEvent(ItemTossEvent event){
-		if(event.player.inventory.getCurrentItem().getItem() instanceof ItemKeyblade){
-			event.setCanceled(true);
+		if(event.player.worldObj.isRemote){
+			if(event.player.inventory.getCurrentItem().getItem() instanceof ItemKeyblade){
+				event.setCanceled(true);
+			}
 		}
+		
 	}
 	
 	@SubscribeEvent

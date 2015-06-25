@@ -16,7 +16,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "KKExtendedPlayer";
 
 	private final EntityPlayer player;
-	
+
 	public final InventoryKeychain inventory = new InventoryKeychain();
 
 	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, keybladeSummoned;
@@ -46,7 +46,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("MaxExperience", this.maxExperience);
 		properties.setInteger("MaxMP", this.maxMp);
 		properties.setInteger("KeybladeSummoned", this.keybladeSummoned);
-		
+
 		compound.setTag(EXT_PROP_NAME, properties);
 
 	}
@@ -63,8 +63,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.maxExperience = properties.getInteger("MaxExperience");
 		this.maxMp = properties.getInteger("MaxMP");
 		this.keybladeSummoned = properties.getInteger("KeybladeSummoned");
-		
-		System.out.println(this.keybladeSummoned);
 
 	}
 
@@ -72,7 +70,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void init(Entity entity, World world) {
 
 	}
-	
+
 	public int getSummonedKeyblade() {
 		return this.keybladeSummoned;
 	}
@@ -142,7 +140,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		if(amount + this.munny > this.maxMunny || amount > this.maxMunny){
 			sufficient = false;
 		}
-		
+
 		if (sufficient) {
 			this.munny += amount;
 			this.sync();
@@ -154,7 +152,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public boolean removeMunny(int amount){
 		boolean sufficient = true;
-		
+
 		if(amount - this.maxMunny < 0 || amount > this.maxMunny){
 			sufficient = false;
 		}
@@ -170,37 +168,38 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public int getMunny(){
 		return this.munny;
 	}
-	
+
 	public void setMunny(int amount){
 		this.munny = amount;
 		this.sync();
 	}
-	
+
 	public void setMaxMunny(int max){
 		this.maxMunny = max;
 		this.sync();
 	}
-	
+
 	public int getMaxMunny(){
 		return this.maxMunny;
 	}
-	
+
 
 	public final void sync(){
 		SyncExtendedPlayer packet = new SyncExtendedPlayer(player);
-    	PacketDispatcher.sendToServer(packet);
-		
+		if(player.worldObj.isRemote){
+			PacketDispatcher.sendToServer(packet);
+		}
 
 		if(!player.worldObj.isRemote){
 			EntityPlayerMP player1 = (EntityPlayerMP) player;
 			PacketDispatcher.sendTo(packet, player1);
 		}
 	}
-	
+
 	private static String getSaveKey (EntityPlayer player){
 		return player.getDisplayName() + ":" + EXT_PROP_NAME;
 	}
-	
+
 	public static void saveProxyData(EntityPlayer player){
 		ExtendedPlayer playerData = ExtendedPlayer.get(player);
 		NBTTagCompound SavedData = new NBTTagCompound();
@@ -218,7 +217,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 		playerData.sync();
 	}
-	
+
 	public static final void register(EntityPlayer player){
 		player.registerExtendedProperties(EXT_PROP_NAME, new ExtendedPlayer(player));
 	}
@@ -226,6 +225,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public static final ExtendedPlayer get(EntityPlayer player){
 		return (ExtendedPlayer) player.getExtendedProperties(EXT_PROP_NAME);
 	}
- 
+
 
 }

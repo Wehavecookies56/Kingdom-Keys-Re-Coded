@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemSword;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -267,6 +268,22 @@ public class ModItems {
 		DarkLeather
 		;
 	
+	public static Item
+		Disc_Birth_by_Sleep_A_Link_to_the_Future,
+		Disc_Darkness_of_the_Unknown,
+		Disc_Dearly_Beloved_Symphony_Version,
+		Disc_Dream_Drop_Distance_The_Next_Awakening,
+		Disc_Hikari_KINGDOM_Instrumental_Version,
+		Disc_L_Oscurita_Dell_Ignoto,
+		Disc_Musique_pour_la_tristesse_de_Xion,
+		Disc_No_More_Bugs_Bug_Version,
+		Disc_Organization_XIII,
+		Disc_Sanctuary,
+		Disc_Simple_And_Clean_PLANITb_Remix,
+		Disc_Sinister_Sundown,
+		Disc_The_13th_Anthology
+		;
+	
 	public static CreativeTabs tabKingdomKeys;
 	
 	public static void init(){
@@ -517,6 +534,20 @@ public class ModItems {
 		PureHeart = new Item().setUnlocalizedName(Strings.PureHeart).setCreativeTab(tabKingdomKeys);
 		KingdomHearts = new Item().setUnlocalizedName(Strings.KingdomHearts).setCreativeTab(tabKingdomKeys);
 		DarkLeather = new Item().setUnlocalizedName(Strings.DarkLeather).setCreativeTab(tabKingdomKeys);
+		
+		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
+		Disc_Darkness_of_the_Unknown = new ItemKKRecord(Strings.Disc_Darkness_of_the_Unknown_Name, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
+		Disc_Dearly_Beloved_Symphony_Version = new ItemKKRecord(Strings.Disc_Dearly_Beloved_Symphony_Version_Name, Strings.Disc_Dearly_Beloved_Symphony_Version, tabKingdomKeys, 2.38F);
+		Disc_Dream_Drop_Distance_The_Next_Awakening = new ItemKKRecord(Strings.Disc_Dream_Drop_Distance_The_Next_Awakening_Name, Strings.Disc_Dream_Drop_Distance_The_Next_Awakening, tabKingdomKeys, 8.56F);
+		Disc_Hikari_KINGDOM_Instrumental_Version = new ItemKKRecord(Strings.Disc_Hikari_KINGDOM_Instrumental_Version_Name, Strings.Disc_Hikari_KINGDOM_Instrumental_Version, tabKingdomKeys, 3.42F);
+		Disc_L_Oscurita_Dell_Ignoto = new ItemKKRecord(Strings.Disc_L_Oscurita_Dell_Ignoto_Name, Strings.Disc_L_Oscurita_Dell_Ignoto, tabKingdomKeys, 4.33F);
+		Disc_Musique_pour_la_tristesse_de_Xion = new ItemKKRecord(Strings.Disc_Musique_pour_la_tristesse_de_Xion_Name, Strings.Disc_Musique_pour_la_tristesse_de_Xion, tabKingdomKeys, 3.57F);
+		Disc_No_More_Bugs_Bug_Version = new ItemKKRecord(Strings.Disc_No_More_Bugs_Bug_Version_Name, Strings.Disc_No_More_Bugs_Bug_Version, tabKingdomKeys, 3.17F);
+		Disc_Organization_XIII = new ItemKKRecord(Strings.Disc_Organization_XIII_Name, Strings.Disc_Organization_XIII, tabKingdomKeys, 2.32F);
+		Disc_Sanctuary = new ItemKKRecord(Strings.Disc_Sanctuary_Name, Strings.Disc_Sanctuary, tabKingdomKeys, 4.25F);
+		Disc_Simple_And_Clean_PLANITb_Remix = new ItemKKRecord(Strings.Disc_Simple_And_Clean_PLANITb_Remix_Name, Strings.Disc_Simple_And_Clean_PLANITb_Remix, tabKingdomKeys, 2.37F);
+		Disc_Sinister_Sundown = new ItemKKRecord(Strings.Disc_Sinister_Sundown_Name, Strings.Disc_Sinister_Sundown, tabKingdomKeys, 2.13F);
+		Disc_The_13th_Anthology = new ItemKKRecord(Strings.Disc_The_13th_Anthology_Name, Strings.Disc_The_13th_Anthology, tabKingdomKeys, 6.38F);
 	}
 	
 	public static void initItemSword(Item item, String[] toolmaterial, String name, CreativeTabs tab){
@@ -774,7 +805,21 @@ public class ModItems {
 		GameRegistry.registerItem(PureHeart, Strings.PureHeart);
 		GameRegistry.registerItem(KingdomHearts, Strings.KingdomHearts);
 		GameRegistry.registerItem(DarkLeather, Strings.DarkLeather);
-
+		
+		//DISCS
+		GameRegistry.registerItem(Disc_Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future);
+		GameRegistry.registerItem(Disc_Darkness_of_the_Unknown, Strings.Disc_Darkness_of_the_Unknown);
+		GameRegistry.registerItem(Disc_Dearly_Beloved_Symphony_Version, Strings.Disc_Dearly_Beloved_Symphony_Version);
+		GameRegistry.registerItem(Disc_Dream_Drop_Distance_The_Next_Awakening, Strings.Disc_Dream_Drop_Distance_The_Next_Awakening);
+		GameRegistry.registerItem(Disc_Hikari_KINGDOM_Instrumental_Version, Strings.Disc_Hikari_KINGDOM_Instrumental_Version);
+		GameRegistry.registerItem(Disc_L_Oscurita_Dell_Ignoto, Strings.Disc_L_Oscurita_Dell_Ignoto);
+		GameRegistry.registerItem(Disc_Musique_pour_la_tristesse_de_Xion, Strings.Disc_Musique_pour_la_tristesse_de_Xion);
+		GameRegistry.registerItem(Disc_No_More_Bugs_Bug_Version, Strings.Disc_No_More_Bugs_Bug_Version);
+		GameRegistry.registerItem(Disc_Organization_XIII, Strings.Disc_Organization_XIII);
+		GameRegistry.registerItem(Disc_Sanctuary, Strings.Disc_Sanctuary);
+		GameRegistry.registerItem(Disc_Simple_And_Clean_PLANITb_Remix, Strings.Disc_Simple_And_Clean_PLANITb_Remix);
+		GameRegistry.registerItem(Disc_Sinister_Sundown, Strings.Disc_Sinister_Sundown);
+		GameRegistry.registerItem(Disc_The_13th_Anthology, Strings.Disc_The_13th_Anthology);
 	}
 	
 	public static void registerRenders(){
@@ -1026,6 +1071,21 @@ public class ModItems {
 		registerRender(PureHeart);
 		registerRender(KingdomHearts);
 		registerRender(DarkLeather);
+		
+		//Discs
+		registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);
+		registerRender(Disc_Darkness_of_the_Unknown);
+		registerRender(Disc_Dearly_Beloved_Symphony_Version);
+		registerRender(Disc_Dream_Drop_Distance_The_Next_Awakening);
+		registerRender(Disc_Hikari_KINGDOM_Instrumental_Version);
+		registerRender(Disc_L_Oscurita_Dell_Ignoto);
+		registerRender(Disc_Musique_pour_la_tristesse_de_Xion);
+		registerRender(Disc_No_More_Bugs_Bug_Version);
+		registerRender(Disc_Organization_XIII);
+		registerRender(Disc_Sanctuary);
+		registerRender(Disc_Simple_And_Clean_PLANITb_Remix);
+		registerRender(Disc_Sinister_Sundown);
+		registerRender(Disc_The_13th_Anthology);
 
 	}
 	

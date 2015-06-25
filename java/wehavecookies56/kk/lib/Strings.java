@@ -5,6 +5,23 @@ public class Strings {
 	public static String tabKingdomKeys = "tabKingdomKeys";
 	public static String tabKingdomKeysBlocks = "tabKingdomKeysblocks";
 	
+	//Records
+	public static String
+	Disc_Birth_by_Sleep_A_Link_to_the_Future_Name = "Birth by Sleep -A Link to the Future-",
+	Disc_Darkness_of_the_Unknown_Name = "Darkness of the Unknown",
+	Disc_Dearly_Beloved_Symphony_Version_Name = "Dearly Beloved -Symphony Version-",
+	Disc_Dream_Drop_Distance_The_Next_Awakening_Name = "Dream Drop Distance -The Next Awakening-",
+	Disc_Hikari_KINGDOM_Instrumental_Version_Name = "Hikari -KINGDOM Instrumental Version-",
+	Disc_L_Oscurita_Dell_Ignoto_Name = "L'Oscurita Dell'Ignoto",
+	Disc_Musique_pour_la_tristesse_de_Xion_Name = "Musique pour la tristesse de Xion",
+	Disc_No_More_Bugs_Bug_Version_Name = "No More Bugs -Bug Version-",
+	Disc_Organization_XIII_Name = "Organization XIII",
+	Disc_Sanctuary_Name = "Sanctuary",
+	Disc_Simple_And_Clean_PLANITb_Remix_Name = "Simple And Clean PLANITb Remix",
+	Disc_Sinister_Sundown_Name = "Sinister Sundown",
+	Disc_The_13th_Anthology_Name = "The 13th Anthology"
+	;
+	
 	//Gui
 	public static String
 	//Command Menu
@@ -28,6 +45,7 @@ public class Strings {
 	Gui_CommandMenu_Drive_Limit = Gui_CommandMenu_Drive + ".limit",
 	Gui_CommandMenu_Drive_Master = Gui_CommandMenu_Drive + ".master",
 	Gui_CommandMenu_Drive_Final = Gui_CommandMenu_Drive + ".final",
+	
 	//Menu
 	Gui_Menu = "gui.menu",
 	Gui_Menu_Main = Gui_Menu + ".main",
@@ -86,7 +104,24 @@ public class Strings {
 	PureHeart = "pureheart",
 	KingdomHearts = "kingdomhearts",
 	DarkLeather = "darkleather";
-
+	
+	//Music Discs
+	public static final String
+	Disc_Birth_by_Sleep_A_Link_to_the_Future = "birthbysleep-alinktothefuture-",
+	Disc_Darkness_of_the_Unknown = "darknessoftheunknown",
+	Disc_Dearly_Beloved_Symphony_Version = "dearlybeloved-symphonyversion-",
+	Disc_Dream_Drop_Distance_The_Next_Awakening = "dreamdropdistance-thenextawakening-",
+	Disc_Hikari_KINGDOM_Instrumental_Version = "hikari-kingdominstrumentalversion-",
+	Disc_L_Oscurita_Dell_Ignoto = "l'oscuritadell'ignoto",
+	Disc_Musique_pour_la_tristesse_de_Xion = "musiquepourlatristessedexion",
+	Disc_No_More_Bugs_Bug_Version = "nomorebugs-bugversion-",
+	Disc_Organization_XIII = "organizationxiii",
+	Disc_Sanctuary = "sanctuary",
+	Disc_Simple_And_Clean_PLANITb_Remix = "simpleandcleanplanitbremix",
+	Disc_Sinister_Sundown = "sinistersundown",
+	Disc_The_13th_Anthology = "the13thanthology"
+	;
+	
 	//CHAINS
 	public static final String
 	Chain_AbaddonPlasma = "abaddonplasmachain",
