@@ -42,36 +42,36 @@ public class WorldGenBlox implements IWorldGenerator{
 
             if (Config.EnableWorldGen)
             {
-                (new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
-            	(new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
-                (new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
-                (new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass))).generate(world, rand, quisquePos);
-                (new WorldGenMinable(ModBlocks.PrizeBlox.getDefaultState(), 4, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
-                (new WorldGenMinable(ModBlocks.RarePrizeBlox.getDefaultState(), 2, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
+                new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass)).generate(world, rand, quisquePos);
+            	new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass)).generate(world, rand, quisquePos);
+                new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass)).generate(world, rand, quisquePos);
+                new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.grass)).generate(world, rand, quisquePos);
+                new WorldGenMinable(ModBlocks.PrizeBlox.getDefaultState(), 4, BlockHelper.forBlock(Blocks.dirt)).generate(world, rand, quisquePos);
+                new WorldGenMinable(ModBlocks.RarePrizeBlox.getDefaultState(), 2, BlockHelper.forBlock(Blocks.dirt)).generate(world, rand, quisquePos);
 
-                (new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand))).generate(world, rand, quisquePos);
-            	(new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand))).generate(world, rand, quisquePos);
-                (new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand))).generate(world, rand, quisquePos);
-                (new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand))).generate(world, rand, quisquePos);
+                new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand)).generate(world, rand, quisquePos);
+            	new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand)).generate(world, rand, quisquePos);
+                new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand)).generate(world, rand, quisquePos);
+                new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.sand)).generate(world, rand, quisquePos);
                 
-                (new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
-            	(new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
-                (new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
-                (new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt))).generate(world, rand, quisquePos);
+                new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt)).generate(world, rand, quisquePos);
+            	new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt)).generate(world, rand, quisquePos);
+                new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt)).generate(world, rand, quisquePos);
+                new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.dirt)).generate(world, rand, quisquePos);
                 
-                (new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.FrostOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.LucidOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.RemembranceOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.TranquilOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.TwilightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.FrostOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.LucidOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.RemembranceOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.TranquilOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.TwilightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 
                 if(OreY < 20)
                 {
-                    (new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
-                	(new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone))).generate(world, rand, OrePos);
+                    new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+                	new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
                 }
                 
                 /*In case we need it
@@ -101,14 +101,14 @@ public class WorldGenBlox implements IWorldGenerator{
 	             
 	    	if (Config.EnableWorldGen)
 	    	{
-	    		(new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.end_stone))).generate(world, rand, OrePos);
-            	(new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.end_stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.end_stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.end_stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.RarePrizeBlox.getDefaultState(), 2, BlockHelper.forBlock(Blocks.end_stone))).generate(world, rand, OrePos);
+	    		new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.end_stone)).generate(world, rand, OrePos);
+            	new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.end_stone)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.end_stone)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockHelper.forBlock(Blocks.end_stone)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.RarePrizeBlox.getDefaultState(), 2, BlockHelper.forBlock(Blocks.end_stone)).generate(world, rand, OrePos);
 
-                (new WorldGenMinable(ModBlocks.DarkOreE.getDefaultState(), 3, BlockHelper.forBlock(Blocks.end_stone))).generate(world, rand, OrePos);
-                (new WorldGenMinable(ModBlocks.PowerOreE.getDefaultState(), 3, BlockHelper.forBlock(Blocks.end_stone))).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.DarkOreE.getDefaultState(), 3, BlockHelper.forBlock(Blocks.end_stone)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.PowerOreE.getDefaultState(), 3, BlockHelper.forBlock(Blocks.end_stone)).generate(world, rand, OrePos);
 	    	}
         }
     }
