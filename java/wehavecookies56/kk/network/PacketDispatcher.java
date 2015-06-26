@@ -22,6 +22,7 @@ public class PacketDispatcher
 		registerMessage(OpenGui.class);
 		registerMessage(SummonKeyblade.class);
 		registerMessage(DeSummonKeyblade.class);
+		registerMessage(PlaySoundAtPlayer.class);
 	}
 
 	private static final <T extends AbstractMessage<T> & IMessageHandler<T, IMessage>> void registerMessage(Class<T> clazz) {
