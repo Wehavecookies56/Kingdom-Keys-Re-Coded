@@ -38,7 +38,8 @@ public class ModBlocks {
 		RemembranceOre,
 		SerenityOre,
 		TranquilOre,
-		TwilightOre
+		TwilightOre,
+		SynthesisTable
 		;
 	
 	public static CreativeTabs tabKingdomKeysBlocks;
@@ -66,6 +67,7 @@ public class ModBlocks {
 		SerenityOre = new BlockSerenityOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.SerenityOre).setCreativeTab(tabKingdomKeysBlocks);
 		TranquilOre = new BlockTranquilOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.TranquilOre).setCreativeTab(tabKingdomKeysBlocks);
 		TwilightOre = new BlockTwilightOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.TwilightOre).setCreativeTab(tabKingdomKeysBlocks);
+		SynthesisTable = new BlockSynthesisTable(Material.wood, "axe", 0, 1, 1).setUnlocalizedName(Strings.SynthesisTable).setCreativeTab(tabKingdomKeysBlocks);
 	}
 	
 	public static void registerBlock(Block block){
@@ -94,6 +96,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(SerenityOre, Strings.SerenityOre);
 		GameRegistry.registerBlock(TranquilOre, Strings.TranquilOre);
 		GameRegistry.registerBlock(TwilightOre, Strings.TwilightOre);
+		GameRegistry.registerBlock(SynthesisTable, Strings.SynthesisTable);
 	}
 	
 	public static void registerRenders(){
@@ -118,7 +121,7 @@ public class ModBlocks {
 		registerRender(SerenityOre);
 		registerRender(TranquilOre);
 		registerRender(TwilightOre);
-		
+		registerRender(SynthesisTable);
 		
 	}
 	

@@ -66,10 +66,12 @@ public class Strings {
 	Gui_Menu_Items_Button = Gui_Menu_Items + ".button",
 	Gui_Menu_Items_Button_Stock = Gui_Menu_Items_Button + ".stock",
 	Gui_Menu_Items_Button_Back = Gui_Menu_Items_Button + ".back",
-	Gui_Menu_Main_Munny = Gui_Menu_Main + ".munny";
+	Gui_Menu_Main_Munny = Gui_Menu_Main + ".munny"
+	;
 	
 	//Blocks
 	public static String
+	//Blox
 	NormalBlox = "normalblox",
 	HardBlox = "hardblox",
 	MetalBlox = "metalblox",
@@ -79,6 +81,7 @@ public class Strings {
 	PrizeBlox = "prizeblox",
 	RarePrizeBlox = "rareprizeblox",
 	
+	//Ores
 	BlazingOre = "blazingore",
 	BrightOre ="brightore",
 	DarkOre = "darkore",
@@ -92,7 +95,11 @@ public class Strings {
 	RemembranceOre = "remembranceore",
 	SerenityOre = "serenityore",
 	TranquilOre = "tranquilore",
-	TwilightOre = "twilightore";
+	TwilightOre = "twilightore",
+	
+	//Others
+	SynthesisTable = "synthesistable"
+	;
 	
 	//Items
 	public static final String
@@ -105,7 +112,8 @@ public class Strings {
 	DarkHeart = "darkheart",
 	PureHeart = "pureheart",
 	KingdomHearts = "kingdomhearts",
-	DarkLeather = "darkleather";
+	DarkLeather = "darkleather"
+	;
 	
 	//Music Discs
 	public static final String
