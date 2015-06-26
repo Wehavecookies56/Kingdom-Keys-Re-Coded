@@ -21,13 +21,16 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemHpOrb;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
+import wehavecookies56.kk.item.ItemStacks;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.network.HpOrbPickup;
 import wehavecookies56.kk.network.MunnyPickup;
@@ -162,8 +165,27 @@ public class EventHandler {
 	}
 
 	@SubscribeEvent
-	public void onLivingUpdate(LivingUpdateEvent event){
+	public void onLivingUpdate(LivingUpdateEvent event)
+	{
 		
 	}
+	
+	 @SubscribeEvent
+     public void onBlockDestroyed(HarvestDropsEvent event) 
+	 {
+		ItemStack BlazingShard = ItemStacks.BlazingShard;
+ 	    ItemStacks.createSynthesisItem(BlazingShard, "BlazingShard", "C");
+		 System.out.println("hello");
+
+		 if(event.state == ModBlocks.BlazingOre)
+		 {//random stuff
+			 System.out.println("hii");
+			 event.drops.add(BlazingShard);
+		 }
+		 else if (event.state == ModBlocks.BrightOre)
+		 {
+			 
+		 }
+	 }
 
 }

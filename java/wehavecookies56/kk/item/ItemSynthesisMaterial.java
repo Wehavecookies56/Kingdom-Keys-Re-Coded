@@ -87,8 +87,8 @@ public class ItemSynthesisMaterial extends Item {
 		ItemStack SerenityGem = ItemStacks.SerenityGem;
 		ItemStack SerenityCrystal = ItemStacks.SerenityCrystal;
 		
-		ItemStack Oricalcum = ItemStacks.Oricalcum;
-		ItemStack OricalcumPlus = ItemStacks.OricalcumPlus;
+		ItemStack Orichalcum = ItemStacks.Oricalcum;
+		ItemStack OrichalcumPlus = ItemStacks.OricalcumPlus;
 
 		ItemStack RemembranceShard = ItemStacks.RemembranceShard;
 		ItemStack RemembranceStone = ItemStacks.RemembranceStone;
@@ -117,7 +117,66 @@ public class ItemSynthesisMaterial extends Item {
 		createSynthesisItem(LightningStone, "Lightning Stone", "Rank B", subItems);
 		createSynthesisItem(LightningGem, "Lightning Gem", "Rank A", subItems);
 		createSynthesisItem(LightningCrystal, "Lightning Crystal", "Rank S", subItems);
-		//TODO THE REST OF THESE
+		
+		createSynthesisItem(LucidShard, "Lucid Shard", "Rank C", subItems);
+		createSynthesisItem(LucidStone, "Lucid Stone", "Rank B", subItems);
+		createSynthesisItem(LucidGem, "Lucid Gem", "Rank A", subItems);
+		createSynthesisItem(LucidCrystal, "Lucid Crystal", "Rank S", subItems);
+
+		createSynthesisItem(PowerShard, "Power Shard", "Rank C", subItems);
+		createSynthesisItem(PowerStone, "Power Stone", "Rank B", subItems);
+		createSynthesisItem(PowerGem, "Power Gem", "Rank A", subItems);
+		createSynthesisItem(PowerCrystal, "Power Crystal", "Rank S", subItems);
+
+		createSynthesisItem(DarkShard, "Dark Shard", "Rank C", subItems);
+		createSynthesisItem(DarkStone, "Dark Stone", "Rank B", subItems);
+		createSynthesisItem(DarkGem, "Dark Gem", "Rank A", subItems);
+		createSynthesisItem(DarkCrystal, "Dark Crystal", "Rank S", subItems);
+
+		createSynthesisItem(DenseShard, "Dense Shard", "Rank C", subItems);
+		createSynthesisItem(DenseStone, "Dense Stone", "Rank B", subItems);
+		createSynthesisItem(DenseGem, "Dense Gem", "Rank A", subItems);
+		createSynthesisItem(DenseCrystal, "Dense Crystal", "Rank S", subItems);
+
+		createSynthesisItem(TwilightShard, "Twilight Shard", "Rank C", subItems);
+		createSynthesisItem(TwilightStone, "Twilight Stone", "Rank B", subItems);
+		createSynthesisItem(TwilightGem, "Twilight Gem", "Rank A", subItems);
+		createSynthesisItem(TwilightCrystal, "Twilight Crystal", "Rank S", subItems);
+
+		createSynthesisItem(MythrilShard, "Mythril Shard", "Rank C", subItems);
+		createSynthesisItem(MythrilStone, "Mythril Stone", "Rank B", subItems);
+		createSynthesisItem(MythrilGem, "Mythril Gem", "Rank A", subItems);
+		createSynthesisItem(MythrilCrystal, "Mythril Crystal", "Rank S", subItems);
+		
+		createSynthesisItem(BrightShard, "Bright Shard", "Rank C", subItems);
+		createSynthesisItem(BrightStone, "Bright Stone", "Rank B", subItems);
+		createSynthesisItem(BrightGem, "Bright Gem", "Rank A", subItems);
+		createSynthesisItem(BrightCrystal, "Bright Crystal", "Rank S", subItems);
+		
+		createSynthesisItem(EnergyShard, "Energy Shard", "Rank C", subItems);
+		createSynthesisItem(EnergyStone, "Energy Stone", "Rank B", subItems);
+		createSynthesisItem(EnergyGem, "Energy Gem", "Rank A", subItems);
+		createSynthesisItem(EnergyCrystal, "Energy Crystal", "Rank S", subItems);
+		
+		createSynthesisItem(SerenityShard, "Serenity Shard", "Rank C", subItems);
+		createSynthesisItem(SerenityStone, "Serenity Stone", "Rank B", subItems);
+		createSynthesisItem(SerenityGem, "Serenity Gem", "Rank A", subItems);
+		createSynthesisItem(SerenityCrystal, "Serenity Crystal", "Rank S", subItems);
+		
+		createSynthesisItem(RemembranceShard, "Remembrance Shard", "Rank C", subItems);
+		createSynthesisItem(RemembranceStone, "Remembrance Stone", "Rank B", subItems);
+		createSynthesisItem(RemembranceGem, "Remembrance Gem", "Rank A", subItems);
+		createSynthesisItem(RemembranceCrystal, "Remembrance Crystal", "Rank S", subItems);
+		
+		createSynthesisItem(TranquilShard, "Tranquil Shard", "Rank C", subItems);
+		createSynthesisItem(TranquilStone, "Tranquil Stone", "Rank B", subItems);
+		createSynthesisItem(TranquilGem, "Tranquil Gem", "Rank A", subItems);
+		createSynthesisItem(TranquilCrystal, "Tranquil Crystal", "Rank S", subItems);
+		
+		createSynthesisItem(Orichalcum, "Orichalcum", "Rank A", subItems);
+		createSynthesisItem(OrichalcumPlus, "Orichalcum +", "Rank S", subItems);
+		createSynthesisItem(ManifestIllusion, "ManifestIllusion", "Rank A", subItems);
+		createSynthesisItem(LostIllusion, "Lost Illusion", "Rank S", subItems);
 	}
 	
 	public void createSynthesisItem(ItemStack stack, String material, String rank, List list){

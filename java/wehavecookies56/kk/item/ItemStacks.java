@@ -83,7 +83,7 @@ public class ItemStacks {
 	public static ItemStack ManifestIllusion = new ItemStack(ModItems.SynthesisMaterial, 1);
 	public static ItemStack LostIllusion = new ItemStack(ModItems.SynthesisMaterial, 1);
 	
-	public void createSynthesisItem(ItemStack stack, String material, String rank){
+	public static void createSynthesisItem(ItemStack stack, String material, String rank){
 		stack.setTagCompound(new NBTTagCompound());
 		stack.getTagCompound().setString("material", material);
 		stack.getTagCompound().setString("rank", rank);

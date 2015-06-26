@@ -12,18 +12,20 @@ import net.minecraft.world.World;
 
 public class BlockDangerBlox extends BlockBlox {
 
-	protected BlockDangerBlox(Material material, String toolClass, int level,
-			float hardness, float resistance) {
+	protected BlockDangerBlox(Material material, String toolClass, int level, float hardness, float resistance)
+	{
 		super(material, toolClass, level, hardness, resistance);
 	}
 
 	@Override
-	public void onBlockClicked(World par1World, BlockPos pos, EntityPlayer par5EntityPlayer) {
+	public void onBlockClicked(World par1World, BlockPos pos, EntityPlayer par5EntityPlayer)
+	{
 	    par5EntityPlayer.attackEntityFrom(DamageSource.magic, 3);
 	}
 	
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state) {
+	public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+	{
 		float f = 0.0625F;
         return AxisAlignedBB.fromBounds((double)((float)pos.getX() + f), (double)pos.getY(), (double)((float)pos.getZ() + f), (double)((float)(pos.getX() + 1) - f), (double)((float)(pos.getY() + 1) - f), (double)((float)(pos.getZ() + 1) - f));
 	}
@@ -48,25 +50,4 @@ public class BlockDangerBlox extends BlockBlox {
 			entityIn.attackEntityFrom(DamageSource.magic, 3);
     	}
 	 }
-	 
-	 /*public void onEntityCollidedWithBlock(World par1World, BlockPos pos,Entity par5Entity) 
-	 {
-		super.onEntityCollidedWithBlock(par1World, pos, par5Entity);
-    	if(par5Entity instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer) par5Entity;
-			if (player.inventory.armorItemInSlot(0) != null)
-			{
-				ItemStack itemstack = player.inventory.armorItemInSlot(0);
-			}
-			else
-			{
-				par5Entity.attackEntityFrom(DamageSource.magic, 3);
-			}
-        }
-    	else
-    	{
-    		par5Entity.attackEntityFrom(DamageSource.magic, 3);
-    	}
-	 }	  */
 }
