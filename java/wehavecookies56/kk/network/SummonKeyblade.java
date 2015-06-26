@@ -39,5 +39,4 @@ public class SummonKeyblade extends AbstractServerMessage<SummonKeyblade> {
 		SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.Summon, 0.5f, 1);
 		ExtendedPlayer.get(player).setSummonedKeyblade(1);
 	}
-
 }

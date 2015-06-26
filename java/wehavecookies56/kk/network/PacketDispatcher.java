@@ -19,6 +19,7 @@ public class PacketDispatcher
 	public static final void registerPackets() {
 		registerMessage(SyncExtendedPlayer.class);
 		registerMessage(MunnyPickup.class);
+		registerMessage(HpOrbPickup.class);
 		registerMessage(OpenGui.class);
 		registerMessage(SummonKeyblade.class);
 		registerMessage(DeSummonKeyblade.class);

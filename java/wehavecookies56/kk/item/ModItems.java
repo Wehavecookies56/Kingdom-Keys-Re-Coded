@@ -527,7 +527,7 @@ public class ModItems {
 		Munny = new ItemMunny().setUnlocalizedName(Strings.Munny).setCreativeTab(tabKingdomKeys);
 		EmptyPotion = new Item().setUnlocalizedName(Strings.EmptyPotion).setCreativeTab(tabKingdomKeys);
 		Potion = new Item().setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys);
-		HpOrb = new Item().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys);
+		HpOrb = new ItemHpOrb().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys);
 		DriveOrb = new Item().setUnlocalizedName(Strings.DriveOrb).setCreativeTab(tabKingdomKeys);
 		Heart = new Item().setUnlocalizedName(Strings.Heart).setCreativeTab(tabKingdomKeys);
 		DarkHeart = new Item().setUnlocalizedName(Strings.DarkHeart).setCreativeTab(tabKingdomKeys);

@@ -3,6 +3,7 @@ package wehavecookies56.kk.util;
 import java.util.Random;
 import java.util.UUID;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -24,9 +25,11 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.item.ItemHpOrb;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
 import wehavecookies56.kk.item.ModItems;
+import wehavecookies56.kk.network.HpOrbPickup;
 import wehavecookies56.kk.network.MunnyPickup;
 import wehavecookies56.kk.network.PacketDispatcher;
 import wehavecookies56.kk.network.SyncExtendedPlayer;
@@ -110,15 +113,37 @@ public class EventHandler {
 	}
 
 	@SubscribeEvent
-	public void onEntityItemPickUp(EntityItemPickupEvent event){
-		if(event.item.getEntityItem().getItem() instanceof ItemMunny){
+	public void onEntityItemPickUp(EntityItemPickupEvent event)
+	{
+		if(event.item.getEntityItem().getItem() instanceof ItemMunny)
+		{
 			MunnyPickup packet = new MunnyPickup(event.item.getEntityItem());
-			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+			{
 				PacketDispatcher.sendToServer(packet);
 			}
-			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER){
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+			{
 				event.item.getEntityItem().stackSize--;
 				ExtendedPlayer.get(event.entityPlayer).addMunny(event.item.getEntityItem().getTagCompound().getInteger("amount"));
+			}
+		}
+		else if(event.item.getEntityItem().getItem() instanceof ItemHpOrb)
+		{
+			HpOrbPickup packet = new HpOrbPickup(event.item.getEntityItem());
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+			{
+				PacketDispatcher.sendToServer(packet);
+			}
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+			{
+				event.item.getEntityItem().stackSize--;
+				if(!(Minecraft.getMinecraft().thePlayer.getHealth() == 20))
+				{
+					Minecraft.getMinecraft().thePlayer.heal(2);
+					Minecraft.getMinecraft().thePlayer.inventory.consumeInventoryItem(ModItems.HpOrb);
+				}
+				//ExtendedPlayer.get(event.entityPlayer).addMunny(event.item.getEntityItem().getTagCompound().getInteger("amount"));
 			}
 		}
 	}
