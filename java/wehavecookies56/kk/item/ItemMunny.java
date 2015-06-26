@@ -12,8 +12,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class ItemMunny extends Item {
-
-	int munny;
 	
 	public ItemMunny() 
 	{
@@ -30,19 +28,6 @@ public class ItemMunny extends Item {
 	}
 	
 	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
-	{
-		
-	}
+	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems) {}
 	
-	@Override
-	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
-	{
-		
-	}
-	
-	public void setMunny(int munny)
-	{
-		this.munny = munny;
-	}
 }

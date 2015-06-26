@@ -53,6 +53,7 @@ item.pureheart.name=Pure Heart
 item.kingdomhearts.name=Kingdom Hearts
 item.darkheart.name=Dark Heart
 item.darkleather.name=Dark Leather
+item.synthesismaterial.name=Synthesis Material
 
 #Music Discs
 disc.duration.desc=Duration

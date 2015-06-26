@@ -112,7 +112,8 @@ public class Strings {
 	DarkHeart = "darkheart",
 	PureHeart = "pureheart",
 	KingdomHearts = "kingdomhearts",
-	DarkLeather = "darkleather"
+	DarkLeather = "darkleather",
+	SynthesisMaterial = "synthesismaterial"
 	;
 	
 	//Music Discs

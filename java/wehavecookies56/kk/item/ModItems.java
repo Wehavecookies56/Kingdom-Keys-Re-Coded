@@ -265,7 +265,8 @@ public class ModItems {
 		DarkHeart,
 		PureHeart,
 		KingdomHearts,
-		DarkLeather
+		DarkLeather,
+		SynthesisMaterial
 		;
 	
 	public static Item
@@ -534,6 +535,7 @@ public class ModItems {
 		PureHeart = new Item().setUnlocalizedName(Strings.PureHeart).setCreativeTab(tabKingdomKeys);
 		KingdomHearts = new Item().setUnlocalizedName(Strings.KingdomHearts).setCreativeTab(tabKingdomKeys);
 		DarkLeather = new Item().setUnlocalizedName(Strings.DarkLeather).setCreativeTab(tabKingdomKeys);
+		SynthesisMaterial = new ItemSynthesisMaterial().setUnlocalizedName(Strings.SynthesisMaterial).setCreativeTab(tabKingdomKeys);
 		
 		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
 		Disc_Darkness_of_the_Unknown = new ItemKKRecord(Strings.Disc_Darkness_of_the_Unknown_Name, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
@@ -805,6 +807,7 @@ public class ModItems {
 		GameRegistry.registerItem(PureHeart, Strings.PureHeart);
 		GameRegistry.registerItem(KingdomHearts, Strings.KingdomHearts);
 		GameRegistry.registerItem(DarkLeather, Strings.DarkLeather);
+		GameRegistry.registerItem(SynthesisMaterial, Strings.SynthesisMaterial);
 		
 		//DISCS
 		GameRegistry.registerItem(Disc_Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future);
@@ -1071,6 +1074,7 @@ public class ModItems {
 		registerRender(PureHeart);
 		registerRender(KingdomHearts);
 		registerRender(DarkLeather);
+		registerRender(SynthesisMaterial);
 		
 		//Discs
 		registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);
