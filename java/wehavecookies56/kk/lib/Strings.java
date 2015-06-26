@@ -19,7 +19,9 @@ public class Strings {
 	Disc_Sanctuary_Name = "Sanctuary",
 	Disc_Simple_And_Clean_PLANITb_Remix_Name = "Simple And Clean PLANITb Remix",
 	Disc_Sinister_Sundown_Name = "Sinister Sundown",
-	Disc_The_13th_Anthology_Name = "The 13th Anthology"
+	Disc_The_13th_Anthology_Name = "The 13th Anthology",
+	Disc_Duration_Desc = "disc.duration.desc",
+	Disc_DurationUnits_Desc = "disc.durationunits.desc"
 	;
 	
 	//Gui
@@ -223,8 +225,8 @@ public class Strings {
 	Chain_TwoBecomeOne = "twobecomeonechain",
 	Chain_UltimaWeaponKH1 = "ultimaweaponkh1chain",
 	Chain_UltimaWeaponKH2 = "ultimaweaponkh2chain",
-	Chain_UltimaWeaponBBS = "ultimaweaponBBSchain",
-	Chain_UltimaWeaponDDD = "ultimaweaponDDDchain",
+	Chain_UltimaWeaponBBS = "ultimaweaponbbschain",
+	Chain_UltimaWeaponDDD = "ultimaweapondddchain",
 	Chain_Umbrella = "umbrellachain",
 	Chain_Unbound = "unboundchain",
 	Chain_UnicornisForetellersKeyblade = "unicornisforetellerskeybladechain",

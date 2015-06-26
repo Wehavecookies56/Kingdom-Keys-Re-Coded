@@ -1,16 +1,19 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "kk",
+  "name": "Kingdom Keys Re:Coded",
+  "description": "The new and improved version of Kingdom Keys built from the ground-up.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://github.com/Wehavecookies56/Kingdom-Keys-Re-Coded",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Wehavecookies56", "Abelatox"],
+  "credits": "",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "requiredMods": ["Forge"],
+  "dependencies": [],
+  "dependants": [],
+  "useDependencyInformation": true
 }
 ]

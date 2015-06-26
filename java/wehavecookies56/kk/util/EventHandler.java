@@ -2,6 +2,7 @@ package wehavecookies56.kk.util;
 
 import java.util.Random;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.EntityAgeable;
@@ -13,6 +14,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.sound.PlayBackgroundMusicEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -22,6 +25,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.client.keys.Keybinds;
 import wehavecookies56.kk.entities.ExtendedPlayer;
@@ -121,6 +125,14 @@ public class EventHandler {
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event){
 		
+	}
+	
+	@SubscribeEvent
+	public void bg(ClientTickEvent event){
+		 //int i = (int)Math.random();
+	      //if(i <= 10){
+	  		//SoundHelper.playSoundAtEntity(Minecraft.getMinecraft().theWorld, Minecraft.getMinecraft().thePlayer, SoundHelper.LazyAfternoons, 1, 1);
+	      //}
 	}
 	
 }

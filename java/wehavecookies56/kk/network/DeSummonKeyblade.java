@@ -11,6 +11,7 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
+import wehavecookies56.kk.util.SoundHelper;
 
 public class DeSummonKeyblade extends AbstractServerMessage<DeSummonKeyblade> {
 
@@ -35,6 +36,7 @@ public class DeSummonKeyblade extends AbstractServerMessage<DeSummonKeyblade> {
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+		SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.UnSummon, 0.5f, 1);
 		ExtendedPlayer.get(player).setSummonedKeyblade(0);
 	}
 

@@ -1,11 +1,14 @@
 package wehavecookies56.kk.item;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.TextHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,8 +35,10 @@ public class ItemKKRecord extends ItemRecord {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
 		super.addInformation(stack, playerIn, tooltip, advanced);
-		String length = Float.toString(this.length).replace("f", "").replace("F", "").replace(".", ":");
-		tooltip.add("Duration: " + length + " (mins:secs)");
+		DecimalFormat df = new DecimalFormat();
+		df.setMaximumFractionDigits(2);
+		String length = String.format("%.02f", this.length).replace("f", "").replace("F", "").replace(".", ":");
+		tooltip.add(TextHelper.localize(Strings.Disc_Duration_Desc) + ": " + length + " " +TextHelper.localize(Strings.Disc_DurationUnits_Desc));
 	}
 
 }

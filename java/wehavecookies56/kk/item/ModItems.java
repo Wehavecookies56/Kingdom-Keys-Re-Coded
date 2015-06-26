@@ -537,7 +537,7 @@ public class ModItems {
 		
 		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
 		Disc_Darkness_of_the_Unknown = new ItemKKRecord(Strings.Disc_Darkness_of_the_Unknown_Name, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
-		Disc_Dearly_Beloved_Symphony_Version = new ItemKKRecord(Strings.Disc_Dearly_Beloved_Symphony_Version_Name, Strings.Disc_Dearly_Beloved_Symphony_Version, tabKingdomKeys, 2.38F);
+		Disc_Dearly_Beloved_Symphony_Version = new ItemKKRecord(Strings.Disc_Dearly_Beloved_Symphony_Version_Name, Strings.Disc_Dearly_Beloved_Symphony_Version, tabKingdomKeys, 2.33F);
 		Disc_Dream_Drop_Distance_The_Next_Awakening = new ItemKKRecord(Strings.Disc_Dream_Drop_Distance_The_Next_Awakening_Name, Strings.Disc_Dream_Drop_Distance_The_Next_Awakening, tabKingdomKeys, 8.56F);
 		Disc_Hikari_KINGDOM_Instrumental_Version = new ItemKKRecord(Strings.Disc_Hikari_KINGDOM_Instrumental_Version_Name, Strings.Disc_Hikari_KINGDOM_Instrumental_Version, tabKingdomKeys, 3.42F);
 		Disc_L_Oscurita_Dell_Ignoto = new ItemKKRecord(Strings.Disc_L_Oscurita_Dell_Ignoto_Name, Strings.Disc_L_Oscurita_Dell_Ignoto, tabKingdomKeys, 4.33F);

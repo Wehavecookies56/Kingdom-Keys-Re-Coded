@@ -9,7 +9,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
+import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
+import wehavecookies56.kk.util.SoundHelper;
 
 public class SummonKeyblade extends AbstractServerMessage<SummonKeyblade> {
 
@@ -34,6 +36,7 @@ public class SummonKeyblade extends AbstractServerMessage<SummonKeyblade> {
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
+		SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.Summon, 0.5f, 1);
 		ExtendedPlayer.get(player).setSummonedKeyblade(1);
 	}
 

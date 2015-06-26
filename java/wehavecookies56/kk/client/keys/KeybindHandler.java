@@ -8,12 +8,15 @@ import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
+import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.DeSummonKeyblade;
+import wehavecookies56.kk.network.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.SummonKeyblade;
 import wehavecookies56.kk.network.PacketDispatcher;
 import wehavecookies56.kk.network.SyncExtendedPlayer;
 import wehavecookies56.kk.util.GuiHelper;
+import wehavecookies56.kk.util.SoundHelper;
 
 public class KeybindHandler {
 
@@ -145,6 +148,7 @@ public class KeybindHandler {
 			case SUMMON_KEYBLADE:
 				ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
 				if(props.inventory.getStackInSlot(0) == null){
+					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 0.5f, 1f));
 					break;
 				}
 				if(props.getSummonedKeyblade() == 0 && player.inventory.getCurrentItem() == null && props.inventory.getStackInSlot(0).getItem() instanceof ItemKeychain){
@@ -156,6 +160,10 @@ public class KeybindHandler {
 				} else {
 					break;
 				}
+				break;
+			case SCROLL_ACTIVATOR:
+				break;
+			default:
 				break;
 			}
 		}

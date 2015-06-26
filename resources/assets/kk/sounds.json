@@ -34,6 +34,13 @@
     	]
     },
 
+    "error": {
+    	"category": "player",
+    	"sounds": [
+    		{"name": "error", "stream": false}
+    	]
+    },
+
     "records.Birth by Sleep -A Link to the Future-": {
     	"category": "record", 
     	"sounds": [
