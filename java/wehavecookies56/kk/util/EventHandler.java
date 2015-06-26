@@ -23,9 +23,12 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.client.keys.Keybinds;
 import wehavecookies56.kk.entities.ExtendedPlayer;
@@ -44,7 +47,7 @@ public class EventHandler {
 		if(event.entity instanceof EntityPlayer && ExtendedPlayer.get((EntityPlayer) event.entity) == null)
 			ExtendedPlayer.register((EntityPlayer) event.entity);
 	}
-	
+
 	@SubscribeEvent
 	public void OnEntityJoinWorld(EntityJoinWorldEvent event){
 		if(!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer){
@@ -53,20 +56,20 @@ public class EventHandler {
 		}
 
 	}
-	
+
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDeathEvent event) {
 		if(!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer){
 			ExtendedPlayer.get((EntityPlayer) event.entity).saveProxyData(((EntityPlayer) event.entity));
-			
+
 		} else {}
 	}
-	
+
 	public static int randInt(int min, int max, Random rand) {
-	    int randomNum = rand.nextInt((max - min) + 1) + min;
-	    return randomNum;
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+		return randomNum;
 	}
-	
+
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event)
 	{
@@ -102,37 +105,37 @@ public class EventHandler {
 			event.entityLiving.entityDropItem(munny, 1);
 		}		
 	}
-	
+
 	@SubscribeEvent
 	public void onEntityItemPickUp(EntityItemPickupEvent event){
-		
 		if(event.item.getEntityItem().getItem() instanceof ItemMunny){
 			MunnyPickup packet = new MunnyPickup(event.item.getEntityItem());
-	    	PacketDispatcher.sendToServer(packet);
-		}
-	}
-	
-	@SubscribeEvent
-	public void onItemTossEvent(ItemTossEvent event){
-		if(event.player.worldObj.isRemote){
-			if(event.player.inventory.getCurrentItem().getItem() instanceof ItemKeyblade){
-				event.setCanceled(true);
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
+				PacketDispatcher.sendToServer(packet);
+			}
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER){
+				event.item.getEntityItem().stackSize--;
+				ExtendedPlayer.get(event.entityPlayer).addMunny(event.item.getEntityItem().getTagCompound().getInteger("amount"));
 			}
 		}
-		
 	}
-	
+
+	@SubscribeEvent
+	public void onItemTossEvent(ItemTossEvent event){
+		if(event.entityItem.getEntityItem().getItem() instanceof ItemKeyblade){
+			ItemStack itemStack = event.entityItem.getEntityItem();
+			event.setCanceled(true);
+			event.player.inventory.setInventorySlotContents(event.player.inventory.currentItem, itemStack);
+		}else if(event.entityItem.getEntityItem().getItem() instanceof ItemMunny){
+			event.setCanceled(true);
+			ExtendedPlayer.get(event.player).addMunny(event.entityItem.getEntityItem().getTagCompound().getInteger("amount"));
+		}
+
+	}
+
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event){
 		
 	}
-	
-	@SubscribeEvent
-	public void bg(ClientTickEvent event){
-		 //int i = (int)Math.random();
-	      //if(i <= 10){
-	  		//SoundHelper.playSoundAtEntity(Minecraft.getMinecraft().theWorld, Minecraft.getMinecraft().thePlayer, SoundHelper.LazyAfternoons, 1, 1);
-	      //}
-	}
-	
+
 }
