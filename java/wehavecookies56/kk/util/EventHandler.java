@@ -74,11 +74,6 @@ public class EventHandler {
 		} else {}
 	}
 
-	public static int randInt(int min, int max, Random rand) {
-		int randomNum = rand.nextInt((max - min) + 1) + min;
-		return randomNum;
-	}
-
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event)
 	{
@@ -167,25 +162,45 @@ public class EventHandler {
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event)
 	{
-		
+
 	}
 	
-	 @SubscribeEvent
-     public void onBlockDestroyed(HarvestDropsEvent event) 
-	 {
-		ItemStack BlazingShard = ItemStacks.BlazingShard;
- 	    ItemStacks.createSynthesisItem(BlazingShard, "BlazingShard", "C");
-		 System.out.println("hello");
+	int randomWithRange(int min, int max)
+	{
+	   int range = Math.abs(max - min) + 1;     
+	   return (int)(Math.random() * range) + (min <= max ? min : max);
+	}
 
-		 if(event.state == ModBlocks.BlazingOre)
-		 {//random stuff
-			 System.out.println("hii");
-			 event.drops.add(BlazingShard);
-		 }
-		 else if (event.state == ModBlocks.BrightOre)
-		 {
-			 
-		 }
-	 }
+	@SubscribeEvent
+	public void onBlockDestroyed(HarvestDropsEvent event) 
+	{
+
+		if(event.state.getBlock() == ModBlocks.BlazingOre)
+		{
+			int drop = randomWithRange(1, 4);
+			if(drop == 1){
+				ItemStack BlazingShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BlazingShard, "Blazing Shard", "C");
+				event.drops.add(BlazingShard);
+			}else if (drop == 2){
+				ItemStack BlazingStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BlazingStone, "Blazing Stone", "B");
+				event.drops.add(BlazingStone);
+			}else if (drop == 3){
+				ItemStack BlazingGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BlazingGem, "Blazing Gem", "A");
+				event.drops.add(BlazingGem);
+			}else if (drop == 4){
+				ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BlazingCrystal, "Blazing Crystal", "S");
+				event.drops.add(BlazingCrystal);
+			}
+			
+		}
+		else if (event.state == ModBlocks.BrightOre)
+		{
+
+		}
+	}
 
 }
