@@ -70,6 +70,7 @@ public class WorldGenBlox implements IWorldGenerator{
 
                 if(OreY < 20)
                 {
+                    new WorldGenMinable(ModBlocks.DarkOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
                     new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
                 	new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
                 }

@@ -1,6 +1,7 @@
 package wehavecookies56.kk.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -28,6 +29,7 @@ public class ModBlocks {
 		RarePrizeBlox,
 		BlazingOre,
 		BrightOre,
+		DarkOre,
 		DarkOreE,
 		DenseOre,
 		EnergyOre,
@@ -56,6 +58,7 @@ public class ModBlocks {
 		RarePrizeBlox = new BlockRarePrizeBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.RarePrizeBlox).setCreativeTab(tabKingdomKeysBlocks);
 		BlazingOre = new BlockBlazingOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BlazingOre).setCreativeTab(tabKingdomKeysBlocks);
 		BrightOre = new BlockBrightOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BrightOre).setCreativeTab(tabKingdomKeysBlocks);
+		DarkOre = new BlockDarkOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DarkOre).setCreativeTab(tabKingdomKeysBlocks);
 		DarkOreE = new BlockDarkOreE(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DarkOreE).setCreativeTab(tabKingdomKeysBlocks);
 		DenseOre = new BlockDenseOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DenseOre).setCreativeTab(tabKingdomKeysBlocks);
 		EnergyOre = new BlockEnergyOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.EnergyOre).setCreativeTab(tabKingdomKeysBlocks);
@@ -85,6 +88,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(RarePrizeBlox, Strings.RarePrizeBlox);
 		GameRegistry.registerBlock(BlazingOre, Strings.BlazingOre);
 		GameRegistry.registerBlock(BrightOre, Strings.BrightOre);
+		GameRegistry.registerBlock(DarkOre, Strings.DarkOre);
 		GameRegistry.registerBlock(DarkOreE, Strings.DarkOreE);
 		GameRegistry.registerBlock(DenseOre, Strings.DenseOre);
 		GameRegistry.registerBlock(EnergyOre, Strings.EnergyOre);
@@ -110,6 +114,7 @@ public class ModBlocks {
 		registerRender(RarePrizeBlox);
 		registerRender(BlazingOre);
 		registerRender(BrightOre);
+		registerRender(DarkOre);
 		registerRender(DarkOreE);
 		registerRender(DenseOre);
 		registerRender(EnergyOre);
