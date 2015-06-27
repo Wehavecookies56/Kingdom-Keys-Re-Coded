@@ -135,15 +135,15 @@ public class EventHandler {
 			HpOrbPickup packet = new HpOrbPickup(event.item.getEntityItem());
 			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
 			{
+				event.entityPlayer.heal(2);
 				PacketDispatcher.sendToServer(packet);
 			}
 			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
 			{
-				//event.item.getEntityItem().stackSize--;
-				if(!(Minecraft.getMinecraft().thePlayer.getHealth() == 20))
+				if(!(event.entityPlayer.getHealth() == 20))
 				{
-					Minecraft.getMinecraft().thePlayer.heal(2);
-					Minecraft.getMinecraft().thePlayer.inventory.consumeInventoryItem(ModItems.HpOrb);
+					event.entityPlayer.heal(2);
+					event.entityPlayer.inventory.consumeInventoryItem(ModItems.HpOrb);
 				}
 			}
 		}
