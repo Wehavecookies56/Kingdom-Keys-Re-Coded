@@ -473,54 +473,373 @@ public class EventHandler {
 		}
 		else if (event.state.getBlock() == ModBlocks.PrizeBlox)
 		{
-			int drop = randomWithRange(1, 10);
-			if(drop == 1){
-				ItemStack DarkShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DarkShard, "Dark Shard", "C");
-				event.drops.add(DarkShard);
-			}else if (drop == 2){
-				ItemStack FrostShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(FrostShard, "Frost Shard", "C");
-				event.drops.add(FrostShard);
-			}else if (drop == 3){
-				ItemStack LightningShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(LightningShard, "Lightning Shard", "C");
-				event.drops.add(LightningShard);
-			}else if (drop == 4){
-				ItemStack LucidShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(LucidShard, "Lucid Shard", "C");
-				event.drops.add(LucidShard);
-			}else if (drop == 5){
-				ItemStack munny = new ItemStack(ModItems.Munny, 1);
-				munny.setTagCompound(new NBTTagCompound());
-				munny.getTagCompound().setInteger("amount", 5);
-				event.drops.add(munny);
-			}else if (drop == 6){
-				ItemStack munny = new ItemStack(ModItems.Munny, 1);
-				munny.setTagCompound(new NBTTagCompound());
-				munny.getTagCompound().setInteger("amount", 10);
-				event.drops.add(munny);
-			}else if (drop == 7){
-				ItemStack munny = new ItemStack(ModItems.Munny, 1);
-				munny.setTagCompound(new NBTTagCompound());
-				munny.getTagCompound().setInteger("amount", 20);
-				event.drops.add(munny);
-			}else if (drop == 8){
+			int drop = randomWithRange(1, 29);
+			if(drop == 1)
+			{
 				ItemStack munny = new ItemStack(ModItems.Munny, 1);
 				munny.setTagCompound(new NBTTagCompound());
 				munny.getTagCompound().setInteger("amount", 50);
 				event.drops.add(munny);
-
-			}else if (drop == 9){
+			}
+			else if(drop == 2)
+			{
 				ItemStack munny = new ItemStack(ModItems.Munny, 1);
 				munny.setTagCompound(new NBTTagCompound());
 				munny.getTagCompound().setInteger("amount", 100);
 				event.drops.add(munny);
-
-			}else if (drop == 10){
-				ItemStack HP = new ItemStack(ModItems.HpOrb, 1);
-				event.drops.add(HP);
-
+			}
+			else if(drop == 3)
+			{
+				ItemStack munny = new ItemStack(ModItems.Munny, 1);
+				munny.setTagCompound(new NBTTagCompound());
+				munny.getTagCompound().setInteger("amount", 500);
+				event.drops.add(munny);
+			}
+			else if(drop == 4)
+			{
+				ItemStack munny = new ItemStack(ModItems.Munny, 1);
+				munny.setTagCompound(new NBTTagCompound());
+				munny.getTagCompound().setInteger("amount", 700);
+				event.drops.add(munny);
+			}
+			else if(drop == 5)
+			{
+				ItemStack BlazingGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BlazingGem, "Blazing Shard", "C");
+				event.drops.add(BlazingGem);
+			}
+			else if(drop == 6)
+			{
+				ItemStack BrightGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BrightGem, "Bright Shard", "C");
+				event.drops.add(BrightGem);
+			}
+			else if(drop == 7)
+			{
+				ItemStack DarkGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(DarkGem, "Dark Shard", "C");
+				event.drops.add(DarkGem);
+			}
+			else if(drop == 8)
+			{
+				ItemStack DenseGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(DenseGem, "Dense Shard", "C");
+				event.drops.add(DenseGem);
+			}
+			else if(drop == 9)
+			{
+				ItemStack EnergyGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(EnergyGem, "Energy Shard", "C");
+				event.drops.add(EnergyGem);
+			}
+			else if(drop == 10)
+			{
+				ItemStack FrostGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(FrostGem, "Frost Shard", "C");
+				event.drops.add(FrostGem);
+			}
+			else if(drop == 11)
+			{
+				ItemStack LucidGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(LucidGem, "Lucid Shard", "C");
+				event.drops.add(LucidGem);
+			}
+			else if(drop == 12)
+			{
+				ItemStack PowerGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(PowerGem, "Power Shard", "C");
+				event.drops.add(PowerGem);
+			}
+			else if(drop == 13)
+			{
+				ItemStack RemembranceGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(RemembranceGem, "Remembrance Shard", "C");
+				event.drops.add(RemembranceGem);
+			}
+			else if(drop == 14)
+			{
+				ItemStack SerenityGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(SerenityGem, "Serenity Shard", "C");
+				event.drops.add(SerenityGem);
+			}
+			else if(drop == 15)
+			{
+				ItemStack TranquilGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(TranquilGem, "Tranquil Shard", "C");
+				event.drops.add(TranquilGem);
+			}
+			else if(drop == 16)
+			{
+				ItemStack TwilightGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(TwilightGem, "Twilight Shard", "C");
+				event.drops.add(TwilightGem);
+			}
+			else if(drop == 17)
+			{
+				ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BlazingCrystal, "Blazing Stone","B");
+				event.drops.add(BlazingCrystal);
+			}
+			else if(drop == 18)
+			{
+				ItemStack BrightCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BrightCrystal, "Bright Stone","B");
+				event.drops.add(BrightCrystal);
+			}
+			else if(drop == 19)
+			{
+				ItemStack DarkCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(DarkCrystal, "Dark Stone","B");
+				event.drops.add(DarkCrystal);
+			}
+			else if(drop == 20)
+			{
+				ItemStack DenseCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(DenseCrystal, "Dense Stone","B");
+				event.drops.add(DenseCrystal);
+			}
+			else if(drop == 21)
+			{
+				ItemStack EnergyCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(EnergyCrystal, "Energy Stone","B");
+				event.drops.add(EnergyCrystal);
+			}
+			else if(drop == 22)
+			{
+				ItemStack FrostCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(FrostCrystal, "Frost Stone","B");
+				event.drops.add(FrostCrystal);
+			}
+			else if(drop == 23)
+			{
+				ItemStack LucidCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(LucidCrystal, "Lucid Stone","B");
+				event.drops.add(LucidCrystal);
+			}
+			else if(drop == 24)
+			{
+				ItemStack PowerCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(PowerCrystal, "Power Stone","B");
+				event.drops.add(PowerCrystal);
+			}
+			else if(drop == 25)
+			{
+				ItemStack RemembranceCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(RemembranceCrystal, "Remembrance Stone","B");
+				event.drops.add(RemembranceCrystal);
+			}
+			else if(drop == 26)
+			{
+				ItemStack SerenityCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(SerenityCrystal, "Serenity Stone","B");
+				event.drops.add(SerenityCrystal);
+			}
+			else if(drop == 27)
+			{
+				ItemStack TranquilCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(TranquilCrystal, "Tranquil Stone","B");
+				event.drops.add(TranquilCrystal);
+			}
+			else if(drop == 28)
+			{
+				ItemStack TwilightCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(TwilightCrystal, "Twilight Stone","B");
+				event.drops.add(TwilightCrystal);
+			}
+			else if(drop == 29)
+			{
+				ItemStack Orichalcum = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(Orichalcum, "Orichalcum", "A");
+				event.drops.add(Orichalcum);
+			}
+		}
+		
+		else if (event.state.getBlock() == ModBlocks.RarePrizeBlox)
+		{
+			int drop = randomWithRange(1, 28);
+			if(drop == 1)
+			{
+				ItemStack munny = new ItemStack(ModItems.Munny, 1);
+				munny.setTagCompound(new NBTTagCompound());
+				munny.getTagCompound().setInteger("amount", 1000);
+				event.drops.add(munny);
+			}
+			else if(drop == 2)
+			{
+				ItemStack munny = new ItemStack(ModItems.Munny, 1);
+				munny.setTagCompound(new NBTTagCompound());
+				munny.getTagCompound().setInteger("amount", 1500);
+				event.drops.add(munny);
+			}
+			else if(drop == 3)
+			{
+				ItemStack munny = new ItemStack(ModItems.Munny, 1);
+				munny.setTagCompound(new NBTTagCompound());
+				munny.getTagCompound().setInteger("amount", 2000);
+				event.drops.add(munny);
+			}
+			else if(drop == 4)
+			{
+				ItemStack munny = new ItemStack(ModItems.Munny, 1);
+				munny.setTagCompound(new NBTTagCompound());
+				munny.getTagCompound().setInteger("amount", 1500);
+				event.drops.add(munny);
+			}
+			else if(drop == 5)
+			{
+				ItemStack BlazingGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BlazingGem, "Blazing Gem", "A");
+				event.drops.add(BlazingGem);
+			}
+			else if(drop == 6)
+			{
+				ItemStack BrightGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BrightGem, "Bright Gem", "A");
+				event.drops.add(BrightGem);
+			}
+			else if(drop == 7)
+			{
+				ItemStack DarkGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(DarkGem, "Dark Gem", "A");
+				event.drops.add(DarkGem);
+			}
+			else if(drop == 8)
+			{
+				ItemStack DenseGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(DenseGem, "Dense Gem", "A");
+				event.drops.add(DenseGem);
+			}
+			else if(drop == 9)
+			{
+				ItemStack EnergyGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(EnergyGem, "Energy Gem", "A");
+				event.drops.add(EnergyGem);
+			}
+			else if(drop == 10)
+			{
+				ItemStack FrostGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(FrostGem, "Frost Gem", "A");
+				event.drops.add(FrostGem);
+			}
+			else if(drop == 11)
+			{
+				ItemStack LucidGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(LucidGem, "Lucid Gem", "A");
+				event.drops.add(LucidGem);
+			}
+			else if(drop == 12)
+			{
+				ItemStack PowerGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(PowerGem, "Power Gem", "A");
+				event.drops.add(PowerGem);
+			}
+			else if(drop == 13)
+			{
+				ItemStack RemembranceGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(RemembranceGem, "Remembrance Gem", "A");
+				event.drops.add(RemembranceGem);
+			}
+			else if(drop == 14)
+			{
+				ItemStack SerenityGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(SerenityGem, "Serenity Gem", "A");
+				event.drops.add(SerenityGem);
+			}
+			else if(drop == 15)
+			{
+				ItemStack TranquilGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(TranquilGem, "Tranquil Gem", "A");
+				event.drops.add(TranquilGem);
+			}
+			else if(drop == 16)
+			{
+				ItemStack TwilightGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(TwilightGem, "Twilight Gem", "A");
+				event.drops.add(TwilightGem);
+			}
+			else if(drop == 17)
+			{
+				ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BlazingCrystal, "Blazing Crystal", "S");
+				event.drops.add(BlazingCrystal);
+			}
+			else if(drop == 18)
+			{
+				ItemStack BrightCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(BrightCrystal, "Bright Crystal", "S");
+				event.drops.add(BrightCrystal);
+			}
+			else if(drop == 19)
+			{
+				ItemStack DarkCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(DarkCrystal, "Dark Crystal", "S");
+				event.drops.add(DarkCrystal);
+			}
+			else if(drop == 20)
+			{
+				ItemStack DenseCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(DenseCrystal, "Dense Crystal", "S");
+				event.drops.add(DenseCrystal);
+			}
+			else if(drop == 21)
+			{
+				ItemStack EnergyCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(EnergyCrystal, "Energy Crystal", "S");
+				event.drops.add(EnergyCrystal);
+			}
+			else if(drop == 22)
+			{
+				ItemStack FrostCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(FrostCrystal, "Frost Crystal", "S");
+				event.drops.add(FrostCrystal);
+			}
+			else if(drop == 23)
+			{
+				ItemStack LucidCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(LucidCrystal, "Lucid Crystal", "S");
+				event.drops.add(LucidCrystal);
+			}
+			else if(drop == 24)
+			{
+				ItemStack PowerCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(PowerCrystal, "Power Crystal", "S");
+				event.drops.add(PowerCrystal);
+			}
+			else if(drop == 25)
+			{
+				ItemStack RemembranceCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(RemembranceCrystal, "Remembrance Crystal", "S");
+				event.drops.add(RemembranceCrystal);
+			}
+			else if(drop == 26)
+			{
+				ItemStack SerenityCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(SerenityCrystal, "Serenity Crystal", "S");
+				event.drops.add(SerenityCrystal);
+			}
+			else if(drop == 27)
+			{
+				ItemStack TranquilCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(TranquilCrystal, "Tranquil Crystal", "S");
+				event.drops.add(TranquilCrystal);
+			}
+			else if(drop == 28)
+			{
+				ItemStack TwilightCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(TwilightCrystal, "Twilight Crystal", "S");
+				event.drops.add(TwilightCrystal);
+			}
+			else if(drop == 29)
+			{
+				ItemStack Orichalcum = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(Orichalcum, "Orichalcum", "A");
+				event.drops.add(Orichalcum);
+			}
+			else if(drop == 30)
+			{
+				ItemStack OrichalcumPlus = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(OrichalcumPlus, "Orichalcum+", "S");
+				event.drops.add(OrichalcumPlus);
 			}
 		}
 	}
