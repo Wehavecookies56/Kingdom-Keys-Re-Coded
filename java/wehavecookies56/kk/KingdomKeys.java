@@ -15,13 +15,17 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.block.ModBlocksRecipes;
+import wehavecookies56.kk.entities.TileEntitySynthesisTable;
 import wehavecookies56.kk.item.ModItemsRecipes;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.ClientProxy;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.PacketDispatcher;
+import wehavecookies56.kk.recipes.RecipeKingdomKey;
+import wehavecookies56.kk.recipes.RecipeRegistry;
 import wehavecookies56.kk.util.ScrollHandler;
 import wehavecookies56.kk.worldgen.WorldGenBlox;
 
@@ -59,6 +63,7 @@ public class KingdomKeys {
 	@EventHandler
     public void init(FMLInitializationEvent e){
 		//kkPacketHandler.registerPacket(PacketMunny.class);
+		RecipeRegistry.registerRecipe(new RecipeKingdomKey(Strings.KingdomKey));
 		WorldGenBlox worldGen = new WorldGenBlox();
 		FMLCommonHandler.instance().bus().register(instance);
 		MinecraftForge.EVENT_BUS.register(new ScrollHandler());
@@ -70,6 +75,7 @@ public class KingdomKeys {
 		ModBlocksRecipes.init();
 		proxy.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
+		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
 	}
 	
 	@EventHandler

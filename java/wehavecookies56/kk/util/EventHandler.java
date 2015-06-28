@@ -32,10 +32,12 @@ import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
 import wehavecookies56.kk.item.ItemStacks;
 import wehavecookies56.kk.item.ModItems;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.HpOrbPickup;
 import wehavecookies56.kk.network.MunnyPickup;
 import wehavecookies56.kk.network.PacketDispatcher;
 import wehavecookies56.kk.network.SyncExtendedPlayer;
+import wehavecookies56.kk.recipes.RecipeRegistry;
 
 import com.mojang.authlib.GameProfile;
 
@@ -43,8 +45,11 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event){
-		if(event.entity instanceof EntityPlayer && ExtendedPlayer.get((EntityPlayer) event.entity) == null)
+		if(event.entity instanceof EntityPlayer && ExtendedPlayer.get((EntityPlayer) event.entity) == null){
 			ExtendedPlayer.register((EntityPlayer) event.entity);
+			RecipeRegistry.learnrecipe((EntityPlayer) event.entity, Strings.KingdomKey);
+		}
+
 	}
 
 	@SubscribeEvent

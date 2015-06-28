@@ -116,6 +116,18 @@ public class Strings {
 	SynthesisMaterial = "synthesismaterial"
 	;
 	
+	//Synthesis Materials
+	public static final String
+	SM_Rank = "sm.rank",
+	SM_Shard = "sm.shard",
+	SM_Stone = "sm.stone",
+	SM_Gem = "sm.gem",
+	SM_Crystal = "sm.crystal",
+	SM_Blazing = "sm.blazing",
+	SM_Frost = "sm.frost",
+	SM_Lightning = "sm.lightning"
+	;
+	
 	//Music Discs
 	public static final String
 	Disc_Birth_by_Sleep_A_Link_to_the_Future = "birthbysleep-alinktothefuture-",

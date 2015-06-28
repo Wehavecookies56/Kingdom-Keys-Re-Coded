@@ -88,4 +88,9 @@ public class ItemStacks {
 		stack.getTagCompound().setString("material", material);
 		stack.getTagCompound().setString("rank", rank);
 	}
+	
+	public static void createMunnyStack(ItemStack stack, int amount){
+		stack.setTagCompound(new NBTTagCompound());
+		stack.getTagCompound().setInteger("amount", amount);
+	}
 }

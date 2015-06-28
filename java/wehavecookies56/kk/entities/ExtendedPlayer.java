@@ -1,15 +1,24 @@
 package wehavecookies56.kk.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import net.minecraftforge.common.util.Constants;
 import wehavecookies56.kk.inventory.InventoryKeychain;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.PacketDispatcher;
 import wehavecookies56.kk.network.SyncExtendedPlayer;
+import wehavecookies56.kk.recipes.Recipe;
+import wehavecookies56.kk.recipes.RecipeKingdomKey;
+import wehavecookies56.kk.recipes.RecipeRegistry;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
 
@@ -19,6 +28,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public final InventoryKeychain inventory = new InventoryKeychain();
 
+	public List<String> knownRecipes = new ArrayList<String>();
+	
 	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, keybladeSummoned;
 
 	public ExtendedPlayer(EntityPlayer player){
@@ -46,7 +57,13 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("MaxExperience", this.maxExperience);
 		properties.setInteger("MaxMP", this.maxMp);
 		properties.setInteger("KeybladeSummoned", this.keybladeSummoned);
-
+		NBTTagList tagList = new NBTTagList();
+		NBTTagCompound recipes = new NBTTagCompound();
+		for (int i = 0; i < knownRecipes.size(); i++){
+			recipes.setString("Recipes" + i, knownRecipes.get(i));
+			tagList.appendTag(recipes);
+		}
+		properties.setTag("RecipeList", tagList);
 		compound.setTag(EXT_PROP_NAME, properties);
 
 	}
@@ -63,7 +80,14 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.maxExperience = properties.getInteger("MaxExperience");
 		this.maxMp = properties.getInteger("MaxMP");
 		this.keybladeSummoned = properties.getInteger("KeybladeSummoned");
-
+		
+		NBTTagList tagList = properties.getTagList("RecipeList", Constants.NBT.TAG_COMPOUND);
+		for(int i = 0; i < tagList.tagCount(); i++){
+			NBTTagCompound recipes = tagList.getCompoundTagAt(i);
+			knownRecipes.add(i, recipes.getString("Recipes" + i));
+			System.out.println("Loaded known recipe: " + recipes.getString("Recipes" + i));
+		}
+		
 	}
 
 	@Override
@@ -165,6 +189,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
+	public void learnRecipe(Recipe recipe){
+		knownRecipes.add(recipe.getName());
+		sync();
+	}
+	
 	public int getMunny(){
 		return this.munny;
 	}
