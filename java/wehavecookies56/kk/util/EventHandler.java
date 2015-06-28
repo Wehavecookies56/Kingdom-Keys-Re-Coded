@@ -1,9 +1,7 @@
 package wehavecookies56.kk.util;
 
-import java.util.Random;
 import java.util.UUID;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -27,16 +25,18 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 import wehavecookies56.kk.item.ItemHpOrb;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
 import wehavecookies56.kk.item.ItemStacks;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.network.HpOrbPickup;
-import wehavecookies56.kk.network.MunnyPickup;
-import wehavecookies56.kk.network.PacketDispatcher;
-import wehavecookies56.kk.network.SyncExtendedPlayer;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
+import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
+import wehavecookies56.kk.network.packet.server.HpOrbPickup;
+import wehavecookies56.kk.network.packet.server.MunnyPickup;
 import wehavecookies56.kk.recipes.RecipeRegistry;
 
 import com.mojang.authlib.GameProfile;
@@ -48,6 +48,9 @@ public class EventHandler {
 		if(event.entity instanceof EntityPlayer && ExtendedPlayer.get((EntityPlayer) event.entity) == null){
 			ExtendedPlayer.register((EntityPlayer) event.entity);
 		}
+		if(event.entity instanceof EntityPlayer && ExtendedPlayerRecipes.get((EntityPlayer) event.entity) == null){
+			ExtendedPlayerRecipes.register((EntityPlayer) event.entity);
+		}
 
 	}
 
@@ -56,6 +59,8 @@ public class EventHandler {
 		if(!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer){
 			ExtendedPlayer.get((EntityPlayer) event.entity).loadProxyData(((EntityPlayer) event.entity));
 			PacketDispatcher.sendTo(new SyncExtendedPlayer((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
+			ExtendedPlayerRecipes.get((EntityPlayer) event.entity).loadProxyData(((EntityPlayer) event.entity));
+			PacketDispatcher.sendTo(new SyncExtendedPlayerRecipes((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
 			RecipeRegistry.learnrecipe((EntityPlayer) event.entity, Strings.KingdomKey);
 			GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Wehavecookies56");
 			UUID uuidWehavecookies56 = profileWehavecookies56.getId();

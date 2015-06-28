@@ -31,14 +31,13 @@ public class CommonProxy implements IGuiHandler {
 		return ctx.getServerHandler().playerEntity.getServerForPlayer();
 	}
 
-	private  static  final  Map <String, NBTTagCompound> extendedEntityData = new HashMap <String, NBTTagCompound>();
-
+	private static final Map<String, NBTTagCompound> extendedEntityData = new HashMap<String, NBTTagCompound>();
 
 	public  static  void storeEntityData (String name, NBTTagCompound compound){
 		extendedEntityData.put(name, compound);
 	}
 
-	public  static  NBTTagCompound getEntityData (String name){
+	public static NBTTagCompound getEntityData (String name){
 		return extendedEntityData.remove(name);
 	}
 

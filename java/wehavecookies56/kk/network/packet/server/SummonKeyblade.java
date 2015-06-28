@@ -1,4 +1,4 @@
-package wehavecookies56.kk.network;
+package wehavecookies56.kk.network.packet.server;
 
 import java.io.IOException;
 
@@ -10,7 +10,8 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
+import wehavecookies56.kk.network.packet.AbstractMessage;
+import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 import wehavecookies56.kk.util.SoundHelper;
 
 public class SummonKeyblade extends AbstractServerMessage<SummonKeyblade> {

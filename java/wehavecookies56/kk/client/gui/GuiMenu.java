@@ -17,8 +17,8 @@ import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.network.OpenGui;
-import wehavecookies56.kk.network.PacketDispatcher;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.server.OpenGui;
 import wehavecookies56.kk.util.GuiHelper;
 import wehavecookies56.kk.util.TextHelper;
 

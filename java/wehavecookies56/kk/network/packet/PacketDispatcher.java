@@ -1,7 +1,15 @@
-package wehavecookies56.kk.network;
+package wehavecookies56.kk.network.packet;
 
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
+import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
+import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
+import wehavecookies56.kk.network.packet.server.HpOrbPickup;
+import wehavecookies56.kk.network.packet.server.MunnyPickup;
+import wehavecookies56.kk.network.packet.server.OpenGui;
+import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
+import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -17,13 +25,20 @@ public class PacketDispatcher
 	private static final SimpleNetworkWrapper dispatcher = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MODCHANNEL);
 
 	public static final void registerPackets() {
+		
+		//Server to Client
 		registerMessage(SyncExtendedPlayer.class);
+		registerMessage(SyncExtendedPlayerRecipes.class);
+		
+		//Client to Server
 		registerMessage(MunnyPickup.class);
 		registerMessage(HpOrbPickup.class);
 		registerMessage(OpenGui.class);
 		registerMessage(SummonKeyblade.class);
 		registerMessage(DeSummonKeyblade.class);
 		registerMessage(PlaySoundAtPlayer.class);
+		
+		//Bidirectional
 	}
 
 	private static final <T extends AbstractMessage<T> & IMessageHandler<T, IMessage>> void registerMessage(Class<T> clazz) {

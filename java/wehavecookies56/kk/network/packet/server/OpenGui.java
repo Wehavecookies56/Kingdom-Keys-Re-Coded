@@ -1,4 +1,4 @@
-package wehavecookies56.kk.network;
+package wehavecookies56.kk.network.packet.server;
 
 import java.io.IOException;
 
@@ -6,7 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.KingdomKeys;
-import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
+import wehavecookies56.kk.network.packet.AbstractMessage;
+import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class OpenGui extends AbstractServerMessage<OpenGui> {
 

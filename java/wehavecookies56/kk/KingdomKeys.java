@@ -23,7 +23,7 @@ import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.ClientProxy;
 import wehavecookies56.kk.network.CommonProxy;
-import wehavecookies56.kk.network.PacketDispatcher;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.recipes.RecipeKingdomKey;
 import wehavecookies56.kk.recipes.RecipeRegistry;
 import wehavecookies56.kk.util.ScrollHandler;

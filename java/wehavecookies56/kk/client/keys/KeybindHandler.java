@@ -10,11 +10,11 @@ import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.CommonProxy;
-import wehavecookies56.kk.network.DeSummonKeyblade;
-import wehavecookies56.kk.network.PlaySoundAtPlayer;
-import wehavecookies56.kk.network.SummonKeyblade;
-import wehavecookies56.kk.network.PacketDispatcher;
-import wehavecookies56.kk.network.SyncExtendedPlayer;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
+import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
+import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
+import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.util.GuiHelper;
 import wehavecookies56.kk.util.SoundHelper;
 

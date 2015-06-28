@@ -3,9 +3,8 @@ package wehavecookies56.kk.recipes;
 import java.util.HashMap;
 import java.util.Map;
 
-import wehavecookies56.kk.entities.ExtendedPlayer;
-
 import net.minecraft.entity.player.EntityPlayer;
+import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -40,15 +39,15 @@ public class RecipeRegistry {
 	public static boolean learnrecipe(EntityPlayer player, String recipeName) {
 		if (player != null && !isRecipeKnown(player, recipeName)) {
 			Recipe recipe = recipeMap.get(recipeName);
-			ExtendedPlayer.get(player).learnRecipe(recipe);
+			ExtendedPlayerRecipes.get(player).learnRecipe(recipe);
 			return true;
 		}
 		return false;
 	}
 
 	public static boolean isRecipeKnown(EntityPlayer player, String name) {
-		if (ExtendedPlayer.get(player) != null) {
-			return ExtendedPlayer.get(player).knownRecipes.contains(name);
+		if (ExtendedPlayerRecipes.get(player) != null) {
+			return ExtendedPlayerRecipes.get(player).knownRecipes.contains(name);
 		}
 		return false;
 	}

@@ -1,4 +1,4 @@
-package wehavecookies56.kk.network;
+package wehavecookies56.kk.network.packet;
 
 import io.netty.buffer.ByteBuf;
 

@@ -1,4 +1,4 @@
-package wehavecookies56.kk.network;
+package wehavecookies56.kk.network.packet.server;
 
 import java.io.IOException;
 
@@ -8,21 +8,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.item.ItemKeyblade;
-import wehavecookies56.kk.item.ItemKeychain;
-import wehavecookies56.kk.network.AbstractMessage.AbstractServerMessage;
-import wehavecookies56.kk.util.SoundHelper;
+import wehavecookies56.kk.network.packet.AbstractMessage;
+import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
+import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
-public class DeSummonKeyblade extends AbstractServerMessage<DeSummonKeyblade> {
+public class MunnyPickup extends AbstractServerMessage<MunnyPickup> {
 
-	public DeSummonKeyblade() {}
-
+	public MunnyPickup() {}
+	
 	ItemStack toRemove;
-
-	public DeSummonKeyblade(ItemStack toRemove){
+	
+	public MunnyPickup(ItemStack toRemove){
 		this.toRemove = toRemove;
 	}
-
+	
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
 		toRemove = buffer.readItemStackFromBuffer();
@@ -35,9 +34,9 @@ public class DeSummonKeyblade extends AbstractServerMessage<DeSummonKeyblade> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-		SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.UnSummon, 0.5f, 1);
-		ExtendedPlayer.get(player).setSummonedKeyblade(0);
+		player.inventory.consumeInventoryItem(toRemove.getItem());
+		toRemove.stackSize--;
+		ExtendedPlayer.get(player).addMunny(toRemove.getTagCompound().getInteger("amount"));
 	}
 
 }
