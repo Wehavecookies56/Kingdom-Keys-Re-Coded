@@ -47,7 +47,6 @@ public class EventHandler {
 	public void onEntityConstructing(EntityConstructing event){
 		if(event.entity instanceof EntityPlayer && ExtendedPlayer.get((EntityPlayer) event.entity) == null){
 			ExtendedPlayer.register((EntityPlayer) event.entity);
-			RecipeRegistry.learnrecipe((EntityPlayer) event.entity, Strings.KingdomKey);
 		}
 
 	}
@@ -57,6 +56,7 @@ public class EventHandler {
 		if(!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer){
 			ExtendedPlayer.get((EntityPlayer) event.entity).loadProxyData(((EntityPlayer) event.entity));
 			PacketDispatcher.sendTo(new SyncExtendedPlayer((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
+			RecipeRegistry.learnrecipe((EntityPlayer) event.entity, Strings.KingdomKey);
 			GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Wehavecookies56");
 			UUID uuidWehavecookies56 = profileWehavecookies56.getId();
 			if(event.entity.getUniqueID() == uuidWehavecookies56){
