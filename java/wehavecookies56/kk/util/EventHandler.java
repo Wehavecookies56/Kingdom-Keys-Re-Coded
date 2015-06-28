@@ -687,7 +687,7 @@ public class EventHandler {
 			{
 				ItemStack munny = new ItemStack(ModItems.Munny, 1);
 				munny.setTagCompound(new NBTTagCompound());
-				munny.getTagCompound().setInteger("amount", 1500);
+				munny.getTagCompound().setInteger("amount", 3000);
 				event.drops.add(munny);
 			}
 			else if(drop == 5)
