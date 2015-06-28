@@ -23,6 +23,22 @@ tile.dangerblox.name=Bloque de Error Peligroso
 tile.bounceblox.name=Bloque de Error Blando
 tile.blastblox.name=Bloque Bomba
 
+#Synthesis Ore
+tile.blazingore.name=Mena Ígnea
+tile.brightore.name=Mena Clara
+tile.darkore.name=Mena Oscura
+tile.darkoree.name=Mena Oscura
+tile.denseore.name=Mena Densa
+tile.energyore.name=Mena Vital
+tile.frostore.name=Mena Fría
+tile.lucidore.name=Mena de Ocaso
+tile.powerore.name=Mena de Poder
+tile.poweroree.name=Mena de Poder
+tile.remembranceore.name=Mena de Recuerdos
+tile.serenityore.name=Mena Serena
+tile.tranquilore.name=Mena Calmada
+tile.twilightore.name=Mena Crepuscular
+
 ############################
 #Items
 ############################

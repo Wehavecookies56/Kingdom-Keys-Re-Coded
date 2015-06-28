@@ -10,6 +10,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.client.gui.GuiSynthesis;
 import wehavecookies56.kk.entities.TileEntitySynthesisTable;
 
@@ -23,6 +25,7 @@ public class BlockSynthesisTable extends Block implements ITileEntityProvider {
 	}
 	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
 		Minecraft.getMinecraft().displayGuiScreen(new GuiSynthesis(null));
 		return true;

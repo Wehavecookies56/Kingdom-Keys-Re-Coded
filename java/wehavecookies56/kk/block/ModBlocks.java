@@ -41,7 +41,8 @@ public class ModBlocks {
 		SerenityOre,
 		TranquilOre,
 		TwilightOre,
-		SynthesisTable
+		SynthesisTable,
+		KKChest
 		;
 	
 	public static CreativeTabs tabKingdomKeysBlocks;
@@ -49,8 +50,8 @@ public class ModBlocks {
 	public static void init(){
 		tabKingdomKeysBlocks = new TabKingdomKeysBlocks(CreativeTabs.getNextID(), Strings.tabKingdomKeysBlocks);
 		NormalBlox = new BlockNormalBlox(Material.iron, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.NormalBlox).setCreativeTab(tabKingdomKeysBlocks);
-		HardBlox = new BlockHardBlox(Material.iron, "pickaxe", 1, 6f, 30f).setUnlocalizedName(Strings.HardBlox).setCreativeTab(tabKingdomKeysBlocks);
-		MetalBlox = new BlockMetalBlox(Material.iron, "pickaxe", 2, 10f, 600f).setUnlocalizedName(Strings.MetalBlox).setCreativeTab(tabKingdomKeysBlocks);
+		HardBlox = new BlockHardBlox(Material.iron, "pickaxe", 1, 6f, 20f).setUnlocalizedName(Strings.HardBlox).setCreativeTab(tabKingdomKeysBlocks);
+		MetalBlox = new BlockMetalBlox(Material.iron, "pickaxe", 2, 10f, 60f).setUnlocalizedName(Strings.MetalBlox).setCreativeTab(tabKingdomKeysBlocks);
 		DangerBlox = new BlockDangerBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DangerBlox).setCreativeTab(tabKingdomKeysBlocks);
 		BounceBlox = new BlockBounceBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BounceBlox).setCreativeTab(tabKingdomKeysBlocks);
 		BlastBlox = new BlockBlastBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BlastBlox).setCreativeTab(tabKingdomKeysBlocks);		
@@ -61,7 +62,7 @@ public class ModBlocks {
 		DarkOre = new BlockDarkOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DarkOre).setCreativeTab(tabKingdomKeysBlocks);
 		DarkOreE = new BlockDarkOreE(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DarkOreE).setCreativeTab(tabKingdomKeysBlocks);
 		DenseOre = new BlockDenseOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DenseOre).setCreativeTab(tabKingdomKeysBlocks);
-		EnergyOre = new BlockEnergyOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.EnergyOre).setCreativeTab(tabKingdomKeysBlocks);
+		EnergyOre = new BlockEnergyOre(Material.iron, "pickaxe", 0, 1f, 	1f).setUnlocalizedName(Strings.EnergyOre).setCreativeTab(tabKingdomKeysBlocks);
 		FrostOre = new BlockFrostOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.FrostOre).setCreativeTab(tabKingdomKeysBlocks);
 		LucidOre = new BlockLucidOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.LucidOre).setCreativeTab(tabKingdomKeysBlocks);
 		PowerOre = new BlockPowerOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.PowerOre).setCreativeTab(tabKingdomKeysBlocks);
@@ -71,6 +72,8 @@ public class ModBlocks {
 		TranquilOre = new BlockTranquilOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.TranquilOre).setCreativeTab(tabKingdomKeysBlocks);
 		TwilightOre = new BlockTwilightOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.TwilightOre).setCreativeTab(tabKingdomKeysBlocks);
 		SynthesisTable = new BlockSynthesisTable(Material.wood, "axe", 0, 1, 1).setUnlocalizedName(Strings.SynthesisTable).setCreativeTab(tabKingdomKeysBlocks);
+		KKChest = new BlockKKChest(Material.iron, "pickaxe", 0, 20f, 30f).setUnlocalizedName(Strings.KKChest).setCreativeTab(tabKingdomKeysBlocks);
+
 	}
 	
 	public static void registerBlock(Block block){
@@ -101,6 +104,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(TranquilOre, Strings.TranquilOre);
 		GameRegistry.registerBlock(TwilightOre, Strings.TwilightOre);
 		GameRegistry.registerBlock(SynthesisTable, Strings.SynthesisTable);
+		GameRegistry.registerBlock(KKChest, Strings.KKChest);
 	}
 	
 	public static void registerRenders(){
@@ -127,6 +131,7 @@ public class ModBlocks {
 		registerRender(TranquilOre);
 		registerRender(TwilightOre);
 		registerRender(SynthesisTable);
+		registerRender(KKChest);
 		
 	}
 	

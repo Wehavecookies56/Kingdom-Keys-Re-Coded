@@ -80,6 +80,7 @@ public class Strings {
 	BlastBlox = "blastblox",
 	PrizeBlox = "prizeblox",
 	RarePrizeBlox = "rareprizeblox",
+	KKChest = "kkchest",
 	
 	//Ores
 	BlazingOre = "blazingore",
@@ -510,7 +511,7 @@ public class Strings {
 	TM_VulpeusForetellersKeyblade_DEFAULT = "vulpeusforetellerskeyblade, 3, -1, 6.0F, 16, 30"
 	;			
 	
-	public static String testToolMaterial;
+//	public static String testToolMaterial;
 	
 	public static final String TOOLMATERIAL = "toolmaterial.name.";
 	
