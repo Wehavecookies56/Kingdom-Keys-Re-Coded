@@ -9,6 +9,7 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
@@ -122,6 +123,16 @@ public class KeybindHandler {
 					GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
 					break;
+				}
+				if(GuiCommandMenu.selected == GuiCommandMenu.MAGIC && GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)
+				{
+					switch(GuiCommandMenu.magicselected)
+					{
+						case GuiCommandMenu.FIRE:
+						{
+							Magic.Fire(Minecraft.getMinecraft().thePlayer, Minecraft.getMinecraft().theWorld);
+						}
+					}
 				}
 				break;
 
