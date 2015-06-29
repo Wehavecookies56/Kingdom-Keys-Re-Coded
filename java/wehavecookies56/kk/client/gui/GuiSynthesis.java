@@ -22,6 +22,8 @@ public class GuiSynthesis extends GuiScreen {
 	private final GuiScreen parentScreen;
     protected String title = "Item Synthesiss";
     private GuiRecipeList recipeList;
+    
+    public GuiButton Creations, FreeDevelopment, Recipes, Materials;
 
     public GuiSynthesis(GuiScreen parentScreen)
     {

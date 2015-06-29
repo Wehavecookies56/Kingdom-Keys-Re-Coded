@@ -21,6 +21,7 @@ import wehavecookies56.kk.util.TextHelper;
 
 @SideOnly(Side.CLIENT)
 public class GuiCommandMenu extends GuiScreen {
+	Minecraft mc = Minecraft.getMinecraft();
 	public static final int TOP = 5, ATTACK = 4, MAGIC = 3, ITEMS = 2, DRIVE = 1;
 
 	public static final int MAGIC_TOP = 8, FIRE = 7, BLIZZARD = 6, THUNDER = 5, CURE = 4, GRAVITY = 3, AERO = 2, STOP = 1;
@@ -45,13 +46,10 @@ public class GuiCommandMenu extends GuiScreen {
 
 	ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/commandmenu.png");
 
-	ScaledResolution sr = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-	int Width = sr.getScaledWidth();
-	int Height = sr.getScaledHeight();
 
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public void onRenderOverlayPost(RenderGameOverlayEvent event){
-		if(event.type == RenderGameOverlayEvent.ElementType.TEXT && !mc.ingameGUI.getChatGUI().getChatOpen()) {	
+		if(event.type == RenderGameOverlayEvent.ElementType.TEXT && !mc.ingameGUI.getChatGUI().getChatOpen()) {
 			GL11.glPushMatrix();{
 				//drawTexturedModalRect(0, mc.displayHeight/2 - MENU_HEIGHT, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, MENU_HEIGHT);
 				drawCommandMenu(event.resolution.getScaledWidth(), event.resolution.getScaledHeight());
@@ -152,7 +150,7 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*MAGIC_TOP), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_MAGIC){	
+			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Title), 6, 4, colour = 0xFFFFFF);
 			}
@@ -169,7 +167,7 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*FIRE), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_MAGIC){	
+			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Fire), 6, 4, colour = 0xFFFFFF);
 			}
@@ -186,7 +184,7 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*BLIZZARD), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_MAGIC){	
+			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Blizzard), 6, 4, 0xFFFFFF);
 			}
@@ -203,7 +201,7 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*THUNDER), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_MAGIC){	
+			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Thunder), 6, 4, colour);
 			}
@@ -220,7 +218,7 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*CURE), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_MAGIC){	
+			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Cure), 6, 4, 0xFFFFFF);
 			}
@@ -237,7 +235,7 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*GRAVITY), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_MAGIC){	
+			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Gravity), 6, 4, 0xFFFFFF);
 			}
@@ -271,7 +269,7 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*STOP), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_MAGIC){	
+			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Stop), 6, 4, 0xFFFFFF);
 			}
@@ -281,15 +279,15 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*DRIVE_TOP), 0);
 			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
 			}
 		}GL11.glPopMatrix();
-		
+
 		GL11.glPushMatrix();{
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*DRIVE_TOP), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Title), 6, 4, 0xFFFFFF);
 			}
 		}GL11.glPopMatrix();
@@ -305,7 +303,7 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*VALOR), 0);
 			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
 		}GL11.glPopMatrix();
@@ -313,7 +311,7 @@ public class GuiCommandMenu extends GuiScreen {
 		GL11.glPushMatrix();{
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*VALOR), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Valor), 6, 4, 0xFFFFFF);
 			}
 		}GL11.glPopMatrix();
@@ -329,16 +327,16 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*WISDOM), 0);
 			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
 		}GL11.glPopMatrix();
 		GL11.glPushMatrix();{
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*WISDOM), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Wisdom), 6, 4, 0xFFFFFF);
-			}	
+			}
 		}GL11.glPopMatrix();
 		//LIMIT
 		GL11.glPushMatrix();{
@@ -352,16 +350,16 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*LIMIT), 0);
 			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
 		}GL11.glPopMatrix();
 		GL11.glPushMatrix();{
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*LIMIT), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Limit), 6, 4, 0xFFFFFF);
-			}	
+			}
 		}GL11.glPopMatrix();
 		//MASTER
 		GL11.glPushMatrix();{
@@ -375,16 +373,16 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*MASTER), 0);
 			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
 		}GL11.glPopMatrix();
 		GL11.glPushMatrix();{
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*MASTER), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Master), 6, 4, 0xFFFFFF);
-			}	
+			}
 		}GL11.glPopMatrix();
 		//FINAL
 		GL11.glPushMatrix();{
@@ -398,16 +396,16 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*FINAL), 0);
 			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
 		}GL11.glPopMatrix();
 		GL11.glPushMatrix();{
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*FINAL), 0);
 			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){	
+			if(submenu == SUB_DRIVE){
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Final), 6, 4, 0xFFFFFF);
-			}	
+			}
 		}GL11.glPopMatrix();
 	}
 

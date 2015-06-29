@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemSword;
 import net.minecraftforge.common.util.EnumHelper;
@@ -15,7 +16,7 @@ import static wehavecookies56.kk.lib.Strings.*;
 import wehavecookies56.kk.lib.Strings;
 
 public class ModItems {
-	
+
 	public static Item
 		AbaddonPlasma,
 		AbyssalTide,
@@ -135,9 +136,9 @@ public class ModItems {
 		YoungXehanortsKeyblade,
 		ZeroOne
 	;
-		
+
 	//CHAINS
-	public static Item 
+	public static Item
 		Chain_AbaddonPlasma,
 		Chain_AbyssalTide,
 		Chain_AllforOne,
@@ -254,7 +255,7 @@ public class ModItems {
 		Chain_YoungXehanortsKeyblade,
 		Chain_ZeroOne
 		;
-	
+
 	public static Item
 		Munny,
 		EmptyPotion,
@@ -268,7 +269,7 @@ public class ModItems {
 		DarkLeather,
 		SynthesisMaterial
 		;
-	
+
 	public static Item
 		Disc_Birth_by_Sleep_A_Link_to_the_Future,
 		Disc_Darkness_of_the_Unknown,
@@ -284,12 +285,22 @@ public class ModItems {
 		Disc_Sinister_Sundown,
 		Disc_The_13th_Anthology
 		;
-	
+
+	public static Item
+		OrganizationRobe_Helmet,
+		OrganizationRobe_Chestplate,
+		OrganizationRobe_Leggings,
+		OrganizationRobe_Boots
+		;
+
+	public static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", 8, new int[]{2, 5, 4, 1}, 15);
+
+
 	public static CreativeTabs tabKingdomKeys;
-	
+
 	public static void init(){
 		tabKingdomKeys = new TabKingdomKeys(CreativeTabs.getNextID(), Strings.tabKingdomKeys);
-		
+
 		AbaddonPlasma = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbaddonPlasma[0], Integer.parseInt(Config.A_TM_AbaddonPlasma[1]), Integer.parseInt(Config.A_TM_AbaddonPlasma[2]), Float.parseFloat(Config.A_TM_AbaddonPlasma[3]), Float.parseFloat(Config.A_TM_AbaddonPlasma[4]), Integer.parseInt(Config.A_TM_AbaddonPlasma[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbaddonPlasma);
 		AbyssalTide = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbyssalTide[0], Integer.parseInt(Config.A_TM_AbyssalTide[1]), Integer.parseInt(Config.A_TM_AbyssalTide[2]), Float.parseFloat(Config.A_TM_AbyssalTide[3]), Float.parseFloat(Config.A_TM_AbyssalTide[4]), Integer.parseInt(Config.A_TM_AbyssalTide[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbyssalTide);
 		AllforOne = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AllforOne[0], Integer.parseInt(Config.A_TM_AllforOne[1]), Integer.parseInt(Config.A_TM_AllforOne[2]), Float.parseFloat(Config.A_TM_AllforOne[3]), Float.parseFloat(Config.A_TM_AllforOne[4]), Integer.parseInt(Config.A_TM_AllforOne[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AllforOne);
@@ -524,7 +535,7 @@ public class ModItems {
 		Chain_WishingStar = new ItemKeychain((ItemKeyblade) WishingStar).setUnlocalizedName(Strings.Chain_WishingStar).setCreativeTab(tabKingdomKeys);
 		Chain_YoungXehanortsKeyblade = new ItemKeychain((ItemKeyblade) YoungXehanortsKeyblade).setUnlocalizedName(Strings.Chain_YoungXehanortsKeyblade).setCreativeTab(tabKingdomKeys);
 		Chain_ZeroOne = new ItemKeychain((ItemKeyblade) ZeroOne).setUnlocalizedName(Strings.Chain_ZeroOne).setCreativeTab(tabKingdomKeys);
-		
+
 		Munny = new ItemMunny().setUnlocalizedName(Strings.Munny).setCreativeTab(tabKingdomKeys);
 		EmptyPotion = new Item().setUnlocalizedName(Strings.EmptyPotion).setCreativeTab(tabKingdomKeys);
 		Potion = new Item().setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys);
@@ -536,7 +547,7 @@ public class ModItems {
 		KingdomHearts = new Item().setUnlocalizedName(Strings.KingdomHearts).setCreativeTab(tabKingdomKeys);
 		DarkLeather = new Item().setUnlocalizedName(Strings.DarkLeather).setCreativeTab(tabKingdomKeys);
 		SynthesisMaterial = new ItemSynthesisMaterial().setUnlocalizedName(Strings.SynthesisMaterial).setCreativeTab(tabKingdomKeys);
-		
+
 		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
 		Disc_Darkness_of_the_Unknown = new ItemKKRecord(Strings.Disc_Darkness_of_the_Unknown_Name, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
 		Disc_Dearly_Beloved_Symphony_Version = new ItemKKRecord(Strings.Disc_Dearly_Beloved_Symphony_Version_Name, Strings.Disc_Dearly_Beloved_Symphony_Version, tabKingdomKeys, 2.33F);
@@ -551,8 +562,15 @@ public class ModItems {
 		Disc_Sinister_Sundown = new ItemKKRecord(Strings.Disc_Sinister_Sundown_Name, Strings.Disc_Sinister_Sundown, tabKingdomKeys, 2.13F);
 		Disc_The_13th_Anthology = new ItemKKRecord(Strings.Disc_The_13th_Anthology_Name, Strings.Disc_The_13th_Anthology, tabKingdomKeys, 6.38F);
 	}
-	
+
 	public static void register(){
+		//Armour
+		GameRegistry.registerItem(OrganizationRobe_Helmet = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, 0, Strings.OrganizationRobe_Helmet), Strings.OrganizationRobe_Helmet);
+		GameRegistry.registerItem(OrganizationRobe_Chestplate = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, 1, Strings.OrganizationRobe_Chestplate), Strings.OrganizationRobe_Chestplate);
+		GameRegistry.registerItem(OrganizationRobe_Leggings = new ItemOrganizationRobe(ORGANIZATIONROBE, 2, 2, Strings.OrganizationRobe_Leggings), Strings.OrganizationRobe_Leggings);
+		GameRegistry.registerItem(OrganizationRobe_Boots = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, 3, Strings.OrganizationRobe_Boots), Strings.OrganizationRobe_Boots);
+
+		//Keyblades
 		GameRegistry.registerItem(AbaddonPlasma, Strings.AbaddonPlasma);
 		GameRegistry.registerItem(AbyssalTide, Strings.AbyssalTide);
 		GameRegistry.registerItem(AllforOne, Strings.AllforOne);
@@ -670,7 +688,7 @@ public class ModItems {
 		GameRegistry.registerItem(WoodenStick, Strings.WoodenStick);
 		GameRegistry.registerItem(YoungXehanortsKeyblade, Strings.YoungXehanortsKeyblade);
 		GameRegistry.registerItem(ZeroOne, Strings.ZeroOne);
-		
+
 		//CHAINS
 		GameRegistry.registerItem(Chain_AbaddonPlasma, Strings.Chain_AbaddonPlasma);
 		GameRegistry.registerItem(Chain_AbyssalTide, Strings.Chain_AbyssalTide);
@@ -800,7 +818,7 @@ public class ModItems {
 		GameRegistry.registerItem(KingdomHearts, Strings.KingdomHearts);
 		GameRegistry.registerItem(DarkLeather, Strings.DarkLeather);
 		GameRegistry.registerItem(SynthesisMaterial, Strings.SynthesisMaterial);
-		
+
 		//DISCS
 		GameRegistry.registerItem(Disc_Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future);
 		GameRegistry.registerItem(Disc_Darkness_of_the_Unknown, Strings.Disc_Darkness_of_the_Unknown);
@@ -816,7 +834,7 @@ public class ModItems {
 		GameRegistry.registerItem(Disc_Sinister_Sundown, Strings.Disc_Sinister_Sundown);
 		GameRegistry.registerItem(Disc_The_13th_Anthology, Strings.Disc_The_13th_Anthology);
 	}
-	
+
 	public static void registerRenders(){
 		registerRender(AbaddonPlasma);
 		registerRender(AbyssalTide);
@@ -936,7 +954,7 @@ public class ModItems {
 		registerRender(WoodenStick);
 		registerRender(YoungXehanortsKeyblade);
 		registerRender(ZeroOne);
-		
+
 		//CHAINS
 		registerRender(Chain_AbaddonPlasma);
 		registerRender(Chain_AbyssalTide);
@@ -1054,7 +1072,7 @@ public class ModItems {
 		registerRender(Chain_WishingStar);
 		registerRender(Chain_YoungXehanortsKeyblade);
 		registerRender(Chain_ZeroOne);
-		
+
 		//Other items
 		registerRender(Munny);
 		registerRender(EmptyPotion);
@@ -1067,7 +1085,7 @@ public class ModItems {
 		registerRender(KingdomHearts);
 		registerRender(DarkLeather);
 		registerRender(SynthesisMaterial);
-		
+
 		//Discs
 		registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);
 		registerRender(Disc_Darkness_of_the_Unknown);
@@ -1084,7 +1102,7 @@ public class ModItems {
 		registerRender(Disc_The_13th_Anthology);
 
 	}
-	
+
 	public static void registerRender(Item item){
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
 	}

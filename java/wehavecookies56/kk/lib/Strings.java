@@ -1,10 +1,10 @@
 package wehavecookies56.kk.lib;
 
 public class Strings {
-	
+
 	public static String tabKingdomKeys = "tabKingdomKeys";
 	public static String tabKingdomKeysBlocks = "tabKingdomKeysblocks";
-	
+
 	//Records
 	public static String
 	Disc_Birth_by_Sleep_A_Link_to_the_Future_Name = "Birth by Sleep -A Link to the Future-",
@@ -23,7 +23,7 @@ public class Strings {
 	Disc_Duration_Desc = "disc.duration.desc",
 	Disc_DurationUnits_Desc = "disc.durationunits.desc"
 	;
-	
+
 	//Gui
 	public static String
 	//Command Menu
@@ -47,7 +47,7 @@ public class Strings {
 	Gui_CommandMenu_Drive_Limit = Gui_CommandMenu_Drive + ".limit",
 	Gui_CommandMenu_Drive_Master = Gui_CommandMenu_Drive + ".master",
 	Gui_CommandMenu_Drive_Final = Gui_CommandMenu_Drive + ".final",
-	
+
 	//Menu
 	Gui_Menu = "gui.menu",
 	Gui_Menu_Main = Gui_Menu + ".main",
@@ -68,7 +68,7 @@ public class Strings {
 	Gui_Menu_Items_Button_Back = Gui_Menu_Items_Button + ".back",
 	Gui_Menu_Main_Munny = Gui_Menu_Main + ".munny"
 	;
-	
+
 	//Blocks
 	public static String
 	//Blox
@@ -81,7 +81,7 @@ public class Strings {
 	PrizeBlox = "prizeblox",
 	RarePrizeBlox = "rareprizeblox",
 	KKChest = "kkchest",
-	
+
 	//Ores
 	BlazingOre = "blazingore",
 	BrightOre ="brightore",
@@ -97,11 +97,11 @@ public class Strings {
 	SerenityOre = "serenityore",
 	TranquilOre = "tranquilore",
 	TwilightOre = "twilightore",
-	
+
 	//Others
 	SynthesisTable = "synthesistable"
 	;
-	
+
 	//Items
 	public static final String
 	Munny = "munny",
@@ -116,7 +116,15 @@ public class Strings {
 	DarkLeather = "darkleather",
 	SynthesisMaterial = "synthesismaterial"
 	;
-	
+
+	//Armour
+	public static final String
+	OrganizationRobe_Helmet = "organizationrobe_helmet",
+	OrganizationRobe_Chestplate = "organizationrobe_chestplate",
+	OrganizationRobe_Leggings = "organizationrobe_leggings",
+	OrganizationRobe_Boots = "organizationrobe_boots"
+	;
+
 	//Synthesis Materials
 	public static final String
 	SM_Rank = "sm.rank",
@@ -128,7 +136,7 @@ public class Strings {
 	SM_Frost = "sm.frost",
 	SM_Lightning = "sm.lightning"
 	;
-	
+
 	//Music Discs
 	public static final String
 	Disc_Birth_by_Sleep_A_Link_to_the_Future = "birthbysleep-alinktothefuture-",
@@ -145,7 +153,7 @@ public class Strings {
 	Disc_Sinister_Sundown = "sinistersundown",
 	Disc_The_13th_Anthology = "the13thanthology"
 	;
-	
+
 	//CHAINS
 	public static final String
 	Chain_AbaddonPlasma = "abaddonplasmachain",
@@ -266,9 +274,9 @@ public class Strings {
 	Chain_YoungXehanortsKeyblade = "youngxehanortskeybladechain",
 	Chain_ZeroOne = "zeroonechain"
 	;
-	
+
 	//Keyblades
-	public static final String 
+	public static final String
 	KingdomKey = "kingdomkey",
 	Oathkeeper = "oathkeeper",
 	Oblivion = "oblivion",
@@ -299,7 +307,7 @@ public class Strings {
 	MaverickFlare = "maverickflare",
 	TotalEclipse = "totaleclipse",
 	MidnightRoar = "midnightroar",
-	TwoBecomeOne = "twobecomeone",	
+	TwoBecomeOne = "twobecomeone",
 	UltimaWeaponKH2 = "ultimaweaponkh2",
 	WaytotheDawn = "waytothedawn",
 	DestinysEmbrace = "destinysembrace",
@@ -387,11 +395,11 @@ public class Strings {
 	UrsusForetellersKeyblade = "ursusforetellerskeyblade",
 	VulpeusForetellersKeyblade = "vulpeusforetellerskeyblade"
 	;
-	
+
 	//Config
-	
+
 	//Materials
-	public static final String 
+	public static final String
 	TM_KingdomKey_DEFAULT = "kingdomkey, 3, -1, 6.0F, 5, 30",
 	TM_Oathkeeper_DEFAULT = "oathkeeper, 3, -1, 6.0F, 11, 30",
 	TM_Oblivion_DEFAULT = "oblivion, 3, -1, 6.0F, 13, 30",
@@ -422,7 +430,7 @@ public class Strings {
 	TM_MaverickFlare_DEFAULT = "maverickflare, 3, -1, 6.0F, 9, 30",
 	TM_TotalEclipse_DEFAULT = "totaleclipse, 3, -1, 6.0F, 9, 30",
 	TM_MidnightRoar_DEFAULT = "midnightroar, 3, -1, 6.0F, 1, 30",
-	TM_TwoBecomeOne_DEFAULT = "twobecomeone, 3, -1, 6.0F, 20, 30",	
+	TM_TwoBecomeOne_DEFAULT = "twobecomeone, 3, -1, 6.0F, 20, 30",
 	TM_UltimaWeaponKH2_DEFAULT = "ultimaweaponkh2, 3, -1, 6.0F, 18, 30",
 	TM_WaytotheDawn_DEFAULT = "waytothedawn, 3, -1, 6.0F, 9, 30",
 	TM_DestinysEmbrace_DEFAULT = "destinysembrace, 3, -1, 6.0F, 7, 30",
@@ -509,12 +517,12 @@ public class Strings {
 	TM_UnicornisForetellersKeyblade_DEFAULT = "unicornisforetellerskeyblade, 3, -1, 6.0F, 15, 30",
 	TM_UrsusForetellersKeyblade_DEFAULT = "ursusforetellerskeyblade, 3, -1, 6.0F, 18, 30",
 	TM_VulpeusForetellersKeyblade_DEFAULT = "vulpeusforetellerskeyblade, 3, -1, 6.0F, 16, 30"
-	;			
-	
+	;
+
 //	public static String testToolMaterial;
-	
+
 	public static final String TOOLMATERIAL = "toolmaterial.name.";
-	
+
 	public static final String
 	TM_KingdomKey_NAME = TOOLMATERIAL + KingdomKey,
 	TM_Oathkeeper_NAME = TOOLMATERIAL + Oathkeeper,
@@ -635,6 +643,6 @@ public class Strings {
 	TM_VulpeusForetellersKeyblade_NAME = TOOLMATERIAL + VulpeusForetellersKeyblade
 	;
 	public static final String KeychainInventory = "container.keychain";
-	
+
 	//Keyblades
 }
