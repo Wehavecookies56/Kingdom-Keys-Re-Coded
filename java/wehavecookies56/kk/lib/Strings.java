@@ -394,7 +394,7 @@ public class Strings {
 	public static final String 
 	TM_KingdomKey_DEFAULT = "kingdomkey, 3, -1, 6.0F, 5, 30",
 	TM_Oathkeeper_DEFAULT = "oathkeeper, 3, -1, 6.0F, 11, 30",
-	TM_Oblivion_DEFAULT = "oblivion, 3, -1, 6.0F, 133, 30",
+	TM_Oblivion_DEFAULT = "oblivion, 3, -1, 6.0F, 13, 30",
 	TM_UltimaWeaponKH1_DEFAULT = "ultimaweaponkh1, 3, -1, 6.0F, 18, 30",
 	TM_KingdomKeyD_DEFAULT = "kingdomkeyd, 3, -1, 6.0F, 5, 30",
 	TM_KeybladeofPeoplesHearts_DEFAULT = "keybladeofpeopleshearts, 3, -1, 6.0F, 13, 30",
