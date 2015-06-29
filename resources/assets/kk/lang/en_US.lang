@@ -43,6 +43,32 @@ tile.twilightore.name=Twilight Ore
 #Items
 ############################
 
+#Armor
+item.organizationrobe_helmet.name=Organization Hood
+item.organizationrobe_chestplate.name=Organization Coat
+item.organizationrobe_leggings.name=Organization Leggings
+item.organizationrobe_boots.name=Organization Boots
+
+item.aqua_helmet.name=Aqua's Helmet
+item.aqua_chestplate.name=Aqua's Chestplate
+item.aqua_leggings.name=Aqua's Leggings
+item.aqua_boots.name=Aqua's Boots
+
+item.eraqus_helmet.name=Eraqus's Helmet
+item.eraqus_chestplate.name=Eraqus's Chestplate
+item.eraqus_leggings.name=Eraqus's Leggings
+item.eraqus_boots.name=Eraqus's boots
+
+item.terra_helmet.name=Terra's Helmet
+item.terra_chestplate.name=Terra's Chestplate
+item.terra_leggings.name=Terra's Leggings
+item.terra_boots.name=Terra's Boots
+
+item.ventus_helmet.name=Ventus's Helmet
+item.ventus_chestplate.name=Ventus's Chestplate
+item.ventus_leggings.name=Ventus's Leggings
+item.ventus_boots.name=Ventus's Boots
+
 #Misc
 item.emptypotion.name=Empty Potion
 item.potion.name=Potion

@@ -122,7 +122,27 @@ public class Strings {
 	OrganizationRobe_Helmet = "organizationrobe_helmet",
 	OrganizationRobe_Chestplate = "organizationrobe_chestplate",
 	OrganizationRobe_Leggings = "organizationrobe_leggings",
-	OrganizationRobe_Boots = "organizationrobe_boots"
+	OrganizationRobe_Boots = "organizationrobe_boots",
+	
+	Terra_Helmet = "terra_helmet",
+	Terra_Chestplate = "terra_chestplate",
+	Terra_Leggings = "terra_leggings",
+	Terra_Boots = "terra_boots",
+	
+	Aqua_Helmet = "aqua_helmet",
+	Aqua_Chestplate = "aqua_chestplate",
+	Aqua_Leggings = "aqua_leggings",
+	Aqua_Boots = "aqua_boots",
+	
+	Ventus_Helmet = "ventus_helmet",
+	Ventus_Chestplate = "ventus_chestplate",
+	Ventus_Leggings = "ventus_leggings",
+	Ventus_Boots = "ventus_boots",
+	
+	Eraqus_Helmet = "eraqus_helmet",
+	Eraqus_Chestplate = "eraqus_chestplate",
+	Eraqus_Leggings = "eraqus_leggings",
+	Eraqus_Boots = "eraqus_boots"
 	;
 
 	//Synthesis Materials

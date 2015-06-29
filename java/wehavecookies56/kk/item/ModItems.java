@@ -290,11 +290,34 @@ public class ModItems {
 		OrganizationRobe_Helmet,
 		OrganizationRobe_Chestplate,
 		OrganizationRobe_Leggings,
-		OrganizationRobe_Boots
+		OrganizationRobe_Boots,
+		
+		Terra_Helmet,
+		Terra_Chestplate,
+		Terra_Leggings,
+		Terra_Boots,		
+		
+		Aqua_Helmet,
+		Aqua_Chestplate,
+		Aqua_Leggings,
+		Aqua_Boots,
+		
+		Ventus_Helmet,
+		Ventus_Chestplate,
+		Ventus_Leggings,
+		Ventus_Boots,
+		
+		Eraqus_Helmet,
+		Eraqus_Chestplate,
+		Eraqus_Leggings,
+		Eraqus_Boots
 		;
 
 	public static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", 8, new int[]{2, 5, 4, 1}, 15);
-
+	public static ArmorMaterial TERRA = EnumHelper.addArmorMaterial("TERRA", Reference.MODID + ":terra", 8, new int[]{6, 8, 7, 4}, 15);
+	public static ArmorMaterial AQUA = EnumHelper.addArmorMaterial("AQUA", Reference.MODID + ":aqua", 8, new int[]{5, 8, 6, 4}, 15);
+	public static ArmorMaterial VENTUS = EnumHelper.addArmorMaterial("VENTUS", Reference.MODID + ":ventus", 8, new int[]{4, 8, 5, 4}, 15);
+	public static ArmorMaterial ERAQUS = EnumHelper.addArmorMaterial("ERAQUS", Reference.MODID + ":eraqus", 8, new int[]{5, 7, 7, 5}, 15);
 
 	public static CreativeTabs tabKingdomKeys;
 
@@ -570,6 +593,27 @@ public class ModItems {
 		GameRegistry.registerItem(OrganizationRobe_Leggings = new ItemOrganizationRobe(ORGANIZATIONROBE, 2, 2, Strings.OrganizationRobe_Leggings), Strings.OrganizationRobe_Leggings);
 		GameRegistry.registerItem(OrganizationRobe_Boots = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, 3, Strings.OrganizationRobe_Boots), Strings.OrganizationRobe_Boots);
 
+		GameRegistry.registerItem(Terra_Helmet = new ItemTerraArmor(TERRA, 1, 0, Strings.Terra_Helmet), Strings.Terra_Helmet);
+		GameRegistry.registerItem(Terra_Chestplate = new ItemTerraArmor(TERRA, 1, 1, Strings.Terra_Chestplate), Strings.Terra_Chestplate);
+		GameRegistry.registerItem(Terra_Leggings = new ItemTerraArmor(TERRA, 2, 2, Strings.Terra_Leggings), Strings.Terra_Leggings);
+		GameRegistry.registerItem(Terra_Boots = new ItemTerraArmor(TERRA, 1, 3, Strings.Terra_Boots), Strings.Terra_Boots);
+
+		GameRegistry.registerItem(Aqua_Helmet = new ItemAquaArmor(AQUA, 1, 0, Strings.Aqua_Helmet), Strings.Aqua_Helmet);
+		GameRegistry.registerItem(Aqua_Chestplate = new ItemAquaArmor(AQUA, 1, 1, Strings.Aqua_Chestplate), Strings.Aqua_Chestplate);
+		GameRegistry.registerItem(Aqua_Leggings = new ItemAquaArmor(AQUA, 2, 2, Strings.Aqua_Leggings), Strings.Aqua_Leggings);
+		GameRegistry.registerItem(Aqua_Boots = new ItemAquaArmor(AQUA, 1, 3, Strings.Aqua_Boots), Strings.Aqua_Boots);
+
+		GameRegistry.registerItem(Ventus_Helmet = new ItemVentusArmor(VENTUS, 1, 0, Strings.Ventus_Helmet), Strings.Ventus_Helmet);
+		GameRegistry.registerItem(Ventus_Chestplate = new ItemVentusArmor(VENTUS, 1, 1, Strings.Ventus_Chestplate), Strings.Ventus_Chestplate);
+		GameRegistry.registerItem(Ventus_Leggings = new ItemVentusArmor(VENTUS, 2, 2, Strings.Ventus_Leggings), Strings.Ventus_Leggings);
+		GameRegistry.registerItem(Ventus_Boots = new ItemVentusArmor(VENTUS, 1, 3, Strings.Ventus_Boots), Strings.Ventus_Boots);
+
+		GameRegistry.registerItem(Eraqus_Helmet = new ItemEraqusArmor(ERAQUS, 1, 0, Strings.Eraqus_Helmet), Strings.Eraqus_Helmet);
+		GameRegistry.registerItem(Eraqus_Chestplate = new ItemEraqusArmor(ERAQUS, 1, 1, Strings.Eraqus_Chestplate), Strings.Eraqus_Chestplate);
+		GameRegistry.registerItem(Eraqus_Leggings = new ItemEraqusArmor(ERAQUS, 2, 2, Strings.Eraqus_Leggings), Strings.Eraqus_Leggings);
+		GameRegistry.registerItem(Eraqus_Boots = new ItemEraqusArmor(ERAQUS, 1, 3, Strings.Eraqus_Boots), Strings.Eraqus_Boots);
+
+
 		//Keyblades
 		GameRegistry.registerItem(AbaddonPlasma, Strings.AbaddonPlasma);
 		GameRegistry.registerItem(AbyssalTide, Strings.AbyssalTide);
@@ -841,6 +885,26 @@ public class ModItems {
 		registerRender(OrganizationRobe_Chestplate);
 		registerRender(OrganizationRobe_Leggings);
 		registerRender(OrganizationRobe_Boots);
+	
+		registerRender(Terra_Helmet);
+		registerRender(Terra_Chestplate);
+		registerRender(Terra_Leggings);
+		registerRender(Terra_Boots);
+
+		registerRender(Aqua_Helmet);
+		registerRender(Aqua_Chestplate);
+		registerRender(Aqua_Leggings);
+		registerRender(Aqua_Boots);
+
+		registerRender(Ventus_Helmet);
+		registerRender(Ventus_Chestplate);
+		registerRender(Ventus_Leggings);
+		registerRender(Ventus_Boots);
+
+		registerRender(Eraqus_Helmet);
+		registerRender(Eraqus_Chestplate);
+		registerRender(Eraqus_Leggings);
+		registerRender(Eraqus_Boots);
 
 		//Keyblades
 		registerRender(AbaddonPlasma);

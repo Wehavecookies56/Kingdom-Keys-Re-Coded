@@ -43,6 +43,32 @@ tile.twilightore.name=Mena Crepuscular
 #Items
 ############################
 
+#Armor
+item.organizationrobe_helmet.name=Capucha de la Organización
+item.organizationrobe_chestplate.name=Gabardina de la Organización
+item.organizationrobe_leggings.name=Pantalones de la Organización
+item.organizationrobe_boots.name=Botas de la Organización
+
+item.aqua_helmet.name=Casco de Aqua
+item.aqua_chestplate.name=Pechera de Aqua
+item.aqua_leggings.name=Grebas de Aqua
+item.aqua_boots.name=Botas de Aqua
+
+item.eraqus_helmet.name=Casco de Eraqus
+item.eraqus_chestplate.name=Pechera de Eraqus
+item.eraqus_leggings.name=Grebas de Eraqus
+item.eraqus_boots.name=Botas de Eraqus
+
+item.terra_helmet.name=Casco de Terra
+item.terra_chestplate.name=Pechera de Terra
+item.terra_leggings.name=Grebas de Terra
+item.terra_boots.name=Botas de Terra
+
+item.ventus_helmet.name=Casco de Ventus
+item.ventus_chestplate.name=Pechera de Ventus
+item.ventus_leggings.name=Grebas de Ventus
+item.ventus_boots.name=Botas de Ventus
+
 #Misc
 item.emptypotion.name=Botella vacía
 item.potion.name=Poción
