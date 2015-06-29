@@ -836,6 +836,13 @@ public class ModItems {
 	}
 
 	public static void registerRenders(){
+		//Armour
+		registerRender(OrganizationRobe_Helmet);
+		registerRender(OrganizationRobe_Chestplate);
+		registerRender(OrganizationRobe_Leggings);
+		registerRender(OrganizationRobe_Boots);
+
+		//Keyblades
 		registerRender(AbaddonPlasma);
 		registerRender(AbyssalTide);
 		registerRender(AllforOne);

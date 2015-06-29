@@ -46,6 +46,7 @@ public class ItemOrganizationRobe extends ItemArmor implements ISpecialArmor {
 		}
 	}
 
+
 	@Override
 	public CreativeTabs[] getCreativeTabs() {
 		return new CreativeTabs[] {ModItems.tabKingdomKeys};
