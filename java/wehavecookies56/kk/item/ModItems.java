@@ -552,14 +552,6 @@ public class ModItems {
 		Disc_The_13th_Anthology = new ItemKKRecord(Strings.Disc_The_13th_Anthology_Name, Strings.Disc_The_13th_Anthology, tabKingdomKeys, 6.38F);
 	}
 	
-	public static void initItemSword(Item item, String[] toolmaterial, String name, CreativeTabs tab){
-		item = new ItemSword(EnumHelper.addToolMaterial(toolmaterial[0], Integer.parseInt(toolmaterial[1]), Integer.parseInt(toolmaterial[2]), Float.parseFloat(toolmaterial[3]), Float.parseFloat(toolmaterial[4]), Integer.parseInt(toolmaterial[5]))).setUnlocalizedName(name).setCreativeTab(tab);
-	}
-	
-	public static void registerItem(Item item){
-		GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
-	}
-	
 	public static void register(){
 		GameRegistry.registerItem(AbaddonPlasma, Strings.AbaddonPlasma);
 		GameRegistry.registerItem(AbyssalTide, Strings.AbyssalTide);

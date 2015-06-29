@@ -72,7 +72,7 @@ public class ModBlocks {
 		TranquilOre = new BlockTranquilOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.TranquilOre).setCreativeTab(tabKingdomKeysBlocks);
 		TwilightOre = new BlockTwilightOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.TwilightOre).setCreativeTab(tabKingdomKeysBlocks);
 		SynthesisTable = new BlockSynthesisTable(Material.wood, "axe", 0, 1, 1).setUnlocalizedName(Strings.SynthesisTable).setCreativeTab(tabKingdomKeysBlocks);
-		KKChest = new BlockKKChest(Material.iron, "pickaxe", 0, 20f, 30f).setUnlocalizedName(Strings.KKChest).setCreativeTab(tabKingdomKeysBlocks);
+		KKChest = new BlockKKChest(Material.rock, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.KKChest).setCreativeTab(tabKingdomKeysBlocks).setStepSound(KKChest.soundTypeStone);
 
 	}
 	

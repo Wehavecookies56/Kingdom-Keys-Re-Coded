@@ -21,7 +21,6 @@ import wehavecookies56.kk.util.TextHelper;
 
 @SideOnly(Side.CLIENT)
 public class GuiCommandMenu extends GuiScreen {
-	Minecraft mc = Minecraft.getMinecraft();
 	public static final int TOP = 5, ATTACK = 4, MAGIC = 3, ITEMS = 2, DRIVE = 1;
 
 	public static final int MAGIC_TOP = 8, FIRE = 7, BLIZZARD = 6, THUNDER = 5, CURE = 4, GRAVITY = 3, AERO = 2, STOP = 1;

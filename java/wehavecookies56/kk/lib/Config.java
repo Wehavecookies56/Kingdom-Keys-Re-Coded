@@ -254,10 +254,6 @@ public class Config {
 		A_TM_YoungXehanortsKeyblade,
 		A_TM_ZeroOne;
 	
-	public static void addStringConfig(String category, String string, String name, String def){
-		string = config.get(category, StatCollector.translateToLocal(name), def).getString();
-	}
-	
 	public static void syncConfig(){
 		FMLCommonHandler.instance().bus().register(KingdomKeys.instance);
 		config.load();

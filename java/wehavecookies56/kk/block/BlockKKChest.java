@@ -8,23 +8,20 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockKKChest extends BlockContainer
-{
-
+public class BlockKKChest extends BlockContainer{
 	protected Random rand = new Random();
 
-	public BlockKKChest()
-	{
-		super(Material.rock);
-		this.setUnlocalizedName(Strings.KKChest);
-		this.setStepSound(soundTypeStone);
-		this.setHardness(25.0F);
-		this.setResistance(5.0F);
-		this.setHarvestLevel("pickaxe", 3);
+	protected BlockKKChest(Material material, String toolClass, int level, float hardness, float resistance) {
+		super(material);
+		this.setHarvestLevel(toolClass, level);
+		this.setHardness(hardness);
+		this.setResistance(resistance);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		// TODO Auto-generated method stub
 		return null;
-	}}
+	}
+
+}
