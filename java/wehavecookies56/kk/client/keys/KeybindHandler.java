@@ -51,11 +51,17 @@ public class KeybindHandler {
 
 				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)//InsideMagic
 				{
-					if(GuiCommandMenu.magicselected == GuiCommandMenu.FIRE){
-						GuiCommandMenu.magicselected = GuiCommandMenu.STOP;
-					}else{
+					if (GuiCommandMenu.magicselected > 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE)
+					{
 						GuiCommandMenu.magicselected++;
+						GuiCommandMenu.submenu = 1;
+	
 					}
+					else if (GuiCommandMenu.magicselected == 8)
+					{
+						GuiCommandMenu.magicselected = GuiCommandMenu.STOP;
+					}
+					System.out.println(GuiCommandMenu.magicselected);
 				}
 
 				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)//InsideItems
@@ -65,14 +71,20 @@ public class KeybindHandler {
 
 				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)//InsideDrive
 				{
-					if(GuiCommandMenu.driveselected == GuiCommandMenu.VALOR){
-						GuiCommandMenu.driveselected = GuiCommandMenu.FINAL;
-					}else{
+					if (GuiCommandMenu.driveselected > 0 && GuiCommandMenu.driveselected <= GuiCommandMenu.VALOR)
+					{
 						GuiCommandMenu.driveselected++;
+						GuiCommandMenu.submenu = 3;
+	
+					}
+					else if (GuiCommandMenu.driveselected == 6)
+					{
+						GuiCommandMenu.driveselected = GuiCommandMenu.FINAL;
 					}
 				}
 
 				break;
+				
 			case SCROLL_DOWN:
 				if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) //Mainmenu
 				{
@@ -81,15 +93,23 @@ public class KeybindHandler {
 					}else{
 						GuiCommandMenu.selected--;
 					}
+					System.out.println(GuiCommandMenu.driveselected);
+
 				}
 
 				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)//InsideMagic
 				{
-					if(GuiCommandMenu.magicselected == GuiCommandMenu.STOP){
-						GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
-					}else{
+					if (GuiCommandMenu.magicselected > 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE)
+					{
 						GuiCommandMenu.magicselected--;
+						GuiCommandMenu.submenu = 1;
+	
 					}
+					else if (GuiCommandMenu.magicselected == 0)
+					{
+						GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
+					}
+					System.out.println(GuiCommandMenu.magicselected);
 				}
 
 				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)//InsideItems
@@ -99,10 +119,15 @@ public class KeybindHandler {
 
 				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)//InsideDrive
 				{
-					if(GuiCommandMenu.driveselected == GuiCommandMenu.FINAL){
-						GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
-					}else{
+					if (GuiCommandMenu.driveselected > 0 && GuiCommandMenu.driveselected <= GuiCommandMenu.VALOR)
+					{
 						GuiCommandMenu.driveselected--;
+						GuiCommandMenu.submenu = 3;
+	
+					}
+					else if (GuiCommandMenu.driveselected == 0)
+					{
+						GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
 					}
 				}
 				break;
@@ -111,7 +136,8 @@ public class KeybindHandler {
 				switch(GuiCommandMenu.selected)
 				{
 				case GuiCommandMenu.MAGIC:
-					GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
+					if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
+					GuiCommandMenu.magicselected = GuiCommandMenu.NONE;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
 					break;
 
@@ -120,7 +146,7 @@ public class KeybindHandler {
 					break;
 
 				case GuiCommandMenu.DRIVE:
-					GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
+					GuiCommandMenu.driveselected = GuiCommandMenu.NONE;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
 					break;
 				}
@@ -129,9 +155,12 @@ public class KeybindHandler {
 					switch(GuiCommandMenu.magicselected)
 					{
 						case GuiCommandMenu.FIRE:
-						{
 							Magic.Fire(Minecraft.getMinecraft().thePlayer, Minecraft.getMinecraft().theWorld);
-						}
+							break;
+						
+						case GuiCommandMenu.BLIZZARD:
+							Magic.Ice(Minecraft.getMinecraft().thePlayer, Minecraft.getMinecraft().theWorld);
+							break;
 					}
 				}
 				break;

@@ -36,11 +36,12 @@ public class GuiCommandMenu extends GuiScreen {
 
 	public static final int SUB_MAIN = 0, SUB_MAGIC = 1, SUB_ITEMS = 2, SUB_DRIVE = 3;
 
+	public static final int NONE = 0;
 	public static int selected = ATTACK;
 	public static int submenu = 0;
-	public static int magicselected = FIRE;
+	public static int magicselected = 0;
 	public static int itemselected = -1;
-	public static int driveselected = VALOR;
+	public static int driveselected = 0;
 
 	public static boolean FireUnlocked = true, BlizzardUnlocked, ThunderUnlocked, CureUnlocked, GravityUnlocked, AeroUnlocked, StopUnlocked, ValorUnlocked, WisdomUnlocked, LimitUnlocked, MasterUnlocked, FinalUnlocked;
 
