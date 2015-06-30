@@ -51,7 +51,7 @@ public class KeybindHandler {
 
 				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)//InsideMagic
 				{
-					if (GuiCommandMenu.magicselected > 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE)
+					if (GuiCommandMenu.magicselected >= 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE)
 					{
 						GuiCommandMenu.magicselected++;
 						GuiCommandMenu.submenu = 1;
@@ -71,11 +71,10 @@ public class KeybindHandler {
 
 				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)//InsideDrive
 				{
-					if (GuiCommandMenu.driveselected > 0 && GuiCommandMenu.driveselected <= GuiCommandMenu.VALOR)
+					if (GuiCommandMenu.driveselected >= 0 && GuiCommandMenu.driveselected <= GuiCommandMenu.VALOR)
 					{
 						GuiCommandMenu.driveselected++;
 						GuiCommandMenu.submenu = 3;
-	
 					}
 					else if (GuiCommandMenu.driveselected == 6)
 					{
