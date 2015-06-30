@@ -2,6 +2,7 @@ package wehavecookies56.kk.client.keys;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
@@ -32,6 +33,7 @@ public class KeybindHandler {
 	public void handleKeyInputEvent(InputEvent.KeyInputEvent event){
 		Minecraft mc = Minecraft.getMinecraft();
 		EntityPlayer player = mc.thePlayer;
+		World world = mc.theWorld;
 
 		Keybinds key = getPressedKey();
 		if(key != null){
@@ -154,11 +156,11 @@ public class KeybindHandler {
 					switch(GuiCommandMenu.magicselected)
 					{
 						case GuiCommandMenu.FIRE:
-							Magic.Fire(Minecraft.getMinecraft().thePlayer, Minecraft.getMinecraft().theWorld);
+							Magic.Fire(player, world);
 							break;
 						
 						case GuiCommandMenu.BLIZZARD:
-							Magic.Ice(Minecraft.getMinecraft().thePlayer, Minecraft.getMinecraft().theWorld);
+							Magic.Ice(player, world);
 							break;
 					}
 				}

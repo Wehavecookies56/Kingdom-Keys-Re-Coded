@@ -47,7 +47,6 @@ public class GuiCommandMenu extends GuiScreen {
 
 	ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/commandmenu.png");
 
-
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public void onRenderOverlayPost(RenderGameOverlayEvent event){
 		if(event.type == RenderGameOverlayEvent.ElementType.TEXT && !mc.ingameGUI.getChatGUI().getChatOpen()) {

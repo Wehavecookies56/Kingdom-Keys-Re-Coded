@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 public class Magic {
 
-	public static void Fire(EntityPlayer par1EntityPlayer, World par2World)
+	public static void Fire(EntityPlayer par1EntityPlayer, World world)
 	{
 		EntityPlayer player = (EntityPlayer) par1EntityPlayer;
 		//Magic execution
@@ -19,13 +19,8 @@ public class Magic {
 		//if player's magic (has to be checked form the extended properties)
 	//	if(MagicAttack.currMagic >= fireCost && KeyBind.submenu == 1)
 		{
-			Vec3 look = player.getLookVec();
-			EntityFire fireball = new EntityFire(MinecraftServer.getServer().getEntityWorld(), player, 0, 0, 0);
-			fireball.setPosition(player.posX + look.xCoord * 2, player.posY + look.yCoord+1, player.posZ + look.zCoord * 2);
-			fireball.accelerationX = look.xCoord * 0.1;
-			fireball.accelerationY = look.yCoord * 0.1;
-			fireball.accelerationZ = look.zCoord * 0.1;
-			MinecraftServer.getServer().getEntityWorld().spawnEntityInWorld(fireball);
+			world.spawnEntityInWorld(new EntityFire(world, player));
+			System.out.println("Fire");
 			//MagicAttack.currMagic = MagicAttack.currMagic - MagicAttack.fireCost;			
 		}
 	}
