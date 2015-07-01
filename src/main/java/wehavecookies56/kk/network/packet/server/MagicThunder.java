@@ -1,41 +1,28 @@
-package wehavecookies56.kk.magic;
+package wehavecookies56.kk.network.packet.server;
+
+import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.Vec3;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
-import wehavecookies56.kk.entities.magic.EntityFire;
-import wehavecookies56.kk.entities.magic.EntityIce;
+import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.magic.EntityThunder;
-import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.server.MagicBlizzard;
-import wehavecookies56.kk.network.packet.server.MagicFire;
-import wehavecookies56.kk.network.packet.server.MagicThunder;
+import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
-public class Magic {
+public class MagicThunder extends AbstractServerMessage<MagicThunder> {
 
-	public static void Fire(EntityPlayer player, World world)
-	{
-		world.spawnEntityInWorld(new EntityFire(world, player));
-		PacketDispatcher.sendToServer(new MagicFire());
+	public MagicThunder() {}
 
-	}
+	@Override
+	protected void read(PacketBuffer buffer) throws IOException {}
 
-	public static void Ice(EntityPlayer player, World world)
-	{
-		//Magic execution
-		//if player's magic (has to be checked form the extended properties)
-	//	if(MagicAttack.currMagic >= fireCost && KeyBind.submenu == 1)
-		{
-			Vec3 look = player.getLookVec();
-			world.spawnEntityInWorld(new EntityIce(world, player));
-			PacketDispatcher.sendToServer(new MagicBlizzard());
-			//MagicAttack.currMagic = MagicAttack.currMagic - MagicAttack.blizzardCost;
-		}
-	}
+	@Override
+	protected void write(PacketBuffer buffer) throws IOException {}
 
-	public static void Thunder(EntityPlayer player, World world)
-	{
+	@Override
+	public void process(EntityPlayer player, Side side) {
 		double posy = player.posY;
+		World world = player.worldObj;
 		if(!player.onGround)
 		{
 			//something to figure out the player position
@@ -58,6 +45,6 @@ public class Magic {
 		world.spawnEntityInWorld(thunder);
 		thunder = new EntityThunder(world, player.posX-2, player.posY, player.posZ-2);
 		world.spawnEntityInWorld(thunder);
-		PacketDispatcher.sendToServer(new MagicThunder());
 	}
+
 }

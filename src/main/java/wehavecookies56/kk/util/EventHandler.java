@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.client.event.EntityViewRenderEvent.CameraSetup;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -81,10 +82,10 @@ public class EventHandler {
 		if(!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer){
 			ExtendedPlayer.get((EntityPlayer) event.entity).saveProxyData(((EntityPlayer) event.entity));
 
-		} 
+		}
 		else
 		{
-			
+
 		}
 	}
 
@@ -121,7 +122,7 @@ public class EventHandler {
 			munny.setTagCompound(new NBTTagCompound());
 			munny.getTagCompound().setInteger("amount", 100);
 			event.entityLiving.entityDropItem(munny, 1);
-		}		
+		}
 	}
 
 	@SubscribeEvent
@@ -177,15 +178,15 @@ public class EventHandler {
 	{
 
 	}
-	
+
 	int randomWithRange(int min, int max)
 	{
-	   int range = Math.abs(max - min) + 1;     
+	   int range = Math.abs(max - min) + 1;
 	   return (int)(Math.random() * range) + (min <= max ? min : max);
 	}
 
 	@SubscribeEvent
-	public void onBlockDestroyed(HarvestDropsEvent event) 
+	public void onBlockDestroyed(HarvestDropsEvent event)
 	{
 		if(event.state.getBlock() == ModBlocks.BlazingOre)
 		{
@@ -206,7 +207,7 @@ public class EventHandler {
 				ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
 				ItemStacks.createSynthesisItem(BlazingCrystal, "Blazing Crystal", "S");
 				event.drops.add(BlazingCrystal);
-			}	
+			}
 		}
 		else if (event.state.getBlock() == ModBlocks.BrightOre)
 		{
@@ -663,7 +664,7 @@ public class EventHandler {
 				event.drops.add(Orichalcum);
 			}
 		}
-		
+
 		else if (event.state.getBlock() == ModBlocks.RarePrizeBlox)
 		{
 			int drop = randomWithRange(1, 28);
@@ -853,5 +854,4 @@ public class EventHandler {
 			}
 		}
 	}
-
 }

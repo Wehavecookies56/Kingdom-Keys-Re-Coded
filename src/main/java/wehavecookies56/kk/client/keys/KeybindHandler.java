@@ -57,7 +57,7 @@ public class KeybindHandler {
 					{
 						GuiCommandMenu.magicselected++;
 						GuiCommandMenu.submenu = 1;
-	
+
 					}
 					else if (GuiCommandMenu.magicselected == 8)
 					{
@@ -85,7 +85,7 @@ public class KeybindHandler {
 				}
 
 				break;
-				
+
 			case SCROLL_DOWN:
 				if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) //Mainmenu
 				{
@@ -104,7 +104,7 @@ public class KeybindHandler {
 					{
 						GuiCommandMenu.magicselected--;
 						GuiCommandMenu.submenu = 1;
-	
+
 					}
 					else if (GuiCommandMenu.magicselected == 0 || GuiCommandMenu.magicselected == 8)
 					{
@@ -124,7 +124,7 @@ public class KeybindHandler {
 					{
 						GuiCommandMenu.driveselected--;
 						GuiCommandMenu.submenu = 3;
-	
+
 					}
 					else if (GuiCommandMenu.driveselected == 0)
 					{
@@ -158,7 +158,7 @@ public class KeybindHandler {
 						case GuiCommandMenu.FIRE:
 							Magic.Fire(player, world);
 							break;
-						
+
 						case GuiCommandMenu.BLIZZARD:
 							Magic.Ice(player, world);
 							break;

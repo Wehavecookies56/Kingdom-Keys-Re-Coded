@@ -1,12 +1,15 @@
 package wehavecookies56.kk.util;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.client.keys.Keybinds;
+import wehavecookies56.kk.magic.Magic;
 
 public class ScrollHandler {
 
@@ -17,6 +20,8 @@ public class ScrollHandler {
 	@SideOnly(Side.CLIENT)
 	public void OnMouseWheelScroll(MouseEvent event){
 		Minecraft mc = Minecraft.getMinecraft();
+		EntityPlayer player = mc.thePlayer;
+		World world = mc.theWorld;
 		if(!mc.inGameHasFocus && !KeyboardHelper.isScrollActivatorDown()){
 			event.setCanceled(false);
 			return;
@@ -31,6 +36,22 @@ public class ScrollHandler {
 			case GuiCommandMenu.MAGIC:
 				GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
 				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
+				if(GuiCommandMenu.selected == GuiCommandMenu.MAGIC && GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)
+				{
+					switch(GuiCommandMenu.magicselected)
+					{
+						case GuiCommandMenu.FIRE:
+							Magic.Fire(player, world);
+							break;
+
+						case GuiCommandMenu.BLIZZARD:
+							Magic.Ice(player, world);
+							break;
+						case GuiCommandMenu.THUNDER:
+							Magic.Thunder(player, world);
+							break;
+					}
+				}
 				break;
 
 			case GuiCommandMenu.ITEMS:
@@ -72,7 +93,7 @@ public class ScrollHandler {
 				case GuiCommandMenu.DRIVE:
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					break;
-				default: 
+				default:
 					GuiCommandMenu.selected--;
 					break;
 				}
@@ -109,7 +130,7 @@ public class ScrollHandler {
 				case GuiCommandMenu.ATTACK:
 					GuiCommandMenu.selected = GuiCommandMenu.DRIVE;
 					break;
-				default: 
+				default:
 					GuiCommandMenu.selected++;
 					break;
 				}

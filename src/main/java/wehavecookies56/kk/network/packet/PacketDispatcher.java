@@ -6,6 +6,9 @@ import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
+import wehavecookies56.kk.network.packet.server.MagicBlizzard;
+import wehavecookies56.kk.network.packet.server.MagicFire;
+import wehavecookies56.kk.network.packet.server.MagicThunder;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
 import wehavecookies56.kk.network.packet.server.OpenGui;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
@@ -25,11 +28,11 @@ public class PacketDispatcher
 	private static final SimpleNetworkWrapper dispatcher = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MODCHANNEL);
 
 	public static final void registerPackets() {
-		
+
 		//Server to Client
 		registerMessage(SyncExtendedPlayer.class);
 		registerMessage(SyncExtendedPlayerRecipes.class);
-		
+
 		//Client to Server
 		registerMessage(MunnyPickup.class);
 		registerMessage(HpOrbPickup.class);
@@ -37,7 +40,10 @@ public class PacketDispatcher
 		registerMessage(SummonKeyblade.class);
 		registerMessage(DeSummonKeyblade.class);
 		registerMessage(PlaySoundAtPlayer.class);
-		
+		registerMessage(MagicFire.class);
+		registerMessage(MagicThunder.class);
+		registerMessage(MagicBlizzard.class);
+
 		//Bidirectional
 	}
 
