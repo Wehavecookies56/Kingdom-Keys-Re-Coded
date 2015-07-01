@@ -53,14 +53,17 @@ public class EntityIce extends EntityThrowable
                 if (flag)
                 {
                     this.func_174815_a(this.shootingEntity, movingObject.entityHit);
-
-                    if (!movingObject.entityHit.isImmuneToFire())
+                    if(movingObject.entityHit.isBurning())
                     {
-                        movingObject.entityHit.setFire(5);
+                    	movingObject.entityHit.extinguish();
+                    }
+                    else
+                    {
+                    	movingObject.entityHit.attackEntityFrom(DamageSource.magic, 4);
                     }
                 }
             }
-            else
+          /*  else
             {
                 flag = true;
 
@@ -75,11 +78,10 @@ public class EntityIce extends EntityThrowable
 
                     if (this.worldObj.isAirBlock(blockpos))
                     {
-                        this.worldObj.setBlockState(blockpos, Blocks.fire.getDefaultState());
+                        this.worldObj.setBlockState(blockpos, Blocks.ice.getDefaultState());
                     }
                 }
-            }
-
+            }*/
             this.setDead();
         }
 	}
