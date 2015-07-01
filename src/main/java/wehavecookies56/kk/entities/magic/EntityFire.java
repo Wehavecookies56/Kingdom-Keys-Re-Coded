@@ -26,12 +26,12 @@ public class EntityFire extends EntityThrowable
 	public EntityFire(World world, double x, double y, double z) {
 		super(world, x, y, z);
 	}
-	
+
 	@Override
 	protected float getGravityVelocity() {
 		return 0.0F;
 	}
-		
+
 	@Override
 	public void onUpdate() {
 		int rotation = 0;
@@ -72,7 +72,7 @@ public class EntityFire extends EntityThrowable
 
                 if (flag)
                 {
-                    BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);
+                    BlockPos blockpos = movingObject.func_178782_a().offset(movingObject.field_178784_b);
 
                     if (this.worldObj.isAirBlock(blockpos))
                     {
@@ -84,5 +84,5 @@ public class EntityFire extends EntityThrowable
             this.setDead();
         }
 	}
-	
+
 }

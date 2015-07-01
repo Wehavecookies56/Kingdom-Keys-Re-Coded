@@ -26,17 +26,17 @@ public class GuiReports extends GuiScreen {
 
     private static final int BOOK_BTN_NEXT = 0;
     private static final int BOOK_BTN_PREV = 1;
-    
+
     private static final int BOOK_BTN_BACK = 2;
     private static final int BOOK_BTN_KEYBLADES = 3;
     private static final int BOOK_BTN_SYNTHESIS = 4;
-    
+
     private static final int BOOK_BTN_KEYBLADE_SUMMON = 5;
 
     private static final int CHAPTER_MAIN = 0;
     private static final int CHAPTER_KEYBLADES = 1;
     private static final int CHAPTER_SUMMON = 2;
-    
+
     private static final int WIDTH = 175;
     private static final int HEIGHT = 228;
 
@@ -221,7 +221,7 @@ public class GuiReports extends GuiScreen {
         	}
         	break;
         }
-    	
+
     }
 
     private void buildPage(String unlocTitle, String unlocBody, int page, int totalPages, int desiredChapter) {
@@ -276,17 +276,17 @@ public class GuiReports extends GuiScreen {
             }
         }
     }
-    
+
     public class GuiButtonChapterChange extends GuiButton {
     	private final boolean previous;
     	private final String text;
-    	
+
     	public GuiButtonChapterChange(int id, int x, int y, boolean previous, String text){
     		super(id, x, y, 161, 20, "");
     		this.previous = previous;
     		this.text = text;
     	}
-    	
+
     	@Override
     	public void drawButton(Minecraft mc, int mouseX, int mouseY) {
     		if(visible){
@@ -296,12 +296,12 @@ public class GuiReports extends GuiScreen {
     			int u = 0;
     			int v = 0;
     			if (mouseOver) {
-    				
+
     			}
     			if (previous) {
-    				
+
     			}
-    			
+
     			GL11.glPushMatrix();
 
                 GL11.glDisable(GL11.GL_LIGHTING);
@@ -309,7 +309,7 @@ public class GuiReports extends GuiScreen {
                 GL11.glColor4f(1, 1, 1, 1);
 
                 drawTexturedModalRect(xPosition, yPosition, u, v, width, height);
-                itemRender.renderItemAndEffectIntoGUI(new ItemStack(ModItems.KingdomKey), xPosition + 2, yPosition + 2);
+                itemRender.func_175042_a(new ItemStack(ModItems.KingdomKey), xPosition + 2, yPosition + 2);
                 drawString(fontRendererObj, text, xPosition + 160/2 - 40, yPosition + 6, 0xFFFFFF);
 
                 GL11.glEnable(GL11.GL_LIGHTING);
