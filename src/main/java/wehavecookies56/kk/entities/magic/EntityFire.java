@@ -9,10 +9,12 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class EntityFire extends EntityThrowable
 {
+	private static final ResourceLocation resourceLocation = new ResourceLocation("modid:/entities/fire.png");
     public EntityLivingBase shootingEntity;
 
 	public EntityFire(World world) {

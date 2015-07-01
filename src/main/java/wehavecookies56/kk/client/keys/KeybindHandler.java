@@ -106,7 +106,7 @@ public class KeybindHandler {
 						GuiCommandMenu.submenu = 1;
 	
 					}
-					else if (GuiCommandMenu.magicselected == 0)
+					else if (GuiCommandMenu.magicselected == 0 || GuiCommandMenu.magicselected == 8)
 					{
 						GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
 					}
@@ -161,6 +161,9 @@ public class KeybindHandler {
 						
 						case GuiCommandMenu.BLIZZARD:
 							Magic.Ice(player, world);
+							break;
+						case GuiCommandMenu.THUNDER:
+							Magic.Thunder(player, world);
 							break;
 					}
 				}
