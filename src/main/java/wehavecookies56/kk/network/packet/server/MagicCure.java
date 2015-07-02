@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
-public class MagicCure extends AbstractServerMessage<MagicFire> {
+public class MagicCure extends AbstractServerMessage<MagicCure> {
 
 	public MagicCure() {}
 
