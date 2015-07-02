@@ -8,6 +8,7 @@ import wehavecookies56.kk.entities.magic.EntityIce;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.MagicBlizzard;
+import wehavecookies56.kk.network.packet.server.MagicCure;
 import wehavecookies56.kk.network.packet.server.MagicFire;
 import wehavecookies56.kk.network.packet.server.MagicThunder;
 
@@ -59,5 +60,11 @@ public class Magic {
 		thunder = new EntityThunder(world, player.posX-2, player.posY, player.posZ-2);
 		world.spawnEntityInWorld(thunder);
 		PacketDispatcher.sendToServer(new MagicThunder());
+	}
+	
+	public static void Cure(EntityPlayer player, World world)
+	{
+		player.heal(6);
+		PacketDispatcher.sendToServer(new MagicCure());
 	}
 }

@@ -1,18 +1,5 @@
 package wehavecookies56.kk.network.packet;
 
-import wehavecookies56.kk.KingdomKeys;
-import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
-import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
-import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
-import wehavecookies56.kk.network.packet.server.HpOrbPickup;
-import wehavecookies56.kk.network.packet.server.MagicBlizzard;
-import wehavecookies56.kk.network.packet.server.MagicFire;
-import wehavecookies56.kk.network.packet.server.MagicThunder;
-import wehavecookies56.kk.network.packet.server.MunnyPickup;
-import wehavecookies56.kk.network.packet.server.OpenGui;
-import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
-import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -20,6 +7,19 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
+import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
+import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
+import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
+import wehavecookies56.kk.network.packet.server.HpOrbPickup;
+import wehavecookies56.kk.network.packet.server.MagicBlizzard;
+import wehavecookies56.kk.network.packet.server.MagicCure;
+import wehavecookies56.kk.network.packet.server.MagicFire;
+import wehavecookies56.kk.network.packet.server.MagicThunder;
+import wehavecookies56.kk.network.packet.server.MunnyPickup;
+import wehavecookies56.kk.network.packet.server.OpenGui;
+import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
+import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 
 public class PacketDispatcher
 {
@@ -41,8 +41,9 @@ public class PacketDispatcher
 		registerMessage(DeSummonKeyblade.class);
 		registerMessage(PlaySoundAtPlayer.class);
 		registerMessage(MagicFire.class);
-		registerMessage(MagicThunder.class);
 		registerMessage(MagicBlizzard.class);
+		registerMessage(MagicThunder.class);
+		registerMessage(MagicCure.class);		
 
 		//Bidirectional
 	}
