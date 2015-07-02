@@ -157,14 +157,26 @@ public class KeybindHandler {
 					{
 						case GuiCommandMenu.FIRE:
 							Magic.Fire(player, world);
+							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							break;
 
 						case GuiCommandMenu.BLIZZARD:
 							Magic.Ice(player, world);
+							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							break;
 						case GuiCommandMenu.THUNDER:
 							Magic.Thunder(player, world);
+							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							break;
+						case GuiCommandMenu.CURE:
+							Magic.Cure(player, world);
+							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+							break;
+					
 					}
 				}
 				break;

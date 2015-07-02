@@ -313,11 +313,11 @@ public class ModItems {
 		Eraqus_Boots
 		;
 
-	public static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", 8, new int[]{2, 5, 4, 1}, 15);
-	public static ArmorMaterial TERRA = EnumHelper.addArmorMaterial("TERRA", Reference.MODID + ":terra", 8, new int[]{6, 8, 7, 4}, 15);
-	public static ArmorMaterial AQUA = EnumHelper.addArmorMaterial("AQUA", Reference.MODID + ":aqua", 8, new int[]{5, 8, 6, 4}, 15);
-	public static ArmorMaterial VENTUS = EnumHelper.addArmorMaterial("VENTUS", Reference.MODID + ":ventus", 8, new int[]{4, 8, 5, 4}, 15);
-	public static ArmorMaterial ERAQUS = EnumHelper.addArmorMaterial("ERAQUS", Reference.MODID + ":eraqus", 8, new int[]{5, 7, 7, 5}, 15);
+	public static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", 35, new int[]{4, 8, 5, 3}, 15);
+	public static ArmorMaterial TERRA = EnumHelper.addArmorMaterial("TERRA", Reference.MODID + ":terra", 35, new int[]{5, 9, 6, 5}, 15);
+	public static ArmorMaterial AQUA = EnumHelper.addArmorMaterial("AQUA", Reference.MODID + ":aqua", 35, new int[]{5, 9, 6, 5}, 15);
+	public static ArmorMaterial VENTUS = EnumHelper.addArmorMaterial("VENTUS", Reference.MODID + ":ventus", 35, new int[]{5, 9, 6, 5}, 15);
+	public static ArmorMaterial ERAQUS = EnumHelper.addArmorMaterial("ERAQUS", Reference.MODID + ":eraqus", 35, new int[]{5, 9, 6, 5}, 15);
 
 	public static CreativeTabs tabKingdomKeys;
 
