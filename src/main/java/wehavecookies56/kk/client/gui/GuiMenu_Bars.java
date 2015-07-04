@@ -22,11 +22,11 @@ import net.minecraft.world.World;
 public class GuiMenu_Bars extends GuiScreen {
 
 	String name;
-	
+
 	public GuiMenu_Bars(String name) {
 		this.name = name;
 	}
-	
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		RenderHelper.disableStandardItemLighting();
@@ -52,7 +52,7 @@ public class GuiMenu_Bars extends GuiScreen {
         int time = (int)Math.abs((world.getWorldTime()+ 6000) % 24000);
         return (int)((float)time / 1000F);
     }
-    
+
 	protected void drawBackground(int screenWidth, int screenHeight) {
 		Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
 		GL11.glPushMatrix();
@@ -61,7 +61,7 @@ public class GuiMenu_Bars extends GuiScreen {
 			//GL11.glColor4f(0.3F, 0.3F, 0.3F, 1.0F);
 			//GL11.glScalef(2f, 2f, 2f);
 			drawDefaultBackground();
-			drawModalRectWithCustomSizedTexture(0, -140/16, 0, 0, screenWidth, 70, 32, 32);
+			drawModalRectWithCustomSizedTexture(0, 0, 0, 0, screenWidth, 60, 32, 32);
 			drawModalRectWithCustomSizedTexture(0, screenHeight - ((screenHeight/8)+70/16), 0, 0, screenWidth, 70, 32, 32);
 		}
 		GL11.glPopMatrix();

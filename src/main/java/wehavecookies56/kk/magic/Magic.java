@@ -3,6 +3,8 @@ package wehavecookies56.kk.magic;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.magic.EntityFire;
 import wehavecookies56.kk.entities.magic.EntityIce;
 import wehavecookies56.kk.entities.magic.EntityThunder;
@@ -30,6 +32,9 @@ public class Magic {
 			Vec3 look = player.getLookVec();
 			world.spawnEntityInWorld(new EntityIce(world, player));
 			PacketDispatcher.sendToServer(new MagicBlizzard());
+			if(FMLCommonHandler.instance().getSide() == Side.SERVER){
+				PacketDispatcher.sendToDimension(new MagicBlizzard(), world.provider.getDimensionId());
+			}
 			//MagicAttack.currMagic = MagicAttack.currMagic - MagicAttack.blizzardCost;
 		}
 	}
@@ -61,7 +66,7 @@ public class Magic {
 		world.spawnEntityInWorld(thunder);
 		PacketDispatcher.sendToServer(new MagicThunder());
 	}
-	
+
 	public static void Cure(EntityPlayer player, World world)
 	{
 		player.heal(6);

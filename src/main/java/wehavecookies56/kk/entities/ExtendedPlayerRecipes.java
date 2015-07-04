@@ -8,7 +8,7 @@ import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.recipes.Recipe;
-
+import wehavecookies56.kk.recipes.RecipeRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -48,24 +48,28 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 	@Override
 	public void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
-		
+
 		NBTTagList tagList = properties.getTagList("RecipeList", Constants.NBT.TAG_COMPOUND);
 		for(int i = 0; i < tagList.tagCount(); i++){
 			NBTTagCompound recipes = tagList.getCompoundTagAt(i);
-			knownRecipes.add(i, recipes.getString("Recipes" + i));
-			System.out.println("Loaded known recipe: " + recipes.getString("Recipes" + i));
+			if(!RecipeRegistry.isRecipeKnown(player, recipes.getString("Recipes" + i))){
+				knownRecipes.add(i, recipes.getString("Recipes" + i));
+				System.out.println("Loaded known recipe: " + recipes.getString("Recipes" + i));
+			}
+
 		}
 
 	}
 
 	@Override
 	public void init(Entity entity, World world) {}
-	
+
 	public void learnRecipe(Recipe recipe){
 		knownRecipes.add(recipe.getName());
-		this.sync();
+		 if(player instanceof EntityPlayerMP)
+			 this.sync();
 	}
-	
+
 	public final void sync(){
 		SyncExtendedPlayerRecipes packet = new SyncExtendedPlayerRecipes(player);
 		if(player.worldObj.isRemote){
@@ -81,7 +85,7 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 	private static String getSaveKey (EntityPlayer player){
 		return player.getDisplayName() + ":" + EXT_PROP_NAME;
 	}
-	
+
 	public static void saveProxyData(EntityPlayer player){
 		ExtendedPlayerRecipes playerData = ExtendedPlayerRecipes.get(player);
 		NBTTagCompound SavedData = new NBTTagCompound();

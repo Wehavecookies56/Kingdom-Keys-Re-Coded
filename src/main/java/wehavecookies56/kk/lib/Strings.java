@@ -66,7 +66,15 @@ public class Strings {
 	Gui_Menu_Items_Button = Gui_Menu_Items + ".button",
 	Gui_Menu_Items_Button_Stock = Gui_Menu_Items_Button + ".stock",
 	Gui_Menu_Items_Button_Back = Gui_Menu_Items_Button + ".back",
-	Gui_Menu_Main_Munny = Gui_Menu_Main + ".munny"
+	Gui_Menu_Main_Munny = Gui_Menu_Main + ".munny",
+
+	//Synthesis
+	Gui_Synthesis = "gui.synthesis",
+	Gui_Synthesis_Main = Gui_Synthesis + ".main",
+	Gui_Synthesis_Main_Title = Gui_Synthesis_Main + ".title",
+	Gui_Synthesis_Main_Recipes = Gui_Synthesis_Main + ".recipes",
+	Gui_Synthesis_Main_FreeDev = Gui_Synthesis_Main + ".freedevelopment",
+	Gui_Synthesis_Main_Materials = Gui_Synthesis_Main + ".materials"
 	;
 
 	//Blocks
@@ -123,22 +131,22 @@ public class Strings {
 	OrganizationRobe_Chestplate = "organizationrobe_chestplate",
 	OrganizationRobe_Leggings = "organizationrobe_leggings",
 	OrganizationRobe_Boots = "organizationrobe_boots",
-	
+
 	Terra_Helmet = "terra_helmet",
 	Terra_Chestplate = "terra_chestplate",
 	Terra_Leggings = "terra_leggings",
 	Terra_Boots = "terra_boots",
-	
+
 	Aqua_Helmet = "aqua_helmet",
 	Aqua_Chestplate = "aqua_chestplate",
 	Aqua_Leggings = "aqua_leggings",
 	Aqua_Boots = "aqua_boots",
-	
+
 	Ventus_Helmet = "ventus_helmet",
 	Ventus_Chestplate = "ventus_chestplate",
 	Ventus_Leggings = "ventus_leggings",
 	Ventus_Boots = "ventus_boots",
-	
+
 	Eraqus_Helmet = "eraqus_helmet",
 	Eraqus_Chestplate = "eraqus_chestplate",
 	Eraqus_Leggings = "eraqus_leggings",
@@ -148,13 +156,10 @@ public class Strings {
 	//Synthesis Materials
 	public static final String
 	SM_Rank = "sm.rank",
-	SM_Shard = "sm.shard",
-	SM_Stone = "sm.stone",
-	SM_Gem = "sm.gem",
-	SM_Crystal = "sm.crystal",
-	SM_Blazing = "sm.blazing",
-	SM_Frost = "sm.frost",
-	SM_Lightning = "sm.lightning"
+	SM_BlazingShard = "sm.blazingshard",
+	SM_BlazingStone = "sm.blazingstone",
+	SM_BlazingGem = "sm.blazinggem",
+	SM_BlazingCrystal = "sm.blazingcrystal"
 	;
 
 	//Music Discs
