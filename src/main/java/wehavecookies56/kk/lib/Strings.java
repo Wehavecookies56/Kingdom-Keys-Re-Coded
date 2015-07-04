@@ -159,7 +159,8 @@ public class Strings {
 	SM_BlazingShard = "sm.blazingshard",
 	SM_BlazingStone = "sm.blazingstone",
 	SM_BlazingGem = "sm.blazinggem",
-	SM_BlazingCrystal = "sm.blazingcrystal"
+	SM_BlazingCrystal = "sm.blazingcrystal",
+	SM_FrostShard = "sm.frostshard"
 	;
 
 	//Music Discs
