@@ -38,6 +38,7 @@ public class ItemRecipe extends Item {
 		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
 			ExtendedPlayerRecipes.get(player).loadProxyData((player));
 			PacketDispatcher.sendToServer(new UseRecipe(stack.getTagCompound().getString("recipe1"), stack.getTagCompound().getString("recipe2"), stack.getTagCompound().getString("recipe3")));
+			return stack;
 		}
 		else if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
 		{
@@ -47,42 +48,21 @@ public class ItemRecipe extends Item {
 
 			boolean consume = false;
 			if(RecipeRegistry.get(recipe1) == null){
-				String message = "ERROR: Recipe for " + TextHelper.localize(recipe1 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
-				TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.RED, player);
 			}
 			else if(RecipeRegistry.isRecipeKnown(player, recipe1)){
-				String message = "Recipe for " + TextHelper.localize(recipe1 + ".name") + " was not learnt because you have already learnt it";
-				TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.YELLOW, player);
 			}else {
-				RecipeRegistry.learnrecipe(player, recipe1);
-				String message = "Successfully learnt the recipe for" + TextHelper.localize(recipe1 + ".name");
-				TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.GREEN, player);
 				consume = true;
 			}
 			if(RecipeRegistry.get(recipe2) == null){
-				String message = "ERROR: Recipe for " + TextHelper.localize(recipe2 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
-				TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.RED, player);
 			}
 			else if(RecipeRegistry.isRecipeKnown(player, recipe2)){
-				String message = "Recipe for " + TextHelper.localize(recipe2 + ".name") + " was not learnt because you have already learnt it";
-				TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.YELLOW, player);
 			}else{
-				RecipeRegistry.learnrecipe(player, recipe2);
-				String message = "Successfully learnt the recipe for" + TextHelper.localize(recipe2 + ".name");
-				TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.GREEN, player);
 				consume = true;
 			}
 			if(RecipeRegistry.get(recipe3) == null){
-				String message = "ERROR: Recipe for " + TextHelper.localize(recipe3 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
-				TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.RED, player);
 			}
 			else if(RecipeRegistry.isRecipeKnown(player, recipe3)){
-				String message = "Recipe for " + TextHelper.localize(recipe3 + ".name") + " was not learnt because you have already learnt it";
-				TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.YELLOW, player);
 			}else{
-				RecipeRegistry.learnrecipe(player, recipe3);
-				String message = "Successfully learnt the recipe for" + TextHelper.localize(recipe3 + ".name");
-				TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.GREEN, player);
 				consume = true;
 			}
 

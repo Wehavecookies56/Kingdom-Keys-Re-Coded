@@ -54,7 +54,7 @@ public class UseRecipe extends AbstractServerMessage<UseRecipe> {
 			TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.YELLOW, player);
 		}else {
 			RecipeRegistry.learnrecipe(player, recipe1);
-			String message = "Successfully learnt the recipe for" + TextHelper.localize(recipe1 + ".name");
+			String message = "Successfully learnt the recipe for " + TextHelper.localize(recipe1 + ".name");
 			TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.GREEN, player);
 			consume = true;
 		}
@@ -67,7 +67,7 @@ public class UseRecipe extends AbstractServerMessage<UseRecipe> {
 			TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.YELLOW, player);
 		}else{
 			RecipeRegistry.learnrecipe(player, recipe2);
-			String message = "Successfully learnt the recipe for" + TextHelper.localize(recipe2 + ".name");
+			String message = "Successfully learnt the recipe for " + TextHelper.localize(recipe2 + ".name");
 			TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.GREEN, player);
 			consume = true;
 		}
@@ -80,7 +80,7 @@ public class UseRecipe extends AbstractServerMessage<UseRecipe> {
 			TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.YELLOW, player);
 		}else{
 			RecipeRegistry.learnrecipe(player, recipe3);
-			String message = "Successfully learnt the recipe for" + TextHelper.localize(recipe3 + ".name");
+			String message = "Successfully learnt the recipe for " + TextHelper.localize(recipe3 + ".name");
 			TextHelper.sendFormattedChatMessage(message, EnumChatFormatting.GREEN, player);
 			consume = true;
 		}

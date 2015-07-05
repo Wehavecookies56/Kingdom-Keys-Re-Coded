@@ -19,6 +19,7 @@ import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.recipes.Recipe;
 import wehavecookies56.kk.recipes.RecipeKingdomKey;
 import wehavecookies56.kk.recipes.RecipeRegistry;
+import wehavecookies56.kk.util.LogHelper;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
 
@@ -27,7 +28,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	private final EntityPlayer player;
 
 	public final InventoryKeychain inventory = new InventoryKeychain();
-	
+
 	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, keybladeSummoned;
 
 	public ExtendedPlayer(EntityPlayer player){
@@ -55,7 +56,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("MaxExperience", this.maxExperience);
 		properties.setInteger("MaxMP", this.maxMp);
 		properties.setInteger("KeybladeSummoned", this.keybladeSummoned);
-		
+
 		compound.setTag(EXT_PROP_NAME, properties);
 
 	}
@@ -72,6 +73,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.maxExperience = properties.getInteger("MaxExperience");
 		this.maxMp = properties.getInteger("MaxMP");
 		this.keybladeSummoned = properties.getInteger("KeybladeSummoned");
+		LogHelper.info("Loaded munny: " + properties.getString("Munny"));
+		String s = properties.getInteger("KeybladeSummoned") > 0 ? "Keyblade is summoned" : "Keyblade is not summoned";
+		LogHelper.info("Loaded Summon data: " + s);
 	}
 
 	@Override
@@ -172,7 +176,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 		return true;
 	}
-	
+
 	public int getMunny(){
 		return this.munny;
 	}

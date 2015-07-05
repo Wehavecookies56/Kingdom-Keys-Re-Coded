@@ -9,6 +9,7 @@ import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.recipes.Recipe;
 import wehavecookies56.kk.recipes.RecipeRegistry;
+import wehavecookies56.kk.util.LogHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -54,7 +55,7 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 			NBTTagCompound recipes = tagList.getCompoundTagAt(i);
 			if(!RecipeRegistry.isRecipeKnown(player, recipes.getString("Recipes" + i))){
 				knownRecipes.add(i, recipes.getString("Recipes" + i));
-				System.out.println("Loaded known recipe: " + recipes.getString("Recipes" + i));
+				LogHelper.info("Loaded known recipe: " + recipes.getString("Recipes" + i));
 			}
 
 		}

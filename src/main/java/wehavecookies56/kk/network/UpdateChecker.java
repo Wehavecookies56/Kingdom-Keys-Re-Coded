@@ -26,10 +26,10 @@ public class UpdateChecker {
 	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) throws MalformedURLException, IOException
 	{
 		if(Config.EnableUpdateCheck && isUpdateAvailable() && ableToCheck == true){
-			BufferedReader versionFile = new BufferedReader(new InputStreamReader(new URL("https://raw.github.com/Wehavecookies56/Kingdom-Keys-Re-Coded-/master/VERSION.txt").openStream()));
+			BufferedReader versionFile = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/Wehavecookies56/Kingdom-Keys-Re-Coded/master/VERSION.txt").openStream()));
 			String curVersion = versionFile.readLine();
 			String mcVersion = versionFile.readLine();
-			event.player.addChatMessage(new ChatComponentText("["+EnumChatFormatting.RED + Reference.MODNAME +EnumChatFormatting.RESET+"] An Update is available for this mod. Version " + curVersion + "for Minecraft " + mcVersion + " Check http://goo.gl/40N4TP for more info."));
+			event.player.addChatMessage(new ChatComponentText("["+EnumChatFormatting.RED + Reference.MODNAME +EnumChatFormatting.RESET+"] An Update is available for this mod. Version " + curVersion + " for Minecraft " + mcVersion + " Check http://goo.gl/40N4TP for more info."));
 		}
 
 		else if(Config.EnableUpdateCheck && !isUpdateAvailable() && ableToCheck)
@@ -51,7 +51,7 @@ public class UpdateChecker {
 
 	public static boolean isUpdateAvailable() throws IOException, MalformedURLException {
 		try{
-			BufferedReader versionFile = new BufferedReader(new InputStreamReader(new URL("https://raw.github.com/Wehavecookies56/Kingdom-Keys-Re-Coded-/master/VERSION.txt").openStream()));
+			BufferedReader versionFile = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/Wehavecookies56/Kingdom-Keys-Re-Coded/master/VERSION.txt").openStream()));
 			String curVersion = versionFile.readLine();
 			String mcVersion = versionFile.readLine();
 			ableToCheck = true;
