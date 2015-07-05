@@ -238,63 +238,197 @@ public class GuiRecipeList extends GuiScrollingList {
     	if(name.equals(ModItems.LunarEclipse.getUnlocalizedName())){
     		return new ItemStack(ModItems.LunarEclipse, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.MarkofaHero.getUnlocalizedName())){
+    		return new ItemStack(ModItems.MarkofaHero, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.MasterXehanortsKeyblade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.MasterXehanortsKeyblade, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.MastersDefender.getUnlocalizedName())){
+    		return new ItemStack(ModItems.MastersDefender, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.MaverickFlare.getUnlocalizedName())){
+    		return new ItemStack(ModItems.MaverickFlare, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.MetalChocobo.getUnlocalizedName())){
+    		return new ItemStack(ModItems.MetalChocobo, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.MidnightRoar.getUnlocalizedName())){
+    		return new ItemStack(ModItems.MidnightRoar, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.MissingAche.getUnlocalizedName())){
+    		return new ItemStack(ModItems.MissingAche, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.Monochrome.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Monochrome, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.MysteriousAbyss.getUnlocalizedName())){
+    		return new ItemStack(ModItems.MysteriousAbyss, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.NoName.getUnlocalizedName())){
+    		return new ItemStack(ModItems.NoName, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.Oathkeeper.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Oathkeeper, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.Oblivion.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Oblivion, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.OceanRage.getUnlocalizedName())){
+    		return new ItemStack(ModItems.OceanRage, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.Olympia.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Olympia, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.OmegaWeapon.getUnlocalizedName())){
+    		return new ItemStack(ModItems.OmegaWeapon, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.OminousBlight.getUnlocalizedName())){
+    		return new ItemStack(ModItems.OminousBlight, 1);
     	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.OneWingedAngel.getUnlocalizedName())){
+    		return new ItemStack(ModItems.OneWingedAngel, 1);
     	}
-    	
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
+    	if(name.equals(ModItems.PainofSolitude.getUnlocalizedName())){
+    		return new ItemStack(ModItems.PainofSolitude, 1);
     	}
-    	if(name.equals(ModItems.KingdomKeyD.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKeyD, 1);
+    	if(name.equals(ModItems.PhotonDebugger.getUnlocalizedName())){
+    		return new ItemStack(ModItems.PhotonDebugger, 1);
+    	}
+    	if(name.equals(ModItems.PixiePetal.getUnlocalizedName())){
+    		return new ItemStack(ModItems.PixiePetal, 1);
+    	}
+    	if(name.equals(ModItems.Pumpkinhead.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Pumpkinhead, 1);
+    	}
+    	if(name.equals(ModItems.Rainfell.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Rainfell, 1);
+    	}
+    	if(name.equals(ModItems.RejectionofFate.getUnlocalizedName())){
+    		return new ItemStack(ModItems.RejectionofFate, 1);
+    	}
+    	if(name.equals(ModItems.RoyalRadiance.getUnlocalizedName())){
+    		return new ItemStack(ModItems.RoyalRadiance, 1);
+    	}
+    	if(name.equals(ModItems.RumblingRose.getUnlocalizedName())){
+    		return new ItemStack(ModItems.RumblingRose, 1);
+    	}
+    	if(name.equals(ModItems.SignofInnocence.getUnlocalizedName())){
+    		return new ItemStack(ModItems.SignofInnocence, 1);
+    	}
+    	if(name.equals(ModItems.SilentDirge.getUnlocalizedName())){
+    		return new ItemStack(ModItems.SilentDirge, 1);
+    	}
+    	if(name.equals(ModItems.SkullNoise.getUnlocalizedName())){
+    		return new ItemStack(ModItems.SkullNoise, 1);
+    	}
+    	if(name.equals(ModItems.SleepingLion.getUnlocalizedName())){
+    		return new ItemStack(ModItems.SleepingLion, 1);
+    	}
+    	if(name.equals(ModItems.SoulEater.getUnlocalizedName())){
+    		return new ItemStack(ModItems.SoulEater, 1);
+    	}
+    	if(name.equals(ModItems.Spellbinder.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Spellbinder, 1);
+    	}
+    	if(name.equals(ModItems.StarSeeker.getUnlocalizedName())){
+    		return new ItemStack(ModItems.StarSeeker, 1);
+    	}
+    	if(name.equals(ModItems.Starlight.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Starlight, 1);
+    	}
+    	if(name.equals(ModItems.Stormfall.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Stormfall, 1);
+    	}
+    	if(name.equals(ModItems.StrokeofMidnight.getUnlocalizedName())){
+    		return new ItemStack(ModItems.StrokeofMidnight, 1);
+    	}
+    	if(name.equals(ModItems.SweetDreams.getUnlocalizedName())){
+    		return new ItemStack(ModItems.SweetDreams, 1);
+    	}
+    	if(name.equals(ModItems.SweetMemories.getUnlocalizedName())){
+    		return new ItemStack(ModItems.SweetMemories, 1);
+    	}
+    	if(name.equals(ModItems.Sweetstack.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Sweetstack, 1);
+    	}
+    	if(name.equals(ModItems.ThreeWishes.getUnlocalizedName())){
+    		return new ItemStack(ModItems.ThreeWishes, 1);
+    	}
+    	if(name.equals(ModItems.TotalEclipse.getUnlocalizedName())){
+    		return new ItemStack(ModItems.TotalEclipse, 1);
+    	}
+    	if(name.equals(ModItems.TreasureTrove.getUnlocalizedName())){
+    		return new ItemStack(ModItems.TreasureTrove, 1);
+    	}
+    	if(name.equals(ModItems.TrueLightsFlight.getUnlocalizedName())){
+    		return new ItemStack(ModItems.TrueLightsFlight, 1);
+    	}
+    	if(name.equals(ModItems.TwilightBlaze.getUnlocalizedName())){
+    		return new ItemStack(ModItems.TwilightBlaze, 1);
+    	}
+    	if(name.equals(ModItems.TwoBecomeOne.getUnlocalizedName())){
+    		return new ItemStack(ModItems.TwoBecomeOne, 1);
+    	}
+    	if(name.equals(ModItems.UltimaWeaponKH1.getUnlocalizedName())){
+    		return new ItemStack(ModItems.UltimaWeaponKH1, 1);
+    	}
+    	if(name.equals(ModItems.UltimaWeaponKH2.getUnlocalizedName())){
+    		return new ItemStack(ModItems.UltimaWeaponKH2, 1);
+    	}
+    	if(name.equals(ModItems.UltimaWeaponBBS.getUnlocalizedName())){
+    		return new ItemStack(ModItems.UltimaWeaponBBS, 1);
+    	}
+    	if(name.equals(ModItems.UltimaWeaponDDD.getUnlocalizedName())){
+    		return new ItemStack(ModItems.UltimaWeaponDDD, 1);
+    	}
+    	if(name.equals(ModItems.Umbrella.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Umbrella, 1);
+    	}
+    	if(name.equals(ModItems.Unbound.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Unbound, 1);
+    	}
+    	if(name.equals(ModItems.UnicornisForetellersKeyblade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.UnicornisForetellersKeyblade, 1);
+    	}
+    	if(name.equals(ModItems.UrsusForetellersKeyblade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.UrsusForetellersKeyblade, 1);
+    	}
+    	if(name.equals(ModItems.VictoryLine.getUnlocalizedName())){
+    		return new ItemStack(ModItems.VictoryLine, 1);
+    	}
+    	if(name.equals(ModItems.VoidGear.getUnlocalizedName())){
+    		return new ItemStack(ModItems.VoidGear, 1);
+    	}
+    	if(name.equals(ModItems.VulpeusForetellersKeyblade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.VulpeusForetellersKeyblade, 1);
+    	}
+    	if(name.equals(ModItems.WaytotheDawn.getUnlocalizedName())){
+    		return new ItemStack(ModItems.WaytotheDawn, 1);
+    	}
+    	if(name.equals(ModItems.WaywardWind.getUnlocalizedName())){
+    		return new ItemStack(ModItems.WaywardWind, 1);
+    	}
+    	if(name.equals(ModItems.WinnersProof.getUnlocalizedName())){
+    		return new ItemStack(ModItems.WinnersProof, 1);
+    	}
+    	if(name.equals(ModItems.WishingLamp.getUnlocalizedName())){
+    		return new ItemStack(ModItems.WishingLamp, 1);
+    	}
+    	if(name.equals(ModItems.WishingStar.getUnlocalizedName())){
+    		return new ItemStack(ModItems.WishingStar, 1);
+    	}
+    	if(name.equals(ModItems.WoodenKeyblade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.WoodenKeyblade, 1);
+    	}
+    	if(name.equals(ModItems.WoodenStick.getUnlocalizedName())){
+    		return new ItemStack(ModItems.WoodenStick, 1);
+    	}
+    	if(name.equals(ModItems.YoungXehanortsKeyblade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.YoungXehanortsKeyblade, 1);
+    	}
+    	if(name.equals(ModItems.ZeroOne.getUnlocalizedName())){
+    		return new ItemStack(ModItems.ZeroOne, 1);
     	}
 		return null;
 
