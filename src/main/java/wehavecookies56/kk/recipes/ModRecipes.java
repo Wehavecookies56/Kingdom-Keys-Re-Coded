@@ -19,8 +19,8 @@ public class ModRecipes {
 		registerRecipe(new RecipeCircleofLife(ModItems.CircleofLife.getUnlocalizedName()));
 		registerRecipe(new RecipeCounterpoint(ModItems.Counterpoint.getUnlocalizedName()));
 		registerRecipe(new RecipeCrabclaw(ModItems.Crabclaw.getUnlocalizedName()));
-		/*registerRecipe(new RecipeCrownofGuilt(ModItems.CrownofGuilt.getUnlocalizedName()));
-		registerRecipe(new RecipeDarkerThanDark(ModItems.DarkerThanDark.getUnlocalizedName()));
+		registerRecipe(new RecipeCrownofGuilt(ModItems.CrownofGuilt.getUnlocalizedName()));
+		/*registerRecipe(new RecipeDarkerThanDark(ModItems.DarkerThanDark.getUnlocalizedName()));
 		registerRecipe(new RecipeDarkgnaw(ModItems.Darkgnaw.getUnlocalizedName()));
 		registerRecipe(new RecipeDecisivePumpkin(ModItems.DecisivePumpkin.getUnlocalizedName()));
 		registerRecipe(new RecipeDestinysEmbrace(ModItems.DestinysEmbrace.getUnlocalizedName()));

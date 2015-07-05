@@ -162,7 +162,61 @@ public class Strings {
 	SM_BlazingStone = "sm.blazingstone",
 	SM_BlazingGem = "sm.blazinggem",
 	SM_BlazingCrystal = "sm.blazingcrystal",
-	SM_FrostShard = "sm.frostshard"
+	
+	SM_BrightShard = "sm.brightshard",
+	SM_BrightStone = "sm.brightstone",
+	SM_BrightGem = "sm.brightgem",
+	SM_BrightCrystal = "sm.brightcrystal",
+	
+	SM_DarkShard = "sm.darkshard",
+	SM_DarkStone = "sm.darkstone",
+	SM_DarkGem = "sm.darkgem",
+	SM_DarkCrystal = "sm.darkcrystal",
+	
+	SM_DenseShard = "sm.denseshard",
+	SM_DenseStone = "sm.densestone",
+	SM_DenseGem = "sm.densegem",
+	SM_DenseCrystal = "sm.densecrystal",
+	
+	SM_EnergyShard = "sm.energyshard",
+	SM_EnergyStone = "sm.energystone",
+	SM_EnergyGem = "sm.energygem",
+	SM_EnergyCrystal = "sm.energycrystal",
+			
+	SM_FrostShard = "sm.frostshard",
+	SM_FrostStone = "sm.froststone",
+	SM_FrostGem = "sm.frostgem",
+	SM_FrostCrystal = "sm.frostcrystal",
+	
+	SM_LucidShard = "sm.lucidshard",
+	SM_LucidStone = "sm.lucidstone",
+	SM_LucidGem = "sm.lucidgem",
+	SM_LucidCrystal = "sm.lucidcrystal",
+
+	SM_PowerShard = "sm.powershard",
+	SM_PowerStone = "sm.powerstone",
+	SM_PowerGem = "sm.powergem",
+	SM_PowerCrystal = "sm.powercrystal",
+	
+	SM_RemembranceShard = "sm.remembranceshard",
+	SM_RemembranceStone = "sm.remembrancestone",
+	SM_RemembranceGem = "sm.remembrancegem",
+	SM_RemembranceCrystal = "sm.remembrancecrystal",
+	
+	SM_SerenityShard = "sm.serenityshard",
+	SM_SerenityStone = "sm.serenitystone",
+	SM_SerenityGem = "sm.serenitygem",
+	SM_SerenityCrystal = "sm.serenitycrystal",
+	
+	SM_TranquilShard = "sm.tranquilshard",
+	SM_TranquilStone = "sm.tranquilstone",
+	SM_TranquilGem = "sm.tranquilgem",
+	SM_TranquilCrystal = "sm.tranquilcrystal",
+	
+	SM_TwilightShard = "sm.twilightshard",
+	SM_TwilightStone = "sm.twilightstone",
+	SM_TwilightGem = "sm.twilightgem",
+	SM_TwilightCrystal = "sm.twilightcrystal"
 	;
 
 	//Music Discs

@@ -14,11 +14,14 @@ public class BlockBounceBlox extends BlockBlox {
 
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn)
     {
+    	if(!entityIn.isSneaking())
+    	{
             double d0 = 0.4D + Math.abs(entityIn.motionY) * 0.2D;
             entityIn.motionX *= d0;
             entityIn.motionZ *= d0;
             entityIn.motionY++;
             entityIn.fallDistance=0;
             super.onEntityCollidedWithBlock(worldIn, pos, entityIn);
+    	}
     }
 }
