@@ -22,7 +22,7 @@ public class RecipeAnguisForetellersKeyblade extends Recipe {
 
 	@Override
 	public Item getResult() {
-		return ModItems.AnguisForetellersKeyblade;
+		return ModItems.Chain_AnguisForetellersKeyblade;
 	}
 
 	@Override

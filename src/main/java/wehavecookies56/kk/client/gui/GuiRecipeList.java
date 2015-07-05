@@ -103,6 +103,18 @@ public class GuiRecipeList extends GuiScrollingList {
     	if(name.equals(ModItems.Brightcrest.getUnlocalizedName())){
     		return new ItemStack(ModItems.Brightcrest, 1);
     	}
+    	if(name.equals(ModItems.ChaosRipper.getUnlocalizedName())){
+    		return new ItemStack(ModItems.ChaosRipper, 1);
+    	}
+    	if(name.equals(ModItems.CircleofLife.getUnlocalizedName())){
+    		return new ItemStack(ModItems.CircleofLife, 1);
+    	}
+    	if(name.equals(ModItems.Counterpoint.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Counterpoint, 1);
+    	}
+    	if(name.equals(ModItems.Crabclaw.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Crabclaw, 1);
+    	}
     	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
     		return new ItemStack(ModItems.KingdomKey, 1);
     	}
