@@ -28,7 +28,7 @@ public class RecipeAubade extends Recipe {
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard);
+		reqs.add(Strings.SM_BlazingShard + ".x.2");
 		reqs.add(Strings.SM_BlazingCrystal);
 		reqs.add(Strings.SM_BlazingStone);
 		return reqs;

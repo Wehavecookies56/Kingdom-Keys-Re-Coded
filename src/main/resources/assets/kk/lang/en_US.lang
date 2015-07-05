@@ -47,6 +47,12 @@ tile.kkchest.name=Chest
 #Items
 ############################
 
+#Synthesis Materials
+sm.blazingshard.name=Blazing Shard
+sm.blazingstone.name=Blazing Stone
+sm.blazinggem.name=Blazing Gem
+sm.blazingcrystal.name=Blazing Crystal
+
 #Armor
 item.organizationrobe_helmet.name=Organization Hood
 item.organizationrobe_chestplate.name=Organization Coat
@@ -408,6 +414,13 @@ gui.menu.items.button.back=Back
 
 #Keychain Container
 container.keychain=Place a keychain here
+
+#Synthesis#
+gui.synthesis.main.title=Item Synthesis
+gui.synthesis.main.recipes=Recipes
+gui.synthesis.main.freedevelopment=Free Development
+gui.synthesis.main.materials=Materials
+gui.synthesis.main.recipes.requiredmaterials=Required Materials
 
 ############################
 #Keybinds

@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -17,6 +18,9 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.server.OpenGui;
+import wehavecookies56.kk.network.packet.server.OpenMaterials;
 import wehavecookies56.kk.recipes.RecipeRegistry;
 import wehavecookies56.kk.util.TextHelper;
 
@@ -27,10 +31,12 @@ public class GuiSynthesis extends GuiTooltip{
 	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3;
 	public int submenu;
 	private final GuiScreen parentScreen;
-	protected String title = "Item Synthesis";
+	protected String title = TextHelper.localize(Strings.Gui_Synthesis_Main_Title);
 	private GuiRecipeList recipeList;
+	private GuiMaterialList materialList;
 
 	public GuiButton Back, FreeDev, Recipes, Materials;
+	public int materialSelected;
 
 	public GuiSynthesis(GuiScreen parentScreen)
 	{
@@ -43,6 +49,8 @@ public class GuiSynthesis extends GuiTooltip{
 	{
 		this.recipeList = new GuiRecipeList(this);
 		this.recipeList.registerScrollButtons(this.buttonList, 7, 8);
+		this.materialList = new GuiMaterialList(this);
+		this.materialList.registerScrollButtons(this.buttonList, 7, 8);
 		this.buttonList.add(Back = new GuiButton(BACK, width - 105, height - ((height/8)+70/16), 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
 		this.buttonList.add(Recipes = new GuiButton(RECIPES, 5, 65, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes)));
 		this.buttonList.add(FreeDev = new GuiButton(FREEDEV, 5, 65+25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_FreeDev)));
@@ -70,6 +78,7 @@ public class GuiSynthesis extends GuiTooltip{
 			break;
 		case MATERIALS:
 			submenu = MATERIALS;
+			PacketDispatcher.sendToServer(new OpenMaterials());
 			break;
 		}
 		updateButtons();
@@ -94,6 +103,8 @@ public class GuiSynthesis extends GuiTooltip{
 		this.drawDefaultBackground();
 		if(submenu == RECIPES){
 			this.recipeList.drawScreen(mouseX, mouseY, partialTicks);
+		}else if(submenu == MATERIALS){
+			this.materialList.drawScreen(mouseX, mouseY, partialTicks);
 		}
 		drawBackground(width, height);
 		super.drawScreen(mouseX, mouseY, partialTicks);
@@ -115,7 +126,7 @@ public class GuiSynthesis extends GuiTooltip{
 		GL11.glPushMatrix();{
 			for(int i = 0; i < props.knownRecipes.size(); i++){
 				if(selected == i){
-					drawString(fontRendererObj, "Required Materials" + TextHelper.ITALIC, 270, 100, 0x00C3FF);
+					drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes_ReqMaterials) + TextHelper.ITALIC, 270, 100, 0x00C3FF);
 					GL11.glPushMatrix();{
 						GL11.glTranslatef(270, 70, 0);
 						GL11.glScalef(2, 2, 2);
@@ -123,14 +134,20 @@ public class GuiSynthesis extends GuiTooltip{
 					}GL11.glPopMatrix();
 
 					for(int j = 0; j < RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().size(); j++){
-						ResourceLocation synthMaterial = new ResourceLocation(Reference.MODID, "textures/gui/synthesis/" + RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString().substring(3) + ".png");
+						ResourceLocation synthMaterial = new ResourceLocation(Reference.MODID, "textures/gui/synthesis/" + RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString().substring(3).replace(".x.", "").replaceAll("[0-9]","") + ".png");
 						mc.renderEngine.bindTexture(synthMaterial);
 						int distY = 24;
 						int distX = 100;
 						int column = 0;
 						int row = j;
+						String amount;
 						drawTexturedModalRect(270 + (distX*column), 110 + (distY*row), 0, 0, 16, 16);
-						drawString(fontRendererObj, TextHelper.localize(RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString()) + " x" + Collections.frequency(RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements(), RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString()), 288 + (distX*column), 114 + (distY*row), 0xFFFFFF);
+						if(RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString().contains(".x.")){
+							String[] name = RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString().split(".x.");
+							drawString(fontRendererObj, TextHelper.localize(name[0] + ".name") + " x" + name[1], 288 + (distX*column), 114 + (distY*row), 0xFFFFFF);
+						}else{
+							drawString(fontRendererObj, TextHelper.localize(RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString() + ".name") + " x" + 1, 288 + (distX*column), 114 + (distY*row), 0xFFFFFF);
+						}
 						//Tooltip not really needed
 						/*if(mouseX >= 200 && mouseX <= 216 && mouseY >= 100 + (dist*j) && mouseY <= 116 + (dist*j)){
 							RenderHelper.disableStandardItemLighting();
@@ -175,13 +192,13 @@ public class GuiSynthesis extends GuiTooltip{
 		}
 		GL11.glPopMatrix();
 		if(submenu == RECIPES){
-			drawString(fontRendererObj, Strings.Gui_Synthesis_Main_Recipes, 15, 30, 0xFFFFFF);
+			drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes), 15, 30, 0xFFFFFF);
 		}
 		if(submenu == FREEDEV){
-			drawString(fontRendererObj, Strings.Gui_Synthesis_Main_FreeDev, 15, 30, 0xFFFFFF);
+			drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_FreeDev), 15, 30, 0xFFFFFF);
 		}
 		if(submenu == MATERIALS){
-			drawString(fontRendererObj, Strings.Gui_Synthesis_Main_Materials, 15, 30, 0xFFFFFF);
+			drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials), 15, 30, 0xFFFFFF);
 		}
 		GL11.glPushMatrix();{
 			drawString(fontRendererObj, mc.thePlayer.worldObj.provider.getDimensionName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.provider.getDimensionName()) - 5, 5, 0xFFFFFF);
@@ -200,6 +217,11 @@ public class GuiSynthesis extends GuiTooltip{
 
 	FontRenderer getFontRenderer() {
 		return fontRendererObj;
+	}
+
+	@Override
+	public boolean doesGuiPauseGame() {
+		return false;
 	}
 
 	@Override

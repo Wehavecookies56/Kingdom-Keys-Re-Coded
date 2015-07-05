@@ -74,7 +74,8 @@ public class Strings {
 	Gui_Synthesis_Main_Title = Gui_Synthesis_Main + ".title",
 	Gui_Synthesis_Main_Recipes = Gui_Synthesis_Main + ".recipes",
 	Gui_Synthesis_Main_FreeDev = Gui_Synthesis_Main + ".freedevelopment",
-	Gui_Synthesis_Main_Materials = Gui_Synthesis_Main + ".materials"
+	Gui_Synthesis_Main_Materials = Gui_Synthesis_Main + ".materials",
+	Gui_Synthesis_Main_Recipes_ReqMaterials = Gui_Synthesis_Main_Recipes + ".requiredmaterials"
 	;
 
 	//Blocks

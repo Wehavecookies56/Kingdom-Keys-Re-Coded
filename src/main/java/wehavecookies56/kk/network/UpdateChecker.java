@@ -11,6 +11,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.MCVersion;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.util.LogHelper;
@@ -29,13 +30,13 @@ public class UpdateChecker {
 			BufferedReader versionFile = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/Wehavecookies56/Kingdom-Keys-Re-Coded/master/VERSION.txt").openStream()));
 			String curVersion = versionFile.readLine();
 			String mcVersion = versionFile.readLine();
-			event.player.addChatMessage(new ChatComponentText("["+EnumChatFormatting.RED + Reference.MODNAME +EnumChatFormatting.RESET+"] An Update is available for this mod. Version " + curVersion + " for Minecraft " + mcVersion + " Check http://goo.gl/40N4TP for more info."));
+			event.player.addChatMessage(new ChatComponentText("["+EnumChatFormatting.RED + Reference.MODNAME +EnumChatFormatting.RESET+"] An Update is available for this mod. Version v" + curVersion + " for Minecraft " + mcVersion + " Check http://goo.gl/40N4TP for more info."));
 		}
 
 		else if(Config.EnableUpdateCheck && !isUpdateAvailable() && ableToCheck)
 		{
 			LogHelper.info(Reference.MODNAME + " is update");
-			event.player.addChatMessage(new ChatComponentText("["+EnumChatFormatting.RED + Reference.MODNAME +EnumChatFormatting.RESET+"] This mod is up to date"));
+			event.player.addChatMessage(new ChatComponentText("["+EnumChatFormatting.RED + Reference.MODNAME +EnumChatFormatting.RESET+"] This mod is up to date (v" + Reference.MODVER + ")"));
 		}
 
 		else if(!Config.EnableUpdateCheck)

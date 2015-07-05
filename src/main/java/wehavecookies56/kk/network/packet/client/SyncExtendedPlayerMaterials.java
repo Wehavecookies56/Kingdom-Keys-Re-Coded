@@ -12,15 +12,15 @@ import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 import wehavecookies56.kk.network.packet.AbstractMessage;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 
-public class SyncExtendedPlayerRecipes extends AbstractClientMessage<SyncExtendedPlayerRecipes> {
+public class SyncExtendedPlayerMaterials extends AbstractClientMessage<SyncExtendedPlayerMaterials> {
 
 	private NBTTagCompound data;
 
-	public SyncExtendedPlayerRecipes() {}
+	public SyncExtendedPlayerMaterials() {}
 
-	public SyncExtendedPlayerRecipes(EntityPlayer player){
+	public SyncExtendedPlayerMaterials(EntityPlayer player){
 		data = new NBTTagCompound();
-		ExtendedPlayerRecipes.get(player).saveNBTData(data);
+		ExtendedPlayerMaterials.get(player).saveNBTData(data);
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class SyncExtendedPlayerRecipes extends AbstractClientMessage<SyncExtende
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		ExtendedPlayerRecipes.get(player).loadNBTData(data);
+		ExtendedPlayerMaterials.get(player).loadNBTData(data);
 	}
 
 

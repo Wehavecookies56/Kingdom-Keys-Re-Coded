@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 import wehavecookies56.kk.item.ItemHpOrb;
 import wehavecookies56.kk.item.ItemKeyblade;
@@ -35,6 +36,7 @@ import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
+import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
@@ -52,6 +54,9 @@ public class EventHandler {
 		if(event.entity instanceof EntityPlayer && ExtendedPlayerRecipes.get((EntityPlayer) event.entity) == null){
 			ExtendedPlayerRecipes.register((EntityPlayer) event.entity);
 		}
+		if(event.entity instanceof EntityPlayer && ExtendedPlayerMaterials.get((EntityPlayer) event.entity) == null){
+			ExtendedPlayerMaterials.register((EntityPlayer) event.entity);
+		}
 
 	}
 
@@ -62,6 +67,8 @@ public class EventHandler {
 			PacketDispatcher.sendTo(new SyncExtendedPlayer((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
 			ExtendedPlayerRecipes.get((EntityPlayer) event.entity).loadProxyData(((EntityPlayer) event.entity));
 			PacketDispatcher.sendTo(new SyncExtendedPlayerRecipes((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
+			ExtendedPlayerMaterials.get((EntityPlayer) event.entity).loadProxyData(((EntityPlayer) event.entity));
+			PacketDispatcher.sendTo(new SyncExtendedPlayerMaterials((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
 			GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Wehavecookies56");
 			UUID uuidWehavecookies56 = profileWehavecookies56.getId();
 			if(event.entity.getUniqueID() == uuidWehavecookies56){
@@ -81,6 +88,7 @@ public class EventHandler {
 		if(!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer){
 			ExtendedPlayer.get((EntityPlayer) event.entity).saveProxyData((EntityPlayer) event.entity);
 			ExtendedPlayerRecipes.get((EntityPlayer) event.entity).saveProxyData((EntityPlayer) event.entity);
+			ExtendedPlayerMaterials.get((EntityPlayer) event.entity).saveProxyData((EntityPlayer) event.entity);
 		}
 		else{
 

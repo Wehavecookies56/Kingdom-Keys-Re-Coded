@@ -3,13 +3,6 @@ package wehavecookies56.kk.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import wehavecookies56.kk.network.CommonProxy;
-import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
-import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
-import wehavecookies56.kk.recipes.Recipe;
-import wehavecookies56.kk.recipes.RecipeRegistry;
-import wehavecookies56.kk.util.LogHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -18,6 +11,12 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.common.util.Constants;
+import wehavecookies56.kk.network.CommonProxy;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
+import wehavecookies56.kk.recipes.Recipe;
+import wehavecookies56.kk.recipes.RecipeRegistry;
+import wehavecookies56.kk.util.LogHelper;
 
 public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 
@@ -42,6 +41,7 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 			tagList.appendTag(recipes);
 		}
 		properties.setTag("RecipeList", tagList);
+
 		compound.setTag(EXT_PROP_NAME, properties);
 
 	}
@@ -67,8 +67,8 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 
 	public void learnRecipe(Recipe recipe){
 		knownRecipes.add(recipe.getName());
-		 if(player instanceof EntityPlayerMP)
-			 this.sync();
+		if(player instanceof EntityPlayerMP)
+			this.sync();
 	}
 
 	public final void sync(){

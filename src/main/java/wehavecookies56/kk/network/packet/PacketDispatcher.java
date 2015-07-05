@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
+import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
@@ -18,6 +19,7 @@ import wehavecookies56.kk.network.packet.server.MagicFire;
 import wehavecookies56.kk.network.packet.server.MagicThunder;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
 import wehavecookies56.kk.network.packet.server.OpenGui;
+import wehavecookies56.kk.network.packet.server.OpenMaterials;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.network.packet.server.UseRecipe;
@@ -33,6 +35,7 @@ public class PacketDispatcher
 		//Server to Client
 		registerMessage(SyncExtendedPlayer.class);
 		registerMessage(SyncExtendedPlayerRecipes.class);
+		registerMessage(SyncExtendedPlayerMaterials.class);
 
 		//Client to Server
 		registerMessage(MunnyPickup.class);
@@ -46,6 +49,7 @@ public class PacketDispatcher
 		registerMessage(MagicThunder.class);
 		registerMessage(MagicCure.class);
 		registerMessage(UseRecipe.class);
+		registerMessage(OpenMaterials.class);
 
 		//Bidirectional
 	}
