@@ -115,6 +115,181 @@ public class GuiRecipeList extends GuiScrollingList {
     	if(name.equals(ModItems.Crabclaw.getUnlocalizedName())){
     		return new ItemStack(ModItems.Crabclaw, 1);
     	}
+    	if(name.equals(ModItems.CrownofGuilt.getUnlocalizedName())){
+    		return new ItemStack(ModItems.CrownofGuilt, 1);
+    	}
+    	if(name.equals(ModItems.DarkerThanDark.getUnlocalizedName())){
+    		return new ItemStack(ModItems.DarkerThanDark, 1);
+    	}
+    	if(name.equals(ModItems.Darkgnaw.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Darkgnaw, 1);
+    	}
+    	if(name.equals(ModItems.DecisivePumpkin.getUnlocalizedName())){
+    		return new ItemStack(ModItems.DecisivePumpkin, 1);
+    	}
+    	if(name.equals(ModItems.DestinysEmbrace.getUnlocalizedName())){
+    		return new ItemStack(ModItems.DestinysEmbrace, 1);
+    	}
+    	if(name.equals(ModItems.DiamondDust.getUnlocalizedName())){
+    		return new ItemStack(ModItems.DiamondDust, 1);
+    	}
+    	if(name.equals(ModItems.Divewing.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Divewing, 1);
+    	}
+    	if(name.equals(ModItems.DivineRose.getUnlocalizedName())){
+    		return new ItemStack(ModItems.DivineRose, 1);
+    	}
+    	if(name.equals(ModItems.DreamSword.getUnlocalizedName())){
+    		return new ItemStack(ModItems.DreamSword, 1);
+    	}
+    	if(name.equals(ModItems.DualDisc.getUnlocalizedName())){
+    		return new ItemStack(ModItems.DualDisc, 1);
+    	}
+    	if(name.equals(ModItems.Earthshaker.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Earthshaker, 1);
+    	}
+    	if(name.equals(ModItems.EndofPain.getUnlocalizedName())){
+    		return new ItemStack(ModItems.EndofPain, 1);
+    	}
+    	if(name.equals(ModItems.EndsoftheEarth.getUnlocalizedName())){
+    		return new ItemStack(ModItems.EndsoftheEarth, 1);
+    	}
+    	if(name.equals(ModItems.FairyHarp.getUnlocalizedName())){
+    		return new ItemStack(ModItems.FairyHarp, 1);
+    	}
+    	if(name.equals(ModItems.FairyStars.getUnlocalizedName())){
+    		return new ItemStack(ModItems.FairyStars, 1);
+    	}
+    	if(name.equals(ModItems.FatalCrest.getUnlocalizedName())){
+    		return new ItemStack(ModItems.FatalCrest, 1);
+    	}
+    	if(name.equals(ModItems.Fenrir.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Fenrir, 1);
+    	}
+    	if(name.equals(ModItems.FerrisGear.getUnlocalizedName())){
+    		return new ItemStack(ModItems.FerrisGear, 1);
+    	}
+    	if(name.equals(ModItems.FollowtheWind.getUnlocalizedName())){
+    		return new ItemStack(ModItems.FollowtheWind, 1);
+    	}
+    	if(name.equals(ModItems.FrolicFlame.getUnlocalizedName())){
+    		return new ItemStack(ModItems.FrolicFlame, 1);
+    	}
+    	if(name.equals(ModItems.GlimpseofDarkness.getUnlocalizedName())){
+    		return new ItemStack(ModItems.GlimpseofDarkness, 1);
+    	}
+    	if(name.equals(ModItems.GuardianBell.getUnlocalizedName())){
+    		return new ItemStack(ModItems.GuardianBell, 1);
+    	}
+    	if(name.equals(ModItems.GuardianSoul.getUnlocalizedName())){
+    		return new ItemStack(ModItems.GuardianSoul, 1);
+    	}
+    	if(name.equals(ModItems.GullWing.getUnlocalizedName())){
+    		return new ItemStack(ModItems.GullWing, 1);
+    	}
+    	if(name.equals(ModItems.HerosCrest.getUnlocalizedName())){
+    		return new ItemStack(ModItems.HerosCrest, 1);
+    	}
+    	if(name.equals(ModItems.HiddenDragon.getUnlocalizedName())){
+    		return new ItemStack(ModItems.HiddenDragon, 1);
+    	}
+    	if(name.equals(ModItems.Hyperdrive.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Hyperdrive, 1);
+    	}
+    	if(name.equals(ModItems.IncompleteKiblade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.IncompleteKiblade, 1);
+    	}
+    	if(name.equals(ModItems.JungleKing.getUnlocalizedName())){
+    		return new ItemStack(ModItems.JungleKing, 1);
+    	}
+    	if(name.equals(ModItems.KeybladeofPeoplesHearts.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KeybladeofPeoplesHearts, 1);
+    	}
+    	if(name.equals(ModItems.Kiblade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Kiblade, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKeyD.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKeyD, 1);
+    	}
+    	if(name.equals(ModItems.KnockoutPunch.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KnockoutPunch, 1);
+    	}
+    	if(name.equals(ModItems.LadyLuck.getUnlocalizedName())){
+    		return new ItemStack(ModItems.LadyLuck, 1);
+    	}
+    	if(name.equals(ModItems.LeasKeyblade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.LeasKeyblade, 1);
+    	}
+    	if(name.equals(ModItems.LeopardosForetellersKeyblade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.LeopardosForetellersKeyblade, 1);
+    	}
+    	if(name.equals(ModItems.Leviathan.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Leviathan, 1);
+    	}
+    	if(name.equals(ModItems.Lionheart.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Lionheart, 1);
+    	}
+    	if(name.equals(ModItems.LostMemory.getUnlocalizedName())){
+    		return new ItemStack(ModItems.LostMemory, 1);
+    	}
+    	if(name.equals(ModItems.LunarEclipse.getUnlocalizedName())){
+    		return new ItemStack(ModItems.LunarEclipse, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
+    		return new ItemStack(ModItems.KingdomKey, 1);
+    	}
+    	
     	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
     		return new ItemStack(ModItems.KingdomKey, 1);
     	}
