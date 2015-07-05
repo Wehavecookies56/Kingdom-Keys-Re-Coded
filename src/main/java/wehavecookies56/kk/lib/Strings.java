@@ -122,7 +122,8 @@ public class Strings {
 	PureHeart = "pureheart",
 	KingdomHearts = "kingdomhearts",
 	DarkLeather = "darkleather",
-	SynthesisMaterial = "synthesismaterial"
+	SynthesisMaterial = "synthesismaterial",
+	Recipe = "recipe"
 	;
 
 	//Armour

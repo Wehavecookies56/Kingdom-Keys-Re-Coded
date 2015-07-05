@@ -10,12 +10,14 @@ import static wehavecookies56.kk.lib.Strings.*;
 public class Config {
 
 	public static Configuration config = KingdomKeys.config;
-	
+
 	public static String[] items;
-	
+
 	public static boolean
-	EnableWorldGen;
-	
+	EnableWorldGen,
+	EnableUpdateCheck
+	;
+
 	public static String
 		TM_KingdomKey,
 		TM_Oathkeeper,
@@ -47,7 +49,7 @@ public class Config {
 		TM_MaverickFlare,
 		TM_TotalEclipse,
 		TM_MidnightRoar,
-		TM_TwoBecomeOne,	
+		TM_TwoBecomeOne,
 		TM_UltimaWeaponKH2,
 		TM_WaytotheDawn,
 		TM_DestinysEmbrace,
@@ -134,8 +136,8 @@ public class Config {
 		TM_UnicornisForetellersKeyblade,
 		TM_UrsusForetellersKeyblade,
 		TM_VulpeusForetellersKeyblade;
-	
-	public static String[] 
+
+	public static String[]
 		A_TM_AbaddonPlasma,
 		A_TM_AbyssalTide,
 		A_TM_AllforOne,
@@ -253,18 +255,21 @@ public class Config {
 		A_TM_WoodenStick,
 		A_TM_YoungXehanortsKeyblade,
 		A_TM_ZeroOne;
-	
+
 	public static void syncConfig(){
 		FMLCommonHandler.instance().bus().register(KingdomKeys.instance);
 		config.load();
 		/**WORLDGEN******************************/
-		final String WORLDGEN = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "Worldgen";
+		final String WORLDGEN = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "worldgen";
 		EnableWorldGen = config.getBoolean("Enable World Gen", WORLDGEN, Booleans.ENABLEWORLDGEN_DEFAULT, "Toggles all world generation performed by this mod");
-		
+
+		/**NETWORK*******************************/
+		final String NETWORK = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "network";
+		EnableUpdateCheck = config.getBoolean("Enable Update Checking", NETWORK, Booleans.ENABLEUPDATECHECK, "Toggles whether the update checker checks for updates");
+
 		/**ITEMS*********************************/
-		final String ITEMS = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "Items";
-		//items = config.get(ITEMS, "", "").getStringList();
-		
+		final String ITEMS = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "items";
+
 		/**TOOLMATERIALS*************************/
 		final String TM = ITEMS + config.CATEGORY_SPLITTER + "ToolMaterials";
 		config.addCustomCategoryComment(TM, "The tool materials for items which use them, A space after commas is required. \nParameters {(String) NAME, (int) HARVESTLEVEL, (int) MAXUSES, (float) EFFICIENCY, (float) DAMAGE, (int) ENCHANTABILITY}");
@@ -385,7 +390,7 @@ public class Config {
 		TM_WoodenStick = config.get(TM, StatCollector.translateToLocal(TM_WoodenStick_NAME), TM_WoodenStick_DEFAULT).getString();
 		TM_YoungXehanortsKeyblade = config.get(TM, StatCollector.translateToLocal(TM_YoungXehanortsKeyblade_NAME), TM_YoungXehanortsKeyblade_DEFAULT).getString();
 		TM_ZeroOne = config.get(TM, StatCollector.translateToLocal(TM_ZeroOne_NAME), TM_ZeroOne_DEFAULT).getString();
-		
+
 		A_TM_AbaddonPlasma = TM_AbaddonPlasma.split(", ");
 		A_TM_AbyssalTide = TM_AbyssalTide.split(", ");
 		A_TM_AllforOne = TM_AllforOne.split(", ");
@@ -507,6 +512,6 @@ public class Config {
 		if(config.hasChanged()){
 			config.save();
 		}
-		
+
 	}
 }

@@ -62,15 +62,6 @@ public class EventHandler {
 			PacketDispatcher.sendTo(new SyncExtendedPlayer((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
 			ExtendedPlayerRecipes.get((EntityPlayer) event.entity).loadProxyData(((EntityPlayer) event.entity));
 			PacketDispatcher.sendTo(new SyncExtendedPlayerRecipes((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
-			if(!RecipeRegistry.isRecipeKnown((EntityPlayer) event.entity, ModItems.KingdomKey.getUnlocalizedName())){
-				RecipeRegistry.learnrecipe((EntityPlayer) event.entity, ModItems.KingdomKey.getUnlocalizedName());
-			}
-			if(!RecipeRegistry.isRecipeKnown((EntityPlayer) event.entity, ModItems.KingdomKeyD.getUnlocalizedName())){
-				RecipeRegistry.learnrecipe((EntityPlayer) event.entity, ModItems.KingdomKeyD.getUnlocalizedName());
-			}
-			if(!RecipeRegistry.isRecipeKnown((EntityPlayer) event.entity, ModItems.AbaddonPlasma.getUnlocalizedName())){
-				RecipeRegistry.learnrecipe((EntityPlayer) event.entity, ModItems.AbaddonPlasma.getUnlocalizedName());
-			}
 			GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Wehavecookies56");
 			UUID uuidWehavecookies56 = profileWehavecookies56.getId();
 			if(event.entity.getUniqueID() == uuidWehavecookies56){

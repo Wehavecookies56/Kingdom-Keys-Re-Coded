@@ -17,6 +17,7 @@ import wehavecookies56.kk.lib.Strings;
 
 public class ModItems {
 
+	//Keyblades
 	public static Item
 		AbaddonPlasma,
 		AbyssalTide,
@@ -137,7 +138,7 @@ public class ModItems {
 		ZeroOne
 	;
 
-	//CHAINS
+	//Chains
 	public static Item
 		Chain_AbaddonPlasma,
 		Chain_AbyssalTide,
@@ -256,6 +257,7 @@ public class ModItems {
 		Chain_ZeroOne
 		;
 
+	//Misc
 	public static Item
 		Munny,
 		EmptyPotion,
@@ -267,9 +269,11 @@ public class ModItems {
 		PureHeart,
 		KingdomHearts,
 		DarkLeather,
-		SynthesisMaterial
+		SynthesisMaterial,
+		Recipe
 		;
 
+	//Music Discs
 	public static Item
 		Disc_Birth_by_Sleep_A_Link_to_the_Future,
 		Disc_Darkness_of_the_Unknown,
@@ -286,33 +290,35 @@ public class ModItems {
 		Disc_The_13th_Anthology
 		;
 
+	//Armour
 	public static Item
 		OrganizationRobe_Helmet,
 		OrganizationRobe_Chestplate,
 		OrganizationRobe_Leggings,
 		OrganizationRobe_Boots,
-		
+
 		Terra_Helmet,
 		Terra_Chestplate,
 		Terra_Leggings,
-		Terra_Boots,		
-		
+		Terra_Boots,
+
 		Aqua_Helmet,
 		Aqua_Chestplate,
 		Aqua_Leggings,
 		Aqua_Boots,
-		
+
 		Ventus_Helmet,
 		Ventus_Chestplate,
 		Ventus_Leggings,
 		Ventus_Boots,
-		
+
 		Eraqus_Helmet,
 		Eraqus_Chestplate,
 		Eraqus_Leggings,
 		Eraqus_Boots
 		;
 
+	//Armour materials
 	public static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", 35, new int[]{4, 8, 5, 3}, 15);
 	public static ArmorMaterial TERRA = EnumHelper.addArmorMaterial("TERRA", Reference.MODID + ":terra", 35, new int[]{5, 9, 6, 5}, 15);
 	public static ArmorMaterial AQUA = EnumHelper.addArmorMaterial("AQUA", Reference.MODID + ":aqua", 35, new int[]{5, 9, 6, 5}, 15);
@@ -584,6 +590,8 @@ public class ModItems {
 		Disc_Simple_And_Clean_PLANITb_Remix = new ItemKKRecord(Strings.Disc_Simple_And_Clean_PLANITb_Remix_Name, Strings.Disc_Simple_And_Clean_PLANITb_Remix, tabKingdomKeys, 2.37F);
 		Disc_Sinister_Sundown = new ItemKKRecord(Strings.Disc_Sinister_Sundown_Name, Strings.Disc_Sinister_Sundown, tabKingdomKeys, 2.13F);
 		Disc_The_13th_Anthology = new ItemKKRecord(Strings.Disc_The_13th_Anthology_Name, Strings.Disc_The_13th_Anthology, tabKingdomKeys, 6.38F);
+
+		Recipe = new ItemRecipe().setUnlocalizedName(Strings.Recipe).setCreativeTab(tabKingdomKeys);
 	}
 
 	public static void register(){
@@ -862,6 +870,7 @@ public class ModItems {
 		GameRegistry.registerItem(KingdomHearts, Strings.KingdomHearts);
 		GameRegistry.registerItem(DarkLeather, Strings.DarkLeather);
 		GameRegistry.registerItem(SynthesisMaterial, Strings.SynthesisMaterial);
+		GameRegistry.registerItem(Recipe, Strings.Recipe);
 
 		//DISCS
 		GameRegistry.registerItem(Disc_Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future);
@@ -885,7 +894,7 @@ public class ModItems {
 		registerRender(OrganizationRobe_Chestplate);
 		registerRender(OrganizationRobe_Leggings);
 		registerRender(OrganizationRobe_Boots);
-	
+
 		registerRender(Terra_Helmet);
 		registerRender(Terra_Chestplate);
 		registerRender(Terra_Leggings);
@@ -1156,6 +1165,7 @@ public class ModItems {
 		registerRender(KingdomHearts);
 		registerRender(DarkLeather);
 		registerRender(SynthesisMaterial);
+		registerRender(Recipe);
 
 		//Discs
 		registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);

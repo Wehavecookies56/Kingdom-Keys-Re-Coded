@@ -20,6 +20,7 @@ import wehavecookies56.kk.network.packet.server.MunnyPickup;
 import wehavecookies56.kk.network.packet.server.OpenGui;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
+import wehavecookies56.kk.network.packet.server.UseRecipe;
 
 public class PacketDispatcher
 {
@@ -43,7 +44,8 @@ public class PacketDispatcher
 		registerMessage(MagicFire.class);
 		registerMessage(MagicBlizzard.class);
 		registerMessage(MagicThunder.class);
-		registerMessage(MagicCure.class);		
+		registerMessage(MagicCure.class);
+		registerMessage(UseRecipe.class);
 
 		//Bidirectional
 	}

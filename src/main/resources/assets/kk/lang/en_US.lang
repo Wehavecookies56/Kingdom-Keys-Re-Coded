@@ -39,6 +39,10 @@ tile.serenityore.name=Serenity Ore
 tile.tranquilore.name=Tranquil Ore
 tile.twilightore.name=Twilight Ore
 
+#Other
+tile.synthesistable.name=Synthesis Table
+tile.kkchest.name=Chest
+
 ############################
 #Items
 ############################

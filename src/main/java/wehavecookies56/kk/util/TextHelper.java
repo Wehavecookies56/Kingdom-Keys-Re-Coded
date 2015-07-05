@@ -1,10 +1,13 @@
 package wehavecookies56.kk.util;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
 public class TextHelper {
 	/**
-     * Color Coding *
+     * Color Coding
      */
     public static final String BLACK = (char) 167 + "0";
     public static final String BLUE = (char) 167 + "1";
@@ -24,20 +27,40 @@ public class TextHelper {
     public static final String WHITE = (char) 167 + "f";
 
     /**
-     * Text formatting *
+     * Text formatting
      */
     public static final String OBFUSCATED = (char) 167 + "k";
     public static final String BOLD = (char) 167 + "l";
     public static final String STRIKETHROUGH = (char) 167 + "m";
     public static final String UNDERLINE = (char) 167 + "n";
     public static final String ITALIC = (char) 167 + "o";
-    //This resets color and formatting
     public static final String END = (char) 167 + "r";
 
     /**
-     * Enable Localizationizing *
+     * Enable Localizationizing
      */
     public static String localize(String key) {
         return StatCollector.translateToLocal(key);
+    }
+
+    /**
+     * Send message in the chat with formatting
+     */
+    public static void sendFormattedChatMessage(String message, EnumChatFormatting formatting, EntityPlayer player){
+    	String s = "";
+		String[] m = message.split(" ");
+		for(String t : m){
+		        s += formatting;
+			s += t;
+			s += " ";
+		}
+		player.addChatMessage(new ChatComponentText(s));
+    }
+
+    /**
+     * Send message in the chat
+     */
+    public static void sendChatMessage(String message, EntityPlayer player){
+    	player.addChatMessage(new ChatComponentText(message));
     }
 }

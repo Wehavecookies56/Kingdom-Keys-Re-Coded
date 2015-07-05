@@ -3,10 +3,15 @@ package wehavecookies56.kk.client.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.GuiScrollingList;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
@@ -63,7 +68,7 @@ public class GuiRecipeList extends GuiScrollingList {
     {
     }
 
-    @Override
+	@Override
     protected void drawSlot(int var1, int var2, int var3, int var4, Tessellator var5)
     {
     	ExtendedPlayerRecipes props = ExtendedPlayerRecipes.get(Minecraft.getMinecraft().thePlayer);
@@ -76,6 +81,27 @@ public class GuiRecipeList extends GuiScrollingList {
     public ItemStack getItemStackFromName(String name){
     	if(name.equals(ModItems.AbaddonPlasma.getUnlocalizedName())){
     		return new ItemStack(ModItems.AbaddonPlasma, 1);
+    	}
+    	if(name.equals(ModItems.AbyssalTide.getUnlocalizedName())){
+    		return new ItemStack(ModItems.AbyssalTide, 1);
+    	}
+    	if(name.equals(ModItems.AllforOne.getUnlocalizedName())){
+    		return new ItemStack(ModItems.AllforOne, 1);
+    	}
+    	if(name.equals(ModItems.AnguisForetellersKeyblade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.AnguisForetellersKeyblade, 1);
+    	}
+    	if(name.equals(ModItems.AstralBlast.getUnlocalizedName())){
+    		return new ItemStack(ModItems.AstralBlast, 1);
+    	}
+    	if(name.equals(ModItems.Aubade.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Aubade, 1);
+    	}
+    	if(name.equals(ModItems.BondofFlame.getUnlocalizedName())){
+    		return new ItemStack(ModItems.BondofFlame, 1);
+    	}
+    	if(name.equals(ModItems.Brightcrest.getUnlocalizedName())){
+    		return new ItemStack(ModItems.Brightcrest, 1);
     	}
     	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
     		return new ItemStack(ModItems.KingdomKey, 1);

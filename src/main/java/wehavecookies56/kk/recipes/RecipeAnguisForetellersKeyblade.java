@@ -7,11 +7,11 @@ import net.minecraft.item.Item;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Strings;
 
-public class RecipeAbaddonPlasma extends Recipe {
+public class RecipeAnguisForetellersKeyblade extends Recipe {
 
 	public String name;
 
-	public RecipeAbaddonPlasma(String name) {
+	public RecipeAnguisForetellersKeyblade(String name) {
 		this.name = name;
 	}
 
@@ -22,7 +22,7 @@ public class RecipeAbaddonPlasma extends Recipe {
 
 	@Override
 	public Item getResult() {
-		return ModItems.AbyssalTide;
+		return ModItems.AnguisForetellersKeyblade;
 	}
 
 	@Override
