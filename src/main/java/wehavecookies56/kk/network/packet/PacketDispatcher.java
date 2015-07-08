@@ -11,6 +11,7 @@ import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
+import wehavecookies56.kk.network.packet.server.CreateFromSynthesisRecipe;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MagicBlizzard;
@@ -50,6 +51,7 @@ public class PacketDispatcher
 		registerMessage(MagicCure.class);
 		registerMessage(UseRecipe.class);
 		registerMessage(OpenMaterials.class);
+		registerMessage(CreateFromSynthesisRecipe.class);
 
 		//Bidirectional
 	}

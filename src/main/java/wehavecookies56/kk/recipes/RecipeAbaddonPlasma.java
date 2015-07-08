@@ -22,14 +22,14 @@ public class RecipeAbaddonPlasma extends Recipe {
 
 	@Override
 	public Item getResult() {
-		return ModItems.AbyssalTide;
+		return ModItems.Chain_AbaddonPlasma;
 	}
 
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard);
-		reqs.add(Strings.SM_FrostShard);
+		reqs.add(Strings.SM_BlazingShard + ".x.1");
+		reqs.add(Strings.SM_FrostShard + ".x.1");
 		return reqs;
 	}
 

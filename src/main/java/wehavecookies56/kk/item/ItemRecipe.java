@@ -74,12 +74,12 @@ public class ItemRecipe extends Item {
 			String Recipe1 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() -1));
 			String Recipe2 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() -1));
 			//Generate a new random value for the second recipe until it's not equal the first
-			while(Recipe2 == Recipe1){
+			while(Recipe2.equals(Recipe1)){
 				Recipe2 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() -1));
 			}
 			//Generate a new random value for the third recipe until it's not equal the first or the second
 			String Recipe3 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() -1));
-			while(Recipe3 == Recipe2 || Recipe3 == Recipe1){
+			while(Recipe3.equals(Recipe2) || Recipe3.equals(Recipe1)){
 				Recipe3 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() -1));
 			}
 			//Set values to NBT data

@@ -20,7 +20,7 @@ public class ModRecipes {
 		registerRecipe(new RecipeCounterpoint(ModItems.Counterpoint.getUnlocalizedName()));
 		registerRecipe(new RecipeCrabclaw(ModItems.Crabclaw.getUnlocalizedName()));
 		registerRecipe(new RecipeCrownofGuilt(ModItems.CrownofGuilt.getUnlocalizedName()));
-		/*registerRecipe(new RecipeDarkerThanDark(ModItems.DarkerThanDark.getUnlocalizedName()));
+		registerRecipe(new RecipeDarkerThanDark(ModItems.DarkerThanDark.getUnlocalizedName()));
 		registerRecipe(new RecipeDarkgnaw(ModItems.Darkgnaw.getUnlocalizedName()));
 		registerRecipe(new RecipeDecisivePumpkin(ModItems.DecisivePumpkin.getUnlocalizedName()));
 		registerRecipe(new RecipeDestinysEmbrace(ModItems.DestinysEmbrace.getUnlocalizedName()));
@@ -123,7 +123,7 @@ public class ModRecipes {
 		registerRecipe(new RecipeWoodenKeyblade(ModItems.WoodenKeyblade.getUnlocalizedName()));
 		registerRecipe(new RecipeWoodenStick(ModItems.WoodenStick.getUnlocalizedName()));
 		registerRecipe(new RecipeYoungXehanortsKeyblade(ModItems.YoungXehanortsKeyblade.getUnlocalizedName()));
-		registerRecipe(new RecipeZeroOne(ModItems.ZeroOne.getUnlocalizedName()));*/
+		registerRecipe(new RecipeZeroOne(ModItems.ZeroOne.getUnlocalizedName()));
 
 	}
 }

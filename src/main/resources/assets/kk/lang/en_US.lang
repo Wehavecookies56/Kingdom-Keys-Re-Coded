@@ -48,10 +48,84 @@ tile.kkchest.name=Chest
 ############################
 
 #Synthesis Materials
+sm.rank=Rank
+
 sm.blazingshard.name=Blazing Shard
 sm.blazingstone.name=Blazing Stone
 sm.blazinggem.name=Blazing Gem
 sm.blazingcrystal.name=Blazing Crystal
+
+sm.brightshard.name=Bright Shard
+sm.brightstone.name=Bright Stone
+sm.brightgem.name=Bright Gem
+sm.brightcrystal.name=Bright Crystal
+
+sm.darkshard.name=Dark Shard
+sm.darkstone.name=Dark Stone
+sm.darkgem.name=Dark Gem
+sm.darkcrystal.name=Dark Crystal
+
+sm.denseshard.name=Dense Shard
+sm.densestone.name=Dense Stone
+sm.densegem.name=Dense Gem
+sm.densecrystal.name=Dense Crystal
+
+sm.energyshard.name=Energy Shard
+sm.energystone.name=Energy Stone
+sm.energygem.name=Energy Gem
+sm.energycrystal.name=Energy 
+
+sm.frostshard.name=Frost Shard
+sm.froststone.name=Frost Stone
+sm.frostgem.name=Frost Gem
+sm.frostcrystal.name=Frost Crystal
+
+sm.lightningshard.name=Lightning Shard
+sm.lightningstone.name=Lightning Stone
+sm.lightninggem.name=Lightning Gem
+sm.lightningcrystal.name=Lightning Crystal
+
+sm.lostillusion.name=Lost Illusion
+
+sm.lucidshard.name=Lucid Shard
+sm.lucidstone.name=Lucid Stone
+sm.lucidgem.name=Lucid Gem
+sm.lucidcrystal.name=Lucid Crystal
+
+sm.manifestillusion.name=Manifest Illusion
+
+sm.mythrilshard.name=Mythril Shard
+sm.mythrilstone.name=Mythril Stone
+sm.mytrhilgem.name=Mythril Gem
+sm.mythrilcrystal.name=Mythril Crystal
+
+sm.orichalcum.name=Orichalcum
+sm.orichalcum+.name=Orichalcum+
+
+sm.powershard.name=Power Shard
+sm.powerstone.name=Power Stone
+sm.powergem.name=Power Gem
+sm.powercrystal.name=Power Crystal
+
+sm.remembranceshard.name=Remembrance Shard
+sm.remembrancestone.name=Remembrance Stone
+sm.remembrancegem.name=Remembrance Gem
+sm.remembrancecrystal.name=Remembrance Crystal
+
+sm.serenityshard.name=Serenity Shard
+sm.serenitystone.name=Serenity Stone
+sm.serenitygem.name=Serenity Gem
+sm.serenitycrystal.name=Serenity Crystal
+
+sm.tranquilshard.name=Tranquil Shard
+sm.tranquilstone.name=Tranquil Stone
+sm.tranquilgem.name=Tranquil Gem
+sm.tranquilcrystal.name=Tranquil Crystal
+
+sm.twilightshard.name=Twilight Shard
+sm.twilightstone.name=Twilight Stone
+sm.twilightgem.name=Twilight Gem
+sm.twilightcrystal.name=Twilight Crystal
 
 #Armor
 item.organizationrobe_helmet.name=Organization Hood
@@ -91,6 +165,7 @@ item.kingdomhearts.name=Kingdom Hearts
 item.darkheart.name=Dark Heart
 item.darkleather.name=Dark Leather
 item.synthesismaterial.name=Synthesis Material
+item.recipe.name=Synthesis Recipe
 
 #Music Discs
 disc.duration.desc=Duration
@@ -173,7 +248,6 @@ item.ladyluck.name=Lady Luck
 item.leaskeyblade.name=Lea's Keyblade
 item.leopardosforetellerskeyblade.name=Leopardos Foreteller's Keyblade
 item.leviathan.name=Leviathan
-item.lightseeker.name=Light Seeker
 item.lionheart.name=Lionheart
 item.lostmemory.name=Lost Memory
 item.lunareclipse.name=Lunar Eclipse
@@ -421,6 +495,7 @@ gui.synthesis.main.recipes=Recipes
 gui.synthesis.main.freedevelopment=Free Development
 gui.synthesis.main.materials=Materials
 gui.synthesis.main.recipes.requiredmaterials=Required Materials
+gui.synthesis.main.recipes.create=Create
 
 ############################
 #Keybinds

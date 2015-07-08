@@ -1,11 +1,6 @@
 package wehavecookies56.kk;
 
-import java.util.Collections;
-import java.util.Random;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,13 +13,13 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.block.ModBlocksRecipes;
 import wehavecookies56.kk.entities.TileEntitySynthesisTable;
-import wehavecookies56.kk.item.ItemStacks;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.item.ModItemsRecipes;
 import wehavecookies56.kk.lib.Config;
@@ -35,10 +30,8 @@ import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.UpdateChecker;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.recipes.ModRecipes;
-import wehavecookies56.kk.recipes.RecipeAbaddonPlasma;
-import wehavecookies56.kk.recipes.RecipeKingdomKey;
-import wehavecookies56.kk.recipes.RecipeKingdomKeyD;
 import wehavecookies56.kk.recipes.RecipeRegistry;
+import wehavecookies56.kk.server.command.CommandLearnRecipe;
 import wehavecookies56.kk.util.LogHelper;
 import wehavecookies56.kk.util.ScrollHandler;
 import wehavecookies56.kk.worldgen.WorldGenBlox;
@@ -100,13 +93,19 @@ public class KingdomKeys {
 		LogHelper.info("Tile entities loaded");
 		Lists.init();
 		ModRecipes.init();
-		LogHelper.info(RecipeRegistry.getRecipeMap().size() + "Synthesis recipes loaded");
-		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe), 1, 1, 30));
+		LogHelper.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipes loaded");
+		ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
 		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
+		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
+		ChestGenHooks.getInfo(ChestGenHooks.NETHER_FORTRESS).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
+		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
+		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
+		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_DISPENSER).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
+		ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
+		ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CROSSING).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
+		ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
+		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
+
 		LogHelper.info("Dungeon loot added");
 	}
 
@@ -114,6 +113,11 @@ public class KingdomKeys {
 	public void postInit(FMLPostInitializationEvent e){
 		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.EventHandler());
 		LogHelper.info("Events loaded");
+	}
+
+	@EventHandler
+	public void serverStart(FMLServerStartingEvent e){
+		//e.registerServerCommand(new CommandLearnRecipe());
 	}
 
 }

@@ -2,6 +2,8 @@ package wehavecookies56.kk.util;
 
 import java.util.UUID;
 
+import com.mojang.authlib.GameProfile;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -12,7 +14,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.client.event.EntityViewRenderEvent.CameraSetup;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.block.ModBlocks;
+import wehavecookies56.kk.client.gui.GuiMaterialList;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
@@ -33,16 +35,12 @@ import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
 import wehavecookies56.kk.item.ItemStacks;
 import wehavecookies56.kk.item.ModItems;
-import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
-import wehavecookies56.kk.recipes.RecipeRegistry;
-
-import com.mojang.authlib.GameProfile;
 
 public class EventHandler {
 
@@ -55,7 +53,7 @@ public class EventHandler {
 			ExtendedPlayerRecipes.register((EntityPlayer) event.entity);
 		}
 		if(event.entity instanceof EntityPlayer && ExtendedPlayerMaterials.get((EntityPlayer) event.entity) == null){
-			ExtendedPlayerMaterials.register((EntityPlayer) event.entity);
+			ExtendedPlayerMaterials.register((EntityPlayer) event.entity, 100);
 		}
 
 	}
@@ -69,6 +67,9 @@ public class EventHandler {
 			PacketDispatcher.sendTo(new SyncExtendedPlayerRecipes((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
 			ExtendedPlayerMaterials.get((EntityPlayer) event.entity).loadProxyData(((EntityPlayer) event.entity));
 			PacketDispatcher.sendTo(new SyncExtendedPlayerMaterials((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
+
+			GuiMaterialList.addMaterials((EntityPlayer) event.entity);
+
 			GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Wehavecookies56");
 			UUID uuidWehavecookies56 = profileWehavecookies56.getId();
 			if(event.entity.getUniqueID() == uuidWehavecookies56){

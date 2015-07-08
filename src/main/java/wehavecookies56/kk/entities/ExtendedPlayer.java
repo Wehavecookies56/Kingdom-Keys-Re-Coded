@@ -73,7 +73,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.maxExperience = properties.getInteger("MaxExperience");
 		this.maxMp = properties.getInteger("MaxMP");
 		this.keybladeSummoned = properties.getInteger("KeybladeSummoned");
-		LogHelper.info("Loaded munny: " + properties.getString("Munny"));
+		LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
 		String s = properties.getInteger("KeybladeSummoned") > 0 ? "Keyblade is summoned" : "Keyblade is not summoned";
 		LogHelper.info("Loaded Summon data: " + s);
 	}

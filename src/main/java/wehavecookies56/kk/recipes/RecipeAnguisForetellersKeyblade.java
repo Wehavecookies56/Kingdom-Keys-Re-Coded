@@ -28,7 +28,7 @@ public class RecipeAnguisForetellersKeyblade extends Recipe {
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard);
+		reqs.add(Strings.SM_BlazingShard + ".x.1");
 		return reqs;
 	}
 

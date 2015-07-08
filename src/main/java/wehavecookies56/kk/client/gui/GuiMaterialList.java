@@ -1,15 +1,17 @@
 package wehavecookies56.kk.client.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.client.GuiScrollingList;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
-import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
-import wehavecookies56.kk.item.ModItems;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.TextHelper;
 
 public class GuiMaterialList extends GuiScrollingList {
@@ -21,412 +23,306 @@ public class GuiMaterialList extends GuiScrollingList {
 	static ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
 	static int width = sr.getScaledWidth();
 	static int height = sr.getScaledHeight();
-	//static int sizeY = (int) (parent.height*0.8);
 	static int sizeX = 150;
 	static int posX = 5;
 	static int posY = (height-200)/2;
-	//int selected;
 
-    public GuiMaterialList(GuiSynthesis parent)
-    {
-    	//super(Minecraft minecraft, int width, int height, int top, int bottom, int left, int entryHeight)
-        super(parent.mc, 150, 300, 60, parent.height - ((parent.height/8)+70/16), 8, 35);
-        this.parent = parent;
-        //this.selected = parent.selected;
-    }
+	public GuiMaterialList(GuiSynthesis parent){
+		super(parent.mc, 150, 300, 60, parent.height - ((parent.height/8)+70/16), 8, 35);
+		this.parent = parent;
+	}
 
+	public static List<String> materials = new ArrayList<String>();
 
-    @Override
-    protected int getSize()
-    {
-        return ExtendedPlayerMaterials.get(Minecraft.getMinecraft().thePlayer).materials.size();
-    }
+	//NEVER CHANGE THESE VALUES
+	public static final int
+	Index_BlazingShard = 0,
+	Index_BlazingStone = 1,
+	Index_BlazingGem = 2,
+	Index_BlazingCrystal = 3,
+	Index_BrightShard = 4,
+	Index_BrightStone = 5,
+	Index_BrightGem = 6,
+	Index_BrightCrystal = 7,
+	Index_DarkShard = 8,
+	Index_DarkStone = 9,
+	Index_DarkGem = 10,
+	Index_DarkCrystal = 11,
+	Index_DenseShard = 12,
+	Index_DenseStone = 13,
+	Index_DenseGem = 14,
+	Index_DenseCrystal = 15,
+	Index_EnergyShard = 16,
+	Index_EnergyStone = 17,
+	Index_EnergyGem = 18,
+	Index_EnergyCrystal = 19,
+	Index_FrostShard = 20,
+	Index_FrostStone = 21,
+	Index_FrostGem = 22,
+	Index_FrostCrystal = 23,
+	Index_LightningShard = 24,
+	Index_LightningStone = 25,
+	Index_LightningGem = 26,
+	Index_LightningCrystal = 27,
+	Index_LostIllusion = 28,
+	Index_LucidShard = 29,
+	Index_LucidStone = 30,
+	Index_LucidGem = 31,
+	Index_LucidCrystal = 32,
+	Index_ManifestIllusion = 33,
+	Index_MythrilShard = 34,
+	Index_MythrilStone = 35,
+	Index_MythrilGem = 36,
+	Index_MythrilCrystal = 37,
+	Index_Orichalcum = 38,
+	Index_OrichalcumPlus = 39,
+	Index_PowerShard = 40,
+	Index_PowerStone = 41,
+	Index_PowerGem = 42,
+	Index_PowerCrystal = 43,
+	Index_RemembranceShard = 44,
+	Index_RemembranceStone = 45,
+	Index_RemembranceGem = 46,
+	Index_RemembranceCrystal = 47,
+	Index_SerenityShard = 48,
+	Index_SerenityStone = 49,
+	Index_SerenityGem = 50,
+	Index_SerenityCrystal = 51,
+	Index_TranquilShard = 52,
+	Index_TranquilStone = 53,
+	Index_TranquilGem = 54,
+	Index_TranquilCrystal = 55,
+	Index_TwilightShard = 56,
+	Index_TwilightStone = 57,
+	Index_TwilightGem = 58,
+	Index_TwilightCrystal = 59
+	;
 
-    @Override
-    protected void elementClicked(int index, boolean doubleClick)
-    {
-    	parent.materialSelected = index;
-    }
+	public static void addMaterials(EntityPlayer player){
 
-    @Override
-    protected boolean isSelected(int index)
-    {
-    	if(index == parent.materialSelected){
-    		return true;
-    	}
-        return false;
-    }
+		ExtendedPlayerMaterials props = ExtendedPlayerMaterials.get(player);
 
-    @Override
-    protected void drawBackground()
-    {
-    }
+		if(!materials.contains(Strings.SM_BlazingShard)){
+			materials.add(Index_BlazingShard, Strings.SM_BlazingShard);
+		}
+		if(!materials.contains(Strings.SM_BlazingStone)){
+			materials.add(Index_BlazingStone, Strings.SM_BlazingStone);
+		}
+		if(!materials.contains(Strings.SM_BlazingGem)){
+			materials.add(Index_BlazingGem, Strings.SM_BlazingGem);
+		}
+		if(!materials.contains(Strings.SM_BlazingCrystal)){
+			materials.add(Index_BlazingCrystal, Strings.SM_BlazingCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_BrightShard)){
+			materials.add(Index_BrightShard, Strings.SM_BrightShard);
+		}
+		if(!materials.contains(Strings.SM_BrightStone)){
+			materials.add(Index_BrightStone, Strings.SM_BrightStone);
+		}
+		if(!materials.contains(Strings.SM_BrightGem)){
+			materials.add(Index_BrightGem, Strings.SM_BrightGem);
+		}
+		if(!materials.contains(Strings.SM_BrightCrystal)){
+			materials.add(Index_BrightCrystal, Strings.SM_BrightCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_DarkShard)){
+			materials.add(Index_DarkShard, Strings.SM_DarkShard);
+		}
+		if(!materials.contains(Strings.SM_DarkStone)){
+			materials.add(Index_DarkStone, Strings.SM_DarkStone);
+		}
+		if(!materials.contains(Strings.SM_DarkGem)){
+			materials.add(Index_DarkGem, Strings.SM_DarkGem);
+		}
+		if(!materials.contains(Strings.SM_DarkCrystal)){
+			materials.add(Index_DarkCrystal, Strings.SM_DarkCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_DenseShard)){
+			materials.add(Index_DenseShard, Strings.SM_DenseShard);
+		}
+		if(!materials.contains(Strings.SM_DenseStone)){
+			materials.add(Index_DenseStone, Strings.SM_DenseStone);
+		}
+		if(!materials.contains(Strings.SM_DenseGem)){
+			materials.add(Index_DenseGem, Strings.SM_DenseGem);
+		}
+		if(!materials.contains(Strings.SM_DenseCrystal)){
+			materials.add(Index_DenseCrystal, Strings.SM_DenseCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_EnergyShard)){
+			materials.add(Index_EnergyShard, Strings.SM_EnergyShard);
+		}
+		if(!materials.contains(Strings.SM_EnergyStone)){
+			materials.add(Index_EnergyStone, Strings.SM_EnergyStone);
+		}
+		if(!materials.contains(Strings.SM_EnergyGem)){
+			materials.add(Index_EnergyGem, Strings.SM_EnergyGem);
+		}
+		if(!materials.contains(Strings.SM_EnergyCrystal)){
+			materials.add(Index_EnergyCrystal, Strings.SM_EnergyCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_FrostShard)){
+			materials.add(Index_FrostShard, Strings.SM_FrostShard);
+		}
+		if(!materials.contains(Strings.SM_FrostStone)){
+			materials.add(Index_FrostStone, Strings.SM_FrostStone);
+		}
+		if(!materials.contains(Strings.SM_FrostGem)){
+			materials.add(Index_FrostGem, Strings.SM_FrostGem);
+		}
+		if(!materials.contains(Strings.SM_FrostCrystal)){
+			materials.add(Index_FrostCrystal, Strings.SM_FrostCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_LightningShard)){
+			materials.add(Index_LightningShard, Strings.SM_LightningShard);
+		}
+		if(!materials.contains(Strings.SM_LightningStone)){
+			materials.add(Index_LightningStone, Strings.SM_LightningStone);
+		}
+		if(!materials.contains(Strings.SM_LightningGem)){
+			materials.add(Index_LightningGem, Strings.SM_LightningGem);
+		}
+		if(!materials.contains(Strings.SM_LightningCrystal)){
+			materials.add(Index_LightningCrystal, Strings.SM_LightningCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_LostIllusion)){
+			materials.add(Index_LostIllusion, Strings.SM_LostIllusion);
+		}
+
+		if(!materials.contains(Strings.SM_LucidShard)){
+			materials.add(Index_LucidShard, Strings.SM_LucidShard);
+		}
+		if(!materials.contains(Strings.SM_LucidStone)){
+			materials.add(Index_LucidStone, Strings.SM_LucidStone);
+		}
+		if(!materials.contains(Strings.SM_LucidGem)){
+			materials.add(Index_LucidGem, Strings.SM_LucidGem);
+		}
+		if(!materials.contains(Strings.SM_LucidCrystal)){
+			materials.add(Index_LucidCrystal, Strings.SM_LucidCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_ManifestIllusion)){
+			materials.add(Index_ManifestIllusion, Strings.SM_ManifestIllusion);
+		}
+
+		if(!materials.contains(Strings.SM_MythrilShard)){
+			materials.add(Index_MythrilShard, Strings.SM_MythrilShard);
+		}
+		if(!materials.contains(Strings.SM_MythrilStone)){
+			materials.add(Index_MythrilStone, Strings.SM_MythrilStone);
+		}
+		if(!materials.contains(Strings.SM_MythrilGem)){
+			materials.add(Index_MythrilGem, Strings.SM_MythrilGem);
+		}
+		if(!materials.contains(Strings.SM_MythrilCrystal)){
+			materials.add(Index_MythrilCrystal, Strings.SM_MythrilCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_Orichalcum)){
+			materials.add(Index_Orichalcum, Strings.SM_Orichalcum);
+		}
+		if(!materials.contains(Strings.SM_OrichalcumPlus)){
+			materials.add(Index_OrichalcumPlus, Strings.SM_OrichalcumPlus);
+		}
+
+		if(!materials.contains(Strings.SM_PowerShard)){
+			materials.add(Index_PowerShard, Strings.SM_PowerShard);
+		}
+		if(!materials.contains(Strings.SM_PowerStone)){
+			materials.add(Index_PowerStone, Strings.SM_PowerStone);
+		}
+		if(!materials.contains(Strings.SM_PowerGem)){
+			materials.add(Index_PowerGem, Strings.SM_PowerGem);
+		}
+		if(!materials.contains(Strings.SM_PowerCrystal)){
+			materials.add(Index_PowerCrystal, Strings.SM_PowerCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_RemembranceShard)){
+			materials.add(Index_RemembranceShard, Strings.SM_RemembranceShard);
+		}
+		if(!materials.contains(Strings.SM_RemembranceStone)){
+			materials.add(Index_RemembranceStone, Strings.SM_RemembranceStone);
+		}
+		if(!materials.contains(Strings.SM_RemembranceGem)){
+			materials.add(Index_RemembranceGem, Strings.SM_RemembranceGem);
+		}
+		if(!materials.contains(Strings.SM_RemembranceCrystal)){
+			materials.add(Index_RemembranceCrystal, Strings.SM_RemembranceCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_SerenityShard)){
+			materials.add(Index_SerenityShard, Strings.SM_SerenityShard);
+		}
+		if(!materials.contains(Strings.SM_SerenityStone)){
+			materials.add(Index_SerenityStone, Strings.SM_SerenityStone);
+		}
+		if(!materials.contains(Strings.SM_SerenityGem)){
+			materials.add(Index_SerenityGem, Strings.SM_SerenityGem);
+		}
+		if(!materials.contains(Strings.SM_SerenityCrystal)){
+			materials.add(Index_SerenityCrystal, Strings.SM_SerenityCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_TranquilShard)){
+			materials.add(Index_TranquilShard, Strings.SM_TranquilShard);
+		}
+		if(!materials.contains(Strings.SM_TranquilStone)){
+			materials.add(Index_TranquilStone, Strings.SM_TranquilStone);
+		}
+		if(!materials.contains(Strings.SM_TranquilGem)){
+			materials.add(Index_TranquilGem, Strings.SM_TranquilGem);
+		}
+		if(!materials.contains(Strings.SM_TranquilCrystal)){
+			materials.add(Index_TranquilCrystal, Strings.SM_TranquilCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_TwilightShard)){
+			materials.add(Index_TwilightShard, Strings.SM_TwilightShard);
+		}
+		if(!materials.contains(Strings.SM_TwilightStone)){
+			materials.add(Index_TwilightStone, Strings.SM_TwilightStone);
+		}
+		if(!materials.contains(Strings.SM_TwilightGem)){
+			materials.add(Index_TwilightGem, Strings.SM_TwilightGem);
+		}
+		if(!materials.contains(Strings.SM_TwilightCrystal)){
+			materials.add(Index_TwilightCrystal, Strings.SM_TwilightCrystal);
+		}
+
+	}
 
 	@Override
-    protected void drawSlot(int var1, int var2, int var3, int var4, Tessellator var5)
-    {
-    	ExtendedPlayerMaterials props = ExtendedPlayerMaterials.get(Minecraft.getMinecraft().thePlayer);
+	protected int getSize(){
+		return materials.size();
+	}
 
-        this.f.drawString(f.trimStringToWidth(TextHelper.localize(props.materials.get(var1).toString() + ".name"), listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
-      //  this.ir.func_175042_a(getItemStackFromName(props.knownRecipes.get(var1).toString()), this.left + 3, var3 + 12);
+	@Override
+	protected void elementClicked(int index, boolean doubleClick){}
 
-    }
+	@Override
+	protected boolean isSelected(int index){
+		return false;
+	}
 
-    public ItemStack getItemStackFromName(String name){
-    	if(name.equals(ModItems.AbaddonPlasma.getUnlocalizedName())){
-    		return new ItemStack(ModItems.AbaddonPlasma, 1);
-    	}
-    	if(name.equals(ModItems.AbyssalTide.getUnlocalizedName())){
-    		return new ItemStack(ModItems.AbyssalTide, 1);
-    	}
-    	if(name.equals(ModItems.AllforOne.getUnlocalizedName())){
-    		return new ItemStack(ModItems.AllforOne, 1);
-    	}
-    	if(name.equals(ModItems.AnguisForetellersKeyblade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.AnguisForetellersKeyblade, 1);
-    	}
-    	if(name.equals(ModItems.AstralBlast.getUnlocalizedName())){
-    		return new ItemStack(ModItems.AstralBlast, 1);
-    	}
-    	if(name.equals(ModItems.Aubade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Aubade, 1);
-    	}
-    	if(name.equals(ModItems.BondofFlame.getUnlocalizedName())){
-    		return new ItemStack(ModItems.BondofFlame, 1);
-    	}
-    	if(name.equals(ModItems.Brightcrest.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Brightcrest, 1);
-    	}
-    	if(name.equals(ModItems.ChaosRipper.getUnlocalizedName())){
-    		return new ItemStack(ModItems.ChaosRipper, 1);
-    	}
-    	if(name.equals(ModItems.CircleofLife.getUnlocalizedName())){
-    		return new ItemStack(ModItems.CircleofLife, 1);
-    	}
-    	if(name.equals(ModItems.Counterpoint.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Counterpoint, 1);
-    	}
-    	if(name.equals(ModItems.Crabclaw.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Crabclaw, 1);
-    	}
-    	if(name.equals(ModItems.CrownofGuilt.getUnlocalizedName())){
-    		return new ItemStack(ModItems.CrownofGuilt, 1);
-    	}
-    	if(name.equals(ModItems.DarkerThanDark.getUnlocalizedName())){
-    		return new ItemStack(ModItems.DarkerThanDark, 1);
-    	}
-    	if(name.equals(ModItems.Darkgnaw.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Darkgnaw, 1);
-    	}
-    	if(name.equals(ModItems.DecisivePumpkin.getUnlocalizedName())){
-    		return new ItemStack(ModItems.DecisivePumpkin, 1);
-    	}
-    	if(name.equals(ModItems.DestinysEmbrace.getUnlocalizedName())){
-    		return new ItemStack(ModItems.DestinysEmbrace, 1);
-    	}
-    	if(name.equals(ModItems.DiamondDust.getUnlocalizedName())){
-    		return new ItemStack(ModItems.DiamondDust, 1);
-    	}
-    	if(name.equals(ModItems.Divewing.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Divewing, 1);
-    	}
-    	if(name.equals(ModItems.DivineRose.getUnlocalizedName())){
-    		return new ItemStack(ModItems.DivineRose, 1);
-    	}
-    	if(name.equals(ModItems.DreamSword.getUnlocalizedName())){
-    		return new ItemStack(ModItems.DreamSword, 1);
-    	}
-    	if(name.equals(ModItems.DualDisc.getUnlocalizedName())){
-    		return new ItemStack(ModItems.DualDisc, 1);
-    	}
-    	if(name.equals(ModItems.Earthshaker.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Earthshaker, 1);
-    	}
-    	if(name.equals(ModItems.EndofPain.getUnlocalizedName())){
-    		return new ItemStack(ModItems.EndofPain, 1);
-    	}
-    	if(name.equals(ModItems.EndsoftheEarth.getUnlocalizedName())){
-    		return new ItemStack(ModItems.EndsoftheEarth, 1);
-    	}
-    	if(name.equals(ModItems.FairyHarp.getUnlocalizedName())){
-    		return new ItemStack(ModItems.FairyHarp, 1);
-    	}
-    	if(name.equals(ModItems.FairyStars.getUnlocalizedName())){
-    		return new ItemStack(ModItems.FairyStars, 1);
-    	}
-    	if(name.equals(ModItems.FatalCrest.getUnlocalizedName())){
-    		return new ItemStack(ModItems.FatalCrest, 1);
-    	}
-    	if(name.equals(ModItems.Fenrir.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Fenrir, 1);
-    	}
-    	if(name.equals(ModItems.FerrisGear.getUnlocalizedName())){
-    		return new ItemStack(ModItems.FerrisGear, 1);
-    	}
-    	if(name.equals(ModItems.FollowtheWind.getUnlocalizedName())){
-    		return new ItemStack(ModItems.FollowtheWind, 1);
-    	}
-    	if(name.equals(ModItems.FrolicFlame.getUnlocalizedName())){
-    		return new ItemStack(ModItems.FrolicFlame, 1);
-    	}
-    	if(name.equals(ModItems.GlimpseofDarkness.getUnlocalizedName())){
-    		return new ItemStack(ModItems.GlimpseofDarkness, 1);
-    	}
-    	if(name.equals(ModItems.GuardianBell.getUnlocalizedName())){
-    		return new ItemStack(ModItems.GuardianBell, 1);
-    	}
-    	if(name.equals(ModItems.GuardianSoul.getUnlocalizedName())){
-    		return new ItemStack(ModItems.GuardianSoul, 1);
-    	}
-    	if(name.equals(ModItems.GullWing.getUnlocalizedName())){
-    		return new ItemStack(ModItems.GullWing, 1);
-    	}
-    	if(name.equals(ModItems.HerosCrest.getUnlocalizedName())){
-    		return new ItemStack(ModItems.HerosCrest, 1);
-    	}
-    	if(name.equals(ModItems.HiddenDragon.getUnlocalizedName())){
-    		return new ItemStack(ModItems.HiddenDragon, 1);
-    	}
-    	if(name.equals(ModItems.Hyperdrive.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Hyperdrive, 1);
-    	}
-    	if(name.equals(ModItems.IncompleteKiblade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.IncompleteKiblade, 1);
-    	}
-    	if(name.equals(ModItems.JungleKing.getUnlocalizedName())){
-    		return new ItemStack(ModItems.JungleKing, 1);
-    	}
-    	if(name.equals(ModItems.KeybladeofPeoplesHearts.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KeybladeofPeoplesHearts, 1);
-    	}
-    	if(name.equals(ModItems.Kiblade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Kiblade, 1);
-    	}
-    	if(name.equals(ModItems.KingdomKey.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKey, 1);
-    	}
-    	if(name.equals(ModItems.KingdomKeyD.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KingdomKeyD, 1);
-    	}
-    	if(name.equals(ModItems.KnockoutPunch.getUnlocalizedName())){
-    		return new ItemStack(ModItems.KnockoutPunch, 1);
-    	}
-    	if(name.equals(ModItems.LadyLuck.getUnlocalizedName())){
-    		return new ItemStack(ModItems.LadyLuck, 1);
-    	}
-    	if(name.equals(ModItems.LeasKeyblade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.LeasKeyblade, 1);
-    	}
-    	if(name.equals(ModItems.LeopardosForetellersKeyblade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.LeopardosForetellersKeyblade, 1);
-    	}
-    	if(name.equals(ModItems.Leviathan.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Leviathan, 1);
-    	}
-    	if(name.equals(ModItems.Lionheart.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Lionheart, 1);
-    	}
-    	if(name.equals(ModItems.LostMemory.getUnlocalizedName())){
-    		return new ItemStack(ModItems.LostMemory, 1);
-    	}
-    	if(name.equals(ModItems.LunarEclipse.getUnlocalizedName())){
-    		return new ItemStack(ModItems.LunarEclipse, 1);
-    	}
-    	if(name.equals(ModItems.MarkofaHero.getUnlocalizedName())){
-    		return new ItemStack(ModItems.MarkofaHero, 1);
-    	}
-    	if(name.equals(ModItems.MasterXehanortsKeyblade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.MasterXehanortsKeyblade, 1);
-    	}
-    	if(name.equals(ModItems.MastersDefender.getUnlocalizedName())){
-    		return new ItemStack(ModItems.MastersDefender, 1);
-    	}
-    	if(name.equals(ModItems.MaverickFlare.getUnlocalizedName())){
-    		return new ItemStack(ModItems.MaverickFlare, 1);
-    	}
-    	if(name.equals(ModItems.MetalChocobo.getUnlocalizedName())){
-    		return new ItemStack(ModItems.MetalChocobo, 1);
-    	}
-    	if(name.equals(ModItems.MidnightRoar.getUnlocalizedName())){
-    		return new ItemStack(ModItems.MidnightRoar, 1);
-    	}
-    	if(name.equals(ModItems.MissingAche.getUnlocalizedName())){
-    		return new ItemStack(ModItems.MissingAche, 1);
-    	}
-    	if(name.equals(ModItems.Monochrome.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Monochrome, 1);
-    	}
-    	if(name.equals(ModItems.MysteriousAbyss.getUnlocalizedName())){
-    		return new ItemStack(ModItems.MysteriousAbyss, 1);
-    	}
-    	if(name.equals(ModItems.NoName.getUnlocalizedName())){
-    		return new ItemStack(ModItems.NoName, 1);
-    	}
-    	if(name.equals(ModItems.Oathkeeper.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Oathkeeper, 1);
-    	}
-    	if(name.equals(ModItems.Oblivion.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Oblivion, 1);
-    	}
-    	if(name.equals(ModItems.OceanRage.getUnlocalizedName())){
-    		return new ItemStack(ModItems.OceanRage, 1);
-    	}
-    	if(name.equals(ModItems.Olympia.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Olympia, 1);
-    	}
-    	if(name.equals(ModItems.OmegaWeapon.getUnlocalizedName())){
-    		return new ItemStack(ModItems.OmegaWeapon, 1);
-    	}
-    	if(name.equals(ModItems.OminousBlight.getUnlocalizedName())){
-    		return new ItemStack(ModItems.OminousBlight, 1);
-    	}
-    	if(name.equals(ModItems.OneWingedAngel.getUnlocalizedName())){
-    		return new ItemStack(ModItems.OneWingedAngel, 1);
-    	}
-    	if(name.equals(ModItems.PainofSolitude.getUnlocalizedName())){
-    		return new ItemStack(ModItems.PainofSolitude, 1);
-    	}
-    	if(name.equals(ModItems.PhotonDebugger.getUnlocalizedName())){
-    		return new ItemStack(ModItems.PhotonDebugger, 1);
-    	}
-    	if(name.equals(ModItems.PixiePetal.getUnlocalizedName())){
-    		return new ItemStack(ModItems.PixiePetal, 1);
-    	}
-    	if(name.equals(ModItems.Pumpkinhead.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Pumpkinhead, 1);
-    	}
-    	if(name.equals(ModItems.Rainfell.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Rainfell, 1);
-    	}
-    	if(name.equals(ModItems.RejectionofFate.getUnlocalizedName())){
-    		return new ItemStack(ModItems.RejectionofFate, 1);
-    	}
-    	if(name.equals(ModItems.RoyalRadiance.getUnlocalizedName())){
-    		return new ItemStack(ModItems.RoyalRadiance, 1);
-    	}
-    	if(name.equals(ModItems.RumblingRose.getUnlocalizedName())){
-    		return new ItemStack(ModItems.RumblingRose, 1);
-    	}
-    	if(name.equals(ModItems.SignofInnocence.getUnlocalizedName())){
-    		return new ItemStack(ModItems.SignofInnocence, 1);
-    	}
-    	if(name.equals(ModItems.SilentDirge.getUnlocalizedName())){
-    		return new ItemStack(ModItems.SilentDirge, 1);
-    	}
-    	if(name.equals(ModItems.SkullNoise.getUnlocalizedName())){
-    		return new ItemStack(ModItems.SkullNoise, 1);
-    	}
-    	if(name.equals(ModItems.SleepingLion.getUnlocalizedName())){
-    		return new ItemStack(ModItems.SleepingLion, 1);
-    	}
-    	if(name.equals(ModItems.SoulEater.getUnlocalizedName())){
-    		return new ItemStack(ModItems.SoulEater, 1);
-    	}
-    	if(name.equals(ModItems.Spellbinder.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Spellbinder, 1);
-    	}
-    	if(name.equals(ModItems.StarSeeker.getUnlocalizedName())){
-    		return new ItemStack(ModItems.StarSeeker, 1);
-    	}
-    	if(name.equals(ModItems.Starlight.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Starlight, 1);
-    	}
-    	if(name.equals(ModItems.Stormfall.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Stormfall, 1);
-    	}
-    	if(name.equals(ModItems.StrokeofMidnight.getUnlocalizedName())){
-    		return new ItemStack(ModItems.StrokeofMidnight, 1);
-    	}
-    	if(name.equals(ModItems.SweetDreams.getUnlocalizedName())){
-    		return new ItemStack(ModItems.SweetDreams, 1);
-    	}
-    	if(name.equals(ModItems.SweetMemories.getUnlocalizedName())){
-    		return new ItemStack(ModItems.SweetMemories, 1);
-    	}
-    	if(name.equals(ModItems.Sweetstack.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Sweetstack, 1);
-    	}
-    	if(name.equals(ModItems.ThreeWishes.getUnlocalizedName())){
-    		return new ItemStack(ModItems.ThreeWishes, 1);
-    	}
-    	if(name.equals(ModItems.TotalEclipse.getUnlocalizedName())){
-    		return new ItemStack(ModItems.TotalEclipse, 1);
-    	}
-    	if(name.equals(ModItems.TreasureTrove.getUnlocalizedName())){
-    		return new ItemStack(ModItems.TreasureTrove, 1);
-    	}
-    	if(name.equals(ModItems.TrueLightsFlight.getUnlocalizedName())){
-    		return new ItemStack(ModItems.TrueLightsFlight, 1);
-    	}
-    	if(name.equals(ModItems.TwilightBlaze.getUnlocalizedName())){
-    		return new ItemStack(ModItems.TwilightBlaze, 1);
-    	}
-    	if(name.equals(ModItems.TwoBecomeOne.getUnlocalizedName())){
-    		return new ItemStack(ModItems.TwoBecomeOne, 1);
-    	}
-    	if(name.equals(ModItems.UltimaWeaponKH1.getUnlocalizedName())){
-    		return new ItemStack(ModItems.UltimaWeaponKH1, 1);
-    	}
-    	if(name.equals(ModItems.UltimaWeaponKH2.getUnlocalizedName())){
-    		return new ItemStack(ModItems.UltimaWeaponKH2, 1);
-    	}
-    	if(name.equals(ModItems.UltimaWeaponBBS.getUnlocalizedName())){
-    		return new ItemStack(ModItems.UltimaWeaponBBS, 1);
-    	}
-    	if(name.equals(ModItems.UltimaWeaponDDD.getUnlocalizedName())){
-    		return new ItemStack(ModItems.UltimaWeaponDDD, 1);
-    	}
-    	if(name.equals(ModItems.Umbrella.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Umbrella, 1);
-    	}
-    	if(name.equals(ModItems.Unbound.getUnlocalizedName())){
-    		return new ItemStack(ModItems.Unbound, 1);
-    	}
-    	if(name.equals(ModItems.UnicornisForetellersKeyblade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.UnicornisForetellersKeyblade, 1);
-    	}
-    	if(name.equals(ModItems.UrsusForetellersKeyblade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.UrsusForetellersKeyblade, 1);
-    	}
-    	if(name.equals(ModItems.VictoryLine.getUnlocalizedName())){
-    		return new ItemStack(ModItems.VictoryLine, 1);
-    	}
-    	if(name.equals(ModItems.VoidGear.getUnlocalizedName())){
-    		return new ItemStack(ModItems.VoidGear, 1);
-    	}
-    	if(name.equals(ModItems.VulpeusForetellersKeyblade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.VulpeusForetellersKeyblade, 1);
-    	}
-    	if(name.equals(ModItems.WaytotheDawn.getUnlocalizedName())){
-    		return new ItemStack(ModItems.WaytotheDawn, 1);
-    	}
-    	if(name.equals(ModItems.WaywardWind.getUnlocalizedName())){
-    		return new ItemStack(ModItems.WaywardWind, 1);
-    	}
-    	if(name.equals(ModItems.WinnersProof.getUnlocalizedName())){
-    		return new ItemStack(ModItems.WinnersProof, 1);
-    	}
-    	if(name.equals(ModItems.WishingLamp.getUnlocalizedName())){
-    		return new ItemStack(ModItems.WishingLamp, 1);
-    	}
-    	if(name.equals(ModItems.WishingStar.getUnlocalizedName())){
-    		return new ItemStack(ModItems.WishingStar, 1);
-    	}
-    	if(name.equals(ModItems.WoodenKeyblade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.WoodenKeyblade, 1);
-    	}
-    	if(name.equals(ModItems.WoodenStick.getUnlocalizedName())){
-    		return new ItemStack(ModItems.WoodenStick, 1);
-    	}
-    	if(name.equals(ModItems.YoungXehanortsKeyblade.getUnlocalizedName())){
-    		return new ItemStack(ModItems.YoungXehanortsKeyblade, 1);
-    	}
-    	if(name.equals(ModItems.ZeroOne.getUnlocalizedName())){
-    		return new ItemStack(ModItems.ZeroOne, 1);
-    	}
-		return null;
+	@Override
+	protected void drawBackground(){}
 
-    }
+	@Override
+	protected void drawSlot(int var1, int var2, int var3, int var4, Tessellator var5)
+	{
+		ExtendedPlayerMaterials props = ExtendedPlayerMaterials.get(Minecraft.getMinecraft().thePlayer);
 
+		this.f.drawString(f.trimStringToWidth(TextHelper.localize(materials.get(var1) + ".name") + " x" + props.arrayOfAmounts[var1], listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
 
+	}
 }

@@ -75,7 +75,8 @@ public class Strings {
 	Gui_Synthesis_Main_Recipes = Gui_Synthesis_Main + ".recipes",
 	Gui_Synthesis_Main_FreeDev = Gui_Synthesis_Main + ".freedevelopment",
 	Gui_Synthesis_Main_Materials = Gui_Synthesis_Main + ".materials",
-	Gui_Synthesis_Main_Recipes_ReqMaterials = Gui_Synthesis_Main_Recipes + ".requiredmaterials"
+	Gui_Synthesis_Main_Recipes_ReqMaterials = Gui_Synthesis_Main_Recipes + ".requiredmaterials",
+	Gui_Synthesis_Main_Recipes_Create = Gui_Synthesis_Main_Recipes + ".create"
 	;
 
 	//Blocks
@@ -162,32 +163,37 @@ public class Strings {
 	SM_BlazingStone = "sm.blazingstone",
 	SM_BlazingGem = "sm.blazinggem",
 	SM_BlazingCrystal = "sm.blazingcrystal",
-	
+
 	SM_BrightShard = "sm.brightshard",
 	SM_BrightStone = "sm.brightstone",
 	SM_BrightGem = "sm.brightgem",
 	SM_BrightCrystal = "sm.brightcrystal",
-	
+
 	SM_DarkShard = "sm.darkshard",
 	SM_DarkStone = "sm.darkstone",
 	SM_DarkGem = "sm.darkgem",
 	SM_DarkCrystal = "sm.darkcrystal",
-	
+
 	SM_DenseShard = "sm.denseshard",
 	SM_DenseStone = "sm.densestone",
 	SM_DenseGem = "sm.densegem",
 	SM_DenseCrystal = "sm.densecrystal",
-	
+
 	SM_EnergyShard = "sm.energyshard",
 	SM_EnergyStone = "sm.energystone",
 	SM_EnergyGem = "sm.energygem",
 	SM_EnergyCrystal = "sm.energycrystal",
-			
+
 	SM_FrostShard = "sm.frostshard",
 	SM_FrostStone = "sm.froststone",
 	SM_FrostGem = "sm.frostgem",
 	SM_FrostCrystal = "sm.frostcrystal",
-	
+
+	SM_LightningShard = "sm.lightningshard",
+	SM_LightningStone = "sm.lightningstone",
+	SM_LightningGem = "sm.lightninggem",
+	SM_LightningCrystal = "sm.lightningcrystal",
+
 	SM_LucidShard = "sm.lucidshard",
 	SM_LucidStone = "sm.lucidstone",
 	SM_LucidGem = "sm.lucidgem",
@@ -197,26 +203,36 @@ public class Strings {
 	SM_PowerStone = "sm.powerstone",
 	SM_PowerGem = "sm.powergem",
 	SM_PowerCrystal = "sm.powercrystal",
-	
+
+	SM_MythrilShard = "sm.mythrilshard",
+	SM_MythrilStone = "sm.mythrilstone",
+	SM_MythrilGem = "sm.mythrilgem",
+	SM_MythrilCrystal = "sm.mythrilcrystal",
+
 	SM_RemembranceShard = "sm.remembranceshard",
 	SM_RemembranceStone = "sm.remembrancestone",
 	SM_RemembranceGem = "sm.remembrancegem",
 	SM_RemembranceCrystal = "sm.remembrancecrystal",
-	
+
 	SM_SerenityShard = "sm.serenityshard",
 	SM_SerenityStone = "sm.serenitystone",
 	SM_SerenityGem = "sm.serenitygem",
 	SM_SerenityCrystal = "sm.serenitycrystal",
-	
+
 	SM_TranquilShard = "sm.tranquilshard",
 	SM_TranquilStone = "sm.tranquilstone",
 	SM_TranquilGem = "sm.tranquilgem",
 	SM_TranquilCrystal = "sm.tranquilcrystal",
-	
+
 	SM_TwilightShard = "sm.twilightshard",
 	SM_TwilightStone = "sm.twilightstone",
 	SM_TwilightGem = "sm.twilightgem",
-	SM_TwilightCrystal = "sm.twilightcrystal"
+	SM_TwilightCrystal = "sm.twilightcrystal",
+
+	SM_Orichalcum = "sm.orichalcum",
+	SM_OrichalcumPlus = "sm.orichalcum+",
+	SM_ManifestIllusion = "sm.manifestillusion",
+	SM_LostIllusion = "sm.lostillusion"
 	;
 
 	//Music Discs
@@ -459,7 +475,7 @@ public class Strings {
 	GuardianBell = "guardianbell",
 	DualDisc = "dualdisc",
 	FerrisGear = "ferrisgear",
-    KnockoutPunch = "knockoutpunch",
+	KnockoutPunch = "knockoutpunch",
 	AllforOne = "allforone",
 	Counterpoint = "counterpoint",
 	Divewing = "divewing",
@@ -582,7 +598,7 @@ public class Strings {
 	TM_GuardianBell_DEFAULT = "guardianbell, 3, -1, 6.0F, 7, 30",
 	TM_DualDisc_DEFAULT = "dualdisc, 3, -1, 6.0F, 7, 30",
 	TM_FerrisGear_DEFAULT = "ferrisgear, 3, -1, 6.0F, 6, 30",
-    TM_KnockoutPunch_DEFAULT = "knockoutpunch, 3, -1, 6.0F, 5, 30",
+	TM_KnockoutPunch_DEFAULT = "knockoutpunch, 3, -1, 6.0F, 5, 30",
 	TM_AllforOne_DEFAULT = "allforone, 3, -1, 6.0F, 5, 30",
 	TM_Counterpoint_DEFAULT = "counterpoint, 3, -1, 6.0F, 7, 30",
 	TM_Divewing_DEFAULT = "divewing, 3, -1, 6.0F, 7, 30",
@@ -601,7 +617,7 @@ public class Strings {
 	TM_VulpeusForetellersKeyblade_DEFAULT = "vulpeusforetellerskeyblade, 3, -1, 6.0F, 16, 30"
 	;
 
-//	public static String testToolMaterial;
+	//	public static String testToolMaterial;
 
 	public static final String TOOLMATERIAL = "toolmaterial.name.";
 
@@ -706,7 +722,7 @@ public class Strings {
 	TM_GuardianBell_NAME = TOOLMATERIAL + GuardianBell,
 	TM_DualDisc_NAME = TOOLMATERIAL + DualDisc,
 	TM_FerrisGear_NAME = TOOLMATERIAL + FerrisGear,
-    TM_KnockoutPunch_NAME = TOOLMATERIAL + KnockoutPunch,
+	TM_KnockoutPunch_NAME = TOOLMATERIAL + KnockoutPunch,
 	TM_AllforOne_NAME = TOOLMATERIAL + AllforOne,
 	TM_Counterpoint_NAME = TOOLMATERIAL + Counterpoint,
 	TM_Divewing_NAME = TOOLMATERIAL + Divewing,

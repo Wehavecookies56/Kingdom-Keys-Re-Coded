@@ -3,13 +3,6 @@ package wehavecookies56.kk.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import wehavecookies56.kk.network.CommonProxy;
-import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
-import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
-import wehavecookies56.kk.recipes.Recipe;
-import wehavecookies56.kk.recipes.RecipeRegistry;
-import wehavecookies56.kk.util.LogHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -18,6 +11,10 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.common.util.Constants;
+import wehavecookies56.kk.network.CommonProxy;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
+import wehavecookies56.kk.util.LogHelper;
 
 public class ExtendedPlayerMaterials implements IExtendedEntityProperties {
 
@@ -25,23 +22,19 @@ public class ExtendedPlayerMaterials implements IExtendedEntityProperties {
 
 	private final EntityPlayer player;
 
-	public ExtendedPlayerMaterials(EntityPlayer player) {
-		this.player = player;
-	}
+	public int[] arrayOfAmounts;
 
-	public List<String> materials = new ArrayList<String>();
+	public ExtendedPlayerMaterials(EntityPlayer player, int size) {
+		this.player = player;
+		arrayOfAmounts = new int[size];
+	}
 
 	@Override
 	public void saveNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
 
-		NBTTagList matList = new NBTTagList();
-		NBTTagCompound mats = new NBTTagCompound();
-		for (int i = 0; i < materials.size(); i++){
-			mats.setString("Materials" + i, materials.get(i));
-			matList.appendTag(mats);
-		}
-		properties.setTag("MaterialsList", matList);
+		properties.setIntArray("Amounts", arrayOfAmounts);
+
 		compound.setTag(EXT_PROP_NAME, properties);
 
 	}
@@ -50,32 +43,16 @@ public class ExtendedPlayerMaterials implements IExtendedEntityProperties {
 	public void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
 
-		NBTTagList matList = properties.getTagList("MaterialsList", Constants.NBT.TAG_COMPOUND);
-		for(int i = 0; i < matList.tagCount(); i++){
-			NBTTagCompound mats = matList.getCompoundTagAt(i);
-			materials.add(i, mats.getString("Materials" + i));
-			LogHelper.info("Loaded material: " + mats.getString("Materials" + i));
-		}
+		arrayOfAmounts = properties.getIntArray("Amounts");
 
 	}
 
 	@Override
 	public void init(Entity entity, World world) {}
 
-	public void addMaterial(String name){
-		materials.add(name);
-		if(player instanceof EntityPlayerMP)
-			this.sync();
-	}
-
-	public boolean consumeMaterial(String name){
-		for(int i = 0; i < materials.size(); i++){
-			if(materials.get(i).equals(name)){
-				materials.remove(i);
-				return true;
-			}
-		}
-		return false;
+	public void setMaterialArray(int amount, int index){
+		arrayOfAmounts[index] = amount;
+		this.sync();
 	}
 
 	public final void sync(){
@@ -112,8 +89,8 @@ public class ExtendedPlayerMaterials implements IExtendedEntityProperties {
 		playerData.sync();
 	}
 
-	public static final void register(EntityPlayer player){
-		player.registerExtendedProperties(EXT_PROP_NAME, new ExtendedPlayerMaterials(player));
+	public static final void register(EntityPlayer player, int size){
+		player.registerExtendedProperties(EXT_PROP_NAME, new ExtendedPlayerMaterials(player, size));
 	}
 
 	public static final ExtendedPlayerMaterials get(EntityPlayer player){

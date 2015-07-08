@@ -6,10 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
-import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
-import wehavecookies56.kk.network.packet.AbstractMessage;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 
 public class SyncExtendedPlayerRecipes extends AbstractClientMessage<SyncExtendedPlayerRecipes> {

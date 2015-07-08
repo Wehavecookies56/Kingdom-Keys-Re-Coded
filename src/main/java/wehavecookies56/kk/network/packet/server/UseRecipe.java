@@ -30,9 +30,9 @@ public class UseRecipe extends AbstractServerMessage<UseRecipe> {
 
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
-		recipe1 = buffer.readStringFromBuffer(100);
-		recipe2 = buffer.readStringFromBuffer(100);
-		recipe3 = buffer.readStringFromBuffer(100);
+		recipe1 = buffer.readStringFromBuffer(40);
+		recipe2 = buffer.readStringFromBuffer(40);
+		recipe3 = buffer.readStringFromBuffer(40);
 	}
 
 	@Override

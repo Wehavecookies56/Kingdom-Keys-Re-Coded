@@ -27,36 +27,28 @@ public class GuiRecipeList extends GuiScrollingList {
 	static ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
 	static int width = sr.getScaledWidth();
 	static int height = sr.getScaledHeight();
-	//static int sizeY = (int) (parent.height*0.8);
 	static int sizeX = 150;
 	static int posX = 5;
 	static int posY = (height-200)/2;
-	//int selected;
 
-    public GuiRecipeList(GuiSynthesis parent)
-    {
-    	//super(Minecraft minecraft, int width, int height, int top, int bottom, int left, int entryHeight)
+    public GuiRecipeList(GuiSynthesis parent){
         super(parent.mc, 150, 300, 60, parent.height - ((parent.height/8)+70/16), 8, 35);
         this.parent = parent;
-        //this.selected = parent.selected;
     }
 
 
     @Override
-    protected int getSize()
-    {
+    protected int getSize(){
         return ExtendedPlayerRecipes.get(Minecraft.getMinecraft().thePlayer).knownRecipes.size();
     }
 
     @Override
-    protected void elementClicked(int index, boolean doubleClick)
-    {
+    protected void elementClicked(int index, boolean doubleClick){
     	parent.selected = index;
     }
 
     @Override
-    protected boolean isSelected(int index)
-    {
+    protected boolean isSelected(int index){
     	if(index == parent.selected){
     		return true;
     	}
@@ -64,13 +56,10 @@ public class GuiRecipeList extends GuiScrollingList {
     }
 
     @Override
-    protected void drawBackground()
-    {
-    }
+    protected void drawBackground(){}
 
 	@Override
-    protected void drawSlot(int var1, int var2, int var3, int var4, Tessellator var5)
-    {
+    protected void drawSlot(int var1, int var2, int var3, int var4, Tessellator var5){
     	ExtendedPlayerRecipes props = ExtendedPlayerRecipes.get(Minecraft.getMinecraft().thePlayer);
 
         this.f.drawString(f.trimStringToWidth(TextHelper.localize(props.knownRecipes.get(var1).toString() + ".name"), listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
