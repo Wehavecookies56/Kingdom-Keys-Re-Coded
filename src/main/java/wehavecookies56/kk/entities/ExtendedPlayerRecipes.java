@@ -35,10 +35,14 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 		NBTTagCompound properties = new NBTTagCompound();
 
 		NBTTagList tagList = new NBTTagList();
-		NBTTagCompound recipes = new NBTTagCompound();
 		for (int i = 0; i < knownRecipes.size(); i++){
-			recipes.setString("Recipes" + i, knownRecipes.get(i));
-			tagList.appendTag(recipes);
+			String s = knownRecipes.get(i);
+			if(s != null){
+				NBTTagCompound recipes = new NBTTagCompound();
+				recipes.setString("Recipes" + i, s);
+				tagList.appendTag(recipes);
+			}
+
 		}
 		properties.setTag("RecipeList", tagList);
 
@@ -55,7 +59,7 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 			NBTTagCompound recipes = tagList.getCompoundTagAt(i);
 			if(!RecipeRegistry.isRecipeKnown(player, recipes.getString("Recipes" + i))){
 				knownRecipes.add(i, recipes.getString("Recipes" + i));
-				LogHelper.info("Loaded known recipe: " + recipes.getString("Recipes" + i));
+				LogHelper.info("Loaded known recipe: " + recipes.getString("Recipes" + i) + " " + i);
 			}
 
 		}
