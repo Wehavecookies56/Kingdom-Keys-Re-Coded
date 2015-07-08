@@ -50,10 +50,10 @@ public class GuiSynthesis extends GuiTooltip{
 		this.materialList = new GuiMaterialList(this);
 		this.materialList.registerScrollButtons(this.buttonList, 7, 8);
 		this.buttonList.add(Back = new GuiButton(BACK, width - 105, height - ((height/8)+70/16), 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
+		this.buttonList.add(Create = new GuiButton(CREATE, 270, height - ((height/8)+70/16) - 25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes_Create)));
 		this.buttonList.add(Recipes = new GuiButton(RECIPES, 5, 65, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes)));
 		this.buttonList.add(FreeDev = new GuiButton(FREEDEV, 5, 65+25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_FreeDev)));
 		this.buttonList.add(Materials = new GuiButton(MATERIALS, 5, 90+25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials)));
-		this.buttonList.add(Create = new GuiButton(CREATE, 0, 0, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes_Create)));
 		updateButtons();
 	}
 
@@ -349,12 +349,12 @@ public class GuiSynthesis extends GuiTooltip{
 			this.materialList.drawScreen(mouseX, mouseY, partialTicks);
 		}
 		drawBackground(width, height);
-		super.drawScreen(mouseX, mouseY, partialTicks);
 		if(submenu != MAIN){
 			drawSelected(mouseX, mouseY);
 		}else{
 			selected = -1;
 		}
+		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
 	public void drawSelected(int mouseX, int mouseY){
