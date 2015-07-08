@@ -16,7 +16,10 @@ import static wehavecookies56.kk.lib.Strings.*;
 import wehavecookies56.kk.lib.Strings;
 
 public class ModItems {
-
+	//Organization
+	public static Item
+	EternalFlames;
+	
 	//Keyblades
 	public static Item
 		AbaddonPlasma,
@@ -330,6 +333,8 @@ public class ModItems {
 	public static void init(){
 		tabKingdomKeys = new TabKingdomKeys(CreativeTabs.getNextID(), Strings.tabKingdomKeys);
 
+		EternalFlames = new ItemEternalFlames(EnumHelper.addToolMaterial(Config.A_TM_EternalFlames[0], Integer.parseInt(Config.A_TM_EternalFlames[1]), Integer.parseInt(Config.A_TM_EternalFlames[2]), Float.parseFloat(Config.A_TM_EternalFlames[3]), Float.parseFloat(Config.A_TM_EternalFlames[4]), Integer.parseInt(Config.A_TM_EternalFlames[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
+		
 		AbaddonPlasma = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbaddonPlasma[0], Integer.parseInt(Config.A_TM_AbaddonPlasma[1]), Integer.parseInt(Config.A_TM_AbaddonPlasma[2]), Float.parseFloat(Config.A_TM_AbaddonPlasma[3]), Float.parseFloat(Config.A_TM_AbaddonPlasma[4]), Integer.parseInt(Config.A_TM_AbaddonPlasma[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbaddonPlasma);
 		AbyssalTide = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbyssalTide[0], Integer.parseInt(Config.A_TM_AbyssalTide[1]), Integer.parseInt(Config.A_TM_AbyssalTide[2]), Float.parseFloat(Config.A_TM_AbyssalTide[3]), Float.parseFloat(Config.A_TM_AbyssalTide[4]), Integer.parseInt(Config.A_TM_AbyssalTide[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbyssalTide);
 		AllforOne = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AllforOne[0], Integer.parseInt(Config.A_TM_AllforOne[1]), Integer.parseInt(Config.A_TM_AllforOne[2]), Float.parseFloat(Config.A_TM_AllforOne[3]), Float.parseFloat(Config.A_TM_AllforOne[4]), Integer.parseInt(Config.A_TM_AllforOne[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AllforOne);
@@ -621,6 +626,9 @@ public class ModItems {
 		GameRegistry.registerItem(Eraqus_Leggings = new ItemEraqusArmor(ERAQUS, 2, 2, Strings.Eraqus_Leggings), Strings.Eraqus_Leggings);
 		GameRegistry.registerItem(Eraqus_Boots = new ItemEraqusArmor(ERAQUS, 1, 3, Strings.Eraqus_Boots), Strings.Eraqus_Boots);
 
+
+		//Organization
+		GameRegistry.registerItem(EternalFlames, Strings.EternalFlames);
 
 		//Keyblades
 		GameRegistry.registerItem(AbaddonPlasma, Strings.AbaddonPlasma);
@@ -915,6 +923,9 @@ public class ModItems {
 		registerRender(Eraqus_Leggings);
 		registerRender(Eraqus_Boots);
 
+		//Organization
+		registerRender(EternalFlames);
+		
 		//Keyblades
 		registerRender(AbaddonPlasma);
 		registerRender(AbyssalTide);

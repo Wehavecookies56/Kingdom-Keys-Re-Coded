@@ -17,6 +17,9 @@ public class Config {
 	EnableWorldGen,
 	EnableUpdateCheck
 	;
+	
+	public static String
+		TM_EternalFlames;
 
 	public static String
 		TM_KingdomKey,
@@ -137,6 +140,9 @@ public class Config {
 		TM_UrsusForetellersKeyblade,
 		TM_VulpeusForetellersKeyblade;
 
+	public static String[]
+	A_TM_EternalFlames;
+	
 	public static String[]
 		A_TM_AbaddonPlasma,
 		A_TM_AbyssalTide,
@@ -273,6 +279,9 @@ public class Config {
 		/**TOOLMATERIALS*************************/
 		final String TM = ITEMS + config.CATEGORY_SPLITTER + "ToolMaterials";
 		config.addCustomCategoryComment(TM, "The tool materials for items which use them, A space after commas is required. \nParameters {(String) NAME, (int) HARVESTLEVEL, (int) MAXUSES, (float) EFFICIENCY, (float) DAMAGE, (int) ENCHANTABILITY}");
+		
+		TM_EternalFlames = config.get(TM, StatCollector.translateToLocal(Strings.TM_EternalFlames_NAME), TM_EternalFlames_DEFAULT).getString();
+		
 		TM_AbaddonPlasma = config.get(TM, StatCollector.translateToLocal(Strings.TM_AbaddonPlasma_NAME), TM_AbaddonPlasma_DEFAULT).getString();
 		TM_AbyssalTide = config.get(TM, StatCollector.translateToLocal(TM_AbyssalTide_NAME), TM_AbyssalTide_DEFAULT).getString();
 		TM_AllforOne = config.get(TM, StatCollector.translateToLocal(TM_AllforOne_NAME), TM_AllforOne_DEFAULT).getString();
@@ -391,6 +400,8 @@ public class Config {
 		TM_YoungXehanortsKeyblade = config.get(TM, StatCollector.translateToLocal(TM_YoungXehanortsKeyblade_NAME), TM_YoungXehanortsKeyblade_DEFAULT).getString();
 		TM_ZeroOne = config.get(TM, StatCollector.translateToLocal(TM_ZeroOne_NAME), TM_ZeroOne_DEFAULT).getString();
 
+		A_TM_EternalFlames = TM_EternalFlames.split(", ");
+		
 		A_TM_AbaddonPlasma = TM_AbaddonPlasma.split(", ");
 		A_TM_AbyssalTide = TM_AbyssalTide.split(", ");
 		A_TM_AllforOne = TM_AllforOne.split(", ");
