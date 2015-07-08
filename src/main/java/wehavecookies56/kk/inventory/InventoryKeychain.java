@@ -1,7 +1,5 @@
 package wehavecookies56.kk.inventory;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
-
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.lib.Strings;
