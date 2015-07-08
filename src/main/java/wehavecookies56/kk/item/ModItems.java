@@ -7,18 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import wehavecookies56.kk.item.org.ItemArpeggio;
-import wehavecookies56.kk.item.org.ItemBookofRetribution;
-import wehavecookies56.kk.item.org.ItemEternalFlames;
-import wehavecookies56.kk.item.org.ItemFairGame;
-import wehavecookies56.kk.item.org.ItemFoudre;
-import wehavecookies56.kk.item.org.ItemFrozenPride;
-import wehavecookies56.kk.item.org.ItemGracefulDahlia;
-import wehavecookies56.kk.item.org.ItemInterdiction;
-import wehavecookies56.kk.item.org.ItemLindworm;
-import wehavecookies56.kk.item.org.ItemLunatic;
-import wehavecookies56.kk.item.org.ItemSharpshooter;
-import wehavecookies56.kk.item.org.ItemSkysplitter;
+import wehavecookies56.kk.item.org.*;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
@@ -350,7 +339,7 @@ public class ModItems {
 	public static CreativeTabs tabKingdomKeys;
 
 	public static void init(){
-		tabKingdomKeys = new TabKingdomKeys(CreativeTabs.getNextID(),Strings.tabKingdomKeys);
+		tabKingdomKeys = new TabKingdomKeys(CreativeTabs.getNextID(), Strings.tabKingdomKeys);
 
 		Interdiction = new ItemInterdiction(EnumHelper.addToolMaterial(Config.A_TM_Interdiction[0], Integer.parseInt(Config.A_TM_Interdiction[1]), Integer.parseInt(Config.A_TM_Interdiction[2]), Float.parseFloat(Config.A_TM_Interdiction[3]), Float.parseFloat(Config.A_TM_Interdiction[4]), Integer.parseInt(Config.A_TM_Interdiction[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
 		Sharpshooter = new ItemSharpshooter(EnumHelper.addToolMaterial(Config.A_TM_Sharpshooter[0], Integer.parseInt(Config.A_TM_Sharpshooter[1]), Integer.parseInt(Config.A_TM_Sharpshooter[2]), Float.parseFloat(Config.A_TM_Sharpshooter[3]), Float.parseFloat(Config.A_TM_Sharpshooter[4]), Integer.parseInt(Config.A_TM_Sharpshooter[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sharpshooter);

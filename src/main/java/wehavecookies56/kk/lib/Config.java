@@ -433,7 +433,19 @@ public class Config {
 		TM_YoungXehanortsKeyblade = config.get(TM, StatCollector.translateToLocal(TM_YoungXehanortsKeyblade_NAME), TM_YoungXehanortsKeyblade_DEFAULT).getString();
 		TM_ZeroOne = config.get(TM, StatCollector.translateToLocal(TM_ZeroOne_NAME), TM_ZeroOne_DEFAULT).getString();
 
+		
+		A_TM_Interdiction = TM_Interdiction.split(", ");
+		A_TM_Sharpshooter = TM_Sharpshooter.split(", ");
+		A_TM_Lindworm = TM_Lindworm.split(", ");
+		A_TM_FrozenPride = TM_FrozenPride.split(", ");
+		A_TM_Skysplitter = TM_Skysplitter.split(", ");
+		A_TM_BookofRetribution = TM_BookofRetribution.split(", ");
+		A_TM_Lunatic = TM_Lunatic.split(", ");
 		A_TM_EternalFlames = TM_EternalFlames.split(", ");
+		A_TM_Arpeggio = TM_Arpeggio.split(", ");
+		A_TM_FairGame = TM_FairGame.split(", ");
+		A_TM_GracefulDahlia = TM_GracefulDahlia.split(", ");
+		A_TM_Foudre = TM_Foudre.split(", ");
 		
 		A_TM_AbaddonPlasma = TM_AbaddonPlasma.split(", ");
 		A_TM_AbyssalTide = TM_AbyssalTide.split(", ");
