@@ -5,20 +5,39 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemRecord;
-import net.minecraft.item.ItemSword;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import wehavecookies56.kk.KingdomKeys;
+import wehavecookies56.kk.item.org.ItemArpeggio;
+import wehavecookies56.kk.item.org.ItemBookofRetribution;
+import wehavecookies56.kk.item.org.ItemEternalFlames;
+import wehavecookies56.kk.item.org.ItemFairGame;
+import wehavecookies56.kk.item.org.ItemFoudre;
+import wehavecookies56.kk.item.org.ItemFrozenPride;
+import wehavecookies56.kk.item.org.ItemGracefulDahlia;
+import wehavecookies56.kk.item.org.ItemInterdiction;
+import wehavecookies56.kk.item.org.ItemLindworm;
+import wehavecookies56.kk.item.org.ItemLunatic;
+import wehavecookies56.kk.item.org.ItemSharpshooter;
+import wehavecookies56.kk.item.org.ItemSkysplitter;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
-import static wehavecookies56.kk.lib.Strings.*;
 import wehavecookies56.kk.lib.Strings;
 
 public class ModItems {
 	//Organization
 	public static Item
-	EternalFlames;
+		Interdiction,
+		Sharpshooter,
+		Lindworm,
+		FrozenPride,
+		Skysplitter,
+		BookofRetribution,
+		Lunatic,
+		EternalFlames,
+		Arpeggio,
+		FairGame,
+		GracefulDahlia,
+		Foudre;
 	
 	//Keyblades
 	public static Item
@@ -331,9 +350,20 @@ public class ModItems {
 	public static CreativeTabs tabKingdomKeys;
 
 	public static void init(){
-		tabKingdomKeys = new TabKingdomKeys(CreativeTabs.getNextID(), Strings.tabKingdomKeys);
+		tabKingdomKeys = new TabKingdomKeys(CreativeTabs.getNextID(),Strings.tabKingdomKeys);
 
+		Interdiction = new ItemInterdiction(EnumHelper.addToolMaterial(Config.A_TM_Interdiction[0], Integer.parseInt(Config.A_TM_Interdiction[1]), Integer.parseInt(Config.A_TM_Interdiction[2]), Float.parseFloat(Config.A_TM_Interdiction[3]), Float.parseFloat(Config.A_TM_Interdiction[4]), Integer.parseInt(Config.A_TM_Interdiction[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
+		Sharpshooter = new ItemSharpshooter(EnumHelper.addToolMaterial(Config.A_TM_Sharpshooter[0], Integer.parseInt(Config.A_TM_Sharpshooter[1]), Integer.parseInt(Config.A_TM_Sharpshooter[2]), Float.parseFloat(Config.A_TM_Sharpshooter[3]), Float.parseFloat(Config.A_TM_Sharpshooter[4]), Integer.parseInt(Config.A_TM_Sharpshooter[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sharpshooter);
+		Lindworm = new ItemLindworm(EnumHelper.addToolMaterial(Config.A_TM_Lindworm[0], Integer.parseInt(Config.A_TM_Lindworm[1]), Integer.parseInt(Config.A_TM_Lindworm[2]), Float.parseFloat(Config.A_TM_Lindworm[3]), Float.parseFloat(Config.A_TM_Lindworm[4]), Integer.parseInt(Config.A_TM_Lindworm[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lindworm);
+		FrozenPride = new ItemFrozenPride(EnumHelper.addToolMaterial(Config.A_TM_FrozenPride[0], Integer.parseInt(Config.A_TM_FrozenPride[1]), Integer.parseInt(Config.A_TM_FrozenPride[2]), Float.parseFloat(Config.A_TM_FrozenPride[3]), Float.parseFloat(Config.A_TM_FrozenPride[4]), Integer.parseInt(Config.A_TM_FrozenPride[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FrozenPride);
+		Skysplitter = new ItemSkysplitter(EnumHelper.addToolMaterial(Config.A_TM_Skysplitter[0], Integer.parseInt(Config.A_TM_Skysplitter[1]), Integer.parseInt(Config.A_TM_Skysplitter[2]), Float.parseFloat(Config.A_TM_Skysplitter[3]), Float.parseFloat(Config.A_TM_Skysplitter[4]), Integer.parseInt(Config.A_TM_Skysplitter[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
+		BookofRetribution = new ItemBookofRetribution(EnumHelper.addToolMaterial(Config.A_TM_BookofRetribution[0], Integer.parseInt(Config.A_TM_BookofRetribution[1]), Integer.parseInt(Config.A_TM_BookofRetribution[2]), Float.parseFloat(Config.A_TM_BookofRetribution[3]), Float.parseFloat(Config.A_TM_BookofRetribution[4]), Integer.parseInt(Config.A_TM_BookofRetribution[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
+		Lunatic = new ItemLunatic(EnumHelper.addToolMaterial(Config.A_TM_Lunatic[0], Integer.parseInt(Config.A_TM_Lunatic[1]), Integer.parseInt(Config.A_TM_Lunatic[2]), Float.parseFloat(Config.A_TM_Lunatic[3]), Float.parseFloat(Config.A_TM_Lunatic[4]), Integer.parseInt(Config.A_TM_Lunatic[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lunatic);
 		EternalFlames = new ItemEternalFlames(EnumHelper.addToolMaterial(Config.A_TM_EternalFlames[0], Integer.parseInt(Config.A_TM_EternalFlames[1]), Integer.parseInt(Config.A_TM_EternalFlames[2]), Float.parseFloat(Config.A_TM_EternalFlames[3]), Float.parseFloat(Config.A_TM_EternalFlames[4]), Integer.parseInt(Config.A_TM_EternalFlames[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
+		Arpeggio = new ItemArpeggio(EnumHelper.addToolMaterial(Config.A_TM_Arpeggio[0], Integer.parseInt(Config.A_TM_Arpeggio[1]), Integer.parseInt(Config.A_TM_Arpeggio[2]), Float.parseFloat(Config.A_TM_Arpeggio[3]), Float.parseFloat(Config.A_TM_Arpeggio[4]), Integer.parseInt(Config.A_TM_Arpeggio[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Arpeggio);
+		FairGame = new ItemFairGame(EnumHelper.addToolMaterial(Config.A_TM_FairGame[0], Integer.parseInt(Config.A_TM_FairGame[1]), Integer.parseInt(Config.A_TM_FairGame[2]), Float.parseFloat(Config.A_TM_FairGame[3]), Float.parseFloat(Config.A_TM_FairGame[4]), Integer.parseInt(Config.A_TM_FairGame[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
+		GracefulDahlia = new ItemGracefulDahlia(EnumHelper.addToolMaterial(Config.A_TM_GracefulDahlia[0], Integer.parseInt(Config.A_TM_GracefulDahlia[1]), Integer.parseInt(Config.A_TM_GracefulDahlia[2]), Float.parseFloat(Config.A_TM_GracefulDahlia[3]), Float.parseFloat(Config.A_TM_GracefulDahlia[4]), Integer.parseInt(Config.A_TM_GracefulDahlia[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
+		Foudre = new ItemFoudre(EnumHelper.addToolMaterial(Config.A_TM_Foudre[0], Integer.parseInt(Config.A_TM_Foudre[1]), Integer.parseInt(Config.A_TM_Foudre[2]), Float.parseFloat(Config.A_TM_Foudre[3]), Float.parseFloat(Config.A_TM_Foudre[4]), Integer.parseInt(Config.A_TM_Foudre[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foudre);
 		
 		AbaddonPlasma = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbaddonPlasma[0], Integer.parseInt(Config.A_TM_AbaddonPlasma[1]), Integer.parseInt(Config.A_TM_AbaddonPlasma[2]), Float.parseFloat(Config.A_TM_AbaddonPlasma[3]), Float.parseFloat(Config.A_TM_AbaddonPlasma[4]), Integer.parseInt(Config.A_TM_AbaddonPlasma[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbaddonPlasma);
 		AbyssalTide = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbyssalTide[0], Integer.parseInt(Config.A_TM_AbyssalTide[1]), Integer.parseInt(Config.A_TM_AbyssalTide[2]), Float.parseFloat(Config.A_TM_AbyssalTide[3]), Float.parseFloat(Config.A_TM_AbyssalTide[4]), Integer.parseInt(Config.A_TM_AbyssalTide[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbyssalTide);
@@ -595,7 +625,7 @@ public class ModItems {
 		Disc_Simple_And_Clean_PLANITb_Remix = new ItemKKRecord(Strings.Disc_Simple_And_Clean_PLANITb_Remix_Name, Strings.Disc_Simple_And_Clean_PLANITb_Remix, tabKingdomKeys, 2.37F);
 		Disc_Sinister_Sundown = new ItemKKRecord(Strings.Disc_Sinister_Sundown_Name, Strings.Disc_Sinister_Sundown, tabKingdomKeys, 2.13F);
 		Disc_The_13th_Anthology = new ItemKKRecord(Strings.Disc_The_13th_Anthology_Name, Strings.Disc_The_13th_Anthology, tabKingdomKeys, 6.38F);
-
+		
 		Recipe = new ItemRecipe().setUnlocalizedName(Strings.Recipe).setCreativeTab(tabKingdomKeys);
 	}
 
@@ -605,7 +635,7 @@ public class ModItems {
 		GameRegistry.registerItem(OrganizationRobe_Chestplate = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, 1, Strings.OrganizationRobe_Chestplate), Strings.OrganizationRobe_Chestplate);
 		GameRegistry.registerItem(OrganizationRobe_Leggings = new ItemOrganizationRobe(ORGANIZATIONROBE, 2, 2, Strings.OrganizationRobe_Leggings), Strings.OrganizationRobe_Leggings);
 		GameRegistry.registerItem(OrganizationRobe_Boots = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, 3, Strings.OrganizationRobe_Boots), Strings.OrganizationRobe_Boots);
-
+		
 		GameRegistry.registerItem(Terra_Helmet = new ItemTerraArmor(TERRA, 1, 0, Strings.Terra_Helmet), Strings.Terra_Helmet);
 		GameRegistry.registerItem(Terra_Chestplate = new ItemTerraArmor(TERRA, 1, 1, Strings.Terra_Chestplate), Strings.Terra_Chestplate);
 		GameRegistry.registerItem(Terra_Leggings = new ItemTerraArmor(TERRA, 2, 2, Strings.Terra_Leggings), Strings.Terra_Leggings);
@@ -628,7 +658,18 @@ public class ModItems {
 
 
 		//Organization
+		GameRegistry.registerItem(Interdiction, Strings.Interdiction);
+		GameRegistry.registerItem(Sharpshooter, Strings.Sharpshooter);
+		GameRegistry.registerItem(Lindworm, Strings.Lindworm);
+		GameRegistry.registerItem(FrozenPride, Strings.FrozenPride);
+		GameRegistry.registerItem(Skysplitter, Strings.Skysplitter);
+		GameRegistry.registerItem(BookofRetribution, Strings.BookofRetribution);
+		GameRegistry.registerItem(Lunatic, Strings.Lunatic);
 		GameRegistry.registerItem(EternalFlames, Strings.EternalFlames);
+		GameRegistry.registerItem(Arpeggio, Strings.Arpeggio);
+		GameRegistry.registerItem(FairGame, Strings.FairGame);
+		GameRegistry.registerItem(GracefulDahlia, Strings.GracefulDahlia);
+		GameRegistry.registerItem(Foudre, Strings.Foudre);
 
 		//Keyblades
 		GameRegistry.registerItem(AbaddonPlasma, Strings.AbaddonPlasma);
@@ -924,7 +965,18 @@ public class ModItems {
 		registerRender(Eraqus_Boots);
 
 		//Organization
+		registerRender(Interdiction);
+		registerRender(Sharpshooter);
+		registerRender(Lindworm);
+		registerRender(FrozenPride);
+		registerRender(Skysplitter);
+		registerRender(BookofRetribution);
+		registerRender(Lunatic);
 		registerRender(EternalFlames);
+		registerRender(Arpeggio);
+		registerRender(FairGame);
+		registerRender(GracefulDahlia);
+		registerRender(Foudre);
 		
 		//Keyblades
 		registerRender(AbaddonPlasma);

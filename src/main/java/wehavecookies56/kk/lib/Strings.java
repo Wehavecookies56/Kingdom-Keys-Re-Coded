@@ -254,7 +254,18 @@ public class Strings {
 	
 	//Organization
 	public static final String
-	EternalFlames = "eternalflames";
+	Interdiction = "interdiction",
+	Sharpshooter = "sharpshooter",
+	Lindworm = "lindworm",
+	FrozenPride = "frozenpride",
+	Skysplitter = "skysplitter",
+	BookofRetribution = "bookofretribution",
+	Lunatic = "lunatic",
+	EternalFlames = "eternalflames",
+	Arpeggio = "arpeggio",
+	FairGame = "fairgame",
+	GracefulDahlia = "gracefuldahlia",
+	Foudre = "foudre";
 	
 	//Keyblades
 	public static final String
@@ -502,7 +513,18 @@ public class Strings {
 
 	//Materials
 	public static final String
-	TM_EternalFlames_DEFAULT = "eternalflames, 3, -1, 6.0F, 8, 30";
+	TM_Interdiction_DEFAULT = "interdiction, 3, -1, 6.0F, 10, 30",
+	TM_Sharpshooter_DEFAULT = "sharpshooter, 3, -1, 6.0F, 4, 30",
+	TM_Lindworm_DEFAULT = "lindworm, 3, -1, 6.0F, 9, 30",
+	TM_FrozenPride_DEFAULT = "frozenpride, 3, -1, 6.0F, 6, 30",
+	TM_Skysplitter_DEFAULT = "skysplitter, 3, -1, 6.0F, 20, 30",
+	TM_BookofRetribution_DEFAULT = "bookofretribution, 3, -1, 6.0F, 5, 30",
+	TM_Lunatic_DEFAULT = "lunatic, 3, -1, 6.0F, 15, 30",
+	TM_EternalFlames_DEFAULT = "eternalflames, 3, -1, 6.0F, 5, 30",
+	TM_Arpeggio_DEFAULT = "arpeggio, 3, -1, 6.0F, 9, 30",
+	TM_FairGame_DEFAULT = "fairgame, 3, -1, 6.0F, 8, 30",
+	TM_GracefulDahlia_DEFAULT = "gracefuldahlia, 3, -1, 6.0F, 12, 30",
+	TM_Foudre_DEFAULT = "foudre, 3, -1, 6.0F, 7, 30";
 	
 	public static final String
 	TM_KingdomKey_DEFAULT = "kingdomkey, 3, -1, 6.0F, 5, 30",
@@ -629,7 +651,18 @@ public class Strings {
 	public static final String TOOLMATERIAL = "toolmaterial.name.";
 
 	public static final String
-	TM_EternalFlames_NAME = TOOLMATERIAL + EternalFlames;
+		TM_Interdiction_NAME = TOOLMATERIAL + Interdiction,
+		TM_Sharpshooter_NAME = TOOLMATERIAL + Sharpshooter,
+		TM_Lindworm_NAME = TOOLMATERIAL + Lindworm,
+		TM_FrozenPride_NAME = TOOLMATERIAL + FrozenPride,
+		TM_Skysplitter_NAME = TOOLMATERIAL + Skysplitter,
+		TM_BookofRetribution_NAME = TOOLMATERIAL + BookofRetribution,
+		TM_Lunatic_NAME = TOOLMATERIAL + Lunatic,
+		TM_EternalFlames_NAME = TOOLMATERIAL + EternalFlames,
+		TM_Arpeggio_NAME = TOOLMATERIAL + Arpeggio,
+		TM_FairGame_NAME = TOOLMATERIAL + FairGame,
+		TM_GracefulDahlia_NAME = TOOLMATERIAL + GracefulDahlia,
+		TM_Foudre_NAME = TOOLMATERIAL + Foudre;
 	
 	public static final String
 	TM_KingdomKey_NAME = TOOLMATERIAL + KingdomKey,

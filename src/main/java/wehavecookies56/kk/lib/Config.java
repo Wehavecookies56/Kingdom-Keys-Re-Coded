@@ -19,7 +19,18 @@ public class Config {
 	;
 	
 	public static String
-		TM_EternalFlames;
+		TM_Interdiction,
+		TM_Sharpshooter,
+		TM_Lindworm,
+		TM_FrozenPride,
+		TM_Skysplitter,
+		TM_BookofRetribution,
+		TM_Lunatic,
+		TM_EternalFlames,
+		TM_Arpeggio,
+		TM_FairGame,
+		TM_GracefulDahlia,
+		TM_Foudre;
 
 	public static String
 		TM_KingdomKey,
@@ -141,7 +152,18 @@ public class Config {
 		TM_VulpeusForetellersKeyblade;
 
 	public static String[]
-	A_TM_EternalFlames;
+		A_TM_Interdiction,
+		A_TM_Sharpshooter,
+		A_TM_Lindworm,
+		A_TM_FrozenPride,
+		A_TM_Skysplitter,
+		A_TM_BookofRetribution,
+		A_TM_Lunatic,
+		A_TM_EternalFlames,
+		A_TM_Arpeggio,
+		A_TM_FairGame,
+		A_TM_GracefulDahlia,
+		A_TM_Foudre;
 	
 	public static String[]
 		A_TM_AbaddonPlasma,
@@ -280,7 +302,18 @@ public class Config {
 		final String TM = ITEMS + config.CATEGORY_SPLITTER + "ToolMaterials";
 		config.addCustomCategoryComment(TM, "The tool materials for items which use them, A space after commas is required. \nParameters {(String) NAME, (int) HARVESTLEVEL, (int) MAXUSES, (float) EFFICIENCY, (float) DAMAGE, (int) ENCHANTABILITY}");
 		
+		TM_Interdiction = config.get(TM, StatCollector.translateToLocal(Strings.TM_Interdiction_NAME), TM_Interdiction_DEFAULT).getString();
+		TM_Sharpshooter = config.get(TM, StatCollector.translateToLocal(Strings.TM_Sharpshooter_NAME), TM_Sharpshooter_DEFAULT).getString();
+		TM_Lindworm = config.get(TM, StatCollector.translateToLocal(Strings.TM_Lindworm_NAME), TM_Lindworm_DEFAULT).getString();
+		TM_FrozenPride = config.get(TM, StatCollector.translateToLocal(Strings.TM_FrozenPride_NAME), TM_FrozenPride_DEFAULT).getString();
+		TM_Skysplitter = config.get(TM, StatCollector.translateToLocal(Strings.TM_Skysplitter_NAME), TM_Skysplitter_DEFAULT).getString();
+		TM_BookofRetribution = config.get(TM, StatCollector.translateToLocal(Strings.TM_BookofRetribution_NAME), TM_BookofRetribution_DEFAULT).getString();
+		TM_Lunatic = config.get(TM, StatCollector.translateToLocal(Strings.TM_Lunatic_NAME), TM_Lunatic_DEFAULT).getString();
 		TM_EternalFlames = config.get(TM, StatCollector.translateToLocal(Strings.TM_EternalFlames_NAME), TM_EternalFlames_DEFAULT).getString();
+		TM_Arpeggio = config.get(TM, StatCollector.translateToLocal(Strings.TM_Arpeggio_NAME), TM_Arpeggio_DEFAULT).getString();
+		TM_FairGame = config.get(TM, StatCollector.translateToLocal(Strings.TM_FairGame_NAME), TM_FairGame_DEFAULT).getString();
+		TM_GracefulDahlia = config.get(TM, StatCollector.translateToLocal(Strings.TM_GracefulDahlia_NAME), TM_GracefulDahlia_DEFAULT).getString();
+		TM_Foudre = config.get(TM, StatCollector.translateToLocal(Strings.TM_Foudre_NAME), TM_Foudre_DEFAULT).getString();
 		
 		TM_AbaddonPlasma = config.get(TM, StatCollector.translateToLocal(Strings.TM_AbaddonPlasma_NAME), TM_AbaddonPlasma_DEFAULT).getString();
 		TM_AbyssalTide = config.get(TM, StatCollector.translateToLocal(TM_AbyssalTide_NAME), TM_AbyssalTide_DEFAULT).getString();
