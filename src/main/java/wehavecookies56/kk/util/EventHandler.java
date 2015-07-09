@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -192,6 +193,22 @@ public class EventHandler {
 	   return (int)(Math.random() * range) + (min <= max ? min : max);
 	}
 
+	@SubscribeEvent
+	public void onHurt(LivingHurtEvent event)
+	{
+		if(event.entityLiving instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) event.entityLiving;
+			if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.FrozenPride)
+			{
+				if(player.isBlocking())
+				{	
+					event.ammount = 0;
+				}
+			}
+		}
+	}	
+	
 	@SubscribeEvent
 	public void onBlockDestroyed(HarvestDropsEvent event)
 	{
