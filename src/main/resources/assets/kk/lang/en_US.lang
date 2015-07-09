@@ -22,6 +22,7 @@ tile.bounceblox.name=Bounce Blox
 tile.blastblox.name=Blast Blox
 tile.prizeblox.name=Prize Blox
 tile.rareprizeblox.name=Rare Prize Blox
+tile.ghostblox.name=Ghost Blox
 
 #Synthesis Ore
 tile.blazingore.name=Blazing Ore

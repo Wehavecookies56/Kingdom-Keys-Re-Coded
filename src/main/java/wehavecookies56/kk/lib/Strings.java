@@ -90,6 +90,8 @@ public class Strings {
 	BlastBlox = "blastblox",
 	PrizeBlox = "prizeblox",
 	RarePrizeBlox = "rareprizeblox",
+	GhostBlox = "ghostblox",
+
 	KKChest = "kkchest",
 
 	//Ores
@@ -251,7 +253,7 @@ public class Strings {
 	Disc_Sinister_Sundown = "sinistersundown",
 	Disc_The_13th_Anthology = "the13thanthology"
 	;
-	
+
 	//Organization
 	public static final String
 	Interdiction = "interdiction",
@@ -266,7 +268,7 @@ public class Strings {
 	FairGame = "fairgame",
 	GracefulDahlia = "gracefuldahlia",
 	Foudre = "foudre";
-	
+
 	//Keyblades
 	public static final String
 	KingdomKey = "kingdomkey",
@@ -525,7 +527,7 @@ public class Strings {
 	TM_FairGame_DEFAULT = "fairgame, 3, -1, 6.0F, 8, 30",
 	TM_GracefulDahlia_DEFAULT = "gracefuldahlia, 3, -1, 6.0F, 12, 30",
 	TM_Foudre_DEFAULT = "foudre, 3, -1, 6.0F, 7, 30";
-	
+
 	public static final String
 	TM_KingdomKey_DEFAULT = "kingdomkey, 3, -1, 6.0F, 5, 30",
 	TM_Oathkeeper_DEFAULT = "oathkeeper, 3, -1, 6.0F, 11, 30",
@@ -663,7 +665,7 @@ public class Strings {
 		TM_FairGame_NAME = TOOLMATERIAL + FairGame,
 		TM_GracefulDahlia_NAME = TOOLMATERIAL + GracefulDahlia,
 		TM_Foudre_NAME = TOOLMATERIAL + Foudre;
-	
+
 	public static final String
 	TM_KingdomKey_NAME = TOOLMATERIAL + KingdomKey,
 	TM_Oathkeeper_NAME = TOOLMATERIAL + Oathkeeper,

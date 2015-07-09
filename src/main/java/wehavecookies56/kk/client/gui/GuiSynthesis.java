@@ -381,7 +381,11 @@ public class GuiSynthesis extends GuiTooltip{
 						int column = 0;
 						int row = j;
 						String amount;
-						drawTexturedModalRect(270 + (distX*column), 110 + (distY*row), 0, 0, 16, 16);
+						GL11.glPushMatrix();{
+							GL11.glTranslatef(270 + (distX*column), 110 + (distY*row), 0);
+							GL11.glScalef(0.0625f, 0.0625f, 0.0625f);
+							drawTexturedModalRect(0, 0, 0, 0, 256, 256);
+						}GL11.glPopMatrix();
 						if(RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString().contains(".x.")){
 							String[] name = RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString().split(".x.");
 							drawString(fontRendererObj, TextHelper.localize(name[0] + ".name") + " x" + name[1], 288 + (distX*column), 114 + (distY*row), 0xFFFFFF);

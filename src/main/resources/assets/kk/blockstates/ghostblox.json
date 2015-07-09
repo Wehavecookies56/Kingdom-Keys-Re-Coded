@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"normal": { "model": "kk:ghostblox_visible" },
+		"inventory": { "model": "kk:ghostblox_visible" },
+		"visible=0": { "model": "kk:ghostblox_visible" },
+		"visible=1": { "model": "kk:ghostblox_invisible" }
+	}
+}

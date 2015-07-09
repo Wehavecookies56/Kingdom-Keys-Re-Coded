@@ -3,6 +3,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -27,6 +28,7 @@ public class ModBlocks {
 		BlastBlox,
 		PrizeBlox,
 		RarePrizeBlox,
+		GhostBlox,
 		BlazingOre,
 		BrightOre,
 		DarkOre,
@@ -44,9 +46,9 @@ public class ModBlocks {
 		SynthesisTable,
 		KKChest
 		;
-	
+
 	public static CreativeTabs tabKingdomKeysBlocks;
-		
+
 	public static void init(){
 		tabKingdomKeysBlocks = new TabKingdomKeysBlocks(CreativeTabs.getNextID(), Strings.tabKingdomKeysBlocks);
 		NormalBlox = new BlockNormalBlox(Material.iron, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.NormalBlox).setCreativeTab(tabKingdomKeysBlocks);
@@ -54,9 +56,10 @@ public class ModBlocks {
 		MetalBlox = new BlockMetalBlox(Material.iron, "pickaxe", 2, 10f, 60f).setUnlocalizedName(Strings.MetalBlox).setCreativeTab(tabKingdomKeysBlocks);
 		DangerBlox = new BlockDangerBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DangerBlox).setCreativeTab(tabKingdomKeysBlocks);
 		BounceBlox = new BlockBounceBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BounceBlox).setCreativeTab(tabKingdomKeysBlocks);
-		BlastBlox = new BlockBlastBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BlastBlox).setCreativeTab(tabKingdomKeysBlocks);		
+		BlastBlox = new BlockBlastBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BlastBlox).setCreativeTab(tabKingdomKeysBlocks);
 		PrizeBlox = new BlockPrizeBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.PrizeBlox).setCreativeTab(tabKingdomKeysBlocks);
 		RarePrizeBlox = new BlockRarePrizeBlox(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.RarePrizeBlox).setCreativeTab(tabKingdomKeysBlocks);
+		GhostBlox = new BlockGhostBlox(Material.circuits, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.GhostBlox).setCreativeTab(tabKingdomKeysBlocks);
 		BlazingOre = new BlockBlazingOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BlazingOre).setCreativeTab(tabKingdomKeysBlocks);
 		BrightOre = new BlockBrightOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BrightOre).setCreativeTab(tabKingdomKeysBlocks);
 		DarkOre = new BlockDarkOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DarkOre).setCreativeTab(tabKingdomKeysBlocks);
@@ -75,11 +78,11 @@ public class ModBlocks {
 		KKChest = new BlockKKChest(Material.rock, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.KKChest).setCreativeTab(tabKingdomKeysBlocks).setStepSound(KKChest.soundTypeStone);
 
 	}
-	
+
 	public static void registerBlock(Block block){
 		GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));
 	}
-	
+
 	public static void register(){
 		GameRegistry.registerBlock(NormalBlox, Strings.NormalBlox);
 		GameRegistry.registerBlock(HardBlox, Strings.HardBlox);
@@ -89,6 +92,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(BlastBlox, Strings.BlastBlox);
 		GameRegistry.registerBlock(PrizeBlox, Strings.PrizeBlox);
 		GameRegistry.registerBlock(RarePrizeBlox, Strings.RarePrizeBlox);
+		GameRegistry.registerBlock(GhostBlox, Strings.GhostBlox);
 		GameRegistry.registerBlock(BlazingOre, Strings.BlazingOre);
 		GameRegistry.registerBlock(BrightOre, Strings.BrightOre);
 		GameRegistry.registerBlock(DarkOre, Strings.DarkOre);
@@ -106,8 +110,11 @@ public class ModBlocks {
 		GameRegistry.registerBlock(SynthesisTable, Strings.SynthesisTable);
 		GameRegistry.registerBlock(KKChest, Strings.KKChest);
 	}
-	
+
 	public static void registerRenders(){
+		Item item = Item.getItemFromBlock(GhostBlox);
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "visible=0"));
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 1, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "visible=1"));
 		registerRender(NormalBlox);
 		registerRender(HardBlox);
 		registerRender(MetalBlox);
@@ -116,6 +123,7 @@ public class ModBlocks {
 		registerRender(BlastBlox);
 		registerRender(PrizeBlox);
 		registerRender(RarePrizeBlox);
+		registerRender(GhostBlox);
 		registerRender(BlazingOre);
 		registerRender(BrightOre);
 		registerRender(DarkOre);
@@ -132,9 +140,9 @@ public class ModBlocks {
 		registerRender(TwilightOre);
 		registerRender(SynthesisTable);
 		registerRender(KKChest);
-		
+
 	}
-	
+
 	public static void registerRender(Block block){
 		Item item = Item.getItemFromBlock(block);
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
