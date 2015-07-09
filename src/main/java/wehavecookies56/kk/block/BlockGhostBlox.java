@@ -54,12 +54,30 @@ public class BlockGhostBlox extends BlockBlox {
 
 	@Override
 	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock) {
-		if(world.isBlockPowered(pos)){
+		if(world.isBlockPowered(pos))
+		{
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(1)));
-		}else{
+		}
+		else
+		{
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(0)));
 		}
 	}
+	
+	public void onBlockAdded(World world, BlockPos pos, IBlockState state)
+    {
+        if (!world.isRemote && world.getTileEntity(pos) == null)
+        {
+        	if(world.isBlockPowered(pos))
+        	{
+    			world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(1)));
+    		}
+        	else
+    		{
+    			world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(0)));
+    		}
+        }
+    }
 
 	@Override
 	public boolean isOpaqueCube() {
