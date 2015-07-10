@@ -34,6 +34,7 @@ import wehavecookies56.kk.recipes.RecipeRegistry;
 import wehavecookies56.kk.server.command.CommandLearnRecipe;
 import wehavecookies56.kk.util.LogHelper;
 import wehavecookies56.kk.util.ScrollHandler;
+import wehavecookies56.kk.worldgen.ChestGen;
 import wehavecookies56.kk.worldgen.WorldGenBlox;
 
 @Mod(name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER, guiFactory = Reference.GUIFACTORY, modLanguage = "java")
@@ -53,17 +54,26 @@ public class KingdomKeys {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e){
+		//Display mod info in console
 		LogHelper.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft 1.8");
+
+		//Config
 		config = new Configuration(e.getSuggestedConfigurationFile());
 		Config.syncConfig();
 		LogHelper.info("Configuration loaded");
+
+		//World generation
 		GameRegistry.registerWorldGenerator(new WorldGenBlox(), 2);
 		LogHelper.info("World generation loaded");
+
+		//Packets
 		PacketDispatcher.registerPackets();
 		LogHelper.info("Packets loaded");
 
 	}
 
+
+	//Sync config when changed
 	@SubscribeEvent
 	public void OnConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event){
 		if(event.modID.equals(Reference.MODID)){
@@ -73,44 +83,58 @@ public class KingdomKeys {
 
 	@EventHandler
     public void init(FMLInitializationEvent e){
+		//Instance
 		FMLCommonHandler.instance().bus().register(instance);
+
+		//Events
 		MinecraftForge.EVENT_BUS.register(new ScrollHandler());
-		FMLCommonHandler.instance().bus().register(new UpdateChecker());
 		LogHelper.info("Mouse controls loaded");
+
+		//Update checker
+		FMLCommonHandler.instance().bus().register(new UpdateChecker());
+		LogHelper.info("Update checker loaded");
+
+		//Items
 		ModItems.init();
 		ModItems.register();
 		LogHelper.info("Items loaded");
+
+		//Blocks
 		ModBlocks.init();
 		ModBlocks.register();
 		LogHelper.info("Blocks loaded");
+
+		//Craftin recipes
 		ModItemsRecipes.init();
 		ModBlocksRecipes.init();
 		LogHelper.info("Crafting recipes loaded");
+
+		//Register renders
 		proxy.init();
 		LogHelper.info("Renders loaded");
+
+		//Proxy used as Gui handler
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
+
+		//Tile entity registry
 		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
 		LogHelper.info("Tile entities loaded");
+
 		Lists.init();
+
+		//Synthesis Recipes init
 		ModRecipes.init();
 		LogHelper.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipes loaded");
-		ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.NETHER_FORTRESS).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_DISPENSER).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CROSSING).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
-		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 30));
 
-		LogHelper.info("Dungeon loot added");
+		//Chest loot init
+		ChestGen.init();
+		LogHelper.info("Chest loot added");
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e){
+
+		//Event handler
 		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.EventHandler());
 		LogHelper.info("Events loaded");
 	}

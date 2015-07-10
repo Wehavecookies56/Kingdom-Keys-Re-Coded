@@ -11,6 +11,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -22,6 +23,7 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -36,6 +38,7 @@ import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
 import wehavecookies56.kk.item.ItemStacks;
 import wehavecookies56.kk.item.ModItems;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
@@ -55,6 +58,40 @@ public class EventHandler {
 		}
 		if(event.entity instanceof EntityPlayer && ExtendedPlayerMaterials.get((EntityPlayer) event.entity) == null){
 			ExtendedPlayerMaterials.register((EntityPlayer) event.entity, 100);
+		}
+
+	}
+
+	@SubscribeEvent
+	public void addTooltip(ItemTooltipEvent event){
+		Item ghostBlox = Item.getItemFromBlock(ModBlocks.GhostBlox);
+		if(event.itemStack.getItem() == ghostBlox){
+			if(!KeyboardHelper.isShiftDown()){
+				event.toolTip.add(TextHelper.ITALIC + "Hold shift for more info");
+			}else{
+				event.toolTip.add("When powered with redstone");
+				event.toolTip.add("the " + TextHelper.localize(ModBlocks.GhostBlox.getUnlocalizedName() + ".name") + " turns transparent");
+				event.toolTip.add("and has no collision");
+			}
+		}
+		Item dangerBlox = Item.getItemFromBlock(ModBlocks.DangerBlox);
+		if(event.itemStack.getItem() == dangerBlox){
+			if(!KeyboardHelper.isShiftDown()){
+				event.toolTip.add(TextHelper.ITALIC + "Hold shift for more info");
+			}else{
+				event.toolTip.add("Deals 1.5 hearts of damage");
+				event.toolTip.add("when touching or hitting it");
+			}
+		}
+		Item bounceBlox = Item.getItemFromBlock(ModBlocks.BounceBlox);
+		if(event.itemStack.getItem() == bounceBlox){
+			if(!KeyboardHelper.isShiftDown()){
+				event.toolTip.add(TextHelper.ITALIC + "Hold shift for more info");
+			}else{
+				event.toolTip.add("When standing on the");
+				event.toolTip.add(TextHelper.localize(ModBlocks.BounceBlox.getUnlocalizedName() + ".name") + " it causes");
+				event.toolTip.add("entities to bounce");
+			}
 		}
 
 	}
@@ -202,13 +239,13 @@ public class EventHandler {
 			if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.FrozenPride)
 			{
 				if(player.isBlocking())
-				{	
+				{
 					event.ammount = 0;
 				}
 			}
 		}
-	}	
-	
+	}
+
 	@SubscribeEvent
 	public void onBlockDestroyed(HarvestDropsEvent event)
 	{

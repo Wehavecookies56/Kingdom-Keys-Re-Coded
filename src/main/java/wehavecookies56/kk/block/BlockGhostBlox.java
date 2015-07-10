@@ -63,7 +63,7 @@ public class BlockGhostBlox extends BlockBlox {
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(0)));
 		}
 	}
-	
+
 	public void onBlockAdded(World world, BlockPos pos, IBlockState state)
     {
         if (!world.isRemote && world.getTileEntity(pos) == null)
