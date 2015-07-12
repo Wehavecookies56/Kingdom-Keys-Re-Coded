@@ -108,6 +108,11 @@ public class EventHandler {
 
 			GuiMaterialList.addMaterials((EntityPlayer) event.entity);
 
+			if(!ExtendedPlayer.get((EntityPlayer) event.entity).hasFirstKeyblade()){
+				((EntityPlayer) event.entity).inventory.addItemStackToInventory(new ItemStack(ModItems.WoodenKeyblade));
+				ExtendedPlayer.get((EntityPlayer) event.entity).setFirstKeyblade(true);
+			}
+
 			GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Wehavecookies56");
 			UUID uuidWehavecookies56 = profileWehavecookies56.getId();
 			if(event.entity.getUniqueID() == uuidWehavecookies56){

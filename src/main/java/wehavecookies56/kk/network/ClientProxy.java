@@ -20,20 +20,20 @@ public class ClientProxy extends CommonProxy {
 		registerRenders();
 		registerKeyBindings();
 	}
-	
+
 	private void registerRenders(){
 		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());
 		ModItems.registerRenders();
 		ModBlocks.registerRenders();
 	}
-	
+
 	private void registerKeyBindings(){
 		FMLCommonHandler.instance().bus().register(new KeybindHandler());
 		for(Keybinds key : Keybinds.values()){
 			ClientRegistry.registerKeyBinding(key.getKeybind());
 		}
 	}
-	
+
 	@Override
 	public EntityPlayer getPlayerEntity(MessageContext ctx) {
 		return (ctx.side.isClient() ? Minecraft.getMinecraft().thePlayer : super.getPlayerEntity(ctx));
@@ -43,5 +43,5 @@ public class ClientProxy extends CommonProxy {
 	public IThreadListener getThreadFromContext(MessageContext ctx) {
 		return (ctx.side.isClient() ? Minecraft.getMinecraft() : super.getThreadFromContext(ctx));
 	}
-	
+
 }

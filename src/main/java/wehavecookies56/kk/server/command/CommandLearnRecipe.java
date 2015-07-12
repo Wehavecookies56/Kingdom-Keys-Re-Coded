@@ -1,13 +1,37 @@
 package wehavecookies56.kk.server.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import wehavecookies56.kk.recipes.Recipe;
+import wehavecookies56.kk.recipes.RecipeRegistry;
+import wehavecookies56.kk.util.TextHelper;
 
 public class CommandLearnRecipe implements ICommand {
+
+	private List aliases;
+	private List autoComplete;
+	public CommandLearnRecipe(){
+		this.aliases = new ArrayList();
+		this.aliases.add("learnrecipe");
+		this.aliases.add("addrecipe");
+		this.aliases.add("giverecipe");
+
+		this.autoComplete = new ArrayList();
+		this.autoComplete.add("all");
+		for (Object value : RecipeRegistry.getRecipeMap().values()) {
+			if(value instanceof Recipe){
+				this.autoComplete.add(((Recipe) value).getName().substring(5));
+			}
+		}
+	}
 
 	@Override
 	public int compareTo(Object arg0) {
@@ -16,32 +40,57 @@ public class CommandLearnRecipe implements ICommand {
 
 	@Override
 	public String getCommandName() {
-		return null;
+		return "learnrecipe";
 	}
 
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
-		return null;
+		return "/learnrecipe <name>";
 	}
 
 	@Override
 	public List getCommandAliases() {
-		return null;
+		return this.aliases;
 	}
 
 	@Override
 	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-
+		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
+			if(args.length == 0){
+				TextHelper.sendFormattedChatMessage("Invalid arguments, usage \"/learnrecipe <name>\"", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+			}else{
+				if(RecipeRegistry.isRecipeKnown((EntityPlayer) sender.getCommandSenderEntity(), "item." + args[0].toLowerCase())){
+					TextHelper.sendFormattedChatMessage("You already know this recipe", EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
+				}else if (RecipeRegistry.isRecipeRegistered("item." + args[0].toLowerCase())){
+					RecipeRegistry.learnrecipe((EntityPlayer) sender.getCommandSenderEntity(), "item." + args[0].toLowerCase());
+					TextHelper.sendFormattedChatMessage("Successfully learnt recipe for " + TextHelper.localize("item." + args[0].toLowerCase() + ".name"), EnumChatFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+				}else if (args[0].equals("all")){
+					for (Object value : RecipeRegistry.getRecipeMap().values()) {
+						if(value instanceof Recipe){
+							if(!RecipeRegistry.isRecipeKnown((EntityPlayer) sender.getCommandSenderEntity(), ((Recipe) value).getName())){
+								RecipeRegistry.learnrecipe((EntityPlayer) sender.getCommandSenderEntity(), ((Recipe) value).getName());
+							}
+						}
+					}
+					TextHelper.sendFormattedChatMessage("Successfully learnt all the recipes", EnumChatFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+				}else{
+					TextHelper.sendFormattedChatMessage("This recipe doesn't exist", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+				}
+			}
+		}
 	}
 
 	@Override
 	public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
-		return null;
+		return this.autoComplete;
 	}
 
 	@Override

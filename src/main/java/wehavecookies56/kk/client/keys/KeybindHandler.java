@@ -176,7 +176,7 @@ public class KeybindHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							break;
-					
+
 					}
 				}
 				break;
@@ -207,10 +207,10 @@ public class KeybindHandler {
 					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 0.5f, 1f));
 					break;
 				}
-				if(props.getSummonedKeyblade() == 0 && player.inventory.getCurrentItem() == null && props.inventory.getStackInSlot(0).getItem() instanceof ItemKeychain){
+				if(props.isKeybladeSummoned() == false && player.inventory.getCurrentItem() == null && props.inventory.getStackInSlot(0).getItem() instanceof ItemKeychain){
 					PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) props.inventory.getStackInSlot(0).getItem()).getKeyblade()));
 					PacketDispatcher.sendToServer(new SyncExtendedPlayer(player));
-				} else if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemKeyblade && props.getSummonedKeyblade() == 1){
+				} else if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemKeyblade && props.isKeybladeSummoned() == true){
 					PacketDispatcher.sendToServer(new DeSummonKeyblade(player.inventory.getCurrentItem()));
 					PacketDispatcher.sendToServer(new SyncExtendedPlayer(player));
 				} else {

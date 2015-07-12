@@ -38,7 +38,7 @@ public class DeSummonKeyblade extends AbstractServerMessage<DeSummonKeyblade> {
 	public void process(EntityPlayer player, Side side) {
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 		SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.UnSummon, 0.5f, 1);
-		ExtendedPlayer.get(player).setSummonedKeyblade(0);
+		ExtendedPlayer.get(player).setKeybladeSummoned(false);
 	}
 
 }

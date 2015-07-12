@@ -40,6 +40,6 @@ public class SummonKeyblade extends AbstractServerMessage<SummonKeyblade> {
 	public void process(EntityPlayer player, Side side) {
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
 		SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.Summon, 0.5f, 1);
-		ExtendedPlayer.get(player).setSummonedKeyblade(1);
+		ExtendedPlayer.get(player).setKeybladeSummoned(true);
 	}
 }

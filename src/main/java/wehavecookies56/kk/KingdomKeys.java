@@ -31,6 +31,7 @@ import wehavecookies56.kk.network.UpdateChecker;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.recipes.ModRecipes;
 import wehavecookies56.kk.recipes.RecipeRegistry;
+import wehavecookies56.kk.server.command.CommandGiveMunny;
 import wehavecookies56.kk.server.command.CommandLearnRecipe;
 import wehavecookies56.kk.util.LogHelper;
 import wehavecookies56.kk.util.ScrollHandler;
@@ -141,7 +142,8 @@ public class KingdomKeys {
 
 	@EventHandler
 	public void serverStart(FMLServerStartingEvent e){
-		//e.registerServerCommand(new CommandLearnRecipe());
+		e.registerServerCommand(new CommandLearnRecipe());
+		e.registerServerCommand(new CommandGiveMunny());
 	}
 
 }

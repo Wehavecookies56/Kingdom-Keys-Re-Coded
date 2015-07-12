@@ -29,7 +29,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public final InventoryKeychain inventory = new InventoryKeychain();
 
-	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, keybladeSummoned;
+	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp;
+
+	public boolean keybladeSummoned, firstKeyblade;
 
 	public ExtendedPlayer(EntityPlayer player){
 		this.player = player;
@@ -41,7 +43,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.maxLevel = 99;
 		this.maxExperience = 10;
 		this.maxMp = 100;
-		this.keybladeSummoned = 0;
+		this.keybladeSummoned = false;
+		this.firstKeyblade = false;
 	}
 
 	@Override
@@ -55,7 +58,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("MP", this.mp);
 		properties.setInteger("MaxExperience", this.maxExperience);
 		properties.setInteger("MaxMP", this.maxMp);
-		properties.setInteger("KeybladeSummoned", this.keybladeSummoned);
+		properties.setBoolean("KeybladeSummoned", this.keybladeSummoned);
+		properties.setBoolean("FirstKeyblade", this.firstKeyblade);
 
 		compound.setTag(EXT_PROP_NAME, properties);
 
@@ -72,9 +76,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.mp = properties.getInteger("MP");
 		this.maxExperience = properties.getInteger("MaxExperience");
 		this.maxMp = properties.getInteger("MaxMP");
-		this.keybladeSummoned = properties.getInteger("KeybladeSummoned");
+		this.keybladeSummoned = properties.getBoolean("KeybladeSummoned");
+		this.firstKeyblade = properties.getBoolean("FirstKeyblade");
 		LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
-		String s = properties.getInteger("KeybladeSummoned") > 0 ? "Keyblade is summoned" : "Keyblade is not summoned";
+		String s = properties.getBoolean("KeybladeSummoned") == true ? "Keyblade is summoned" : "Keyblade is not summoned";
 		LogHelper.info("Loaded Summon data: " + s);
 	}
 
@@ -83,12 +88,21 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	}
 
-	public int getSummonedKeyblade() {
+	public boolean isKeybladeSummoned() {
 		return this.keybladeSummoned;
 	}
 
-	public void setSummonedKeyblade(int summoned) {
+	public void setKeybladeSummoned(boolean summoned) {
 		this.keybladeSummoned = summoned;
+		this.sync();
+	}
+
+	public boolean hasFirstKeyblade() {
+		return this.firstKeyblade;
+	}
+
+	public void setFirstKeyblade(boolean first) {
+		this.firstKeyblade = first;
 		this.sync();
 	}
 
