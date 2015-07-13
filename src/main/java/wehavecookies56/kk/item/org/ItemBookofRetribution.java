@@ -1,5 +1,8 @@
 package wehavecookies56.kk.item.org;
 
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -19,4 +22,8 @@ public class ItemBookofRetribution extends ItemSword{
         return EnumRarity.UNCOMMON;
     }
 
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool){
+		dataList.add("VI Zexion");
+	}
 }

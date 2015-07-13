@@ -175,8 +175,8 @@ item.birthbysleep-alinktothefuture-.name=Music Disc
 item.record.Birth by Sleep -A Link to the Future-.desc=Yoko Shimomura - Birth by Sleep -A Link to the Future-
 item.darknessoftheunknown.name=Music Disc
 item.record.Darkness of the Unknown.desc=Yoko Shimomura - Darkness of the Unknown
-item.dearlybeloved-symphonyversion.name=Music Disc
-item.record.Dearly Beloved -Symphony Version.desc-=Yoko Shimomura - Dearly Beloved -Symphony Version
+item.dearlybeloved-symphonyversion-.name=Music Disc
+item.record.Dearly Beloved -Symphony Version-.desc-=Yoko Shimomura - Dearly Beloved -Symphony Version-
 item.dreamdropdistance-thenextawakening-.name=Music Disc
 item.record.Dream Drop Distance -The Next Awakening-.desc=Yoko Shimomura - Dream Drop Distance -The Next Awakening-
 item.hikari-kingdominstrumentalversion-.name=Music Disc
@@ -197,6 +197,20 @@ item.sinistersundown.name=Music Disc
 item.record.Sinister Sundown.desc=Yoko Shimomura - Sinister Sundown
 item.the13thanthology.name=Music Disc
 item.record.The 13th Anthology.desc=Yoko Shimomura - The 13th Anthology
+
+#Organization XIII weapons
+item.interdiction.name=Interdiction
+item.sharpshooter.name=Sharpshooter
+item.lindworm.name=Lindworm
+item.frozenpride.name=Frozen Pride
+item.skysplitter.name=Skysplitter
+item.bookofretribution.name=Book of Retribution
+item.lunatic.name=Lunatic
+item.eternalflames.name=Eternal Flames
+item.arpeggio.name=Arpeggio
+item.fairgame.name=Fair Game
+item.gracefuldahlia.name=Graceful Dahlia
+item.foudre.name=Foudre
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
@@ -238,10 +252,10 @@ item.gullwing.name=Gull Wing
 item.heroscrest.name=Hero's Crest
 item.hiddendragon.name=Hidden Dragon
 item.hyperdrive.name=Hyperdrive
-item.incompletekiblade.name=Incomplete Ki-blade
+item.incompletekiblade.name=Incomplete χ-blade
 item.jungleking.name=Jungle King
 item.keybladeofpeopleshearts.name=Keyblade of People's Hearts
-item.kiblade.name=Ki-blade
+item.kiblade.name=χ-blade
 item.kingdomkey.name=Kingdom Key
 item.kingdomkeyd.name=Kingdom Key D
 item.knockoutpunch.name=Knockout Punch

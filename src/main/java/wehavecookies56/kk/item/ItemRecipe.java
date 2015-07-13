@@ -21,7 +21,7 @@ import wehavecookies56.kk.util.TextHelper;
 
 public class ItemRecipe extends Item {
 
-	public ItemRecipe() {}
+	public ItemRecipe() {this.setMaxStackSize(1);}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {

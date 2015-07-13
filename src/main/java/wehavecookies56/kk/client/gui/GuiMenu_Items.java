@@ -44,9 +44,6 @@ public class GuiMenu_Items extends GuiMenu_Bars {
 		this.updateScreen();
 	}
 
-
-
-
 	@Override
     public void initGui() {
     	super.initGui();

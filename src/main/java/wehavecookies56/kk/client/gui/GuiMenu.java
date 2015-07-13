@@ -28,13 +28,13 @@ public class GuiMenu extends GuiMenu_Bars {
 		super(Strings.Gui_Menu_Main_Title);
 	}
 
-	final int ITEMS = 0, ABILITIES = 1, CUSTOMIZE = 2, PARTY = 3, STATUS = 4, JOURNAL = 5, CONFIG = 6;	
+	final int ITEMS = 0, ABILITIES = 1, CUSTOMIZE = 2, PARTY = 3, STATUS = 4, JOURNAL = 5, CONFIG = 6;
 	final int SUBMENU_MAIN = 0, SUBMENU_ITEMS = 1;
-	
+
 	GuiButton items, abilities, customize, party, status, journal, config;
-	
+
 	static int munny;
-	
+
 	int submenuIndex = SUBMENU_MAIN;
 
 	@Override
@@ -49,7 +49,7 @@ public class GuiMenu extends GuiMenu_Bars {
 		}
 		updateButtons();
 	}
-	
+
     @Override
     public void initGui() {
     	super.initGui();
@@ -60,7 +60,7 @@ public class GuiMenu extends GuiMenu_Bars {
     	int button_statusY = button_partyY + 22;
     	int button_journalY = button_statusY + 22;
     	int button_configY = button_journalY + 22;
-    	
+
     	buttonList.add(items = new GuiButton(ITEMS, 5, button_itemsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Items)));
     	buttonList.add(abilities = new GuiButton(ABILITIES, 5, button_abilitiesY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Abilities)));
     	buttonList.add(customize = new GuiButton(CUSTOMIZE, 5, button_customizeY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Customize)));
@@ -81,6 +81,11 @@ public class GuiMenu extends GuiMenu_Bars {
 			status.visible = true;
 			journal.visible = true;
 			config.visible = true;
+			this.abilities.enabled = false;
+			this.customize.enabled = false;
+			this.party.enabled = false;
+			this.status.enabled = false;
+			this.config.enabled = false;
 			break;
 		case SUBMENU_ITEMS:
 			items.visible = false;
@@ -93,5 +98,5 @@ public class GuiMenu extends GuiMenu_Bars {
 			break;
 		}
 	}
-	
+
 }
