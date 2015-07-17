@@ -29,7 +29,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public final InventoryKeychain inventory = new InventoryKeychain();
 
-	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp;
+	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, dp, maxDP;
 
 	public boolean keybladeSummoned, firstKeyblade;
 
@@ -45,6 +45,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.maxMp = 100;
 		this.keybladeSummoned = false;
 		this.firstKeyblade = false;
+		this.dp = 0;
+		this.maxDP = 900;
 	}
 
 	@Override
@@ -58,6 +60,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("MP", this.mp);
 		properties.setInteger("MaxExperience", this.maxExperience);
 		properties.setInteger("MaxMP", this.maxMp);
+		properties.setInteger("DP", this.dp);
 		properties.setBoolean("KeybladeSummoned", this.keybladeSummoned);
 		properties.setBoolean("FirstKeyblade", this.firstKeyblade);
 
@@ -76,9 +79,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.mp = properties.getInteger("MP");
 		this.maxExperience = properties.getInteger("MaxExperience");
 		this.maxMp = properties.getInteger("MaxMP");
+		this.dp = properties.getInteger("DP");
 		this.keybladeSummoned = properties.getBoolean("KeybladeSummoned");
 		this.firstKeyblade = properties.getBoolean("FirstKeyblade");
 		LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
+		LogHelper.info("Loaded DP: " + properties.getInteger("DP"));
 		String s = properties.getBoolean("KeybladeSummoned") == true ? "Keyblade is summoned" : "Keyblade is not summoned";
 		LogHelper.info("Loaded Summon data: " + s);
 	}
@@ -86,6 +91,15 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	@Override
 	public void init(Entity entity, World world) {
 
+	}
+
+	public int getDP(){
+		return this.dp;
+	}
+
+	public void setDP(int amount){
+		this.dp = amount;
+		this.sync();
 	}
 
 	public boolean isKeybladeSummoned() {
@@ -169,6 +183,37 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 		if (sufficient) {
 			this.munny += amount;
+			this.sync();
+		} else {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean addDP(int amount){
+		boolean sufficient = true;
+
+		if(amount + this.dp > this.maxDP || amount > this.maxDP){
+			sufficient = false;
+		}
+
+		if (sufficient) {
+			this.dp += amount;
+			this.sync();
+		} else {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean removeDP(int amount){
+		boolean sufficient = true;
+
+		if(amount - this.maxDP < 0 || amount > this.maxDP){
+			sufficient = false;
+		}
+		if(sufficient){
+			this.dp -= amount;
 			this.sync();
 		} else {
 			return false;

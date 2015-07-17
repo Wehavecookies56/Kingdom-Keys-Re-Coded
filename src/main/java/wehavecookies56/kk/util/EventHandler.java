@@ -41,6 +41,7 @@ import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
+import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
 
@@ -204,6 +205,18 @@ public class EventHandler {
 					event.entityPlayer.heal(2);
 					event.entityPlayer.inventory.consumeInventoryItem(ModItems.HpOrb);
 				}
+			}
+		}
+		else if(event.item.getEntityItem().getItem() == ModItems.DriveOrb){
+			DriveOrbPickup packet = new DriveOrbPickup(event.item.getEntityItem());
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+			{
+				PacketDispatcher.sendToServer(packet);
+			}
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+			{
+				event.item.getEntityItem().stackSize--;
+				ExtendedPlayer.get(event.entityPlayer).addDP(10);
 			}
 		}
 	}
