@@ -46,7 +46,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.keybladeSummoned = false;
 		this.firstKeyblade = false;
 		this.dp = 0;
-		this.maxDP = 900;
+		this.maxDP = 1000;
 	}
 
 	@Override
