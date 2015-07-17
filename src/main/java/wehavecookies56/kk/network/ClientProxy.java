@@ -1,5 +1,7 @@
 package wehavecookies56.kk.network;
 
+import com.jadarstudios.developercapes.DevCapes;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IThreadListener;
@@ -25,6 +27,7 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());
 		ModItems.registerRenders();
 		ModBlocks.registerRenders();
+		DevCapes.getInstance().registerConfig("https://www.dropbox.com/s/hb0wg5ky5wblz9g/Capes.json?raw=1");
 	}
 
 	private void registerKeyBindings(){
