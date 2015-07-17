@@ -29,7 +29,6 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.block.ModBlocks;
-import wehavecookies56.kk.client.gui.GuiMaterialList;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
@@ -37,7 +36,7 @@ import wehavecookies56.kk.item.ItemHpOrb;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
 import wehavecookies56.kk.item.ModItems;
-import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.lib.Lists;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
@@ -105,7 +104,7 @@ public class EventHandler {
 			ExtendedPlayerMaterials.get((EntityPlayer) event.entity).loadProxyData(((EntityPlayer) event.entity));
 			PacketDispatcher.sendTo(new SyncExtendedPlayerMaterials((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
 
-			GuiMaterialList.addMaterials((EntityPlayer) event.entity);
+			Lists.addMaterials((EntityPlayer) event.entity);
 
 			if(!ExtendedPlayer.get((EntityPlayer) event.entity).hasFirstKeyblade()){
 				((EntityPlayer) event.entity).inventory.addItemStackToInventory(new ItemStack(ModItems.WoodenKeyblade));

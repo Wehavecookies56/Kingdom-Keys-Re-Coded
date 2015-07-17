@@ -83,7 +83,7 @@ public class GuiMenu_Bars extends GuiScreen {
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();{
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			GuiInventory.drawEntityOnScreen(this.width/2, (int)(this.height/2f + 75), 70, 0, 0, mc.thePlayer);
+			GuiInventory.drawEntityOnScreen(this.width/2, (int)(this.height/2 + 75), 70, 0, 0, mc.thePlayer);
 			//GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.75F);
 		}GL11.glPopMatrix();
 
