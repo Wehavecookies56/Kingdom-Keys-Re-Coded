@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
+import wehavecookies56.kk.client.gui.GuiDrive;
 import wehavecookies56.kk.client.keys.KeybindHandler;
 import wehavecookies56.kk.client.keys.Keybinds;
 import wehavecookies56.kk.item.ModItems;
@@ -25,6 +26,7 @@ public class ClientProxy extends CommonProxy {
 
 	private void registerRenders(){
 		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());
+		MinecraftForge.EVENT_BUS.register(new GuiDrive());
 		ModItems.registerRenders();
 		ModBlocks.registerRenders();
 		DevCapes.getInstance().registerConfig("https://www.dropbox.com/s/hb0wg5ky5wblz9g/Capes.json?raw=1");
