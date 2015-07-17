@@ -17,11 +17,13 @@ itemGroup.tabKingdomKeysblocks=Kingdom Keys (Bloques)
 tile.normalblox.name=Bloque de Error
 tile.hardblox.name=Bloque de Error Duro
 tile.metalblox.name=Bloque de Error Metálico
-tile.prizeblox.name=Bloque de Premio
-tile.rareprizeblox.name=Bloque de Premio Raro
 tile.dangerblox.name=Bloque de Error Peligroso
 tile.bounceblox.name=Bloque de Error Blando
 tile.blastblox.name=Bloque Bomba
+tile.prizeblox.name=Bloque de Premio
+tile.rareprizeblox.name=Bloque de Premio Raro
+tile.ghostblox.name=Bloque Fantasma
+
 
 #Synthesis Ore
 tile.blazingore.name=Mena Ígnea
@@ -39,9 +41,98 @@ tile.serenityore.name=Mena Serena
 tile.tranquilore.name=Mena Calmada
 tile.twilightore.name=Mena Crepuscular
 
+#Otros
+tile.synthesistable.name=Mesa de Síntesis
+tile.kkchest.name=Cofre
+
 ############################
 #Items
 ############################
+
+#Synthesis Materials
+sm.rank=Rango
+
+sm.blazingshard.name=Guijarro Ígneo
+sm.blazingstone.name=Piedra Ígnea
+sm.blazinggem.name=Gema Ígnea
+sm.blazingcrystal.name=Cristal Ígneo
+
+sm.brightshard.name=Guijarro Claro
+sm.brightstone.name=Piedra Clara
+sm.brightgem.name=Gema Clara
+sm.brightcrystal.name=Cristal Claro
+
+sm.darkshard.name=Guijarro Oscuro
+sm.darkstone.name=Piedra Oscura
+sm.darkgem.name=Gema Oscura
+sm.darkcrystal.name=Cristal Oscuro
+
+sm.denseshard.name=Guijarro Denso
+sm.densestone.name=Piedra Densa
+sm.densegem.name=Gema Densa
+sm.densecrystal.name=Cristal Denso
+
+sm.energyshard.name=Guijarro Vital
+sm.energystone.name=Piedra Vital
+sm.energygem.name=Gema Vital
+sm.energycrystal.name=Cristal Vital
+
+sm.frostshard.name=Guijarro Frío
+sm.froststone.name=Piedra Fría
+sm.frostgem.name=Gema Fría
+sm.frostcrystal.name=Cristal Frío
+
+sm.lightningshard.name=Guijarro Luminoso
+sm.lightningstone.name=Piedra Luminosa
+sm.lightninggem.name=Gema Luminosa
+sm.lightningcrystal.name=Cristal Luminoso
+
+sm.lostillusion.name=Ilusión Perdida
+
+sm.lucidshard.name=Guijarro de Ocaso
+sm.lucidstone.name=Piedra de Ocaso
+sm.lucidgem.name=Gema de Ocaso
+sm.lucidcrystal.name=Cristal Ocaso
+
+sm.manifestillusion.name=Ilusión Manifestada
+
+sm.mythrilshard.name=Guijarro de Mitrilo
+sm.mythrilstone.name=Piedra de Mitrilo
+sm.mytrhilgem.name=Gema de Mitrilo
+sm.mythrilcrystal.name=Cristal de Mitrilo
+
+sm.orichalcum.name=Orichalcum
+sm.orichalcum+.name=Orichalcum+
+
+sm.powershard.name=Guijarro de Poder
+sm.powerstone.name=Piedra de Poder
+sm.powergem.name=Gema de Poder
+sm.powercrystal.name=Cristal Poder
+
+sm.remembranceshard.name=Guijarro de Recuerdos
+sm.remembrancestone.name=Piedra de Recuerdos
+sm.remembrancegem.name=Gema de Recuerdos
+sm.remembrancecrystal.name=Cristal Recuerdos
+
+sm.serenityshard.name=Guijarro Sereno
+sm.serenitystone.name=Piedra Serena
+sm.serenitygem.name=Gema Serena
+sm.serenitycrystal.name=Cristal Sereno
+
+sm.tranquilshard.name=Guijarro Calmado
+sm.tranquilstone.name=Piedra Calmada
+sm.tranquilgem.name=Gema Calmada
+sm.tranquilcrystal.name=Cristal Calmado
+
+sm.twilightshard.name=Guijarro Crepuscular
+sm.twilightstone.name=Piedra Crepuscular
+sm.twilightgem.name=Gema Crepuscular
+sm.twilightcrystal.name=Cristal Crepuscular
+
+sm.stormyshard.name=Guijarro Tormentoso
+sm.stormystone.name=Piedra Tormentosa
+sm.stormygem.name=Gema Tormentosa
+sm.stormycrystal.name=Cristal Tormentoso
 
 #Armor
 item.organizationrobe_helmet.name=Capucha de la Organización
@@ -80,6 +171,61 @@ item.pureheart.name=Corazón puro
 item.kingdomhearts.name=Kingdom Hearts
 item.darkheart.name=Corazón oscuro
 item.darkleather.name=Cuero oscuro
+item.synthesismaterial.name=Material de Síntesis
+item.recipe.name=Receta
+
+item.frostinfusedsnowball.name=Bola de nieve Congelada
+item.blazinginfusedcoal.name=Carbón Ígneo
+item.stormyinfusediron.name=Lingote de hierro Tormentoso
+item.brightinfusedglowstone.name=Polvo de Glowstone Claro
+item.darkinfusediron.name=Lingote de hierro Oscuro
+item.lightninginfusedgold.name=Lingote de oro Luminoso
+item.mythrilinfuseddiamond.name=Diamante mezclado con Mitrilo
+
+#Discos de Música
+disc.duration.desc=Duración
+disc.durationunits.desc=(mins:secs)
+item.birthbysleep-alinktothefuture-.name=Disco de Música
+item.record.Birth by Sleep -A Link to the Future-.desc=Yoko Shimomura - Birth by Sleep -A Link to the Future-
+item.darknessoftheunknown.name=Disco de Música
+item.record.Darkness of the Unknown.desc=Yoko Shimomura - Darkness of the Unknown
+item.dearlybeloved-symphonyversion-.name=Disco de Música
+item.record.Dearly Beloved -Symphony Version-.desc-=Yoko Shimomura - Dearly Beloved -Symphony Version-
+item.dreamdropdistance-thenextawakening-.name=Disco de Música
+item.record.Dream Drop Distance -The Next Awakening-.desc=Yoko Shimomura - Dream Drop Distance -The Next Awakening-
+item.hikari-kingdominstrumentalversion-.name=Disco de Música
+item.record.Hikari -KINGDOM Instrumental Version-.desc=Yoko Shimomura - Hikari -KINGDOM Instrumental Version-
+item.l'oscuritadell'ignoto.name=Disco de Música
+item.record.L'Oscurita Dell'Ignoto.desc=Yoko Shimomura - L'Oscurita Dell'Ignoto
+item.musiquepourlatristessedexion.name=Disco de Música
+item.record.Musique pour la tristesse de Xion.desc=Yoko Shimomura - Musique pour la tristesse de Xion
+item.nomorebugs-bugversion-.name=Disco de Música
+item.record.No More Bugs -Bug Version-.desc=Yoko Shimomura - No More Bugs!! -Bug Version-
+item.organizationxiii.name=Disco de Música
+item.record.Organization XIII.desc=Yoko Shimomura - Organization XIII
+item.sanctuary.name=Disco de Música
+item.record.Sanctuary.desc=Hikaru Utada - Sanctuary
+item.simpleandclean-planitbremix-.name=Disco de Música
+item.record.Simple And Clean PLANITb Remix.desc=Hikaru Utada - Simple And Clean -PLANITb Remix-
+item.sinistersundown.name=Disco de Música
+item.record.Sinister Sundown.desc=Yoko Shimomura - Sinister Sundown
+item.the13thanthology.name=Disco de Música
+item.record.The 13th Anthology.desc=Yoko Shimomura - The 13th Anthology
+
+#Armas de la Organización XIII
+item.interdiction.name=Interdicción
+item.sharpshooter.name=Francotirador
+item.lindworm.name=Serpiente Verde
+item.frozenpride.name=Orgullo Congelado
+item.skysplitter.name=Hiendecielos
+item.bookofretribution.name=Libro de Retribución
+item.lunatic.name=Lunático
+item.lunatic.desc=VII Saïx
+item.eternalflames.name=Llamas Eternas
+item.arpeggio.name=Arpegio
+item.fairgame.name=Juego Justo
+item.gracefuldahlia.name=Dalia Graciosa
+item.foudre.name=Relámpago
 
 #Keyblades
 item.abaddonplasma.name=Plasma de Abadón
@@ -349,7 +495,7 @@ gui.commandmenu.magic.stop=Paro
 gui.commandmenu.drive.title=FUSIÓN
 gui.commandmenu.drive.valor=Forma Valiente
 gui.commandmenu.drive.wisdom=Forma Sabia
-gui.commandmenu.drive.limit=Forma Límite
+gui.commandmenu.drive.limit=Forma Suma
 gui.commandmenu.drive.master=Forma Maestra
 gui.commandmenu.drive.final=Forma Final
 
@@ -371,6 +517,17 @@ gui.menu.items.title=Objetos
 gui.menu.items.button.stock=Inventario
 gui.menu.items.button.back=Atrás
 
+#Keychain Container
+container.keychain=Pon un llavero aquí
+
+#Synthesis#
+gui.synthesis.main.title=Sintetizador
+gui.synthesis.main.recipes=Recetas
+gui.synthesis.main.freedevelopment=Libre Desarrollo
+gui.synthesis.main.materials=Materiales
+gui.synthesis.main.recipes.requiredmaterials=Materiales Requeridos
+gui.synthesis.main.recipes.create=Fabricar
+
 ############################
 #Keybinds
 ############################
@@ -382,3 +539,4 @@ key.kingdomkeys.scrollactivator=Presionar para controles del Menú de Ratón
 key.kingdomkeys.scrolldown=Menú de Comandos Abajo
 key.kingdomkeys.scrollup=Menú de Comandos Arriba
 key.kingdomkeys.openmenu=Menú
+key.kingdomkeys.summonkeyblade=Invocar Llave Espada
