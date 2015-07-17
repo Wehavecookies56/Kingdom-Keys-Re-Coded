@@ -6,12 +6,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
+import wehavecookies56.kk.api.recipes.Recipe;
+import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.client.gui.GuiMaterialList;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
-import wehavecookies56.kk.recipes.Recipe;
-import wehavecookies56.kk.recipes.RecipeRegistry;
 
 public class CreateFromSynthesisRecipe extends AbstractServerMessage<CreateFromSynthesisRecipe>  {
 
@@ -239,6 +239,19 @@ public class CreateFromSynthesisRecipe extends AbstractServerMessage<CreateFromS
 			}
 			if(s.equals(Strings.SM_TwilightCrystal)){
 				index = GuiMaterialList.Index_TwilightCrystal;
+			}
+
+			if(s.equals(Strings.SM_StormyShard)){
+				index = GuiMaterialList.Index_StormyShard;
+			}
+			if(s.equals(Strings.SM_StormyStone)){
+				index = GuiMaterialList.Index_StormyStone;
+			}
+			if(s.equals(Strings.SM_StormyGem)){
+				index = GuiMaterialList.Index_StormyGem;
+			}
+			if(s.equals(Strings.SM_StormyCrystal)){
+				index = GuiMaterialList.Index_StormyCrystal;
 			}
 			ExtendedPlayerMaterials.get(player).setMaterialArray(ExtendedPlayerMaterials.get(player).arrayOfAmounts[index] -= Integer.parseInt(r.getRequirements().get(i).substring(r.getRequirements().get(i).lastIndexOf(".") + 1)), index);
 		}

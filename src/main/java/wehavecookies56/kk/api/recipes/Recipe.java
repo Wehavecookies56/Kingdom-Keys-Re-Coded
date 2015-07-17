@@ -1,4 +1,4 @@
-package wehavecookies56.kk.recipes;
+package wehavecookies56.kk.api.recipes;
 
 import java.util.List;
 

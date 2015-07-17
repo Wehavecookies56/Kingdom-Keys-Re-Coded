@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.Item;
+import wehavecookies56.kk.api.recipes.Recipe;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Strings;
 

@@ -1,6 +1,6 @@
 package wehavecookies56.kk.recipes;
 
-import static wehavecookies56.kk.recipes.RecipeRegistry.registerRecipe;
+import static wehavecookies56.kk.api.recipes.RecipeRegistry.registerRecipe;
 
 import wehavecookies56.kk.item.ModItems;
 

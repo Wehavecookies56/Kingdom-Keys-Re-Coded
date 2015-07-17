@@ -2,8 +2,8 @@ package wehavecookies56.kk.block;
 
 import java.util.Random;
 
-import wehavecookies56.kk.item.ItemStacks;
 import wehavecookies56.kk.item.ModItems;
+import wehavecookies56.kk.util.ItemStacks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

@@ -128,6 +128,11 @@ sm.twilightstone.name=Twilight Stone
 sm.twilightgem.name=Twilight Gem
 sm.twilightcrystal.name=Twilight Crystal
 
+sm.stormyshard.name=Stormy Shard
+sm.stormystone.name=Stormy Stone
+sm.stormygem.name=Stormy Gem
+sm.stormycrystal.name=Stormy Crystal
+
 #Armor
 item.organizationrobe_helmet.name=Organization Hood
 item.organizationrobe_chestplate.name=Organization Coat
@@ -168,6 +173,14 @@ item.darkleather.name=Dark Leather
 item.synthesismaterial.name=Synthesis Material
 item.recipe.name=Synthesis Recipe
 
+item.frostinfusedsnowball.name=Frost-Infused Snowball
+item.blazinginfusedcoal.name=Blazing-Infused Coal
+item.stormyinfusediron.name=Stormy-Infused Iron Ingot
+item.brightinfusedglowstone.name=Bright-Infused Glowstone Dust
+item.darkinfusediron.name=Dark-Infused Iron Ingot
+item.lightninginfusedgold.name=Lightning-Infused Gold Ingot
+item.mythrilinfuseddiamond.name=Mythril-Infused Diamond
+
 #Music Discs
 disc.duration.desc=Duration
 disc.durationunits.desc=(mins:secs)
@@ -206,6 +219,7 @@ item.frozenpride.name=Frozen Pride
 item.skysplitter.name=Skysplitter
 item.bookofretribution.name=Book of Retribution
 item.lunatic.name=Lunatic
+item.lunatic.desc=VII Saïx
 item.eternalflames.name=Eternal Flames
 item.arpeggio.name=Arpeggio
 item.fairgame.name=Fair Game

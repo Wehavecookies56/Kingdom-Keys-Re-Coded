@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Stack;
 
 import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.ItemStacks;
 import wehavecookies56.kk.util.TextHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,81 +28,86 @@ public class ItemSynthesisMaterial extends Item {
 
 	@Override
 	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems) {
-		ItemStack BlazingShard = ItemStacks.BlazingShard;
-		ItemStack BlazingStone = ItemStacks.BlazingStone;
-		ItemStack BlazingGem = ItemStacks.BlazingGem;
-		ItemStack BlazingCrystal = ItemStacks.BlazingCrystal;
+		ItemStack BlazingShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack BlazingStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack BlazingGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack FrostShard = ItemStacks.FrostShard;
-		ItemStack FrostStone = ItemStacks.FrostStone;
-		ItemStack FrostGem = ItemStacks.FrostGem;
-		ItemStack FrostCrystal = ItemStacks.FrostCrystal;
+		ItemStack FrostShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack FrostStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack FrostGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack FrostCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack LightningShard = ItemStacks.LightningShard;
-		ItemStack LightningStone = ItemStacks.LightningStone;
-		ItemStack LightningGem = ItemStacks.LightningGem;
-		ItemStack LightningCrystal = ItemStacks.LightningCrystal;
+		ItemStack LightningShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack LightningStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack LightningGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack LightningCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack LucidShard = ItemStacks.LucidShard;
-		ItemStack LucidStone = ItemStacks.LucidStone;
-		ItemStack LucidGem = ItemStacks.LucidGem;
-		ItemStack LucidCrystal = ItemStacks.LucidCrystal;
+		ItemStack LucidShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack LucidStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack LucidGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack LucidCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack PowerShard = ItemStacks.PowerShard;
-		ItemStack PowerStone = ItemStacks.PowerStone;
-		ItemStack PowerGem = ItemStacks.PowerGem;
-		ItemStack PowerCrystal = ItemStacks.PowerCrystal;
+		ItemStack PowerShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack PowerStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack PowerGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack PowerCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack DarkShard = ItemStacks.DarkShard;
-		ItemStack DarkStone = ItemStacks.DarkStone;
-		ItemStack DarkGem = ItemStacks.DarkGem;
-		ItemStack DarkCrystal = ItemStacks.DarkCrystal;
+		ItemStack DarkShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack DarkStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack DarkGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack DarkCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack DenseShard = ItemStacks.DenseShard;
-		ItemStack DenseStone = ItemStacks.DenseStone;
-		ItemStack DenseGem = ItemStacks.DenseGem;
-		ItemStack DenseCrystal = ItemStacks.DenseCrystal;
+		ItemStack DenseShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack DenseStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack DenseGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack DenseCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack TwilightShard = ItemStacks.TwilightShard;
-		ItemStack TwilightStone = ItemStacks.TwilightStone;
-		ItemStack TwilightGem = ItemStacks.TwilightGem;
-		ItemStack TwilightCrystal = ItemStacks.TwilightCrystal;
+		ItemStack TwilightShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack TwilightStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack TwilightGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack TwilightCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack MythrilShard = ItemStacks.MythrilShard;
-		ItemStack MythrilStone = ItemStacks.MythrilStone;
-		ItemStack MythrilGem = ItemStacks.MythrilGem;
-		ItemStack MythrilCrystal = ItemStacks.MythrilCrystal;
+		ItemStack MythrilShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack MythrilStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack MythrilGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack MythrilCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack BrightShard = ItemStacks.BrightShard;
-		ItemStack BrightStone = ItemStacks.BrightStone;
-		ItemStack BrightGem = ItemStacks.BrightGem;
-		ItemStack BrightCrystal = ItemStacks.BrightCrystal;
+		ItemStack BrightShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack BrightStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack BrightGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack BrightCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack EnergyShard = ItemStacks.EnergyShard;
-		ItemStack EnergyStone = ItemStacks.EnergyStone;
-		ItemStack EnergyGem = ItemStacks.EnergyGem;
-		ItemStack EnergyCrystal = ItemStacks.EnergyCrystal;
+		ItemStack EnergyShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack EnergyStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack EnergyGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack EnergyCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack SerenityShard = ItemStacks.SerenityShard;
-		ItemStack SerenityStone = ItemStacks.SerenityStone;
-		ItemStack SerenityGem = ItemStacks.SerenityGem;
-		ItemStack SerenityCrystal = ItemStacks.SerenityCrystal;
+		ItemStack SerenityShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack SerenityStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack SerenityGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack SerenityCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack Orichalcum = ItemStacks.Oricalcum;
-		ItemStack OrichalcumPlus = ItemStacks.OricalcumPlus;
+		ItemStack Orichalcum = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack OrichalcumPlus = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack RemembranceShard = ItemStacks.RemembranceShard;
-		ItemStack RemembranceStone = ItemStacks.RemembranceStone;
-		ItemStack RemembranceGem = ItemStacks.RemembranceGem;
-		ItemStack RemembranceCrystal = ItemStacks.RemembranceCrystal;
+		ItemStack RemembranceShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack RemembranceStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack RemembranceGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack RemembranceCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack TranquilShard = ItemStacks.TranquilShard;
-		ItemStack TranquilStone = ItemStacks.TranquilStone;
-		ItemStack TranquilGem = ItemStacks.TranquilGem;
-		ItemStack TranquilCrystal = ItemStacks.TranquilCrystal;
+		ItemStack TranquilShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack TranquilStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack TranquilGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack TranquilCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-		ItemStack ManifestIllusion = ItemStacks.ManifestIllusion;
-		ItemStack LostIllusion = ItemStacks.LostIllusion;
+		ItemStack ManifestIllusion = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack LostIllusion = new ItemStack(ModItems.SynthesisMaterial, 1);
+
+		ItemStack StormyShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack StormyStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack StormyGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStack StormyCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
 		createSynthesisItem(BlazingShard, Strings.SM_BlazingShard, TextHelper.localize(Strings.SM_Rank) + " C", subItems);
 		createSynthesisItem(BlazingStone, Strings.SM_BlazingStone, TextHelper.localize(Strings.SM_Rank) + " B", subItems);
@@ -177,6 +183,11 @@ public class ItemSynthesisMaterial extends Item {
 		createSynthesisItem(OrichalcumPlus, Strings.SM_OrichalcumPlus, TextHelper.localize(Strings.SM_Rank) + " S", subItems);
 		createSynthesisItem(ManifestIllusion, Strings.SM_ManifestIllusion, TextHelper.localize(Strings.SM_Rank) + " A", subItems);
 		createSynthesisItem(LostIllusion, Strings.SM_LostIllusion, TextHelper.localize(Strings.SM_Rank) + " S", subItems);
+
+		createSynthesisItem(StormyShard, Strings.SM_StormyShard, TextHelper.localize(Strings.SM_Rank) + " C", subItems);
+		createSynthesisItem(StormyStone, Strings.SM_StormyStone, TextHelper.localize(Strings.SM_Rank) + " B", subItems);
+		createSynthesisItem(StormyGem, Strings.SM_StormyGem, TextHelper.localize(Strings.SM_Rank) + " A", subItems);
+		createSynthesisItem(StormyCrystal, Strings.SM_StormyCrystal, TextHelper.localize(Strings.SM_Rank) + " S", subItems);
 	}
 
 	public void createSynthesisItem(ItemStack stack, String material, String rank, List list){

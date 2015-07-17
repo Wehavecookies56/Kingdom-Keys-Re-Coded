@@ -26,8 +26,19 @@ public class ModItems {
 		Arpeggio,
 		FairGame,
 		GracefulDahlia,
-		Foudre;
-	
+		Foudre
+		;
+
+	public static Item
+		BlazingInfusedCoal,
+		FrostInfusedSnowBall,
+		StormyInfusedIron,
+		MythrilInfusedDiamond,
+		LightningInfusedGold,
+		BrightInfusedGlowStone,
+		DarkInfusedIron
+		;
+
 	//Keyblades
 	public static Item
 		AbaddonPlasma,
@@ -341,6 +352,14 @@ public class ModItems {
 	public static void init(){
 		tabKingdomKeys = new TabKingdomKeys(CreativeTabs.getNextID(), Strings.tabKingdomKeys);
 
+		BlazingInfusedCoal = new Item().setUnlocalizedName(Strings.BlazingInfusedCoal).setCreativeTab(tabKingdomKeys);
+		FrostInfusedSnowBall = new Item().setUnlocalizedName(Strings.FrostInfusedSnowBall).setCreativeTab(tabKingdomKeys);
+		StormyInfusedIron = new Item().setUnlocalizedName(Strings.StormyInfusedIron).setCreativeTab(tabKingdomKeys);
+		MythrilInfusedDiamond = new Item().setUnlocalizedName(Strings.MythrilInfusedDiamond).setCreativeTab(tabKingdomKeys);
+		LightningInfusedGold = new Item().setUnlocalizedName(Strings.LightningInfusedGold).setCreativeTab(tabKingdomKeys);
+		BrightInfusedGlowStone = new Item().setUnlocalizedName(Strings.BrightInfusedGlowStone).setCreativeTab(tabKingdomKeys);
+		DarkInfusedIron = new Item().setUnlocalizedName(Strings.DarkInfusedIron).setCreativeTab(tabKingdomKeys);
+
 		Interdiction = new ItemInterdiction(EnumHelper.addToolMaterial(Config.A_TM_Interdiction[0], Integer.parseInt(Config.A_TM_Interdiction[1]), Integer.parseInt(Config.A_TM_Interdiction[2]), Float.parseFloat(Config.A_TM_Interdiction[3]), Float.parseFloat(Config.A_TM_Interdiction[4]), Integer.parseInt(Config.A_TM_Interdiction[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
 		Sharpshooter = new ItemSharpshooter(EnumHelper.addToolMaterial(Config.A_TM_Sharpshooter[0], Integer.parseInt(Config.A_TM_Sharpshooter[1]), Integer.parseInt(Config.A_TM_Sharpshooter[2]), Float.parseFloat(Config.A_TM_Sharpshooter[3]), Float.parseFloat(Config.A_TM_Sharpshooter[4]), Integer.parseInt(Config.A_TM_Sharpshooter[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sharpshooter);
 		Lindworm = new ItemLindworm(EnumHelper.addToolMaterial(Config.A_TM_Lindworm[0], Integer.parseInt(Config.A_TM_Lindworm[1]), Integer.parseInt(Config.A_TM_Lindworm[2]), Float.parseFloat(Config.A_TM_Lindworm[3]), Float.parseFloat(Config.A_TM_Lindworm[4]), Integer.parseInt(Config.A_TM_Lindworm[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lindworm);
@@ -353,7 +372,7 @@ public class ModItems {
 		FairGame = new ItemFairGame(EnumHelper.addToolMaterial(Config.A_TM_FairGame[0], Integer.parseInt(Config.A_TM_FairGame[1]), Integer.parseInt(Config.A_TM_FairGame[2]), Float.parseFloat(Config.A_TM_FairGame[3]), Float.parseFloat(Config.A_TM_FairGame[4]), Integer.parseInt(Config.A_TM_FairGame[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
 		GracefulDahlia = new ItemGracefulDahlia(EnumHelper.addToolMaterial(Config.A_TM_GracefulDahlia[0], Integer.parseInt(Config.A_TM_GracefulDahlia[1]), Integer.parseInt(Config.A_TM_GracefulDahlia[2]), Float.parseFloat(Config.A_TM_GracefulDahlia[3]), Float.parseFloat(Config.A_TM_GracefulDahlia[4]), Integer.parseInt(Config.A_TM_GracefulDahlia[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
 		Foudre = new ItemFoudre(EnumHelper.addToolMaterial(Config.A_TM_Foudre[0], Integer.parseInt(Config.A_TM_Foudre[1]), Integer.parseInt(Config.A_TM_Foudre[2]), Float.parseFloat(Config.A_TM_Foudre[3]), Float.parseFloat(Config.A_TM_Foudre[4]), Integer.parseInt(Config.A_TM_Foudre[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foudre);
-		
+
 		AbaddonPlasma = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbaddonPlasma[0], Integer.parseInt(Config.A_TM_AbaddonPlasma[1]), Integer.parseInt(Config.A_TM_AbaddonPlasma[2]), Float.parseFloat(Config.A_TM_AbaddonPlasma[3]), Float.parseFloat(Config.A_TM_AbaddonPlasma[4]), Integer.parseInt(Config.A_TM_AbaddonPlasma[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbaddonPlasma);
 		AbyssalTide = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbyssalTide[0], Integer.parseInt(Config.A_TM_AbyssalTide[1]), Integer.parseInt(Config.A_TM_AbyssalTide[2]), Float.parseFloat(Config.A_TM_AbyssalTide[3]), Float.parseFloat(Config.A_TM_AbyssalTide[4]), Integer.parseInt(Config.A_TM_AbyssalTide[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbyssalTide);
 		AllforOne = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AllforOne[0], Integer.parseInt(Config.A_TM_AllforOne[1]), Integer.parseInt(Config.A_TM_AllforOne[2]), Float.parseFloat(Config.A_TM_AllforOne[3]), Float.parseFloat(Config.A_TM_AllforOne[4]), Integer.parseInt(Config.A_TM_AllforOne[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AllforOne);
@@ -590,9 +609,9 @@ public class ModItems {
 		Chain_ZeroOne = new ItemKeychain((ItemKeyblade) ZeroOne).setUnlocalizedName(Strings.Chain_ZeroOne).setCreativeTab(tabKingdomKeys);
 
 		Munny = new ItemMunny().setUnlocalizedName(Strings.Munny).setCreativeTab(tabKingdomKeys);
-		EmptyPotion = new Item().setUnlocalizedName(Strings.EmptyPotion).setCreativeTab(tabKingdomKeys);
-		Potion = new Item().setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys);
-		HpOrb = new ItemHpOrb().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys);
+		EmptyPotion = new Item().setUnlocalizedName(Strings.EmptyPotion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		Potion = new Item().setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		HpOrb = new ItemHpOrb().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		DriveOrb = new Item().setUnlocalizedName(Strings.DriveOrb).setCreativeTab(tabKingdomKeys);
 		Heart = new Item().setUnlocalizedName(Strings.Heart).setCreativeTab(tabKingdomKeys);
 		DarkHeart = new Item().setUnlocalizedName(Strings.DarkHeart).setCreativeTab(tabKingdomKeys);
@@ -614,17 +633,26 @@ public class ModItems {
 		Disc_Simple_And_Clean_PLANITb_Remix = new ItemKKRecord(Strings.Disc_Simple_And_Clean_PLANITb_Remix_Name, Strings.Disc_Simple_And_Clean_PLANITb_Remix, tabKingdomKeys, 2.37F);
 		Disc_Sinister_Sundown = new ItemKKRecord(Strings.Disc_Sinister_Sundown_Name, Strings.Disc_Sinister_Sundown, tabKingdomKeys, 2.13F);
 		Disc_The_13th_Anthology = new ItemKKRecord(Strings.Disc_The_13th_Anthology_Name, Strings.Disc_The_13th_Anthology, tabKingdomKeys, 6.38F);
-		
+
 		Recipe = new ItemRecipe().setUnlocalizedName(Strings.Recipe).setCreativeTab(tabKingdomKeys);
 	}
 
 	public static void register(){
+		//Materials
+		GameRegistry.registerItem(BlazingInfusedCoal, Strings.BlazingInfusedCoal);
+		GameRegistry.registerItem(FrostInfusedSnowBall, Strings.FrostInfusedSnowBall);
+		GameRegistry.registerItem(StormyInfusedIron, Strings.StormyInfusedIron);
+		GameRegistry.registerItem(MythrilInfusedDiamond, Strings.MythrilInfusedDiamond);
+		GameRegistry.registerItem(LightningInfusedGold, Strings.LightningInfusedGold);
+		GameRegistry.registerItem(BrightInfusedGlowStone, Strings.BrightInfusedGlowStone);
+		GameRegistry.registerItem(DarkInfusedIron, Strings.DarkInfusedIron);
+
 		//Armour
 		GameRegistry.registerItem(OrganizationRobe_Helmet = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, 0, Strings.OrganizationRobe_Helmet), Strings.OrganizationRobe_Helmet);
 		GameRegistry.registerItem(OrganizationRobe_Chestplate = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, 1, Strings.OrganizationRobe_Chestplate), Strings.OrganizationRobe_Chestplate);
 		GameRegistry.registerItem(OrganizationRobe_Leggings = new ItemOrganizationRobe(ORGANIZATIONROBE, 2, 2, Strings.OrganizationRobe_Leggings), Strings.OrganizationRobe_Leggings);
 		GameRegistry.registerItem(OrganizationRobe_Boots = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, 3, Strings.OrganizationRobe_Boots), Strings.OrganizationRobe_Boots);
-		
+
 		GameRegistry.registerItem(Terra_Helmet = new ItemTerraArmor(TERRA, 1, 0, Strings.Terra_Helmet), Strings.Terra_Helmet);
 		GameRegistry.registerItem(Terra_Chestplate = new ItemTerraArmor(TERRA, 1, 1, Strings.Terra_Chestplate), Strings.Terra_Chestplate);
 		GameRegistry.registerItem(Terra_Leggings = new ItemTerraArmor(TERRA, 2, 2, Strings.Terra_Leggings), Strings.Terra_Leggings);
@@ -927,6 +955,15 @@ public class ModItems {
 	}
 
 	public static void registerRenders(){
+		//Materials
+		registerRender(BlazingInfusedCoal);
+		registerRender(FrostInfusedSnowBall);
+		registerRender(StormyInfusedIron);
+		registerRender(MythrilInfusedDiamond);
+		registerRender(LightningInfusedGold);
+		registerRender(BrightInfusedGlowStone);
+		registerRender(DarkInfusedIron);
+
 		//Armour
 		registerRender(OrganizationRobe_Helmet);
 		registerRender(OrganizationRobe_Chestplate);
@@ -966,7 +1003,7 @@ public class ModItems {
 		registerRender(FairGame);
 		registerRender(GracefulDahlia);
 		registerRender(Foudre);
-		
+
 		//Keyblades
 		registerRender(AbaddonPlasma);
 		registerRender(AbyssalTide);

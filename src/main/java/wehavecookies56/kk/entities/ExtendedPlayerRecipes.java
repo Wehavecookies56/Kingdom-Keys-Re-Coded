@@ -11,11 +11,11 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.common.util.Constants;
+import wehavecookies56.kk.api.recipes.Recipe;
+import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
-import wehavecookies56.kk.recipes.Recipe;
-import wehavecookies56.kk.recipes.RecipeRegistry;
 import wehavecookies56.kk.util.LogHelper;
 
 public class ExtendedPlayerRecipes implements IExtendedEntityProperties {

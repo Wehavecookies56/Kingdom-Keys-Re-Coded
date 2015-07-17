@@ -3,9 +3,8 @@ package wehavecookies56.kk.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import wehavecookies56.kk.item.ItemStacks;
 import wehavecookies56.kk.item.ModItems;
-
+import wehavecookies56.kk.util.ItemStacks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

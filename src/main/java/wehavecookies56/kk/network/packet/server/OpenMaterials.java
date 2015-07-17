@@ -230,6 +230,19 @@ public class OpenMaterials extends AbstractServerMessage<OpenMaterials> {
 						if(s.equals(Strings.SM_TwilightCrystal)){
 							index = GuiMaterialList.Index_TwilightCrystal;
 						}
+
+						if(s.equals(Strings.SM_StormyShard)){
+							index = GuiMaterialList.Index_StormyShard;
+						}
+						if(s.equals(Strings.SM_StormyStone)){
+							index = GuiMaterialList.Index_StormyStone;
+						}
+						if(s.equals(Strings.SM_StormyGem)){
+							index = GuiMaterialList.Index_StormyGem;
+						}
+						if(s.equals(Strings.SM_StormyCrystal)){
+							index = GuiMaterialList.Index_StormyCrystal;
+						}
 						ExtendedPlayerMaterials.get(player).setMaterialArray(ExtendedPlayerMaterials.get(player).arrayOfAmounts[index] += player.inventory.mainInventory[i].stackSize, index);
 						player.inventory.setInventorySlotContents(i, null);
 					}

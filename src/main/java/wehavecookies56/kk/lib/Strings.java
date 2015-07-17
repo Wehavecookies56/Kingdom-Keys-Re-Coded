@@ -127,7 +127,18 @@ public class Strings {
 	KingdomHearts = "kingdomhearts",
 	DarkLeather = "darkleather",
 	SynthesisMaterial = "synthesismaterial",
-	Recipe = "recipe"
+	Recipe = "recipe",
+	LunaticDesc = "item.lunatic.desc"
+	;
+
+	public static final String
+	BlazingInfusedCoal = "blazinginfusedcoal",
+	FrostInfusedSnowBall = "frostinfusedsnowball",
+	StormyInfusedIron = "stormyinfusediron",
+	MythrilInfusedDiamond = "mythrilinfuseddiamond",
+	LightningInfusedGold = "lightninginfusedgold",
+	BrightInfusedGlowStone = "brightinfusedglowstone",
+	DarkInfusedIron = "darkinfusediron"
 	;
 
 	//Armour
@@ -234,7 +245,12 @@ public class Strings {
 	SM_Orichalcum = "sm.orichalcum",
 	SM_OrichalcumPlus = "sm.orichalcum+",
 	SM_ManifestIllusion = "sm.manifestillusion",
-	SM_LostIllusion = "sm.lostillusion"
+	SM_LostIllusion = "sm.lostillusion",
+
+	SM_StormyShard = "sm.stormyshard",
+	SM_StormyStone = "sm.stormystone",
+	SM_StormyGem = "sm.stormygem",
+	SM_StormyCrystal = "sm.stormycrystal"
 	;
 
 	//Music Discs

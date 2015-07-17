@@ -12,8 +12,8 @@ import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.fml.relauncher.Side;
+import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
-import wehavecookies56.kk.recipes.RecipeRegistry;
 import wehavecookies56.kk.util.TextHelper;
 
 public class UseRecipe extends AbstractServerMessage<UseRecipe> {

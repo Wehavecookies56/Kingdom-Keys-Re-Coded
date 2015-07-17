@@ -10,8 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import wehavecookies56.kk.recipes.Recipe;
-import wehavecookies56.kk.recipes.RecipeRegistry;
+import wehavecookies56.kk.api.recipes.Recipe;
+import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.util.TextHelper;
 
 public class CommandLearnRecipe implements ICommand {

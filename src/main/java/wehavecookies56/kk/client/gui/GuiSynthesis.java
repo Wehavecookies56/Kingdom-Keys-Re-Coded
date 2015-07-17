@@ -12,6 +12,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import wehavecookies56.kk.api.recipes.Recipe;
+import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
@@ -20,8 +22,6 @@ import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.CreateFromSynthesisRecipe;
 import wehavecookies56.kk.network.packet.server.OpenMaterials;
-import wehavecookies56.kk.recipes.Recipe;
-import wehavecookies56.kk.recipes.RecipeRegistry;
 import wehavecookies56.kk.util.TextHelper;
 
 
@@ -300,6 +300,19 @@ public class GuiSynthesis extends GuiTooltip{
 			}
 			if(r.getRequirements().get(i) == Strings.SM_TwilightCrystal){
 				index = GuiMaterialList.Index_TwilightCrystal;
+			}
+
+			if(r.getRequirements().get(i) == Strings.SM_StormyShard){
+				index = GuiMaterialList.Index_StormyShard;
+			}
+			if(r.getRequirements().get(i) == Strings.SM_StormyStone){
+				index = GuiMaterialList.Index_StormyStone;
+			}
+			if(r.getRequirements().get(i) == Strings.SM_StormyGem){
+				index = GuiMaterialList.Index_StormyGem;
+			}
+			if(r.getRequirements().get(i) == Strings.SM_StormyCrystal){
+				index = GuiMaterialList.Index_StormyCrystal;
 			}
 
 			if(Integer.parseInt(r.getRequirements().get(i).substring(r.getRequirements().get(i).lastIndexOf(".") + 1)) <= mats.arrayOfAmounts[i]){

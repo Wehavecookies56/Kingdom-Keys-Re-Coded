@@ -95,7 +95,11 @@ public class GuiMaterialList extends GuiScrollingList {
 	Index_TwilightShard = 56,
 	Index_TwilightStone = 57,
 	Index_TwilightGem = 58,
-	Index_TwilightCrystal = 59
+	Index_TwilightCrystal = 59,
+	Index_StormyShard = 60,
+	Index_StormyStone = 61,
+	Index_StormyGem = 62,
+	Index_StormyCrystal = 63
 	;
 
 	public static void addMaterials(EntityPlayer player){
@@ -297,6 +301,19 @@ public class GuiMaterialList extends GuiScrollingList {
 		}
 		if(!materials.contains(Strings.SM_TwilightCrystal)){
 			materials.add(Index_TwilightCrystal, Strings.SM_TwilightCrystal);
+		}
+
+		if(!materials.contains(Strings.SM_StormyShard)){
+			materials.add(Index_StormyShard, Strings.SM_StormyShard);
+		}
+		if(!materials.contains(Strings.SM_StormyStone)){
+			materials.add(Index_StormyStone, Strings.SM_StormyStone);
+		}
+		if(!materials.contains(Strings.SM_StormyGem)){
+			materials.add(Index_StormyGem, Strings.SM_StormyGem);
+		}
+		if(!materials.contains(Strings.SM_StormyCrystal)){
+			materials.add(Index_StormyCrystal, Strings.SM_StormyCrystal);
 		}
 
 	}

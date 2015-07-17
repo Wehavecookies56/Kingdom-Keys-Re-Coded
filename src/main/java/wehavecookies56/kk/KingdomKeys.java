@@ -1,8 +1,5 @@
 package wehavecookies56.kk;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -17,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.block.ModBlocksRecipes;
 import wehavecookies56.kk.entities.TileEntitySynthesisTable;
@@ -30,9 +28,9 @@ import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.UpdateChecker;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.recipes.ModRecipes;
-import wehavecookies56.kk.recipes.RecipeRegistry;
 import wehavecookies56.kk.server.command.CommandGiveMunny;
 import wehavecookies56.kk.server.command.CommandLearnRecipe;
+import wehavecookies56.kk.util.FuelHandler;
 import wehavecookies56.kk.util.LogHelper;
 import wehavecookies56.kk.util.ScrollHandler;
 import wehavecookies56.kk.worldgen.ChestGen;
@@ -109,6 +107,10 @@ public class KingdomKeys {
 		ModItemsRecipes.init();
 		ModBlocksRecipes.init();
 		LogHelper.info("Crafting recipes loaded");
+
+		//Fuel Handler
+		GameRegistry.registerFuelHandler(new FuelHandler());
+		LogHelper.info("Fuel handler loaded");
 
 		//Register renders
 		proxy.init();

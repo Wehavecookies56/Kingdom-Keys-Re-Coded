@@ -9,6 +9,8 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.TextHelper;
 
 public class ItemLunatic extends ItemSword{
 
@@ -24,7 +26,7 @@ public class ItemLunatic extends ItemSword{
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool){
-		dataList.add("VII Saïx");
+		dataList.add(TextHelper.localize(Strings.LunaticDesc));
 	}
 
 }
