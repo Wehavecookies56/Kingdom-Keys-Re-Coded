@@ -32,7 +32,7 @@ public class GuiHead extends GuiScreen {
 			float posX = 20*scale;
 			float posY = 20*scale;
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - 32*scale) - posX, (screenHeight - 32*scale) - posY, 0);
+			GL11.glTranslatef((screenWidth - 30*scale) - posX, (screenHeight - 33*scale) - posY, 0);
 			GL11.glScalef(scale, scale, scale);
 			this.drawTexturedModalRect(0, 0, 32, 32, 32, 32);
 			GL11.glPopMatrix();

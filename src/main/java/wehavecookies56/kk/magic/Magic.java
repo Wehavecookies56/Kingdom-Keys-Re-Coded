@@ -20,8 +20,8 @@ public class Magic {
 	{
 		world.spawnEntityInWorld(new EntityFire(world, player));
 		PacketDispatcher.sendToServer(new MagicFire());
-
 	}
+	
 
 	public static void Ice(EntityPlayer player, World world)
 	{

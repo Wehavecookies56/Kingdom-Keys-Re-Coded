@@ -102,7 +102,7 @@ sm.manifestillusion.name=Manifest Illusion
 
 sm.mythrilshard.name=Mythril Shard
 sm.mythrilstone.name=Mythril Stone
-sm.mytrhilgem.name=Mythril Gem
+sm.mythrilgem.name=Mythril Gem
 sm.mythrilcrystal.name=Mythril Crystal
 
 sm.orichalcum.name=Orichalcum
@@ -123,6 +123,11 @@ sm.serenitystone.name=Serenity Stone
 sm.serenitygem.name=Serenity Gem
 sm.serenitycrystal.name=Serenity Crystal
 
+sm.stormyshard.name=Stormy Shard
+sm.stormystone.name=Stormy Stone
+sm.stormygem.name=Stormy Gem
+sm.stormycrystal.name=Stormy Crystal
+
 sm.tranquilshard.name=Tranquil Shard
 sm.tranquilstone.name=Tranquil Stone
 sm.tranquilgem.name=Tranquil Gem
@@ -133,10 +138,6 @@ sm.twilightstone.name=Twilight Stone
 sm.twilightgem.name=Twilight Gem
 sm.twilightcrystal.name=Twilight Crystal
 
-sm.stormyshard.name=Stormy Shard
-sm.stormystone.name=Stormy Stone
-sm.stormygem.name=Stormy Gem
-sm.stormycrystal.name=Stormy Crystal
 
 #Armor
 item.organizationrobe_helmet.name=Organization Hood

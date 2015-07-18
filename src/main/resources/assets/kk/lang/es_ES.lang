@@ -24,6 +24,12 @@ tile.prizeblox.name=Bloque de Premio
 tile.rareprizeblox.name=Bloque de Premio Raro
 tile.ghostblox.name=Bloque Fantasma
 
+tile.ghostblox.desc=Cuando se le da corriente de redstone el %s se vuelve transparente y no hay colisión
+tile.dangerblox.desc=El %s daña 1.5 corazones cuando lo tocas o lo golpeas
+tile.bounceblox.desc=Cuando estás encima del %s las entidades rebotan
+
+holdforinfo.desc=Mantén shift para más información
+
 
 #Synthesis Ore
 tile.blazingore.name=Mena Ígnea
@@ -98,7 +104,7 @@ sm.manifestillusion.name=Ilusión Manifestada
 
 sm.mythrilshard.name=Guijarro de Mitrilo
 sm.mythrilstone.name=Piedra de Mitrilo
-sm.mytrhilgem.name=Gema de Mitrilo
+sm.mythrilgem.name=Gema de Mitrilo
 sm.mythrilcrystal.name=Cristal de Mitrilo
 
 sm.orichalcum.name=Orichalcum
@@ -119,6 +125,11 @@ sm.serenitystone.name=Piedra Serena
 sm.serenitygem.name=Gema Serena
 sm.serenitycrystal.name=Cristal Sereno
 
+sm.stormyshard.name=Guijarro Tormentoso
+sm.stormystone.name=Piedra Tormentosa
+sm.stormygem.name=Gema Tormentosa
+sm.stormycrystal.name=Cristal Tormentoso
+
 sm.tranquilshard.name=Guijarro Calmado
 sm.tranquilstone.name=Piedra Calmada
 sm.tranquilgem.name=Gema Calmada
@@ -129,10 +140,6 @@ sm.twilightstone.name=Piedra Crepuscular
 sm.twilightgem.name=Gema Crepuscular
 sm.twilightcrystal.name=Cristal Crepuscular
 
-sm.stormyshard.name=Guijarro Tormentoso
-sm.stormystone.name=Piedra Tormentosa
-sm.stormygem.name=Gema Tormentosa
-sm.stormycrystal.name=Cristal Tormentoso
 
 #Armor
 item.organizationrobe_helmet.name=Capucha de la Organización
