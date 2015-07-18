@@ -2,11 +2,11 @@ package wehavecookies56.kk.lib;
 
 public class Strings {
 
-	public static String tabKingdomKeys = "tabKingdomKeys";
-	public static String tabKingdomKeysBlocks = "tabKingdomKeysblocks";
+	public static final String tabKingdomKeys = "tabKingdomKeys";
+	public static final String tabKingdomKeysBlocks = "tabKingdomKeysblocks";
 
 	//Records
-	public static String
+	public static final String
 	Disc_Birth_by_Sleep_A_Link_to_the_Future_Name = "Birth by Sleep -A Link to the Future-",
 	Disc_Darkness_of_the_Unknown_Name = "Darkness of the Unknown",
 	Disc_Dearly_Beloved_Symphony_Version_Name = "Dearly Beloved -Symphony Version-",
@@ -25,7 +25,7 @@ public class Strings {
 	;
 
 	//Gui
-	public static String
+	public static final String
 	//Command Menu
 	Gui_CommandMenu = "gui.commandmenu",
 	Gui_CommandMenu_Command = Gui_CommandMenu + ".command",
@@ -80,7 +80,7 @@ public class Strings {
 	;
 
 	//Blocks
-	public static String
+	public static final String
 	//Blox
 	NormalBlox = "normalblox",
 	HardBlox = "hardblox",
@@ -113,6 +113,14 @@ public class Strings {
 	//Others
 	SynthesisTable = "synthesistable"
 	;
+
+	public static final String
+	HoldForInfo = "holdforinfo.desc",
+	GhostBloxDesc = "tile.ghostblox.desc",
+	DangerBloxDesc = "tile.dangerblox.desc",
+	BounceBloxDesc = "tile.bounceblox.desc"
+	;
+
 
 	//Items
 	public static final String

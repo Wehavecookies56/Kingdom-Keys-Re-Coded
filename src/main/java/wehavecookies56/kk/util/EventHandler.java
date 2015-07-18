@@ -37,6 +37,7 @@ import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Lists;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
@@ -66,30 +67,43 @@ public class EventHandler {
 		Item ghostBlox = Item.getItemFromBlock(ModBlocks.GhostBlox);
 		if(event.itemStack.getItem() == ghostBlox){
 			if(!KeyboardHelper.isShiftDown()){
-				event.toolTip.add(TextHelper.ITALIC + "Hold shift for more info");
+				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
 			}else{
-				event.toolTip.add("When powered with redstone");
-				event.toolTip.add("the " + TextHelper.localize(ModBlocks.GhostBlox.getUnlocalizedName() + ".name") + " turns transparent");
-				event.toolTip.add("and has no collision");
+				int x = 30;
+				String s = TextHelper.localize(Strings.GhostBloxDesc).replace("%s", TextHelper.localize(ModBlocks.GhostBlox.getUnlocalizedName() + ".name"));
+				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
+				String []splitS = s.split("\n");
+				for(int i = 0; i < splitS.length; i++){
+					event.toolTip.add(splitS[i]);
+				}
 			}
 		}
 		Item dangerBlox = Item.getItemFromBlock(ModBlocks.DangerBlox);
 		if(event.itemStack.getItem() == dangerBlox){
 			if(!KeyboardHelper.isShiftDown()){
-				event.toolTip.add(TextHelper.ITALIC + "Hold shift for more info");
+				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
 			}else{
-				event.toolTip.add("Deals 1.5 hearts of damage");
-				event.toolTip.add("when touching or hitting it");
+				int x = 30;
+				String s = TextHelper.localize(Strings.DangerBloxDesc).replace("%s", TextHelper.localize(ModBlocks.DangerBlox.getUnlocalizedName() + ".name"));
+				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
+				String []splitS = s.split("\n");
+				for(int i = 0; i < splitS.length; i++){
+					event.toolTip.add(splitS[i]);
+				}
 			}
 		}
 		Item bounceBlox = Item.getItemFromBlock(ModBlocks.BounceBlox);
 		if(event.itemStack.getItem() == bounceBlox){
 			if(!KeyboardHelper.isShiftDown()){
-				event.toolTip.add(TextHelper.ITALIC + "Hold shift for more info");
+				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
 			}else{
-				event.toolTip.add("When standing on the");
-				event.toolTip.add(TextHelper.localize(ModBlocks.BounceBlox.getUnlocalizedName() + ".name") + " it causes");
-				event.toolTip.add("entities to bounce");
+				int x = 30;
+				String s = TextHelper.localize(Strings.BounceBloxDesc).replace("%s", TextHelper.localize(ModBlocks.BounceBlox.getUnlocalizedName() + ".name"));
+				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
+				String []splitS = s.split("\n");
+				for(int i = 0; i < splitS.length; i++){
+					event.toolTip.add(splitS[i]);
+				}
 			}
 		}
 

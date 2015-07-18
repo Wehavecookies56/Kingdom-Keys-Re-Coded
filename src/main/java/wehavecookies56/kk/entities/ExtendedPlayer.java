@@ -201,6 +201,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 			this.dp += amount;
 			this.sync();
 		} else {
+			this.dp = this.maxDP;
+			this.sync();
 			return false;
 		}
 		return true;

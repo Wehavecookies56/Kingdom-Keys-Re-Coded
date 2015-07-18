@@ -23,6 +23,11 @@ tile.blastblox.name=Blast Blox
 tile.prizeblox.name=Prize Blox
 tile.rareprizeblox.name=Rare Prize Blox
 tile.ghostblox.name=Ghost Blox
+tile.ghostblox.desc=When powered with redstone the %s turns transparent and has no collision
+tile.dangerblox.desc=The %s deals 1.5 hearts of damage when touching or hitting it
+tile.bounceblox.desc=When standing on the %s it causes entities to bounce
+
+holdforinfo.desc=Hold shift for more info
 
 #Synthesis Ore
 tile.blazingore.name=Blazing Ore
