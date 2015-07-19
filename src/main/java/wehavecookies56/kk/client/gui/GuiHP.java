@@ -56,10 +56,10 @@ public class GuiHP extends GuiScreen {
 			}
 			else{
 				GL11.glPushMatrix();
-				GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currHealth * scale) - 10*scale, (screenHeight - guiHeight*scale) - 8*scale, 0);
+				GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currHealth * scale) - 10*scale, (screenHeight - guiHeight*scale) - 6*scale, 0);
 				//GL11.glTranslatef(2, 0, 0);
 				GL11.glScalef(scale, scale, scale);
-				this.drawTexturedModalRect(0, 0, 0, 24, (noborderguiwidth - currHealth) - 1, guiHeight);
+				this.drawTexturedModalRect(0, 0, 0, 24, (noborderguiwidth - currHealth) - 2, guiHeight);
 				GL11.glPopMatrix();
 			}
 		}

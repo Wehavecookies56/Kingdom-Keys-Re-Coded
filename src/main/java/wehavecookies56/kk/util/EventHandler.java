@@ -307,19 +307,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack BlazingShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(BlazingShard, "Blazing Shard", "C");
+				ItemStacks.createSynthesisItem(BlazingShard, Strings.SM_BlazingShard, "C");
 				event.drops.add(BlazingShard);
 			}else if (drop == 2){
 				ItemStack BlazingStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(BlazingStone, "Blazing Stone", "B");
+				ItemStacks.createSynthesisItem(BlazingStone, Strings.SM_BlazingStone, "B");
 				event.drops.add(BlazingStone);
 			}else if (drop == 3){
 				ItemStack BlazingGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(BlazingGem, "Blazing Gem", "A");
+				ItemStacks.createSynthesisItem(BlazingGem, Strings.SM_BlazingGem, "A");
 				event.drops.add(BlazingGem);
 			}else if (drop == 4){
 				ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(BlazingCrystal, "Blazing Crystal", "S");
+				ItemStacks.createSynthesisItem(BlazingCrystal, Strings.SM_BlazingCrystal, "S");
 				event.drops.add(BlazingCrystal);
 			}
 		}
@@ -327,19 +327,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack BrightShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(BrightShard, "Bright Shard", "C");
+				ItemStacks.createSynthesisItem(BrightShard, Strings.SM_BrightShard, "C");
 				event.drops.add(BrightShard);
 			}else if (drop == 2){
 				ItemStack BrightStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(BrightStone, "Bright Stone", "B");
+				ItemStacks.createSynthesisItem(BrightStone, Strings.SM_BrightStone, "B");
 				event.drops.add(BrightStone);
 			}else if (drop == 3){
 				ItemStack BrightGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(BrightGem, "Bright Gem", "A");
+				ItemStacks.createSynthesisItem(BrightGem, Strings.SM_BrightGem, "A");
 				event.drops.add(BrightGem);
 			}else if (drop == 4){
 				ItemStack BrightCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(BrightCrystal, "Bright Crystal", "S");
+				ItemStacks.createSynthesisItem(BrightCrystal, Strings.SM_BrightCrystal, "S");
 				event.drops.add(BrightCrystal);
 			}
 		}
@@ -347,19 +347,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack DarkShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DarkShard, "Dark Shard", "C");
+				ItemStacks.createSynthesisItem(DarkShard, Strings.SM_DarkShard, "C");
 				event.drops.add(DarkShard);
 			}else if (drop == 2){
 				ItemStack DarkStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DarkStone, "Dark Stone", "B");
+				ItemStacks.createSynthesisItem(DarkStone, Strings.SM_DarkStone, "B");
 				event.drops.add(DarkStone);
 			}else if (drop == 3){
 				ItemStack DarkGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DarkGem, "Dark Gem", "A");
+				ItemStacks.createSynthesisItem(DarkGem, Strings.SM_DarkGem, "A");
 				event.drops.add(DarkGem);
 			}else if (drop == 4){
 				ItemStack DarkCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DarkCrystal, "Dark Crystal", "S");
+				ItemStacks.createSynthesisItem(DarkCrystal, Strings.SM_DarkCrystal, "S");
 				event.drops.add(DarkCrystal);
 			}
 		}
@@ -367,19 +367,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack DarkShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DarkShard, "Dark Shard", "C");
+				ItemStacks.createSynthesisItem(DarkShard, Strings.SM_DarkShard, "C");
 				event.drops.add(DarkShard);
 			}else if (drop == 2){
 				ItemStack DarkStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DarkStone, "Dark Stone", "B");
+				ItemStacks.createSynthesisItem(DarkStone, Strings.SM_DarkStone, "B");
 				event.drops.add(DarkStone);
 			}else if (drop == 3){
 				ItemStack DarkGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DarkGem, "Dark Gem", "A");
+				ItemStacks.createSynthesisItem(DarkGem, Strings.SM_DarkGem, "A");
 				event.drops.add(DarkGem);
 			}else if (drop == 4){
 				ItemStack DarkCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DarkCrystal, "Dark Crystal", "S");
+				ItemStacks.createSynthesisItem(DarkCrystal, Strings.SM_DarkCrystal, "S");
 				event.drops.add(DarkCrystal);
 			}
 		}
@@ -387,19 +387,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack DenseShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DenseShard, "Dense Shard", "C");
+				ItemStacks.createSynthesisItem(DenseShard, Strings.SM_DenseShard, "C");
 				event.drops.add(DenseShard);
 			}else if (drop == 2){
 				ItemStack DenseStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DenseStone, "Dense Stone", "B");
+				ItemStacks.createSynthesisItem(DenseStone, Strings.SM_DenseStone, "B");
 				event.drops.add(DenseStone);
 			}else if (drop == 3){
 				ItemStack DenseGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DenseGem, "Dense Gem", "A");
+				ItemStacks.createSynthesisItem(DenseGem, Strings.SM_DenseGem, "A");
 				event.drops.add(DenseGem);
 			}else if (drop == 4){
 				ItemStack DenseCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(DenseCrystal, "Dense Crystal", "S");
+				ItemStacks.createSynthesisItem(DenseCrystal, Strings.SM_DenseCrystal, "S");
 				event.drops.add(DenseCrystal);
 			}
 		}
@@ -407,19 +407,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack EnergyShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(EnergyShard, "Energy Shard", "C");
+				ItemStacks.createSynthesisItem(EnergyShard, Strings.SM_EnergyShard, "C");
 				event.drops.add(EnergyShard);
 			}else if (drop == 2){
 				ItemStack EnergyStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(EnergyStone, "Energy Stone", "B");
+				ItemStacks.createSynthesisItem(EnergyStone, Strings.SM_EnergyStone, "B");
 				event.drops.add(EnergyStone);
 			}else if (drop == 3){
 				ItemStack EnergyGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(EnergyGem, "Energy Gem", "A");
+				ItemStacks.createSynthesisItem(EnergyGem, Strings.SM_EnergyGem, "A");
 				event.drops.add(EnergyGem);
 			}else if (drop == 4){
 				ItemStack EnergyCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(EnergyCrystal, "Energy Crystal", "S");
+				ItemStacks.createSynthesisItem(EnergyCrystal, Strings.SM_EnergyCrystal, "S");
 				event.drops.add(EnergyCrystal);
 			}
 		}
@@ -427,19 +427,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack FrostShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(FrostShard, "Frost Shard", "C");
+				ItemStacks.createSynthesisItem(FrostShard, Strings.SM_FrostShard, "C");
 				event.drops.add(FrostShard);
 			}else if (drop == 2){
 				ItemStack FrostStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(FrostStone, "Frost Stone", "B");
+				ItemStacks.createSynthesisItem(FrostStone, Strings.SM_FrostStone, "B");
 				event.drops.add(FrostStone);
 			}else if (drop == 3){
 				ItemStack FrostGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(FrostGem, "Frost Gem", "A");
+				ItemStacks.createSynthesisItem(FrostGem, Strings.SM_FrostGem, "A");
 				event.drops.add(FrostGem);
 			}else if (drop == 4){
 				ItemStack FrostCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(FrostCrystal, "Frost Crystal", "S");
+				ItemStacks.createSynthesisItem(FrostCrystal, Strings.SM_FrostCrystal, "S");
 				event.drops.add(FrostCrystal);
 			}
 		}
@@ -447,19 +447,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack LucidShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(LucidShard, "Lucid Shard", "C");
+				ItemStacks.createSynthesisItem(LucidShard, Strings.SM_LucidShard, "C");
 				event.drops.add(LucidShard);
 			}else if (drop == 2){
 				ItemStack LucidStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(LucidStone, "Lucid Stone", "B");
+				ItemStacks.createSynthesisItem(LucidStone, Strings.SM_LucidStone, "B");
 				event.drops.add(LucidStone);
 			}else if (drop == 3){
 				ItemStack LucidGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(LucidGem, "Lucid Gem", "A");
+				ItemStacks.createSynthesisItem(LucidGem, Strings.SM_LucidGem, "A");
 				event.drops.add(LucidGem);
 			}else if (drop == 4){
 				ItemStack LucidCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(LucidCrystal, "Lucid Crystal", "S");
+				ItemStacks.createSynthesisItem(LucidCrystal, Strings.SM_LucidCrystal, "S");
 				event.drops.add(LucidCrystal);
 			}
 		}
@@ -467,19 +467,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack PowerShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(PowerShard, "Power Shard", "C");
+				ItemStacks.createSynthesisItem(PowerShard, Strings.SM_PowerShard, "C");
 				event.drops.add(PowerShard);
 			}else if (drop == 2){
 				ItemStack PowerStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(PowerStone, "Power Stone", "B");
+				ItemStacks.createSynthesisItem(PowerStone, Strings.SM_PowerStone, "B");
 				event.drops.add(PowerStone);
 			}else if (drop == 3){
 				ItemStack PowerGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(PowerGem, "Power Gem", "A");
+				ItemStacks.createSynthesisItem(PowerGem, Strings.SM_PowerGem, "A");
 				event.drops.add(PowerGem);
 			}else if (drop == 4){
 				ItemStack PowerCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(PowerCrystal, "Power Crystal", "S");
+				ItemStacks.createSynthesisItem(PowerCrystal, Strings.SM_PowerCrystal, "S");
 				event.drops.add(PowerCrystal);
 			}
 		}
@@ -487,19 +487,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack PowerShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(PowerShard, "Power Shard", "C");
+				ItemStacks.createSynthesisItem(PowerShard, Strings.SM_PowerShard, "C");
 				event.drops.add(PowerShard);
 			}else if (drop == 2){
 				ItemStack PowerStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(PowerStone, "Power Stone", "B");
+				ItemStacks.createSynthesisItem(PowerStone, Strings.SM_PowerStone, "B");
 				event.drops.add(PowerStone);
 			}else if (drop == 3){
 				ItemStack PowerGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(PowerGem, "Power Gem", "A");
+				ItemStacks.createSynthesisItem(PowerGem, Strings.SM_PowerGem, "A");
 				event.drops.add(PowerGem);
 			}else if (drop == 4){
 				ItemStack PowerCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(PowerCrystal, "Power Crystal", "S");
+				ItemStacks.createSynthesisItem(PowerCrystal, Strings.SM_PowerCrystal, "S");
 				event.drops.add(PowerCrystal);
 			}
 		}
@@ -507,19 +507,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack RemembranceShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(RemembranceShard, "Remembrance Shard", "C");
+				ItemStacks.createSynthesisItem(RemembranceShard, Strings.SM_RemembranceShard, "C");
 				event.drops.add(RemembranceShard);
 			}else if (drop == 2){
 				ItemStack RemembranceStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(RemembranceStone, "Remembrance Stone", "B");
+				ItemStacks.createSynthesisItem(RemembranceStone, Strings.SM_RemembranceStone, "B");
 				event.drops.add(RemembranceStone);
 			}else if (drop == 3){
 				ItemStack RemembranceGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(RemembranceGem, "Remembrance Gem", "A");
+				ItemStacks.createSynthesisItem(RemembranceGem, Strings.SM_RemembranceGem, "A");
 				event.drops.add(RemembranceGem);
 			}else if (drop == 4){
 				ItemStack RemembranceCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(RemembranceCrystal, "Remembrance Crystal", "S");
+				ItemStacks.createSynthesisItem(RemembranceCrystal, Strings.SM_RemembranceCrystal, "S");
 				event.drops.add(RemembranceCrystal);
 			}
 		}
@@ -527,19 +527,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack SerenityShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(SerenityShard, "Serenity Shard", "C");
+				ItemStacks.createSynthesisItem(SerenityShard, Strings.SM_SerenityShard, "C");
 				event.drops.add(SerenityShard);
 			}else if (drop == 2){
 				ItemStack SerenityStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(SerenityStone, "Serenity Stone", "B");
+				ItemStacks.createSynthesisItem(SerenityStone, Strings.SM_SerenityStone, "B");
 				event.drops.add(SerenityStone);
 			}else if (drop == 3){
 				ItemStack SerenityGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(SerenityGem, "Serenity Gem", "A");
+				ItemStacks.createSynthesisItem(SerenityGem, Strings.SM_SerenityGem, "A");
 				event.drops.add(SerenityGem);
 			}else if (drop == 4){
 				ItemStack SerenityCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(SerenityCrystal, "Serenity Crystal", "S");
+				ItemStacks.createSynthesisItem(SerenityCrystal, Strings.SM_SerenityCrystal, "S");
 				event.drops.add(SerenityCrystal);
 			}
 		}
@@ -547,19 +547,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack TranquilShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(TranquilShard, "Tranquil Shard", "C");
+				ItemStacks.createSynthesisItem(TranquilShard, Strings.SM_TranquilShard, "C");
 				event.drops.add(TranquilShard);
 			}else if (drop == 2){
 				ItemStack TranquilStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(TranquilStone, "Tranquil Stone", "B");
+				ItemStacks.createSynthesisItem(TranquilStone, Strings.SM_TranquilStone, "B");
 				event.drops.add(TranquilStone);
 			}else if (drop == 3){
 				ItemStack TranquilGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(TranquilGem, "Tranquil Gem", "A");
+				ItemStacks.createSynthesisItem(TranquilGem, Strings.SM_TranquilGem, "A");
 				event.drops.add(TranquilGem);
 			}else if (drop == 4){
 				ItemStack TranquilCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(TranquilCrystal, "Tranquil Crystal", "S");
+				ItemStacks.createSynthesisItem(TranquilCrystal, Strings.SM_TranquilCrystal, "S");
 				event.drops.add(TranquilCrystal);
 			}
 		}
@@ -567,19 +567,19 @@ public class EventHandler {
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){
 				ItemStack TwilightShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(TwilightShard, "Twilight Shard", "C");
+				ItemStacks.createSynthesisItem(TwilightShard, Strings.SM_TwilightShard, "C");
 				event.drops.add(TwilightShard);
 			}else if (drop == 2){
 				ItemStack TwilightStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(TwilightStone, "Twilight Stone", "B");
+				ItemStacks.createSynthesisItem(TwilightStone, Strings.SM_TwilightStone, "B");
 				event.drops.add(TwilightStone);
 			}else if (drop == 3){
 				ItemStack TwilightGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(TwilightGem, "Twilight Gem", "A");
+				ItemStacks.createSynthesisItem(TwilightGem, Strings.SM_TwilightGem, "A");
 				event.drops.add(TwilightGem);
 			}else if (drop == 4){
 				ItemStack TwilightCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
-				ItemStacks.createSynthesisItem(TwilightCrystal, "Twilight Crystal", "S");
+				ItemStacks.createSynthesisItem(TwilightCrystal, Strings.SM_TwilightCrystal, "S");
 				event.drops.add(TwilightCrystal);
 			}
 		}
