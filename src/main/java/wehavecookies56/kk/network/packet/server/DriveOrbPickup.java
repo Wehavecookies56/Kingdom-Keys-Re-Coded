@@ -36,7 +36,7 @@ public class DriveOrbPickup extends AbstractServerMessage<DriveOrbPickup> {
 	public void process(EntityPlayer player, Side side) {
 		player.inventory.consumeInventoryItem(toRemove.getItem());
 		toRemove.stackSize--;
-		ExtendedPlayer.get(player).addDP(10);
+		ExtendedPlayer.get(player).addDP(toRemove.getTagCompound().getInteger("amount"));
 	}
 
 }

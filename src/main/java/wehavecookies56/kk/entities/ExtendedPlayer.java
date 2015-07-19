@@ -31,7 +31,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, dp, maxDP;
 
-	public boolean keybladeSummoned, firstKeyblade;
+	public boolean keybladeSummoned, firstKeyblade, inDrive;
 
 	public ExtendedPlayer(EntityPlayer player){
 		this.player = player;
@@ -47,6 +47,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.firstKeyblade = false;
 		this.dp = 0;
 		this.maxDP = 1000;
+		this.inDrive = false;
 	}
 
 	@Override
@@ -63,6 +64,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("DP", this.dp);
 		properties.setBoolean("KeybladeSummoned", this.keybladeSummoned);
 		properties.setBoolean("FirstKeyblade", this.firstKeyblade);
+		properties.setBoolean("InDrive", this.inDrive);
 
 		compound.setTag(EXT_PROP_NAME, properties);
 
@@ -82,6 +84,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.dp = properties.getInteger("DP");
 		this.keybladeSummoned = properties.getBoolean("KeybladeSummoned");
 		this.firstKeyblade = properties.getBoolean("FirstKeyblade");
+		this.inDrive = properties.getBoolean("InDrive");
 		LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
 		LogHelper.info("Loaded DP: " + properties.getInteger("DP"));
 		String s = properties.getBoolean("KeybladeSummoned") == true ? "Keyblade is summoned" : "Keyblade is not summoned";
@@ -91,6 +94,15 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	@Override
 	public void init(Entity entity, World world) {
 
+	}
+
+	public boolean getInDrive(){
+		return this.inDrive;
+	}
+
+	public void setInDrive(boolean inDrive){
+		this.inDrive = inDrive;
+		this.sync();
 	}
 
 	public int getDP(){

@@ -183,8 +183,29 @@ public class EventHandler {
 			}
 			ItemStack munny = new ItemStack(ModItems.Munny, 1);
 			munny.setTagCompound(new NBTTagCompound());
-			munny.getTagCompound().setInteger("amount", 100);
-			event.entityLiving.entityDropItem(munny, 1);
+			ItemStack driveOrb = new ItemStack(ModItems.DriveOrb, 1);
+			driveOrb.setTagCompound(new NBTTagCompound());
+			if(event.entity instanceof EntityAnimal){
+				munny.getTagCompound().setInteger("amount", randomWithRange(1, 20));
+				event.entityLiving.entityDropItem(munny, 1);
+				driveOrb.getTagCompound().setInteger("amount", randomWithRange(5, 10));
+				event.entityLiving.entityDropItem(driveOrb, 1);
+			}else if(event.entity instanceof EntityMob){
+				munny.getTagCompound().setInteger("amount", randomWithRange(5, 50));
+				event.entityLiving.entityDropItem(munny, 1);
+				driveOrb.getTagCompound().setInteger("amount", randomWithRange(15, 20));
+				event.entityLiving.entityDropItem(driveOrb, 1);
+			}else if(event.entity instanceof EntityAgeable){
+				munny.getTagCompound().setInteger("amount", randomWithRange(50, 100));
+				event.entityLiving.entityDropItem(munny, 1);
+				driveOrb.getTagCompound().setInteger("amount", randomWithRange(20, 25));
+				event.entityLiving.entityDropItem(driveOrb, 1);
+			}else if(event.entity instanceof EntityDragon||event.entity instanceof EntityWither){
+				munny.getTagCompound().setInteger("amount", randomWithRange(500, 1000));
+				event.entityLiving.entityDropItem(munny, 1);
+				driveOrb.getTagCompound().setInteger("amount", randomWithRange(200, 250));
+				event.entityLiving.entityDropItem(driveOrb, 1);
+			}
 		}
 	}
 
@@ -230,7 +251,7 @@ public class EventHandler {
 			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
 			{
 				event.item.getEntityItem().stackSize--;
-				ExtendedPlayer.get(event.entityPlayer).addDP(10);
+				ExtendedPlayer.get(event.entityPlayer).addDP(event.item.getEntityItem().getTagCompound().getInteger("amount"));
 			}
 		}
 	}
@@ -270,7 +291,7 @@ public class EventHandler {
 			{
 				if(player.isBlocking())
 				{
-					event.ammount = 0;
+					event.ammount = 0.5f;
 				}
 			}
 		}
