@@ -139,6 +139,8 @@ public class KingdomKeys {
 
 		//Event handler
 		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.EventHandler());
+		FMLCommonHandler.instance().bus().register(new wehavecookies56.kk.util.EventHandler());
+
 		LogHelper.info("Events loaded");
 	}
 
