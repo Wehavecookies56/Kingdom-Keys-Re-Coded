@@ -29,9 +29,9 @@ public class RecipeBrightcrest extends Recipe {
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard + ".x.1");
-		reqs.add(Strings.SM_BlazingCrystal + ".x.1");
-		reqs.add(Strings.SM_BlazingStone + ".x.1");
+		reqs.add(Strings.SM_BrightCrystal + ".x.1");
+		reqs.add(Strings.SM_BrightGem + ".x.2");
+		reqs.add(Strings.SM_BrightStone + ".x.3");
 		return reqs;
 	}
 

@@ -88,14 +88,13 @@ public class GuiDrive extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 
 			float scale = 0.65f;
-			if(mc.gameSettings.guiScale == 0){
-				scale = 0.65f;
-			}else if (mc.gameSettings.guiScale == 3){
-				scale = 0.65f;
-			}else if (mc.gameSettings.guiScale == 2){
-				scale = 0.65f;
-			}else{
+			if(mc.gameSettings.guiScale == 1)
+			{
 				scale = 1f;
+			}
+			else
+			{	
+				scale = 0.85f;
 			}
 			float posX = 52*scale;
 			float posY = 20*scale;
@@ -104,13 +103,13 @@ public class GuiDrive extends GuiScreen {
 			GL11.glTranslatef((screenWidth - guiWidth*scale) - posX, (screenHeight - guiHeight*scale) - posY, 0);
 			GL11.glScalef(scale, scale, scale);
 			//Background
-			this.drawTexturedModalRect(0, 0, 0, 0, guiWidth, guiHeight);
+			this.drawTexturedModalRect(15, 5, 0, 0, guiWidth, guiHeight);
 			GL11.glPopMatrix();
 			//Yellow meter
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth - guiWidth*scale) + (guiWidth - guiBarWidth)*scale + (24*scale) - posX, (screenHeight - guiHeight*scale) - (2*scale) - posY, 0);
 			GL11.glScalef(scale, scale, scale);
-			this.drawTexturedModalRect(0, 0, 0, 18, (int) currDrive, guiHeight);
+			this.drawTexturedModalRect(15, 5, 0, 18, (int) currDrive, guiHeight);
 			GL11.glPopMatrix();
 			//Level
 			GL11.glPushMatrix();
@@ -118,43 +117,43 @@ public class GuiDrive extends GuiScreen {
 			GL11.glScalef(scale, scale, scale);
 			if(getCurrBar(dp) == 0)
 			{
-				this.drawTexturedModalRect(0, 0, 0, 38, 8, guiHeight);
+				this.drawTexturedModalRect(15, 5, 0, 38, 8, guiHeight);
 			}
 			else if(getCurrBar(dp) == 1)
 			{
-				this.drawTexturedModalRect(0, 0, 10, 38, 8, guiHeight);
+				this.drawTexturedModalRect(15, 5, 10, 38, 8, guiHeight);
 			}
 			else if(getCurrBar(dp) == 2)
 			{
-				this.drawTexturedModalRect(0, 0, 20, 38, 8, guiHeight);
+				this.drawTexturedModalRect(15, 5, 20, 38, 8, guiHeight);
 			}
 			else if(getCurrBar(dp) == 3)
 			{
-				this.drawTexturedModalRect(0, 0, 30, 38, 8, guiHeight);
+				this.drawTexturedModalRect(15, 5, 30, 38, 8, guiHeight);
 			}
 			else if(getCurrBar(dp) == 4)
 			{
-				this.drawTexturedModalRect(0, 0, 40, 38, 8, guiHeight);
+				this.drawTexturedModalRect(15, 5, 40, 38, 8, guiHeight);
 			}
 			else if(getCurrBar(dp) == 5)
 			{
-				this.drawTexturedModalRect(0, 0, 50, 38, 8, guiHeight);
+				this.drawTexturedModalRect(15, 5, 50, 38, 8, guiHeight);
 			}
 			else if(getCurrBar(dp) == 6)
 			{
-				this.drawTexturedModalRect(0, 0, 60, 38, 8, guiHeight);
+				this.drawTexturedModalRect(15, 5, 60, 38, 8, guiHeight);
 			}
 			else if(getCurrBar(dp) == 7)
 			{
-				this.drawTexturedModalRect(0, 0, 70, 38, 8, guiHeight);
+				this.drawTexturedModalRect(15, 5, 70, 38, 8, guiHeight);
 			}
 			else if(getCurrBar(dp) == 8)
 			{
-				this.drawTexturedModalRect(0, 0, 80, 38, 8, guiHeight);
+				this.drawTexturedModalRect(15, 5, 80, 38, 8, guiHeight);
 			}
 			else if(getCurrBar(dp) == 9)
 			{
-				this.drawTexturedModalRect(0, 0, 90, 38, 8, guiHeight);
+				this.drawTexturedModalRect(15, 5, 90, 38, 8, guiHeight);
 			}
 
 			GL11.glPopMatrix();

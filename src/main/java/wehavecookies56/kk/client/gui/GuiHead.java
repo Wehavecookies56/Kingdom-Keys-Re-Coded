@@ -20,19 +20,18 @@ public class GuiHead extends GuiScreen {
 			ResourceLocation skin = ((AbstractClientPlayer) mc.thePlayer).getLocationSkin();
 			mc.getTextureManager().bindTexture(skin);
 			float scale = 0.65f;
-			if(mc.gameSettings.guiScale == 0){
-				scale = 0.65f;
-			}else if (mc.gameSettings.guiScale == 3){
-				scale = 0.65f;
-			}else if (mc.gameSettings.guiScale == 2){
-				scale = 0.65f;
-			}else{
+			if(mc.gameSettings.guiScale == 1)
+			{
 				scale = 1f;
+			}
+			else
+			{	
+				scale = 0.85f;
 			}
 			float posX = 20*scale;
 			float posY = 20*scale;
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - 30*scale) - posX, (screenHeight - 33*scale) - posY, 0);
+			GL11.glTranslatef((screenWidth - 15*scale) - posX, (screenHeight - 30*scale) - posY, 0);
 			GL11.glScalef(scale, scale, scale);
 			this.drawTexturedModalRect(0, 0, 32, 32, 32, 32);
 			GL11.glPopMatrix();

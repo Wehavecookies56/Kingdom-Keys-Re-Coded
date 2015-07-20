@@ -32,26 +32,25 @@ public class GuiHP extends GuiScreen {
 			float oneHeart = (noborderguiwidth / player.getMaxHealth());
 			int currHealth = noborderguiwidth - (int) (oneHeart * player.getHealth());
 			float scale = 0.65f;
-			if(mc.gameSettings.guiScale == 0){
-				scale = 0.65f;
-			}else if (mc.gameSettings.guiScale == 3){
-				scale = 0.65f;
-			}else if (mc.gameSettings.guiScale == 2){
-				scale = 0.65f;
-			}else{
+			if(mc.gameSettings.guiScale == 1)
+			{
 				scale = 1f;
+			}
+			else
+			{	
+				scale = 0.85f;
 			}
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth - guiWidth*scale) - 10*scale, (screenHeight - guiHeight*scale) - 8*scale, 0);
 			GL11.glScalef(scale, scale, scale);
-			this.drawTexturedModalRect(0, 0, 0, 0, guiWidth, guiHeight);
+			this.drawTexturedModalRect(6, 6, 0, 0, guiWidth, guiHeight);
 			GL11.glPopMatrix();
 			if (player.getHealth() >= 6){
 				GL11.glPushMatrix();
 				GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currHealth * scale) - 10*scale, (screenHeight - guiHeight*scale) - 8*scale, 0);
 				//GL11.glTranslatef(2, 0, 0);
 				GL11.glScalef(scale, scale, scale);
-				this.drawTexturedModalRect(0, 0, 0, 12, (noborderguiwidth - currHealth) - 2, guiHeight);
+				this.drawTexturedModalRect(6, 6, 0, 12, (noborderguiwidth - currHealth) - 2, guiHeight);
 				GL11.glPopMatrix();
 			}
 			else{
@@ -59,7 +58,7 @@ public class GuiHP extends GuiScreen {
 				GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currHealth * scale) - 10*scale, (screenHeight - guiHeight*scale) - 6*scale, 0);
 				//GL11.glTranslatef(2, 0, 0);
 				GL11.glScalef(scale, scale, scale);
-				this.drawTexturedModalRect(0, 0, 0, 24, (noborderguiwidth - currHealth) - 2, guiHeight);
+				this.drawTexturedModalRect(6, 6, 0, 24, (noborderguiwidth - currHealth) - 2, guiHeight);
 				GL11.glPopMatrix();
 			}
 		}

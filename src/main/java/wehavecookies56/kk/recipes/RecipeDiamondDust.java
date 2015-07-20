@@ -29,7 +29,9 @@ public class RecipeDiamondDust extends Recipe {
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard + ".x.1");
+		reqs.add(Strings.SM_FrostGem + ".x.3");
+		reqs.add(Strings.SM_FrostStone + ".x.5");
+		reqs.add(Strings.SM_PowerStone + ".x.1");
 		return reqs;
 	}
 

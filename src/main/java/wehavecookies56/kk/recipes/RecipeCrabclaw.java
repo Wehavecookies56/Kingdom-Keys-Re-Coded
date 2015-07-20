@@ -29,9 +29,10 @@ public class RecipeCrabclaw extends Recipe {
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard + ".x.1");
-		reqs.add(Strings.SM_BlazingCrystal + ".x.1");
-		reqs.add(Strings.SM_BlazingStone + ".x.1");
+		reqs.add(Strings.SM_LucidShard + ".x.2");
+		reqs.add(Strings.SM_BrightGem + ".x.2");
+		reqs.add(Strings.SM_SerenityStone + ".x.2");
+		reqs.add(Strings.SM_EnergyStone + ".x.1");
 		return reqs;
 	}
 
