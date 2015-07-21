@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -231,31 +232,39 @@ public class EventHandler {
 		}
 		else if(event.item.getEntityItem().getItem() instanceof ItemHpOrb)
 		{
-			HpOrbPickup packet = new HpOrbPickup(event.item.getEntityItem());
-			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+			if(event.entityPlayer.getHealth() != 20)
 			{
-				event.entityPlayer.heal(2);
-				PacketDispatcher.sendToServer(packet);
-			}
-			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
-			{
-				if(!(event.entityPlayer.getHealth() == 20))
+				HpOrbPickup packet = new HpOrbPickup(event.item.getEntityItem());
+				if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
 				{
 					event.entityPlayer.heal(2);
-					event.entityPlayer.inventory.consumeInventoryItem(ModItems.HpOrb);
+					PacketDispatcher.sendToServer(packet);
+				}
+				if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+				{
+					if(!(event.entityPlayer.getHealth() == 20))
+					{
+						event.entityPlayer.heal(2);
+						event.entityPlayer.inventory.consumeInventoryItem(ModItems.HpOrb);
+					}
 				}
 			}
 		}
 		else if(event.item.getEntityItem().getItem() == ModItems.DriveOrb){
-			DriveOrbPickup packet = new DriveOrbPickup(event.item.getEntityItem());
-			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+			ExtendedPlayer props = ExtendedPlayer.get(event.entityPlayer);
+			int dp = props.getDP();
+			//if(dp < 1000)
 			{
-				PacketDispatcher.sendToServer(packet);
-			}
-			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
-			{
-				event.item.getEntityItem().stackSize--;
-				ExtendedPlayer.get(event.entityPlayer).addDP(event.item.getEntityItem().getTagCompound().getInteger("amount"));
+				DriveOrbPickup packet = new DriveOrbPickup(event.item.getEntityItem());
+				if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+				{
+					PacketDispatcher.sendToServer(packet);
+				}
+				if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+				{
+					event.item.getEntityItem().stackSize--;
+					ExtendedPlayer.get(event.entityPlayer).addDP(event.item.getEntityItem().getTagCompound().getInteger("amount"));
+				}
 			}
 		}
 	}
