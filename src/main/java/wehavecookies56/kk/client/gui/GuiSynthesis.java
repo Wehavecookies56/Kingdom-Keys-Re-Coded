@@ -102,12 +102,10 @@ public class GuiSynthesis extends GuiTooltip{
 			}
 		}
 		if(full){
-			System.out.println("FULL INV, SILLY");
 			return false;
 		}
 		for(int i = 0; i < r.getRequirements().size(); i++){
 			int index = -1;
-			System.out.println(r.getRequirements().get(i));
 			if(r.getRequirements().get(i).contains(Strings.SM_BlazingShard)){
 				index = Lists.Index_BlazingShard;
 			}
@@ -318,14 +316,12 @@ public class GuiSynthesis extends GuiTooltip{
 				index = Lists.Index_StormyCrystal;
 			}
 
-			//System.out.println("INDEX: " + index);
 			if(Integer.parseInt(r.getRequirements().get(i).substring(r.getRequirements().get(i).lastIndexOf(".") + 1)) <= mats.arrayOfAmounts[index]){
 				hasMaterials.add(true);
 			}
 		}
 		if(r.getRequirements().size() > 0){
 			if(hasMaterials.size() == r.getRequirements().size()){
-				System.out.println("YES");
 				return true;
 			}
 		}
