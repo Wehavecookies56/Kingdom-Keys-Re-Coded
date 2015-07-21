@@ -1,5 +1,6 @@
 package wehavecookies56.kk.client.render;
 
+import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
@@ -20,7 +21,7 @@ public class RenderBlastBlox extends Render{
         this.shadowSize = 0.5F;
 	}
 
-	public void doRender(EntityTNTPrimed p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
+	public void doRender(EntityBlastBlox p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
     {
         BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
         GlStateManager.pushMatrix();
@@ -40,7 +41,7 @@ public class RenderBlastBlox extends Render{
         f2 = (1.0F - ((float)p_76986_1_.fuse - p_76986_9_ + 1.0F) / 100.0F) * 0.8F;
         this.bindEntityTexture(p_76986_1_);
         GlStateManager.translate(-0.5F, -0.5F, 0.5F);
-        blockrendererdispatcher.func_175016_a(Blocks.tnt.getDefaultState(), p_76986_1_.getBrightness(p_76986_9_));
+        blockrendererdispatcher.func_175016_a(ModBlocks.BlastBlox.getDefaultState(), p_76986_1_.getBrightness(p_76986_9_));
         GlStateManager.translate(0.0F, 0.0F, 1.0F);
 
         if (p_76986_1_.fuse / 5 % 2 == 0)
@@ -52,7 +53,7 @@ public class RenderBlastBlox extends Render{
             GlStateManager.color(1.0F, 1.0F, 1.0F, f2);
             GlStateManager.doPolygonOffset(-3.0F, -3.0F);
             GlStateManager.enablePolygonOffset();
-            blockrendererdispatcher.func_175016_a(Blocks.tnt.getDefaultState(), 1.0F);
+            blockrendererdispatcher.func_175016_a(ModBlocks.BlastBlox.getDefaultState(), 1.0F);
             GlStateManager.doPolygonOffset(0.0F, 0.0F);
             GlStateManager.disablePolygonOffset();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -79,14 +80,8 @@ public class RenderBlastBlox extends Render{
 
     }
 
-    /**
-     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
-     * (Render<T extends Entity) and this method has signature public void func_76986_a(T entity, double d, double d1,
-     * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
-     */
     public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
     {
-        this.doRender((EntityTNTPrimed)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+        this.doRender((EntityBlastBlox)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
     }
 }

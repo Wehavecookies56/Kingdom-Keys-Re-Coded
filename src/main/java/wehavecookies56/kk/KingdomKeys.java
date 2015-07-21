@@ -121,7 +121,8 @@ public class KingdomKeys {
 		LogHelper.info("Tile entities loaded");
 
 		EntityRegistry.registerGlobalEntityID(EntityBlastBlox.class, "blastblox", 31);
-		
+		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 31, instance, 16, 1, false);
+
 		Lists.init();
 
 		//Synthesis Recipes init
