@@ -121,8 +121,6 @@ public class EventHandler {
 			ExtendedPlayerMaterials.get((EntityPlayer) event.entity).loadProxyData(((EntityPlayer) event.entity));
 			PacketDispatcher.sendTo(new SyncExtendedPlayerMaterials((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
 
-			Lists.addMaterials((EntityPlayer) event.entity);
-
 			if(!ExtendedPlayer.get((EntityPlayer) event.entity).hasFirstKeyblade()){
 				((EntityPlayer) event.entity).inventory.addItemStackToInventory(new ItemStack(ModItems.WoodenKeyblade));
 				ExtendedPlayer.get((EntityPlayer) event.entity).setFirstKeyblade(true);
@@ -141,7 +139,9 @@ public class EventHandler {
 
 		}
 
-
+		if(event.entity instanceof EntityPlayer){
+			Lists.addMaterials((EntityPlayer) event.entity);
+		}
 
 	}
 
