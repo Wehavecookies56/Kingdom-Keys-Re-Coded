@@ -89,7 +89,13 @@ public class EntityBlastBlox extends Entity
         }
         else
         {
-            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+        	System.out.println("XD");
+            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.2D, 0.0D);
+            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.1D, 0.2D, 0.0D);
+            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.2D, 0.1D);
+            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, -0.1D, 0.2D, 0.0D);
+            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.2D, -0.1D);
+
         }
     }
 
