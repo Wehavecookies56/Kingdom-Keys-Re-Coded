@@ -1,8 +1,9 @@
 package wehavecookies56.kk.entities.block;
 
+import java.util.Random;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -37,7 +38,7 @@ public class EntityBlastBlox extends Entity
         this.prevPosZ = par6;
         this.tntPlacedBy = par8EntityLivingBase;
     }
-    
+
     protected void entityInit() {}
 
     /**
@@ -89,14 +90,14 @@ public class EntityBlastBlox extends Entity
         }
         else
         {
-        	System.out.println("XD");
-            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.2D, 0.0D);
-            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.1D, 0.2D, 0.0D);
-            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.2D, 0.1D);
-            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, -0.1D, 0.2D, 0.0D);
-            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.2D, -0.1D);
+            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, randomDoubleWithRange(-0.05D, 0.05D), 0.1D, randomDoubleWithRange(-0.05D, 0.005D));
 
         }
+    }
+
+    double randomDoubleWithRange(double min, double max){
+    	Random r = new Random();
+    	return min + (max - min) * r.nextDouble();
     }
 
     private void explode()

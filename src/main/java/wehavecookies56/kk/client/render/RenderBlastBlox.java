@@ -21,16 +21,16 @@ public class RenderBlastBlox extends Render{
         this.shadowSize = 0.5F;
 	}
 
-	public void doRender(EntityBlastBlox p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
+	public void doRender(EntityBlastBlox entity, double x, double y, double z, float p_76986_8_, float p_76986_9_)
     {
         BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
         GlStateManager.pushMatrix();
-        GlStateManager.translate((float)p_76986_2_, (float)p_76986_4_ + 0.5F, (float)p_76986_6_);
+        GlStateManager.translate((float)x, (float)y + 0.5F, (float)z);
         float f2;
 
-        if ((float)p_76986_1_.fuse - p_76986_9_ + 1.0F < 10.0F)
+        if ((float)entity.fuse - p_76986_9_ + 1.0F < 10.0F)
         {
-            f2 = 1.0F - ((float)p_76986_1_.fuse - p_76986_9_ + 1.0F) / 10.0F;
+            f2 = 1.0F - ((float)entity.fuse - p_76986_9_ + 1.0F) / 10.0F;
             f2 = MathHelper.clamp_float(f2, 0.0F, 1.0F);
             f2 *= f2;
             f2 *= f2;
@@ -38,13 +38,13 @@ public class RenderBlastBlox extends Render{
             GlStateManager.scale(f3, f3, f3);
         }
 
-        f2 = (1.0F - ((float)p_76986_1_.fuse - p_76986_9_ + 1.0F) / 100.0F) * 0.8F;
-        this.bindEntityTexture(p_76986_1_);
+        f2 = (1.0F - ((float)entity.fuse - p_76986_9_ + 1.0F) / 100.0F) * 0.8F;
+        this.bindEntityTexture(entity);
         GlStateManager.translate(-0.5F, -0.5F, 0.5F);
-        blockrendererdispatcher.func_175016_a(ModBlocks.BlastBlox.getDefaultState(), p_76986_1_.getBrightness(p_76986_9_));
+        blockrendererdispatcher.func_175016_a(ModBlocks.BlastBlox.getDefaultState(), entity.getBrightness(p_76986_9_));
         GlStateManager.translate(0.0F, 0.0F, 1.0F);
 
-        if (p_76986_1_.fuse / 5 % 2 == 0)
+        if (entity.fuse / 5 % 2 == 0)
         {
             GlStateManager.func_179090_x();
             GlStateManager.disableLighting();
@@ -63,7 +63,7 @@ public class RenderBlastBlox extends Render{
         }
 
         GlStateManager.popMatrix();
-        super.doRender(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+        super.doRender(entity, x, y, z, p_76986_8_, p_76986_9_);
     }
 
     protected ResourceLocation func_180563_a(EntityBlastBlox p_180563_1_)
@@ -74,14 +74,15 @@ public class RenderBlastBlox extends Render{
     /**
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
+	@Override
     protected ResourceLocation getEntityTexture(Entity par1Entity)
     {
         return this.func_180563_a((EntityBlastBlox)par1Entity);
 
     }
 
-    public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
+    public void doRender(Entity entity, double x, double y, double z, float p_76986_8_, float p_76986_9_)
     {
-        this.doRender((EntityBlastBlox)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+        this.doRender((EntityBlastBlox)entity, x, y, z, p_76986_8_, p_76986_9_);
     }
 }
