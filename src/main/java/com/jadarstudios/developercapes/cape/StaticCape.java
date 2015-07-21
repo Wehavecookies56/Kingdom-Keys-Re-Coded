@@ -42,6 +42,7 @@ public class StaticCape extends AbstractCape {
         ResourceLocation location = this.getLocation();
 
         //mmdanggg2: using reflection to modify the private locationCape, hacky but it works.
+        //Wehavecookies56: Added obfuscated field names for reflection
         try {
         	Field playerInfoF = ReflectionHelper.findField(AbstractClientPlayer.class, "playerInfo", "field_175157_a");
             playerInfoF.setAccessible(true);

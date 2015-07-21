@@ -102,229 +102,234 @@ public class GuiSynthesis extends GuiTooltip{
 			}
 		}
 		if(full){
+			System.out.println("FULL INV, SILLY");
 			return false;
 		}
 		for(int i = 0; i < r.getRequirements().size(); i++){
-			int index;
-			if(r.getRequirements().get(i) == Strings.SM_BlazingShard){
+			int index = -1;
+			System.out.println(r.getRequirements().get(i));
+			if(r.getRequirements().get(i).contains(Strings.SM_BlazingShard)){
 				index = Lists.Index_BlazingShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_BlazingStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_BlazingStone)){
 				index = Lists.Index_BlazingStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_BlazingGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_BlazingGem)){
 				index = Lists.Index_BlazingGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_BlazingCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_BlazingCrystal)){
 				index = Lists.Index_BlazingCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_BrightShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_BrightShard)){
 				index = Lists.Index_BrightShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_BrightStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_BrightStone)){
 				index = Lists.Index_BrightStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_BrightGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_BrightGem)){
 				index = Lists.Index_BrightGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_BrightCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_BrightCrystal)){
 				index = Lists.Index_BrightCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_DarkShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_DarkShard)){
 				index = Lists.Index_DarkShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_DarkStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_DarkStone)){
 				index = Lists.Index_DarkStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_DarkGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_DarkGem)){
 				index = Lists.Index_DarkGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_DarkCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_DarkCrystal)){
 				index = Lists.Index_DarkCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_DenseShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_DenseShard)){
 				index = Lists.Index_DenseShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_DenseStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_DenseStone)){
 				index = Lists.Index_DenseStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_DenseGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_DenseGem)){
 				index = Lists.Index_DenseGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_DenseCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_DenseCrystal)){
 				index = Lists.Index_DenseCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_EnergyShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_EnergyShard)){
 				index = Lists.Index_EnergyShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_EnergyStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_EnergyStone)){
 				index = Lists.Index_EnergyStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_EnergyGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_EnergyGem)){
 				index = Lists.Index_EnergyGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_EnergyCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_EnergyCrystal)){
 				index = Lists.Index_EnergyCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_FrostShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_FrostShard)){
 				index = Lists.Index_FrostShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_FrostStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_FrostStone)){
 				index = Lists.Index_FrostStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_FrostGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_FrostGem)){
 				index = Lists.Index_FrostGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_FrostCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_FrostCrystal)){
 				index = Lists.Index_FrostCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_LightningShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_LightningShard)){
 				index = Lists.Index_LightningShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_LightningStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_LightningStone)){
 				index = Lists.Index_LightningStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_LightningGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_LightningGem)){
 				index = Lists.Index_LightningGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_LightningCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_LightningCrystal)){
 				index = Lists.Index_LightningCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_LostIllusion){
+			if(r.getRequirements().get(i).contains(Strings.SM_LostIllusion)){
 				index = Lists.Index_LostIllusion;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_LucidShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_LucidShard)){
 				index = Lists.Index_LucidShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_LucidStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_LucidStone)){
 				index = Lists.Index_LucidStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_LucidGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_LucidGem)){
 				index = Lists.Index_LucidGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_LucidCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_LucidCrystal)){
 				index = Lists.Index_LucidCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_ManifestIllusion){
+			if(r.getRequirements().get(i).contains(Strings.SM_ManifestIllusion)){
 				index = Lists.Index_ManifestIllusion;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_MythrilShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_MythrilShard)){
 				index = Lists.Index_MythrilShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_MythrilStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_MythrilStone)){
 				index = Lists.Index_MythrilStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_MythrilGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_MythrilGem)){
 				index = Lists.Index_MythrilGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_MythrilCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_MythrilCrystal)){
 				index = Lists.Index_MythrilCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_Orichalcum){
+			if(r.getRequirements().get(i).contains(Strings.SM_Orichalcum)){
 				index = Lists.Index_Orichalcum;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_OrichalcumPlus){
+			if(r.getRequirements().get(i).contains(Strings.SM_OrichalcumPlus)){
 				index = Lists.Index_OrichalcumPlus;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_PowerShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_PowerShard)){
 				index = Lists.Index_PowerShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_PowerStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_PowerStone)){
 				index = Lists.Index_PowerStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_PowerGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_PowerGem)){
 				index = Lists.Index_PowerGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_PowerCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_PowerCrystal)){
 				index = Lists.Index_PowerCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_RemembranceShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_RemembranceShard)){
 				index = Lists.Index_RemembranceShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_RemembranceStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_RemembranceStone)){
 				index = Lists.Index_RemembranceStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_RemembranceGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_RemembranceGem)){
 				index = Lists.Index_RemembranceGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_RemembranceCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_RemembranceCrystal)){
 				index = Lists.Index_RemembranceCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_SerenityShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_SerenityShard)){
 				index = Lists.Index_SerenityShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_SerenityStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_SerenityStone)){
 				index = Lists.Index_SerenityStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_SerenityGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_SerenityGem)){
 				index = Lists.Index_SerenityGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_SerenityCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_SerenityCrystal)){
 				index = Lists.Index_SerenityCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_TranquilShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_TranquilShard)){
 				index = Lists.Index_TranquilShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_TranquilStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_TranquilStone)){
 				index = Lists.Index_TranquilStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_TranquilGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_TranquilGem)){
 				index = Lists.Index_TranquilGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_TranquilCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_TranquilCrystal)){
 				index = Lists.Index_TranquilCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_TwilightShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_TwilightShard)){
 				index = Lists.Index_TwilightShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_TwilightStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_TwilightStone)){
 				index = Lists.Index_TwilightStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_TwilightGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_TwilightGem)){
 				index = Lists.Index_TwilightGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_TwilightCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_TwilightCrystal)){
 				index = Lists.Index_TwilightCrystal;
 			}
 
-			if(r.getRequirements().get(i) == Strings.SM_StormyShard){
+			if(r.getRequirements().get(i).contains(Strings.SM_StormyShard)){
 				index = Lists.Index_StormyShard;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_StormyStone){
+			if(r.getRequirements().get(i).contains(Strings.SM_StormyStone)){
 				index = Lists.Index_StormyStone;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_StormyGem){
+			if(r.getRequirements().get(i).contains(Strings.SM_StormyGem)){
 				index = Lists.Index_StormyGem;
 			}
-			if(r.getRequirements().get(i) == Strings.SM_StormyCrystal){
+			if(r.getRequirements().get(i).contains(Strings.SM_StormyCrystal)){
 				index = Lists.Index_StormyCrystal;
 			}
 
-			if(Integer.parseInt(r.getRequirements().get(i).substring(r.getRequirements().get(i).lastIndexOf(".") + 1)) <= mats.arrayOfAmounts[i]){
+			//System.out.println("INDEX: " + index);
+			if(Integer.parseInt(r.getRequirements().get(i).substring(r.getRequirements().get(i).lastIndexOf(".") + 1)) <= mats.arrayOfAmounts[index]){
 				hasMaterials.add(true);
 			}
 		}
 		if(r.getRequirements().size() > 0){
 			if(hasMaterials.size() == r.getRequirements().size()){
+				System.out.println("YES");
 				return true;
 			}
 		}
+		System.out.println("NO");
 		return false;
 	}
 
