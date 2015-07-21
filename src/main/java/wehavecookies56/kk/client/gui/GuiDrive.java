@@ -155,10 +155,11 @@ public class GuiDrive extends GuiScreen {
 			{
 				this.drawTexturedModalRect(15, 5, 90, 38, 8, guiHeight);
 			}
-
 			GL11.glPopMatrix();
 			if(dp >= 1000)
 			{
+				//System.out.println(dp);
+
 				GL11.glPushMatrix();
 				GL11.glTranslatef((screenWidth - guiWidth*scale), screenHeight - guiHeight*scale - 17, 0);
 				this.drawTexturedModalRect((screenWidth - guiWidth - 2), screenHeight - guiHeight - 16, 0, 57, 30, guiHeight);

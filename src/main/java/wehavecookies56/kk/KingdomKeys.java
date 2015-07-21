@@ -13,11 +13,13 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.block.ModBlocksRecipes;
 import wehavecookies56.kk.entities.TileEntitySynthesisTable;
+import wehavecookies56.kk.entities.block.EntityBlastBlox;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.item.ModItemsRecipes;
 import wehavecookies56.kk.lib.Config;
@@ -123,6 +125,8 @@ public class KingdomKeys {
 		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
 		LogHelper.info("Tile entities loaded");
 
+		EntityRegistry.registerGlobalEntityID(EntityBlastBlox.class, "blastblox", 31);
+		
 		Lists.init();
 
 		//Synthesis Recipes init
