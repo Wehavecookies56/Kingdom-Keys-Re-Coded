@@ -34,7 +34,6 @@ import wehavecookies56.kk.server.command.CommandGiveMunny;
 import wehavecookies56.kk.server.command.CommandLearnRecipe;
 import wehavecookies56.kk.util.FuelHandler;
 import wehavecookies56.kk.util.LogHelper;
-import wehavecookies56.kk.util.ScrollHandler;
 import wehavecookies56.kk.worldgen.ChestGen;
 import wehavecookies56.kk.worldgen.WorldGenBlox;
 
@@ -86,10 +85,6 @@ public class KingdomKeys {
     public void init(FMLInitializationEvent e){
 		//Instance
 		FMLCommonHandler.instance().bus().register(instance);
-
-		//Events
-		MinecraftForge.EVENT_BUS.register(new ScrollHandler());
-		LogHelper.info("Mouse controls loaded");
 
 		//Update checker
 		FMLCommonHandler.instance().bus().register(new UpdateChecker());

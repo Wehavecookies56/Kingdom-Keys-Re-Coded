@@ -7,14 +7,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import net.minecraftforge.common.util.Constants;
+import wehavecookies56.kk.api.materials.Material;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
-import wehavecookies56.kk.util.LogHelper;
 
 public class ExtendedPlayerMaterials implements IExtendedEntityProperties {
 
@@ -23,6 +21,8 @@ public class ExtendedPlayerMaterials implements IExtendedEntityProperties {
 	private final EntityPlayer player;
 
 	public int[] arrayOfAmounts;
+
+	public List<String> knownMaterials = new ArrayList<String>();
 
 	public ExtendedPlayerMaterials(EntityPlayer player, int size) {
 		this.player = player;
@@ -53,6 +53,12 @@ public class ExtendedPlayerMaterials implements IExtendedEntityProperties {
 	public void setMaterialArray(int amount, int index){
 		arrayOfAmounts[index] = amount;
 		this.sync();
+	}
+
+	public void learnMaterial(Material material){
+		knownMaterials.add(material.getName());
+		if(player instanceof EntityPlayerMP)
+			this.sync();
 	}
 
 	public final void sync(){

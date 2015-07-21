@@ -17,7 +17,7 @@ import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.client.gui.GuiDrive;
 import wehavecookies56.kk.client.gui.GuiHP;
 import wehavecookies56.kk.client.gui.GuiHead;
-import wehavecookies56.kk.client.keys.KeybindHandler;
+import wehavecookies56.kk.client.keys.InputHandler;
 import wehavecookies56.kk.client.keys.Keybinds;
 import wehavecookies56.kk.client.render.RenderBlastBlox;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
@@ -43,7 +43,8 @@ public class ClientProxy extends CommonProxy {
 		}
 
 	private void registerKeyBindings(){
-		FMLCommonHandler.instance().bus().register(new KeybindHandler());
+		FMLCommonHandler.instance().bus().register(new InputHandler());
+		MinecraftForge.EVENT_BUS.register(new InputHandler());
 		for(Keybinds key : Keybinds.values()){
 			ClientRegistry.registerKeyBinding(key.getKeybind());
 		}
