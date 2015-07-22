@@ -10,8 +10,8 @@ public class AchievementHelper {
 		player.addStat(achievement, 1);
 	}
 
+	public static void displayAchievement(Achievement achievement){
 		Minecraft.getMinecraft().guiAchievement.displayAchievement(achievement);
 	}
 
 }
-
