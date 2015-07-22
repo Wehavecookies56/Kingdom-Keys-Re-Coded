@@ -5,8 +5,10 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -21,6 +23,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
+import wehavecookies56.kk.item.ItemKeyblade;
+import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 
@@ -43,20 +47,8 @@ public class BlockBlastBlox extends BlockBlox
 	 @Override
 	 public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	 {
-        if (entity instanceof EntityArrow && !world.isRemote)
-        {
-            EntityArrow entityarrow = (EntityArrow)entity;
-
-            this.explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, entityarrow.shootingEntity instanceof EntityLivingBase ? (EntityLivingBase)entityarrow.shootingEntity : null);
-            world.setBlockToAir(pos);
-        }
-        else if(entity instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer) entity;
-            this.explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, entity instanceof EntityLivingBase ? (EntityLivingBase)entity : null);
-            world.setBlockToAir(pos);
-
-		}
+         this.explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, entity instanceof EntityLivingBase ? (EntityLivingBase)entity : null);
+         world.setBlockToAir(pos);
     }
 
     /**
@@ -88,7 +80,8 @@ public class BlockBlastBlox extends BlockBlox
 
     @Override
     public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state)
-    {
+    { System.out.println(Minecraft.getMinecraft().thePlayer.getHeldItem().getItem());
+    	if(Minecraft.getMinecraft().thePlayer.getHeldItem().getItem() == Items.apple)
         this.explode(world, pos.getX(), pos.getY(), pos.getZ(), state.getBlock().getMetaFromState(state), (EntityLivingBase)null);
     }
 
@@ -130,17 +123,28 @@ public class BlockBlastBlox extends BlockBlox
      * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
      */
     @Override
-    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
-
-    	if(player.getCurrentEquippedItem() == null){
-    		this.explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, player);
-            world.setBlockToAir(pos);
-    	}
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem() != new ItemStack(Items.feather))
+    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) 
+    {
+        if (player.getHeldItem() != null)
         {
-        	this.explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, player);
-            world.setBlockToAir(pos);
+        	if(player.getHeldItem().getItem() == Items.feather)
+        	{
+        		// world.setBlockToAir(pos);
+        		world.destroyBlock(pos, true);
+        	}
+        	else
+        	{
+        		this.explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, player);
+        		world.setBlockToAir(pos);
+
+        	}
         }
+        else
+    	{
+    		this.explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, player);
+    		world.setBlockToAir(pos);
+
+    	}
     }
     
 
