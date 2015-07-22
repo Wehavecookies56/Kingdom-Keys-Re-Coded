@@ -13,9 +13,9 @@ import wehavecookies56.kk.lib.Reference;
 
 public class GuiMP extends GuiScreen {
 
-	int guiWidth = 173;
+	int guiWidth = 142;
 	int guiHeight = 12;
-	int noborderguiwidth = 171;
+	int noborderguiwidth = 140;
 
 	@SubscribeEvent
 	public void onRenderOverlayPost(RenderGameOverlayEvent event){
@@ -29,8 +29,8 @@ public class GuiMP extends GuiScreen {
 			int screenWidth = event.resolution.getScaledWidth();
 			int screenHeight = event.resolution.getScaledHeight();
 
-			float oneHeart = (noborderguiwidth / player.getMaxHealth());
-			int currHealth = noborderguiwidth - (int) (oneHeart * player.getHealth());
+			float oneMP = (noborderguiwidth / player.getMaxHealth());
+			int currHealth = noborderguiwidth - (int) (oneMP * player.getHealth());
 			float scale = 0.65f;
 			if(mc.gameSettings.guiScale == 1)
 			{
@@ -43,24 +43,15 @@ public class GuiMP extends GuiScreen {
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth - guiWidth*scale) - 10*scale, (screenHeight - guiHeight*scale) - 8*scale, 0);
 			GL11.glScalef(scale, scale, scale);
-			this.drawTexturedModalRect(6, 6, 0, 0, guiWidth, guiHeight);
+			//BG
+			this.drawTexturedModalRect(-25, 4, 0, 0, guiWidth, guiHeight);
 			GL11.glPopMatrix();
-			if (player.getHealth() >= 6){
-				GL11.glPushMatrix();
-				GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currHealth * scale) - 10*scale, (screenHeight - guiHeight*scale) - 8*scale, 0);
-				//GL11.glTranslatef(2, 0, 0);
-				GL11.glScalef(scale, scale, scale);
-				this.drawTexturedModalRect(6, 6, 0, 12, (noborderguiwidth - currHealth) - 2, guiHeight);
-				GL11.glPopMatrix();
-			}
-			else{
-				GL11.glPushMatrix();
-				GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currHealth * scale) - 10*scale, (screenHeight - guiHeight*scale) - 6*scale, 0);
-				//GL11.glTranslatef(2, 0, 0);
-				GL11.glScalef(scale, scale, scale);
-				this.drawTexturedModalRect(6, 6, 0, 24, (noborderguiwidth - currHealth) - 2, guiHeight);
-				GL11.glPopMatrix();
-			}
+			GL11.glPushMatrix();
+			GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currHealth * scale) - 10*scale, (screenHeight - guiHeight*scale) - 8*scale, 0);
+			GL11.glScalef(scale, scale, scale);
+			//FG
+			this.drawTexturedModalRect(-25, 3, 0, 11, (noborderguiwidth - currHealth) - 2, guiHeight);
+			GL11.glPopMatrix();
 		}
 	}
 }

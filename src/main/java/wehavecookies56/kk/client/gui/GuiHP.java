@@ -49,22 +49,22 @@ public class GuiHP extends GuiScreen {
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth - guiWidth*scale) - 10*scale, (screenHeight - guiHeight*scale) - 4*scale, 0);
 			GL11.glScalef(scale, scale, scale);
-			this.drawTexturedModalRect(6, 6, 0, 0, guiWidth, guiHeight);
+			this.drawTexturedModalRect(6, 7, 0, 0, guiWidth, guiHeight);
 			GL11.glPopMatrix();
-			if (player.getHealth() >= 6){
+			if (player.getHealth() >= 6)
+			{
 				GL11.glPushMatrix();
 				GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currHealth * scale) - 10*scale, (screenHeight - guiHeight*scale) - 8*scale, 0);
-				//GL11.glTranslatef(2, 0, 0);
 				GL11.glScalef(scale, scale, scale);
-				this.drawTexturedModalRect(6, 6, 0, 12, (noborderguiwidth - currHealth) - 2, guiHeight);
+				this.drawTexturedModalRect(6, 11, 0, 12, (noborderguiwidth - currHealth) - 2, guiHeight);
 				GL11.glPopMatrix();
 			}
-			else{
+			else
+			{
 				GL11.glPushMatrix();
 				GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currHealth * scale) - 10*scale, (screenHeight - guiHeight*scale) - 6*scale, 0);
-				//GL11.glTranslatef(2, 0, 0);
 				GL11.glScalef(scale, scale, scale);
-				this.drawTexturedModalRect(6, 6, 0, 24, (noborderguiwidth - currHealth) - 2, guiHeight);
+				this.drawTexturedModalRect(6, 11, 0, 24, (noborderguiwidth - currHealth) - 2, guiHeight);
 				GL11.glPopMatrix();
 			}
 		}

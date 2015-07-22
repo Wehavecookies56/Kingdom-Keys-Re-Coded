@@ -2,9 +2,11 @@ package wehavecookies56.kk.entities.magic;
 
 import java.util.List;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 
@@ -40,14 +42,28 @@ public class EntityFire2 extends Entity
 		if(ticksExisted > 10){
 			setDead();
 		}
-
-		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
+		
+		double distance = 3.0D;
+		Entity player = Minecraft.getMinecraft().thePlayer; 
+		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(8, 8, 8);
+		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		//TODO CHECK FOR ENTITIES AND DAMAGE THEM
 		if(!list.isEmpty()){
 			for(int i = 0; i < list.size(); i++){
 				Entity e = (Entity) list.get(i);
 			}
 		}
+		if(!list.isEmpty())
+		{
+			for(int i=0; i<list.size();i++)
+			{
+				Entity e = (Entity) list.get(i);
+				e.attackEntityFrom(DamageSource.magic, 3.0F);
+				e.motionY++;
+				System.out.println(e);
+			}
+		}
+		System.out.println(list);
 
 		super.onUpdate();
 	}
