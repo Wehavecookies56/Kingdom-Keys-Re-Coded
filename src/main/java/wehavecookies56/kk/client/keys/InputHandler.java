@@ -33,6 +33,165 @@ public class InputHandler {
 		return null;
 	}
 
+	public void commandUp()
+	{
+		if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) //Mainmenu
+		{
+			if(GuiCommandMenu.selected == GuiCommandMenu.ATTACK){
+				GuiCommandMenu.selected = GuiCommandMenu.DRIVE;
+			}else{
+				GuiCommandMenu.selected++;
+			}
+		}
+
+		else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)//InsideMagic
+		{
+			if (GuiCommandMenu.magicselected >= 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE)
+			{
+				GuiCommandMenu.magicselected++;
+				GuiCommandMenu.submenu = 1;
+
+			}
+			else if (GuiCommandMenu.magicselected == 8)
+			{
+				GuiCommandMenu.magicselected = GuiCommandMenu.STOP;
+			}
+		}
+
+		else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)//InsideItems
+		{}
+
+		else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)//InsideDrive
+		{
+			if (GuiCommandMenu.driveselected >= 0 && GuiCommandMenu.driveselected <= GuiCommandMenu.VALOR)
+			{
+				GuiCommandMenu.driveselected++;
+				GuiCommandMenu.submenu = 3;
+			}
+			else if (GuiCommandMenu.driveselected == 6)
+			{
+				GuiCommandMenu.driveselected = GuiCommandMenu.FINAL;
+			}
+		}
+	}
+	
+	public void commandDown()
+	{
+		if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) //Mainmenu
+		{
+			if(GuiCommandMenu.selected == GuiCommandMenu.DRIVE){
+				GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+			}else{
+				GuiCommandMenu.selected--;
+			}
+		}
+
+		else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)//InsideMagic
+		{
+			if (GuiCommandMenu.magicselected > 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE)
+			{
+				GuiCommandMenu.magicselected--;
+				GuiCommandMenu.submenu = 1;
+
+			}
+			else if (GuiCommandMenu.magicselected == 0 || GuiCommandMenu.magicselected == 8)
+			{
+				GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
+			}
+		}
+
+		else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)//InsideItems
+		{}
+
+		else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)//InsideDrive
+		{
+			if (GuiCommandMenu.driveselected > 0 && GuiCommandMenu.driveselected <= GuiCommandMenu.VALOR)
+			{
+				GuiCommandMenu.driveselected--;
+				GuiCommandMenu.submenu = 3;
+
+			}
+			else if (GuiCommandMenu.driveselected == 0 || GuiCommandMenu.driveselected == 6)
+			{
+				GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
+			}
+		}
+	}
+	
+	public void commandEnter()
+	{
+		Minecraft mc = Minecraft.getMinecraft();
+		EntityPlayer player = mc.thePlayer;
+		World world = mc.theWorld;
+		
+		switch(GuiCommandMenu.selected)
+		{
+		case GuiCommandMenu.MAGIC:
+			if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
+			GuiCommandMenu.magicselected = GuiCommandMenu.NONE;
+			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
+			break;
+
+		case GuiCommandMenu.ITEMS:
+			//GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
+			break;
+
+		case GuiCommandMenu.DRIVE:
+			GuiCommandMenu.driveselected = GuiCommandMenu.NONE;
+			GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
+			break;
+		}
+		if(GuiCommandMenu.selected == GuiCommandMenu.MAGIC && GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)
+		{
+			switch(GuiCommandMenu.magicselected)
+			{
+				case GuiCommandMenu.FIRE:
+					Magic.Fire(player, world);
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					break;
+
+				case GuiCommandMenu.BLIZZARD:
+					Magic.Ice(player, world);
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					break;
+				case GuiCommandMenu.THUNDER:
+					Magic.Thunder(player, world);
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					break;
+				case GuiCommandMenu.CURE:
+					Magic.Cure(player, world);
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					break;
+			}
+		}
+	}
+	
+	public void commandBack()
+	{
+		if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
+		{
+			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+		}
+		else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)
+		{
+			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+		}
+		else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)
+		{
+			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+		}
+		else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)
+		{
+			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+		}
+		GuiCommandMenu.magicselected = GuiCommandMenu.MAGIC;
+		GuiCommandMenu.driveselected = GuiCommandMenu.DRIVE;
+	}
+	
 	@SubscribeEvent
 	public void handleKeyInputEvent(InputEvent.KeyInputEvent event){
 		Minecraft mc = Minecraft.getMinecraft();
@@ -46,164 +205,19 @@ public class InputHandler {
 				GuiHelper.openMenu();
 				break;
 			case SCROLL_UP:
-				if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) //Mainmenu
-				{
-					if(GuiCommandMenu.selected == GuiCommandMenu.ATTACK){
-						GuiCommandMenu.selected = GuiCommandMenu.DRIVE;
-					}else{
-						GuiCommandMenu.selected++;
-					}
-				}
-
-				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)//InsideMagic
-				{
-					if (GuiCommandMenu.magicselected >= 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE)
-					{
-						GuiCommandMenu.magicselected++;
-						GuiCommandMenu.submenu = 1;
-
-					}
-					else if (GuiCommandMenu.magicselected == 8)
-					{
-						GuiCommandMenu.magicselected = GuiCommandMenu.STOP;
-					}
-					System.out.println(GuiCommandMenu.magicselected);
-				}
-
-				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)//InsideItems
-				{
-
-				}
-
-				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)//InsideDrive
-				{
-					if (GuiCommandMenu.driveselected >= 0 && GuiCommandMenu.driveselected <= GuiCommandMenu.VALOR)
-					{
-						GuiCommandMenu.driveselected++;
-						GuiCommandMenu.submenu = 3;
-					}
-					else if (GuiCommandMenu.driveselected == 6)
-					{
-						GuiCommandMenu.driveselected = GuiCommandMenu.FINAL;
-					}
-				}
-
+				commandUp();
 				break;
 
 			case SCROLL_DOWN:
-				if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) //Mainmenu
-				{
-					if(GuiCommandMenu.selected == GuiCommandMenu.DRIVE){
-						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					}else{
-						GuiCommandMenu.selected--;
-					}
-					System.out.println(GuiCommandMenu.driveselected);
-
-				}
-
-				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)//InsideMagic
-				{
-					if (GuiCommandMenu.magicselected > 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE)
-					{
-						GuiCommandMenu.magicselected--;
-						GuiCommandMenu.submenu = 1;
-
-					}
-					else if (GuiCommandMenu.magicselected == 0 || GuiCommandMenu.magicselected == 8)
-					{
-						GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
-					}
-					System.out.println(GuiCommandMenu.magicselected);
-				}
-
-				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)//InsideItems
-				{
-
-				}
-
-				else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)//InsideDrive
-				{
-					if (GuiCommandMenu.driveselected > 0 && GuiCommandMenu.driveselected <= GuiCommandMenu.VALOR)
-					{
-						GuiCommandMenu.driveselected--;
-						GuiCommandMenu.submenu = 3;
-
-					}
-					else if (GuiCommandMenu.driveselected == 0)
-					{
-						GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
-					}
-				}
+				commandDown();
 				break;
 
 			case ENTER:
-				switch(GuiCommandMenu.selected)
-				{
-				case GuiCommandMenu.MAGIC:
-					if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
-					GuiCommandMenu.magicselected = GuiCommandMenu.NONE;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
-					break;
-
-				case GuiCommandMenu.ITEMS:
-					//GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
-					break;
-
-				case GuiCommandMenu.DRIVE:
-					GuiCommandMenu.driveselected = GuiCommandMenu.NONE;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
-					break;
-				}
-				if(GuiCommandMenu.selected == GuiCommandMenu.MAGIC && GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)
-				{
-					switch(GuiCommandMenu.magicselected)
-					{
-						case GuiCommandMenu.FIRE:
-							Magic.Fire(player, world);
-							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-							break;
-
-						case GuiCommandMenu.BLIZZARD:
-							Magic.Ice(player, world);
-							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-							break;
-						case GuiCommandMenu.THUNDER:
-							Magic.Thunder(player, world);
-							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-							break;
-						case GuiCommandMenu.CURE:
-							Magic.Cure(player, world);
-							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-							break;
-
-					}
-				}
+				commandEnter();
 				break;
 
 			case BACK:
-				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
-				{
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-				}
-				else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)
-				{
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-				}
-				else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)
-				{
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-				}
-				else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)
-				{
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-				}
-				GuiCommandMenu.magicselected = GuiCommandMenu.MAGIC;
-				GuiCommandMenu.driveselected = GuiCommandMenu.DRIVE;
+				commandBack();
 				break;
 			case SUMMON_KEYBLADE:
 				ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
@@ -243,136 +257,21 @@ public class InputHandler {
 		}
 
 		if(event.button == 0 && KeyboardHelper.isScrollActivatorDown()){
-			switch(GuiCommandMenu.selected)
-			{
-			case GuiCommandMenu.ATTACK:
-				Minecraft.getMinecraft().thePlayer.swingItem();
-				break;
-			case GuiCommandMenu.MAGIC:
-				GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
-				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
-				if(GuiCommandMenu.selected == GuiCommandMenu.MAGIC && GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)
-				{
-					switch(GuiCommandMenu.magicselected)
-					{
-						case GuiCommandMenu.FIRE:
-							Magic.Fire(player, world);
-							break;
-
-						case GuiCommandMenu.BLIZZARD:
-							Magic.Ice(player, world);
-							break;
-						case GuiCommandMenu.THUNDER:
-							Magic.Thunder(player, world);
-							break;
-					}
-				}
-				break;
-
-			case GuiCommandMenu.ITEMS:
-				//GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
-				break;
-
-			case GuiCommandMenu.DRIVE:
-				GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
-				GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
-				break;
-			}
+			commandEnter();
 			event.setCanceled(true);
 		}
 
 		if(event.button == 1 && KeyboardHelper.isScrollActivatorDown()){
-			switch(GuiCommandMenu.submenu){
-			case GuiCommandMenu.SUB_MAIN:
-				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-				break;
-			case GuiCommandMenu.SUB_MAGIC:
-				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-				break;
-			case GuiCommandMenu.SUB_ITEMS:
-				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-				break;
-			case GuiCommandMenu.SUB_DRIVE:
-				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-				break;
-			}
-			GuiCommandMenu.magicselected = GuiCommandMenu.MAGIC;
-			GuiCommandMenu.driveselected = GuiCommandMenu.DRIVE;
+			commandBack();
 			event.setCanceled(true);
 		}
 
 		if(event.dwheel <= WHEEL_DOWN && KeyboardHelper.isScrollActivatorDown()){
-			switch(GuiCommandMenu.submenu){
-			case GuiCommandMenu.SUB_MAIN:
-				switch(GuiCommandMenu.selected){
-				case GuiCommandMenu.DRIVE:
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					break;
-				default:
-					GuiCommandMenu.selected--;
-					break;
-				}
-				break;
-			case GuiCommandMenu.SUB_MAGIC:
-				switch(GuiCommandMenu.magicselected){
-				case GuiCommandMenu.STOP:
-					GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
-					break;
-				default:
-					GuiCommandMenu.magicselected--;
-					break;
-				}
-				break;
-			case GuiCommandMenu.SUB_ITEMS:
-				break;
-			case GuiCommandMenu.SUB_DRIVE:
-				switch(GuiCommandMenu.driveselected){
-				case GuiCommandMenu.FINAL:
-					GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
-					break;
-				default:
-					GuiCommandMenu.driveselected--;
-					break;
-				}
-				break;
-			}
+			commandDown();
 			event.setCanceled(true);
 		}
 		if(event.dwheel >= WHEEL_UP && KeyboardHelper.isScrollActivatorDown()){
-			switch(GuiCommandMenu.submenu){
-			case GuiCommandMenu.SUB_MAIN:
-				switch(GuiCommandMenu.selected){
-				case GuiCommandMenu.ATTACK:
-					GuiCommandMenu.selected = GuiCommandMenu.DRIVE;
-					break;
-				default:
-					GuiCommandMenu.selected++;
-					break;
-				}
-				break;
-			case GuiCommandMenu.SUB_MAGIC:
-				switch(GuiCommandMenu.magicselected){
-				case GuiCommandMenu.FIRE:
-					GuiCommandMenu.magicselected = GuiCommandMenu.STOP;
-					break;
-				default:
-					GuiCommandMenu.magicselected++;
-					break;
-				}
-				break;
-			case GuiCommandMenu.SUB_ITEMS:
-				break;
-			case GuiCommandMenu.SUB_DRIVE:
-				switch(GuiCommandMenu.driveselected){
-				case GuiCommandMenu.VALOR:
-					GuiCommandMenu.driveselected = GuiCommandMenu.FINAL;
-					break;
-				default:
-					GuiCommandMenu.driveselected++;
-					break;
-				}
-				break;
-			}
+			commandUp();
 			event.setCanceled(true);
 		}
 
