@@ -20,6 +20,7 @@ import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.block.ModBlocksRecipes;
 import wehavecookies56.kk.entities.TileEntitySynthesisTable;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
+import wehavecookies56.kk.entities.magic.EntityFire;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.item.ModItemsRecipes;
 import wehavecookies56.kk.lib.Config;
@@ -120,8 +121,9 @@ public class KingdomKeys {
 		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
 		LogHelper.info("Tile entities loaded");
 
-		EntityRegistry.registerGlobalEntityID(EntityBlastBlox.class, "blastblox", 31);
-		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 31, instance, 16, 1, false);
+		EntityRegistry.registerModEntity(EntityBlastBlox.class, Reference.MODID + ":blastblox", 0, instance, 16, 1, false);
+
+		EntityRegistry.registerModEntity(EntityFire.class, Reference.MODID + ":fire", 1, instance, 16, 1, false);
 
 		Lists.init();
 

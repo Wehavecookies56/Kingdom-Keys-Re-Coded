@@ -11,10 +11,11 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import wehavecookies56.kk.lib.Reference;
 
 public class EntityFire extends EntityThrowable
 {
-	private static final ResourceLocation resourceLocation = new ResourceLocation("modid:/entities/fire.png");
+	private static final ResourceLocation resourceLocation = new ResourceLocation(Reference.MODID, "textures/entities/fire.png");
     public EntityLivingBase shootingEntity;
 
 	public EntityFire(World world) {
@@ -37,6 +38,7 @@ public class EntityFire extends EntityThrowable
 	@Override
 	public void onUpdate() {
 		int rotation = 0;
+		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.rotationYaw = (rotation + 1) % 360;
 		if(ticksExisted > 60){

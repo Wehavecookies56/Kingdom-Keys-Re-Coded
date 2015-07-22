@@ -16,11 +16,12 @@ import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.client.gui.GuiDrive;
 import wehavecookies56.kk.client.gui.GuiHP;
-import wehavecookies56.kk.client.gui.GuiHead;
+import wehavecookies56.kk.client.gui.GuiPlayerPortrait;
 import wehavecookies56.kk.client.keys.InputHandler;
 import wehavecookies56.kk.client.keys.Keybinds;
 import wehavecookies56.kk.client.render.RenderBlastBlox;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
+import wehavecookies56.kk.entities.magic.EntityFire;
 import wehavecookies56.kk.item.ModItems;
 
 public class ClientProxy extends CommonProxy {
@@ -32,15 +33,16 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	private void registerRenders(){
+		MinecraftForge.EVENT_BUS.register(new GuiPlayerPortrait());
 		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());
 		MinecraftForge.EVENT_BUS.register(new GuiHP());
 		MinecraftForge.EVENT_BUS.register(new GuiDrive());
-		MinecraftForge.EVENT_BUS.register(new GuiHead());
 		ModItems.registerRenders();
 		ModBlocks.registerRenders();
 		DevCapes.getInstance().registerConfig("https://www.dropbox.com/s/hb0wg5ky5wblz9g/Capes.json?raw=1");
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlastBlox.class, new RenderBlastBlox(Minecraft.getMinecraft().getRenderManager()));
-		}
+		RenderingRegistry.registerEntityRenderingHandler(EntityFire.class, null);
+	}
 
 	private void registerKeyBindings(){
 		FMLCommonHandler.instance().bus().register(new InputHandler());

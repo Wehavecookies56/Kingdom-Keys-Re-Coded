@@ -5,7 +5,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
-import wehavecookies56.kk.entities.magic.EntityFire;
+import wehavecookies56.kk.entities.magic.EntityFire2;
 import wehavecookies56.kk.entities.magic.EntityIce;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -18,10 +18,10 @@ public class Magic {
 
 	public static void Fire(EntityPlayer player, World world)
 	{
-		world.spawnEntityInWorld(new EntityFire(world, player));
+		world.spawnEntityInWorld(new EntityFire2(world, player.posX, player.posY, player.posZ));
 		PacketDispatcher.sendToServer(new MagicFire());
 	}
-	
+
 
 	public static void Ice(EntityPlayer player, World world)
 	{
