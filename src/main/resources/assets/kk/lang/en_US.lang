@@ -4,6 +4,18 @@
 #
 
 ############################
+#Achievements
+############################
+achievement.openMenu=Open the menu
+achievement.openMenu.desc=Press the open menu key to open the menu (default M).
+
+achievement.getWehavecookies56Skull=Familiar Face!
+achievement.getAbelatoxSkull=Another Familiar Face!
+achievement.getWehavecookies56Skull.desc=Craft Wehavecookies56's head
+achievement.getAbelatoxSkull.desc=Craft Abelatox's head
+
+
+############################
 #Creative Tabs
 ############################
 

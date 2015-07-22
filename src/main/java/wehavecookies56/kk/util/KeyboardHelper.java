@@ -2,7 +2,7 @@ package wehavecookies56.kk.util;
 
 import org.lwjgl.input.Keyboard;
 
-import wehavecookies56.kk.client.keys.Keybinds;
+import wehavecookies56.kk.client.input.Keybinds;
 
 public class KeyboardHelper {
 

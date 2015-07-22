@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import wehavecookies56.kk.client.keys.Keybinds;
+import wehavecookies56.kk.client.input.Keybinds;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.inventory.ContainerKeychain;
 import wehavecookies56.kk.inventory.InventoryKeychain;

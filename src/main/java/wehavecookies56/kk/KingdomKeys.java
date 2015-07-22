@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.block.ModBlocksRecipes;
@@ -101,7 +102,7 @@ public class KingdomKeys {
 		ModBlocks.register();
 		LogHelper.info("Blocks loaded");
 
-		//Craftin recipes
+		//Crafting recipes
 		ModItemsRecipes.init();
 		ModBlocksRecipes.init();
 		LogHelper.info("Crafting recipes loaded");
@@ -134,6 +135,7 @@ public class KingdomKeys {
 		//Chest loot init
 		ChestGen.init();
 		LogHelper.info("Chest loot added");
+
 	}
 
 	@EventHandler

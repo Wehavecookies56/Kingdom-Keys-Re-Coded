@@ -15,7 +15,10 @@ public class Constants {
 	SCALE_AUTO = 0,
 	SCALE_SMALL = 1,
 	SCALE_NORMAL = 2,
-	SCALE_LARGE = 3
+	SCALE_LARGE = 3,
+
+	//OTHER
+	TICKS_PER_SECOND = 20
 	;
 
 }

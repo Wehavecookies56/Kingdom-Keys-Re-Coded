@@ -1,4 +1,4 @@
-package wehavecookies56.kk.client.keys;
+package wehavecookies56.kk.client.input;
 
 import net.minecraft.client.settings.KeyBinding;
 

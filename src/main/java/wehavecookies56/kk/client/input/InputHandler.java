@@ -1,4 +1,4 @@
-package wehavecookies56.kk.client.keys;
+package wehavecookies56.kk.client.input;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,16 +8,19 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
+import wehavecookies56.kk.network.packet.server.GiveAchievement;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.util.GuiHelper;
@@ -74,7 +77,7 @@ public class InputHandler {
 			}
 		}
 	}
-	
+
 	public void commandDown()
 	{
 		if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) //Mainmenu
@@ -117,13 +120,13 @@ public class InputHandler {
 			}
 		}
 	}
-	
+
 	public void commandEnter()
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 		EntityPlayer player = mc.thePlayer;
 		World world = mc.theWorld;
-		
+
 		switch(GuiCommandMenu.selected)
 		{
 		case GuiCommandMenu.MAGIC:
@@ -169,7 +172,7 @@ public class InputHandler {
 			}
 		}
 	}
-	
+
 	public void commandBack()
 	{
 		if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
@@ -191,7 +194,7 @@ public class InputHandler {
 		GuiCommandMenu.magicselected = GuiCommandMenu.MAGIC;
 		GuiCommandMenu.driveselected = GuiCommandMenu.DRIVE;
 	}
-	
+
 	@SubscribeEvent
 	public void handleKeyInputEvent(InputEvent.KeyInputEvent event){
 		Minecraft mc = Minecraft.getMinecraft();
@@ -203,6 +206,9 @@ public class InputHandler {
 			switch(key){
 			case OPENMENU:
 				GuiHelper.openMenu();
+				if(!Minecraft.getMinecraft().thePlayer.getStatFileWriter().hasAchievementUnlocked(ModAchievements.openMenu)){
+					PacketDispatcher.sendToServer(new GiveAchievement(ModAchievements.openMenu.getStatName()));
+				}
 				break;
 			case SCROLL_UP:
 				commandUp();
@@ -243,9 +249,6 @@ public class InputHandler {
 		}
 	}
 
-	public static final int WHEEL_UP = -1;
-	public static final int WHEEL_DOWN = 1;
-
 	@SubscribeEvent
 	public void OnMouseWheelScroll(MouseEvent event){
 		Minecraft mc = Minecraft.getMinecraft();
@@ -256,21 +259,21 @@ public class InputHandler {
 			return;
 		}
 
-		if(event.button == 0 && KeyboardHelper.isScrollActivatorDown()){
+		if(event.button == Constants.LEFT_MOUSE && KeyboardHelper.isScrollActivatorDown()){
 			commandEnter();
 			event.setCanceled(true);
 		}
 
-		if(event.button == 1 && KeyboardHelper.isScrollActivatorDown()){
+		if(event.button == Constants.RIGHT_MOUSE && KeyboardHelper.isScrollActivatorDown()){
 			commandBack();
 			event.setCanceled(true);
 		}
 
-		if(event.dwheel <= WHEEL_DOWN && KeyboardHelper.isScrollActivatorDown()){
+		if(event.dwheel <= Constants.WHEEL_DOWN && KeyboardHelper.isScrollActivatorDown()){
 			commandDown();
 			event.setCanceled(true);
 		}
-		if(event.dwheel >= WHEEL_UP && KeyboardHelper.isScrollActivatorDown()){
+		if(event.dwheel >= Constants.WHEEL_UP && KeyboardHelper.isScrollActivatorDown()){
 			commandUp();
 			event.setCanceled(true);
 		}

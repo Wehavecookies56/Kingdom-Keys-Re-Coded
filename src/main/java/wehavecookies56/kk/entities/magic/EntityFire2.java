@@ -43,6 +43,11 @@ public class EntityFire2 extends Entity
 
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
 		//TODO CHECK FOR ENTITIES AND DAMAGE THEM
+		if(!list.isEmpty()){
+			for(int i = 0; i < list.size(); i++){
+				Entity e = (Entity) list.get(i);
+			}
+		}
 
 		super.onUpdate();
 	}

@@ -12,18 +12,20 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.client.gui.GuiDrive;
 import wehavecookies56.kk.client.gui.GuiHP;
 import wehavecookies56.kk.client.gui.GuiPlayerPortrait;
+import wehavecookies56.kk.client.input.InputHandler;
+import wehavecookies56.kk.client.input.Keybinds;
 import wehavecookies56.kk.client.gui.GuiMP;
-import wehavecookies56.kk.client.keys.InputHandler;
-import wehavecookies56.kk.client.keys.Keybinds;
 import wehavecookies56.kk.client.render.RenderBlastBlox;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
 import wehavecookies56.kk.entities.magic.EntityFire;
 import wehavecookies56.kk.item.ModItems;
+import wehavecookies56.kk.util.LogHelper;
 
 public class ClientProxy extends CommonProxy {
 
@@ -31,6 +33,7 @@ public class ClientProxy extends CommonProxy {
 	public void init(){
 		registerRenders();
 		registerKeyBindings();
+		registerAchievements();
 	}
 
 	private void registerRenders(){
@@ -52,6 +55,13 @@ public class ClientProxy extends CommonProxy {
 		for(Keybinds key : Keybinds.values()){
 			ClientRegistry.registerKeyBinding(key.getKeybind());
 		}
+	}
+
+	private void registerAchievements(){
+		//Achievements
+		ModAchievements.init();
+		ModAchievements.register();
+		LogHelper.info("Achievements loaded");
 	}
 
 	@Override

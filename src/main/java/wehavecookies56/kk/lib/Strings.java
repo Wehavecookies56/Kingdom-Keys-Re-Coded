@@ -24,6 +24,14 @@ public class Strings {
 	Disc_DurationUnits_Desc = "disc.durationunits.desc"
 	;
 
+	//Achievements
+	public static final String
+	Achievement_OpenMenu = "achievement.openmenu",
+	Achievement_GetKeyblade = "achievement.getkeyblade",
+	Achievement_GetWehavecookies56Skull = "achievement.getWehavecookies56Skull",
+	Achievement_GetAbelatoxSkull = "achievement.getAbelatoxSkull"
+	;
+
 	//Gui
 	public static final String
 	//Command Menu

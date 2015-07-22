@@ -12,9 +12,11 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
@@ -29,8 +31,10 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
@@ -280,6 +284,25 @@ public class EventHandler {
 			ExtendedPlayer.get(event.player).addMunny(event.entityItem.getEntityItem().getTagCompound().getInteger("amount"));
 		}
 
+	}
+
+	@SubscribeEvent
+	public void onItemCrafted(ItemCraftedEvent event){
+		ItemStack WHC56skull = new ItemStack(Items.skull, 1, 3);
+		WHC56skull.setTagCompound(new NBTTagCompound());
+		WHC56skull.getTagCompound().setTag("SkullOwner", new NBTTagString("Wehavecookies56"));
+
+		ItemStack AAskull = new ItemStack(Items.skull, 1, 3);
+		AAskull.setTagCompound(new NBTTagCompound());
+		AAskull.getTagCompound().setTag("SkullOwner", new NBTTagString("Abelatox"));
+
+		if(event.crafting.getItem() == WHC56skull.getItem()){
+			AchievementHelper.addAchievement(event.player, ModAchievements.getWehavecookies56Skull);
+		}
+
+		if(event.crafting.getItem() == AAskull.getItem()){
+			AchievementHelper.addAchievement(event.player, ModAchievements.getAbelatoxSkull);
+		}
 	}
 
 	@SubscribeEvent
