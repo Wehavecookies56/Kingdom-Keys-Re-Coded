@@ -29,7 +29,6 @@ public class ItemPotion extends ItemFood{
     	
         if (!player.capabilities.isCreativeMode)
         {
-            //item.stackSize--;
         	player.inventory.addItemStackToInventory(new ItemStack(ModItems.EmptyBottle));
         }
     }

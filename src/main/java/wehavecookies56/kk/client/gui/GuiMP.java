@@ -11,7 +11,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import wehavecookies56.kk.lib.Reference;
 
-public class GuiHP extends GuiScreen {
+public class GuiMP extends GuiScreen {
 
 	int guiWidth = 173;
 	int guiHeight = 12;
@@ -24,7 +24,7 @@ public class GuiHP extends GuiScreen {
 			Minecraft mc = Minecraft.getMinecraft();
 			EntityPlayer player = mc.thePlayer;
 
-			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
+			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/mpbar.png"));
 
 			int screenWidth = event.resolution.getScaledWidth();
 			int screenHeight = event.resolution.getScaledHeight();
@@ -41,7 +41,7 @@ public class GuiHP extends GuiScreen {
 				scale = 0.85f;
 			}
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - guiWidth*scale) - 10*scale, (screenHeight - guiHeight*scale) - 4*scale, 0);
+			GL11.glTranslatef((screenWidth - guiWidth*scale) - 10*scale, (screenHeight - guiHeight*scale) - 8*scale, 0);
 			GL11.glScalef(scale, scale, scale);
 			this.drawTexturedModalRect(6, 6, 0, 0, guiWidth, guiHeight);
 			GL11.glPopMatrix();

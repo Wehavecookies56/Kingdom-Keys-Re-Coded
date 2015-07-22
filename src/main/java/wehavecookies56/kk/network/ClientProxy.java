@@ -17,6 +17,7 @@ import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.client.gui.GuiDrive;
 import wehavecookies56.kk.client.gui.GuiHP;
 import wehavecookies56.kk.client.gui.GuiHead;
+import wehavecookies56.kk.client.gui.GuiMP;
 import wehavecookies56.kk.client.keys.InputHandler;
 import wehavecookies56.kk.client.keys.Keybinds;
 import wehavecookies56.kk.client.render.RenderBlastBlox;
@@ -34,6 +35,7 @@ public class ClientProxy extends CommonProxy {
 	private void registerRenders(){
 		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());
 		MinecraftForge.EVENT_BUS.register(new GuiHP());
+		//MinecraftForge.EVENT_BUS.register(new GuiMP());
 		MinecraftForge.EVENT_BUS.register(new GuiDrive());
 		MinecraftForge.EVENT_BUS.register(new GuiHead());
 		ModItems.registerRenders();
