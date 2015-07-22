@@ -129,24 +129,20 @@ public class BlockBlastBlox extends BlockBlox
         {
         	if(player.getHeldItem().getItem() == Items.feather)
         	{
-        		// world.setBlockToAir(pos);
         		world.destroyBlock(pos, true);
         	}
         	else
         	{
         		this.explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, player);
         		world.setBlockToAir(pos);
-
         	}
         }
         else
     	{
     		this.explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, player);
     		world.setBlockToAir(pos);
-
     	}
     }
-    
 
     /**
      * Return whether this block can drop from an explosion.

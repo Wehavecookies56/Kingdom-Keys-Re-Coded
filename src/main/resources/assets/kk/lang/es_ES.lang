@@ -168,7 +168,7 @@ item.ventus_leggings.name=Grebas de Ventus
 item.ventus_boots.name=Botas de Ventus
 
 #Misc
-item.emptypotion.name=Botella vacía
+item.emptybottle.name=Botella vacía
 item.potion.name=Poción
 item.hporb.name=Orbe de HP
 item.driveorb.name=Orbe de Fusión

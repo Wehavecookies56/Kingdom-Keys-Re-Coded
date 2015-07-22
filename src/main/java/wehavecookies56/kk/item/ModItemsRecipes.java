@@ -226,7 +226,7 @@ public class ModItemsRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.BrightInfusedGlowStone), BrightCrystal, Items.glowstone_dust);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.DarkInfusedIron), DarkCrystal, Items.iron_ingot);
 
-		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyPotion), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.Potion));
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.Potion));
 		//TODO Hi-Potion
 		//BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyPotion), new ItemStack(ModItems.Potion), new ItemStack(ModItems.HiPotion));
 		//BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.Potion), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.HiPotion));

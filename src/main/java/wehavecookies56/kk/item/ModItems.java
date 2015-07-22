@@ -282,7 +282,7 @@ public class ModItems {
 	//Misc
 	public static Item
 		Munny,
-		EmptyPotion,
+		EmptyBottle,
 		Potion,
 		HpOrb,
 		DriveOrb,
@@ -609,8 +609,8 @@ public class ModItems {
 		Chain_ZeroOne = new ItemKeychain((ItemKeyblade) ZeroOne).setUnlocalizedName(Strings.Chain_ZeroOne).setCreativeTab(tabKingdomKeys);
 
 		Munny = new ItemMunny().setUnlocalizedName(Strings.Munny).setCreativeTab(tabKingdomKeys);
-		EmptyPotion = new Item().setUnlocalizedName(Strings.EmptyPotion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-		Potion = new Item().setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		EmptyBottle = new Item().setUnlocalizedName(Strings.EmptyBottle).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		Potion = new ItemPotion(0, true).setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		HpOrb = new ItemHpOrb().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		DriveOrb = new ItemDriveOrb().setUnlocalizedName(Strings.DriveOrb).setCreativeTab(tabKingdomKeys);
 		Heart = new Item().setUnlocalizedName(Strings.Heart).setCreativeTab(tabKingdomKeys);
@@ -926,7 +926,7 @@ public class ModItems {
 
 		//ITEMS
 		GameRegistry.registerItem(Munny, Strings.Munny);
-		GameRegistry.registerItem(EmptyPotion, Strings.EmptyPotion);
+		GameRegistry.registerItem(EmptyBottle, Strings.EmptyBottle);
 		GameRegistry.registerItem(Potion, Strings.Potion);
 		GameRegistry.registerItem(HpOrb, Strings.HpOrb);
 		GameRegistry.registerItem(DriveOrb, Strings.DriveOrb);
@@ -1244,7 +1244,7 @@ public class ModItems {
 
 		//Other items
 		registerRender(Munny);
-		registerRender(EmptyPotion);
+		registerRender(EmptyBottle);
 		registerRender(Potion);
 		registerRender(HpOrb);
 		registerRender(DriveOrb);

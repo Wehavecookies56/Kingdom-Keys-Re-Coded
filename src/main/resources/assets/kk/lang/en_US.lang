@@ -166,7 +166,7 @@ item.ventus_leggings.name=Ventus's Leggings
 item.ventus_boots.name=Ventus's Boots
 
 #Misc
-item.emptypotion.name=Empty Potion
+item.emptybottle.name=Empty Bottle
 item.potion.name=Potion
 item.hporb.name=HP Orb
 item.driveorb.name=Drive Orb

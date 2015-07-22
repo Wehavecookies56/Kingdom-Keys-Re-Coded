@@ -125,7 +125,7 @@ public class Strings {
 	//Items
 	public static final String
 	Munny = "munny",
-	EmptyPotion = "emptypotion",
+	EmptyBottle = "emptybottle",
 	Potion = "potion",
 	HpOrb = "hporb",
 	DriveOrb = "driveorb",
