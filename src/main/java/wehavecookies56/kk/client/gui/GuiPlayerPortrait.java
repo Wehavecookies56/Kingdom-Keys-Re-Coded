@@ -8,6 +8,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import wehavecookies56.kk.lib.Constants;
 
 public class GuiPlayerPortrait extends GuiScreen {
 
@@ -20,13 +21,16 @@ public class GuiPlayerPortrait extends GuiScreen {
 			ResourceLocation skin = ((AbstractClientPlayer) mc.thePlayer).getLocationSkin();
 			mc.getTextureManager().bindTexture(skin);
 			float scale = 0.5f;
-			if(mc.gameSettings.guiScale == 1)
-			{
-				//scale = 1f;
-			}
-			else
-			{
+			switch(mc.gameSettings.guiScale){
+			case Constants.SCALE_AUTO:
+				scale = 0.85f;
+				break;
+			case Constants.SCALE_NORMAL:
+				scale = 0.85f;
+				break;
+			default:
 				scale = 0.65f;
+				break;
 			}
 
 			//HEAD

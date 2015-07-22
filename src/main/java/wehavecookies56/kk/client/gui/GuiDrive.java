@@ -17,6 +17,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.TextHelper;
@@ -88,13 +89,16 @@ public class GuiDrive extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 
 			float scale = 0.65f;
-			if(mc.gameSettings.guiScale == 1)
-			{
-				scale = 1f;
-			}
-			else
-			{	
+			switch(mc.gameSettings.guiScale){
+			case Constants.SCALE_AUTO:
 				scale = 0.85f;
+				break;
+			case Constants.SCALE_NORMAL:
+				scale = 0.85f;
+				break;
+			default:
+				scale = 0.65f;
+				break;
 			}
 			float posX = 52*scale;
 			float posY = 20*scale;
