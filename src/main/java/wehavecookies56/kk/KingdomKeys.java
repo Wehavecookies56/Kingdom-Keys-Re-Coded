@@ -15,9 +15,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import wehavecookies56.kk.api.driveforms.DriveForm;
+import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.block.ModBlocksRecipes;
+import wehavecookies56.kk.driveforms.ModDriveForms;
 import wehavecookies56.kk.entities.TileEntitySynthesisTable;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
 import wehavecookies56.kk.entities.magic.EntityFire2;
@@ -122,19 +125,23 @@ public class KingdomKeys {
 		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
 		LogHelper.info("Tile entities loaded");
 
-		EntityRegistry.registerModEntity(EntityBlastBlox.class, Reference.MODID + ":blastblox", 0, instance, 16, 1, false);
+		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 0, instance, 16, 1, false);
 
-		EntityRegistry.registerModEntity(EntityFire2.class, Reference.MODID + ":fire", 1, instance, 16, 1, false);
+		EntityRegistry.registerModEntity(EntityFire2.class, "fire", 1, instance, 16, 1, false);
 
 		Lists.init();
 
+		//Drive forms init
+		ModDriveForms.init();
+		LogHelper.info(DriveFormRegistry.getDriveFormMap().size() + " Drive form(s) loaded");
+
 		//Synthesis Recipes init
 		ModRecipes.init();
-		LogHelper.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipes loaded");
+		LogHelper.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipe(s) loaded");
 
 		//Chest loot init
 		ChestGen.init();
-		LogHelper.info("Chest loot added");
+		LogHelper.info("Chest loot loaded");
 
 	}
 

@@ -325,7 +325,6 @@ public class GuiSynthesis extends GuiTooltip{
 				return true;
 			}
 		}
-		System.out.println("NO");
 		return false;
 	}
 

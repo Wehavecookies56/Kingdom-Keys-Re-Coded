@@ -272,9 +272,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		boolean sufficient = true;
 
 		if(this.mp - amount < 0 || amount > this.mp){
-			System.out.println(mp);
 			this.mp = 0;
-			System.out.println(mp);
 			this.sync();
 			sufficient = false;
 		}

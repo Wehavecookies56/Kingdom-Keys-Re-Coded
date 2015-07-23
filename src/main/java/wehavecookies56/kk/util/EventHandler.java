@@ -36,7 +36,10 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.achievements.ModAchievements;
+import wehavecookies56.kk.api.driveforms.DriveForm;
+import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.block.ModBlocks;
+import wehavecookies56.kk.driveforms.DriveFormValor;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
@@ -304,7 +307,6 @@ public class EventHandler {
 
 			ExtendedPlayer props = ExtendedPlayer.get(event.entityPlayer);
 			int mp = props.getMp();
-			System.out.println(mp);
 			//if(mp < max)
 			{
 				MagicOrbPickup packet = new MagicOrbPickup(event.item.getEntityItem());
@@ -358,7 +360,12 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event){
-
+		if(event.entityLiving instanceof EntityPlayer){
+			if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getInDrive()){
+				DriveForm df = new DriveFormValor();
+				df.update((EntityPlayer) event.entityLiving);
+			}
+		}
 	}
 
 	@SubscribeEvent
