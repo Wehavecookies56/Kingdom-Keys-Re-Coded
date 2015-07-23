@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityMob;
@@ -18,8 +18,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -34,6 +34,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.entities.ExtendedPlayer;
@@ -67,6 +68,14 @@ public class EventHandler {
 			ExtendedPlayerMaterials.register((EntityPlayer) event.entity, 100);
 		}
 
+	}
+
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void fovUpdate(FOVUpdateEvent event){
+		if(event.entity.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue() == 0){
+			event.newfov = 1f;
+		}
 	}
 
 	@SubscribeEvent
@@ -165,6 +174,15 @@ public class EventHandler {
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event)
 	{
+		if(event.entity instanceof EntityPlayer){
+			for(int i = 0; i < event.drops.size(); i++){
+				if(event.drops.get(i).getEntityItem().getItem() instanceof ItemKeyblade){
+					event.drops.remove(i);
+					ExtendedPlayer.get((EntityPlayer) event.entity).setKeybladeSummoned(false);
+					i = 0;
+				}
+			}
+		}
 		if(event.source.getSourceOfDamage() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)event.source.getSourceOfDamage();
@@ -276,14 +294,13 @@ public class EventHandler {
 	@SubscribeEvent
 	public void onItemTossEvent(ItemTossEvent event){
 		if(event.entityItem.getEntityItem().getItem() instanceof ItemKeyblade){
+			event.entityItem.isDead = true;
 			ItemStack itemStack = event.entityItem.getEntityItem();
-			event.setCanceled(true);
-			event.player.inventory.setInventorySlotContents(event.player.inventory.currentItem, itemStack);
+			ExtendedPlayer.get(event.player).setKeybladeSummoned(false);
 		}else if(event.entityItem.getEntityItem().getItem() instanceof ItemMunny){
 			event.setCanceled(true);
 			ExtendedPlayer.get(event.player).addMunny(event.entityItem.getEntityItem().getTagCompound().getInteger("amount"));
 		}
-
 	}
 
 	@SubscribeEvent

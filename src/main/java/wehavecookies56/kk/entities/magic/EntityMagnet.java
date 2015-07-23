@@ -15,16 +15,16 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 
-public class EntityFire2 extends Entity
+public class EntityMagnet extends Entity
 {
 
 	EntityPlayer player;
 
-	public EntityFire2(World world){
+	public EntityMagnet(World world){
 		super(world);
 	}
 
-	public EntityFire2(World world, EntityPlayer sender, double x, double y, double z) {
+	public EntityMagnet(World world, EntityPlayer sender, double x, double y, double z) {
 		super(world);
 		this.posX = x;
 		this.posY = y;
@@ -39,18 +39,18 @@ public class EntityFire2 extends Entity
 		}
 		int rotation = 0;
 
-		double r = 1D;
+		double r = 1.2D;
 
 		for(int a = 1; a <= 360; a+=7){
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
-			this.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.posY + 1.25D, z, 0.0D, 0.0D, 0.0D);
-			this.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.posY + 1.05D, z, 0.0D, 0.0D, 0.0D);
+			this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, x, this.posY + 2.25D, z, 0.0D, 0.0D, 0.0D);
+			this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, x, this.posY + 2.05D, z, 0.0D, 0.0D, 0.0D);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
-		if(ticksExisted > 15){
+		if(ticksExisted > 30){
 			setDead();
 		}
 
@@ -62,7 +62,7 @@ public class EntityFire2 extends Entity
 		}
 
 		double distance = 3.0D;
-		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(1, 1, 1);
+		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		//TODO CHECK FOR ENTITIES AND DAMAGE THEM
 		if(!list.isEmpty())
@@ -70,11 +70,18 @@ public class EntityFire2 extends Entity
 			for(int i=0; i<list.size();i++)
 			{
 				Entity e = (Entity) list.get(i);
-				e.attackEntityFrom(DamageSource.magic, 3.0F);
-				e.setFire(5);
+				e.attackEntityFrom(DamageSource.magic, 1.5F);
+				if(e instanceof EntityLiving){
+					double d = e.posX - posX;
+				    double d1;
+				    for(d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D){
+				        d = (Math.random() - Math.random()) * 0.01D;
+				    }
+					((EntityLiving) e).knockBack(e, 0, d, d1);
+				}
 			}
 		}
-		aabb.contract(1, 1, 1);
+		aabb.contract(2, 2, 2);
 
 		super.onUpdate();
 	}

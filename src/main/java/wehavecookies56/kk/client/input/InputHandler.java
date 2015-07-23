@@ -6,22 +6,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.lib.Constants;
-import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.magic.Magic;
-import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
-import wehavecookies56.kk.network.packet.server.MagicFire;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.util.GuiHelper;
@@ -167,6 +161,11 @@ public class InputHandler {
 					break;
 				case GuiCommandMenu.CURE:
 					Magic.Cure(player, world);
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					break;
+				case GuiCommandMenu.AERO:
+					Magic.Magnet(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;

@@ -1,15 +1,16 @@
 package wehavecookies56.kk.magic;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import wehavecookies56.kk.entities.magic.EntityMagnet;
 import wehavecookies56.kk.entities.magic.EntityFire2;
 import wehavecookies56.kk.entities.magic.EntityIce;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.server.MagicMagnet;
 import wehavecookies56.kk.network.packet.server.MagicBlizzard;
 import wehavecookies56.kk.network.packet.server.MagicCure;
 import wehavecookies56.kk.network.packet.server.MagicFire;
@@ -21,9 +22,17 @@ public class Magic {
 	{
 		PacketDispatcher.sendToServer(new MagicFire());
 		world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ));
+		player.swingItem();
 		world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 	}
 
+	public static void Magnet(EntityPlayer player, World world)
+	{
+		PacketDispatcher.sendToServer(new MagicMagnet());
+		world.spawnEntityInWorld(new EntityMagnet(world, player, player.posX, player.posY, player.posZ));
+		player.swingItem();
+		world.playSoundAtEntity(player, "fire.ignite", 1, 1);
+	}
 
 	public static void Ice(EntityPlayer player, World world)
 	{
