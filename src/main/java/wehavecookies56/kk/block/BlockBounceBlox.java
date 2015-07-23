@@ -16,6 +16,7 @@ public class BlockBounceBlox extends BlockBlox {
     {
     	if(!entityIn.isSneaking())
     	{
+    		entityIn.playSound("mob.slime.big", 1, 1);
             double d0 = 0.4D + Math.abs(entityIn.motionY) * 0.2D;
             entityIn.motionX *= d0;
             entityIn.motionZ *= d0;

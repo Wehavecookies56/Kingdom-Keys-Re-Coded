@@ -4,6 +4,18 @@
 #
 
 ############################
+#Achievements
+############################
+achievement.openMenu=Abre el menú
+achievement.openMenu.desc=Pulsa la tecla de abrir el menú (Por defecto M).
+
+achievement.getWehavecookies56Skull=¡Cara Familiar!
+achievement.getAbelatoxSkull=¡Otra Cara Familiar!
+achievement.getWehavecookies56Skull.desc=Craftea la cabeza de Wehavecookies56
+achievement.getAbelatoxSkull.desc=Craftea la cabeza de Abelatox
+
+
+############################
 #Creative Tabs
 ############################
 
@@ -172,6 +184,7 @@ item.emptybottle.name=Botella vacía
 item.potion.name=Poción
 item.hporb.name=Orbe de HP
 item.driveorb.name=Orbe de Fusión
+item.magicorb.name=Orbe de Magia
 item.munny.name=Platines
 item.heart.name=Corazón
 item.pureheart.name=Corazón puro

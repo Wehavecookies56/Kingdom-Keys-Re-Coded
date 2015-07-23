@@ -182,6 +182,7 @@ item.emptybottle.name=Empty Bottle
 item.potion.name=Potion
 item.hporb.name=HP Orb
 item.driveorb.name=Drive Orb
+item.magicorb.name=Magic Orb
 item.munny.name=Munny
 item.heart.name=Heart
 item.pureheart.name=Pure Heart
