@@ -21,6 +21,7 @@ import wehavecookies56.kk.network.packet.server.MagicBlizzard;
 import wehavecookies56.kk.network.packet.server.MagicCure;
 import wehavecookies56.kk.network.packet.server.MagicFire;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
+import wehavecookies56.kk.network.packet.server.MagicStop;
 import wehavecookies56.kk.network.packet.server.MagicThunder;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
 import wehavecookies56.kk.network.packet.server.OpenGui;
@@ -54,6 +55,7 @@ public class PacketDispatcher
 		registerMessage(MagicThunder.class);
 		registerMessage(MagicCure.class);
 		registerMessage(MagicAero.class);
+		registerMessage(MagicStop.class);
 		registerMessage(UseRecipe.class);
 		registerMessage(OpenMaterials.class);
 		registerMessage(CreateFromSynthesisRecipe.class);

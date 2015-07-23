@@ -10,12 +10,14 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityAero;
 import wehavecookies56.kk.entities.magic.EntityFire2;
 import wehavecookies56.kk.entities.magic.EntityIce;
+import wehavecookies56.kk.entities.magic.EntityStop;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.MagicAero;
 import wehavecookies56.kk.network.packet.server.MagicBlizzard;
 import wehavecookies56.kk.network.packet.server.MagicCure;
 import wehavecookies56.kk.network.packet.server.MagicFire;
+import wehavecookies56.kk.network.packet.server.MagicStop;
 import wehavecookies56.kk.network.packet.server.MagicThunder;
 
 public class Magic {
@@ -65,6 +67,17 @@ public class Magic {
 		}
 	}
 
+	public static void Stop(EntityPlayer player, World world)
+	{
+		if(ExtendedPlayer.get(player).getMp() > 0)
+		{
+			PacketDispatcher.sendToServer(new MagicStop());
+			world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
+			player.swingItem();
+			world.playSoundAtEntity(player, "fire.ignite", 1, 1);
+		}
+	}
+	
 	public static void Ice(EntityPlayer player, World world)
 	{
 		if(ExtendedPlayer.get(player).getMp() > 0)

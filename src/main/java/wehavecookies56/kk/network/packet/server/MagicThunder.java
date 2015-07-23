@@ -24,7 +24,7 @@ public class MagicThunder extends AbstractServerMessage<MagicThunder> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).setMp(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp()-Magic.getMagicCost("thunder"));
+		ExtendedPlayer.get(player).setMp(ExtendedPlayer.get(player).getMp()-Magic.getMagicCost("thunder"));
 
 		double posy = player.posY;
 		World world = player.worldObj;

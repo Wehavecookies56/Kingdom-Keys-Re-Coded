@@ -28,7 +28,7 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).setMp(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp()-Magic.getMagicCost("fire"));
+		ExtendedPlayer.get(player).setMp(ExtendedPlayer.get(player).getMp()-Magic.getMagicCost("fire"));
 
 		World world = player.worldObj;
 		world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ));

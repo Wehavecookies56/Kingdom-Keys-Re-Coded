@@ -169,6 +169,11 @@ public class InputHandler {
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;
+				case GuiCommandMenu.STOP:
+					Magic.Stop(player, world);
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					break;
 			}
 		}
 	}

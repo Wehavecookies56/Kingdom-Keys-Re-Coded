@@ -27,7 +27,7 @@ public class MagicCure extends AbstractServerMessage<MagicCure> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).setMp(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp()-Magic.getMagicCost("cure"));
+		ExtendedPlayer.get(player).setMp(ExtendedPlayer.get(player).getMp()-Magic.getMagicCost("cure"));
 
 		World world = player.worldObj;
 		player.heal(6);
