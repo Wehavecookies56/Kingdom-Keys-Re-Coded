@@ -8,22 +8,24 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityAero;
-import wehavecookies56.kk.entities.magic.EntityFire2;
 import wehavecookies56.kk.entities.magic.EntityBlizzard;
+import wehavecookies56.kk.entities.magic.EntityFire2;
+import wehavecookies56.kk.entities.magic.EntityStop;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.MagicAero;
 import wehavecookies56.kk.network.packet.server.MagicBlizzard;
 import wehavecookies56.kk.network.packet.server.MagicCure;
 import wehavecookies56.kk.network.packet.server.MagicFire;
+import wehavecookies56.kk.network.packet.server.MagicStop;
 import wehavecookies56.kk.network.packet.server.MagicThunder;
 
 public class Magic {
-	
+
 	public static int getMagicCost(String magic)
 	{
 		int cost=0;
-		
+
 		if(magic == "fire")
 			cost = 20;
 		if(magic == "blizzard")
@@ -37,8 +39,8 @@ public class Magic {
 		if(magic == "aero")
 			cost = 20;
 		if(magic == "stop")
-			cost = 10;	
-		
+			cost = 10;
+
 		return cost;
 	}
 
@@ -65,8 +67,7 @@ public class Magic {
 		}
 	}
 
-	public static void Blizzard(EntityPlayer player, World world)
-	{
+	public static void Blizzard(EntityPlayer player, World world){
 		if(ExtendedPlayer.get(player).getMp() > 0)
 		{
 			Vec3 look = player.getLookVec();
@@ -75,6 +76,16 @@ public class Magic {
 			if(FMLCommonHandler.instance().getSide() == Side.SERVER){
 				PacketDispatcher.sendToDimension(new MagicBlizzard(), world.provider.getDimensionId());
 			}
+		}
+	}
+	public static void Stop(EntityPlayer player, World world)
+	{
+		if(ExtendedPlayer.get(player).getMp() > 0)
+		{
+			PacketDispatcher.sendToServer(new MagicStop());
+			world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
+			player.swingItem();
+			world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 		}
 	}
 
@@ -96,7 +107,7 @@ public class Magic {
 			world.spawnEntityInWorld(thunder);
 			thunder = new EntityThunder(world, player.posX, player.posY, player.posZ-2);
 			world.spawnEntityInWorld(thunder);
-	
+
 			thunder = new EntityThunder(world, player.posX+2, player.posY, player.posZ+2);
 			world.spawnEntityInWorld(thunder);
 			thunder = new EntityThunder(world, player.posX+2, player.posY, player.posZ+2);

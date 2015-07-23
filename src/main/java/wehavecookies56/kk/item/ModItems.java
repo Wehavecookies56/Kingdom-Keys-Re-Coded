@@ -286,6 +286,7 @@ public class ModItems {
 		Potion,
 		HpOrb,
 		DriveOrb,
+		MagicOrb,
 		Heart,
 		DarkHeart,
 		PureHeart,
@@ -613,6 +614,7 @@ public class ModItems {
 		Potion = new ItemPotion(0, true).setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		HpOrb = new ItemHpOrb().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		DriveOrb = new ItemDriveOrb().setUnlocalizedName(Strings.DriveOrb).setCreativeTab(tabKingdomKeys);
+		MagicOrb = new ItemMagicOrb().setUnlocalizedName(Strings.MagicOrb).setCreativeTab(tabKingdomKeys);
 		Heart = new Item().setUnlocalizedName(Strings.Heart).setCreativeTab(tabKingdomKeys);
 		DarkHeart = new Item().setUnlocalizedName(Strings.DarkHeart).setCreativeTab(tabKingdomKeys);
 		PureHeart = new Item().setUnlocalizedName(Strings.PureHeart).setCreativeTab(tabKingdomKeys);
@@ -930,6 +932,7 @@ public class ModItems {
 		GameRegistry.registerItem(Potion, Strings.Potion);
 		GameRegistry.registerItem(HpOrb, Strings.HpOrb);
 		GameRegistry.registerItem(DriveOrb, Strings.DriveOrb);
+		GameRegistry.registerItem(MagicOrb, Strings.MagicOrb);
 		GameRegistry.registerItem(Heart, Strings.Heart);
 		GameRegistry.registerItem(DarkHeart, Strings.DarkHeart);
 		GameRegistry.registerItem(PureHeart, Strings.PureHeart);
@@ -1248,6 +1251,7 @@ public class ModItems {
 		registerRender(Potion);
 		registerRender(HpOrb);
 		registerRender(DriveOrb);
+		registerRender(MagicOrb);
 		registerRender(Heart);
 		registerRender(DarkHeart);
 		registerRender(PureHeart);
