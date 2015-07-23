@@ -9,7 +9,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.entities.magic.EntityIce;
+import wehavecookies56.kk.entities.magic.EntityBlizzard;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
@@ -33,7 +33,7 @@ public class MagicBlizzard extends AbstractServerMessage<MagicBlizzard> {
 
 		World world = player.worldObj;
 		Vec3 look = player.getLookVec();
-		world.spawnEntityInWorld(new EntityIce(world, player));
+		world.spawnEntityInWorld(new EntityBlizzard(world, player));
 	}
 
 }

@@ -150,7 +150,7 @@ public class InputHandler {
 					break;
 
 				case GuiCommandMenu.BLIZZARD:
-					Magic.Ice(player, world);
+					Magic.Blizzard(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;

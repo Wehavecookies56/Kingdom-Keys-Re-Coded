@@ -15,9 +15,10 @@ import wehavecookies56.kk.lib.Reference;
 
 public class GuiMP extends GuiScreen {
 
-	int guiWidth = 142;
-	int guiHeight = 12;
-	int noborderguiwidth = 140;
+	int guiWidth = 150;
+	int guiHeight = 6;
+	int noborderguiwidth = 137;
+	int noborderguiheight = 4;
 
 	@SubscribeEvent
 	public void onRenderOverlayPost(RenderGameOverlayEvent event){
@@ -32,7 +33,7 @@ public class GuiMP extends GuiScreen {
 			int screenHeight = event.resolution.getScaledHeight();
 
 			float oneMP = (noborderguiwidth / ExtendedPlayer.get(player).getMaxMp());
-			int currHealth = noborderguiwidth - (int) (oneMP * ExtendedPlayer.get(player).getMp());
+			int currMP = noborderguiwidth - (int) (oneMP * ExtendedPlayer.get(player).getMp());
 			float scale = 0.65f;
 			switch(mc.gameSettings.guiScale){
 			case Constants.SCALE_AUTO:
@@ -46,16 +47,16 @@ public class GuiMP extends GuiScreen {
 				break;
 			}
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - guiWidth*scale) - 10*scale, (screenHeight - guiHeight*scale) - 8*scale, 0);
+			GL11.glTranslatef((screenWidth - guiWidth*scale) - 13*scale, (screenHeight - guiHeight*scale) - 12*scale, 0);
 			GL11.glScalef(scale, scale, scale);
 			//BG
 			this.drawTexturedModalRect(-25, 4, 0, 0, guiWidth, guiHeight);
 			GL11.glPopMatrix();
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currHealth * scale) - 10*scale, (screenHeight - guiHeight*scale) - 8*scale, 0);
+			GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currMP * scale) - 13*scale, (screenHeight - guiHeight*scale) - 12*scale, 0);
 			GL11.glScalef(scale, scale, scale);
 			//FG
-			this.drawTexturedModalRect(-25, 3, 0, 11, (noborderguiwidth - currHealth) - 2, guiHeight);
+			this.drawTexturedModalRect(-25, 5, 0, 6, (noborderguiwidth - currMP) - 2, noborderguiheight);
 			GL11.glPopMatrix();
 		}
 	}

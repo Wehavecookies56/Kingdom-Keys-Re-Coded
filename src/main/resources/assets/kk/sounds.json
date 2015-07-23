@@ -41,6 +41,27 @@
     	]
     },
 
+    "select": {
+        "category": "player",
+        "sounds": [
+            {"name": "select", "stream": false}
+        ]
+    },
+
+    "cancel": {
+        "category": "player",
+        "sounds": [
+            {"name": "cancel", "stream": false}
+        ]
+    },
+
+    "move": {
+        "category": "player",
+        "sounds": [
+            {"name": "move", "stream": false}
+        ]
+    },
+
     "records.Birth by Sleep -A Link to the Future-": {
     	"category": "record", 
     	"sounds": [

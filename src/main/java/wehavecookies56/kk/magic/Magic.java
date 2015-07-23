@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityAero;
 import wehavecookies56.kk.entities.magic.EntityFire2;
-import wehavecookies56.kk.entities.magic.EntityIce;
+import wehavecookies56.kk.entities.magic.EntityBlizzard;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.MagicAero;
@@ -65,12 +65,12 @@ public class Magic {
 		}
 	}
 
-	public static void Ice(EntityPlayer player, World world)
+	public static void Blizzard(EntityPlayer player, World world)
 	{
 		if(ExtendedPlayer.get(player).getMp() > 0)
 		{
 			Vec3 look = player.getLookVec();
-			world.spawnEntityInWorld(new EntityIce(world, player));
+			world.spawnEntityInWorld(new EntityBlizzard(world, player));
 			PacketDispatcher.sendToServer(new MagicBlizzard());
 			if(FMLCommonHandler.instance().getSide() == Side.SERVER){
 				PacketDispatcher.sendToDimension(new MagicBlizzard(), world.provider.getDimensionId());

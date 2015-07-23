@@ -1,5 +1,6 @@
 package wehavecookies56.kk.entities.magic;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -10,19 +11,19 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-public class EntityIce extends EntityThrowable
+public class EntityBlizzard extends EntityThrowable
 {
 	public EntityLivingBase shootingEntity;
 
-	public EntityIce(World world) {
+	public EntityBlizzard(World world) {
 		super(world);
 	}
 
-	public EntityIce(World world, EntityLivingBase entity) {
+	public EntityBlizzard(World world, EntityLivingBase entity) {
 		super(world, entity);
 	}
 
-	public EntityIce(World world, double x, double y, double z) {
+	public EntityBlizzard(World world, double x, double y, double z) {
 		super(world, x, y, z);
 	}
 
@@ -44,26 +45,26 @@ public class EntityIce extends EntityThrowable
 	@Override
 	protected void onImpact(MovingObjectPosition movingObject) {
 		if (!this.worldObj.isRemote)
-        {
-            boolean flag;
+		{
+			boolean flag;
 
-            if (movingObject.entityHit != null)
-            {
-            	flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 8);
-                if (flag)
-                {
-                    this.func_174815_a(this.shootingEntity, movingObject.entityHit);
-                    if(movingObject.entityHit.isBurning())
-                    {
-                    	movingObject.entityHit.extinguish();
-                    }
-                    else
-                    {
-                    	movingObject.entityHit.attackEntityFrom(DamageSource.magic, 4);
-                    }
-                }
-            }
-          /*  else
+			if (movingObject.entityHit != null)
+			{
+				flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 8);
+				if (flag)
+				{
+					this.func_174815_a(this.shootingEntity, movingObject.entityHit);
+					if(movingObject.entityHit.isBurning())
+					{
+						movingObject.entityHit.extinguish();
+					}
+					else
+					{
+						movingObject.entityHit.attackEntityFrom(DamageSource.magic, 4);
+					}
+				}
+			}
+			  else
             {
                 flag = true;
 
@@ -76,14 +77,17 @@ public class EntityIce extends EntityThrowable
                 {
                     BlockPos blockpos = movingObject.func_178782_a().offset(movingObject.field_178784_b);
 
-                    if (this.worldObj.isAirBlock(blockpos))
+                    if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.water)
                     {
                         this.worldObj.setBlockState(blockpos, Blocks.ice.getDefaultState());
                     }
+                    else if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.fire){
+                        this.worldObj.setBlockState(blockpos, Blocks.air.getDefaultState());
+                    }
                 }
-            }*/
-            this.setDead();
-        }
+            }
+			this.setDead();
+		}
 	}
 
 
