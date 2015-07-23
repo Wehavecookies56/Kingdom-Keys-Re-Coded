@@ -488,6 +488,7 @@ public class GuiCommandMenu extends GuiScreen {
 				v=0;
 				x=5;
 			}
+			x = driveselected == FINAL ? 10 : 5;
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*FINAL), 0);
 			GL11.glScalef(1.25f, scale, scale);

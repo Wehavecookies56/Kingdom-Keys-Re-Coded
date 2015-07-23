@@ -11,6 +11,8 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.common.util.Constants;
+import wehavecookies56.kk.api.driveforms.DriveForm;
+import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.api.recipes.Recipe;
 import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.inventory.InventoryKeychain;
@@ -30,6 +32,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public final InventoryKeychain inventory = new InventoryKeychain();
 
 	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, dp, maxDP;
+
+	public List<String> driveForms = new ArrayList<String>();
 
 	public boolean keybladeSummoned, firstKeyblade, inDrive;
 
@@ -66,6 +70,18 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setBoolean("FirstKeyblade", this.firstKeyblade);
 		properties.setBoolean("InDrive", this.inDrive);
 
+		NBTTagList tagList = new NBTTagList();
+		for (int i = 0; i < driveForms.size(); i++){
+			String s = driveForms.get(i);
+			if(s != null){
+				NBTTagCompound recipes = new NBTTagCompound();
+				recipes.setString("DriveForm" + i, s);
+				tagList.appendTag(recipes);
+			}
+
+		}
+		properties.setTag("DriveFormList", tagList);
+
 		compound.setTag(EXT_PROP_NAME, properties);
 
 	}
@@ -89,6 +105,16 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		LogHelper.info("Loaded DP: " + properties.getInteger("DP"));
 		String s = properties.getBoolean("KeybladeSummoned") == true ? "Keyblade is summoned" : "Keyblade is not summoned";
 		LogHelper.info("Loaded Summon data: " + s);
+
+		NBTTagList tagList = properties.getTagList("DriveFormList", Constants.NBT.TAG_COMPOUND);
+		for(int i = 0; i < tagList.tagCount(); i++){
+			NBTTagCompound drives = tagList.getCompoundTagAt(i);
+			if(!DriveFormRegistry.isDriveFormKnown(player, drives.getString("DriveForm" + i))){
+				driveForms.add(i, drives.getString("DriveForm" + i));
+				LogHelper.info("Loaded known Drive form: " + drives.getString("Drive Forms" + i) + " " + i);
+			}
+
+		}
 	}
 
 	@Override
@@ -309,6 +335,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public static final ExtendedPlayer get(EntityPlayer player){
 		return (ExtendedPlayer) player.getExtendedProperties(EXT_PROP_NAME);
+	}
+
+	public void learnDriveForm(DriveForm driveForm) {
+		driveForms.add(driveForm.getName());
+		if(player instanceof EntityPlayerMP)
+			this.sync();
 	}
 
 
