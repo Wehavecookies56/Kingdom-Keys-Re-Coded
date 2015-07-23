@@ -15,9 +15,9 @@ import wehavecookies56.kk.lib.Reference;
 
 public class GuiMP extends GuiScreen {
 
-	int guiWidth = 150;
+	int guiWidth = 138;
 	int guiHeight = 6;
-	int noborderguiwidth = 137;
+	int noborderguiwidth = 125;
 	int noborderguiheight = 4;
 
 	@SubscribeEvent
