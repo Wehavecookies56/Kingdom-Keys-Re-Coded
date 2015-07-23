@@ -23,6 +23,8 @@ public class CommandLearnRecipe implements ICommand {
 		this.aliases.add("learnrecipe");
 		this.aliases.add("addrecipe");
 		this.aliases.add("giverecipe");
+		this.aliases.add("kklearnrecipe");
+
 
 		this.autoComplete = new ArrayList();
 		this.autoComplete.add("all");

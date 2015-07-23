@@ -31,6 +31,7 @@ import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.UpdateChecker;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.recipes.ModRecipes;
+import wehavecookies56.kk.server.command.CommandCheatMode;
 import wehavecookies56.kk.server.command.CommandGiveMunny;
 import wehavecookies56.kk.server.command.CommandLearnRecipe;
 import wehavecookies56.kk.util.FuelHandler;
@@ -151,6 +152,7 @@ public class KingdomKeys {
 	public void serverStart(FMLServerStartingEvent e){
 		e.registerServerCommand(new CommandLearnRecipe());
 		e.registerServerCommand(new CommandGiveMunny());
+		e.registerServerCommand(new CommandCheatMode());
 	}
 
 }

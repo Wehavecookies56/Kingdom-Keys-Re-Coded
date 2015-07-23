@@ -35,7 +35,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public List<String> driveForms = new ArrayList<String>();
 
-	public boolean keybladeSummoned, firstKeyblade, inDrive;
+	public boolean keybladeSummoned, firstKeyblade, inDrive, cheatMode;
 
 	public ExtendedPlayer(EntityPlayer player){
 		this.player = player;
@@ -52,6 +52,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.dp = 0;
 		this.maxDP = 1000;
 		this.inDrive = false;
+		this.cheatMode = false;
 	}
 
 	@Override
@@ -69,6 +70,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setBoolean("KeybladeSummoned", this.keybladeSummoned);
 		properties.setBoolean("FirstKeyblade", this.firstKeyblade);
 		properties.setBoolean("InDrive", this.inDrive);
+		properties.setBoolean("CheatMode", this.cheatMode);
 
 		NBTTagList tagList = new NBTTagList();
 		for (int i = 0; i < driveForms.size(); i++){
@@ -101,6 +103,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.keybladeSummoned = properties.getBoolean("KeybladeSummoned");
 		this.firstKeyblade = properties.getBoolean("FirstKeyblade");
 		this.inDrive = properties.getBoolean("InDrive");
+		this.cheatMode = properties.getBoolean("CheatMode");
+
 		LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
 		LogHelper.info("Loaded DP: " + properties.getInteger("DP"));
 		String s = properties.getBoolean("KeybladeSummoned") == true ? "Keyblade is summoned" : "Keyblade is not summoned";
@@ -331,6 +335,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return this.maxMunny;
 	}
 
+	public void setCheatMode(boolean bool)
+	{
+		this.cheatMode = bool;
+		this.sync();
+	}
 
 	public final void sync(){
 		SyncExtendedPlayer packet = new SyncExtendedPlayer(player);

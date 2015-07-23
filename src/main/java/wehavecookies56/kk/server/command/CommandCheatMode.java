@@ -12,14 +12,13 @@ import net.minecraft.util.EnumChatFormatting;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.util.TextHelper;
 
-public class CommandGiveMunny implements ICommand {
+public class CommandCheatMode implements ICommand {
 
 	private List aliases;
-	public CommandGiveMunny() {
+	public CommandCheatMode() {
 		this.aliases = new ArrayList();
-		this.aliases.add("givemunny");
-		this.aliases.add("addmunny");
-		this.aliases.add("kkgivemunny");
+		this.aliases.add("cheatmode");
+		this.aliases.add("kkcheatmode");
 	}
 
 	@Override
@@ -29,7 +28,7 @@ public class CommandGiveMunny implements ICommand {
 
 	@Override
 	public String getCommandName() {
-		return "givemunny";
+		return "cheatmode";
 	}
 
 	@Override
@@ -57,18 +56,15 @@ public class CommandGiveMunny implements ICommand {
 	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
 		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
 			if(args.length == 0){
-				TextHelper.sendFormattedChatMessage("Invalid arguments, usage \"/givemunny <amount>\"", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-			}else{
-				ExtendedPlayer munny = ExtendedPlayer.get((EntityPlayer) sender.getCommandSenderEntity());
-				if(!isInteger(args[0].toString())){
-					TextHelper.sendFormattedChatMessage("Invalid arguments, usage \"/givemunny <amount>\"", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-				}else if(Integer.parseInt(args[0].toString()) > munny.getMaxMunny() || Integer.parseInt(args[0].toString()) < 0){
-					TextHelper.sendFormattedChatMessage("Invalid arguments, enter a value between 0 and " + (munny.getMaxMunny() - munny.getMunny()), EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-				}else if(Integer.parseInt(args[0].toString()) + munny.getMunny() > munny.getMaxMunny()){
-					TextHelper.sendFormattedChatMessage("Invalid arguments, adding this value would go over the maximum amount", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-				}else{
-					munny.addMunny(Integer.parseInt(args[0].toString()));
-					TextHelper.sendFormattedChatMessage("Successfully added " + args[0].toString() + " munny", EnumChatFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+				if(ExtendedPlayer.get((EntityPlayer) sender.getCommandSenderEntity()).cheatMode)
+				{
+					ExtendedPlayer.get((EntityPlayer) sender.getCommandSenderEntity()).setCheatMode(false);
+					TextHelper.sendFormattedChatMessage("You are no longer in Cheat Mode", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+				}
+				else
+				{
+					ExtendedPlayer.get((EntityPlayer) sender.getCommandSenderEntity()).setCheatMode(true);
+					TextHelper.sendFormattedChatMessage("You are now in Cheat Mode", EnumChatFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
 				}
 			}
 		}

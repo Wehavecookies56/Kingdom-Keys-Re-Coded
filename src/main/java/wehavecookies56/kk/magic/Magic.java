@@ -25,22 +25,27 @@ public class Magic {
 	public static int getMagicCost(String magic)
 	{
 		int cost=0;
-
-		if(magic == "fire")
-			cost = 20;
-		if(magic == "blizzard")
-			cost = 15;
-		if(magic == "thunder")
-			cost = 30;
-		if(magic == "cure")
-			cost = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp();
-		if(magic == "gravity")
-			cost = 25;
-		if(magic == "aero")
-			cost = 20;
-		if(magic == "stop")
-			cost = 10;
-
+		if(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).cheatMode == false)
+		{
+			if(magic == "fire")
+				cost = 20;
+			if(magic == "blizzard")
+				cost = 15;
+			if(magic == "thunder")
+				cost = 30;
+			if(magic == "cure")
+				cost = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp();
+			if(magic == "gravity")
+				cost = 25;
+			if(magic == "aero")
+				cost = 20;
+			if(magic == "stop")
+				cost = 10;
+		}
+		else
+		{
+			cost = 0;
+		}
 		return cost;
 	}
 
