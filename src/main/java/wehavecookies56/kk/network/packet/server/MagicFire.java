@@ -26,7 +26,7 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		World world = player.worldObj;
-		world.spawnEntityInWorld(new EntityFire2(world));
+		world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ));
 		//MagicAttack.currMagic = MagicAttack.currMagic - MagicAttack.fireCost;
 	}
 

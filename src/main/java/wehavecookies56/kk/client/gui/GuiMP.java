@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 
 public class GuiMP extends GuiScreen {
@@ -32,13 +33,16 @@ public class GuiMP extends GuiScreen {
 			float oneMP = (noborderguiwidth / player.getMaxHealth());
 			int currHealth = noborderguiwidth - (int) (oneMP * player.getHealth());
 			float scale = 0.65f;
-			if(mc.gameSettings.guiScale == 1)
-			{
-				scale = 1f;
-			}
-			else
-			{	
+			switch(mc.gameSettings.guiScale){
+			case Constants.SCALE_AUTO:
 				scale = 0.85f;
+				break;
+			case Constants.SCALE_NORMAL:
+				scale = 0.85f;
+				break;
+			default:
+				scale = 0.65f;
+				break;
 			}
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth - guiWidth*scale) - 10*scale, (screenHeight - guiHeight*scale) - 8*scale, 0);

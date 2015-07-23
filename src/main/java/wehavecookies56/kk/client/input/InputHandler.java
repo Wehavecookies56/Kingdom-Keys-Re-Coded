@@ -20,7 +20,8 @@ import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
-import wehavecookies56.kk.network.packet.server.GiveAchievement;
+import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
+import wehavecookies56.kk.network.packet.server.MagicFire;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.util.GuiHelper;
@@ -206,9 +207,7 @@ public class InputHandler {
 			switch(key){
 			case OPENMENU:
 				GuiHelper.openMenu();
-				if(!Minecraft.getMinecraft().thePlayer.getStatFileWriter().hasAchievementUnlocked(ModAchievements.openMenu)){
-					PacketDispatcher.sendToServer(new GiveAchievement(ModAchievements.openMenu.getStatName()));
-				}
+				PacketDispatcher.sendToServer(new GiveAchievementOpenMenu());
 				break;
 			case SCROLL_UP:
 				commandUp();

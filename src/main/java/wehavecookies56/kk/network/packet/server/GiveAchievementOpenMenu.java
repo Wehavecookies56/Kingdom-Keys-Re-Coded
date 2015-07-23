@@ -13,33 +13,23 @@ import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 import wehavecookies56.kk.util.AchievementHelper;
 
-public class GiveAchievement extends AbstractServerMessage<GiveAchievement> {
+public class GiveAchievementOpenMenu extends AbstractServerMessage<GiveAchievementOpenMenu> {
 
-	IChatComponent achievement;
-
-	public GiveAchievement() {}
-
-	public GiveAchievement(IChatComponent achievement){
-		this.achievement = achievement;
-	}
+	public GiveAchievementOpenMenu() {}
 
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
-		achievement = buffer.readChatComponent();
 
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeChatComponent(achievement);
 
 	}
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		if(achievement.equals(ModAchievements.openMenu.getStatName())){
-			AchievementHelper.addAchievement(player, ModAchievements.openMenu);
-		}
+		AchievementHelper.addAchievement(player, ModAchievements.openMenu);
 
 	}
 

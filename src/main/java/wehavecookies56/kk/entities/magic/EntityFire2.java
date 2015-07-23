@@ -4,6 +4,11 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
@@ -13,19 +18,25 @@ import net.minecraft.world.World;
 public class EntityFire2 extends Entity
 {
 
-	public EntityFire2(World world) {
+	EntityPlayer caster;
+
+	public EntityFire2(World world){
 		super(world);
 	}
 
-	public EntityFire2(World world, double x, double y, double z) {
+	public EntityFire2(World world, EntityPlayer sender, double x, double y, double z) {
 		super(world);
 		this.posX = x;
 		this.posY = y;
 		this.posZ = z;
+		this.caster = sender;
 	}
-
+	
 	@Override
 	public void onUpdate() {
+		if(caster == null){
+			return;
+		}
 		int rotation = 0;
 
 		double r = 1D;
@@ -39,37 +50,38 @@ public class EntityFire2 extends Entity
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
-		if(ticksExisted > 10){
+		if(ticksExisted > 20){
 			setDead();
 		}
-		
-		double distance = 3.0D;
-		Entity player = Minecraft.getMinecraft().thePlayer; 
-		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(8, 8, 8);
-		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
-		//TODO CHECK FOR ENTITIES AND DAMAGE THEM
-		if(!list.isEmpty()){
-			for(int i = 0; i < list.size(); i++){
-				Entity e = (Entity) list.get(i);
-			}
+
+		if(!isDead){
+			caster.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0D);
+		}else{
+			caster.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.10000000149011612D);
 		}
+
+		double distance = 3.0D;
+		AxisAlignedBB aabb = caster.getEntityBoundingBox().expand(1, 1, 1);
+		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(caster, aabb);
+		//TODO CHECK FOR ENTITIES AND DAMAGE THEM
 		if(!list.isEmpty())
 		{
 			for(int i=0; i<list.size();i++)
 			{
 				Entity e = (Entity) list.get(i);
 				e.attackEntityFrom(DamageSource.magic, 3.0F);
-				e.motionY++;
-				System.out.println(e);
+				e.setFire(5);
+				//((EntityLivingBase) e).knockBack(e, 3, 1, 1);
 			}
 		}
-		System.out.println(list);
+		aabb.contract(1, 1, 1);
 
 		super.onUpdate();
 	}
 
 	@Override
 	protected void entityInit() {
+
 	}
 
 	@Override

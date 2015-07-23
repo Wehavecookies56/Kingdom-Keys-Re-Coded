@@ -21,4 +21,8 @@ public class Constants {
 	TICKS_PER_SECOND = 20
 	;
 
+	public static final double
+	PLAYER_WALKSPEED = 0.10000000149011612D;
+	;
+
 }

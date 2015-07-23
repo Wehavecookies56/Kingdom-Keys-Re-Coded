@@ -14,7 +14,7 @@ import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.network.packet.server.CreateFromSynthesisRecipe;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
-import wehavecookies56.kk.network.packet.server.GiveAchievement;
+import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MagicBlizzard;
 import wehavecookies56.kk.network.packet.server.MagicCure;
@@ -55,7 +55,7 @@ public class PacketDispatcher
 		registerMessage(OpenMaterials.class);
 		registerMessage(CreateFromSynthesisRecipe.class);
 		registerMessage(DriveOrbPickup.class);
-		registerMessage(GiveAchievement.class);
+		registerMessage(GiveAchievementOpenMenu.class);
 
 		//Bidirectional
 	}

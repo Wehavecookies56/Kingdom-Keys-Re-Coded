@@ -1,6 +1,7 @@
 package wehavecookies56.kk.magic;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -18,8 +19,9 @@ public class Magic {
 
 	public static void Fire(EntityPlayer player, World world)
 	{
-		world.spawnEntityInWorld(new EntityFire2(world, player.posX, player.posY, player.posZ));
 		PacketDispatcher.sendToServer(new MagicFire());
+		world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ));
+		world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 	}
 
 
