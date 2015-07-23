@@ -72,6 +72,11 @@ public class EntityStop extends Entity
 				Entity e = (Entity) list.get(i);
 				if(e instanceof EntityLiving){
 					((EntityLivingBase) e).getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0);
+					if(ticksExisted > 20)
+					{
+						System.out.println(e);
+						((EntityLivingBase) e).getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(((EntityLivingBase) e).getEntityAttribute(SharedMonsterAttributes.movementSpeed).getBaseValue());
+					}
 				}
 			}
 		}
