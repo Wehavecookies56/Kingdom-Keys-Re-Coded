@@ -45,8 +45,8 @@ public class EntityMagnet extends Entity
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
-			this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, x, this.posY + 2.25D, z, 0.0D, 0.0D, 0.0D);
-			this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, x, this.posY + 2.05D, z, 0.0D, 0.0D, 0.0D);
+			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.posY, z, 0.0D, 1.0D, 0.0D);
+			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.posY, z, 0.0D, 1.0D, 0.0D);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;

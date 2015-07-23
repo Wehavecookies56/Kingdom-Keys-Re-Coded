@@ -39,7 +39,7 @@ public class EntityFire2 extends Entity
 		}
 		int rotation = 0;
 
-		double r = 1D;
+		double r = 1.5D;
 
 		for(int a = 1; a <= 360; a+=7){
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
@@ -61,8 +61,8 @@ public class EntityFire2 extends Entity
 			player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.10000000149011612D);
 		}
 
-		double distance = 3.0D;
-		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(1, 1, 1);
+		//double distance = 3.0D;
+		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		//TODO CHECK FOR ENTITIES AND DAMAGE THEM
 		if(!list.isEmpty())
@@ -74,7 +74,7 @@ public class EntityFire2 extends Entity
 				e.setFire(5);
 			}
 		}
-		aabb.contract(1, 1, 1);
+		aabb.contract(2, 2, 2);
 
 		super.onUpdate();
 	}
