@@ -8,7 +8,10 @@ public abstract class DriveForm {
 
 	public abstract ResourceLocation getTexture();
 
-	public void useDrive(){
+	public abstract int getCost();
 
-	}
+	public abstract void initDrive();
+
+	public abstract void update();
+
 }
