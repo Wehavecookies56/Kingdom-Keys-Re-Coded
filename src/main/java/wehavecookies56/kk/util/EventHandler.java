@@ -301,7 +301,7 @@ public class EventHandler {
 			}
 		}
 		else if(event.item.getEntityItem().getItem() == ModItems.MagicOrb){
-			
+
 			ExtendedPlayer props = ExtendedPlayer.get(event.entityPlayer);
 			int mp = props.getMp();
 			System.out.println(mp);
@@ -324,7 +324,7 @@ public class EventHandler {
 			AchievementHelper.addAchievement(event.entityPlayer, ModAchievements.getBlox);
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onItemTossEvent(ItemTossEvent event){
 		if(event.entityItem.getEntityItem().getItem() instanceof ItemKeyblade){

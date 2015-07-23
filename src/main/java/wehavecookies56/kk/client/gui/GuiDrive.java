@@ -31,7 +31,8 @@ public class GuiDrive extends GuiScreen {
 	int maxDrive = 1000;
 	int maxLength = 100;
 	int maxBars = 9;
-	double oneValue = (46D / 100D);
+	double guiLength = 47D;
+	double oneValue = (guiLength / 100D);
 	double currDrive;
 
 	public GuiDrive(){
@@ -70,7 +71,7 @@ public class GuiDrive extends GuiScreen {
 		ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
 		int dp = props.getDP();
 
-		currDrive = (float) ((oneValue * dp) - getCurrBar(dp)*46);
+		currDrive = (float) ((oneValue * dp) - getCurrBar(dp)*guiLength);
 
 		if(dp == 100 || dp == 200 || dp == 300 || dp == 400 || dp == 500 || dp == 600 || dp == 700 || dp == 800 || dp == 900){
 			currDrive = 0;

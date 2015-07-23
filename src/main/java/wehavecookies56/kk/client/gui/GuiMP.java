@@ -17,7 +17,7 @@ public class GuiMP extends GuiScreen {
 
 	int guiWidth = 138;
 	int guiHeight = 6;
-	int noborderguiwidth = 125;
+	int noborderguiwidth = 126;
 	int noborderguiheight = 4;
 
 	@SubscribeEvent
@@ -32,8 +32,8 @@ public class GuiMP extends GuiScreen {
 			int screenWidth = event.resolution.getScaledWidth();
 			int screenHeight = event.resolution.getScaledHeight();
 
-			float oneMP = (noborderguiwidth / ExtendedPlayer.get(player).getMaxMp());
-			int currMP = noborderguiwidth - (int) (oneMP * ExtendedPlayer.get(player).getMp());
+			float oneMP =((float) noborderguiwidth / (float) ExtendedPlayer.get(player).getMaxMp());
+			float currMP = noborderguiwidth - (float) (oneMP * ExtendedPlayer.get(player).getMp());
 			float scale = 0.65f;
 			switch(mc.gameSettings.guiScale){
 			case Constants.SCALE_AUTO:
@@ -53,10 +53,10 @@ public class GuiMP extends GuiScreen {
 			this.drawTexturedModalRect(-25, 4, 0, 0, guiWidth, guiHeight);
 			GL11.glPopMatrix();
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currMP * scale) - 13*scale, (screenHeight - guiHeight*scale) - 12*scale, 0);
+			GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currMP * scale) - 23*scale, (screenHeight - guiHeight*scale) - 12*scale, 0);
 			GL11.glScalef(scale, scale, scale);
 			//FG
-			this.drawTexturedModalRect(-25, 5, 0, 6, (noborderguiwidth - currMP) - 2, noborderguiheight);
+			this.drawTexturedModalRect(-25, 5, 0, 6, (int)(noborderguiwidth - currMP) - 2, noborderguiheight);
 			GL11.glPopMatrix();
 		}
 	}

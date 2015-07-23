@@ -172,8 +172,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void setMaxLevel(int maxLevel) {
-		this.sync();
 		this.maxLevel = maxLevel;
+		this.sync();
 	}
 
 	public int getExperience() {
@@ -181,8 +181,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void setExperience(int experience) {
-		this.sync();
 		this.experience = experience;
+		this.sync();
 	}
 
 	public int getMaxExperience() {
@@ -190,8 +190,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void setMaxExperience(int maxExperience) {
-		this.sync();
 		this.maxExperience = maxExperience;
+		this.sync();
 	}
 
 	public int getMp() {
@@ -199,8 +199,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void setMp(int mp) {
-		this.sync();
 		this.mp = mp;
+		this.sync();
 	}
 
 	public int getMaxMp() {
@@ -208,8 +208,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void setMaxMp(int maxMp) {
-		this.sync();
 		this.maxMp = maxMp;
+		this.sync();
 	}
 
 	public boolean addMunny(int amount){
@@ -245,16 +245,37 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 		return true;
 	}
-	
+
 	public boolean addMp(int amount){
 		boolean sufficient = true;
 
-		if(amount + this.mp > this.maxMunny || amount > this.maxMunny){
+		if(amount + this.mp > this.maxMp || amount > this.maxMp){
+			this.mp = this.maxMp;
+			this.sync();
 			sufficient = false;
 		}
 
 		if (sufficient) {
 			this.mp += amount;
+			this.sync();
+		} else {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean removeMp(int amount){
+		boolean sufficient = true;
+
+		if(this.mp - amount < 0 || amount > this.mp){
+			System.out.println(mp);
+			this.mp = 0;
+			System.out.println(mp);
+			this.sync();
+			sufficient = false;
+		}
+		if(sufficient){
+			this.mp -= amount;
 			this.sync();
 		} else {
 			return false;

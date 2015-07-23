@@ -46,7 +46,6 @@ public class Magic {
 
 	public static void Fire(EntityPlayer player, World world)
 	{
-		ExtendedPlayer.get(player).setMp(100);
 		if(ExtendedPlayer.get(player).getMp() > 0)
 		{
 			PacketDispatcher.sendToServer(new MagicFire());
