@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 
@@ -30,8 +31,8 @@ public class GuiMP extends GuiScreen {
 			int screenWidth = event.resolution.getScaledWidth();
 			int screenHeight = event.resolution.getScaledHeight();
 
-			float oneMP = (noborderguiwidth / player.getMaxHealth());
-			int currHealth = noborderguiwidth - (int) (oneMP * player.getHealth());
+			float oneMP = (noborderguiwidth / ExtendedPlayer.get(player).getMaxMp());
+			int currHealth = noborderguiwidth - (int) (oneMP * ExtendedPlayer.get(player).getMp());
 			float scale = 0.65f;
 			switch(mc.gameSettings.guiScale){
 			case Constants.SCALE_AUTO:

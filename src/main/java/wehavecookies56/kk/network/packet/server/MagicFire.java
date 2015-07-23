@@ -2,11 +2,14 @@ package wehavecookies56.kk.network.packet.server;
 
 import java.io.IOException;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
+import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityFire2;
+import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicFire extends AbstractServerMessage<MagicFire> {
@@ -25,6 +28,8 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
+		ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).setMp(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp()-Magic.getMagicCost("fire"));
+
 		World world = player.worldObj;
 		world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ));
 		//MagicAttack.currMagic = MagicAttack.currMagic - MagicAttack.fireCost;
