@@ -34,6 +34,10 @@ public class TabKingdomKeys extends CreativeTabs {
 		driveOrb.setTagCompound(new NBTTagCompound());
 		driveOrb.getTagCompound().setInteger("amount", 1000);
 		list.add(driveOrb);
+		ItemStack magicOrb = new ItemStack(ModItems.MagicOrb, 1);
+		magicOrb.setTagCompound(new NBTTagCompound());
+		magicOrb.getTagCompound().setInteger("amount", 100);
+		list.add(magicOrb);
 		ItemStack WHC56skull = new ItemStack(Items.skull, 1, 3);
 		WHC56skull.setTagCompound(new NBTTagCompound());
 		WHC56skull.getTagCompound().setTag("SkullOwner", new NBTTagString("Wehavecookies56"));

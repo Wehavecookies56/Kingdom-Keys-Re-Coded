@@ -29,7 +29,8 @@ public class Strings {
 	Achievement_OpenMenu = "achievement.openmenu",
 	Achievement_GetKeyblade = "achievement.getkeyblade",
 	Achievement_GetWehavecookies56Skull = "achievement.getWehavecookies56Skull",
-	Achievement_GetAbelatoxSkull = "achievement.getAbelatoxSkull"
+	Achievement_GetAbelatoxSkull = "achievement.getAbelatoxSkull",
+	Achievement_GetBlox = "achievement.getblox"
 	;
 
 	//Gui
@@ -137,6 +138,7 @@ public class Strings {
 	Potion = "potion",
 	HpOrb = "hporb",
 	DriveOrb = "driveorb",
+	MagicOrb = "magicorb",
 	Heart= "heart",
 	DarkHeart = "darkheart",
 	PureHeart = "pureheart",

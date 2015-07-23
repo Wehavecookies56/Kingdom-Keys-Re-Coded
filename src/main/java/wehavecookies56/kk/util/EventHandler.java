@@ -52,6 +52,7 @@ import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
+import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
 
 public class EventHandler {
@@ -212,26 +213,36 @@ public class EventHandler {
 			munny.setTagCompound(new NBTTagCompound());
 			ItemStack driveOrb = new ItemStack(ModItems.DriveOrb, 1);
 			driveOrb.setTagCompound(new NBTTagCompound());
+			ItemStack magicOrb = new ItemStack(ModItems.MagicOrb, 1);
+			magicOrb.setTagCompound(new NBTTagCompound());
 			if(event.entity instanceof EntityAnimal){
 				munny.getTagCompound().setInteger("amount", randomWithRange(1, 20));
 				event.entityLiving.entityDropItem(munny, 1);
 				driveOrb.getTagCompound().setInteger("amount", randomWithRange(5, 10));
 				event.entityLiving.entityDropItem(driveOrb, 1);
+				magicOrb.getTagCompound().setInteger("amount", randomWithRange(2, 8));
+				event.entityLiving.entityDropItem(magicOrb, 1);
 			}else if(event.entity instanceof EntityMob){
 				munny.getTagCompound().setInteger("amount", randomWithRange(5, 50));
 				event.entityLiving.entityDropItem(munny, 1);
 				driveOrb.getTagCompound().setInteger("amount", randomWithRange(15, 20));
 				event.entityLiving.entityDropItem(driveOrb, 1);
+				magicOrb.getTagCompound().setInteger("amount", randomWithRange(5, 15));
+				event.entityLiving.entityDropItem(magicOrb, 1);
 			}else if(event.entity instanceof EntityAgeable){
 				munny.getTagCompound().setInteger("amount", randomWithRange(50, 100));
 				event.entityLiving.entityDropItem(munny, 1);
 				driveOrb.getTagCompound().setInteger("amount", randomWithRange(20, 25));
 				event.entityLiving.entityDropItem(driveOrb, 1);
+				magicOrb.getTagCompound().setInteger("amount", randomWithRange(10, 25));
+				event.entityLiving.entityDropItem(magicOrb, 1);
 			}else if(event.entity instanceof EntityDragon||event.entity instanceof EntityWither){
 				munny.getTagCompound().setInteger("amount", randomWithRange(500, 1000));
 				event.entityLiving.entityDropItem(munny, 1);
 				driveOrb.getTagCompound().setInteger("amount", randomWithRange(200, 250));
 				event.entityLiving.entityDropItem(driveOrb, 1);
+				magicOrb.getTagCompound().setInteger("amount", randomWithRange(100, 140));
+				event.entityLiving.entityDropItem(magicOrb, 1);
 			}
 		}
 	}
@@ -289,8 +300,31 @@ public class EventHandler {
 				}
 			}
 		}
+		else if(event.item.getEntityItem().getItem() == ModItems.MagicOrb){
+			
+			ExtendedPlayer props = ExtendedPlayer.get(event.entityPlayer);
+			int mp = props.getMp();
+			System.out.println(mp);
+			//if(mp < max)
+			{
+				MagicOrbPickup packet = new MagicOrbPickup(event.item.getEntityItem());
+				if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+				{
+					PacketDispatcher.sendToServer(packet);
+				}
+				if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+				{
+					event.item.getEntityItem().stackSize--;
+					ExtendedPlayer.get(event.entityPlayer).addMp(event.item.getEntityItem().getTagCompound().getInteger("amount"));
+				}
+			}
+		}
+		else if(event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.NormalBlox) || event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.HardBlox) || event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.MetalBlox))
+		{
+			AchievementHelper.addAchievement(event.entityPlayer, ModAchievements.getBlox);
+		}
 	}
-
+	
 	@SubscribeEvent
 	public void onItemTossEvent(ItemTossEvent event){
 		if(event.entityItem.getEntityItem().getItem() instanceof ItemKeyblade){

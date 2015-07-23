@@ -245,6 +245,22 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 		return true;
 	}
+	
+	public boolean addMp(int amount){
+		boolean sufficient = true;
+
+		if(amount + this.mp > this.maxMunny || amount > this.maxMunny){
+			sufficient = false;
+		}
+
+		if (sufficient) {
+			this.mp += amount;
+			this.sync();
+		} else {
+			return false;
+		}
+		return true;
+	}
 
 	public boolean removeDP(int amount){
 		boolean sufficient = true;
