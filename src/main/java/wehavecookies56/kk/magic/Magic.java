@@ -5,12 +5,12 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
-import wehavecookies56.kk.entities.magic.EntityMagnet;
+import wehavecookies56.kk.entities.magic.EntityAero;
 import wehavecookies56.kk.entities.magic.EntityFire2;
 import wehavecookies56.kk.entities.magic.EntityIce;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.server.MagicMagnet;
+import wehavecookies56.kk.network.packet.server.MagicAero;
 import wehavecookies56.kk.network.packet.server.MagicBlizzard;
 import wehavecookies56.kk.network.packet.server.MagicCure;
 import wehavecookies56.kk.network.packet.server.MagicFire;
@@ -26,10 +26,10 @@ public class Magic {
 		world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 	}
 
-	public static void Magnet(EntityPlayer player, World world)
+	public static void Aero(EntityPlayer player, World world)
 	{
-		PacketDispatcher.sendToServer(new MagicMagnet());
-		world.spawnEntityInWorld(new EntityMagnet(world, player, player.posX, player.posY, player.posZ));
+		PacketDispatcher.sendToServer(new MagicAero());
+		world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
 		player.swingItem();
 		world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 	}

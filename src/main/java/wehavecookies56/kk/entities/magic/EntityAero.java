@@ -15,16 +15,16 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 
-public class EntityMagnet extends Entity
+public class EntityAero extends Entity
 {
 
 	EntityPlayer player;
 
-	public EntityMagnet(World world){
+	public EntityAero(World world){
 		super(world);
 	}
 
-	public EntityMagnet(World world, EntityPlayer sender, double x, double y, double z) {
+	public EntityAero(World world, EntityPlayer sender, double x, double y, double z) {
 		super(world);
 		this.posX = x;
 		this.posY = y;
@@ -39,14 +39,14 @@ public class EntityMagnet extends Entity
 		}
 		int rotation = 0;
 
-		double r = 1.2D;
+		double r = 1.5D;
 
-		for(int a = 1; a <= 360; a+=7){
+		for(int a = 1; a <= 360; a+=15){
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
-			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.posY, z, 0.0D, 1.0D, 0.0D);
-			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.posY, z, 0.0D, 1.0D, 0.0D);
+			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.posY, z, 0.0D, 0.5D, 0.0D);
+			//this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.posY, z, 0.0D, 1.0D, 0.0D);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;

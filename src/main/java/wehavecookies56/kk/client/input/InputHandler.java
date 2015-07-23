@@ -165,7 +165,7 @@ public class InputHandler {
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;
 				case GuiCommandMenu.AERO:
-					Magic.Magnet(player, world);
+					Magic.Aero(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;
