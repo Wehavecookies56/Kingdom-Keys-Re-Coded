@@ -6,9 +6,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
-import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
-import wehavecookies56.kk.driveforms.DriveFormValor;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
@@ -17,10 +15,10 @@ import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
+import wehavecookies56.kk.network.packet.server.DriveFormPacket;
 import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
-import wehavecookies56.kk.network.packet.server.ValorInit;
 import wehavecookies56.kk.util.GuiHelper;
 import wehavecookies56.kk.util.KeyboardHelper;
 import wehavecookies56.kk.util.SoundHelper;
@@ -139,8 +137,17 @@ public class InputHandler {
 
 		case GuiCommandMenu.DRIVE:
 			if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
-			GuiCommandMenu.driveselected = GuiCommandMenu.NONE;
-			GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
+			{
+				if(ExtendedPlayer.get(player).getInDrive())
+				{					
+					PacketDispatcher.sendToServer(new DriveFormPacket(true));
+				}
+				else
+				{
+					GuiCommandMenu.driveselected = GuiCommandMenu.NONE;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
+				}
+			}
 			break;
 		}
 		if(GuiCommandMenu.selected == GuiCommandMenu.MAGIC && GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)
@@ -186,7 +193,7 @@ public class InputHandler {
 			switch(GuiCommandMenu.driveselected)
 			{
 				case GuiCommandMenu.VALOR:
-					PacketDispatcher.sendToServer(new ValorInit());
+					PacketDispatcher.sendToServer(new DriveFormPacket());
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;

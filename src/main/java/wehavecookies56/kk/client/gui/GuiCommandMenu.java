@@ -1,5 +1,7 @@
 package wehavecookies56.kk.client.gui;
 
+import ibxm.Player;
+
 import java.io.IOException;
 
 import net.minecraft.client.Minecraft;
@@ -95,7 +97,14 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*DRIVE), 0);
 			GL11.glScalef(scale, scale, scale);
 			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
-			drawString(mc.fontRendererObj, 	TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6, 4, colour = 0xFFFFFF);
+			if(ExtendedPlayer.get(mc.thePlayer).getInDrive())
+			{
+				drawString(mc.fontRendererObj,	"Revert", 6, 4, colour = 0xFFFFFF);
+			}
+			else
+			{
+				drawString(mc.fontRendererObj, 	TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6, 4, colour = 0xFFFFFF);
+			}
 		}GL11.glPopMatrix();
 		//ITEMS
 		GL11.glPushMatrix();{

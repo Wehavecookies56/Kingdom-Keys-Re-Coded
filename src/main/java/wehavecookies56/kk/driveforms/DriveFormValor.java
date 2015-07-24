@@ -1,5 +1,6 @@
 package wehavecookies56.kk.driveforms;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.api.driveforms.DriveForm;
@@ -34,7 +35,7 @@ public class DriveFormValor extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
-		System.out.println("Valor update");
+		System.out.println("Valor update: "+ ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getInDrive());
 	}
 
 	@Override

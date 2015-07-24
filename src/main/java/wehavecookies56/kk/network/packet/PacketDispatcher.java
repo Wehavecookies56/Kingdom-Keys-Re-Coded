@@ -13,6 +13,7 @@ import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.network.packet.server.CreateFromSynthesisRecipe;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
+import wehavecookies56.kk.network.packet.server.DriveFormPacket;
 import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
@@ -29,7 +30,6 @@ import wehavecookies56.kk.network.packet.server.OpenMaterials;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.network.packet.server.UseRecipe;
-import wehavecookies56.kk.network.packet.server.ValorInit;
 
 public class PacketDispatcher
 {
@@ -63,7 +63,7 @@ public class PacketDispatcher
 		registerMessage(DriveOrbPickup.class);
 		registerMessage(MagicOrbPickup.class);
 		registerMessage(GiveAchievementOpenMenu.class);
-		registerMessage(ValorInit.class);
+		registerMessage(DriveFormPacket.class);
 
 		//Bidirectional
 	}
