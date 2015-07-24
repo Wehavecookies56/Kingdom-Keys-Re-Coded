@@ -142,6 +142,7 @@ public class InputHandler {
 				{
 					PacketDispatcher.sendToServer(new DriveFormPacket(true));
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 				}
 				else
 				{

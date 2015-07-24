@@ -36,6 +36,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public List<String> driveForms = new ArrayList<String>();
 
 	public boolean keybladeSummoned, firstKeyblade, inDrive, cheatMode;
+	
+	public String actualDrive;
 
 	public ExtendedPlayer(EntityPlayer player){
 		this.player = player;
@@ -53,6 +55,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.maxDP = 1000;
 		this.inDrive = false;
 		this.cheatMode = false;
+		this.actualDrive = "none";
 	}
 
 	@Override
@@ -71,6 +74,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setBoolean("FirstKeyblade", this.firstKeyblade);
 		properties.setBoolean("InDrive", this.inDrive);
 		properties.setBoolean("CheatMode", this.cheatMode);
+		properties.setString("ActualDrive", this.actualDrive);
 
 		NBTTagList tagList = new NBTTagList();
 		for (int i = 0; i < driveForms.size(); i++){
@@ -104,6 +108,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.firstKeyblade = properties.getBoolean("FirstKeyblade");
 		this.inDrive = properties.getBoolean("InDrive");
 		this.cheatMode = properties.getBoolean("CheatMode");
+		this.actualDrive = properties.getString("ActualDrive");
+
 
 		LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
 		LogHelper.info("Loaded DP: " + properties.getInteger("DP"));
@@ -130,6 +136,17 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return this.inDrive;
 	}
 
+	public void setDriveInUse(String drive)
+	{
+		this.actualDrive = drive;
+		this.sync();
+	}
+
+	
+	public String getDriveInUse()
+	{
+		return this.actualDrive;
+	}
 	public void setInDrive(boolean inDrive){
 		this.inDrive = inDrive;
 		this.sync();

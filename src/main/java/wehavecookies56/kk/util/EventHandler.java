@@ -2,9 +2,7 @@ package wehavecookies56.kk.util;
 
 import java.util.UUID;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -18,12 +16,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.DamageSource;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -40,7 +36,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.block.ModBlocks;
+import wehavecookies56.kk.driveforms.DriveFormFinal;
+import wehavecookies56.kk.driveforms.DriveFormLimit;
+import wehavecookies56.kk.driveforms.DriveFormMaster;
 import wehavecookies56.kk.driveforms.DriveFormValor;
+import wehavecookies56.kk.driveforms.DriveFormWisdom;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
@@ -363,9 +363,36 @@ public class EventHandler {
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event){
 		if(event.entityLiving instanceof EntityPlayer){
-			if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getInDrive()){
-				DriveForm df = new DriveFormValor();
+			DriveForm df;
+			if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "valor")
+			{
+				df = new DriveFormValor();
 				df.update((EntityPlayer) event.entityLiving);
+
+			}
+			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "wisdom")
+			{
+				df = new DriveFormWisdom();
+				df.update((EntityPlayer) event.entityLiving);
+
+			}
+			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "limit")
+			{
+				df = new DriveFormLimit();
+				df.update((EntityPlayer) event.entityLiving);
+
+			}
+			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "master")
+			{
+				df = new DriveFormMaster();
+				df.update((EntityPlayer) event.entityLiving);
+
+			}
+			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "final")
+			{
+				df = new DriveFormFinal();
+				df.update((EntityPlayer) event.entityLiving);
+
 			}
 		}
 	}

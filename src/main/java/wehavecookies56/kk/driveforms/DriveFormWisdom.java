@@ -43,5 +43,4 @@ public class DriveFormWisdom extends DriveForm {
 	public void endDrive(EntityPlayer player) {
 		ExtendedPlayer.get(player).setInDrive(false);
 	}
-
 }

@@ -35,7 +35,7 @@ public class DriveFormValor extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
-		//System.out.println("Valor update: "+ ExtendedPlayer.get(player).getDP());
+		System.out.println("Valor update: "+ ExtendedPlayer.get(player).getDP());
 		ExtendedPlayer.get(player).removeDP(1);
 	}
 
