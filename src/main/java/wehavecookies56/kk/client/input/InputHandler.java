@@ -139,7 +139,7 @@ public class InputHandler {
 			if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
 			{
 				if(ExtendedPlayer.get(player).getInDrive())
-				{					
+				{
 					PacketDispatcher.sendToServer(new DriveFormPacket(true));
 				}
 				else
@@ -193,7 +193,7 @@ public class InputHandler {
 			switch(GuiCommandMenu.driveselected)
 			{
 				case GuiCommandMenu.VALOR:
-					PacketDispatcher.sendToServer(new DriveFormPacket());
+					PacketDispatcher.sendToServer(new DriveFormPacket("valor"));
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;
