@@ -221,21 +221,21 @@ public class EventHandler {
 			if(event.entity instanceof EntityAnimal){
 				munny.getTagCompound().setInteger("amount", randomWithRange(1, 20));
 				event.entityLiving.entityDropItem(munny, 1);
-				driveOrb.getTagCompound().setInteger("amount", randomWithRange(5, 10));
+				driveOrb.getTagCompound().setInteger("amount", 1);
 				event.entityLiving.entityDropItem(driveOrb, 1);
 				magicOrb.getTagCompound().setInteger("amount", randomWithRange(2, 8));
 				event.entityLiving.entityDropItem(magicOrb, 1);
 			}else if(event.entity instanceof EntityMob){
 				munny.getTagCompound().setInteger("amount", randomWithRange(5, 50));
 				event.entityLiving.entityDropItem(munny, 1);
-				driveOrb.getTagCompound().setInteger("amount", randomWithRange(15, 20));
+				driveOrb.getTagCompound().setInteger("amount", 5);
 				event.entityLiving.entityDropItem(driveOrb, 1);
 				magicOrb.getTagCompound().setInteger("amount", randomWithRange(5, 15));
 				event.entityLiving.entityDropItem(magicOrb, 1);
 			}else if(event.entity instanceof EntityAgeable){
 				munny.getTagCompound().setInteger("amount", randomWithRange(50, 100));
 				event.entityLiving.entityDropItem(munny, 1);
-				driveOrb.getTagCompound().setInteger("amount", randomWithRange(20, 25));
+				driveOrb.getTagCompound().setInteger("amount", 5);
 				event.entityLiving.entityDropItem(driveOrb, 1);
 				magicOrb.getTagCompound().setInteger("amount", randomWithRange(10, 25));
 				event.entityLiving.entityDropItem(magicOrb, 1);
