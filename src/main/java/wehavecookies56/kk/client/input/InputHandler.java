@@ -48,10 +48,10 @@ public class InputHandler {
 			if (GuiCommandMenu.magicselected >= 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE)
 			{
 				GuiCommandMenu.magicselected++;
-				GuiCommandMenu.submenu = 1;
+				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
 
 			}
-			else if (GuiCommandMenu.magicselected == 8)
+			else if (GuiCommandMenu.magicselected == GuiCommandMenu.MAGIC_TOP)
 			{
 				GuiCommandMenu.magicselected = GuiCommandMenu.STOP;
 			}
@@ -65,9 +65,9 @@ public class InputHandler {
 			if (GuiCommandMenu.driveselected >= 0 && GuiCommandMenu.driveselected <= GuiCommandMenu.VALOR)
 			{
 				GuiCommandMenu.driveselected++;
-				GuiCommandMenu.submenu = 3;
+				GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
 			}
-			else if (GuiCommandMenu.driveselected == 6)
+			else if (GuiCommandMenu.driveselected == GuiCommandMenu.DRIVE_TOP)
 			{
 				GuiCommandMenu.driveselected = GuiCommandMenu.FINAL;
 			}
@@ -90,10 +90,10 @@ public class InputHandler {
 			if (GuiCommandMenu.magicselected > 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE)
 			{
 				GuiCommandMenu.magicselected--;
-				GuiCommandMenu.submenu = 1;
+				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
 
 			}
-			else if (GuiCommandMenu.magicselected == 0 || GuiCommandMenu.magicselected == 8)
+			else if (GuiCommandMenu.magicselected == 0 || GuiCommandMenu.magicselected == GuiCommandMenu.MAGIC_TOP)
 			{
 				GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
 			}
@@ -107,10 +107,10 @@ public class InputHandler {
 			if (GuiCommandMenu.driveselected > 0 && GuiCommandMenu.driveselected <= GuiCommandMenu.VALOR)
 			{
 				GuiCommandMenu.driveselected--;
-				GuiCommandMenu.submenu = 3;
+				GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
 
 			}
-			else if (GuiCommandMenu.driveselected == 0 || GuiCommandMenu.driveselected == 6)
+			else if (GuiCommandMenu.driveselected == 0 || GuiCommandMenu.driveselected == GuiCommandMenu.DRIVE_TOP)
 			{
 				GuiCommandMenu.driveselected = GuiCommandMenu.VALOR;
 			}
@@ -141,6 +141,7 @@ public class InputHandler {
 				if(ExtendedPlayer.get(player).getInDrive())
 				{
 					PacketDispatcher.sendToServer(new DriveFormPacket(true));
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 				}
 				else
 				{
@@ -255,18 +256,22 @@ public class InputHandler {
 				break;
 			case SCROLL_UP:
 				commandUp();
+				PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Move, 1f, 1f));
 				break;
 
 			case SCROLL_DOWN:
 				commandDown();
+				PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Move, 1f, 1f));
 				break;
 
 			case ENTER:
 				commandEnter();
+				PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 				break;
 
 			case BACK:
 				commandBack();
+				PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Cancel, 1f, 1f));
 				break;
 			case SUMMON_KEYBLADE:
 				ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
@@ -302,23 +307,27 @@ public class InputHandler {
 			return;
 		}
 
-		if(event.button == Constants.LEFT_MOUSE && KeyboardHelper.isScrollActivatorDown()){
+		if(event.button == Constants.LEFT_MOUSE && KeyboardHelper.isScrollActivatorDown() && event.buttonstate){
 			commandEnter();
 			event.setCanceled(true);
+			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 		}
 
-		if(event.button == Constants.RIGHT_MOUSE && KeyboardHelper.isScrollActivatorDown()){
+		if(event.button == Constants.RIGHT_MOUSE && KeyboardHelper.isScrollActivatorDown() && event.buttonstate){
 			commandBack();
 			event.setCanceled(true);
+			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Cancel, 1f, 1f));
 		}
 
-		if(event.dwheel <= Constants.WHEEL_DOWN && KeyboardHelper.isScrollActivatorDown()){
+		if(event.dwheel <= Constants.WHEEL_DOWN && KeyboardHelper.isScrollActivatorDown() && event.dwheel != 0){
 			commandDown();
 			event.setCanceled(true);
+			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Move, 1f, 1f));
 		}
-		if(event.dwheel >= Constants.WHEEL_UP && KeyboardHelper.isScrollActivatorDown()){
+		if(event.dwheel >= Constants.WHEEL_UP && KeyboardHelper.isScrollActivatorDown() && event.dwheel != 0){
 			commandUp();
 			event.setCanceled(true);
+			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Move, 1f, 1f));
 		}
 
 	}

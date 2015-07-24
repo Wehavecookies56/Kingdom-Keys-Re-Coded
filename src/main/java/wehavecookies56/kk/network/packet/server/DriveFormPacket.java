@@ -44,7 +44,6 @@ public class DriveFormPacket extends AbstractServerMessage<DriveFormPacket> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		System.out.println(form);
 		if(this.revert)
 		{
 			ExtendedPlayer.get(player).setInDrive(false);
