@@ -34,7 +34,7 @@ public class DriveFormValor extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
-
+		System.out.println("Valor update");
 	}
 
 	@Override

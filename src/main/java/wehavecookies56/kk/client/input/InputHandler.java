@@ -6,7 +6,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
+import wehavecookies56.kk.driveforms.DriveFormValor;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
@@ -18,6 +20,7 @@ import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
+import wehavecookies56.kk.network.packet.server.ValorInit;
 import wehavecookies56.kk.util.GuiHelper;
 import wehavecookies56.kk.util.KeyboardHelper;
 import wehavecookies56.kk.util.SoundHelper;
@@ -135,6 +138,7 @@ public class InputHandler {
 			break;
 
 		case GuiCommandMenu.DRIVE:
+			if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
 			GuiCommandMenu.driveselected = GuiCommandMenu.NONE;
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
 			break;
@@ -171,6 +175,35 @@ public class InputHandler {
 					break;
 				case GuiCommandMenu.STOP:
 					Magic.Stop(player, world);
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					break;
+			}
+		}
+
+		if(GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)
+		{
+			switch(GuiCommandMenu.driveselected)
+			{
+				case GuiCommandMenu.VALOR:
+					PacketDispatcher.sendToServer(new ValorInit());
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					break;
+
+				case GuiCommandMenu.WISDOM:
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					break;
+				case GuiCommandMenu.LIMIT:
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					break;
+				case GuiCommandMenu.MASTER:
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					break;
+				case GuiCommandMenu.FINAL:
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;

@@ -29,6 +29,7 @@ import wehavecookies56.kk.network.packet.server.OpenMaterials;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.network.packet.server.UseRecipe;
+import wehavecookies56.kk.network.packet.server.ValorInit;
 
 public class PacketDispatcher
 {
@@ -62,6 +63,7 @@ public class PacketDispatcher
 		registerMessage(DriveOrbPickup.class);
 		registerMessage(MagicOrbPickup.class);
 		registerMessage(GiveAchievementOpenMenu.class);
+		registerMessage(ValorInit.class);
 
 		//Bidirectional
 	}
