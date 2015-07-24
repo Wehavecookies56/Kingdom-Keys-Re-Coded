@@ -17,25 +17,29 @@ public class DriveFormPacket extends AbstractServerMessage<DriveFormPacket> {
 	boolean revert;
 	String form;
 	DriveForm df;
-	
+
 	public DriveFormPacket(Boolean revert)
 	{
 		this.revert = revert;
+		this.form = "";
 	}
-	
+
 	public DriveFormPacket(String driveform)
 	{
 		this.form = driveform;
+		this.revert = false;
 	}
 
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
-
+		this.form = buffer.readStringFromBuffer(100);
+		this.revert = buffer.readBoolean();
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
-
+		buffer.writeString(form);
+		buffer.writeBoolean(revert);
 	}
 
 	@Override
@@ -48,7 +52,9 @@ public class DriveFormPacket extends AbstractServerMessage<DriveFormPacket> {
 		{
 			df = new DriveFormValor();
 		}
-		df.initDrive((EntityPlayer) player);
+		if(df != null){
+			df.initDrive((EntityPlayer) player);
+		}
 
 	}
 
