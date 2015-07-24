@@ -192,34 +192,69 @@ public class InputHandler {
 
 		if(GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)
 		{
-			switch(GuiCommandMenu.driveselected)
+			double random = Math.random();
+			int ap = ExtendedPlayer.get(player).getAntiPoints();
+			int prob = 0;
+			if(ap > 0 && ap <=4)
 			{
-				case GuiCommandMenu.VALOR:
-					PacketDispatcher.sendToServer(new DriveFormPacket("valor"));
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					break;
-
-				case GuiCommandMenu.WISDOM:
-					PacketDispatcher.sendToServer(new DriveFormPacket("wisdom"));
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					break;
-				case GuiCommandMenu.LIMIT:
-					PacketDispatcher.sendToServer(new DriveFormPacket("limit"));
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					break;
-				case GuiCommandMenu.MASTER:
-					PacketDispatcher.sendToServer(new DriveFormPacket("master"));
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					break;
-				case GuiCommandMenu.FINAL:
-					PacketDispatcher.sendToServer(new DriveFormPacket("final"));
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					break;
+				prob = 10;
+				System.out.println("AntiProb: "+prob/100);
+			}
+			
+			else if(ap > 4 && ap <=9)
+			{
+				prob = 25;
+			}
+				
+			else if(ap >= 10)
+			{
+				prob = 40;
+			}
+			System.out.println("AntiPoints: "+ap);
+		
+			
+			if(random < prob/100)
+			{
+				PacketDispatcher.sendToServer(new DriveFormPacket("anti"));
+				GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+				ExtendedPlayer.get(player).removeAntiPoints(4);
+			}
+			else
+			{
+				switch(GuiCommandMenu.driveselected)
+				{
+					case GuiCommandMenu.VALOR:
+						PacketDispatcher.sendToServer(new DriveFormPacket("valor"));
+						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+						ExtendedPlayer.get(player).addAntiPoints(1);
+						break;
+					case GuiCommandMenu.WISDOM:
+						PacketDispatcher.sendToServer(new DriveFormPacket("wisdom"));
+						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+						ExtendedPlayer.get(player).addAntiPoints(1);
+						break;
+					case GuiCommandMenu.LIMIT:
+						PacketDispatcher.sendToServer(new DriveFormPacket("limit"));
+						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+						ExtendedPlayer.get(player).addAntiPoints(1);
+						break;
+					case GuiCommandMenu.MASTER:
+						PacketDispatcher.sendToServer(new DriveFormPacket("master"));
+						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+						ExtendedPlayer.get(player).addAntiPoints(1);
+						break;
+					case GuiCommandMenu.FINAL:
+						PacketDispatcher.sendToServer(new DriveFormPacket("final"));
+						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+						ExtendedPlayer.get(player).removeAntiPoints(10);
+						break;
+				}
 			}
 		}
 	}

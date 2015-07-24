@@ -11,5 +11,6 @@ public class ModDriveForms
 		registerDriveForm(new DriveFormLimit());
 		registerDriveForm(new DriveFormMaster());
 		registerDriveForm(new DriveFormFinal());
+		registerDriveForm(new DriveFormAnti());
 	}
 }

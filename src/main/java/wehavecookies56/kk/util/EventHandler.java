@@ -36,6 +36,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.block.ModBlocks;
+import wehavecookies56.kk.driveforms.DriveFormAnti;
 import wehavecookies56.kk.driveforms.DriveFormFinal;
 import wehavecookies56.kk.driveforms.DriveFormLimit;
 import wehavecookies56.kk.driveforms.DriveFormMaster;
@@ -368,31 +369,31 @@ public class EventHandler {
 			{
 				df = new DriveFormValor();
 				df.update((EntityPlayer) event.entityLiving);
-
 			}
 			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "wisdom")
 			{
 				df = new DriveFormWisdom();
 				df.update((EntityPlayer) event.entityLiving);
-
 			}
 			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "limit")
 			{
 				df = new DriveFormLimit();
 				df.update((EntityPlayer) event.entityLiving);
-
 			}
 			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "master")
 			{
 				df = new DriveFormMaster();
 				df.update((EntityPlayer) event.entityLiving);
-
 			}
 			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "final")
 			{
 				df = new DriveFormFinal();
 				df.update((EntityPlayer) event.entityLiving);
-
+			}
+			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "anti")
+			{
+				df = new DriveFormAnti();
+				df.update((EntityPlayer) event.entityLiving);
 			}
 		}
 	}

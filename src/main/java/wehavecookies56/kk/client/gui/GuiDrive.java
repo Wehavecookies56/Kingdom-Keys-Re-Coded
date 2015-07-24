@@ -62,6 +62,11 @@ public class GuiDrive extends GuiScreen {
 		}else if(dp<1000&&dp>900){
 			bar=9;
 		}
+		else
+		{
+			bar = 9;
+			//max
+		}
 		return bar;
 	}
 

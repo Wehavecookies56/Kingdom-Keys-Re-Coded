@@ -31,7 +31,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public final InventoryKeychain inventory = new InventoryKeychain();
 
-	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, dp, maxDP;
+	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, dp, maxDP, antiPoints;
 
 	public List<String> driveForms = new ArrayList<String>();
 
@@ -56,6 +56,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.inDrive = false;
 		this.cheatMode = false;
 		this.actualDrive = "none";
+		this.antiPoints = 0;
 	}
 
 	@Override
@@ -75,6 +76,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setBoolean("InDrive", this.inDrive);
 		properties.setBoolean("CheatMode", this.cheatMode);
 		properties.setString("ActualDrive", this.actualDrive);
+		properties.setInteger("AntiPoints", this.antiPoints);
 
 		NBTTagList tagList = new NBTTagList();
 		for (int i = 0; i < driveForms.size(); i++){
@@ -109,6 +111,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.inDrive = properties.getBoolean("InDrive");
 		this.cheatMode = properties.getBoolean("CheatMode");
 		this.actualDrive = properties.getString("ActualDrive");
+		this.antiPoints = properties.getInteger("AntiPoints");
 
 
 		LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
@@ -131,6 +134,44 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void init(Entity entity, World world) {
 
 	}
+	
+	public int getAntiPoints()
+	{
+		return this.antiPoints;
+	}
+	
+	public void setAntiPoints(int points)
+	{
+		this.antiPoints = points;
+		this.sync();
+	}
+	
+	public void addAntiPoints(int points)
+	{
+		if(this.antiPoints <= 100)
+		{
+			this.antiPoints += points;
+			System.out.println(this.antiPoints);
+			this.sync();
+		}
+	}
+	
+	public void removeAntiPoints(int points)
+	{
+		if(this.antiPoints >= 0)
+		{
+			if(this.antiPoints - points < 0)
+			{
+				this.antiPoints = 0;
+			}
+			else
+			{
+				this.antiPoints -= points;
+			}
+			this.sync();
+		}
+	}
+
 
 	public boolean getInDrive(){
 		return this.inDrive;

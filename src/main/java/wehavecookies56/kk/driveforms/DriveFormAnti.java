@@ -7,25 +7,25 @@ import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
 
-public class DriveFormValor extends DriveForm {
+public class DriveFormAnti extends DriveForm {
 
-	public DriveFormValor() {
+	public DriveFormAnti() {
 
 	}
 
 	@Override
 	public String getName() {
-		return "Valor";
+		return "Anti";
 	}
 
 	@Override
 	public ResourceLocation getTexture() {
-		return new ResourceLocation(Reference.MODID, "textures/driveforms/valor.png");
+		return new ResourceLocation(Reference.MODID, "textures/driveforms/anti.png");
 	}
 
 	@Override
 	public int getCost() {
-		return 300;
+		return ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getDP();
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class DriveFormValor extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
-		System.out.println("Valor update: "+ ExtendedPlayer.get(player).getAntiPoints());
+		System.out.println("Anti update: "+ ExtendedPlayer.get(player).getAntiPoints());
 		ExtendedPlayer.get(player).removeDP(1);
 	}
 
