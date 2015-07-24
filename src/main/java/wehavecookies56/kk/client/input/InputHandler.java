@@ -200,18 +200,22 @@ public class InputHandler {
 					break;
 
 				case GuiCommandMenu.WISDOM:
+					PacketDispatcher.sendToServer(new DriveFormPacket("wisdom"));
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;
 				case GuiCommandMenu.LIMIT:
+					PacketDispatcher.sendToServer(new DriveFormPacket("limit"));
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;
 				case GuiCommandMenu.MASTER:
+					PacketDispatcher.sendToServer(new DriveFormPacket("master"));
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;
 				case GuiCommandMenu.FINAL:
+					PacketDispatcher.sendToServer(new DriveFormPacket("final"));
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					break;

@@ -6,7 +6,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.api.driveforms.DriveForm;
+import wehavecookies56.kk.driveforms.DriveFormFinal;
+import wehavecookies56.kk.driveforms.DriveFormLimit;
+import wehavecookies56.kk.driveforms.DriveFormMaster;
 import wehavecookies56.kk.driveforms.DriveFormValor;
+import wehavecookies56.kk.driveforms.DriveFormWisdom;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
@@ -48,12 +52,30 @@ public class DriveFormPacket extends AbstractServerMessage<DriveFormPacket> {
 		{
 			ExtendedPlayer.get(player).setInDrive(false);
 		}
+		
 		if(this.form.equals("valor"))
-		{
+		{			
 			df = new DriveFormValor();
-			df.initDrive((EntityPlayer) player);
 		}
+		else if(this.form.equals("wisdom"))
+		{
+			df = new DriveFormWisdom();
+		}
+		else if(this.form.equals("limit"))
+		{
+			df = new DriveFormLimit();
+		}
+		else if(this.form.equals("master"))
+		{
+			df = new DriveFormMaster();
+		}
+		else if(this.form.equals("final"))
+		{
+			df = new DriveFormFinal();
+		}
+		System.out.println(df);
 
+		df.initDrive((EntityPlayer) player);
 	}
 
 }

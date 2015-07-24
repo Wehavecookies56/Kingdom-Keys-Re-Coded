@@ -7,20 +7,20 @@ import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
 
-public class DriveFormValor extends DriveForm {
+public class DriveFormWisdom extends DriveForm {
 
-	public DriveFormValor() {
+	public DriveFormWisdom() {
 
 	}
 
 	@Override
 	public String getName() {
-		return "Valor";
+		return "Wisdom";
 	}
 
 	@Override
 	public ResourceLocation getTexture() {
-		return new ResourceLocation(Reference.MODID, "textures/driveforms/valor.png");
+		return new ResourceLocation(Reference.MODID, "textures/driveforms/wisdom.png");
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class DriveFormValor extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
-		//System.out.println("Valor update: "+ ExtendedPlayer.get(player).getDP());
+		System.out.println("Wisdom update: "+ ExtendedPlayer.get(player).getDP());
 		ExtendedPlayer.get(player).removeDP(1);
 	}
 

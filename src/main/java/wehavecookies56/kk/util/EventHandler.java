@@ -2,9 +2,9 @@ package wehavecookies56.kk.util;
 
 import java.util.UUID;
 
-import com.mojang.authlib.GameProfile;
-
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -18,10 +18,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -37,7 +39,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.api.driveforms.DriveForm;
-import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.driveforms.DriveFormValor;
 import wehavecookies56.kk.entities.ExtendedPlayer;
@@ -58,8 +59,9 @@ import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
 
-public class EventHandler {
+import com.mojang.authlib.GameProfile;
 
+public class EventHandler {
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event){
 		if(event.entity instanceof EntityPlayer && ExtendedPlayer.get((EntityPlayer) event.entity) == null){
@@ -392,6 +394,14 @@ public class EventHandler {
 				if(player.isBlocking()){
 					event.ammount = 0.5f;
 				}
+			}
+		}
+		if(event.source.getSourceOfDamage() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
+			if(player.getHeldItem().getItem() instanceof ItemKeyblade)
+			{
+				ExtendedPlayer.get(player).addDP(1);
 			}
 		}
 	}
