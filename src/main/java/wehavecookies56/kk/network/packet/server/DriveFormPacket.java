@@ -44,15 +44,14 @@ public class DriveFormPacket extends AbstractServerMessage<DriveFormPacket> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
+		System.out.println(form);
 		if(this.revert)
 		{
 			ExtendedPlayer.get(player).setInDrive(false);
 		}
-		if(this.form == "valor")
+		if(this.form.equals("valor"))
 		{
 			df = new DriveFormValor();
-		}
-		if(df != null){
 			df.initDrive((EntityPlayer) player);
 		}
 

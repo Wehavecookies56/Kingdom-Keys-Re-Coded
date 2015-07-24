@@ -27,7 +27,7 @@ import wehavecookies56.kk.util.TextHelper;
 @SideOnly(Side.CLIENT)
 public class GuiCommandMenu extends GuiScreen {
 	Minecraft mc = Minecraft.getMinecraft();
-	
+
 	public static final int TOP = 5, ATTACK = 4, MAGIC = 3, ITEMS = 2, DRIVE = 1;
 
 	public static final int MAGIC_TOP = 8, FIRE = 7, BLIZZARD = 6, THUNDER = 5, CURE = 4, GRAVITY = 3, AERO = 2, STOP = 1;
@@ -77,7 +77,7 @@ public class GuiCommandMenu extends GuiScreen {
 	}
 
 	public void drawCommandMenu(int width, int height){
-		
+
 		//float height = mc.displayHeight/2*1.75f;
 		float scale = 1.05f;
 		int colour;
@@ -99,11 +99,11 @@ public class GuiCommandMenu extends GuiScreen {
 			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			if(ExtendedPlayer.get(mc.thePlayer).getInDrive())
 			{
-				drawString(mc.fontRendererObj,	"Revert", 6, 4, colour = 0xFFFFFF);
+				drawString(mc.fontRendererObj,	"Revert", 6, 4, 0xFFFFFF);
 			}
 			else
 			{
-				drawString(mc.fontRendererObj, 	TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6, 4, colour = 0xFFFFFF);
+				drawString(mc.fontRendererObj, 	TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6, 4, 0xFFFFFF);
 			}
 		}GL11.glPopMatrix();
 		//ITEMS
@@ -140,7 +140,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MAGIC), 0);
 			GL11.glScalef(scale, scale, scale);
 			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
-			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6, 4, colour);
+			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6, 4, 0xFFFFFF);
 		}GL11.glPopMatrix();
 		//ATTACK
 		GL11.glPushMatrix();{
@@ -175,7 +175,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Title), 6, 4, colour = 0xFFFFFF);
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Title), 6, 4, 0xFFFFFF);
 			}
 		}GL11.glPopMatrix();
 		//FIRE
