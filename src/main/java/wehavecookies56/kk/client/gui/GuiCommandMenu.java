@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
+import wehavecookies56.kk.driveforms.DriveFormValor;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
@@ -394,7 +395,15 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*VALOR), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Valor), 6, 4, 0xFFFFFF);
+				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300)
+				{
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Valor), 6, 4, 0xFFFFFF);
+				}
+				else
+				{
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Valor), 6, 4, 0x555555);
+				}
+				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
 		}GL11.glPopMatrix();
 		//WISDOM
@@ -426,7 +435,15 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*WISDOM), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Wisdom), 6, 4, 0xFFFFFF);
+				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300)
+				{
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Wisdom), 6, 4, 0xFFFFFF);
+				}
+				else
+				{
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Wisdom), 6, 4, 0x555555);
+				}
+				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
 		}GL11.glPopMatrix();
 		//LIMIT
@@ -458,7 +475,15 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*LIMIT), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Limit), 6, 4, 0xFFFFFF);
+				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400)
+				{
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Limit), 6, 4, 0xFFFFFF);
+				}
+				else
+				{
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Limit), 6, 4, 0x555555);
+				}
+				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
 		}GL11.glPopMatrix();
 		//MASTER
@@ -490,7 +515,15 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MASTER), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Master), 6, 4, 0xFFFFFF);
+				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400)
+				{
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Master), 6, 4, 0xFFFFFF);
+				}
+				else
+				{
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Master), 6, 4, 0x555555);
+				}
+				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
 		}GL11.glPopMatrix();
 		//FINAL
@@ -523,7 +556,15 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*FINAL), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Final), 6, 4, 0xFFFFFF);
+				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 500)
+				{
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Final), 6, 4, 0xFFFFFF);
+				}
+				else
+				{
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Final), 6, 4, 0x555555);
+				}
+				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
 		}GL11.glPopMatrix();
 	}

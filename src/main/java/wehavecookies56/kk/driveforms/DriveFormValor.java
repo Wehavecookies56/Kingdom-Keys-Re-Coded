@@ -36,14 +36,17 @@ public class DriveFormValor extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
-		//System.out.println("Valor update: "+ ExtendedPlayer.get(player).getAntiPoints());
-		if(ExtendedPlayer.get(player).getDP() > 1)
+		if(ExtendedPlayer.get(player).getInDrive())
 		{
-			PacketDispatcher.sendToServer(new ChangeDP(1.0, "-"));
-		}
-		else
-		{
-			endDrive(player);
+			//System.out.println("Valor update: "+ ExtendedPlayer.get(player).getAntiPoints());
+			if(ExtendedPlayer.get(player).getDP() > 1)
+			{
+				PacketDispatcher.sendToServer(new ChangeDP(1.0, "-"));
+			}
+			else
+			{
+				endDrive(player);
+			}
 		}
 	}
 

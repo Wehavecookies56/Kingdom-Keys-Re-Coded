@@ -6,6 +6,8 @@ import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.server.ChangeDP;
 
 public class DriveFormMaster extends DriveForm {
 
@@ -24,7 +26,7 @@ public class DriveFormMaster extends DriveForm {
 	}
 
 	@Override
-	public int getCost() {
+	public double getCost() {
 		return 400;
 	}
 
@@ -35,8 +37,17 @@ public class DriveFormMaster extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
-		System.out.println("Master update: "+ ExtendedPlayer.get(player).getDP());
-		ExtendedPlayer.get(player).removeDP(1);
+		if(ExtendedPlayer.get(player).getInDrive())
+		{
+			if(ExtendedPlayer.get(player).getDP() > 1)
+			{
+				PacketDispatcher.sendToServer(new ChangeDP(1.0, "-"));
+			}
+			else
+			{
+				endDrive(player);
+			}
+		}
 	}
 
 	@Override

@@ -177,7 +177,7 @@ public class InputHandler {
 		case GuiCommandMenu.DRIVE:
 			if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
 			{
-				PacketDispatcher.sendToServer(new ChangeDP(10, "+"));
+				PacketDispatcher.sendToServer(new ChangeDP(10, "+")); //TODO Disable it to make it fair xD
 				if(ExtendedPlayer.get(player).getInDrive())
 				{//Revert
 					if(ExtendedPlayer.get(player).getDriveInUse().equals("nti")) //TODO change nti to anti
@@ -244,49 +244,94 @@ public class InputHandler {
 			switch(GuiCommandMenu.driveselected)
 			{
 				case GuiCommandMenu.VALOR:
-					if(!antiFormCheck())
+					if(ExtendedPlayer.get(player).getDP() >= 300)
 					{
-						System.out.println("Valor Form Activated!");
-						PacketDispatcher.sendToServer(new DriveFormPacket("valor"));
+						if(!antiFormCheck())
+						{
+							PacketDispatcher.sendToServer(new DriveFormPacket("valor"));
+							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+						}
+					}
+					else
+					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+
+						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
 					}
 					break;
 				case GuiCommandMenu.WISDOM:
-					if(!antiFormCheck())
+					if(ExtendedPlayer.get(player).getDP() >= 300)
 					{
-						PacketDispatcher.sendToServer(new DriveFormPacket("wisdom"));
+						if(!antiFormCheck())
+						{
+							PacketDispatcher.sendToServer(new DriveFormPacket("wisdom"));
+							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+						}
+					}
+					else
+					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
 					}
 					break;
 				case GuiCommandMenu.LIMIT:
-					if(!antiFormCheck())
+					if(ExtendedPlayer.get(player).getDP() >= 400)
 					{
-						PacketDispatcher.sendToServer(new DriveFormPacket("limit"));
+						if(!antiFormCheck())
+						{
+							PacketDispatcher.sendToServer(new DriveFormPacket("limit"));
+							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+						}
+					}
+					else
+					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
 					}
 					break;
 				case GuiCommandMenu.MASTER:
-					if(!antiFormCheck())
+					if(ExtendedPlayer.get(player).getDP() >= 400)
 					{
-						PacketDispatcher.sendToServer(new DriveFormPacket("master"));
+						if(!antiFormCheck())
+						{
+							PacketDispatcher.sendToServer(new DriveFormPacket("master"));
+							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+						}
+					}
+					else
+					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
 					}
 					break;
 				case GuiCommandMenu.FINAL:
-					if(!antiFormCheck())
+					if(ExtendedPlayer.get(player).getDP() >= 500)
 					{
-						PacketDispatcher.sendToServer(new DriveFormPacket("final"));
+						if(!antiFormCheck())
+						{
+							PacketDispatcher.sendToServer(new DriveFormPacket("final"));
+							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+						}
+					}
+					else
+					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						PacketDispatcher.sendToServer(new AntiPoints(10,"-"));
+						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
 					}
 					break;
 			}
