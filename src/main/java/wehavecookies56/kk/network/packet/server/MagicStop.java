@@ -29,10 +29,10 @@ public class MagicStop extends AbstractServerMessage<MagicStop> {
 
 	@Override
 	public void process(EntityPlayer player, Side side){
-		ExtendedPlayer.get(player).setMp(ExtendedPlayer.get(player).getMp()-Magic.getMagicCost("stop"));
+		ExtendedPlayer.get(player).removeMp(Magic.getMagicCost("stop"));
 		World world = player.worldObj;
+		if(!world.isRemote)
 		world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
-		System.out.println(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp());
 	}
 
 }

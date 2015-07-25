@@ -70,8 +70,8 @@ public class EntityAero extends Entity
 			for(int i=0; i<list.size();i++)
 			{
 				Entity e = (Entity) list.get(i);
-				e.attackEntityFrom(DamageSource.magic, 1.5F);
 				if(e instanceof EntityLiving){
+					e.attackEntityFrom(DamageSource.magic, 1.5F);
 					double d = e.posX - posX;
 				    double d1;
 				    for(d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D){

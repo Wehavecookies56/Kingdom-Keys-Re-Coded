@@ -22,9 +22,9 @@ import wehavecookies56.kk.network.packet.server.MagicThunder;
 
 public class Magic {
 
-	public static int getMagicCost(String magic)
+	public static double getMagicCost(String magic)
 	{
-		int cost=0;
+		double cost=0;
 		if(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).cheatMode == false)
 		{
 			if(magic == "fire")

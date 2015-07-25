@@ -85,9 +85,7 @@ public class DriveFormPacket extends AbstractServerMessage<DriveFormPacket> {
 			df = new DriveFormAnti();
 			ExtendedPlayer.get(player).setDriveInUse("anti");
 		}
-		System.out.println(df);
-
-		df.initDrive((EntityPlayer) player);
+		df.initDrive(player);
 	}
 
 }

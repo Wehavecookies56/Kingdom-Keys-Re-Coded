@@ -15,6 +15,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
@@ -55,6 +57,7 @@ import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
+import wehavecookies56.kk.network.packet.server.ChangeMP;
 import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
@@ -309,7 +312,7 @@ public class EventHandler {
 		else if(event.item.getEntityItem().getItem() == ModItems.MagicOrb){
 
 			ExtendedPlayer props = ExtendedPlayer.get(event.entityPlayer);
-			int mp = props.getMp();
+			double mp = props.getMp();
 			//if(mp < max)
 			{
 				MagicOrbPickup packet = new MagicOrbPickup(event.item.getEntityItem());
@@ -369,6 +372,19 @@ public class EventHandler {
 			{
 				df = new DriveFormValor();
 				df.update((EntityPlayer) event.entityLiving);
+				
+				if(event.entityLiving.onGround && !event.entityLiving.isInWater())
+				{
+					event.entityLiving.motionX *= 1.3D;
+					event.entityLiving.motionZ *= 1.3D;
+				}	
+				
+				if(event.entityLiving.motionY > 0)
+				{
+					event.entityLiving.motionY *= 1.2D;
+				}
+				event.entityLiving.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(),2,2));
+				
 			}
 			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "wisdom")
 			{
@@ -389,11 +405,28 @@ public class EventHandler {
 			{
 				df = new DriveFormFinal();
 				df.update((EntityPlayer) event.entityLiving);
+				
 			}
 			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "anti")
 			{
 				df = new DriveFormAnti();
 				df.update((EntityPlayer) event.entityLiving);
+			}
+			
+			if(!ExtendedPlayer.get((EntityPlayer) event.entityLiving).getInDrive()) //If player is not in drive
+			{
+				if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getMp() <= 0 || ExtendedPlayer.get((EntityPlayer) event.entityLiving).getRecharge())
+				{
+					ExtendedPlayer.get((EntityPlayer) event.entityLiving).setRecharge(true);
+					if (ExtendedPlayer.get((EntityPlayer) event.entityLiving).getMp() != ExtendedPlayer.get((EntityPlayer) event.entityLiving).getMaxMp())
+					{
+						PacketDispatcher.sendToServer(new ChangeMP(0.1, "+"));
+					}
+					else
+					{
+						ExtendedPlayer.get((EntityPlayer) event.entityLiving).setRecharge(false);
+					}
+				}
 			}
 		}
 	}

@@ -29,8 +29,8 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		ExtendedPlayer.get(player).removeMp(Magic.getMagicCost("fire"));
-
 		World world = player.worldObj;
+		//if(!world.isRemote)
 		world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ));
 	}
 }

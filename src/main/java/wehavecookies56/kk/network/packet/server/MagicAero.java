@@ -28,10 +28,10 @@ public class MagicAero extends AbstractServerMessage<MagicAero> {
 
 	@Override
 	public void process(EntityPlayer player, Side side){
-		ExtendedPlayer.get(player).setMp(ExtendedPlayer.get(player).getMp()-Magic.getMagicCost("aero"));
+		ExtendedPlayer.get(player).removeMp(Magic.getMagicCost("aero"));
 		World world = player.worldObj;
+		if(!world.isRemote)
 		world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
-		System.out.println(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp());
 	}
 
 }

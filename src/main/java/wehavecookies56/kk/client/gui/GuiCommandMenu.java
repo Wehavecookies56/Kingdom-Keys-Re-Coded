@@ -149,7 +149,15 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MAGIC), 0);
 			GL11.glScalef(scale, scale, scale);
 			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
-			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6, 4, 0xFFFFFF);
+			if(ExtendedPlayer.get(mc.thePlayer).getRecharge() == false)
+			{
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6, 4, 0xFFFFFF);
+			}
+			else
+			{
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6, 4, 0x555555);
+			}
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}GL11.glPopMatrix();
 		//ATTACK
 		GL11.glPushMatrix();{

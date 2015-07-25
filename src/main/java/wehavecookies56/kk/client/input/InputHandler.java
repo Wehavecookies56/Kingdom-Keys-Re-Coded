@@ -166,8 +166,18 @@ public class InputHandler {
 		{
 		case GuiCommandMenu.MAGIC:
 			if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
-			GuiCommandMenu.magicselected = GuiCommandMenu.NONE;
-			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
+			{
+				if(ExtendedPlayer.get(player).getRecharge() == false)
+				{
+					GuiCommandMenu.magicselected = GuiCommandMenu.NONE;
+					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
+				}
+				else
+				{
+					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
+				}
+			}
 			break;
 
 		case GuiCommandMenu.ITEMS:

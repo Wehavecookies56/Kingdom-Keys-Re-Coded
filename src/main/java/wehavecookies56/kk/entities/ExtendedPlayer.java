@@ -31,13 +31,13 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public final InventoryKeychain inventory = new InventoryKeychain();
 
-	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, antiPoints;
+	public int munny, maxMunny, level, maxLevel, experience, maxExperience, antiPoints;
 	
-	public double dp, maxDP;
+	public double mp, maxMp, dp, maxDP;
 
 	public List<String> driveForms = new ArrayList<String>();
 
-	public boolean keybladeSummoned, firstKeyblade, inDrive, cheatMode;
+	public boolean keybladeSummoned, firstKeyblade, inDrive, cheatMode, inRecharge;
 	
 	public String actualDrive;
 
@@ -59,6 +59,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.cheatMode = false;
 		this.actualDrive = "none";
 		this.antiPoints = 0;
+		this.inRecharge = true;
 	}
 
 	@Override
@@ -69,9 +70,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("Munny", this.munny);
 		properties.setInteger("Level", this.level);
 		properties.setInteger("Experience", this.experience);
-		properties.setInteger("MP", this.mp);
+		properties.setDouble("MP", this.mp);
 		properties.setInteger("MaxExperience", this.maxExperience);
-		properties.setInteger("MaxMP", this.maxMp);
+		properties.setDouble("MaxMP", this.maxMp);
 		properties.setDouble("DP", this.dp);
 		properties.setBoolean("KeybladeSummoned", this.keybladeSummoned);
 		properties.setBoolean("FirstKeyblade", this.firstKeyblade);
@@ -79,7 +80,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setBoolean("CheatMode", this.cheatMode);
 		properties.setString("ActualDrive", this.actualDrive);
 		properties.setInteger("AntiPoints", this.antiPoints);
-
+		properties.setBoolean("InRecharge", this.inRecharge);
 		NBTTagList tagList = new NBTTagList();
 		for (int i = 0; i < driveForms.size(); i++){
 			String s = driveForms.get(i);
@@ -104,9 +105,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.munny = properties.getInteger("Munny");
 		this.level = properties.getInteger("Level");
 		this.experience = properties.getInteger("Experience");
-		this.mp = properties.getInteger("MP");
+		this.mp = properties.getDouble("MP");
 		this.maxExperience = properties.getInteger("MaxExperience");
-		this.maxMp = properties.getInteger("MaxMP");
+		this.maxMp = properties.getDouble("MaxMP");
 		this.dp = properties.getDouble("DP");
 		this.keybladeSummoned = properties.getBoolean("KeybladeSummoned");
 		this.firstKeyblade = properties.getBoolean("FirstKeyblade");
@@ -114,6 +115,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.cheatMode = properties.getBoolean("CheatMode");
 		this.actualDrive = properties.getString("ActualDrive");
 		this.antiPoints = properties.getInteger("AntiPoints");
+		this.inRecharge = properties.getBoolean("InRecharge");
 
 
 		LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
@@ -135,6 +137,17 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	@Override
 	public void init(Entity entity, World world) {
 
+	}
+	
+	public boolean getRecharge()
+	{
+		return this.inRecharge;
+	}
+	
+	public void setRecharge(boolean recharge)
+	{
+		this.inRecharge = recharge;
+		this.sync();
 	}
 	
 	public int getAntiPoints()
@@ -257,20 +270,20 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.sync();
 	}
 
-	public int getMp() {
+	public double getMp() {
 		return mp;
 	}
 
-	public void setMp(int mp) {
+	public void setMp(double mp) {
 		this.mp = mp;
 		this.sync();
 	}
 
-	public int getMaxMp() {
+	public double getMaxMp() {
 		return maxMp;
 	}
 
-	public void setMaxMp(int maxMp) {
+	public void setMaxMp(double maxMp) {
 		this.maxMp = maxMp;
 		this.sync();
 	}
@@ -309,7 +322,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public boolean addMp(int amount){
+	public boolean addMp(double amount){
 		boolean sufficient = true;
 
 		if(amount + this.mp > this.maxMp || amount > this.maxMp){
@@ -327,7 +340,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public boolean removeMp(int amount){
+	public boolean removeMp(double amount){
 		boolean sufficient = true;
 
 		if(this.mp - amount < 0 || amount > this.mp){

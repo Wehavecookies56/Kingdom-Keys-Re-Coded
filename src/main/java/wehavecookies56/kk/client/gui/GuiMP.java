@@ -50,13 +50,28 @@ public class GuiMP extends GuiScreen {
 			GL11.glTranslatef((screenWidth - guiWidth*scale) - 13*scale, (screenHeight - guiHeight*scale) - 12*scale, 0);
 			GL11.glScalef(scale, scale, scale);
 			//BG
+			if(ExtendedPlayer.get(player).getRecharge() == false)
+			{
 			this.drawTexturedModalRect(-25, 4, 0, 0, guiWidth, guiHeight);
+			}
+			else
+			{
+				this.drawTexturedModalRect(-25, 4, 0, 10, guiWidth, guiHeight);
+			}
 			GL11.glPopMatrix();
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth - noborderguiwidth*scale) + (currMP * scale) - 23*scale, (screenHeight - guiHeight*scale) - 12*scale, 0);
 			GL11.glScalef(scale, scale, scale);
 			//FG
-			this.drawTexturedModalRect(-25, 5, 0, 6, (int)(noborderguiwidth - currMP) - 2, noborderguiheight);
+			if(ExtendedPlayer.get(player).getRecharge() == false)
+			{
+				this.drawTexturedModalRect(-25, 5, 0, 6, (int)(noborderguiwidth - currMP) - 2, noborderguiheight);
+			}
+			else
+			{
+				this.drawTexturedModalRect(-25, 5, 0, 16, (int)(noborderguiwidth - currMP) - 2, noborderguiheight);
+			}
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			GL11.glPopMatrix();
 		}
 	}
