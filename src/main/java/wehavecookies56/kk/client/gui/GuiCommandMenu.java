@@ -99,7 +99,15 @@ public class GuiCommandMenu extends GuiScreen {
 			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			if(ExtendedPlayer.get(mc.thePlayer).getInDrive())
 			{
-				drawString(mc.fontRendererObj,	"Revert", 6, 4, 0xFFFFFF);
+				if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("anti"))
+				{
+					drawString(mc.fontRendererObj,	"Revert", 6, 4, 0x555555);
+				}
+				else
+				{
+					drawString(mc.fontRendererObj,	"Revert", 6, 4, 0xFFFFFF);
+				}
+				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
 			else
 			{

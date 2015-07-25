@@ -14,6 +14,8 @@ import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
+import wehavecookies56.kk.network.packet.server.AntiPoints;
+import wehavecookies56.kk.network.packet.server.ChangeDP;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.DriveFormPacket;
 import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
@@ -30,6 +32,43 @@ public class InputHandler {
 			if(key.isPressed()) return key;
 		}
 		return null;
+	}
+	
+	public boolean antiFormCheck()
+	{
+		double random = Math.random();
+		int ap = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getAntiPoints();
+		int prob = 0;
+		if(ap > 0 && ap <=4)
+		{
+			prob = 10;
+		}
+		
+		else if(ap > 4 && ap <=9)
+		{
+			prob = 25;
+		}
+			
+		else if(ap >= 10)
+		{
+			prob = 40;
+		}
+		System.out.println("AntiPoints: "+ap);
+		System.out.println("Random: "+random*100);
+		System.out.println("Probability: "+prob);
+		if(random*100 < prob)
+		{
+			System.out.println("AntiForm Activated!");
+			PacketDispatcher.sendToServer(new DriveFormPacket("anti"));
+			GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+			PacketDispatcher.sendToServer(new AntiPoints(4,"-"));
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	public void commandUp()
@@ -138,14 +177,23 @@ public class InputHandler {
 		case GuiCommandMenu.DRIVE:
 			if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
 			{
+				PacketDispatcher.sendToServer(new ChangeDP(10, "+"));
 				if(ExtendedPlayer.get(player).getInDrive())
-				{
-					PacketDispatcher.sendToServer(new DriveFormPacket(true));
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+				{//Revert
+					if(ExtendedPlayer.get(player).getDriveInUse().equals("nti")) //TODO change nti to anti
+					{
+						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));	
+					}
+					else
+					{
+						PacketDispatcher.sendToServer(new DriveFormPacket(true));
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+					}
 				}
 				else
-				{
+				{//Drive
 					GuiCommandMenu.driveselected = GuiCommandMenu.NONE;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
 				}
@@ -192,69 +240,55 @@ public class InputHandler {
 
 		if(GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)
 		{
-			double random = Math.random();
-			int ap = ExtendedPlayer.get(player).getAntiPoints();
-			int prob = 0;
-			if(ap > 0 && ap <=4)
-			{
-				prob = 10;
-				System.out.println("AntiProb: "+prob/100);
-			}
 			
-			else if(ap > 4 && ap <=9)
+			switch(GuiCommandMenu.driveselected)
 			{
-				prob = 25;
-			}
-				
-			else if(ap >= 10)
-			{
-				prob = 40;
-			}
-			System.out.println("AntiPoints: "+ap);
-		
-			
-			if(random < prob/100)
-			{
-				PacketDispatcher.sendToServer(new DriveFormPacket("anti"));
-				GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-				ExtendedPlayer.get(player).removeAntiPoints(4);
-			}
-			else
-			{
-				switch(GuiCommandMenu.driveselected)
-				{
-					case GuiCommandMenu.VALOR:
+				case GuiCommandMenu.VALOR:
+					if(!antiFormCheck())
+					{
+						System.out.println("Valor Form Activated!");
 						PacketDispatcher.sendToServer(new DriveFormPacket("valor"));
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						ExtendedPlayer.get(player).addAntiPoints(1);
-						break;
-					case GuiCommandMenu.WISDOM:
+						PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+					}
+					break;
+				case GuiCommandMenu.WISDOM:
+					if(!antiFormCheck())
+					{
 						PacketDispatcher.sendToServer(new DriveFormPacket("wisdom"));
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						ExtendedPlayer.get(player).addAntiPoints(1);
-						break;
-					case GuiCommandMenu.LIMIT:
+						PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+					}
+					break;
+				case GuiCommandMenu.LIMIT:
+					if(!antiFormCheck())
+					{
 						PacketDispatcher.sendToServer(new DriveFormPacket("limit"));
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						ExtendedPlayer.get(player).addAntiPoints(1);
-						break;
-					case GuiCommandMenu.MASTER:
+						PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+					}
+					break;
+				case GuiCommandMenu.MASTER:
+					if(!antiFormCheck())
+					{
 						PacketDispatcher.sendToServer(new DriveFormPacket("master"));
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						ExtendedPlayer.get(player).addAntiPoints(1);
-						break;
-					case GuiCommandMenu.FINAL:
+						PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+					}
+					break;
+				case GuiCommandMenu.FINAL:
+					if(!antiFormCheck())
+					{
 						PacketDispatcher.sendToServer(new DriveFormPacket("final"));
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						ExtendedPlayer.get(player).removeAntiPoints(10);
-						break;
-				}
+						PacketDispatcher.sendToServer(new AntiPoints(10,"-"));
+					}
+					break;
 			}
 		}
 	}

@@ -11,6 +11,8 @@ import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
+import wehavecookies56.kk.network.packet.server.AntiPoints;
+import wehavecookies56.kk.network.packet.server.ChangeDP;
 import wehavecookies56.kk.network.packet.server.CreateFromSynthesisRecipe;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.DriveFormPacket;
@@ -64,6 +66,8 @@ public class PacketDispatcher
 		registerMessage(MagicOrbPickup.class);
 		registerMessage(GiveAchievementOpenMenu.class);
 		registerMessage(DriveFormPacket.class);
+		registerMessage(AntiPoints.class);
+		registerMessage(ChangeDP.class);
 
 		//Bidirectional
 	}

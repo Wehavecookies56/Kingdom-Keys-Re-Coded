@@ -31,7 +31,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public final InventoryKeychain inventory = new InventoryKeychain();
 
-	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, dp, maxDP, antiPoints;
+	public int munny, maxMunny, level, maxLevel, experience, maxExperience, mp, maxMp, antiPoints;
+	
+	public double dp, maxDP;
 
 	public List<String> driveForms = new ArrayList<String>();
 
@@ -70,7 +72,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("MP", this.mp);
 		properties.setInteger("MaxExperience", this.maxExperience);
 		properties.setInteger("MaxMP", this.maxMp);
-		properties.setInteger("DP", this.dp);
+		properties.setDouble("DP", this.dp);
 		properties.setBoolean("KeybladeSummoned", this.keybladeSummoned);
 		properties.setBoolean("FirstKeyblade", this.firstKeyblade);
 		properties.setBoolean("InDrive", this.inDrive);
@@ -105,7 +107,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.mp = properties.getInteger("MP");
 		this.maxExperience = properties.getInteger("MaxExperience");
 		this.maxMp = properties.getInteger("MaxMP");
-		this.dp = properties.getInteger("DP");
+		this.dp = properties.getDouble("DP");
 		this.keybladeSummoned = properties.getBoolean("KeybladeSummoned");
 		this.firstKeyblade = properties.getBoolean("FirstKeyblade");
 		this.inDrive = properties.getBoolean("InDrive");
@@ -172,7 +174,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 	}
 
-
 	public boolean getInDrive(){
 		return this.inDrive;
 	}
@@ -193,11 +194,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.sync();
 	}
 
-	public int getDP(){
+	public double getDP(){
 		return this.dp;
 	}
 
-	public void setDP(int amount){
+	public void setDP(double amount){
 		this.dp = amount;
 		this.sync();
 	}
@@ -290,15 +291,15 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public boolean addDP(int amount){
+	public boolean addDP(double dp2){
 		boolean sufficient = true;
 
-		if(amount + this.dp > this.maxDP || amount > this.maxDP){
+		if(dp2 + this.dp > this.maxDP || dp2 > this.maxDP){
 			sufficient = false;
 		}
 
 		if (sufficient) {
-			this.dp += amount;
+			this.dp += dp2;
 			this.sync();
 		} else {
 			this.dp = this.maxDP;
@@ -343,14 +344,14 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public boolean removeDP(int amount){
+	public boolean removeDP(double dp2){
 		boolean sufficient = true;
 
-		if(amount - this.maxDP < 0 || amount > this.maxDP){
+		if(this.maxDP - dp2 < 0 || dp2 > this.maxDP){
 			sufficient = false;
 		}
 		if(sufficient){
-			this.dp -= amount;
+			this.dp -= dp2;
 			this.sync();
 		} else {
 			return false;

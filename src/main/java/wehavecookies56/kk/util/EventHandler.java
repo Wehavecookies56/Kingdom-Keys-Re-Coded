@@ -291,8 +291,8 @@ public class EventHandler {
 		}
 		else if(event.item.getEntityItem().getItem() == ModItems.DriveOrb){
 			ExtendedPlayer props = ExtendedPlayer.get(event.entityPlayer);
-			int dp = props.getDP();
-			//if(dp < 1000)
+			double dp = props.getDP();
+			//if(dp < 1000) //Not pickup orb when full
 			{
 				DriveOrbPickup packet = new DriveOrbPickup(event.item.getEntityItem());
 				if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)

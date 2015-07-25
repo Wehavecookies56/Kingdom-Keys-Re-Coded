@@ -39,7 +39,7 @@ public class GuiDrive extends GuiScreen {
 
 	}
 
-	public int getCurrBar(int dp){
+	public int getCurrBar(double dp){
 		int bar = 0;
 		if(dp<100){
 			bar = 0;
@@ -74,7 +74,7 @@ public class GuiDrive extends GuiScreen {
 	public void onRenderOverlayPost(RenderGameOverlayEvent event){
 
 		ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
-		int dp = props.getDP();
+		double dp = props.getDP();
 
 		currDrive = (float) ((oneValue * dp) - getCurrBar(dp)*guiLength);
 

@@ -10,7 +10,7 @@ public abstract class DriveForm {
 
 	public abstract ResourceLocation getTexture();
 
-	public abstract int getCost();
+	public abstract double getCost();
 
 	public abstract void initDrive(EntityPlayer player);
 

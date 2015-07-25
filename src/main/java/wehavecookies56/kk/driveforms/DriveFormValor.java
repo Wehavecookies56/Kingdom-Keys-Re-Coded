@@ -1,11 +1,12 @@
 package wehavecookies56.kk.driveforms;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.server.ChangeDP;
 
 public class DriveFormValor extends DriveForm {
 
@@ -24,7 +25,7 @@ public class DriveFormValor extends DriveForm {
 	}
 
 	@Override
-	public int getCost() {
+	public double getCost() {
 		return 300;
 	}
 
@@ -35,8 +36,15 @@ public class DriveFormValor extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
-		System.out.println("Valor update: "+ ExtendedPlayer.get(player).getAntiPoints());
-		ExtendedPlayer.get(player).removeDP(1);
+		//System.out.println("Valor update: "+ ExtendedPlayer.get(player).getAntiPoints());
+		if(ExtendedPlayer.get(player).getDP() > 1)
+		{
+			PacketDispatcher.sendToServer(new ChangeDP(1.0, "-"));
+		}
+		else
+		{
+			endDrive(player);
+		}
 	}
 
 	@Override
