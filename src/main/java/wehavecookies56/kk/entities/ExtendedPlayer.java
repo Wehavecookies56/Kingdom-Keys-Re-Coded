@@ -458,6 +458,4 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		if(player instanceof EntityPlayerMP)
 			this.sync();
 	}
-
-
 }

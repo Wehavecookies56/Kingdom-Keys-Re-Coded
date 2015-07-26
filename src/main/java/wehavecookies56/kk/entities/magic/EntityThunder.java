@@ -2,96 +2,112 @@ package wehavecookies56.kk.entities.magic;
 
 import java.util.List;
 
-import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.effect.EntityWeatherEffect;
-import net.minecraft.init.Blocks;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.EnumDifficulty;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 
-public class EntityThunder extends EntityWeatherEffect
+public class EntityThunder extends Entity
 {
-   
-	//	super(worldIn, x, y, z);
-    	 /** Declares which state the lightning bolt is in. Whether it's in the air, hit the ground, etc. */
-        private int lightningState;
-        /** A random long that is used to change the vertex of the lightning rendered in RenderLightningBolt */
-        public long boltVertex;
-        /** Determines the time before the EntityThunder is destroyed. It is a random integer decremented over time. */
-        private int boltLivingTime;
-        private static final String __OBFID = "CL_00001666";
 
-        public EntityThunder(World worldIn, double x, double y, double z)
-        {
-            super(worldIn);
-            this.setLocationAndAngles(x, y, z, 0.0F, 0.0F);
-            this.lightningState = 2;
-            this.boltVertex = this.rand.nextLong();
-            this.boltLivingTime = this.rand.nextInt(3) + 1;
-        }
+	EntityPlayer player;
+	public static boolean summonLightning = false;
 
-        /**
-         * Called to update the entity's position/logic.
-         */
-        public void onUpdate()
-        {
-            super.onUpdate();
+	public EntityThunder(World world){
+		super(world);
+	}
 
-            if (this.lightningState == 2)
-            {
-                this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "ambient.weather.thunder", 10000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
-                this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "random.explode", 2.0F, 0.5F + this.rand.nextFloat() * 0.2F);
-            }
-
-            --this.lightningState;
-
-            if (this.lightningState < 0)
-            {
-                if (this.boltLivingTime == 0)
-                {
-                    this.setDead();
-                }
-                else if (this.lightningState < -this.rand.nextInt(10))
-                {
-                    --this.boltLivingTime;
-                    this.lightningState = 1;
-                    this.boltVertex = this.rand.nextLong();
-                    BlockPos blockpos = new BlockPos(this);
-                }
-            }
-
-            if (this.lightningState >= 0)
-            {
-                if (this.worldObj.isRemote)
-                {
-                    this.worldObj.setLastLightningBolt(2);
-                }
-                else
-                {
-                    double d0 = 3.0D;
-                    List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
-                }
-            }
-        }
+	public EntityThunder(World world, EntityPlayer sender, double x, double y, double z) {
+		super(world);
+		this.posX = x;
+		this.posY = y;
+		this.posZ = z;
+		this.player = sender;
+	}
 
 	@Override
-	protected void entityInit() {
-		// TODO Auto-generated method stub
-		
+	public void onUpdate() {
+		if(player == null){
+			return;
+		}
+		int rotation = 0;
+
+		double r = 1.5D;
+
+		for(int a = 1; a <= 360; a+=15){
+			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
+			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
+
+			this.worldObj.spawnParticle(EnumParticleTypes.CRIT_MAGIC, x, this.posY, z, 0.0D, 0.5D, 0.0D);
+		}
+
+		this.rotationYaw = (rotation + 1) % 360;
+		if(ticksExisted > 30){
+			setDead();
+		}
+
+		if(ticksExisted < 10){
+			player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0D);
+
+		}else{
+			player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.10000000149011612D);
+		}
+		if(ticksExisted > 30)
+		{
+			summonLightning = false;
+		}
+		super.onUpdate();
+	}
+
+
+	@Override
+	protected void entityInit()
+	{
+		player = Minecraft.getMinecraft().thePlayer;
+		double distance = 3.0D;
+		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(3, 3, 3);
+		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
+		//TODO CHECK FOR ENTITIES AND DAMAGE THEM
+		if(!list.isEmpty())
+		{
+			for(int i=0; i<list.size();i++)
+			{
+				Entity e = (Entity) list.get(i);
+				if(e instanceof EntityLiving){
+					summonLightning = true;
+					//Something so the player doesen't get damage
+					this.worldObj.spawnEntityInWorld((new EntityLightningBolt(this.worldObj, e.posX, e.posY, e.posZ)));
+				}
+			}
+		}
+		aabb.contract(3, 3, 3);
 	}
 
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tagCompund) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound tagCompound) {
-		// TODO Auto-generated method stub
-		
-	}	
+
+	}
+
+	@Override
+	public AxisAlignedBB getEntityBoundingBox() {
+
+		return new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
+	}
+
 }

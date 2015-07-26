@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,6 +48,7 @@ import wehavecookies56.kk.driveforms.DriveFormWisdom;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
+import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.item.ItemHpOrb;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
@@ -454,6 +456,13 @@ public class EventHandler {
 			if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.FrozenPride){
 				if(player.isBlocking()){
 					event.ammount = 0.5f;
+				}
+			}
+			if(event.source.getDamageType()=="lightningBolt")
+			{
+				if(EntityThunder.summonLightning)
+				{
+					event.setCanceled(true);
 				}
 			}
 		}

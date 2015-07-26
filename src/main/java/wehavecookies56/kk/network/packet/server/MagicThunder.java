@@ -8,6 +8,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.entities.magic.EntityAero;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
@@ -25,31 +26,9 @@ public class MagicThunder extends AbstractServerMessage<MagicThunder> {
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		ExtendedPlayer.get(player).setMp(ExtendedPlayer.get(player).getMp()-Magic.getMagicCost("thunder"));
-
-		double posy = player.posY;
 		World world = player.worldObj;
-		if(!player.onGround)
-		{
-			//something to figure out the player position
-		}
-		EntityThunder thunder;
-		thunder = new EntityThunder(world, player.posX+2, player.posY, player.posZ);
-		world.spawnEntityInWorld(thunder);
-		thunder = new EntityThunder(world, player.posX, player.posY, player.posZ+2);
-		world.spawnEntityInWorld(thunder);
-		thunder = new EntityThunder(world, player.posX-2, player.posY, player.posZ);
-		world.spawnEntityInWorld(thunder);
-		thunder = new EntityThunder(world, player.posX, player.posY, player.posZ-2);
-		world.spawnEntityInWorld(thunder);
-
-		thunder = new EntityThunder(world, player.posX+2, player.posY, player.posZ+2);
-		world.spawnEntityInWorld(thunder);
-		thunder = new EntityThunder(world, player.posX+2, player.posY, player.posZ+2);
-		world.spawnEntityInWorld(thunder);
-		thunder = new EntityThunder(world, player.posX-2, player.posY, player.posZ-2);
-		world.spawnEntityInWorld(thunder);
-		thunder = new EntityThunder(world, player.posX-2, player.posY, player.posZ-2);
-		world.spawnEntityInWorld(thunder);
+		if(!world.isRemote)
+		world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
 	}
 
 }

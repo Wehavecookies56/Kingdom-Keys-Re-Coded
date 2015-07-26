@@ -9,6 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityAero;
 import wehavecookies56.kk.entities.magic.EntityBlizzard;
+import wehavecookies56.kk.entities.magic.EntityCure;
 import wehavecookies56.kk.entities.magic.EntityFire2;
 import wehavecookies56.kk.entities.magic.EntityStop;
 import wehavecookies56.kk.entities.magic.EntityThunder;
@@ -84,52 +85,24 @@ public class Magic {
 	}
 	public static void Stop(EntityPlayer player, World world)
 	{
-		if(ExtendedPlayer.get(player).getMp() > 0)
-		{
-			PacketDispatcher.sendToServer(new MagicStop());
-			world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
-			player.swingItem();
-			world.playSoundAtEntity(player, "fire.ignite", 1, 1);
-		}
+		PacketDispatcher.sendToServer(new MagicStop());
+		world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
+		player.swingItem();
+		world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 	}
 
 	public static void Thunder(EntityPlayer player, World world)
 	{
-		if(ExtendedPlayer.get(player).getMp() > 0)
-		{
-			double posy = player.posY;
-			if(!player.onGround)
-			{
-				//something to figure out the player position
-			}
-			EntityThunder thunder;
-			thunder = new EntityThunder(world, player.posX+2, player.posY, player.posZ);
-			world.spawnEntityInWorld(thunder);
-			thunder = new EntityThunder(world, player.posX, player.posY, player.posZ+2);
-			world.spawnEntityInWorld(thunder);
-			thunder = new EntityThunder(world, player.posX-2, player.posY, player.posZ);
-			world.spawnEntityInWorld(thunder);
-			thunder = new EntityThunder(world, player.posX, player.posY, player.posZ-2);
-			world.spawnEntityInWorld(thunder);
-
-			thunder = new EntityThunder(world, player.posX+2, player.posY, player.posZ+2);
-			world.spawnEntityInWorld(thunder);
-			thunder = new EntityThunder(world, player.posX+2, player.posY, player.posZ+2);
-			world.spawnEntityInWorld(thunder);
-			thunder = new EntityThunder(world, player.posX-2, player.posY, player.posZ-2);
-			world.spawnEntityInWorld(thunder);
-			thunder = new EntityThunder(world, player.posX-2, player.posY, player.posZ-2);
-			world.spawnEntityInWorld(thunder);
-			PacketDispatcher.sendToServer(new MagicThunder());
-		}
+		PacketDispatcher.sendToServer(new MagicThunder());
+		world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
+		player.swingItem();
+		PacketDispatcher.sendToServer(new MagicThunder());
 	}
 
 	public static void Cure(EntityPlayer player, World world)
 	{
-		if(ExtendedPlayer.get(player).getMp() > 0)
-		{
-			player.heal(6);
-			PacketDispatcher.sendToServer(new MagicCure());
-		}
+		world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
+		player.heal(6);
+		PacketDispatcher.sendToServer(new MagicCure());
 	}
 }

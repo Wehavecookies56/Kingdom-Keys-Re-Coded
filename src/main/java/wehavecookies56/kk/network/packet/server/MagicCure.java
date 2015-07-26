@@ -2,12 +2,12 @@ package wehavecookies56.kk.network.packet.server;
 
 import java.io.IOException;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.entities.magic.EntityCure;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
@@ -31,5 +31,7 @@ public class MagicCure extends AbstractServerMessage<MagicCure> {
 
 		World world = player.worldObj;
 		player.heal(6);
+		world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
+
 	}
 }
