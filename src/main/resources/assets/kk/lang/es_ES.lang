@@ -503,7 +503,7 @@ gui.commandmenu.drive=Fusión
 
 #Magic
 gui.commandmenu.magic.title=MAGIA
-gui.commandmenu.magic.fire=Fuego
+gui.commandmenu.magic.fire=Piro
 gui.commandmenu.magic.blizzard=Hielo
 gui.commandmenu.magic.thunder=Electro
 gui.commandmenu.magic.cure=Cura

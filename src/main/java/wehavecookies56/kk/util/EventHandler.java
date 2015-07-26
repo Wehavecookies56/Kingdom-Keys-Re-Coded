@@ -286,10 +286,10 @@ public class EventHandler {
 				}
 				if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
 				{
-					if(!(event.entityPlayer.getHealth() == 20))
+					if(event.entityPlayer.getHealth() != 20)
 					{
 						event.entityPlayer.heal(2);
-						event.entityPlayer.inventory.consumeInventoryItem(ModItems.HpOrb);
+						event.item.getEntityItem().stackSize--;
 					}
 				}
 			}
