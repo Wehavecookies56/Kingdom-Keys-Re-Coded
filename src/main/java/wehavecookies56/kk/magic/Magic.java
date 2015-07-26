@@ -96,7 +96,6 @@ public class Magic {
 		PacketDispatcher.sendToServer(new MagicThunder());
 		world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
 		player.swingItem();
-		PacketDispatcher.sendToServer(new MagicThunder());
 	}
 
 	public static void Cure(EntityPlayer player, World world)
