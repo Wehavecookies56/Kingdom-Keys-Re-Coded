@@ -462,9 +462,16 @@ public class EventHandler {
 		if(event.source.getSourceOfDamage() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
-			if(player.getHeldItem().getItem() instanceof ItemKeyblade)
+			if(player.getHeldItem() != null)
 			{
-				ExtendedPlayer.get(player).addDP(1);
+				if(player.getHeldItem().getItem() instanceof ItemKeyblade)
+				{
+					ExtendedPlayer.get(player).addDP(1);
+				}
+				else
+				{
+					return;
+				}
 			}
 		}
 	}
