@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityAero;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
@@ -28,7 +29,7 @@ public class MagicAero extends AbstractServerMessage<MagicAero> {
 
 	@Override
 	public void process(EntityPlayer player, Side side){
-		ExtendedPlayer.get(player).removeMp(Magic.getMagicCost("aero"));
+		ExtendedPlayer.get(player).removeMp(Constants.AERO_COST);
 		World world = player.worldObj;
 		if(!world.isRemote)
 		world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));

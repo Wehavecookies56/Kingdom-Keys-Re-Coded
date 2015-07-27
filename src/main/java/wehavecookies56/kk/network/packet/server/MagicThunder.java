@@ -10,6 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityAero;
 import wehavecookies56.kk.entities.magic.EntityThunder;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
@@ -25,7 +26,7 @@ public class MagicThunder extends AbstractServerMessage<MagicThunder> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		ExtendedPlayer.get(player).setMp(ExtendedPlayer.get(player).getMp()-Magic.getMagicCost("thunder"));
+		ExtendedPlayer.get(player).removeMp(Constants.THUNDER_COST);
 		World world = player.worldObj;
 		if(!world.isRemote)
 		world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));

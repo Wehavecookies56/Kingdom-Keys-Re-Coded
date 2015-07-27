@@ -32,13 +32,13 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public final InventoryKeychain inventory = new InventoryKeychain();
 
 	public int munny, maxMunny, level, maxLevel, experience, maxExperience, antiPoints;
-	
+
 	public double mp, maxMp, dp, maxDP;
 
 	public List<String> driveForms = new ArrayList<String>();
 
 	public boolean keybladeSummoned, firstKeyblade, inDrive, cheatMode, inRecharge;
-	
+
 	public String actualDrive;
 
 	public ExtendedPlayer(EntityPlayer player){
@@ -138,29 +138,32 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void init(Entity entity, World world) {
 
 	}
-	
+
 	public boolean getRecharge()
 	{
 		return this.inRecharge;
 	}
-	
+
 	public void setRecharge(boolean recharge)
 	{
+		if(this.inRecharge == recharge){
+			return;
+		}
 		this.inRecharge = recharge;
 		this.sync();
 	}
-	
+
 	public int getAntiPoints()
 	{
 		return this.antiPoints;
 	}
-	
+
 	public void setAntiPoints(int points)
 	{
 		this.antiPoints = points;
 		this.sync();
 	}
-	
+
 	public void addAntiPoints(int points)
 	{
 		if(this.antiPoints <= 100)
@@ -170,7 +173,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 			this.sync();
 		}
 	}
-	
+
 	public void removeAntiPoints(int points)
 	{
 		if(this.antiPoints >= 0)
@@ -197,7 +200,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.sync();
 	}
 
-	
+
 	public String getDriveInUse()
 	{
 		return this.actualDrive;
@@ -275,6 +278,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void setMp(double mp) {
+		if(this.mp == mp){
+			return;
+		}
 		this.mp = mp;
 		this.sync();
 	}
@@ -304,15 +310,15 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public boolean addDP(double dp2){
+	public boolean addDP(double amount){
 		boolean sufficient = true;
 
-		if(dp2 + this.dp > this.maxDP || dp2 > this.maxDP){
+		if(amount + this.dp > this.maxDP || amount > this.maxDP){
 			sufficient = false;
 		}
 
 		if (sufficient) {
-			this.dp += dp2;
+			this.dp += amount;
 			this.sync();
 		} else {
 			this.dp = this.maxDP;
@@ -357,14 +363,16 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public boolean removeDP(double dp2){
+	public boolean removeDP(double amount){
 		boolean sufficient = true;
 
-		if(this.maxDP - dp2 < 0 || dp2 > this.maxDP){
+		if(this.maxDP - amount < 0 || amount > this.maxDP){
+			this.dp = 0;
+			this.sync();
 			sufficient = false;
 		}
 		if(sufficient){
-			this.dp -= dp2;
+			this.dp -= amount;
 			this.sync();
 		} else {
 			return false;

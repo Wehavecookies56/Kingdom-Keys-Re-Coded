@@ -10,6 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityAero;
 import wehavecookies56.kk.entities.magic.EntityStop;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
@@ -29,7 +30,7 @@ public class MagicStop extends AbstractServerMessage<MagicStop> {
 
 	@Override
 	public void process(EntityPlayer player, Side side){
-		ExtendedPlayer.get(player).removeMp(Magic.getMagicCost("stop"));
+		ExtendedPlayer.get(player).removeMp(Constants.STOP_COST);
 		World world = player.worldObj;
 		if(!world.isRemote)
 		world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));

@@ -23,27 +23,10 @@ import wehavecookies56.kk.network.packet.server.MagicThunder;
 
 public class Magic {
 
-	public static double getMagicCost(String magic)
+	public static double getMagicCost(String magic, EntityPlayer player)
 	{
 		double cost=0;
-		if(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).cheatMode == false)
-		{
-			if(magic == "fire")
-				cost = 20;
-			if(magic == "blizzard")
-				cost = 15;
-			if(magic == "thunder")
-				cost = 30;
-			if(magic == "cure")
-				cost = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp();
-			if(magic == "gravity")
-				cost = 25;
-			if(magic == "aero")
-				cost = 20;
-			if(magic == "stop")
-				cost = 10;
-		}
-		else
+		if(ExtendedPlayer.get(player).cheatMode)
 		{
 			cost = 0;
 		}

@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityFire2;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
@@ -28,7 +29,7 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		ExtendedPlayer.get(player).removeMp(Magic.getMagicCost("fire"));
+		ExtendedPlayer.get(player).removeMp(Constants.FIRE_COST);
 		World world = player.worldObj;
 		//if(!world.isRemote)
 		world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ));

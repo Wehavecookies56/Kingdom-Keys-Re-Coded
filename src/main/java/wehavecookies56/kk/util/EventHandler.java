@@ -34,11 +34,13 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.block.ModBlocks;
+import wehavecookies56.kk.client.gui.GuiMP;
 import wehavecookies56.kk.driveforms.DriveFormAnti;
 import wehavecookies56.kk.driveforms.DriveFormFinal;
 import wehavecookies56.kk.driveforms.DriveFormLimit;
@@ -367,70 +369,69 @@ public class EventHandler {
 	}
 
 	@SubscribeEvent
-	public void onLivingUpdate(LivingUpdateEvent event){
-		if(event.entityLiving instanceof EntityPlayer){
-			DriveForm df;
-			if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "valor")
+	public void onPlayerTick(PlayerTickEvent event){
+		DriveForm df;
+		if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "valor")
+		{
+			df = new DriveFormValor();
+			df.update((EntityPlayer) event.player);
+		}
+		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "wisdom")
+		{
+			df = new DriveFormWisdom();
+			df.update((EntityPlayer) event.player);
+		}
+		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "limit")
+		{
+			df = new DriveFormLimit();
+			df.update((EntityPlayer) event.player);
+		}
+		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "master")
+		{
+			df = new DriveFormMaster();
+			df.update((EntityPlayer) event.player);
+		}
+		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "final")
+		{
+			df = new DriveFormFinal();
+			df.update((EntityPlayer) event.player);
+
+		}
+		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "anti")
+		{
+			df = new DriveFormAnti();
+			df.update((EntityPlayer) event.player);
+		}
+		System.out.println(ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp());
+		if(!ExtendedPlayer.get((EntityPlayer) event.player).getInDrive()) //If player is not in drive
+		{
+			if(ExtendedPlayer.get((EntityPlayer) event.player).getMp() <= 0 || ExtendedPlayer.get((EntityPlayer) event.player).getRecharge())
 			{
-				df = new DriveFormValor();
-				df.update((EntityPlayer) event.entityLiving);
-				
-				if(event.entityLiving.onGround && !event.entityLiving.isInWater())
+				ExtendedPlayer.get((EntityPlayer) event.player).setRecharge(true);
+				if (GuiMP.RMP != ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp())
 				{
-					event.entityLiving.motionX *= 1.3D;
-					event.entityLiving.motionZ *= 1.3D;
-				}	
-				
-				if(event.entityLiving.motionY > 0)
-				{
-					event.entityLiving.motionY *= 1.2D;
+					if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
+						GuiMP.RMP += 0.1;
+						if(GuiMP.RMP > ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp()){
+							GuiMP.RMP = ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp();
+						}
+						//ExtendedPlayer.get(event.player).addMp(0.1);
+						//PacketDispatcher.sendToServer(new ChangeMP(0.1, "+"));
+					}
 				}
-				event.entityLiving.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(),2,2));
-				
-			}
-			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "wisdom")
-			{
-				df = new DriveFormWisdom();
-				df.update((EntityPlayer) event.entityLiving);
-			}
-			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "limit")
-			{
-				df = new DriveFormLimit();
-				df.update((EntityPlayer) event.entityLiving);
-			}
-			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "master")
-			{
-				df = new DriveFormMaster();
-				df.update((EntityPlayer) event.entityLiving);
-			}
-			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "final")
-			{
-				df = new DriveFormFinal();
-				df.update((EntityPlayer) event.entityLiving);
-				
-			}
-			else if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getDriveInUse() == "anti")
-			{
-				df = new DriveFormAnti();
-				df.update((EntityPlayer) event.entityLiving);
-			}
-			
-			if(!ExtendedPlayer.get((EntityPlayer) event.entityLiving).getInDrive()) //If player is not in drive
-			{
-				if(ExtendedPlayer.get((EntityPlayer) event.entityLiving).getMp() <= 0 || ExtendedPlayer.get((EntityPlayer) event.entityLiving).getRecharge())
+				else
 				{
-					ExtendedPlayer.get((EntityPlayer) event.entityLiving).setRecharge(true);
-					if (ExtendedPlayer.get((EntityPlayer) event.entityLiving).getMp() != ExtendedPlayer.get((EntityPlayer) event.entityLiving).getMaxMp())
-					{
-						PacketDispatcher.sendToServer(new ChangeMP(0.1, "+"));
-					}
-					else
-					{
-						ExtendedPlayer.get((EntityPlayer) event.entityLiving).setRecharge(false);
-					}
+					GuiMP.RMP = 0;
+					ExtendedPlayer.get((EntityPlayer) event.player).setMp(ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp());
+					ExtendedPlayer.get((EntityPlayer) event.player).setRecharge(false);
 				}
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public void onLivingUpdate(LivingUpdateEvent event){
+
 	}
 
 	@SubscribeEvent

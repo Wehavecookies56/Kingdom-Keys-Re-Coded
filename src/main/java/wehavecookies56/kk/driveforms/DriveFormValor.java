@@ -1,6 +1,8 @@
 package wehavecookies56.kk.driveforms;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.entities.ExtendedPlayer;
@@ -36,6 +38,18 @@ public class DriveFormValor extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
+
+		if(player.onGround && !player.isInWater())
+		{
+			player.motionX *= 1.3D;
+			player.motionZ *= 1.3D;
+		}
+
+		if(player.motionY > 0)
+		{
+			player.motionY *= 1.2D;
+		}
+		player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(),2,2));
 		if(ExtendedPlayer.get(player).getInDrive())
 		{
 			//System.out.println("Valor update: "+ ExtendedPlayer.get(player).getAntiPoints());

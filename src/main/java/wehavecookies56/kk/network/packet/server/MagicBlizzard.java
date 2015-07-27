@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityBlizzard;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
@@ -29,7 +30,7 @@ public class MagicBlizzard extends AbstractServerMessage<MagicBlizzard> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		ExtendedPlayer.get(player).setMp(ExtendedPlayer.get(player).getMp()-Magic.getMagicCost("blizzard"));
+		ExtendedPlayer.get(player).removeMp(Constants.BLIZZARD_COST);
 		World world = player.worldObj;
 		Vec3 look = player.getLookVec();
 		world.spawnEntityInWorld(new EntityBlizzard(world, player));
