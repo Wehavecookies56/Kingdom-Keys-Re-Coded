@@ -34,7 +34,7 @@ public class CommandGiveMunny implements ICommand {
 
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
-		return null;
+		return "/givemunny <value>";
 	}
 
 	@Override

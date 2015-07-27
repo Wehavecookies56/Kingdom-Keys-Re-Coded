@@ -5,7 +5,9 @@ import com.jadarstudios.developercapes.DevCapes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelCow;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IThreadListener;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -34,6 +36,18 @@ public class ClientProxy extends CommonProxy {
 		registerRenders();
 		registerKeyBindings();
 		registerAchievements();
+	}
+
+	@Override
+	public void spawnFireParticles(Entity entity) {
+		double r = 1.5D;
+		for(int a = 1; a <= 360; a+=7){
+			double x = entity.posX + (r * Math.cos(Math.toRadians(a)));
+			double z = entity.posZ + (r * Math.sin(Math.toRadians(a)));
+
+			entity.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, entity.posY + 1.25D, z, 0.0D, 0.0D, 0.0D);
+			entity.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, entity.posY + 1.05D, z, 0.0D, 0.0D, 0.0D);
+		}
 	}
 
 	private void registerRenders(){

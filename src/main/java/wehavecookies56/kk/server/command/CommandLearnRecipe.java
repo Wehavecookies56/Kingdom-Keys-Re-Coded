@@ -47,7 +47,7 @@ public class CommandLearnRecipe implements ICommand {
 
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
-		return "/learnrecipe <name>";
+		return "/learnrecipe <value>";
 	}
 
 	@Override

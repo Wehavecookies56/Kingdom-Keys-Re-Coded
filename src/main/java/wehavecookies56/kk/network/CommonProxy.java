@@ -3,12 +3,12 @@ package wehavecookies56.kk.network;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.client.gui.GuiKeychains;
@@ -20,6 +20,10 @@ public class CommonProxy implements IGuiHandler {
 	public void init()
 	{
 		//NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
+
+	}
+
+	public void spawnFireParticles(Entity entity){
 
 	}
 

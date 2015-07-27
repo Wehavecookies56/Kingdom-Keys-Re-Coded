@@ -33,7 +33,7 @@ public class CommandCheatMode implements ICommand {
 
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
-		return null;
+		return "/cheatmode";
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
+import wehavecookies56.kk.KingdomKeys;
 
 public class EntityFire2 extends Entity
 {
@@ -39,15 +40,7 @@ public class EntityFire2 extends Entity
 		}
 		int rotation = 0;
 
-		double r = 1.5D;
-
-		for(int a = 1; a <= 360; a+=7){
-			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
-			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
-
-			this.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.posY + 1.25D, z, 0.0D, 0.0D, 0.0D);
-			this.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.posY + 1.05D, z, 0.0D, 0.0D, 0.0D);
-		}
+		KingdomKeys.proxy.spawnFireParticles(this);
 
 		this.rotationYaw = (rotation + 1) % 360;
 		if(ticksExisted > 15){
