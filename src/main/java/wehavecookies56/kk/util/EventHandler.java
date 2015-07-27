@@ -369,33 +369,33 @@ public class EventHandler {
 		if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "valor")
 		{
 			df = new DriveFormValor();
-			df.update((EntityPlayer) event.player);
+			df.update(event.player);
 		}
 		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "wisdom")
 		{
 			df = new DriveFormWisdom();
-			df.update((EntityPlayer) event.player);
+			df.update(event.player);
 		}
 		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "limit")
 		{
 			df = new DriveFormLimit();
-			df.update((EntityPlayer) event.player);
+			df.update(event.player);
 		}
 		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "master")
 		{
 			df = new DriveFormMaster();
-			df.update((EntityPlayer) event.player);
+			df.update(event.player);
 		}
 		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "final")
 		{
 			df = new DriveFormFinal();
-			df.update((EntityPlayer) event.player);
+			df.update(event.player);
 
 		}
 		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "anti")
 		{
 			df = new DriveFormAnti();
-			df.update((EntityPlayer) event.player);
+			df.update(event.player);
 		}
 		if(!ExtendedPlayer.get((EntityPlayer) event.player).getInDrive()) //If player is not in drive
 		{
