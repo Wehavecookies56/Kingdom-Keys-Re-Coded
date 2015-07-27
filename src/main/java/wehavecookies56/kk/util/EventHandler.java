@@ -2,11 +2,12 @@ package wehavecookies56.kk.util;
 
 import java.util.UUID;
 
+import com.mojang.authlib.GameProfile;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,8 +17,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
@@ -40,7 +39,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.block.ModBlocks;
-import wehavecookies56.kk.client.gui.GuiMP;
 import wehavecookies56.kk.driveforms.DriveFormAnti;
 import wehavecookies56.kk.driveforms.DriveFormFinal;
 import wehavecookies56.kk.driveforms.DriveFormLimit;
@@ -61,13 +59,10 @@ import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
-import wehavecookies56.kk.network.packet.server.ChangeMP;
 import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
-
-import com.mojang.authlib.GameProfile;
 
 public class EventHandler {
 	@SubscribeEvent
@@ -402,26 +397,23 @@ public class EventHandler {
 			df = new DriveFormAnti();
 			df.update((EntityPlayer) event.player);
 		}
-		System.out.println(ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp());
 		if(!ExtendedPlayer.get((EntityPlayer) event.player).getInDrive()) //If player is not in drive
 		{
 			if(ExtendedPlayer.get((EntityPlayer) event.player).getMp() <= 0 || ExtendedPlayer.get((EntityPlayer) event.player).getRecharge())
 			{
 				ExtendedPlayer.get((EntityPlayer) event.player).setRecharge(true);
-				if (GuiMP.RMP != ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp())
+				if (MPHelper.RMP != ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp())
 				{
-					if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
-						GuiMP.RMP += 0.1;
-						if(GuiMP.RMP > ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp()){
-							GuiMP.RMP = ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp();
-						}
-						//ExtendedPlayer.get(event.player).addMp(0.1);
-						//PacketDispatcher.sendToServer(new ChangeMP(0.1, "+"));
+					MPHelper.RMP += 0.1;
+					if(MPHelper.RMP > ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp()){
+						MPHelper.RMP = ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp();
 					}
+					//ExtendedPlayer.get(event.player).addMp(0.1);
+					//PacketDispatcher.sendToServer(new ChangeMP(0.1, "+"));
 				}
 				else
 				{
-					GuiMP.RMP = 0;
+					MPHelper.RMP = 0;
 					ExtendedPlayer.get((EntityPlayer) event.player).setMp(ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp());
 					ExtendedPlayer.get((EntityPlayer) event.player).setRecharge(false);
 				}
