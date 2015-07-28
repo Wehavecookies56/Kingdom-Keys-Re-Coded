@@ -63,6 +63,7 @@ public class InputHandler {
 			GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 			PacketDispatcher.sendToServer(new AntiPoints(4,"-"));
+			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 			return true;
 		}
 		else
@@ -171,6 +172,7 @@ public class InputHandler {
 				{
 					GuiCommandMenu.magicselected = GuiCommandMenu.NONE;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
+					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 				}
 				else
 				{
@@ -200,12 +202,15 @@ public class InputHandler {
 						PacketDispatcher.sendToServer(new DriveFormPacket(true));
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 					}
 				}
 				else
 				{//Drive
 					GuiCommandMenu.driveselected = GuiCommandMenu.NONE;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
+					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+
 				}
 			}
 			break;
@@ -218,32 +223,38 @@ public class InputHandler {
 					Magic.Fire(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 					break;
 
 				case GuiCommandMenu.BLIZZARD:
 					Magic.Blizzard(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 					break;
 				case GuiCommandMenu.THUNDER:
 					Magic.Thunder(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 					break;
 				case GuiCommandMenu.CURE:
 					Magic.Cure(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 					break;
 				case GuiCommandMenu.AERO:
 					Magic.Aero(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 					break;
 				case GuiCommandMenu.STOP:
 					Magic.Stop(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 					break;
 			}
 		}
@@ -254,7 +265,7 @@ public class InputHandler {
 			switch(GuiCommandMenu.driveselected)
 			{
 				case GuiCommandMenu.VALOR:
-					if(ExtendedPlayer.get(player).getDP() >= 300)
+					if(ExtendedPlayer.get(player).getDP() >= 300 || ExtendedPlayer.get(player).cheatMode)
 					{
 						if(!antiFormCheck())
 						{
@@ -262,18 +273,18 @@ public class InputHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+							PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 						}
 					}
 					else
 					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-
 						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
 					}
 					break;
 				case GuiCommandMenu.WISDOM:
-					if(ExtendedPlayer.get(player).getDP() >= 300)
+					if(ExtendedPlayer.get(player).getDP() >= 300 || ExtendedPlayer.get(player).cheatMode)
 					{
 						if(!antiFormCheck())
 						{
@@ -281,6 +292,7 @@ public class InputHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+							PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 						}
 					}
 					else
@@ -291,7 +303,7 @@ public class InputHandler {
 					}
 					break;
 				case GuiCommandMenu.LIMIT:
-					if(ExtendedPlayer.get(player).getDP() >= 400)
+					if(ExtendedPlayer.get(player).getDP() >= 400 || ExtendedPlayer.get(player).cheatMode)
 					{
 						if(!antiFormCheck())
 						{
@@ -299,6 +311,7 @@ public class InputHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+							PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 						}
 					}
 					else
@@ -309,7 +322,7 @@ public class InputHandler {
 					}
 					break;
 				case GuiCommandMenu.MASTER:
-					if(ExtendedPlayer.get(player).getDP() >= 400)
+					if(ExtendedPlayer.get(player).getDP() >= 400 || ExtendedPlayer.get(player).cheatMode)
 					{
 						if(!antiFormCheck())
 						{
@@ -317,6 +330,7 @@ public class InputHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+							PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 						}
 					}
 					else
@@ -327,7 +341,7 @@ public class InputHandler {
 					}
 					break;
 				case GuiCommandMenu.FINAL:
-					if(ExtendedPlayer.get(player).getDP() >= 500)
+					if(ExtendedPlayer.get(player).getDP() >= 500 || ExtendedPlayer.get(player).cheatMode)
 					{
 						if(!antiFormCheck())
 						{
@@ -335,6 +349,7 @@ public class InputHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
+							PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 						}
 					}
 					else
@@ -357,14 +372,17 @@ public class InputHandler {
 		else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)
 		{
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Cancel, 1f, 1f));
 		}
 		else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)
 		{
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Cancel, 1f, 1f));
 		}
 		else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)
 		{
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Cancel, 1f, 1f));
 		}
 		GuiCommandMenu.magicselected = GuiCommandMenu.MAGIC;
 		GuiCommandMenu.driveselected = GuiCommandMenu.DRIVE;
@@ -395,12 +413,10 @@ public class InputHandler {
 
 			case ENTER:
 				commandEnter();
-				PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 				break;
 
 			case BACK:
 				commandBack();
-				PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Cancel, 1f, 1f));
 				break;
 			case SUMMON_KEYBLADE:
 				ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
@@ -439,13 +455,11 @@ public class InputHandler {
 		if(event.button == Constants.LEFT_MOUSE && KeyboardHelper.isScrollActivatorDown() && event.buttonstate){
 			commandEnter();
 			event.setCanceled(true);
-			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 		}
 
 		if(event.button == Constants.RIGHT_MOUSE && KeyboardHelper.isScrollActivatorDown() && event.buttonstate){
 			commandBack();
 			event.setCanceled(true);
-			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Cancel, 1f, 1f));
 		}
 
 		if(event.dwheel <= Constants.WHEEL_DOWN && KeyboardHelper.isScrollActivatorDown() && event.dwheel != 0){

@@ -36,14 +36,16 @@ public class DriveFormAnti extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
-		System.out.println("Anti cf: "+ ExtendedPlayer.get(player).getDriveInUse());
-		if(ExtendedPlayer.get(player).getDP() > 0)
-		{
-			PacketDispatcher.sendToServer(new ChangeDP(0.01, "-"));
-		}
-		else
-		{
-			endDrive(player);
+		System.out.println("Drive: "+ ExtendedPlayer.get(player).getDriveInUse());
+		if(!ExtendedPlayer.get(player).cheatMode){
+			if(ExtendedPlayer.get(player).getDP() > 0)
+			{
+				PacketDispatcher.sendToServer(new ChangeDP(0.01, "-"));
+			}
+			else
+			{
+				endDrive(player);
+			}
 		}
 	}
 

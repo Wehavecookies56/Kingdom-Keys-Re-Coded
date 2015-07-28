@@ -53,7 +53,10 @@ public class DriveFormPacket extends AbstractServerMessage<DriveFormPacket> {
 		{
 			ExtendedPlayer.get(player).setInDrive(false);
 			ExtendedPlayer.get(player).setDriveInUse("none");
-			ExtendedPlayer.get(player).setDP(0);
+			if(!ExtendedPlayer.get(player).cheatMode)
+			{
+				ExtendedPlayer.get(player).setDP(0);
+			}
 		}
 
 		if(this.form.equals("valor"))

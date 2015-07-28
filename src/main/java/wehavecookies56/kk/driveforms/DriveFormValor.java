@@ -52,14 +52,15 @@ public class DriveFormValor extends DriveForm {
 		player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(),2,2));
 		if(ExtendedPlayer.get(player).getInDrive())
 		{
-			//System.out.println("Valor update: "+ ExtendedPlayer.get(player).getAntiPoints());
-			if(ExtendedPlayer.get(player).getDP() > 1)
-			{
-				PacketDispatcher.sendToServer(new ChangeDP(1.0, "-"));
-			}
-			else
-			{
-				endDrive(player);
+			if(!ExtendedPlayer.get(player).cheatMode){
+				if(ExtendedPlayer.get(player).getDP() > 0)
+				{
+					PacketDispatcher.sendToServer(new ChangeDP(0.01, "-"));
+				}
+				else
+				{
+					endDrive(player);
+				}
 			}
 		}
 	}

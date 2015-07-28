@@ -39,13 +39,15 @@ public class DriveFormFinal extends DriveForm {
 	public void update(EntityPlayer player) {
 		if(ExtendedPlayer.get(player).getInDrive())
 		{
-			if(ExtendedPlayer.get(player).getDP() > 1)
-			{
-				PacketDispatcher.sendToServer(new ChangeDP(1.0, "-"));
-			}
-			else
-			{
-				endDrive(player);
+			if(!ExtendedPlayer.get(player).cheatMode){
+				if(ExtendedPlayer.get(player).getDP() > 0)
+				{
+					PacketDispatcher.sendToServer(new ChangeDP(0.01, "-"));
+				}
+				else
+				{
+					endDrive(player);
+				}
 			}
 		}
 	}

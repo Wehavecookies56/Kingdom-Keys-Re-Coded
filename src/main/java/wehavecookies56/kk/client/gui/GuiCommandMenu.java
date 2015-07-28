@@ -98,7 +98,7 @@ public class GuiCommandMenu extends GuiScreen {
 			{
 				if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("anti"))
 				{
-					drawString(mc.fontRendererObj,	"Revert", 6, 4, 0x555555);
+					drawString(mc.fontRendererObj,	"Revert", 6, 4, 0x888888);
 				}
 				else
 				{
@@ -127,7 +127,8 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*ITEMS), 0);
 			GL11.glScalef(scale, scale, scale);
 			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
-			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6, 4, 0xFFFFFF);
+			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6, 4, 0x888888);
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}GL11.glPopMatrix();
 		//MAGIC
 		GL11.glPushMatrix();{
@@ -151,7 +152,7 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 			else
 			{
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6, 4, 0x555555);
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6, 4, 0x888888);
 			}
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}GL11.glPopMatrix();
@@ -209,7 +210,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.FIRE_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
-				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x555555 : colour;
+				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Fire), 6, 4, colour);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
@@ -232,7 +233,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.BLIZZARD_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
-				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x555555 : colour;
+				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Blizzard), 6, 4, colour);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
@@ -255,7 +256,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.THUNDER_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
-				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x555555 : colour;
+				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Thunder), 6, 4, colour);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
@@ -278,7 +279,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = 0xFF9900;
-				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x555555 : colour;
+				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Cure), 6, 4, colour);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
@@ -301,7 +302,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.GRAVITY_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
-				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x555555 : colour;
+				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Gravity), 6, 4, colour);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
@@ -324,7 +325,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.AERO_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
-				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x555555 : colour;
+				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Aero), 6, 4, colour);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
@@ -347,7 +348,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if(submenu == SUB_MAGIC){
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.STOP_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
-				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x555555 : colour;
+				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Stop), 6, 4, colour);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
@@ -399,13 +400,13 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*VALOR), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300)
+				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
 				{
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Valor), 6, 4, 0xFFFFFF);
 				}
 				else
 				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Valor), 6, 4, 0x555555);
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Valor), 6, 4, 0x888888);
 				}
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
@@ -439,13 +440,13 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*WISDOM), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300)
+				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
 				{
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Wisdom), 6, 4, 0xFFFFFF);
 				}
 				else
 				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Wisdom), 6, 4, 0x555555);
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Wisdom), 6, 4, 0x888888);
 				}
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
@@ -479,13 +480,13 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*LIMIT), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400)
+				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
 				{
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Limit), 6, 4, 0xFFFFFF);
 				}
 				else
 				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Limit), 6, 4, 0x555555);
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Limit), 6, 4, 0x888888);
 				}
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
@@ -519,13 +520,13 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MASTER), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400)
+				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
 				{
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Master), 6, 4, 0xFFFFFF);
 				}
 				else
 				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Master), 6, 4, 0x555555);
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Master), 6, 4, 0x888888);
 				}
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
@@ -560,13 +561,13 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*FINAL), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 500)
+				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 500 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
 				{
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Final), 6, 4, 0xFFFFFF);
 				}
 				else
 				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Final), 6, 4, 0x555555);
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Final), 6, 4, 0x888888);
 				}
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
