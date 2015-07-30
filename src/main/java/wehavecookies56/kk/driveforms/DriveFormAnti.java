@@ -31,28 +31,27 @@ public class DriveFormAnti extends DriveForm {
 
 	@Override
 	public void initDrive(EntityPlayer player) {
+		ExtendedPlayer.get(player).setDriveInUse(getName());
 		ExtendedPlayer.get(player).setInDrive(true);
 	}
 
 	@Override
 	public void update(EntityPlayer player) {
-		System.out.println("Drive: "+ ExtendedPlayer.get(player).getDriveInUse());
-		if(!ExtendedPlayer.get(player).cheatMode){
-			if(ExtendedPlayer.get(player).getDP() > 0)
-			{
-				ExtendedPlayer.get(player).dp -= 0.01;
+		if(ExtendedPlayer.get(player).dp > 0){
+			ExtendedPlayer.get(player).dp -= 0.1;
+			if(ExtendedPlayer.get(player).dp < 0){
+				ExtendedPlayer.get(player).dp = 0;
 			}
-			else
-			{
-				ExtendedPlayer.get(player).sync();
-				endDrive(player);
-			}
+		}else{
+			endDrive(player);
 		}
 	}
 
 	@Override
 	public void endDrive(EntityPlayer player) {
+		ExtendedPlayer.get(player).setDP(0);
 		ExtendedPlayer.get(player).setInDrive(false);
+		ExtendedPlayer.get(player).setDriveInUse("none");
 	}
 
 }

@@ -11,8 +11,10 @@ import wehavecookies56.kk.network.packet.server.ChangeDP;
 
 public class DriveFormWisdom extends DriveForm {
 
-	public DriveFormWisdom() {
+	double cost;
 
+	public DriveFormWisdom(double cost) {
+		this.cost = cost;
 	}
 
 	@Override
@@ -27,33 +29,31 @@ public class DriveFormWisdom extends DriveForm {
 
 	@Override
 	public double getCost() {
-		return 300;
+		return this.cost;
 	}
 
 	@Override
 	public void initDrive(EntityPlayer player) {
+		ExtendedPlayer.get(player).setDriveInUse(getName());
 		ExtendedPlayer.get(player).setInDrive(true);
 	}
 
 	@Override
 	public void update(EntityPlayer player) {
-		if(ExtendedPlayer.get(player).getInDrive())
-		{
-			if(!ExtendedPlayer.get(player).cheatMode){
-				if(ExtendedPlayer.get(player).getDP() > 0)
-				{
-					PacketDispatcher.sendToServer(new ChangeDP(0.01, "-"));
-				}
-				else
-				{
-					endDrive(player);
-				}
+		if(ExtendedPlayer.get(player).dp > 0){
+			ExtendedPlayer.get(player).dp -= 0.1;
+			if(ExtendedPlayer.get(player).dp < 0){
+				ExtendedPlayer.get(player).dp = 0;
 			}
+		}else{
+			endDrive(player);
 		}
 	}
 
 	@Override
 	public void endDrive(EntityPlayer player) {
+		ExtendedPlayer.get(player).setDP(0);
 		ExtendedPlayer.get(player).setInDrive(false);
+		ExtendedPlayer.get(player).setDriveInUse("none");
 	}
 }

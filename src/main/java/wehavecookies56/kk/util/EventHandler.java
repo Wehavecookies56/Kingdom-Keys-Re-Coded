@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -38,6 +39,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.api.driveforms.DriveForm;
+import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.driveforms.DriveFormAnti;
 import wehavecookies56.kk.driveforms.DriveFormFinal;
@@ -365,49 +367,7 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event){
-		/*
-		DriveForm df;
-		if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "valor")
-		{
-			df = new DriveFormValor();
-			ExtendedPlayer.get(event.player).setInDrive(true);
-			if(ExtendedPlayer.get(event.player).dp > 0){
-				System.out.println(ExtendedPlayer.get(event.player).dp);
-				ExtendedPlayer.get(event.player).dp -= 0.01;
-			}else{
-				ExtendedPlayer.get(event.player).setDP(0);
-				ExtendedPlayer.get(event.player).sync();
-				ExtendedPlayer.get(event.player).setInDrive(false);
-			}
-			df.update(event.player);
-		}
-		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "wisdom")
-		{
-			df = new DriveFormWisdom();
-			df.update(event.player);
-		}
-		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "limit")
-		{
-			df = new DriveFormLimit();
-			df.update(event.player);
-		}
-		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "master")
-		{
-			df = new DriveFormMaster();
-			df.update(event.player);
-		}
-		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "final")
-		{
-			df = new DriveFormFinal();
-			df.update(event.player);
 
-		}
-		else if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse() == "anti")
-		{
-			df = new DriveFormAnti();
-			df.update(event.player);
-		}
-		 */
 		if(!ExtendedPlayer.get((EntityPlayer) event.player).getInDrive()) //If player is not in drive
 		{
 			if(ExtendedPlayer.get((EntityPlayer) event.player).getMp() <= 0 || ExtendedPlayer.get((EntityPlayer) event.player).getRecharge())
@@ -419,8 +379,7 @@ public class EventHandler {
 					if(ExtendedPlayer.get((EntityPlayer) event.player).mp > ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp()){
 						ExtendedPlayer.get((EntityPlayer) event.player).mp = ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp();
 					}
-					//ExtendedPlayer.get(event.player).addMp(0.1);
-					//PacketDispatcher.sendToServer(new ChangeMP(0.1, "+"));
+
 				}
 				else
 				{
@@ -429,21 +388,10 @@ public class EventHandler {
 				}
 			}
 		}
-		if(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse().equals("valor")){
-			ExtendedPlayer.get((EntityPlayer) event.player).setInDrive(true);
-
-			if(ExtendedPlayer.get((EntityPlayer) event.player).dp > 0){
-				System.out.println(ExtendedPlayer.get((EntityPlayer) event.player).dp);
-				ExtendedPlayer.get((EntityPlayer) event.player).dp -= 0.1;
-				if(ExtendedPlayer.get((EntityPlayer) event.player).dp < 0){
-					ExtendedPlayer.get((EntityPlayer) event.player).dp = 0;
-				}
-			}else{
-				ExtendedPlayer.get((EntityPlayer) event.player).setDP(0);
-				ExtendedPlayer.get((EntityPlayer) event.player).setInDrive(false);
-				ExtendedPlayer.get((EntityPlayer) event.player).setDriveInUse("none");;
-			}
+		if(!ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse().equals("none") && DriveFormRegistry.isDriveFormRegistered(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse())){
+			DriveFormRegistry.get(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse()).update((EntityPlayer) event.player);
 		}
+
 	}
 
 	@SubscribeEvent

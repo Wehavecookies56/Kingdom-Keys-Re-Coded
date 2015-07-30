@@ -2,15 +2,15 @@ package wehavecookies56.kk.driveforms;
 
 import static wehavecookies56.kk.api.driveforms.DriveFormRegistry.*;
 
-public class ModDriveForms 
+public class ModDriveForms
 {
 	public static void init()
 	{
-		registerDriveForm(new DriveFormValor());
-		registerDriveForm(new DriveFormWisdom());
-		registerDriveForm(new DriveFormLimit());
-		registerDriveForm(new DriveFormMaster());
-		registerDriveForm(new DriveFormFinal());
+		registerDriveForm(new DriveFormValor(300));
+		registerDriveForm(new DriveFormWisdom(300));
+		registerDriveForm(new DriveFormLimit(400));
+		registerDriveForm(new DriveFormMaster(400));
+		registerDriveForm(new DriveFormFinal(500));
 		registerDriveForm(new DriveFormAnti());
 	}
 }

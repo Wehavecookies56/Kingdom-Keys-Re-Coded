@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.api.driveforms.DriveForm;
+import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.driveforms.DriveFormAnti;
 import wehavecookies56.kk.driveforms.DriveFormFinal;
 import wehavecookies56.kk.driveforms.DriveFormLimit;
@@ -58,45 +59,10 @@ public class DriveFormPacket extends AbstractServerMessage<DriveFormPacket> {
 				ExtendedPlayer.get(player).setDP(0);
 			}
 		}
+		if(DriveFormRegistry.isDriveFormRegistered(form)){
+			DriveFormRegistry.get(form).initDrive(player);
+		}
 
-		if(this.form.equals("valor"))
-		{
-			df = new DriveFormValor();
-			ExtendedPlayer.get(player).setDriveInUse("valor");
-			//ExtendedPlayer.get(player).setInDrive(true);
-			//df.initDrive(player);
-
-		}
-		else if(this.form.equals("wisdom"))
-		{
-			df = new DriveFormWisdom();
-			//ExtendedPlayer.get(player).setDriveInUse("wisdom");
-			df.initDrive(player);
-		}
-		else if(this.form.equals("limit"))
-		{
-			df = new DriveFormLimit();
-			//ExtendedPlayer.get(player).setDriveInUse("limit");
-			df.initDrive(player);
-		}
-		else if(this.form.equals("master"))
-		{
-			df = new DriveFormMaster();
-			//ExtendedPlayer.get(player).setDriveInUse("master");
-			df.initDrive(player);
-		}
-		else if(this.form.equals("final"))
-		{
-			df = new DriveFormFinal();
-			//ExtendedPlayer.get(player).setDriveInUse("final");
-			df.initDrive(player);
-		}
-		else if(this.form.equals("anti"))
-		{
-			df = new DriveFormAnti();
-			//ExtendedPlayer.get(player).setDriveInUse("anti");
-			df.initDrive(player);
-		}
 	}
 
 }

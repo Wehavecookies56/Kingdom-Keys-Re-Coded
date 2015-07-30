@@ -6,7 +6,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
+import wehavecookies56.kk.driveforms.ModDriveForms;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
@@ -53,12 +55,9 @@ public class InputHandler {
 		{
 			prob = 40;
 		}
-		System.out.println("AntiPoints: "+ap);
-		System.out.println("Random: "+random*100);
-		System.out.println("Probability: "+prob);
+
 		if(random*100 < prob)
 		{
-			System.out.println("AntiForm Activated!");
 			PacketDispatcher.sendToServer(new DriveFormPacket("anti"));
 			GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
@@ -192,7 +191,7 @@ public class InputHandler {
 				//PacketDispatcher.sendToServer(new ChangeDP(10, "+")); //TODO Disable it to make it fair xD
 				if(ExtendedPlayer.get(player).getInDrive())
 				{//Revert
-					if(ExtendedPlayer.get(player).getDriveInUse().equals("nti")) //TODO change nti to anti
+					if(ExtendedPlayer.get(player).getDriveInUse().equals("Anti")) //TODO change nti to anti
 					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
@@ -264,11 +263,11 @@ public class InputHandler {
 			switch(GuiCommandMenu.driveselected)
 			{
 				case GuiCommandMenu.VALOR:
-					if(ExtendedPlayer.get(player).getDP() >= 300 || ExtendedPlayer.get(player).cheatMode)
+					if(ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Valor").getCost() || ExtendedPlayer.get(player).cheatMode)
 					{
 						if(!antiFormCheck())
 						{
-							PacketDispatcher.sendToServer(new DriveFormPacket("valor"));
+							PacketDispatcher.sendToServer(new DriveFormPacket("Valor"));
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
@@ -283,11 +282,11 @@ public class InputHandler {
 					}
 					break;
 				case GuiCommandMenu.WISDOM:
-					if(ExtendedPlayer.get(player).getDP() >= 300 || ExtendedPlayer.get(player).cheatMode)
+					if(ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Wisdom").getCost() || ExtendedPlayer.get(player).cheatMode)
 					{
 						if(!antiFormCheck())
 						{
-							PacketDispatcher.sendToServer(new DriveFormPacket("wisdom"));
+							PacketDispatcher.sendToServer(new DriveFormPacket("Wisdom"));
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
@@ -302,11 +301,11 @@ public class InputHandler {
 					}
 					break;
 				case GuiCommandMenu.LIMIT:
-					if(ExtendedPlayer.get(player).getDP() >= 400 || ExtendedPlayer.get(player).cheatMode)
+					if(ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Limit").getCost() || ExtendedPlayer.get(player).cheatMode)
 					{
 						if(!antiFormCheck())
 						{
-							PacketDispatcher.sendToServer(new DriveFormPacket("limit"));
+							PacketDispatcher.sendToServer(new DriveFormPacket("Limit"));
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
@@ -321,11 +320,11 @@ public class InputHandler {
 					}
 					break;
 				case GuiCommandMenu.MASTER:
-					if(ExtendedPlayer.get(player).getDP() >= 400 || ExtendedPlayer.get(player).cheatMode)
+					if(ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Master").getCost() || ExtendedPlayer.get(player).cheatMode)
 					{
 						if(!antiFormCheck())
 						{
-							PacketDispatcher.sendToServer(new DriveFormPacket("master"));
+							PacketDispatcher.sendToServer(new DriveFormPacket("Master"));
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
@@ -340,11 +339,11 @@ public class InputHandler {
 					}
 					break;
 				case GuiCommandMenu.FINAL:
-					if(ExtendedPlayer.get(player).getDP() >= 500 || ExtendedPlayer.get(player).cheatMode)
+					if(ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Final").getCost() || ExtendedPlayer.get(player).cheatMode)
 					{
 						if(!antiFormCheck())
 						{
-							PacketDispatcher.sendToServer(new DriveFormPacket("final"));
+							PacketDispatcher.sendToServer(new DriveFormPacket("Final"));
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
