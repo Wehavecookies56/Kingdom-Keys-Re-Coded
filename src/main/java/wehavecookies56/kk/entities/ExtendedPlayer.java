@@ -206,6 +206,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return this.actualDrive;
 	}
 	public void setInDrive(boolean inDrive){
+		if(this.inDrive == inDrive){
+			return;
+		}
 		this.inDrive = inDrive;
 		this.sync();
 	}
@@ -215,6 +218,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void setDP(double amount){
+		if(amount == this.dp){
+			return;
+		}
 		this.dp = amount;
 		this.sync();
 	}

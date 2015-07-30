@@ -38,8 +38,7 @@ public class DriveFormValor extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
-
-		if(player.onGround && !player.isInWater())
+		/*if(player.onGround && !player.isInWater())
 		{
 			player.motionX *= 1.3D;
 			player.motionZ *= 1.3D;
@@ -50,15 +49,19 @@ public class DriveFormValor extends DriveForm {
 			player.motionY *= 1.2D;
 		}
 		player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(),2,2));
+		*/
 		if(ExtendedPlayer.get(player).getInDrive())
 		{
 			if(!ExtendedPlayer.get(player).cheatMode){
-				if(ExtendedPlayer.get(player).getDP() > 0)
+				if(ExtendedPlayer.get(player).dp > 0)
 				{
-					PacketDispatcher.sendToServer(new ChangeDP(0.01, "-"));
+					//PacketDispatcher.sendToServer(new ChangeDP(0.01, "-"));
+					ExtendedPlayer.get(player).dp -= 0.01;
 				}
 				else
 				{
+					System.out.println("Sync");
+					ExtendedPlayer.get(player).sync();
 					endDrive(player);
 				}
 			}

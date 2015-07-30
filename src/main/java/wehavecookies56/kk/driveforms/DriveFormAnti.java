@@ -40,10 +40,11 @@ public class DriveFormAnti extends DriveForm {
 		if(!ExtendedPlayer.get(player).cheatMode){
 			if(ExtendedPlayer.get(player).getDP() > 0)
 			{
-				PacketDispatcher.sendToServer(new ChangeDP(0.01, "-"));
+				ExtendedPlayer.get(player).dp -= 0.01;
 			}
 			else
 			{
+				ExtendedPlayer.get(player).sync();
 				endDrive(player);
 			}
 		}

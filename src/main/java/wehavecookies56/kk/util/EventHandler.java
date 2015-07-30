@@ -402,18 +402,17 @@ public class EventHandler {
 			if(ExtendedPlayer.get((EntityPlayer) event.player).getMp() <= 0 || ExtendedPlayer.get((EntityPlayer) event.player).getRecharge())
 			{
 				ExtendedPlayer.get((EntityPlayer) event.player).setRecharge(true);
-				if (MPHelper.RMP != ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp())
+				if (ExtendedPlayer.get((EntityPlayer) event.player).mp != ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp())
 				{
-					MPHelper.RMP += 0.1;
-					if(MPHelper.RMP > ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp()){
-						MPHelper.RMP = ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp();
+					ExtendedPlayer.get((EntityPlayer) event.player).mp += 0.1;
+					if(ExtendedPlayer.get((EntityPlayer) event.player).mp > ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp()){
+						ExtendedPlayer.get((EntityPlayer) event.player).mp = ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp();
 					}
 					//ExtendedPlayer.get(event.player).addMp(0.1);
 					//PacketDispatcher.sendToServer(new ChangeMP(0.1, "+"));
 				}
 				else
 				{
-					MPHelper.RMP = 0;
 					ExtendedPlayer.get((EntityPlayer) event.player).setMp(ExtendedPlayer.get((EntityPlayer) event.player).getMaxMp());
 					ExtendedPlayer.get((EntityPlayer) event.player).setRecharge(false);
 				}

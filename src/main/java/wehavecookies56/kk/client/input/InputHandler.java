@@ -33,7 +33,7 @@ public class InputHandler {
 		}
 		return null;
 	}
-	
+
 	public boolean antiFormCheck()
 	{
 		double random = Math.random();
@@ -43,12 +43,12 @@ public class InputHandler {
 		{
 			prob = 10;
 		}
-		
+
 		else if(ap > 4 && ap <=9)
 		{
 			prob = 25;
 		}
-			
+
 		else if(ap >= 10)
 		{
 			prob = 40;
@@ -189,13 +189,13 @@ public class InputHandler {
 		case GuiCommandMenu.DRIVE:
 			if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
 			{
-				PacketDispatcher.sendToServer(new ChangeDP(10, "+")); //TODO Disable it to make it fair xD
+				//PacketDispatcher.sendToServer(new ChangeDP(10, "+")); //TODO Disable it to make it fair xD
 				if(ExtendedPlayer.get(player).getInDrive())
 				{//Revert
 					if(ExtendedPlayer.get(player).getDriveInUse().equals("nti")) //TODO change nti to anti
 					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));	
+						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
 					}
 					else
 					{
@@ -261,7 +261,7 @@ public class InputHandler {
 
 		if(GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)
 		{
-			
+
 			switch(GuiCommandMenu.driveselected)
 			{
 				case GuiCommandMenu.VALOR:

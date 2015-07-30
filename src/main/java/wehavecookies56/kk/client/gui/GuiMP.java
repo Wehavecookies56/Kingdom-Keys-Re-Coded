@@ -4,7 +4,6 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -12,7 +11,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.util.MPHelper;
 
 public class GuiMP extends GuiScreen {
 
@@ -35,7 +33,6 @@ public class GuiMP extends GuiScreen {
 
 			float oneMP =((float) noborderguiwidth / (float) ExtendedPlayer.get(player).getMaxMp());
 			float currMP = noborderguiwidth - (float) (oneMP * ExtendedPlayer.get(player).getMp());
-			float currRMP = noborderguiwidth - (float) (oneMP * MPHelper.RMP);
 			float scale = 0.65f;
 			switch(mc.gameSettings.guiScale){
 			case Constants.SCALE_AUTO:
@@ -56,10 +53,8 @@ public class GuiMP extends GuiScreen {
 			float barProg = currMP;
 			if(ExtendedPlayer.get(player).getRecharge() == false){
 				v = 0;
-				barProg = currMP;
 			}else{
 				v = 10;
-				barProg = currRMP;
 			}
 			this.drawTexturedModalRect(-25, 4, 0, v, guiWidth, guiHeight);
 
@@ -73,11 +68,9 @@ public class GuiMP extends GuiScreen {
 			float barProg2 = currMP;
 			if(ExtendedPlayer.get(player).getRecharge() == false){
 				v2 = 6;
-				barProg2 = currMP;
 			}
 			else{
 				v2 = 16;
-				barProg2  = currRMP;
 			}
 			this.drawTexturedModalRect(-25, 5, 0, v2, (int)(noborderguiwidth - barProg2) - 2, noborderguiheight);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
