@@ -63,37 +63,38 @@ public class DriveFormPacket extends AbstractServerMessage<DriveFormPacket> {
 		{
 			df = new DriveFormValor();
 			ExtendedPlayer.get(player).setDriveInUse("valor");
-			df.initDrive(player);
+			//ExtendedPlayer.get(player).setInDrive(true);
+			//df.initDrive(player);
 
 		}
 		else if(this.form.equals("wisdom"))
 		{
 			df = new DriveFormWisdom();
-			ExtendedPlayer.get(player).setDriveInUse("wisdom");
+			//ExtendedPlayer.get(player).setDriveInUse("wisdom");
 			df.initDrive(player);
 		}
 		else if(this.form.equals("limit"))
 		{
 			df = new DriveFormLimit();
-			ExtendedPlayer.get(player).setDriveInUse("limit");
+			//ExtendedPlayer.get(player).setDriveInUse("limit");
 			df.initDrive(player);
 		}
 		else if(this.form.equals("master"))
 		{
 			df = new DriveFormMaster();
-			ExtendedPlayer.get(player).setDriveInUse("master");
+			//ExtendedPlayer.get(player).setDriveInUse("master");
 			df.initDrive(player);
 		}
 		else if(this.form.equals("final"))
 		{
 			df = new DriveFormFinal();
-			ExtendedPlayer.get(player).setDriveInUse("final");
+			//ExtendedPlayer.get(player).setDriveInUse("final");
 			df.initDrive(player);
 		}
 		else if(this.form.equals("anti"))
 		{
 			df = new DriveFormAnti();
-			ExtendedPlayer.get(player).setDriveInUse("anti");
+			//ExtendedPlayer.get(player).setDriveInUse("anti");
 			df.initDrive(player);
 		}
 	}

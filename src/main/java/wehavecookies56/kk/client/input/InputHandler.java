@@ -210,7 +210,6 @@ public class InputHandler {
 					GuiCommandMenu.driveselected = GuiCommandMenu.NONE;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
 					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
-
 				}
 			}
 			break;

@@ -160,6 +160,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public void setAntiPoints(int points)
 	{
+		if(this.antiPoints == points){
+			return;
+		}
 		this.antiPoints = points;
 		this.sync();
 	}
@@ -196,6 +199,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public void setDriveInUse(String drive)
 	{
+		if(this.actualDrive.equals(drive)){
+			return;
+		}
 		this.actualDrive = drive;
 		this.sync();
 	}

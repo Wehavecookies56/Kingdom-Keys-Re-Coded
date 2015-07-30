@@ -34,6 +34,7 @@ public class DriveFormValor extends DriveForm {
 	@Override
 	public void initDrive(EntityPlayer player) {
 		ExtendedPlayer.get(player).setInDrive(true);
+		ExtendedPlayer.get(player).setDriveInUse("valor");
 	}
 
 	@Override
@@ -48,29 +49,39 @@ public class DriveFormValor extends DriveForm {
 		{
 			player.motionY *= 1.2D;
 		}
-		player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(),2,2));
 		*/
-		if(ExtendedPlayer.get(player).getInDrive())
-		{
+		if(ExtendedPlayer.get(player).dp > 0){
+			System.out.println(ExtendedPlayer.get(player).dp);
+			ExtendedPlayer.get(player).dp -= 0.01;
+		}else{
+			ExtendedPlayer.get(player).dp = 0;
+			ExtendedPlayer.get(player).sync();
+			endDrive(player);
+		}
+
+		/*
+		player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(),2,2));
+		if(ExtendedPlayer.get(player).getInDrive()){
 			if(!ExtendedPlayer.get(player).cheatMode){
-				if(ExtendedPlayer.get(player).dp > 0)
-				{
+				if(ExtendedPlayer.get(player).dp > 0){
 					//PacketDispatcher.sendToServer(new ChangeDP(0.01, "-"));
 					ExtendedPlayer.get(player).dp -= 0.01;
 				}
-				else
-				{
+				else{
 					System.out.println("Sync");
 					ExtendedPlayer.get(player).sync();
 					endDrive(player);
 				}
 			}
 		}
+		*/
 	}
 
 	@Override
 	public void endDrive(EntityPlayer player) {
+		ExtendedPlayer.get(player).sync();
 		ExtendedPlayer.get(player).setInDrive(false);
+		ExtendedPlayer.get(player).setDriveInUse("none");
 	}
 
 }
