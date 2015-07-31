@@ -1,13 +1,14 @@
 package wehavecookies56.kk.driveforms;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.input.Keyboard;
+
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.server.ChangeDP;
 
 public class DriveFormFinal extends DriveForm {
 
@@ -40,6 +41,28 @@ public class DriveFormFinal extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
+		if(player.motionY > 0)
+		{
+			player.motionY *= Constants.FINAL_JUMP;
+		}
+		
+		if(player.onGround && !player.isInWater()){
+			player.motionX *= 1.2D;
+			player.motionZ *= 1.2D;
+		}
+		
+		else
+		{				
+			if(player.motionY < 0)		
+			{
+				if(Keyboard.isKeyDown(Keyboard.KEY_SPACE))
+				{
+					player.motionY *= Constants.FINAL_GLIDE_1;
+				}
+			}
+		}
+		
+		
 		if(ExtendedPlayer.get(player).dp > 0){
 			ExtendedPlayer.get(player).dp -= 0.1;
 			if(ExtendedPlayer.get(player).dp < 0){

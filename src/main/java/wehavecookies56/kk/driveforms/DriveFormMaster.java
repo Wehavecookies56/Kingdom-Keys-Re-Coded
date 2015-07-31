@@ -16,7 +16,7 @@ public class DriveFormMaster extends DriveForm {
 	public DriveFormMaster(double cost) {
 		this.cost = cost;
 	}
-
+	int jumps = 0;
 	@Override
 	public String getName() {
 		return "Master";
@@ -40,6 +40,38 @@ public class DriveFormMaster extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
+		if(player.onGround && !player.isInWater()){
+			player.motionX *= 1.18D;
+			player.motionZ *= 1.18D;
+		}
+		else if(!player.onGround)
+		{
+			if(player.motionY > 0)
+			{
+				player.motionY *= 1.05D;
+			}
+		}
+//W.I.P.
+						
+		if(player.onGround)
+		{
+			jumps = 0;
+		}
+		else
+		{	
+			if(Minecraft.getMinecraft().gameSettings.keyBindJump.isPressed())							
+			{
+				System.out.println("Jumps: "+jumps);
+				if(jumps<1)
+				{
+					jumps++;
+					player.jump();
+				}
+			}
+		}
+		
+		
+		
 		if(ExtendedPlayer.get(player).dp > 0){
 			ExtendedPlayer.get(player).dp -= 0.1;
 			if(ExtendedPlayer.get(player).dp < 0){

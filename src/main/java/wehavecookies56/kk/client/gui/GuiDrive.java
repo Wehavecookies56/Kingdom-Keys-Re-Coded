@@ -70,6 +70,11 @@ public class GuiDrive extends GuiScreen {
 		return bar;
 	}
 
+	int randomWithRange(int min, int max){
+		int range = Math.abs(max - min) + 1;
+		return (int)(Math.random() * range) + (min <= max ? min : max);
+	}
+	
 	@SubscribeEvent
 	public void onRenderOverlayPost(RenderGameOverlayEvent event){
 
@@ -166,22 +171,36 @@ public class GuiDrive extends GuiScreen {
 				this.drawTexturedModalRect(15, 6, 90, 38, 8, guiHeight);
 			}
 			GL11.glPopMatrix();
-			if(dp >= 1000)
+			if(ExtendedPlayer.get(player).dp >= 1000)
 			{
-				//System.out.println(dp);
-
 				GL11.glPushMatrix();
-				GL11.glTranslatef((screenWidth - guiWidth*scale), screenHeight - guiHeight*scale - 17, 0);
-				this.drawTexturedModalRect((screenWidth - guiWidth - 2), screenHeight - guiHeight - 16, 0, 57, 30, guiHeight);
+				switch(randomWithRange(1, 4))
+				{
+				case 1:
+					GL11.glColor3ub((byte)255, (byte)50, (byte)40);
+
+					break;
+				case 2:
+					GL11.glColor3ub((byte)35, (byte)255, (byte)50);
+
+					break;
+				case 3:
+					GL11.glColor3ub((byte)35, (byte)50, (byte)255);
+					break;
+				}
+				//GL11.glTranslatef((screenWidth - guiWidth*scale), screenHeight - guiHeight*scale - 17, 0);
+				this.drawTexturedModalRect((screenWidth - guiWidth + 20), screenHeight - guiHeight - 8, 0, 57, 30, guiHeight);
+				GL11.glColor3ub((byte)255, (byte)255, (byte)255);
+
 				GL11.glPopMatrix();
 			}
-			else
+			/*else
 			{
 				GL11.glPushMatrix();
 				GL11.glTranslatef((screenWidth - guiWidth*scale), screenHeight - guiHeight*scale - 17, 0);
 				this.drawTexturedModalRect((screenWidth - guiWidth - 23), screenHeight - guiHeight - 20, 0, 100, 30, guiHeight);
 				GL11.glPopMatrix();
-			}
+			}*/
 		}
 	}
 }

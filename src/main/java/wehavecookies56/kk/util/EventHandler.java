@@ -2,8 +2,6 @@ package wehavecookies56.kk.util;
 
 import java.util.UUID;
 
-import com.mojang.authlib.GameProfile;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
@@ -18,7 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -26,6 +23,7 @@ import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -38,15 +36,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.achievements.ModAchievements;
-import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.block.ModBlocks;
-import wehavecookies56.kk.driveforms.DriveFormAnti;
-import wehavecookies56.kk.driveforms.DriveFormFinal;
-import wehavecookies56.kk.driveforms.DriveFormLimit;
-import wehavecookies56.kk.driveforms.DriveFormMaster;
-import wehavecookies56.kk.driveforms.DriveFormValor;
-import wehavecookies56.kk.driveforms.DriveFormWisdom;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
@@ -65,6 +56,8 @@ import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
+
+import com.mojang.authlib.GameProfile;
 
 public class EventHandler {
 	@SubscribeEvent
@@ -449,6 +442,19 @@ public class EventHandler {
 		}
 	}
 
+	@SubscribeEvent
+	public void onFall(LivingFallEvent event)
+	{
+		if(event.entityLiving instanceof EntityPlayer)
+		{		
+			EntityPlayer player = (EntityPlayer) event.entityLiving;			
+			if(ExtendedPlayer.get(player).getInDrive())
+			{
+				event.distance=0;
+			}
+		}
+	}
+	
 	@SubscribeEvent
 	public void onBlockDestroyed(HarvestDropsEvent event){
 		if(event.state.getBlock() == ModBlocks.BlazingOre){
