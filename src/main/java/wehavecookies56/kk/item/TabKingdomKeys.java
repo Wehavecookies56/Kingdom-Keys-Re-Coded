@@ -11,7 +11,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import sun.rmi.log.LogHandler;
 import wehavecookies56.kk.util.LogHelper;
 
 public class TabKingdomKeys extends CreativeTabs {
