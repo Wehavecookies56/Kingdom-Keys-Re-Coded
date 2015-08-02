@@ -74,9 +74,7 @@ public class EntityThunder extends Entity
 	@Override
 	protected void entityInit()
 	{
-		if(player == null){
-			return;
-		}
+		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 		double distance = 3.0D;
 		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(3, 3, 3);
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
