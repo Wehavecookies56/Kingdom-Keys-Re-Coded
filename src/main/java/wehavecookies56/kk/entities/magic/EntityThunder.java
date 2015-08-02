@@ -34,6 +34,23 @@ public class EntityThunder extends Entity
 		this.posY = y;
 		this.posZ = z;
 		this.player = sender;
+		double distance = 3.0D;
+		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(3, 3, 3);
+		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
+		//TODO CHECK FOR ENTITIES AND DAMAGE THEM
+		if(!list.isEmpty())
+		{
+			for(int i=0; i<list.size();i++)
+			{
+				Entity e = (Entity) list.get(i);
+				if(e instanceof EntityLiving){
+					summonLightning = true;
+					//Something so the player doesen't get damage
+					this.worldObj.spawnEntityInWorld((new EntityLightningBolt(this.worldObj, e.posX, e.posY, e.posZ)));
+				}
+			}
+		}
+		aabb.contract(3, 3, 3);
 	}
 
 	@Override
@@ -74,24 +91,7 @@ public class EntityThunder extends Entity
 	@Override
 	protected void entityInit()
 	{
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-		double distance = 3.0D;
-		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(3, 3, 3);
-		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
-		//TODO CHECK FOR ENTITIES AND DAMAGE THEM
-		if(!list.isEmpty())
-		{
-			for(int i=0; i<list.size();i++)
-			{
-				Entity e = (Entity) list.get(i);
-				if(e instanceof EntityLiving){
-					summonLightning = true;
-					//Something so the player doesen't get damage
-					this.worldObj.spawnEntityInWorld((new EntityLightningBolt(this.worldObj, e.posX, e.posY, e.posZ)));
-				}
-			}
-		}
-		aabb.contract(3, 3, 3);
+
 	}
 
 	@Override
