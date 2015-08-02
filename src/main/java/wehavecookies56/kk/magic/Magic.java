@@ -31,7 +31,7 @@ public class Magic {
 			cost = 0;
 		}
 		return cost;
-	}
+	}//Test to sync
 
 	public static void Fire(EntityPlayer player, World world)
 	{
