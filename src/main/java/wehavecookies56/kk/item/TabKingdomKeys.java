@@ -1,5 +1,6 @@
 package wehavecookies56.kk.item;
 
+import java.io.IOException;
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,6 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sun.rmi.log.LogHandler;
+import wehavecookies56.kk.util.LogHelper;
 
 public class TabKingdomKeys extends CreativeTabs {
 
@@ -38,6 +41,14 @@ public class TabKingdomKeys extends CreativeTabs {
 		magicOrb.setTagCompound(new NBTTagCompound());
 		magicOrb.getTagCompound().setInteger("amount", 100);
 		list.add(magicOrb);
+		try {
+			getSkulls(list);
+		} catch (IOException e) {
+			LogHelper.info("Unable to get player skulls");
+		}
+	}
+
+	public void getSkulls(List list) throws IOException {
 		ItemStack WHC56skull = new ItemStack(Items.skull, 1, 3);
 		WHC56skull.setTagCompound(new NBTTagCompound());
 		WHC56skull.getTagCompound().setTag("SkullOwner", new NBTTagString("Wehavecookies56"));
