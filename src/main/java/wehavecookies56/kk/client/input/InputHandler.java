@@ -192,7 +192,6 @@ public class InputHandler {
 		case GuiCommandMenu.DRIVE:
 			if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
 			{
-				//PacketDispatcher.sendToServer(new ChangeDP(10, "+")); //TODO Disable it to make it fair xD
 				if(ExtendedPlayer.get(player).getInDrive())
 				{//Revert
 					if(ExtendedPlayer.get(player).getDriveInUse().equals("Anti") && ExtendedPlayer.get(player).cheatMode == false) //TODO change nti to anti
@@ -253,10 +252,10 @@ public class InputHandler {
 					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 					break;
 				case GuiCommandMenu.STOP:
-					Magic.Stop(player, world);
+				/*	Magic.Stop(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));*/
 					break;
 			}
 		}
