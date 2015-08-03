@@ -55,14 +55,18 @@ public class InputHandler {
 		{
 			prob = 40;
 		}
-
+		/*System.out.println("Prob: "+prob);
+		System.out.println("random*100: "+random*100);
+		System.out.println("ap: "+ap);
+		System.out.println("random*100 < prob: "+(random*100 < prob));*/
 		if(random*100 < prob)
 		{
-			PacketDispatcher.sendToServer(new DriveFormPacket("anti"));
+			PacketDispatcher.sendToServer(new DriveFormPacket("Anti"));
 			GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 			PacketDispatcher.sendToServer(new AntiPoints(4,"-"));
 			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+			
 			return true;
 		}
 		else
@@ -191,7 +195,7 @@ public class InputHandler {
 				//PacketDispatcher.sendToServer(new ChangeDP(10, "+")); //TODO Disable it to make it fair xD
 				if(ExtendedPlayer.get(player).getInDrive())
 				{//Revert
-					if(ExtendedPlayer.get(player).getDriveInUse().equals("Anti")) //TODO change nti to anti
+					if(ExtendedPlayer.get(player).getDriveInUse().equals("Anti") && ExtendedPlayer.get(player).cheatMode == false) //TODO change nti to anti
 					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));

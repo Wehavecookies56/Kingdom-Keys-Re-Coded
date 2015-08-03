@@ -118,10 +118,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.inRecharge = properties.getBoolean("InRecharge");
 
 
-		LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
+		/*LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
 		LogHelper.info("Loaded DP: " + properties.getInteger("DP"));
 		String s = properties.getBoolean("KeybladeSummoned") == true ? "Keyblade is summoned" : "Keyblade is not summoned";
-		LogHelper.info("Loaded Summon data: " + s);
+		LogHelper.info("Loaded Summon data: " + s);*/
 
 		NBTTagList tagList = properties.getTagList("DriveFormList", Constants.NBT.TAG_COMPOUND);
 		for(int i = 0; i < tagList.tagCount(); i++){

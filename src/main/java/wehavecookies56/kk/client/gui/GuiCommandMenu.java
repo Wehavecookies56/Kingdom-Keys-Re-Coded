@@ -96,7 +96,7 @@ public class GuiCommandMenu extends GuiScreen {
 			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			if(ExtendedPlayer.get(mc.thePlayer).getInDrive())
 			{
-				if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("anti"))
+				if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti"))
 				{
 					drawString(mc.fontRendererObj,	"Revert", 6, 4, 0x888888);
 				}
@@ -110,6 +110,7 @@ public class GuiCommandMenu extends GuiScreen {
 			{
 				drawString(mc.fontRendererObj, 	TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6, 4, 0xFFFFFF);
 			}
+
 		}GL11.glPopMatrix();
 		//ITEMS
 		GL11.glPushMatrix();{
