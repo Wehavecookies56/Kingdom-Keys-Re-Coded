@@ -38,6 +38,7 @@ public class EntityBlizzard extends EntityThrowable
 
 	@Override
 	public void onUpdate() {
+		super.onUpdate();
 		if(shootingEntity == null){
 			return;
 		}
@@ -49,8 +50,8 @@ public class EntityBlizzard extends EntityThrowable
 		if(ticksExisted > 60){
 			setDead();
 		}
-		super.onUpdate();
 	}
+
 	@Override
 	protected void onImpact(MovingObjectPosition movingObject) {
 		if (!this.worldObj.isRemote)
