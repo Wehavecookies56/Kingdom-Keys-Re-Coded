@@ -46,6 +46,7 @@ public class EntityBlizzard extends EntityThrowable
 		if(!worldObj.isRemote){
 			PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this), (EntityPlayer) shootingEntity, 64.0D);
 		}
+		worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.rotationYaw = (rotation + 1) % 360;
 		if(ticksExisted > 60){
 			setDead();
