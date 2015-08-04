@@ -10,6 +10,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Constants;
+import wehavecookies56.kk.lib.Reference;
 
 public class GuiPlayerPortrait extends GuiScreen {
 
@@ -34,34 +35,6 @@ public class GuiPlayerPortrait extends GuiScreen {
 				break;
 			}
 
-			if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
-			{
-				GL11.glColor3ub((byte)200, (byte)50, (byte)40);
-				//GL11.glColor4f(100.0F, 1.0F, 1.0F, 1.0F);
-
-			}
-			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Wisdom"))
-			{
-				GL11.glColor3ub((byte)70, (byte)70, (byte)255);
-			}
-			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Limit"))
-			{
-				GL11.glColor3ub((byte)255, (byte)128, (byte)0);
-			}
-			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Master"))
-			{
-				GL11.glColor3ub((byte)255, (byte)255, (byte)0);
-			}
-			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Final"))
-			{
-				GL11.glColor3ub((byte)192, (byte)192, (byte)192);
-			}
-			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti"))
-			{
-				GL11.glColor3ub((byte)50, (byte)50, (byte)50);
-			}
-
-			
 			//HEAD
 			int headWidth = 32;
 			int headHeight = 32;
@@ -128,6 +101,160 @@ public class GuiPlayerPortrait extends GuiScreen {
 				this.drawTexturedModalRect(0, 0, 176, 80, armWidth, armHeight);
 			}GL11.glPopMatrix();
 			GL11.glColor4f(100.0F, 1.0F, 1.0F, 1.0F);
+
+
+
+			if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
+			{
+				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Valor_A.png");
+				mc.renderEngine.bindTexture(texture);
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 32*scale) - 16*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
+				}GL11.glPopMatrix();
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 16*scale) - 48*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
+				}GL11.glPopMatrix();
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 16*scale) - 0*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
+				}GL11.glPopMatrix();
+
+			}
+			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Wisdom"))
+			{
+				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Wisdom_A.png");
+				mc.renderEngine.bindTexture(texture);
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 32*scale) - 16*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
+				}GL11.glPopMatrix();
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 16*scale) - 48*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
+				}GL11.glPopMatrix();
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 16*scale) - 0*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
+				}GL11.glPopMatrix();
+			}
+			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Limit"))
+			{
+				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Limit_A.png");
+				mc.renderEngine.bindTexture(texture);
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 32*scale) - 16*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
+				}GL11.glPopMatrix();
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 16*scale) - 48*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
+				}GL11.glPopMatrix();
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 16*scale) - 0*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
+				}GL11.glPopMatrix();
+			}
+			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Master"))
+			{
+				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Master_A.png");
+				mc.renderEngine.bindTexture(texture);
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 32*scale) - 16*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
+				}GL11.glPopMatrix();
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 16*scale) - 48*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
+				}GL11.glPopMatrix();
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 16*scale) - 0*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
+				}GL11.glPopMatrix();
+			}
+			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Final"))
+			{
+				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Final_A.png");
+				mc.renderEngine.bindTexture(texture);
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 32*scale) - 16*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
+				}GL11.glPopMatrix();
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 16*scale) - 48*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
+				}GL11.glPopMatrix();
+
+				GL11.glPushMatrix();{
+					GL11.glTranslatef((screenWidth - 16*scale) - 0*scale, (screenHeight - 80*scale) - -48*scale, 0);
+					GL11.glScalef(2, 1, 1);
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					GL11.glScalef(scale, scale, scale);
+					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
+				}GL11.glPopMatrix();
+			}
+			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti"))
+			{
+				GL11.glColor3ub((byte)50, (byte)50, (byte)50);
+			}
+
 		}
 	}
 }

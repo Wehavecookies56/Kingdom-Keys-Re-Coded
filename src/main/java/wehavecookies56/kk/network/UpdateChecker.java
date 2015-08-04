@@ -59,9 +59,14 @@ public class UpdateChecker {
 			LogHelper.info("The update checker was able to check for an update");
 			versionFile.close();
 			currentVersion = Reference.MODVER;
-			if (!curVersion.contains(currentVersion)) {
-				return true;
-			}else{
+			if(curVersion != null){
+				if (!curVersion.contains(currentVersion)) {
+					return true;
+				}else{
+					return false;
+				}
+			}
+			else{
 				return false;
 			}
 
