@@ -66,7 +66,7 @@ public class EntityThunder extends Entity
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
-			this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, this.posY, z, 0.0D, 10.5D, 0.0D);
+			this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, this.posY+1, z, 30, 15, 0);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
