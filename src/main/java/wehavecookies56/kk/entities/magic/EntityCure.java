@@ -1,15 +1,13 @@
 package wehavecookies56.kk.entities.magic;
 
-import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SpawnCureParticles;
 
 public class EntityCure extends Entity
 {
@@ -35,7 +33,9 @@ public class EntityCure extends Entity
 		{
 			return;
 		}
-		
+		if(!worldObj.isRemote){
+			PacketDispatcher.sendToAllAround(new SpawnCureParticles(this), player, 64.0D);
+		}
 		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY+2.5, this.posZ, 0.0D, 1.0D, 0.0D);
 		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY+2.8, this.posZ, 0.0D, 1.0D, 0.0D);
 		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY+2.2, this.posZ, 0.0D, 1.0D, 0.0D);

@@ -8,7 +8,12 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.network.packet.client.SpawnAeroParticles;
+import wehavecookies56.kk.network.packet.client.SpawnBlizzardParticles;
+import wehavecookies56.kk.network.packet.client.SpawnCureParticles;
 import wehavecookies56.kk.network.packet.client.SpawnFireParticles;
+import wehavecookies56.kk.network.packet.client.SpawnStopParticles;
+import wehavecookies56.kk.network.packet.client.SpawnThunderParticles;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
@@ -48,6 +53,11 @@ public class PacketDispatcher
 		registerMessage(SyncExtendedPlayerRecipes.class);
 		registerMessage(SyncExtendedPlayerMaterials.class);
 		registerMessage(SpawnFireParticles.class);
+		registerMessage(SpawnBlizzardParticles.class);
+		registerMessage(SpawnThunderParticles.class);
+		registerMessage(SpawnCureParticles.class);
+		registerMessage(SpawnAeroParticles.class);
+		registerMessage(SpawnStopParticles.class);
 
 		//Client to Server
 		registerMessage(MunnyPickup.class);

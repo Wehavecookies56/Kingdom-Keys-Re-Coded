@@ -3,6 +3,7 @@ package wehavecookies56.kk.entities.magic;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
@@ -10,6 +11,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SpawnBlizzardParticles;
+import wehavecookies56.kk.network.packet.client.SpawnFireParticles;
 
 public class EntityBlizzard extends EntityThrowable
 {
@@ -34,7 +38,13 @@ public class EntityBlizzard extends EntityThrowable
 
 	@Override
 	public void onUpdate() {
+		if(shootingEntity == null){
+			return;
+		}
 		int rotation = 0;
+		if(!worldObj.isRemote){
+			PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this), (EntityPlayer) shootingEntity, 64.0D);
+		}
 		this.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.rotationYaw = (rotation + 1) % 360;
 		if(ticksExisted > 60){
