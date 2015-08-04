@@ -29,7 +29,11 @@ public class RecipeUltimaWeaponBBS extends Recipe {
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard + ".x.1");
+		reqs.add(Strings.SM_OrichalcumPlus + ".x.9");
+		reqs.add(Strings.SM_Orichalcum + ".x.1");
+		reqs.add(Strings.SM_SerenityCrystal + ".x.5");
+		reqs.add(Strings.SM_LightningGem + ".x.1");
+		reqs.add(Strings.SM_MythrilCrystal + ".x.1");
 		return reqs;
 	}
 
