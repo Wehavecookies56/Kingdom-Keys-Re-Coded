@@ -38,14 +38,11 @@ public class SpawnCureParticles extends AbstractClientMessage<SpawnCureParticles
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		double r = 1.5D;
-		for(int a = 1; a <= 360; a+=7){
-			double x = this.x + (r * Math.cos(Math.toRadians(a)));
-			double z = this.z + (r * Math.sin(Math.toRadians(a)));
-
-			player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.25D, z, 0.0D, 0.0D, 0.0D);
-			player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.05D, z, 0.0D, 0.0D, 0.0D);
-		}
+		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, player.posX, player.posY+2.5, player.posZ, 0.0D, 1.0D, 0.0D);
+		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, player.posX, player.posY+2.8, player.posZ, 0.0D, 1.0D, 0.0D);
+		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, player.posX, player.posY+2.2, player.posZ, 0.0D, 1.0D, 0.0D);
+		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, player.posX+0.3, player.posY+2.5, player.posZ, 0.0D, 1.0D, 0.0D);
+		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, player.posX-0.3, player.posY+2.5, player.posZ, 0.0D, 1.0D, 0.0D);
 	}
 
 }

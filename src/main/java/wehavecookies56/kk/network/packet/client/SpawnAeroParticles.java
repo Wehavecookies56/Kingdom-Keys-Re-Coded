@@ -40,10 +40,9 @@ public class SpawnAeroParticles extends AbstractClientMessage<SpawnAeroParticles
 	public void process(EntityPlayer player, Side side) {
 		double r = 1.5D;
 		for(int a = 1; a <= 360; a+=15){
-			double x = player.posX + (r * Math.cos(Math.toRadians(a)));
-			double z = player.posZ + (r * Math.sin(Math.toRadians(a)));
-
-			player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, player.posY, z, 0.0D, 0.5D, 0.0D);
+			double x = this.x + (r * Math.cos(Math.toRadians(a)));
+			double z = this.z + (r * Math.sin(Math.toRadians(a)));
+			player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
 		}
 	}
 

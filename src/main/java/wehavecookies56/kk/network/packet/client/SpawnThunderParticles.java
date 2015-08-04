@@ -39,12 +39,12 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		double r = 1.5D;
+
 		for(int a = 1; a <= 360; a+=7){
 			double x = this.x + (r * Math.cos(Math.toRadians(a)));
 			double z = this.z + (r * Math.sin(Math.toRadians(a)));
 
-			player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.25D, z, 0.0D, 0.0D, 0.0D);
-			player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.05D, z, 0.0D, 0.0D, 0.0D);
+			player.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, this.y+1, z, 30, 15, 0);
 		}
 	}
 
