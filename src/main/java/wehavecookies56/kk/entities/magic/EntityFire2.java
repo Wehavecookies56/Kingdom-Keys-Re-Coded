@@ -15,6 +15,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import wehavecookies56.kk.KingdomKeys;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SpawnFireParticles;
 
 public class EntityFire2 extends Entity
 {
@@ -40,7 +42,9 @@ public class EntityFire2 extends Entity
 		}
 		int rotation = 0;
 
-		KingdomKeys.proxy.spawnFireParticles(this);
+		if(!worldObj.isRemote){
+			PacketDispatcher.sendToAllAround(new SpawnFireParticles(this), player, 64.0D);
+		}
 
 		this.rotationYaw = (rotation + 1) % 360;
 		if(ticksExisted > 15){

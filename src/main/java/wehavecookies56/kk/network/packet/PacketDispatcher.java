@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.network.packet.client.SpawnFireParticles;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
@@ -46,6 +47,7 @@ public class PacketDispatcher
 		registerMessage(SyncExtendedPlayer.class);
 		registerMessage(SyncExtendedPlayerRecipes.class);
 		registerMessage(SyncExtendedPlayerMaterials.class);
+		registerMessage(SpawnFireParticles.class);
 
 		//Client to Server
 		registerMessage(MunnyPickup.class);

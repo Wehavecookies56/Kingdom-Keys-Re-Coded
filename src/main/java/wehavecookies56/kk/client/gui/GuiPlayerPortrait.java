@@ -102,8 +102,6 @@ public class GuiPlayerPortrait extends GuiScreen {
 			}GL11.glPopMatrix();
 			GL11.glColor4f(100.0F, 1.0F, 1.0F, 1.0F);
 
-
-
 			if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
 			{
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Valor_A.png");

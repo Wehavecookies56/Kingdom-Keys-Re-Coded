@@ -38,18 +38,6 @@ public class ClientProxy extends CommonProxy {
 		registerAchievements();
 	}
 
-	@Override
-	public void spawnFireParticles(Entity entity) {
-		double r = 1.5D;
-		for(int a = 1; a <= 360; a+=7){
-			double x = entity.posX + (r * Math.cos(Math.toRadians(a)));
-			double z = entity.posZ + (r * Math.sin(Math.toRadians(a)));
-
-			entity.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, entity.posY + 1.25D, z, 0.0D, 0.0D, 0.0D);
-			entity.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, entity.posY + 1.05D, z, 0.0D, 0.0D, 0.0D);
-		}
-	}
-
 	private void registerRenders(){
 		MinecraftForge.EVENT_BUS.register(new GuiPlayerPortrait());
 		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());

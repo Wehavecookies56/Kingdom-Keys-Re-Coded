@@ -23,10 +23,6 @@ public class CommonProxy implements IGuiHandler {
 
 	}
 
-	public void spawnFireParticles(Entity entity){
-
-	}
-
 	public EntityPlayer getPlayerEntity(MessageContext ctx){
 		return ctx.getServerHandler().playerEntity;
 	}
