@@ -74,7 +74,7 @@ public class GuiDrive extends GuiScreen {
 		int range = Math.abs(max - min) + 1;
 		return (int)(Math.random() * range) + (min <= max ? min : max);
 	}
-	
+
 	@SubscribeEvent
 	public void onRenderOverlayPost(RenderGameOverlayEvent event){
 
@@ -188,8 +188,9 @@ public class GuiDrive extends GuiScreen {
 					GL11.glColor3ub((byte)35, (byte)50, (byte)255);
 					break;
 				}
-				//GL11.glTranslatef((screenWidth - guiWidth*scale), screenHeight - guiHeight*scale - 17, 0);
-				this.drawTexturedModalRect((screenWidth - guiWidth + 20), screenHeight - guiHeight - 8, 0, 57, 30, guiHeight);
+				GL11.glTranslatef(((screenWidth - guiWidth*scale) + (10*scale)), ((screenHeight - guiHeight*scale) - (12*scale)), 0);
+				GL11.glScalef(scale, scale, scale);
+				this.drawTexturedModalRect(0, 0, 0, 57, 30, guiHeight);
 				GL11.glColor3ub((byte)255, (byte)255, (byte)255);
 
 				GL11.glPopMatrix();

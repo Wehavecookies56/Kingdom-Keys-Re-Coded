@@ -27,7 +27,7 @@ public class OpenMaterials extends AbstractServerMessage<OpenMaterials> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		for(int i = 0; i < 35;  i++){
+		for(int i = 0; i < 36;  i++){
 			if(player.inventory.mainInventory[i] != null){
 				if(player.inventory.mainInventory[i].getItem() instanceof ItemSynthesisMaterial){
 					int index = 0;

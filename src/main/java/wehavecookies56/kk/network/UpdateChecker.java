@@ -35,7 +35,7 @@ public class UpdateChecker {
 
 		else if(Config.EnableUpdateCheck && !isUpdateAvailable() && ableToCheck)
 		{
-			LogHelper.info(Reference.MODNAME + " is update");
+			LogHelper.info(Reference.MODNAME + " is up to date");
 			event.player.addChatMessage(new ChatComponentText("["+EnumChatFormatting.RED + Reference.MODNAME +EnumChatFormatting.RESET+"] This mod is up to date (v" + Reference.MODVER + ")"));
 		}
 
