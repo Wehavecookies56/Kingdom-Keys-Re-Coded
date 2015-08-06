@@ -3,7 +3,7 @@ package wehavecookies56.kk.entities.magic;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,7 +39,7 @@ public class EntityThunder extends Entity
 			for(int i=0; i<list.size();i++)
 			{
 				Entity e = (Entity) list.get(i);
-				if(e instanceof EntityLiving){
+				if(e instanceof EntityLivingBase){
 					summonLightning = true;
 					//Something so the player doesen't get damage
 					this.worldObj.spawnEntityInWorld((new EntityLightningBolt(this.worldObj, e.posX, e.posY, e.posZ)));
