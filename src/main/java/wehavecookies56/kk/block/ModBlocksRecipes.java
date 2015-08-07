@@ -20,6 +20,18 @@ public class ModBlocksRecipes {
 			"DS",
 			'D', Blocks.dirt, 'S', Blocks.stone
 		);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.HardBlox),
+			"NS",
+			"SN",
+			'S', Blocks.stone, 'N', ModBlocks.NormalBlox
+		);
+
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.HardBlox),
+			"SN",
+			"NS",
+			'S', Blocks.stone, 'N', ModBlocks.NormalBlox
+		);
 
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.MetalBlox),
 			"HI",
@@ -39,17 +51,12 @@ public class ModBlocksRecipes {
 			"NNN",
 			'S', Blocks.slime_block, 'N', ModBlocks.NormalBlox
 		);
-
-		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.HardBlox),
-			"NS",
-			"SN",
-			'S', Blocks.stone, 'N', ModBlocks.NormalBlox
-		);
-
-		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.HardBlox),
-			"SN",
-			"NS",
-			'S', Blocks.stone, 'N', ModBlocks.NormalBlox
+		
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.BlastBlox),
+			"NLN",
+			"NTN",
+			"NNN",
+			'N', ModBlocks.NormalBlox, 'L', Items.lava_bucket, 'T', Blocks.tnt
 		);
 
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.GhostBlox),

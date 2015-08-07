@@ -40,13 +40,20 @@ public class DriveFormLimit extends DriveForm {
 
 	@Override
 	public void update(EntityPlayer player) {
-		if(ExtendedPlayer.get(player).dp > 0){
-			ExtendedPlayer.get(player).dp -= 0.1;
-			if(ExtendedPlayer.get(player).dp < 0){
-				ExtendedPlayer.get(player).dp = 0;
+		if(ExtendedPlayer.get(player).cheatMode == false)
+		{
+			if(ExtendedPlayer.get(player).dp > 0)
+			{
+				ExtendedPlayer.get(player).dp -= 0.1;
+				if(ExtendedPlayer.get(player).dp < 0)
+				{
+					ExtendedPlayer.get(player).dp = 0;
+				}
 			}
-		}else{
-			endDrive(player);
+			else
+			{
+				endDrive(player);
+			}
 		}
 	}
 
