@@ -592,7 +592,7 @@ public class Strings {
 	TM_StarSeeker_DEFAULT = "starseeker, 3, -1, 6.0F, 12, 30",
 	TM_MaverickFlare_DEFAULT = "maverickflare, 3, -1, 6.0F, 9, 30",
 	TM_TotalEclipse_DEFAULT = "totaleclipse, 3, -1, 6.0F, 9, 30",
-	TM_MidnightRoar_DEFAULT = "midnightroar, 3, -1, 6.0F, 1, 30",
+	TM_MidnightRoar_DEFAULT = "midnightroar, 3, -1, 6.0F, 11, 30",
 	TM_TwoBecomeOne_DEFAULT = "twobecomeone, 3, -1, 6.0F, 20, 30",
 	TM_UltimaWeaponKH2_DEFAULT = "ultimaweaponkh2, 3, -1, 6.0F, 18, 30",
 	TM_WaytotheDawn_DEFAULT = "waytothedawn, 3, -1, 6.0F, 9, 30",
