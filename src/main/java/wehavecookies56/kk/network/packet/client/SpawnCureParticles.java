@@ -38,11 +38,11 @@ public class SpawnCureParticles extends AbstractClientMessage<SpawnCureParticles
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, player.posX, player.posY+2.5, player.posZ, 0.0D, 1.0D, 0.0D);
-		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, player.posX, player.posY+2.8, player.posZ, 0.0D, 1.0D, 0.0D);
-		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, player.posX, player.posY+2.2, player.posZ, 0.0D, 1.0D, 0.0D);
-		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, player.posX+0.3, player.posY+2.5, player.posZ, 0.0D, 1.0D, 0.0D);
-		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, player.posX-0.3, player.posY+2.5, player.posZ, 0.0D, 1.0D, 0.0D);
+		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y+2.5, this.z, 0.0D, 1.0D, 0.0D);
+		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y+2.8, this.z, 0.0D, 1.0D, 0.0D);
+		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y+2.2, this.z, 0.0D, 1.0D, 0.0D);
+		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x+0.3, this.y+2.5, this.z, 0.0D, 1.0D, 0.0D);
+		player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x-0.3, this.y+2.5, this.z, 0.0D, 1.0D, 0.0D);
 	}
 
 }
