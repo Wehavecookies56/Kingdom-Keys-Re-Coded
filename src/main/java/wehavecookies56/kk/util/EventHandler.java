@@ -190,6 +190,7 @@ public class EventHandler {
 		if(event.entity instanceof EntityPlayer){
 			for(int i = 0; i < event.drops.size(); i++){
 				if(event.drops.get(i).getEntityItem().getItem() instanceof ItemKeyblade){
+					System.out.println(event.drops.get(i).getEntityItem().getItem());
 					event.drops.remove(i);
 					ExtendedPlayer.get((EntityPlayer) event.entity).setKeybladeSummoned(false);
 					i = 0;
@@ -338,7 +339,8 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public void onItemTossEvent(ItemTossEvent event){
-		if(event.entityItem.getEntityItem().getItem() instanceof ItemKeyblade){
+		if(event.entityItem.getEntityItem().getItem() instanceof ItemKeyblade && event.entityItem.getEntityItem().getItem() != ModItems.WoodenKeyblade)
+		{
 			event.entityItem.isDead = true;
 			ItemStack itemStack = event.entityItem.getEntityItem();
 			ExtendedPlayer.get(event.player).setKeybladeSummoned(false);
