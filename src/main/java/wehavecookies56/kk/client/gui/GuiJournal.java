@@ -129,50 +129,50 @@ public class GuiJournal extends GuiScreen {
 		scroll_page = new GuiButtonScroll(SCROLL_PAGE, 0, 0);
 
 		//COMMAND MENU
-		topic_commandmenu_about = new GuiButtonLink(TOPIC_COMMANDMENU_ABOUT, 0, 0, 0, 0, "About", 0xFFFFFF);
-		topic_commandmenu_attack = new GuiButtonLink(TOPIC_COMMANDMENU_ATTACK, 0, 0, 0, 0, "Attack", 0xFFFFFF);
-		topic_commandmenu_magic = new GuiButtonLink(TOPIC_COMMANDMENU_MAGIC, 0, 0, 0, 0, "Magic", 0xFFFFFF);
-		topic_commandmenu_items = new GuiButtonLink(TOPIC_COMMANDMENU_ITEMS, 0, 0, 0, 0, "Items", 0xFFFFFF);
-		topic_commandmenu_drive = new GuiButtonLink(TOPIC_COMMANDMENU_DRIVE, 0, 0, 0, 0, "Drive", 0xFFFFFF);
+		topic_commandmenu_about = new GuiButtonLink(TOPIC_COMMANDMENU_ABOUT, 0, 0, 0, 0, "About", 0x0645AD);
+		topic_commandmenu_attack = new GuiButtonLink(TOPIC_COMMANDMENU_ATTACK, 0, 0, 0, 0, "Attack", 0x0645AD);
+		topic_commandmenu_magic = new GuiButtonLink(TOPIC_COMMANDMENU_MAGIC, 0, 0, 0, 0, "Magic", 0x0645AD);
+		topic_commandmenu_items = new GuiButtonLink(TOPIC_COMMANDMENU_ITEMS, 0, 0, 0, 0, "Items", 0x0645AD);
+		topic_commandmenu_drive = new GuiButtonLink(TOPIC_COMMANDMENU_DRIVE, 0, 0, 0, 0, "Drive", 0x0645AD);
 
 		//KEYBLADES
-		topic_keyblades_about = new GuiButtonLink(TOPIC_KEYBLADES_ABOUT, 0, 0, 0, 0, "About", 0xFFFFFF);
-		topic_keyblades_list = new GuiButtonLink(TOPIC_KEYBLADES_LIST, 0, 0, 0, 0, "List", 0xFFFFFF);
-		topic_keyblades_summoning = new GuiButtonLink(TOPIC_KEYBLADES_SUMMONING, 0, 0, 0, 0, "Summoning", 0xFFFFFF);
-		topic_keyblades_creation = new GuiButtonLink(TOPIC_KEYBLADES_CREATION, 0, 0, 0, 0, "Creation", 0xFFFFFF);
+		topic_keyblades_about = new GuiButtonLink(TOPIC_KEYBLADES_ABOUT, 0, 0, 0, 0, "About", 0x0645AD);
+		topic_keyblades_list = new GuiButtonLink(TOPIC_KEYBLADES_LIST, 0, 0, 0, 0, "List", 0x0645AD);
+		topic_keyblades_summoning = new GuiButtonLink(TOPIC_KEYBLADES_SUMMONING, 0, 0, 0, 0, "Summoning", 0x0645AD);
+		topic_keyblades_creation = new GuiButtonLink(TOPIC_KEYBLADES_CREATION, 0, 0, 0, 0, "Creation", 0x0645AD);
 
 		//BUG BLOX
-		topic_bugblox_about = new GuiButtonLink(TOPIC_BUGBLOX_ABOUT, 0, 0, 0, 0, "About", 0xFFFFFF);
-		topic_bugblox_standardblox = new GuiButtonLink(TOPIC_BUGBLOX_STANDARDBLOX, 0, 0, 0, 0, "Standard Blox", 0xFFFFFF);
-		topic_bugblox_specialblox = new GuiButtonLink(TOPIC_BUGBLOX_SPECIALBLOX, 0, 0, 0, 0, "Special Blox", 0xFFFFFF);
+		topic_bugblox_about = new GuiButtonLink(TOPIC_BUGBLOX_ABOUT, 0, 0, 0, 0, "About", 0x0645AD);
+		topic_bugblox_standardblox = new GuiButtonLink(TOPIC_BUGBLOX_STANDARDBLOX, 0, 0, 0, 0, "Standard Blox", 0x0645AD);
+		topic_bugblox_specialblox = new GuiButtonLink(TOPIC_BUGBLOX_SPECIALBLOX, 0, 0, 0, 0, "Special Blox", 0x0645AD);
 
 		//SYNTHESIS
-		topic_synthesis_about = new GuiButtonLink(TOPIC_SYNTHESIS_ABOUT, 0, 0, 0, 0, "About", 0xFFFFFF);
-		topic_synthesis_materials = new GuiButtonLink(TOPIC_SYNTHESIS_MATERIALS, 0, 0, 0, 0, "Materials", 0xFFFFFF);
-		topic_synthesis_recipes = new GuiButtonLink(TOPIC_SYNTHESIS_RECIPES, 0, 0, 0, 0, "Recipes", 0xFFFFFF);
+		topic_synthesis_about = new GuiButtonLink(TOPIC_SYNTHESIS_ABOUT, 0, 0, 0, 0, "About", 0x0645AD);
+		topic_synthesis_materials = new GuiButtonLink(TOPIC_SYNTHESIS_MATERIALS, 0, 0, 0, 0, "Materials", 0x0645AD);
+		topic_synthesis_recipes = new GuiButtonLink(TOPIC_SYNTHESIS_RECIPES, 0, 0, 0, 0, "Recipes", 0x0645AD);
 
 		//ARMOUR
-		topic_armour_keyblade = new GuiButtonLink(TOPIC_ARMOUR_KEYBLADE, 0, 0, 0, 0, "Keyblade", 0xFFFFFF);
-		topic_armour_organization = new GuiButtonLink(TOPIC_ARMOUR_ORGANIZATION, 0, 0, 0, 0, "Organization", 0xFFFFFF);
+		topic_armour_keyblade = new GuiButtonLink(TOPIC_ARMOUR_KEYBLADE, 0, 0, 0, 0, "Keyblade", 0x0645AD);
+		topic_armour_organization = new GuiButtonLink(TOPIC_ARMOUR_ORGANIZATION, 0, 0, 0, 0, "Organization", 0x0645AD);
 
 		//MAGIC
-		topic_magic_about = new GuiButtonLink(TOPIC_MAGIC_ABOUT, 0, 0, 0, 0, "About", 0xFFFFFF);
-		topic_magic_mp = new GuiButtonLink(TOPIC_MAGIC_MP, 0, 0, 0, 0, "MP", 0xFFFFFF);
-		topic_magic_magics = new GuiButtonLink(TOPIC_MAGIC_MAGICS, 0, 0, 0, 0, "Magics", 0xFFFFFF);
+		topic_magic_about = new GuiButtonLink(TOPIC_MAGIC_ABOUT, 0, 0, 0, 0, "About", 0x0645AD);
+		topic_magic_mp = new GuiButtonLink(TOPIC_MAGIC_MP, 0, 0, 0, 0, "MP", 0x0645AD);
+		topic_magic_magics = new GuiButtonLink(TOPIC_MAGIC_MAGICS, 0, 0, 0, 0, "Magics", 0x0645AD);
 
 		//DRIVE FORMS
-		topic_driveforms_about = new GuiButtonLink(TOPIC_DRIVEFORMS_ABOUT, 0, 0, 0, 0, "About", 0xFFFFFF);
-		topic_driveforms_dp = new GuiButtonLink(TOPIC_DRIVEFORMS_DP, 0, 0, 0, 0, "DP", 0xFFFFFF);
-		topic_driveforms_forms = new GuiButtonLink(TOPIC_DRIVEFORMS_FORMS, 0, 0, 0, 0, "Forms", 0xFFFFFF);
+		topic_driveforms_about = new GuiButtonLink(TOPIC_DRIVEFORMS_ABOUT, 0, 0, 0, 0, "About", 0x0645AD);
+		topic_driveforms_dp = new GuiButtonLink(TOPIC_DRIVEFORMS_DP, 0, 0, 0, 0, "DP", 0x0645AD);
+		topic_driveforms_forms = new GuiButtonLink(TOPIC_DRIVEFORMS_FORMS, 0, 0, 0, 0, "Forms", 0x0645AD);
 
 		//MISC
-		topic_misc_hearts = new GuiButtonLink(TOPIC_MISC_HEARTS, 0, 0, 0, 0, "Hearts", 0xFFFFFF);
-		topic_misc_munny = new GuiButtonLink(TOPIC_MISC_MUNNY, 0, 0, 0, 0, "Munny", 0xFFFFFF);
-		topic_misc_menu = new GuiButtonLink(TOPIC_MISC_MENU, 0, 0, 0, 0, "Menu", 0xFFFFFF);
-		topic_misc_craftingmaterials = new GuiButtonLink(TOPIC_MISC_CRAFTINGMATERIALS, 0, 0, 0, 0, "Crafting Materials", 0xFFFFFF);
-		topic_misc_organizationweapons = new GuiButtonLink(TOPIC_MISC_ORGANIZATIONWEAPONS, 0, 0, 0, 0, "Organization Weapons", 0xFFFFFF);
-		topic_misc_musicdiscs = new GuiButtonLink(TOPIC_MISC_MUSICDISCS, 0, 0, 0, 0, "Music Discs", 0xFFFFFF);
-		topic_misc_commands = new GuiButtonLink(TOPIC_MISC_COMMANDS, 0, 0, 0, 0, "Commands", 0xFFFFFF);
+		topic_misc_hearts = new GuiButtonLink(TOPIC_MISC_HEARTS, 0, 0, 0, 0, "Hearts", 0x0645AD);
+		topic_misc_munny = new GuiButtonLink(TOPIC_MISC_MUNNY, 0, 0, 0, 0, "Munny", 0x0645AD);
+		topic_misc_menu = new GuiButtonLink(TOPIC_MISC_MENU, 0, 0, 0, 0, "Menu", 0x0645AD);
+		topic_misc_craftingmaterials = new GuiButtonLink(TOPIC_MISC_CRAFTINGMATERIALS, 0, 0, 0, 0, "Crafting Materials", 0x0645AD);
+		topic_misc_organizationweapons = new GuiButtonLink(TOPIC_MISC_ORGANIZATIONWEAPONS, 0, 0, 0, 0, "Organization Weapons", 0x0645AD);
+		topic_misc_musicdiscs = new GuiButtonLink(TOPIC_MISC_MUSICDISCS, 0, 0, 0, 0, "Music Discs", 0x0645AD);
+		topic_misc_commands = new GuiButtonLink(TOPIC_MISC_COMMANDS, 0, 0, 0, 0, "Commands", 0x0645AD);
 
 	}
 
@@ -190,9 +190,29 @@ public class GuiJournal extends GuiScreen {
 		int distToBottomFromMisc = (this.height / 4) - 7;
 		int listHeight = (((this.height / 4) + 7) + (this.height / 2)) - yPos_coll_commandMenu + 2;
 
-		GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2, this.width, listHeight * 2);
+		drawDarkBG(texture, xPos_coll_commandMenu - 1, yPos_coll_commandMenu - 1, 102, (this.height / 2) + 8, 1F);
+		drawDarkBG(texture, xPos_coll_commandMenu + 103, yPos_coll_commandMenu - 1, 8, (this.height / 2) + 8, 1F);
+		if(currentPage != null){
+			if(currentPage.equals(page_commandmenu_about.getName())){
+				topic_commandmenu_about.colour = 0xFFFFFF;
+			}else{
+				topic_commandmenu_about.colour = 0x0645AD;
+			}
+		}else{
+			topic_commandmenu_about.colour = 0x0645AD;
+			topic_commandmenu_attack.colour = 0x0645AD;
+			topic_commandmenu_magic.colour = 0x0645AD;
+			topic_commandmenu_items.colour = 0x0645AD;
+			topic_commandmenu_drive.colour = 0x0645AD;
+		}
+
+		GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2 - 2, this.width, listHeight * 2 - 1);
 
 		GL11.glEnable(GL11.GL_SCISSOR_TEST);
+
+		if(collapse_commandmenu.collapsed){
+			//drawGradientRect(xPos_coll_commandMenu + (xPos_coll_commandMenu / 4), (int) (yPos_coll_commandMenu + offset), 140, 200, -1072689136, -804253680);
+		}
 
 		drawTitle(collapse_commandmenu, xPos_coll_commandMenu, yPos_coll_commandMenu + (int)offset, 100, 12, "Command Menu", 1F);
 
@@ -243,6 +263,7 @@ public class GuiJournal extends GuiScreen {
 			topic_keyblades_list.yPosition = yPos_coll_keyblades + 27 + (int)offset;
 			topic_keyblades_summoning.yPosition = yPos_coll_keyblades + 37 + (int)offset;
 			topic_keyblades_creation.yPosition = yPos_coll_keyblades + 47 + (int)offset;
+
 		}else{
 			topic_keyblades_about.visible = false;
 			topic_keyblades_list.visible = false;
@@ -251,7 +272,6 @@ public class GuiJournal extends GuiScreen {
 		}
 
 		drawTitle(collapse_bugblox, xPos_coll_bugblox, yPos_coll_bugblox + (int)offset, 100, 12, "Bug Blox", 1F);
-
 		//Topics
 
 		if(collapse_bugblox.collapsed){
@@ -394,11 +414,80 @@ public class GuiJournal extends GuiScreen {
 			topic_misc_commands.visible = false;
 		}
 
-		//drawString(fontRendererObj, "Test", xPos_coll_commandMenu - 10, yPos_coll_misc + 20, 0xFFFFFF);
 		GL11.glDisable(GL11.GL_SCISSOR_TEST);
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
 
+	}
+
+	public void drawDarkBG(ResourceLocation res, int posX, int posY, int width, int height, float scale){
+		mc.renderEngine.bindTexture(res);
+		GL11.glPushMatrix();{
+			GL11.glPushMatrix();{
+				GL11.glTranslatef(posX*scale, posY*scale, 0);
+				GL11.glScalef(scale, height + 2, 0);
+				drawTexturedModalRect(0, 0, 0, 8, 1, 1);
+			}GL11.glPopMatrix();
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef((posX + 1)*scale, (posY + 1)*scale, 0);
+				GL11.glScalef(width, height, 0);
+				drawTexturedModalRect(0, 0, 1, 9, 1, 1);
+			}GL11.glPopMatrix();
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef((posX + 1)*scale, posY*scale, 0);
+				GL11.glScalef(width, scale, 0);
+				drawTexturedModalRect(0, 0, 1, 8, 1, 1);
+			}GL11.glPopMatrix();
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef((posX + 1)*scale, height + scale + posY, 0);
+				GL11.glScalef(width, scale, 0);
+				drawTexturedModalRect(0, 0, 1, 15, 1, 1);
+			}GL11.glPopMatrix();
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef(width + scale + posX, posY*scale, 0);
+				GL11.glScalef(scale, height + 2, 0);
+				drawTexturedModalRect(0, 0, 2, 8, 1, 1);
+			}GL11.glPopMatrix();
+		}GL11.glPopMatrix();
+	}
+
+	public void drawBG(ResourceLocation res, int posX, int posY, int width, int height, float scale){
+		mc.renderEngine.bindTexture(res);
+		GL11.glPushMatrix();{
+			GL11.glPushMatrix();{
+				GL11.glTranslatef(posX*scale, posY*scale, 0);
+				GL11.glScalef(scale, height + 2, 0);
+				drawTexturedModalRect(0, 0, 0, 0, 1, 1);
+			}GL11.glPopMatrix();
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef((posX + 1)*scale, (posY + 1)*scale, 0);
+				GL11.glScalef(width, height, 0);
+				drawTexturedModalRect(0, 0, 1, 1, 1, 1);
+			}GL11.glPopMatrix();
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef((posX + 1)*scale, posY*scale, 0);
+				GL11.glScalef(width, scale, 0);
+				drawTexturedModalRect(0, 0, 1, 0, 1, 1);
+			}GL11.glPopMatrix();
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef((posX + 1)*scale, height + scale + posY, 0);
+				GL11.glScalef(width, scale, 0);
+				drawTexturedModalRect(0, 0, 1, 7, 1, 1);
+			}GL11.glPopMatrix();
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef(width + scale + posX, posY*scale, 0);
+				GL11.glScalef(scale, height + 2, 0);
+				drawTexturedModalRect(0, 0, 2, 0, 1, 1);
+			}GL11.glPopMatrix();
+		}GL11.glPopMatrix();
 	}
 
 	public void drawTitle(GuiButtonCollapse button, int posX, int posY, int width, int height, String text, float scale){
@@ -869,7 +958,7 @@ public class GuiJournal extends GuiScreen {
 				int distToBottomFromMisc = (res.getScaledHeight() / 4) - 7;
 				int listHeight = (((res.getScaledHeight() / 4) + 7) + (res.getScaledHeight() / 2)) - yPos_coll_commandMenu + 2;
 
-				GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2, res.getScaledWidth(), listHeight * 2);
+				GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2 - 2, res.getScaledWidth(), listHeight * 2 - 1);
 				GL11.glEnable(GL11.GL_SCISSOR_TEST);
 				GL11.glTranslatef(this.xPosition, this.yPosition, 0);
 				GL11.glScalef(1.1f, 1.1f, 0);
@@ -925,7 +1014,7 @@ public class GuiJournal extends GuiScreen {
 				int distToBottomFromMisc = (res.getScaledHeight() / 4) - 7;
 				int listHeight = (((res.getScaledHeight() / 4) + 7) + (res.getScaledHeight() / 2)) - yPos_coll_commandMenu + 2;
 
-				GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2, res.getScaledWidth(), listHeight * 2);
+				GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2 - 2, res.getScaledWidth(), listHeight * 2 - 1);
 				GL11.glEnable(GL11.GL_SCISSOR_TEST);
 				drawString(mc.fontRendererObj, this.displayString + EnumChatFormatting.UNDERLINE, 0, 0, this.colour);
 				GL11.glDisable(GL11.GL_SCISSOR_TEST);
