@@ -3,6 +3,7 @@ package wehavecookies56.kk.client.gui.pages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.util.EnumChatFormatting;
 
 public class Page extends GuiScreen {
 
@@ -32,7 +33,7 @@ public class Page extends GuiScreen {
 	}
 
 	public void drawPageForeground(int width, int height){
-		this.drawString(Minecraft.getMinecraft().fontRendererObj, name, xPos, yPos, 0xFFFFFF);
+		this.drawString(Minecraft.getMinecraft().fontRendererObj, name.substring(name.lastIndexOf("_") + 1) + EnumChatFormatting.UNDERLINE + EnumChatFormatting.BOLD, xPos, yPos, 0xFFFFFF);
 	}
 
 	public void drawPageBackground(int width, int height){

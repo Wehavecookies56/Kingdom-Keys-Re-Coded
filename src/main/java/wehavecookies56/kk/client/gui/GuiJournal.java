@@ -653,10 +653,10 @@ public class GuiJournal extends GuiScreen {
 		if(collapse_misc.collapsed){
 			scrollPosMax += misc_height;
 		}
-		if(Mouse.getEventDWheel() < 1 && Mouse.getEventDWheel() != 0){
+		if(Mouse.getEventDWheel() > 1 && Mouse.getEventDWheel() != 0){
 			if(Mouse.getEventX() <= (xPos_coll_commandMenu * 2) + 200 + (scroll_collapse.width * 2) && Mouse.getEventX() >= xPos_coll_commandMenu * 2){
 				if(scrollPos > 0){
-					scrollPos-=2;
+					scrollPos-=5;
 					offset = (-scrollPos);
 				}else if(scrollPos < 0){
 					scrollPos = 0;
@@ -665,10 +665,10 @@ public class GuiJournal extends GuiScreen {
 			}
 
 		}
-		if(Mouse.getEventDWheel() > 1 && Mouse.getEventDWheel() != 0){
+		if(Mouse.getEventDWheel() < 1 && Mouse.getEventDWheel() != 0){
 			if(Mouse.getEventX() <= (xPos_coll_commandMenu * 2) + 200 + (scroll_collapse.width * 2) && Mouse.getEventX() >= xPos_coll_commandMenu * 2){
 				if(scrollPos < scrollPosMax){
-					scrollPos+=2;
+					scrollPos+=5;
 					offset = (-scrollPos);
 				}else if(scrollPos > scrollPosMax){
 					scrollPos = scrollPosMax;
@@ -676,7 +676,6 @@ public class GuiJournal extends GuiScreen {
 				}
 			}
 		}
-		//}
 		super.handleMouseInput();
 	}
 
