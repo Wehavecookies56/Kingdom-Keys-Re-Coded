@@ -3,6 +3,7 @@ package wehavecookies56.kk.client.gui;
 import java.io.IOException;
 import java.util.List;
 
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -12,6 +13,8 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
+import wehavecookies56.kk.client.gui.pages.PageCommandMenuAbout;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.util.TextHelper;
 
@@ -30,11 +33,11 @@ public class GuiJournal extends GuiScreen {
 	final int TOPIC_DRIVEFORMS_ABOUT = 221, TOPIC_DRIVEFORMS_DP = 222, TOPIC_DRIVEFORMS_FORMS = 223;
 	final int TOPIC_MISC_HEARTS = 224, TOPIC_MISC_MUNNY = 225, TOPIC_MISC_MENU = 226, TOPIC_MISC_CRAFTINGMATERIALS = 227, TOPIC_MISC_ORGANIZATIONWEAPONS = 228, TOPIC_MISC_MUSICDISCS = 229, TOPIC_MISC_COMMANDS = 230;
 
-	final int SCROLL_COLLAPSE = 100;
+	final int SCROLL_COLLAPSE = 100, SCROLL_PAGE = 101;
 
 	GuiButtonCollapse collapse_commandmenu, collapse_keyblades, collapse_bugblox, collapse_synthesis, collapse_armour, collapse_magic, collapse_driveforms, collapse_misc;
 
-	GuiButtonScroll scroll_collapse;
+	GuiButtonScroll scroll_collapse, scroll_page;
 
 	GuiButtonLink
 	topic_commandmenu_about, topic_commandmenu_attack, topic_commandmenu_magic, topic_commandmenu_items, topic_commandmenu_drive,
@@ -47,39 +50,41 @@ public class GuiJournal extends GuiScreen {
 	topic_misc_hearts, topic_misc_munny, topic_misc_menu, topic_misc_craftingmaterials, topic_misc_organizationweapons, topic_misc_musicdiscs, topic_misc_commands
 	;
 
-	static ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
+	static ScaledResolution res;
 
-	float scrollPos = 0;
-	float offset;
+	static float scrollPos = 0;
+	static float scrollPos_page = 0;
+	static float offset;
+	static float offset_page;
 
-	static int centreX = res.getScaledWidth() / 2;
-	static int centreY = res.getScaledHeight() / 2;
+	static int centreX;
+	static int centreY;
 
-	static int xPos_coll_commandMenu = centreX - 100 / 2;
-	static int yPos_coll_commandMenu = centreY - 102 / 2;
+	static int xPos_coll_commandMenu;
+	static int yPos_coll_commandMenu;
 
-	int xPos_coll_keyblades = xPos_coll_commandMenu;
-	static int yPos_coll_keyblades = yPos_coll_commandMenu + 15;
+	int xPos_coll_keyblades;
+	int yPos_coll_keyblades;
 
-	int xPos_coll_bugblox = xPos_coll_keyblades;
-	static int yPos_coll_bugblox = yPos_coll_keyblades + 15;
+	int xPos_coll_bugblox;
+	int yPos_coll_bugblox;
 
-	int xPos_coll_synthesis = xPos_coll_bugblox;
-	static int yPos_coll_synthesis = yPos_coll_bugblox + 15;
+	int xPos_coll_synthesis;
+	int yPos_coll_synthesis;
 
-	int xPos_coll_armour = xPos_coll_synthesis;
-	static int yPos_coll_armour = yPos_coll_synthesis + 15;
+	int xPos_coll_armour;
+	int yPos_coll_armour;
 
-	int xPos_coll_magic = xPos_coll_armour;
-	static int yPos_coll_magic = yPos_coll_armour + 15;
+	int xPos_coll_magic;
+	int yPos_coll_magic;
 
-	int xPos_coll_driveforms = xPos_coll_magic;
-	static int yPos_coll_driveforms = yPos_coll_magic + 15;
+	int xPos_coll_driveforms;
+	int yPos_coll_driveforms;
 
-	int xPos_coll_misc = xPos_coll_driveforms;
-	static int yPos_coll_misc = yPos_coll_driveforms + 15;
+	int xPos_coll_misc;
+	int yPos_coll_misc;
 
-	static float collapseListLength = yPos_coll_misc - yPos_coll_commandMenu;
+	float collapseListLength;
 
 	int commandmenu_topics;
 	int commandmenu_height;
@@ -105,7 +110,12 @@ public class GuiJournal extends GuiScreen {
 	int misc_topics;
 	int misc_height;
 
+	String currentPage;
+
+	PageCommandMenuAbout page_commandmenu_about;
+
 	public GuiJournal() {
+		page_commandmenu_about = new PageCommandMenuAbout(0, 0);
 		collapse_commandmenu = new GuiButtonCollapse(COLLAPSE_COMMANDMENU, 0, 0);
 		collapse_keyblades = new GuiButtonCollapse(COLLAPSE_KEYBLADES, 0, 0);
 		collapse_bugblox = new GuiButtonCollapse(COLLAPSE_BUGBLOX, 0, 0);
@@ -116,6 +126,7 @@ public class GuiJournal extends GuiScreen {
 		collapse_misc = new GuiButtonCollapse(COLLAPSE_MISC, 0, 0);
 
 		scroll_collapse = new GuiButtonScroll(SCROLL_COLLAPSE, 0, 0);
+		scroll_page = new GuiButtonScroll(SCROLL_PAGE, 0, 0);
 
 		//COMMAND MENU
 		topic_commandmenu_about = new GuiButtonLink(TOPIC_COMMANDMENU_ABOUT, 0, 0, 0, 0, "About", 0xFFFFFF);
@@ -170,10 +181,16 @@ public class GuiJournal extends GuiScreen {
 
 		drawDefaultBackground();
 
-		int distToBottomFromMisc = res.getScaledHeight() - (((centreY - 102 / 2) + 105) + 14);
-		int listHeight = ((centreY - 102 / 2) + 105) - yPos_coll_commandMenu + 14;
+		if(currentPage != null){
+			if(currentPage.equals(page_commandmenu_about.getName())){
+				page_commandmenu_about.drawScreen(mouseX, mouseY, partialTicks);
+			}
+		}
 
-		GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2, res.getScaledWidth(), listHeight * 2);
+		int distToBottomFromMisc = (this.height / 4) - 7;
+		int listHeight = (((this.height / 4) + 7) + (this.height / 2)) - yPos_coll_commandMenu + 2;
+
+		GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2, this.width, listHeight * 2);
 
 		GL11.glEnable(GL11.GL_SCISSOR_TEST);
 
@@ -377,7 +394,7 @@ public class GuiJournal extends GuiScreen {
 			topic_misc_commands.visible = false;
 		}
 
-		drawString(fontRendererObj, "Test", xPos_coll_commandMenu - 10, yPos_coll_misc + 20, 0xFFFFFF);
+		//drawString(fontRendererObj, "Test", xPos_coll_commandMenu - 10, yPos_coll_misc + 20, 0xFFFFFF);
 		GL11.glDisable(GL11.GL_SCISSOR_TEST);
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
@@ -427,6 +444,61 @@ public class GuiJournal extends GuiScreen {
 	public void initGui() {
 		super.initGui();
 
+		currentPage = null;
+
+		commandmenu_topics = 5;
+		commandmenu_height = (10*commandmenu_topics) + 10;
+
+		keyblades_topics = 4;
+		keyblades_height = (10*keyblades_topics) + 10;
+
+		bugblox_topics = 3;
+		bugblox_height = (10*bugblox_topics) + 10;
+
+		synthesis_topics = 3;
+		synthesis_height = (10*synthesis_topics) + 10;
+
+		armour_topics = 2;
+		armour_height = (10*armour_topics) + 10;
+
+		magic_topics = 3;
+		magic_height = (10*magic_topics) + 10;
+
+		driveforms_topics = 3;
+		driveforms_height = (10*driveforms_topics) + 10;
+
+		misc_topics = 7;
+		misc_height = (10*misc_topics) + 10;
+
+		centreX = this.width / 2;
+		centreY = this.height / 2;
+
+		xPos_coll_commandMenu = centreX - (this.width - 100) / 2;
+		yPos_coll_commandMenu = this.height / 4;
+
+		xPos_coll_keyblades = xPos_coll_commandMenu;
+		yPos_coll_keyblades = yPos_coll_commandMenu + 15;
+
+		xPos_coll_bugblox = xPos_coll_keyblades;
+		yPos_coll_bugblox = yPos_coll_keyblades + 15;
+
+		xPos_coll_synthesis = xPos_coll_bugblox;
+		yPos_coll_synthesis = yPos_coll_bugblox + 15;
+
+		xPos_coll_armour = xPos_coll_synthesis;
+		yPos_coll_armour = yPos_coll_synthesis + 15;
+
+		xPos_coll_magic = xPos_coll_armour;
+		yPos_coll_magic = yPos_coll_armour + 15;
+
+		xPos_coll_driveforms = xPos_coll_magic;
+		yPos_coll_driveforms = yPos_coll_magic + 15;
+
+		xPos_coll_misc = xPos_coll_driveforms;
+		yPos_coll_misc = yPos_coll_driveforms + 15;
+
+		collapseListLength = yPos_coll_misc - yPos_coll_commandMenu;
+
 		//TITLES
 		buttonList.add(collapse_commandmenu);
 		buttonList.add(collapse_keyblades);
@@ -439,6 +511,7 @@ public class GuiJournal extends GuiScreen {
 
 		//SCROLL BARS
 		buttonList.add(scroll_collapse);
+		buttonList.add(scroll_page);
 
 		//TOPICS
 		buttonList.add(topic_commandmenu_about);
@@ -479,8 +552,13 @@ public class GuiJournal extends GuiScreen {
 		buttonList.add(topic_misc_musicdiscs);
 		buttonList.add(topic_misc_commands);
 
-		scroll_collapse.xPosition = (int) (xPos_coll_commandMenu + 100 + (7*1.5f));
+		scroll_collapse.width = (int) (7*1.5f);
+		scroll_collapse.height = (int) (7*1.5f);
+		scroll_collapse.xPosition = (int) (xPos_coll_commandMenu + 102);
 		scroll_collapse.yPosition = yPos_coll_commandMenu;
+
+		scroll_page.width = (int) (7*1.5f);
+		scroll_page.height = (int) (7*1.5f);
 
 		collapse_commandmenu.collapsed = false;
 		collapse_keyblades.collapsed = false;
@@ -491,53 +569,8 @@ public class GuiJournal extends GuiScreen {
 		collapse_driveforms.collapsed = false;
 		collapse_misc.collapsed = false;
 
-		commandmenu_topics = 5;
-		commandmenu_height = (10*commandmenu_topics) + 10;
-
-		keyblades_topics = 4;
-		keyblades_height = (10*keyblades_topics) + 10;
-
-		bugblox_topics = 3;
-		bugblox_height = (10*bugblox_topics) + 10;
-
-		synthesis_topics = 3;
-		synthesis_height = (10*synthesis_topics) + 10;
-
-		armour_topics = 2;
-		armour_height = (10*armour_topics) + 10;
-
-		magic_topics = 3;
-		magic_height = (10*magic_topics) + 10;
-
-		driveforms_topics = 3;
-		driveforms_height = (10*driveforms_topics) + 10;
-
-		misc_topics = 7;
-		misc_height = (10*misc_topics) + 10;
-
-		xPos_coll_commandMenu = centreX - 100 / 2;
-		yPos_coll_commandMenu = centreY - 102 / 2;
-
-		xPos_coll_keyblades = xPos_coll_commandMenu;
-		yPos_coll_keyblades = yPos_coll_commandMenu + 15;
-
-		xPos_coll_bugblox = xPos_coll_keyblades;
-		yPos_coll_bugblox = yPos_coll_keyblades + 15;
-
-		xPos_coll_synthesis = xPos_coll_bugblox;
-		yPos_coll_synthesis = yPos_coll_bugblox + 15;
-
-		xPos_coll_armour = xPos_coll_synthesis;
-		yPos_coll_armour = yPos_coll_synthesis + 15;
-
-		xPos_coll_magic = xPos_coll_armour;
-		yPos_coll_magic = yPos_coll_armour + 15;
-
-		xPos_coll_driveforms = xPos_coll_magic;
-		yPos_coll_driveforms = yPos_coll_magic + 15;
-
-		xPos_coll_misc = xPos_coll_driveforms;
-		yPos_coll_misc = yPos_coll_driveforms + 15;
+		page_commandmenu_about.setxPos(xPos_coll_commandMenu + 120);
+		page_commandmenu_about.setyPos(this.height / 8);
 
 	}
 
@@ -569,12 +602,12 @@ public class GuiJournal extends GuiScreen {
 			scrollPosMax += misc_height;
 		}
 		int scrollPosMin = 0;
-		int scrollGuiPosMin = yPos_coll_commandMenu;
-		int scrollGuiPosMax = scrollGuiPosMin + 105;
+		int scrollGuiPosMin = this.height / 4;
+		int scrollGuiPosMax = scrollGuiPosMin + (this.height / 2);
 		int scrollGuiHeight = scrollGuiPosMax - scrollGuiPosMin;
 		float step =(float) (scrollPosMax / (float)scrollGuiHeight);
 
-		if(x <= xPos_coll_commandMenu + 100 + (14*1.5f) && x >= xPos_coll_commandMenu){
+		if(x <= xPos_coll_commandMenu + 100 + (scroll_collapse.width) && x >= xPos_coll_commandMenu){
 			if(clickedMouseButton == 0){
 				offset = (-scrollPos);
 				if(y <= scrollGuiPosMin){
@@ -590,6 +623,61 @@ public class GuiJournal extends GuiScreen {
 
 			}
 		}
+	}
+
+	@Override
+	public void handleMouseInput() throws IOException {
+		//if(Mouse.getEventX() <= xPos_coll_commandMenu + 100 + (scroll_collapse.width) && Mouse.getEventX() >= xPos_coll_commandMenu){
+		int scrollPosMax = 100;
+		if(collapse_commandmenu.collapsed){
+			scrollPosMax += commandmenu_height;
+		}
+		if(collapse_keyblades.collapsed){
+			scrollPosMax += keyblades_height;
+		}
+		if(collapse_bugblox.collapsed){
+			scrollPosMax += bugblox_height;
+		}
+		if(collapse_synthesis.collapsed){
+			scrollPosMax += synthesis_height;
+		}
+		if(collapse_armour.collapsed){
+			scrollPosMax += armour_height;
+		}
+		if(collapse_magic.collapsed){
+			scrollPosMax += magic_height;
+		}
+		if(collapse_driveforms.collapsed){
+			scrollPosMax += driveforms_height;
+		}
+		if(collapse_misc.collapsed){
+			scrollPosMax += misc_height;
+		}
+		if(Mouse.getEventDWheel() < 1 && Mouse.getEventDWheel() != 0){
+			if(Mouse.getEventX() <= (xPos_coll_commandMenu * 2) + 200 + (scroll_collapse.width * 2) && Mouse.getEventX() >= xPos_coll_commandMenu * 2){
+				if(scrollPos > 0){
+					scrollPos-=2;
+					offset = (-scrollPos);
+				}else if(scrollPos < 0){
+					scrollPos = 0;
+					offset = (-scrollPos);
+				}
+			}
+
+		}
+		if(Mouse.getEventDWheel() > 1 && Mouse.getEventDWheel() != 0){
+			if(Mouse.getEventX() <= (xPos_coll_commandMenu * 2) + 200 + (scroll_collapse.width * 2) && Mouse.getEventX() >= xPos_coll_commandMenu * 2){
+				if(scrollPos < scrollPosMax){
+					scrollPos+=2;
+					offset = (-scrollPos);
+				}else if(scrollPos > scrollPosMax){
+					scrollPos = scrollPosMax;
+					offset = (-scrollPos);
+				}
+			}
+		}
+		//}
+		super.handleMouseInput();
 	}
 
 	@Override
@@ -739,6 +827,9 @@ public class GuiJournal extends GuiScreen {
 				collapseListLength -= misc_height;
 			}
 			break;
+		case TOPIC_COMMANDMENU_ABOUT:
+			currentPage = page_commandmenu_about.getName();
+			break;
 		}
 
 	}
@@ -775,10 +866,11 @@ public class GuiJournal extends GuiScreen {
 					h = 5;
 				}
 				GL11.glPushMatrix();
-				int distToBottomFromMisc = GuiJournal.res.getScaledHeight() - (((centreY - 102 / 2) + 105) + 14);
-				int listHeight = ((centreY - 102 / 2) + 105) - yPos_coll_commandMenu + 14;
+				res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+				int distToBottomFromMisc = (res.getScaledHeight() / 4) - 7;
+				int listHeight = (((res.getScaledHeight() / 4) + 7) + (res.getScaledHeight() / 2)) - yPos_coll_commandMenu + 2;
 
-				GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2, GuiJournal.res.getScaledWidth(), listHeight * 2);
+				GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2, res.getScaledWidth(), listHeight * 2);
 				GL11.glEnable(GL11.GL_SCISSOR_TEST);
 				GL11.glTranslatef(this.xPosition, this.yPosition, 0);
 				GL11.glScalef(1.1f, 1.1f, 0);
@@ -830,10 +922,11 @@ public class GuiJournal extends GuiScreen {
 				GL11.glPushMatrix();
 				GL11.glTranslatef(this.xPosition, this.yPosition + 2, 0);
 				GL11.glScalef(0.75f, 0.75f, 0);
-				int distToBottomFromMisc = GuiJournal.res.getScaledHeight() - (((centreY - 102 / 2) + 105) + 14);
-				int listHeight = ((centreY - 102 / 2) + 105) - yPos_coll_commandMenu + 14;
+				res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+				int distToBottomFromMisc = (res.getScaledHeight() / 4) - 7;
+				int listHeight = (((res.getScaledHeight() / 4) + 7) + (res.getScaledHeight() / 2)) - yPos_coll_commandMenu + 2;
 
-				GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2, GuiJournal.res.getScaledWidth(), listHeight * 2);
+				GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2, res.getScaledWidth(), listHeight * 2);
 				GL11.glEnable(GL11.GL_SCISSOR_TEST);
 				drawString(mc.fontRendererObj, this.displayString + EnumChatFormatting.UNDERLINE, 0, 0, this.colour);
 				GL11.glDisable(GL11.GL_SCISSOR_TEST);
