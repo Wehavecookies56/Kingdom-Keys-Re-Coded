@@ -86,7 +86,7 @@ public class EntityBlizzard extends EntityThrowable
 
                 if (flag)
                 {
-                    BlockPos blockpos = movingObject.func_178782_a().offset(movingObject.field_178784_b);
+                    BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);
 
                     if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.water)
                     {

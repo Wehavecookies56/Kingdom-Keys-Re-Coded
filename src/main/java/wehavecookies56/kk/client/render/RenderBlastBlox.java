@@ -41,25 +41,25 @@ public class RenderBlastBlox extends Render{
         f2 = (1.0F - ((float)entity.fuse - p_76986_9_ + 1.0F) / 100.0F) * 0.8F;
         this.bindEntityTexture(entity);
         GlStateManager.translate(-0.5F, -0.5F, 0.5F);
-        blockrendererdispatcher.func_175016_a(ModBlocks.BlastBlox.getDefaultState(), entity.getBrightness(p_76986_9_));
+        blockrendererdispatcher.renderBlockBrightness(ModBlocks.BlastBlox.getDefaultState(), entity.getBrightness(p_76986_9_));
         GlStateManager.translate(0.0F, 0.0F, 1.0F);
 
         if (entity.fuse / 5 % 2 == 0)
         {
-            GlStateManager.func_179090_x();
+            GlStateManager.disableTexture2D();
             GlStateManager.disableLighting();
             GlStateManager.enableBlend();
             GlStateManager.blendFunc(770, 772);
             GlStateManager.color(1.0F, 1.0F, 1.0F, f2);
             GlStateManager.doPolygonOffset(-3.0F, -3.0F);
             GlStateManager.enablePolygonOffset();
-            blockrendererdispatcher.func_175016_a(ModBlocks.BlastBlox.getDefaultState(), 1.0F);
+            blockrendererdispatcher.renderBlockBrightness(ModBlocks.BlastBlox.getDefaultState(), 1.0F);
             GlStateManager.doPolygonOffset(0.0F, 0.0F);
             GlStateManager.disablePolygonOffset();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.disableBlend();
             GlStateManager.enableLighting();
-            GlStateManager.func_179098_w();
+            GlStateManager.enableTexture2D();
         }
 
         GlStateManager.popMatrix();

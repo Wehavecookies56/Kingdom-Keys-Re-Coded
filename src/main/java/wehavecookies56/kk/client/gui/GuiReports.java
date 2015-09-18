@@ -309,7 +309,7 @@ public class GuiReports extends GuiScreen {
                 GL11.glColor4f(1, 1, 1, 1);
 
                 drawTexturedModalRect(xPosition, yPosition, u, v, width, height);
-                itemRender.func_175042_a(new ItemStack(ModItems.KingdomKey), xPosition + 2, yPosition + 2);
+                itemRender.renderItemAndEffectIntoGUI(new ItemStack(ModItems.KingdomKey), xPosition + 2, yPosition + 2);
                 drawString(fontRendererObj, text, xPosition + 160/2 - 40, yPosition + 6, 0xFFFFFF);
 
                 GL11.glEnable(GL11.GL_LIGHTING);

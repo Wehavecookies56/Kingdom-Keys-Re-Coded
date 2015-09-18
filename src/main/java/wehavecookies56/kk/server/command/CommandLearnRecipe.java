@@ -41,7 +41,7 @@ public class CommandLearnRecipe implements ICommand {
 	}
 
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "learnrecipe";
 	}
 
@@ -51,12 +51,12 @@ public class CommandLearnRecipe implements ICommand {
 	}
 
 	@Override
-	public List getCommandAliases() {
+	public List getAliases() {
 		return this.aliases;
 	}
 
 	@Override
-	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
+	public void execute(ICommandSender sender, String[] args) throws CommandException {
 		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
 			if(args.length == 0){
 				TextHelper.sendFormattedChatMessage("Invalid arguments, usage \"/learnrecipe <name>\"", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
@@ -83,7 +83,7 @@ public class CommandLearnRecipe implements ICommand {
 	}
 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender sender) {
+	public boolean canCommandSenderUse(ICommandSender sender) {
 		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
 			return true;
 		}

@@ -27,7 +27,7 @@ public class CommandCheatMode implements ICommand {
 	}
 
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "cheatmode";
 	}
 
@@ -37,7 +37,7 @@ public class CommandCheatMode implements ICommand {
 	}
 
 	@Override
-	public List getCommandAliases() {
+	public List getAliases() {
 		return this.aliases;
 	}
 
@@ -53,7 +53,7 @@ public class CommandCheatMode implements ICommand {
 	}
 
 	@Override
-	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
+	public void execute(ICommandSender sender, String[] args) throws CommandException {
 		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
 			if(args.length == 0){
 				if(ExtendedPlayer.get((EntityPlayer) sender.getCommandSenderEntity()).cheatMode)
@@ -71,7 +71,7 @@ public class CommandCheatMode implements ICommand {
 	}
 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender sender) {
+	public boolean canCommandSenderUse(ICommandSender sender) {
 		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
 			return true;
 		}
