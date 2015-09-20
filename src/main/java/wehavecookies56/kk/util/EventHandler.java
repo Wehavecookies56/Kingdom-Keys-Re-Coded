@@ -145,7 +145,7 @@ public class EventHandler {
 				ExtendedPlayer.get((EntityPlayer) event.entity).setFirstKeyblade(true);
 			}
 
-			GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Wehavecookies56");
+			GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Qwenit");
 			UUID uuidWehavecookies56 = profileWehavecookies56.getId();
 			if(event.entity.getUniqueID() == uuidWehavecookies56){
 				ExtendedPlayer.get((EntityPlayer) event.entity).setMunny(ExtendedPlayer.get((EntityPlayer) event.entity).getMunny() + 10000);
@@ -457,15 +457,15 @@ public class EventHandler {
 	public void onFall(LivingFallEvent event)
 	{
 		if(event.entityLiving instanceof EntityPlayer)
-		{		
-			EntityPlayer player = (EntityPlayer) event.entityLiving;			
+		{
+			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			if(ExtendedPlayer.get(player).getInDrive())
 			{
 				event.distance=0;
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onBlockDestroyed(HarvestDropsEvent event){
 		if(event.state.getBlock() == ModBlocks.BlazingOre){

@@ -3,12 +3,11 @@ package wehavecookies56.kk.network;
 import com.jadarstudios.developercapes.DevCapes;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelCow;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IThreadListener;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.b3d.B3DLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -19,17 +18,27 @@ import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.client.gui.GuiDrive;
 import wehavecookies56.kk.client.gui.GuiHP;
+import wehavecookies56.kk.client.gui.GuiMP;
 import wehavecookies56.kk.client.gui.GuiPlayerPortrait;
 import wehavecookies56.kk.client.input.InputHandler;
 import wehavecookies56.kk.client.input.Keybinds;
-import wehavecookies56.kk.client.gui.GuiMP;
 import wehavecookies56.kk.client.render.RenderBlastBlox;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
 import wehavecookies56.kk.entities.magic.EntityFire;
 import wehavecookies56.kk.item.ModItems;
+import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.LogHelper;
 
 public class ClientProxy extends CommonProxy {
+
+	@Override
+	public void preInit(){
+		B3DLoader.instance.addDomain(Reference.MODID);
+
+		ModelLoader.setCustomModelResourceLocation(ModItems.KingdomKey, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KingdomKey, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Crabclaw, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Crabclaw, "inventory"));
+	}
 
 	@Override
 	public void init(){

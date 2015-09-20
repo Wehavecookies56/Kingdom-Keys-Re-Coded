@@ -75,6 +75,18 @@ public class KingdomKeys {
 		PacketDispatcher.registerPackets();
 		LogHelper.info("Packets loaded");
 
+		//Items
+		ModItems.init();
+		ModItems.register();
+		LogHelper.info("Items loaded");
+
+		//Blocks
+		ModBlocks.init();
+		ModBlocks.register();
+		LogHelper.info("Blocks loaded");
+
+		proxy.preInit();
+
 	}
 
 
@@ -87,23 +99,13 @@ public class KingdomKeys {
 	}
 
 	@EventHandler
-    public void init(FMLInitializationEvent e){
+	public void init(FMLInitializationEvent e){
 		//Instance
 		FMLCommonHandler.instance().bus().register(instance);
 
 		//Update checker
 		FMLCommonHandler.instance().bus().register(new UpdateChecker());
 		LogHelper.info("Update checker loaded");
-
-		//Items
-		ModItems.init();
-		ModItems.register();
-		LogHelper.info("Items loaded");
-
-		//Blocks
-		ModBlocks.init();
-		ModBlocks.register();
-		LogHelper.info("Blocks loaded");
 
 		//Crafting recipes
 		ModItemsRecipes.init();
