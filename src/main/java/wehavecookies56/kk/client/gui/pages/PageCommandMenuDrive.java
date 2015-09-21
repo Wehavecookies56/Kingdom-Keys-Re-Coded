@@ -9,12 +9,12 @@ import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.client.gui.GuiJournal;
 import wehavecookies56.kk.lib.Reference;
 
-public class PageCommandMenuAbout extends Page {
+public class PageCommandMenuDrive extends Page {
 
-	String text = "The Command Menu is the menu displayed in the bottom left corner of the HUD. It has 4 options, Attack, Magic, Items and Drive, for info on these options refer to their respective pages.\n\nThe menu can be navigated using the Command Menu keybinds (default: Arrow keys) it can also be navigated by holding the hold keybind (default: Alt) and scrolling the mouse wheel, left click to enter, right click to go back.";
+	String text = "\"Drive\" is an option on the Command Menu which brings up a list of Drive Forms you can transform into. For more information on Drive Forms look at the pages under the \"Drive Forms\" section.";
 
-	public PageCommandMenuAbout(int xPos, int yPos) {
-		super("CommandMenu_About", xPos, yPos);
+	public PageCommandMenuDrive(int xPos, int yPos) {
+		super("CommandMenu_Drive", xPos, yPos);
 		this.setxPos(xPos);
 		this.setyPos(yPos);
 	}

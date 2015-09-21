@@ -28,7 +28,7 @@
                         "scale": 0.018
                     },
                     "firstperson": {
-                    	"rotation": [ { "x": -30 }, { "y": -45 }, { "z": 45 } ],
+                    	"rotation": [ { "x": -30 }, { "y": -60 }, { "z": 45 } ],
                     	"translation": [ 0, -0.6, 0 ],
                         "scale": 0.03
                     }

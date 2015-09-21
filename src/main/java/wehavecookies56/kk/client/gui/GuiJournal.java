@@ -14,6 +14,10 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.client.gui.pages.PageCommandMenuAbout;
+import wehavecookies56.kk.client.gui.pages.PageCommandMenuAttack;
+import wehavecookies56.kk.client.gui.pages.PageCommandMenuDrive;
+import wehavecookies56.kk.client.gui.pages.PageCommandMenuItems;
+import wehavecookies56.kk.client.gui.pages.PageCommandMenuMagic;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.util.TextHelper;
@@ -113,9 +117,18 @@ public class GuiJournal extends GuiScreen {
 	String currentPage;
 
 	PageCommandMenuAbout page_commandmenu_about;
+	PageCommandMenuAttack page_commandmenu_attack;
+	PageCommandMenuMagic page_commandmenu_magic;
+	PageCommandMenuItems page_commandmenu_items;
+	PageCommandMenuDrive page_commandmenu_drive;
 
 	public GuiJournal() {
 		page_commandmenu_about = new PageCommandMenuAbout(0, 0);
+		page_commandmenu_attack = new PageCommandMenuAttack(0, 0);
+		page_commandmenu_magic = new PageCommandMenuMagic(0, 0);
+		page_commandmenu_items = new PageCommandMenuItems(0, 0);
+		page_commandmenu_drive = new PageCommandMenuDrive(0, 0);
+
 		collapse_commandmenu = new GuiButtonCollapse(COLLAPSE_COMMANDMENU, 0, 0);
 		collapse_keyblades = new GuiButtonCollapse(COLLAPSE_KEYBLADES, 0, 0);
 		collapse_bugblox = new GuiButtonCollapse(COLLAPSE_BUGBLOX, 0, 0);
@@ -185,6 +198,18 @@ public class GuiJournal extends GuiScreen {
 			if(currentPage.equals(page_commandmenu_about.getName())){
 				page_commandmenu_about.drawScreen(mouseX, mouseY, partialTicks);
 			}
+			if(currentPage.equals(page_commandmenu_attack.getName())){
+				page_commandmenu_attack.drawScreen(mouseX, mouseY, partialTicks);
+			}
+			if(currentPage.equals(page_commandmenu_magic.getName())){
+				page_commandmenu_magic.drawScreen(mouseX, mouseY, partialTicks);
+			}
+			if(currentPage.equals(page_commandmenu_items.getName())){
+				page_commandmenu_items.drawScreen(mouseX, mouseY, partialTicks);
+			}
+			if(currentPage.equals(page_commandmenu_drive.getName())){
+				page_commandmenu_drive.drawScreen(mouseX, mouseY, partialTicks);
+			}
 		}
 
 		int distToBottomFromMisc = (this.height / 4) - 7;
@@ -197,6 +222,26 @@ public class GuiJournal extends GuiScreen {
 				topic_commandmenu_about.colour = 0xFFFFFF;
 			}else{
 				topic_commandmenu_about.colour = 0x0645AD;
+			}
+			if(currentPage.equals(page_commandmenu_attack.getName())){
+				topic_commandmenu_attack.colour = 0xFFFFFF;
+			}else{
+				topic_commandmenu_attack.colour = 0x0645AD;
+			}
+			if(currentPage.equals(page_commandmenu_magic.getName())){
+				topic_commandmenu_magic.colour = 0xFFFFFF;
+			}else{
+				topic_commandmenu_magic.colour = 0x0645AD;
+			}
+			if(currentPage.equals(page_commandmenu_items.getName())){
+				topic_commandmenu_items.colour = 0xFFFFFF;
+			}else{
+				topic_commandmenu_items.colour = 0x0645AD;
+			}
+			if(currentPage.equals(page_commandmenu_drive.getName())){
+				topic_commandmenu_drive.colour = 0xFFFFFF;
+			}else{
+				topic_commandmenu_drive.colour = 0x0645AD;
 			}
 		}else{
 			topic_commandmenu_about.colour = 0x0645AD;
@@ -661,6 +706,18 @@ public class GuiJournal extends GuiScreen {
 		page_commandmenu_about.setxPos(xPos_coll_commandMenu + 120);
 		page_commandmenu_about.setyPos(this.height / 8);
 
+		page_commandmenu_attack.setxPos(xPos_coll_commandMenu + 120);
+		page_commandmenu_attack.setyPos(this.height / 8);
+
+		page_commandmenu_magic.setxPos(xPos_coll_commandMenu + 120);
+		page_commandmenu_magic.setyPos(this.height / 8);
+
+		page_commandmenu_items.setxPos(xPos_coll_commandMenu + 120);
+		page_commandmenu_items.setyPos(this.height / 8);
+
+		page_commandmenu_drive.setxPos(xPos_coll_commandMenu + 120);
+		page_commandmenu_drive.setyPos(this.height / 8);
+
 	}
 
 	@Override
@@ -917,6 +974,18 @@ public class GuiJournal extends GuiScreen {
 			break;
 		case TOPIC_COMMANDMENU_ABOUT:
 			currentPage = page_commandmenu_about.getName();
+			break;
+		case TOPIC_COMMANDMENU_ATTACK:
+			currentPage = page_commandmenu_attack.getName();
+			break;
+		case TOPIC_COMMANDMENU_MAGIC:
+			currentPage = page_commandmenu_magic.getName();
+			break;
+		case TOPIC_COMMANDMENU_ITEMS:
+			currentPage = page_commandmenu_items.getName();
+			break;
+		case TOPIC_COMMANDMENU_DRIVE:
+			currentPage = page_commandmenu_drive.getName();
 			break;
 		}
 
