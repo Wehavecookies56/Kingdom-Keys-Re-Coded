@@ -37,4 +37,8 @@ public class GuiHelper {
 	public static void openReports(){
 		Minecraft.getMinecraft().displayGuiScreen(new GuiJournal());
 	}
+	
+	public static void openKKChest(){
+		Minecraft.getMinecraft().displayGuiScreen(new GuiKKChest());
+	}
 }

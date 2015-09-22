@@ -10,5 +10,4 @@ public class ItemCrabClaw extends ItemKeyblade {
 	public ItemCrabClaw(ToolMaterial material) {
 		super(material);
 	}
-
 }
