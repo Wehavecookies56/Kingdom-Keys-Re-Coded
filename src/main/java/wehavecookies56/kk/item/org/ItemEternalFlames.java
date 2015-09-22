@@ -30,19 +30,20 @@ public class ItemEternalFlames extends ItemSword{
     }
 
     @Override
-    public boolean hitEntity(ItemStack p_77644_1_, EntityLivingBase p_77644_2_,
+    public boolean hitEntity(ItemStack item, EntityLivingBase entity,
     		EntityLivingBase p_77644_3_) {
-    	p_77644_2_.setFire(5);
-    	return super.hitEntity(p_77644_1_, p_77644_2_, p_77644_3_);
+    	entity.setFire(5);
+    	return super.hitEntity(item, entity, p_77644_3_);
     }
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		if (!player.isSneaking())
 		{
 			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-			if (!world.isRemote)
+			//if (!world.isRemote)
 			{
 				world.spawnEntityInWorld(new EntityEternalFlamesProjectile(world, player));
+				player.swingItem();
 			}
 		}
 		else
