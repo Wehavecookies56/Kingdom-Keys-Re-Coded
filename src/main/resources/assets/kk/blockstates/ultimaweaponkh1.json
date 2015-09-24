@@ -5,31 +5,22 @@
         "model": "kk:ultimaweaponkh1.b3d"
     },
     "variants": {
-    	"normal": [
-            {
-                "transform": {
-                    "rotation": [ { "x": 90 }, { "y": 0 }, { "z": -90 } ],
-                    "translation": [ 0, 0.05, 0.5 ],
-                    "scale": 0.02
-                }
-            }
-        ],
         "inventory": [
             {
                 "transform": {
                     "thirdperson": {
                     	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": -90 } ],
-                    	"translation": [ 0, 0.05, 0.5 ],
+                    	"translation": [ 0, 0, 0.6 ],
                         "scale": 0.02
                     },
                     "gui": {
                     	"rotation": [ { "x": 0 }, { "y": 0 }, { "z": 150 } ],
                     	"translation": [ 0.6, -0.45, 0 ],
-                        "scale": 0.018
+                        "scale": 0.014
                     },
                     "firstperson": {
                     	"rotation": [ { "x": -30 }, { "y": -60 }, { "z": 45 } ],
-                    	"translation": [ 0, -0.6, 0 ],
+                    	"translation": [ 0, -0.8, 0 ],
                         "scale": 0.03
                     }
                 }

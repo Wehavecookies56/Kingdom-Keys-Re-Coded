@@ -5,21 +5,12 @@
         "model": "kk:oathkeeper.b3d"
     },
     "variants": {
-    	"normal": [
-            {
-                "transform": {
-                    "rotation": [ { "x": 90 }, { "y": 0 }, { "z": -90 } ],
-                    "translation": [ 0, 0.05, 0.5 ],
-                    "scale": 0.02
-                }
-            }
-        ],
         "inventory": [
             {
                 "transform": {
                     "thirdperson": {
                     	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": -90 } ],
-                    	"translation": [ 0, 0.05, 0.5 ],
+                    	"translation": [ 0, 0.05, 0.55 ],
                         "scale": 0.02
                     },
                     "gui": {
@@ -29,7 +20,7 @@
                     },
                     "firstperson": {
                     	"rotation": [ { "x": -30 }, { "y": -60 }, { "z": 45 } ],
-                    	"translation": [ 0, -0.6, 0 ],
+                    	"translation": [ 0, -0.8, 0 ],
                         "scale": 0.03
                     }
                 }

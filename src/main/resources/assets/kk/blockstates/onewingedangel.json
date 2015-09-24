@@ -6,15 +6,6 @@
     },
 
     "variants": {
-        "normal": [
-            {
-                "transform": {
-                    "rotation": [ { "x": 90 }, { "y": 0 }, { "z": -90 } ],
-                    "translation": [ 0, 0.05, -0.05 ],
-                    "scale": 0.02
-                }
-            }
-        ],
         "inventory": [
             {
                 "transform": {
@@ -26,10 +17,15 @@
                     "gui": {
                     	"rotation": [ { "x": 0 }, { "y": 0 }, { "z": 150 } ],
                     	"translation": [ 0.2, -0.2, 0 ],
-                        "scale": 0.018
+                        "scale": 0.015
                     },
                     "firstperson": {
                     	"rotation": [ { "x": -30 }, { "y": -60 }, { "z": 45 } ],
+                    	"translation": [ 0, 0.1, 0.1 ],
+                        "scale": 0.03
+                    },
+                    "head": {
+						"rotation": [ { "x": -30 }, { "y": -60 }, { "z": 45 } ],
                     	"translation": [ 0, 0.1, 0.1 ],
                         "scale": 0.03
                     }

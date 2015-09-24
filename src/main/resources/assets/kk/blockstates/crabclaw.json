@@ -25,7 +25,7 @@
                     },
                     "gui": {
                     	"rotation": [ { "x": 0 }, { "y": 0 }, { "z": 150 } ],
-                    	"translation": [ 0.2, -0.2, 0 ],
+                    	"translation": [ 0.2, -0.15, 0 ],
                         "scale": 0.018
                     },
                     "firstperson": {

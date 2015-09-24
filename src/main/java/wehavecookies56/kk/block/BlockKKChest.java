@@ -15,6 +15,7 @@ import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.client.gui.GuiHandler;
 import wehavecookies56.kk.entities.TileEntityKKChest;
 import wehavecookies56.kk.lib.Reference;
@@ -34,14 +35,14 @@ public class BlockKKChest extends BlockContainer{
 		// TODO Auto-generated method stub
 		return new TileEntityKKChest();
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
 		// Uses the gui handler registered to your mod to open the gui for the given gui id
 		// open on the server side only  (not sure why you shouldn't open client side too... vanilla doesn't, so we better not either)
 		if (worldIn.isRemote) return true;
 //TODO
-		playerIn.openGui(Reference.MODID.instance, GuiHandler.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
+		playerIn.openGui(KingdomKeys.instance, GuiHandler.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 

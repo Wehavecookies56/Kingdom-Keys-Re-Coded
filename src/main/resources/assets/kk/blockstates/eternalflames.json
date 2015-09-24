@@ -5,31 +5,22 @@
         "model": "kk:eternalflames.b3d"
     },
     "variants": {
-    	"normal": [
-            {
-                "transform": {
-                    "rotation": [ { "x": 90 }, { "y": 0 }, { "z": -90 } ],
-                    "translation": [ 0, 0.05, 0.5 ],
-                    "scale": 0.02
-                }
-            }
-        ],
         "inventory": [
             {
                 "transform": {
                     "thirdperson": {
-                    	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": -90 } ],
-                    	"translation": [ 0, 0.05, 0.5 ],
-                        "scale": 0.02
+                    	"rotation": [ { "x": 90 }, { "y": -20 }, { "z": 0 } ],
+                    	"translation": [ -0.03, 0, 0 ],
+                        "scale": 0.018
                     },
                     "gui": {
-                    	"rotation": [ { "x": 0 }, { "y": 0 }, { "z": 150 } ],
-                    	"translation": [ 0.6, -0.45, 0 ],
+                    	"rotation": [ { "x": 0 }, { "y": 45 }, { "z": 0 } ],
+                    	"translation": [ 0, 0, 0 ],
                         "scale": 0.018
                     },
                     "firstperson": {
-                    	"rotation": [ { "x": -30 }, { "y": -60 }, { "z": 45 } ],
-                    	"translation": [ 0, -0.6, 0 ],
+                    	"rotation": [ { "x": -30 }, { "y": -60 }, { "z": -45 } ],
+                    	"translation": [ 0, 0, 0.2 ],
                         "scale": 0.03
                     }
                 }

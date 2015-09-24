@@ -2,6 +2,7 @@ package wehavecookies56.kk.util;
 
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.client.gui.GuiJournal;
+import wehavecookies56.kk.client.gui.GuiKKChest;
 import wehavecookies56.kk.client.gui.GuiMenu;
 import wehavecookies56.kk.client.gui.GuiMenu_Items;
 import wehavecookies56.kk.client.gui.GuiReports;
@@ -37,8 +38,8 @@ public class GuiHelper {
 	public static void openReports(){
 		Minecraft.getMinecraft().displayGuiScreen(new GuiJournal());
 	}
-	
+
 	public static void openKKChest(){
-		Minecraft.getMinecraft().displayGuiScreen(new GuiKKChest());
+		Minecraft.getMinecraft().displayGuiScreen(new GuiKKChest(null, null));
 	}
 }

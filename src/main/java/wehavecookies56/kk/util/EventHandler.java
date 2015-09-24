@@ -2,6 +2,8 @@ package wehavecookies56.kk.util;
 
 import java.util.UUID;
 
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.RenderEntityItem;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
@@ -17,6 +19,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.RenderItemInFrameEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -73,6 +76,16 @@ public class EventHandler {
 			ExtendedPlayerMaterials.register((EntityPlayer) event.entity, 100);
 		}
 
+	}
+
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void onRenderItemInFrame(RenderItemInFrameEvent event){
+		if(event.item.getItem() != null){
+			if(event.item.getItem() instanceof ItemKeyblade){
+				GlStateManager.scale(0.02f, 0.02f, 0.02f);
+			}
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
