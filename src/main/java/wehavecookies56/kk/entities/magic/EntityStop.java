@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
@@ -51,7 +52,7 @@ public class EntityStop extends Entity
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
-		if(ticksExisted > 30){
+		if(ticksExisted > 50){
 			setDead();
 		}
 
@@ -72,12 +73,10 @@ public class EntityStop extends Entity
 			{
 				Entity e = (Entity) list.get(i);
 				if(e instanceof EntityLiving){
-					((EntityLivingBase) e).getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0);
-					if(ticksExisted > 20)
-					{
-						System.out.println(e);
-						((EntityLivingBase) e).getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(((EntityLivingBase) e).getEntityAttribute(SharedMonsterAttributes.movementSpeed).getBaseValue());
+					if(ticksExisted < 50){
+						((EntityLivingBase) e).setVelocity(0, 0, 0);
 					}
+					System.out.println(e);
 				}
 			}
 		}
