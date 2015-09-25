@@ -1,4 +1,4 @@
-package wehavecookies56.kk.client.gui;
+package wehavecookies56.kk.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -34,7 +34,7 @@ public class ContainerKKChest extends Container {
 		this.tileEntityKKChest = tileEntityKKChest;
 
 		final int SLOT_X_SPACING = 18;
-    final int SLOT_Y_SPACING = 18;
+		final int SLOT_Y_SPACING = 18;
 		final int HOTBAR_XPOS = 8;
 		final int HOTBAR_YPOS = 109;
 		// Add the players hotbar to the gui - the [xpos, ypos] location of each item
@@ -56,8 +56,7 @@ public class ContainerKKChest extends Container {
 		}
 
 		if (TE_INVENTORY_SLOT_COUNT != tileEntityKKChest.getSizeInventory()) {
-			System.err.println("Mismatched slot count in ContainerBasic(" + TE_INVENTORY_SLOT_COUNT
-												  + ") and TileInventory (" + tileEntityKKChest.getSizeInventory()+")");
+			System.err.println("Mismatched slot count in ContainerBasic(" + TE_INVENTORY_SLOT_COUNT + ") and TileInventory (" + tileEntityKKChest.getSizeInventory()+")");
 		}
 		final int TILE_INVENTORY_XPOS = 8;
 		final int TILE_INVENTORY_YPOS = 20;

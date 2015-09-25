@@ -1066,7 +1066,7 @@ public class ModItems {
 		registerRender(MasterXehanortsKeyblade);
 		registerRender(MastersDefender);
 		registerRender(MaverickFlare);
-		registerRender(MetalChocobo);
+		//registerRender(MetalChocobo);
 		registerRender(MidnightRoar);
 		registerRender(MissingAche);
 		registerRender(Monochrome);

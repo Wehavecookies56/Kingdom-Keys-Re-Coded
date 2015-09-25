@@ -152,7 +152,7 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 	// will add a key for this container to the lang file so we can name it in the GUI
 	@Override
 	public String getName() {
-		return "container.mbe30_inventory_basic.name";
+		return "container.kkchest.name";
 	}
 
 	@Override

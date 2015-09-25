@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.entities.TileEntityKKChest;
+import wehavecookies56.kk.inventory.ContainerKKChest;
 import wehavecookies56.kk.lib.Reference;
 
 

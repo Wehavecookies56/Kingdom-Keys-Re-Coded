@@ -1,0 +1,38 @@
+{
+	"forge_marker": 1,
+    "defaults": {
+        "textures": {},
+        "model": "kk:kkchest.b3d"
+    },
+    "variants": {
+    	"normal": [
+    		{
+    			"model": "kk:kkchest.b3d",
+    			"transform":{
+                	"scale": 0.02
+    			}
+    		}
+    	],
+        "inventory": [
+            {
+                "transform": {
+                    "thirdperson": {
+                    	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": 180 } ],
+                    	"translation": [ 0, 0, 0.2 ],
+                        "scale": 0.02
+                    },
+                    "gui": {
+                    	"rotation": [ { "x": 0 }, { "y": 0 }, { "z": 60 } ],
+                    	"translation": [ 0.5, -0.2, 0 ],
+                        "scale": 0.016
+                    },
+                    "firstperson": {
+                    	"rotation": [ { "x": 0 }, { "y": -60 }, { "z": -10 } ],
+                    	"translation": [ 0, -0.6, 0 ],
+                        "scale": 0.03
+                    }
+                }
+            }
+        ]
+    }
+}

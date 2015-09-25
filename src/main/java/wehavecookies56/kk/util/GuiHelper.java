@@ -1,17 +1,18 @@
 package wehavecookies56.kk.util;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.client.gui.GuiJournal;
 import wehavecookies56.kk.client.gui.GuiKKChest;
 import wehavecookies56.kk.client.gui.GuiMenu;
 import wehavecookies56.kk.client.gui.GuiMenu_Items;
-import wehavecookies56.kk.client.gui.GuiReports;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.OpenGui;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiInventory;
-import net.minecraft.entity.player.EntityPlayer;
 
 public class GuiHelper {
 
@@ -39,7 +40,7 @@ public class GuiHelper {
 		Minecraft.getMinecraft().displayGuiScreen(new GuiJournal());
 	}
 
-	public static void openKKChest(){
-		Minecraft.getMinecraft().displayGuiScreen(new GuiKKChest(null, null));
+	public static void openKKChest(EntityPlayer player, World world, BlockPos pos){
+		player.openGui(KingdomKeys.instance, KingdomKeys.GUI_KKCHEST_INV, world, pos.getX(), pos.getY(), pos.getZ());
 	}
 }

@@ -20,6 +20,8 @@ import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.block.ModBlocksRecipes;
 import wehavecookies56.kk.driveforms.ModDriveForms;
+import wehavecookies56.kk.entities.EntityItemMetalChocobo;
+import wehavecookies56.kk.entities.TileEntityKKChest;
 import wehavecookies56.kk.entities.TileEntitySynthesisTable;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
 import wehavecookies56.kk.entities.magic.EntityFire2;
@@ -53,6 +55,7 @@ public class KingdomKeys {
 
 	private static int modGuiIndex = 0;
 	public static final int GUI_KEYCHAIN_INV = modGuiIndex++;
+	public static final int GUI_KKCHEST_INV = modGuiIndex++;
 
 	@Mod.Instance(Reference.MODID)
 	public static KingdomKeys instance;
@@ -120,17 +123,19 @@ public class KingdomKeys {
 		proxy.init();
 		LogHelper.info("Renders loaded");
 
-		//Proxy used as Gui handler
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
-
 		//Tile entity registry
 		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
+		GameRegistry.registerTileEntity(TileEntityKKChest.class, "kkchest");
 		LogHelper.info("Tile entities loaded");
+
+		//Proxy used as Gui handler
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 
 		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 0, instance, 16, 1, false);
 
 		EntityRegistry.registerModEntity(EntityFire2.class, "fire", 1, instance, 16, 1, false);
 		EntityRegistry.registerModEntity(EntityThunder.class, "thunder", 2, instance, 16, 1, false);
+		//EntityRegistry.registerModEntity(EntityItemMetalChocobo.class, "entityitemmetalchocobo", 2, instance, 16, 1, false);
 
 
 		Lists.init();

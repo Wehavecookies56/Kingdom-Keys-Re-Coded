@@ -3,16 +3,20 @@ package wehavecookies56.kk.network;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import wehavecookies56.kk.KingdomKeys;
+import wehavecookies56.kk.client.gui.GuiKKChest;
 import wehavecookies56.kk.client.gui.GuiKeychains;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.entities.TileEntityKKChest;
+import wehavecookies56.kk.inventory.ContainerKKChest;
 import wehavecookies56.kk.inventory.ContainerKeychain;
 
 public class CommonProxy implements IGuiHandler {
@@ -46,6 +50,15 @@ public class CommonProxy implements IGuiHandler {
 		if (ID == KingdomKeys.GUI_KEYCHAIN_INV){
 			return new ContainerKeychain(player, player.inventory, ExtendedPlayer.get(player).inventory);
 		}
+		if (ID == KingdomKeys.GUI_KKCHEST_INV){
+			BlockPos xyz = new BlockPos(x, y, z);
+			TileEntity te = world.getTileEntity(xyz);
+			if(te instanceof TileEntityKKChest){
+				TileEntityKKChest tekkc = (TileEntityKKChest) te;
+				return new ContainerKKChest(player.inventory, tekkc);
+			}else{
+				return null;
+			}		}
 		else{
 			return null;
 		}
@@ -56,6 +69,16 @@ public class CommonProxy implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if (ID == KingdomKeys.GUI_KEYCHAIN_INV){
 			return new GuiKeychains(player, player.inventory, ExtendedPlayer.get(player).inventory);
+		}
+		if (ID == KingdomKeys.GUI_KKCHEST_INV){
+			BlockPos xyz = new BlockPos(x, y, z);
+			TileEntity te = world.getTileEntity(xyz);
+			if(te instanceof TileEntityKKChest){
+				TileEntityKKChest tekkc = (TileEntityKKChest) te;
+				return new GuiKKChest(player.inventory, tekkc);
+			}else{
+				return null;
+			}
 		}
 		else{
 			return null;

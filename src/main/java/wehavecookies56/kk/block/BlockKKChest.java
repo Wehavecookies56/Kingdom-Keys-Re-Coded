@@ -3,6 +3,7 @@ package wehavecookies56.kk.block;
 import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -16,11 +17,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.KingdomKeys;
-import wehavecookies56.kk.client.gui.GuiHandler;
 import wehavecookies56.kk.entities.TileEntityKKChest;
-import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.util.GuiHelper;
 
-public class BlockKKChest extends BlockContainer{
+public class BlockKKChest extends BlockContainer implements ITileEntityProvider {
 	protected Random rand = new Random();
 
 	protected BlockKKChest(Material material, String toolClass, int level, float hardness, float resistance) {
@@ -37,12 +37,12 @@ public class BlockKKChest extends BlockContainer{
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
 		// Uses the gui handler registered to your mod to open the gui for the given gui id
 		// open on the server side only  (not sure why you shouldn't open client side too... vanilla doesn't, so we better not either)
-		if (worldIn.isRemote) return true;
+		if (world.isRemote) return true;
 //TODO
-		playerIn.openGui(KingdomKeys.instance, GuiHandler.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
+		GuiHelper.openKKChest(player, world, pos);
 		return true;
 	}
 
@@ -105,6 +105,11 @@ public class BlockKKChest extends BlockContainer{
 	// set to false because this block doesn't fill the entire 1x1x1 space
 	@Override
 	public boolean isFullCube() {
+		return false;
+	}
+	
+	@Override
+	public boolean isVisuallyOpaque() {
 		return false;
 	}
 
