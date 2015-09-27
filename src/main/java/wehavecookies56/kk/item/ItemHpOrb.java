@@ -9,7 +9,7 @@ public class ItemHpOrb extends Item
 {	
 	public ItemHpOrb() 
 	{
-		this.setMaxStackSize(65);
+		this.setMaxStackSize(64);
 	}
 	
 	public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer entity)

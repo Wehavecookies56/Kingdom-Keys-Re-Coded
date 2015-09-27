@@ -6,14 +6,18 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import wehavecookies56.kk.KingdomKeys;
+import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Strings;
 
 public class ItemPotion extends ItemFood{
 
-    public ItemPotion(int food, boolean wolf) {
+	String potionType;
+	
+    public ItemPotion(int food, boolean wolf, String type) {
         super(food, wolf);       
         this.setUnlocalizedName(Strings.Potion);
         this.setAlwaysEdible();
+        this.potionType = type;
     }
     
     public EnumAction getItemUseAction(ItemStack p_77661_1_)
@@ -24,8 +28,14 @@ public class ItemPotion extends ItemFood{
     @Override
     public void onFoodEaten(ItemStack item, World world, EntityPlayer player)
     {
-    	System.out.println("Eat");
-		player.heal(16);
+    	if(potionType == "hp")
+    	{
+    		player.heal(16);
+    	}
+    	else if (potionType == "mp")
+    	{
+    		ExtendedPlayer.get(player).addMp(30);
+    	}
     	
         if (!player.capabilities.isCreativeMode)
         {

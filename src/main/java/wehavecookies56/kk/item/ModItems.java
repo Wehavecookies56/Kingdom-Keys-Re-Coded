@@ -5,9 +5,21 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import wehavecookies56.kk.item.org.*;
+import wehavecookies56.kk.item.org.ItemArpeggio;
+import wehavecookies56.kk.item.org.ItemBookofRetribution;
+import wehavecookies56.kk.item.org.ItemEternalFlames;
+import wehavecookies56.kk.item.org.ItemFairGame;
+import wehavecookies56.kk.item.org.ItemFoudre;
+import wehavecookies56.kk.item.org.ItemFrozenPride;
+import wehavecookies56.kk.item.org.ItemGracefulDahlia;
+import wehavecookies56.kk.item.org.ItemInterdiction;
+import wehavecookies56.kk.item.org.ItemLindworm;
+import wehavecookies56.kk.item.org.ItemLunatic;
+import wehavecookies56.kk.item.org.ItemSharpshooter;
+import wehavecookies56.kk.item.org.ItemSkysplitter;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
@@ -284,6 +296,7 @@ public class ModItems {
 		Munny,
 		EmptyBottle,
 		Potion,
+		Ether,
 		HpOrb,
 		DriveOrb,
 		MagicOrb,
@@ -293,7 +306,8 @@ public class ModItems {
 		KingdomHearts,
 		DarkLeather,
 		SynthesisMaterial,
-		Recipe
+		Recipe,
+		IceCream
 		;
 
 	//Music Discs
@@ -611,7 +625,9 @@ public class ModItems {
 
 		Munny = new ItemMunny().setUnlocalizedName(Strings.Munny).setCreativeTab(tabKingdomKeys);
 		EmptyBottle = new Item().setUnlocalizedName(Strings.EmptyBottle).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-		Potion = new ItemPotion(0, true).setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		Potion = new ItemPotion(0, true, "hp").setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		Ether = new ItemPotion(0, true, "mp").setUnlocalizedName(Strings.Ether).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+
 		HpOrb = new ItemHpOrb().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		DriveOrb = new ItemDriveOrb().setUnlocalizedName(Strings.DriveOrb).setCreativeTab(tabKingdomKeys);
 		MagicOrb = new ItemMagicOrb().setUnlocalizedName(Strings.MagicOrb).setCreativeTab(tabKingdomKeys);
@@ -621,6 +637,7 @@ public class ModItems {
 		KingdomHearts = new Item().setUnlocalizedName(Strings.KingdomHearts).setCreativeTab(tabKingdomKeys);
 		DarkLeather = new Item().setUnlocalizedName(Strings.DarkLeather).setCreativeTab(tabKingdomKeys);
 		SynthesisMaterial = new ItemSynthesisMaterial().setUnlocalizedName(Strings.SynthesisMaterial).setCreativeTab(tabKingdomKeys);
+		IceCream = new ItemFood(5,true).setUnlocalizedName(Strings.IceCream).setCreativeTab(tabKingdomKeys);
 
 		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
 		Disc_Darkness_of_the_Unknown = new ItemKKRecord(Strings.Disc_Darkness_of_the_Unknown_Name, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
@@ -930,6 +947,7 @@ public class ModItems {
 		GameRegistry.registerItem(Munny, Strings.Munny);
 		GameRegistry.registerItem(EmptyBottle, Strings.EmptyBottle);
 		GameRegistry.registerItem(Potion, Strings.Potion);
+		GameRegistry.registerItem(Ether, Strings.Ether);
 		GameRegistry.registerItem(HpOrb, Strings.HpOrb);
 		GameRegistry.registerItem(DriveOrb, Strings.DriveOrb);
 		GameRegistry.registerItem(MagicOrb, Strings.MagicOrb);
@@ -940,6 +958,7 @@ public class ModItems {
 		GameRegistry.registerItem(DarkLeather, Strings.DarkLeather);
 		GameRegistry.registerItem(SynthesisMaterial, Strings.SynthesisMaterial);
 		GameRegistry.registerItem(Recipe, Strings.Recipe);
+		GameRegistry.registerItem(IceCream, Strings.IceCream);
 
 		//DISCS
 		GameRegistry.registerItem(Disc_Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future);
@@ -1249,6 +1268,7 @@ public class ModItems {
 		registerRender(Munny);
 		registerRender(EmptyBottle);
 		registerRender(Potion);
+		registerRender(Ether);
 		registerRender(HpOrb);
 		registerRender(DriveOrb);
 		registerRender(MagicOrb);
@@ -1259,6 +1279,7 @@ public class ModItems {
 		registerRender(DarkLeather);
 		registerRender(SynthesisMaterial);
 		registerRender(Recipe);
+		registerRender(IceCream);
 
 		//Discs
 		registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);

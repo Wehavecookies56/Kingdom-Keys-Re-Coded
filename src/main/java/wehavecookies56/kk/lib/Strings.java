@@ -136,6 +136,7 @@ public class Strings {
 	Munny = "munny",
 	EmptyBottle = "emptybottle",
 	Potion = "potion",
+	Ether = "ether",
 	HpOrb = "hporb",
 	DriveOrb = "driveorb",
 	MagicOrb = "magicorb",
@@ -146,7 +147,9 @@ public class Strings {
 	DarkLeather = "darkleather",
 	SynthesisMaterial = "synthesismaterial",
 	Recipe = "recipe",
-	LunaticDesc = "item.lunatic.desc"
+	LunaticDesc = "item.lunatic.desc",
+	IceCream = "icecream";
+
 	;
 
 	public static final String
@@ -820,6 +823,7 @@ public class Strings {
 	TM_VulpeusForetellersKeyblade_NAME = TOOLMATERIAL + VulpeusForetellersKeyblade
 	;
 	public static final String KeychainInventory = "container.keychain";
+
 
 	//Keyblades
 }
