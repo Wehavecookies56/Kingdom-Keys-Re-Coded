@@ -307,7 +307,8 @@ public class ModItems {
 		DarkLeather,
 		SynthesisMaterial,
 		Recipe,
-		IceCream
+		IceCream,
+		WinnerStick
 		;
 
 	//Music Discs
@@ -637,7 +638,8 @@ public class ModItems {
 		KingdomHearts = new Item().setUnlocalizedName(Strings.KingdomHearts).setCreativeTab(tabKingdomKeys);
 		DarkLeather = new Item().setUnlocalizedName(Strings.DarkLeather).setCreativeTab(tabKingdomKeys);
 		SynthesisMaterial = new ItemSynthesisMaterial().setUnlocalizedName(Strings.SynthesisMaterial).setCreativeTab(tabKingdomKeys);
-		IceCream = new ItemFood(5,true).setUnlocalizedName(Strings.IceCream).setCreativeTab(tabKingdomKeys);
+		IceCream = new ItemIceCream(5,true).setUnlocalizedName(Strings.IceCream).setCreativeTab(tabKingdomKeys);
+		WinnerStick = new Item().setUnlocalizedName(Strings.WinnerStick).setCreativeTab(tabKingdomKeys);
 
 		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
 		Disc_Darkness_of_the_Unknown = new ItemKKRecord(Strings.Disc_Darkness_of_the_Unknown_Name, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
@@ -959,6 +961,7 @@ public class ModItems {
 		GameRegistry.registerItem(SynthesisMaterial, Strings.SynthesisMaterial);
 		GameRegistry.registerItem(Recipe, Strings.Recipe);
 		GameRegistry.registerItem(IceCream, Strings.IceCream);
+		GameRegistry.registerItem(WinnerStick, Strings.WinnerStick);
 
 		//DISCS
 		GameRegistry.registerItem(Disc_Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future);
@@ -1280,6 +1283,7 @@ public class ModItems {
 		registerRender(SynthesisMaterial);
 		registerRender(Recipe);
 		registerRender(IceCream);
+		registerRender(WinnerStick);
 
 		//Discs
 		registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);

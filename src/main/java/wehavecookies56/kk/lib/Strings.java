@@ -148,8 +148,8 @@ public class Strings {
 	SynthesisMaterial = "synthesismaterial",
 	Recipe = "recipe",
 	LunaticDesc = "item.lunatic.desc",
-	IceCream = "icecream";
-
+	IceCream = "icecream",
+	WinnerStick = "winnerstick"
 	;
 
 	public static final String
@@ -823,7 +823,6 @@ public class Strings {
 	TM_VulpeusForetellersKeyblade_NAME = TOOLMATERIAL + VulpeusForetellersKeyblade
 	;
 	public static final String KeychainInventory = "container.keychain";
-
 
 	//Keyblades
 }
