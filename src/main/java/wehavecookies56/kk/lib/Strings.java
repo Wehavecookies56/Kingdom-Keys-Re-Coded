@@ -137,6 +137,7 @@ public class Strings {
 	EmptyBottle = "emptybottle",
 	Potion = "potion",
 	Ether = "ether",
+	Elixir = "elixir",
 	HpOrb = "hporb",
 	DriveOrb = "driveorb",
 	MagicOrb = "magicorb",

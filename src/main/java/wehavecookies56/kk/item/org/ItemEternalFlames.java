@@ -37,10 +37,31 @@ public class ItemEternalFlames extends ItemSword{
     	return super.hitEntity(item, entity, p_77644_3_);
     }
 	
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (!player.isSneaking())
+    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int timeLeft)
+    {
+    	this.strength = timeLeft;
+    	if (!player.isSneaking())
 		{
 			//TODO set strength
+			
+			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+			//if (!world.isRemote)
+			{
+				world.spawnEntityInWorld(new EntityEternalFlamesProjectile(world, player, -(strength)+71999));
+				player.swingItem();
+			}
+		}
+		else
+		{
+			player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+		}
+    }
+    
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		/*if (!player.isSneaking())
+		{
+			//TODO set strength
+			
 			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 			//if (!world.isRemote)
 			{
@@ -53,8 +74,9 @@ public class ItemEternalFlames extends ItemSword{
 			player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
 	        return stack;
 		}
-		
-		
+		*/
+        player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+
 	return stack;
 	}
 	

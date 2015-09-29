@@ -297,6 +297,7 @@ public class ModItems {
 		EmptyBottle,
 		Potion,
 		Ether,
+		Elixir,
 		HpOrb,
 		DriveOrb,
 		MagicOrb,
@@ -628,6 +629,7 @@ public class ModItems {
 		EmptyBottle = new Item().setUnlocalizedName(Strings.EmptyBottle).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		Potion = new ItemPotion(0, true, "hp").setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		Ether = new ItemPotion(0, true, "mp").setUnlocalizedName(Strings.Ether).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		Elixir = new ItemPotion(0, true, "elixir").setUnlocalizedName(Strings.Elixir).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 
 		HpOrb = new ItemHpOrb().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		DriveOrb = new ItemDriveOrb().setUnlocalizedName(Strings.DriveOrb).setCreativeTab(tabKingdomKeys);
@@ -950,6 +952,7 @@ public class ModItems {
 		GameRegistry.registerItem(EmptyBottle, Strings.EmptyBottle);
 		GameRegistry.registerItem(Potion, Strings.Potion);
 		GameRegistry.registerItem(Ether, Strings.Ether);
+		GameRegistry.registerItem(Elixir, Strings.Elixir);
 		GameRegistry.registerItem(HpOrb, Strings.HpOrb);
 		GameRegistry.registerItem(DriveOrb, Strings.DriveOrb);
 		GameRegistry.registerItem(MagicOrb, Strings.MagicOrb);
@@ -1272,6 +1275,7 @@ public class ModItems {
 		registerRender(EmptyBottle);
 		registerRender(Potion);
 		registerRender(Ether);
+		registerRender(Elixir);
 		registerRender(HpOrb);
 		registerRender(DriveOrb);
 		registerRender(MagicOrb);

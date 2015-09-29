@@ -30,13 +30,17 @@ public class ItemPotion extends ItemFood{
     {
     	if(potionType == "hp")
     	{
-    		player.heal(16);
+    		player.heal(player.getMaxHealth()/3);
     	}
     	else if (potionType == "mp")
     	{
-    		ExtendedPlayer.get(player).addMp(30);
+    		ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp()/3);
     	}
-    	
+    	else if(potionType == "elixir")
+    	{
+    		ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp()/3);
+    		player.heal(player.getMaxHealth()/3);
+    	}
         if (!player.capabilities.isCreativeMode)
         {
         	player.inventory.addItemStackToInventory(new ItemStack(ModItems.EmptyBottle));

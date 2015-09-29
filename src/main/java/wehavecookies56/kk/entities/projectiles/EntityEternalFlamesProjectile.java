@@ -17,7 +17,6 @@ public class EntityEternalFlamesProjectile extends EntityThrowable{
 	public EntityEternalFlamesProjectile(World world, EntityLivingBase entity, int ticksExisted) {
 		super(world, entity);
 		this.ticks = ticksExisted;
-		
 	}
 
 	public EntityEternalFlamesProjectile(World world, double x, double y, double z) {
@@ -34,7 +33,9 @@ public class EntityEternalFlamesProjectile extends EntityThrowable{
 		int rotation = 0;
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.rotationYaw = (rotation + 1) % 360;
-		if(ticksExisted > 60){
+		if(this.ticks < 10){this.ticks = 10;}
+		
+		if(ticksExisted > this.ticks || ticksExisted > 60){
 			setDead();
 		}
 		super.onUpdate();
@@ -45,7 +46,6 @@ public class EntityEternalFlamesProjectile extends EntityThrowable{
 			mop.entityHit.setFire(8);
 			float shotDamage = 8;
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), shotDamage);
-			
 		}
 
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
