@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemEternalFlames extends ItemSword{
+	int strength;
 	protected final ToolMaterial material;
 	public ItemEternalFlames(ToolMaterial abaddonPlasmaMaterial) {
 		super(abaddonPlasmaMaterial);
@@ -39,10 +40,11 @@ public class ItemEternalFlames extends ItemSword{
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		if (!player.isSneaking())
 		{
+			//TODO set strength
 			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 			//if (!world.isRemote)
 			{
-				world.spawnEntityInWorld(new EntityEternalFlamesProjectile(world, player));
+				world.spawnEntityInWorld(new EntityEternalFlamesProjectile(world, player, strength));
 				player.swingItem();
 			}
 		}

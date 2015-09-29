@@ -9,12 +9,15 @@ import net.minecraft.world.World;
 
 public class EntityEternalFlamesProjectile extends EntityThrowable{
 
+	int ticks;
 	public EntityEternalFlamesProjectile(World world) {
 		super(world);
 	}
 
-	public EntityEternalFlamesProjectile(World world, EntityLivingBase entity) {
+	public EntityEternalFlamesProjectile(World world, EntityLivingBase entity, int ticksExisted) {
 		super(world, entity);
+		this.ticks = ticksExisted;
+		
 	}
 
 	public EntityEternalFlamesProjectile(World world, double x, double y, double z) {
