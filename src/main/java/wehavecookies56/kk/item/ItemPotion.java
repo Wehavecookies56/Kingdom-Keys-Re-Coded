@@ -41,6 +41,32 @@ public class ItemPotion extends ItemFood{
     		ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp()/3);
     		player.heal(player.getMaxHealth()/3);
     	}
+    	if(potionType == "hp2")
+    	{
+    		player.heal(player.getMaxHealth()*2/3);
+    	}
+    	else if (potionType == "mp2")
+    	{
+    		ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp()*2/3);
+    	}
+    	else if(potionType == "elixir2")
+    	{
+    		ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp()*2/3);
+    		player.heal(player.getMaxHealth()*2/3);
+    	}
+    	else if(potionType == "hp3")
+    	{
+    		player.heal(player.getMaxHealth());
+    	}
+    	else if (potionType == "mp3")
+    	{
+    		ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp());
+    	}
+    	else if(potionType == "elixir3")
+    	{
+    		ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp());
+    		player.heal(player.getMaxHealth());
+    	}
         if (!player.capabilities.isCreativeMode)
         {
         	player.inventory.addItemStackToInventory(new ItemStack(ModItems.EmptyBottle));
