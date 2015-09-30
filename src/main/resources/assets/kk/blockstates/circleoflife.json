@@ -1,0 +1,31 @@
+{
+	"forge_marker": 1,
+    "defaults": {
+        "textures": {},
+        "model": "kk:circleoflife.b3d"
+    },
+
+    "variants": {
+        "inventory": [
+            {
+                "transform": {
+                    "thirdperson": {
+                    	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": -180 } ],
+                    	"translation": [ 0, 0, 0 ],
+                        "scale": 0.02
+                    },
+                    "gui": {
+                    	"rotation": [ { "x": -30 }, { "y": 20 }, { "z": 0 } ],
+                    	"translation": [ 0.3, -0.1, 0 ],
+                        "scale": 0.021
+                    },
+                    "firstperson": {
+                    	"rotation": [ { "x": -30 }, { "y": -60 }, { "z": -50 } ],
+                    	"translation": [ 0, 0, 0 ],
+                        "scale": 0.03
+                    }
+                }
+            }
+        ]
+    }
+}
