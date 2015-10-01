@@ -33,6 +33,11 @@ public class GuiMenu_Bars extends GuiScreen {
 		drawBackground(width, height);
 		GL11.glPushMatrix();{
 			drawCenteredString(fontRendererObj, mc.thePlayer.getDisplayNameString().toString(), this.width/2, this.height/2 + 80, 0xFFFFFF);
+			drawCenteredString(fontRendererObj, "HP: "+(int)mc.thePlayer.getHealth(), this.width/2-20, this.height/2 + 90, 0x00FF00);
+			drawCenteredString(fontRendererObj, "MP: "+(int)ExtendedPlayer.get(mc.thePlayer).getMp(), this.width/2+20, this.height/2 + 90, 0x4444FF);
+
+			drawCenteredString(fontRendererObj, "Level: "+ExtendedPlayer.get(mc.thePlayer).getLevel(), this.width/2, this.height/2 + 100, 0xFFFFFF);
+			
 		}GL11.glPopMatrix();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}

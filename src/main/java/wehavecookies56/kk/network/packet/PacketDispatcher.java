@@ -20,6 +20,7 @@ import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.network.packet.server.AntiPoints;
 import wehavecookies56.kk.network.packet.server.ChangeDP;
 import wehavecookies56.kk.network.packet.server.ChangeMP;
+import wehavecookies56.kk.network.packet.server.ChangeXP;
 import wehavecookies56.kk.network.packet.server.CreateFromSynthesisRecipe;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.DriveFormPacket;
@@ -82,6 +83,8 @@ public class PacketDispatcher
 		registerMessage(AntiPoints.class);
 		registerMessage(ChangeDP.class);
 		registerMessage(ChangeMP.class);
+		registerMessage(ChangeXP.class);
+
 		//Bidirectional
 	}
 

@@ -457,6 +457,8 @@ public class EventHandler {
 				if(player.getHeldItem().getItem() instanceof ItemKeyblade)
 				{
 					ExtendedPlayer.get(player).addDP(1);
+					ExtendedPlayer.get(player).addXP(5);
+					System.out.println(ExtendedPlayer.get(player).getXP());
 				}
 				else
 				{

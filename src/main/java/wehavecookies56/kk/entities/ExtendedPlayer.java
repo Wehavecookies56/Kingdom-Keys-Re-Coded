@@ -49,7 +49,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.mp = 0;
 		this.maxMunny = Integer.MAX_VALUE;
 		this.maxLevel = 99;
-		this.maxExperience = 10;
+		this.maxExperience = 999999;
 		this.maxMp = 100;
 		this.keybladeSummoned = false;
 		this.firstKeyblade = false;
@@ -138,7 +138,29 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void init(Entity entity, World world) {
 
 	}
-
+	
+	public void LevelUp()
+	{
+		//TODO maybe a better way XD
+		if(this.experience>=10 && this.experience<20)
+		{
+			this.level = 2;
+		}
+		else if(this.experience>=20 && this.experience<40)
+		{
+			this.level = 3;
+		}
+		else if(this.experience>=40 && this.experience<60)
+		{
+			this.level = 4;
+		}
+		else if(this.experience>=60 && this.experience<80)
+		{
+			this.level = 5;
+		}
+		
+	}
+	
 	public boolean getRecharge()
 	{
 		return this.inRecharge;
@@ -253,25 +275,39 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return level;
 	}
 
-	public void setLevel(int level) {
-		this.sync();
-		this.level = level;
-	}
-
 	public int getMaxLevel() {
 		return maxLevel;
 	}
 
-	public void setMaxLevel(int maxLevel) {
+	/*public void setMaxLevel(int maxLevel) {
 		this.maxLevel = maxLevel;
 		this.sync();
-	}
+	}*/
 
-	public int getExperience() {
+	public boolean addXP(int amount){
+		boolean sufficient = true;
+		setMaxExperience(999999);
+		if(amount + this.experience > this.maxExperience || amount > this.maxExperience){
+			this.experience = this.maxExperience;
+			this.sync();
+			sufficient = false;
+		}
+
+		if (sufficient) {
+			LevelUp();
+			this.experience += amount;
+			this.sync();
+		} else {
+			return false;
+		}
+		return true;
+	}
+	
+	public int getXP() {
 		return experience;
 	}
 
-	public void setExperience(int experience) {
+	public void setXP(int experience) {
 		this.experience = experience;
 		this.sync();
 	}
