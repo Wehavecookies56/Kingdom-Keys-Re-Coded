@@ -422,6 +422,7 @@ public class InputHandler {
 				break;
 			case SUMMON_KEYBLADE:
 				ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
+				System.out.println(props.inventory.getStackInSlot(0));
 				if(props.inventory.getStackInSlot(0) == null){
 					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 0.5f, 1f));
 					break;
