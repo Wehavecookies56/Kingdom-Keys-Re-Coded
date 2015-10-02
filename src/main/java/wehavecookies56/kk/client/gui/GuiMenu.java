@@ -43,6 +43,8 @@ public class GuiMenu extends GuiMenu_Bars {
 		case ITEMS:
 			GuiHelper.openMenu_Items();
 			break;
+		case STATUS:
+			GuiHelper.openStatus();
 		case JOURNAL:
 			GuiHelper.openReports();
 			break;
@@ -84,7 +86,7 @@ public class GuiMenu extends GuiMenu_Bars {
 			this.abilities.enabled = false;
 			this.customize.enabled = false;
 			this.party.enabled = false;
-			this.status.enabled = false;
+			this.status.enabled = true;
 			this.journal.enabled = true;
 			this.config.enabled = false;
 			break;

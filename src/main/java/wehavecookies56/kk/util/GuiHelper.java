@@ -36,6 +36,10 @@ public class GuiHelper {
 		Minecraft.getMinecraft().displayGuiScreen(null);
 	}
 
+	public static void openStatus(){
+		Minecraft.getMinecraft().displayGuiScreen(new GuiStatus(Strings.Gui_Menu_Main_Title));
+	}
+	
 	public static void openReports(){
 		Minecraft.getMinecraft().displayGuiScreen(new GuiJournal());
 	}

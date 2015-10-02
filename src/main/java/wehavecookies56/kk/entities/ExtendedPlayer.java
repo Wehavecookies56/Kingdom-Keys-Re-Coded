@@ -13,14 +13,11 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.common.util.Constants;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
-import wehavecookies56.kk.api.recipes.Recipe;
-import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.inventory.InventoryKeychain;
-import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
-import wehavecookies56.kk.recipes.RecipeKingdomKey;
+import wehavecookies56.kk.network.packet.server.ChangeStrength;
 import wehavecookies56.kk.util.LogHelper;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
@@ -31,7 +28,23 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public final InventoryKeychain inventory = new InventoryKeychain();
 
-	public int munny, maxMunny, level, maxLevel, experience, maxExperience, antiPoints;
+	public int munny, maxMunny;
+
+	public static int level;
+
+	public int maxLevel;
+
+	public static int experience;
+
+	public int maxExperience;
+
+	public int antiPoints;
+
+	public int strength;
+
+	public int magic;
+
+	public static int vt;
 
 	public double mp, maxMp, dp, maxDP;
 
@@ -60,6 +73,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.actualDrive = "none";
 		this.antiPoints = 0;
 		this.inRecharge = true;
+		this.strength = 1;
+		this.magic = 1;
+		this.vt = 20;
 	}
 
 	@Override
@@ -81,6 +97,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setString("ActualDrive", this.actualDrive);
 		properties.setInteger("AntiPoints", this.antiPoints);
 		properties.setBoolean("InRecharge", this.inRecharge);
+		properties.setInteger("Strength", this.strength);
+		properties.setInteger("Magic", this.magic);
+		properties.setInteger("VT", this.vt);
 		NBTTagList tagList = new NBTTagList();
 		for (int i = 0; i < driveForms.size(); i++){
 			String s = driveForms.get(i);
@@ -116,6 +135,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.actualDrive = properties.getString("ActualDrive");
 		this.antiPoints = properties.getInteger("AntiPoints");
 		this.inRecharge = properties.getBoolean("InRecharge");
+		this.strength = properties.getInteger("Strength");
+		this.magic = properties.getInteger("Magic");
+		this.vt = properties.getInteger("VT");
+
 
 
 		/*LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
@@ -139,27 +162,51 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	}
 	
-	public void LevelUp()
-	{
-		//TODO maybe a better way XD
-		if(this.experience>=10 && this.experience<20)
-		{
-			this.level = 2;
-		}
-		else if(this.experience>=20 && this.experience<40)
-		{
-			this.level = 3;
-		}
-		else if(this.experience>=40 && this.experience<60)
-		{
-			this.level = 4;
-		}
-		else if(this.experience>=60 && this.experience<80)
-		{
-			this.level = 5;
-		}
-		
+	
+	
+	public boolean addStrength(int amount){
+		this.strength += amount;
+		this.sync();
+		return true;
 	}
+	
+	public int getStrength() {
+		return this.strength;
+	}
+
+	public void setStrength(int strength) {
+		this.strength = strength;
+		this.sync();
+	}
+	public boolean addMagic(int amount){
+		this.magic += amount;
+		this.sync();
+		return true;
+	}
+	
+	public int getMagic() {
+		return this.magic;
+	}
+
+	public void setMagic(int magic) {
+		this.magic = magic;
+		this.sync();
+	}
+	public boolean addVT(int amount){
+		this.vt += amount;
+		this.sync();
+		return true;
+	}
+	
+	public int getVT() {
+		return this.strength;
+	}
+
+	public void setVT(int vt) {
+		this.vt = vt;
+		this.sync();
+	}
+	
 	
 	public boolean getRecharge()
 	{
@@ -271,7 +318,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.sync();
 	}
 
-	public int getLevel() {
+	public static int getLevel() {
 		return level;
 	}
 
@@ -294,7 +341,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 
 		if (sufficient) {
-			LevelUp();
+			PlayerLevel.LevelUp();
 			this.experience += amount;
 			this.sync();
 		} else {
@@ -310,6 +357,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void setXP(int experience) {
 		this.experience = experience;
 		this.sync();
+		PlayerLevel.LevelUp();
 	}
 
 	public int getMaxExperience() {
