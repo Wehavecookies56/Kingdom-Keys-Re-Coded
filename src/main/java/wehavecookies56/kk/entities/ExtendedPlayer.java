@@ -42,9 +42,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public int strength;
 
-	public int magic;
+	public int defense;
 
-	public static int vt;
+	public int vt;
 
 	public double mp, maxMp, dp, maxDP;
 
@@ -74,7 +74,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.antiPoints = 0;
 		this.inRecharge = true;
 		this.strength = 1;
-		this.magic = 1;
+		this.defense = 1;
 		this.vt = 20;
 	}
 
@@ -98,7 +98,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("AntiPoints", this.antiPoints);
 		properties.setBoolean("InRecharge", this.inRecharge);
 		properties.setInteger("Strength", this.strength);
-		properties.setInteger("Magic", this.magic);
+		properties.setInteger("Defense", this.defense);
 		properties.setInteger("VT", this.vt);
 		NBTTagList tagList = new NBTTagList();
 		for (int i = 0; i < driveForms.size(); i++){
@@ -136,7 +136,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.antiPoints = properties.getInteger("AntiPoints");
 		this.inRecharge = properties.getBoolean("InRecharge");
 		this.strength = properties.getInteger("Strength");
-		this.magic = properties.getInteger("Magic");
+		this.defense = properties.getInteger("Defense");
 		this.vt = properties.getInteger("VT");
 
 
@@ -178,18 +178,18 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.strength = strength;
 		this.sync();
 	}
-	public boolean addMagic(int amount){
-		this.magic += amount;
+	public boolean addDefense(int amount){
+		this.defense += amount;
 		this.sync();
 		return true;
 	}
 	
-	public int getMagic() {
-		return this.magic;
+	public int getDefense() {
+		return this.defense;
 	}
 
-	public void setMagic(int magic) {
-		this.magic = magic;
+	public void setDefense(int defense) {
+		this.defense = defense;
 		this.sync();
 	}
 	public boolean addVT(int amount){
@@ -341,9 +341,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 
 		if (sufficient) {
-			PlayerLevel.LevelUp();
 			this.experience += amount;
 			this.sync();
+			PlayerLevel.LevelUp(player);
+
 		} else {
 			return false;
 		}
@@ -357,7 +358,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void setXP(int experience) {
 		this.experience = experience;
 		this.sync();
-		PlayerLevel.LevelUp();
+		PlayerLevel.LevelUp(player);
 	}
 
 	public int getMaxExperience() {

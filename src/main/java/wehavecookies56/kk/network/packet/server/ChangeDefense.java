@@ -12,27 +12,27 @@ import wehavecookies56.kk.network.packet.AbstractMessage;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
-public class ChangeMagic extends AbstractServerMessage<ChangeMagic> {
+public class ChangeDefense extends AbstractServerMessage<ChangeDefense> {
 
-	public ChangeMagic() {}
+	public ChangeDefense() {}
 
-	int magic;
+	int defense;
 	String op;
 	
-	public ChangeMagic(int ammount, String operation){
-		this.magic = ammount;
+	public ChangeDefense(int ammount, String operation){
+		this.defense = ammount;
 		this.op = operation;
 	}
 
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
-		this.magic = buffer.readInt();
+		this.defense = buffer.readInt();
 		this.op = buffer.readStringFromBuffer(100);
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeInt(magic);
+		buffer.writeInt(defense);
 		buffer.writeString(op);
 	}
 
@@ -41,7 +41,7 @@ public class ChangeMagic extends AbstractServerMessage<ChangeMagic> {
 	{	
 		if(this.op.equals("+"))
 		{
-			ExtendedPlayer.get(player).addMagic(magic);
+			ExtendedPlayer.get(player).addDefense(defense);
 		}
 		else if (this.op.equals("-"))
 		{
@@ -49,7 +49,7 @@ public class ChangeMagic extends AbstractServerMessage<ChangeMagic> {
 		}
 		else if (this.op.equals("="))
 		{
-			ExtendedPlayer.get(player).setMagic(magic);
+			ExtendedPlayer.get(player).setDefense(defense);
 		}
 	}
 }

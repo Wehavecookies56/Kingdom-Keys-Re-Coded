@@ -2,6 +2,7 @@ package wehavecookies56.kk.network.packet.server;
 
 import java.io.IOException;
 
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -42,6 +43,7 @@ public class ChangeVT extends AbstractServerMessage<ChangeVT> {
 		if(this.op.equals("+"))
 		{
 			ExtendedPlayer.get(player).addVT(VT);
+			player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(ExtendedPlayer.get((EntityPlayer)player).getVT()+20);
 		}
 		else if (this.op.equals("-"))
 		{

@@ -62,7 +62,7 @@ public class CommandRemoveKeychain implements ICommand {
 	public void execute(ICommandSender sender, String[] args) throws CommandException {
 		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
 			ExtendedPlayer props = ExtendedPlayer.get((EntityPlayer) sender.getCommandSenderEntity());
-			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+			EntityPlayer player = (EntityPlayer) sender.getCommandSenderEntity();
 			if(args.length != 1)
 			{
 				TextHelper.sendFormattedChatMessage("Invalid arguments! Usage: /removechain <player>", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
