@@ -13,37 +13,37 @@ import wehavecookies56.kk.network.packet.AbstractMessage;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
-public class ChangeVT extends AbstractServerMessage<ChangeVT> {
+public class ChangeHP extends AbstractServerMessage<ChangeHP> {
 
-	public ChangeVT() {}
+	public ChangeHP() {}
 
-	int VT;
+	int HP;
 	String op;
-	
-	public ChangeVT(int ammount, String operation){
-		this.VT = ammount;
+
+	public ChangeHP(int ammount, String operation){
+		this.HP = ammount;
 		this.op = operation;
 	}
 
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
-		this.VT = buffer.readInt();
+		this.HP = buffer.readInt();
 		this.op = buffer.readStringFromBuffer(100);
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeInt(VT);
+		buffer.writeInt(HP);
 		buffer.writeString(op);
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) 
-	{	
+	public void process(EntityPlayer player, Side side)
+	{
 		if(this.op.equals("+"))
 		{
-			ExtendedPlayer.get(player).addVT(VT);
-			player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(ExtendedPlayer.get((EntityPlayer)player).getVT()+20);
+			ExtendedPlayer.get(player).addHP(HP);
+			player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(ExtendedPlayer.get((EntityPlayer)player).getHP()+20);
 		}
 		else if (this.op.equals("-"))
 		{
@@ -51,7 +51,7 @@ public class ChangeVT extends AbstractServerMessage<ChangeVT> {
 		}
 		else if (this.op.equals("="))
 		{
-			ExtendedPlayer.get(player).setVT(VT);
+			ExtendedPlayer.get(player).setHP(HP);
 		}
 	}
 }

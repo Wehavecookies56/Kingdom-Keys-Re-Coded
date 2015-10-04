@@ -44,7 +44,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public int defense;
 
-	public int vt;
+	public int magic;
+
+	public int hp;
 
 	public double mp, maxMp, dp, maxDP;
 
@@ -77,7 +79,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.inRecharge = true;
 		this.strength = 1;
 		this.defense = 1;
-		this.vt = 20;
+		this.magic = 1;
+		this.hp = 20;
 		this.fireLevel = 1;
 		this.blizzardLevel = 1;
 		this.thunderLevel = 1;
@@ -107,7 +110,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setBoolean("InRecharge", this.inRecharge);
 		properties.setInteger("Strength", this.strength);
 		properties.setInteger("Defense", this.defense);
-		properties.setInteger("VT", this.vt);
+		properties.setInteger("Magic", this.magic);
+		properties.setInteger("HP", this.hp);
 		properties.setInteger("FireLevel", this.fireLevel);
 		properties.setInteger("BlizzardLevel", this.blizzardLevel);
 		properties.setInteger("ThunderLevel", this.thunderLevel);
@@ -152,7 +156,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.inRecharge = properties.getBoolean("InRecharge");
 		this.strength = properties.getInteger("Strength");
 		this.defense = properties.getInteger("Defense");
-		this.vt = properties.getInteger("VT");
+		this.magic = properties.getInteger("Magic");
+		this.hp = properties.getInteger("HP");
 		this.fireLevel = properties.getInteger("FireLevel");
 		this.blizzardLevel = properties.getInteger("BlizzardLevel");
 		this.thunderLevel = properties.getInteger("ThunderLevel");
@@ -265,18 +270,34 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.defense = defense;
 		this.sync();
 	}
-	public boolean addVT(int amount){
-		this.vt += amount;
+
+	public boolean addMagic(int amount){
+		this.magic += amount;
 		this.sync();
 		return true;
 	}
 
-	public int getVT() {
-		return this.strength;
+	public int getMagic() {
+		return this.magic;
 	}
 
-	public void setVT(int vt) {
-		this.vt = vt;
+	public void setMagic(int magic) {
+		this.magic = magic;
+		this.sync();
+	}
+
+	public boolean addHP(int amount){
+		this.hp += amount;
+		this.sync();
+		return true;
+	}
+
+	public int getHP() {
+		return this.hp;
+	}
+
+	public void setHP(int hp) {
+		this.hp = hp;
 		this.sync();
 	}
 

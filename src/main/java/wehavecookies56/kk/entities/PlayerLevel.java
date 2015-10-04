@@ -4,10 +4,6 @@ import java.util.Arrays;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumChatFormatting;
-import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.server.ChangeDefense;
-import wehavecookies56.kk.network.packet.server.ChangeStrength;
-import wehavecookies56.kk.network.packet.server.ChangeVT;
 import wehavecookies56.kk.util.TextHelper;
 
 public class PlayerLevel {
@@ -45,6 +41,8 @@ public class PlayerLevel {
 			if(ep.getXP() >= expNeeded[ep.getLevel() - 1]){
 				ep.levelUp(2);
 				levelUpMessage(player, ep);
+				ep.addDefense(1);
+				defenseUpMessage(player, ep);
 			}
 		}
 
@@ -54,12 +52,524 @@ public class PlayerLevel {
 			if(ep.getLevel() != 100 && ep.getXP() >= Arrays.stream(expNeeded, 0, ep.getLevel()).sum()){
 				ep.levelUp(ep.getLevel()+1);
 				levelUpMessage(player, ep);
+				switch(ep.getLevel()){
+				case 3:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 4:
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 5:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 6:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 7:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 8:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 9:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 10:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 11:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 12:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 13:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 14:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 15:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 16:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 17:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 18:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 19:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 20:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 21:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 22:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 23:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 24:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 25:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 26:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 27:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 28:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 29:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addHP(5);
+					break;
+				case 30:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 31:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 32:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 33:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 34:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 35:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 36:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 37:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 38:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 39:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 40:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 41:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 42:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 43:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 44:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 45:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 46:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 47:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 48:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 49:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 50:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 51:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 52:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 53:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 54:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 55:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 56:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 57:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 58:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 59:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 60:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 61:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 62:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 63:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 64:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 65:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 66:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 67:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 68:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 69:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 70:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 71:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 72:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 73:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 74:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 75:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 76:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 77:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 78:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 79:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 80:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 81:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 82:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 83:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 84:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 85:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 86:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 87:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 88:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 89:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 90:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 91:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 92:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 93:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 94:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 95:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				case 96:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					break;
+				case 97:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 98:
+					ep.addMagic(1);
+					magicUpMessage(player, ep);
+					ep.addDefense(1);
+					defenseUpMessage(player, ep);
+					break;
+				case 99:
+					ep.addStrength(1);
+					strengthUpMessage(player, ep);
+					break;
+				case 100:
+					ep.addStrength(10);
+					strengthUpMessage(player, ep);
+					ep.addDefense(10);
+					defenseUpMessage(player, ep);
+					ep.addMagic(10);
+					magicUpMessage(player, ep);
+					ep.addHP(5);
+					maxHPUpMessage(player, ep);
+					break;
+				}
 			}
 		}
 
 	}
 
 	public static void levelUpMessage(EntityPlayer player, ExtendedPlayer ep){
-		TextHelper.sendFormattedChatMessage("You are now level "+ep.getLevel(), EnumChatFormatting.YELLOW, player);
+		TextHelper.sendFormattedChatMessage("LEVEL UP! LV. " + ep.getLevel() + " " + player.getDisplayNameString(), EnumChatFormatting.YELLOW, player);
 	}
+
+	public static void strengthUpMessage(EntityPlayer player, ExtendedPlayer ep){
+		TextHelper.sendFormattedChatMessage("Strength increased!", EnumChatFormatting.YELLOW, player);
+	}
+
+	public static void defenseUpMessage(EntityPlayer player, ExtendedPlayer ep){
+		TextHelper.sendFormattedChatMessage("Defense increased!", EnumChatFormatting.YELLOW, player);
+	}
+
+	public static void magicUpMessage(EntityPlayer player, ExtendedPlayer ep){
+		TextHelper.sendFormattedChatMessage("Magic increased!", EnumChatFormatting.YELLOW, player);
+	}
+
+	public static void maxHPUpMessage(EntityPlayer player, ExtendedPlayer ep){
+		TextHelper.sendFormattedChatMessage("Maximum HP increased!", EnumChatFormatting.YELLOW, player);
+	}
+
 }
