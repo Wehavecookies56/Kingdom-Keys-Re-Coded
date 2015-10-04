@@ -47,7 +47,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public int vt;
 
 	public double mp, maxMp, dp, maxDP;
-	
+
 	public int fireLevel = 1, blizzardLevel = 1, thunderLevel = 1, cureLevel = 1, aeroLevel = 1, stopLevel = 1;
 
 	public List<String> driveForms = new ArrayList<String>();
@@ -114,7 +114,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("CureLevel", this.cureLevel);
 		properties.setInteger("AeroLevel", this.aeroLevel);
 		properties.setInteger("StopLevel", this.stopLevel);
-		
+
 		NBTTagList tagList = new NBTTagList();
 		for (int i = 0; i < driveForms.size(); i++){
 			String s = driveForms.get(i);
@@ -175,9 +175,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void init(Entity entity, World world) {
 
 	}
-	
-	
-	
+
+
+
 	public int getMagicLevel(String magic)
 	{
 		int magicLevel = 0;
@@ -207,7 +207,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 		return magicLevel;
 	}
-	
+
 	public boolean setMagicLevel(String magic, int level)
 	{
 		if(magic == "Fire")
@@ -236,13 +236,13 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 		return true;
 	}
-	
+
 	public boolean addStrength(int amount){
 		this.strength += amount;
 		this.sync();
 		return true;
 	}
-	
+
 	public int getStrength() {
 		return this.strength;
 	}
@@ -256,7 +256,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.sync();
 		return true;
 	}
-	
+
 	public int getDefense() {
 		return this.defense;
 	}
@@ -270,7 +270,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.sync();
 		return true;
 	}
-	
+
 	public int getVT() {
 		return this.strength;
 	}
@@ -279,8 +279,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.vt = vt;
 		this.sync();
 	}
-	
-	
+
+
 	public boolean getRecharge()
 	{
 		return this.inRecharge;
@@ -391,8 +391,18 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.sync();
 	}
 
-	public static int getLevel() {
+	public int getLevel() {
 		return level;
+	}
+
+	public void levelUp() {
+		this.level++;
+		this.sync();
+	}
+
+	public void levelUp(int level){
+		this.level = level;
+		this.sync();
 	}
 
 	public int getMaxLevel() {
@@ -423,7 +433,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 		return true;
 	}
-	
+
 	public int getXP() {
 		return experience;
 	}

@@ -1,5 +1,7 @@
 package wehavecookies56.kk.entities;
 
+import java.util.Arrays;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumChatFormatting;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -12,87 +14,52 @@ public class PlayerLevel {
 
 	public static void LevelUp(EntityPlayer player)
 	{
-		//TODO maybe a better way XD
-		if(ExtendedPlayer.experience <20)
-		{
-			ExtendedPlayer.level = 1;
-		}
-		else if(ExtendedPlayer.experience>=20 && ExtendedPlayer.experience<40)
-		{
-			if(ExtendedPlayer.getLevel()==1)
-			{
-				PacketDispatcher.sendToServer(new ChangeStrength(1,"+"));
-				TextHelper.sendFormattedChatMessage("You are now level "+ExtendedPlayer.getLevel()+1, EnumChatFormatting.YELLOW, player);
-			}
-			ExtendedPlayer.level = 2;
-		}
-		else if(ExtendedPlayer.experience>=40 && ExtendedPlayer.experience<70)
-		{
-			if(ExtendedPlayer.getLevel()==2)
-			{
-				PacketDispatcher.sendToServer(new ChangeDefense(1,"+"));
-				TextHelper.sendFormattedChatMessage("You are now level "+(ExtendedPlayer.getLevel()+1), EnumChatFormatting.YELLOW, player);
-			}
-			ExtendedPlayer.level = 3;
-		}
-		else if(ExtendedPlayer.experience>=70 && ExtendedPlayer.experience<100)
-		{
-			if(ExtendedPlayer.getLevel()==3)
-			{
-				PacketDispatcher.sendToServer(new ChangeVT(1,"+"));
-				TextHelper.sendFormattedChatMessage("You are now level "+ExtendedPlayer.getLevel()+1, EnumChatFormatting.YELLOW, player);
+		ExtendedPlayer ep = ExtendedPlayer.get(player);
 
-			}
-			ExtendedPlayer.level = 4;
+		int[] expNeeded;
+
+		expNeeded = new int[]{
+			20, 23, 27, 33, 39, 47, 56, 67, 80,
+			94, 109, 127, 146, 167, 191, 216, 244, 274,
+			307, 342, 381, 422, 466, 513, 564, 618, 676,
+			737, 803, 873, 948, 1027, 1112, 1201, 1297,
+			1397, 1504, 1617, 1737, 1864, 1998, 2140,
+			2290, 2449, 2616, 2793, 2980, 3177, 3385,
+			3604, 3835, 4079, 4336, 4606, 4892, 5192,
+			5509, 5842, 6194, 6563, 6952, 7362, 7793,
+			8247, 8724, 9226, 9755, 10310, 10895,
+			11510, 12156, 12836, 13551, 14302, 15092,
+			15923, 16796, 17714, 18679, 19693, 20758,
+			21878, 23055, 24292, 25591, 26957, 28392,
+			29899, 31483, 33148, 34896, 36733, 36733,
+			38662, 40690, 42819, 45056, 47406, 49874,
+			52467, 100000
+		};
+
+		if(ep.getLevel() < 1){
+			ep.levelUp(1);
+			return;
 		}
-		else if(ExtendedPlayer.experience>=100 && ExtendedPlayer.experience<150)
-		{
-			if(ExtendedPlayer.getLevel()==4)
-			{
-				PacketDispatcher.sendToServer(new ChangeStrength(1,"+"));
+
+		if(ep.getLevel() == 1){
+			if(ep.getXP() >= expNeeded[ep.getLevel() - 1]){
+				ep.levelUp(2);
+				levelUpMessage(player, ep);
 			}
-			ExtendedPlayer.level = 5;
 		}
-		else if(ExtendedPlayer.experience>=150 && ExtendedPlayer.experience<180)
-		{
-			if(ExtendedPlayer.getLevel()==5)
-			{
-				PacketDispatcher.sendToServer(new ChangeVT(1,"+"));
+
+		System.out.println("XP:" + ep.getXP());
+		System.out.println("Next level: " + (Arrays.stream(expNeeded, 0, ep.getLevel()).sum() - ep.getXP()));
+		if(ep.getLevel() > 1){
+			if(ep.getLevel() != 100 && ep.getXP() >= Arrays.stream(expNeeded, 0, ep.getLevel()).sum()){
+				ep.levelUp(ep.getLevel()+1);
+				levelUpMessage(player, ep);
 			}
-			ExtendedPlayer.level = 6;
 		}
-		else if(ExtendedPlayer.experience>=180 && ExtendedPlayer.experience<250)
-		{
-			if(ExtendedPlayer.getLevel()==6)
-			{
-				PacketDispatcher.sendToServer(new ChangeStrength(1,"+"));
-			}
-			ExtendedPlayer.level = 7;
-		}
-		else if(ExtendedPlayer.experience>=250 && ExtendedPlayer.experience<320)
-		{
-			if(ExtendedPlayer.getLevel()==7)
-			{
-				PacketDispatcher.sendToServer(new ChangeDefense(1,"+"));
-			}
-			ExtendedPlayer.level = 8;
-		}
-		else if(ExtendedPlayer.experience>=320 && ExtendedPlayer.experience<400)
-		{
-			if(ExtendedPlayer.getLevel()==8)
-			{
-				PacketDispatcher.sendToServer(new ChangeDefense(1,"+"));
-			}
-			ExtendedPlayer.level = 9;
-		}
-		else if(ExtendedPlayer.experience>=400 && ExtendedPlayer.experience<500)
-		{
-			if(ExtendedPlayer.getLevel()==7)
-			{
-				PacketDispatcher.sendToServer(new ChangeVT(1,"+"));
-			}
-			ExtendedPlayer.level = 10;
-		}
-		
+
+	}
+
+	public static void levelUpMessage(EntityPlayer player, ExtendedPlayer ep){
+		TextHelper.sendFormattedChatMessage("You are now level "+ep.getLevel(), EnumChatFormatting.YELLOW, player);
 	}
 }
