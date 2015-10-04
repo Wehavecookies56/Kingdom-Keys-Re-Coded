@@ -27,7 +27,7 @@ public class EntityFire2 extends Entity
 		super(world);
 	}
 
-	public EntityFire2(World world, EntityPlayer sender, double x, double y, double z) {
+	public EntityFire2(World world, EntityPlayer sender, double x, double y, double z, int level) {
 		super(world);
 		this.posX = x;
 		this.posY = y;

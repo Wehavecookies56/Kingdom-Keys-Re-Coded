@@ -30,19 +30,19 @@ import wehavecookies56.kk.network.packet.server.DriveFormPacket;
 import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
-import wehavecookies56.kk.network.packet.server.MagicAero;
-import wehavecookies56.kk.network.packet.server.MagicBlizzard;
-import wehavecookies56.kk.network.packet.server.MagicCure;
-import wehavecookies56.kk.network.packet.server.MagicFire;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
-import wehavecookies56.kk.network.packet.server.MagicStop;
-import wehavecookies56.kk.network.packet.server.MagicThunder;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
 import wehavecookies56.kk.network.packet.server.OpenGui;
 import wehavecookies56.kk.network.packet.server.OpenMaterials;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.network.packet.server.UseRecipe;
+import wehavecookies56.kk.network.packet.server.magics.MagicAero;
+import wehavecookies56.kk.network.packet.server.magics.MagicBlizzard;
+import wehavecookies56.kk.network.packet.server.magics.MagicCure;
+import wehavecookies56.kk.network.packet.server.magics.MagicFire;
+import wehavecookies56.kk.network.packet.server.magics.MagicStop;
+import wehavecookies56.kk.network.packet.server.magics.MagicThunder;
 
 public class PacketDispatcher
 {

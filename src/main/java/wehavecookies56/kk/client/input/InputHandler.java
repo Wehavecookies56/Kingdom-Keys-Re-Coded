@@ -55,10 +55,7 @@ public class InputHandler {
 		{
 			prob = 40;
 		}
-		/*System.out.println("Prob: "+prob);
-		System.out.println("random*100: "+random*100);
-		System.out.println("ap: "+ap);
-		System.out.println("random*100 < prob: "+(random*100 < prob));*/
+		
 		if(random*100 < prob)
 		{
 			PacketDispatcher.sendToServer(new DriveFormPacket("Anti"));

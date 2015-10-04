@@ -47,6 +47,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public int vt;
 
 	public double mp, maxMp, dp, maxDP;
+	
+	public int fireLevel = 1, blizzardLevel = 1, thunderLevel = 1, cureLevel = 1, aeroLevel = 1, stopLevel = 1;
 
 	public List<String> driveForms = new ArrayList<String>();
 
@@ -76,6 +78,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.strength = 1;
 		this.defense = 1;
 		this.vt = 20;
+		this.fireLevel = 1;
+		this.blizzardLevel = 1;
+		this.thunderLevel = 1;
+		this.cureLevel = 1;
+		this.aeroLevel = 1;
+		this.stopLevel = 1;
 	}
 
 	@Override
@@ -100,6 +108,13 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("Strength", this.strength);
 		properties.setInteger("Defense", this.defense);
 		properties.setInteger("VT", this.vt);
+		properties.setInteger("FireLevel", this.fireLevel);
+		properties.setInteger("BlizzardLevel", this.blizzardLevel);
+		properties.setInteger("ThunderLevel", this.thunderLevel);
+		properties.setInteger("CureLevel", this.cureLevel);
+		properties.setInteger("AeroLevel", this.aeroLevel);
+		properties.setInteger("StopLevel", this.stopLevel);
+		
 		NBTTagList tagList = new NBTTagList();
 		for (int i = 0; i < driveForms.size(); i++){
 			String s = driveForms.get(i);
@@ -138,13 +153,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.strength = properties.getInteger("Strength");
 		this.defense = properties.getInteger("Defense");
 		this.vt = properties.getInteger("VT");
-
-
-
-		/*LogHelper.info("Loaded munny: " + properties.getInteger("Munny"));
-		LogHelper.info("Loaded DP: " + properties.getInteger("DP"));
-		String s = properties.getBoolean("KeybladeSummoned") == true ? "Keyblade is summoned" : "Keyblade is not summoned";
-		LogHelper.info("Loaded Summon data: " + s);*/
+		this.fireLevel = properties.getInteger("FireLevel");
+		this.blizzardLevel = properties.getInteger("BlizzardLevel");
+		this.thunderLevel = properties.getInteger("ThunderLevel");
+		this.cureLevel = properties.getInteger("CureLevel");
+		this.aeroLevel = properties.getInteger("AeroLevel");
+		this.stopLevel = properties.getInteger("StopLevel");
 
 		NBTTagList tagList = properties.getTagList("DriveFormList", Constants.NBT.TAG_COMPOUND);
 		for(int i = 0; i < tagList.tagCount(); i++){
@@ -163,6 +177,65 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 	
 	
+	
+	public int getMagicLevel(String magic)
+	{
+		int magicLevel = 0;
+		if(magic == "Fire")
+		{
+			magicLevel = this.fireLevel;
+		}
+		else if (magic == "Blizzard")
+		{
+			magicLevel = this.blizzardLevel;
+		}
+		else if (magic == "Thunder")
+		{
+			magicLevel = this.thunderLevel;
+		}
+		else if (magic == "Cure")
+		{
+			magicLevel = this.cureLevel;
+		}
+		else if (magic == "Aero")
+		{
+			magicLevel = this.aeroLevel;
+		}
+		else if (magic == "Stop")
+		{
+			magicLevel = this.stopLevel;
+		}
+		return magicLevel;
+	}
+	
+	public boolean setMagicLevel(String magic, int level)
+	{
+		if(magic == "Fire")
+		{
+			this.fireLevel = level;
+		}
+		else if(magic == "Blizzard")
+		{
+			this.blizzardLevel = level;
+		}
+		else if(magic == "Thunder")
+		{
+			this.thunderLevel = level;
+		}
+		else if(magic == "Cure")
+		{
+			this.cureLevel = level;
+		}
+		else if(magic == "Aero")
+		{
+			this.aeroLevel = level;
+		}
+		else if(magic == "Stop")
+		{
+			this.stopLevel = level;
+		}
+		return true;
+	}
 	
 	public boolean addStrength(int amount){
 		this.strength += amount;

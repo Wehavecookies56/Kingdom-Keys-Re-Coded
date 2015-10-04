@@ -14,12 +14,12 @@ import wehavecookies56.kk.entities.magic.EntityFire2;
 import wehavecookies56.kk.entities.magic.EntityStop;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.server.MagicAero;
-import wehavecookies56.kk.network.packet.server.MagicBlizzard;
-import wehavecookies56.kk.network.packet.server.MagicCure;
-import wehavecookies56.kk.network.packet.server.MagicFire;
-import wehavecookies56.kk.network.packet.server.MagicStop;
-import wehavecookies56.kk.network.packet.server.MagicThunder;
+import wehavecookies56.kk.network.packet.server.magics.MagicAero;
+import wehavecookies56.kk.network.packet.server.magics.MagicBlizzard;
+import wehavecookies56.kk.network.packet.server.magics.MagicCure;
+import wehavecookies56.kk.network.packet.server.magics.MagicFire;
+import wehavecookies56.kk.network.packet.server.magics.MagicStop;
+import wehavecookies56.kk.network.packet.server.magics.MagicThunder;
 
 public class Magic {
 
@@ -35,23 +35,24 @@ public class Magic {
 
 	public static void Fire(EntityPlayer player, World world)
 	{
-		if(ExtendedPlayer.get(player).getMp() > 0)
+		switch(ExtendedPlayer.get(player).getMagicLevel("Fire"))
 		{
-			PacketDispatcher.sendToServer(new MagicFire());
-			world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ));
-			player.swingItem();
-			world.playSoundAtEntity(player, "fire.ignite", 1, 1);
-		}
-	}
-
-	public static void Aero(EntityPlayer player, World world)
-	{
-		if(ExtendedPlayer.get(player).getMp() > 0)
-		{
-			PacketDispatcher.sendToServer(new MagicAero());
-			world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
-			player.swingItem();
-			world.playSoundAtEntity(player, "fire.ignite", 1, 1);
+			case 1:
+			if(ExtendedPlayer.get(player).getMp() > 0)
+				{
+					PacketDispatcher.sendToServer(new MagicFire());
+					world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ, 1));
+					player.swingItem();
+					world.playSoundAtEntity(player, "fire.ignite", 1, 1);
+				}
+			break;
+			
+			case 2:
+				System.out.println("Fira");
+				break;
+			case 3:
+				System.out.println("Firaga");
+				break;
 		}
 	}
 
@@ -66,13 +67,6 @@ public class Magic {
 			}
 		}
 	}
-	public static void Stop(EntityPlayer player, World world)
-	{
-		PacketDispatcher.sendToServer(new MagicStop());
-		world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
-		player.swingItem();
-		world.playSoundAtEntity(player, "fire.ignite", 1, 1);
-	}
 
 	public static void Thunder(EntityPlayer player, World world)
 	{
@@ -86,5 +80,24 @@ public class Magic {
 		world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
 		player.heal(6);
 		PacketDispatcher.sendToServer(new MagicCure());
+	}
+	
+	public static void Aero(EntityPlayer player, World world)
+	{
+		if(ExtendedPlayer.get(player).getMp() > 0)
+		{
+			PacketDispatcher.sendToServer(new MagicAero());
+			world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
+			player.swingItem();
+			world.playSoundAtEntity(player, "fire.ignite", 1, 1);
+		}
+	}
+	
+	public static void Stop(EntityPlayer player, World world)
+	{
+		PacketDispatcher.sendToServer(new MagicStop());
+		world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
+		player.swingItem();
+		world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 	}
 }

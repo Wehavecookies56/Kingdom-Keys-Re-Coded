@@ -2,8 +2,9 @@ package wehavecookies56.kk.util;
 
 import java.util.UUID;
 
+import com.mojang.authlib.GameProfile;
+
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderEntityItem;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
@@ -55,13 +56,12 @@ import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
+import wehavecookies56.kk.network.packet.server.ChangeMagicLevel;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
-
-import com.mojang.authlib.GameProfile;
 
 public class EventHandler {
 	@SubscribeEvent
@@ -473,6 +473,7 @@ public class EventHandler {
 				if(player.getHeldItem().getItem() instanceof ItemKeyblade)
 				{
 					ExtendedPlayer.get(player).addDP(1);
+				//	ExtendedPlayer.get(player).setMagicLevel("Fire",2);
 				}
 				else
 				{

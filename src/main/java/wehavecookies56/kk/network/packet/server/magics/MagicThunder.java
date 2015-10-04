@@ -1,4 +1,4 @@
-package wehavecookies56.kk.network.packet.server;
+package wehavecookies56.kk.network.packet.server.magics;
 
 import java.io.IOException;
 
