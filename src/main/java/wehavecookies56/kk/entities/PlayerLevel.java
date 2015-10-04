@@ -184,7 +184,6 @@ public class PlayerLevel {
 				case 29:
 					ep.addStrength(1);
 					strengthUpMessage(player, ep);
-					ep.addHP(5);
 					break;
 				case 30:
 					ep.addMagic(1);

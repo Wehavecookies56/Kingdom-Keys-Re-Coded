@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -158,6 +159,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.defense = properties.getInteger("Defense");
 		this.magic = properties.getInteger("Magic");
 		this.hp = properties.getInteger("HP");
+		player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.hp);
 		this.fireLevel = properties.getInteger("FireLevel");
 		this.blizzardLevel = properties.getInteger("BlizzardLevel");
 		this.thunderLevel = properties.getInteger("ThunderLevel");
@@ -288,6 +290,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public boolean addHP(int amount){
 		this.hp += amount;
+		player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.hp + amount);
 		this.sync();
 		return true;
 	}
@@ -298,6 +301,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public void setHP(int hp) {
 		this.hp = hp;
+		player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(hp);
 		this.sync();
 	}
 

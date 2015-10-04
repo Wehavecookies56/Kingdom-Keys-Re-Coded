@@ -192,12 +192,12 @@ public class EventHandler {
 			ExtendedPlayerRecipes.get((EntityPlayer) event.entity).saveProxyData((EntityPlayer) event.entity);
 			ExtendedPlayerMaterials.get((EntityPlayer) event.entity).saveProxyData((EntityPlayer) event.entity);
 		}
-		
+
 		if(!event.entity.worldObj.isRemote && event.entity instanceof EntityMob){
 			if(event.source.getSourceOfDamage() instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
-				ExtendedPlayer.get(player).addXP(1);
+				ExtendedPlayer.get(player).addXP(10);
 			}
 		}
 	}
@@ -419,7 +419,7 @@ public class EventHandler {
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event)
 	{
-		
+
 	}
 
 	@SubscribeEvent
@@ -450,7 +450,7 @@ public class EventHandler {
 			{
 				event.ammount = event.ammount-ExtendedPlayer.get(player).getDefense();
 			}
-			
+
 			if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.FrozenPride){
 				if(player.isBlocking()){
 					event.ammount = 0.5f;
