@@ -120,7 +120,8 @@ public class Strings {
 	TwilightOre = "twilightore",
 
 	//Others
-	SynthesisTable = "synthesistable"
+	SynthesisTable = "synthesistable",
+	SavePoint = "savepoint"
 	;
 
 	public static final String

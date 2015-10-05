@@ -38,66 +38,118 @@ public class Magic {
 		switch(ExtendedPlayer.get(player).getMagicLevel("Fire"))
 		{
 			case 1:
-			if(ExtendedPlayer.get(player).getMp() > 0)
-				{
-					PacketDispatcher.sendToServer(new MagicFire());
-					world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ, 1));
-					player.swingItem();
-					world.playSoundAtEntity(player, "fire.ignite", 1, 1);
+				PacketDispatcher.sendToServer(new MagicFire());
+				world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ, 1));
+				player.swingItem();
+				world.playSoundAtEntity(player, "fire.ignite", 1, 1);
+			break;
+			
+			case 2:
+				System.out.println("Fira");
+			break;
+			case 3:
+				System.out.println("Firaga");
+			break;
+		}
+	}
+
+	public static void Blizzard(EntityPlayer player, World world)
+	{
+		switch(ExtendedPlayer.get(player).getMagicLevel("Blizzard"))
+		{
+			case 1:
+				Vec3 look = player.getLookVec();
+				world.spawnEntityInWorld(new EntityBlizzard(world, player));
+				PacketDispatcher.sendToServer(new MagicBlizzard());
+				if(FMLCommonHandler.instance().getSide() == Side.SERVER){
+					PacketDispatcher.sendToDimension(new MagicBlizzard(), world.provider.getDimensionId());
 				}
 			break;
 			
 			case 2:
 				System.out.println("Fira");
-				break;
+			break;
 			case 3:
 				System.out.println("Firaga");
-				break;
-		}
-	}
-
-	public static void Blizzard(EntityPlayer player, World world){
-		if(ExtendedPlayer.get(player).getMp() > 0)
-		{
-			Vec3 look = player.getLookVec();
-			world.spawnEntityInWorld(new EntityBlizzard(world, player));
-			PacketDispatcher.sendToServer(new MagicBlizzard());
-			if(FMLCommonHandler.instance().getSide() == Side.SERVER){
-				PacketDispatcher.sendToDimension(new MagicBlizzard(), world.provider.getDimensionId());
-			}
-		}
+			break;
+		}	
 	}
 
 	public static void Thunder(EntityPlayer player, World world)
 	{
-		PacketDispatcher.sendToServer(new MagicThunder());
-		world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
-		player.swingItem();
+		switch(ExtendedPlayer.get(player).getMagicLevel("Thunder"))
+		{
+			case 1:
+				PacketDispatcher.sendToServer(new MagicThunder());
+				world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
+				player.swingItem();
+			break;
+			
+			case 2:
+				System.out.println("Fira");
+			break;
+			case 3:
+				System.out.println("Firaga");
+			break;
+		}	
 	}
 
 	public static void Cure(EntityPlayer player, World world)
 	{
-		world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
-		player.heal(6);
-		PacketDispatcher.sendToServer(new MagicCure());
+		switch(ExtendedPlayer.get(player).getMagicLevel("Cure"))
+		{
+			case 1:
+				world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
+				player.heal(6);
+				PacketDispatcher.sendToServer(new MagicCure());
+			break;
+			
+			case 2:
+				System.out.println("Fira");
+			break;
+			case 3:
+				System.out.println("Firaga");
+			break;
+		}	
 	}
 	
 	public static void Aero(EntityPlayer player, World world)
 	{
-		if(ExtendedPlayer.get(player).getMp() > 0)
+		switch(ExtendedPlayer.get(player).getMagicLevel("Aero"))
 		{
-			PacketDispatcher.sendToServer(new MagicAero());
-			world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
-			player.swingItem();
-			world.playSoundAtEntity(player, "fire.ignite", 1, 1);
-		}
+			case 1:
+				PacketDispatcher.sendToServer(new MagicAero());
+				world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
+				player.swingItem();
+				world.playSoundAtEntity(player, "fire.ignite", 1, 1);
+			break;
+			
+			case 2:
+				System.out.println("Fira");
+			break;
+			case 3:
+				System.out.println("Firaga");
+			break;
+		}	
 	}
 	
 	public static void Stop(EntityPlayer player, World world)
 	{
-		PacketDispatcher.sendToServer(new MagicStop());
-		world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
-		player.swingItem();
-		world.playSoundAtEntity(player, "fire.ignite", 1, 1);
+		switch(ExtendedPlayer.get(player).getMagicLevel("Stop"))
+		{
+			case 1:
+				PacketDispatcher.sendToServer(new MagicStop());
+				world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
+				player.swingItem();
+				world.playSoundAtEntity(player, "fire.ignite", 1, 1);
+			break;
+			case 2:
+				System.out.println("Fira");
+			break;
+			case 3:
+				System.out.println("Firaga");
+			break;
+		}	
+		
 	}
 }
