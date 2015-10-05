@@ -10,6 +10,7 @@ import wehavecookies56.kk.client.gui.GuiJournal;
 import wehavecookies56.kk.client.gui.GuiKKChest;
 import wehavecookies56.kk.client.gui.GuiMenu;
 import wehavecookies56.kk.client.gui.GuiMenu_Items;
+import wehavecookies56.kk.client.gui.GuiMenu_Status;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.OpenGui;
@@ -37,7 +38,7 @@ public class GuiHelper {
 	}
 
 	public static void openStatus(){
-		Minecraft.getMinecraft().displayGuiScreen(new GuiStatus(Strings.Gui_Menu_Main_Title));
+		Minecraft.getMinecraft().displayGuiScreen(new GuiMenu_Status(Strings.Gui_Menu_Main_Title));
 	}
 	
 	public static void openReports(){

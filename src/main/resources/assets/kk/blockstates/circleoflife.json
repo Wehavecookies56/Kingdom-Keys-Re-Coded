@@ -10,18 +10,18 @@
             {
                 "transform": {
                     "thirdperson": {
-                    	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": -180 } ],
-                    	"translation": [ 0, 0, 0 ],
+                        "rotation": [ { "x": 90 }, { "y": 180 }, { "z": -180 } ],
+                        "translation": [ 0, 0, 0 ],
                         "scale": 0.02
                     },
                     "gui": {
-                    	"rotation": [ { "x": -30 }, { "y": 20 }, { "z": 0 } ],
-                    	"translation": [ 0.3, -0.1, 0 ],
-                        "scale": 0.021
+                        "rotation": [ { "x": -40 }, { "y": -180 }, { "z": 0 } ],
+                        "translation": [ 0.2, -0.1, 0 ],
+                        "scale": 0.02
                     },
                     "firstperson": {
-                    	"rotation": [ { "x": -30 }, { "y": -60 }, { "z": -50 } ],
-                    	"translation": [ 0, 0, 0 ],
+                        "rotation": [ { "x": 110 }, { "y": 60 }, { "z": -100 } ],
+                        "translation": [ 0.1, 0.1, 0.1 ],
                         "scale": 0.03
                     }
                 }

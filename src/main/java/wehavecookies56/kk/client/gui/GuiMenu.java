@@ -45,6 +45,7 @@ public class GuiMenu extends GuiMenu_Bars {
 			break;
 		case STATUS:
 			GuiHelper.openStatus();
+			break;
 		case JOURNAL:
 			GuiHelper.openReports();
 			break;
