@@ -1,0 +1,15 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "all": "kk:blocks/savepoint"
+    },
+    "elements": [
+        {   "from": [ 1, 0.1, 1 ],
+            "to": [ 15, 0.5, 15 ],
+            "shade": false,
+            "faces": {
+                "up":    { "uv": [ 1, 1, 16, 16 ], "texture": "#all" }
+            }
+        }
+    ]
+}

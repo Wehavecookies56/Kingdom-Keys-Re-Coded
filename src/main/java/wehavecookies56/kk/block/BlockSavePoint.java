@@ -24,20 +24,28 @@ public class BlockSavePoint extends BlockBlox {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
 
 	}
+	public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+    {
+    }
+	
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn)
 	{
+		System.out.println("Entity: "+entityIn);
 		if (!worldIn.isRemote)
 	    {
 			if(entityIn instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer) entityIn;
-		    	if(entityIn.isSneaking())
-		    	{
-		    		((EntityPlayer) entityIn).setSpawnPoint(pos, true);
-		    	}
-			 	player.heal(ExtendedPlayer.get(player).getHP());
+				player.heal(ExtendedPlayer.get(player).getHP());
 			 	ExtendedPlayer.get(player).setMp(100);
 	            player.addPotionEffect(new PotionEffect(Potion.saturation.id, 1, 100));
+	    		((EntityPlayer) entityIn).setSpawnPoint(pos, true);
+
+		    	if(entityIn.isSneaking())
+		    	{
+		    		((EntityPlayer) entityIn).setSpawnChunk(pos, true, 0);
+		    		((EntityPlayer) entityIn).setSpawnPoint(pos, true);
+		    	}
 			}
 	    }
 	}
@@ -64,6 +72,14 @@ public class BlockSavePoint extends BlockBlox {
     {
         float f = 0.125F;
         return new AxisAlignedBB((double)((float)pos.getX() + 0.125F), (double)pos.getY(), (double)((float)pos.getZ() + 0.125F), (double)((float)(pos.getX() + 1) - 0.125F), (double)pos.getY() + 0.25D, (double)((float)(pos.getZ() + 1) - 0.125F));
+    }
+    
+    public void setBlockBoundsForItemRender()
+    {
+        float f = 0.5F;
+        float f1 = 0.125F;
+        float f2 = 0.5F;
+        this.setBlockBounds(0.0F, 0.375F, 0.0F, 1.0F, 0.625F, 1.0F);
     }
     
 	@Override

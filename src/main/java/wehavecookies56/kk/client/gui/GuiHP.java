@@ -2,16 +2,15 @@ package wehavecookies56.kk.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Constants;
+import wehavecookies56.kk.lib.Reference;
 
 public class GuiHP extends GuiScreen {
 
@@ -94,6 +93,10 @@ public class GuiHP extends GuiScreen {
 
 	@SubscribeEvent
 	public void onRenderOverlayPost(RenderGameOverlayEvent event){
+		if(event.type.equals(ElementType.HEALTH) && event.isCancelable())
+		{
+			event.setCanceled(true);
+		}	
 		if(event.type == RenderGameOverlayEvent.ElementType.TEXT){
 
 			Minecraft mc = Minecraft.getMinecraft();
