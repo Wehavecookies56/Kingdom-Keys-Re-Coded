@@ -1,0 +1,31 @@
+{
+	"forge_marker": 1,
+    "defaults": {
+        "textures": {},
+        "model": "kk:rumblingrose.b3d"
+    },
+
+    "variants": {
+        "inventory": [
+            {
+                "transform": {
+                    "thirdperson": {
+                    	"rotation": [ { "x": 90 }, { "y": 180 }, { "z": -180 } ],
+                    	"translation": [ 0, 0, 0 ],
+                        "scale": 0.02
+                    },
+                    "gui": {
+                    	"rotation": [ { "x": -40 }, { "y": -180 }, { "z": 0 } ],
+                    	"translation": [ 0.2, -0.1, 0 ],
+                        "scale": 0.016
+                    },
+                    "firstperson": {
+                    	"rotation": [ { "x": 110 }, { "y": 60 }, { "z": -100 } ],
+                    	"translation": [ 0.1, 0.1, 0.1 ],
+                        "scale": 0.03
+                    }
+                }
+            }
+        ]
+    }
+}
