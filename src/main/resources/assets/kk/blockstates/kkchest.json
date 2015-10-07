@@ -1,7 +1,9 @@
 {
 	"forge_marker": 1,
     "defaults": {
-        "textures": {},
+        "textures": {
+            "kkchest": "kk:blocks/models/kkchest"
+        },
         "model": "kk:kkchest.b3d"
     },
     "variants": {
@@ -9,7 +11,8 @@
     		{
     			"model": "kk:kkchest.b3d",
     			"transform":{
-                	"scale": 0.02
+                    "translation": [ 0, 0, 0 ],
+                	"scale": 0.015
     			}
     		}
     	],

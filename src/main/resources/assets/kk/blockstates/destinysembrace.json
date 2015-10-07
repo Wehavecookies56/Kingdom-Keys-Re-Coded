@@ -1,7 +1,14 @@
 {
 	"forge_marker": 1,
     "defaults": {
-        "textures": {},
+        "textures": {
+            "destinysembrace_1": "kk:items/models/destinysembrace_1",
+            "destinysembrace_2": "kk:items/models/destinysembrace_2",
+            "destinysembrace_3": "kk:items/models/destinysembrace_3",
+            "destinysembrace_4": "kk:items/models/destinysembrace_4",
+            "destinysembrace_5": "kk:items/models/destinysembrace_5",
+            "destinysembrace_6": "kk:items/models/destinysembrace_6"
+        },
         "model": "kk:destinysembrace.b3d"
     },
 
@@ -10,18 +17,18 @@
             {
                 "transform": {
                     "thirdperson": {
-                        "rotation": [ { "x": 90 }, { "y": 180 }, { "z": -180 } ],
+                        "rotation": [ { "x": 75 }, { "y": 0 }, { "z": 180 } ],
                         "translation": [ 0, 0, 0 ],
                         "scale": 0.02
                     },
                     "gui": {
-                        "rotation": [ { "x": -40 }, { "y": -180 }, { "z": 0 } ],
+                        "rotation": [ { "x": -40 }, { "y": 0 }, { "z": 0 } ],
                         "translation": [ 0.2, -0.1, 0 ],
-                        "scale": 0.022
+                        "scale": 0.02
                     },
                     "firstperson": {
-                        "rotation": [ { "x": 110 }, { "y": 60 }, { "z": -100 } ],
-                        "translation": [ 0.1, 0.1, 0.1 ],
+                        "rotation": [ { "x": 180 }, { "y": -120 }, { "z": 170 } ],
+                        "translation": [ 0, 0, 0 ],
                         "scale": 0.03
                     }
                 }

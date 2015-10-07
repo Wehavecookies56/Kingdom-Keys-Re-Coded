@@ -1,36 +1,30 @@
 {
 	"forge_marker": 1,
     "defaults": {
-        "textures": {},
+        "textures": {
+            "fairyharp_1": "kk:items/models/fairyharp_1",
+            "fairyharp_2": "kk:items/models/fairyharp_2"
+        },
         "model": "kk:fairyharp.b3d"
     },
 
     "variants": {
-        "normal": [
-            {
-                "transform": {
-                    "rotation": [ { "x": 90 }, { "y": 0 }, { "z": -90 } ],
-                    "translation": [ 0, 0.05, -0.05 ],
-                    "scale": 0.02
-                }
-            }
-        ],
         "inventory": [
             {
                 "transform": {
                     "thirdperson": {
-                    	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": -90 } ],
-                    	"translation": [ 0, 0.05, -0.05 ],
+                        "rotation": [ { "x": 75 }, { "y": 0 }, { "z": 180 } ],
+                        "translation": [ 0, 0, 0 ],
                         "scale": 0.02
                     },
                     "gui": {
-                    	"rotation": [ { "x": 0 }, { "y": 0 }, { "z": 150 } ],
-                    	"translation": [ 0.2, -0.2, 0 ],
+                        "rotation": [ { "x": -40 }, { "y": 0 }, { "z": 0 } ],
+                        "translation": [ 0.2, -0.1, 0 ],
                         "scale": 0.02
                     },
                     "firstperson": {
-                    	"rotation": [ { "x": -30 }, { "y": -60 }, { "z": 45 } ],
-                    	"translation": [ 0, 0.1, 0.1 ],
+                        "rotation": [ { "x": 180 }, { "y": -120 }, { "z": 170 } ],
+                        "translation": [ 0, 0, 0 ],
                         "scale": 0.03
                     }
                 }

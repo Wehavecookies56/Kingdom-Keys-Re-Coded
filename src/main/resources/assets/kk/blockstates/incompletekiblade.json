@@ -1,7 +1,10 @@
 {
 	"forge_marker": 1,
     "defaults": {
-        "textures": {},
+        "textures": {
+        	"incompletekiblade_1": "kk:items/models/incompletekiblade_1",
+        	"incompletekiblade_2": "kk:items/models/incompletekiblade_2"
+        },
         "model": "kk:incompletekiblade.b3d"
     },
 

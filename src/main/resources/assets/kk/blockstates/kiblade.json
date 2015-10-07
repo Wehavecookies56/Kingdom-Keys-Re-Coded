@@ -1,7 +1,10 @@
 {
 	"forge_marker": 1,
     "defaults": {
-        "textures": {},
+        "textures": {
+            "kiblade_1": "kk:items/models/kiblade_1",
+            "kiblade_2": "kk:items/models/kiblade_2"
+        },
         "model": "kk:kiblade.b3d"
     },
 

@@ -1,7 +1,9 @@
 {
 	"forge_marker": 1,
     "defaults": {
-        "textures": {},
+        "textures": {
+            "arpeggio": "kk:items/models/arpeggio"
+        },
         "model": "kk:arpeggio.b3d"
     },
 
@@ -10,19 +12,19 @@
             {
                 "transform": {
                     "thirdperson": {
-                    	"rotation": [ { "x": 75 }, { "y": 0 }, { "z": 180 } ],
-                    	"translation": [ 0, 0, 0 ],
-                        "scale": 0.02
+                        "rotation": [ { "x": 90 }, { "y": 90 }, { "z": 90 } ],
+                        "translation": [ 0, 0, 0 ],
+                        "scale": 0.015
                     },
                     "gui": {
-                    	"rotation": [ { "x": -40 }, { "y": 0 }, { "z": 0 } ],
-                    	"translation": [ 0.2, -0.1, 0 ],
-                        "scale": 0.016
+                        "rotation": [ { "x": -40 }, { "y": 0 }, { "z": 0 } ],
+                        "translation": [ 0.2, -0.1, 0 ],
+                        "scale": 0.01
                     },
                     "firstperson": {
-                    	"rotation": [ { "x": 180 }, { "y": -120 }, { "z": 170 } ],
-                    	"translation": [ 0, 0, 0 ],
-                        "scale": 0.03
+                        "rotation": [ { "x": 180 }, { "y": -120 }, { "z": 170 } ],
+                        "translation": [ 0, 0, 0 ],
+                        "scale": 0.02
                     }
                 }
             }
