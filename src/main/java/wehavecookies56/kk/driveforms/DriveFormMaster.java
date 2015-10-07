@@ -61,7 +61,6 @@ public class DriveFormMaster extends DriveForm {
 		{	
 			if(Minecraft.getMinecraft().gameSettings.keyBindJump.isPressed())							
 			{
-				System.out.println("Jumps: "+jumps);
 				if(jumps<1)
 				{
 					jumps++;
