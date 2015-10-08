@@ -37,6 +37,7 @@ import wehavecookies56.kk.network.packet.server.OpenMaterials;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.network.packet.server.UseRecipe;
+import wehavecookies56.kk.network.packet.server.magics.LevelUpMagic;
 import wehavecookies56.kk.network.packet.server.magics.MagicAero;
 import wehavecookies56.kk.network.packet.server.magics.MagicBlizzard;
 import wehavecookies56.kk.network.packet.server.magics.MagicCure;
@@ -90,6 +91,7 @@ public class PacketDispatcher
 		registerMessage(ChangeStrength.class);
 		registerMessage(ChangeDefense.class);
 		registerMessage(ChangeHP.class);
+		registerMessage(LevelUpMagic.class);
 
 		//Bidirectional
 	}

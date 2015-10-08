@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.relauncher.Side;
+import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 
 public class SpawnFireParticles extends AbstractClientMessage<SpawnFireParticles> {
@@ -38,13 +39,41 @@ public class SpawnFireParticles extends AbstractClientMessage<SpawnFireParticles
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		double r = 1.5D;
-		for(int a = 1; a <= 360; a+=7){
-			double x = this.x + (r * Math.cos(Math.toRadians(a)));
-			double z = this.z + (r * Math.sin(Math.toRadians(a)));
+		double r;
+		switch(ExtendedPlayer.get(player).getMagicLevel("Aero"))
+		{
+			case 1:
+				r = 1.5D;
+				for(int a = 1; a <= 360; a+=7){
+					double x = this.x + (r * Math.cos(Math.toRadians(a)));
+					double z = this.z + (r * Math.sin(Math.toRadians(a)));
 
-			player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.25D, z, 0.0D, 0.0D, 0.0D);
-			player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.05D, z, 0.0D, 0.0D, 0.0D);
+					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.25D, z, 0.0D, 0.0D, 0.0D);
+					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.05D, z, 0.0D, 0.0D, 0.0D);
+				break;
+			}
+			case 2:
+				r = 2.3D;
+				for(int a = 1; a <= 360; a+=7){
+					double x = this.x + (r * Math.cos(Math.toRadians(a)));
+					double z = this.z + (r * Math.sin(Math.toRadians(a)));
+
+					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.25D, z, 0.0D, 0.0D, 0.0D);
+					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.05D, z, 0.0D, 0.0D, 0.0D);
+				break;
+			}
+			case 3:
+				r = 3D;
+				for(int a = 1; a <= 360; a+=7){
+					double x = this.x + (r * Math.cos(Math.toRadians(a)));
+					double z = this.z + (r * Math.sin(Math.toRadians(a)));
+					
+					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1D, z, 0.0D, 0.0D, 0.0D);
+					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 0.5D, z, 0.0D, 0.0D, 0.0D);
+
+				break;
+			}
 		}
 	}
 
