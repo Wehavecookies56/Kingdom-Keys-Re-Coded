@@ -15,6 +15,8 @@ import wehavecookies56.kk.entities.magic.EntityFira2;
 import wehavecookies56.kk.entities.magic.EntityFiraga2;
 import wehavecookies56.kk.entities.magic.EntityFire2;
 import wehavecookies56.kk.entities.magic.EntityStop;
+import wehavecookies56.kk.entities.magic.EntityThundaga;
+import wehavecookies56.kk.entities.magic.EntityThundara;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.magics.MagicAero;
@@ -95,10 +97,14 @@ public class Magic {
 			break;
 			
 			case 2:
-				System.out.println("Thundara");
+				PacketDispatcher.sendToServer(new MagicThunder());
+				world.spawnEntityInWorld(new EntityThundara(world, player, player.posX, player.posY, player.posZ));
+				player.swingItem();		
 			break;
 			case 3:
-				System.out.println("Thundaga");
+				PacketDispatcher.sendToServer(new MagicThunder());
+				world.spawnEntityInWorld(new EntityThundaga(world, player, player.posX, player.posY, player.posZ));
+				player.swingItem();
 			break;
 		}	
 	}

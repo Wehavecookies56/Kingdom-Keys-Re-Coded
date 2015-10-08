@@ -50,8 +50,9 @@ public class SpawnFireParticles extends AbstractClientMessage<SpawnFireParticles
 
 					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.25D, z, 0.0D, 0.0D, 0.0D);
 					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.05D, z, 0.0D, 0.0D, 0.0D);
+				}
 				break;
-			}
+			
 			case 2:
 				r = 2.3D;
 				for(int a = 1; a <= 360; a+=7){
@@ -60,21 +61,26 @@ public class SpawnFireParticles extends AbstractClientMessage<SpawnFireParticles
 
 					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.25D, z, 0.0D, 0.0D, 0.0D);
 					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.05D, z, 0.0D, 0.0D, 0.0D);
+				}
 				break;
-			}
+			
 			case 3:
-				r = 3D;
+				r = 2D;
 				for(int a = 1; a <= 360; a+=7){
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-					
+					double x2 = this.x + (r/1.3 * Math.cos(Math.toRadians(a)));
+					double z2 = this.z + (r/1.3 * Math.sin(Math.toRadians(a)));
+
+					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x2, this.y + 2.0D, z2, 0.0D, 0.0D, 0.0D);
 					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1.5D, z, 0.0D, 0.0D, 0.0D);
 					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1D, z, 0.0D, 0.0D, 0.0D);
 					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 0.5D, z, 0.0D, 0.0D, 0.0D);
-
+					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 0.0D, z, 0.0D, 0.0D, 0.0D);
+				}
 				break;
 			}
 		}
 	}
 
-}
+
