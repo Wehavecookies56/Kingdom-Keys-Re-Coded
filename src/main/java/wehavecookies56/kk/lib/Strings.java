@@ -43,13 +43,35 @@ public class Strings {
 	Gui_CommandMenu_Items = Gui_CommandMenu + ".items",
 	Gui_CommandMenu_Drive = Gui_CommandMenu + ".drive",
 	Gui_CommandMenu_Magic_Title = Gui_CommandMenu_Magic + ".title",
+	
 	Gui_CommandMenu_Magic_Fire = Gui_CommandMenu_Magic + ".fire",
+	Gui_CommandMenu_Magic_Fira = Gui_CommandMenu_Magic + ".fira",
+	Gui_CommandMenu_Magic_Firaga = Gui_CommandMenu_Magic + ".firaga",
+
 	Gui_CommandMenu_Magic_Blizzard = Gui_CommandMenu_Magic + ".blizzard",
+	Gui_CommandMenu_Magic_Blizzara = Gui_CommandMenu_Magic + ".blizzara",
+	Gui_CommandMenu_Magic_Blizzaga = Gui_CommandMenu_Magic + ".blizzaga",
+
 	Gui_CommandMenu_Magic_Thunder = Gui_CommandMenu_Magic + ".thunder",
+	Gui_CommandMenu_Magic_Thundara = Gui_CommandMenu_Magic + ".thundara",
+	Gui_CommandMenu_Magic_Thundaga = Gui_CommandMenu_Magic + ".thundaga",
+
 	Gui_CommandMenu_Magic_Cure = Gui_CommandMenu_Magic + ".cure",
+	Gui_CommandMenu_Magic_Cura = Gui_CommandMenu_Magic + ".cura",
+	Gui_CommandMenu_Magic_Curaga = Gui_CommandMenu_Magic + ".curaga",
+	
 	Gui_CommandMenu_Magic_Gravity = Gui_CommandMenu_Magic + ".gravity",
+	Gui_CommandMenu_Magic_Gravira = Gui_CommandMenu_Magic + ".gravira",
+	Gui_CommandMenu_Magic_Graviga = Gui_CommandMenu_Magic + ".graviga",
+
 	Gui_CommandMenu_Magic_Aero = Gui_CommandMenu_Magic + ".aero",
+	Gui_CommandMenu_Magic_Aerora = Gui_CommandMenu_Magic + ".aerora",
+	Gui_CommandMenu_Magic_Aeroga = Gui_CommandMenu_Magic + ".aeroga",
+
 	Gui_CommandMenu_Magic_Stop = Gui_CommandMenu_Magic + ".stop",
+	Gui_CommandMenu_Magic_Stopra = Gui_CommandMenu_Magic + ".stopra",
+	Gui_CommandMenu_Magic_Stopga = Gui_CommandMenu_Magic + ".stopga",
+
 	Gui_CommandMenu_Drive_Title = Gui_CommandMenu_Drive + ".title",
 	Gui_CommandMenu_Drive_Valor = Gui_CommandMenu_Drive + ".valor",
 	Gui_CommandMenu_Drive_Wisdom = Gui_CommandMenu_Drive + ".wisdom",

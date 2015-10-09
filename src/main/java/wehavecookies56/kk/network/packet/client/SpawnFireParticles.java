@@ -77,6 +77,12 @@ public class SpawnFireParticles extends AbstractClientMessage<SpawnFireParticles
 					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 1D, z, 0.0D, 0.0D, 0.0D);
 					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 0.5D, z, 0.0D, 0.0D, 0.0D);
 					player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x, this.y + 0.0D, z, 0.0D, 0.0D, 0.0D);
+					
+					double d = r - x;
+				 /*for(double i = 1; i <= r; i = i+0.1)
+					{
+						player.worldObj.spawnParticle(EnumParticleTypes.FLAME, i, this.y + 0.1D, z/i, 0.0D, 0.0D, 0.0D);
+					}*/					
 				}
 				break;
 			}

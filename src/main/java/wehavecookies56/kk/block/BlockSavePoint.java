@@ -15,6 +15,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
@@ -22,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.util.TextHelper;
 
 public class BlockSavePoint extends Block {
 
@@ -29,7 +31,6 @@ public class BlockSavePoint extends Block {
 		super(material);
         this.setBlockBounds(0, 0, 0, 1, 0.1F, 1);
         this.setTickRandomly(true);
-
 	}
 
 	@Override
@@ -66,12 +67,12 @@ public class BlockSavePoint extends Block {
     				EntityPlayer player = (EntityPlayer) e;
     				player.heal(ExtendedPlayer.get(player).getHP());
     			 	ExtendedPlayer.get(player).setMp(100);
-    	            player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 10, 200));
-    	    		((EntityPlayer) e).setSpawnPoint(pos, true);
-
+    	            player.addPotionEffect(new PotionEffect(Potion.saturation.id, 1, 200));
     		    	if(e.isSneaking()){
     		    		((EntityPlayer) e).setSpawnChunk(pos, true, 0);
     		    		((EntityPlayer) e).setSpawnPoint(pos, true);
+    		    		TextHelper.sendFormattedChatMessage("Spawn point saved!", EnumChatFormatting.GREEN, player);
+
     		    	}
 				}
 			}

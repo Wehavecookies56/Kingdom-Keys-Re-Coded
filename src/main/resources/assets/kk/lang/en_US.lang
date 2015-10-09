@@ -501,12 +501,33 @@ gui.commandmenu.drive=Drive
 #Magic
 gui.commandmenu.magic.title=MAGIC
 gui.commandmenu.magic.fire=Fire
+gui.commandmenu.magic.fira=Fira
+gui.commandmenu.magic.firaga=Firaga
+
 gui.commandmenu.magic.blizzard=Blizzard
+gui.commandmenu.magic.blizzara=Blizzara
+gui.commandmenu.magic.blizzaga=Blizzaga
+
 gui.commandmenu.magic.thunder=Thunder
+gui.commandmenu.magic.thundara=Thundara
+gui.commandmenu.magic.thundaga=Thundaga
+
 gui.commandmenu.magic.cure=Cure
+gui.commandmenu.magic.cura=Cura
+gui.commandmenu.magic.curaga=Curaga
+
 gui.commandmenu.magic.gravity=Gravity
+gui.commandmenu.magic.gravira=Gravira
+gui.commandmenu.magic.graviga=Graviga
+
 gui.commandmenu.magic.aero=Aero
+gui.commandmenu.magic.aerora=Aerora
+gui.commandmenu.magic.aeroga=Aeroga
+
 gui.commandmenu.magic.stop=Stop
+gui.commandmenu.magic.stopra=Stopra
+gui.commandmenu.magic.stopga=Stopga
+
 
 #Drive Forms
 gui.commandmenu.drive.title=TRANSFORM
