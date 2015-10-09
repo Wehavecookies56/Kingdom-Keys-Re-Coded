@@ -1,6 +1,5 @@
 package wehavecookies56.kk.magic;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -8,10 +7,16 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityAero;
+import wehavecookies56.kk.entities.magic.EntityAeroga;
+import wehavecookies56.kk.entities.magic.EntityAerora;
 import wehavecookies56.kk.entities.magic.EntityBlizzard;
 import wehavecookies56.kk.entities.magic.EntityCure;
+import wehavecookies56.kk.entities.magic.EntityFira2;
+import wehavecookies56.kk.entities.magic.EntityFiraga2;
 import wehavecookies56.kk.entities.magic.EntityFire2;
 import wehavecookies56.kk.entities.magic.EntityStop;
+import wehavecookies56.kk.entities.magic.EntityThundaga;
+import wehavecookies56.kk.entities.magic.EntityThundara;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.magics.MagicAero;
@@ -45,10 +50,16 @@ public class Magic {
 			break;
 			
 			case 2:
-				System.out.println("Fira");
+				PacketDispatcher.sendToServer(new MagicFire());
+				world.spawnEntityInWorld(new EntityFira2(world, player, player.posX, player.posY, player.posZ, 1));
+				player.swingItem();
+				world.playSoundAtEntity(player, "fire.ignite", 1, 1);			
 			break;
 			case 3:
-				System.out.println("Firaga");
+				PacketDispatcher.sendToServer(new MagicFire());
+				world.spawnEntityInWorld(new EntityFiraga2(world, player, player.posX, player.posY, player.posZ, 1));
+				player.swingItem();
+				world.playSoundAtEntity(player, "fire.ignite", 1, 1);			
 			break;
 		}
 	}
@@ -67,10 +78,10 @@ public class Magic {
 			break;
 			
 			case 2:
-				System.out.println("Fira");
+				System.out.println("Blizzara");
 			break;
 			case 3:
-				System.out.println("Firaga");
+				System.out.println("Blizzaga");
 			break;
 		}	
 	}
@@ -86,10 +97,14 @@ public class Magic {
 			break;
 			
 			case 2:
-				System.out.println("Fira");
+				PacketDispatcher.sendToServer(new MagicThunder());
+				world.spawnEntityInWorld(new EntityThundara(world, player, player.posX, player.posY, player.posZ));
+				player.swingItem();		
 			break;
 			case 3:
-				System.out.println("Firaga");
+				PacketDispatcher.sendToServer(new MagicThunder());
+				world.spawnEntityInWorld(new EntityThundaga(world, player, player.posX, player.posY, player.posZ));
+				player.swingItem();
 			break;
 		}	
 	}
@@ -105,10 +120,10 @@ public class Magic {
 			break;
 			
 			case 2:
-				System.out.println("Fira");
+				System.out.println("Cura");
 			break;
 			case 3:
-				System.out.println("Firaga");
+				System.out.println("Curaga");
 			break;
 		}	
 	}
@@ -125,10 +140,18 @@ public class Magic {
 			break;
 			
 			case 2:
-				System.out.println("Fira");
+				System.out.println("Aerora");
+				PacketDispatcher.sendToServer(new MagicAero());
+				world.spawnEntityInWorld(new EntityAerora(world, player, player.posX, player.posY, player.posZ));
+				player.swingItem();
+				world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 			break;
 			case 3:
-				System.out.println("Firaga");
+				System.out.println("Aeroga");
+				PacketDispatcher.sendToServer(new MagicAero());
+				world.spawnEntityInWorld(new EntityAeroga(world, player, player.posX, player.posY, player.posZ));
+				player.swingItem();
+				world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 			break;
 		}	
 	}
@@ -144,10 +167,10 @@ public class Magic {
 				world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 			break;
 			case 2:
-				System.out.println("Fira");
+				System.out.println("Stopra");
 			break;
 			case 3:
-				System.out.println("Firaga");
+				System.out.println("Stopga");
 			break;
 		}	
 		

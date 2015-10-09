@@ -151,7 +151,13 @@ public class Strings {
 	Recipe = "recipe",
 	LunaticDesc = "item.lunatic.desc",
 	IceCream = "icecream",
-	WinnerStick = "winnerstick"
+	WinnerStick = "winnerstick",
+	LevelUpMagicFire = "levelupmagicfire",
+	LevelUpMagicBlizzard = "levelupmagicblizzard",
+	LevelUpMagicThunder = "levelupmagicthunder",
+	LevelUpMagicCure = "levelupmagiccure",
+	LevelUpMagicAero = "levelupmagicaero",
+	LevelUpMagicStop = "levelupmagicstop"
 	;
 
 	public static final String

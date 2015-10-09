@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.relauncher.Side;
+import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 
 public class SpawnAeroParticles extends AbstractClientMessage<SpawnAeroParticles> {
@@ -38,11 +39,30 @@ public class SpawnAeroParticles extends AbstractClientMessage<SpawnAeroParticles
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		double r = 1.5D;
-		for(int a = 1; a <= 360; a+=15){
-			double x = this.x + (r * Math.cos(Math.toRadians(a)));
-			double z = this.z + (r * Math.sin(Math.toRadians(a)));
-			player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
+		double r;
+		switch(ExtendedPlayer.get(player).getMagicLevel("Aero"))
+		{
+			case 1:
+				r = 1.5D;
+				for(int a = 1; a <= 360; a+=15)
+				{
+					double x = this.x + (r * Math.cos(Math.toRadians(a)));
+					double z = this.z + (r * Math.sin(Math.toRadians(a)));
+					player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
+				}
+				break;
+			case 2:
+				
+				break;
+			case 3:
+				r = 4.0D;
+				for(int a = 1; a <= 360; a+=15)
+				{
+					double x = this.x + (r * Math.cos(Math.toRadians(a)));
+					double z = this.z + (r * Math.sin(Math.toRadians(a)));
+					player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
+				}
+				break;
 		}
 	}
 

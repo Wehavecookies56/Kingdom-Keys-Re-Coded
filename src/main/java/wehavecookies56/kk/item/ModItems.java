@@ -309,7 +309,13 @@ public class ModItems {
 		SynthesisMaterial,
 		Recipe,
 		IceCream,
-		WinnerStick
+		WinnerStick,
+		LevelUpMagicFire,
+		LevelUpMagicBlizzard,
+		LevelUpMagicThunder,
+		LevelUpMagicCure,
+		LevelUpMagicAero,
+		LevelUpMagicStop
 		;
 
 	//Music Discs
@@ -643,6 +649,14 @@ public class ModItems {
 		IceCream = new ItemIceCream(5,true).setUnlocalizedName(Strings.IceCream).setCreativeTab(tabKingdomKeys);
 		WinnerStick = new Item().setUnlocalizedName(Strings.WinnerStick).setCreativeTab(tabKingdomKeys);
 
+		LevelUpMagicFire = new ItemUpgradeMagicFire().setUnlocalizedName(Strings.LevelUpMagicFire).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicBlizzard = new ItemUpgradeMagicBlizzard().setUnlocalizedName(Strings.LevelUpMagicBlizzard).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicThunder = new ItemUpgradeMagicThunder().setUnlocalizedName(Strings.LevelUpMagicThunder).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicCure = new ItemUpgradeMagicCure().setUnlocalizedName(Strings.LevelUpMagicCure).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicAero = new ItemUpgradeMagicAero().setUnlocalizedName(Strings.LevelUpMagicAero).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicStop = new ItemUpgradeMagicStop().setUnlocalizedName(Strings.LevelUpMagicStop).setCreativeTab(tabKingdomKeys);
+
+		
 		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
 		Disc_Darkness_of_the_Unknown = new ItemKKRecord(Strings.Disc_Darkness_of_the_Unknown_Name, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
 		Disc_Dearly_Beloved_Symphony_Version = new ItemKKRecord(Strings.Disc_Dearly_Beloved_Symphony_Version_Name, Strings.Disc_Dearly_Beloved_Symphony_Version, tabKingdomKeys, 2.33F);
@@ -965,6 +979,12 @@ public class ModItems {
 		GameRegistry.registerItem(Recipe, Strings.Recipe);
 		GameRegistry.registerItem(IceCream, Strings.IceCream);
 		GameRegistry.registerItem(WinnerStick, Strings.WinnerStick);
+		GameRegistry.registerItem(LevelUpMagicFire, Strings.LevelUpMagicFire);
+		GameRegistry.registerItem(LevelUpMagicBlizzard, Strings.LevelUpMagicBlizzard);
+		GameRegistry.registerItem(LevelUpMagicThunder, Strings.LevelUpMagicThunder);
+		GameRegistry.registerItem(LevelUpMagicCure, Strings.LevelUpMagicCure);
+		GameRegistry.registerItem(LevelUpMagicAero, Strings.LevelUpMagicAero);
+		GameRegistry.registerItem(LevelUpMagicStop, Strings.LevelUpMagicStop);
 
 		//DISCS
 		GameRegistry.registerItem(Disc_Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future);
@@ -1288,6 +1308,12 @@ public class ModItems {
 		registerRender(Recipe);
 		registerRender(IceCream);
 		registerRender(WinnerStick);
+		registerRender(LevelUpMagicFire);
+		registerRender(LevelUpMagicBlizzard);
+		registerRender(LevelUpMagicThunder);
+		registerRender(LevelUpMagicCure);
+		registerRender(LevelUpMagicAero);
+		registerRender(LevelUpMagicStop);
 
 		//Discs
 		registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);

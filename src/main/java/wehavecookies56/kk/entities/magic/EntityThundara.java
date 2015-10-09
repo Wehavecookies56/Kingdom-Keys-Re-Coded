@@ -14,17 +14,17 @@ import net.minecraft.world.World;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SpawnThunderParticles;
 
-public class EntityThunder extends Entity
+public class EntityThundara extends Entity
 {
 
 	EntityPlayer player;
 	public static boolean summonLightning = false;
 
-	public EntityThunder(World world){
+	public EntityThundara(World world){
 		super(world);
 	}
 
-	public EntityThunder(World world, EntityPlayer sender, double x, double y, double z) {
+	public EntityThundara(World world, EntityPlayer sender, double x, double y, double z) {
 		super(world);
 		this.posX = x;
 		this.posY = y;
