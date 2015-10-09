@@ -93,12 +93,9 @@ public class PacketDispatcher
 		registerMessage(ChangeStrength.class);
 		registerMessage(ChangeDefense.class);
 		registerMessage(ChangeHP.class);
-<<<<<<< HEAD
 		registerMessage(GlidePacket.class);
 		registerMessage(MasterFormPacket.class);
-=======
 		registerMessage(LevelUpMagic.class);
->>>>>>> origin/master
 
 		//Bidirectional
 	}
