@@ -26,9 +26,11 @@ import wehavecookies56.kk.network.packet.server.ChangeHP;
 import wehavecookies56.kk.network.packet.server.ChangeXP;
 import wehavecookies56.kk.network.packet.server.CreateFromSynthesisRecipe;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
+import wehavecookies56.kk.network.packet.server.MasterFormPacket;
 import wehavecookies56.kk.network.packet.server.DriveFormPacket;
 import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
+import wehavecookies56.kk.network.packet.server.GlidePacket;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
@@ -90,6 +92,8 @@ public class PacketDispatcher
 		registerMessage(ChangeStrength.class);
 		registerMessage(ChangeDefense.class);
 		registerMessage(ChangeHP.class);
+		registerMessage(GlidePacket.class);
+		registerMessage(MasterFormPacket.class);
 
 		//Bidirectional
 	}

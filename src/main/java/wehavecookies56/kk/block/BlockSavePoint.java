@@ -1,7 +1,10 @@
 package wehavecookies56.kk.block;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -12,80 +15,99 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 
-public class BlockSavePoint extends BlockBlox {
+public class BlockSavePoint extends Block {
 
-	protected BlockSavePoint(Material material, String toolClass, int level,
-			float hardness, float resistance) {
-		super(material, toolClass, level, hardness, resistance);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
+	protected BlockSavePoint(Material material, String toolClass, int level, float hardness, float resistance) {
+		super(material);
+        this.setBlockBounds(0, 0, 0, 1, 0.1F, 1);
+        this.setTickRandomly(true);
 
 	}
-	public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
-    {
-    }
-	
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn)
-	{
-		System.out.println("Entity: "+entityIn);
-		if (!worldIn.isRemote)
-	    {
-			if(entityIn instanceof EntityPlayer)
-			{
-				EntityPlayer player = (EntityPlayer) entityIn;
-				player.heal(ExtendedPlayer.get(player).getHP());
-			 	ExtendedPlayer.get(player).setMp(100);
-	            player.addPotionEffect(new PotionEffect(Potion.saturation.id, 1, 100));
-	    		((EntityPlayer) entityIn).setSpawnPoint(pos, true);
 
-		    	if(entityIn.isSneaking())
-		    	{
-		    		((EntityPlayer) entityIn).setSpawnChunk(pos, true, 0);
-		    		((EntityPlayer) entityIn).setSpawnPoint(pos, true);
-		    	}
-			}
+	@Override
+	public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
+		world.scheduleUpdate(pos, this, this.tickRate(world));
+		super.onBlockAdded(world, pos, state);
+	}
+
+	@Override
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity) {
+		if (!world.isRemote){
+			this.updateState(world, pos);
 	    }
 	}
-	public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
-	{
-		return null;
+
+	@Override
+	public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random) {}
+
+	@Override
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+		if (!world.isRemote){
+			this.updateState(world, pos);
+	    }
 	}
-	public boolean isOpaqueCube()
-    {
+
+	private void updateState(World world, BlockPos pos){
+		List list = world.getEntitiesWithinAABBExcludingEntity((Entity)null, new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1)));
+		if(!list.isEmpty())
+		{
+			for(int i=0; i<list.size();i++)
+			{
+				Entity e = (Entity) list.get(i);
+				if(e instanceof EntityPlayer){
+    				EntityPlayer player = (EntityPlayer) e;
+    				player.heal(ExtendedPlayer.get(player).getHP());
+    			 	ExtendedPlayer.get(player).setMp(100);
+    	            player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 10, 200));
+    	    		((EntityPlayer) e).setSpawnPoint(pos, true);
+
+    		    	if(e.isSneaking()){
+    		    		((EntityPlayer) e).setSpawnChunk(pos, true, 0);
+    		    		((EntityPlayer) e).setSpawnPoint(pos, true);
+    		    	}
+				}
+			}
+		}
+		world.scheduleUpdate(pos, this, this.tickRate(world));
+	}
+
+	@Override
+	public int tickRate(World worldIn) {
+		return 20;
+	}
+
+	@SideOnly(Side.CLIENT)
+    public EnumWorldBlockLayer getBlockLayer() {
+        return EnumWorldBlockLayer.TRANSLUCENT;
+    }
+
+	@Override
+	public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state) {
+		return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 0.1, 1));
+	}
+
+	@Override
+	public boolean isOpaqueCube(){
         return false;
     }
 
-    public boolean isFullCube()
-    {
+	@Override
+    public boolean isFullCube(){
         return false;
     }
-    
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
-    {
-        return true;
-    }
-    
-    protected AxisAlignedBB getSensitiveAABB(BlockPos pos)
-    {
-        float f = 0.125F;
-        return new AxisAlignedBB((double)((float)pos.getX() + 0.125F), (double)pos.getY(), (double)((float)pos.getZ() + 0.125F), (double)((float)(pos.getX() + 1) - 0.125F), (double)pos.getY() + 0.25D, (double)((float)(pos.getZ() + 1) - 0.125F));
-    }
-    
-    public void setBlockBoundsForItemRender()
-    {
-        float f = 0.5F;
-        float f1 = 0.125F;
-        float f2 = 0.5F;
-        this.setBlockBounds(0.0F, 0.375F, 0.0F, 1.0F, 0.625F, 1.0F);
-    }
-    
+
 	@Override
-	public Item getItemDropped(IBlockState state, Random r, int fortune) 
+	public Item getItemDropped(IBlockState state, Random r, int fortune)
 	{
-		return null;
+		return Item.getItemFromBlock(this);
 	}
 
 }

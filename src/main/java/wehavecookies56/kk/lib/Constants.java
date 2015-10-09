@@ -37,14 +37,15 @@ public class Constants {
 	VALOR_JUMP_1 = 1.08,
 	VALOR_JUMP_2 = 1.1,
 	VALOR_JUMP_3 = 1.15, //has to check if is safe
-	
+
 	FINAL_SPEED = 1.23,
 	FINAL_JUMP = 1.08,
 	FINAL_GLIDE_1= 0.6;
 	;
-	
+
 	public static final double
-	PLAYER_WALKSPEED = 0.10000000149011612D;
+	PLAYER_WALKSPEED = 0.10000000149011612D,
+	PLAYER_JUMP = 0.42D;
 	;
 
 }

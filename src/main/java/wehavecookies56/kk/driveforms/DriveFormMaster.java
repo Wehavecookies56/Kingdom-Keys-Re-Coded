@@ -8,6 +8,7 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.ChangeDP;
+import wehavecookies56.kk.network.packet.server.MasterFormPacket;
 
 public class DriveFormMaster extends DriveForm {
 
@@ -51,24 +52,26 @@ public class DriveFormMaster extends DriveForm {
 				player.motionY *= 1.05D;
 			}
 		}
-//W.I.P.
-						
+
 		if(player.onGround)
 		{
 			jumps = 0;
 		}
 		else
-		{	
-			if(Minecraft.getMinecraft().gameSettings.keyBindJump.isPressed())							
-			{
-				if(jumps<1)
+		{
+			if(player.worldObj.isRemote){
+				if(Minecraft.getMinecraft().gameSettings.keyBindJump.isPressed())
 				{
-					jumps++;
-					player.jump();
+					if(this.jumps<1)
+					{
+						this.jumps++;
+						player.jump();
+						PacketDispatcher.sendToServer(new MasterFormPacket());
+					}
 				}
 			}
 		}
-		
+
 		if(ExtendedPlayer.get(player).cheatMode == false)
 		{
 			if(ExtendedPlayer.get(player).dp > 0)
