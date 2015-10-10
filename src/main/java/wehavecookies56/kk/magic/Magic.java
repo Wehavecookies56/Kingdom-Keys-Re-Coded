@@ -15,6 +15,7 @@ import wehavecookies56.kk.entities.magic.EntityFira2;
 import wehavecookies56.kk.entities.magic.EntityFiraga2;
 import wehavecookies56.kk.entities.magic.EntityFire2;
 import wehavecookies56.kk.entities.magic.EntityStop;
+import wehavecookies56.kk.entities.magic.EntityStopga;
 import wehavecookies56.kk.entities.magic.EntityThundaga;
 import wehavecookies56.kk.entities.magic.EntityThundara;
 import wehavecookies56.kk.entities.magic.EntityThunder;
@@ -170,7 +171,10 @@ public class Magic {
 				System.out.println("Stopra");
 			break;
 			case 3:
-				System.out.println("Stopga");
+				PacketDispatcher.sendToServer(new MagicStop());
+				world.spawnEntityInWorld(new EntityStopga(world, player, player.posX, player.posY, player.posZ));
+				player.swingItem();
+				world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 			break;
 		}	
 		

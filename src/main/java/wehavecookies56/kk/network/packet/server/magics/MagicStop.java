@@ -2,16 +2,15 @@ package wehavecookies56.kk.network.packet.server.magics;
 
 import java.io.IOException;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.entities.magic.EntityAero;
 import wehavecookies56.kk.entities.magic.EntityStop;
+import wehavecookies56.kk.entities.magic.EntityStopga;
+import wehavecookies56.kk.entities.magic.EntityStopra;
 import wehavecookies56.kk.lib.Constants;
-import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicStop extends AbstractServerMessage<MagicStop> {
@@ -33,7 +32,20 @@ public class MagicStop extends AbstractServerMessage<MagicStop> {
 		ExtendedPlayer.get(player).removeMp(Constants.STOP_COST);
 		World world = player.worldObj;
 		if(!world.isRemote)
-		world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
+		{
+			switch(ExtendedPlayer.get(player).getMagicLevel("Aero"))
+			{
+			case 1:
+				world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
+			break;
+			case 2:
+				world.spawnEntityInWorld(new EntityStopra(world, player, player.posX, player.posY, player.posZ));
+			break;
+			case 3:
+				world.spawnEntityInWorld(new EntityStopga(world, player, player.posX, player.posY, player.posZ));
+			break;
+			}
+		}		
 	}
 
 }

@@ -253,8 +253,7 @@ public class InputHandler {
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
-					*/
-					break;
+					break;*/
 			}
 		}
 

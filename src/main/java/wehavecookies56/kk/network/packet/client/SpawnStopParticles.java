@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.relauncher.Side;
+import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 
 public class SpawnStopParticles extends AbstractClientMessage<SpawnStopParticles> {
@@ -39,11 +40,17 @@ public class SpawnStopParticles extends AbstractClientMessage<SpawnStopParticles
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		double r = 1.5D;
-		for(int a = 1; a <= 360; a+=15){
-			double x = player.posX + (r * Math.cos(Math.toRadians(a)));
-			double z = player.posZ + (r * Math.sin(Math.toRadians(a)));
-
-			player.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, player.posY, z, 0.0D, 0.5D, 0.0D);
+		switch(ExtendedPlayer.get(player).getMagicLevel("Stop"))
+		{
+			case 1:
+				r = 1.5D;
+				for(int a = 1; a <= 360; a+=15){
+					double x = this.x + (r * Math.cos(Math.toRadians(a)));
+					double z = this.z + (r * Math.sin(Math.toRadians(a)));
+					player.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.y+2, z, 0.0D, 0.5D, 0.0D);
+				}
+				break;
+		
 			//player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, player.posY, z, 0.0D, 1.0D, 0.0D);
 		}
 	}

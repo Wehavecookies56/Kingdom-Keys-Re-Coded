@@ -22,7 +22,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import sun.util.resources.cldr.pa.CurrencyNames_pa_Arab;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SpawnAeroParticles;
+import wehavecookies56.kk.network.packet.client.SpawnCureParticles;
 import wehavecookies56.kk.util.TextHelper;
 
 public class BlockSavePoint extends Block {
@@ -68,10 +72,16 @@ public class BlockSavePoint extends Block {
     				player.heal(ExtendedPlayer.get(player).getHP());
     			 	ExtendedPlayer.get(player).setMp(100);
     	            player.addPotionEffect(new PotionEffect(Potion.saturation.id, 1, 200));
+	    			PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos,true), player, 64.0D);
+
     		    	if(e.isSneaking()){
-    		    		((EntityPlayer) e).setSpawnChunk(pos, true, 0);
-    		    		((EntityPlayer) e).setSpawnPoint(pos, true);
-    		    		TextHelper.sendFormattedChatMessage("Spawn point saved!", EnumChatFormatting.GREEN, player);
+    		    		if(((EntityPlayer) e).getBedLocation() != pos)
+    		    		{
+    		    			((EntityPlayer) e).setSpawnChunk(pos, true, 0);
+    		    			((EntityPlayer) e).setSpawnPoint(pos, true);
+    		    			TextHelper.sendFormattedChatMessage("Spawn point saved!", EnumChatFormatting.GREEN, player);
+
+    		    		}
 
     		    	}
 				}
@@ -82,7 +92,7 @@ public class BlockSavePoint extends Block {
 
 	@Override
 	public int tickRate(World worldIn) {
-		return 20;
+		return 15;
 	}
 
 	@SideOnly(Side.CLIENT)
