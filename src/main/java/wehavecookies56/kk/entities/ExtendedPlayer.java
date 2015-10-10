@@ -53,7 +53,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public double mp, maxMp, dp, maxDP;
 
-	public int fireLevel = 1, blizzardLevel = 1, thunderLevel = 1, cureLevel = 1, aeroLevel = 1, stopLevel = 1;
+	public int fireLevel = 1, blizzardLevel = 1, thunderLevel = 1, cureLevel = 1,  gravityLevel = 1, aeroLevel = 1, stopLevel = 1;
 
 	public List<String> driveForms = new ArrayList<String>();
 
@@ -87,6 +87,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.fireLevel = 1;
 		this.blizzardLevel = 1;
 		this.thunderLevel = 1;
+		this.gravityLevel = 1;
 		this.cureLevel = 1;
 		this.aeroLevel = 1;
 		this.stopLevel = 1;
@@ -119,6 +120,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("BlizzardLevel", this.blizzardLevel);
 		properties.setInteger("ThunderLevel", this.thunderLevel);
 		properties.setInteger("CureLevel", this.cureLevel);
+		properties.setInteger("GravityLevel", this.gravityLevel);
 		properties.setInteger("AeroLevel", this.aeroLevel);
 		properties.setInteger("StopLevel", this.stopLevel);
 
@@ -166,6 +168,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.blizzardLevel = properties.getInteger("BlizzardLevel");
 		this.thunderLevel = properties.getInteger("ThunderLevel");
 		this.cureLevel = properties.getInteger("CureLevel");
+		this.gravityLevel = properties.getInteger("GravityLevel");
 		this.aeroLevel = properties.getInteger("AeroLevel");
 		this.stopLevel = properties.getInteger("StopLevel");
 
@@ -205,6 +208,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		else if (magic == "Cure")
 		{
 			magicLevel = this.cureLevel;
+		}
+		else if (magic == "Gravity")
+		{
+			magicLevel = this.gravityLevel;
 		}
 		else if (magic == "Aero")
 		{

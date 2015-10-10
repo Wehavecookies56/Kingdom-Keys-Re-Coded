@@ -247,7 +247,7 @@ public class GuiCommandMenu extends GuiScreen {
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.BLIZZARD_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
-				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Fire"))
+				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Blizzard"))
 				{
 				case 1:
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Blizzard), 6, 4, colour);
@@ -281,7 +281,7 @@ public class GuiCommandMenu extends GuiScreen {
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.THUNDER_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
-				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Fire"))
+				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Thunder"))
 				{
 				case 1:
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Thunder), 6, 4, colour);
@@ -315,7 +315,7 @@ public class GuiCommandMenu extends GuiScreen {
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
-				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Fire"))
+				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Cure"))
 				{
 				case 1:
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Cure), 6, 4, colour);
@@ -350,7 +350,7 @@ public class GuiCommandMenu extends GuiScreen {
 				colour = Constants.GRAVITY_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 				colour = 0x888888;
-				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Fire"))
+				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Gravity"))
 				{
 				case 1:
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Gravity), 6, 4, colour);
@@ -384,7 +384,7 @@ public class GuiCommandMenu extends GuiScreen {
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.AERO_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
-				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Fire"))
+				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Aero"))
 				{
 				case 1:
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Aero), 6, 4, colour);
@@ -419,7 +419,7 @@ public class GuiCommandMenu extends GuiScreen {
 				colour = Constants.STOP_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 				colour = 0x888888;
-				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Fire"))
+				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Stop"))
 				{
 				case 1:
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Stop), 6, 4, colour);

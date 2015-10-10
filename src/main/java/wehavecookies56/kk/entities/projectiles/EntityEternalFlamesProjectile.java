@@ -1,15 +1,18 @@
 package wehavecookies56.kk.entities.projectiles;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import wehavecookies56.kk.entities.ExtendedPlayer;
 
 public class EntityEternalFlamesProjectile extends EntityThrowable{
 
 	int ticks;
+	EntityPlayer player;
 	public EntityEternalFlamesProjectile(World world) {
 		super(world);
 	}
@@ -17,6 +20,7 @@ public class EntityEternalFlamesProjectile extends EntityThrowable{
 	public EntityEternalFlamesProjectile(World world, EntityLivingBase entity, int ticksExisted) {
 		super(world, entity);
 		this.ticks = ticksExisted;
+		this.player = (EntityPlayer) entity;
 	}
 
 	public EntityEternalFlamesProjectile(World world, double x, double y, double z) {
@@ -44,7 +48,16 @@ public class EntityEternalFlamesProjectile extends EntityThrowable{
 	protected void onImpact(MovingObjectPosition mop) {
 		if (mop.entityHit != null) {
 			mop.entityHit.setFire(8);
-			float shotDamage = 8;
+			float shotDamage;
+			if(ExtendedPlayer.get(player).getStrength()/2 <8)
+			{
+				shotDamage = 8;
+			}
+			else
+			{
+				shotDamage = ExtendedPlayer.get(player).getStrength()/2;
+			}
+			
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), shotDamage);
 		}
 
