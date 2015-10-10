@@ -9,15 +9,15 @@ import wehavecookies56.kk.network.packet.server.magics.LevelUpMagic;
 
 public class ItemUpgradeMagicCure extends Item
 {
-	public ItemUpgradeMagicCure()
-	{
+	public ItemUpgradeMagicCure(){
 		this.setMaxStackSize(1);
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
-	{
-		PacketDispatcher.sendToServer(new LevelUpMagic("Cure"));
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
+		if(!world.isRemote){
+			PacketDispatcher.sendToServer(new LevelUpMagic("Cure"));
+		}
 		return stack;
 	}
 }

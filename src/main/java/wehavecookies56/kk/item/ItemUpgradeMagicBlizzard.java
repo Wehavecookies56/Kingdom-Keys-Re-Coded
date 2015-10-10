@@ -9,15 +9,15 @@ import wehavecookies56.kk.network.packet.server.magics.LevelUpMagic;
 
 public class ItemUpgradeMagicBlizzard extends Item
 {
-	public ItemUpgradeMagicBlizzard()
-	{
+	public ItemUpgradeMagicBlizzard(){
 		this.setMaxStackSize(1);
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
-	{
-		PacketDispatcher.sendToServer(new LevelUpMagic("Blizzard"));
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
+		if(!world.isRemote){
+			PacketDispatcher.sendToServer(new LevelUpMagic("Blizzard"));
+		}
 		return stack;
 	}
 }

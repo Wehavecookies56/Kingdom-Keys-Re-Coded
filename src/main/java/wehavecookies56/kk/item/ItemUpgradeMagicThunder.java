@@ -9,15 +9,15 @@ import wehavecookies56.kk.network.packet.server.magics.LevelUpMagic;
 
 public class ItemUpgradeMagicThunder extends Item
 {
-	public ItemUpgradeMagicThunder()
-	{
+	public ItemUpgradeMagicThunder(){
 		this.setMaxStackSize(1);
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
-	{
-		PacketDispatcher.sendToServer(new LevelUpMagic("Thunder"));
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
+		if(!world.isRemote){
+			PacketDispatcher.sendToServer(new LevelUpMagic("Thunder"));
+		}
 		return stack;
 	}
 }
