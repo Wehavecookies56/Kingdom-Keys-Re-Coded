@@ -458,8 +458,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		} else {
 			return false;
 		}
-		GuiExp.showExp = true;
-		GuiExp.time = (int) Minecraft.getMinecraft().getSystemTime()/1000;
+		if(!player.worldObj.isRemote){
+			GuiExp.showExp = true;
+			GuiExp.time = (int) Minecraft.getMinecraft().getSystemTime()/1000;
+		}
 
 		return true;
 	}
@@ -516,6 +518,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 			this.sync();
 		} else {
 			return false;
+		}
+		if(!player.worldObj.isRemote){
+			GuiExp.showMunny = true;
+			GuiExp.time = (int) Minecraft.getMinecraft().getSystemTime()/1000;
+			GuiExp.munnyGet = amount;
 		}
 		return true;
 	}
