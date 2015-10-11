@@ -27,12 +27,18 @@ public class CommandResetLevel implements ICommand {
 	public int compareTo(Object arg0) {
 		return 0;
 	}
-
+	
+	
 	@Override
 	public String getName() {
 		return "resetlevel";
 	}
 
+	public int getRequiredPermissionLevel()
+    {
+        return 2;
+    }
+	
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
 		return "/resetlevel";
@@ -72,12 +78,10 @@ public class CommandResetLevel implements ICommand {
 	}
 
 	@Override
-	public boolean canCommandSenderUse(ICommandSender sender) {
-		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
-			return true;
-		}
-		return false;
-	}
+	public boolean canCommandSenderUse(ICommandSender sender)
+    {
+        return sender.canUseCommand(this.getRequiredPermissionLevel(), this.getName());
+    }
 
 	@Override
 	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {

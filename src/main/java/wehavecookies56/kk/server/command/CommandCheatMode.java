@@ -31,6 +31,11 @@ public class CommandCheatMode implements ICommand {
 		return "cheatmode";
 	}
 
+	public int getRequiredPermissionLevel()
+    {
+        return 2;
+    }
+	
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
 		return "/cheatmode";
@@ -71,12 +76,10 @@ public class CommandCheatMode implements ICommand {
 	}
 
 	@Override
-	public boolean canCommandSenderUse(ICommandSender sender) {
-		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
-			return true;
-		}
-		return false;
-	}
+	public boolean canCommandSenderUse(ICommandSender sender)
+    {
+        return sender.canUseCommand(this.getRequiredPermissionLevel(), this.getName());
+    }
 
 	@Override
 	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {

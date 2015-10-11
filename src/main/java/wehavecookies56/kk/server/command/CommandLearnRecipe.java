@@ -44,6 +44,11 @@ public class CommandLearnRecipe implements ICommand {
 	public String getName() {
 		return "learnrecipe";
 	}
+	
+	public int getRequiredPermissionLevel()
+    {
+        return 2;
+    }
 
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
@@ -83,12 +88,10 @@ public class CommandLearnRecipe implements ICommand {
 	}
 
 	@Override
-	public boolean canCommandSenderUse(ICommandSender sender) {
-		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
-			return true;
-		}
-		return false;
-	}
+	public boolean canCommandSenderUse(ICommandSender sender)
+    {
+        return sender.canUseCommand(this.getRequiredPermissionLevel(), this.getName());
+    }
 
 	@Override
 	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
