@@ -184,9 +184,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	@Override
-	public void init(Entity entity, World world) {
-
-	}
+	public void init(Entity entity, World world)
+	{}
 
 
 
@@ -465,7 +464,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		} else {
 			return false;
 		}
-		if(!player.worldObj.isRemote){
+		if(player.worldObj.isRemote){
 			GuiExp.showExp = true;
 			GuiExp.time = (int) Minecraft.getMinecraft().getSystemTime()/1000;
 		}

@@ -6,6 +6,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.PlayerLevel;
 
@@ -16,6 +18,8 @@ public class GuiExp extends GuiScreen
 	public static long time;
 	public static int munnyGet;
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+
 	public void RenderGameOverlayEvent(RenderGameOverlayEvent event)
 	{
 		int screenWidth = event.resolution.getScaledWidth();
