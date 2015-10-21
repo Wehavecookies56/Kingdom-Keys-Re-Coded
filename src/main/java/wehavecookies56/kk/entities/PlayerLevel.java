@@ -1,9 +1,11 @@
 package wehavecookies56.kk.entities;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumChatFormatting;
+import wehavecookies56.kk.client.gui.GuiOverlay;
 import wehavecookies56.kk.util.TextHelper;
 
 public class PlayerLevel {
@@ -25,6 +27,8 @@ public class PlayerLevel {
 		38662, 40690, 42819, 45056, 47406, 49874,
 		52467, 100000
 	};
+	
+	public static ArrayList<String> messages = new ArrayList<String>();
 
 	public static void LevelUp(EntityPlayer player)
 	{
@@ -555,22 +559,27 @@ public class PlayerLevel {
 
 	public static void levelUpMessage(EntityPlayer player, ExtendedPlayer ep){
 		TextHelper.sendFormattedChatMessage("LEVEL UP! LV. " + ep.getLevel() + " " + player.getDisplayNameString(), EnumChatFormatting.YELLOW, player);
+		messages.clear();
 	}
 
 	public static void strengthUpMessage(EntityPlayer player, ExtendedPlayer ep){
 		TextHelper.sendFormattedChatMessage("Strength increased!", EnumChatFormatting.YELLOW, player);
+		messages.add("str");
 	}
 
 	public static void defenseUpMessage(EntityPlayer player, ExtendedPlayer ep){
 		TextHelper.sendFormattedChatMessage("Defense increased!", EnumChatFormatting.YELLOW, player);
+		messages.add("def");
 	}
 
 	public static void magicUpMessage(EntityPlayer player, ExtendedPlayer ep){
 		TextHelper.sendFormattedChatMessage("Magic increased!", EnumChatFormatting.YELLOW, player);
+		messages.add("mag");
 	}
 
 	public static void maxHPUpMessage(EntityPlayer player, ExtendedPlayer ep){
 		TextHelper.sendFormattedChatMessage("Maximum HP increased!", EnumChatFormatting.YELLOW, player);
+		messages.add("hp");
 	}
 
 }

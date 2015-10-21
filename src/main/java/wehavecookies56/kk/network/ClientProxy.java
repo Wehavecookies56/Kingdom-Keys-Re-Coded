@@ -18,7 +18,7 @@ import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.client.gui.GuiDrive;
-import wehavecookies56.kk.client.gui.GuiExp;
+import wehavecookies56.kk.client.gui.GuiOverlay;
 import wehavecookies56.kk.client.gui.GuiHP;
 import wehavecookies56.kk.client.gui.GuiMP;
 import wehavecookies56.kk.client.gui.GuiPlayerPortrait;
@@ -110,7 +110,7 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());
 		MinecraftForge.EVENT_BUS.register(new GuiHP());
 		MinecraftForge.EVENT_BUS.register(new GuiMP());
-		MinecraftForge.EVENT_BUS.register(new GuiExp());
+		MinecraftForge.EVENT_BUS.register(new GuiOverlay());
 		MinecraftForge.EVENT_BUS.register(new GuiDrive());
 		ModItems.registerRenders();
 		ModBlocks.registerRenders();
