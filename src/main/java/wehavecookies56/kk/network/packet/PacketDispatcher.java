@@ -22,7 +22,7 @@ import wehavecookies56.kk.network.packet.server.ChangeDP;
 import wehavecookies56.kk.network.packet.server.ChangeMP;
 import wehavecookies56.kk.network.packet.server.ChangeDefense;
 import wehavecookies56.kk.network.packet.server.ChangeStrength;
-import wehavecookies56.kk.network.packet.server.ChangeHP;
+import wehavecookies56.kk.network.packet.server.ChangeMaxHP;
 import wehavecookies56.kk.network.packet.server.ChangeXP;
 import wehavecookies56.kk.network.packet.server.CreateFromSynthesisRecipe;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
@@ -92,7 +92,7 @@ public class PacketDispatcher
 		registerMessage(ChangeXP.class);
 		registerMessage(ChangeStrength.class);
 		registerMessage(ChangeDefense.class);
-		registerMessage(ChangeHP.class);
+		registerMessage(ChangeMaxHP.class);
 		registerMessage(GlidePacket.class);
 		registerMessage(MasterFormPacket.class);
 		registerMessage(LevelUpMagic.class);

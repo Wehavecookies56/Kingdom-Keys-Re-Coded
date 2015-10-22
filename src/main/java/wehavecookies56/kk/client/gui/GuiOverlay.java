@@ -28,7 +28,7 @@ public class GuiOverlay extends GuiScreen
 	public static long timeMunny;
 	public static long timeLevelUp;
 	public static int munnyGet;
-
+	int levelSeconds = 6;
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void RenderGameOverlayEvent(RenderGameOverlayEvent event)
@@ -60,7 +60,7 @@ public class GuiOverlay extends GuiScreen
 				GL11.glPushMatrix();{
 					int height = (mc.fontRendererObj.FONT_HEIGHT - 3) * PlayerLevel.messages.size();
 					GL11.glEnable(GL11.GL_BLEND);
-					GL11.glColor4ub((byte)173, (byte)24, (byte)24, (byte)255);
+					GL11.glColor4ub((byte)255, (byte)0, (byte)0, (byte)255);
 					GL11.glPushMatrix();{
 						mc.renderEngine.bindTexture(texture);
 						int width = event.resolution.getScaledWidth();
@@ -92,7 +92,7 @@ public class GuiOverlay extends GuiScreen
 							}GL11.glPopMatrix();
 						}GL11.glPopMatrix();
 					}GL11.glPopMatrix();
-					GL11.glColor4ub((byte)173, (byte)24, (byte)24, (byte)255);
+					GL11.glColor4ub((byte)255, (byte)0, (byte)0, (byte)255);
 					GL11.glPushMatrix();{
 						mc.renderEngine.bindTexture(texture);
 						int width = event.resolution.getScaledWidth();
@@ -100,7 +100,7 @@ public class GuiOverlay extends GuiScreen
 						GL11.glScalef(0.6f, height, 1);
 						drawTexturedModalRect(0, 0, 0, 36, 256, 1);
 					}GL11.glPopMatrix();
-					GL11.glColor4ub((byte)173, (byte)24, (byte)24, (byte)255);
+					GL11.glColor4ub((byte)255, (byte)0, (byte)0, (byte)255);
 					GL11.glPushMatrix();{
 						mc.renderEngine.bindTexture(texture);
 						int width = event.resolution.getScaledWidth();
@@ -108,7 +108,7 @@ public class GuiOverlay extends GuiScreen
 						GL11.glScalef(0.6f, 0.6f, 1);
 						drawTexturedModalRect(0, 0, 0, 37, 256, 14);
 					}GL11.glPopMatrix();
-					GL11.glColor4ub((byte)173, (byte)24, (byte)24, (byte)255);
+					GL11.glColor4ub((byte)255, (byte)0, (byte)0, (byte)255);
 					String message = "";
 					String strMessage = "Strength Increased!";
 					String defMessage = "Defense Increased!";
@@ -118,16 +118,20 @@ public class GuiOverlay extends GuiScreen
 						GL11.glPushMatrix();{
 							int width = event.resolution.getScaledWidth();
 
-							if(PlayerLevel.messages.get(i).toString().equals("str")){
+							if(PlayerLevel.messages.get(i).toString().equals("str"))
+							{
 								message = strMessage;
 							}
-							else if(PlayerLevel.messages.get(i).toString().equals("def")){
+							else if(PlayerLevel.messages.get(i).toString().equals("def"))
+							{
 								message = defMessage;
 							}
-							else if(PlayerLevel.messages.get(i).toString().equals("mag")){
+							else if(PlayerLevel.messages.get(i).toString().equals("mag"))
+							{
 								message = magMessage;
 							}
-							else if(PlayerLevel.messages.get(i).toString().equals("hp")){
+							else if(PlayerLevel.messages.get(i).toString().equals("hp"))
+							{
 								message = hpMessage;
 							}
 							GL11.glTranslatef((width - (float)(256.0f*0.8f) + (float)(mc.fontRendererObj.getStringWidth("Maximum HP Increased!"))*0.8f), (float)(mc.fontRendererObj.FONT_HEIGHT*0.8f)*i + 23, 0);
@@ -139,9 +143,9 @@ public class GuiOverlay extends GuiScreen
 					}
 					GL11.glColor4ub((byte)255, (byte)255, (byte)255, (byte)255);
 				}GL11.glPopMatrix();
-				if(timeLevelUp+4 <= (int)mc.getSystemTime()/1000)
+				if(timeLevelUp+levelSeconds <= (int)mc.getSystemTime()/1000)
 				{
-					showLevelUp = false;
+					//showLevelUp = false;
 				}
 			}
 		}

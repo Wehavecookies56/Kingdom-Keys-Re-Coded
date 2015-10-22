@@ -13,14 +13,14 @@ import wehavecookies56.kk.network.packet.AbstractMessage;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
-public class ChangeHP extends AbstractServerMessage<ChangeHP> {
+public class ChangeMaxHP extends AbstractServerMessage<ChangeMaxHP> {
 
-	public ChangeHP() {}
+	public ChangeMaxHP() {}
 
 	int HP;
 	String op;
 
-	public ChangeHP(int ammount, String operation){
+	public ChangeMaxHP(int ammount, String operation){
 		this.HP = ammount;
 		this.op = operation;
 	}
