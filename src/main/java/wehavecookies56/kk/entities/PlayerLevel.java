@@ -561,19 +561,20 @@ public class PlayerLevel {
 	}
 
 	public static void strengthUpMessage(EntityPlayer player, ExtendedPlayer ep){
-		messages.add("str");
+		//messages.add("str");
+		//System.out.println("Strength");
 	}
 
 	public static void defenseUpMessage(EntityPlayer player, ExtendedPlayer ep){
-		messages.add("def");
+		//messages.add("def");
 	}
 
 	public static void magicUpMessage(EntityPlayer player, ExtendedPlayer ep){
-		messages.add("mag");
+		//messages.add("mag");
 	}
 
 	public static void maxHPUpMessage(EntityPlayer player, ExtendedPlayer ep){
-		messages.add("hp");
+		//messages.add("hp");
 	}
 
 }

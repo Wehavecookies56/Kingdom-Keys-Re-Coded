@@ -56,6 +56,7 @@ public class GuiOverlay extends GuiScreen
 				}
 			}
 			if(showLevelUp){
+				//System.out.println(PlayerLevel.messages.get(0));
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/levelup.png");
 				GL11.glPushMatrix();{
 					int height = (mc.fontRendererObj.FONT_HEIGHT - 3) * PlayerLevel.messages.size();
@@ -145,7 +146,7 @@ public class GuiOverlay extends GuiScreen
 				}GL11.glPopMatrix();
 				if(timeLevelUp+levelSeconds <= (int)mc.getSystemTime()/1000)
 				{
-					//showLevelUp = false;
+					showLevelUp = false;
 				}
 			}
 		}

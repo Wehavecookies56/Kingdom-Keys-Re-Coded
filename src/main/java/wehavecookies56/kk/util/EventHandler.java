@@ -197,7 +197,7 @@ public class EventHandler {
 			if(event.source.getSourceOfDamage() instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
-				ExtendedPlayer.get(player).addXP(1000);
+				ExtendedPlayer.get(player).addXP(10);
 			}
 		}
 	}

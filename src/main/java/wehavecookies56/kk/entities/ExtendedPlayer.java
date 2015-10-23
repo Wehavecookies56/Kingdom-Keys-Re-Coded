@@ -3,7 +3,6 @@ package wehavecookies56.kk.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,13 +14,11 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.common.util.Constants;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
-import wehavecookies56.kk.client.gui.GuiOverlay;
 import wehavecookies56.kk.inventory.InventoryKeychain;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.ShowOverlayPacket;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
-import wehavecookies56.kk.network.packet.server.ChangeStrength;
 import wehavecookies56.kk.util.LogHelper;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
@@ -256,6 +253,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public boolean addStrength(int amount){
 		this.strength += amount;
 		this.sync();
+		PlayerLevel.messages.add("str");
 		return true;
 	}
 
@@ -270,6 +268,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public boolean addDefense(int amount){
 		this.defense += amount;
 		this.sync();
+		PlayerLevel.messages.add("def");
 		return true;
 	}
 
@@ -285,6 +284,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public boolean addMagic(int amount){
 		this.magic += amount;
 		this.sync();
+		PlayerLevel.messages.add("mag");
 		return true;
 	}
 
@@ -301,6 +301,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.hp += amount;
 		player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.hp + amount);
 		this.sync();
+		PlayerLevel.messages.add("hp");
 		return true;
 	}
 
