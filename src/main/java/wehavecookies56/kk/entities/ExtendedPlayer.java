@@ -19,6 +19,7 @@ import wehavecookies56.kk.client.gui.GuiOverlay;
 import wehavecookies56.kk.inventory.InventoryKeychain;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.ShowOverlayPacket;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.server.ChangeStrength;
 import wehavecookies56.kk.util.LogHelper;
@@ -432,8 +433,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.level++;
 		this.sync();
 		if(!player.worldObj.isRemote){
-			GuiOverlay.showLevelUp = true;
-			GuiOverlay.timeLevelUp = (int) Minecraft.getMinecraft().getSystemTime()/1000;
+			PacketDispatcher.sendTo(new ShowOverlayPacket("levelup"), (EntityPlayerMP) player);
 		}
 	}
 
@@ -441,8 +441,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.level = level;
 		this.sync();
 		if(!player.worldObj.isRemote){
-			GuiOverlay.showLevelUp = true;
-			GuiOverlay.timeLevelUp = (int) Minecraft.getMinecraft().getSystemTime()/1000;
+			PacketDispatcher.sendTo(new ShowOverlayPacket("levelup"), (EntityPlayerMP) player);
 		}
 	}
 
@@ -473,8 +472,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 			return false;
 		}
 		if(!player.worldObj.isRemote){
-			GuiOverlay.showExp = true;
-			GuiOverlay.timeExp = (int) Minecraft.getMinecraft().getSystemTime()/1000;
+			PacketDispatcher.sendTo(new ShowOverlayPacket("exp"), (EntityPlayerMP) player);
 		}
 
 		return true;
@@ -550,9 +548,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 			return false;
 		}
 		if(!player.worldObj.isRemote){
-			GuiOverlay.showMunny = true;
-			GuiOverlay.timeMunny = (int) Minecraft.getMinecraft().getSystemTime()/1000;
-			GuiOverlay.munnyGet = amount;
+			PacketDispatcher.sendTo(new ShowOverlayPacket("munny", amount), (EntityPlayerMP) player);
 		}
 		return true;
 	}

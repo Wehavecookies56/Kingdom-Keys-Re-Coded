@@ -28,6 +28,8 @@ public class PlayerLevel {
 		52467, 100000
 	};
 	
+	int neededExp;
+	
 	public static ArrayList<String> messages = new ArrayList<String>();
 
 	public static void LevelUp(EntityPlayer player)
@@ -48,10 +50,7 @@ public class PlayerLevel {
 			}
 		}
 
-		System.out.println("XP:" + ep.getXP());
-		System.out.println("Next level: " + (Arrays.stream(expNeeded, 0, ep.getLevel()).sum() - ep.getXP()));
 		if((Arrays.stream(expNeeded, 0, ep.getLevel()).sum() - ep.getXP()) < 0){
-			System.out.println("Ok");
 			ep.setXP(Arrays.stream(expNeeded, 0, ep.getLevel()).sum());
 		}
 		if(ep.getLevel() > 1){
@@ -558,27 +557,22 @@ public class PlayerLevel {
 	}
 
 	public static void levelUpMessage(EntityPlayer player, ExtendedPlayer ep){
-		TextHelper.sendFormattedChatMessage("LEVEL UP! LV. " + ep.getLevel() + " " + player.getDisplayNameString(), EnumChatFormatting.YELLOW, player);
 		messages.clear();
 	}
 
 	public static void strengthUpMessage(EntityPlayer player, ExtendedPlayer ep){
-		TextHelper.sendFormattedChatMessage("Strength increased!", EnumChatFormatting.YELLOW, player);
 		messages.add("str");
 	}
 
 	public static void defenseUpMessage(EntityPlayer player, ExtendedPlayer ep){
-		TextHelper.sendFormattedChatMessage("Defense increased!", EnumChatFormatting.YELLOW, player);
 		messages.add("def");
 	}
 
 	public static void magicUpMessage(EntityPlayer player, ExtendedPlayer ep){
-		TextHelper.sendFormattedChatMessage("Magic increased!", EnumChatFormatting.YELLOW, player);
 		messages.add("mag");
 	}
 
 	public static void maxHPUpMessage(EntityPlayer player, ExtendedPlayer ep){
-		TextHelper.sendFormattedChatMessage("Maximum HP increased!", EnumChatFormatting.YELLOW, player);
 		messages.add("hp");
 	}
 

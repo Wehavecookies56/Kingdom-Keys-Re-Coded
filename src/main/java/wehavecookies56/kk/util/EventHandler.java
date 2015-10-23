@@ -197,7 +197,7 @@ public class EventHandler {
 			if(event.source.getSourceOfDamage() instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
-				ExtendedPlayer.get(player).addXP(10);
+				ExtendedPlayer.get(player).addXP(1000);
 			}
 		}
 	}
@@ -467,13 +467,15 @@ public class EventHandler {
 		if(event.source.getSourceOfDamage() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
+			System.out.println(event.ammount);
+			event.ammount = (float) (event.ammount+(ExtendedPlayer.get(player).getStrength()*0.25));
+			System.out.println(event.ammount);
 			if(player.getHeldItem() != null)
 			{
-				event.ammount = event.ammount+ExtendedPlayer.get(player).getStrength();
 				if(player.getHeldItem().getItem() instanceof ItemKeyblade)
 				{
 					ExtendedPlayer.get(player).addDP(1);
-				//	ExtendedPlayer.get(player).setMagicLevel("Fire",2);
+					//	ExtendedPlayer.get(player).setMagicLevel("Fire",2);
 				}
 				else
 				{

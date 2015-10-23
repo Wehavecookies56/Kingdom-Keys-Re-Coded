@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.network.packet.client.ShowOverlayPacket;
 import wehavecookies56.kk.network.packet.client.SpawnAeroParticles;
 import wehavecookies56.kk.network.packet.client.SpawnBlizzardParticles;
 import wehavecookies56.kk.network.packet.client.SpawnCureParticles;
@@ -65,6 +66,7 @@ public class PacketDispatcher
 		registerMessage(SpawnCureParticles.class);
 		registerMessage(SpawnAeroParticles.class);
 		registerMessage(SpawnStopParticles.class);
+		registerMessage(ShowOverlayPacket.class);
 
 		//Client to Server
 		registerMessage(MunnyPickup.class);
