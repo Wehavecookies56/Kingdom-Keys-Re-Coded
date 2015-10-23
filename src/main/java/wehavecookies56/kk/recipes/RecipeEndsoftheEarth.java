@@ -29,7 +29,10 @@ public class RecipeEndsoftheEarth extends Recipe {
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard + ".x.1");
+		reqs.add(Strings.SM_PowerStone + ".x.3");
+		reqs.add(Strings.SM_DenseShard + ".x.3");
+		reqs.add(Strings.SM_DarkGem + ".x.1");
+		reqs.add(Strings.SM_LucidGem + ".x.2");
 		return reqs;
 	}
 

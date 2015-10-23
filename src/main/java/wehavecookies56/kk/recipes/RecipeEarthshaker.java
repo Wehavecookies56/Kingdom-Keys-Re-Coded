@@ -29,7 +29,9 @@ public class RecipeEarthshaker extends Recipe {
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard + ".x.1");
+		reqs.add(Strings.SM_DarkShard + ".x.5");
+		reqs.add(Strings.SM_DenseStone + ".x.3");
+		reqs.add(Strings.SM_EnergyShard + ".x.3");
 		return reqs;
 	}
 

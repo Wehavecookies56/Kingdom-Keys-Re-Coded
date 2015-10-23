@@ -29,7 +29,10 @@ public class RecipeEndofPain extends Recipe {
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard + ".x.1");
+		reqs.add(Strings.SM_DarkGem + ".x.3");
+		reqs.add(Strings.SM_DarkShard + ".x.3");
+		reqs.add(Strings.SM_PowerStone + ".x.3");
+		reqs.add(Strings.SM_EnergyCrystal + ".x.2");
 		return reqs;
 	}
 
