@@ -69,9 +69,12 @@ public class BlockSavePoint extends Block {
 				Entity e = (Entity) list.get(i);
 				if(e instanceof EntityPlayer){
     				EntityPlayer player = (EntityPlayer) e;
-    				player.heal(ExtendedPlayer.get(player).getHP());
+    				player.heal(4);
     			 	ExtendedPlayer.get(player).setMp(100);
-    	            player.addPotionEffect(new PotionEffect(Potion.saturation.id, 1, 200));
+    			 	if (player.getFoodStats().getFoodLevel() <20)
+    			 	{
+    			 		player.getFoodStats().addStats(4, 0);
+    			 	}
 	    			PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos,true), player, 64.0D);
 
     		    	if(e.isSneaking()){
