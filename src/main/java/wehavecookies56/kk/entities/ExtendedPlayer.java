@@ -247,6 +247,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		{
 			this.stopLevel = level;
 		}
+		this.sync();
 		return true;
 	}
 

@@ -72,7 +72,12 @@ public class CommandResetLevel implements ICommand {
 				ExtendedPlayer.get(player).setMagic(1);
 				ExtendedPlayer.get(player).setHP(20);
 				player.heal(ExtendedPlayer.get(player).getHP());
-				PacketDispatcher.sendToServer(new SyncExtendedPlayer(player));
+				TextHelper.sendFormattedChatMessage("You level has been reset", EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
+
+			}
+			else
+			{
+				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: /resetlevel", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 			}
 		}
 	}

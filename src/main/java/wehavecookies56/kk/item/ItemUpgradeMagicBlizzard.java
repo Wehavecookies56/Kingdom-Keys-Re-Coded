@@ -15,7 +15,7 @@ public class ItemUpgradeMagicBlizzard extends Item
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
-		if(!world.isRemote){
+		if(world.isRemote){
 			PacketDispatcher.sendToServer(new LevelUpMagic("Blizzard"));
 		}
 		return stack;
