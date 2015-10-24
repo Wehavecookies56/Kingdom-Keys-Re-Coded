@@ -29,7 +29,10 @@ public class MagicStop extends AbstractServerMessage<MagicStop> {
 
 	@Override
 	public void process(EntityPlayer player, Side side){
-		ExtendedPlayer.get(player).removeMp(Constants.STOP_COST);
+		if(!ExtendedPlayer.get(player).cheatMode)
+		{
+			ExtendedPlayer.get(player).removeMp(Constants.STOP_COST);
+		}
 		World world = player.worldObj;
 		if(!world.isRemote)
 		{

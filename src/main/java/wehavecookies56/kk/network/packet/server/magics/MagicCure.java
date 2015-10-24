@@ -10,6 +10,7 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityCura;
 import wehavecookies56.kk.entities.magic.EntityCuraga;
 import wehavecookies56.kk.entities.magic.EntityCure;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicCure extends AbstractServerMessage<MagicCure> {
@@ -28,10 +29,11 @@ public class MagicCure extends AbstractServerMessage<MagicCure> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		ExtendedPlayer.get(player).setMp(0);
-
+		if(!ExtendedPlayer.get(player).cheatMode)
+		{
+			ExtendedPlayer.get(player).setMp(0);
+		}
 		World world = player.worldObj;
-		
 		switch(ExtendedPlayer.get(player).getMagicLevel("Cure")){
 		case 1:
 			player.heal(6);

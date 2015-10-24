@@ -30,7 +30,10 @@ public class MagicBlizzard extends AbstractServerMessage<MagicBlizzard> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		ExtendedPlayer.get(player).removeMp(Constants.BLIZZARD_COST);
+		if(!ExtendedPlayer.get(player).cheatMode)
+		{
+			ExtendedPlayer.get(player).removeMp(Constants.BLIZZARD_COST);
+		}	
 		World world = player.worldObj;
 		Vec3 look = player.getLookVec();
 		world.spawnEntityInWorld(new EntityBlizzard(world, player));

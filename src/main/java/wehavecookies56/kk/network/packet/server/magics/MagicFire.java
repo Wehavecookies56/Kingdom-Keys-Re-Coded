@@ -29,7 +29,10 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		ExtendedPlayer.get(player).removeMp(Constants.FIRE_COST);
+		if(!ExtendedPlayer.get(player).cheatMode)
+		{
+			ExtendedPlayer.get(player).removeMp(Constants.FIRE_COST);
+		}
 		World world = player.worldObj;
 		//if(!world.isRemote)
 		switch(ExtendedPlayer.get(player).getMagicLevel("Fire")){

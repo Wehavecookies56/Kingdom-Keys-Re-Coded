@@ -26,7 +26,10 @@ public class MagicThunder extends AbstractServerMessage<MagicThunder> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		ExtendedPlayer.get(player).removeMp(Constants.THUNDER_COST);
+		if(!ExtendedPlayer.get(player).cheatMode)
+		{
+			ExtendedPlayer.get(player).removeMp(Constants.THUNDER_COST);
+		}
 		World world = player.worldObj;
 		if(!world.isRemote)
 		world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));

@@ -29,8 +29,10 @@ public class MagicAero extends AbstractServerMessage<MagicAero> {
 
 	@Override
 	public void process(EntityPlayer player, Side side){
-		ExtendedPlayer.get(player).removeMp(Constants.AERO_COST);
-		World world = player.worldObj;
+		if(!ExtendedPlayer.get(player).cheatMode)
+		{
+			ExtendedPlayer.get(player).removeMp(Constants.AERO_COST);
+		}		World world = player.worldObj;
 		if(!world.isRemote)
 		{
 			switch(ExtendedPlayer.get(player).getMagicLevel("Aero"))
