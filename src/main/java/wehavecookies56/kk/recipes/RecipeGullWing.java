@@ -29,7 +29,9 @@ public class RecipeGullWing extends Recipe {
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard + ".x.1");
+		reqs.add(Strings.SM_PowerShard + ".x.5");
+		reqs.add(Strings.SM_BlazingGem + ".x.2");
+		reqs.add(Strings.SM_EnergyCrystal + ".x.2");
 		return reqs;
 	}
 

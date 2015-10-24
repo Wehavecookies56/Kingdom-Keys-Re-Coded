@@ -29,7 +29,10 @@ public class RecipeGlimpseofDarkness extends Recipe {
 	@Override
 	public List<String> getRequirements() {
 		List<String> reqs = new ArrayList<String>();
-		reqs.add(Strings.SM_BlazingShard + ".x.1");
+		reqs.add(Strings.SM_DarkGem + ".x.3");
+		reqs.add(Strings.SM_DenseCrystal + ".x.3");
+		reqs.add(Strings.SM_PowerCrystal + ".x.2");
+		reqs.add(Strings.SM_DarkStone + ".x.3");
 		return reqs;
 	}
 
