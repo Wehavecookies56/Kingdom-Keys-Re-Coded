@@ -10,10 +10,12 @@ import wehavecookies56.kk.entities.magic.EntityAero;
 import wehavecookies56.kk.entities.magic.EntityAeroga;
 import wehavecookies56.kk.entities.magic.EntityAerora;
 import wehavecookies56.kk.entities.magic.EntityBlizzard;
+import wehavecookies56.kk.entities.magic.EntityCura;
+import wehavecookies56.kk.entities.magic.EntityCuraga;
 import wehavecookies56.kk.entities.magic.EntityCure;
-import wehavecookies56.kk.entities.magic.EntityFira2;
-import wehavecookies56.kk.entities.magic.EntityFiraga2;
-import wehavecookies56.kk.entities.magic.EntityFire2;
+import wehavecookies56.kk.entities.magic.EntityFira;
+import wehavecookies56.kk.entities.magic.EntityFiraga;
+import wehavecookies56.kk.entities.magic.EntityFire;
 import wehavecookies56.kk.entities.magic.EntityStop;
 import wehavecookies56.kk.entities.magic.EntityStopga;
 import wehavecookies56.kk.entities.magic.EntityThundaga;
@@ -45,20 +47,20 @@ public class Magic {
 		{
 			case 1:
 				PacketDispatcher.sendToServer(new MagicFire());
-				world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ, 1));
+				world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
 				player.swingItem();
 				world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 			break;
 			
 			case 2:
 				PacketDispatcher.sendToServer(new MagicFire());
-				world.spawnEntityInWorld(new EntityFira2(world, player, player.posX, player.posY, player.posZ, 1));
+				world.spawnEntityInWorld(new EntityFira(world, player, player.posX, player.posY, player.posZ, 1));
 				player.swingItem();
 				world.playSoundAtEntity(player, "fire.ignite", 1, 1);			
 			break;
 			case 3:
 				PacketDispatcher.sendToServer(new MagicFire());
-				world.spawnEntityInWorld(new EntityFiraga2(world, player, player.posX, player.posY, player.posZ, 1));
+				world.spawnEntityInWorld(new EntityFiraga(world, player, player.posX, player.posY, player.posZ, 1));
 				player.swingItem();
 				world.playSoundAtEntity(player, "fire.ignite", 1, 1);			
 			break;
@@ -119,12 +121,15 @@ public class Magic {
 				player.heal(6);
 				PacketDispatcher.sendToServer(new MagicCure());
 			break;
-			
 			case 2:
-				System.out.println("Cura");
+				world.spawnEntityInWorld(new EntityCura(world, player, player.posX, player.posY, player.posZ));
+				player.heal(20);
+				PacketDispatcher.sendToServer(new MagicCure());
 			break;
 			case 3:
-				System.out.println("Curaga");
+				world.spawnEntityInWorld(new EntityCuraga(world, player, player.posX, player.posY, player.posZ));
+				player.heal(80);
+				PacketDispatcher.sendToServer(new MagicCure());
 			break;
 		}	
 	}

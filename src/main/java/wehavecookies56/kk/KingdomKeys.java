@@ -24,7 +24,7 @@ import wehavecookies56.kk.entities.EntityItemMetalChocobo;
 import wehavecookies56.kk.entities.TileEntityKKChest;
 import wehavecookies56.kk.entities.TileEntitySynthesisTable;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
-import wehavecookies56.kk.entities.magic.EntityFire2;
+import wehavecookies56.kk.entities.magic.EntityFire;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.item.ModItemsRecipes;
@@ -135,7 +135,7 @@ public class KingdomKeys {
 
 		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 0, instance, 16, 1, false);
 
-		EntityRegistry.registerModEntity(EntityFire2.class, "fire", 1, instance, 16, 1, false);
+		EntityRegistry.registerModEntity(EntityFire.class, "fire", 1, instance, 16, 1, false);
 		EntityRegistry.registerModEntity(EntityThunder.class, "thunder", 2, instance, 16, 1, false);
 		//EntityRegistry.registerModEntity(EntityItemMetalChocobo.class, "entityitemmetalchocobo", 2, instance, 16, 1, false);
 
