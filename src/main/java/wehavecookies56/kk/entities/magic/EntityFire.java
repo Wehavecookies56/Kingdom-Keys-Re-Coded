@@ -1,100 +1,101 @@
 package wehavecookies56.kk.entities.magic;
 
+import java.util.List;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SpawnFireParticles;
 
-public class EntityFire extends EntityThrowable
+public class EntityFire extends Entity
 {
-	private static final ResourceLocation resourceLocation = new ResourceLocation(Reference.MODID, "textures/entities/fire.png");
-    public EntityLivingBase shootingEntity;
 
-	public EntityFire(World world) {
+	EntityPlayer player;
+
+	public EntityFire(World world){
 		super(world);
 	}
 
-	public EntityFire(World world, EntityLivingBase entity) {
-		super(world, entity);
-	}
-
-	public EntityFire(World world, double x, double y, double z) {
-		super(world, x, y, z);
-	}
-
-	@Override
-	protected float getGravityVelocity() {
-		return 0.0F;
+	public EntityFire(World world, EntityPlayer sender, double x, double y, double z, int level) {
+		super(world);
+		this.posX = x;
+		this.posY = y;
+		this.posZ = z;
+		this.player = sender;
 	}
 
 	@Override
 	public void onUpdate() {
-		if(shootingEntity == null){
+		if(player == null){
 			return;
 		}
 		int rotation = 0;
+
 		if(!worldObj.isRemote){
-			PacketDispatcher.sendToAllAround(new SpawnFireParticles(this), (EntityPlayer) shootingEntity, 64.0D);
+			PacketDispatcher.sendToAllAround(new SpawnFireParticles(this), player, 64.0D);
 		}
-		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+
 		this.rotationYaw = (rotation + 1) % 360;
-		if(ticksExisted > 60){
+		if(ticksExisted > 15){
 			setDead();
 		}
+
+		if(ticksExisted < 10){
+			player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0D);
+
+		}else{
+			player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.10000000149011612D);
+		}
+
+		//double distance = 3.0D;
+		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
+		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
+		//TODO CHECK FOR ENTITIES AND DAMAGE THEM
+		if(!list.isEmpty())
+		{
+			for(int i=0; i<list.size();i++)
+			{
+				Entity e = (Entity) list.get(i);
+				e.attackEntityFrom(DamageSource.magic, 3.0F);
+				e.setFire(5);
+			}
+		}
+		aabb.contract(2, 2, 2);
+
 		super.onUpdate();
 	}
+
+
 	@Override
-	protected void onImpact(MovingObjectPosition movingObject) {
-		if (!this.worldObj.isRemote)
-        {
-            boolean flag;
+	protected void entityInit() {
 
-            if (movingObject.entityHit != null)
-            {
-            	flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 8);
-                if (flag)
-                {
-                    this.func_174815_a(this.shootingEntity, movingObject.entityHit);
+	}
 
-                    if (!movingObject.entityHit.isImmuneToFire())
-                    {
-                        movingObject.entityHit.setFire(5);
-                    }
-                }
-            }
-            else
-            {
-                flag = true;
+	@Override
+	protected void readEntityFromNBT(NBTTagCompound tagCompund) {
 
-                if (this.shootingEntity != null && this.shootingEntity instanceof EntityLiving)
-                {
-                    flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-                }
+	}
 
-                if (flag)
-                {
-                    BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);
+	@Override
+	protected void writeEntityToNBT(NBTTagCompound tagCompound) {
 
-                    if (this.worldObj.isAirBlock(blockpos))
-                    {
-                        this.worldObj.setBlockState(blockpos, Blocks.fire.getDefaultState());
-                    }
-                }
-            }
+	}
 
-            this.setDead();
-        }
+	@Override
+	public AxisAlignedBB getEntityBoundingBox() {
+
+		return new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
 	}
 
 }

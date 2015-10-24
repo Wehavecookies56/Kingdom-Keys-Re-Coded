@@ -2,15 +2,15 @@ package wehavecookies56.kk.network.packet.server.magics;
 
 import java.io.IOException;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.entities.magic.EntityFire2;
+import wehavecookies56.kk.entities.magic.EntityFira;
+import wehavecookies56.kk.entities.magic.EntityFiraga;
+import wehavecookies56.kk.entities.magic.EntityFire;
 import wehavecookies56.kk.lib.Constants;
-import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicFire extends AbstractServerMessage<MagicFire> {
@@ -32,6 +32,16 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 		ExtendedPlayer.get(player).removeMp(Constants.FIRE_COST);
 		World world = player.worldObj;
 		//if(!world.isRemote)
-		world.spawnEntityInWorld(new EntityFire2(world, player, player.posX, player.posY, player.posZ, 1));
+		switch(ExtendedPlayer.get(player).getMagicLevel("Fire")){
+		case 1:
+			world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
+			break;
+		case 2:
+			world.spawnEntityInWorld(new EntityFira(world, player, player.posX, player.posY, player.posZ, 1));
+			break;
+		case 3:
+			world.spawnEntityInWorld(new EntityFiraga(world, player, player.posX, player.posY, player.posZ, 1));
+			break;
+		}
 	}
 }

@@ -7,8 +7,9 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.entities.magic.EntityCura;
+import wehavecookies56.kk.entities.magic.EntityCuraga;
 import wehavecookies56.kk.entities.magic.EntityCure;
-import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicCure extends AbstractServerMessage<MagicCure> {
@@ -30,8 +31,21 @@ public class MagicCure extends AbstractServerMessage<MagicCure> {
 		ExtendedPlayer.get(player).setMp(0);
 
 		World world = player.worldObj;
-		player.heal(6);
-		world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
+		
+		switch(ExtendedPlayer.get(player).getMagicLevel("Cure")){
+		case 1:
+			player.heal(6);
+			world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
+			break;
+		case 2:
+			player.heal(20);
+			world.spawnEntityInWorld(new EntityCura(world, player, player.posX, player.posY, player.posZ));
+			break;
+		case 3:
+			player.heal(80);
+			world.spawnEntityInWorld(new EntityCuraga(world, player, player.posX, player.posY, player.posZ));
+			break;
+		}
 
 	}
 }

@@ -18,16 +18,16 @@ import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SpawnFireParticles;
 
-public class EntityFiraga2 extends Entity
+public class EntityFiraga extends Entity
 {
 
 	EntityPlayer player;
 
-	public EntityFiraga2(World world){
+	public EntityFiraga(World world){
 		super(world);
 	}
 
-	public EntityFiraga2(World world, EntityPlayer sender, double x, double y, double z, int level) {
+	public EntityFiraga(World world, EntityPlayer sender, double x, double y, double z, int level) {
 		super(world);
 		this.posX = x;
 		this.posY = y;
