@@ -34,7 +34,6 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 			ExtendedPlayer.get(player).removeMp(Constants.FIRE_COST);
 		}
 		World world = player.worldObj;
-		//if(!world.isRemote)
 		switch(ExtendedPlayer.get(player).getMagicLevel("Fire")){
 		case 1:
 			world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
