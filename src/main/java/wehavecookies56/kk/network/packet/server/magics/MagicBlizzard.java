@@ -2,16 +2,16 @@ package wehavecookies56.kk.network.packet.server.magics;
 
 import java.io.IOException;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.entities.magic.EntityBlizzaga;
+import wehavecookies56.kk.entities.magic.EntityBlizzara;
 import wehavecookies56.kk.entities.magic.EntityBlizzard;
 import wehavecookies56.kk.lib.Constants;
-import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicBlizzard extends AbstractServerMessage<MagicBlizzard> {
@@ -35,8 +35,17 @@ public class MagicBlizzard extends AbstractServerMessage<MagicBlizzard> {
 			ExtendedPlayer.get(player).removeMp(Constants.BLIZZARD_COST);
 		}	
 		World world = player.worldObj;
-		Vec3 look = player.getLookVec();
-		world.spawnEntityInWorld(new EntityBlizzard(world, player));
+		switch(ExtendedPlayer.get(player).getMagicLevel("Blizzard")){
+		case 1:
+			world.spawnEntityInWorld(new EntityBlizzard(world, player));
+			break;
+		case 2:
+			world.spawnEntityInWorld(new EntityBlizzara(world, player));
+			break;
+		case 3:
+			world.spawnEntityInWorld(new EntityBlizzaga(world, player));
+			break;
+		}
 	}
 
 }

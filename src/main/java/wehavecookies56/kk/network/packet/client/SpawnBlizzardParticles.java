@@ -39,6 +39,7 @@ public class SpawnBlizzardParticles extends AbstractClientMessage<SpawnBlizzardP
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		player.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+		player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
 	}
 
 }

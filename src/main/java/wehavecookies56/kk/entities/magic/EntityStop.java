@@ -47,7 +47,7 @@ public class EntityStop extends Entity
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
-			this.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.posY, z, 0.0D, 0.5D, 0.0D);
+			this.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.posY, z, 0.0D, 1D, 0.0D);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
@@ -65,7 +65,6 @@ public class EntityStop extends Entity
 		double distance = 3.0D;
 		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
-		//TODO CHECK FOR ENTITIES AND DAMAGE THEM
 		if(!list.isEmpty())
 		{
 			for(int i=0; i<list.size();i++)
@@ -75,7 +74,7 @@ public class EntityStop extends Entity
 					if(ticksExisted < 50){
 						((EntityLivingBase) e).setVelocity(0, 0, 0);
 					}
-					System.out.println(e);
+					//System.out.println(e);
 				}
 			}
 		}
