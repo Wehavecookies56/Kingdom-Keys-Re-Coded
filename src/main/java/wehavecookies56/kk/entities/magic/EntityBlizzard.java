@@ -17,7 +17,7 @@ import wehavecookies56.kk.network.packet.client.SpawnFireParticles;
 
 public class EntityBlizzard extends EntityThrowable
 {
-	public EntityLivingBase shootingEntity;
+	public EntityPlayer shootingEntity;
 
 	public EntityBlizzard(World world) {
 		super(world);
@@ -25,6 +25,8 @@ public class EntityBlizzard extends EntityThrowable
 
 	public EntityBlizzard(World world, EntityLivingBase entity) {
 		super(world, entity);
+		shootingEntity = (EntityPlayer) entity;
+
 	}
 
 	public EntityBlizzard(World world, double x, double y, double z) {
@@ -46,7 +48,6 @@ public class EntityBlizzard extends EntityThrowable
 		if(!worldObj.isRemote){
 			PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this), (EntityPlayer) shootingEntity, 64.0D);
 		}
-		worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.rotationYaw = (rotation + 1) % 360;
 		if(ticksExisted > 60){
 			setDead();
@@ -79,7 +80,7 @@ public class EntityBlizzard extends EntityThrowable
             {
                 flag = true;
 
-                if (this.shootingEntity != null && this.shootingEntity instanceof EntityLiving)
+                if (this.shootingEntity != null && this.shootingEntity instanceof EntityPlayer)
                 {
                     flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
                 }
@@ -92,8 +93,13 @@ public class EntityBlizzard extends EntityThrowable
                     {
                         this.worldObj.setBlockState(blockpos, Blocks.ice.getDefaultState());
                     }
-                    else if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.fire){
+                    else if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.fire)
+                    {
                         this.worldObj.setBlockState(blockpos, Blocks.air.getDefaultState());
+                    }
+                    else if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.lava)
+                    {
+                    	this.worldObj.setBlockState(blockpos, Blocks.obsidian.getDefaultState());
                     }
                 }
             }

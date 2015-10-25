@@ -25,9 +25,11 @@ import wehavecookies56.kk.client.gui.GuiPlayerPortrait;
 import wehavecookies56.kk.client.input.InputHandler;
 import wehavecookies56.kk.client.input.Keybinds;
 import wehavecookies56.kk.client.render.RenderBlastBlox;
+import wehavecookies56.kk.client.render.RenderEntityBlizzard;
 import wehavecookies56.kk.client.render.RenderEntityItemKeyblade;
 import wehavecookies56.kk.entities.EntityItemMetalChocobo;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
+import wehavecookies56.kk.entities.magic.EntityBlizzard;
 import wehavecookies56.kk.entities.magic.EntityOldFire;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
@@ -118,6 +120,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlastBlox.class, new RenderBlastBlox(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOldFire.class, null);
 		RenderingRegistry.registerEntityRenderingHandler(EntityItemMetalChocobo.class, new RenderEntityItemKeyblade());
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlizzard.class, new RenderEntityBlizzard());
 	}
 
 	private void registerKeyBindings(){

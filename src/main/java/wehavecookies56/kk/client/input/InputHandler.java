@@ -2,13 +2,13 @@ package wehavecookies56.kk.client.input;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
-import wehavecookies56.kk.driveforms.ModDriveForms;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
@@ -17,7 +17,6 @@ import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.server.AntiPoints;
-import wehavecookies56.kk.network.packet.server.ChangeDP;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.DriveFormPacket;
 import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
@@ -172,6 +171,7 @@ public class InputHandler {
 				{
 					GuiCommandMenu.magicselected = GuiCommandMenu.NONE;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
+					//PacketDispatcher.sendTo(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f), (EntityPlayerMP)player);
 					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 				}
 				else
@@ -223,7 +223,6 @@ public class InputHandler {
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 					break;
-
 				case GuiCommandMenu.BLIZZARD:
 					Magic.Blizzard(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
@@ -249,11 +248,11 @@ public class InputHandler {
 					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
 					break;
 				case GuiCommandMenu.STOP:
-					/*Magic.Stop(player, world);
+					Magic.Stop(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
-					break;*/
+					break;
 			}
 		}
 

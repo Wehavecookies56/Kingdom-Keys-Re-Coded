@@ -48,7 +48,6 @@ public class EntityStop extends Entity
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
 			this.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.posY, z, 0.0D, 0.5D, 0.0D);
-			//this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.posY, z, 0.0D, 1.0D, 0.0D);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
