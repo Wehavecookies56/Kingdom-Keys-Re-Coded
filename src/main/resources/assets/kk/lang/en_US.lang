@@ -193,7 +193,13 @@ item.darkleather.name=Dark Leather
 item.synthesismaterial.name=Synthesis Material
 item.recipe.name=Synthesis Recipe
 item.icecream.name=Sea Salt Ice Cream
-item.winnerstick=WINNER Stick
+item.winnerstick.name=WINNER Stick
+item.levelupmagicfire.name=Spell Orb
+item.levelupmagicthunder.name=Spell Orb
+item.levelupmagicblizzard.name=Spell Orb
+item.levelupmagicstop.name=Spell Orb
+item.levelupmagiccure.name=Spell Orb
+item.levelupmagicaero.name=Spell Orb
 
 item.frostinfusedsnowball.name=Frost-Infused Snowball
 item.blazinginfusedcoal.name=Blazing-Infused Coal
@@ -247,6 +253,8 @@ item.arpeggio.name=Arpeggio
 item.fairgame.name=Fair Game
 item.gracefuldahlia.name=Graceful Dahlia
 item.foudre.name=Foudre
+
+item.blazeofglory.name=Blaze of Glory
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
@@ -560,6 +568,7 @@ gui.menu.items.button.back=Back
 
 #Keychain Container
 container.keychain=Place a keychain here
+container.kkchest.name=Chest
 
 #Synthesis#
 gui.synthesis.main.title=Item Synthesis

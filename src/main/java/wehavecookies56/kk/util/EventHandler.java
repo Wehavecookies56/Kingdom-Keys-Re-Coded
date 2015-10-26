@@ -488,6 +488,7 @@ public class EventHandler {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onModelBake(ModelBakeEvent event){
 		B3DLoader.instance.addDomain(Reference.MODID);
