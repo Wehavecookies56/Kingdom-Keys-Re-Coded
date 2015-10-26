@@ -33,7 +33,7 @@ public class GuiOverlay extends GuiScreen
 	@SideOnly(Side.CLIENT)
 	public void RenderGameOverlayEvent(RenderGameOverlayEvent event)
 	{
-		if(event.type == ElementType.EXPERIENCE){
+		if(event.type == ElementType.TEXT){
 			Minecraft mc = Minecraft.getMinecraft();
 			int screenWidth = event.resolution.getScaledWidth();
 			int screenHeight = event.resolution.getScaledHeight();
