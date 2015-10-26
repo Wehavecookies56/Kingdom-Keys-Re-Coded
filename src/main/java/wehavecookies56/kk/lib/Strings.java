@@ -43,7 +43,7 @@ public class Strings {
 	Gui_CommandMenu_Items = Gui_CommandMenu + ".items",
 	Gui_CommandMenu_Drive = Gui_CommandMenu + ".drive",
 	Gui_CommandMenu_Magic_Title = Gui_CommandMenu_Magic + ".title",
-	
+
 	Gui_CommandMenu_Magic_Fire = Gui_CommandMenu_Magic + ".fire",
 	Gui_CommandMenu_Magic_Fira = Gui_CommandMenu_Magic + ".fira",
 	Gui_CommandMenu_Magic_Firaga = Gui_CommandMenu_Magic + ".firaga",
@@ -59,7 +59,7 @@ public class Strings {
 	Gui_CommandMenu_Magic_Cure = Gui_CommandMenu_Magic + ".cure",
 	Gui_CommandMenu_Magic_Cura = Gui_CommandMenu_Magic + ".cura",
 	Gui_CommandMenu_Magic_Curaga = Gui_CommandMenu_Magic + ".curaga",
-	
+
 	Gui_CommandMenu_Magic_Gravity = Gui_CommandMenu_Magic + ".gravity",
 	Gui_CommandMenu_Magic_Gravira = Gui_CommandMenu_Magic + ".gravira",
 	Gui_CommandMenu_Magic_Graviga = Gui_CommandMenu_Magic + ".graviga",
@@ -334,7 +334,8 @@ public class Strings {
 	Arpeggio = "arpeggio",
 	FairGame = "fairgame",
 	GracefulDahlia = "gracefuldahlia",
-	Foudre = "foudre";
+	Foudre = "foudre",
+	BlazeofGlory = "blazeofglory";
 
 	//Keyblades
 	public static final String
@@ -593,7 +594,9 @@ public class Strings {
 	TM_Arpeggio_DEFAULT = "arpeggio, 3, -1, 6.0F, 9, 30",
 	TM_FairGame_DEFAULT = "fairgame, 3, -1, 6.0F, 8, 30",
 	TM_GracefulDahlia_DEFAULT = "gracefuldahlia, 3, -1, 6.0F, 12, 30",
-	TM_Foudre_DEFAULT = "foudre, 3, -1, 6.0F, 7, 30";
+	TM_Foudre_DEFAULT = "foudre, 3, -1, 6.0F, 7, 30",
+	TM_BlazeofGlory_DEFAULT = "eternalflames, 3, -1, 6.0F, 5, 30"
+	;
 
 	public static final String
 	TM_KingdomKey_DEFAULT = "kingdomkey, 3, -1, 6.0F, 5, 30",
@@ -720,18 +723,20 @@ public class Strings {
 	public static final String TOOLMATERIAL = "toolmaterial.name.";
 
 	public static final String
-		TM_Interdiction_NAME = TOOLMATERIAL + Interdiction,
-		TM_Sharpshooter_NAME = TOOLMATERIAL + Sharpshooter,
-		TM_Lindworm_NAME = TOOLMATERIAL + Lindworm,
-		TM_FrozenPride_NAME = TOOLMATERIAL + FrozenPride,
-		TM_Skysplitter_NAME = TOOLMATERIAL + Skysplitter,
-		TM_BookofRetribution_NAME = TOOLMATERIAL + BookofRetribution,
-		TM_Lunatic_NAME = TOOLMATERIAL + Lunatic,
-		TM_EternalFlames_NAME = TOOLMATERIAL + EternalFlames,
-		TM_Arpeggio_NAME = TOOLMATERIAL + Arpeggio,
-		TM_FairGame_NAME = TOOLMATERIAL + FairGame,
-		TM_GracefulDahlia_NAME = TOOLMATERIAL + GracefulDahlia,
-		TM_Foudre_NAME = TOOLMATERIAL + Foudre;
+	TM_Interdiction_NAME = TOOLMATERIAL + Interdiction,
+	TM_Sharpshooter_NAME = TOOLMATERIAL + Sharpshooter,
+	TM_Lindworm_NAME = TOOLMATERIAL + Lindworm,
+	TM_FrozenPride_NAME = TOOLMATERIAL + FrozenPride,
+	TM_Skysplitter_NAME = TOOLMATERIAL + Skysplitter,
+	TM_BookofRetribution_NAME = TOOLMATERIAL + BookofRetribution,
+	TM_Lunatic_NAME = TOOLMATERIAL + Lunatic,
+	TM_EternalFlames_NAME = TOOLMATERIAL + EternalFlames,
+	TM_Arpeggio_NAME = TOOLMATERIAL + Arpeggio,
+	TM_FairGame_NAME = TOOLMATERIAL + FairGame,
+	TM_GracefulDahlia_NAME = TOOLMATERIAL + GracefulDahlia,
+	TM_Foudre_NAME = TOOLMATERIAL + Foudre,
+	TM_BlazeofGlory_NAME = TOOLMATERIAL + BlazeofGlory
+	;
 
 	public static final String
 	TM_KingdomKey_NAME = TOOLMATERIAL + KingdomKey,

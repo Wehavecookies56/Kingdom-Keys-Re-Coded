@@ -30,7 +30,9 @@ public class Config {
 		TM_Arpeggio,
 		TM_FairGame,
 		TM_GracefulDahlia,
-		TM_Foudre;
+		TM_Foudre,
+		TM_BlazeofGlory
+		;
 
 	public static String
 		TM_KingdomKey,
@@ -163,7 +165,9 @@ public class Config {
 		A_TM_Arpeggio,
 		A_TM_FairGame,
 		A_TM_GracefulDahlia,
-		A_TM_Foudre;
+		A_TM_Foudre,
+		A_TM_BlazeofGlory
+		;
 	
 	public static String[]
 		A_TM_AbaddonPlasma,
@@ -314,6 +318,7 @@ public class Config {
 		TM_FairGame = config.get(TM, StatCollector.translateToLocal(Strings.TM_FairGame_NAME), TM_FairGame_DEFAULT).getString();
 		TM_GracefulDahlia = config.get(TM, StatCollector.translateToLocal(Strings.TM_GracefulDahlia_NAME), TM_GracefulDahlia_DEFAULT).getString();
 		TM_Foudre = config.get(TM, StatCollector.translateToLocal(Strings.TM_Foudre_NAME), TM_Foudre_DEFAULT).getString();
+		TM_BlazeofGlory = config.get(TM, StatCollector.translateToLocal(Strings.TM_BlazeofGlory_NAME), TM_BlazeofGlory_DEFAULT).getString();
 		
 		TM_AbaddonPlasma = config.get(TM, StatCollector.translateToLocal(Strings.TM_AbaddonPlasma_NAME), TM_AbaddonPlasma_DEFAULT).getString();
 		TM_AbyssalTide = config.get(TM, StatCollector.translateToLocal(TM_AbyssalTide_NAME), TM_AbyssalTide_DEFAULT).getString();
@@ -446,6 +451,7 @@ public class Config {
 		A_TM_FairGame = TM_FairGame.split(", ");
 		A_TM_GracefulDahlia = TM_GracefulDahlia.split(", ");
 		A_TM_Foudre = TM_Foudre.split(", ");
+		A_TM_BlazeofGlory = TM_BlazeofGlory.split(", ");
 		
 		A_TM_AbaddonPlasma = TM_AbaddonPlasma.split(", ");
 		A_TM_AbyssalTide = TM_AbyssalTide.split(", ");
