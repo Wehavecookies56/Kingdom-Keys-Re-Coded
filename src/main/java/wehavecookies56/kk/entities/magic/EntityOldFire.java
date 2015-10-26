@@ -44,7 +44,7 @@ public class EntityOldFire extends EntityThrowable
 		}
 		int rotation = 0;
 		if(!worldObj.isRemote){
-			PacketDispatcher.sendToAllAround(new SpawnFireParticles(this), (EntityPlayer) shootingEntity, 64.0D);
+			PacketDispatcher.sendToAllAround(new SpawnFireParticles(this, 0), (EntityPlayer) shootingEntity, 64.0D);
 		}
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);

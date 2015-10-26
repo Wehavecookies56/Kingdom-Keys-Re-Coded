@@ -43,7 +43,7 @@ public class EntityFire extends Entity
 		int rotation = 0;
 
 		if(!worldObj.isRemote){
-			PacketDispatcher.sendToAllAround(new SpawnFireParticles(this), player, 64.0D);
+			PacketDispatcher.sendToAllAround(new SpawnFireParticles(this, 1), player, 64.0D);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
