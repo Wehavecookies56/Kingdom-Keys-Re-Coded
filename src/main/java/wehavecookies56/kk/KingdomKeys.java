@@ -16,11 +16,13 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
+import wehavecookies56.kk.api.materials.MaterialRegistry;
 import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.block.ModBlocksRecipes;
 import wehavecookies56.kk.driveforms.ModDriveForms;
 import wehavecookies56.kk.entities.EntityItemMetalChocobo;
+import wehavecookies56.kk.entities.PlayerLevel;
 import wehavecookies56.kk.entities.TileEntityKKChest;
 import wehavecookies56.kk.entities.TileEntitySynthesisTable;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
@@ -152,6 +154,7 @@ public class KingdomKeys {
 		LogHelper.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipe(s) loaded");
 
 		ModMaterials.init();
+		LogHelper.info(MaterialRegistry.getMaterialMap().size() + " Material(s) loaded");
 		
 		//Chest loot init
 		ChestGen.init();
@@ -162,6 +165,8 @@ public class KingdomKeys {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e){
 
+		new PlayerLevel();
+		
 		//Event handler
 		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.EventHandler());
 		FMLCommonHandler.instance().bus().register(new wehavecookies56.kk.util.EventHandler());

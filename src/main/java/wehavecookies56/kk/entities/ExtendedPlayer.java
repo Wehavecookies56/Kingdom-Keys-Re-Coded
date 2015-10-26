@@ -19,6 +19,7 @@ import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.ShowOverlayPacket;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
+import wehavecookies56.kk.network.packet.server.SyncStatMessagesPacket;
 import wehavecookies56.kk.util.LogHelper;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
@@ -255,6 +256,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.strength += amount;
 		this.sync();
 		PlayerLevel.messages.add("str");
+		if(!player.worldObj.isRemote){
+			PacketDispatcher.sendTo(new SyncStatMessagesPacket("str"), (EntityPlayerMP) player);
+		}
 		return true;
 	}
 
@@ -270,6 +274,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.defense += amount;
 		this.sync();
 		PlayerLevel.messages.add("def");
+		if(!player.worldObj.isRemote){
+			PacketDispatcher.sendTo(new SyncStatMessagesPacket("def"), (EntityPlayerMP) player);
+		}
 		return true;
 	}
 
@@ -286,6 +293,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.magic += amount;
 		this.sync();
 		PlayerLevel.messages.add("mag");
+		if(!player.worldObj.isRemote){
+			PacketDispatcher.sendTo(new SyncStatMessagesPacket("mag"), (EntityPlayerMP) player);
+		}
 		return true;
 	}
 
@@ -303,6 +313,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.hp + amount);
 		this.sync();
 		PlayerLevel.messages.add("hp");
+		if(!player.worldObj.isRemote){
+			PacketDispatcher.sendTo(new SyncStatMessagesPacket("hp"), (EntityPlayerMP) player);
+		}
 		return true;
 	}
 
@@ -436,6 +449,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.sync();
 		if(!player.worldObj.isRemote){
 			PacketDispatcher.sendTo(new ShowOverlayPacket("levelup"), (EntityPlayerMP) player);
+			PacketDispatcher.sendTo(new SyncStatMessagesPacket("clr"), (EntityPlayerMP) player);
 		}
 	}
 
@@ -444,6 +458,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.sync();
 		if(!player.worldObj.isRemote){
 			PacketDispatcher.sendTo(new ShowOverlayPacket("levelup"), (EntityPlayerMP) player);
+			PacketDispatcher.sendTo(new SyncStatMessagesPacket("clr"), (EntityPlayerMP) player);
 		}
 	}
 

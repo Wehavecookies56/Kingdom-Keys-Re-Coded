@@ -39,6 +39,7 @@ import wehavecookies56.kk.network.packet.server.OpenGui;
 import wehavecookies56.kk.network.packet.server.OpenMaterials;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
+import wehavecookies56.kk.network.packet.server.SyncStatMessagesPacket;
 import wehavecookies56.kk.network.packet.server.UseRecipe;
 import wehavecookies56.kk.network.packet.server.magics.LevelUpMagic;
 import wehavecookies56.kk.network.packet.server.magics.MagicAero;
@@ -67,6 +68,7 @@ public class PacketDispatcher
 		registerMessage(SpawnAeroParticles.class);
 		registerMessage(SpawnStopParticles.class);
 		registerMessage(ShowOverlayPacket.class);
+		registerMessage(SyncStatMessagesPacket.class);
 
 		//Client to Server
 		registerMessage(MunnyPickup.class);

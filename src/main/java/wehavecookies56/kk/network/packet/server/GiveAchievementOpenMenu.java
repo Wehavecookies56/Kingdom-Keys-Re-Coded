@@ -29,6 +29,7 @@ public class GiveAchievementOpenMenu extends AbstractServerMessage<GiveAchieveme
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		AchievementHelper.addAchievement(player, ModAchievements.openMenu);
+		player.addStat(ModAchievements.openMenu, 1);
+		System.out.println("Achievement Get!");
 	}
 }

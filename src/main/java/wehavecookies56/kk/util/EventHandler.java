@@ -1,10 +1,14 @@
 package wehavecookies56.kk.util;
 
+import java.io.IOException;
 import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.model.IBakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
@@ -20,7 +24,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
+import net.minecraftforge.client.model.b3d.B3DLoader;
+import net.minecraftforge.client.model.b3d.B3DLoader.B3DMeshLocation;
+import net.minecraftforge.client.model.b3d.B3DLoader.B3DState;
+import net.minecraftforge.client.model.b3d.B3DModel;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -46,10 +55,12 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 import wehavecookies56.kk.entities.magic.EntityThunder;
+import wehavecookies56.kk.entities.projectiles.EntityEternalFlamesProjectile;
 import wehavecookies56.kk.item.ItemHpOrb;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
 import wehavecookies56.kk.item.ModItems;
+import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
@@ -461,9 +472,7 @@ public class EventHandler {
 		if(event.source.getSourceOfDamage() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
-			System.out.println(event.ammount);
 			event.ammount = (float) (event.ammount+(ExtendedPlayer.get(player).getStrength()*0.25));
-			System.out.println(event.ammount);
 			if(player.getHeldItem() != null)
 			{
 				if(player.getHeldItem().getItem() instanceof ItemKeyblade)
@@ -479,6 +488,13 @@ public class EventHandler {
 		}
 	}
 
+	@SubscribeEvent
+	public void onModelBake(ModelBakeEvent event){
+		B3DLoader.instance.addDomain(Reference.MODID);
+		IBakedModel model = event.modelManager.getModel(new ModelResourceLocation(Reference.MODID + ":" + Strings.EternalFlames, "inventory"));
+		event.modelRegistry.putObject(new ModelResourceLocation(Reference.MODID + ":" + Strings.EternalFlames, "inventory"), model);
+	}
+	
 	@SubscribeEvent
 	public void onFall(LivingFallEvent event)
 	{

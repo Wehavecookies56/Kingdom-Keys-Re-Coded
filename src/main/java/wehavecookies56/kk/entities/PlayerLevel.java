@@ -2,11 +2,9 @@ package wehavecookies56.kk.entities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumChatFormatting;
-import wehavecookies56.kk.client.gui.GuiOverlay;
-import wehavecookies56.kk.util.TextHelper;
 
 public class PlayerLevel {
 
@@ -30,8 +28,12 @@ public class PlayerLevel {
 	
 	int neededExp;
 	
-	public static ArrayList<String> messages = new ArrayList<String>();
+	public static List<String> messages;
 
+	public PlayerLevel() {
+		messages = new ArrayList<String>();
+	}
+	
 	public static void LevelUp(EntityPlayer player)
 	{
 		ExtendedPlayer ep = ExtendedPlayer.get(player);
