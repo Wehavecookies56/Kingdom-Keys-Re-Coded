@@ -43,7 +43,7 @@ public class SpawnFireParticles extends AbstractClientMessage<SpawnFireParticles
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		double r;
-		switch(ExtendedPlayer.get(player).getMagicLevel("Fire"))
+		switch(this.lvl)
 		{
 			case 1:
 				if(lvl == 1){
