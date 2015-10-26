@@ -8,6 +8,7 @@
 /out/
 /asm/
 /bin/
+/logs/
 /.idea/
 /.metadata/
 /.settings/

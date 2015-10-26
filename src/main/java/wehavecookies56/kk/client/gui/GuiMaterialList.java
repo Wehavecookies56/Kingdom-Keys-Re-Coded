@@ -1,5 +1,8 @@
 package wehavecookies56.kk.client.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -7,7 +10,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraftforge.fml.client.GuiScrollingList;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
-import wehavecookies56.kk.lib.Lists;
 import wehavecookies56.kk.util.TextHelper;
 
 public class GuiMaterialList extends GuiScrollingList {
@@ -30,7 +32,7 @@ public class GuiMaterialList extends GuiScrollingList {
 
 	@Override
 	protected int getSize(){
-		return Lists.materials.size();
+		return ExtendedPlayerMaterials.get(Minecraft.getMinecraft().thePlayer).knownMaterialsMap.size();
 	}
 
 	@Override
@@ -47,9 +49,14 @@ public class GuiMaterialList extends GuiScrollingList {
 	@Override
 	protected void drawSlot(int var1, int var2, int var3, int var4, Tessellator var5)
 	{
+		
 		ExtendedPlayerMaterials props = ExtendedPlayerMaterials.get(Minecraft.getMinecraft().thePlayer);
-
-		this.f.drawString(f.trimStringToWidth(TextHelper.localize(Lists.materials.get(var1) + ".name") + " x" + props.arrayOfAmounts[var1], listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
+		
+		List<String> materials = new ArrayList<String>();
+		
+		materials.addAll(props.getKnownMaterialsMap().keySet());
+		
+		this.f.drawString(f.trimStringToWidth(TextHelper.localize(materials.get(var1).toString() + ".name") + " x" + props.knownMaterialsMap.get(materials.get(var1)), listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
 
 	}
 }

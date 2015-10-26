@@ -47,7 +47,7 @@ public class MaterialRegistry {
 
 	public static boolean isMaterialKnown(EntityPlayer player, String name) {
 		if (ExtendedPlayerMaterials.get(player) != null) {
-			return ExtendedPlayerMaterials.get(player).knownMaterials.contains(name);
+			return ExtendedPlayerMaterials.get(player).knownMaterialsMap.containsKey(name);
 		}
 		return false;
 	}

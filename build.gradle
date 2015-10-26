@@ -1,4 +1,3 @@
-/*
 // For those who want the bleeding edge
 buildscript {
     repositories {
@@ -13,12 +12,13 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
-*/
 
+/*
 // for people who want stable
 plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.1"
 }
+*/
 
 ext.configFile = file "build.properties"
 configFile.withReader {

@@ -31,6 +31,7 @@ import wehavecookies56.kk.item.ModItemsRecipes;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Lists;
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.materials.ModMaterials;
 import wehavecookies56.kk.network.ClientProxy;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.UpdateChecker;
@@ -150,6 +151,8 @@ public class KingdomKeys {
 		ModRecipes.init();
 		LogHelper.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipe(s) loaded");
 
+		ModMaterials.init();
+		
 		//Chest loot init
 		ChestGen.init();
 		LogHelper.info("Chest loot loaded");

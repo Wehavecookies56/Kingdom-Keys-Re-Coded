@@ -1,7 +1,11 @@
 package wehavecookies56.kk.client.gui;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.lwjgl.opengl.GL11;
 
@@ -12,12 +16,12 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import wehavecookies56.kk.api.materials.Material;
 import wehavecookies56.kk.api.recipes.Recipe;
 import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
-import wehavecookies56.kk.lib.Lists;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -104,221 +108,17 @@ public class GuiSynthesis extends GuiTooltip{
 		if(full){
 			return false;
 		}
-		for(int i = 0; i < r.getRequirements().size(); i++){
-			int index = -1;
-			if(r.getRequirements().get(i).contains(Strings.SM_BlazingShard)){
-				index = Lists.Index_BlazingShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_BlazingStone)){
-				index = Lists.Index_BlazingStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_BlazingGem)){
-				index = Lists.Index_BlazingGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_BlazingCrystal)){
-				index = Lists.Index_BlazingCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_BrightShard)){
-				index = Lists.Index_BrightShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_BrightStone)){
-				index = Lists.Index_BrightStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_BrightGem)){
-				index = Lists.Index_BrightGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_BrightCrystal)){
-				index = Lists.Index_BrightCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_DarkShard)){
-				index = Lists.Index_DarkShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_DarkStone)){
-				index = Lists.Index_DarkStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_DarkGem)){
-				index = Lists.Index_DarkGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_DarkCrystal)){
-				index = Lists.Index_DarkCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_DenseShard)){
-				index = Lists.Index_DenseShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_DenseStone)){
-				index = Lists.Index_DenseStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_DenseGem)){
-				index = Lists.Index_DenseGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_DenseCrystal)){
-				index = Lists.Index_DenseCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_EnergyShard)){
-				index = Lists.Index_EnergyShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_EnergyStone)){
-				index = Lists.Index_EnergyStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_EnergyGem)){
-				index = Lists.Index_EnergyGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_EnergyCrystal)){
-				index = Lists.Index_EnergyCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_FrostShard)){
-				index = Lists.Index_FrostShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_FrostStone)){
-				index = Lists.Index_FrostStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_FrostGem)){
-				index = Lists.Index_FrostGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_FrostCrystal)){
-				index = Lists.Index_FrostCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_LightningShard)){
-				index = Lists.Index_LightningShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_LightningStone)){
-				index = Lists.Index_LightningStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_LightningGem)){
-				index = Lists.Index_LightningGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_LightningCrystal)){
-				index = Lists.Index_LightningCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_LostIllusion)){
-				index = Lists.Index_LostIllusion;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_LucidShard)){
-				index = Lists.Index_LucidShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_LucidStone)){
-				index = Lists.Index_LucidStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_LucidGem)){
-				index = Lists.Index_LucidGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_LucidCrystal)){
-				index = Lists.Index_LucidCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_ManifestIllusion)){
-				index = Lists.Index_ManifestIllusion;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_MythrilShard)){
-				index = Lists.Index_MythrilShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_MythrilStone)){
-				index = Lists.Index_MythrilStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_MythrilGem)){
-				index = Lists.Index_MythrilGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_MythrilCrystal)){
-				index = Lists.Index_MythrilCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_Orichalcum)){
-				index = Lists.Index_Orichalcum;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_OrichalcumPlus)){
-				index = Lists.Index_OrichalcumPlus;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_PowerShard)){
-				index = Lists.Index_PowerShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_PowerStone)){
-				index = Lists.Index_PowerStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_PowerGem)){
-				index = Lists.Index_PowerGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_PowerCrystal)){
-				index = Lists.Index_PowerCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_RemembranceShard)){
-				index = Lists.Index_RemembranceShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_RemembranceStone)){
-				index = Lists.Index_RemembranceStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_RemembranceGem)){
-				index = Lists.Index_RemembranceGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_RemembranceCrystal)){
-				index = Lists.Index_RemembranceCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_SerenityShard)){
-				index = Lists.Index_SerenityShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_SerenityStone)){
-				index = Lists.Index_SerenityStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_SerenityGem)){
-				index = Lists.Index_SerenityGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_SerenityCrystal)){
-				index = Lists.Index_SerenityCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_TranquilShard)){
-				index = Lists.Index_TranquilShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_TranquilStone)){
-				index = Lists.Index_TranquilStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_TranquilGem)){
-				index = Lists.Index_TranquilGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_TranquilCrystal)){
-				index = Lists.Index_TranquilCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_TwilightShard)){
-				index = Lists.Index_TwilightShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_TwilightStone)){
-				index = Lists.Index_TwilightStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_TwilightGem)){
-				index = Lists.Index_TwilightGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_TwilightCrystal)){
-				index = Lists.Index_TwilightCrystal;
-			}
-
-			if(r.getRequirements().get(i).contains(Strings.SM_StormyShard)){
-				index = Lists.Index_StormyShard;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_StormyStone)){
-				index = Lists.Index_StormyStone;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_StormyGem)){
-				index = Lists.Index_StormyGem;
-			}
-			if(r.getRequirements().get(i).contains(Strings.SM_StormyCrystal)){
-				index = Lists.Index_StormyCrystal;
-			}
-
-			if(Integer.parseInt(r.getRequirements().get(i).substring(r.getRequirements().get(i).lastIndexOf(".") + 1)) <= mats.arrayOfAmounts[index]){
-				hasMaterials.add(true);
-			}
+		Iterator it = r.getRequirements().entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>)it.next();
+			if(mats.knownMaterialsMap.containsKey(pair.getKey().getName())){
+				if(pair.getValue() != null && mats.knownMaterialsMap.get(pair.getKey().getName()) != null){
+					if(pair.getValue() <= mats.knownMaterialsMap.get(pair.getKey().getName())){
+						hasMaterials.add(true);
+					}
+				}
+			}
+			
 		}
 		if(r.getRequirements().size() > 0){
 			if(hasMaterials.size() == r.getRequirements().size()){
@@ -387,26 +187,23 @@ public class GuiSynthesis extends GuiTooltip{
 						drawString(fontRendererObj, TextHelper.localize(props.knownRecipes.get(i).toString() + ".name"), 0, 0, 0xFFF700);
 					}GL11.glPopMatrix();
 
-					for(int j = 0; j < RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().size(); j++){
-						ResourceLocation synthMaterial = new ResourceLocation(Reference.MODID, "textures/gui/synthesis/" + RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString().substring(3).replace(".x.", "").replaceAll("[0-9]","") + ".png");
-						mc.renderEngine.bindTexture(synthMaterial);
+					int row = 0;
+					Iterator it = RecipeRegistry.get(props.knownRecipes.get(i)).getRequirements().entrySet().iterator();
+					while (it.hasNext()) {
+						Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>)it.next();
 						int distY = 24;
 						int distX = 100;
 						int column = 0;
-						int row = j;
-						String amount;
 						GL11.glPushMatrix();{
+							ResourceLocation synthMaterial = pair.getKey().getTexture();
+							mc.renderEngine.bindTexture(synthMaterial);
 							GL11.glTranslatef(270 + (distX*column), 110 + (distY*row), 0);
 							GL11.glScalef(0.0625f, 0.0625f, 0.0625f);
 							drawTexturedModalRect(0, 0, 0, 0, 256, 256);
 						}GL11.glPopMatrix();
-						if(RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString().contains(".x.")){
-							String[] name = RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString().split(".x.");
-							drawString(fontRendererObj, TextHelper.localize(name[0] + ".name") + " x" + name[1], 288 + (distX*column), 114 + (distY*row), 0xFFFFFF);
-						}else{
-							drawString(fontRendererObj, TextHelper.localize(RecipeRegistry.get(props.knownRecipes.get(i).toString()).getRequirements().get(j).toString() + ".name") + " x" + 1, 288 + (distX*column), 114 + (distY*row), 0xFFFFFF);
-						}
-
+						String name = pair.getKey().getName();
+						drawString(fontRendererObj, TextHelper.localize(name + ".name") + " x" + pair.getValue(), 288 + (distX*column), 114 + (distY*row), 0xFFFFFF);
+						row++;
 					}
 				}
 			}

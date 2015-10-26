@@ -50,13 +50,11 @@ import wehavecookies56.kk.item.ItemHpOrb;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
 import wehavecookies56.kk.item.ModItems;
-import wehavecookies56.kk.lib.Lists;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
-import wehavecookies56.kk.network.packet.server.ChangeMagicLevel;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
@@ -73,7 +71,7 @@ public class EventHandler {
 			ExtendedPlayerRecipes.register((EntityPlayer) event.entity);
 		}
 		if(event.entity instanceof EntityPlayer && ExtendedPlayerMaterials.get((EntityPlayer) event.entity) == null){
-			ExtendedPlayerMaterials.register((EntityPlayer) event.entity, 100);
+			ExtendedPlayerMaterials.register((EntityPlayer) event.entity);
 		}
 
 	}
@@ -169,10 +167,6 @@ public class EventHandler {
 				ExtendedPlayer.get((EntityPlayer) event.entity).setMunny(ExtendedPlayer.get((EntityPlayer) event.entity).getMunny() + 10000);
 			}
 
-		}
-
-		if(event.entity instanceof EntityPlayer){
-			Lists.addMaterials((EntityPlayer) event.entity);
 		}
 
 	}
