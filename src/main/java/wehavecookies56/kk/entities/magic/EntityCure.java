@@ -34,7 +34,7 @@ public class EntityCure extends Entity
 			return;
 		}
 		if(!worldObj.isRemote){
-			PacketDispatcher.sendToAllAround(new SpawnCureParticles(this), player, 64.0D);
+			PacketDispatcher.sendToAllAround(new SpawnCureParticles(this,1), player, 64.0D);
 		}
 		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY+2.5, this.posZ, 0.0D, 1.0D, 0.0D);
 		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY+2.8, this.posZ, 0.0D, 1.0D, 0.0D);

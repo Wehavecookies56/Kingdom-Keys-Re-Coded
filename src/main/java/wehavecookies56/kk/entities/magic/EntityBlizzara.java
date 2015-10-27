@@ -46,7 +46,7 @@ public class EntityBlizzara extends EntityThrowable
 		}
 		int rotation = 0;
 		if(!worldObj.isRemote){
-			PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this), (EntityPlayer) shootingEntity, 64.0D);
+			PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this,2), (EntityPlayer) shootingEntity, 64.0D);
 		}
 		this.rotationYaw = (rotation + 1) % 360;
 		if(ticksExisted > 60){

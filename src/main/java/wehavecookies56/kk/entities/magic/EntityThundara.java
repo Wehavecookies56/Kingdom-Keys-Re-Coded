@@ -55,7 +55,7 @@ public class EntityThundara extends Entity
 		}
 		int rotation = 0;
 		if(!worldObj.isRemote){
-			PacketDispatcher.sendToAllAround(new SpawnThunderParticles(this), player, 64.0D);
+			PacketDispatcher.sendToAllAround(new SpawnThunderParticles(this,2), player, 64.0D);
 		}
 		double r = 1.5D;
 

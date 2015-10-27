@@ -34,6 +34,7 @@ public class MagicCure extends AbstractServerMessage<MagicCure> {
 			ExtendedPlayer.get(player).setMp(0);
 		}
 		World world = player.worldObj;
+		player.extinguish();
 		switch(ExtendedPlayer.get(player).getMagicLevel("Cure")){
 		case 1:
 			player.heal(6);

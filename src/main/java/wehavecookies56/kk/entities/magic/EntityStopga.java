@@ -39,7 +39,7 @@ public class EntityStopga extends Entity
 		}
 		int rotation = 0;
 		if(!worldObj.isRemote){
-			PacketDispatcher.sendToAllAround(new SpawnStopParticles(this), player, 64.0D);
+			PacketDispatcher.sendToAllAround(new SpawnStopParticles(this,3), player, 64.0D);
 		}
 		double r = 3.0D;
 

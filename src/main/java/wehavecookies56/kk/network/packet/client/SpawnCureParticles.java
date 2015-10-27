@@ -18,17 +18,18 @@ public class SpawnCureParticles extends AbstractClientMessage<SpawnCureParticles
 	int lvl;
 	public SpawnCureParticles() {}
 
-	public SpawnCureParticles(Entity entity) {
+	public SpawnCureParticles(Entity entity,int level) {
 		x = entity.posX;
 		y = entity.posY;
 		z = entity.posZ;
+		lvl = level;
 	}
-	public SpawnCureParticles(BlockPos pos, boolean savepoint, int level) {
+	public SpawnCureParticles(BlockPos pos, boolean savepoint) {
 		x = pos.getX();
 		y = pos.getY();
 		z = pos.getZ();
 		savePoint = savepoint;
-		lvl = level;
+		
 	}
 	
 

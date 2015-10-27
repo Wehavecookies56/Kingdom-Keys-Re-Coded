@@ -40,7 +40,7 @@ public class EntityAeroga extends Entity
 		int rotation = 0;
 
 		if(!worldObj.isRemote){
-			PacketDispatcher.sendToAllAround(new SpawnAeroParticles(this), player, 64.0D);
+			PacketDispatcher.sendToAllAround(new SpawnAeroParticles(this,3), player, 64.0D);
 		}
 		
 		double r = 4D;
