@@ -13,13 +13,15 @@ import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 public class SpawnStopParticles extends AbstractClientMessage<SpawnStopParticles> {
 
 	double x, y, z;
+	int lvl;
 
 	public SpawnStopParticles() {}
 
-	public SpawnStopParticles(Entity entity) {
+	public SpawnStopParticles(Entity entity,int level) {
 		x = entity.posX;
 		y = entity.posY;
 		z = entity.posZ;
+		lvl = level;
 	}
 
 	@Override
@@ -27,7 +29,7 @@ public class SpawnStopParticles extends AbstractClientMessage<SpawnStopParticles
 		x = buffer.readDouble();
 		y = buffer.readDouble();
 		z = buffer.readDouble();
-
+		lvl = buffer.readInt();
 	}
 
 	@Override
@@ -35,12 +37,14 @@ public class SpawnStopParticles extends AbstractClientMessage<SpawnStopParticles
 		buffer.writeDouble(x);
 		buffer.writeDouble(y);
 		buffer.writeDouble(z);
+		buffer.writeInt(lvl);
 	}
+
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		double r = 1.5D;
-		switch(ExtendedPlayer.get(player).getMagicLevel("Stop"))
+		switch(this.lvl)
 		{
 			case 1:
 				r = 1.5D;

@@ -12,13 +12,15 @@ import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 public class SpawnBlizzardParticles extends AbstractClientMessage<SpawnBlizzardParticles> {
 
 	double x, y, z;
-
+	int lvl;
+	
 	public SpawnBlizzardParticles() {}
 
-	public SpawnBlizzardParticles(Entity entity) {
+	public SpawnBlizzardParticles(Entity entity, int level) {
 		x = entity.posX;
 		y = entity.posY;
 		z = entity.posZ;
+		lvl = level;
 	}
 
 	@Override
@@ -26,7 +28,7 @@ public class SpawnBlizzardParticles extends AbstractClientMessage<SpawnBlizzardP
 		x = buffer.readDouble();
 		y = buffer.readDouble();
 		z = buffer.readDouble();
-
+		lvl = buffer.readInt();
 	}
 
 	@Override
@@ -34,12 +36,17 @@ public class SpawnBlizzardParticles extends AbstractClientMessage<SpawnBlizzardP
 		buffer.writeDouble(x);
 		buffer.writeDouble(y);
 		buffer.writeDouble(z);
+		buffer.writeInt(lvl);
 	}
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		player.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
-		player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+		switch(this.lvl)
+		{
+			case 1:
+				player.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+				player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+			break;
+		}
 	}
-
 }

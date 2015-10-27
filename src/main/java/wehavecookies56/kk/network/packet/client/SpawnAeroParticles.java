@@ -13,13 +13,15 @@ import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 public class SpawnAeroParticles extends AbstractClientMessage<SpawnAeroParticles> {
 
 	double x, y, z;
+	int lvl;
 
 	public SpawnAeroParticles() {}
 
-	public SpawnAeroParticles(Entity entity) {
+	public SpawnAeroParticles(Entity entity, int level) {
 		x = entity.posX;
 		y = entity.posY;
 		z = entity.posZ;
+		lvl = level;
 	}
 
 	@Override
@@ -27,7 +29,7 @@ public class SpawnAeroParticles extends AbstractClientMessage<SpawnAeroParticles
 		x = buffer.readDouble();
 		y = buffer.readDouble();
 		z = buffer.readDouble();
-
+		lvl = buffer.readInt();
 	}
 
 	@Override
@@ -35,12 +37,13 @@ public class SpawnAeroParticles extends AbstractClientMessage<SpawnAeroParticles
 		buffer.writeDouble(x);
 		buffer.writeDouble(y);
 		buffer.writeDouble(z);
+		buffer.writeInt(lvl);
 	}
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		double r;
-		switch(ExtendedPlayer.get(player).getMagicLevel("Aero"))
+		switch(this.lvl)
 		{
 			case 1:
 				r = 1.5D;

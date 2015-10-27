@@ -15,7 +15,7 @@ public class SpawnCureParticles extends AbstractClientMessage<SpawnCureParticles
 
 	double x, y, z;
 	boolean savePoint;
-	
+	int lvl;
 	public SpawnCureParticles() {}
 
 	public SpawnCureParticles(Entity entity) {
@@ -23,11 +23,12 @@ public class SpawnCureParticles extends AbstractClientMessage<SpawnCureParticles
 		y = entity.posY;
 		z = entity.posZ;
 	}
-	public SpawnCureParticles(BlockPos pos, boolean savepoint) {
+	public SpawnCureParticles(BlockPos pos, boolean savepoint, int level) {
 		x = pos.getX();
 		y = pos.getY();
 		z = pos.getZ();
 		savePoint = savepoint;
+		lvl = level;
 	}
 	
 
@@ -37,6 +38,7 @@ public class SpawnCureParticles extends AbstractClientMessage<SpawnCureParticles
 		y = buffer.readDouble();
 		z = buffer.readDouble();
 		savePoint = buffer.readBoolean();
+		lvl = buffer.readInt();
 	}
 	
 	@Override
@@ -45,12 +47,13 @@ public class SpawnCureParticles extends AbstractClientMessage<SpawnCureParticles
 		buffer.writeDouble(y);
 		buffer.writeDouble(z);
 		buffer.writeBoolean(savePoint);
+		buffer.writeInt(lvl);
 	}
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		double r;
-		switch(ExtendedPlayer.get(player).getMagicLevel("Fire"))
+		switch(this.lvl)
 		{
 			case 1:
 				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y+2.5, this.z, 0.0D, 1.0D, 0.0D);
