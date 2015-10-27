@@ -1,10 +1,14 @@
 package wehavecookies56.kk.network.packet.client;
 
 import java.io.IOException;
+import java.util.List;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
@@ -13,6 +17,7 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 
 	double x, y, z;
 	int lvl;
+	double ex=0, ey, ez;
 	public SpawnThunderParticles() {}
 
 	public SpawnThunderParticles(Entity entity, int level) {
@@ -21,6 +26,13 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 		z = entity.posZ;
 		lvl = level;
 	}
+	
+	public SpawnThunderParticles(double ex, double ey, double ez)
+	{
+		this.ex = ex;
+		this.ey = ey;
+		this.ez = ez;
+	}
 
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
@@ -28,6 +40,9 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 		y = buffer.readDouble();
 		z = buffer.readDouble();
 		lvl = buffer.readInt();
+		ex = buffer.readDouble();
+		ey = buffer.readDouble();
+		ez = buffer.readDouble();
 	}
 
 	@Override
@@ -36,14 +51,22 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 		buffer.writeDouble(y);
 		buffer.writeDouble(z);
 		buffer.writeInt(lvl);
+		buffer.writeDouble(ex);
+		buffer.writeDouble(ey);
+		buffer.writeDouble(ez);
 	}
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		double r = 1.5D;
+		double r = 2.0D;
+		if(ex != 0)
+		{
+			player.worldObj.spawnEntityInWorld((new EntityLightningBolt(player.worldObj, ex, ey, ez)));
+		}
 		switch(this.lvl)
 		{
 			case 1:
+
 				for(int a = 1; a <= 360; a+=7){
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));

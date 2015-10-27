@@ -42,6 +42,8 @@ public class EntityThunder extends Entity
 				if(e instanceof EntityLivingBase){
 					summonLightning = true;
 					this.worldObj.spawnEntityInWorld((new EntityLightningBolt(this.worldObj, e.posX, e.posY, e.posZ)));
+					PacketDispatcher.sendToAllAround(new SpawnThunderParticles(e.posX, e.posY, e.posZ), player, 64.0D);
+
 				}
 			}
 		}
@@ -57,7 +59,7 @@ public class EntityThunder extends Entity
 		if(!worldObj.isRemote){
 			PacketDispatcher.sendToAllAround(new SpawnThunderParticles(this,1), player, 64.0D);
 		}
-		double r = 1.5D;
+		double r = 2.0D;
 
 		for(int a = 1; a <= 360; a+=7){
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
