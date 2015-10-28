@@ -34,8 +34,8 @@ public class EntityBlizzaga extends EntityThrowable
 	}
 
 	@Override
-	protected float getGravityVelocity() {
-		return 0.0F;
+	protected float getVelocity() {
+		return 10.0F;
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class EntityBlizzaga extends EntityThrowable
 
 			if (movingObject.entityHit != null)
 			{
-				flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 8);
+				flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 16);
 				if (flag)
 				{
 					this.func_174815_a(this.shootingEntity, movingObject.entityHit);

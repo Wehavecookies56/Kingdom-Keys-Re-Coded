@@ -34,7 +34,12 @@ public class EntityBlizzara extends EntityThrowable
 	}
 
 	@Override
-	protected float getGravityVelocity() {
+	protected float getVelocity() {
+		return 5.0F;
+	}
+	
+	@Override
+	protected float getInaccuracy() {
 		return 0.0F;
 	}
 
@@ -59,10 +64,9 @@ public class EntityBlizzara extends EntityThrowable
 		if (!this.worldObj.isRemote)
 		{
 			boolean flag;
-
 			if (movingObject.entityHit != null)
 			{
-				flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 8);
+				flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 12);
 				if (flag)
 				{
 					this.func_174815_a(this.shootingEntity, movingObject.entityHit);
@@ -76,7 +80,7 @@ public class EntityBlizzara extends EntityThrowable
 					}
 				}
 			}
-			  else
+			else
             {
                 flag = true;
 

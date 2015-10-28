@@ -69,10 +69,11 @@ public class Magic {
 
 	public static void Blizzard(EntityPlayer player, World world)
 	{
+		Vec3 look;
 		switch(ExtendedPlayer.get(player).getMagicLevel("Blizzard"))
 		{
 			case 1:
-				Vec3 look = player.getLookVec();
+				look = player.getLookVec();
 				world.spawnEntityInWorld(new EntityBlizzard(world, player));
 				PacketDispatcher.sendToServer(new MagicBlizzard());
 				if(FMLCommonHandler.instance().getSide() == Side.SERVER){
@@ -81,11 +82,19 @@ public class Magic {
 			break;
 			
 			case 2:
-				System.out.println("Blizzara");
-			break;
+				look = player.getLookVec();
+				world.spawnEntityInWorld(new EntityBlizzard(world, player));
+				PacketDispatcher.sendToServer(new MagicBlizzard());
+				if(FMLCommonHandler.instance().getSide() == Side.SERVER){
+					PacketDispatcher.sendToDimension(new MagicBlizzard(), world.provider.getDimensionId());
+				}			break;
 			case 3:
-				System.out.println("Blizzaga");
-			break;
+				look = player.getLookVec();
+				world.spawnEntityInWorld(new EntityBlizzard(world, player));
+				PacketDispatcher.sendToServer(new MagicBlizzard());
+				if(FMLCommonHandler.instance().getSide() == Side.SERVER){
+					PacketDispatcher.sendToDimension(new MagicBlizzard(), world.provider.getDimensionId());
+				}			break;
 		}	
 	}
 
