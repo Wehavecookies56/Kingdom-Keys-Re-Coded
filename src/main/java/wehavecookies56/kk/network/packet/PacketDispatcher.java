@@ -14,6 +14,7 @@ import wehavecookies56.kk.network.packet.client.SpawnBlizzardParticles;
 import wehavecookies56.kk.network.packet.client.SpawnCureParticles;
 import wehavecookies56.kk.network.packet.client.SpawnFireParticles;
 import wehavecookies56.kk.network.packet.client.SpawnStopParticles;
+import wehavecookies56.kk.network.packet.client.SpawnThunderEntity;
 import wehavecookies56.kk.network.packet.client.SpawnThunderParticles;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
@@ -69,6 +70,7 @@ public class PacketDispatcher
 		registerMessage(SpawnStopParticles.class);
 		registerMessage(ShowOverlayPacket.class);
 		registerMessage(SyncStatMessagesPacket.class);
+		registerMessage(SpawnThunderEntity.class);
 
 		//Client to Server
 		registerMessage(MunnyPickup.class);

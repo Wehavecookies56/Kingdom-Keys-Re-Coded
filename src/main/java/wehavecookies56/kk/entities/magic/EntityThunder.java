@@ -12,6 +12,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SpawnThunderEntity;
 import wehavecookies56.kk.network.packet.client.SpawnThunderParticles;
 
 public class EntityThunder extends Entity
@@ -41,9 +42,10 @@ public class EntityThunder extends Entity
 				Entity e = (Entity) list.get(i);
 				if(e instanceof EntityLivingBase){
 					summonLightning = true;
-					this.worldObj.spawnEntityInWorld((new EntityLightningBolt(this.worldObj, e.posX, e.posY, e.posZ)));
-					PacketDispatcher.sendToAllAround(new SpawnThunderParticles(e.posX, e.posY, e.posZ), player, 64.0D);
-
+					if(!worldObj.isRemote){
+						PacketDispatcher.sendToAllAround(new SpawnThunderEntity(this, 1), player, 64.0D);
+					}
+					this.worldObj.addWeatherEffect((new EntityLightningBolt(this.worldObj, e.posX, e.posY, e.posZ)));
 				}
 			}
 		}

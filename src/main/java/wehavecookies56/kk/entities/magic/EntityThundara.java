@@ -12,6 +12,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SpawnThunderEntity;
 import wehavecookies56.kk.network.packet.client.SpawnThunderParticles;
 
 public class EntityThundara extends Entity
@@ -41,6 +42,9 @@ public class EntityThundara extends Entity
 				Entity e = (Entity) list.get(i);
 				if(e instanceof EntityLivingBase){
 					summonLightning = true;
+					if(!worldObj.isRemote){
+						PacketDispatcher.sendToAllAround(new SpawnThunderEntity(this, 2), player, 64.0D);
+					}
 					this.worldObj.spawnEntityInWorld((new EntityLightningBolt(this.worldObj, e.posX, e.posY, e.posZ)));
 				}
 			}
