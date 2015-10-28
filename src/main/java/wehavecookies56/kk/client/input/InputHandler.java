@@ -61,7 +61,7 @@ public class InputHandler {
 			GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 			PacketDispatcher.sendToServer(new AntiPoints(4,"-"));
-			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+			Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 
 			return true;
 		}
@@ -171,13 +171,12 @@ public class InputHandler {
 				{
 					GuiCommandMenu.magicselected = GuiCommandMenu.NONE;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
-					//PacketDispatcher.sendTo(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f), (EntityPlayerMP)player);
-					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 				}
 				else
 				{
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
+					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 				}
 			}
 			break;
@@ -194,21 +193,21 @@ public class InputHandler {
 					if(ExtendedPlayer.get(player).getDriveInUse().equals("Anti") && ExtendedPlayer.get(player).cheatMode == false) //TODO change nti to anti
 					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
+						Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 					}
 					else
 					{
 						PacketDispatcher.sendToServer(new DriveFormPacket(true));
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+						Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 					}
 				}
 				else
 				{//Drive
 					GuiCommandMenu.driveselected = GuiCommandMenu.NONE;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
-					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 				}
 			}
 			break;
@@ -221,37 +220,37 @@ public class InputHandler {
 					Magic.Fire(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 					break;
 				case GuiCommandMenu.BLIZZARD:
 					Magic.Blizzard(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 					break;
 				case GuiCommandMenu.THUNDER:
 					Magic.Thunder(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 					break;
 				case GuiCommandMenu.CURE:
 					Magic.Cure(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 					break;
 				case GuiCommandMenu.AERO:
 					Magic.Aero(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 					break;
 				case GuiCommandMenu.STOP:
 					Magic.Stop(player, world);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 					break;
 			}
 		}
@@ -270,14 +269,14 @@ public class InputHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
-							PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+							Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 						}
 					}
 					else
 					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
+						Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 					}
 					break;
 				case GuiCommandMenu.WISDOM:
@@ -289,14 +288,14 @@ public class InputHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
-							PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+							Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 						}
 					}
 					else
 					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
+						Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 					}
 					break;
 				case GuiCommandMenu.LIMIT:
@@ -308,14 +307,14 @@ public class InputHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
-							PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+							Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 						}
 					}
 					else
 					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
+						Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 					}
 					break;
 				case GuiCommandMenu.MASTER:
@@ -327,14 +326,14 @@ public class InputHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
-							PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+							Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 						}
 					}
 					else
 					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
+						Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 					}
 					break;
 				case GuiCommandMenu.FINAL:
@@ -346,14 +345,14 @@ public class InputHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 							PacketDispatcher.sendToServer(new AntiPoints(1,"+"));
-							PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Select, 1f, 1f));
+							Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 						}
 					}
 					else
 					{
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 2f, 1f));
+						Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 					}
 					break;
 			}
@@ -369,17 +368,17 @@ public class InputHandler {
 		else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC)
 		{
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Cancel, 1f, 1f));
+			Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Cancel, 1f, 1f, false);
 		}
 		else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS)
 		{
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Cancel, 1f, 1f));
+			Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Cancel, 1f, 1f, false);
 		}
 		else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)
 		{
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Cancel, 1f, 1f));
+			Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Cancel, 1f, 1f, false);
 		}
 		GuiCommandMenu.magicselected = GuiCommandMenu.MAGIC;
 		GuiCommandMenu.driveselected = GuiCommandMenu.DRIVE;
@@ -400,12 +399,12 @@ public class InputHandler {
 				break;
 			case SCROLL_UP:
 				commandUp();
-				PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Move, 1f, 1f));
+				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Move, 1f, 1f, false);
 				break;
 
 			case SCROLL_DOWN:
 				commandDown();
-				PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Move, 1f, 1f));
+				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Move, 1f, 1f, false);
 				break;
 
 			case ENTER:
@@ -419,7 +418,7 @@ public class InputHandler {
 				ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
 				System.out.println(props.inventory.getStackInSlot(0));
 				if(props.inventory.getStackInSlot(0) == null){
-					PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Error, 0.5f, 1f));
+					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 					break;
 				}
 				if(props.isKeybladeSummoned() == false && player.inventory.getCurrentItem() == null && props.inventory.getStackInSlot(0).getItem() instanceof ItemKeychain){
@@ -463,12 +462,12 @@ public class InputHandler {
 		if(event.dwheel <= Constants.WHEEL_DOWN && KeyboardHelper.isScrollActivatorDown() && event.dwheel != 0){
 			commandDown();
 			event.setCanceled(true);
-			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Move, 1f, 1f));
+			Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Move, 1f, 1f, false);
 		}
 		if(event.dwheel >= Constants.WHEEL_UP && KeyboardHelper.isScrollActivatorDown() && event.dwheel != 0){
 			commandUp();
 			event.setCanceled(true);
-			PacketDispatcher.sendToServer(new PlaySoundAtPlayer(SoundHelper.Move, 1f, 1f));
+			Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Move, 1f, 1f, false);
 		}
 
 	}
