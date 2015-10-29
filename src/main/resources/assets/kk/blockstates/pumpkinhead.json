@@ -5,7 +5,7 @@
             "pumpkinhead_1": "kk:items/models/pumpkinhead_1",
             "pumpkinhead_2": "kk:items/models/pumpkinhead_2"
         },
-        "model": "kk:pumpkinhead.b3d"
+        "model": "kk:pumpkinhead.obj"
     },
 
     "variants": {

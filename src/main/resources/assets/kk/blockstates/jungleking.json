@@ -5,7 +5,7 @@
             "jungleking_1": "kk:items/models/jungleking_1",
             "jungleking_2": "kk:items/models/jungleking_2"
         },
-        "model": "kk:jungleking.b3d"
+        "model": "kk:jungleking.obj"
     },
 
     "variants": {

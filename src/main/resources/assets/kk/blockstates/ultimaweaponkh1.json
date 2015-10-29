@@ -5,7 +5,7 @@
             "ultimaweaponkh1_1": "kk:items/models/ultimaweaponkh1_1",
             "ultimaweaponkh1_2": "kk:items/models/ultimaweaponkh1_2"
         },
-        "model": "kk:ultimaweaponkh1.b3d"
+        "model": "kk:ultimaweaponkh1.obj"
     },
     "variants": {
         "inventory": [

@@ -5,7 +5,7 @@
             "spellbinder_1": "kk:items/models/spellbinder_1",
             "spellbinder_2": "kk:items/models/spellbinder_2"
         },
-        "model": "kk:spellbinder.b3d"
+        "model": "kk:spellbinder.obj"
     },
 
     "variants": {

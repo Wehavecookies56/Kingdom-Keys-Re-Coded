@@ -1,0 +1,28 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl Material__45
+Ns 9.803922
+Ka 0.588000 0.588000 0.588000
+Kd 0.588000 0.588000 0.588000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd kk:items\models\metalchocobo_1
+map_Ka kk:items\\models\\metalchocobo_1
+map_d kk:items\\models\\metalchocobo_1
+
+newmtl Material__46
+Ns 9.803922
+Ka 0.588000 0.588000 0.588000
+Kd 0.588000 0.588000 0.588000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd kk:items\models\metalchocobo_2
+map_Ka kk:items\\models\\metalchocobo_2
+map_d kk:items\\models\\metalchocobo_2

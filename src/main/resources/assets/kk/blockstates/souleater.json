@@ -4,7 +4,7 @@
         "textures": {
             "souleater": "kk:items/models/souleater"
         },
-        "model": "kk:souleater.b3d"
+        "model": "kk:souleater.obj"
     },
 
     "variants": {

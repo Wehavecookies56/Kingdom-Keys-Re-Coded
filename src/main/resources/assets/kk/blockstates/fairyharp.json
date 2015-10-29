@@ -5,7 +5,7 @@
             "fairyharp_1": "kk:items/models/fairyharp_1",
             "fairyharp_2": "kk:items/models/fairyharp_2"
         },
-        "model": "kk:fairyharp.b3d"
+        "model": "kk:fairyharp.obj"
     },
 
     "variants": {

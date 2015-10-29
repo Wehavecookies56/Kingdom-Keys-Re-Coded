@@ -5,7 +5,7 @@
         	"crabclaw_1": "kk:items/models/crabclaw_1",
         	"crabclaw_2": "kk:items/models/crabclaw_2"
         },
-        "model": "kk:crabclaw.b3d"
+        "model": "kk:crabclaw.obj"
     },
 
     "variants": {

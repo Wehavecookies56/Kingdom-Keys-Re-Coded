@@ -5,7 +5,7 @@
             "onewingedangel_1": "kk:items/models/onewingedangel_1",
             "onewingedangel_2": "kk:items/models/onewingedangel_2"
         },
-        "model": "kk:onewingedangel.b3d"
+        "model": "kk:onewingedangel.obj"
     },
 
     "variants": {

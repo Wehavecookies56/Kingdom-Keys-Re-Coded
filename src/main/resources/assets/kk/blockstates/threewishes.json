@@ -5,7 +5,7 @@
             "threewishes_1": "kk:items/models/threewishes_1",
             "threewishes_2": "kk:items/models/threewishes_2"
         },
-        "model": "kk:threewishes.b3d"
+        "model": "kk:threewishes.obj"
     },
 
     "variants": {

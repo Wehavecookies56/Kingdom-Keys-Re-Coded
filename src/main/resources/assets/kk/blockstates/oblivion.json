@@ -5,7 +5,7 @@
             "oblivion_1": "kk:items/models/oblivion_1",
             "oblivion_2": "kk:items/models/oblivion_2"
         },
-        "model": "kk:oblivion.b3d"
+        "model": "kk:oblivion.obj"
     },
     "variants": {
         "inventory": [

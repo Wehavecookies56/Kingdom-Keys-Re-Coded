@@ -5,7 +5,7 @@
             "metalchocobo_1": "kk:items/models/metalchocobo_1",
             "metalchocobo_2": "kk:items/models/metalchocobo_2"
         },
-        "model": "kk:metalchocobo.b3d"
+        "model": "kk:metalchocobo.obj"
     },
 
     "variants": {

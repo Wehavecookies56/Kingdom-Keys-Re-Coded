@@ -5,7 +5,7 @@
             "olympia_1": "kk:items/models/olympia_1",
             "olympia_2": "kk:items/models/olympia_2"
         },
-        "model": "kk:olympia.b3d"
+        "model": "kk:olympia.obj"
     },
 
     "variants": {

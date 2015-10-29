@@ -5,7 +5,7 @@
             "divinerose_1": "kk:items/models/divinerose_1",
             "divinerose_2": "kk:items/models/divinerose_2"
         },
-        "model": "kk:divinerose.b3d"
+        "model": "kk:divinerose.obj"
     },
 
     "variants": {

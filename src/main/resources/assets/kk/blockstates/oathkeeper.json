@@ -5,7 +5,7 @@
             "oathkeeper_1": "kk:items/models/oathkeeper_1",
             "oathkeeper_2": "kk:items/models/oathkeeper_2"
         },
-        "model": "kk:oathkeeper.b3d"
+        "model": "kk:oathkeeper.obj"
     },
     "variants": {
         "inventory": [

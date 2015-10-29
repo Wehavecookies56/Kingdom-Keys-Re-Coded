@@ -4,7 +4,7 @@
         "textures": {
             "keybladeofpeopleshearts": "kk:items/models/keybladeofpeopleshearts"
         },
-        "model": "kk:keybladeofpeopleshearts.b3d"
+        "model": "kk:keybladeofpeopleshearts.obj"
     },
     "variants": {
         "inventory": [

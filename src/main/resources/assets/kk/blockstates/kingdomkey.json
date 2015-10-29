@@ -4,7 +4,7 @@
         "textures": {
             "kingdomkey": "kk:items/models/kingdomkey"
         },
-        "model": "kk:kingdomkey.b3d"
+        "model": "kk:kingdomkey.obj"
     },
     "variants": {
         "inventory": [

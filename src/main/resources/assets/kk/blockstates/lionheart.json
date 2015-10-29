@@ -5,7 +5,7 @@
             "lionheart_1": "kk:items/models/lionheart_1",
             "lionheart_2": "kk:items/models/lionheart_2"
         },
-        "model": "kk:lionheart.b3d"
+        "model": "kk:lionheart.obj"
     },
 
     "variants": {

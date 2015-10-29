@@ -5,7 +5,7 @@
             "ladyluck_1": "kk:items/models/ladyluck_1",
             "ladyluck_2": "kk:items/models/ladyluck_2"
         },
-        "model": "kk:ladyluck.b3d"
+        "model": "kk:ladyluck.obj"
     },
     "variants": {
         "inventory": [

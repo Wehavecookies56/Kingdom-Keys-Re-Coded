@@ -5,7 +5,7 @@
             "diamonddust_1": "kk:items/models/diamonddust_1",
             "diamonddust_2": "kk:items/models/diamonddust_2"
         },
-        "model": "kk:diamonddust.b3d"
+        "model": "kk:diamonddust.obj"
     },
     "variants": {
         "inventory": [

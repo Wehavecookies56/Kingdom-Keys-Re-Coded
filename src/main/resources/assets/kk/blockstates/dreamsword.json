@@ -5,7 +5,7 @@
             "dreamsword_1": "kk:items/models/dreamsword_1",
             "dreamsword_2": "kk:items/models/dreamsword_2"
         },
-        "model": "kk:dreamsword.b3d"
+        "model": "kk:dreamsword.obj"
     },
 
     "variants": {

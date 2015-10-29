@@ -5,7 +5,7 @@
             "wishingstar_1": "kk:items/models/wishingstar_1",
             "wishingstar_2": "kk:items/models/wishingstar_2"
         },
-        "model": "kk:wishingstar.b3d"
+        "model": "kk:wishingstar.obj"
     },
 
     "variants": {
