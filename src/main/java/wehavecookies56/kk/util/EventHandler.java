@@ -1,11 +1,9 @@
 package wehavecookies56.kk.util;
 
-import java.io.IOException;
 import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -27,9 +25,6 @@ import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
 import net.minecraftforge.client.model.b3d.B3DLoader;
-import net.minecraftforge.client.model.b3d.B3DLoader.B3DMeshLocation;
-import net.minecraftforge.client.model.b3d.B3DLoader.B3DState;
-import net.minecraftforge.client.model.b3d.B3DModel;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -55,7 +50,6 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 import wehavecookies56.kk.entities.magic.EntityThunder;
-import wehavecookies56.kk.entities.projectiles.EntityEternalFlamesProjectile;
 import wehavecookies56.kk.item.ItemHpOrb;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
@@ -202,7 +196,9 @@ public class EventHandler {
 			if(event.source.getSourceOfDamage() instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
-				ExtendedPlayer.get(player).addXP(10);
+				
+				EntityMob mob = (EntityMob) event.entity;
+				ExtendedPlayer.get(player).addXP((int) (mob.getEntityAttribute(SharedMonsterAttributes.maxHealth).getAttributeValue() / 2));
 			}
 		}
 	}
