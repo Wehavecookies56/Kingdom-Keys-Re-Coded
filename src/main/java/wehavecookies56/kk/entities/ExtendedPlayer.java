@@ -1,6 +1,7 @@
 package wehavecookies56.kk.entities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -454,7 +455,13 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void levelUp(int level){
-		this.level = level;
+		int exp;
+		for(int i = 1; i<level; i++)
+		{
+			exp = Arrays.stream(PlayerLevel.expNeeded, 0, ExtendedPlayer.get(player).getLevel()).sum();
+			ExtendedPlayer.get(player).addXP(exp+1);
+			PlayerLevel.LevelUp(player);
+		}
 		this.sync();
 		if(!player.worldObj.isRemote){
 			PacketDispatcher.sendTo(new ShowOverlayPacket("levelup"), (EntityPlayerMP) player);

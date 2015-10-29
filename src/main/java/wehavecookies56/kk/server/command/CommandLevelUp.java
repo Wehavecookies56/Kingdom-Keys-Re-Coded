@@ -15,28 +15,25 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
 import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.util.TextHelper;
 
-public class CommandResetLevel implements ICommand {
+public class CommandLevelUp implements ICommand {
 
 	private List aliases;
-	public CommandResetLevel() {
+	public CommandLevelUp() {
 		this.aliases = new ArrayList();
-		this.aliases.add("resetlevel");
-		this.aliases.add("kkresetlevel");
+		this.aliases.add("levelup");
+		this.aliases.add("kklevelup");
 	}
 
 	@Override
 	public int compareTo(Object arg0) {
 		return 0;
 	}
-	
-	
+
 	@Override
 	public String getName() {
-		return "resetlevel";
+		return "levelup";
 	}
 
 	public int getRequiredPermissionLevel()
@@ -46,7 +43,7 @@ public class CommandResetLevel implements ICommand {
 	
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
-		return "/resetlevel [playername]";
+		return "/levelup <level> [player]";
 	}
 
 	@Override
@@ -69,28 +66,54 @@ public class CommandResetLevel implements ICommand {
 	public void execute(ICommandSender sender, String[] args) throws CommandException {
 		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
 			EntityPlayer player = (EntityPlayer) sender.getCommandSenderEntity();
-			if(args.length == 0){
+			if(args.length == 0||args.length>2){
+				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: "+getCommandUsage(sender), EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+			}
+			else if(args.length == 1){
+				int level = 1;
+				try{
+					level = Integer.parseInt(args[0]);
+				}catch(Exception e){
+					TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 100: "+getCommandUsage(sender), EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+					System.out.println(args[1]);
+
+					System.out.println(e);
+					return;
+				}
 				ExtendedPlayer.get(player).level = 1;
 				ExtendedPlayer.get(player).experience = 0;
 				ExtendedPlayer.get(player).setStrength(1);
 				ExtendedPlayer.get(player).setDefense(1);
 				ExtendedPlayer.get(player).setMagic(1);
 				ExtendedPlayer.get(player).setHP(20);
+				
+				ExtendedPlayer.get(player).levelUp(level);
 				player.heal(ExtendedPlayer.get(player).getHP());
-				TextHelper.sendFormattedChatMessage("You level has been reset", EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
+				TextHelper.sendFormattedChatMessage("Your level is now "+args[0], EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
 
 			}
-			else if(args.length == 1)
+			else if(args.length == 2)
 			{
-	            EntityPlayerMP entityplayermp = args.length == 1 ? getPlayer(sender, args[0]) : getCommandSenderAsPlayer(sender);
+				int level = 1;
+				try{
+					level = Integer.parseInt(args[0]);
+				}catch(Exception e){
+					TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 100: "+getCommandUsage(sender), EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+					System.out.println(args[1]);
+
+					System.out.println(e);
+					return;
+				}
+	            EntityPlayerMP entityplayermp = args.length == 2 ? getPlayer(sender, args[1]) : getCommandSenderAsPlayer(sender);
 	            ExtendedPlayer.get(entityplayermp).level = 1;
 				ExtendedPlayer.get(entityplayermp).experience = 0;
 				ExtendedPlayer.get(entityplayermp).setStrength(1);
 				ExtendedPlayer.get(entityplayermp).setDefense(1);
 				ExtendedPlayer.get(entityplayermp).setMagic(1);
 				ExtendedPlayer.get(entityplayermp).setHP(20);
+				ExtendedPlayer.get(player).levelUp(level);
 				player.heal(ExtendedPlayer.get(entityplayermp).getHP());
-				TextHelper.sendFormattedChatMessage(args[0]+"'s level has been reset", EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
+				TextHelper.sendFormattedChatMessage(args[1]+"'s level is now "+args[0], EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
 
 			}
 			else

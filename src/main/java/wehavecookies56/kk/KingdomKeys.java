@@ -42,6 +42,7 @@ import wehavecookies56.kk.recipes.ModRecipes;
 import wehavecookies56.kk.server.command.CommandCheatMode;
 import wehavecookies56.kk.server.command.CommandGiveMunny;
 import wehavecookies56.kk.server.command.CommandLearnRecipe;
+import wehavecookies56.kk.server.command.CommandLevelUp;
 import wehavecookies56.kk.server.command.CommandRemoveKeychain;
 import wehavecookies56.kk.server.command.CommandResetLevel;
 import wehavecookies56.kk.util.FuelHandler;
@@ -181,6 +182,7 @@ public class KingdomKeys {
 		e.registerServerCommand(new CommandCheatMode());
 		e.registerServerCommand(new CommandRemoveKeychain());
 		e.registerServerCommand(new CommandResetLevel());
+		e.registerServerCommand(new CommandLevelUp());
 	}
 
 }
