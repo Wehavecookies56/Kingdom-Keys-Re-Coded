@@ -33,7 +33,10 @@ public class RecipeLostMemory extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_SerenityShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_TwilightGem), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_MythrilGem), 3);
 		return reqs;
 	}
 

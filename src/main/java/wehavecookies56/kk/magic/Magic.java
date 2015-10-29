@@ -1,5 +1,6 @@
 package wehavecookies56.kk.magic;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -28,6 +29,7 @@ import wehavecookies56.kk.network.packet.server.magics.MagicCure;
 import wehavecookies56.kk.network.packet.server.magics.MagicFire;
 import wehavecookies56.kk.network.packet.server.magics.MagicStop;
 import wehavecookies56.kk.network.packet.server.magics.MagicThunder;
+import wehavecookies56.kk.util.SoundHelper;
 
 public class Magic {
 
@@ -39,7 +41,7 @@ public class Magic {
 			cost = 0;
 		}
 		return cost;
-	}//Test to sync
+	}
 
 	public static void Fire(EntityPlayer player, World world)
 	{
@@ -49,20 +51,20 @@ public class Magic {
 				PacketDispatcher.sendToServer(new MagicFire());
 				world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
 				player.swingItem();
-				world.playSoundAtEntity(player, "fire.ignite", 1, 1);
+				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, "fire.fire", 5f, 0.5f, false);
 			break;
 			
 			case 2:
 				PacketDispatcher.sendToServer(new MagicFire());
 				world.spawnEntityInWorld(new EntityFira(world, player, player.posX, player.posY, player.posZ, 1));
 				player.swingItem();
-				world.playSoundAtEntity(player, "fire.ignite", 1, 1);			
+				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, "fire.fire", 5f, 0.5f, false);
 			break;
 			case 3:
 				PacketDispatcher.sendToServer(new MagicFire());
 				world.spawnEntityInWorld(new EntityFiraga(world, player, player.posX, player.posY, player.posZ, 1));
 				player.swingItem();
-				world.playSoundAtEntity(player, "fire.ignite", 1, 1);			
+				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, "fire.fire", 5f, 0.5f, false);
 			break;
 		}
 	}
