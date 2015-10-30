@@ -33,7 +33,9 @@ public class RecipePhotonDebugger extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_LightningShard), 4);
+		reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_LightningCrystal), 2);
 		return reqs;
 	}
 
