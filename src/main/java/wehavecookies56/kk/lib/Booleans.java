@@ -4,4 +4,5 @@ public class Booleans {
 
 	public static final boolean ENABLEWORLDGEN_DEFAULT = true;
 	public static final boolean ENABLEUPDATECHECK = true;
+	public static final boolean ENABLEHEARTSONHUD = false;
 }

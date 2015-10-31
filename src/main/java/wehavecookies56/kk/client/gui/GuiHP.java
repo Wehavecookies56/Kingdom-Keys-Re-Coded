@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 
@@ -95,7 +96,9 @@ public class GuiHP extends GuiScreen {
 	public void onRenderOverlayPost(RenderGameOverlayEvent event){
 		if(event.type.equals(ElementType.HEALTH) && event.isCancelable())
 		{
-			event.setCanceled(true);
+			if(!Config.EnableHeartsOnHUD){
+				event.setCanceled(true);
+			}
 		}	
 		if(event.type == RenderGameOverlayEvent.ElementType.TEXT){
 

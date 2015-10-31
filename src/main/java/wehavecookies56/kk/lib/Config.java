@@ -15,7 +15,8 @@ public class Config {
 
 	public static boolean
 	EnableWorldGen,
-	EnableUpdateCheck
+	EnableUpdateCheck,
+	EnableHeartsOnHUD
 	;
 	
 	public static String
@@ -299,9 +300,13 @@ public class Config {
 		final String NETWORK = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "network";
 		EnableUpdateCheck = config.getBoolean("Enable Update Checking", NETWORK, Booleans.ENABLEUPDATECHECK, "Toggles whether the update checker checks for updates");
 
+		/**INTERFACE*****************************/
+		final String INTERFACE = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "interface";
+		EnableHeartsOnHUD = config.getBoolean("Enable hearts on HUD", INTERFACE, Booleans.ENABLEHEARTSONHUD, "Toggles rendering of hearts on the HUD");
+		
 		/**ITEMS*********************************/
 		final String ITEMS = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "items";
-
+		
 		/**TOOLMATERIALS*************************/
 		final String TM = ITEMS + config.CATEGORY_SPLITTER + "ToolMaterials";
 		config.addCustomCategoryComment(TM, "The tool materials for items which use them, A space after commas is required. \nParameters {(String) NAME, (int) HARVESTLEVEL, (int) MAXUSES, (float) EFFICIENCY, (float) DAMAGE, (int) ENCHANTABILITY}");
