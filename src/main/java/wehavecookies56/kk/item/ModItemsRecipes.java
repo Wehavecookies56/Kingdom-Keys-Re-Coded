@@ -341,6 +341,9 @@ public class ModItemsRecipes {
 		
 		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.Potion));
 		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.MagicOrb), new ItemStack(ModItems.Ether));
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.Potion), new ItemStack(ModItems.MagicOrb), new ItemStack(ModItems.Elixir));
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.Ether), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.Elixir));
+
 		//TODO Hi-Potion
 		//BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyPotion), new ItemStack(ModItems.Potion), new ItemStack(ModItems.HiPotion));
 		//BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.Potion), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.HiPotion));

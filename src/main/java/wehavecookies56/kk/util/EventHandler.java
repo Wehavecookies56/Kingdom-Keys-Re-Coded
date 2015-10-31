@@ -302,6 +302,8 @@ public class EventHandler {
 			driveOrb.setTagCompound(new NBTTagCompound());
 			ItemStack magicOrb = new ItemStack(ModItems.MagicOrb, 1);
 			magicOrb.setTagCompound(new NBTTagCompound());
+			ItemStack HPOrb = new ItemStack(ModItems.HpOrb, 1);
+
 			if(event.entity instanceof EntityAnimal){
 				munny.getTagCompound().setInteger("amount", randomWithRange(1, 20));
 				event.entityLiving.entityDropItem(munny, 1);
@@ -309,6 +311,7 @@ public class EventHandler {
 				event.entityLiving.entityDropItem(driveOrb, 1);
 				magicOrb.getTagCompound().setInteger("amount", randomWithRange(2, 8));
 				event.entityLiving.entityDropItem(magicOrb, 1);
+				event.entityLiving.entityDropItem(HPOrb, 1);
 			}else if(event.entity instanceof EntityMob){
 				munny.getTagCompound().setInteger("amount", randomWithRange(5, 50));
 				event.entityLiving.entityDropItem(munny, 1);
@@ -316,6 +319,8 @@ public class EventHandler {
 				event.entityLiving.entityDropItem(driveOrb, 1);
 				magicOrb.getTagCompound().setInteger("amount", randomWithRange(5, 15));
 				event.entityLiving.entityDropItem(magicOrb, 1);
+				event.entityLiving.entityDropItem(HPOrb, 1);
+
 			}else if(event.entity instanceof EntityAgeable){
 				munny.getTagCompound().setInteger("amount", randomWithRange(50, 100));
 				event.entityLiving.entityDropItem(munny, 1);
@@ -352,7 +357,27 @@ public class EventHandler {
 		}
 		else if(event.item.getEntityItem().getItem() instanceof ItemHpOrb)
 		{
-			if(event.entityPlayer.getHealth() != 20)
+			if(event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle)
+			{
+				return;
+			}
+			
+			HpOrbPickup packet = new HpOrbPickup(event.item.getEntityItem());
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+			{
+				event.entityPlayer.heal(2);
+				PacketDispatcher.sendToServer(packet);
+			}
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+			{
+				if(event.entityPlayer.getHealth() != 20)
+				{
+					event.entityPlayer.heal(2);
+					event.item.getEntityItem().stackSize--;
+				}
+			}
+			//Old Method which heals you
+			/*if(event.entityPlayer.getHealth() != 20)
 			{
 				HpOrbPickup packet = new HpOrbPickup(event.item.getEntityItem());
 				if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
@@ -368,7 +393,8 @@ public class EventHandler {
 						event.item.getEntityItem().stackSize--;
 					}
 				}
-			}
+			}*/
+			
 		}
 		else if(event.item.getEntityItem().getItem() == ModItems.DriveOrb){
 			ExtendedPlayer props = ExtendedPlayer.get(event.entityPlayer);
@@ -391,18 +417,19 @@ public class EventHandler {
 
 			ExtendedPlayer props = ExtendedPlayer.get(event.entityPlayer);
 			double mp = props.getMp();
-			//if(mp < max)
+			if(event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle)
 			{
-				MagicOrbPickup packet = new MagicOrbPickup(event.item.getEntityItem());
-				if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-				{
-					PacketDispatcher.sendToServer(packet);
-				}
-				if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
-				{
-					event.item.getEntityItem().stackSize--;
-					ExtendedPlayer.get(event.entityPlayer).addMp(event.item.getEntityItem().getTagCompound().getInteger("amount"));
-				}
+				return;
+			}
+			MagicOrbPickup packet = new MagicOrbPickup(event.item.getEntityItem());
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+			{
+				PacketDispatcher.sendToServer(packet);
+			}
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+			{
+				event.item.getEntityItem().stackSize--;
+				ExtendedPlayer.get(event.entityPlayer).addMp(event.item.getEntityItem().getTagCompound().getInteger("amount"));
 			}
 		}
 		else if(event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.NormalBlox) || event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.HardBlox) || event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.MetalBlox))
