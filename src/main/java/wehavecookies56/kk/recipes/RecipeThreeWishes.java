@@ -33,7 +33,9 @@ public class RecipeThreeWishes extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_EnergyStone), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_LucidGem), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 5);
 		return reqs;
 	}
 

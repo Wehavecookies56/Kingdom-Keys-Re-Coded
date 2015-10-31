@@ -33,7 +33,10 @@ public class RecipeVoidGear extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_LucidShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerShard), 5);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 2);
 		return reqs;
 	}
 

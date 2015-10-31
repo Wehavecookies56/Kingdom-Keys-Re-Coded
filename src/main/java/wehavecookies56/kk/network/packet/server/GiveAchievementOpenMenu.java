@@ -3,6 +3,7 @@ package wehavecookies56.kk.network.packet.server;
 import java.io.IOException;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.stats.Achievement;
@@ -30,6 +31,6 @@ public class GiveAchievementOpenMenu extends AbstractServerMessage<GiveAchieveme
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		player.addStat(ModAchievements.openMenu, 1);
-		System.out.println("Achievement Get!");
+		System.out.println("Achievement Get for"+player);
 	}
 }

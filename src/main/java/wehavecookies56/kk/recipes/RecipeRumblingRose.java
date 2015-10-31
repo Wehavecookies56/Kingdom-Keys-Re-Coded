@@ -33,7 +33,10 @@ public class RecipeRumblingRose extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 4);
+		reqs.put(MaterialRegistry.get(Strings.SM_BrightShard), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_LucidGem), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_EnergyStone), 2);
 		return reqs;
 	}
 

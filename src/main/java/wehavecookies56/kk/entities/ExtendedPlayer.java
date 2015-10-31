@@ -455,6 +455,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void levelUp(int level){
+<<<<<<< HEAD
 		this.level = level;
 		this.sync();
 		if(!player.worldObj.isRemote){
@@ -466,6 +467,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void levelUp(int level, boolean command){
 		//STUFF FOR COMMAND
 		this.level = level;
+=======
+		this.level=level;
+>>>>>>> origin/master
 		this.sync();
 		if(!player.worldObj.isRemote){
 			PacketDispatcher.sendTo(new ShowOverlayPacket("levelup"), (EntityPlayerMP) player);

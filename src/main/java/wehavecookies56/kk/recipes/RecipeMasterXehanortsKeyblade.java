@@ -33,7 +33,11 @@ public class RecipeMasterXehanortsKeyblade extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkCrystal), 13);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 11);
+		reqs.put(MaterialRegistry.get(Strings.SM_LucidCrystal), 5);
+		reqs.put(MaterialRegistry.get(Strings.SM_OrichalcumPlus), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 1);
 		return reqs;
 	}
 
