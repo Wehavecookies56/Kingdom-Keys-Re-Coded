@@ -12,6 +12,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -230,6 +231,42 @@ public class EventHandler {
 					else if(event.entity instanceof EntityMob)
 					{
 						event.entityLiving.entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
+						if(event.entity instanceof EntityWitch)
+						{
+							int rand;
+							rand = randomWithRange(1, 30);
+							if(rand == 1)
+							{
+								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicFire), 1);
+							}
+							else if(rand == 5)
+							{
+								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicBlizzard), 1);
+							}
+							else if(rand == 9)
+							{
+								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicThunder), 1);
+							}
+							
+							else if(rand == 13)
+							{
+								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicCure), 1);
+							}
+							
+							else if(rand == 17)
+							{
+							//	event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicGravity), 1);
+							}
+							
+							else if(rand == 21)
+							{
+								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicAero), 1);
+							}
+							else if(rand == 25)
+							{
+								//event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicStop), 1);
+							}
+						}
 					}
 					else if(event.entity instanceof EntityAgeable)
 					{

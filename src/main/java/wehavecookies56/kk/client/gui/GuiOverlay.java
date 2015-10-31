@@ -48,8 +48,19 @@ public class GuiOverlay extends GuiScreen
 				}
 			}
 			if(showMunny){
-				mc.fontRendererObj.drawString("Munny Get!", 5, 5 + mc.fontRendererObj.FONT_HEIGHT + 10, 0xFFFFFF);
-				mc.fontRendererObj.drawString(munnyGet+"", 5, 5 + (mc.fontRendererObj.FONT_HEIGHT*2) + 10, 0xFFFFFF);
+				if(!showExp)
+				{
+					GL11.glPushMatrix();
+					GL11.glTranslatef(1, 1, 0);
+					mc.fontRendererObj.drawString("Munny Get!", 5, 5, 0xFFFFFF);
+					mc.fontRendererObj.drawString(munnyGet+"", 5, 5 + mc.fontRendererObj.FONT_HEIGHT, 0xFFFFFF);
+					GL11.glPopMatrix();
+				}
+				else
+				{
+					mc.fontRendererObj.drawString("Munny Get!", 5, 5 + mc.fontRendererObj.FONT_HEIGHT + 10, 0xFFFFFF);
+					mc.fontRendererObj.drawString(munnyGet+"", 5, 5 + (mc.fontRendererObj.FONT_HEIGHT*2) + 10, 0xFFFFFF);
+				}
 				if(timeMunny+4 <= (int)mc.getSystemTime()/1000)
 				{
 					showMunny = false;
