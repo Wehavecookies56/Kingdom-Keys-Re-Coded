@@ -455,13 +455,17 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void levelUp(int level){
-		int exp;
-		for(int i = 1; i<level; i++)
-		{
-			exp = Arrays.stream(PlayerLevel.expNeeded, 0, ExtendedPlayer.get(player).getLevel()).sum();
-			ExtendedPlayer.get(player).addXP(exp+1);
-			PlayerLevel.LevelUp(player);
+		this.level = level;
+		this.sync();
+		if(!player.worldObj.isRemote){
+			PacketDispatcher.sendTo(new ShowOverlayPacket("levelup"), (EntityPlayerMP) player);
+			PacketDispatcher.sendTo(new SyncStatMessagesPacket("clr"), (EntityPlayerMP) player);
 		}
+	}
+	
+	public void levelUp(int level, boolean command){
+		//STUFF FOR COMMAND
+		this.level = level;
 		this.sync();
 		if(!player.worldObj.isRemote){
 			PacketDispatcher.sendTo(new ShowOverlayPacket("levelup"), (EntityPlayerMP) player);
