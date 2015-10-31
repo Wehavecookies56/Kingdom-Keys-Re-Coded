@@ -217,6 +217,52 @@ public class ModItemsRecipes {
 
 		ItemStack DarkCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 		ItemStacks.createSynthesisItem(DarkCrystal, Strings.SM_DarkCrystal, "S");
+		
+		
+		ItemStack DenseShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(DenseShard, Strings.SM_DenseShard, "C");
+
+		ItemStack DenseStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(DenseStone, Strings.SM_DenseStone, "B");
+
+		ItemStack DenseGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(DenseGem, Strings.SM_DenseGem, "A");
+
+		ItemStack DenseCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(DenseCrystal, Strings.SM_DenseCrystal, "S");
+
+		ItemStack TwilightShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(TwilightShard, Strings.SM_TwilightShard, "C");
+
+		ItemStack TwilightStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(TwilightStone, Strings.SM_TwilightStone, "B");
+		
+		ItemStack TwilightGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(TwilightGem, Strings.SM_TwilightGem, "A");
+		
+		ItemStack TwilightCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(TwilightCrystal, Strings.SM_TwilightCrystal, "S");
+		
+		ItemStack MythrilShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(MythrilShard, Strings.SM_MythrilShard, "C");
+		
+		ItemStack MythrilStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(MythrilStone, Strings.SM_MythrilStone, "B");
+
+		ItemStack MythrilGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(MythrilGem, Strings.SM_MythrilGem, "A");
+		
+		ItemStack SerenityShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(SerenityShard, Strings.SM_SerenityShard, "C");
+		ItemStack SerenityStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+		ItemStacks.createSynthesisItem(SerenityStone, Strings.SM_SerenityStone, "B");
+				
+		GameRegistry.addShapelessRecipe(MythrilShard, DenseStone, DenseShard, TwilightStone, TwilightShard);
+		GameRegistry.addShapelessRecipe(MythrilStone, DenseStone, DenseShard, TwilightStone, TwilightShard, SerenityShard);
+		GameRegistry.addShapelessRecipe(MythrilGem, DenseCrystal, DenseGem, TwilightCrystal, TwilightGem);
+		GameRegistry.addShapelessRecipe(MythrilCrystal, DenseCrystal, DenseGem, TwilightCrystal, TwilightGem, SerenityStone);
+
+		
 
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.BlazingInfusedCoal), BlazingCrystal, Items.coal);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.FrostInfusedSnowBall), FrostCrystal, Items.snowball);
