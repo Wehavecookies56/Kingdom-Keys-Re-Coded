@@ -271,7 +271,7 @@ public class ModItemsRecipes {
 		ItemStacks.createSynthesisItem(ManifestIllusion, Strings.SM_ManifestIllusion, "S");
 		
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.AbandonedKnowledge), 
-				"L  ",
+				"D  ",
 				" V ",
 				'D', LostIllusion, 'V', ModItems.VoidKnowledge
 				);

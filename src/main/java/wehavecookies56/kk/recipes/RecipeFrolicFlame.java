@@ -33,7 +33,10 @@ public class RecipeFrolicFlame extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_BlazingGem), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_BlazingCrystal), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 1);
 		return reqs;
 	}
 
