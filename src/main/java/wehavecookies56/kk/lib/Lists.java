@@ -1,18 +1,33 @@
 package wehavecookies56.kk.lib;
 
+import static wehavecookies56.kk.item.ModItems.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.entity.player.EntityPlayer;
-import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
-
-import static wehavecookies56.kk.item.ModItems.*;
+import net.minecraft.item.Item;
+import wehavecookies56.kk.item.ModItems;
 
 public class Lists {
 
 	public static List<String> recipes = new ArrayList<String>();
+	public static List<Item> orgWeapons = new ArrayList<Item>();
 
 	public static void init(){
+		orgWeapons.add(ModItems.Interdiction);
+		orgWeapons.add(ModItems.Sharpshooter);
+		orgWeapons.add(ModItems.Lindworm);
+		orgWeapons.add(ModItems.FrozenPride);
+		orgWeapons.add(ModItems.Skysplitter);
+		orgWeapons.add(ModItems.BookofRetribution);
+		orgWeapons.add(ModItems.Lunatic);
+		orgWeapons.add(ModItems.EternalFlames);
+		orgWeapons.add(ModItems.Arpeggio);
+		orgWeapons.add(ModItems.FairGame);
+		orgWeapons.add(ModItems.GracefulDahlia);
+		orgWeapons.add(ModItems.Foudre);
+		orgWeapons.add(ModItems.BlazeofGlory);
+		
 		recipes.add(AbaddonPlasma.getUnlocalizedName());
 		recipes.add(AbyssalTide.getUnlocalizedName());
 		recipes.add(AllforOne.getUnlocalizedName());

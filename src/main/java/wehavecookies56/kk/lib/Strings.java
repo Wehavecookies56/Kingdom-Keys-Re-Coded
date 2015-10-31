@@ -338,7 +338,21 @@ public class Strings {
 	FairGame = "fairgame",
 	GracefulDahlia = "gracefuldahlia",
 	Foudre = "foudre",
-	BlazeofGlory = "blazeofglory";
+	BlazeofGlory = "blazeofglory"
+	;
+	
+	public static final String
+	AbandonedKnowledge = "abandonedknowledge",
+	DarkKnowledge = "darkknowledge",
+	EclipsedKnowledge = "eclipsedknowledge",
+	ForgottenKnowledge = "forgottenknowledge",
+	IlludedKnowledge = "illudedknowledge",
+	LostKnowledge = "lostknowledge",
+	ManifestKnowledge = "manifestknowledge",
+	ObscuredKnowledge = "obscuredknowledge",
+	UnknownKnowledge = "unknownknowledge",
+	VoidKnowledge = "voidknowledge"
+	;
 
 	//Keyblades
 	public static final String

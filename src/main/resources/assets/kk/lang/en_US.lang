@@ -212,6 +212,17 @@ item.darkinfusediron.name=Dark-Infused Iron Ingot
 item.lightninginfusedgold.name=Lightning-Infused Gold Ingot
 item.mythrilinfuseddiamond.name=Mythril-Infused Diamond
 
+item.abandonedknowledge.name=Abandoned Knowledge
+item.darkknowledge.name=Dark Knowledge
+item.eclipsedknowledge.name=Eclipsed Knowledge
+item.forgottenknowledge.name=Forgotten Knowledge
+item.illudedknowledge.name=Illuded Knowledge
+item.lostknowledge.name=Lost Knowledge
+item.manifestknowledge.name=Manifest Knowledge
+item.obscuredknowledge.name=Obscured Knowledge
+item.unknownknowledge.name=Unknown Knowledge
+item.voidknowledge.name=Void Knowledge
+
 #Music Discs
 disc.duration.desc=Duration
 disc.durationunits.desc=(mins:secs)
@@ -418,7 +429,7 @@ item.gullwingchain.name=Gull Wing Chain
 item.heroscrestchain.name=Hero's Crest Chain
 item.hiddendragonchain.name=Hidden Dragon Chain
 item.hyperdrivechain.name=Hyperdrive Chain
-item.incompletekibladechain.name=Incomplete Ki-blade Chain
+item.incompletekibladechain.name=Incomplete χ-blade Chain
 item.junglekingchain.name=Jungle King Chain
 item.keybladeofpeoplesheartschain.name=Keyblade of People's Hearts Chain
 item.kibladechain.name=Ki-blade Chain

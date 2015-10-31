@@ -133,6 +133,7 @@ public class GuiSynthesis extends GuiTooltip{
 			Back.visible = false;
 			Recipes.visible = true;
 			FreeDev.visible = true;
+			FreeDev.enabled = false;
 			Materials.visible = true;
 			Create.visible = false;
 		}else{
@@ -195,6 +196,7 @@ public class GuiSynthesis extends GuiTooltip{
 						int distX = 100;
 						int column = 0;
 						GL11.glPushMatrix();{
+							GL11.glColor4f(1, 1, 1, 1);
 							ResourceLocation synthMaterial = pair.getKey().getTexture();
 							if(synthMaterial == null){
 								GL11.glTranslatef(270 + (distX*column), 110 + (distY*row), 0);
