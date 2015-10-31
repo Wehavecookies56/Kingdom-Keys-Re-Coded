@@ -33,7 +33,9 @@ public class RecipeCrownofGuilt extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkStone), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_TranquilGem), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 2);
 		return reqs;
 	}
 

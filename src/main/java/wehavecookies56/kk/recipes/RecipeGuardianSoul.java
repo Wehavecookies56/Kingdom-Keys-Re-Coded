@@ -33,7 +33,10 @@ public class RecipeGuardianSoul extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 4);
+		reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_EnergyStone), 1);
 		return reqs;
 	}
 
