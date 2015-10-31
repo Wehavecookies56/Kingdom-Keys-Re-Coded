@@ -26,7 +26,7 @@ public class GuiMaterialList extends GuiScrollingList {
 	static int posY = (height-200)/2;
 
 	public GuiMaterialList(GuiSynthesis parent){
-		super(parent.mc, 150, 300, 60, parent.height - ((parent.height/8)+70/16), 8, 35);
+		super(parent.mc, 150, 500, 60, parent.height - ((parent.height/8)+70/16), 8, 35);
 		this.parent = parent;
 	}
 
@@ -56,7 +56,7 @@ public class GuiMaterialList extends GuiScrollingList {
 		
 		materials.addAll(props.getKnownMaterialsMap().keySet());
 		
-		this.f.drawString(f.trimStringToWidth(TextHelper.localize(materials.get(var1).toString() + ".name") + " x" + props.knownMaterialsMap.get(materials.get(var1)), listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
+		this.f.drawString(f.trimStringToWidth(TextHelper.localize(materials.get(var1).toString() + ".name") + " x" + props.knownMaterialsMap.get(materials.get(var1)), listWidth - 5), this.left + 3, var3 + 2, 0xFFFFFF);
 
 	}
 }

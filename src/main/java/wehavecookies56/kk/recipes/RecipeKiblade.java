@@ -33,7 +33,26 @@ public class RecipeKiblade extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 99);
+		reqs.put(MaterialRegistry.get(ModItems.Chain_IncompleteKiblade.getUnlocalizedName()), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_Orichalcum), 8);
+		reqs.put(MaterialRegistry.get(Strings.SM_OrichalcumPlus), 5);
+		reqs.put(MaterialRegistry.get(Strings.SM_ManifestIllusion), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_LostIllusion), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_BlazingCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_DenseCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_FrostCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_LightningCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_LucidCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_MythrilCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_RemembranceCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_SerenityCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_StormyCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_TranquilCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_TwilightCrystal), 2);
 		return reqs;
 	}
 

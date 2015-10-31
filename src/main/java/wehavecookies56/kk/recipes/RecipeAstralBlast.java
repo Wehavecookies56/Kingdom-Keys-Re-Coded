@@ -33,9 +33,9 @@ public class RecipeAstralBlast extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingCrystal), 1);
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingStone), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_LucidStone), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 2);
 		return reqs;
 	}
 

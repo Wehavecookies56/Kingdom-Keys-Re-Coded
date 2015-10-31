@@ -150,7 +150,10 @@ public class Strings {
 	HoldForInfo = "holdforinfo.desc",
 	GhostBloxDesc = "tile.ghostblox.desc",
 	DangerBloxDesc = "tile.dangerblox.desc",
-	BounceBloxDesc = "tile.bounceblox.desc"
+	BounceBloxDesc = "tile.bounceblox.desc",
+	KKChestDesc_1 = "tile.kkchest.desc1",
+	KKChestDesc_2 = "tile.kkchest.desc2",
+	SavePointDesc = "tile.savepoint.desc"
 	;
 
 

@@ -2,6 +2,9 @@ package wehavecookies56.kk.materials;
 
 import static wehavecookies56.kk.api.materials.MaterialRegistry.*;
 
+import net.minecraft.init.Items;
+import wehavecookies56.kk.block.ModBlocks;
+import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Strings;
 
 public class ModMaterials {
@@ -87,5 +90,12 @@ public class ModMaterials {
 		
 		registerMaterial(new MaterialLostIllusion(Strings.SM_LostIllusion));
 		registerMaterial(new MaterialManifestIllusion(Strings.SM_ManifestIllusion));
+		
+		registerMaterial(new MaterialIncompleteKiBlade(ModItems.Chain_IncompleteKiblade.getUnlocalizedName()));
+		registerMaterial(new MaterialStick(Items.stick.getUnlocalizedName()));
+		registerMaterial(new MaterialNormalBlox(ModBlocks.NormalBlox.getUnlocalizedName()));
+		registerMaterial(new MaterialHardBlox(ModBlocks.HardBlox.getUnlocalizedName()));
+		registerMaterial(new MaterialMetalBlox(ModBlocks.MetalBlox.getUnlocalizedName()));
+
 	}
 }

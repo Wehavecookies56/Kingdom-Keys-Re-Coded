@@ -31,8 +31,9 @@ public class RecipeAbaddonPlasma extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
-		reqs.put(MaterialRegistry.get(Strings.SM_FrostShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkStone), 4);
 		return reqs;
 	}
 

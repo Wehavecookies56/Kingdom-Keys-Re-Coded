@@ -144,6 +144,24 @@ public class EventHandler {
 				}
 			}
 		}
+		Item kkchest = Item.getItemFromBlock(ModBlocks.KKChest);
+		if(event.itemStack.getItem() == kkchest){
+			event.toolTip.add(TextHelper.localize(Strings.KKChestDesc_1));
+			if(!KeyboardHelper.isShiftDown()){
+				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
+			}else{
+				event.toolTip.add(TextHelper.localize(Strings.KKChestDesc_2));
+			}
+		}
+		
+		Item savepoint = Item.getItemFromBlock(ModBlocks.SavePoint);
+		if(event.itemStack.getItem() == savepoint){
+			if(!KeyboardHelper.isShiftDown()){
+				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
+			}else{
+				event.toolTip.add(TextHelper.localize(Strings.SavePointDesc));
+			}
+		}
 
 	}
 

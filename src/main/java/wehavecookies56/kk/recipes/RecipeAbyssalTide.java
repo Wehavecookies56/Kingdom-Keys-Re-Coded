@@ -31,9 +31,8 @@ public class RecipeAbyssalTide extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingCrystal), 1);
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingStone), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_FrostShard), 3);
 
 		return reqs;
 	}

@@ -196,10 +196,15 @@ public class GuiSynthesis extends GuiTooltip{
 						int column = 0;
 						GL11.glPushMatrix();{
 							ResourceLocation synthMaterial = pair.getKey().getTexture();
-							mc.renderEngine.bindTexture(synthMaterial);
-							GL11.glTranslatef(270 + (distX*column), 110 + (distY*row), 0);
-							GL11.glScalef(0.0625f, 0.0625f, 0.0625f);
-							drawTexturedModalRect(0, 0, 0, 0, 256, 256);
+							if(synthMaterial == null){
+								GL11.glTranslatef(270 + (distX*column), 110 + (distY*row), 0);
+								Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(pair.getKey().getItem(), 0, 0);
+							}else{
+								mc.renderEngine.bindTexture(synthMaterial);
+								GL11.glTranslatef(270 + (distX*column), 110 + (distY*row), 0);
+								GL11.glScalef(0.0625f, 0.0625f, 0.0625f);
+								drawTexturedModalRect(0, 0, 0, 0, 256, 256);
+							}
 						}GL11.glPopMatrix();
 						String name = pair.getKey().getName();
 						drawString(fontRendererObj, TextHelper.localize(name + ".name") + " x" + pair.getValue(), 288 + (distX*column), 114 + (distY*row), 0xFFFFFF);

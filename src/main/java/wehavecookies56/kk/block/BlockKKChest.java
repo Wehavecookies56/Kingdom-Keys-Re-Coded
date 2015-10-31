@@ -35,7 +35,7 @@ public class BlockKKChest extends BlockContainer implements ITileEntityProvider 
 	protected Random rand = new Random();
 
 	private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{B3DLoader.B3DFrameProperty.instance}); 
-	private int frame;
+	private int frame = 0;
 	
 	protected BlockKKChest(Material material, String toolClass, int level, float hardness, float resistance) {
 		super(material);
@@ -68,8 +68,6 @@ public class BlockKKChest extends BlockContainer implements ITileEntityProvider 
 		if (world.isRemote) return true;
 		if(player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemKeyblade)
 		{
-			frame = 300;
-			world.markBlockForUpdate(pos);
 			GuiHelper.openKKChest(player, world, pos);
 			return true;
 		}
