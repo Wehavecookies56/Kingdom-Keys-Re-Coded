@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import wehavecookies56.kk.api.materials.Material;
 import wehavecookies56.kk.api.materials.MaterialRegistry;
@@ -33,7 +34,7 @@ public class RecipeWoodenKeyblade extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Items.wooden_sword.getUnlocalizedName()), 1);
 		return reqs;
 	}
 

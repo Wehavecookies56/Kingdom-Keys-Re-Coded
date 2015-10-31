@@ -33,7 +33,9 @@ public class RecipeUnicornisForetellersKeyblade extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_DenseStone), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_Orichalcum), 1);
 		return reqs;
 	}
 

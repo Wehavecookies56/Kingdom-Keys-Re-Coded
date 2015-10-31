@@ -33,7 +33,11 @@ public class RecipeStormfall extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_BrightStone), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_StormyCrystal), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_StormyStone), 2);
 		return reqs;
 	}
 

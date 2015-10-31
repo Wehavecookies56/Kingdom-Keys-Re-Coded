@@ -93,6 +93,7 @@ public class ModMaterials {
 		
 		registerMaterial(new MaterialIncompleteKiBlade(ModItems.Chain_IncompleteKiblade.getUnlocalizedName()));
 		registerMaterial(new MaterialStick(Items.stick.getUnlocalizedName()));
+		registerMaterial(new MaterialWoodenSword(Items.wooden_sword.getUnlocalizedName()));
 		registerMaterial(new MaterialNormalBlox(ModBlocks.NormalBlox.getUnlocalizedName()));
 		registerMaterial(new MaterialHardBlox(ModBlocks.HardBlox.getUnlocalizedName()));
 		registerMaterial(new MaterialMetalBlox(ModBlocks.MetalBlox.getUnlocalizedName()));

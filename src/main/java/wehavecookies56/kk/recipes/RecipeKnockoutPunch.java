@@ -33,7 +33,10 @@ public class RecipeKnockoutPunch extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_BrightStone), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_MythrilGem), 1);
 		return reqs;
 	}
 

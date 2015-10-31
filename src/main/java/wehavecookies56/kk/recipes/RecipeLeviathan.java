@@ -33,7 +33,9 @@ public class RecipeLeviathan extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_FrostStone), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_LucidCrystal), 2);
 		return reqs;
 	}
 

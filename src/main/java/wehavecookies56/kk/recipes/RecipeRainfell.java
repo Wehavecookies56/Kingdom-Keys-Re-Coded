@@ -33,7 +33,10 @@ public class RecipeRainfell extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkStone), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_FrostStone), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_LucidShard), 5);
+		reqs.put(MaterialRegistry.get(Strings.SM_StormyGem), 1);
 		return reqs;
 	}
 

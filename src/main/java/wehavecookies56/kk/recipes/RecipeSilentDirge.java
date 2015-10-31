@@ -34,7 +34,9 @@ public class RecipeSilentDirge extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_TwilightCrystal), 2);
 		return reqs;
 	}
 

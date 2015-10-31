@@ -33,7 +33,9 @@ public class RecipeWinnersProof extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 5);
+		reqs.put(MaterialRegistry.get(Strings.SM_DarkStone), 3);
+		reqs.put(MaterialRegistry.get(Strings.SM_TranquilShard), 4);
 		return reqs;
 	}
 

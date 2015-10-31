@@ -33,7 +33,9 @@ public class RecipePixiePetal extends Recipe {
 	@Override
 	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 1);
+		reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_BrightShard), 2);
+		reqs.put(MaterialRegistry.get(Strings.SM_LucidStone), 2);
 		return reqs;
 	}
 
