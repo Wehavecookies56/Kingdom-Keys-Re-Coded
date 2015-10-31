@@ -41,6 +41,7 @@ public class ModBlocks {
 		PowerOreE,
 		RemembranceOre,
 		SerenityOre,
+		StormyOre,
 		TranquilOre,
 		TwilightOre,
 		SynthesisTable,
@@ -74,6 +75,8 @@ public class ModBlocks {
 		RemembranceOre = new BlockRemembranceOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.RemembranceOre).setCreativeTab(tabKingdomKeysBlocks);
 		SerenityOre = new BlockSerenityOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.SerenityOre).setCreativeTab(tabKingdomKeysBlocks);
 		TranquilOre = new BlockTranquilOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.TranquilOre).setCreativeTab(tabKingdomKeysBlocks);
+		SerenityOre = new BlockSerenityOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.SerenityOre).setCreativeTab(tabKingdomKeysBlocks);
+		StormyOre = new BlockStormyOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.StormyOre).setCreativeTab(tabKingdomKeysBlocks);
 		TwilightOre = new BlockTwilightOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.TwilightOre).setCreativeTab(tabKingdomKeysBlocks);
 		SynthesisTable = new BlockSynthesisTable(Material.wood, "axe", 0, 1, 1).setUnlocalizedName(Strings.SynthesisTable).setCreativeTab(tabKingdomKeysBlocks);
 		KKChest = new BlockKKChest(Material.rock, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.KKChest).setCreativeTab(tabKingdomKeysBlocks).setStepSound(KKChest.soundTypeStone);
@@ -107,6 +110,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(PowerOreE, Strings.PowerOreE);
 		GameRegistry.registerBlock(RemembranceOre, Strings.RemembranceOre);
 		GameRegistry.registerBlock(SerenityOre, Strings.SerenityOre);
+		GameRegistry.registerBlock(StormyOre, Strings.StormyOre);
 		GameRegistry.registerBlock(TranquilOre, Strings.TranquilOre);
 		GameRegistry.registerBlock(TwilightOre, Strings.TwilightOre);
 		GameRegistry.registerBlock(SynthesisTable, Strings.SynthesisTable);
@@ -139,6 +143,7 @@ public class ModBlocks {
 		registerRender(PowerOreE);
 		registerRender(RemembranceOre);
 		registerRender(SerenityOre);
+		registerRender(StormyOre);
 		registerRender(TranquilOre);
 		registerRender(TwilightOre);
 		registerRender(SynthesisTable);

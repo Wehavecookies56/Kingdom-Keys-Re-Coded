@@ -138,6 +138,7 @@ public class Strings {
 	PowerOreE = "poweroree",
 	RemembranceOre = "remembranceore",
 	SerenityOre = "serenityore",
+	StormyOre = "stormyore",
 	TranquilOre = "tranquilore",
 	TwilightOre = "twilightore",
 

@@ -842,6 +842,26 @@ public class EventHandler {
 				event.drops.add(TwilightCrystal);
 			}
 		}
+		else if (event.state.getBlock() == ModBlocks.StormyOre){
+			int drop = randomWithRange(1, 4);
+			if(drop == 1){
+				ItemStack StormyShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(StormyShard, Strings.SM_StormyShard, "C");
+				event.drops.add(StormyShard);
+			}else if (drop == 2){
+				ItemStack StormyStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(StormyStone, Strings.SM_StormyStone, "B");
+				event.drops.add(StormyStone);
+			}else if (drop == 3){
+				ItemStack StormyGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(StormyGem, Strings.SM_StormyGem, "A");
+				event.drops.add(StormyGem);
+			}else if (drop == 4){
+				ItemStack StormyCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(StormyCrystal, Strings.SM_StormyCrystal, "S");
+				event.drops.add(StormyCrystal);
+			}
+		}
 		else if (event.state.getBlock() == ModBlocks.PrizeBlox){
 			int drop = randomWithRange(1, 29);
 			if(drop == 1){
