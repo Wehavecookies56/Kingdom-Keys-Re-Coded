@@ -10,8 +10,8 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Kd kk:items\models\jungleking_1
-map_Ka kk:items\\models\\jungleking_1
+map_Kd kk:items/models/jungleking_1
+map_Ka kk:items/models/jungleking_1
 
 newmtl Material__40
 Ns 9.803922
@@ -22,5 +22,5 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Kd kk:items\models\jungleking_2
-map_Ka kk:items\\models\\jungleking_2
+map_Kd kk:items/models/jungleking_2
+map_Ka kk:items/models/jungleking_2
