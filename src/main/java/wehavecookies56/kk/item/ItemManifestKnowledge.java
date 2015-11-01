@@ -18,11 +18,11 @@ public class ItemManifestKnowledge extends Item {
 	}
 	
 	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn) {
 		if(worldIn.isRemote){
 			PacketDispatcher.sendToServer(new ManifestKnowledgePacket());
-		}		
-		return super.onItemUse(stack, playerIn, worldIn, pos, side, hitX, hitY, hitZ);
+		}
+		return super.onItemRightClick(itemStackIn, worldIn, playerIn);
 	}
 	
 }
