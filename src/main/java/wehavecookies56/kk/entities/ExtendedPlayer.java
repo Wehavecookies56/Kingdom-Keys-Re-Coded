@@ -33,11 +33,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public int munny, maxMunny;
 
-	public static int level;
+	public int level;
 
 	public int maxLevel;
 
-	public static int experience;
+	public int experience;
 
 	public int maxExperience;
 
