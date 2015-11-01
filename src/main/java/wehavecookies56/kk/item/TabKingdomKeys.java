@@ -49,13 +49,18 @@ public class TabKingdomKeys extends CreativeTabs {
 
 	public void getSkulls(List list) throws IOException {
 		ItemStack WHC56skull = new ItemStack(Items.skull, 1, 3);
-		WHC56skull.setTagCompound(new NBTTagCompound());
-		WHC56skull.getTagCompound().setTag("SkullOwner", new NBTTagString("Qwenit"));
-		list.add(WHC56skull);
-		ItemStack AAskull = new ItemStack(Items.skull, 1, 3);
-		AAskull.setTagCompound(new NBTTagCompound());
-		AAskull.getTagCompound().setTag("SkullOwner", new NBTTagString("Abelatox"));
-		list.add(AAskull);
+		try{
+			WHC56skull.setTagCompound(new NBTTagCompound());
+			WHC56skull.getTagCompound().setTag("SkullOwner", new NBTTagString("Qwenit"));
+			list.add(WHC56skull);
+			ItemStack AAskull = new ItemStack(Items.skull, 1, 3);
+			AAskull.setTagCompound(new NBTTagCompound());
+			AAskull.getTagCompound().setTag("SkullOwner", new NBTTagString("Abelatox"));
+			list.add(AAskull);
+		}catch(Exception e){
+			
+		}
+		
 	}
 
 }
