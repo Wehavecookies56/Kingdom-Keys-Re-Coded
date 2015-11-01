@@ -186,6 +186,8 @@ item.ventus_boots.name=Ventus's Boots
 #Misc
 item.emptybottle.name=Empty Bottle
 item.potion.name=Potion
+item.ether.name=Ether
+item.elixir.name=Elixir
 item.hporb.name=HP Orb
 item.driveorb.name=DP Orb
 item.magicorb.name=MP Orb
@@ -248,7 +250,7 @@ item.organizationxiii.name=Music Disc
 item.record.Organization XIII.desc=Yoko Shimomura - Organization XIII
 item.sanctuary.name=Music Disc
 item.record.Sanctuary.desc=Hikaru Utada - Sanctuary
-item.simpleandclean-planitbremix-.name=Music Disc
+item.simpleandcleanplanitbremix.name=Music Disc
 item.record.Simple And Clean PLANITb Remix.desc=Hikaru Utada - Simple And Clean -PLANITb Remix-
 item.sinistersundown.name=Music Disc
 item.record.Sinister Sundown.desc=Yoko Shimomura - Sinister Sundown

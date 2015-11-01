@@ -357,44 +357,46 @@ public class EventHandler {
 		}
 		else if(event.item.getEntityItem().getItem() instanceof ItemHpOrb)
 		{
-			if(event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle)
+			if(event.entityPlayer.getHeldItem() != null)
 			{
+				if(event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle)
 				return;
 			}
 			
 			HpOrbPickup packet = new HpOrbPickup(event.item.getEntityItem());
 			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
 			{
-				event.entityPlayer.heal(2);
+				if(event.entityPlayer.getHealth() >= ExtendedPlayer.get(event.entityPlayer).getHP())
+				{
+					return;
+				}
+				if(event.entityPlayer.getHealth() < ExtendedPlayer.get(event.entityPlayer).getHP()-1)
+				{
+					event.entityPlayer.heal(2);
+				}
+				else
+				{
+					event.entityPlayer.heal(1);
+				}
 				PacketDispatcher.sendToServer(packet);
 			}
 			if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
 			{
-				if(event.entityPlayer.getHealth() != 20)
+				if(event.entityPlayer.getHealth() >= ExtendedPlayer.get(event.entityPlayer).getHP())
 				{
-					event.entityPlayer.heal(2);
 					event.item.getEntityItem().stackSize--;
+					return;
 				}
-			}
-			//Old Method which heals you
-			/*if(event.entityPlayer.getHealth() != 20)
-			{
-				HpOrbPickup packet = new HpOrbPickup(event.item.getEntityItem());
-				if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+				if(event.entityPlayer.getHealth() < ExtendedPlayer.get(event.entityPlayer).getHP()-1)
 				{
 					event.entityPlayer.heal(2);
-					PacketDispatcher.sendToServer(packet);
 				}
-				if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+				else
 				{
-					if(event.entityPlayer.getHealth() != 20)
-					{
-						event.entityPlayer.heal(2);
-						event.item.getEntityItem().stackSize--;
-					}
+					event.entityPlayer.heal(1);
 				}
-			}*/
-			
+				event.item.getEntityItem().stackSize--;
+			}			
 		}
 		else if(event.item.getEntityItem().getItem() == ModItems.DriveOrb){
 			ExtendedPlayer props = ExtendedPlayer.get(event.entityPlayer);
@@ -417,8 +419,9 @@ public class EventHandler {
 
 			ExtendedPlayer props = ExtendedPlayer.get(event.entityPlayer);
 			double mp = props.getMp();
-			if(event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle)
+			if(event.entityPlayer.getHeldItem() != null)
 			{
+				if(event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle)
 				return;
 			}
 			MagicOrbPickup packet = new MagicOrbPickup(event.item.getEntityItem());

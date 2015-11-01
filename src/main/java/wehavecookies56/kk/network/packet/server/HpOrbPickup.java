@@ -35,10 +35,7 @@ public class HpOrbPickup extends AbstractServerMessage<HpOrbPickup> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {		
-		if(player.getHealth() < 20)
-		{
-			player.inventory.consumeInventoryItem(toRemove.getItem());
-			toRemove.stackSize--;
-		}
+		player.inventory.consumeInventoryItem(toRemove.getItem());
+		toRemove.stackSize--;
 	}
 }
