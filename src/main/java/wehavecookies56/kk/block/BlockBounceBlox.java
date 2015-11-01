@@ -12,6 +12,7 @@ public class BlockBounceBlox extends BlockBlox {
 		super(material, toolClass, level, hardness, resistance);
 	}
 
+	@Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn)
     {
     	if(!entityIn.isSneaking())
