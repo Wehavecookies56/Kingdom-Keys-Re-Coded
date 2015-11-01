@@ -277,6 +277,7 @@ public class ModItemsRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.LostKnowledge), ModItems.IlludedKnowledge, LostIllusion);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.ObscuredKnowledge), ModItems.LostKnowledge, LostIllusion);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.UnknownKnowledge), ModItems.ObscuredKnowledge, LostIllusion);
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.ManifestKnowledge), ModItems.UnknownKnowledge, LostIllusion);
 		
 		GameRegistry.addShapelessRecipe(MythrilShard, DenseStone, DenseShard, TwilightStone, TwilightShard);
 		GameRegistry.addShapelessRecipe(MythrilStone, DenseStone, DenseShard, TwilightStone, TwilightShard, SerenityShard);
@@ -295,8 +296,6 @@ public class ModItemsRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.IceCream), Items.stick, Items.sugar, Items.water_bucket, Blocks.packed_ice);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.IceCream), Items.stick, Items.sugar, Items.potionitem, Blocks.ice);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.IceCream), Items.stick, Items.sugar, Items.potionitem, Blocks.packed_ice);
-
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.ManifestKnowledge), ModItems.AbandonedKnowledge, ModItems.DarkKnowledge, ModItems.EclipsedKnowledge, ModItems.ForgottenKnowledge, ModItems.IlludedKnowledge, ModItems.LostKnowledge, ModItems.ObscuredKnowledge, ModItems.UnknownKnowledge, ModItems.VoidKnowledge);
 		
 		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.Potion));
 		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.MagicOrb), new ItemStack(ModItems.Ether));
