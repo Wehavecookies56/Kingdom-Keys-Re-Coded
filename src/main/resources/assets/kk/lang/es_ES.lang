@@ -206,11 +206,11 @@ item.levelupmagicblizzard.name=Spell Orb
 item.levelupmagicstop.name=Spell Orb
 item.levelupmagiccure.name=Spell Orb
 item.levelupmagicaero.name=Spell Orb
-item.levelupdrivevalor.name=Drive Form Unlocker
-item.levelupdrivewisdom.name=Drive Form Unlocker
-item.levelupdrivelimit.name=Drive Form Unlocker
-item.levelupdrivemaster.name=Drive Form Unlocker
-item.levelupdrivefinal.name=Drive Form Unlocker
+item.levelupdrivevalor.name=Desbloqueador de Fusión
+item.levelupdrivewisdom.name=Desbloqueador de Fusión
+item.levelupdrivelimit.name=Desbloqueador de Fusión
+item.levelupdrivemaster.name=Desbloqueador de Fusión
+item.levelupdrivefinal.name=Desbloqueador de Fusión
 
 item.frostinfusedsnowball.name=Bola de nieve Congelada
 item.blazinginfusedcoal.name=Carbón Ígneo
