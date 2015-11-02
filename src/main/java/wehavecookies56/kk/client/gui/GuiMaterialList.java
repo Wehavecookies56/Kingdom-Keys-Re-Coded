@@ -3,12 +3,18 @@ package wehavecookies56.kk.client.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.GuiScrollingList;
+import wehavecookies56.kk.api.materials.Material;
+import wehavecookies56.kk.api.materials.MaterialRegistry;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.util.TextHelper;
 
@@ -36,10 +42,15 @@ public class GuiMaterialList extends GuiScrollingList {
 	}
 
 	@Override
-	protected void elementClicked(int index, boolean doubleClick){}
+	protected void elementClicked(int index, boolean doubleClick){
+		parent.materialSelected = index;
+	}
 
 	@Override
 	protected boolean isSelected(int index){
+		if(index == parent.materialSelected){
+			return true;
+		}
 		return false;
 	}
 
@@ -56,7 +67,19 @@ public class GuiMaterialList extends GuiScrollingList {
 		
 		materials.addAll(props.getKnownMaterialsMap().keySet());
 		
-		this.f.drawString(f.trimStringToWidth(TextHelper.localize(materials.get(var1).toString() + ".name") + " x" + props.knownMaterialsMap.get(materials.get(var1)), listWidth - 5), this.left + 3, var3 + 2, 0xFFFFFF);
-
+		this.f.drawString(f.trimStringToWidth(TextHelper.localize(materials.get(var1).toString() + ".name") + " x" + props.knownMaterialsMap.get(materials.get(var1)), listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
+        Material m = MaterialRegistry.get(materials.get(var1).toString());
+        if(m.getTexture() != null){
+        	GL11.glPushMatrix();{
+        		ResourceLocation texture = m.getTexture();
+            	Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+    			GL11.glTranslatef(this.left + 3, var3 + 12, 0);
+    			GL11.glScalef(0.0625f, 0.0625f, 0.0625f);
+    			parent.drawTexturedModalRect(0, 0, 0, 0, 256, 256);
+        	}GL11.glPopMatrix();
+        }else{
+        	ItemStack item = m.getItem();
+        	this.ir.renderItemAndEffectIntoGUI(item, this.left + 3, var3 + 12);
+        }		
 	}
 }

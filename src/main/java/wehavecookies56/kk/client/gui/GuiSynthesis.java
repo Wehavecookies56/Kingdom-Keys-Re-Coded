@@ -22,6 +22,7 @@ import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
+import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -33,15 +34,15 @@ import wehavecookies56.kk.util.TextHelper;
 public class GuiSynthesis extends GuiTooltip{
 
 	public int selected = -1;
-	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3, CREATE = 4;
+	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3, CREATE = 4, TAKE1 = 5, TAKESTACK = 6, TAKEHALFSTACK = 7, TAKEALL = 8;
 	public int submenu;
 	private final GuiScreen parentScreen;
 	protected String title = TextHelper.localize(Strings.Gui_Synthesis_Main_Title);
 	private GuiRecipeList recipeList;
 	private GuiMaterialList materialList;
 
-	public GuiButton Back, FreeDev, Recipes, Materials, Create;
-	public int materialSelected;
+	public GuiButton Back, FreeDev, Recipes, Materials, Create, Take1, TakeStack, TakeHalfStack, TakeAll;
+	public int materialSelected = -1;
 
 	public GuiSynthesis(GuiScreen parentScreen){
 		this.parentScreen = parentScreen;
@@ -59,6 +60,7 @@ public class GuiSynthesis extends GuiTooltip{
 		this.buttonList.add(Recipes = new GuiButton(RECIPES, 5, 65, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes)));
 		this.buttonList.add(FreeDev = new GuiButton(FREEDEV, 5, 65+25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_FreeDev)));
 		this.buttonList.add(Materials = new GuiButton(MATERIALS, 5, 90+25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials)));
+		this.buttonList.add(Take1 = new GuiButton(TAKE1, 200, height - ((height/8)+70/16) - 25, 100, 20, TextHelper.localize("Take 1")));
 		updateButtons();
 	}
 
@@ -87,25 +89,18 @@ public class GuiSynthesis extends GuiTooltip{
 			if(isRecipeUsable(ExtendedPlayerRecipes.get(mc.thePlayer).knownRecipes.get(selected), 1)){
 				PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(ExtendedPlayerRecipes.get(mc.thePlayer).knownRecipes.get(selected), 1));
 			}
+		case TAKE1:
+			break;
 		}
 		updateButtons();
 	}
 
-	public static boolean isRecipeUsable(String name, int amountToRemove){
+	public boolean isRecipeUsable(String name, int amountToRemove){
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 		ExtendedPlayerMaterials mats = ExtendedPlayerMaterials.get(player);
 		Recipe r = RecipeRegistry.get(name);
 		List<Boolean> hasMaterials = new ArrayList<Boolean>();
-		boolean full = false;
-		for (int i = 0; i < player.inventory.mainInventory.length; i++){
-			if(player.inventory.mainInventory[i] != null){
-				full = true;
-			}
-			if(player.inventory.mainInventory[i] == null){
-				full = false;
-			}
-		}
-		if(full){
+		if(isInventoryFull()){
 			return false;
 		}
 		Iterator it = r.getRequirements().entrySet().iterator();
@@ -142,6 +137,26 @@ public class GuiSynthesis extends GuiTooltip{
 			FreeDev.visible = false;
 			Materials.visible = false;
 		}
+		if(submenu != MATERIALS){
+			Take1.visible = false;
+		}
+		if(submenu == MATERIALS){
+			if(materialSelected != -1){
+				Take1.visible = true;
+			}else{
+				Take1.visible = false;
+			}
+			if(materialSelected != -1 && !isInventoryFull()){
+				Take1.enabled = true;
+			}else{
+				Take1.enabled = false;
+			}
+		}
+		if(materialSelected != -1){
+			Take1.visible = true;
+		}else{
+			Take1.visible = false;
+		}
 		if(selected != -1 && submenu == RECIPES){
 			Create.visible = true;
 		}
@@ -151,8 +166,28 @@ public class GuiSynthesis extends GuiTooltip{
 		if(selected != -1 && isRecipeUsable(ExtendedPlayerRecipes.get(mc.thePlayer).knownRecipes.get(selected), 1)){
 			Create.enabled = true;
 		}else{
+			if(isInventoryFull()){
+				Create.displayString = "Inventory Full";
+			}
 			Create.enabled = false;
 		}
+	}
+
+	private boolean isInventoryFull() {
+		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		boolean full = false;
+		for (int i = 0; i < player.inventory.mainInventory.length; i++){
+			if(player.inventory.mainInventory[i] != null){
+				full = true;
+			}
+			if(player.inventory.mainInventory[i] == null){
+				return false;
+			}
+		}
+		if(full){
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -164,53 +199,103 @@ public class GuiSynthesis extends GuiTooltip{
 			this.materialList.drawScreen(mouseX, mouseY, partialTicks);
 		}
 		drawBackground(width, height);
-		if(submenu != MAIN){
+		if(submenu != MAIN && submenu == RECIPES){
 			drawSelected(mouseX, mouseY);
+		}else if(submenu != MAIN && submenu == MATERIALS){
+			drawSelectedMaterial(mouseX, mouseY);
 		}else{
 			selected = -1;
+			materialSelected = -1;
 		}
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
+	public void drawSelectedMaterial(int mouseX, int mouseY){
+		ExtendedPlayerMaterials mats = ExtendedPlayerMaterials.get(mc.thePlayer);
+		if(materialSelected != -1){
+			Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
+			drawGradientRect(190, 60, 500, height - ((height/8)+70/16), -1072689136, -804253680);
+		}
+		List<String> materials = new ArrayList<String>();
+		
+		materials.addAll(mats.getKnownMaterialsMap().keySet());
+		for(int i = 0; i < mats.getKnownMaterialsMap().size(); i++){
+			if(materialSelected == i){
+				GL11.glPushMatrix();{
+					GL11.glTranslatef(200, 70, 0);
+					GL11.glScalef(2, 2, 2);
+					drawString(fontRendererObj, TextHelper.localize(materials.get(i).toString() + ".name") + " x" + mats.getKnownMaterialsMap().get(materials.get(i)), 0, 0, 0xFFF700);
+				}GL11.glPopMatrix();
+			}
+		}
+	}
+	
 	public void drawSelected(int mouseX, int mouseY){
 		ExtendedPlayerRecipes props = ExtendedPlayerRecipes.get(mc.thePlayer);
+		int posX = 220;
 		if(selected != -1){
 			Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
-			drawGradientRect(250, 60, 500, height - ((height/8)+70/16), -1072689136, -804253680);
+			drawGradientRect(posX - 10, 60, 700, height - ((height/8)+70/16), -1072689136, -804253680);
 		}
 		GL11.glPushMatrix();{
 			for(int i = 0; i < props.knownRecipes.size(); i++){
 				if(selected == i){
-					drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes_ReqMaterials) + TextHelper.ITALIC, 270, 100, 0x00C3FF);
 					GL11.glPushMatrix();{
-						GL11.glTranslatef(270, 70, 0);
+						GL11.glTranslatef(posX, 70, 0);
 						GL11.glScalef(2, 2, 2);
 						drawString(fontRendererObj, TextHelper.localize(props.knownRecipes.get(i).toString() + ".name"), 0, 0, 0xFFF700);
 					}GL11.glPopMatrix();
+				
+					drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes_ReqMaterials) + TextHelper.ITALIC, posX, 100, 0x00C3FF);
 
 					int row = 0;
+					int column = 0; 
+					int materialLength = 0;
 					Iterator it = RecipeRegistry.get(props.knownRecipes.get(i)).getRequirements().entrySet().iterator();
 					while (it.hasNext()) {
 						Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>)it.next();
 						int distY = 24;
 						int distX = 100;
-						int column = 0;
 						GL11.glPushMatrix();{
 							GL11.glColor4f(1, 1, 1, 1);
 							ResourceLocation synthMaterial = pair.getKey().getTexture();
 							if(synthMaterial == null){
-								GL11.glTranslatef(270 + (distX*column), 110 + (distY*row), 0);
+								GL11.glTranslatef((int)(posX + (materialLength*1.05f)), 110 + (distY*row), 0);
 								Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(pair.getKey().getItem(), 0, 0);
 							}else{
 								mc.renderEngine.bindTexture(synthMaterial);
-								GL11.glTranslatef(270 + (distX*column), 110 + (distY*row), 0);
+								GL11.glTranslatef(posX + (materialLength*1.05f), 110 + (distY*row), 0);
 								GL11.glScalef(0.0625f, 0.0625f, 0.0625f);
 								drawTexturedModalRect(0, 0, 0, 0, 256, 256);
 							}
 						}GL11.glPopMatrix();
 						String name = pair.getKey().getName();
-						drawString(fontRendererObj, TextHelper.localize(name + ".name") + " x" + pair.getValue(), 288 + (distX*column), 114 + (distY*row), 0xFFFFFF);
-						row++;
+						String info = "";
+						int colour = 0xFFFFFF;
+						ExtendedPlayerMaterials mats = ExtendedPlayerMaterials.get(mc.thePlayer);
+						if(mats.getKnownMaterialsMap().containsKey(pair.getKey().getName())){
+							info = " - You have " + mats.getKnownMaterialsMap().get(pair.getKey().getName());
+							if(mats.getKnownMaterialsMap().get(pair.getKey().getName()) >= pair.getValue()){
+								colour = 0x00CF18;
+							}else{
+								colour = 0xB50000;
+							}	
+						}else{
+							info = " - You have 0";
+							colour = 0xB50000;
+						}
+						String material = TextHelper.localize(name + ".name") + " x" + pair.getValue();
+						drawString(fontRendererObj, material, (int) (posX + 18 + (materialLength*1.05f)), 114 + (distY*row), 0xFFFFFF);
+						drawString(fontRendererObj, info, (int) (posX + 18 + fontRendererObj.getStringWidth(material) + (materialLength*1.05f)), 114 + (distY*row), colour);
+						if(column == 1){
+							row++;
+							column = 0;
+							materialLength = 0;
+						}else{
+							materialLength = (fontRendererObj.getStringWidth(TextHelper.localize(ModItems.Chain_IncompleteKiblade.getUnlocalizedName() + ".name") + " - You have XXXX")) + 20/*fontRendererObj.getStringWidth(material + info) + 16*/;
+							column = 1;
+						}
+						
 					}
 				}
 			}

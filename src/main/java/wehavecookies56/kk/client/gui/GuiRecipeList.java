@@ -25,7 +25,7 @@ public class GuiRecipeList extends GuiScrollingList {
 	static int posY = (height-200)/2;
 
     public GuiRecipeList(GuiSynthesis parent){
-        super(parent.mc, 150, 300, 60, parent.height - ((parent.height/8)+70/16), 8, 35);
+        super(parent.mc, 190, 300, 60, parent.height - ((parent.height/8)+70/16), 8, 35);
         this.parent = parent;
     }
 
@@ -55,7 +55,7 @@ public class GuiRecipeList extends GuiScrollingList {
     protected void drawSlot(int var1, int var2, int var3, int var4, Tessellator var5){
     	ExtendedPlayerRecipes props = ExtendedPlayerRecipes.get(Minecraft.getMinecraft().thePlayer);
 
-        this.f.drawString(f.trimStringToWidth(TextHelper.localize(props.knownRecipes.get(var1).toString() + ".name"), listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
+        this.f.drawString(f.trimStringToWidth(TextHelper.localize(props.knownRecipes.get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, 0xFFFFFF);
         this.ir.renderItemAndEffectIntoGUI(getItemStackFromName(props.knownRecipes.get(var1).toString()), this.left + 3, var3 + 12);
 
     }

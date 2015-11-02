@@ -33,14 +33,13 @@ public class OpenMaterials extends AbstractServerMessage<OpenMaterials> {
 					if(player.inventory.mainInventory[i].hasTagCompound()){
 						String s = player.inventory.mainInventory[i].getTagCompound().getString("material");
 						if(MaterialRegistry.isMaterialRegistered(s)){
-							System.out.println(s);
 							ExtendedPlayerMaterials.get(player).addMaterial(MaterialRegistry.get(s), player.inventory.mainInventory[i].stackSize);
 						}
 						player.inventory.setInventorySlotContents(i, null);
 					}
 
 				}
-				if(player.inventory.mainInventory[i].getItem() instanceof Item || player.inventory.mainInventory[i].getItem() instanceof Item){
+				else{
 					if(MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory[i].getItem().getUnlocalizedName().toString())){
 						ExtendedPlayerMaterials.get(player).addMaterial(MaterialRegistry.get(player.inventory.mainInventory[i].getItem().getUnlocalizedName()), player.inventory.mainInventory[i].stackSize);
 						player.inventory.setInventorySlotContents(i, null);
