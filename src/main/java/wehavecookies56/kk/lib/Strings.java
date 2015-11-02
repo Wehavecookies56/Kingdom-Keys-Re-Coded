@@ -183,7 +183,12 @@ public class Strings {
 	LevelUpMagicThunder = "levelupmagicthunder",
 	LevelUpMagicCure = "levelupmagiccure",
 	LevelUpMagicAero = "levelupmagicaero",
-	LevelUpMagicStop = "levelupmagicstop"
+	LevelUpMagicStop = "levelupmagicstop",
+	LevelUpValor = "levelupdrivevalor",
+	LevelUpWisdom = "levelupdrivewisdom",
+	LevelUpLimit = "levelupdrivelimit",
+	LevelUpMaster = "levelupdrivemaster",
+	LevelUpFinal = "levelupdrivefinal"
 	;
 
 	public static final String

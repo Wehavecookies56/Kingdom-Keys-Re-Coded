@@ -34,6 +34,7 @@ import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
 import wehavecookies56.kk.network.packet.server.GlidePacket;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
+import wehavecookies56.kk.network.packet.server.LevelUpDrive;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
 import wehavecookies56.kk.network.packet.server.ManifestKnowledgePacket;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
@@ -104,6 +105,7 @@ public class PacketDispatcher
 		registerMessage(MasterFormPacket.class);
 		registerMessage(LevelUpMagic.class);
 		registerMessage(ManifestKnowledgePacket.class);
+		registerMessage(LevelUpDrive.class);
 
 		//Bidirectional
 	}

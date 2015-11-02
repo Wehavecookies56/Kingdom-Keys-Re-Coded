@@ -329,7 +329,12 @@ public class ModItems {
 	LevelUpMagicThunder,
 	LevelUpMagicCure,
 	LevelUpMagicAero,
-	LevelUpMagicStop
+	LevelUpMagicStop,
+	LevelUpValor,
+	LevelUpWisdom,
+	LevelUpLimit,
+	LevelUpMaster,
+	LevelUpFinal
 	;
 
 	//Music Discs
@@ -675,13 +680,18 @@ public class ModItems {
 		IceCream = new ItemIceCream(5,true).setUnlocalizedName(Strings.IceCream).setCreativeTab(tabKingdomKeys);
 		WinnerStick = new Item().setUnlocalizedName(Strings.WinnerStick).setCreativeTab(tabKingdomKeys);
 
-		LevelUpMagicFire = new ItemUpgradeMagicFire().setUnlocalizedName(Strings.LevelUpMagicFire).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicBlizzard = new ItemUpgradeMagicBlizzard().setUnlocalizedName(Strings.LevelUpMagicBlizzard).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicThunder = new ItemUpgradeMagicThunder().setUnlocalizedName(Strings.LevelUpMagicThunder).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicCure = new ItemUpgradeMagicCure().setUnlocalizedName(Strings.LevelUpMagicCure).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicAero = new ItemUpgradeMagicAero().setUnlocalizedName(Strings.LevelUpMagicAero).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicStop = new ItemUpgradeMagicStop().setUnlocalizedName(Strings.LevelUpMagicStop).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicFire = new ItemUpgradeFire().setUnlocalizedName(Strings.LevelUpMagicFire).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicBlizzard = new ItemUpgradeBlizzard().setUnlocalizedName(Strings.LevelUpMagicBlizzard).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicThunder = new ItemUpgradeThunder().setUnlocalizedName(Strings.LevelUpMagicThunder).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicCure = new ItemUpgradeCure().setUnlocalizedName(Strings.LevelUpMagicCure).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicAero = new ItemUpgradeAero().setUnlocalizedName(Strings.LevelUpMagicAero).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicStop = new ItemUpgradeStop().setUnlocalizedName(Strings.LevelUpMagicStop).setCreativeTab(tabKingdomKeys);
 
+		LevelUpValor = new ItemUpgradeValor().setUnlocalizedName(Strings.LevelUpValor).setCreativeTab(tabKingdomKeys);
+		LevelUpWisdom = new ItemUpgradeWisdom().setUnlocalizedName(Strings.LevelUpWisdom).setCreativeTab(tabKingdomKeys);
+		LevelUpLimit = new ItemUpgradeLimit().setUnlocalizedName(Strings.LevelUpLimit).setCreativeTab(tabKingdomKeys);
+		LevelUpMaster = new ItemUpgradeMaster().setUnlocalizedName(Strings.LevelUpMaster).setCreativeTab(tabKingdomKeys);
+		LevelUpFinal = new ItemUpgradeFinal().setUnlocalizedName(Strings.LevelUpFinal).setCreativeTab(tabKingdomKeys);
 
 		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
 		Disc_Darkness_of_the_Unknown = new ItemKKRecord(Strings.Disc_Darkness_of_the_Unknown_Name, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
@@ -1024,6 +1034,12 @@ public class ModItems {
 		GameRegistry.registerItem(LevelUpMagicCure, Strings.LevelUpMagicCure);
 		GameRegistry.registerItem(LevelUpMagicAero, Strings.LevelUpMagicAero);
 		GameRegistry.registerItem(LevelUpMagicStop, Strings.LevelUpMagicStop);
+		GameRegistry.registerItem(LevelUpValor, Strings.LevelUpValor);
+		GameRegistry.registerItem(LevelUpWisdom, Strings.LevelUpWisdom);
+		GameRegistry.registerItem(LevelUpLimit, Strings.LevelUpLimit);
+		GameRegistry.registerItem(LevelUpMaster, Strings.LevelUpMaster);
+		GameRegistry.registerItem(LevelUpFinal, Strings.LevelUpFinal);
+
 
 		//DISCS
 		GameRegistry.registerItem(Disc_Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future);
@@ -1365,6 +1381,11 @@ public class ModItems {
 		registerRender(LevelUpMagicCure);
 		registerRender(LevelUpMagicAero);
 		registerRender(LevelUpMagicStop);
+		registerRender(LevelUpValor);
+		registerRender(LevelUpWisdom);
+		registerRender(LevelUpLimit);
+		registerRender(LevelUpMaster);
+		registerRender(LevelUpFinal);
 
 		//Discs
 		registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);

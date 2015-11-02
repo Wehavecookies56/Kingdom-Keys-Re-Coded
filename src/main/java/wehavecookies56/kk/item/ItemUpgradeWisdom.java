@@ -8,26 +8,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.server.magics.LevelUpMagic;
+import wehavecookies56.kk.network.packet.server.LevelUpDrive;
 import wehavecookies56.kk.util.TextHelper;
 
-public class ItemUpgradeMagicCure extends Item
+public class ItemUpgradeWisdom extends Item
 {
-	public ItemUpgradeMagicCure(){
+	public ItemUpgradeWisdom(){
 		this.setMaxStackSize(1);
 	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
 		if(world.isRemote){
-			PacketDispatcher.sendToServer(new LevelUpMagic("Cure"));
+			PacketDispatcher.sendToServer(new LevelUpDrive("Wisdom"));
 		}
 		return stack;
 	}
 	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-		tooltip.add(TextHelper.localize(Strings.Gui_CommandMenu_Magic_Cure));
+		tooltip.add(TextHelper.localize(Strings.Gui_CommandMenu_Drive_Wisdom));
 		super.addInformation(stack, playerIn, tooltip, advanced);
 	}
 }

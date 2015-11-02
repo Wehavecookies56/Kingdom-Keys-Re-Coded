@@ -322,7 +322,7 @@ public class InputHandler {
 			switch(GuiCommandMenu.driveselected)
 			{
 				case GuiCommandMenu.VALOR:
-					if(ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Valor").getCost() || ExtendedPlayer.get(player).cheatMode)
+					if((ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Valor").getCost() || ExtendedPlayer.get(player).cheatMode) && ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Valor") > 0)
 					{
 						if(!antiFormCheck())
 						{
@@ -341,7 +341,7 @@ public class InputHandler {
 					}
 					break;
 				case GuiCommandMenu.WISDOM:
-					if(ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Wisdom").getCost() || ExtendedPlayer.get(player).cheatMode)
+					if((ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Wisdom").getCost() || ExtendedPlayer.get(player).cheatMode) && ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Wisdom") > 0)
 					{
 						if(!antiFormCheck())
 						{
@@ -360,7 +360,7 @@ public class InputHandler {
 					}
 					break;
 				case GuiCommandMenu.LIMIT:
-					if(ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Limit").getCost() || ExtendedPlayer.get(player).cheatMode)
+					if((ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Limit").getCost() || ExtendedPlayer.get(player).cheatMode) && ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Limit") > 0)
 					{
 						if(!antiFormCheck())
 						{
@@ -379,7 +379,7 @@ public class InputHandler {
 					}
 					break;
 				case GuiCommandMenu.MASTER:
-					if(ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Master").getCost() || ExtendedPlayer.get(player).cheatMode)
+					if((ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Master").getCost() || ExtendedPlayer.get(player).cheatMode) && ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Master") > 0)
 					{
 						if(!antiFormCheck())
 						{
@@ -398,7 +398,7 @@ public class InputHandler {
 					}
 					break;
 				case GuiCommandMenu.FINAL:
-					if(ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Final").getCost() || ExtendedPlayer.get(player).cheatMode)
+					if((ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Final").getCost() || ExtendedPlayer.get(player).cheatMode) && ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Final") > 0)
 					{
 						if(!antiFormCheck())
 						{

@@ -54,6 +54,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public double mp, maxMp, dp, maxDP;
 
 	public int fireLevel = 1, blizzardLevel = 1, thunderLevel = 1, cureLevel = 1,  gravityLevel = 1, aeroLevel = 1, stopLevel = 1;
+	
+	public int valorLevel = 1, wisdomLevel = 1, limitLevel = 1, masterLevel = 1,  finalLevel = 1;
 
 	public List<String> driveForms = new ArrayList<String>();
 
@@ -84,6 +86,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.defense = 1;
 		this.magic = 1;
 		this.hp = 20;
+		
 		this.fireLevel = 0;
 		this.blizzardLevel = 0;
 		this.thunderLevel = 0;
@@ -91,6 +94,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.cureLevel = 0;
 		this.aeroLevel = 0;
 		this.stopLevel = 0;
+		
+		this.valorLevel = 0;
+		this.wisdomLevel = 0;
+		this.limitLevel = 0;
+		this.masterLevel = 0;
+		this.finalLevel = 0;
 	}
 
 	@Override
@@ -116,6 +125,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("Defense", this.defense);
 		properties.setInteger("Magic", this.magic);
 		properties.setInteger("HP", this.hp);
+		
 		properties.setInteger("FireLevel", this.fireLevel);
 		properties.setInteger("BlizzardLevel", this.blizzardLevel);
 		properties.setInteger("ThunderLevel", this.thunderLevel);
@@ -123,6 +133,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("GravityLevel", this.gravityLevel);
 		properties.setInteger("AeroLevel", this.aeroLevel);
 		properties.setInteger("StopLevel", this.stopLevel);
+		
+		properties.setInteger("ValorLevel", this.valorLevel);
+		properties.setInteger("WisdomLevel", this.wisdomLevel);
+		properties.setInteger("LimitLevel", this.limitLevel);
+		properties.setInteger("MasterLevel", this.masterLevel);
+		properties.setInteger("FinalLevel", this.finalLevel);
 
 		NBTTagList tagList = new NBTTagList();
 		for (int i = 0; i < driveForms.size(); i++){
@@ -164,6 +180,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.magic = properties.getInteger("Magic");
 		this.hp = properties.getInteger("HP");
 		player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.hp);
+		
 		this.fireLevel = properties.getInteger("FireLevel");
 		this.blizzardLevel = properties.getInteger("BlizzardLevel");
 		this.thunderLevel = properties.getInteger("ThunderLevel");
@@ -172,6 +189,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.aeroLevel = properties.getInteger("AeroLevel");
 		this.stopLevel = properties.getInteger("StopLevel");
 
+		this.valorLevel = properties.getInteger("ValorLevel");
+		this.wisdomLevel = properties.getInteger("WisdomLevel");
+		this.limitLevel = properties.getInteger("LimitLevel");
+		this.masterLevel = properties.getInteger("MasterLevel");
+		this.finalLevel = properties.getInteger("FinalLevel");
+		
 		NBTTagList tagList = properties.getTagList("DriveFormList", Constants.NBT.TAG_COMPOUND);
 		for(int i = 0; i < tagList.tagCount(); i++){
 			NBTTagCompound drives = tagList.getCompoundTagAt(i);
@@ -186,8 +209,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	@Override
 	public void init(Entity entity, World world)
 	{}
-
-
 
 	public int getMagicLevel(String magic)
 	{
@@ -221,6 +242,58 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 			magicLevel = this.stopLevel;
 		}
 		return magicLevel;
+	}
+
+	public boolean setDriveLevel(String form, int level)
+	{
+		if(form == "Valor")
+		{
+			this.valorLevel = level;
+		}
+		else if(form == "Wisdom")
+		{
+			this.wisdomLevel = level;
+		}
+		else if(form == "Limit")
+		{
+			this.limitLevel = level;
+		}
+		else if(form == "Master")
+		{
+			this.masterLevel = level;
+		}
+		else if(form == "Final")
+		{
+			this.finalLevel = level;
+		}
+		this.sync();
+		return true;
+	}
+	
+	public int getDriveLevel(String form)
+	{
+		int formLevel = 0;
+		if(form == "Valor")
+		{
+			formLevel = this.valorLevel;
+		}
+		else if (form == "Wisdom")
+		{
+			formLevel = this.wisdomLevel;
+		}
+		else if (form == "Limit")
+		{
+			formLevel = this.limitLevel;
+		}
+		else if (form == "Master")
+		{
+			formLevel = this.masterLevel;
+		}
+		else if (form == "Final")
+		{
+			formLevel = this.finalLevel;
+		}
+		return formLevel;
 	}
 
 	public boolean setMagicLevel(String magic, int level)

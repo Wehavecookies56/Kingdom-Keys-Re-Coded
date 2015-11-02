@@ -488,7 +488,11 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*VALOR), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
+				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Valor") == 0)
+				{
+					
+				}
+				else if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
 				{
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Valor), 6, 4, 0xFFFFFF);
 				}
@@ -528,7 +532,11 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*WISDOM), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
+				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Valor") == 0)
+				{
+					
+				}
+				else if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
 				{
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Wisdom), 6, 4, 0xFFFFFF);
 				}
@@ -568,7 +576,11 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*LIMIT), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
+				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Limit") == 0)
+				{
+					
+				}
+				else if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
 				{
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Limit), 6, 4, 0xFFFFFF);
 				}
@@ -608,7 +620,11 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MASTER), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
+				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Master") == 0)
+				{
+					
+				}
+				else if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
 				{
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Master), 6, 4, 0xFFFFFF);
 				}
@@ -649,7 +665,11 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*FINAL), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 500 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
+				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Valor") == 0)
+				{
+					
+				}
+				else if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 500 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
 				{
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Final), 6, 4, 0xFFFFFF);
 				}
