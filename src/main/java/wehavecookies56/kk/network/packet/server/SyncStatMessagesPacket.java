@@ -47,6 +47,27 @@ public class SyncStatMessagesPacket extends AbstractClientMessage<SyncStatMessag
 			if(this.stat.equals("hp")){
 				PlayerLevel.messages.add("hp");
 			}
+			if(this.stat.equals("fir")){
+				PlayerLevel.messages.add("fir");
+			}
+			if(this.stat.equals("bli")){
+				PlayerLevel.messages.add("bli");
+			}
+			if(this.stat.equals("thu")){
+				PlayerLevel.messages.add("thu");
+			}
+			if(this.stat.equals("cur")){
+				PlayerLevel.messages.add("cur");
+			}
+			if(this.stat.equals("gra")){
+				PlayerLevel.messages.add("gra");
+			}
+			if(this.stat.equals("aer")){
+				PlayerLevel.messages.add("aer");
+			}
+			if(this.stat.equals("sto")){
+				PlayerLevel.messages.add("sto");
+			}
 		}
 	}
 
