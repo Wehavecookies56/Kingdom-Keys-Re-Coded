@@ -147,6 +147,9 @@ public class Config {
 		TM_OceanRage,
 		TM_LeasKeyblade,
 		TM_YoungXehanortsKeyblade,
+		TM_MirageSplit,
+		TM_NightmaresEnd,
+		TM_NightmaresEndandMirageSplit,
 		TM_Starlight,
 		TM_AnguisForetellersKeyblade,
 		TM_LeopardosForetellersKeyblade,
@@ -230,9 +233,12 @@ public class Config {
 		A_TM_MaverickFlare,
 		A_TM_MetalChocobo,
 		A_TM_MidnightRoar,
+		A_TM_MirageSplit,
 		A_TM_MissingAche,
 		A_TM_Monochrome,
 		A_TM_MysteriousAbyss,
+		A_TM_NightmaresEnd,
+		A_TM_NightmaresEndandMirageSplit,
 		A_TM_NoName,
 		A_TM_Oathkeeper,
 		A_TM_Oblivion,
@@ -384,9 +390,12 @@ public class Config {
 		TM_MaverickFlare = config.get(TM, StatCollector.translateToLocal(TM_MaverickFlare_NAME), TM_MaverickFlare_DEFAULT).getString();
 		TM_MetalChocobo = config.get(TM, StatCollector.translateToLocal(TM_MetalChocobo_NAME), TM_MetalChocobo_DEFAULT).getString();
 		TM_MidnightRoar = config.get(TM, StatCollector.translateToLocal(TM_MidnightRoar_NAME), TM_MidnightRoar_DEFAULT).getString();
+		TM_MirageSplit = config.get(TM, StatCollector.translateToLocal(TM_MirageSplit_NAME), TM_MirageSplit_DEFAULT).getString();
 		TM_MissingAche = config.get(TM, StatCollector.translateToLocal(TM_MissingAche_NAME), TM_MissingAche_DEFAULT).getString();
 		TM_Monochrome = config.get(TM, StatCollector.translateToLocal(TM_Monochrome_NAME), TM_Monochrome_DEFAULT).getString();
 		TM_MysteriousAbyss = config.get(TM, StatCollector.translateToLocal(TM_MysteriousAbyss_NAME), TM_MysteriousAbyss_DEFAULT).getString();
+		TM_NightmaresEnd = config.get(TM, StatCollector.translateToLocal(TM_NightmaresEnd_NAME), TM_NightmaresEnd_DEFAULT).getString();
+		TM_NightmaresEndandMirageSplit = config.get(TM, StatCollector.translateToLocal(TM_NightmaresEndandMirageSplit_NAME), TM_NightmaresEndandMirageSplit_DEFAULT).getString();
 		TM_NoName = config.get(TM, StatCollector.translateToLocal(TM_NoName_NAME), TM_NoName_DEFAULT).getString();
 		TM_Oathkeeper = config.get(TM, StatCollector.translateToLocal(TM_Oathkeeper_NAME), TM_Oathkeeper_DEFAULT).getString();
 		TM_Oblivion = config.get(TM, StatCollector.translateToLocal(TM_Oblivion_NAME), TM_Oblivion_DEFAULT).getString();
@@ -517,9 +526,12 @@ public class Config {
 		A_TM_MaverickFlare = TM_MaverickFlare.split(", ");
 		A_TM_MetalChocobo = TM_MetalChocobo.split(", ");
 		A_TM_MidnightRoar = TM_MidnightRoar.split(", ");
+		A_TM_MirageSplit = TM_MirageSplit.split(", ");
 		A_TM_MissingAche = TM_MissingAche.split(", ");
 		A_TM_Monochrome = TM_Monochrome.split(", ");
 		A_TM_MysteriousAbyss = TM_MysteriousAbyss.split(", ");
+		A_TM_NightmaresEnd = TM_NightmaresEnd.split(", ");
+		A_TM_NightmaresEndandMirageSplit = TM_NightmaresEndandMirageSplit.split(", ");
 		A_TM_NoName = TM_NoName.split(", ");
 		A_TM_Oathkeeper = TM_Oathkeeper.split(", ");
 		A_TM_Oblivion = TM_Oblivion.split(", ");

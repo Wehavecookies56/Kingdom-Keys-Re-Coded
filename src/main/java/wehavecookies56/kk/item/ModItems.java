@@ -126,9 +126,12 @@ public class ModItems {
 	MaverickFlare,
 	MetalChocobo,
 	MidnightRoar,
+	MirageSplit,
 	MissingAche,
 	Monochrome,
 	MysteriousAbyss,
+	NightmaresEnd,
+	NightmaresEndandMirageSplit,
 	NoName,
 	Oathkeeper,
 	Oblivion,
@@ -247,9 +250,12 @@ public class ModItems {
 	Chain_MaverickFlare,
 	Chain_MetalChocobo,
 	Chain_MidnightRoar,
+	Chain_MirageSplit,
 	Chain_MissingAche,
 	Chain_Monochrome,
 	Chain_MysteriousAbyss,
+	Chain_NightmaresEnd,
+	Chain_NightmaresEndandMirageSplit,
 	Chain_NoName,
 	Chain_Oathkeeper,
 	Chain_Oblivion,
@@ -486,9 +492,12 @@ public class ModItems {
 		MaverickFlare = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_MaverickFlare[0], Integer.parseInt(Config.A_TM_MaverickFlare[1]), Integer.parseInt(Config.A_TM_MaverickFlare[2]), Float.parseFloat(Config.A_TM_MaverickFlare[3]), Float.parseFloat(Config.A_TM_MaverickFlare[4]), Integer.parseInt(Config.A_TM_MaverickFlare[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MaverickFlare);
 		MetalChocobo = new ItemMetalChocobo(EnumHelper.addToolMaterial(Config.A_TM_MetalChocobo[0], Integer.parseInt(Config.A_TM_MetalChocobo[1]), Integer.parseInt(Config.A_TM_MetalChocobo[2]), Float.parseFloat(Config.A_TM_MetalChocobo[3]), Float.parseFloat(Config.A_TM_MetalChocobo[4]), Integer.parseInt(Config.A_TM_MetalChocobo[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MetalChocobo);
 		MidnightRoar = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_MidnightRoar[0], Integer.parseInt(Config.A_TM_MidnightRoar[1]), Integer.parseInt(Config.A_TM_MidnightRoar[2]), Float.parseFloat(Config.A_TM_MidnightRoar[3]), Float.parseFloat(Config.A_TM_MidnightRoar[4]), Integer.parseInt(Config.A_TM_MidnightRoar[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MidnightRoar);
+		MirageSplit = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_MirageSplit[0], Integer.parseInt(Config.A_TM_MirageSplit[1]), Integer.parseInt(Config.A_TM_MirageSplit[2]), Float.parseFloat(Config.A_TM_MirageSplit[3]), Float.parseFloat(Config.A_TM_MirageSplit[4]), Integer.parseInt(Config.A_TM_MirageSplit[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MirageSplit);
 		MissingAche = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_MissingAche[0], Integer.parseInt(Config.A_TM_MissingAche[1]), Integer.parseInt(Config.A_TM_MissingAche[2]), Float.parseFloat(Config.A_TM_MissingAche[3]), Float.parseFloat(Config.A_TM_MissingAche[4]), Integer.parseInt(Config.A_TM_MissingAche[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MissingAche);
 		Monochrome = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_Monochrome[0], Integer.parseInt(Config.A_TM_Monochrome[1]), Integer.parseInt(Config.A_TM_Monochrome[2]), Float.parseFloat(Config.A_TM_Monochrome[3]), Float.parseFloat(Config.A_TM_Monochrome[4]), Integer.parseInt(Config.A_TM_Monochrome[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Monochrome);
 		MysteriousAbyss = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_MysteriousAbyss[0], Integer.parseInt(Config.A_TM_MysteriousAbyss[1]), Integer.parseInt(Config.A_TM_MysteriousAbyss[2]), Float.parseFloat(Config.A_TM_MysteriousAbyss[3]), Float.parseFloat(Config.A_TM_MysteriousAbyss[4]), Integer.parseInt(Config.A_TM_MysteriousAbyss[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MysteriousAbyss);
+		NightmaresEnd = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_NightmaresEnd[0], Integer.parseInt(Config.A_TM_NightmaresEnd[1]), Integer.parseInt(Config.A_TM_NightmaresEnd[2]), Float.parseFloat(Config.A_TM_NightmaresEnd[3]), Float.parseFloat(Config.A_TM_NightmaresEnd[4]), Integer.parseInt(Config.A_TM_NightmaresEnd[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.NightmaresEnd);
+		NightmaresEndandMirageSplit = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_NightmaresEndandMirageSplit[0], Integer.parseInt(Config.A_TM_NightmaresEndandMirageSplit[1]), Integer.parseInt(Config.A_TM_NightmaresEndandMirageSplit[2]), Float.parseFloat(Config.A_TM_NightmaresEndandMirageSplit[3]), Float.parseFloat(Config.A_TM_NightmaresEndandMirageSplit[4]), Integer.parseInt(Config.A_TM_NightmaresEndandMirageSplit[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.NightmaresEndandMirageSplit);
 		NoName = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_NoName[0], Integer.parseInt(Config.A_TM_NoName[1]), Integer.parseInt(Config.A_TM_NoName[2]), Float.parseFloat(Config.A_TM_NoName[3]), Float.parseFloat(Config.A_TM_NoName[4]), Integer.parseInt(Config.A_TM_NoName[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.NoName);
 		Oathkeeper = new ItemOathkeeper(EnumHelper.addToolMaterial(Config.A_TM_Oathkeeper[0], Integer.parseInt(Config.A_TM_Oathkeeper[1]), Integer.parseInt(Config.A_TM_Oathkeeper[2]), Float.parseFloat(Config.A_TM_Oathkeeper[3]), Float.parseFloat(Config.A_TM_Oathkeeper[4]), Integer.parseInt(Config.A_TM_Oathkeeper[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Oathkeeper);
 		Oblivion = new ItemOblivion(EnumHelper.addToolMaterial(Config.A_TM_Oblivion[0], Integer.parseInt(Config.A_TM_Oblivion[1]), Integer.parseInt(Config.A_TM_Oblivion[2]), Float.parseFloat(Config.A_TM_Oblivion[3]), Float.parseFloat(Config.A_TM_Oblivion[4]), Integer.parseInt(Config.A_TM_Oblivion[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Oblivion);
@@ -605,9 +614,12 @@ public class ModItems {
 		Chain_MaverickFlare = new ItemKeychain((ItemKeyblade) MaverickFlare).setUnlocalizedName(Strings.Chain_MaverickFlare).setCreativeTab(tabKingdomKeys);
 		Chain_MetalChocobo = new ItemKeychain((ItemKeyblade) MetalChocobo).setUnlocalizedName(Strings.Chain_MetalChocobo).setCreativeTab(tabKingdomKeys);
 		Chain_MidnightRoar = new ItemKeychain((ItemKeyblade) MidnightRoar).setUnlocalizedName(Strings.Chain_MidnightRoar).setCreativeTab(tabKingdomKeys);
+		Chain_MirageSplit = new ItemKeychain((ItemKeyblade) MirageSplit).setUnlocalizedName(Strings.Chain_MirageSplit).setCreativeTab(tabKingdomKeys);
 		Chain_MissingAche = new ItemKeychain((ItemKeyblade) MissingAche).setUnlocalizedName(Strings.Chain_MissingAche).setCreativeTab(tabKingdomKeys);
 		Chain_Monochrome = new ItemKeychain((ItemKeyblade) Monochrome).setUnlocalizedName(Strings.Chain_Monochrome).setCreativeTab(tabKingdomKeys);
 		Chain_MysteriousAbyss = new ItemKeychain((ItemKeyblade) MysteriousAbyss).setUnlocalizedName(Strings.Chain_MysteriousAbyss).setCreativeTab(tabKingdomKeys);
+		Chain_NightmaresEnd = new ItemKeychain((ItemKeyblade) NightmaresEnd).setUnlocalizedName(Strings.Chain_NightmaresEnd).setCreativeTab(tabKingdomKeys);
+		Chain_NightmaresEndandMirageSplit = new ItemKeychain((ItemKeyblade) NightmaresEndandMirageSplit).setUnlocalizedName(Strings.Chain_NightmaresEndandMirageSplit).setCreativeTab(tabKingdomKeys);
 		Chain_NoName = new ItemKeychain((ItemKeyblade) NoName).setUnlocalizedName(Strings.Chain_NoName).setCreativeTab(tabKingdomKeys);
 		Chain_Oathkeeper = new ItemKeychain((ItemKeyblade) Oathkeeper).setUnlocalizedName(Strings.Chain_Oathkeeper).setCreativeTab(tabKingdomKeys);
 		Chain_Oblivion = new ItemKeychain((ItemKeyblade) Oblivion).setUnlocalizedName(Strings.Chain_Oblivion).setCreativeTab(tabKingdomKeys);
@@ -834,9 +846,12 @@ public class ModItems {
 		GameRegistry.registerItem(MaverickFlare, Strings.MaverickFlare);
 		GameRegistry.registerItem(MetalChocobo, Strings.MetalChocobo);
 		GameRegistry.registerItem(MidnightRoar, Strings.MidnightRoar);
+		GameRegistry.registerItem(MirageSplit, Strings.MirageSplit);
 		GameRegistry.registerItem(MissingAche, Strings.MissingAche);
 		GameRegistry.registerItem(Monochrome, Strings.Monochrome);
 		GameRegistry.registerItem(MysteriousAbyss, Strings.MysteriousAbyss);
+		GameRegistry.registerItem(NightmaresEnd, Strings.NightmaresEnd);
+		GameRegistry.registerItem(NightmaresEndandMirageSplit, Strings.NightmaresEndandMirageSplit);
 		GameRegistry.registerItem(NoName, Strings.NoName);
 		GameRegistry.registerItem(Oathkeeper, Strings.Oathkeeper);
 		GameRegistry.registerItem(Oblivion, Strings.Oblivion);
@@ -953,9 +968,12 @@ public class ModItems {
 		GameRegistry.registerItem(Chain_MaverickFlare, Strings.Chain_MaverickFlare);
 		GameRegistry.registerItem(Chain_MetalChocobo, Strings.Chain_MetalChocobo);
 		GameRegistry.registerItem(Chain_MidnightRoar, Strings.Chain_MidnightRoar);
+		GameRegistry.registerItem(Chain_MirageSplit, Strings.Chain_MirageSplit);
 		GameRegistry.registerItem(Chain_MissingAche, Strings.Chain_MissingAche);
 		GameRegistry.registerItem(Chain_Monochrome, Strings.Chain_Monochrome);
 		GameRegistry.registerItem(Chain_MysteriousAbyss, Strings.Chain_MysteriousAbyss);
+		GameRegistry.registerItem(Chain_NightmaresEnd, Strings.Chain_NightmaresEnd);
+		GameRegistry.registerItem(Chain_NightmaresEndandMirageSplit, Strings.Chain_NightmaresEndandMirageSplit);
 		GameRegistry.registerItem(Chain_NoName, Strings.Chain_NoName);
 		GameRegistry.registerItem(Chain_Oathkeeper, Strings.Chain_Oathkeeper);
 		GameRegistry.registerItem(Chain_Oblivion, Strings.Chain_Oblivion);

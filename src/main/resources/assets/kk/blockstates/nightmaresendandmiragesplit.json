@@ -1,0 +1,35 @@
+{
+	"forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "nightmaresendandmiragesplit_1": "kk:items/models/nightmaresendandmiragesplit_1",
+            "nightmaresendandmiragesplit_2": "kk:items/models/nightmaresendandmiragesplit_2",
+            "nightmaresendandmiragesplit_3": "kk:items/models/nightmaresendandmiragesplit_3"
+        },
+        "model": "kk:nightmaresendandmiragesplit.b3d"
+    },
+
+    "variants": {
+        "inventory": [
+            {
+                "transform": {
+                    "thirdperson": {
+                        "rotation": [ { "x": 75 }, { "y": 0 }, { "z": 180 } ],
+                        "translation": [ 0, 0, 0 ],
+                        "scale": 0.03
+                    },
+                    "gui": {
+                        "rotation": [ { "x": -40 }, { "y": 0 }, { "z": 0 } ],
+                        "translation": [ 0.2, -0.1, 0 ],
+                        "scale": 0.03
+                    },
+                    "firstperson": {
+                        "rotation": [ { "x": 180 }, { "y": -120 }, { "z": 170 } ],
+                        "translation": [ 0, 0, 0 ],
+                        "scale": 0.04
+                    }
+                }
+            }
+        ]
+    }
+}

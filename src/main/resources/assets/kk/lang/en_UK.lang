@@ -1,6 +1,7 @@
-#English (US) language file for Kingdom Keys Re:Coded
-#Version 0.7.5.2
+#English (UK) language file for Kingdom Keys Re:Coded
+#Version 0.7.5
 #Created by Wehavecookies56
+#
 
 ############################
 #Achievements
@@ -157,10 +158,10 @@ sm.twilightcrystal.name=Twilight Crystal
 
 
 #Armor
-item.organizationrobe_helmet.name=Organization Hood
-item.organizationrobe_chestplate.name=Organization Coat
-item.organizationrobe_leggings.name=Organization Leggings
-item.organizationrobe_boots.name=Organization Boots
+item.organizationrobe_helmet.name=Organisation Hood
+item.organizationrobe_chestplate.name=Organisation Coat
+item.organizationrobe_leggings.name=Organisation Leggings
+item.organizationrobe_boots.name=Organisation Boots
 
 item.aqua_helmet.name=Aqua's Helmet
 item.aqua_chestplate.name=Aqua's Chestplate
@@ -177,10 +178,10 @@ item.terra_chestplate.name=Terra's Chestplate
 item.terra_leggings.name=Terra's Leggings
 item.terra_boots.name=Terra's Boots
 
-item.ventus_helmet.name=Ventus's Helmet
-item.ventus_chestplate.name=Ventus's Chestplate
-item.ventus_leggings.name=Ventus's Leggings
-item.ventus_boots.name=Ventus's Boots
+item.ventus_helmet.name=Ventus' Helmet
+item.ventus_chestplate.name=Ventus' Chestplate
+item.ventus_leggings.name=Ventus' Leggings
+item.ventus_boots.name=Ventus' Boots
 
 #Misc
 item.emptybottle.name=Empty Bottle
@@ -338,12 +339,9 @@ item.mastersdefender.name=Master's Defender
 item.maverickflare.name=Maverick Flare
 item.metalchocobo.name=Metal Chocobo
 item.midnightroar.name=Midnight Roar
-item.miragesplit.name=Mirage Split
 item.missingache.name=Missing Ache
 item.monochrome.name=Monochrome
 item.mysteriousabyss.name=Mysterious Abyss
-item.nightmaresend.name=Nightmare's End
-item.nightmaresendandmiragesplit.name=Nightmare's End and Mirage Split
 item.noname.name=No Name
 item.oathkeeper.name=Oathkeeper
 item.oblivion.name=Oblivion
@@ -461,12 +459,9 @@ item.mastersdefenderchain.name=Master's Defender Chain
 item.maverickflarechain.name=Maverick Flare Chain
 item.metalchocobochain.name=Metal Chocobo Chain
 item.midnightroarchain.name=Midnight Roar Chain
-item.miragesplitchain.name=Mirage Split Chain
 item.missingachechain.name=Missing Ache Chain
 item.monochromechain.name=Monochrome Chain
 item.mysteriousabysschain.name=Mysterious Abyss Chain
-item.nightmaresendchain.name=Nightmare's End Chain
-item.nightmaresendandmiragesplitchain.name=Nightmare's End and Mirage Split Chain
 item.nonamechain.name=No Name Chain
 item.oathkeeperchain.name=Oathkeeper Chain
 item.oblivionchain.name=Oblivion Chain
