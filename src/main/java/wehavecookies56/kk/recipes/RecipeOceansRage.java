@@ -12,11 +12,11 @@ import wehavecookies56.kk.api.recipes.Recipe;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Strings;
 
-public class RecipeOceanRage extends Recipe {
+public class RecipeOceansRage extends Recipe {
 
 	public String name;
 
-	public RecipeOceanRage(String name) {
+	public RecipeOceansRage(String name) {
 		this.name = name;
 	}
 
@@ -27,7 +27,7 @@ public class RecipeOceanRage extends Recipe {
 
 	@Override
 	public Item getResult() {
-		return ModItems.Chain_OceanRage;
+		return ModItems.Chain_OceansRage;
 	}
 
 	@Override

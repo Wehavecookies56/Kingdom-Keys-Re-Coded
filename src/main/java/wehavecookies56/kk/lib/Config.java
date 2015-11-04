@@ -144,7 +144,7 @@ public class Config {
 		TM_UltimaWeaponDDD,
 		TM_Unbound,
 		TM_EndofPain,
-		TM_OceanRage,
+		TM_OceansRage,
 		TM_LeasKeyblade,
 		TM_YoungXehanortsKeyblade,
 		TM_MirageSplit,
@@ -242,7 +242,7 @@ public class Config {
 		A_TM_NoName,
 		A_TM_Oathkeeper,
 		A_TM_Oblivion,
-		A_TM_OceanRage,
+		A_TM_OceansRage,
 		A_TM_Olympia,
 		A_TM_OmegaWeapon,
 		A_TM_OminousBlight,
@@ -399,7 +399,7 @@ public class Config {
 		TM_NoName = config.get(TM, StatCollector.translateToLocal(TM_NoName_NAME), TM_NoName_DEFAULT).getString();
 		TM_Oathkeeper = config.get(TM, StatCollector.translateToLocal(TM_Oathkeeper_NAME), TM_Oathkeeper_DEFAULT).getString();
 		TM_Oblivion = config.get(TM, StatCollector.translateToLocal(TM_Oblivion_NAME), TM_Oblivion_DEFAULT).getString();
-		TM_OceanRage = config.get(TM, StatCollector.translateToLocal(TM_OceanRage_NAME), TM_OceanRage_DEFAULT).getString();
+		TM_OceansRage = config.get(TM, StatCollector.translateToLocal(TM_OceansRage_NAME), TM_OceansRage_DEFAULT).getString();
 		TM_Olympia = config.get(TM, StatCollector.translateToLocal(TM_Olympia_NAME), TM_Olympia_DEFAULT).getString();
 		TM_OmegaWeapon = config.get(TM, StatCollector.translateToLocal(TM_OmegaWeapon_NAME), TM_OmegaWeapon_DEFAULT).getString();
 		TM_OminousBlight = config.get(TM, StatCollector.translateToLocal(TM_OminousBlight_NAME), TM_OminousBlight_DEFAULT).getString();
@@ -535,7 +535,7 @@ public class Config {
 		A_TM_NoName = TM_NoName.split(", ");
 		A_TM_Oathkeeper = TM_Oathkeeper.split(", ");
 		A_TM_Oblivion = TM_Oblivion.split(", ");
-		A_TM_OceanRage = TM_OceanRage.split(", ");
+		A_TM_OceansRage = TM_OceansRage.split(", ");
 		A_TM_Olympia = TM_Olympia.split(", ");
 		A_TM_OmegaWeapon = TM_OmegaWeapon.split(", ");
 		A_TM_OminousBlight = TM_OminousBlight.split(", ");

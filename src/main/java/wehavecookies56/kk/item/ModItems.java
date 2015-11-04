@@ -135,7 +135,7 @@ public class ModItems {
 	NoName,
 	Oathkeeper,
 	Oblivion,
-	OceanRage,
+	OceansRage,
 	Olympia,
 	OmegaWeapon,
 	OminousBlight,
@@ -259,7 +259,7 @@ public class ModItems {
 	Chain_NoName,
 	Chain_Oathkeeper,
 	Chain_Oblivion,
-	Chain_OceanRage,
+	Chain_OceansRage,
 	Chain_Olympia,
 	Chain_OmegaWeapon,
 	Chain_OminousBlight,
@@ -501,7 +501,7 @@ public class ModItems {
 		NoName = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_NoName[0], Integer.parseInt(Config.A_TM_NoName[1]), Integer.parseInt(Config.A_TM_NoName[2]), Float.parseFloat(Config.A_TM_NoName[3]), Float.parseFloat(Config.A_TM_NoName[4]), Integer.parseInt(Config.A_TM_NoName[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.NoName);
 		Oathkeeper = new ItemOathkeeper(EnumHelper.addToolMaterial(Config.A_TM_Oathkeeper[0], Integer.parseInt(Config.A_TM_Oathkeeper[1]), Integer.parseInt(Config.A_TM_Oathkeeper[2]), Float.parseFloat(Config.A_TM_Oathkeeper[3]), Float.parseFloat(Config.A_TM_Oathkeeper[4]), Integer.parseInt(Config.A_TM_Oathkeeper[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Oathkeeper);
 		Oblivion = new ItemOblivion(EnumHelper.addToolMaterial(Config.A_TM_Oblivion[0], Integer.parseInt(Config.A_TM_Oblivion[1]), Integer.parseInt(Config.A_TM_Oblivion[2]), Float.parseFloat(Config.A_TM_Oblivion[3]), Float.parseFloat(Config.A_TM_Oblivion[4]), Integer.parseInt(Config.A_TM_Oblivion[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Oblivion);
-		OceanRage = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_OceanRage[0], Integer.parseInt(Config.A_TM_OceanRage[1]), Integer.parseInt(Config.A_TM_OceanRage[2]), Float.parseFloat(Config.A_TM_OceanRage[3]), Float.parseFloat(Config.A_TM_OceanRage[4]), Integer.parseInt(Config.A_TM_OceanRage[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OceanRage);
+		OceansRage = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_OceansRage[0], Integer.parseInt(Config.A_TM_OceansRage[1]), Integer.parseInt(Config.A_TM_OceansRage[2]), Float.parseFloat(Config.A_TM_OceansRage[3]), Float.parseFloat(Config.A_TM_OceansRage[4]), Integer.parseInt(Config.A_TM_OceansRage[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OceansRage);
 		Olympia = new ItemOlympia(EnumHelper.addToolMaterial(Config.A_TM_Olympia[0], Integer.parseInt(Config.A_TM_Olympia[1]), Integer.parseInt(Config.A_TM_Olympia[2]), Float.parseFloat(Config.A_TM_Olympia[3]), Float.parseFloat(Config.A_TM_Olympia[4]), Integer.parseInt(Config.A_TM_Olympia[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Olympia);
 		OmegaWeapon = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_OmegaWeapon[0], Integer.parseInt(Config.A_TM_OmegaWeapon[1]), Integer.parseInt(Config.A_TM_OmegaWeapon[2]), Float.parseFloat(Config.A_TM_OmegaWeapon[3]), Float.parseFloat(Config.A_TM_OmegaWeapon[4]), Integer.parseInt(Config.A_TM_OmegaWeapon[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OmegaWeapon);
 		OminousBlight = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_OminousBlight[0], Integer.parseInt(Config.A_TM_OminousBlight[1]), Integer.parseInt(Config.A_TM_OminousBlight[2]), Float.parseFloat(Config.A_TM_OminousBlight[3]), Float.parseFloat(Config.A_TM_OminousBlight[4]), Integer.parseInt(Config.A_TM_OminousBlight[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OminousBlight);
@@ -623,7 +623,7 @@ public class ModItems {
 		Chain_NoName = new ItemKeychain((ItemKeyblade) NoName).setUnlocalizedName(Strings.Chain_NoName).setCreativeTab(tabKingdomKeys);
 		Chain_Oathkeeper = new ItemKeychain((ItemKeyblade) Oathkeeper).setUnlocalizedName(Strings.Chain_Oathkeeper).setCreativeTab(tabKingdomKeys);
 		Chain_Oblivion = new ItemKeychain((ItemKeyblade) Oblivion).setUnlocalizedName(Strings.Chain_Oblivion).setCreativeTab(tabKingdomKeys);
-		Chain_OceanRage = new ItemKeychain((ItemKeyblade) OceanRage).setUnlocalizedName(Strings.Chain_OceanRage).setCreativeTab(tabKingdomKeys);
+		Chain_OceansRage = new ItemKeychain((ItemKeyblade) OceansRage).setUnlocalizedName(Strings.Chain_OceansRage).setCreativeTab(tabKingdomKeys);
 		Chain_Olympia = new ItemKeychain((ItemKeyblade) Olympia).setUnlocalizedName(Strings.Chain_Olympia).setCreativeTab(tabKingdomKeys);
 		Chain_OmegaWeapon = new ItemKeychain((ItemKeyblade) OmegaWeapon).setUnlocalizedName(Strings.Chain_OmegaWeapon).setCreativeTab(tabKingdomKeys);
 		Chain_OminousBlight = new ItemKeychain((ItemKeyblade) OminousBlight).setUnlocalizedName(Strings.Chain_OminousBlight).setCreativeTab(tabKingdomKeys);
@@ -855,7 +855,7 @@ public class ModItems {
 		GameRegistry.registerItem(NoName, Strings.NoName);
 		GameRegistry.registerItem(Oathkeeper, Strings.Oathkeeper);
 		GameRegistry.registerItem(Oblivion, Strings.Oblivion);
-		GameRegistry.registerItem(OceanRage, Strings.OceanRage);
+		GameRegistry.registerItem(OceansRage, Strings.OceansRage);
 		GameRegistry.registerItem(Olympia, Strings.Olympia);
 		GameRegistry.registerItem(OmegaWeapon, Strings.OmegaWeapon);
 		GameRegistry.registerItem(OminousBlight, Strings.OminousBlight);
@@ -977,7 +977,7 @@ public class ModItems {
 		GameRegistry.registerItem(Chain_NoName, Strings.Chain_NoName);
 		GameRegistry.registerItem(Chain_Oathkeeper, Strings.Chain_Oathkeeper);
 		GameRegistry.registerItem(Chain_Oblivion, Strings.Chain_Oblivion);
-		GameRegistry.registerItem(Chain_OceanRage, Strings.Chain_OceanRage);
+		GameRegistry.registerItem(Chain_OceansRage, Strings.Chain_OceansRage);
 		GameRegistry.registerItem(Chain_Olympia, Strings.Chain_Olympia);
 		GameRegistry.registerItem(Chain_OmegaWeapon, Strings.Chain_OmegaWeapon);
 		GameRegistry.registerItem(Chain_OminousBlight, Strings.Chain_OminousBlight);
@@ -1204,7 +1204,7 @@ public class ModItems {
 		registerRender(NoName);
 		registerRender(Oathkeeper);
 		registerRender(Oblivion);
-		registerRender(OceanRage);
+		registerRender(OceansRage);
 		registerRender(Olympia);
 		registerRender(OmegaWeapon);
 		registerRender(OminousBlight);
@@ -1318,13 +1318,16 @@ public class ModItems {
 		registerRender(Chain_MaverickFlare);
 		registerRender(Chain_MetalChocobo);
 		registerRender(Chain_MidnightRoar);
+		registerRender(Chain_MirageSplit);
 		registerRender(Chain_MissingAche);
 		registerRender(Chain_Monochrome);
 		registerRender(Chain_MysteriousAbyss);
+		registerRender(Chain_NightmaresEnd);
+		registerRender(Chain_NightmaresEndandMirageSplit);
 		registerRender(Chain_NoName);
 		registerRender(Chain_Oathkeeper);
 		registerRender(Chain_Oblivion);
-		registerRender(Chain_OceanRage);
+		registerRender(Chain_OceansRage);
 		registerRender(Chain_Olympia);
 		registerRender(Chain_OmegaWeapon);
 		registerRender(Chain_OminousBlight);

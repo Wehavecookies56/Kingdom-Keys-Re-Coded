@@ -72,7 +72,7 @@ public class ModRecipes {
 		registerRecipe(new RecipeNoName(ModItems.NoName.getUnlocalizedName()));
 		registerRecipe(new RecipeOathkeeper(ModItems.Oathkeeper.getUnlocalizedName()));
 		registerRecipe(new RecipeOblivion(ModItems.Oblivion.getUnlocalizedName()));
-		registerRecipe(new RecipeOceanRage(ModItems.OceanRage.getUnlocalizedName()));
+		registerRecipe(new RecipeOceansRage(ModItems.OceansRage.getUnlocalizedName()));
 		registerRecipe(new RecipeOlympia(ModItems.Olympia.getUnlocalizedName()));
 		registerRecipe(new RecipeOmegaWeapon(ModItems.OmegaWeapon.getUnlocalizedName()));
 		registerRecipe(new RecipeOminousBlight(ModItems.OminousBlight.getUnlocalizedName()));

@@ -256,8 +256,8 @@ public class GuiRecipeList extends GuiScrollingList {
     	if(name.equals(ModItems.Oblivion.getUnlocalizedName())){
     		return new ItemStack(ModItems.Oblivion, 1);
     	}
-    	if(name.equals(ModItems.OceanRage.getUnlocalizedName())){
-    		return new ItemStack(ModItems.OceanRage, 1);
+    	if(name.equals(ModItems.OceansRage.getUnlocalizedName())){
+    		return new ItemStack(ModItems.OceansRage, 1);
     	}
     	if(name.equals(ModItems.Olympia.getUnlocalizedName())){
     		return new ItemStack(ModItems.Olympia, 1);

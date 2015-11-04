@@ -88,7 +88,7 @@ public class Lists {
 		recipes.add(NoName.getUnlocalizedName());
 		recipes.add(Oathkeeper.getUnlocalizedName());
 		recipes.add(Oblivion.getUnlocalizedName());
-		recipes.add(OceanRage.getUnlocalizedName());
+		recipes.add(OceansRage.getUnlocalizedName());
 		recipes.add(Olympia.getUnlocalizedName());
 		recipes.add(OmegaWeapon.getUnlocalizedName());
 		recipes.add(OminousBlight.getUnlocalizedName());
