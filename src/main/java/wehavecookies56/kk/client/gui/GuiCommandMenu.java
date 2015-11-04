@@ -665,7 +665,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*FINAL), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Valor") == 0)
+				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Final") == 0)
 				{
 					
 				}
