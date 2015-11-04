@@ -206,19 +206,12 @@ item.levelupmagicblizzard.name=Spell Orb
 item.levelupmagicstop.name=Spell Orb
 item.levelupmagiccure.name=Spell Orb
 item.levelupmagicaero.name=Spell Orb
-<<<<<<< HEAD
+
 item.levelupdrivevalor.name=Form Orb
 item.levelupdrivewisdom.name=Form Orb
 item.levelupdrivelimit.name=Form Orb
 item.levelupdrivemaster.name=Form Orb
 item.levelupdrivefinal.name=Form Orb
-=======
-item.levelupdrivevalor.name=Drive Form Orb
-item.levelupdrivewisdom.name=Drive Form Orb
-item.levelupdrivelimit.name=Drive Form Orb
-item.levelupdrivemaster.name=Drive Form Orb
-item.levelupdrivefinal.name=Drive Form Orb
->>>>>>> origin/master
 
 item.frostinfusedsnowball.name=Frost-Infused Snowball
 item.blazinginfusedcoal.name=Blazing-Infused Coal
