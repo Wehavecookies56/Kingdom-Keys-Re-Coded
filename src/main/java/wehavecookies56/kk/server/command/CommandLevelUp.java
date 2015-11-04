@@ -9,6 +9,7 @@ import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.command.PlayerSelector;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
@@ -43,7 +44,7 @@ public class CommandLevelUp implements ICommand {
 	
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
-		return "/levelup <level> [player]";
+		return "/levelup <level> [player] (level has to be between 1-100)";
 	}
 
 	@Override
@@ -72,12 +73,17 @@ public class CommandLevelUp implements ICommand {
 			else if(args.length == 1){
 				int level = 1;
 				try{
-					level = Integer.parseInt(args[0]);
+					if(Integer.parseInt(args[0]) < 1 || Integer.parseInt(args[0]) > 100)
+					{
+						TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 100", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+						return;
+					}
+					else
+					{
+						level = Integer.parseInt(args[0]);
+					}
 				}catch(Exception e){
-					TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 100: "+getCommandUsage(sender), EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-					System.out.println(args[1]);
-
-					System.out.println(e);
+					TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 100", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 					return;
 				}
 				ExtendedPlayer.get(player).level = 1;
@@ -87,7 +93,10 @@ public class CommandLevelUp implements ICommand {
 				ExtendedPlayer.get(player).setMagic(1);
 				ExtendedPlayer.get(player).setHP(20);
 				
-				ExtendedPlayer.get(player).levelUp(level);
+				while(ExtendedPlayer.get(player).getLevel() < level)
+				{
+					ExtendedPlayer.get(player).addXP(20);
+				}
 				player.heal(ExtendedPlayer.get(player).getHP());
 				TextHelper.sendFormattedChatMessage("Your level is now "+args[0], EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
 
@@ -96,12 +105,17 @@ public class CommandLevelUp implements ICommand {
 			{
 				int level = 1;
 				try{
-					level = Integer.parseInt(args[0]);
+					if(Integer.parseInt(args[0]) < 1 || Integer.parseInt(args[0]) > 100)
+					{
+						TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 100", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+						return;
+					}
+					else
+					{
+						level = Integer.parseInt(args[0]);
+					}
 				}catch(Exception e){
-					TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 100: "+getCommandUsage(sender), EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-					System.out.println(args[1]);
-
-					System.out.println(e);
+					TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 100", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 					return;
 				}
 	            EntityPlayerMP entityplayermp = args.length == 2 ? getPlayer(sender, args[1]) : getCommandSenderAsPlayer(sender);
@@ -111,8 +125,12 @@ public class CommandLevelUp implements ICommand {
 				ExtendedPlayer.get(entityplayermp).setDefense(1);
 				ExtendedPlayer.get(entityplayermp).setMagic(1);
 				ExtendedPlayer.get(entityplayermp).setHP(20);
-				ExtendedPlayer.get(player).levelUp(level);
-				player.heal(ExtendedPlayer.get(entityplayermp).getHP());
+				
+				while(ExtendedPlayer.get(entityplayermp).getLevel() < level)
+				{
+					ExtendedPlayer.get(entityplayermp).addXP(20);
+				}
+				entityplayermp.heal(ExtendedPlayer.get(entityplayermp).getHP());
 				TextHelper.sendFormattedChatMessage(args[1]+"'s level is now "+args[0], EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
 
 			}
