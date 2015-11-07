@@ -134,6 +134,7 @@ public class Strings {
 	EnergyOre = "energyore",
 	FrostOre = "frostore",
 	LucidOre = "lucidore",
+	LightningOre = "lightningore",
 	PowerOre = "powerore",
 	PowerOreE = "poweroree",
 	RemembranceOre = "remembranceore",

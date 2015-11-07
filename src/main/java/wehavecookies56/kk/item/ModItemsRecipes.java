@@ -192,9 +192,9 @@ public class ModItemsRecipes {
 
 		GameRegistry.addShapedRecipe(AAskull,
 				"FFF",
-				"FEF",
+				"FKF",
 				"FFF",
-				'F', Items.blaze_powder, 'E', ModItems.EternalFlames
+				'F', Items.blaze_powder, 'K', ModItems.KingdomHearts
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.VoidKnowledge),

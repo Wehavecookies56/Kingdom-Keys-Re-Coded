@@ -737,6 +737,26 @@ public class EventHandler {
 				event.drops.add(FrostCrystal);
 			}
 		}
+		else if (event.state.getBlock() == ModBlocks.LightningOre){
+			int drop = randomWithRange(1, 4);
+			if(drop == 1){
+				ItemStack LightningShard = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(LightningShard, Strings.SM_LightningShard, "C");
+				event.drops.add(LightningShard);
+			}else if (drop == 2){
+				ItemStack LightningStone = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(LightningStone, Strings.SM_LightningStone, "B");
+				event.drops.add(LightningStone);
+			}else if (drop == 3){
+				ItemStack LightningGem = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(LightningGem, Strings.SM_LightningGem, "A");
+				event.drops.add(LightningGem);
+			}else if (drop == 4){
+				ItemStack LightningCrystal = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(LightningCrystal, Strings.SM_LightningCrystal, "S");
+				event.drops.add(LightningCrystal);
+			}
+		}
 		else if (event.state.getBlock() == ModBlocks.LucidOre){
 			int drop = randomWithRange(1, 4);
 			if(drop == 1){

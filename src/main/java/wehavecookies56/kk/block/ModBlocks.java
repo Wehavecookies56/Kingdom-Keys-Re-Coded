@@ -36,6 +36,7 @@ public class ModBlocks {
 		DenseOre,
 		EnergyOre,
 		FrostOre,
+		LightningOre,
 		LucidOre,
 		PowerOre,
 		PowerOreE,
@@ -69,6 +70,7 @@ public class ModBlocks {
 		DenseOre = new BlockDenseOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.DenseOre).setCreativeTab(tabKingdomKeysBlocks);
 		EnergyOre = new BlockEnergyOre(Material.iron, "pickaxe", 0, 1f, 	1f).setUnlocalizedName(Strings.EnergyOre).setCreativeTab(tabKingdomKeysBlocks);
 		FrostOre = new BlockFrostOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.FrostOre).setCreativeTab(tabKingdomKeysBlocks);
+		LightningOre = new BlockLightningOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.LightningOre).setCreativeTab(tabKingdomKeysBlocks);
 		LucidOre = new BlockLucidOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.LucidOre).setCreativeTab(tabKingdomKeysBlocks);
 		PowerOre = new BlockPowerOre(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.PowerOre).setCreativeTab(tabKingdomKeysBlocks);
 		PowerOreE = new BlockPowerOreE(Material.iron, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.PowerOreE).setCreativeTab(tabKingdomKeysBlocks);
@@ -105,6 +107,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(DenseOre, Strings.DenseOre);
 		GameRegistry.registerBlock(EnergyOre, Strings.EnergyOre);
 		GameRegistry.registerBlock(FrostOre, Strings.FrostOre);
+		GameRegistry.registerBlock(LightningOre, Strings.LightningOre);
 		GameRegistry.registerBlock(LucidOre, Strings.LucidOre);
 		GameRegistry.registerBlock(PowerOre, Strings.PowerOre);
 		GameRegistry.registerBlock(PowerOreE, Strings.PowerOreE);
@@ -138,6 +141,7 @@ public class ModBlocks {
 		registerRender(DenseOre);
 		registerRender(EnergyOre);
 		registerRender(FrostOre);
+		registerRender(LightningOre);
 		registerRender(LucidOre);
 		registerRender(PowerOre);
 		registerRender(PowerOreE);

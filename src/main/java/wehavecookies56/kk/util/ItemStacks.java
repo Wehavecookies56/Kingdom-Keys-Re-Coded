@@ -23,6 +23,5 @@ public class ItemStacks {
 		stack.getTagCompound().setString("recipe1", recipe1);
 		stack.getTagCompound().setString("recipe2", recipe2);
 		stack.getTagCompound().setString("recipe3", recipe3);
-
 	}
 }
