@@ -1,5 +1,5 @@
 {
-	"parent": "kk:block/lucidore",
+	"parent": "kk:block/lightningore",
 	"display": {
 		"thirdperson": {
 			"rotation": [ 10, -45, 170 ],
