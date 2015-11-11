@@ -30,7 +30,7 @@ public class GuiKKChest extends GuiContainer {
 
 	// draw the background for the GUI - rendered first
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
+	protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y){
 		// Bind the image texture of our custom container
 		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
 		// Draw the image

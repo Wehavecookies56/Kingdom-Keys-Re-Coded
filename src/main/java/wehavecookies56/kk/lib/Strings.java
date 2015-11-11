@@ -189,7 +189,9 @@ public class Strings {
 	LevelUpWisdom = "levelupdrivewisdom",
 	LevelUpLimit = "levelupdrivelimit",
 	LevelUpMaster = "levelupdrivemaster",
-	LevelUpFinal = "levelupdrivefinal"
+	LevelUpFinal = "levelupdrivefinal",
+	SynthesisBag = "synthesisbag"
+
 	;
 
 	public static final String

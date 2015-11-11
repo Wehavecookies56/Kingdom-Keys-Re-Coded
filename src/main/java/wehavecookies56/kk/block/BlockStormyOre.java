@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -34,5 +35,14 @@ public class BlockStormyOre extends BlockBlox {
     {
 		return null;
     }
-
+    @Override
+	public int getExpDrop(IBlockAccess world, BlockPos pos, int fortune)
+    {
+    	if (this.getItemDropped(world.getBlockState(pos), rand, fortune) != Item.getItemFromBlock(this))
+        {
+            int i = MathHelper.getRandomIntegerInRange(rand, 2, 4);
+            return i;
+        }
+        return 0;
+    }
 }

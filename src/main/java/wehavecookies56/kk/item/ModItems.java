@@ -340,7 +340,8 @@ public class ModItems {
 	LevelUpWisdom,
 	LevelUpLimit,
 	LevelUpMaster,
-	LevelUpFinal
+	LevelUpFinal,
+	SynthesisBag
 	;
 
 	//Music Discs
@@ -704,6 +705,9 @@ public class ModItems {
 		LevelUpLimit = new ItemUpgradeLimit().setUnlocalizedName(Strings.LevelUpLimit).setCreativeTab(tabKingdomKeys);
 		LevelUpMaster = new ItemUpgradeMaster().setUnlocalizedName(Strings.LevelUpMaster).setCreativeTab(tabKingdomKeys);
 		LevelUpFinal = new ItemUpgradeFinal().setUnlocalizedName(Strings.LevelUpFinal).setCreativeTab(tabKingdomKeys);
+		
+		SynthesisBag = new ItemSynthesisBag().setUnlocalizedName(Strings.SynthesisBag).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+
 
 		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
 		Disc_Darkness_of_the_Unknown = new ItemKKRecord(Strings.Disc_Darkness_of_the_Unknown_Name, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
@@ -1057,6 +1061,7 @@ public class ModItems {
 		GameRegistry.registerItem(LevelUpLimit, Strings.LevelUpLimit);
 		GameRegistry.registerItem(LevelUpMaster, Strings.LevelUpMaster);
 		GameRegistry.registerItem(LevelUpFinal, Strings.LevelUpFinal);
+		GameRegistry.registerItem(SynthesisBag, Strings.SynthesisBag);
 
 
 		//DISCS
@@ -1407,6 +1412,8 @@ public class ModItems {
 		registerRender(LevelUpLimit);
 		registerRender(LevelUpMaster);
 		registerRender(LevelUpFinal);
+		registerRender(SynthesisBag);
+
 
 		//Discs
 		registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);
