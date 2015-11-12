@@ -16,8 +16,10 @@ import wehavecookies56.kk.client.gui.GuiKKChest;
 import wehavecookies56.kk.client.gui.GuiKeychains;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.TileEntityKKChest;
+import wehavecookies56.kk.entities.TileEntitySynthesisBag;
 import wehavecookies56.kk.inventory.ContainerKKChest;
 import wehavecookies56.kk.inventory.ContainerKeychain;
+import wehavecookies56.kk.inventory.ContainerSynthesisBag;
 
 public class CommonProxy implements IGuiHandler {
 
@@ -47,36 +49,59 @@ public class CommonProxy implements IGuiHandler {
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+		BlockPos xyz = new BlockPos(x, y, z);
+		TileEntity te = world.getTileEntity(xyz);
+
 		if (ID == KingdomKeys.GUI_KEYCHAIN_INV){
 			return new ContainerKeychain(player, player.inventory, ExtendedPlayer.get(player).inventory);
 		}
-		if (ID == KingdomKeys.GUI_KKCHEST_INV){
-			BlockPos xyz = new BlockPos(x, y, z);
-			TileEntity te = world.getTileEntity(xyz);
+		else if (ID == KingdomKeys.GUI_KKCHEST_INV){
+			//BlockPos xyz = new BlockPos(x, y, z);
 			if(te instanceof TileEntityKKChest){
 				TileEntityKKChest tekkc = (TileEntityKKChest) te;
 				return new ContainerKKChest(player.inventory, tekkc);
 			}else{
 				return null;
-			}		}
-		else{
-			return null;
+			}		
 		}
-
+		
+		else if (ID == KingdomKeys.GUI_SYNTHESISBAG_INV){
+			if(te != null && te instanceof TileEntitySynthesisBag)
+			{
+				TileEntitySynthesisBag tesb = (TileEntitySynthesisBag) te;
+				return new ContainerSynthesisBag(player.inventory, tesb);
+			}
+			else{
+				return null;
+			}
+		}
+		return null;
 	}
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+		BlockPos xyz = new BlockPos(x, y, z);
+		TileEntity te = world.getTileEntity(xyz);
+		
 		if (ID == KingdomKeys.GUI_KEYCHAIN_INV){
 			return new GuiKeychains(player, player.inventory, ExtendedPlayer.get(player).inventory);
 		}
-		if (ID == KingdomKeys.GUI_KKCHEST_INV){
-			BlockPos xyz = new BlockPos(x, y, z);
-			TileEntity te = world.getTileEntity(xyz);
+		else if (ID == KingdomKeys.GUI_KKCHEST_INV){
+			
 			if(te instanceof TileEntityKKChest){
 				TileEntityKKChest tekkc = (TileEntityKKChest) te;
 				return new GuiKKChest(player.inventory, tekkc);
 			}else{
+				return null;
+			}
+		}
+		else if (ID == KingdomKeys.GUI_SYNTHESISBAG_INV){
+			if(te != null && te instanceof TileEntitySynthesisBag)
+			{
+				TileEntitySynthesisBag tesb = (TileEntitySynthesisBag) te;
+				return new ContainerSynthesisBag(player.inventory, tesb);
+			}
+			else{
 				return null;
 			}
 		}

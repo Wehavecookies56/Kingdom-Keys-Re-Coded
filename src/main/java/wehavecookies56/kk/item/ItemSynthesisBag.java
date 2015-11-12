@@ -7,15 +7,21 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import wehavecookies56.kk.util.GuiHelper;
 
 public class ItemSynthesisBag extends Item {
 
 	public ItemSynthesisBag() {this.setMaxStackSize(1);}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemStackIn, net.minecraft.world.World worldIn, EntityPlayer playerIn) 
+	public ItemStack onItemRightClick(ItemStack itemStackIn, net.minecraft.world.World world, EntityPlayer player) 
 	{
-		//Open gui
+		if (!world.isRemote)
+		{
+			BlockPos xyz = new BlockPos(player.posX,player.posY,player.posZ);
+			GuiHelper.openKKChest(player, world, xyz);
+		}
 		return itemStackIn;
 	}
 	@Override
