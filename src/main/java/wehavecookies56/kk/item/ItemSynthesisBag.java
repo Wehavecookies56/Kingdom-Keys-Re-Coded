@@ -20,7 +20,7 @@ public class ItemSynthesisBag extends Item {
 		if (!world.isRemote)
 		{
 			BlockPos xyz = new BlockPos(player.posX,player.posY,player.posZ);
-			GuiHelper.openKKChest(player, world, xyz);
+			GuiHelper.openSynthesisBag(player, world, xyz);
 		}
 		return itemStackIn;
 	}

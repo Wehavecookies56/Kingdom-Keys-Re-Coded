@@ -11,7 +11,7 @@ import wehavecookies56.kk.entities.TileEntitySynthesisBag;
 public class ContainerSynthesisBag extends Container {
 
 	// Stores a reference to the tile entity instance for later use
-	private TileEntitySynthesisBag tileEntitySynthesisBag;
+	private InventorySynthesisBag inventory;
 
 	// must assign a slot number to each of the slots used by the GUI.
 	// For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.
@@ -28,11 +28,11 @@ public class ContainerSynthesisBag extends Container {
 
 	private final int VANILLA_FIRST_SLOT_INDEX = 0;
 	private final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-	private final int TE_INVENTORY_SLOT_COUNT = 9;
+	private final int TE_INVENTORY_SLOT_COUNT = 63;
 
-	public ContainerSynthesisBag(InventoryPlayer invPlayer, TileEntitySynthesisBag tileEntitySynthesisBag)
+	public ContainerSynthesisBag(InventoryPlayer invPlayer, InventorySynthesisBag invBag)
 	{
-		this.tileEntitySynthesisBag = tileEntitySynthesisBag;
+		this.inventory = invBag;
 
 		final int SLOT_X_SPACING = 18;
 		final int SLOT_Y_SPACING = 18;
@@ -56,15 +56,15 @@ public class ContainerSynthesisBag extends Container {
 			}
 		}
 
-		if (TE_INVENTORY_SLOT_COUNT != tileEntitySynthesisBag.getSizeInventory()) {
-			System.err.println("Mismatched slot count in ContainerBasic(" + TE_INVENTORY_SLOT_COUNT + ") and TileInventory (" + tileEntitySynthesisBag.getSizeInventory()+")");
+		if (TE_INVENTORY_SLOT_COUNT != invBag.getSizeInventory()) {
+			System.err.println("Mismatched slot count in ContainerBasic(" + TE_INVENTORY_SLOT_COUNT + ") and TileInventory (" + invBag.getSizeInventory()+")");
 		}
 		final int TILE_INVENTORY_XPOS = 8;
 		final int TILE_INVENTORY_YPOS = 20;
 		// Add the tile inventory container to the gui
 		for (int x = 0; x < TE_INVENTORY_SLOT_COUNT; x++) {
 			int slotNumber = x;
-			addSlotToContainer(new Slot(tileEntitySynthesisBag, slotNumber, TILE_INVENTORY_XPOS + SLOT_X_SPACING * x, TILE_INVENTORY_YPOS));
+			addSlotToContainer(new Slot(invBag, slotNumber, TILE_INVENTORY_XPOS + SLOT_X_SPACING * x, TILE_INVENTORY_YPOS));
 		}
 	}
 
@@ -72,7 +72,7 @@ public class ContainerSynthesisBag extends Container {
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return tileEntitySynthesisBag.isUseableByPlayer(player);
+		return inventory.isUseableByPlayer(player);
 	}
 
 	// This is where you specify what happens when a player shift clicks a slot in the gui
@@ -123,6 +123,6 @@ public class ContainerSynthesisBag extends Container {
 	public void onContainerClosed(EntityPlayer playerIn)
 	{
 		super.onContainerClosed(playerIn);
-		this.tileEntitySynthesisBag.closeInventory(playerIn);
+		this.inventory.closeInventory(playerIn);
 	}
 }

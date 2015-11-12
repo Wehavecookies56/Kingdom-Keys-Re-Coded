@@ -19,7 +19,7 @@ import net.minecraftforge.common.util.Constants;
 
 public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 	// Create and initialize the items variable that will store store the items
-	final int NUMBER_OF_SLOTS = 9;
+	final int NUMBER_OF_SLOTS = 63;
 	private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];
 
 	/* The following are some IInventory methods you are required to override */
