@@ -91,7 +91,7 @@ public class CommonProxy implements IGuiHandler {
 		}
 		else if (ID == KingdomKeys.GUI_SYNTHESISBAG_INV){
 			
-			return new GuiSynthesisBag(player.inventory, (TileEntitySynthesisBag) world.getTileEntity(new BlockPos(x, y, z)));
+			return new GuiSynthesisBag(player.inventory, new InventorySynthesisBag(player, player.getHeldItem()));
 		}
 		return null;
 		

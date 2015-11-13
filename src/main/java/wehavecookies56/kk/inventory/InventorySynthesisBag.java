@@ -11,7 +11,7 @@ public class InventorySynthesisBag extends AbstractInventory {
 	private final String name = TextHelper.localize(Strings.KeychainInventory);
 
 	/** The key used to store and retrieve the inventory from NBT */
-	public static final int INV_SIZE = 63;
+	public static final int INV_SIZE = 1;
 	
 	public InventorySynthesisBag(EntityPlayer player, ItemStack itemStack) {
 		this.inventory = new ItemStack[INV_SIZE];

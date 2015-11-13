@@ -5,9 +5,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import wehavecookies56.kk.entities.TileEntityKKChest;
-import wehavecookies56.kk.entities.TileEntitySynthesisBag;
-
 public class ContainerSynthesisBag extends Container {
 
 	// Stores a reference to the tile entity instance for later use
@@ -28,43 +25,28 @@ public class ContainerSynthesisBag extends Container {
 
 	private final int VANILLA_FIRST_SLOT_INDEX = 0;
 	private final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-	private final int TE_INVENTORY_SLOT_COUNT = 63;
+	private final int TE_INVENTORY_SLOT_COUNT = 1;
 
 	public ContainerSynthesisBag(InventoryPlayer invPlayer, InventorySynthesisBag invBag)
 	{
 		this.inventory = invBag;
 
-		final int SLOT_X_SPACING = 18;
-		final int SLOT_Y_SPACING = 18;
-		final int HOTBAR_XPOS = 8;
-		final int HOTBAR_YPOS = 109;
-		// Add the players hotbar to the gui - the [xpos, ypos] location of each item
-		for (int x = 0; x < HOTBAR_SLOT_COUNT; x++) {
-			int slotNumber = x;
-			addSlotToContainer(new Slot(invPlayer, slotNumber, HOTBAR_XPOS + SLOT_X_SPACING * x, HOTBAR_YPOS));
-		}
-
-		final int PLAYER_INVENTORY_XPOS = 8;
-		final int PLAYER_INVENTORY_YPOS = 51;
-		// Add the rest of the players inventory to the gui
-		for (int y = 0; y < PLAYER_INVENTORY_ROW_COUNT; y++) {
-			for (int x = 0; x < PLAYER_INVENTORY_COLUMN_COUNT; x++) {
-				int slotNumber = HOTBAR_SLOT_COUNT + y * PLAYER_INVENTORY_COLUMN_COUNT + x;
-				int xpos = PLAYER_INVENTORY_XPOS + x * SLOT_X_SPACING;
-				int ypos = PLAYER_INVENTORY_YPOS + y * SLOT_Y_SPACING;
-				addSlotToContainer(new Slot(invPlayer, slotNumber,  xpos, ypos));
-			}
-		}
+		//Bag Inventory
+		for (int i = 0; i < 8; i++)
+			for (int j = 0; j < 13; j++)
+				this.addSlotToContainer(new Slot(inventory, j + i * 13, 12 + j * 18, 5 + i * 18));
+				
+		//Player Inventory
+		for(int i = 0; i < 3; i++)
+			for(int j = 0; j < 9; j++) 
+				this.addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 48 + j * 18, 152 + i * 18));
+		
+		//Player Hotbar
+		for (int i = 0; i < 9; i++)
+			this.addSlotToContainer(new Slot(invPlayer, i, 48 + i * 18, 210));
 
 		if (TE_INVENTORY_SLOT_COUNT != invBag.getSizeInventory()) {
 			System.err.println("Mismatched slot count in ContainerBasic(" + TE_INVENTORY_SLOT_COUNT + ") and TileInventory (" + invBag.getSizeInventory()+")");
-		}
-		final int TILE_INVENTORY_XPOS = 8;
-		final int TILE_INVENTORY_YPOS = 20;
-		// Add the tile inventory container to the gui
-		for (int x = 0; x < TE_INVENTORY_SLOT_COUNT; x++) {
-			int slotNumber = x;
-			addSlotToContainer(new Slot(invBag, slotNumber, TILE_INVENTORY_XPOS + SLOT_X_SPACING * x, TILE_INVENTORY_YPOS));
 		}
 	}
 
@@ -75,13 +57,6 @@ public class ContainerSynthesisBag extends Container {
 		return inventory.isUseableByPlayer(player);
 	}
 
-	// This is where you specify what happens when a player shift clicks a slot in the gui
-	//  (when you shift click a slot in the TileEntity Inventory, it moves it to the first available position in the hotbar and/or
-	//    player inventory.  When you you shift-click a hotbar or player inventory item, it moves it to the first available
-	//    position in the TileEntity inventory)
-	// At the very least you must override this and return null or the game will crash when the player shift clicks a slot
-	// returns null if the source slot is empty, or if none of the the source slot items could be moved
-	//   otherwise, returns a copy of the source stack
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex)
 	{

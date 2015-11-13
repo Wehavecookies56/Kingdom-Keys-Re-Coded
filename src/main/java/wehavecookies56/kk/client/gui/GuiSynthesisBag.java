@@ -13,6 +13,7 @@ import wehavecookies56.kk.entities.TileEntityKKChest;
 import wehavecookies56.kk.entities.TileEntitySynthesisBag;
 import wehavecookies56.kk.inventory.ContainerKKChest;
 import wehavecookies56.kk.inventory.ContainerSynthesisBag;
+import wehavecookies56.kk.inventory.InventorySynthesisBag;
 import wehavecookies56.kk.lib.Reference;
 
 
@@ -20,14 +21,21 @@ public class GuiSynthesisBag extends GuiContainer {
 	@SideOnly(Side.CLIENT)
 	// This is the resource location for the background image for the GUI
 	private static final ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/SynthesisBag.png");
-	private TileEntitySynthesisBag tileEntitySynthesisBag;
+	private InventorySynthesisBag inventorySynthesisBag;
 
-	public GuiSynthesisBag(InventoryPlayer invPlayer, TileEntitySynthesisBag tile) {
+	/*public GuiSynthesisBag(InventoryPlayer invPlayer, TileEntitySynthesisBag tile) {
 		super(new ContainerSynthesisBag(invPlayer, tile));
-		tileEntitySynthesisBag = tile;
+		inventorySynthesisBag = inv;
 		// Set the width and height of the gui.  Should match the size of the texture!
 		xSize = 176;
 		ySize = 166;
+	}*/
+	
+	public GuiSynthesisBag(InventoryPlayer invPlayer, InventorySynthesisBag invBag)
+	{
+		super(new ContainerSynthesisBag(invPlayer, invBag));
+		this.xSize = 255;
+		this.ySize = 230;
 	}
 
 	// draw the background for the GUI - rendered first
@@ -44,8 +52,8 @@ public class GuiSynthesisBag extends GuiContainer {
 	// renders relative to the top left corner of the background
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		final int LABEL_XPOS = xSize/2-this.fontRendererObj.getStringWidth(tileEntitySynthesisBag.getDisplayName().getUnformattedText())/2;
+		final int LABEL_XPOS = xSize/2-this.fontRendererObj.getStringWidth(inventorySynthesisBag.getDisplayName().getUnformattedText())/2;
 		final int LABEL_YPOS = 5;
-		fontRendererObj.drawString(tileEntitySynthesisBag.getDisplayName().getUnformattedText(), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
+		fontRendererObj.drawString(inventorySynthesisBag.getDisplayName().getUnformattedText(), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
 	}
 }
