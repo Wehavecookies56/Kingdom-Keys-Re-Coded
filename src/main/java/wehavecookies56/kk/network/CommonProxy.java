@@ -14,15 +14,19 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.client.gui.GuiKKChest;
 import wehavecookies56.kk.client.gui.GuiKeychains;
-import wehavecookies56.kk.client.gui.GuiSynthesisBag;
+import wehavecookies56.kk.client.gui.GuiSynthesisBagL;
+import wehavecookies56.kk.client.gui.GuiSynthesisBagM;
+import wehavecookies56.kk.client.gui.GuiSynthesisBagS;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.TileEntityKKChest;
-import wehavecookies56.kk.entities.TileEntitySynthesisBag;
-import wehavecookies56.kk.inventory.AbstractInventory;
 import wehavecookies56.kk.inventory.ContainerKKChest;
 import wehavecookies56.kk.inventory.ContainerKeychain;
-import wehavecookies56.kk.inventory.ContainerSynthesisBag;
-import wehavecookies56.kk.inventory.InventorySynthesisBag;
+import wehavecookies56.kk.inventory.ContainerSynthesisBagL;
+import wehavecookies56.kk.inventory.ContainerSynthesisBagM;
+import wehavecookies56.kk.inventory.ContainerSynthesisBagS;
+import wehavecookies56.kk.inventory.InventorySynthesisBagL;
+import wehavecookies56.kk.inventory.InventorySynthesisBagM;
+import wehavecookies56.kk.inventory.InventorySynthesisBagS;
 
 public class CommonProxy implements IGuiHandler {
 
@@ -66,8 +70,14 @@ public class CommonProxy implements IGuiHandler {
 			}		
 		}
 		
-		else if (ID == KingdomKeys.GUI_SYNTHESISBAG_INV){
-			return new ContainerSynthesisBag(player.inventory, new InventorySynthesisBag(player, player.getHeldItem()));
+		else if (ID == KingdomKeys.GUI_SYNTHESISBAGS_INV){
+			return new ContainerSynthesisBagS(player, player.inventory, new InventorySynthesisBagS(player.getHeldItem()));
+		}
+		else if (ID == KingdomKeys.GUI_SYNTHESISBAGM_INV){
+			return new ContainerSynthesisBagM(player, player.inventory, new InventorySynthesisBagM(player.getHeldItem()));
+		}
+		else if (ID == KingdomKeys.GUI_SYNTHESISBAGL_INV){
+			return new ContainerSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem()));
 		}
 		return null;
 	}
@@ -89,9 +99,14 @@ public class CommonProxy implements IGuiHandler {
 				return null;
 			}
 		}
-		else if (ID == KingdomKeys.GUI_SYNTHESISBAG_INV){
-			
-			return new GuiSynthesisBag(player.inventory, new InventorySynthesisBag(player, player.getHeldItem()));
+		else if (ID == KingdomKeys.GUI_SYNTHESISBAGS_INV){
+			return new GuiSynthesisBagS(player, player.inventory, new InventorySynthesisBagS(player.getHeldItem()));
+		}
+		else if (ID == KingdomKeys.GUI_SYNTHESISBAGM_INV){
+			return new GuiSynthesisBagM(player, player.inventory, new InventorySynthesisBagM(player.getHeldItem()));
+		}
+		else if (ID == KingdomKeys.GUI_SYNTHESISBAGL_INV){
+			return new GuiSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem()));
 		}
 		return null;
 		

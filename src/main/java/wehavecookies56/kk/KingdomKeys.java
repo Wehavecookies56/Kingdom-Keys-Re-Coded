@@ -62,7 +62,9 @@ public class KingdomKeys {
 	private static int modGuiIndex = 0;
 	public static final int GUI_KEYCHAIN_INV = modGuiIndex++;
 	public static final int GUI_KKCHEST_INV = modGuiIndex++;
-	public static final int GUI_SYNTHESISBAG_INV = modGuiIndex++;
+	public static final int GUI_SYNTHESISBAGS_INV = modGuiIndex++;
+	public static final int GUI_SYNTHESISBAGM_INV = modGuiIndex++;
+	public static final int GUI_SYNTHESISBAGL_INV = modGuiIndex++;
 
 	@Mod.Instance(Reference.MODID)
 	public static KingdomKeys instance;

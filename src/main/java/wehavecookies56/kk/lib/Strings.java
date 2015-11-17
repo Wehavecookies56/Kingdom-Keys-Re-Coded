@@ -190,8 +190,9 @@ public class Strings {
 	LevelUpLimit = "levelupdrivelimit",
 	LevelUpMaster = "levelupdrivemaster",
 	LevelUpFinal = "levelupdrivefinal",
-	SynthesisBag = "synthesisbag"
-
+	SynthesisBagS = "synthesisbags",
+	SynthesisBagM = "synthesisbagm",
+	SynthesisBagL = "synthesisbagl"
 	;
 
 	public static final String
@@ -896,6 +897,10 @@ public class Strings {
 	TM_VulpeusForetellersKeyblade_NAME = TOOLMATERIAL + VulpeusForetellersKeyblade
 	;
 	public static final String KeychainInventory = "container.keychain";
+	public static final String SynthesisBagSInventory = "container.synthesisbagsinventory";
+	public static final String SynthesisBagMInventory = "container.synthesisbagminventory";
+	public static final String SynthesisBagLInventory = "container.synthesisbaglinventory";
+
 
 	//Keyblades
 }

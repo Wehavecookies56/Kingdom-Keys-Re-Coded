@@ -51,9 +51,11 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 import wehavecookies56.kk.entities.magic.EntityThunder;
+import wehavecookies56.kk.inventory.InventorySynthesisBagL;
 import wehavecookies56.kk.item.ItemHpOrb;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
+import wehavecookies56.kk.item.ItemSynthesisMaterial;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
@@ -66,6 +68,7 @@ import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
+import wehavecookies56.kk.network.packet.server.SynthesisMaterialPickup;
 
 public class EventHandler {
 	@SubscribeEvent
@@ -153,7 +156,7 @@ public class EventHandler {
 				event.toolTip.add(TextHelper.localize(Strings.KKChestDesc_2));
 			}
 		}
-		
+
 		Item savepoint = Item.getItemFromBlock(ModBlocks.SavePoint);
 		if(event.itemStack.getItem() == savepoint){
 			if(!KeyboardHelper.isShiftDown()){
@@ -192,9 +195,9 @@ public class EventHandler {
 					ExtendedPlayer.get((EntityPlayer) event.entity).setMunny(ExtendedPlayer.get((EntityPlayer) event.entity).getMunny() + 10000);
 				}
 			}catch(Exception e){
-				
+
 			}
-			
+
 
 		}
 
@@ -220,7 +223,7 @@ public class EventHandler {
 			if(event.source.getSourceOfDamage() instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
-				
+
 				EntityMob mob = (EntityMob) event.entity;
 				ExtendedPlayer.get(player).addXP((int) (mob.getEntityAttribute(SharedMonsterAttributes.maxHealth).getAttributeValue() / 2));
 			}
@@ -270,17 +273,17 @@ public class EventHandler {
 							{
 								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicThunder), 1);
 							}
-							
+
 							else if(rand == 13)
 							{
 								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicCure), 1);
 							}
-							
+
 							else if(rand == 17)
 							{
-							//	event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicGravity), 1);
+								//	event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicGravity), 1);
 							}
-							
+
 							else if(rand == 21)
 							{
 								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicAero), 1);
@@ -365,9 +368,9 @@ public class EventHandler {
 			if(event.entityPlayer.getHeldItem() != null)
 			{
 				if(event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle)
-				return;
+					return;
 			}
-			
+
 			HpOrbPickup packet = new HpOrbPickup(event.item.getEntityItem());
 			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
 			{
@@ -427,7 +430,7 @@ public class EventHandler {
 			if(event.entityPlayer.getHeldItem() != null)
 			{
 				if(event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle)
-				return;
+					return;
 			}
 			MagicOrbPickup packet = new MagicOrbPickup(event.item.getEntityItem());
 			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
@@ -444,6 +447,33 @@ public class EventHandler {
 		{
 			AchievementHelper.addAchievement(event.entityPlayer, ModAchievements.getBlox);
 		}
+		/*
+		else if(event.item.getEntityItem().getItem() instanceof ItemSynthesisMaterial){
+			if(event.entityPlayer.inventory.hasItem(ModItems.SynthesisBagL)){
+				for(int i = 0; i < event.entityPlayer.inventory.mainInventory.length; i++){
+					if(event.entityPlayer.inventory.getStackInSlot(i) != null){
+						if(event.entityPlayer.inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagL){
+							InventorySynthesisBagL inv = new InventorySynthesisBagL(event.entityPlayer.inventory.getStackInSlot(i));
+							for(int j = 0; j < inv.getSizeInventory(); j++){
+								if(inv.getStackInSlot(i) == null){
+									SynthesisMaterialPickup packet = new SynthesisMaterialPickup(event.item.getEntityItem(), event.entityPlayer.inventory.getStackInSlot(i), j);
+									PacketDispatcher.sendToServer(packet);
+									event.item.getEntityItem().stackSize--;
+									//event.entityPlayer.inventory.consumeInventoryItem(event.item.getEntityItem().getItem());
+									//inv.setInventorySlotContents(j, event.item.getEntityItem());
+									return;
+								}else{
+									j++;
+								}
+							}		
+						}
+					}
+
+				}
+			}
+
+		}
+		*/
 	}
 
 	@SubscribeEvent
@@ -581,7 +611,7 @@ public class EventHandler {
 		IBakedModel model = event.modelManager.getModel(new ModelResourceLocation(Reference.MODID + ":" + Strings.EternalFlames, "inventory"));
 		event.modelRegistry.putObject(new ModelResourceLocation(Reference.MODID + ":" + Strings.EternalFlames, "inventory"), model);
 	}
-	
+
 	@SubscribeEvent
 	public void onFall(LivingFallEvent event)
 	{
@@ -607,7 +637,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(BlazingShard);
+						event.drops.add(BlazingShard);
 				}
 				event.drops.add(BlazingShard);
 
@@ -618,7 +648,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(BlazingStone);
+						event.drops.add(BlazingStone);
 				}
 				event.drops.add(BlazingStone);
 
@@ -629,7 +659,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(BlazingGem);
+						event.drops.add(BlazingGem);
 				}
 				event.drops.add(BlazingGem);
 
@@ -640,7 +670,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(BlazingCrystal);
+						event.drops.add(BlazingCrystal);
 				}
 				event.drops.add(BlazingCrystal);
 			}
@@ -654,7 +684,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(BrightShard);
+						event.drops.add(BrightShard);
 				}
 				event.drops.add(BrightShard);
 			}else if (drop == 2){
@@ -664,7 +694,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(BrightStone);
+						event.drops.add(BrightStone);
 				}
 				event.drops.add(BrightStone);
 			}else if (drop == 3){
@@ -674,7 +704,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(BrightGem);
+						event.drops.add(BrightGem);
 				}
 				event.drops.add(BrightGem);
 			}else if (drop == 4){
@@ -684,7 +714,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(BrightCrystal);
+						event.drops.add(BrightCrystal);
 				}
 				event.drops.add(BrightCrystal);
 			}
@@ -698,7 +728,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DarkShard);
+						event.drops.add(DarkShard);
 				}
 				event.drops.add(DarkShard);
 			}else if (drop == 2){
@@ -708,7 +738,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DarkStone);
+						event.drops.add(DarkStone);
 				}
 				event.drops.add(DarkStone);
 			}else if (drop == 3){
@@ -718,7 +748,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DarkGem);
+						event.drops.add(DarkGem);
 				}
 				event.drops.add(DarkGem);
 			}else if (drop == 4){
@@ -728,7 +758,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DarkCrystal);
+						event.drops.add(DarkCrystal);
 				}
 				event.drops.add(DarkCrystal);
 			}
@@ -742,7 +772,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DarkShard);
+						event.drops.add(DarkShard);
 				}
 				event.drops.add(DarkShard);
 			}else if (drop == 2){
@@ -752,7 +782,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DarkStone);
+						event.drops.add(DarkStone);
 				}
 				event.drops.add(DarkStone);
 			}else if (drop == 3){
@@ -762,7 +792,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DarkGem);
+						event.drops.add(DarkGem);
 				}
 				event.drops.add(DarkGem);
 			}else if (drop == 4){
@@ -772,7 +802,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DarkCrystal);
+						event.drops.add(DarkCrystal);
 				}
 				event.drops.add(DarkCrystal);
 			}
@@ -786,7 +816,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DenseShard);
+						event.drops.add(DenseShard);
 				}
 				event.drops.add(DenseShard);
 			}else if (drop == 2){
@@ -796,7 +826,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DenseStone);
+						event.drops.add(DenseStone);
 				}
 				event.drops.add(DenseStone);
 			}else if (drop == 3){
@@ -806,7 +836,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DenseGem);
+						event.drops.add(DenseGem);
 				}
 				event.drops.add(DenseGem);
 			}else if (drop == 4){
@@ -816,7 +846,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(DenseCrystal);
+						event.drops.add(DenseCrystal);
 				}
 				event.drops.add(DenseCrystal);
 			}
@@ -830,7 +860,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(EnergyShard);
+						event.drops.add(EnergyShard);
 				}
 				event.drops.add(EnergyShard);
 			}else if (drop == 2){
@@ -840,7 +870,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(EnergyStone);
+						event.drops.add(EnergyStone);
 				}
 				event.drops.add(EnergyStone);
 			}else if (drop == 3){
@@ -850,7 +880,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(EnergyGem);
+						event.drops.add(EnergyGem);
 				}
 				event.drops.add(EnergyGem);
 			}else if (drop == 4){
@@ -860,7 +890,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(EnergyCrystal);
+						event.drops.add(EnergyCrystal);
 				}
 				event.drops.add(EnergyCrystal);
 			}
@@ -874,7 +904,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(FrostShard);
+						event.drops.add(FrostShard);
 				}
 				event.drops.add(FrostShard);
 			}else if (drop == 2){
@@ -884,7 +914,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(FrostStone);
+						event.drops.add(FrostStone);
 				}
 				event.drops.add(FrostStone);
 			}else if (drop == 3){
@@ -894,7 +924,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(FrostGem);
+						event.drops.add(FrostGem);
 				}
 				event.drops.add(FrostGem);
 			}else if (drop == 4){
@@ -904,7 +934,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(FrostCrystal);
+						event.drops.add(FrostCrystal);
 				}
 				event.drops.add(FrostCrystal);
 			}
@@ -918,7 +948,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(LightningShard);
+						event.drops.add(LightningShard);
 				}
 				event.drops.add(LightningShard);
 			}else if (drop == 2){
@@ -928,7 +958,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(LightningStone);
+						event.drops.add(LightningStone);
 				}
 				event.drops.add(LightningStone);
 			}else if (drop == 3){
@@ -938,7 +968,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(LightningGem);
+						event.drops.add(LightningGem);
 				}
 				event.drops.add(LightningGem);
 			}else if (drop == 4){
@@ -948,7 +978,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(LightningCrystal);
+						event.drops.add(LightningCrystal);
 				}
 				event.drops.add(LightningCrystal);
 			}
@@ -962,7 +992,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(LucidShard);
+						event.drops.add(LucidShard);
 				}
 				event.drops.add(LucidShard);
 			}else if (drop == 2){
@@ -972,7 +1002,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(LucidStone);
+						event.drops.add(LucidStone);
 				}
 				event.drops.add(LucidStone);
 			}else if (drop == 3){
@@ -982,7 +1012,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(LucidGem);
+						event.drops.add(LucidGem);
 				}
 				event.drops.add(LucidGem);
 			}else if (drop == 4){
@@ -992,7 +1022,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(LucidCrystal);
+						event.drops.add(LucidCrystal);
 				}
 				event.drops.add(LucidCrystal);
 			}
@@ -1006,7 +1036,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(PowerShard);
+						event.drops.add(PowerShard);
 				}
 				event.drops.add(PowerShard);
 			}else if (drop == 2){
@@ -1016,7 +1046,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(PowerStone);
+						event.drops.add(PowerStone);
 				}
 				event.drops.add(PowerStone);
 			}else if (drop == 3){
@@ -1026,7 +1056,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(PowerGem);
+						event.drops.add(PowerGem);
 				}
 				event.drops.add(PowerGem);
 			}else if (drop == 4){
@@ -1036,7 +1066,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(PowerCrystal);
+						event.drops.add(PowerCrystal);
 				}
 				event.drops.add(PowerCrystal);
 			}
@@ -1050,7 +1080,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(PowerShard);
+						event.drops.add(PowerShard);
 				}
 				event.drops.add(PowerShard);
 			}else if (drop == 2){
@@ -1060,7 +1090,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(PowerStone);
+						event.drops.add(PowerStone);
 				}
 				event.drops.add(PowerStone);
 			}else if (drop == 3){
@@ -1070,7 +1100,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(PowerGem);
+						event.drops.add(PowerGem);
 				}
 				event.drops.add(PowerGem);
 			}else if (drop == 4){
@@ -1080,7 +1110,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(PowerCrystal);
+						event.drops.add(PowerCrystal);
 				}
 				event.drops.add(PowerCrystal);
 			}
@@ -1094,7 +1124,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(RemembranceShard);
+						event.drops.add(RemembranceShard);
 				}
 				event.drops.add(RemembranceShard);
 			}else if (drop == 2){
@@ -1104,7 +1134,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(RemembranceStone);
+						event.drops.add(RemembranceStone);
 				}
 				event.drops.add(RemembranceStone);
 			}else if (drop == 3){
@@ -1114,7 +1144,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(RemembranceGem);
+						event.drops.add(RemembranceGem);
 				}
 				event.drops.add(RemembranceGem);
 			}else if (drop == 4){
@@ -1124,7 +1154,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(RemembranceCrystal);
+						event.drops.add(RemembranceCrystal);
 				}
 				event.drops.add(RemembranceCrystal);
 			}
@@ -1138,7 +1168,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(SerenityShard);
+						event.drops.add(SerenityShard);
 				}
 				event.drops.add(SerenityShard);
 			}else if (drop == 2){
@@ -1148,7 +1178,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(SerenityStone);
+						event.drops.add(SerenityStone);
 				}
 				event.drops.add(SerenityStone);
 			}else if (drop == 3){
@@ -1158,7 +1188,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(SerenityGem);
+						event.drops.add(SerenityGem);
 				}
 				event.drops.add(SerenityGem);
 			}else if (drop == 4){
@@ -1168,7 +1198,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(SerenityCrystal);
+						event.drops.add(SerenityCrystal);
 				}
 				event.drops.add(SerenityCrystal);
 			}
@@ -1182,7 +1212,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(TranquilShard);
+						event.drops.add(TranquilShard);
 				}
 				event.drops.add(TranquilShard);
 			}else if (drop == 2){
@@ -1192,7 +1222,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(TranquilStone);
+						event.drops.add(TranquilStone);
 				}
 				event.drops.add(TranquilStone);
 			}else if (drop == 3){
@@ -1202,7 +1232,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(TranquilGem);
+						event.drops.add(TranquilGem);
 				}
 				event.drops.add(TranquilGem);
 			}else if (drop == 4){
@@ -1212,7 +1242,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(TranquilCrystal);
+						event.drops.add(TranquilCrystal);
 				}
 				event.drops.add(TranquilCrystal);
 			}
@@ -1226,7 +1256,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(TwilightShard);
+						event.drops.add(TwilightShard);
 				}
 				event.drops.add(TwilightShard);
 			}else if (drop == 2){
@@ -1236,7 +1266,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(TwilightStone);
+						event.drops.add(TwilightStone);
 				}
 				event.drops.add(TwilightStone);
 			}else if (drop == 3){
@@ -1246,7 +1276,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(TwilightGem);
+						event.drops.add(TwilightGem);
 				}
 				event.drops.add(TwilightGem);
 			}else if (drop == 4){
@@ -1256,7 +1286,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(TwilightCrystal);
+						event.drops.add(TwilightCrystal);
 				}
 				event.drops.add(TwilightCrystal);
 			}
@@ -1270,7 +1300,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(StormyShard);
+						event.drops.add(StormyShard);
 				}
 				event.drops.add(StormyShard);
 			}else if (drop == 2){
@@ -1280,7 +1310,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(StormyStone);
+						event.drops.add(StormyStone);
 				}
 				event.drops.add(StormyStone);
 			}else if (drop == 3){
@@ -1290,7 +1320,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(StormyGem);
+						event.drops.add(StormyGem);
 				}
 				event.drops.add(StormyGem);
 			}else if (drop == 4){
@@ -1300,7 +1330,7 @@ public class EventHandler {
 				{
 					fortune = randomWithRange(1, 15);
 					if(fortune < 5)
-					event.drops.add(StormyCrystal);
+						event.drops.add(StormyCrystal);
 				}
 				event.drops.add(StormyCrystal);
 			}

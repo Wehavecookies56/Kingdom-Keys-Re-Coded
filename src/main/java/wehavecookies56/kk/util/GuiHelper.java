@@ -49,7 +49,7 @@ public class GuiHelper {
 		player.openGui(KingdomKeys.instance, KingdomKeys.GUI_KKCHEST_INV, world, pos.getX(), pos.getY(), pos.getZ());
 	}
 	
-	public static void openSynthesisBag(EntityPlayer player, World world, BlockPos pos){
-		player.openGui(KingdomKeys.instance, KingdomKeys.GUI_SYNTHESISBAG_INV, world, pos.getX(), pos.getY(), pos.getZ());
+	public static void openSynthesisBagS(EntityPlayer player, World world, BlockPos pos){
+		player.openGui(KingdomKeys.instance, KingdomKeys.GUI_SYNTHESISBAGS_INV, world, pos.getX(), pos.getY(), pos.getZ());
 	}
 }

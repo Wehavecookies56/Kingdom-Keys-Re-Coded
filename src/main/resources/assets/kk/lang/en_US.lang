@@ -214,6 +214,11 @@ item.levelupdrivelimit.name=Form Orb
 item.levelupdrivemaster.name=Form Orb
 item.levelupdrivefinal.name=Form Orb
 
+item.synthesisbags.name=Small Synthesis Material Bag
+item.synthesisbagm.name=Medium Synthesis Material Bag
+item.synthesisbagl.name=Large Synthesis Material Bag
+
+
 item.frostinfusedsnowball.name=Frost-Infused Snowball
 item.blazinginfusedcoal.name=Blazing-Infused Coal
 item.stormyinfusediron.name=Stormy-Infused Iron Ingot
@@ -598,6 +603,10 @@ gui.menu.items.button.back=Back
 #Keychain Container
 container.keychain=Place a keychain here
 container.kkchest.name=Chest
+container.synthesisbagsinventory=Small Synthesis Material Bag
+container.synthesisbagminventory=Medium Synthesis Material Bag
+container.synthesisbaglinventory=Large Synthesis Material Bag
+
 
 #Synthesis#
 gui.synthesis.main.title=Item Synthesis

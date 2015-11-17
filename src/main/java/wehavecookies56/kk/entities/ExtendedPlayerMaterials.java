@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.common.util.Constants;
 import wehavecookies56.kk.api.materials.Material;
+import wehavecookies56.kk.inventory.InventorySynthesisBagS;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
@@ -25,7 +26,7 @@ public class ExtendedPlayerMaterials implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "KKExtendedPlayerMaterials";
 
 	private final EntityPlayer player;
-
+	
 	public Map<String, Integer> knownMaterialsMap = new HashMap<String, Integer>();
 
 	public ExtendedPlayerMaterials(EntityPlayer player) {

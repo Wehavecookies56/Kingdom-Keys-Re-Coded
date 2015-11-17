@@ -341,7 +341,9 @@ public class ModItems {
 	LevelUpLimit,
 	LevelUpMaster,
 	LevelUpFinal,
-	SynthesisBag
+	SynthesisBagS,
+	SynthesisBagM,
+	SynthesisBagL
 	;
 
 	//Music Discs
@@ -706,7 +708,9 @@ public class ModItems {
 		LevelUpMaster = new ItemUpgradeMaster().setUnlocalizedName(Strings.LevelUpMaster).setCreativeTab(tabKingdomKeys);
 		LevelUpFinal = new ItemUpgradeFinal().setUnlocalizedName(Strings.LevelUpFinal).setCreativeTab(tabKingdomKeys);
 		
-		SynthesisBag = new ItemSynthesisBag().setUnlocalizedName(Strings.SynthesisBag).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		SynthesisBagS = new ItemSynthesisBagS().setUnlocalizedName(Strings.SynthesisBagS).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		SynthesisBagM = new ItemSynthesisBagM().setUnlocalizedName(Strings.SynthesisBagM).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		SynthesisBagL = new ItemSynthesisBagL().setUnlocalizedName(Strings.SynthesisBagL).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 
 
 		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
@@ -1061,8 +1065,9 @@ public class ModItems {
 		GameRegistry.registerItem(LevelUpLimit, Strings.LevelUpLimit);
 		GameRegistry.registerItem(LevelUpMaster, Strings.LevelUpMaster);
 		GameRegistry.registerItem(LevelUpFinal, Strings.LevelUpFinal);
-		GameRegistry.registerItem(SynthesisBag, Strings.SynthesisBag);
-
+		GameRegistry.registerItem(SynthesisBagS, Strings.SynthesisBagS);
+		GameRegistry.registerItem(SynthesisBagM, Strings.SynthesisBagM);
+		GameRegistry.registerItem(SynthesisBagL, Strings.SynthesisBagL);
 
 		//DISCS
 		GameRegistry.registerItem(Disc_Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future);
@@ -1412,8 +1417,9 @@ public class ModItems {
 		registerRender(LevelUpLimit);
 		registerRender(LevelUpMaster);
 		registerRender(LevelUpFinal);
-		registerRender(SynthesisBag);
-
+		registerRender(SynthesisBagS);
+		registerRender(SynthesisBagM);
+		registerRender(SynthesisBagL);
 
 		//Discs
 		registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);

@@ -9,11 +9,9 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
 
-public abstract class AbstractInventory implements IInventory
-{
-	/** The inventory slots need to be initialized during construction */
+public abstract class AbstractInventory implements IInventory {
 	protected ItemStack[] inventory;
-
+	
 	@Override
 	public int getSizeInventory() {
 		return inventory.length;
@@ -56,8 +54,8 @@ public abstract class AbstractInventory implements IInventory
 	}
 
 	@Override
-	public void markDirty() {} // usually only TileEntities implement this method
-
+	public void markDirty() {}
+	
 	@Override
 	public void openInventory(EntityPlayer player) {}
 
@@ -84,9 +82,6 @@ public abstract class AbstractInventory implements IInventory
 		}
 	}
 
-	/**
-	 * Return unlocalized name here, or pre-translated and return true for hasCustomName()
-	 */
 	@Override
 	public String getName() {
 		return "";
@@ -102,15 +97,8 @@ public abstract class AbstractInventory implements IInventory
 		return (IChatComponent)(hasCustomName() ? new ChatComponentText(getName()) : new ChatComponentTranslation(getName()));
 	}
 
-	/**
-	 * NBT key used to set and retrieve the NBTTagCompound containing this inventory
-	 */
 	protected abstract String getNbtKey();
 
-	/**
-	 * Writes this inventory to NBT; must be called manually
-	 * Fails silently if {@link #getNbtKey} returns null or an empty string
-	 */
 	public void writeToNBT(NBTTagCompound compound) {
 		String key = getNbtKey();
 		if (key == null || key.equals("")) {
@@ -128,10 +116,6 @@ public abstract class AbstractInventory implements IInventory
 		compound.setTag(key, items);
 	}
 
-	/**
-	 * Loads this inventory from NBT; must be called manually
-	 * Fails silently if {@link #getNbtKey} returns null or an empty string
-	 */
 	public void readFromNBT(NBTTagCompound compound) {
 		String key = getNbtKey();
 		if (key == null || key.equals("")) {
