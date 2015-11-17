@@ -53,6 +53,8 @@ public class WorldGenBlox implements IWorldGenerator{
 			new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+			new WorldGenMinable(ModBlocks.EnergyOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+
 			if(biome == BiomeGenBase.taiga || biome == BiomeGenBase.frozenOcean || biome == BiomeGenBase.coldBeach || biome == BiomeGenBase.coldTaiga || biome == BiomeGenBase.coldTaigaHills || biome == BiomeGenBase.forestHills || biome == BiomeGenBase.frozenRiver || biome == BiomeGenBase.iceMountains || biome == BiomeGenBase.icePlains || biome == BiomeGenBase.megaTaiga || biome == BiomeGenBase.megaTaigaHills || biome == BiomeGenBase.taigaHills)
 				new WorldGenMinable(ModBlocks.FrostOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.LightningOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);

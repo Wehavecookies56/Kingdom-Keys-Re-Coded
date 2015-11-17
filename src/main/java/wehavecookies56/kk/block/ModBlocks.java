@@ -47,7 +47,8 @@ public class ModBlocks {
 		TwilightOre,
 		SynthesisTable,
 		KKChest,
-		SavePoint
+		SavePoint,
+		MagneticBlox
 		;
 
 	public static CreativeTabs tabKingdomKeysBlocks;
@@ -82,6 +83,8 @@ public class ModBlocks {
 		SynthesisTable = new BlockSynthesisTable(Material.wood, "axe", 0, 1, 1).setUnlocalizedName(Strings.SynthesisTable).setCreativeTab(tabKingdomKeysBlocks);
 		KKChest = new BlockKKChest(Material.rock, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.KKChest).setCreativeTab(tabKingdomKeysBlocks).setStepSound(KKChest.soundTypeStone);
 		SavePoint = new BlockSavePoint(Material.circuits, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.SavePoint).setCreativeTab(tabKingdomKeysBlocks).setStepSound(SavePoint.soundTypeStone);
+		MagneticBlox = new BlockMagneticBlox(Material.iron, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.MagneticBlox).setCreativeTab(tabKingdomKeysBlocks);
+
 	}
 
 	public static void registerBlock(Block block){
@@ -117,6 +120,8 @@ public class ModBlocks {
 		GameRegistry.registerBlock(SynthesisTable, Strings.SynthesisTable);
 		GameRegistry.registerBlock(KKChest, Strings.KKChest);
 		GameRegistry.registerBlock(SavePoint, Strings.SavePoint);
+		GameRegistry.registerBlock(MagneticBlox, Strings.MagneticBlox);
+
 	}
 
 	public static void registerRenders(){
@@ -151,6 +156,7 @@ public class ModBlocks {
 		registerRender(SynthesisTable);
 		registerRender(KKChest);
 		registerRender(SavePoint);
+		registerRender(MagneticBlox);
 
 	}
 
