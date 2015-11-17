@@ -447,8 +447,8 @@ public class EventHandler {
 		{
 			AchievementHelper.addAchievement(event.entityPlayer, ModAchievements.getBlox);
 		}
-		/*
-		else if(event.item.getEntityItem().getItem() instanceof ItemSynthesisMaterial){
+		
+	/*	else if(event.item.getEntityItem().getItem() instanceof ItemSynthesisMaterial){
 			if(event.entityPlayer.inventory.hasItem(ModItems.SynthesisBagL)){
 				for(int i = 0; i < event.entityPlayer.inventory.mainInventory.length; i++){
 					if(event.entityPlayer.inventory.getStackInSlot(i) != null){
@@ -472,8 +472,8 @@ public class EventHandler {
 				}
 			}
 
-		}
-		*/
+		}*/
+		
 	}
 
 	@SubscribeEvent

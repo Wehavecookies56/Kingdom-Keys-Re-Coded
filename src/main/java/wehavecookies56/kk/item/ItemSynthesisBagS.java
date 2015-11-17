@@ -15,9 +15,11 @@ import net.minecraft.world.World;
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.inventory.ContainerSynthesisBagS;
 import wehavecookies56.kk.inventory.InventorySynthesisBagS;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.OpenGui;
 import wehavecookies56.kk.util.GuiHelper;
+import wehavecookies56.kk.util.TextHelper;
 
 public class ItemSynthesisBagS extends Item {
 
@@ -33,6 +35,13 @@ public class ItemSynthesisBagS extends Item {
 	}
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-		tooltip.add("By holding the synthesis bag in your inventory items will be sent into the synthesis table");
+		int x = 30;
+		String s = TextHelper.localize(Strings.SynthesisBagDesc);
+		s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
+		String []splitS = s.split("\n");
+		for(int i = 0; i < splitS.length; i++){
+			tooltip.add(splitS[i]);
+		}
 	}
 }
+
