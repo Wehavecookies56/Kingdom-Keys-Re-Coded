@@ -1,0 +1,9 @@
+{
+	"variants": {
+		"normal": { "model": "kk:magnetblox" }
+		"facing=north": { "model": "kk:magnetblox" },
+        "facing=south": { "model": "kk:magnetblox", "y": 180 },
+        "facing=west":  { "model": "kk:magnetblox", "y": 270 },
+        "facing=east":  { "model": "kk:magnetblox", "y": 90 }
+	}
+}

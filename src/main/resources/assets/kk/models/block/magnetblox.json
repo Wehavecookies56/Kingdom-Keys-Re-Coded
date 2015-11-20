@@ -1,0 +1,14 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "kk:blocks/magnetblox"
+	"down":  "kk:blocks/magnetblox",
+	"up":    "kk:blocks/magnetbloxn",
+	"north": "kk:blocks/magnetbloxn",
+	"south": "modmercenario:blocks/metablockes/metablockemercenario21",
+	"west":  "modmercenario:blocks/metablockes/metablockemercenario22",
+	"east":  "modmercenario:blocks/metablockes/metablockemercenario23"
+
+    }
+	}
+}

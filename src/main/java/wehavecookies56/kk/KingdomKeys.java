@@ -96,7 +96,7 @@ public class KingdomKeys {
 		ModBlocks.init();
 		ModBlocks.register();
 		LogHelper.info("Blocks loaded");
-
+		
 		proxy.preInit();
 
 	}
@@ -141,9 +141,9 @@ public class KingdomKeys {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 
 		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 0, instance, 16, 1, false);
-
 		EntityRegistry.registerModEntity(EntityFire.class, "fire", 1, instance, 16, 1, false);
 		EntityRegistry.registerModEntity(EntityThunder.class, "thunder", 2, instance, 16, 1, false);
+		
 		//EntityRegistry.registerModEntity(EntityItemMetalChocobo.class, "entityitemmetalchocobo", 2, instance, 16, 1, false);
 
 
