@@ -36,6 +36,7 @@ import wehavecookies56.kk.network.packet.server.GlidePacket;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.LevelUpDrive;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
+import wehavecookies56.kk.network.packet.server.MagnetBloxMotion;
 import wehavecookies56.kk.network.packet.server.ManifestKnowledgePacket;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
 import wehavecookies56.kk.network.packet.server.OpenGui;
@@ -108,6 +109,7 @@ public class PacketDispatcher
 		registerMessage(ManifestKnowledgePacket.class);
 		registerMessage(LevelUpDrive.class);
 		registerMessage(SynthesisMaterialPickup.class);
+		registerMessage(MagnetBloxMotion.class);
 		//Bidirectional
 	}
 
