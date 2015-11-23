@@ -20,6 +20,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 		int screenWidth = event.resolution.getScaledWidth();
 		int screenHeight = event.resolution.getScaledHeight();
 		if(event.type == RenderGameOverlayEvent.ElementType.TEXT) {
+			GL11.glColor3f(1, 1, 1);
 			ResourceLocation skin = ((AbstractClientPlayer) mc.thePlayer).getLocationSkin();
 			mc.getTextureManager().bindTexture(skin);
 			float scale = 0.5f;
