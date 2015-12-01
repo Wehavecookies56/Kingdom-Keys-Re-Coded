@@ -351,7 +351,9 @@ public class Strings {
 	FairGame = "fairgame",
 	GracefulDahlia = "gracefuldahlia",
 	Foudre = "foudre",
-	BlazeofGlory = "blazeofglory"
+	BlazeofGlory = "blazeofglory",
+	Prometheus = "prometheus",
+	Ifrit = "ifrit"
 	;
 	
 	public static final String
@@ -631,7 +633,9 @@ public class Strings {
 	TM_FairGame_DEFAULT = "fairgame, 3, -1, 6.0F, 8, 30",
 	TM_GracefulDahlia_DEFAULT = "gracefuldahlia, 3, -1, 6.0F, 12, 30",
 	TM_Foudre_DEFAULT = "foudre, 3, -1, 6.0F, 7, 30",
-	TM_BlazeofGlory_DEFAULT = "eternalflames, 3, -1, 6.0F, 5, 30"
+	TM_BlazeofGlory_DEFAULT = "eternalflames, 3, -1, 6.0F, 5, 30",
+	TM_Prometheus_DEFAULT = "prometheus, 3, -1, 6.0F, 5, 30",
+	TM_Ifrit_DEFAULT = "ifrit, 3, -1, 6.0F, 5, 30"
 	;
 
 	public static final String
@@ -774,7 +778,9 @@ public class Strings {
 	TM_FairGame_NAME = TOOLMATERIAL + FairGame,
 	TM_GracefulDahlia_NAME = TOOLMATERIAL + GracefulDahlia,
 	TM_Foudre_NAME = TOOLMATERIAL + Foudre,
-	TM_BlazeofGlory_NAME = TOOLMATERIAL + BlazeofGlory
+	TM_BlazeofGlory_NAME = TOOLMATERIAL + BlazeofGlory,
+	TM_Prometheus_NAME = TOOLMATERIAL + Prometheus,
+	TM_Ifrit_NAME = TOOLMATERIAL + Ifrit
 	;
 
 	public static final String

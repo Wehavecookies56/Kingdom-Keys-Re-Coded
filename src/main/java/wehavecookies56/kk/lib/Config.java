@@ -32,7 +32,9 @@ public class Config {
 		TM_FairGame,
 		TM_GracefulDahlia,
 		TM_Foudre,
-		TM_BlazeofGlory
+		TM_BlazeofGlory,
+		TM_Prometheus,
+		TM_Ifrit
 		;
 
 	public static String
@@ -170,7 +172,9 @@ public class Config {
 		A_TM_FairGame,
 		A_TM_GracefulDahlia,
 		A_TM_Foudre,
-		A_TM_BlazeofGlory
+		A_TM_BlazeofGlory,
+		A_TM_Prometheus,
+		A_TM_Ifrit
 		;
 	
 	public static String[]
@@ -330,6 +334,8 @@ public class Config {
 		TM_GracefulDahlia = config.get(TM, StatCollector.translateToLocal(Strings.TM_GracefulDahlia_NAME), TM_GracefulDahlia_DEFAULT).getString();
 		TM_Foudre = config.get(TM, StatCollector.translateToLocal(Strings.TM_Foudre_NAME), TM_Foudre_DEFAULT).getString();
 		TM_BlazeofGlory = config.get(TM, StatCollector.translateToLocal(Strings.TM_BlazeofGlory_NAME), TM_BlazeofGlory_DEFAULT).getString();
+		TM_Prometheus = config.get(TM, StatCollector.translateToLocal(Strings.TM_Prometheus_NAME), TM_Prometheus_DEFAULT).getString();
+		TM_Ifrit = config.get(TM, StatCollector.translateToLocal(Strings.TM_Ifrit_NAME), TM_Ifrit_DEFAULT).getString();
 		
 		TM_AbaddonPlasma = config.get(TM, StatCollector.translateToLocal(Strings.TM_AbaddonPlasma_NAME), TM_AbaddonPlasma_DEFAULT).getString();
 		TM_AbyssalTide = config.get(TM, StatCollector.translateToLocal(TM_AbyssalTide_NAME), TM_AbyssalTide_DEFAULT).getString();
@@ -466,6 +472,9 @@ public class Config {
 		A_TM_GracefulDahlia = TM_GracefulDahlia.split(", ");
 		A_TM_Foudre = TM_Foudre.split(", ");
 		A_TM_BlazeofGlory = TM_BlazeofGlory.split(", ");
+		A_TM_Prometheus = TM_Prometheus.split(", ");
+		A_TM_Ifrit = TM_Ifrit.split(", ");
+
 		
 		A_TM_AbaddonPlasma = TM_AbaddonPlasma.split(", ");
 		A_TM_AbyssalTide = TM_AbyssalTide.split(", ");

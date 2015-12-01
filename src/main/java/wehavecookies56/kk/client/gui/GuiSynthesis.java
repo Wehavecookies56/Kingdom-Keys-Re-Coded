@@ -28,6 +28,7 @@ import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.CreateFromSynthesisRecipe;
 import wehavecookies56.kk.network.packet.server.OpenMaterials;
+import wehavecookies56.kk.network.packet.server.TakeMaterials;
 import wehavecookies56.kk.util.TextHelper;
 
 
@@ -90,6 +91,13 @@ public class GuiSynthesis extends GuiTooltip{
 				PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(ExtendedPlayerRecipes.get(mc.thePlayer).knownRecipes.get(selected), 1));
 			}
 		case TAKE1:
+			ExtendedPlayerMaterials mats = ExtendedPlayerMaterials.get(mc.thePlayer);
+			List<String> materials = new ArrayList<String>();
+			
+			materials.addAll(mats.getKnownMaterialsMap().keySet());
+			if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 1)){
+				PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));
+			}
 			break;
 		}
 		updateButtons();
@@ -153,6 +161,15 @@ public class GuiSynthesis extends GuiTooltip{
 			}
 		}
 		if(materialSelected != -1){
+			ExtendedPlayerMaterials mats = ExtendedPlayerMaterials.get(mc.thePlayer);
+			List<String> materials = new ArrayList<String>();
+			
+			materials.addAll(mats.getKnownMaterialsMap().keySet());
+			if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 1)){
+				Take1.enabled = true;
+			}else{
+				Take1.enabled = false;
+			}
 			Take1.visible = true;
 		}else{
 			Take1.visible = false;

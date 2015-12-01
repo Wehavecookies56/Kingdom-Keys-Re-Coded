@@ -80,6 +80,7 @@ public class ClientProxy extends CommonProxy {
 		ModelLoader.setCustomModelResourceLocation(ModItems.HerosCrest, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.HerosCrest, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.HiddenDragon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.HiddenDragon, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Hyperdrive, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Hyperdrive, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Ifrit, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Ifrit, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.IncompleteKiblade, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.IncompleteKiblade, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.JungleKing, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.JungleKing, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.KeybladeofPeoplesHearts, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KeybladeofPeoplesHearts, "inventory"));
@@ -108,6 +109,7 @@ public class ClientProxy extends CommonProxy {
 		ModelLoader.setCustomModelResourceLocation(ModItems.OneWingedAngel, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.OneWingedAngel, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.PhotonDebugger, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.PhotonDebugger, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.PixiePetal, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.PixiePetal, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Prometheus, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Prometheus, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Pumpkinhead, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Pumpkinhead, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Rainfell, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Rainfell, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.RoyalRadiance, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.RoyalRadiance, "inventory"));

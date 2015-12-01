@@ -32,7 +32,7 @@ public class GuiMaterialList extends GuiScrollingList {
 	static int posY = (height-200)/2;
 
 	public GuiMaterialList(GuiSynthesis parent){
-		super(parent.mc, 150, 500, 60, parent.height - ((parent.height/8)+70/16), 8, 35);
+		super(parent.mc, 150, 500, 60, parent.height - ((parent.height/8)+70/16), 8, 35, parent.width, parent.width);
 		this.parent = parent;
 	}
 

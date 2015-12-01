@@ -45,6 +45,7 @@ import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.network.packet.server.SyncStatMessagesPacket;
 import wehavecookies56.kk.network.packet.server.SynthesisMaterialPickup;
+import wehavecookies56.kk.network.packet.server.TakeMaterials;
 import wehavecookies56.kk.network.packet.server.UseRecipe;
 import wehavecookies56.kk.network.packet.server.magics.LevelUpMagic;
 import wehavecookies56.kk.network.packet.server.magics.MagicAero;
@@ -110,6 +111,7 @@ public class PacketDispatcher
 		registerMessage(LevelUpDrive.class);
 		registerMessage(SynthesisMaterialPickup.class);
 		registerMessage(MagnetBloxMotion.class);
+		registerMessage(TakeMaterials.class);
 		//Bidirectional
 	}
 

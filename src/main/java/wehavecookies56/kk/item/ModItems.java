@@ -5,7 +5,6 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import wehavecookies56.kk.item.org.ItemArpeggio;
@@ -16,9 +15,11 @@ import wehavecookies56.kk.item.org.ItemFairGame;
 import wehavecookies56.kk.item.org.ItemFoudre;
 import wehavecookies56.kk.item.org.ItemFrozenPride;
 import wehavecookies56.kk.item.org.ItemGracefulDahlia;
+import wehavecookies56.kk.item.org.ItemIfrit;
 import wehavecookies56.kk.item.org.ItemInterdiction;
 import wehavecookies56.kk.item.org.ItemLindworm;
 import wehavecookies56.kk.item.org.ItemLunatic;
+import wehavecookies56.kk.item.org.ItemPrometheus;
 import wehavecookies56.kk.item.org.ItemSharpshooter;
 import wehavecookies56.kk.item.org.ItemSkysplitter;
 import wehavecookies56.kk.lib.Config;
@@ -26,6 +27,7 @@ import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 
 public class ModItems {
+
 	//Organization
 	public static Item
 	Interdiction,
@@ -41,7 +43,9 @@ public class ModItems {
 	GracefulDahlia,
 	Foudre,
 
-	BlazeofGlory
+	BlazeofGlory,
+	Prometheus,
+	Ifrit
 	;
 
 	public static Item
@@ -435,7 +439,9 @@ public class ModItems {
 		GracefulDahlia = new ItemGracefulDahlia(EnumHelper.addToolMaterial(Config.A_TM_GracefulDahlia[0], Integer.parseInt(Config.A_TM_GracefulDahlia[1]), Integer.parseInt(Config.A_TM_GracefulDahlia[2]), Float.parseFloat(Config.A_TM_GracefulDahlia[3]), Float.parseFloat(Config.A_TM_GracefulDahlia[4]), Integer.parseInt(Config.A_TM_GracefulDahlia[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
 		Foudre = new ItemFoudre(EnumHelper.addToolMaterial(Config.A_TM_Foudre[0], Integer.parseInt(Config.A_TM_Foudre[1]), Integer.parseInt(Config.A_TM_Foudre[2]), Float.parseFloat(Config.A_TM_Foudre[3]), Float.parseFloat(Config.A_TM_Foudre[4]), Integer.parseInt(Config.A_TM_Foudre[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foudre);
 		BlazeofGlory = new ItemBlazeofGlory(EnumHelper.addToolMaterial(Config.A_TM_BlazeofGlory[0], Integer.parseInt(Config.A_TM_BlazeofGlory[1]), Integer.parseInt(Config.A_TM_BlazeofGlory[2]), Float.parseFloat(Config.A_TM_BlazeofGlory[3]), Float.parseFloat(Config.A_TM_BlazeofGlory[4]), Integer.parseInt(Config.A_TM_BlazeofGlory[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
-
+		Prometheus = new ItemPrometheus(EnumHelper.addToolMaterial(Config.A_TM_Prometheus[0], Integer.parseInt(Config.A_TM_Prometheus[1]), Integer.parseInt(Config.A_TM_Prometheus[2]), Float.parseFloat(Config.A_TM_Prometheus[3]), Float.parseFloat(Config.A_TM_Prometheus[4]), Integer.parseInt(Config.A_TM_Prometheus[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
+		Ifrit = new ItemIfrit(EnumHelper.addToolMaterial(Config.A_TM_Ifrit[0], Integer.parseInt(Config.A_TM_Ifrit[1]), Integer.parseInt(Config.A_TM_Ifrit[2]), Float.parseFloat(Config.A_TM_Ifrit[3]), Float.parseFloat(Config.A_TM_Ifrit[4]), Integer.parseInt(Config.A_TM_Ifrit[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
+		
 		AbaddonPlasma = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbaddonPlasma[0], Integer.parseInt(Config.A_TM_AbaddonPlasma[1]), Integer.parseInt(Config.A_TM_AbaddonPlasma[2]), Float.parseFloat(Config.A_TM_AbaddonPlasma[3]), Float.parseFloat(Config.A_TM_AbaddonPlasma[4]), Integer.parseInt(Config.A_TM_AbaddonPlasma[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbaddonPlasma);
 		AbyssalTide = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbyssalTide[0], Integer.parseInt(Config.A_TM_AbyssalTide[1]), Integer.parseInt(Config.A_TM_AbyssalTide[2]), Float.parseFloat(Config.A_TM_AbyssalTide[3]), Float.parseFloat(Config.A_TM_AbyssalTide[4]), Integer.parseInt(Config.A_TM_AbyssalTide[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbyssalTide);
 		AllforOne = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AllforOne[0], Integer.parseInt(Config.A_TM_AllforOne[1]), Integer.parseInt(Config.A_TM_AllforOne[2]), Float.parseFloat(Config.A_TM_AllforOne[3]), Float.parseFloat(Config.A_TM_AllforOne[4]), Integer.parseInt(Config.A_TM_AllforOne[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AllforOne);
@@ -781,6 +787,8 @@ public class ModItems {
 		GameRegistry.registerItem(GracefulDahlia, Strings.GracefulDahlia);
 		GameRegistry.registerItem(Foudre, Strings.Foudre);
 		GameRegistry.registerItem(BlazeofGlory, Strings.BlazeofGlory);
+		GameRegistry.registerItem(Prometheus, Strings.Prometheus);
+		GameRegistry.registerItem(Ifrit, Strings.Ifrit);
 
 		//Knowledge
 		GameRegistry.registerItem(AbandonedKnowledge, Strings.AbandonedKnowledge);
