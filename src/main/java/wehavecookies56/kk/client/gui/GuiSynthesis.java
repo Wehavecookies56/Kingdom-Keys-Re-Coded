@@ -35,14 +35,14 @@ import wehavecookies56.kk.util.TextHelper;
 public class GuiSynthesis extends GuiTooltip{
 
 	public int selected = -1;
-	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3, CREATE = 4, TAKE1 = 5, TAKESTACK = 6, TAKEHALFSTACK = 7, TAKEALL = 8;
+	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3, CREATE = 4, TAKE1 = 5, TAKESTACK = 6, TAKEHALFSTACK = 7, TAKEALL = 8, DEPOSIT = 9;
 	public int submenu;
 	private final GuiScreen parentScreen;
 	protected String title = TextHelper.localize(Strings.Gui_Synthesis_Main_Title);
 	private GuiRecipeList recipeList;
 	private GuiMaterialList materialList;
 
-	public GuiButton Back, FreeDev, Recipes, Materials, Create, Take1, TakeStack, TakeHalfStack, TakeAll;
+	public GuiButton Back, FreeDev, Recipes, Materials, Create, Take1, TakeStack, TakeHalfStack, TakeAll, Deposit;
 	public int materialSelected = -1;
 
 	public GuiSynthesis(GuiScreen parentScreen){
@@ -61,7 +61,13 @@ public class GuiSynthesis extends GuiTooltip{
 		this.buttonList.add(Recipes = new GuiButton(RECIPES, 5, 65, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes)));
 		this.buttonList.add(FreeDev = new GuiButton(FREEDEV, 5, 65+25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_FreeDev)));
 		this.buttonList.add(Materials = new GuiButton(MATERIALS, 5, 90+25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials)));
+		
+		this.buttonList.add(Deposit = new GuiButton(DEPOSIT, 200, height - ((height/8)+70/16), 100, 20, TextHelper.localize("Deposit Materials")));
+
 		this.buttonList.add(Take1 = new GuiButton(TAKE1, 200, height - ((height/8)+70/16) - 25, 100, 20, TextHelper.localize("Take 1")));
+		this.buttonList.add(TakeHalfStack = new GuiButton(TAKEHALFSTACK, 300, height - ((height/8)+70/16) - 25, 100, 20, TextHelper.localize("Take Half Stack")));
+		this.buttonList.add(TakeStack = new GuiButton(TAKESTACK, 400, height - ((height/8)+70/16) - 25, 100, 20, TextHelper.localize("Take Stack")));
+
 		updateButtons();
 	}
 
@@ -72,6 +78,8 @@ public class GuiSynthesis extends GuiTooltip{
 
 	@Override
 	protected void actionPerformed(GuiButton button){
+		ExtendedPlayerMaterials mats = ExtendedPlayerMaterials.get(mc.thePlayer);
+		List<String> materials = new ArrayList<String>();
 		switch(button.id){
 		case BACK:
 			submenu = MAIN;
@@ -83,21 +91,34 @@ public class GuiSynthesis extends GuiTooltip{
 			submenu = FREEDEV;
 			break;
 		case MATERIALS:
-			PacketDispatcher.sendToServer(new OpenMaterials());
+			//PacketDispatcher.sendToServer(new OpenMaterials());
+			Deposit.visible = true;
 			submenu = MATERIALS;
 			break;
 		case CREATE:
 			if(isRecipeUsable(ExtendedPlayerRecipes.get(mc.thePlayer).knownRecipes.get(selected), 1)){
 				PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(ExtendedPlayerRecipes.get(mc.thePlayer).knownRecipes.get(selected), 1));
 			}
-		case TAKE1:
-			ExtendedPlayerMaterials mats = ExtendedPlayerMaterials.get(mc.thePlayer);
-			List<String> materials = new ArrayList<String>();
-			
+		case TAKE1:			
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
 			if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 1)){
 				PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));
 			}
+			break;
+		case TAKEHALFSTACK:
+			materials.addAll(mats.getKnownMaterialsMap().keySet());
+			if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 32)){
+				PacketDispatcher.sendToServer(new TakeMaterials(32, materials.get(materialSelected)));
+			}
+			break;
+		case TAKESTACK:
+			materials.addAll(mats.getKnownMaterialsMap().keySet());
+			if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 64)){
+				PacketDispatcher.sendToServer(new TakeMaterials(64, materials.get(materialSelected)));
+			}
+			break;
+		case DEPOSIT:
+			PacketDispatcher.sendToServer(new OpenMaterials());
 			break;
 		}
 		updateButtons();
@@ -147,17 +168,34 @@ public class GuiSynthesis extends GuiTooltip{
 		}
 		if(submenu != MATERIALS){
 			Take1.visible = false;
+			TakeStack.visible = false;
+			TakeHalfStack.visible = false;
+			Deposit.visible = false;
+
 		}
 		if(submenu == MATERIALS){
 			if(materialSelected != -1){
 				Take1.visible = true;
+				TakeStack.visible = true;
+				TakeHalfStack.visible = true;
+
 			}else{
 				Take1.visible = false;
+				TakeStack.visible = false;
+				TakeHalfStack.visible = false;
+				Deposit.visible = true;
+
 			}
 			if(materialSelected != -1 && !isInventoryFull()){
 				Take1.enabled = true;
+				TakeStack.enabled = true;
+				TakeHalfStack.enabled = true;
+
+
 			}else{
 				Take1.enabled = false;
+				TakeStack.enabled = false;
+
 			}
 		}
 		if(materialSelected != -1){
@@ -167,12 +205,28 @@ public class GuiSynthesis extends GuiTooltip{
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
 			if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 1)){
 				Take1.enabled = true;
+				TakeStack.enabled = true;
+				TakeHalfStack.enabled = true;
+
+
 			}else{
 				Take1.enabled = false;
+				TakeStack.enabled = false;
+				TakeHalfStack.enabled = false;
+
+
 			}
 			Take1.visible = true;
+			TakeStack.visible = true;
+			TakeHalfStack.visible = true;
+
+
 		}else{
 			Take1.visible = false;
+			TakeStack.visible = false;
+			TakeHalfStack.visible = false;
+
+
 		}
 		if(selected != -1 && submenu == RECIPES){
 			Create.visible = true;
