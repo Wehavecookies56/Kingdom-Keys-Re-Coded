@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import wehavecookies56.kk.api.materials.Material;
+import wehavecookies56.kk.api.materials.MaterialRegistry;
 import wehavecookies56.kk.api.recipes.Recipe;
 import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.entities.ExtendedPlayer;
@@ -64,9 +65,10 @@ public class GuiSynthesis extends GuiTooltip{
 		
 		this.buttonList.add(Deposit = new GuiButton(DEPOSIT, 200, height - ((height/8)+70/16), 100, 20, TextHelper.localize("Deposit Materials")));
 
-		this.buttonList.add(Take1 = new GuiButton(TAKE1, 200, height - ((height/8)+70/16) - 25, 100, 20, TextHelper.localize("Take 1")));
-		this.buttonList.add(TakeHalfStack = new GuiButton(TAKEHALFSTACK, 300, height - ((height/8)+70/16) - 25, 100, 20, TextHelper.localize("Take Half Stack")));
-		this.buttonList.add(TakeStack = new GuiButton(TAKESTACK, 400, height - ((height/8)+70/16) - 25, 100, 20, TextHelper.localize("Take Stack")));
+		this.buttonList.add(Take1 = new GuiButton(TAKE1, 195, height - ((height/8)+70/16) - 25, 75, 20, TextHelper.localize("Take 1")));
+		this.buttonList.add(TakeHalfStack = new GuiButton(TAKEHALFSTACK, 270, height - ((height/8)+70/16) - 25, 75, 20, TextHelper.localize("Take 32")));
+		this.buttonList.add(TakeStack = new GuiButton(TAKESTACK, 345, height - ((height/8)+70/16) - 25, 75, 20, TextHelper.localize("Take 64")));
+		this.buttonList.add(TakeAll = new GuiButton(TAKEALL, 420, height - ((height/8)+70/16) - 25, 75, 20, TextHelper.localize("Take All")));
 
 		updateButtons();
 	}
@@ -107,15 +109,16 @@ public class GuiSynthesis extends GuiTooltip{
 			break;
 		case TAKEHALFSTACK:
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
-			if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 32)){
-				PacketDispatcher.sendToServer(new TakeMaterials(32, materials.get(materialSelected)));
-			}
+			PacketDispatcher.sendToServer(new TakeMaterials(32, materials.get(materialSelected)));
 			break;
 		case TAKESTACK:
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
-			if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 64)){
-				PacketDispatcher.sendToServer(new TakeMaterials(64, materials.get(materialSelected)));
-			}
+			PacketDispatcher.sendToServer(new TakeMaterials(64, materials.get(materialSelected)));
+			break;
+		case TAKEALL:
+			materials.addAll(mats.getKnownMaterialsMap().keySet());
+			PacketDispatcher.sendToServer(new TakeMaterials(1000, materials.get(materialSelected)));
+
 			break;
 		case DEPOSIT:
 			PacketDispatcher.sendToServer(new OpenMaterials());
@@ -170,6 +173,7 @@ public class GuiSynthesis extends GuiTooltip{
 			Take1.visible = false;
 			TakeStack.visible = false;
 			TakeHalfStack.visible = false;
+			TakeAll.visible = false;
 			Deposit.visible = false;
 
 		}
@@ -178,11 +182,13 @@ public class GuiSynthesis extends GuiTooltip{
 				Take1.visible = true;
 				TakeStack.visible = true;
 				TakeHalfStack.visible = true;
+				TakeAll.visible = true;
 
 			}else{
 				Take1.visible = false;
 				TakeStack.visible = false;
 				TakeHalfStack.visible = false;
+				TakeAll.visible = false;
 				Deposit.visible = true;
 
 			}
@@ -190,12 +196,14 @@ public class GuiSynthesis extends GuiTooltip{
 				Take1.enabled = true;
 				TakeStack.enabled = true;
 				TakeHalfStack.enabled = true;
+				TakeAll.enabled = true;
 
 
 			}else{
 				Take1.enabled = false;
 				TakeStack.enabled = false;
-
+				TakeHalfStack.enabled = false;
+				TakeAll.enabled = false;
 			}
 		}
 		if(materialSelected != -1){
@@ -207,25 +215,27 @@ public class GuiSynthesis extends GuiTooltip{
 				Take1.enabled = true;
 				TakeStack.enabled = true;
 				TakeHalfStack.enabled = true;
-
+				TakeAll.enabled = true;
 
 			}else{
 				Take1.enabled = false;
 				TakeStack.enabled = false;
 				TakeHalfStack.enabled = false;
-
+				TakeAll.enabled = false;
 
 			}
 			Take1.visible = true;
 			TakeStack.visible = true;
 			TakeHalfStack.visible = true;
+			TakeAll.visible = true;
+
 
 
 		}else{
 			Take1.visible = false;
 			TakeStack.visible = false;
 			TakeHalfStack.visible = false;
-
+			TakeAll.visible = false;
 
 		}
 		if(selected != -1 && submenu == RECIPES){

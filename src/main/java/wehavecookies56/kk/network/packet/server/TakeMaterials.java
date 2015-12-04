@@ -47,6 +47,10 @@ public class TakeMaterials extends AbstractServerMessage<TakeMaterials> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
+		if(amount > ExtendedPlayerMaterials.get(player).getMaterialAmount(MaterialRegistry.get(materialName)))
+		{
+			amount = ExtendedPlayerMaterials.get(player).getMaterialAmount(MaterialRegistry.get(materialName));
+		}
 		if(materialName.startsWith("sm.")){
 			ItemStack material = new ItemStack(ModItems.SynthesisMaterial, amount);
 			material.setTagCompound(new NBTTagCompound());
@@ -60,8 +64,17 @@ public class TakeMaterials extends AbstractServerMessage<TakeMaterials> {
 			}else if(materialName.endsWith("crystal") || materialName.equals(Strings.SM_LostIllusion) || materialName.equals(Strings.SM_OrichalcumPlus)){
 				material.getTagCompound().setString("rank", "S");
 			}
+		/*	int emptySlots = 0;
+			for (int i = 0; i < player.inventory.mainInventory.length; i++) //Checks the available slots in the inventory
+			{
+				if(player.inventory.mainInventory[i] == null)
+				{			
+					emptySlots++;
+				}
+			}*/
 			player.inventory.addItemStackToInventory(material);
 			ExtendedPlayerMaterials.get(player).removeMaterial(MaterialRegistry.get(materialName), amount);
+						
 		}else if(materialName.startsWith("item.")){
 			if(GameRegistry.findItem(Reference.MODID, materialName.replace("item.", "")) != null){
 				player.inventory.addItemStackToInventory(new ItemStack(GameRegistry.findItem(Reference.MODID, materialName.replace("item.", "")), amount));

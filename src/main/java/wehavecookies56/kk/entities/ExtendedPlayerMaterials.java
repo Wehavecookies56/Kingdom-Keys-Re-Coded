@@ -79,7 +79,16 @@ public class ExtendedPlayerMaterials implements IExtendedEntityProperties {
 		}
 		this.sync();
 	}
-
+	
+	public int getMaterialAmount(Material material)
+	{
+		if(this.getKnownMaterialsMap().containsKey(material.getName())){
+			int currAmount = this.getKnownMaterialsMap().get(material.getName());
+				return currAmount;
+			}
+		return 0;
+	}
+	
 	public Map<String, Integer> getKnownMaterialsMap(){
 		return this.knownMaterialsMap;
 	}
