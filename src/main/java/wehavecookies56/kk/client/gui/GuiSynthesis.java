@@ -78,10 +78,38 @@ public class GuiSynthesis extends GuiTooltip{
 		updateButtons();
 	}
 
+	protected int getFreeSlots()
+	{
+		int emptySlots = 0;
+		for (int i = 0; i < mc.thePlayer.inventory.mainInventory.length; i++) //Checks the available slots in the inventory
+		{
+			if(mc.thePlayer.inventory.mainInventory[i] == null)
+			{			
+				emptySlots++;
+			}
+		}
+		return emptySlots;
+	}
+	
+	protected boolean getInventoryMaterial(String material)
+	{
+		
+		for (int i = 0; i < mc.thePlayer.inventory.mainInventory.length; i++) //Checks the available slots in the inventory
+		{
+			System.out.println(i);
+			if(mc.thePlayer.inventory.mainInventory[i].getUnlocalizedName() == material)
+			{			
+				return true;
+			}
+		}
+		return false;
+	}
 	@Override
 	protected void actionPerformed(GuiButton button){
 		ExtendedPlayerMaterials mats = ExtendedPlayerMaterials.get(mc.thePlayer);
 		List<String> materials = new ArrayList<String>();
+		int freeSlots = 0;
+		boolean foundMaterial = false;
 		switch(button.id){
 		case BACK:
 			submenu = MAIN;
@@ -101,23 +129,39 @@ public class GuiSynthesis extends GuiTooltip{
 			if(isRecipeUsable(ExtendedPlayerRecipes.get(mc.thePlayer).knownRecipes.get(selected), 1)){
 				PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(ExtendedPlayerRecipes.get(mc.thePlayer).knownRecipes.get(selected), 1));
 			}
-		case TAKE1:			
+		case TAKE1:	
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
-			if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 1)){
-				PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));
+
+			freeSlots = getFreeSlots();
+			foundMaterial = getInventoryMaterial(materials.get(materialSelected));
+			if(foundMaterial || freeSlots > 1)// || materials.get(materialSelected))
+			{
+				System.out.println("Actual Material: "+materials.get(materialSelected));
+
+				if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 1)){
+					PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));
+				}
 			}
 			break;
 		case TAKEHALFSTACK:
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
-			PacketDispatcher.sendToServer(new TakeMaterials(32, materials.get(materialSelected)));
+
+			if(foundMaterial || freeSlots > 1)
+			{
+				PacketDispatcher.sendToServer(new TakeMaterials(32, materials.get(materialSelected)));
+			}
 			break;
 		case TAKESTACK:
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
-			PacketDispatcher.sendToServer(new TakeMaterials(64, materials.get(materialSelected)));
+
+			if(freeSlots > 1)
+			{
+				PacketDispatcher.sendToServer(new TakeMaterials(64, materials.get(materialSelected)));
+			}
 			break;
 		case TAKEALL:
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
-			PacketDispatcher.sendToServer(new TakeMaterials(1000, materials.get(materialSelected)));
+			PacketDispatcher.sendToServer(new TakeMaterials(freeSlots *64, materials.get(materialSelected)));
 
 			break;
 		case DEPOSIT:
