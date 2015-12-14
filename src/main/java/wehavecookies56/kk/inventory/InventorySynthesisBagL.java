@@ -72,5 +72,14 @@ public class InventorySynthesisBagL extends AbstractInventory {
 		return SAVE_KEY;
 	}
 	
+	@Override
+	public void setInventorySlotContents(int slot, ItemStack itemstack) {
+		inventory[slot] = itemstack;
+		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) {
+			itemstack.stackSize = getInventoryStackLimit();
+		}
+		writeToNBT(invStack.getTagCompound());
+	}
+	
 
 }

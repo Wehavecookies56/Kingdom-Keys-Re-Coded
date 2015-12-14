@@ -52,6 +52,8 @@ import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.inventory.InventorySynthesisBagL;
+import wehavecookies56.kk.inventory.InventorySynthesisBagM;
+import wehavecookies56.kk.inventory.InventorySynthesisBagS;
 import wehavecookies56.kk.item.ItemHpOrb;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
@@ -68,7 +70,6 @@ import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.MagicOrbPickup;
 import wehavecookies56.kk.network.packet.server.MunnyPickup;
-import wehavecookies56.kk.network.packet.server.SynthesisMaterialPickup;
 
 public class EventHandler {
 	@SubscribeEvent
@@ -447,33 +448,126 @@ public class EventHandler {
 		{
 			AchievementHelper.addAchievement(event.entityPlayer, ModAchievements.getBlox);
 		}
-		
-	/*	else if(event.item.getEntityItem().getItem() instanceof ItemSynthesisMaterial){
+
+		else if(event.item.getEntityItem().getItem() instanceof ItemSynthesisMaterial){
 			if(event.entityPlayer.inventory.hasItem(ModItems.SynthesisBagL)){
-				for(int i = 0; i < event.entityPlayer.inventory.mainInventory.length; i++){
+				for(int i = 0; i < event.entityPlayer.inventory.getSizeInventory(); i++){
 					if(event.entityPlayer.inventory.getStackInSlot(i) != null){
 						if(event.entityPlayer.inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagL){
 							InventorySynthesisBagL inv = new InventorySynthesisBagL(event.entityPlayer.inventory.getStackInSlot(i));
 							for(int j = 0; j < inv.getSizeInventory(); j++){
-								if(inv.getStackInSlot(i) == null){
-									SynthesisMaterialPickup packet = new SynthesisMaterialPickup(event.item.getEntityItem(), event.entityPlayer.inventory.getStackInSlot(i), j);
-									PacketDispatcher.sendToServer(packet);
-									event.item.getEntityItem().stackSize--;
-									//event.entityPlayer.inventory.consumeInventoryItem(event.item.getEntityItem().getItem());
-									//inv.setInventorySlotContents(j, event.item.getEntityItem());
+								ItemStack bagItem = inv.getStackInSlot(j);
+								ItemStack pickUp = event.item.getEntityItem();
+								if(bagItem != null){
+									if(bagItem.getItem().equals(pickUp.getItem())){
+										if(bagItem.hasTagCompound() && pickUp.hasTagCompound()){
+											if(bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")){
+												if(bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))){
+													if(bagItem.stackSize < 64){
+														if(bagItem.stackSize + 1 <= 64){
+															event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+															ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
+															stack.setTagCompound(new NBTTagCompound());
+															stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
+															stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+															inv.setInventorySlotContents(j, stack);
+															return;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								else if (bagItem == null){
+									event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+									inv.setInventorySlotContents(j, pickUp);
 									return;
-								}else{
-									j++;
 								}
 							}		
 						}
 					}
-
 				}
 			}
-
-		}*/
-		
+			if(event.entityPlayer.inventory.hasItem(ModItems.SynthesisBagM)){
+				for(int i = 0; i < event.entityPlayer.inventory.getSizeInventory(); i++){
+					if(event.entityPlayer.inventory.getStackInSlot(i) != null){
+						if(event.entityPlayer.inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagM){
+							InventorySynthesisBagM inv = new InventorySynthesisBagM(event.entityPlayer.inventory.getStackInSlot(i));
+							for(int j = 0; j < inv.getSizeInventory(); j++){
+								ItemStack bagItem = inv.getStackInSlot(j);
+								ItemStack pickUp = event.item.getEntityItem();
+								if(bagItem != null){
+									if(bagItem.getItem().equals(pickUp.getItem())){
+										if(bagItem.hasTagCompound() && pickUp.hasTagCompound()){
+											if(bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")){
+												if(bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))){
+													if(bagItem.stackSize < 64){
+														if(bagItem.stackSize + 1 <= 64){
+															event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+															ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
+															stack.setTagCompound(new NBTTagCompound());
+															stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
+															stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+															inv.setInventorySlotContents(j, stack);
+															return;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								else if (bagItem == null){
+									event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+									inv.setInventorySlotContents(j, pickUp);
+									return;
+								}
+							}		
+						}
+					}
+				}
+			}
+			if(event.entityPlayer.inventory.hasItem(ModItems.SynthesisBagS)){
+				for(int i = 0; i < event.entityPlayer.inventory.getSizeInventory(); i++){
+					if(event.entityPlayer.inventory.getStackInSlot(i) != null){
+						if(event.entityPlayer.inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagS){
+							InventorySynthesisBagS inv = new InventorySynthesisBagS(event.entityPlayer.inventory.getStackInSlot(i));
+							for(int j = 0; j < inv.getSizeInventory(); j++){
+								ItemStack bagItem = inv.getStackInSlot(j);
+								ItemStack pickUp = event.item.getEntityItem();
+								if(bagItem != null){
+									if(bagItem.getItem().equals(pickUp.getItem())){
+										if(bagItem.hasTagCompound() && pickUp.hasTagCompound()){
+											if(bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")){
+												if(bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))){
+													if(bagItem.stackSize < 64){
+														if(bagItem.stackSize + 1 <= 64){
+															event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+															ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
+															stack.setTagCompound(new NBTTagCompound());
+															stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
+															stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+															inv.setInventorySlotContents(j, stack);
+															return;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								else if (bagItem == null){
+									event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+									inv.setInventorySlotContents(j, pickUp);
+									return;
+								}
+							}		
+						}
+					}
+				}
+			}
+		}
 	}
 
 	@SubscribeEvent

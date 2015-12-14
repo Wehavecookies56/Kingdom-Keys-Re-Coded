@@ -14,6 +14,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import wehavecookies56.kk.api.materials.Material;
@@ -96,10 +97,11 @@ public class GuiSynthesis extends GuiTooltip{
 		
 		for (int i = 0; i < mc.thePlayer.inventory.mainInventory.length; i++) //Checks the available slots in the inventory
 		{
-			System.out.println(i);
-			if(mc.thePlayer.inventory.mainInventory[i].getUnlocalizedName() == material)
-			{			
-				return true;
+			if(mc.thePlayer.inventory.mainInventory[i] != null){
+				if(mc.thePlayer.inventory.mainInventory[i].getUnlocalizedName() == material)
+				{			
+					return true;
+				}
 			}
 		}
 		return false;
@@ -134,11 +136,9 @@ public class GuiSynthesis extends GuiTooltip{
 
 			freeSlots = getFreeSlots();
 			foundMaterial = getInventoryMaterial(materials.get(materialSelected));
-			if(foundMaterial || freeSlots > 1)// || materials.get(materialSelected))
+			if(foundMaterial || freeSlots >= 1)// || materials.get(materialSelected))
 			{
-				System.out.println("Actual Material: "+materials.get(materialSelected));
-
-				if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 1)){
+				if(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 1){
 					PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));
 				}
 			}
@@ -146,23 +146,36 @@ public class GuiSynthesis extends GuiTooltip{
 		case TAKEHALFSTACK:
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
 
-			if(foundMaterial || freeSlots > 1)
+			freeSlots = getFreeSlots();
+			foundMaterial = getInventoryMaterial(materials.get(materialSelected));
+			if(foundMaterial || freeSlots >= 1)
 			{
-				PacketDispatcher.sendToServer(new TakeMaterials(32, materials.get(materialSelected)));
+				if(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 32){
+					PacketDispatcher.sendToServer(new TakeMaterials(32, materials.get(materialSelected)));
+				}else{
+					PacketDispatcher.sendToServer(new TakeMaterials(mats.getKnownMaterialsMap().get(materials.get(materialSelected)), materials.get(materialSelected)));
+				}
 			}
 			break;
 		case TAKESTACK:
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
 
-			if(freeSlots > 1)
+			freeSlots = getFreeSlots();
+			if(freeSlots >= 1)
 			{
-				PacketDispatcher.sendToServer(new TakeMaterials(64, materials.get(materialSelected)));
+				if(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 64){
+					PacketDispatcher.sendToServer(new TakeMaterials(64, materials.get(materialSelected)));
+				}else{
+					PacketDispatcher.sendToServer(new TakeMaterials(mats.getKnownMaterialsMap().get(materials.get(materialSelected)), materials.get(materialSelected)));
+				}
 			}
 			break;
 		case TAKEALL:
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
-			PacketDispatcher.sendToServer(new TakeMaterials(freeSlots *64, materials.get(materialSelected)));
-
+			freeSlots = getFreeSlots();
+			if(freeSlots >= 1){
+				PacketDispatcher.sendToServer(new TakeMaterials(freeSlots *64, materials.get(materialSelected)));
+			}
 			break;
 		case DEPOSIT:
 			PacketDispatcher.sendToServer(new OpenMaterials());
@@ -351,6 +364,26 @@ public class GuiSynthesis extends GuiTooltip{
 					GL11.glScalef(2, 2, 2);
 					drawString(fontRendererObj, TextHelper.localize(materials.get(i).toString() + ".name") + " x" + mats.getKnownMaterialsMap().get(materials.get(i)), 0, 0, 0xFFF700);
 				}GL11.glPopMatrix();
+				Material m = MaterialRegistry.get(materials.get(i).toString());
+		        if(m.getTexture() != null){
+		        	GL11.glPushMatrix();{ 
+		        		GL11.glColor3f(1, 1, 1);
+		        		ResourceLocation texture = m.getTexture();
+		            	Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+		    			GL11.glTranslatef(200, 100, 0);
+		    			GL11.glScalef(0.0625f, 0.0625f, 0.0625f);
+			        	GL11.glScalef(3, 3, 3);
+		    			drawTexturedModalRect(0, 0, 0, 0, 256, 256);
+		        	}GL11.glPopMatrix();
+		        }else{
+		        	GL11.glPushMatrix();{ 
+		        		ItemStack item = m.getItem();
+		    			GL11.glTranslatef(200, 100, 0);
+			        	GL11.glScalef(3, 3, 3);
+			        	mc.getRenderItem().renderItemAndEffectIntoGUI(item, 0, 0);
+		        	}GL11.glPopMatrix();
+		        	
+		        }
 			}
 		}
 	}
