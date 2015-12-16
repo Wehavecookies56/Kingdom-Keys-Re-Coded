@@ -1,7 +1,6 @@
 package wehavecookies56.kk.entities;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -16,6 +15,7 @@ import net.minecraftforge.common.util.Constants;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.inventory.InventoryKeychain;
+import wehavecookies56.kk.inventory.InventorySynthBagMenu;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.ShowOverlayPacket;
@@ -30,6 +30,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	private final EntityPlayer player;
 
 	public final InventoryKeychain inventory = new InventoryKeychain();
+	public final InventorySynthBagMenu inventory2 = new InventorySynthBagMenu();
 
 	public int munny, maxMunny;
 

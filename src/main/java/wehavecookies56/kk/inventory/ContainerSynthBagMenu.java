@@ -9,24 +9,22 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-public class ContainerKeychain extends Container
+public class ContainerSynthBagMenu extends Container
 {
 	private static final int
-	INV_START = InventoryKeychain.INV_SIZE,
+	INV_START = InventorySynthBagMenu.INV_SIZE,
 	INV_END = INV_START+26,
 	HOTBAR_START = INV_END+1,
 	HOTBAR_END = HOTBAR_START+8;
 
-	public ContainerKeychain(EntityPlayer player, InventoryPlayer inventoryPlayer, InventoryKeychain inventoryKeychain) 
-	{
+	public ContainerSynthBagMenu(EntityPlayer player, InventoryPlayer inventoryPlayer, InventorySynthBagMenu inventorySyntheBagMenu) {
 		int i;
-		addSlotToContainer(new SlotCustom(inventoryKeychain, 0, 80, 30));
+		addSlotToContainer(new SlotCustom(inventorySyntheBagMenu, 0, 80, 30));
 		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
 				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 			}
 		}
-
 		for (i = 0; i < 9; ++i) {
 			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
 		}

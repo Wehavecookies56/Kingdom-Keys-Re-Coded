@@ -94,6 +94,9 @@ public class Strings {
 	Gui_Menu_Main_Time = Gui_Menu_Main + ".time",
 	Gui_Menu_Items = Gui_Menu + ".items",
 	Gui_Menu_Items_Title = Gui_Menu_Items + ".title",
+	Gui_Menu_Items_Player = Gui_Menu_Items + ".player",
+	Gui_Menu_Items_Button_Keychain = Gui_Menu_Items + ".keychain",
+	Gui_Menu_Items_Button_SynthBag = Gui_Menu_Items + ".synthbag",
 	Gui_Menu_Items_Button = Gui_Menu_Items + ".button",
 	Gui_Menu_Items_Button_Stock = Gui_Menu_Items_Button + ".stock",
 	Gui_Menu_Items_Button_Back = Gui_Menu_Items_Button + ".back",
@@ -906,6 +909,7 @@ public class Strings {
 	TM_VulpeusForetellersKeyblade_NAME = TOOLMATERIAL + VulpeusForetellersKeyblade
 	;
 	public static final String KeychainInventory = "container.keychain";
+	public static final String SynthBagInventory = "container.synthbag";
 	public static final String SynthesisBagSInventory = "container.synthesisbagsinventory";
 	public static final String SynthesisBagMInventory = "container.synthesisbagminventory";
 	public static final String SynthesisBagLInventory = "container.synthesisbaglinventory";

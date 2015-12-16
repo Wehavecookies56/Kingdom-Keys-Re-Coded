@@ -62,6 +62,8 @@ public class KingdomKeys {
 	private static int modGuiIndex = 0;
 	public static final int GUI_KEYCHAIN_INV = modGuiIndex++;
 	public static final int GUI_KKCHEST_INV = modGuiIndex++;
+	public static final int GUI_ITEMS_PLAYER = modGuiIndex++;
+	public static final int GUI_SYNTHBAG_INV = modGuiIndex++;
 	public static final int GUI_SYNTHESISBAGS_INV = modGuiIndex++;
 	public static final int GUI_SYNTHESISBAGM_INV = modGuiIndex++;
 	public static final int GUI_SYNTHESISBAGL_INV = modGuiIndex++;

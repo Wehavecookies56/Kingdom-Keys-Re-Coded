@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.client.gui.GuiKKChest;
 import wehavecookies56.kk.client.gui.GuiKeychains;
+import wehavecookies56.kk.client.gui.GuiSynthBag;
 import wehavecookies56.kk.client.gui.GuiSynthesisBagL;
 import wehavecookies56.kk.client.gui.GuiSynthesisBagM;
 import wehavecookies56.kk.client.gui.GuiSynthesisBagS;
@@ -21,6 +22,7 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.TileEntityKKChest;
 import wehavecookies56.kk.inventory.ContainerKKChest;
 import wehavecookies56.kk.inventory.ContainerKeychain;
+import wehavecookies56.kk.inventory.ContainerSynthBagMenu;
 import wehavecookies56.kk.inventory.ContainerSynthesisBagL;
 import wehavecookies56.kk.inventory.ContainerSynthesisBagM;
 import wehavecookies56.kk.inventory.ContainerSynthesisBagS;
@@ -62,6 +64,9 @@ public class CommonProxy implements IGuiHandler {
 		if (ID == KingdomKeys.GUI_KEYCHAIN_INV){
 			return new ContainerKeychain(player, player.inventory, ExtendedPlayer.get(player).inventory);
 		}
+		else if (ID == KingdomKeys.GUI_SYNTHBAG_INV){
+			return new ContainerSynthBagMenu(player, player.inventory, ExtendedPlayer.get(player).inventory2);
+		}
 		else if (ID == KingdomKeys.GUI_KKCHEST_INV){
 			if(te instanceof TileEntityKKChest){
 				return new ContainerKKChest(player.inventory, (TileEntityKKChest)world.getTileEntity(new BlockPos(x, y, z)));
@@ -89,6 +94,9 @@ public class CommonProxy implements IGuiHandler {
 		
 		if (ID == KingdomKeys.GUI_KEYCHAIN_INV){
 			return new GuiKeychains(player, player.inventory, ExtendedPlayer.get(player).inventory);
+		}
+		else if (ID == KingdomKeys.GUI_SYNTHBAG_INV){
+			return new GuiSynthBag(player, player.inventory, ExtendedPlayer.get(player).inventory2);
 		}
 		else if (ID == KingdomKeys.GUI_KKCHEST_INV){
 			
