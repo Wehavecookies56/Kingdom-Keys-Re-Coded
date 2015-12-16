@@ -1,7 +1,6 @@
 package wehavecookies56.kk.inventory;
 
 import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.item.ItemKeychain;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -19,7 +18,7 @@ public class ContainerSynthBagMenu extends Container
 
 	public ContainerSynthBagMenu(EntityPlayer player, InventoryPlayer inventoryPlayer, InventorySynthBagMenu inventorySyntheBagMenu) {
 		int i;
-		addSlotToContainer(new SlotCustom(inventorySyntheBagMenu, 0, 80, 30));
+		addSlotToContainer(new SlotCustom(inventorySyntheBagMenu, 0, 80, 30, 2));
 		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
 				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
@@ -50,7 +49,7 @@ public class ContainerSynthBagMenu extends Container
 
 				slot.onSlotChange(itemstack1, itemstack);
 			}
-			else {
+			/*else {
 				if (itemstack1.getItem() instanceof ItemKeychain) {
 					if (!this.mergeItemStack(itemstack1, 0, InventoryKeychain.INV_SIZE, false)) {
 						return null;
@@ -66,7 +65,7 @@ public class ContainerSynthBagMenu extends Container
 						return null;
 					}
 				}
-			}
+			}*/
 
 			if (itemstack1.stackSize == 0) {
 				slot.putStack((ItemStack) null);

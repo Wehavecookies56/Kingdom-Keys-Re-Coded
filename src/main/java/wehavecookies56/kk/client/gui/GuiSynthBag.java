@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 import wehavecookies56.kk.client.input.Keybinds;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.inventory.ContainerSynthBagMenu;
-import wehavecookies56.kk.inventory.InventoryKeychain;
 import wehavecookies56.kk.inventory.InventorySynthBagMenu;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;

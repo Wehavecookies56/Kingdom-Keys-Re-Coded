@@ -20,7 +20,7 @@ public class ContainerKeychain extends Container
 	public ContainerKeychain(EntityPlayer player, InventoryPlayer inventoryPlayer, InventoryKeychain inventoryKeychain) 
 	{
 		int i;
-		addSlotToContainer(new SlotCustom(inventoryKeychain, 0, 80, 30));
+		addSlotToContainer(new SlotCustom(inventoryKeychain, 0, 80, 30,1));
 		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
 				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));

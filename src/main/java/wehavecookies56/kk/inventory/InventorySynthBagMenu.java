@@ -42,7 +42,11 @@ public class InventorySynthBagMenu extends AbstractInventory {
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return true;//stack.getItem() instanceof ItemSynthesisBagS || stack.getItem() instanceof ItemSynthesisBagM || stack.getItem() instanceof ItemSynthesisBagL;
+		if(stack.getItem() instanceof ItemSynthesisBagS || stack.getItem() instanceof ItemSynthesisBagM || stack.getItem() instanceof ItemSynthesisBagL)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	@Override
