@@ -107,6 +107,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void saveNBTData(NBTTagCompound compound){
 		NBTTagCompound properties = new NBTTagCompound();
 		this.inventory.writeToNBT(properties);
+		this.inventory2.writeToNBT(properties);
 
 		properties.setInteger("Munny", this.munny);
 		properties.setInteger("Level", this.level);
@@ -161,6 +162,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void loadNBTData(NBTTagCompound compound){
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
 		this.inventory.readFromNBT(properties);
+		this.inventory2.readFromNBT(properties);
 
 		this.munny = properties.getInteger("Munny");
 		this.level = properties.getInteger("Level");

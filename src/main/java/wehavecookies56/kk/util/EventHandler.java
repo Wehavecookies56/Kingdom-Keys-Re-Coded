@@ -450,121 +450,111 @@ public class EventHandler {
 		}
 
 		else if(event.item.getEntityItem().getItem() instanceof ItemSynthesisMaterial){
-			if(event.entityPlayer.inventory.hasItem(ModItems.SynthesisBagL)){
-				for(int i = 0; i < event.entityPlayer.inventory.getSizeInventory(); i++){
-					if(event.entityPlayer.inventory.getStackInSlot(i) != null){
-						if(event.entityPlayer.inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagL){
-							InventorySynthesisBagL inv = new InventorySynthesisBagL(event.entityPlayer.inventory.getStackInSlot(i));
-							for(int j = 0; j < inv.getSizeInventory(); j++){
-								ItemStack bagItem = inv.getStackInSlot(j);
-								ItemStack pickUp = event.item.getEntityItem();
-								if(bagItem != null){
-									if(bagItem.getItem().equals(pickUp.getItem())){
-										if(bagItem.hasTagCompound() && pickUp.hasTagCompound()){
-											if(bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")){
-												if(bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))){
-													if(bagItem.stackSize < 64){
-														if(bagItem.stackSize + 1 <= 64){
-															event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-															ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
-															stack.setTagCompound(new NBTTagCompound());
-															stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
-															stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
-															inv.setInventorySlotContents(j, stack);
-															return;
-														}
-													}
+			//if(event.entityPlayer.inventory.getStackInSlot(i) != null){
+			if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0) != null){
+				if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0).getItem() == ModItems.SynthesisBagL){
+					InventorySynthesisBagL inv = new InventorySynthesisBagL(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0));
+					for(int j = 0; j < inv.getSizeInventory(); j++){
+						ItemStack bagItem = inv.getStackInSlot(j);
+						ItemStack pickUp = event.item.getEntityItem();
+						if(bagItem != null){
+							if(bagItem.getItem().equals(pickUp.getItem())){
+								if(bagItem.hasTagCompound() && pickUp.hasTagCompound()){
+									if(bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")){
+										if(bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))){
+											if(bagItem.stackSize < 64){
+												if(bagItem.stackSize + 1 <= 64){
+													event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+													ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
+													stack.setTagCompound(new NBTTagCompound());
+													stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
+													stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+													inv.setInventorySlotContents(j, stack);
+													return;
 												}
 											}
 										}
 									}
 								}
-								else if (bagItem == null){
-									event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-									inv.setInventorySlotContents(j, pickUp);
-									return;
-								}
-							}		
+							}
 						}
-					}
+						else if (bagItem == null){
+							event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+							inv.setInventorySlotContents(j, pickUp);
+							return;
+						}
+					}		
 				}
 			}
-			if(event.entityPlayer.inventory.hasItem(ModItems.SynthesisBagM)){
-				for(int i = 0; i < event.entityPlayer.inventory.getSizeInventory(); i++){
-					if(event.entityPlayer.inventory.getStackInSlot(i) != null){
-						if(event.entityPlayer.inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagM){
-							InventorySynthesisBagM inv = new InventorySynthesisBagM(event.entityPlayer.inventory.getStackInSlot(i));
-							for(int j = 0; j < inv.getSizeInventory(); j++){
-								ItemStack bagItem = inv.getStackInSlot(j);
-								ItemStack pickUp = event.item.getEntityItem();
-								if(bagItem != null){
-									if(bagItem.getItem().equals(pickUp.getItem())){
-										if(bagItem.hasTagCompound() && pickUp.hasTagCompound()){
-											if(bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")){
-												if(bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))){
-													if(bagItem.stackSize < 64){
-														if(bagItem.stackSize + 1 <= 64){
-															event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-															ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
-															stack.setTagCompound(new NBTTagCompound());
-															stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
-															stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
-															inv.setInventorySlotContents(j, stack);
-															return;
-														}
-													}
+			if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0) != null){
+				if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0).getItem() == ModItems.SynthesisBagM){
+					InventorySynthesisBagM inv = new InventorySynthesisBagM(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0));
+					for(int j = 0; j < inv.getSizeInventory(); j++){
+						ItemStack bagItem = inv.getStackInSlot(j);
+						ItemStack pickUp = event.item.getEntityItem();
+						if(bagItem != null){
+							if(bagItem.getItem().equals(pickUp.getItem())){
+								if(bagItem.hasTagCompound() && pickUp.hasTagCompound()){
+									if(bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")){
+										if(bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))){
+											if(bagItem.stackSize < 64){
+												if(bagItem.stackSize + 1 <= 64){
+													event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+													ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
+													stack.setTagCompound(new NBTTagCompound());
+													stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
+													stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+													inv.setInventorySlotContents(j, stack);
+													return;
 												}
 											}
 										}
 									}
 								}
-								else if (bagItem == null){
-									event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-									inv.setInventorySlotContents(j, pickUp);
-									return;
-								}
-							}		
+							}
 						}
-					}
+						else if (bagItem == null){
+							event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+							inv.setInventorySlotContents(j, pickUp);
+							return;
+						}
+					}		
 				}
+				
 			}
-			if(event.entityPlayer.inventory.hasItem(ModItems.SynthesisBagS)){
-				for(int i = 0; i < event.entityPlayer.inventory.getSizeInventory(); i++){
-					if(event.entityPlayer.inventory.getStackInSlot(i) != null){
-						if(event.entityPlayer.inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagS){
-							InventorySynthesisBagS inv = new InventorySynthesisBagS(event.entityPlayer.inventory.getStackInSlot(i));
-							for(int j = 0; j < inv.getSizeInventory(); j++){
-								ItemStack bagItem = inv.getStackInSlot(j);
-								ItemStack pickUp = event.item.getEntityItem();
-								if(bagItem != null){
-									if(bagItem.getItem().equals(pickUp.getItem())){
-										if(bagItem.hasTagCompound() && pickUp.hasTagCompound()){
-											if(bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")){
-												if(bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))){
-													if(bagItem.stackSize < 64){
-														if(bagItem.stackSize + 1 <= 64){
-															event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-															ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
-															stack.setTagCompound(new NBTTagCompound());
-															stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
-															stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
-															inv.setInventorySlotContents(j, stack);
-															return;
-														}
-													}
+			if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0) != null){
+				if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0).getItem() == ModItems.SynthesisBagS){
+					InventorySynthesisBagS inv = new InventorySynthesisBagS(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0));
+					for(int j = 0; j < inv.getSizeInventory(); j++){
+						ItemStack bagItem = inv.getStackInSlot(j);
+						ItemStack pickUp = event.item.getEntityItem();
+						if(bagItem != null){
+							if(bagItem.getItem().equals(pickUp.getItem())){
+								if(bagItem.hasTagCompound() && pickUp.hasTagCompound()){
+									if(bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")){
+										if(bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))){
+											if(bagItem.stackSize < 64){
+												if(bagItem.stackSize + 1 <= 64){
+													event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+													ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
+													stack.setTagCompound(new NBTTagCompound());
+													stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
+													stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+													inv.setInventorySlotContents(j, stack);
+													return;
 												}
 											}
 										}
 									}
 								}
-								else if (bagItem == null){
-									event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-									inv.setInventorySlotContents(j, pickUp);
-									return;
-								}
-							}		
+							}
 						}
-					}
+						else if (bagItem == null){
+							event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+							inv.setInventorySlotContents(j, pickUp);
+							return;
+						}
+					}		
 				}
 			}
 		}
