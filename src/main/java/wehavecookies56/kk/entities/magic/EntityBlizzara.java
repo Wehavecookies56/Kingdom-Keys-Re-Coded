@@ -69,7 +69,7 @@ public class EntityBlizzara extends EntityThrowable
 				flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 12);
 				if (flag)
 				{
-					this.func_174815_a(this.shootingEntity, movingObject.entityHit);
+					this.applyEnchantments(this.shootingEntity, movingObject.entityHit);
 					if(movingObject.entityHit.isBurning())
 					{
 						movingObject.entityHit.extinguish();

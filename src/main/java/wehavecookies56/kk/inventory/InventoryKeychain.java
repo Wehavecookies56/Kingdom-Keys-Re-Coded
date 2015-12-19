@@ -6,6 +6,8 @@ import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 
 public class InventoryKeychain extends AbstractInventory {
 	private final String name = TextHelper.localize(Strings.KeychainInventory);
@@ -17,11 +19,6 @@ public class InventoryKeychain extends AbstractInventory {
 	
 	public InventoryKeychain() {
 		this.inventory = new ItemStack[INV_SIZE];
-	}
-	
-	@Override
-	public String getName() {
-		return name;
 	}
 	
 	@Override
@@ -55,6 +52,16 @@ public class InventoryKeychain extends AbstractInventory {
 			inventory[i] = (stack == null ? null : stack.copy());
 		}
 		markDirty();
+	}
+
+	@Override
+	public String getCommandSenderName() {
+		return name;
+	}
+	
+	@Override
+	public IChatComponent getDisplayName() {
+		return new ChatComponentText(name);
 	}
 
 }

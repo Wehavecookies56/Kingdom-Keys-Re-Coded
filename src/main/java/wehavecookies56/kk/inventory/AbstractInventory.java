@@ -83,18 +83,13 @@ public abstract class AbstractInventory implements IInventory {
 	}
 
 	@Override
-	public String getName() {
-		return "";
-	}
-
-	@Override
 	public boolean hasCustomName() {
 		return false;
 	}
 
 	@Override
 	public IChatComponent getDisplayName() {
-		return (IChatComponent)(hasCustomName() ? new ChatComponentText(getName()) : new ChatComponentTranslation(getName()));
+		return null;
 	}
 
 	protected abstract String getNbtKey();
@@ -130,4 +125,10 @@ public abstract class AbstractInventory implements IInventory {
 			}
 		}
 	}
+	
+	@Override
+	public String getCommandSenderName() {
+		return "";
+	}
+	
 }

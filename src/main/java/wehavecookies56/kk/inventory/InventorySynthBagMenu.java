@@ -2,6 +2,8 @@ package wehavecookies56.kk.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 import wehavecookies56.kk.item.ItemSynthesisBagL;
 import wehavecookies56.kk.item.ItemSynthesisBagM;
 import wehavecookies56.kk.item.ItemSynthesisBagS;
@@ -18,11 +20,6 @@ public class InventorySynthBagMenu extends AbstractInventory {
 	
 	public InventorySynthBagMenu() {
 		this.inventory = new ItemStack[INV_SIZE];
-	}
-	
-	@Override
-	public String getName() {
-		return name;
 	}
 	
 	@Override
@@ -60,6 +57,16 @@ public class InventorySynthBagMenu extends AbstractInventory {
 			inventory[i] = (stack == null ? null : stack.copy());
 		}
 		markDirty();
+	}
+
+	@Override
+	public String getCommandSenderName() {
+		return name;
+	}
+	
+	@Override
+	public IChatComponent getDisplayName() {
+		return new ChatComponentText(name);
 	}
 
 }

@@ -149,12 +149,6 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 		Arrays.fill(itemStacks, null);
 	}
 
-	// will add a key for this container to the lang file so we can name it in the GUI
-	@Override
-	public String getName() {
-		return "container.kkchest.name";
-	}
-
 	@Override
 	public boolean hasCustomName() {
 		return false;
@@ -163,7 +157,7 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 	// standard code to look up what the human-readable name is
 	@Override
 	public IChatComponent getDisplayName() {
-		return this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatComponentTranslation(this.getName());
+		return this.hasCustomName() ? new ChatComponentText(this.getDisplayName().toString()) : new ChatComponentTranslation(this.getDisplayName().toString());
 	}
 
 	// -----------------------------------------------------------------------------------------------------------
@@ -199,5 +193,10 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 	@Override
 	public int getFieldCount() {
 		return 0;
+	}
+
+	@Override
+	public String getCommandSenderName() {
+		return "container.kk.synthesisbag";
 	}
 }

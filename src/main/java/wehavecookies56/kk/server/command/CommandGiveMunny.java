@@ -23,12 +23,12 @@ public class CommandGiveMunny implements ICommand {
 	}
 
 	@Override
-	public int compareTo(Object arg0) {
+	public int compareTo(ICommand arg0) {
 		return 0;
 	}
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		return "givemunny";
 	}
 
@@ -43,7 +43,7 @@ public class CommandGiveMunny implements ICommand {
 	}
 
 	@Override
-	public List getAliases() {
+	public List<String> getCommandAliases() {
 		return this.aliases;
 	}
 
@@ -59,7 +59,7 @@ public class CommandGiveMunny implements ICommand {
 	}
 
 	@Override
-	public void execute(ICommandSender sender, String[] args) throws CommandException {
+	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
 		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
 			if(args.length == 0){
 				TextHelper.sendFormattedChatMessage("Invalid arguments, usage \"/givemunny <amount>\"", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
@@ -80,10 +80,9 @@ public class CommandGiveMunny implements ICommand {
 	}
 
 	@Override
-	public boolean canCommandSenderUse(ICommandSender sender)
-    {
-        return sender.canUseCommand(this.getRequiredPermissionLevel(), this.getName());
-    }
+	public boolean canCommandSenderUseCommand(ICommandSender sender) {
+        return sender.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName());
+	}
 
 	@Override
 	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {

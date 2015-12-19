@@ -17,7 +17,7 @@ public class GuiRecipeList extends GuiScrollingList {
 
 	FontRenderer f = Minecraft.getMinecraft().fontRendererObj;
 	RenderItem ir = Minecraft.getMinecraft().getRenderItem();
-	static ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
+	static ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
 	static int width = sr.getScaledWidth();
 	static int height = sr.getScaledHeight();
 	static int sizeX = 150;

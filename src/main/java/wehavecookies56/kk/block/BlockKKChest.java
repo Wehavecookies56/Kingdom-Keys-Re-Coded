@@ -33,29 +33,12 @@ import wehavecookies56.kk.util.GuiHelper;
 
 public class BlockKKChest extends BlockContainer implements ITileEntityProvider {
 	protected Random rand = new Random();
-
-	private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{B3DLoader.B3DFrameProperty.instance}); 
-	private int frame = 0;
 	
 	protected BlockKKChest(Material material, String toolClass, int level, float hardness, float resistance) {
 		super(material);
 		this.setHarvestLevel(toolClass, level);
 		this.setHardness(hardness);
 		this.setResistance(resistance);
-	}
-	
-	@Override
-	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
-		IModel model = null;
-		try {
-			model = ModelLoaderRegistry.getModel(new ResourceLocation(Reference.MODID + ":block/kkchest.b3d"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        B3DLoader.B3DState defaultState = ((B3DLoader.Wrapper)model).getDefaultState();
-        B3DLoader.B3DState newState = new B3DLoader.B3DState(defaultState.getAnimation(), frame);
-        return ((IExtendedBlockState)this.state.getBaseState()).withProperty(B3DLoader.B3DFrameProperty.instance, newState);
 	}
 
 	@Override

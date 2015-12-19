@@ -28,12 +28,12 @@ public class CommandLevelUp implements ICommand {
 	}
 
 	@Override
-	public int compareTo(Object arg0) {
+	public int compareTo(ICommand arg0) {
 		return 0;
 	}
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		return "levelup";
 	}
 
@@ -48,7 +48,7 @@ public class CommandLevelUp implements ICommand {
 	}
 
 	@Override
-	public List getAliases() {
+	public List<String> getCommandAliases() {
 		return this.aliases;
 	}
 
@@ -64,7 +64,7 @@ public class CommandLevelUp implements ICommand {
 	}
 
 	@Override
-	public void execute(ICommandSender sender, String[] args) throws CommandException {
+	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
 		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
 			EntityPlayer player = (EntityPlayer) sender.getCommandSenderEntity();
 			if(args.length == 0||args.length>2){
@@ -142,9 +142,9 @@ public class CommandLevelUp implements ICommand {
 	}
 
 	@Override
-	public boolean canCommandSenderUse(ICommandSender sender)
+	public boolean canCommandSenderUseCommand(ICommandSender sender)
     {
-        return sender.canUseCommand(this.getRequiredPermissionLevel(), this.getName());
+        return sender.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName());
     }
 
 	@Override

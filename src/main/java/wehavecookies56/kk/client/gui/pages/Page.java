@@ -21,7 +21,7 @@ public class Page extends GuiScreen {
 		this.name = name;
 		this.xPos = xPos;
 		this.yPos = yPos;
-		res = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
+		res = new ScaledResolution(Minecraft.getMinecraft());
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class Page extends GuiScreen {
 
 	@Override
 	public void initGui() {
-		res = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
+		res = new ScaledResolution(Minecraft.getMinecraft());
 		super.initGui();
 	}
 
@@ -43,7 +43,7 @@ public class Page extends GuiScreen {
 
 	public void drawPageBackground(int width, int height){
 		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
-		drawBG(new ResourceLocation(Reference.MODID, "textures/gui/journal.png"), this.getxPos() - 5, this.getyPos() - 5, (new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight)).getScaledWidth() - this.getxPos() - (fontRendererObj.FONT_HEIGHT * 2) + 5, (new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight)).getScaledHeight() - this.getyPos() - (fontRendererObj.FONT_HEIGHT * 2) + 5, 1F);
+		drawBG(new ResourceLocation(Reference.MODID, "textures/gui/journal.png"), this.getxPos() - 5, this.getyPos() - 5, (new ScaledResolution(Minecraft.getMinecraft())).getScaledWidth() - this.getxPos() - (fontRendererObj.FONT_HEIGHT * 2) + 5, (new ScaledResolution(Minecraft.getMinecraft())).getScaledHeight() - this.getyPos() - (fontRendererObj.FONT_HEIGHT * 2) + 5, 1F);
 	}
 
 	public void drawBG(ResourceLocation res, int posX, int posY, int width, int height, float scale){

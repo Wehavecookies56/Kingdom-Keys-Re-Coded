@@ -41,11 +41,6 @@ public class InventorySynthesisBagM extends AbstractInventory {
 	public boolean hasCustomName() {
 		return name.length() > 0;
 	}
-	
-	@Override
-	public String getName() {
-		return name;
-	}
 
 	@Override
 	public void markDirty() {
@@ -71,6 +66,15 @@ public class InventorySynthesisBagM extends AbstractInventory {
 	protected String getNbtKey() {
 		return SAVE_KEY;
 	}
+
+	@Override
+	public String getCommandSenderName() {
+		return name;
+	}
 	
+	@Override
+	public IChatComponent getDisplayName() {
+		return new ChatComponentText(name);
+	}
 
 }

@@ -1023,7 +1023,7 @@ public class GuiJournal extends GuiScreen {
 					h = 5;
 				}
 				GL11.glPushMatrix();
-				res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+				res = new ScaledResolution(mc);
 				int distToBottomFromMisc = (res.getScaledHeight() / 4) - 7;
 				int listHeight = (((res.getScaledHeight() / 4) + 7) + (res.getScaledHeight() / 2)) - yPos_coll_commandMenu + 2;
 
@@ -1079,7 +1079,7 @@ public class GuiJournal extends GuiScreen {
 				GL11.glPushMatrix();
 				GL11.glTranslatef(this.xPosition, this.yPosition + 2, 0);
 				GL11.glScalef(0.75f, 0.75f, 0);
-				res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+				res = new ScaledResolution(mc);
 				int distToBottomFromMisc = (res.getScaledHeight() / 4) - 7;
 				int listHeight = (((res.getScaledHeight() / 4) + 7) + (res.getScaledHeight() / 2)) - yPos_coll_commandMenu + 2;
 

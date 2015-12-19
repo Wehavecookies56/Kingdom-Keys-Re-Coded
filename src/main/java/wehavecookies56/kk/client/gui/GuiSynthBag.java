@@ -103,7 +103,7 @@ public class GuiSynthBag extends GuiContainer {
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY){
-		String s = inventory.hasCustomName() ? inventory.getName() : I18n.format(inventory.getName());
+		String s = inventory.getDisplayName().getUnformattedText();
 		fontRendererObj.drawString(s, xSize/2 - fontRendererObj.getStringWidth(s)/2, 12, 4210752);
 		fontRendererObj.drawString(I18n.format("container.inventory"), xSize/2 - fontRendererObj.getStringWidth(I18n.format("container.inventory"))/2, ySize - 96, 4210752);
 	}

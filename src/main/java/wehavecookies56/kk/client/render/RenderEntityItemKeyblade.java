@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import wehavecookies56.kk.entities.EntityItemMetalChocobo;
 
 public class RenderEntityItemKeyblade extends RenderEntityItem {
@@ -16,8 +17,8 @@ public class RenderEntityItemKeyblade extends RenderEntityItem {
 	}
 
 	@Override
-	public void doRender(Entity entity, double x, double y, double z, float p_76986_8_, float partialTicks) {
-		super.doRender(entity, x, y, z, p_76986_8_, partialTicks);
+	public void doRender(EntityItem entity, double x, double y, double z, float entityYaw, float partialTicks) {
+		super.doRender(entity, x, y, z, entityYaw, partialTicks);
 	}
 
 }
