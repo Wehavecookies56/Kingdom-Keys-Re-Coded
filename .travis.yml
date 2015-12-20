@@ -39,7 +39,6 @@ cache:
     - $HOME/.gradle/wrapper
 
 addons:
-  artifacts: true
-  s3_region: "eu-west-1"
+  artifacts:
     paths:
     - $HOME/build/libs/*.jar
