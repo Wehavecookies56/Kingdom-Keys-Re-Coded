@@ -40,4 +40,6 @@ cache:
 
 addons:
   artifacts: true
+    paths:
+      - $(ls /build/lib/*.jar | tr "\n" ":")
   s3_region: "eu-west-1"
