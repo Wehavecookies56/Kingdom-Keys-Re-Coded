@@ -1,6 +1,5 @@
 package wehavecookies56.kk.block;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -8,24 +7,17 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import sun.util.resources.cldr.pa.CurrencyNames_pa_Arab;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.client.SpawnAeroParticles;
 import wehavecookies56.kk.network.packet.client.SpawnCureParticles;
 import wehavecookies56.kk.util.TextHelper;
 
