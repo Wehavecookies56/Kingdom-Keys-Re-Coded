@@ -16,9 +16,9 @@ public class ContainerSynthBagMenu extends Container
 	HOTBAR_START = INV_END+1,
 	HOTBAR_END = HOTBAR_START+8;
 
-	public ContainerSynthBagMenu(EntityPlayer player, InventoryPlayer inventoryPlayer, InventorySynthBagMenu inventorySyntheBagMenu) {
+	public ContainerSynthBagMenu(EntityPlayer player, InventoryPlayer inventoryPlayer, InventorySynthBagMenu inventorySynthBagMenu) {
 		int i;
-		addSlotToContainer(new SlotCustom(inventorySyntheBagMenu, 0, 80, 30, 2));
+		addSlotToContainer(new SlotCustom(inventorySynthBagMenu, 0, 80, 30, 2));
 		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
 				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
@@ -49,24 +49,7 @@ public class ContainerSynthBagMenu extends Container
 
 				slot.onSlotChange(itemstack1, itemstack);
 			}
-			/*else {
-				if (itemstack1.getItem() instanceof ItemKeychain) {
-					if (!this.mergeItemStack(itemstack1, 0, InventoryKeychain.INV_SIZE, false)) {
-						return null;
-					}
-				}
-				else if (par2 >= INV_START && par2 < HOTBAR_START) {
-					if (!this.mergeItemStack(itemstack1, HOTBAR_START, HOTBAR_START + 1, false)) {
-						return null;
-					}
-				}
-				else if (par2 >= HOTBAR_START && par2 < HOTBAR_END + 1) {
-					if (!this.mergeItemStack(itemstack1, INV_START, INV_END + 1, false)) {
-						return null;
-					}
-				}
-			}*/
-
+			
 			if (itemstack1.stackSize == 0) {
 				slot.putStack((ItemStack) null);
 			} else {

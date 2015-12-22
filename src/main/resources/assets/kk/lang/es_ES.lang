@@ -1,6 +1,6 @@
-#Version 0.7.5
+#Spanish (ES) language file for Kingdom Keys Re:Coded
+#Version 0.7.5.2
 #Created by Abelatox
-#
 
 ############################
 #Achievements
@@ -34,6 +34,7 @@ tile.blastblox.name=Bloque Bomba
 tile.prizeblox.name=Bloque de Premio
 tile.rareprizeblox.name=Bloque de Premio Raro
 tile.ghostblox.name=Bloque Fantasma
+tile.magnetblox.name=Bloque Magnético
 
 tile.ghostblox.desc=Cuando se le da corriente de redstone el %s se vuelve transparente y no hay colisión
 tile.dangerblox.desc=El %s daña 1.5 corazones cuando lo tocas o lo golpeas
@@ -207,11 +208,16 @@ item.levelupmagicblizzard.name=Orbe Elemental
 item.levelupmagicstop.name=Orbe Elemental
 item.levelupmagiccure.name=Orbe Elemental
 item.levelupmagicaero.name=Orbe Elemental
+
 item.levelupdrivevalor.name=Orbe de Forma
 item.levelupdrivewisdom.name=Orbe de Forma
 item.levelupdrivelimit.name=Orbe de Forma
 item.levelupdrivemaster.name=Orbe de Forma
 item.levelupdrivefinal.name=Orbe de Forma
+
+item.synthesisbags.name=Bolsa de Materiales Pequeña
+item.synthesisbagm.name=Bolsa de Materiales Media
+item.synthesisbagl.name=Bolsa de Materiales Grande
 
 item.frostinfusedsnowball.name=Bola de nieve Congelada
 item.blazinginfusedcoal.name=Carbón Ígneo
@@ -278,6 +284,8 @@ item.gracefuldahlia.name=Dalia Graciosa
 item.foudre.name=Relámpago
 
 item.blazeofglory.name=Brillo Glorioso
+item.prometheus.name=Prometeo
+item.ifrit.name=Ifrit
 
 #Keyblades
 item.abaddonplasma.name=Plasma de Abadón
@@ -330,7 +338,6 @@ item.ladyluck.name=Último Recurso
 item.leaskeyblade.name=Llave Espada de Lea
 item.leopardosforetellerskeyblade.name=Pronosticador Leopardos
 item.leviathan.name=Leviatán
-item.lightseeker.name=Buscador de Luz
 item.lionheart.name=Lionheart
 item.lostmemory.name=Recuerdo Perdido
 item.lunareclipse.name=Eclipse Lunar
@@ -340,9 +347,12 @@ item.mastersdefender.name=Guardián del Maestro
 item.maverickflare.name=Destelleante
 item.metalchocobo.name=Acero Chocobo
 item.midnightroar.name=Rugido Nocturno
+item.miragesplit.name=Mirage Split------------------------------------
 item.missingache.name=Dolor Pasado
 item.monochrome.name=Monocromo
 item.mysteriousabyss.name=Abismo Misterioso
+item.nightmaresend.name=Nightmare's End-------------------------------
+item.nightmaresendandmiragesplit.name=Combined Keyblade---------------
 item.noname.name=Innómita
 item.oathkeeper.name=Prometida
 item.oblivion.name=Recuerdos Lejanos
@@ -460,9 +470,12 @@ item.mastersdefenderchain.name=Llavero de Guardián del Maestro
 item.maverickflarechain.name=Llavero de Destelleante
 item.metalchocobochain.name=Llavero de Acero Chocobo
 item.midnightroarchain.name=Llavero de Rugido Nocturno
+item.miragesplitchain.name=Mirage Split Chain--------------------------------
 item.missingachechain.name=Llavero de Dolor Pasado
 item.monochromechain.name=Llavero de Monocromo
 item.mysteriousabysschain.name=Llavero de Abismo Misterioso
+item.nightmaresendchain.name=Nightmare's End Chain---------------------------
+item.nightmaresendandmiragesplitchain.name=Combined Keyblade Chain-----------
 item.nonamechain.name=Llavero de Innómita
 item.oathkeeperchain.name=Llavero de Prometida
 item.oblivionchain.name=Llavero de Recuerdos Lejanos
@@ -586,12 +599,20 @@ gui.menu.main.munny=Platines
 
 #Items
 gui.menu.items.title=Objetos
+gui.menu.items.keychain=Llavero
+gui.menu.items.synthbag=Bolsa de Síntesis
 gui.menu.items.button.stock=Inventario
 gui.menu.items.button.back=Atrás
 
 #Keychain Container
 container.keychain=Pon un llavero aquí
 container.kkchest.name=Chest
+
+#SynthBag Container
+container.synthbag=Pon una Bolsa de Síntesis aquí
+container.synthesisbagsinventory=Bolsa de Síntesis Pequeña
+container.synthesisbagminventory=Bolsa de Síntesis Media
+container.synthesisbaglinventory=Bolsa de Síntesis Grande
 
 #Synthesis#
 gui.synthesis.main.title=Sintetizador

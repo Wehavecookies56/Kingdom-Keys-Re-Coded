@@ -908,11 +908,12 @@ public class Strings {
 	TM_UrsusForetellersKeyblade_NAME = TOOLMATERIAL + UrsusForetellersKeyblade,
 	TM_VulpeusForetellersKeyblade_NAME = TOOLMATERIAL + VulpeusForetellersKeyblade
 	;
-	public static final String KeychainInventory = "container.keychain";
-	public static final String SynthBagInventory = "container.synthbag";
-	public static final String SynthesisBagSInventory = "container.synthesisbagsinventory";
-	public static final String SynthesisBagMInventory = "container.synthesisbagminventory";
-	public static final String SynthesisBagLInventory = "container.synthesisbaglinventory";
+	public static final String 
+	KeychainInventory = "container.keychain",
+	SynthBagInventory = "container.synthbag",
+	SynthesisBagSInventory = "container.synthesisbagsinventory",
+	SynthesisBagMInventory = "container.synthesisbagminventory",
+	SynthesisBagLInventory = "container.synthesisbaglinventory";
 
 
 	//Keyblades

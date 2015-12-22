@@ -34,6 +34,7 @@ tile.blastblox.name=Blast Blox
 tile.prizeblox.name=Prize Blox
 tile.rareprizeblox.name=Rare Prize Blox
 tile.ghostblox.name=Ghost Blox
+tile.magnetblox.name=Magnet Blox
 
 tile.ghostblox.desc=When powered with redstone the %s turns transparent and has no collision
 tile.dangerblox.desc=The %s deals 1.5 hearts of damage when touching or hitting it
@@ -218,7 +219,6 @@ item.synthesisbags.name=Small Synthesis Material Bag
 item.synthesisbagm.name=Medium Synthesis Material Bag
 item.synthesisbagl.name=Large Synthesis Material Bag
 
-
 item.frostinfusedsnowball.name=Frost-Infused Snowball
 item.blazinginfusedcoal.name=Blazing-Infused Coal
 item.stormyinfusediron.name=Stormy-Infused Iron Ingot
@@ -284,6 +284,8 @@ item.gracefuldahlia.name=Graceful Dahlia
 item.foudre.name=Foudre
 
 item.blazeofglory.name=Blaze of Glory
+item.prometheus.name=Prometheus
+item.ifrit.name=Ifrit
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
@@ -597,16 +599,20 @@ gui.menu.main.munny=Munny
 
 #Items
 gui.menu.items.title=Items
+gui.menu.items.keychain=Keychain
+gui.menu.items.synthbag=Synthesis Bag
 gui.menu.items.button.stock=Stock
 gui.menu.items.button.back=Back
 
 #Keychain Container
 container.keychain=Place a keychain here
 container.kkchest.name=Chest
+
+#SynthBag Container
+container.synthbag=Place a Synthesis Bag here
 container.synthesisbagsinventory=Small Synthesis Material Bag
 container.synthesisbagminventory=Medium Synthesis Material Bag
 container.synthesisbaglinventory=Large Synthesis Material Bag
-
 
 #Synthesis#
 gui.synthesis.main.title=Item Synthesis

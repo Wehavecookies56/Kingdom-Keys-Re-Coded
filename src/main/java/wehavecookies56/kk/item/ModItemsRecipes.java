@@ -204,6 +204,28 @@ public class ModItemsRecipes {
 				'L', ModItems.DarkLeather, 'B', Items.book
 				);
 		
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.SynthesisBagS),
+				"LSL",
+				"L L",
+				"LLL",
+				'L', Items.leather, 'S', Items.string
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.SynthesisBagM),
+				"LSL",
+				"LBL",
+				"LLL",
+				'L', Items.leather, 'S', Items.string, 'B', ModItems.SynthesisBagS
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.SynthesisBagL),
+				"LSL",
+				"LBL",
+				"LLL",
+				'L', Items.leather, 'S', Items.string, 'B', ModItems.SynthesisBagM
+				);
+		
+		
 		ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 		ItemStacks.createSynthesisItem(BlazingCrystal, Strings.SM_BlazingCrystal, "S");
 
