@@ -147,6 +147,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MAGIC), 0);
 			GL11.glScalef(scale, scale, scale);
 			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+			
 			if(ExtendedPlayer.get(mc.thePlayer).getRecharge() == false &&
 			(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Fire") > 0 || 
 			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Blizzard") > 0 || 
@@ -154,7 +155,8 @@ public class GuiCommandMenu extends GuiScreen {
 			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Cure") > 0 || 
 			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Gravity") > 0 ||
 			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Aero") > 0 ||
-			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Stop") > 0))
+			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Stop") > 0) &&
+			!ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
 			{
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6, 4, 0xFFFFFF);
 			}

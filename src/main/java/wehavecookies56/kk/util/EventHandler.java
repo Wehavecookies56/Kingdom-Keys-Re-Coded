@@ -677,8 +677,11 @@ public class EventHandler {
 			{
 				if(player.getHeldItem().getItem() instanceof ItemKeyblade)
 				{
+					if(ExtendedPlayer.get(player).getDriveInUse().equals("Valor"))
+					{
+						event.ammount = (float) (event.ammount*1.5);
+					}
 					ExtendedPlayer.get(player).addDP(1);
-					//	ExtendedPlayer.get(player).setMagicLevel("Fire",2);
 				}
 				else
 				{

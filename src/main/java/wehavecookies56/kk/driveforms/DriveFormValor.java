@@ -9,6 +9,8 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SpawnDriveFormParticles;
+import wehavecookies56.kk.network.packet.client.SpawnFireParticles;
 import wehavecookies56.kk.network.packet.server.ChangeDP;
 
 public class DriveFormValor extends DriveForm {
@@ -38,6 +40,7 @@ public class DriveFormValor extends DriveForm {
 	public void initDrive(EntityPlayer player) {
 		ExtendedPlayer.get(player).setDriveInUse(getName());
 		ExtendedPlayer.get(player).setInDrive(true);
+		PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(), player, 64.0D);
 	}
 
 	@Override
@@ -53,7 +56,7 @@ public class DriveFormValor extends DriveForm {
 			player.motionY*=Constants.VALOR_JUMP_1;
 		}
 		
-		player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(),2,2));
+		//player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(),2,2));
 		if(ExtendedPlayer.get(player).cheatMode == false)
 		{
 			if(ExtendedPlayer.get(player).dp > 0)

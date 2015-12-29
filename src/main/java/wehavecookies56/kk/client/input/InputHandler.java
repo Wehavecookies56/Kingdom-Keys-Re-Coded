@@ -174,7 +174,8 @@ public class InputHandler {
 						ExtendedPlayer.get(player).getMagicLevel("Cure") > 0 || 
 						ExtendedPlayer.get(player).getMagicLevel("Gravity") > 0 ||
 						ExtendedPlayer.get(player).getMagicLevel("Aero") > 0 ||
-						ExtendedPlayer.get(player).getMagicLevel("Stop") > 0))
+						ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Stop") > 0) &&
+						!ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
 				{
 					GuiCommandMenu.magicselected = GuiCommandMenu.NONE;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;

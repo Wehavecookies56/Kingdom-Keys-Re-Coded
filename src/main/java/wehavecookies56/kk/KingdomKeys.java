@@ -115,10 +115,10 @@ public class KingdomKeys {
 	@EventHandler
 	public void init(FMLInitializationEvent e){
 		//Instance
-		FMLCommonHandler.instance().bus().register(instance);
+		MinecraftForge.EVENT_BUS.register(instance);
 
 		//Update checker
-		FMLCommonHandler.instance().bus().register(new UpdateChecker());
+		MinecraftForge.EVENT_BUS.register(new UpdateChecker());
 		LogHelper.info("Update checker loaded");
 
 		//Crafting recipes
@@ -175,8 +175,6 @@ public class KingdomKeys {
 		
 		//Event handler
 		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.EventHandler());
-		FMLCommonHandler.instance().bus().register(new wehavecookies56.kk.util.EventHandler());
-
 		LogHelper.info("Events loaded");
 	}
 
@@ -188,6 +186,7 @@ public class KingdomKeys {
 		e.registerServerCommand(new CommandRemoveKeychain());
 		e.registerServerCommand(new CommandResetLevel());
 		e.registerServerCommand(new CommandLevelUp());
+		LogHelper.info("Commands loaded");
 	}
 
 }
