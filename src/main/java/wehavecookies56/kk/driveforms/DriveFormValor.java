@@ -1,8 +1,7 @@
 package wehavecookies56.kk.driveforms;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.entities.ExtendedPlayer;
@@ -10,8 +9,7 @@ import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SpawnDriveFormParticles;
-import wehavecookies56.kk.network.packet.client.SpawnFireParticles;
-import wehavecookies56.kk.network.packet.server.ChangeDP;
+import wehavecookies56.kk.util.SoundHelper;
 
 public class DriveFormValor extends DriveForm {
 
@@ -41,6 +39,8 @@ public class DriveFormValor extends DriveForm {
 		ExtendedPlayer.get(player).setDriveInUse(getName());
 		ExtendedPlayer.get(player).setInDrive(true);
 		PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(), player, 64.0D);
+		Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Drive, 1f, 1f, false);
+
 	}
 
 	@Override

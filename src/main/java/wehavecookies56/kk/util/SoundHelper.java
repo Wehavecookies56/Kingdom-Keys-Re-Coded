@@ -19,6 +19,8 @@ public class SoundHelper {
 	Select = BASE + "select",
 	Move = BASE + "move",
 	Cancel = BASE + "cancel",
-	LazyAfternoons = BASE + "music.Lazy Afternoons";
+	LazyAfternoons = BASE + "music.Lazy Afternoons",
+	Drive = BASE + "drive",
+	AntiDrive = BASE + "antidrive"
 	;
 }

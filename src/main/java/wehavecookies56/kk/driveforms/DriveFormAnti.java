@@ -1,5 +1,6 @@
 package wehavecookies56.kk.driveforms;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.api.driveforms.DriveForm;
@@ -7,6 +8,7 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.ChangeDP;
+import wehavecookies56.kk.util.SoundHelper;
 
 public class DriveFormAnti extends DriveForm {
 
@@ -33,6 +35,8 @@ public class DriveFormAnti extends DriveForm {
 	public void initDrive(EntityPlayer player) {
 		ExtendedPlayer.get(player).setDriveInUse(getName());
 		ExtendedPlayer.get(player).setInDrive(true);
+		Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.AntiDrive, 1f, 1f, false);
+
 	}
 
 	@Override

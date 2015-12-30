@@ -61,6 +61,20 @@
             {"name": "move", "stream": false}
         ]
     },
+	
+	"drive": {
+    	"category": "player",
+    	"sounds": [
+    		{"name": "drive", "stream": false}
+    	]
+    },
+	
+	"antidrive": {
+    	"category": "player",
+    	"sounds": [
+    		{"name": "antidrive", "stream": false}
+    	]
+    },
 
     "records.Birth by Sleep -A Link to the Future-": {
     	"category": "record", 
