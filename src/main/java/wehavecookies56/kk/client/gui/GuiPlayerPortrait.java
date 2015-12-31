@@ -36,6 +36,12 @@ public class GuiPlayerPortrait extends GuiScreen {
 				break;
 			}
 
+			if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti"))
+			{
+				GL11.glColor3ub((byte)30, (byte)30, (byte)30);
+
+			}
+
 			//HEAD
 			int headWidth = 32;
 			int headHeight = 32;
@@ -249,11 +255,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
 				}GL11.glPopMatrix();
 			}
-			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti"))
-			{
-				GL11.glColor3ub((byte)50, (byte)50, (byte)50);
-			}
-
+			
 		}
 	}
 }
