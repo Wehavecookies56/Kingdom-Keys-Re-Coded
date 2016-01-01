@@ -64,7 +64,7 @@ public class DriveFormMaster extends DriveForm {
 		else
 		{
 			if(player.worldObj.isRemote){
-				if(player.motionY < 0 && Minecraft.getMinecraft().gameSettings.keyBindJump.isPressed())
+				if(player.motionY < 0 && Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown())
 				{
 					if(this.jumps<1)
 					{
