@@ -38,9 +38,8 @@ public class DriveFormValor extends DriveForm {
 	public void initDrive(EntityPlayer player) {
 		ExtendedPlayer.get(player).setDriveInUse(getName());
 		ExtendedPlayer.get(player).setInDrive(true);
-		PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(), player, 64.0D);
-		Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Drive, 1f, 1f, false);
-
+		PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(player), player, 64.0D);
+		SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.Drive, 0.5f, 1);
 	}
 
 	@Override
@@ -56,7 +55,6 @@ public class DriveFormValor extends DriveForm {
 			player.motionY*=Constants.VALOR_JUMP_1;
 		}
 		
-		//player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(),2,2));
 		if(ExtendedPlayer.get(player).cheatMode == false)
 		{
 			if(ExtendedPlayer.get(player).dp > 0)

@@ -7,6 +7,7 @@ import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SpawnDriveFormParticles;
 import wehavecookies56.kk.network.packet.server.ChangeDP;
 import wehavecookies56.kk.network.packet.server.MasterFormPacket;
 import wehavecookies56.kk.util.SoundHelper;
@@ -38,8 +39,8 @@ public class DriveFormMaster extends DriveForm {
 	public void initDrive(EntityPlayer player) {
 		ExtendedPlayer.get(player).setDriveInUse(getName());
 		ExtendedPlayer.get(player).setInDrive(true);
-		Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Drive, 1f, 1f, false);
-
+		PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(player), player, 64.0D);
+		SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.Drive, 0.5f, 1);
 	}
 
 	@Override
