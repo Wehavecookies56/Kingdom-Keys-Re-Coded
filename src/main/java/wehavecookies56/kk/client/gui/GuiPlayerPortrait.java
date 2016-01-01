@@ -83,6 +83,20 @@ public class GuiPlayerPortrait extends GuiScreen {
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 80, 80, bodyWidth, bodyHeight);
 			}GL11.glPopMatrix();
+			
+			//JACKET
+			int jacketWidth = 32;
+			int jacketHeight = 64;
+			float jacketPosX = 16;
+			float jacketPosY = -32;
+			float scaledjacketPosX = jacketPosX*scale;
+			float scaledjacketPosY = jacketPosY*scale;
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef((screenWidth - bodyWidth*scale) - scaledBodyPosX, (screenHeight - bodyHeight*scale) - scaledBodyPosY, 0);
+				GL11.glScalef(scale, scale, scale);
+				this.drawTexturedModalRect(0, 0, 80, 148, bodyWidth, bodyHeight);
+			}GL11.glPopMatrix();
 
 			//ARMS
 			int armWidth = 16;
@@ -106,6 +120,31 @@ public class GuiPlayerPortrait extends GuiScreen {
 				GL11.glTranslatef((screenWidth - armWidth*scale) - scaledArmLPosX, (screenHeight - armHeight*scale) - scaledArmLPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 176, 80, armWidth, armHeight);
+			}GL11.glPopMatrix();
+			GL11.glColor4f(100.0F, 1.0F, 1.0F, 1.0F);
+			
+			//GLOVES
+			int gloveWidth = 16;
+			int gloveHeight = 64;
+			float gloveRPosX = 48;
+			float gloveRPosY = -32;
+			float scaledgloveRPosX = gloveRPosX*scale;
+			float scaledgloveRPosY = gloveRPosY*scale;
+			float gloveLPosX = 0;
+			float gloveLPosY = -32;
+			float scaledgloveLPosX = gloveLPosX*scale;
+			float scaledgloveLPosY = gloveLPosY*scale;
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef((screenWidth - gloveWidth*scale) - scaledgloveRPosX, (screenHeight - gloveHeight*scale) - scaledgloveRPosY, 0);
+				GL11.glScalef(scale, scale, scale);
+				this.drawTexturedModalRect(0, 0, 176, 150, gloveWidth, gloveHeight);
+			}GL11.glPopMatrix();
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef((screenWidth - gloveWidth*scale) - scaledgloveLPosX, (screenHeight - gloveHeight*scale) - scaledgloveLPosY, 0);
+				GL11.glScalef(scale, scale, scale);
+				this.drawTexturedModalRect(0, 0, 176, 150, gloveWidth, gloveHeight);
 			}GL11.glPopMatrix();
 			GL11.glColor4f(100.0F, 1.0F, 1.0F, 1.0F);
 
