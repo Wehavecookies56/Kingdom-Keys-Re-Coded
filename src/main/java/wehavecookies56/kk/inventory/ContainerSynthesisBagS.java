@@ -18,6 +18,16 @@ public class ContainerSynthesisBagS extends Container {
 	HOTBAR_START = INV_END+1,
 	HOTBAR_END = HOTBAR_START+8;
 	
+	private final int HOTBAR_SLOT_COUNT = 9;
+	private final int PLAYER_INVENTORY_ROW_COUNT = 3;
+	private final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
+	private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
+	private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
+
+	private final int VANILLA_FIRST_SLOT_INDEX = 0;
+	private final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
+	private final int TE_INVENTORY_SLOT_COUNT = 14;
+	
 	public ContainerSynthesisBagS(EntityPlayer player, InventoryPlayer invPlayer, InventorySynthesisBagS invBag)
 	{
 		inventory = invBag;
@@ -50,52 +60,41 @@ public class ContainerSynthesisBagS extends Container {
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int index)
-	{
-		ItemStack itemstack = null;
-		Slot slot = (Slot) this.inventorySlots.get(index);
+	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    {
+        int numRows = 56 / 7;
+        ItemStack itemstack = null;
+        Slot slot = (Slot)this.inventorySlots.get(index);
 
-		if (slot != null && slot.getHasStack()) {
-			ItemStack itemstack1 = slot.getStack();
-			itemstack = itemstack1.copy();
-			
-			if (index < INV_START) {
-				if (!this.mergeItemStack(itemstack1, INV_START, HOTBAR_END + 1, true)) {
-					return null;
-				}
+        if (slot != null && slot.getHasStack())
+        {
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
 
-				slot.onSlotChange(itemstack1, itemstack);
-			}
-			else {
-				if (itemstack1.getItem() instanceof ItemSynthesisMaterial) {
-					if (!this.mergeItemStack(itemstack1, 0, InventorySynthesisBagS.INV_SIZE, false)) {
-						return null;
-					}
-				}
-				if (index >= INV_START)
-				{
-					if (!this.mergeItemStack(itemstack1, 0, INV_START, false))
-					{
-						return null;
-					}
-				}
-			}
+            if (index < numRows * 7)
+            {
+                if (!this.mergeItemStack(itemstack1, numRows * 7, this.inventorySlots.size(), true))
+                {
+                    return null;
+                }
+            }
+            else if (!this.mergeItemStack(itemstack1, 0, numRows * 7, false))
+            {
+                return null;
+            }
 
-			if (itemstack1.stackSize == 0) {
-				slot.putStack((ItemStack) null);
-			} else {
-				slot.onSlotChanged();
-			}
+            if (itemstack1.stackSize == 0)
+            {
+                slot.putStack((ItemStack)null);
+            }
+            else
+            {
+                slot.onSlotChanged();
+            }
+        }
 
-			if (itemstack1.stackSize == itemstack.stackSize) {
-				return null;
-			}
-
-			slot.onPickupFromSlot(player, itemstack1);
-		}
-
-		return itemstack;
-	}
+        return itemstack;
+    }
 
 	@Override
 	public ItemStack slotClick(int slot, int clickedButton, int mode, EntityPlayer player) {

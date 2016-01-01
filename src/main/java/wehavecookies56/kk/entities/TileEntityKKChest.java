@@ -157,7 +157,7 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 	// standard code to look up what the human-readable name is
 	@Override
 	public IChatComponent getDisplayName() {
-		return this.hasCustomName() ? new ChatComponentText(this.getDisplayName().toString()) : new ChatComponentTranslation(this.getDisplayName().toString());
+        return (IChatComponent)(this.hasCustomName() ? new ChatComponentText(this.getCommandSenderName()) : new ChatComponentTranslation(this.getCommandSenderName(), new Object[0]));
 	}
 
 	// -----------------------------------------------------------------------------------------------------------
