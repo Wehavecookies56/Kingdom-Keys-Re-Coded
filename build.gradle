@@ -14,18 +14,19 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-/*
-// for people who want stable - not yet functional for MC 1.8.8 - we require the forgegradle 2.1 snapshot
-plugins {
-    id "net.minecraftforge.gradle.forge" version "2.0.2"
+ext.configFile = file "build.properties"
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
 }
-*/
-version = "0.7.6"
-group= "wehavecookies56.kk"
-archivesBaseName = "Kingdom Keys Re-Coded"
+
+version = config.mc_version + "-" + config.mod_version + "-" + config.build_number
+group= config.package_group
+archivesBaseName = config.mod_name
 
 minecraft {
-    version = "1.8.9-11.15.0.1663"
+    version = config.mc_version + "-" + config.forge_version
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -78,5 +79,29 @@ processResources
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+}
+
+jar {
+    dependsOn "incrementBuildNumber"
+    classifier = 'universal'
+    manifest.mainAttributes(
+            "Built-By": System.getProperty('user.name'),
+            "Created-By": "${System.getProperty('java.vm.version')} + (${System.getProperty('java.vm.vendor')})",
+            "Implementation-Title": project.name,
+            "Implementation-Version": project.version,
+    )
+}
+
+task("incrementBuildNumber") {
+    // increment build number
+    doFirst {
+        // increment
+        config.build_number = (config.build_number.toString().toInteger()) + 1
+
+        // write back to the file
+        configFile.withWriter {
+            config.toProperties().store(it, "")
+        }
     }
 }
