@@ -17,6 +17,7 @@ public class ModRecipes {
 		registerRecipe(new RecipeBrightcrest(ModItems.Brightcrest.getUnlocalizedName()));
 		registerRecipe(new RecipeChaosRipper(ModItems.ChaosRipper.getUnlocalizedName()));
 		registerRecipe(new RecipeCircleofLife(ModItems.CircleofLife.getUnlocalizedName()));
+		registerRecipe(new RecipeCombinedKeyblade(ModItems.NightmaresEndandMirageSplit.getUnlocalizedName()));
 		registerRecipe(new RecipeCounterpoint(ModItems.Counterpoint.getUnlocalizedName()));
 		registerRecipe(new RecipeCrabclaw(ModItems.Crabclaw.getUnlocalizedName()));
 		registerRecipe(new RecipeCrownofGuilt(ModItems.CrownofGuilt.getUnlocalizedName()));
@@ -66,9 +67,11 @@ public class ModRecipes {
 		registerRecipe(new RecipeMaverickFlare(ModItems.MaverickFlare.getUnlocalizedName()));
 		registerRecipe(new RecipeMetalChocobo(ModItems.MetalChocobo.getUnlocalizedName()));
 		registerRecipe(new RecipeMidnightRoar(ModItems.MidnightRoar.getUnlocalizedName()));
+		registerRecipe(new RecipeMirageSplit(ModItems.MirageSplit.getUnlocalizedName()));
 		registerRecipe(new RecipeMissingAche(ModItems.MissingAche.getUnlocalizedName()));
 		registerRecipe(new RecipeMonochrome(ModItems.Monochrome.getUnlocalizedName()));
 		registerRecipe(new RecipeMysteriousAbyss(ModItems.MysteriousAbyss.getUnlocalizedName()));
+		registerRecipe(new RecipeNightmaresEnd(ModItems.NightmaresEnd.getUnlocalizedName()));
 		registerRecipe(new RecipeNoName(ModItems.NoName.getUnlocalizedName()));
 		registerRecipe(new RecipeOathkeeper(ModItems.Oathkeeper.getUnlocalizedName()));
 		registerRecipe(new RecipeOblivion(ModItems.Oblivion.getUnlocalizedName()));

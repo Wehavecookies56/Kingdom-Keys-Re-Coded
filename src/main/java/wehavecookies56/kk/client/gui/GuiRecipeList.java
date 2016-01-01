@@ -57,7 +57,6 @@ public class GuiRecipeList extends GuiScrollingList {
 
         this.f.drawString(f.trimStringToWidth(TextHelper.localize(props.knownRecipes.get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, 0xFFFFFF);
         this.ir.renderItemAndEffectIntoGUI(getItemStackFromName(props.knownRecipes.get(var1).toString()), this.left + 3, var3 + 12);
-
     }
 
     public ItemStack getItemStackFromName(String name){
@@ -90,6 +89,9 @@ public class GuiRecipeList extends GuiScrollingList {
     	}
     	if(name.equals(ModItems.CircleofLife.getUnlocalizedName())){
     		return new ItemStack(ModItems.CircleofLife, 1);
+    	}
+    	if(name.equals(ModItems.NightmaresEndandMirageSplit.getUnlocalizedName())){
+    		return new ItemStack(ModItems.NightmaresEndandMirageSplit, 1);
     	}
     	if(name.equals(ModItems.Counterpoint.getUnlocalizedName())){
     		return new ItemStack(ModItems.Counterpoint, 1);
@@ -238,6 +240,9 @@ public class GuiRecipeList extends GuiScrollingList {
     	if(name.equals(ModItems.MidnightRoar.getUnlocalizedName())){
     		return new ItemStack(ModItems.MidnightRoar, 1);
     	}
+    	if(name.equals(ModItems.MirageSplit.getUnlocalizedName())){
+    		return new ItemStack(ModItems.MirageSplit, 1);
+    	}
     	if(name.equals(ModItems.MissingAche.getUnlocalizedName())){
     		return new ItemStack(ModItems.MissingAche, 1);
     	}
@@ -246,6 +251,9 @@ public class GuiRecipeList extends GuiScrollingList {
     	}
     	if(name.equals(ModItems.MysteriousAbyss.getUnlocalizedName())){
     		return new ItemStack(ModItems.MysteriousAbyss, 1);
+    	}
+    	if(name.equals(ModItems.NightmaresEnd.getUnlocalizedName())){
+    		return new ItemStack(ModItems.NightmaresEnd, 1);
     	}
     	if(name.equals(ModItems.NoName.getUnlocalizedName())){
     		return new ItemStack(ModItems.NoName, 1);
@@ -415,6 +423,4 @@ public class GuiRecipeList extends GuiScrollingList {
 		return null;
 
     }
-
-
 }

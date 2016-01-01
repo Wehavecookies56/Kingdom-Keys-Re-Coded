@@ -112,6 +112,7 @@ public class GuiSynthesis extends GuiTooltip{
 		List<String> materials = new ArrayList<String>();
 		int freeSlots = 0;
 		boolean foundMaterial = false;
+		System.out.println("button.id: "+button.id);
 		switch(button.id){
 		case BACK:
 			submenu = MAIN;
@@ -123,7 +124,6 @@ public class GuiSynthesis extends GuiTooltip{
 			submenu = FREEDEV;
 			break;
 		case MATERIALS:
-			//PacketDispatcher.sendToServer(new OpenMaterials());
 			Deposit.visible = true;
 			submenu = MATERIALS;
 			break;
@@ -131,6 +131,7 @@ public class GuiSynthesis extends GuiTooltip{
 			if(isRecipeUsable(ExtendedPlayerRecipes.get(mc.thePlayer).knownRecipes.get(selected), 1)){
 				PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(ExtendedPlayerRecipes.get(mc.thePlayer).knownRecipes.get(selected), 1));
 			}
+			break;
 		case TAKE1:	
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
 

@@ -92,6 +92,8 @@ public class ModMaterials {
 		registerMaterial(new MaterialManifestIllusion(Strings.SM_ManifestIllusion));
 		
 		registerMaterial(new MaterialIncompleteKiBlade(ModItems.Chain_IncompleteKiblade.getUnlocalizedName()));
+		registerMaterial(new MaterialNightmaresEnd(ModItems.Chain_NightmaresEnd.getUnlocalizedName()));
+		registerMaterial(new MaterialMirageSplit(ModItems.Chain_MirageSplit.getUnlocalizedName()));
 		registerMaterial(new MaterialStick(Items.stick.getUnlocalizedName()));
 		registerMaterial(new MaterialWoodenSword(Items.wooden_sword.getUnlocalizedName()));
 		registerMaterial(new MaterialNormalBlox(ModBlocks.NormalBlox.getUnlocalizedName()));
