@@ -27,7 +27,6 @@ public class MasterFormPacket extends AbstractServerMessage<MasterFormPacket> {
 	public void process(EntityPlayer player, Side side) {
 		if(player != null && player.motionY<0){
 			player.motionY += Constants.PLAYER_JUMP;
-			System.out.println("Jump");
 		}
 	}
 

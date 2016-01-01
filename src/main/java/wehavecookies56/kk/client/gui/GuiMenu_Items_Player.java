@@ -56,6 +56,7 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
     	buttonList.add(keychain = new GuiButton(KEYCHAIN, 5, button_items_playerY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Keychain)));
     	buttonList.add(synthbag = new GuiButton(SYNTHBAG, 5, button_items_stockY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_SynthBag)));
     	buttonList.add(back = new GuiButton(BACK, 5, button_items_backY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
+    	synthbag.enabled = false;
 
     	updateButtons();
     }

@@ -476,8 +476,6 @@ public class InputHandler {
 				break;
 			case SUMMON_KEYBLADE:
 				ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
-				System.out.println("Inventory:"+props.inventory.getStackInSlot(0));
-				System.out.println("Inventory2:");
 				if(props.inventory.getStackInSlot(0) == null){
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 					break;

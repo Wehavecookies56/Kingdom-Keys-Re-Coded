@@ -41,7 +41,6 @@ public class MagnetBloxMotion extends AbstractServerMessage<MagnetBloxMotion> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		System.out.println("Ok");
 		player.motionY *= this.y;
 	}
 

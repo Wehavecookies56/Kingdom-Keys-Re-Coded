@@ -112,7 +112,6 @@ public class GuiSynthesis extends GuiTooltip{
 		List<String> materials = new ArrayList<String>();
 		int freeSlots = 0;
 		boolean foundMaterial = false;
-		System.out.println("button.id: "+button.id);
 		switch(button.id){
 		case BACK:
 			submenu = MAIN;

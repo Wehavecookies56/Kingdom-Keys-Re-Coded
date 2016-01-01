@@ -82,7 +82,6 @@ public class BlockMagnetBlox extends BlockBlox {
 				Entity e = (Entity) list.get(i);
 				if(e instanceof EntityLivingBase){
 					if(e instanceof EntityPlayer){
-						System.out.println("Ok");
 						((EntityPlayer) e).jump();
 					}
 				}
