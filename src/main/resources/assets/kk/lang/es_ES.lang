@@ -190,7 +190,7 @@ item.potion.name=Poción
 item.ether.name=Éter
 item.elixir.name=Elixir
 item.hporb.name=Orbe de HP
-item.driveorb.name=Orbe de Forma
+item.driveorb.name=Orbe de Fusión
 item.magicorb.name=Orbe de Magia
 item.munny.name=Platines
 item.heart.name=Corazón
@@ -209,11 +209,11 @@ item.levelupmagicstop.name=Orbe Elemental
 item.levelupmagiccure.name=Orbe Elemental
 item.levelupmagicaero.name=Orbe Elemental
 
-item.levelupdrivevalor.name=Orbe de Forma
-item.levelupdrivewisdom.name=Orbe de Forma
-item.levelupdrivelimit.name=Orbe de Forma
-item.levelupdrivemaster.name=Orbe de Forma
-item.levelupdrivefinal.name=Orbe de Forma
+item.levelupdrivevalor.name=Orbe de Forma de Fusión
+item.levelupdrivewisdom.name=Orbe de Forma de Fusión
+item.levelupdrivelimit.name=Orbe de Forma de Fusión
+item.levelupdrivemaster.name=Orbe de Forma de Fusión
+item.levelupdrivefinal.name=Orbe de Forma de Fusión
 
 item.synthesisbags.name=Bolsa de Materiales Pequeña
 item.synthesisbagm.name=Bolsa de Materiales Media
@@ -544,7 +544,7 @@ gui.commandmenu.command=COMANDOS
 gui.commandmenu.attack=Atacar
 gui.commandmenu.magic=Magia
 gui.commandmenu.items=Objetos
-gui.commandmenu.drive=Forma
+gui.commandmenu.drive=Fusión
 
 #Magic
 gui.commandmenu.magic.title=MAGIA
@@ -577,7 +577,7 @@ gui.commandmenu.magic.stopra=Paro+
 gui.commandmenu.magic.stopga=Paro++
 
 #Drive Forms
-gui.commandmenu.drive.title=Forma
+gui.commandmenu.drive.title=FORMAS
 gui.commandmenu.drive.valor=Forma Valiente
 gui.commandmenu.drive.wisdom=Forma Sabia
 gui.commandmenu.drive.limit=Forma Suma

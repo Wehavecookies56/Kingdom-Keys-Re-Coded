@@ -3,6 +3,7 @@ package wehavecookies56.kk.item;
 import java.util.List;
 import java.util.Stack;
 
+import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.ItemStacks;
 import wehavecookies56.kk.util.TextHelper;
@@ -11,11 +12,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 
 public class ItemSynthesisMaterial extends Item {
 
 	public ItemSynthesisMaterial() {}
-
+	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
 		if(stack.hasTagCompound())
