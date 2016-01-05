@@ -15,7 +15,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
@@ -32,6 +31,8 @@ import wehavecookies56.kk.client.render.RenderEntityEternalFlames;
 import wehavecookies56.kk.client.render.RenderEntityItemKeyblade;
 import wehavecookies56.kk.entities.EntityItemMetalChocobo;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
+import wehavecookies56.kk.entities.magic.EntityBlizzaga;
+import wehavecookies56.kk.entities.magic.EntityBlizzara;
 import wehavecookies56.kk.entities.magic.EntityBlizzard;
 import wehavecookies56.kk.entities.magic.EntityOldFire;
 import wehavecookies56.kk.entities.projectiles.EntityEternalFlamesProjectile;
@@ -167,7 +168,10 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlastBlox.class, new RenderBlastBlox(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOldFire.class, null);
 		RenderingRegistry.registerEntityRenderingHandler(EntityItemMetalChocobo.class, new RenderEntityItemKeyblade());
-		RenderingRegistry.registerEntityRenderingHandler(EntityBlizzard.class, new RenderEntityBlizzard());
+		/*RenderingRegistry.registerEntityRenderingHandler(EntityBlizzard.class, new RenderEntityBlizzard());
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlizzara.class, new RenderEntityBlizzard());
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlizzaga.class, new RenderEntityBlizzard());*/
+
 		RenderingRegistry.registerEntityRenderingHandler(EntityEternalFlamesProjectile.class, new RenderEntityEternalFlames(Minecraft.getMinecraft().getRenderManager()));
 	}
 

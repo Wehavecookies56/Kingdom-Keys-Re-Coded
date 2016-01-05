@@ -26,7 +26,6 @@ public class EntityBlizzard extends EntityThrowable
 	public EntityBlizzard(World world, EntityLivingBase entity) {
 		super(world, entity);
 		shootingEntity = (EntityPlayer) entity;
-
 	}
 
 	public EntityBlizzard(World world, double x, double y, double z) {

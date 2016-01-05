@@ -448,7 +448,6 @@ public class EventHandler {
 		}
 
 		else if(event.item.getEntityItem().getItem() instanceof ItemSynthesisMaterial){
-			//if(event.entityPlayer.inventory.getStackInSlot(i) != null){
 			if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0) != null){
 				if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0).getItem() == ModItems.SynthesisBagL){
 					InventorySynthesisBagL inv = new InventorySynthesisBagL(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0));
