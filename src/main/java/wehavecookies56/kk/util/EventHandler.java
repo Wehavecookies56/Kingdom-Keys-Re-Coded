@@ -580,6 +580,10 @@ public class EventHandler {
 		AAskull.setTagCompound(new NBTTagCompound());
 		AAskull.getTagCompound().setTag("SkullOwner", new NBTTagString("Abelatox"));
 
+		if(event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.SynthesisTable)){
+			AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisTable);
+		}
+		
 		if(event.crafting.getItem() == WHC56skull.getItem()){
 			AchievementHelper.addAchievement(event.player, ModAchievements.getWehavecookies56Skull);
 		}

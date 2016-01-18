@@ -3,7 +3,6 @@ package wehavecookies56.kk;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -21,7 +20,6 @@ import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.block.ModBlocksRecipes;
 import wehavecookies56.kk.driveforms.ModDriveForms;
-import wehavecookies56.kk.entities.EntityItemMetalChocobo;
 import wehavecookies56.kk.entities.PlayerLevel;
 import wehavecookies56.kk.entities.TileEntityKKChest;
 import wehavecookies56.kk.entities.TileEntitySynthesisTable;
@@ -74,7 +72,7 @@ public class KingdomKeys {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e){
 		//Display mod info in console
-		LogHelper.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft 1.8");
+		LogHelper.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft 1.8.9");
 
 		//Config
 		config = new Configuration(e.getSuggestedConfigurationFile());
@@ -133,7 +131,9 @@ public class KingdomKeys {
 		//Register renders
 		proxy.init();
 		LogHelper.info("Renders loaded");
-
+		
+		proxy.registerAchievements();
+		
 		//Tile entity registry
 		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
 		GameRegistry.registerTileEntity(TileEntityKKChest.class, "kkchest");
@@ -145,9 +145,6 @@ public class KingdomKeys {
 		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 0, instance, 16, 1, false);
 		EntityRegistry.registerModEntity(EntityFire.class, "fire", 1, instance, 16, 1, false);
 		EntityRegistry.registerModEntity(EntityThunder.class, "thunder", 2, instance, 16, 1, false);
-		
-		//EntityRegistry.registerModEntity(EntityItemMetalChocobo.class, "entityitemmetalchocobo", 2, instance, 16, 1, false);
-
 
 		Lists.init();
 

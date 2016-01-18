@@ -13,9 +13,7 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.client.gui.GuiDrive;
@@ -25,21 +23,13 @@ import wehavecookies56.kk.client.gui.GuiOverlay;
 import wehavecookies56.kk.client.gui.GuiPlayerPortrait;
 import wehavecookies56.kk.client.input.InputHandler;
 import wehavecookies56.kk.client.input.Keybinds;
-import wehavecookies56.kk.client.render.RenderBlastBlox;
-import wehavecookies56.kk.client.render.RenderEntityBlizzard;
-import wehavecookies56.kk.client.render.RenderEntityEternalFlames;
-import wehavecookies56.kk.client.render.RenderEntityItemKeyblade;
-import wehavecookies56.kk.entities.EntityItemMetalChocobo;
+import wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
+import wehavecookies56.kk.client.render.RenderFactoryEternalFlames;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
-import wehavecookies56.kk.entities.magic.EntityBlizzaga;
-import wehavecookies56.kk.entities.magic.EntityBlizzara;
-import wehavecookies56.kk.entities.magic.EntityBlizzard;
-import wehavecookies56.kk.entities.magic.EntityOldFire;
-import wehavecookies56.kk.entities.projectiles.EntityEternalFlamesProjectile;
+import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.util.LogHelper;
 
 public class ClientProxy extends CommonProxy {
 
@@ -145,14 +135,15 @@ public class ClientProxy extends CommonProxy {
 		ModelLoader.setCustomModelResourceLocation(ModItems.YoungXehanortsKeyblade, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.YoungXehanortsKeyblade, "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
-
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlastBlox.class, new RenderFactoryBlastBlox());
+		RenderingRegistry.registerEntityRenderingHandler(EntityEternalFlames.class, new RenderFactoryEternalFlames());
+		
 	}
 
 	@Override
 	public void init(){
 		registerRenders();
 		registerKeyBindings();
-		registerAchievements();
 	}
 
 	private void registerRenders(){
@@ -165,29 +156,13 @@ public class ClientProxy extends CommonProxy {
 		ModItems.registerRenders();
 		ModBlocks.registerRenders();
 		DevCapes.getInstance().registerConfig("https://www.dropbox.com/s/hb0wg5ky5wblz9g/Capes.json?raw=1");
-		RenderingRegistry.registerEntityRenderingHandler(EntityBlastBlox.class, new RenderBlastBlox(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityOldFire.class, null);
-		RenderingRegistry.registerEntityRenderingHandler(EntityItemMetalChocobo.class, new RenderEntityItemKeyblade());
-		/*RenderingRegistry.registerEntityRenderingHandler(EntityBlizzard.class, new RenderEntityBlizzard());
-		RenderingRegistry.registerEntityRenderingHandler(EntityBlizzara.class, new RenderEntityBlizzard());
-		RenderingRegistry.registerEntityRenderingHandler(EntityBlizzaga.class, new RenderEntityBlizzard());*/
-
-		RenderingRegistry.registerEntityRenderingHandler(EntityEternalFlamesProjectile.class, new RenderEntityEternalFlames(Minecraft.getMinecraft().getRenderManager()));
 	}
 
 	private void registerKeyBindings(){
-		FMLCommonHandler.instance().bus().register(new InputHandler());
 		MinecraftForge.EVENT_BUS.register(new InputHandler());
 		for(Keybinds key : Keybinds.values()){
 			ClientRegistry.registerKeyBinding(key.getKeybind());
 		}
-	}
-
-	private void registerAchievements(){
-		//Achievements
-		ModAchievements.init();
-		ModAchievements.register();
-		LogHelper.info("Achievements loaded");
 	}
 
 	@Override

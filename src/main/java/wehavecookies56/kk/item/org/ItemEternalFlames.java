@@ -2,7 +2,7 @@ package wehavecookies56.kk.item.org;
 
 import java.util.List;
 
-import wehavecookies56.kk.entities.projectiles.EntityEternalFlamesProjectile;
+import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -47,7 +47,7 @@ public class ItemEternalFlames extends ItemSword{
 			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 			//if (!world.isRemote)
 			{
-				world.spawnEntityInWorld(new EntityEternalFlamesProjectile(world, player, -(strength)+71999));
+				world.spawnEntityInWorld(new EntityEternalFlames(world, player, -(strength)+71999));
 				player.swingItem();
 			}
 		}

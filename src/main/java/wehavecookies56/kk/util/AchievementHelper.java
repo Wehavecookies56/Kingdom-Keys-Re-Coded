@@ -7,7 +7,7 @@ import net.minecraft.stats.Achievement;
 public class AchievementHelper {
 
 	public static void addAchievement(EntityPlayer player, Achievement achievement){
-		player.addStat(achievement, 1);
+		player.triggerAchievement(achievement);
 	}
 
 	public static void displayAchievement(Achievement achievement){

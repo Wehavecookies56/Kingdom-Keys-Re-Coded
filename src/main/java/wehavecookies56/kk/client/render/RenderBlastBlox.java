@@ -1,5 +1,6 @@
 package wehavecookies56.kk.client.render;
 
+import wehavecookies56.kk.block.BlockBlastBlox;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
 import net.minecraft.client.Minecraft;
@@ -13,8 +14,9 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class RenderBlastBlox extends Render{
+public class RenderBlastBlox extends Render<EntityBlastBlox> {
 
 	public RenderBlastBlox(RenderManager render) {
 		super(render);
@@ -75,14 +77,10 @@ public class RenderBlastBlox extends Render{
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
 	@Override
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
+    protected ResourceLocation getEntityTexture(EntityBlastBlox par1Entity)
     {
         return this.func_180563_a((EntityBlastBlox)par1Entity);
 
     }
 
-    public void doRender(Entity entity, double x, double y, double z, float p_76986_8_, float p_76986_9_)
-    {
-        this.doRender((EntityBlastBlox)entity, x, y, z, p_76986_8_, p_76986_9_);
-    }
 }

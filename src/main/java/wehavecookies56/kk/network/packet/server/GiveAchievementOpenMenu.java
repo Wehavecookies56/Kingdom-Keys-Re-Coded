@@ -11,10 +11,11 @@ import net.minecraft.util.IChatComponent;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.achievements.ModAchievements;
+import wehavecookies56.kk.network.packet.AbstractMessage;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 import wehavecookies56.kk.util.AchievementHelper;
 
-public class GiveAchievementOpenMenu extends AbstractServerMessage<GiveAchievementOpenMenu> {
+public class GiveAchievementOpenMenu extends AbstractMessage<GiveAchievementOpenMenu> {
 
 	public GiveAchievementOpenMenu() {}
 
@@ -30,7 +31,6 @@ public class GiveAchievementOpenMenu extends AbstractServerMessage<GiveAchieveme
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		player.addStat(ModAchievements.openMenu, 1);
-		System.out.println("Achievement Get for"+player);
+		AchievementHelper.addAchievement(player, ModAchievements.openMenu);
 	}
 }

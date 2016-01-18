@@ -6,7 +6,7 @@
 #Achievements
 ############################
 achievement.openMenu=Open the menu
-achievement.openMenu.desc=Press the open menu key to open the menu (default M).
+achievement.openMenu.desc=Press the '%1$s' key to open the menu.
 
 achievement.getWehavecookies56Skull=Familiar Face!
 achievement.getAbelatoxSkull=Another Familiar Face!

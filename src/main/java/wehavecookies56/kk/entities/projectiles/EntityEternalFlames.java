@@ -9,21 +9,21 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 
-public class EntityEternalFlamesProjectile extends EntityThrowable{
+public class EntityEternalFlames extends EntityThrowable{
 
 	int ticks;
 	EntityPlayer player;
-	public EntityEternalFlamesProjectile(World world) {
+	public EntityEternalFlames(World world) {
 		super(world);
 	}
 
-	public EntityEternalFlamesProjectile(World world, EntityLivingBase entity, int ticksExisted) {
+	public EntityEternalFlames(World world, EntityLivingBase entity, int ticksExisted) {
 		super(world, entity);
 		this.ticks = ticksExisted;
 		this.player = (EntityPlayer) entity;
 	}
 
-	public EntityEternalFlamesProjectile(World world, double x, double y, double z) {
+	public EntityEternalFlames(World world, double x, double y, double z) {
 		super(world, x, y, z);
 	}
 	

@@ -30,7 +30,8 @@ public class Strings {
 	Achievement_GetKeyblade = "achievement.getkeyblade",
 	Achievement_GetWehavecookies56Skull = "achievement.getWehavecookies56Skull",
 	Achievement_GetAbelatoxSkull = "achievement.getAbelatoxSkull",
-	Achievement_GetBlox = "achievement.getblox"
+	Achievement_GetBlox = "achievement.getblox",
+	Achievement_GetSynthesisTable = "achievement.getSynthesisTable"
 	;
 
 	//Gui

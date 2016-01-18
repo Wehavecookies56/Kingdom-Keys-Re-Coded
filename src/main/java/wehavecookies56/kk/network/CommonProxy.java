@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import wehavecookies56.kk.KingdomKeys;
+import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.client.gui.GuiKKChest;
 import wehavecookies56.kk.client.gui.GuiKeychains;
 import wehavecookies56.kk.client.gui.GuiSynthBag;
@@ -29,13 +30,13 @@ import wehavecookies56.kk.inventory.ContainerSynthesisBagS;
 import wehavecookies56.kk.inventory.InventorySynthesisBagL;
 import wehavecookies56.kk.inventory.InventorySynthesisBagM;
 import wehavecookies56.kk.inventory.InventorySynthesisBagS;
+import wehavecookies56.kk.util.LogHelper;
 
 public class CommonProxy implements IGuiHandler {
 
 	public void init()
 	{
 		//NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
-
 	}
 
 	public EntityPlayer getPlayerEntity(MessageContext ctx){
@@ -123,6 +124,13 @@ public class CommonProxy implements IGuiHandler {
 
 	public void preInit() {
 
+	}
+
+	public void registerAchievements(){
+		//Achievements
+		ModAchievements.init();
+		ModAchievements.register();
+		LogHelper.info("Achievements loaded");
 	}
 
 }
