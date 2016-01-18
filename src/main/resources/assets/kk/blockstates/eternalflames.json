@@ -24,6 +24,9 @@
                         "rotation": [ { "x": 180 }, { "y": -120 }, { "z": 170 } ],
                         "translation": [ 0, 0, 0 ],
                         "scale": 0.03
+                    },
+                    "ground": {
+                        "scale": 0.03
                     }
                 }
             }
