@@ -127,12 +127,11 @@ public class KingdomKeys {
 		//Fuel Handler
 		GameRegistry.registerFuelHandler(new FuelHandler());
 		LogHelper.info("Fuel handler loaded");
-
+		proxy.registerAchievements();
+		
 		//Register renders
 		proxy.init();
 		LogHelper.info("Renders loaded");
-		
-		proxy.registerAchievements();
 		
 		//Tile entity registry
 		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");

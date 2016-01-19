@@ -2,17 +2,12 @@ package wehavecookies56.kk.achievements;
 
 import java.util.ArrayList;
 
-import com.sun.javafx.binding.StringFormatter;
-
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagString;
 import net.minecraft.stats.Achievement;
-import net.minecraft.stats.IStatStringFormat;
 import net.minecraftforge.common.AchievementPage;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.block.ModBlocks;
-import wehavecookies56.kk.client.input.Keybinds;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
@@ -36,8 +31,6 @@ public class ModAchievements {
 	public static void init(){
 
 		openMenu = new Achievement(Strings.Achievement_OpenMenu, "openMenu", 0, 0, Items.book, (Achievement)null);
-		
-		openMenu.setStatStringFormatter(new StatStringFormatterMenu());
 		
 		getBlox = new Achievement(Strings.Achievement_GetBlox, "getBlox", 9, -2, ModBlocks.NormalBlox, (Achievement)null);
 		getSynthesisTable = new Achievement(Strings.Achievement_GetSynthesisTable, "getSynthesisTable", 8, 0, ModBlocks.SynthesisTable, getBlox);

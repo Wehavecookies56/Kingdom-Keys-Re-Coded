@@ -14,6 +14,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.client.gui.GuiDrive;
@@ -30,6 +31,7 @@ import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.StatStringFormatterMenu;
 
 public class ClientProxy extends CommonProxy {
 
@@ -144,6 +146,7 @@ public class ClientProxy extends CommonProxy {
 	public void init(){
 		registerRenders();
 		registerKeyBindings();
+		ModAchievements.openMenu.setStatStringFormatter(new StatStringFormatterMenu());
 	}
 
 	private void registerRenders(){
