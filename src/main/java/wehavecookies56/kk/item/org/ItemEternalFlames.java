@@ -8,20 +8,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemEternalFlames extends ItemSword{
 	int strength;
-	protected final ToolMaterial material;
-	public ItemEternalFlames(ToolMaterial abaddonPlasmaMaterial) {
-		super(abaddonPlasmaMaterial);
-		this.material = abaddonPlasmaMaterial;
-	}
-
-	public ToolMaterial getMaterial() {
-		return this.material;
+	public ItemEternalFlames(ToolMaterial material) {
+		super(material);
+		this.setMaxStackSize(1);
 	}
     
     @Override
@@ -31,8 +27,7 @@ public class ItemEternalFlames extends ItemSword{
     }
 
     @Override
-    public boolean hitEntity(ItemStack item, EntityLivingBase entity,
-    		EntityLivingBase p_77644_3_) {
+    public boolean hitEntity(ItemStack item, EntityLivingBase entity, EntityLivingBase p_77644_3_) {
     	entity.setFire(5);
     	return super.hitEntity(item, entity, p_77644_3_);
     }
