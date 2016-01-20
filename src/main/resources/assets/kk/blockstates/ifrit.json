@@ -11,9 +11,9 @@
             {
                 "transform": {
                     "thirdperson": {
-                        "rotation": [ { "x": 75 }, { "y": 0 }, { "z": 180 } ],
+                        "rotation": [ { "x": 200 }, { "y": 90 }, { "z": 45 } ],
                         "translation": [ 0, 0, 0 ],
-                        "scale": 0.02
+                        "scale": 0.015
                     },
                     "gui": {
                         "rotation": [ { "x": -40 }, { "y": 0 }, { "z": 0 } ],
