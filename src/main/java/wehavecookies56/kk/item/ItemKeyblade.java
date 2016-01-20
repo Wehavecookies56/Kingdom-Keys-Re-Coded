@@ -26,6 +26,8 @@ public class ItemKeyblade extends ItemSword {
 		if(!world.isRemote){
 			if(world.getBlockState(pos).getBlock() instanceof BlockDoor)
 			{
+				if(player.isSneaking())
+				 return false;
 				String sound = "";
 				if(world.getBlockState(pos).getValue(BlockDoor.HALF) == EnumDoorHalf.UPPER){
 					world.setBlockState(pos.down(), world.getBlockState(pos.down()).withProperty(BlockDoor.OPEN, !world.getBlockState(pos.down()).getValue(BlockDoor.OPEN)));
