@@ -268,26 +268,27 @@ public class GuiSynthesis extends GuiTooltip{
 			List<String> materials = new ArrayList<String>();
 			
 			materials.addAll(mats.getKnownMaterialsMap().keySet());
-			if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 1)){
-				Take1.enabled = true;
-				TakeStack.enabled = true;
-				TakeHalfStack.enabled = true;
-				TakeAll.enabled = true;
+			if(!mats.getKnownMaterialsMap().isEmpty()){
+				if(!(mats.getKnownMaterialsMap().get(materials.get(materialSelected)) < 1)){
+					Take1.enabled = true;
+					TakeStack.enabled = true;
+					TakeHalfStack.enabled = true;
+					TakeAll.enabled = true;
 
-			}else{
-				Take1.enabled = false;
-				TakeStack.enabled = false;
-				TakeHalfStack.enabled = false;
-				TakeAll.enabled = false;
+				}else{
+					Take1.enabled = false;
+					TakeStack.enabled = false;
+					TakeHalfStack.enabled = false;
+					TakeAll.enabled = false;
 
+				}
+			}else {
+				materialSelected = -1;
 			}
 			Take1.visible = true;
 			TakeStack.visible = true;
 			TakeHalfStack.visible = true;
 			TakeAll.visible = true;
-
-
-
 		}else{
 			Take1.visible = false;
 			TakeStack.visible = false;

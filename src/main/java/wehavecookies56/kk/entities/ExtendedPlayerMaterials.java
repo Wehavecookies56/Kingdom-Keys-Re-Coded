@@ -54,6 +54,9 @@ public class ExtendedPlayerMaterials implements IExtendedEntityProperties {
 		while(it.hasNext()){
 			String key = (String) it.next();
 			this.getKnownMaterialsMap().put((String)key.toString(), properties.getInteger(key));
+			if (properties.getInteger(key) == 0 && (String)key.toString() != null){
+				this.getKnownMaterialsMap().remove((String)key.toString());
+			}
 		}
 	}
 
