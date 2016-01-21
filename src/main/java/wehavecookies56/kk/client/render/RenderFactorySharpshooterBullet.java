@@ -9,12 +9,7 @@ public class RenderFactorySharpshooterBullet implements IRenderFactory<EntitySha
 
 	@Override
 	public Render<? super EntitySharpshooterBullet> createRenderFor(RenderManager manager) {
-		return null;
-	}
-
-	/*@Override
-	public Render<? super EntitySharpshooterBullet> createRenderFor(RenderManager manager) {
 		return new RenderEntitySharpshooterBullet(manager);
-	}*/
+	}
 
 }
