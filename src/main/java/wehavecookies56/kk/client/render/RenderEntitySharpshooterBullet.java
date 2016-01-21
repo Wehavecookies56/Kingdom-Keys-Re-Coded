@@ -24,10 +24,11 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.TRSRTransformation;
 import net.minecraftforge.client.model.b3d.B3DLoader;
 import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
+import wehavecookies56.kk.entities.projectiles.EntitySharpshooterBullet;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 
-public class RenderEntitySharpshooterBullet extends Render<EntityEternalFlames> {
+public class RenderEntitySharpshooterBullet extends Render<EntitySharpshooterBullet> {
 
 	public ModelResourceLocation model = new ModelResourceLocation(Reference.MODID + ":models/item/" + Strings.EternalFlames + ".b3d", "inventory");
 	public ResourceLocation texture = new ResourceLocation(Reference.MODID + ":textures/items/models/" + Strings.EternalFlames + ".png");
@@ -45,12 +46,12 @@ public class RenderEntitySharpshooterBullet extends Render<EntityEternalFlames> 
 	};
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityEternalFlames entity) {
+	protected ResourceLocation getEntityTexture(EntitySharpshooterBullet entity) {
 		return texture;
 	}
 
 	@Override
-	public void doRender(EntityEternalFlames entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void doRender(EntitySharpshooterBullet entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		Tessellator tessellator = Tessellator.getInstance();
 		WorldRenderer worldRenderer = tessellator.getWorldRenderer();
 		if (entity.ticksExisted < 1)

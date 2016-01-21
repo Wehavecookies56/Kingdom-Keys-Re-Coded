@@ -24,9 +24,8 @@ public class ItemKeyblade extends ItemSword {
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if(!world.isRemote){
-			if(world.getBlockState(pos).getBlock() instanceof BlockDoor)
-			{
-				String sound = "";
+			if(world.getBlockState(pos).getBlock() instanceof BlockDoor) {
+				String sound;
 				if(world.getBlockState(pos).getValue(BlockDoor.HALF) == EnumDoorHalf.UPPER){
 					world.setBlockState(pos.down(), world.getBlockState(pos.down()).withProperty(BlockDoor.OPEN, !world.getBlockState(pos.down()).getValue(BlockDoor.OPEN)));
 					sound = world.getBlockState(pos.down()).getValue(BlockDoor.OPEN) ? "random.door_close" : "random.door_open";
