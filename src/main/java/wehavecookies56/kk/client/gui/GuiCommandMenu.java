@@ -19,6 +19,7 @@ import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.magic.Magic;
+import wehavecookies56.kk.util.EventHandler;
 import wehavecookies56.kk.util.TextHelper;
 
 @SideOnly(Side.CLIENT)
@@ -36,6 +37,8 @@ public class GuiCommandMenu extends GuiScreen {
 
 	final int MENU_WIDTH = 71;
 	final int MENU_HEIGHT = 15;
+	
+	int textureX;
 
 	public static final int SUB_MAIN = 0, SUB_MAGIC = 1, SUB_ITEMS = 2, SUB_DRIVE = 3;
 
@@ -84,12 +87,27 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			if(selected == DRIVE){
-				v=MENU_HEIGHT;
 				x=5;
+				if(EventHandler.isHostiles)
+				{
+					v=30;
+				}
+				else
+				{
+					v=MENU_HEIGHT;
+				}
 			}else{
-				v=0;
 				x=0;
+				if(EventHandler.isHostiles)
+				{
+					v=30;
+				}
+				else
+				{
+					v=0;
+				}
 			}
+			
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*DRIVE), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -118,11 +136,25 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			if(selected == ITEMS){
-				v=MENU_HEIGHT;
 				x=5;
+				if(EventHandler.isHostiles)
+				{
+					v=30;
+				}
+				else
+				{
+					v=MENU_HEIGHT;
+				}
 			}else{
-				v=0;
 				x=0;
+				if(EventHandler.isHostiles)
+				{
+					v=30;
+				}
+				else
+				{
+					v=0;
+				}
 			}
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*ITEMS), 0);
@@ -137,11 +169,25 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			if(selected == MAGIC){
-				v=MENU_HEIGHT;
 				x=5;
+				if(EventHandler.isHostiles)
+				{
+					v=30;
+				}
+				else
+				{
+					v=MENU_HEIGHT;
+				}
 			}else{
-				v=0;
 				x=0;
+				if(EventHandler.isHostiles)
+				{
+					v=30;
+				}
+				else
+				{
+					v=0;
+				}
 			}
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MAGIC), 0);
@@ -172,24 +218,43 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			if(selected == ATTACK){
-				v=MENU_HEIGHT;
 				x=5;
+				if(EventHandler.isHostiles)
+				{
+					v=30;
+				}
+				else
+				{
+					v=MENU_HEIGHT;
+				}
 			}else{
-				v=0;
 				x=0;
+				if(EventHandler.isHostiles)
+				{
+					textureX = TOP_WIDTH - 70;
+					v=30;
+				}
+				else
+				{
+					v=0;
+				}
 			}
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*ATTACK), 0);
 			GL11.glScalef(scale, scale, scale);
-			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+			drawTexturedModalRect(0, 0, textureX, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+			textureX = TOP_WIDTH;
 			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Attack), 6, 4, 0xFFFFFF);
 		}GL11.glPopMatrix();
 		//TOP
 		GL11.glPushMatrix();{
-			mc.renderEngine.bindTexture(texture);
+			mc.renderEngine.bindTexture(texture);				
 			GL11.glTranslatef(0, (height - MENU_HEIGHT*scale*TOP), 0);
 			GL11.glScalef(scale, scale, scale);
-			drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
+			if(EventHandler.isHostiles)
+				drawTexturedModalRect(0, 0, 0, 15, TOP_WIDTH, TOP_HEIGHT);
+			else
+				drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
 			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Command), 6, 4, 0xFFFFFF);
 		}GL11.glPopMatrix();
 		//MAGIC TOP
