@@ -641,7 +641,6 @@ public class EventHandler {
 			if(!entities.isEmpty()){
 				for(int i = 0; i < entities.size(); i++){
 					if(entities.get(i) instanceof EntityMob){
-						System.out.println("Mobs");
 						isHostiles = true;
 						break;
 					}else {
@@ -688,8 +687,6 @@ public class EventHandler {
 						this.resLoc = ReflectionHelper.getPrivateValue(PositionedSound.class, this.posSound, "positionedSoundLocation", "field_147664_a");
 					}
 				}
-
-				System.out.println(isHostiles);
 
 				if("music.game".equals(resLoc.getResourcePath()) || "music.game.creative".equals(resLoc.getResourcePath())){
 					Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
@@ -781,17 +778,16 @@ public class EventHandler {
 							}
 						 */	
 				} else if (isHostiles){
-					System.out.println("Ok");
 					if(!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.sinisterSundown) &&
 							!"music.game".equals(this.resLoc.getResourcePath()) &&
 							!"music.game.creative".equals(this.resLoc.getResourcePath())) {
 						if(!this.battlePlayed[0]){
-							Minecraft.getMinecraft().getSoundHandler().stopSound(Music.lazyAfternoons);
+							//Minecraft.getMinecraft().getSoundHandler().stopSound(Music.lazyAfternoons);
 							Minecraft.getMinecraft().getSoundHandler().playSound(Music.sinisterSundown);
 							for(int i = 0; i < this.battlePlayed.length; i++){
 								this.battlePlayed[i] = false;
 							}
-							//this.battlePlayed[0] = true;
+							this.battlePlayed[0] = true;
 						}
 					}
 				}
@@ -826,7 +822,6 @@ public class EventHandler {
 						!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedDays) &&
 						!"music.menu".equals(this.resLoc.getResourcePath())) 
 				{
-					System.out.println("Play menu music");
 					int r = randomWithRange(0, 7);
 					if(resLoc.getResourcePath().contains("music.menu")){
 						Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
