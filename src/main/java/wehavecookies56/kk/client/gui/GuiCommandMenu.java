@@ -32,13 +32,14 @@ public class GuiCommandMenu extends GuiScreen {
 	public static final int DRIVE_TOP = 6, VALOR = 5, WISDOM = 4, LIMIT = 3, MASTER = 2, FINAL = 1;
 	//int selected = ATTACK;
 
-	final int TOP_WIDTH = 70;
-	final int TOP_HEIGHT = 15;
+	int TOP_WIDTH = 70;
+	int TOP_HEIGHT = 15;
 
-	final int MENU_WIDTH = 71;
-	final int MENU_HEIGHT = 15;
+	int MENU_WIDTH = 71;
+	int MENU_HEIGHT = 15;
 	
-	int textureX;
+	int textX = 0;
+	
 
 	public static final int SUB_MAIN = 0, SUB_MAGIC = 1, SUB_ITEMS = 2, SUB_DRIVE = 3;
 
@@ -61,7 +62,6 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 			GL11.glPopMatrix();
 		}
-
 	}
 
 	@Override
@@ -84,115 +84,124 @@ public class GuiCommandMenu extends GuiScreen {
 		//DRIVE
 		GL11.glPushMatrix();{
 			int u;
-			int v;
-			int x;
-			if(selected == DRIVE){
-				x=5;
-				if(EventHandler.isHostiles)
-				{
-					v=30;
-				}
-				else
-				{
-					v=MENU_HEIGHT;
-				}
-			}else{
-				x=0;
-				if(EventHandler.isHostiles)
-				{
-					v=30;
-				}
-				else
-				{
-					v=0;
-				}
-			}
-			
+			int v=0;
+			int x=0;
+						
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*DRIVE), 0);
 			GL11.glScalef(scale, scale, scale);
-			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+			
+			if(selected == DRIVE){ //Selected
+				textX=5;
+				if(EventHandler.isHostiles) //Selected with hostile
+				{
+					drawTexturedModalRect(5, 0, TOP_WIDTH, 30, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+				else //Selected peaceful
+				{
+					drawTexturedModalRect(5, 0, TOP_WIDTH, MENU_HEIGHT, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+
+			}else{ //Not selected
+				textX=0;
+
+				if(EventHandler.isHostiles) //Not selected with hostile
+				{
+					drawTexturedModalRect(0, 0, 0, 30, TOP_WIDTH, v + MENU_HEIGHT);
+				}
+				else //Not selected peaceful
+				{
+					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+			}
+			
 			if(ExtendedPlayer.get(mc.thePlayer).getInDrive())
 			{
 				if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti"))
 				{
-					drawString(mc.fontRendererObj,	"Revert", 6, 4, 0x888888);
+					drawString(mc.fontRendererObj,	"Revert", 6+textX, 4, 0x888888);
 				}
 				else
 				{
-					drawString(mc.fontRendererObj,	"Revert", 6, 4, 0xFFFFFF);
+					drawString(mc.fontRendererObj,	"Revert", 6+textX, 4, 0xFFFFFF);
 				}
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
 			else
 			{
-				drawString(mc.fontRendererObj, 	TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6, 4, 0xFFFFFF);
+				drawString(mc.fontRendererObj, 	TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6+textX, 4, 0xFFFFFF);
 			}
 
 		}GL11.glPopMatrix();
 		//ITEMS
 		GL11.glPushMatrix();{
 			int u;
-			int v;
-			int x;
-			if(selected == ITEMS){
-				x=5;
-				if(EventHandler.isHostiles)
-				{
-					v=30;
-				}
-				else
-				{
-					v=MENU_HEIGHT;
-				}
-			}else{
-				x=0;
-				if(EventHandler.isHostiles)
-				{
-					v=30;
-				}
-				else
-				{
-					v=0;
-				}
-			}
+			int v=0;
+			int x=0;
+			
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*ITEMS), 0);
 			GL11.glScalef(scale, scale, scale);
-			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
-			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6, 4, 0x888888);
+			
+			if(selected == ITEMS){ //Selected
+				textX=5;
+				if(EventHandler.isHostiles) //Selected with hostile
+				{
+					drawTexturedModalRect(5, 0, TOP_WIDTH, 30, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+				else //Selected peaceful
+				{
+					drawTexturedModalRect(5, 0, TOP_WIDTH, MENU_HEIGHT, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+
+			}else{ //Not selected
+				textX=0;
+
+				if(EventHandler.isHostiles) //Not selected with hostile
+				{
+					drawTexturedModalRect(0, 0, 0, 30, TOP_WIDTH, v + MENU_HEIGHT);
+				}
+				else //Not selected peaceful
+				{
+					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+			}
+			
+			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6+textX, 4, 0x888888);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}GL11.glPopMatrix();
 		//MAGIC
 		GL11.glPushMatrix();{
 			int u;
-			int v;
-			int x;
-			if(selected == MAGIC){
-				x=5;
-				if(EventHandler.isHostiles)
-				{
-					v=30;
-				}
-				else
-				{
-					v=MENU_HEIGHT;
-				}
-			}else{
-				x=0;
-				if(EventHandler.isHostiles)
-				{
-					v=30;
-				}
-				else
-				{
-					v=0;
-				}
-			}
+			int v=0;
+			int x=0;			
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MAGIC), 0);
 			GL11.glScalef(scale, scale, scale);
-			drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+			
+			if(selected == MAGIC){ //Selected
+				textX=5;
+				if(EventHandler.isHostiles) //Selected with hostile
+				{
+					drawTexturedModalRect(5, 0, TOP_WIDTH, 30, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+				else //Selected peaceful
+				{
+					drawTexturedModalRect(5, 0, TOP_WIDTH, MENU_HEIGHT, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+
+			}else{ //Not selected
+				textX=0;
+
+				if(EventHandler.isHostiles) //Not selected with hostile
+				{
+					drawTexturedModalRect(0, 0, 0, 30, TOP_WIDTH, v + MENU_HEIGHT);
+				}
+				else //Not selected peaceful
+				{
+					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+			}
 			
 			if(ExtendedPlayer.get(mc.thePlayer).getRecharge() == false &&
 			(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Fire") > 0 || 
@@ -204,47 +213,48 @@ public class GuiCommandMenu extends GuiScreen {
 			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Stop") > 0) &&
 			!ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
 			{
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6, 4, 0xFFFFFF);
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6+textX, 4, 0xFFFFFF);
 			}
 			else
 			{
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6, 4, 0x888888);
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6+textX, 4, 0x888888);
 			}
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}GL11.glPopMatrix();
 		//ATTACK
 		GL11.glPushMatrix();{
 			int u;
-			int v;
-			int x;
-			if(selected == ATTACK){
-				x=5;
-				if(EventHandler.isHostiles)
-				{
-					v=30;
-				}
-				else
-				{
-					v=MENU_HEIGHT;
-				}
-			}else{
-				x=0;
-				if(EventHandler.isHostiles)
-				{
-					textureX = TOP_WIDTH - 70;
-					v=30;
-				}
-				else
-				{
-					v=0;
-				}
-			}
+			int v = 0;
+			int x = 0;
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*ATTACK), 0);
 			GL11.glScalef(scale, scale, scale);
-			drawTexturedModalRect(0, 0, textureX, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
-			textureX = TOP_WIDTH;
-			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Attack), 6, 4, 0xFFFFFF);
+
+			if(selected == ATTACK){ //Selected
+				textX=5;
+				if(EventHandler.isHostiles) //Selected with hostile
+				{
+					drawTexturedModalRect(5, 0, TOP_WIDTH, 30, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+				else //Selected peaceful
+				{
+					drawTexturedModalRect(5, 0, TOP_WIDTH, MENU_HEIGHT, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+
+			}else{ //Not selected
+				textX=0;
+
+				if(EventHandler.isHostiles) //Not selected with hostile
+				{
+					drawTexturedModalRect(0, 0, 0, 30, TOP_WIDTH, v + MENU_HEIGHT);
+				}
+				else //Not selected peaceful
+				{
+					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				}
+			}
+			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Attack), 6+textX, 4, 0xFFFFFF);
+
 		}GL11.glPopMatrix();
 		//TOP
 		GL11.glPushMatrix();{
