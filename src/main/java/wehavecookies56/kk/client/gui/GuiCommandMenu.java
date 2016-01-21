@@ -77,7 +77,7 @@ public class GuiCommandMenu extends GuiScreen {
 	}
 
 	public void drawCommandMenu(int width, int height){
-
+		//System.out.println("Submenu: "+submenu+" Selected:"+selected+" Magic:"+magicselected+" Drive:"+driveselected);
 		//float height = mc.displayHeight/2*1.75f;
 		float scale = 1.05f;
 		int colour;
@@ -293,7 +293,8 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*FIRE), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_MAGIC){
-				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+				v=0;
+				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
 				colour = Constants.FIRE_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 				switch(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Fire"))
@@ -328,6 +329,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*BLIZZARD), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_MAGIC){
+				v=0;
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.BLIZZARD_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
@@ -362,6 +364,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*THUNDER), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_MAGIC){
+				v=0;
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.THUNDER_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
@@ -396,6 +399,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*CURE), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_MAGIC){
+				v=0;
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
@@ -430,6 +434,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*GRAVITY), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_MAGIC){
+				v=0;
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.GRAVITY_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
@@ -465,6 +470,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*AERO), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_MAGIC){
+				v=0;
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.AERO_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
@@ -499,6 +505,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*STOP), 0);
 			GL11.glScalef(scale, scale, scale);
 			if(submenu == SUB_MAGIC){
+				v=0;
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				colour = Constants.STOP_COST < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 				colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
@@ -551,6 +558,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*VALOR), 0);
 			GL11.glScalef(1.25f, scale, scale);
 			if(submenu == SUB_DRIVE){
+				v=0;
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
 		}GL11.glPopMatrix();
@@ -596,6 +604,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*WISDOM), 0);
 			GL11.glScalef(1.25f, scale, scale);
 			if(submenu == SUB_DRIVE){
+				v=0;
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
 		}GL11.glPopMatrix();
@@ -640,6 +649,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*LIMIT), 0);
 			GL11.glScalef(1.25f, scale, scale);
 			if(submenu == SUB_DRIVE){
+				v=0;
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
 		}GL11.glPopMatrix();
@@ -684,6 +694,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MASTER), 0);
 			GL11.glScalef(1.25f, scale, scale);
 			if(submenu == SUB_DRIVE){
+				v=0;
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
 		}GL11.glPopMatrix();
@@ -729,6 +740,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*FINAL), 0);
 			GL11.glScalef(1.25f, scale, scale);
 			if(submenu == SUB_DRIVE){
+				v=0;
 				drawTexturedModalRect(0, 0, TOP_WIDTH, v, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
 		}GL11.glPopMatrix();

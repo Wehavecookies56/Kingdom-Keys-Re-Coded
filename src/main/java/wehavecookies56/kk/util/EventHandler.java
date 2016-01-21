@@ -637,7 +637,7 @@ public class EventHandler {
 			DriveFormRegistry.get(ExtendedPlayer.get((EntityPlayer) event.player).getDriveInUse()).update((EntityPlayer) event.player);
 		}
 		if(event.player != null){
-			List<Entity> entities = event.player.worldObj.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(8.0D, 5.0D, 8.0D));
+			List<Entity> entities = event.player.worldObj.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(16.0D, 10.0D, 16.0D));
 			if(!entities.isEmpty()){
 				for(int i = 0; i < entities.size(); i++){
 					if(entities.get(i) instanceof EntityMob){
