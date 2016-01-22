@@ -9,11 +9,11 @@ import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Strings;
 
-public class ItemPotion extends KKPotion{
+public class ItemEther extends KKPotion{
 
 	String potionType;
 	
-    public ItemPotion(int food, boolean wolf, String type) {
+    public ItemEther(int food, boolean wolf, String type) {
         super(food, wolf, type);       
         this.setUnlocalizedName(Strings.Potion);
         this.setAlwaysEdible();

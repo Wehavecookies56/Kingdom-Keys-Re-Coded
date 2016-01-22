@@ -15,6 +15,7 @@ import net.minecraftforge.common.util.Constants;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.inventory.InventoryKeychain;
+import wehavecookies56.kk.inventory.InventoryPotionsMenu;
 import wehavecookies56.kk.inventory.InventorySynthBagMenu;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -31,6 +32,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public final InventoryKeychain inventory = new InventoryKeychain();
 	public final InventorySynthBagMenu inventory2 = new InventorySynthBagMenu();
+	public final InventoryPotionsMenu inventory3 = new InventoryPotionsMenu();
+
 
 	public int munny, maxMunny;
 
@@ -108,6 +111,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		NBTTagCompound properties = new NBTTagCompound();
 		this.inventory.writeToNBT(properties);
 		this.inventory2.writeToNBT(properties);
+		this.inventory3.writeToNBT(properties);
 
 		properties.setInteger("Munny", this.munny);
 		properties.setInteger("Level", this.level);
@@ -163,6 +167,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
 		this.inventory.readFromNBT(properties);
 		this.inventory2.readFromNBT(properties);
+		this.inventory3.readFromNBT(properties);
 
 		this.munny = properties.getInteger("Munny");
 		this.level = properties.getInteger("Level");

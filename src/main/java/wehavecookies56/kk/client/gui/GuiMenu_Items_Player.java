@@ -15,9 +15,9 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 
 public class GuiMenu_Items_Player extends GuiMenu_Bars {
 
-	final int KEYCHAIN = 1, SYNTHBAG = 2, BACK = 3;
+	final int KEYCHAIN = 1, SYNTHBAG = 2, POTIONS = 3, BACK = 4;
 
-	GuiButton keychain, synthbag, back;
+	GuiButton keychain, synthbag, potions, back;
 
 	public GuiMenu_Items_Player(String name) {
 		super(Strings.Gui_Menu_Items_Player);
@@ -31,6 +31,9 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 			break;
 		case SYNTHBAG:
 			GuiHelper.openInv(KingdomKeys.GUI_SYNTHBAG_INV);
+			break;
+		case POTIONS:
+			GuiHelper.openInv(KingdomKeys.GUI_POTIONS_INV);
 			break;
 		case BACK:
 			GuiHelper.openMenu();
@@ -51,10 +54,12 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 
     	int button_items_playerY = button_itemsY;
     	int button_items_stockY = button_items_playerY + 22;
-    	int button_items_backY = button_items_stockY + 22;
+    	int button_items_potionsY = button_items_stockY + 22;
+    	int button_items_backY = button_items_potionsY + 22;
 
     	buttonList.add(keychain = new GuiButton(KEYCHAIN, 5, button_items_playerY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Keychain)));
     	buttonList.add(synthbag = new GuiButton(SYNTHBAG, 5, button_items_stockY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_SynthBag)));
+    	buttonList.add(potions = new GuiButton(POTIONS, 5, button_items_potionsY, 100, 20, TextHelper.localize("Potions")));
     	buttonList.add(back = new GuiButton(BACK, 5, button_items_backY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
     	synthbag.enabled = true;
 

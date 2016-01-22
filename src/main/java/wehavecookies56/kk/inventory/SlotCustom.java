@@ -4,6 +4,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import wehavecookies56.kk.item.ItemKeychain;
+import wehavecookies56.kk.item.KKPotion;
 import wehavecookies56.kk.item.ItemSynthesisBagL;
 import wehavecookies56.kk.item.ItemSynthesisBagM;
 import wehavecookies56.kk.item.ItemSynthesisBagS;
@@ -20,17 +21,20 @@ public class SlotCustom extends Slot {
 		/*
 		 * 1- KeyChain
 		 * 2- SynthBag 
+		 * 3- Potion
 		 */
 		switch(window)
 		{
 		case 1:
 			if(stack.getItem() instanceof ItemKeychain)
-			{
 				return true;
-			}
 			break;
 		case 2:
 			if(stack.getItem() instanceof ItemSynthesisBagS || stack.getItem() instanceof ItemSynthesisBagM || stack.getItem() instanceof ItemSynthesisBagL)
+				return true;
+			break;
+		case 3:
+			if(stack.getItem() instanceof KKPotion)
 				return true;
 			break;
 		}

@@ -686,8 +686,8 @@ public class ModItems {
 		Munny = new ItemMunny().setUnlocalizedName(Strings.Munny).setCreativeTab(tabKingdomKeys);
 		EmptyBottle = new Item().setUnlocalizedName(Strings.EmptyBottle).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		Potion = new ItemPotion(0, true, "hp").setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-		Ether = new ItemPotion(0, true, "mp").setUnlocalizedName(Strings.Ether).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-		Elixir = new ItemPotion(0, true, "elixir").setUnlocalizedName(Strings.Elixir).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		Ether = new ItemEther(0, true, "mp").setUnlocalizedName(Strings.Ether).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
+		Elixir = new ItemElixir(0, true, "elixir").setUnlocalizedName(Strings.Elixir).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 
 		HpOrb = new ItemHpOrb().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		DriveOrb = new ItemDriveOrb().setUnlocalizedName(Strings.DriveOrb).setCreativeTab(tabKingdomKeys);
