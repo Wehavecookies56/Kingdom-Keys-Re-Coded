@@ -75,27 +75,24 @@ public class KKPotion extends ItemFood{
         }
     }
 
-	public static boolean usePotion(EntityPlayer player, InventoryPotionsMenu inventory, int slot)
+	public static void usePotion(EntityPlayer player, InventoryPotionsMenu inventory, int slot)
 	{
 		if(inventory.getStackInSlot(slot).getItem() instanceof ItemPotion)
 		{
 			player.heal(player.getMaxHealth()/3);
 			inventory.setInventorySlotContents(slot, null);
-			return true;
 		}
 		else if (inventory.getStackInSlot(slot).getItem() instanceof ItemEther)
 		{
 			ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp()/3);
 			inventory.setInventorySlotContents(slot, null);
-			return true;
 		}
 		else if (inventory.getStackInSlot(slot).getItem() instanceof ItemElixir)
 		{
 			ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp()/3);
 			player.heal(player.getMaxHealth()/3);
 			inventory.setInventorySlotContents(slot, null);
-			return true;
 		}
-		return false;
+		ExtendedPlayer.get(player).sync();
 	}
 }
