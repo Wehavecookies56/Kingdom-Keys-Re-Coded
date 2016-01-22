@@ -35,7 +35,7 @@ public class EntitySharpshooterBullet extends EntityThrowable{
 	@Override
 	public void onUpdate() {
 		int rotation = 0;
-		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+		this.worldObj.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX, this.posY, this.posZ, 0,0,0);
 		this.rotationYaw = (rotation + 1) % 360;
 		if(this.ticks < 10){this.ticks = 10;}
 		
@@ -61,7 +61,7 @@ public class EntitySharpshooterBullet extends EntityThrowable{
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), shotDamage);
 		}
 
-		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+		this.worldObj.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 
 		if (!worldObj.isRemote) {
 			setDead();

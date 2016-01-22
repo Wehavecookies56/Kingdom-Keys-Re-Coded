@@ -14,7 +14,7 @@
                 "transform": {
                     "thirdperson": {
                         "rotation": [ { "x": 75 }, { "y": 0 }, { "z": 180 } ],
-                        "translation": [ 0, 0, 0 ],
+                        "translation": [ 0, 0.04, -0.07 ],
                         "scale": 0.02
                     },
                     "gui": {

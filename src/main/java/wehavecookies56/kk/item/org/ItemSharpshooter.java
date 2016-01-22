@@ -9,10 +9,11 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.projectiles.EntitySharpshooterBullet;
 
 public class ItemSharpshooter extends ItemSword{
-	int strength = 6;
+	int strength = 30;
 	public ItemSharpshooter(ToolMaterial material) {
 		super(material);
 		this.setMaxStackSize(1);
@@ -29,10 +30,12 @@ public class ItemSharpshooter extends ItemSword{
 		{
 			//TODO set strength
 			
-			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-			//if (!world.isRemote)
+			if((ExtendedPlayer.get(player).getMp() > 0 && !ExtendedPlayer.get(player).inRecharge) || ExtendedPlayer.get(player).cheatMode)
 			{
+				world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 				world.spawnEntityInWorld(new EntitySharpshooterBullet(world, player, strength));
+				if(!ExtendedPlayer.get(player).cheatMode)
+					ExtendedPlayer.get(player).removeMp(10);
 				player.swingItem();
 			}
 		}

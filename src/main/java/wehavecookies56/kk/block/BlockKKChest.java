@@ -28,6 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.entities.TileEntityKKChest;
 import wehavecookies56.kk.item.ItemKeyblade;
+import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.util.GuiHelper;
 
@@ -51,8 +52,11 @@ public class BlockKKChest extends BlockContainer implements ITileEntityProvider 
 		if (world.isRemote) return true;
 		if(player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemKeyblade)
 		{
-			GuiHelper.openKKChest(player, world, pos);
-			return true;
+			if(player.getHeldItem().getItem() != ModItems.WoodenKeyblade && player.getHeldItem().getItem() != ModItems.WoodenStick && player.getHeldItem().getItem() != ModItems.DreamSword)
+			{
+				GuiHelper.openKKChest(player, world, pos);
+				return true;
+			}
 		}
 		return false;
 	}
