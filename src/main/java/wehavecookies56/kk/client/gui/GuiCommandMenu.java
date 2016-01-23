@@ -90,7 +90,8 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*DRIVE), 0);
 			GL11.glScalef(scale, scale, scale);
-			
+			if(submenu != 0) 
+				GL11.glColor3ub((byte)80, (byte)80, (byte)80);
 			if(selected == DRIVE){ //Selected
 				textX=5;
 				if(EventHandler.isHostiles) //Selected with hostile
@@ -142,7 +143,8 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*ITEMS), 0);
 			GL11.glScalef(scale, scale, scale);
-			
+			if(submenu != 0) 
+				GL11.glColor3ub((byte)80, (byte)80, (byte)80);
 			if(selected == ITEMS){ //Selected
 				textX=5;
 				if(EventHandler.isHostiles) //Selected with hostile
@@ -178,7 +180,8 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MAGIC), 0);
 			GL11.glScalef(scale, scale, scale);
-			
+			if(submenu != 0) 
+				GL11.glColor3ub((byte)80, (byte)80, (byte)80);
 			if(selected == MAGIC){ //Selected
 				textX=5;
 				if(EventHandler.isHostiles) //Selected with hostile
@@ -229,8 +232,12 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*ATTACK), 0);
 			GL11.glScalef(scale, scale, scale);
+			
+			if(submenu != 0) 
+			GL11.glColor3ub((byte)80, (byte)80, (byte)80);
 
 			if(selected == ATTACK){ //Selected
+
 				textX=5;
 				if(EventHandler.isHostiles) //Selected with hostile
 				{
@@ -261,6 +268,8 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);				
 			GL11.glTranslatef(0, (height - MENU_HEIGHT*scale*TOP), 0);
 			GL11.glScalef(scale, scale, scale);
+			if(submenu != 0) 
+				GL11.glColor3ub((byte)80, (byte)80, (byte)80);
 			if(EventHandler.isHostiles)
 				drawTexturedModalRect(0, 0, 0, 15, TOP_WIDTH, TOP_HEIGHT);
 			else

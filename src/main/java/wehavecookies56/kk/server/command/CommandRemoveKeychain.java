@@ -104,7 +104,7 @@ public class CommandRemoveKeychain implements ICommand {
 					PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain",0));
 					if(propsmp.isKeybladeSummoned())
 					{
-						if(playermp.inventory.getCurrentItem() != null && playermp.inventory.getCurrentItem().getItem() instanceof ItemKeyblade){// && propsmp.isKeybladeSummoned() == true
+						if(playermp.inventory.getCurrentItem() != null && playermp.inventory.getCurrentItem().getItem() instanceof ItemKeyblade){
 							PacketDispatcher.sendToServer(new DeSummonKeyblade(playermp.inventory.getCurrentItem()));
 						}
 					}
