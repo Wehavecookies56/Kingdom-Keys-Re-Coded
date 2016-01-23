@@ -75,6 +75,13 @@
     		{"name": "antidrive", "stream": false}
     	]
     },
+	
+	"potion": {
+    	"category": "player",
+    	"sounds": [
+    		{"name": "potion", "stream": false}
+    	]
+    },
 
     "records.Birth by Sleep -A Link to the Future-": {
     	"category": "record", 

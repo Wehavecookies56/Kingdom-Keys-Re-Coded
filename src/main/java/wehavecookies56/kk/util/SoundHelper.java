@@ -21,6 +21,7 @@ public class SoundHelper {
 	Cancel = BASE + "cancel",
 	LazyAfternoons = BASE + "music.Lazy Afternoons",
 	Drive = BASE + "drive",
-	AntiDrive = BASE + "antidrive"
+	AntiDrive = BASE + "antidrive",
+	Potion = BASE + "potion"
 	;
 }

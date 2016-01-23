@@ -1,5 +1,6 @@
 package wehavecookies56.kk.item;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
@@ -10,6 +11,7 @@ import wehavecookies56.kk.inventory.InventoryPotionsMenu;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.RemoveItemInSlot;
+import wehavecookies56.kk.util.SoundHelper;
 
 public class KKPotion extends ItemFood{
 
@@ -92,7 +94,8 @@ public class KKPotion extends ItemFood{
 			ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp()/3);
 			player.heal(player.getMaxHealth()/3);
 		}
-		System.out.println(inventory.getCommandSenderName());
-		PacketDispatcher.sendToServer(new RemoveItemInSlot("potion", slot));	
+		Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Potion, 1f, 1f, false);
+
+		PacketDispatcher.sendToServer(new RemoveItemInSlot("potion", slot, true));	
 	}
 }
