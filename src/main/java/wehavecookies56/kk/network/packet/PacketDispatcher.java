@@ -43,6 +43,7 @@ import wehavecookies56.kk.network.packet.server.MunnyPickup;
 import wehavecookies56.kk.network.packet.server.OpenGui;
 import wehavecookies56.kk.network.packet.server.OpenMaterials;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
+import wehavecookies56.kk.network.packet.server.RemoveItemInSlot;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.network.packet.server.SyncStatMessagesPacket;
 import wehavecookies56.kk.network.packet.server.SynthesisMaterialPickup;
@@ -114,6 +115,7 @@ public class PacketDispatcher
 		registerMessage(SynthesisMaterialPickup.class);
 		registerMessage(MagnetBloxMotion.class);
 		registerMessage(TakeMaterials.class);
+		registerMessage(RemoveItemInSlot.class);
 		//Bidirectional
 	}
 

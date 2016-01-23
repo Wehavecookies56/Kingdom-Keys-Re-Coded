@@ -12,7 +12,7 @@ public class InventoryPotionsMenu extends AbstractInventory {
 
 	/** The key used to store and retrieve the inventory from NBT */
 	private static final String SAVE_KEY = "PotionsInvKey";
-	
+    private ItemStack[] inv;
 	public static final int INV_SIZE = 5;
 	
 	public InventoryPotionsMenu() {
@@ -61,5 +61,4 @@ public class InventoryPotionsMenu extends AbstractInventory {
 	public IChatComponent getDisplayName() {
 		return new ChatComponentText(name);
 	}
-
 }

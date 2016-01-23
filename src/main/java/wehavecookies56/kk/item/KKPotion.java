@@ -2,14 +2,14 @@ package wehavecookies56.kk.item;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.inventory.InventoryPotionsMenu;
 import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.server.RemoveItemInSlot;
 
 public class KKPotion extends ItemFood{
 
@@ -91,8 +91,8 @@ public class KKPotion extends ItemFood{
 		{
 			ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp()/3);
 			player.heal(player.getMaxHealth()/3);
-			inventory.setInventorySlotContents(slot, null);
 		}
-		ExtendedPlayer.get(player).sync();
+		System.out.println(inventory.getCommandSenderName());
+		PacketDispatcher.sendToServer(new RemoveItemInSlot("potion", slot));	
 	}
 }

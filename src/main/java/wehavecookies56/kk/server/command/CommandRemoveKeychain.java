@@ -19,9 +19,11 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
+import wehavecookies56.kk.network.packet.server.RemoveItemInSlot;
 import wehavecookies56.kk.util.TextHelper;
 
 public class CommandRemoveKeychain implements ICommand {
@@ -77,7 +79,7 @@ public class CommandRemoveKeychain implements ICommand {
 			{
 				if(props.inventory.getStackInSlot(0) != null)
 				{
-					props.inventory.getStackInSlot(0).setItem(Items.paper);
+					PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain",0));
 					if(props.isKeybladeSummoned())
 					{
 						if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemKeyblade){// && props.isKeybladeSummoned() == true
@@ -99,7 +101,7 @@ public class CommandRemoveKeychain implements ICommand {
 
 				if(propsmp.inventory.getStackInSlot(0) != null)
 				{
-					propsmp.inventory.getStackInSlot(0).setItem(Items.paper);
+					PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain",0));
 					if(propsmp.isKeybladeSummoned())
 					{
 						if(playermp.inventory.getCurrentItem() != null && playermp.inventory.getCurrentItem().getItem() instanceof ItemKeyblade){// && propsmp.isKeybladeSummoned() == true
