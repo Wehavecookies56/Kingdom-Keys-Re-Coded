@@ -23,6 +23,7 @@ import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.network.packet.server.AntiPoints;
 import wehavecookies56.kk.network.packet.server.ChangeDP;
 import wehavecookies56.kk.network.packet.server.ChangeDefense;
+import wehavecookies56.kk.network.packet.server.ChangeHP;
 import wehavecookies56.kk.network.packet.server.ChangeMP;
 import wehavecookies56.kk.network.packet.server.ChangeMaxHP;
 import wehavecookies56.kk.network.packet.server.ChangeStrength;
@@ -104,6 +105,7 @@ public class PacketDispatcher
 		registerMessage(ChangeDP.class);
 		registerMessage(ChangeMP.class);
 		registerMessage(ChangeXP.class);
+		registerMessage(ChangeHP.class);
 		registerMessage(ChangeStrength.class);
 		registerMessage(ChangeDefense.class);
 		registerMessage(ChangeMaxHP.class);

@@ -13,6 +13,8 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.block.ModBlocks;
@@ -27,12 +29,14 @@ import wehavecookies56.kk.client.input.Keybinds;
 import wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
 import wehavecookies56.kk.client.render.RenderFactoryEternalFlames;
 import wehavecookies56.kk.client.render.RenderFactorySharpshooterBullet;
+import wehavecookies56.kk.entities.PlayerLevel;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
 import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 import wehavecookies56.kk.entities.projectiles.EntitySharpshooterBullet;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.LogHelper;
 import wehavecookies56.kk.util.StatStringFormatterMenu;
 
 public class ClientProxy extends CommonProxy {
@@ -149,6 +153,7 @@ public class ClientProxy extends CommonProxy {
 	public void init(){
 		registerRenders();
 		registerKeyBindings();
+		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.ClientEventHandler());
 		ModAchievements.openMenu.setStatStringFormatter(new StatStringFormatterMenu());
 	}
 
@@ -179,6 +184,13 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public IThreadListener getThreadFromContext(MessageContext ctx) {
 		return (ctx.side.isClient() ? Minecraft.getMinecraft() : super.getThreadFromContext(ctx));
+	}
+	
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent e){	
+		//Event handler
+		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.ClientEventHandler());
+		LogHelper.info("Events loaded");
 	}
 
 }

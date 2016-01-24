@@ -80,6 +80,8 @@ public class CommandRemoveKeychain implements ICommand {
 				if(props.inventory.getStackInSlot(0) != null)
 				{
 					PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain",0));
+					PacketDispatcher.sendToAllAround(new RemoveItemInSlot("keychain",0), (EntityPlayer)sender.getCommandSenderEntity(), 1);
+
 					if(props.isKeybladeSummoned())
 					{
 						if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemKeyblade){// && props.isKeybladeSummoned() == true

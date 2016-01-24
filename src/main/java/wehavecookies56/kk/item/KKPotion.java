@@ -10,6 +10,8 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.inventory.InventoryPotionsMenu;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.server.ChangeHP;
+import wehavecookies56.kk.network.packet.server.ChangeMP;
 import wehavecookies56.kk.network.packet.server.RemoveItemInSlot;
 import wehavecookies56.kk.util.SoundHelper;
 
@@ -81,18 +83,18 @@ public class KKPotion extends ItemFood{
 	{
 		if(inventory.getStackInSlot(slot).getItem() instanceof ItemPotion)
 		{
-			player.heal(player.getMaxHealth()/3);
+			PacketDispatcher.sendToServer(new ChangeHP(player.getMaxHealth()/3,"+"));
 			inventory.setInventorySlotContents(slot, null);
 		}
 		else if (inventory.getStackInSlot(slot).getItem() instanceof ItemEther)
 		{
-			ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp()/3);
+			PacketDispatcher.sendToServer(new ChangeMP(ExtendedPlayer.get(player).getMaxMp()/3,"+"));
 			inventory.setInventorySlotContents(slot, null);
 		}
 		else if (inventory.getStackInSlot(slot).getItem() instanceof ItemElixir)
 		{
-			ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp()/3);
-			player.heal(player.getMaxHealth()/3);
+			PacketDispatcher.sendToServer(new ChangeMP(ExtendedPlayer.get(player).getMaxMp()/3,"+"));
+			PacketDispatcher.sendToServer(new ChangeHP(player.getMaxHealth()/3,"+"));
 		}
 		Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Potion, 1f, 1f, false);
 
