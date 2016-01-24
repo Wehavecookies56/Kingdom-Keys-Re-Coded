@@ -8,6 +8,15 @@
 achievement.openMenu=Open the menu
 achievement.openMenu.desc=Press the '%1$s' key to open the menu.
 
+achievement.getBlox=Is this a bug?
+achievement.getBlox.desc=Get a Bug Blox
+
+achievement.getSynthesisTable=Will I be able to make better items?
+achievement.getSynthesisTable.desc=Get a Synthesis Table
+
+achievement.getKeyblade=A Keychain? Why would I want it?
+achievement.getKeyblade.desc=Obtain your first Keychain
+
 achievement.getWehavecookies56Skull=Familiar Face!
 achievement.getAbelatoxSkull=Another Familiar Face!
 achievement.getWehavecookies56Skull.desc=Craft Wehavecookies56's head

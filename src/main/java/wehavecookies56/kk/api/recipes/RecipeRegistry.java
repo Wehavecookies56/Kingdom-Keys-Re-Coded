@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
+import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
+import wehavecookies56.kk.util.AchievementHelper;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -40,6 +42,7 @@ public class RecipeRegistry {
 		if (player != null && !isRecipeKnown(player, recipeName)) {
 			Recipe recipe = recipeMap.get(recipeName);
 			ExtendedPlayerRecipes.get(player).learnRecipe(recipe);
+			AchievementHelper.addAchievement(player, ModAchievements.getRecipe);
 			return true;
 		}
 		return false;

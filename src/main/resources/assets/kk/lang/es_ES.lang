@@ -8,6 +8,15 @@
 achievement.openMenu=Abre el menú
 achievement.openMenu.desc=Pulsa la tecla de abrir el menú (Por defecto M).
 
+achievement.getBlox=¿Es esto un error?
+achievement.getBlox.desc=Obtén un Bloque de Error
+
+achievement.getSynthesisTable=¿Podré hacer mejores objetos?
+achievement.getSynthesisTable.desc=Obtén un Sintetizador
+
+achievement.getKeyblade=¿Un llavero? ¿Para qué quiero esto?
+achievement.getKeyblade.desc=Obtén tu primer llavero
+
 achievement.getWehavecookies56Skull=¡Cara Familiar!
 achievement.getAbelatoxSkull=¡Otra Cara Familiar!
 achievement.getWehavecookies56Skull.desc=Craftea la cabeza de Wehavecookies56
