@@ -1,8 +1,8 @@
 package wehavecookies56.kk.util;
 
-import wehavecookies56.kk.lib.Reference;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
+import wehavecookies56.kk.lib.Reference;
 
 public class SoundHelper {
 

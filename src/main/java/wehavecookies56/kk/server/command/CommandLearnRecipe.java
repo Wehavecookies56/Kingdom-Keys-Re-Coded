@@ -8,7 +8,6 @@ import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import wehavecookies56.kk.api.recipes.Recipe;
 import wehavecookies56.kk.api.recipes.RecipeRegistry;

@@ -1,23 +1,17 @@
 package wehavecookies56.kk.client.gui;
 
-import java.io.IOException;
-
 import org.lwjgl.opengl.GL11;
 
-import wehavecookies56.kk.KingdomKeys;
-import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.server.OpenGui;
-import wehavecookies56.kk.util.TextHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.TextHelper;
 
 public class GuiMenu_Bars extends GuiScreen {
 

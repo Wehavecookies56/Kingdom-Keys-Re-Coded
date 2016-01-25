@@ -2,16 +2,15 @@ package wehavecookies56.kk.item.org;
 
 import java.util.List;
 
-import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 
 public class ItemEternalFlames extends ItemSword{
 	int strength;

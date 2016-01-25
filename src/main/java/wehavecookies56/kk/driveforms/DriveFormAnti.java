@@ -1,6 +1,5 @@
 package wehavecookies56.kk.driveforms;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.api.driveforms.DriveForm;
@@ -8,7 +7,6 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SpawnDriveFormParticles;
-import wehavecookies56.kk.network.packet.server.ChangeDP;
 import wehavecookies56.kk.util.SoundHelper;
 
 public class DriveFormAnti extends DriveForm {

@@ -3,13 +3,9 @@ package wehavecookies56.kk.client.gui;
 import java.io.IOException;
 import java.util.Arrays;
 
-import com.sun.prism.paint.Color;
-
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.PlayerLevel;
-import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.GuiHelper;
 
 public class GuiMenu_Status extends GuiMenu_Bars {

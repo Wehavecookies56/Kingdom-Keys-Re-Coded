@@ -8,7 +8,6 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SpawnDriveFormParticles;
-import wehavecookies56.kk.network.packet.server.ChangeDP;
 import wehavecookies56.kk.network.packet.server.MasterFormPacket;
 import wehavecookies56.kk.util.SoundHelper;
 

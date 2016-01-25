@@ -1,18 +1,11 @@
 package wehavecookies56.kk.network.packet.server.magics;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
 import net.minecraftforge.fml.relauncher.Side;
-import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 import wehavecookies56.kk.util.TextHelper;

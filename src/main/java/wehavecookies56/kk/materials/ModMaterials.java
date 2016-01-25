@@ -1,6 +1,6 @@
 package wehavecookies56.kk.materials;
 
-import static wehavecookies56.kk.api.materials.MaterialRegistry.*;
+import static wehavecookies56.kk.api.materials.MaterialRegistry.registerMaterial;
 
 import net.minecraft.init.Items;
 import wehavecookies56.kk.block.ModBlocks;

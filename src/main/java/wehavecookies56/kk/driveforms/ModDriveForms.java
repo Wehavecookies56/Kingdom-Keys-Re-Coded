@@ -1,6 +1,6 @@
 package wehavecookies56.kk.driveforms;
 
-import static wehavecookies56.kk.api.driveforms.DriveFormRegistry.*;
+import static wehavecookies56.kk.api.driveforms.DriveFormRegistry.registerDriveForm;
 
 public class ModDriveForms
 {

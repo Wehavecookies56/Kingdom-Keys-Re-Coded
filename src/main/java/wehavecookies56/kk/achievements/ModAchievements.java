@@ -5,13 +5,10 @@ import java.util.ArrayList;
 import net.minecraft.init.Items;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.util.StatStringFormatterMenu;
 
 public class ModAchievements {
 

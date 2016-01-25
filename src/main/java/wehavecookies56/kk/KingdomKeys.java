@@ -29,6 +29,7 @@ import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.item.ModItemsRecipes;
 import wehavecookies56.kk.lib.Config;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Lists;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.materials.ModMaterials;
@@ -63,6 +64,7 @@ public class KingdomKeys {
 	public static final int GUI_ITEMS_PLAYER = modGuiIndex++;
 	public static final int GUI_SYNTHBAG_INV = modGuiIndex++;
 	public static final int GUI_POTIONS_INV = modGuiIndex++;
+	public static final int GUI_SPELLS_INV = modGuiIndex++;
 	public static final int GUI_SYNTHESISBAGS_INV = modGuiIndex++;
 	public static final int GUI_SYNTHESISBAGM_INV = modGuiIndex++;
 	public static final int GUI_SYNTHESISBAGL_INV = modGuiIndex++;
@@ -116,6 +118,8 @@ public class KingdomKeys {
 		//Instance
 		MinecraftForge.EVENT_BUS.register(instance);
 
+		Constants.registerCosts();
+		
 		//Update checker
 		MinecraftForge.EVENT_BUS.register(new UpdateChecker());
 		LogHelper.info("Update checker loaded");

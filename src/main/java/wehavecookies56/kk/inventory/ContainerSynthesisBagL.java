@@ -5,9 +5,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import wehavecookies56.kk.item.ItemKeychain;
-import wehavecookies56.kk.item.ItemSynthesisMaterial;
 public class ContainerSynthesisBagL extends Container {
 
 	private final InventorySynthesisBagL inventory;

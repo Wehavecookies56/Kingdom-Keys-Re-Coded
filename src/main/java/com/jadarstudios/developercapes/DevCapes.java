@@ -6,16 +6,22 @@
  */
 package com.jadarstudios.developercapes;
 
-import com.jadarstudios.developercapes.cape.CapeConfig;
-import com.jadarstudios.developercapes.cape.CapeConfigManager;
-import net.minecraftforge.common.MinecraftForge;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.jadarstudios.developercapes.cape.CapeConfig;
+import com.jadarstudios.developercapes.cape.CapeConfigManager;
+
+import net.minecraftforge.common.MinecraftForge;
 
 /**
  * DeveloperCapes is a library for Minecraft. It allows developers to quickly add capes for players they specify. DevCapes uses Minecraft Forge.

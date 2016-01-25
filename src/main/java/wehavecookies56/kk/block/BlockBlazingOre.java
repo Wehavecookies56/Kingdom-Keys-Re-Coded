@@ -2,18 +2,12 @@ package wehavecookies56.kk.block;
 
 import java.util.Random;
 
-import wehavecookies56.kk.item.ModItems;
-import wehavecookies56.kk.util.ItemStacks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 
 public class BlockBlazingOre extends BlockBlox {
 

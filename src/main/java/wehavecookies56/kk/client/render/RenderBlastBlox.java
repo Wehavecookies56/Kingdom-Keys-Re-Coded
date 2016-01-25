@@ -1,20 +1,15 @@
 package wehavecookies56.kk.client.render;
 
-import wehavecookies56.kk.block.BlockBlastBlox;
-import wehavecookies56.kk.block.ModBlocks;
-import wehavecookies56.kk.entities.block.EntityBlastBlox;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
+import wehavecookies56.kk.block.ModBlocks;
+import wehavecookies56.kk.entities.block.EntityBlastBlox;
 
 public class RenderBlastBlox extends Render<EntityBlastBlox> {
 

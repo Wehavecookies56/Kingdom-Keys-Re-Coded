@@ -5,7 +5,6 @@ import java.util.Set;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
-import net.minecraftforge.fml.client.config.GuiConfig;
 
 public class GuiFactoryKingdomKeys implements IModGuiFactory {
 

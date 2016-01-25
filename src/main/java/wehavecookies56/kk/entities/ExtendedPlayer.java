@@ -16,7 +16,9 @@ import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.inventory.InventoryKeychain;
 import wehavecookies56.kk.inventory.InventoryPotionsMenu;
+import wehavecookies56.kk.inventory.InventorySpells;
 import wehavecookies56.kk.inventory.InventorySynthBagMenu;
+import wehavecookies56.kk.item.ItemSpellOrb;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.ShowOverlayPacket;
@@ -30,9 +32,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	private final EntityPlayer player;
 
-	public final InventoryKeychain inventory = new InventoryKeychain();
-	public final InventorySynthBagMenu inventory2 = new InventorySynthBagMenu();
-	public final InventoryPotionsMenu inventory3 = new InventoryPotionsMenu();
+	public final InventoryKeychain inventoryKeychain = new InventoryKeychain();
+	public final InventorySynthBagMenu inventorySynthBag = new InventorySynthBagMenu();
+	public final InventoryPotionsMenu inventoryPotions = new InventoryPotionsMenu();
+	public final InventorySpells inventorySpells = new InventorySpells();
 
 
 	public int munny, maxMunny;
@@ -62,7 +65,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public int valorLevel = 1, wisdomLevel = 1, limitLevel = 1, masterLevel = 1,  finalLevel = 1;
 
 	public List<String> driveForms = new ArrayList<String>();
-
+	public static List<String> spells = new ArrayList<String>();
+	public List<String> items = new ArrayList<String>();
+	
 	public boolean keybladeSummoned, firstKeyblade, inDrive, cheatMode, inRecharge;
 
 	public String actualDrive;
@@ -109,10 +114,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	@Override
 	public void saveNBTData(NBTTagCompound compound){
 		NBTTagCompound properties = new NBTTagCompound();
-		this.inventory.writeToNBT(properties);
-		this.inventory2.writeToNBT(properties);
-		this.inventory3.writeToNBT(properties);
-
+		this.inventoryKeychain.writeToNBT(properties);
+		this.inventorySynthBag.writeToNBT(properties);
+		this.inventoryPotions.writeToNBT(properties);
+		this.inventorySpells.writeToNBT(properties);
+		
 		properties.setInteger("Munny", this.munny);
 		properties.setInteger("Level", this.level);
 		properties.setInteger("Experience", this.experience);
@@ -146,17 +152,17 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("MasterLevel", this.masterLevel);
 		properties.setInteger("FinalLevel", this.finalLevel);
 
-		NBTTagList tagList = new NBTTagList();
+		NBTTagList driveFormList = new NBTTagList();
 		for (int i = 0; i < driveForms.size(); i++){
 			String s = driveForms.get(i);
 			if(s != null){
-				NBTTagCompound recipes = new NBTTagCompound();
-				recipes.setString("DriveForm" + i, s);
-				tagList.appendTag(recipes);
+				NBTTagCompound forms = new NBTTagCompound();
+				forms.setString("DriveForm" + i, s);
+				driveFormList.appendTag(forms);
 			}
 
 		}
-		properties.setTag("DriveFormList", tagList);
+		properties.setTag("DriveFormList", driveFormList);
 
 		compound.setTag(EXT_PROP_NAME, properties);
 
@@ -165,10 +171,17 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	@Override
 	public void loadNBTData(NBTTagCompound compound){
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
-		this.inventory.readFromNBT(properties);
-		this.inventory2.readFromNBT(properties);
-		this.inventory3.readFromNBT(properties);
-
+		this.inventoryKeychain.readFromNBT(properties);
+		this.inventorySynthBag.readFromNBT(properties);
+		this.inventoryPotions.readFromNBT(properties);
+		this.inventorySpells.readFromNBT(properties);
+		
+		this.spells.clear();
+		for (int i = 0; i < this.inventorySpells.getSizeInventory(); i++){
+			if(this.inventorySpells.getStackInSlot(i) != null){
+				this.spells.add(((ItemSpellOrb)this.inventorySpells.getStackInSlot(i).getItem()).getMagicName());
+			}
+		}
 		this.munny = properties.getInteger("Munny");
 		this.level = properties.getInteger("Level");
 		this.experience = properties.getInteger("Experience");
@@ -203,9 +216,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.masterLevel = properties.getInteger("MasterLevel");
 		this.finalLevel = properties.getInteger("FinalLevel");
 		
-		NBTTagList tagList = properties.getTagList("DriveFormList", Constants.NBT.TAG_COMPOUND);
-		for(int i = 0; i < tagList.tagCount(); i++){
-			NBTTagCompound drives = tagList.getCompoundTagAt(i);
+		NBTTagList formsList = properties.getTagList("DriveFormList", Constants.NBT.TAG_COMPOUND);
+		for(int i = 0; i < formsList.tagCount(); i++){
+			NBTTagCompound drives = formsList.getCompoundTagAt(i);
 			if(!DriveFormRegistry.isDriveFormKnown(player, drives.getString("DriveForm" + i))){
 				driveForms.add(i, drives.getString("DriveForm" + i));
 				LogHelper.info("Loaded known Drive form: " + drives.getString("Drive Forms" + i) + " " + i);
@@ -215,11 +228,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	@Override
-	public void init(Entity entity, World world)
-	{}
+	public void init(Entity entity, World world){}
 
-	public int getMagicLevel(String magic)
-	{
+	public int getMagicLevel(String magic){
 		int magicLevel = 0;
 		if(magic == "Fire")
 		{
@@ -252,8 +263,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return magicLevel;
 	}
 
-	public boolean setDriveLevel(String form, int level)
-	{
+	public boolean setDriveLevel(String form, int level){
 		if(form == "Valor")
 		{
 			this.valorLevel = level;
@@ -278,8 +288,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 	
-	public int getDriveLevel(String form)
-	{
+	public int getDriveLevel(String form){
 		int formLevel = 0;
 		if(form == "Valor")
 		{
@@ -304,8 +313,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return formLevel;
 	}
 
-	public boolean setMagicLevel(String magic, int level)
-	{
+	public boolean setMagicLevel(String magic, int level){
 		if(magic == "Fire")
 		{
 			this.fireLevel = level;
@@ -412,13 +420,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 
-	public boolean getRecharge()
-	{
+	public boolean getRecharge(){
 		return this.inRecharge;
 	}
 
-	public void setRecharge(boolean recharge)
-	{
+	public void setRecharge(boolean recharge){
 		if(this.inRecharge == recharge){
 			return;
 		}
@@ -426,13 +432,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.sync();
 	}
 
-	public int getAntiPoints()
-	{
+	public int getAntiPoints(){
 		return this.antiPoints;
 	}
 
-	public void setAntiPoints(int points)
-	{
+	public void setAntiPoints(int points){
 		if(this.antiPoints == points){
 			return;
 		}
@@ -440,26 +444,19 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.sync();
 	}
 
-	public void addAntiPoints(int points)
-	{
-		if(this.antiPoints <= 100)
-		{
+	public void addAntiPoints(int points){
+		if(this.antiPoints <= 100){
 			this.antiPoints += points;
 			System.out.println(this.antiPoints);
 			this.sync();
 		}
 	}
 
-	public void removeAntiPoints(int points)
-	{
-		if(this.antiPoints >= 0)
-		{
-			if(this.antiPoints - points < 0)
-			{
+	public void removeAntiPoints(int points){
+		if(this.antiPoints >= 0){
+			if(this.antiPoints - points < 0){
 				this.antiPoints = 0;
-			}
-			else
-			{
+			}else{
 				this.antiPoints -= points;
 			}
 			this.sync();
@@ -470,8 +467,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return this.inDrive;
 	}
 
-	public void setDriveInUse(String drive)
-	{
+	public void setDriveInUse(String drive){
 		if(this.actualDrive.equals(drive)){
 			return;
 		}
@@ -480,8 +476,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 
-	public String getDriveInUse()
-	{
+	public String getDriveInUse(){
 		return this.actualDrive;
 	}
 	public void setInDrive(boolean inDrive){

@@ -701,12 +701,12 @@ public class ModItems {
 		IceCream = new ItemIceCream(5,true).setUnlocalizedName(Strings.IceCream).setCreativeTab(tabKingdomKeys);
 		WinnerStick = new Item().setUnlocalizedName(Strings.WinnerStick).setCreativeTab(tabKingdomKeys);
 
-		LevelUpMagicFire = new ItemUpgradeFire().setUnlocalizedName(Strings.LevelUpMagicFire).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicBlizzard = new ItemUpgradeBlizzard().setUnlocalizedName(Strings.LevelUpMagicBlizzard).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicThunder = new ItemUpgradeThunder().setUnlocalizedName(Strings.LevelUpMagicThunder).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicCure = new ItemUpgradeCure().setUnlocalizedName(Strings.LevelUpMagicCure).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicAero = new ItemUpgradeAero().setUnlocalizedName(Strings.LevelUpMagicAero).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicStop = new ItemUpgradeStop().setUnlocalizedName(Strings.LevelUpMagicStop).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicFire = new ItemUpgradeFire("Fire", Strings.Gui_CommandMenu_Magic_Fire).setUnlocalizedName(Strings.LevelUpMagicFire).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicBlizzard = new ItemUpgradeBlizzard("Blizzard", Strings.Gui_CommandMenu_Magic_Blizzard).setUnlocalizedName(Strings.LevelUpMagicBlizzard).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicThunder = new ItemUpgradeThunder("Thunder", Strings.Gui_CommandMenu_Magic_Thunder).setUnlocalizedName(Strings.LevelUpMagicThunder).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicCure = new ItemUpgradeCure("Cure", Strings.Gui_CommandMenu_Magic_Cure).setUnlocalizedName(Strings.LevelUpMagicCure).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicAero = new ItemUpgradeAero("Aero", Strings.Gui_CommandMenu_Magic_Aero).setUnlocalizedName(Strings.LevelUpMagicAero).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicStop = new ItemUpgradeStop("Stop", Strings.Gui_CommandMenu_Magic_Stop).setUnlocalizedName(Strings.LevelUpMagicStop).setCreativeTab(tabKingdomKeys);
 
 		LevelUpValor = new ItemUpgradeValor().setUnlocalizedName(Strings.LevelUpValor).setCreativeTab(tabKingdomKeys);
 		LevelUpWisdom = new ItemUpgradeWisdom().setUnlocalizedName(Strings.LevelUpWisdom).setCreativeTab(tabKingdomKeys);

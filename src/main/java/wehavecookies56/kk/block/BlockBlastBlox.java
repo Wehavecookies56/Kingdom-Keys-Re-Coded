@@ -2,16 +2,12 @@ package wehavecookies56.kk.block;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -19,14 +15,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
-import wehavecookies56.kk.item.ItemKeyblade;
-import wehavecookies56.kk.item.ModItems;
-import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.lib.Strings;
 
 public class BlockBlastBlox extends BlockBlox
 {

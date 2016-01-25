@@ -1,11 +1,12 @@
 package wehavecookies56.kk.lib;
 
-import scala.Console;
-import wehavecookies56.kk.KingdomKeys;
+import static wehavecookies56.kk.lib.Strings.*;
+
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import static wehavecookies56.kk.lib.Strings.*;
+import scala.Console;
+import wehavecookies56.kk.KingdomKeys;
 
 public class Config {
 

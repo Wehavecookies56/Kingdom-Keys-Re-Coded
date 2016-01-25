@@ -3,12 +3,12 @@ package wehavecookies56.kk.api.recipes;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.common.collect.ImmutableMap;
+
 import net.minecraft.entity.player.EntityPlayer;
 import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 import wehavecookies56.kk.util.AchievementHelper;
-
-import com.google.common.collect.ImmutableMap;
 
 public class RecipeRegistry {
 

@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.ISpecialArmor;
-import net.minecraftforge.common.ISpecialArmor.ArmorProperties;
 import wehavecookies56.kk.lib.Reference;
 
 public class ItemTerraArmor extends ItemArmor implements ISpecialArmor {

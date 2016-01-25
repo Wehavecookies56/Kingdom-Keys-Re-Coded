@@ -15,8 +15,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
 import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.util.TextHelper;
 
 public class CommandResetLevel implements ICommand {

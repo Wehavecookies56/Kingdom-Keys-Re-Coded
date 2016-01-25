@@ -1,8 +1,6 @@
 package wehavecookies56.kk.recipes;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import net.minecraft.item.Item;
@@ -11,7 +9,6 @@ import wehavecookies56.kk.api.materials.MaterialRegistry;
 import wehavecookies56.kk.api.recipes.Recipe;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.materials.ModMaterials;
 
 public class RecipeSilentDirge extends Recipe {
 

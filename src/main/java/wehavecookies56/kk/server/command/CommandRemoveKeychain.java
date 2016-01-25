@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -12,14 +11,11 @@ import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.command.PlayerSelector;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKeyblade;
-import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
@@ -77,7 +73,7 @@ public class CommandRemoveKeychain implements ICommand {
 			EntityPlayer player = (EntityPlayer) sender.getCommandSenderEntity();
 			if(args.length == 0)
 			{
-				if(props.inventory.getStackInSlot(0) != null)
+				if(props.inventoryKeychain.getStackInSlot(0) != null)
 				{
 					PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain",0));
 					PacketDispatcher.sendToAllAround(new RemoveItemInSlot("keychain",0), (EntityPlayer)sender.getCommandSenderEntity(), 1);
@@ -101,7 +97,7 @@ public class CommandRemoveKeychain implements ICommand {
 	            EntityPlayerMP playermp = args.length == 1 ? getPlayer(sender, args[0]) : getCommandSenderAsPlayer(sender);
 				ExtendedPlayer propsmp = ExtendedPlayer.get(playermp);
 
-				if(propsmp.inventory.getStackInSlot(0) != null)
+				if(propsmp.inventoryKeychain.getStackInSlot(0) != null)
 				{
 					PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain",0));
 					if(propsmp.isKeybladeSummoned())

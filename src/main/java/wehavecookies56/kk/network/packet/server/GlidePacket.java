@@ -2,12 +2,10 @@ package wehavecookies56.kk.network.packet.server;
 
 import java.io.IOException;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.driveforms.DriveFormFinal;
-import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class GlidePacket extends AbstractServerMessage<GlidePacket> {

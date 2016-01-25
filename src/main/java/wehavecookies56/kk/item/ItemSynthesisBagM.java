@@ -2,23 +2,14 @@ package wehavecookies56.kk.item;
 
 import java.util.List;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import wehavecookies56.kk.KingdomKeys;
-import wehavecookies56.kk.inventory.ContainerSynthesisBagS;
-import wehavecookies56.kk.inventory.InventorySynthesisBagS;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.OpenGui;
-import wehavecookies56.kk.util.GuiHelper;
 import wehavecookies56.kk.util.TextHelper;
 
 public class ItemSynthesisBagM extends Item {

@@ -11,7 +11,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.MCVersion;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.util.LogHelper;

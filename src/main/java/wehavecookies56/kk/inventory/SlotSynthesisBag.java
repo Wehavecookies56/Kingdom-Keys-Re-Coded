@@ -3,7 +3,6 @@ package wehavecookies56.kk.inventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.item.ItemSynthesisBagS;
 import wehavecookies56.kk.item.ItemSynthesisMaterial;
 

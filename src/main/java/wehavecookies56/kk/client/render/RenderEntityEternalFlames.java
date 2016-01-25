@@ -1,105 +1,142 @@
 package wehavecookies56.kk.client.render;
 
-import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
 
 import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Function;
+import com.google.common.collect.ImmutableList;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.model.IBakedModel;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.Attributes;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.TRSRTransformation;
-import net.minecraftforge.client.model.b3d.B3DLoader;
+import net.minecraftforge.client.model.IFlexibleBakedModel;
+import net.minecraftforge.client.model.obj.OBJModel;
 import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 
 public class RenderEntityEternalFlames extends Render<EntityEternalFlames> {
-
-	public ModelResourceLocation model = new ModelResourceLocation(Reference.MODID + ":models/item/" + Strings.EternalFlames + ".b3d", "inventory");
-	public ResourceLocation texture = new ResourceLocation(Reference.MODID + ":textures/items/models/" + Strings.EternalFlames + ".png");
-
+	
+	ModelBase model;
+	
 	public RenderEntityEternalFlames(RenderManager renderManager) {
 		super(renderManager);
+		shadowSize = 1;
+		this.model = new ModelEternalFlames();
 	}
 
-	Function<ResourceLocation, TextureAtlasSprite> textureGetter = new Function<ResourceLocation, TextureAtlasSprite>()
-	{
-		public TextureAtlasSprite apply(ResourceLocation location)
-		{
-			return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
+	public static Function<ResourceLocation, TextureAtlasSprite> textureGetter = new Function<ResourceLocation, TextureAtlasSprite>() {
+		public TextureAtlasSprite apply(ResourceLocation location) {
+			return DummyAtlasTextureNormal.instance;
 		}
 	};
+	
+	public static Function<ResourceLocation, TextureAtlasSprite> textureGetterFlipV = new Function<ResourceLocation, TextureAtlasSprite>() {
+		public TextureAtlasSprite apply(ResourceLocation location) {
+			return DummyAtlasTextureFlipV.instance;
+		}
+	};
+	
+	private static class DummyAtlasTextureNormal extends TextureAtlasSprite {
+		public static DummyAtlasTextureNormal instance = new DummyAtlasTextureNormal();
+
+		protected DummyAtlasTextureNormal() {
+			super("dummy");
+		}
+
+		@Override
+		public float getInterpolatedU(double u) {
+			return (float) u / 16;
+		}
+
+		@Override
+		public float getInterpolatedV(double v) {
+			return (float) v / 16;
+		}
+	}
+	
+	private static class DummyAtlasTextureFlipV extends TextureAtlasSprite {
+		public static DummyAtlasTextureFlipV instance = new DummyAtlasTextureFlipV();
+
+		protected DummyAtlasTextureFlipV() {
+			super("dummyFlipV");
+		}
+
+		@Override
+		public float getInterpolatedU(double u) {
+			return (float) u / 16;
+		}
+
+		@Override
+		public float getInterpolatedV(double v) {
+			return (float) v / -16;
+		}
+	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityEternalFlames entity) {
-		return texture;
+		return new ResourceLocation(Reference.MODID, "textures/items/models/" + Strings.EternalFlames + ".png");
 	}
 
 	@Override
-	public void doRender(EntityEternalFlames entity, double x, double y, double z, float entityYaw, float partialTicks) {
-		Tessellator tessellator = Tessellator.getInstance();
-		WorldRenderer worldRenderer = tessellator.getWorldRenderer();
-		if (entity.ticksExisted < 1)
-			return;
-
-		textureGetter.apply(texture);
-		bindEntityTexture(entity);
-
+	public void doRender(EntityEternalFlames entity, double x, double y, double z, float yaw, float pitch) {
 		GL11.glPushMatrix();
-		{
-			GL11.glTranslatef((float) x, (float) y, (float) z);
-			//GL11.glRotatef(entityYaw, 0.0F, 1.0F, -1.0F);
-			GL11.glScalef(0.02f, 0.02f, 0.02f);
-			//GL11.glRotatef(90F - entity.prevRotationPitch - (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 1.0F, 0.0F, 0.0F);
-			IModel model = null;
+		GL11.glTranslated(x, y, z);
+		GL11.glRotatef(90, 1.0F, 0.0F, 0.0F);
+		float f2 = pitch;
+		float f3 = pitch;
 
-			try
-			{
-				model = B3DLoader.instance.loadModel(this.model);
-			}
-			catch (IOException e)
-			{
-				model = ModelLoaderRegistry.getMissingModel();
-			}
+		float f4 = 0.5F;
+		GL11.glScalef(0.02f, 0.02f, 0.02f);
+		
+		GL11.glRotatef(yaw * 100, 0, 0, 1);
+		
+		this.bindEntityTexture(entity);
 
-			IBakedModel bakedModel = model.bake((TRSRTransformation.identity()), Attributes.DEFAULT_BAKED_FORMAT, textureGetter);
-			worldRenderer.func_181668_a(7, Attributes.DEFAULT_BAKED_FORMAT);
+		GL11.glScalef(-1.0F, -1.0F, 1.0F);
+		this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
-			// Get Quads
-			List<BakedQuad> generalQuads = bakedModel.getGeneralQuads();
 
-			for (BakedQuad q : generalQuads)
-			{
-				int[] vd = q.getVertexData();
-				worldRenderer.addVertexData(vd);
-			}
+		GL11.glPopMatrix();
+	}
+	
+	public static HashMap<String, IFlexibleBakedModel> getModelsForGroups(OBJModel objModel) {
 
-			for (EnumFacing face : EnumFacing.values())
-			{
-				List<BakedQuad> faceQuads = bakedModel.getFaceQuads(face);
-				for (BakedQuad q : faceQuads)
-				{
-					int[] vd = q.getVertexData();
-					worldRenderer.addVertexData(vd);
+		HashMap<String, IFlexibleBakedModel> modelParts = new HashMap<String, IFlexibleBakedModel>();
+
+		if (!objModel.getMatLib().getGroups().keySet().isEmpty()) {
+			for (String key : objModel.getMatLib().getGroups().keySet()) {
+				String k = key;
+				if (!modelParts.containsKey(key)) {
+					modelParts.put(k, objModel.bake(new OBJModel.OBJState(ImmutableList.of(k), false), Attributes.DEFAULT_BAKED_FORMAT, textureGetterFlipV));
+
 				}
 			}
-			tessellator.draw();
 		}
-		GL11.glPopMatrix();
+
+		modelParts.put("ALL", objModel.bake(objModel.getDefaultState(), Attributes.DEFAULT_BAKED_FORMAT, textureGetterFlipV));
+
+		return modelParts;
+	}
+	
+	public static void renderBakedModel(IFlexibleBakedModel bakedModel) {
+		Tessellator tessellator = Tessellator.getInstance();
+
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		worldrenderer.func_181668_a(GL11.GL_QUADS, bakedModel.getFormat());
+		for (BakedQuad bakedQuad : bakedModel.getGeneralQuads()) {
+			worldrenderer.addVertexData(bakedQuad.getVertexData());
+		}
+
+		tessellator.draw();
 	}
 
 }

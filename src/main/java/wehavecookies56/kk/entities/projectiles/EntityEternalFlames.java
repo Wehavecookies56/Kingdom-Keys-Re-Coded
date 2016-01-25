@@ -42,6 +42,7 @@ public class EntityEternalFlames extends EntityThrowable{
 		if(ticksExisted > this.ticks || ticksExisted > 60){
 			setDead();
 		}
+		
 		super.onUpdate();
 	}
 	@Override

@@ -1,5 +1,10 @@
 package wehavecookies56.kk.lib;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import wehavecookies56.kk.util.TextHelper;
+
 public class Constants {
 
 	public static final int
@@ -30,6 +35,23 @@ public class Constants {
 	AERO_COST = 20,
 	STOP_COST = 15
 	;
+	
+	public static Map<String, Integer> costs;
+	
+	public static void registerCosts(){
+		costs = new HashMap<String, Integer>();
+		costs.put("Fire", 20);
+		costs.put("Blizzard", 15);
+		costs.put("Thunder", 30);
+		costs.put("Gravity", 25);
+		costs.put("Aero", 20);
+		costs.put("Stop", 15);
+		costs.put("Cure", -1);
+	}
+	
+	public static int getCost(String name){
+		return costs.get(TextHelper.localize(name));
+	}
 
 	//Drive abilities
 	public static double

@@ -3,18 +3,14 @@ package wehavecookies56.kk.item;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-
-import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.util.TextHelper;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.TextHelper;
 
 public class ItemKKRecord extends ItemRecord {
 

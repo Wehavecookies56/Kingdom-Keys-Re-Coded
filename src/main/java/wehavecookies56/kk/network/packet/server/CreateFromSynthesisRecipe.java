@@ -13,7 +13,6 @@ import wehavecookies56.kk.api.materials.Material;
 import wehavecookies56.kk.api.recipes.Recipe;
 import wehavecookies56.kk.api.recipes.RecipeRegistry;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
-import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 import wehavecookies56.kk.util.AchievementHelper;

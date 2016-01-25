@@ -7,7 +7,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.PlayerLevel;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
-import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class SyncStatMessagesPacket extends AbstractClientMessage<SyncStatMessagesPacket> {
 

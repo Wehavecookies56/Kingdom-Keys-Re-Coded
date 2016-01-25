@@ -1,13 +1,11 @@
 package wehavecookies56.kk.inventory;
 
-import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.item.ItemKeychain;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import wehavecookies56.kk.item.ItemKeychain;
 
 public class ContainerKeychain extends Container
 {

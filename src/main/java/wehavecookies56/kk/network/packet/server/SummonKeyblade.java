@@ -6,13 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
-import wehavecookies56.kk.client.gui.GuiMaterialList;
 import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.item.ItemKeyblade;
-import wehavecookies56.kk.item.ItemKeychain;
-import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.network.packet.AbstractMessage;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 import wehavecookies56.kk.util.SoundHelper;
 

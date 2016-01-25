@@ -3,8 +3,9 @@ package wehavecookies56.kk.inventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import wehavecookies56.kk.item.ItemKKPotion;
 import wehavecookies56.kk.item.ItemKeychain;
-import wehavecookies56.kk.item.KKPotion;
+import wehavecookies56.kk.item.ItemSpellOrb;
 import wehavecookies56.kk.item.ItemSynthesisBagL;
 import wehavecookies56.kk.item.ItemSynthesisBagM;
 import wehavecookies56.kk.item.ItemSynthesisBagS;
@@ -22,6 +23,7 @@ public class SlotCustom extends Slot {
 		 * 1- KeyChain
 		 * 2- SynthBag 
 		 * 3- Potion
+		 * 4- Spells
 		 */
 		switch(window)
 		{
@@ -34,8 +36,13 @@ public class SlotCustom extends Slot {
 				return true;
 			break;
 		case 3:
-			if(stack.getItem() instanceof KKPotion)
+			if(stack.getItem() instanceof ItemKKPotion)
 				return true;
+			break;
+		case 4:
+			if(stack.getItem() instanceof ItemSpellOrb){
+				return true;
+			}
 			break;
 		}
 		return false;

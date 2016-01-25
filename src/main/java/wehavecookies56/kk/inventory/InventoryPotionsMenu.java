@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
-import wehavecookies56.kk.item.KKPotion;
+import wehavecookies56.kk.item.ItemKKPotion;
 import wehavecookies56.kk.util.TextHelper;
 
 public class InventoryPotionsMenu extends AbstractInventory {
@@ -36,9 +36,9 @@ public class InventoryPotionsMenu extends AbstractInventory {
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return stack.getItem() instanceof KKPotion;
+		return stack.getItem() instanceof ItemKKPotion;
 	}
-
+	
 	@Override
 	protected String getNbtKey() {
 		return SAVE_KEY;

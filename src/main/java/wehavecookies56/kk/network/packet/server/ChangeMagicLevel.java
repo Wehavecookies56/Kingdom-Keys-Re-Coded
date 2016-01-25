@@ -3,13 +3,9 @@ package wehavecookies56.kk.network.packet.server;
 import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.network.packet.AbstractMessage;
-import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class ChangeMagicLevel extends AbstractServerMessage<ChangeMagicLevel> {

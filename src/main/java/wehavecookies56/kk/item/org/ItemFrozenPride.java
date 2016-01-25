@@ -1,7 +1,5 @@
 package wehavecookies56.kk.item.org;
 
-import wehavecookies56.kk.item.ModItems;
-
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -12,6 +10,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import wehavecookies56.kk.item.ModItems;
 
 public class ItemFrozenPride extends ItemSword{
 

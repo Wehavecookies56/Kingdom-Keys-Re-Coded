@@ -1,13 +1,12 @@
 package wehavecookies56.kk.inventory;
 
-import wehavecookies56.kk.entities.ExtendedPlayer;
-import wehavecookies56.kk.item.ItemKeychain;
-import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.util.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
+import wehavecookies56.kk.item.ItemKeychain;
+import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.TextHelper;
 
 public class InventoryKeychain extends AbstractInventory {
 	private final String name = TextHelper.localize(Strings.KeychainInventory);

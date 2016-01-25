@@ -15,11 +15,11 @@ import wehavecookies56.kk.network.packet.server.ChangeMP;
 import wehavecookies56.kk.network.packet.server.RemoveItemInSlot;
 import wehavecookies56.kk.util.SoundHelper;
 
-public class KKPotion extends ItemFood{
+public class ItemKKPotion extends ItemFood{
 
 	String potionType;
 	
-    public KKPotion(int food, boolean wolf, String type) {
+    public ItemKKPotion(int food, boolean wolf, String type) {
         super(food, wolf);       
         this.setUnlocalizedName(Strings.Potion);
         this.setAlwaysEdible();

@@ -1,7 +1,5 @@
 package wehavecookies56.kk.client.gui;
 
-import java.awt.List;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.lwjgl.opengl.GL11;

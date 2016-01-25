@@ -2,10 +2,10 @@ package wehavecookies56.kk.lib;
 
 import java.util.Set;
 
-import wehavecookies56.kk.client.gui.ConfigGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
+import wehavecookies56.kk.client.gui.ConfigGui;
 
 public class GuiFactory implements IModGuiFactory {
 

@@ -16,6 +16,7 @@ import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.client.gui.GuiKKChest;
 import wehavecookies56.kk.client.gui.GuiKeychains;
 import wehavecookies56.kk.client.gui.GuiPotions;
+import wehavecookies56.kk.client.gui.GuiSpells;
 import wehavecookies56.kk.client.gui.GuiSynthBag;
 import wehavecookies56.kk.client.gui.GuiSynthesisBagL;
 import wehavecookies56.kk.client.gui.GuiSynthesisBagM;
@@ -25,6 +26,7 @@ import wehavecookies56.kk.entities.TileEntityKKChest;
 import wehavecookies56.kk.inventory.ContainerKKChest;
 import wehavecookies56.kk.inventory.ContainerKeychain;
 import wehavecookies56.kk.inventory.ContainerPotionsMenu;
+import wehavecookies56.kk.inventory.ContainerSpells;
 import wehavecookies56.kk.inventory.ContainerSynthBagMenu;
 import wehavecookies56.kk.inventory.ContainerSynthesisBagL;
 import wehavecookies56.kk.inventory.ContainerSynthesisBagM;
@@ -65,13 +67,16 @@ public class CommonProxy implements IGuiHandler {
 		TileEntity te = world.getTileEntity(xyz);
 
 		if (ID == KingdomKeys.GUI_KEYCHAIN_INV){
-			return new ContainerKeychain(player, player.inventory, ExtendedPlayer.get(player).inventory);
+			return new ContainerKeychain(player, player.inventory, ExtendedPlayer.get(player).inventoryKeychain);
 		}
 		else if (ID == KingdomKeys.GUI_SYNTHBAG_INV){
-			return new ContainerSynthBagMenu(player, player.inventory, ExtendedPlayer.get(player).inventory2);
+			return new ContainerSynthBagMenu(player, player.inventory, ExtendedPlayer.get(player).inventorySynthBag);
 		}
 		else if (ID == KingdomKeys.GUI_POTIONS_INV){
-			return new ContainerPotionsMenu(player, player.inventory, ExtendedPlayer.get(player).inventory3);
+			return new ContainerPotionsMenu(player, player.inventory, ExtendedPlayer.get(player).inventoryPotions);
+		}
+		else if (ID == KingdomKeys.GUI_SPELLS_INV){
+			return new ContainerSpells(player, player.inventory, ExtendedPlayer.get(player).inventorySpells);
 		}
 
 		else if (ID == KingdomKeys.GUI_KKCHEST_INV){
@@ -100,13 +105,16 @@ public class CommonProxy implements IGuiHandler {
 		TileEntity te = world.getTileEntity(xyz);
 		
 		if (ID == KingdomKeys.GUI_KEYCHAIN_INV){
-			return new GuiKeychains(player, player.inventory, ExtendedPlayer.get(player).inventory);
+			return new GuiKeychains(player, player.inventory, ExtendedPlayer.get(player).inventoryKeychain);
 		}
 		else if (ID == KingdomKeys.GUI_SYNTHBAG_INV){
-			return new GuiSynthBag(player, player.inventory, ExtendedPlayer.get(player).inventory2);
+			return new GuiSynthBag(player, player.inventory, ExtendedPlayer.get(player).inventorySynthBag);
 		}
 		else if (ID == KingdomKeys.GUI_POTIONS_INV){
-			return new GuiPotions(player, player.inventory, ExtendedPlayer.get(player).inventory3);
+			return new GuiPotions(player, player.inventory, ExtendedPlayer.get(player).inventoryPotions);
+		}
+		else if (ID == KingdomKeys.GUI_SPELLS_INV){
+			return new GuiSpells(player, player.inventory, ExtendedPlayer.get(player).inventorySpells);
 		}
 		else if (ID == KingdomKeys.GUI_KKCHEST_INV){
 			

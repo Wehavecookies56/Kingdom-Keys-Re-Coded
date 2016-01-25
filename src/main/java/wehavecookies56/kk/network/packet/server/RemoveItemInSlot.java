@@ -3,16 +3,13 @@ package wehavecookies56.kk.network.packet.server;
 import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.inventory.InventoryKeychain;
 import wehavecookies56.kk.inventory.InventoryPotionsMenu;
-import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 import wehavecookies56.kk.util.SoundHelper;
-import wehavecookies56.kk.util.TextHelper;
 
 public class RemoveItemInSlot extends AbstractServerMessage<RemoveItemInSlot> {
 	String inv;
@@ -53,13 +50,13 @@ public class RemoveItemInSlot extends AbstractServerMessage<RemoveItemInSlot> {
 		if(inv.equals("keychain"))
 		{
 			System.out.println("ofihreo");
-			keychain = ExtendedPlayer.get(player).inventory;
+			keychain = ExtendedPlayer.get(player).inventoryKeychain;
 			keychain.setInventorySlotContents(slot, null);
 		}
 			
 		if(inv.equals("potion"))
 		{
-			potions = ExtendedPlayer.get(player).inventory3;
+			potions = ExtendedPlayer.get(player).inventoryPotions;
 			potions.setInventorySlotContents(slot, null);
 			if(sound)
 				SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.Potion, 0.5f, 1);

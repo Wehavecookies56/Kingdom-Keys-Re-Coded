@@ -1,11 +1,7 @@
 package wehavecookies56.kk.entities;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import wehavecookies56.kk.item.ModItems;
-import wehavecookies56.kk.util.ItemStacks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -15,7 +11,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
-import net.minecraftforge.common.util.Constants;
 
 public class TileEntityKKChest extends TileEntity implements IInventory {
 	final int NUMBER_OF_SLOTS = 9;

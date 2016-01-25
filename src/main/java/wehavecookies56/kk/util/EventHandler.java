@@ -1,31 +1,13 @@
 package wehavecookies56.kk.util;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
-import akka.actor.FSM.Event;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSound;
-import net.minecraft.client.audio.SoundHandler;
-import net.minecraft.client.audio.SoundManager;
-import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.gui.GuiLanguage;
-import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.client.gui.GuiMultiplayer;
-import net.minecraft.client.gui.GuiScreenServerList;
-import net.minecraft.client.gui.GuiSelectWorld;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.layers.LayerArmorBase;
-import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -40,12 +22,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -57,15 +35,10 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
-import net.minecraftforge.fml.client.GuiModList;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.achievements.ModAchievements;
@@ -83,8 +56,6 @@ import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemMunny;
 import wehavecookies56.kk.item.ItemSynthesisMaterial;
 import wehavecookies56.kk.item.ModItems;
-import wehavecookies56.kk.lib.Music;
-import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
@@ -472,9 +443,9 @@ public class EventHandler {
 		}
 
 		else if(event.item.getEntityItem().getItem() instanceof ItemSynthesisMaterial){
-			if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0) != null){
-				if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0).getItem() == ModItems.SynthesisBagL){
-					InventorySynthesisBagL inv = new InventorySynthesisBagL(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0));
+			if(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0) != null){
+				if(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0).getItem() == ModItems.SynthesisBagL){
+					InventorySynthesisBagL inv = new InventorySynthesisBagL(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0));
 					for(int j = 0; j < inv.getSizeInventory(); j++){
 						ItemStack bagItem = inv.getStackInSlot(j);
 						ItemStack pickUp = event.item.getEntityItem();
@@ -507,9 +478,9 @@ public class EventHandler {
 					}		
 				}
 			}
-			if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0) != null){
-				if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0).getItem() == ModItems.SynthesisBagM){
-					InventorySynthesisBagM inv = new InventorySynthesisBagM(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0));
+			if(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0) != null){
+				if(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0).getItem() == ModItems.SynthesisBagM){
+					InventorySynthesisBagM inv = new InventorySynthesisBagM(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0));
 					for(int j = 0; j < inv.getSizeInventory(); j++){
 						ItemStack bagItem = inv.getStackInSlot(j);
 						ItemStack pickUp = event.item.getEntityItem();
@@ -543,9 +514,9 @@ public class EventHandler {
 				}
 
 			}
-			if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0) != null){
-				if(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0).getItem() == ModItems.SynthesisBagS){
-					InventorySynthesisBagS inv = new InventorySynthesisBagS(ExtendedPlayer.get(event.entityPlayer).inventory2.getStackInSlot(0));
+			if(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0) != null){
+				if(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0).getItem() == ModItems.SynthesisBagS){
+					InventorySynthesisBagS inv = new InventorySynthesisBagS(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0));
 					for(int j = 0; j < inv.getSizeInventory(); j++){
 						ItemStack bagItem = inv.getStackInSlot(j);
 						ItemStack pickUp = event.item.getEntityItem();

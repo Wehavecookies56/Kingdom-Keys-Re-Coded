@@ -2,16 +2,10 @@ package wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
 
-import wehavecookies56.kk.KingdomKeys;
-import wehavecookies56.kk.entities.ExtendedPlayer;
+import net.minecraft.client.gui.GuiButton;
 import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.network.packet.PacketDispatcher;
-import wehavecookies56.kk.network.packet.server.OpenGui;
 import wehavecookies56.kk.util.GuiHelper;
 import wehavecookies56.kk.util.TextHelper;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.inventory.GuiInventory;
 
 public class GuiMenu_Items extends GuiMenu_Bars {
 

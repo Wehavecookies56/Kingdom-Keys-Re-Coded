@@ -1,15 +1,11 @@
 package wehavecookies56.kk.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
-import net.minecraftforge.common.util.Constants;
 import wehavecookies56.kk.item.ItemSynthesisBagL;
-import wehavecookies56.kk.item.ItemSynthesisBagS;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.TextHelper;
 

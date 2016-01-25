@@ -1,6 +1,5 @@
 package wehavecookies56.kk.block;
 
-import wehavecookies56.kk.item.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

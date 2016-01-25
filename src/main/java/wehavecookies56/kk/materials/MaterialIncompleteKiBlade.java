@@ -4,9 +4,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.api.materials.Material;
 import wehavecookies56.kk.item.ModItems;
-import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.util.ItemStacks;
 
 public class MaterialIncompleteKiBlade extends Material {
 

@@ -1,13 +1,8 @@
 package wehavecookies56.kk.client.gui.pages;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.util.ResourceLocation;
-import wehavecookies56.kk.client.gui.GuiJournal;
-import wehavecookies56.kk.lib.Reference;
 
 public class PageCommandMenuAttack extends Page {
 

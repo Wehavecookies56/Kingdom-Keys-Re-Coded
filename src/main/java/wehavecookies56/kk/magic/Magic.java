@@ -29,7 +29,6 @@ import wehavecookies56.kk.network.packet.server.magics.MagicCure;
 import wehavecookies56.kk.network.packet.server.magics.MagicFire;
 import wehavecookies56.kk.network.packet.server.magics.MagicStop;
 import wehavecookies56.kk.network.packet.server.magics.MagicThunder;
-import wehavecookies56.kk.util.SoundHelper;
 
 public class Magic {
 
@@ -43,11 +42,36 @@ public class Magic {
 		return cost;
 	}
 
+	public static void getMagic(EntityPlayer player, World world, String magic){		
+		switch(magic){
+		case "Fire":
+			Fire(player, world);
+			break;
+		case "Blizzard":
+			Blizzard(player, world);
+			break;
+		case "Cure":
+			Cure(player, world);
+			break;
+		case "Thunder":
+			Thunder(player, world);
+			break;
+		case "Aero":
+			Aero(player, world);
+			break;
+		case "Stop":
+			Stop(player, world);
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public static void Fire(EntityPlayer player, World world)
 	{
 		switch(ExtendedPlayer.get(player).getMagicLevel("Fire"))
 		{
-			case 1:
+			case 0:
 				PacketDispatcher.sendToServer(new MagicFire());
 				world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
 				player.swingItem();
@@ -74,7 +98,7 @@ public class Magic {
 		Vec3 look;
 		switch(ExtendedPlayer.get(player).getMagicLevel("Blizzard"))
 		{
-			case 1:
+			case 0:
 				look = player.getLookVec();
 				world.spawnEntityInWorld(new EntityBlizzard(world, player));
 				PacketDispatcher.sendToServer(new MagicBlizzard());
@@ -104,7 +128,7 @@ public class Magic {
 	{
 		switch(ExtendedPlayer.get(player).getMagicLevel("Thunder"))
 		{
-			case 1:
+			case 0:
 				PacketDispatcher.sendToServer(new MagicThunder());
 				world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
 				player.swingItem();
@@ -127,7 +151,7 @@ public class Magic {
 	{
 		switch(ExtendedPlayer.get(player).getMagicLevel("Cure"))
 		{
-			case 1:
+			case 0:
 				world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
 				player.heal(6);
 				PacketDispatcher.sendToServer(new MagicCure());
@@ -149,7 +173,7 @@ public class Magic {
 	{
 		switch(ExtendedPlayer.get(player).getMagicLevel("Aero"))
 		{
-			case 1:
+			case 0:
 				PacketDispatcher.sendToServer(new MagicAero());
 				world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
 				player.swingItem();
@@ -177,7 +201,7 @@ public class Magic {
 	{
 		switch(ExtendedPlayer.get(player).getMagicLevel("Stop"))
 		{
-			case 1:
+			case 0:
 				PacketDispatcher.sendToServer(new MagicStop());
 				world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
 				player.swingItem();

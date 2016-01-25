@@ -1,25 +1,19 @@
 package wehavecookies56.kk.entities;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import net.minecraftforge.common.util.Constants;
 import wehavecookies56.kk.api.materials.Material;
-import wehavecookies56.kk.inventory.InventorySynthesisBagS;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
-import wehavecookies56.kk.util.LogHelper;
 
 public class ExtendedPlayerMaterials implements IExtendedEntityProperties {
 

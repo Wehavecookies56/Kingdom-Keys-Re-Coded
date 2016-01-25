@@ -6,6 +6,11 @@
  */
 package com.jadarstudios.developercapes.cape;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.BitSet;
+import java.util.Map;
+
 import com.google.common.collect.HashBiMap;
 import com.google.common.primitives.UnsignedBytes;
 import com.google.gson.Gson;
@@ -15,14 +20,6 @@ import com.jadarstudios.developercapes.user.Group;
 import com.jadarstudios.developercapes.user.GroupManager;
 import com.jadarstudios.developercapes.user.User;
 import com.jadarstudios.developercapes.user.UserManager;
-import org.apache.commons.lang3.ObjectUtils;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.BitSet;
-import java.util.Map;
 
 /**
  * All configs need a manager, this is it.

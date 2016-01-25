@@ -2,15 +2,12 @@ package wehavecookies56.kk.network.packet.client;
 
 import java.io.IOException;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.relauncher.Side;
-import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;
-import wehavecookies56.kk.util.SoundHelper;
 
 public class SpawnDriveFormParticles extends AbstractClientMessage<SpawnDriveFormParticles> {
 

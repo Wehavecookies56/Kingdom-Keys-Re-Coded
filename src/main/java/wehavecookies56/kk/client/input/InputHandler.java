@@ -1,7 +1,5 @@
 package wehavecookies56.kk.client.input;
 
-import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -11,10 +9,9 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.item.ItemKKPotion;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
-import wehavecookies56.kk.item.ItemPotion;
-import wehavecookies56.kk.item.KKPotion;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -27,6 +24,7 @@ import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.util.GuiHelper;
 import wehavecookies56.kk.util.KeyboardHelper;
 import wehavecookies56.kk.util.SoundHelper;
+import wehavecookies56.kk.util.TextHelper;
 
 public class InputHandler {
 
@@ -78,13 +76,12 @@ public class InputHandler {
 		}
 		//InsideMagic
 		else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC){
-			if (GuiCommandMenu.magicselected >= 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE){
-				GuiCommandMenu.magicselected++;
+			if (GuiCommandMenu.magicselected >= 0){
+				GuiCommandMenu.magicselected--;
 				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
-
 			}
-			else if (GuiCommandMenu.magicselected == GuiCommandMenu.MAGIC_TOP){
-				GuiCommandMenu.magicselected = GuiCommandMenu.STOP;
+			else if (GuiCommandMenu.magicselected <= 0){
+				GuiCommandMenu.magicselected = ExtendedPlayer.spells.size();
 			}
 		}
 		//InsideItems
@@ -120,13 +117,12 @@ public class InputHandler {
 		}
 		//InsideMagic
 		else if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC){
-			if (GuiCommandMenu.magicselected > 0 && GuiCommandMenu.magicselected <= GuiCommandMenu.FIRE){
-				GuiCommandMenu.magicselected--;
+			if (GuiCommandMenu.magicselected < ExtendedPlayer.spells.size()){
+				GuiCommandMenu.magicselected++;
 				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
-
 			}
-			else if (GuiCommandMenu.magicselected == 0 || GuiCommandMenu.magicselected == GuiCommandMenu.MAGIC_TOP){
-				GuiCommandMenu.magicselected = GuiCommandMenu.FIRE;
+			else if (GuiCommandMenu.magicselected >= ExtendedPlayer.spells.size()){
+				GuiCommandMenu.magicselected = 0;
 			}
 		}
 		//InsideItems
@@ -161,15 +157,8 @@ public class InputHandler {
 		case GuiCommandMenu.MAGIC:
 			if(GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN){
 				if(ExtendedPlayer.get(player).getRecharge() == false && 
-						(ExtendedPlayer.get(player).getMagicLevel("Fire") > 0 || 
-								ExtendedPlayer.get(player).getMagicLevel("Blizzard") > 0 || 
-								ExtendedPlayer.get(player).getMagicLevel("Thunder") > 0 || 
-								ExtendedPlayer.get(player).getMagicLevel("Cure") > 0 || 
-								ExtendedPlayer.get(player).getMagicLevel("Gravity") > 0 ||
-								ExtendedPlayer.get(player).getMagicLevel("Aero") > 0 ||
-								ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Stop") > 0) &&
-						!ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor")) {
-					GuiCommandMenu.magicselected = GuiCommandMenu.NONE;
+						(!ExtendedPlayer.spells.isEmpty() && !ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))) {
+					GuiCommandMenu.magicselected = -1;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 				}
@@ -212,140 +201,71 @@ public class InputHandler {
 			break;
 		}
 		if(GuiCommandMenu.selected == GuiCommandMenu.MAGIC && GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC){
-			switch(GuiCommandMenu.magicselected){
-			case GuiCommandMenu.FIRE:
-				if(ExtendedPlayer.get(player).getMagicLevel("Fire")>0){
-					Magic.Fire(player, world);
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
-				}
-				else{
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 1f, 1f, false);
-				}
-				break;
-			case GuiCommandMenu.BLIZZARD:
-				if(ExtendedPlayer.get(player).getMagicLevel("Blizzard")>0){
-					Magic.Blizzard(player, world);
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
-				}
-				else{
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 1f, 1f, false);
-				}
-				break;
-			case GuiCommandMenu.THUNDER:
-				if(ExtendedPlayer.get(player).getMagicLevel("Thunder")>0){
-					Magic.Thunder(player, world);
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
-				}
-				else{
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 1f, 1f, false);	
-				}
-				break;
-			case GuiCommandMenu.CURE:
-				if(ExtendedPlayer.get(player).getMagicLevel("Cure")>0){
-					Magic.Cure(player, world);
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
-				}
-				else{
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 1f, 1f, false);
-				}
-				break;
-			case GuiCommandMenu.AERO:
-				if(ExtendedPlayer.get(player).getMagicLevel("Aero")>0){
-					Magic.Aero(player, world);
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
-				}
-				else{
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 1f, 1f, false);
-				}
-				break;
-			case GuiCommandMenu.STOP:
-				if(ExtendedPlayer.get(player).getMagicLevel("Stop")>0){
-					Magic.Stop(player, world);
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
-				}
-				else{
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 1f, 1f, false);
-				}
-				break;
+			if(GuiCommandMenu.magicselected == -1 || ExtendedPlayer.spells.isEmpty()){System.out.println("Didn't work nothing selected");}
+			else if(Constants.getCost(ExtendedPlayer.spells.get(GuiCommandMenu.magicselected)) == 0){System.out.println("Didn't work cost is null, tried to get cost for " + ExtendedPlayer.spells.get(GuiCommandMenu.magicselected));}
+			else if((ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() >= Constants.getCost(ExtendedPlayer.spells.get(GuiCommandMenu.magicselected))) ||
+					Constants.getCost(ExtendedPlayer.spells.get(GuiCommandMenu.magicselected)) == -1 && ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() > 0
+				){
+				System.out.println("Worked " + GuiCommandMenu.magicselected + " " + TextHelper.localize(ExtendedPlayer.spells.get(GuiCommandMenu.magicselected)));
+				Magic.getMagic(player, world, TextHelper.localize(ExtendedPlayer.spells.get(GuiCommandMenu.magicselected)));
+				GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
 			}
 		}
 
 		if(GuiCommandMenu.selected == GuiCommandMenu.ITEMS && GuiCommandMenu.submenu == GuiCommandMenu.SUB_ITEMS){
 			switch(GuiCommandMenu.potionselected){
 			case GuiCommandMenu.POTION1:
-				if(ExtendedPlayer.get(player).inventory3.getStackInSlot(0) != null){
+				if(ExtendedPlayer.get(player).inventoryPotions.getStackInSlot(0) != null){
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
-					KKPotion.usePotion(player, ExtendedPlayer.get(player).inventory3, 0);
+					ItemKKPotion.usePotion(player, ExtendedPlayer.get(player).inventoryPotions, 0);
 				}
 				else{
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 				}
 				break;
 			case GuiCommandMenu.POTION2:
-				if(ExtendedPlayer.get(player).inventory3.getStackInSlot(1) != null){
+				if(ExtendedPlayer.get(player).inventoryPotions.getStackInSlot(1) != null){
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
-					KKPotion.usePotion(player, ExtendedPlayer.get(player).inventory3, 1);
+					ItemKKPotion.usePotion(player, ExtendedPlayer.get(player).inventoryPotions, 1);
 				}
 				else{
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 				}
 				break;
 			case GuiCommandMenu.POTION3:
-				if(ExtendedPlayer.get(player).inventory3.getStackInSlot(2) != null){
+				if(ExtendedPlayer.get(player).inventoryPotions.getStackInSlot(2) != null){
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
-					KKPotion.usePotion(player, ExtendedPlayer.get(player).inventory3, 2);
+					ItemKKPotion.usePotion(player, ExtendedPlayer.get(player).inventoryPotions, 2);
 				}
 				else{
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 				}
 				break;
 			case GuiCommandMenu.POTION4:
-				if(ExtendedPlayer.get(player).inventory3.getStackInSlot(3) != null){
+				if(ExtendedPlayer.get(player).inventoryPotions.getStackInSlot(3) != null){
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
-					KKPotion.usePotion(player, ExtendedPlayer.get(player).inventory3, 3);
+					ItemKKPotion.usePotion(player, ExtendedPlayer.get(player).inventoryPotions, 3);
 				}
 				else{
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 				}
 				break;
 			case GuiCommandMenu.POTION5:
-				if(ExtendedPlayer.get(player).inventory3.getStackInSlot(4) != null){
+				if(ExtendedPlayer.get(player).inventoryPotions.getStackInSlot(4) != null){
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
-					KKPotion.usePotion(player, ExtendedPlayer.get(player).inventory3, 4);
+					ItemKKPotion.usePotion(player, ExtendedPlayer.get(player).inventoryPotions, 4);
 				}
 				else{
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
@@ -355,9 +275,7 @@ public class InputHandler {
 		}
 
 		if(GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE){
-			if(GuiCommandMenu.driveselected == -1){
-				
-			}
+			if(GuiCommandMenu.driveselected == -1){}
 			else if(ExtendedPlayer.get(player).driveForms.get(GuiCommandMenu.driveselected).equals("Valor")){
 				if((ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Valor").getCost() || ExtendedPlayer.get(player).cheatMode) && ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Valor") > 0){
 					if(!antiFormCheck()){
@@ -454,7 +372,7 @@ public class InputHandler {
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 			Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Cancel, 1f, 1f, false);
 		}
-		GuiCommandMenu.magicselected = GuiCommandMenu.MAGIC;
+		GuiCommandMenu.magicselected = -1;
 		GuiCommandMenu.driveselected = -1;
 	}
 
@@ -490,12 +408,12 @@ public class InputHandler {
 				break;
 			case SUMMON_KEYBLADE:
 				ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
-				if(props.inventory.getStackInSlot(0) == null){
+				if(props.inventoryKeychain.getStackInSlot(0) == null){
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 					break;
 				}
-				if(props.isKeybladeSummoned() == false && player.inventory.getCurrentItem() == null && props.inventory.getStackInSlot(0).getItem() instanceof ItemKeychain){
-					PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) props.inventory.getStackInSlot(0).getItem()).getKeyblade()));
+				if(props.isKeybladeSummoned() == false && player.inventory.getCurrentItem() == null && props.inventoryKeychain.getStackInSlot(0).getItem() instanceof ItemKeychain){
+					PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) props.inventoryKeychain.getStackInSlot(0).getItem()).getKeyblade()));
 					PacketDispatcher.sendToServer(new SyncExtendedPlayer(player));
 				} else if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemKeyblade && props.isKeybladeSummoned() == true){
 					PacketDispatcher.sendToServer(new DeSummonKeyblade(player.inventory.getCurrentItem()));

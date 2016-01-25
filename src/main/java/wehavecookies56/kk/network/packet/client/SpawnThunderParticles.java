@@ -1,14 +1,11 @@
 package wehavecookies56.kk.network.packet.client;
 
 import java.io.IOException;
-import java.util.List;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractClientMessage;

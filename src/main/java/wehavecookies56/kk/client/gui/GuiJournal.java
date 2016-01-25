@@ -1,7 +1,6 @@
 package wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -10,7 +9,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.client.gui.pages.PageCommandMenuAbout;
@@ -18,9 +16,7 @@ import wehavecookies56.kk.client.gui.pages.PageCommandMenuAttack;
 import wehavecookies56.kk.client.gui.pages.PageCommandMenuDrive;
 import wehavecookies56.kk.client.gui.pages.PageCommandMenuItems;
 import wehavecookies56.kk.client.gui.pages.PageCommandMenuMagic;
-import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
-import wehavecookies56.kk.util.TextHelper;
 
 public class GuiJournal extends GuiScreen {
 

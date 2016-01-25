@@ -23,7 +23,6 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.TRSRTransformation;
 import net.minecraftforge.client.model.b3d.B3DLoader;
-import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 import wehavecookies56.kk.entities.projectiles.EntitySharpshooterBullet;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
