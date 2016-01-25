@@ -1,4 +1,4 @@
-package wehavecookies56.kk.client.render;
+package wehavecookies56.kk.client.model;
 
 import java.util.HashMap;
 
@@ -11,29 +11,30 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.ModelHelper;
 
-public class ModelEternalFlames extends ModelBase {
+public class ModelIfrit extends ModelBase {
 
 	OBJModel model;
 	HashMap<String, IFlexibleBakedModel> modelParts;
 	
-	public ModelEternalFlames() {
+	public ModelIfrit() {
 		try {
-			model = (OBJModel) OBJLoader.instance.loadModel(new ResourceLocation("kk:models/item/eternalflames.obj"));
-			modelParts = RenderEntityEternalFlames.getModelsForGroups(model);
+			model = (OBJModel) OBJLoader.instance.loadModel(new ResourceLocation("kk:models/item/ifrit.obj"));
+			modelParts = ModelHelper.getModelsForGroups(model);
 		} catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	
 	public void renderGroupObject(String groupName) {
-		RenderEntityEternalFlames.renderBakedModel(modelParts.get(groupName));
+		ModelHelper.renderBakedModel(modelParts.get(groupName));
 	}
 	
 	@Override
 	public void render(Entity entity, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale) {
 		super.render(entity, p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale);
-		renderGroupObject("ALL");
+		renderGroupObject(ModelHelper.ALL_PARTS);
 	}
 	
 	private void setRotation(ModelRenderer model, float x, float y, float z) {

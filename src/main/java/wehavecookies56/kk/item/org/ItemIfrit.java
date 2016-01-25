@@ -9,7 +9,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
+import wehavecookies56.kk.entities.projectiles.EntityIfrit;
 
 public class ItemIfrit extends ItemSword {
 	int strength;
@@ -32,7 +32,7 @@ public class ItemIfrit extends ItemSword {
 			//TODO set strength
 			
 			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-			world.spawnEntityInWorld(new EntityEternalFlames(world, player, -(strength)+71999));
+			world.spawnEntityInWorld(new EntityIfrit(world, player, -(strength)+71999));
 			player.swingItem();
 		}
 		else
