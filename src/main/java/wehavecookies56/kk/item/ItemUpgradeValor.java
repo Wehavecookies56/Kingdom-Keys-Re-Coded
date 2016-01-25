@@ -6,6 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import wehavecookies56.kk.client.gui.GuiCommandMenu;
+import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.LevelUpDrive;
@@ -21,6 +23,7 @@ public class ItemUpgradeValor extends Item
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
 		if(world.isRemote){
 			PacketDispatcher.sendToServer(new LevelUpDrive("Valor"));
+			GuiCommandMenu.driveCommands = ExtendedPlayer.get(player).driveForms;
 		}
 		return stack;
 	}

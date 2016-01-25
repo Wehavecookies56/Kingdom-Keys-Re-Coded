@@ -2,6 +2,8 @@ package wehavecookies56.kk.client.gui;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -18,7 +20,6 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.util.EventHandler;
 import wehavecookies56.kk.util.TextHelper;
 
@@ -30,7 +31,6 @@ public class GuiCommandMenu extends GuiScreen {
 
 	public static final int MAGIC_TOP = 8, FIRE = 7, BLIZZARD = 6, THUNDER = 5, CURE = 4, GRAVITY = 3, AERO = 2, STOP = 1;
 	public static final int POTION_TOP = 6, POTION1 = 5, POTION2 = 4, POTION3 = 3, POTION4 = 2, POTION5 = 1;
-	public static final int DRIVE_TOP = 6, VALOR = 5, WISDOM = 4, LIMIT = 3, MASTER = 2, FINAL = 1;
 	//int selected = ATTACK;
 
 	int TOP_WIDTH = 70;
@@ -38,9 +38,10 @@ public class GuiCommandMenu extends GuiScreen {
 
 	int MENU_WIDTH = 71;
 	int MENU_HEIGHT = 15;
-	
+
 	int textX = 0;
-	
+
+	public static List<String> driveCommands;
 
 	public static final int SUB_MAIN = 0, SUB_MAGIC = 1, SUB_ITEMS = 2, SUB_DRIVE = 3;
 
@@ -49,7 +50,7 @@ public class GuiCommandMenu extends GuiScreen {
 	public static int submenu = 0;
 	public static int magicselected = 0;
 	public static int potionselected = 0;
-	public static int driveselected = 0;
+	public static int driveselected = -1;
 	public static boolean FireUnlocked = true, BlizzardUnlocked, ThunderUnlocked, CureUnlocked, GravityUnlocked, AeroUnlocked, StopUnlocked, ValorUnlocked, WisdomUnlocked, LimitUnlocked, MasterUnlocked, FinalUnlocked;
 
 	ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/commandmenu.png");
@@ -66,7 +67,7 @@ public class GuiCommandMenu extends GuiScreen {
 	}
 
 	@Override
-	public void initGui() {
+	public void initGui() {	
 		super.initGui();
 	}
 
@@ -75,6 +76,11 @@ public class GuiCommandMenu extends GuiScreen {
 		int i = Mouse.getEventDWheel();
 
 		super.handleMouseInput();
+	}
+	
+	@Override
+	public void updateScreen() {
+		super.updateScreen();
 	}
 
 	public void drawCommandMenu(int width, int height){
@@ -86,7 +92,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int u;
 			int v=0;
 			int x=0;
-						
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*DRIVE), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -115,7 +121,7 @@ public class GuiCommandMenu extends GuiScreen {
 					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				}
 			}
-			
+
 			if(ExtendedPlayer.get(mc.thePlayer).getInDrive())
 			{
 				if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti"))
@@ -139,7 +145,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int u;
 			int v=0;
 			int x=0;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*ITEMS), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -169,7 +175,7 @@ public class GuiCommandMenu extends GuiScreen {
 				}
 			}			
 			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6+textX, 4, 0xFFFFFF);
-			
+
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}GL11.glPopMatrix();
 		//MAGIC
@@ -205,16 +211,16 @@ public class GuiCommandMenu extends GuiScreen {
 					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				}
 			}
-			
+
 			if(ExtendedPlayer.get(mc.thePlayer).getRecharge() == false &&
-			(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Fire") > 0 || 
-			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Blizzard") > 0 || 
-			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Thunder") > 0 || 
-			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Cure") > 0 || 
-			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Gravity") > 0 ||
-			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Aero") > 0 ||
-			ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Stop") > 0) &&
-			!ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
+					(ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Fire") > 0 || 
+							ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Blizzard") > 0 || 
+							ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Thunder") > 0 || 
+							ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Cure") > 0 || 
+							ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Gravity") > 0 ||
+							ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Aero") > 0 ||
+							ExtendedPlayer.get(mc.thePlayer).getMagicLevel("Stop") > 0) &&
+					!ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
 			{
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6+textX, 4, 0xFFFFFF);
 			}
@@ -232,9 +238,9 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*ATTACK), 0);
 			GL11.glScalef(scale, scale, scale);
-			
+
 			if(submenu != 0) 
-			GL11.glColor3ub((byte)80, (byte)80, (byte)80);
+				GL11.glColor3ub((byte)80, (byte)80, (byte)80);
 
 			if(selected == ATTACK){ //Selected
 
@@ -292,7 +298,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			x = (magicselected == FIRE) ? 10 : 5;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*FIRE), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -327,7 +333,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			x = (magicselected == BLIZZARD) ? 10 : 5;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*BLIZZARD), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -361,7 +367,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			x = (magicselected == THUNDER) ? 10 : 5;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*THUNDER), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -395,7 +401,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			x = (magicselected == CURE) ? 10 : 5;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*CURE), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -428,7 +434,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			x = (magicselected == GRAVITY) ? 10 : 5;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*GRAVITY), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -463,7 +469,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			x = (magicselected == AERO) ? 10 : 5;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*AERO), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -497,7 +503,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			x = (magicselected == STOP) ? 10 : 5;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*STOP), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -526,8 +532,8 @@ public class GuiCommandMenu extends GuiScreen {
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
 		}GL11.glPopMatrix();
-		
-			//Items TOP
+
+		//Items TOP
 		GL11.glPushMatrix();{
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*POTION_TOP), 0);
@@ -535,7 +541,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if(submenu == SUB_ITEMS){
 				drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
 			}
-			
+
 		}GL11.glPopMatrix();
 
 		GL11.glPushMatrix();{
@@ -545,13 +551,13 @@ public class GuiCommandMenu extends GuiScreen {
 				drawString(mc.fontRendererObj, TextHelper.localize("ITEMS"), 6, 4, 0xFFFFFF);
 			}
 		}GL11.glPopMatrix();
-			//POTION1
+		//POTION1
 		GL11.glPushMatrix();{
 			int u;
 			int v;
 			int x;
 			x = (potionselected == POTION1) ? 10 : 5;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*POTION1), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -577,7 +583,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			x = (potionselected == POTION2) ? 10 : 5;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*POTION2), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -603,7 +609,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			x = (potionselected == POTION3) ? 10 : 5;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*POTION3), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -629,7 +635,7 @@ public class GuiCommandMenu extends GuiScreen {
 			int v;
 			int x;
 			x = (potionselected == POTION4) ? 10 : 5;
-			
+
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*POTION4), 0);
 			GL11.glScalef(scale, scale, scale);
@@ -650,255 +656,90 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 		}GL11.glPopMatrix();
 		//POTION5
+		GL11.glPushMatrix();{
+			int u;
+			int v;
+			int x;
+			x = (potionselected == POTION5) ? 10 : 5;
+
+			mc.renderEngine.bindTexture(texture);
+			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*POTION5), 0);
+			GL11.glScalef(scale, scale, scale);
+			if(submenu == SUB_ITEMS){
+				v=0;
+				if(potionselected == POTION5){
+					drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
+				}else{
+					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
+				}
+				String ItemName = "";
+				if(ExtendedPlayer.get(mc.thePlayer).inventory3.getStackInSlot(4) != null)
+				{
+					ItemName = ExtendedPlayer.get(mc.thePlayer).inventory3.getStackInSlot(4).getDisplayName();
+				}
+				drawString(mc.fontRendererObj, TextHelper.localize(ItemName), 6, 4, 0xFFFFFF);
+				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+			}
+		}GL11.glPopMatrix();
+		// Drive form submenu //
+		driveCommands = ExtendedPlayer.get(mc.thePlayer).driveForms;
+		if(driveCommands == null){}
+		else if(!driveCommands.isEmpty()){
+			//DRIVE TOP
+			GL11.glPushMatrix();{
+				mc.renderEngine.bindTexture(texture);
+				GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*(driveCommands.size() + 1)), 0);
+				GL11.glScalef(1.25f, scale, scale);
+				if(submenu == SUB_DRIVE){
+					drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
+				}
+			}GL11.glPopMatrix();
+
+			GL11.glPushMatrix();{
+				GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*(driveCommands.size() + 1)), 0);
+				GL11.glScalef(scale, scale, scale);
+				if(submenu == SUB_DRIVE){
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Title), 6, 4, 0xFFFFFF);
+				}
+			}GL11.glPopMatrix();
+			for (int i = 0; i < driveCommands.size(); i++){
 				GL11.glPushMatrix();{
 					int u;
 					int v;
-					int x;
-					x = (potionselected == POTION5) ? 10 : 5;
-					
+					int x;			
+					x = (driveselected == i) ? 10 : 5;
+					v = (driveselected == i) ? MENU_HEIGHT : 0;
+
 					mc.renderEngine.bindTexture(texture);
-					GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*POTION5), 0);
-					GL11.glScalef(scale, scale, scale);
-					if(submenu == SUB_ITEMS){
+					GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*(driveCommands.size() - i)), 0);
+					GL11.glScalef(1.25f, scale, scale);
+					if(submenu == SUB_DRIVE){
 						v=0;
-						if(potionselected == POTION5){
+						if(driveselected == i){
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
 						}else{
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
 						}
-						String ItemName = "";
-						if(ExtendedPlayer.get(mc.thePlayer).inventory3.getStackInSlot(4) != null)
-						{
-							ItemName = ExtendedPlayer.get(mc.thePlayer).inventory3.getStackInSlot(4).getDisplayName();
+					}
+				}GL11.glPopMatrix();
+
+				GL11.glPushMatrix();{
+					int x;
+					x = (driveselected == i) ? 10 : 5;
+					GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*(driveCommands.size() - i)), 0);
+					GL11.glScalef(scale, scale, scale);
+					if(submenu == SUB_DRIVE){
+						if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode){
+							drawString(mc.fontRendererObj, driveCommands.get(i) + " Form", 6, 4, 0xFFFFFF);
 						}
-						drawString(mc.fontRendererObj, TextHelper.localize(ItemName), 6, 4, 0xFFFFFF);
+						else{
+							drawString(mc.fontRendererObj, driveCommands.get(i) + " Form", 6, 4, 0x888888);
+						}
 						GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					}
 				}GL11.glPopMatrix();
-		
-		//DRIVE TOP
-		GL11.glPushMatrix();{
-			mc.renderEngine.bindTexture(texture);
-			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*DRIVE_TOP), 0);
-			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){
-				drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
 			}
-		}GL11.glPopMatrix();
-
-		GL11.glPushMatrix();{
-			GL11.glTranslatef(5, (height - MENU_HEIGHT*scale*DRIVE_TOP), 0);
-			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Title), 6, 4, 0xFFFFFF);
-			}
-		}GL11.glPopMatrix();
-		//VALOR
-		GL11.glPushMatrix();{
-			int u;
-			int v;
-			int x;			
-			x = (driveselected == VALOR) ? 10 : 5;
-			v = (driveselected == VALOR) ? MENU_HEIGHT : 0;
-			
-			mc.renderEngine.bindTexture(texture);
-			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*VALOR), 0);
-			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){
-				v=0;
-				if(driveselected == VALOR){
-					drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
-				}else{
-					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
-				}
-			}
-		}GL11.glPopMatrix();
-
-		GL11.glPushMatrix();{
-			int x;
-			x = (driveselected == VALOR) ? 10 : 5;
-			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*VALOR), 0);
-			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Valor") == 0)
-				{
-					
-				}
-				else if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
-				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Valor), 6, 4, 0xFFFFFF);
-				}
-				else
-				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Valor), 6, 4, 0x888888);
-				}
-				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			}
-		}GL11.glPopMatrix();
-		//WISDOM
-		GL11.glPushMatrix();{
-			int u;
-			int v;
-			int x;
-			x = (driveselected == WISDOM) ? 10 : 5;
-			v = (driveselected == WISDOM) ? MENU_HEIGHT : 0;
-			
-			mc.renderEngine.bindTexture(texture);
-			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*WISDOM), 0);
-			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){
-				v=0;
-				if(driveselected == WISDOM){
-					drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
-				}else{
-					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
-				}
-			}
-		}GL11.glPopMatrix();
-		GL11.glPushMatrix();{
-			int x;
-			x = (driveselected == WISDOM) ? 10 : 5;
-			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*WISDOM), 0);
-			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Wisdom") == 0)
-				{
-					
-				}
-				else if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
-				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Wisdom), 6, 4, 0xFFFFFF);
-				}
-				else
-				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Wisdom), 6, 4, 0x888888);
-				}
-				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			}
-		}GL11.glPopMatrix();
-		//LIMIT
-		GL11.glPushMatrix();{
-			int u;
-			int v;
-			int x;
-			x = (driveselected == LIMIT) ? 10 : 5;
-			v = (driveselected == LIMIT) ? MENU_HEIGHT : 0;
-			
-			mc.renderEngine.bindTexture(texture);
-			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*LIMIT), 0);
-			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){
-				v=0;
-				if(driveselected == LIMIT){
-					drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
-				}else{
-					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
-				}
-			}
-		}GL11.glPopMatrix();
-		GL11.glPushMatrix();{
-			int x;
-			x = (driveselected == LIMIT) ? 10 : 5;
-			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*LIMIT), 0);
-			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Limit") == 0)
-				{
-					
-				}
-				else if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
-				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Limit), 6, 4, 0xFFFFFF);
-				}
-				else
-				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Limit), 6, 4, 0x888888);
-				}
-				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			}
-		}GL11.glPopMatrix();
-		//MASTER
-		GL11.glPushMatrix();{
-			int u;
-			int v;
-			int x;
-			x = (driveselected == MASTER) ? 10 : 5;
-			v = (driveselected == MASTER) ? MENU_HEIGHT : 0;
-			
-			mc.renderEngine.bindTexture(texture);
-			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MASTER), 0);
-			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){
-				v=0;
-				if(driveselected == MASTER){
-					drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
-				}else{
-					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
-				}
-			}
-		}GL11.glPopMatrix();
-		GL11.glPushMatrix();{
-			int x;
-			x = (driveselected == MASTER) ? 10 : 5;
-			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*MASTER), 0);
-			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Master") == 0)
-				{
-					
-				}
-				else if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 400 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
-				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Master), 6, 4, 0xFFFFFF);
-				}
-				else
-				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Master), 6, 4, 0x888888);
-				}
-				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			}
-		}GL11.glPopMatrix();
-		//FINAL
-		GL11.glPushMatrix();{
-			int u;
-			int v;
-			int x;
-			x = (driveselected == FINAL) ? 10 : 5;
-			v = (driveselected == FINAL) ? MENU_HEIGHT : 0;
-			
-			mc.renderEngine.bindTexture(texture);
-			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*FINAL), 0);
-			GL11.glScalef(1.25f, scale, scale);
-			if(submenu == SUB_DRIVE){
-				v=0;
-				if(driveselected == FINAL){
-					drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
-				}else{
-					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);				
-				}
-			}
-		}GL11.glPopMatrix();
-		GL11.glPushMatrix();{
-			int x;
-			x = (driveselected == FINAL) ? 10 : 5;
-			GL11.glTranslatef(x, (height - MENU_HEIGHT*scale*FINAL), 0);
-			GL11.glScalef(scale, scale, scale);
-			if(submenu == SUB_DRIVE){
-				if(ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Final") == 0)
-				{
-					
-				}
-				else if(ExtendedPlayer.get(mc.thePlayer).getDP() >= 500 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
-				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Final), 6, 4, 0xFFFFFF);
-				}
-				else
-				{
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Final), 6, 4, 0x888888);
-				}
-				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			}
-		}GL11.glPopMatrix();
+		}
 	}
 
 }

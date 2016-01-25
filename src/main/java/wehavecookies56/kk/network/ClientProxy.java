@@ -29,7 +29,6 @@ import wehavecookies56.kk.client.input.Keybinds;
 import wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
 import wehavecookies56.kk.client.render.RenderFactoryEternalFlames;
 import wehavecookies56.kk.client.render.RenderFactorySharpshooterBullet;
-import wehavecookies56.kk.entities.PlayerLevel;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
 import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 import wehavecookies56.kk.entities.projectiles.EntitySharpshooterBullet;

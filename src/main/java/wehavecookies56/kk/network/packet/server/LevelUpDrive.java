@@ -52,6 +52,7 @@ public class LevelUpDrive extends AbstractServerMessage<LevelUpDrive> {
 			if(valorLevel == 0)
 			{
 				ep.setDriveLevel("Valor", valorLevel+1);
+				ep.driveForms.add("Valor");
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 				TextHelper.sendFormattedChatMessage("You unlocked "+form+" form!", EnumChatFormatting.YELLOW, player);
 
@@ -65,6 +66,7 @@ public class LevelUpDrive extends AbstractServerMessage<LevelUpDrive> {
 		{
 			if(wisdomLevel == 0)
 			{
+				ep.driveForms.add("Wisdom");
 				ep.setDriveLevel("Wisdom", wisdomLevel+1);
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 				TextHelper.sendFormattedChatMessage("You unlocked "+form+" form!", EnumChatFormatting.YELLOW, player);
@@ -79,6 +81,7 @@ public class LevelUpDrive extends AbstractServerMessage<LevelUpDrive> {
 		{
 			if(limitLevel == 0)
 			{
+				ep.driveForms.add("Limit");
 				ep.setDriveLevel("Limit", limitLevel+1);
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 				TextHelper.sendFormattedChatMessage("You unlocked "+form+" form!", EnumChatFormatting.YELLOW, player);
@@ -93,6 +96,7 @@ public class LevelUpDrive extends AbstractServerMessage<LevelUpDrive> {
 		{
 			if(masterLevel == 0)
 			{
+				ep.driveForms.add("Master");
 				ep.setDriveLevel("Master", masterLevel+1);
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 				TextHelper.sendFormattedChatMessage("You unlocked "+form+" form!", EnumChatFormatting.YELLOW, player);
@@ -107,6 +111,7 @@ public class LevelUpDrive extends AbstractServerMessage<LevelUpDrive> {
 		{
 			if(finalLevel == 0)
 			{
+				ep.driveForms.add("Final");
 				ep.setDriveLevel("Final", finalLevel+1);
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 				TextHelper.sendFormattedChatMessage("You unlocked "+form+" form!", EnumChatFormatting.YELLOW, player);
