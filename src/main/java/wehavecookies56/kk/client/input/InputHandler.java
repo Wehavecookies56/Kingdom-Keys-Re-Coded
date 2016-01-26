@@ -206,8 +206,8 @@ public class InputHandler {
 			else if((ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() >= Constants.getCost(ExtendedPlayer.spells.get(GuiCommandMenu.magicselected))) ||
 					Constants.getCost(ExtendedPlayer.spells.get(GuiCommandMenu.magicselected)) == -1 && ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() > 0
 				){
-				System.out.println("Worked " + GuiCommandMenu.magicselected + " " + TextHelper.localize(ExtendedPlayer.spells.get(GuiCommandMenu.magicselected)));
-				Magic.getMagic(player, world, TextHelper.localize(ExtendedPlayer.spells.get(GuiCommandMenu.magicselected)));
+				System.out.println("Worked " + GuiCommandMenu.magicselected + " " + ExtendedPlayer.spells.get(GuiCommandMenu.magicselected));
+				Magic.getMagic(player, world, ExtendedPlayer.spells.get(GuiCommandMenu.magicselected));
 				GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);

@@ -44,22 +44,22 @@ public class Magic {
 
 	public static void getMagic(EntityPlayer player, World world, String magic){		
 		switch(magic){
-		case "Fire":
+		case "gui.commandmenu.magic.fire":
 			Fire(player, world);
 			break;
-		case "Blizzard":
+		case "gui.commandmenu.magic.blizzard":
 			Blizzard(player, world);
 			break;
-		case "Cure":
+		case "gui.commandmenu.magic.cure":
 			Cure(player, world);
 			break;
-		case "Thunder":
+		case "gui.commandmenu.magic.thunder":
 			Thunder(player, world);
 			break;
-		case "Aero":
+		case "gui.commandmenu.magic.aero":
 			Aero(player, world);
 			break;
-		case "Stop":
+		case "gui.commandmenu.magic.stop":
 			Stop(player, world);
 			break;
 		default:

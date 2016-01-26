@@ -44,8 +44,8 @@ public class LevelUpDrive extends AbstractServerMessage<LevelUpDrive> {
 		{
 			if(valorLevel == 0)
 			{
-				ep.setDriveLevel("Valor", valorLevel+1);
 				ep.driveForms.add("Valor");
+				ep.setDriveLevel("Valor", valorLevel+1);
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 				TextHelper.sendFormattedChatMessage("You unlocked "+form+" form!", EnumChatFormatting.YELLOW, player);
 

@@ -40,17 +40,18 @@ public class Constants {
 	
 	public static void registerCosts(){
 		costs = new HashMap<String, Integer>();
-		costs.put("Fire", 20);
-		costs.put("Blizzard", 15);
-		costs.put("Thunder", 30);
-		costs.put("Gravity", 25);
-		costs.put("Aero", 20);
-		costs.put("Stop", 15);
-		costs.put("Cure", -1);
+		costs.put("gui.commandmenu.magic.fire", 20);
+		costs.put("gui.commandmenu.magic.blizzard", 15);
+		costs.put("gui.commandmenu.magic.thunder", 30);
+		costs.put("gui.commandmenu.magic.gravity", 25);
+		costs.put("gui.commandmenu.magic.aero", 20);
+		costs.put("gui.commandmenu.magic.stop", 15);
+		costs.put("gui.commandmenu.magic.cure", -1);
 	}
 	
 	public static int getCost(String name){
-		return costs.get(TextHelper.localize(name));
+		System.out.println(name);
+		return costs.get(name);
 	}
 
 	//Drive abilities
