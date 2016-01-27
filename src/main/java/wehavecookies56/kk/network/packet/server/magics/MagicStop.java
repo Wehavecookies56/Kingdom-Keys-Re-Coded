@@ -38,13 +38,13 @@ public class MagicStop extends AbstractServerMessage<MagicStop> {
 		{
 			switch(ExtendedPlayer.get(player).getMagicLevel("Aero"))
 			{
-			case 1:
+			case 0:
 				world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
 			break;
-			case 2:
+			case 1:
 				world.spawnEntityInWorld(new EntityStopra(world, player, player.posX, player.posY, player.posZ));
 			break;
-			case 3:
+			case 2:
 				world.spawnEntityInWorld(new EntityStopga(world, player, player.posX, player.posY, player.posZ));
 			break;
 			}

@@ -14,10 +14,12 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.common.util.Constants;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
+import wehavecookies56.kk.inventory.InventoryDriveForms;
 import wehavecookies56.kk.inventory.InventoryKeychain;
 import wehavecookies56.kk.inventory.InventoryPotionsMenu;
 import wehavecookies56.kk.inventory.InventorySpells;
 import wehavecookies56.kk.inventory.InventorySynthBagMenu;
+import wehavecookies56.kk.item.ItemDriveForm;
 import wehavecookies56.kk.item.ItemSpellOrb;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -36,6 +38,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public final InventorySynthBagMenu inventorySynthBag = new InventorySynthBagMenu();
 	public final InventoryPotionsMenu inventoryPotions = new InventoryPotionsMenu();
 	public final InventorySpells inventorySpells = new InventorySpells();
+	public final InventoryDriveForms inventoryDrive = new InventoryDriveForms();
 
 
 	public int munny, maxMunny;
@@ -64,7 +67,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	
 	public int valorLevel = 1, wisdomLevel = 1, limitLevel = 1, masterLevel = 1,  finalLevel = 1;
 
-	public List<String> driveForms = new ArrayList<String>();
+	public static List<String> driveForms = new ArrayList<String>();
 	public static List<String> spells = new ArrayList<String>();
 	public List<String> items = new ArrayList<String>();
 	
@@ -118,6 +121,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.inventorySynthBag.writeToNBT(properties);
 		this.inventoryPotions.writeToNBT(properties);
 		this.inventorySpells.writeToNBT(properties);
+		this.inventoryDrive.writeToNBT(properties);
 		
 		properties.setInteger("Munny", this.munny);
 		properties.setInteger("Level", this.level);
@@ -152,18 +156,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("MasterLevel", this.masterLevel);
 		properties.setInteger("FinalLevel", this.finalLevel);
 
-		NBTTagList driveFormList = new NBTTagList();
-		for (int i = 0; i < driveForms.size(); i++){
-			String s = driveForms.get(i);
-			if(s != null){
-				NBTTagCompound forms = new NBTTagCompound();
-				forms.setString("DriveForm" + i, s);
-				driveFormList.appendTag(forms);
-			}
-
-		}
-		properties.setTag("DriveFormList", driveFormList);
-
 		compound.setTag(EXT_PROP_NAME, properties);
 
 	}
@@ -180,6 +172,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		for (int i = 0; i < this.inventorySpells.getSizeInventory(); i++){
 			if(this.inventorySpells.getStackInSlot(i) != null){
 				this.spells.add(((ItemSpellOrb)this.inventorySpells.getStackInSlot(i).getItem()).getMagicName());
+			}
+		}
+		this.driveForms.clear();
+		for (int i = 0; i < this.inventoryDrive.getSizeInventory(); i++){
+			if(this.inventoryDrive.getStackInSlot(i) != null){
+				this.driveForms.add(((ItemDriveForm) this.inventoryDrive.getStackInSlot(i).getItem()).getDriveFormName());
 			}
 		}
 		this.munny = properties.getInteger("Munny");
@@ -215,16 +213,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.limitLevel = properties.getInteger("LimitLevel");
 		this.masterLevel = properties.getInteger("MasterLevel");
 		this.finalLevel = properties.getInteger("FinalLevel");
-		
-		NBTTagList formsList = properties.getTagList("DriveFormList", Constants.NBT.TAG_COMPOUND);
-		for(int i = 0; i < formsList.tagCount(); i++){
-			NBTTagCompound drives = formsList.getCompoundTagAt(i);
-			if(!DriveFormRegistry.isDriveFormKnown(player, drives.getString("DriveForm" + i))){
-				driveForms.add(i, drives.getString("DriveForm" + i));
-				LogHelper.info("Loaded known Drive form: " + drives.getString("Drive Forms" + i) + " " + i);
-			}
-
-		}
 	}
 
 	@Override

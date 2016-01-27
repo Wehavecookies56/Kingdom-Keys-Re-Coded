@@ -6,8 +6,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
-import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
+import wehavecookies56.kk.driveforms.ModDriveForms;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKKPotion;
 import wehavecookies56.kk.item.ItemKeyblade;
@@ -24,7 +24,6 @@ import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.util.GuiHelper;
 import wehavecookies56.kk.util.KeyboardHelper;
 import wehavecookies56.kk.util.SoundHelper;
-import wehavecookies56.kk.util.TextHelper;
 
 public class InputHandler {
 
@@ -274,8 +273,20 @@ public class InputHandler {
 			}
 		}
 
-		if(GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE){
-			if(GuiCommandMenu.driveselected == -1){}
+		if(GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE)
+		{
+			if(GuiCommandMenu.driveselected == -1 || ExtendedPlayer.driveForms.isEmpty()){System.out.println("Didn't work nothing selected");}
+			else if(Constants.getCost(ExtendedPlayer.driveForms.get(GuiCommandMenu.driveselected)) == 0){System.out.println("Didn't work cost is null, tried to get cost for " + ExtendedPlayer.driveForms.get(GuiCommandMenu.magicselected));}
+			else if((ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getDP() >= Constants.getCost(ExtendedPlayer.driveForms.get(GuiCommandMenu.driveselected))) ||
+					Constants.getCost(ExtendedPlayer.driveForms.get(GuiCommandMenu.driveselected)) == -1 && ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getDP() > 0
+				){
+				System.out.println("Worked " + GuiCommandMenu.magicselected + " " + ExtendedPlayer.driveForms.get(GuiCommandMenu.driveselected));
+				ModDriveForms.getDriveForm(player, world, ExtendedPlayer.driveForms.get(GuiCommandMenu.driveselected));
+				GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
+			}
+			/*if(GuiCommandMenu.driveselected == -1){}
 			else if(ExtendedPlayer.get(player).driveForms.get(GuiCommandMenu.driveselected).equals("Valor")){
 				if((ExtendedPlayer.get(player).getDP() >= DriveFormRegistry.get("Valor").getCost() || ExtendedPlayer.get(player).cheatMode) && ExtendedPlayer.get(mc.thePlayer).getDriveLevel("Valor") > 0){
 					if(!antiFormCheck()){
@@ -351,7 +362,7 @@ public class InputHandler {
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Error, 2f, 1f, false);
 				}
-			}
+			}*/
 
 		}
 	}

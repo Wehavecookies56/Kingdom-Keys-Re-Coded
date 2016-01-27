@@ -708,7 +708,7 @@ public class ModItems {
 		LevelUpMagicAero = new ItemUpgradeAero("Aero", Strings.Gui_CommandMenu_Magic_Aero).setUnlocalizedName(Strings.LevelUpMagicAero).setCreativeTab(tabKingdomKeys);
 		LevelUpMagicStop = new ItemUpgradeStop("Stop", Strings.Gui_CommandMenu_Magic_Stop).setUnlocalizedName(Strings.LevelUpMagicStop).setCreativeTab(tabKingdomKeys);
 
-		LevelUpValor = new ItemUpgradeValor().setUnlocalizedName(Strings.LevelUpValor).setCreativeTab(tabKingdomKeys);
+		LevelUpValor = new ItemUpgradeValor("Valor", Strings.Gui_CommandMenu_Drive_Valor).setUnlocalizedName(Strings.LevelUpValor).setCreativeTab(tabKingdomKeys);
 		LevelUpWisdom = new ItemUpgradeWisdom().setUnlocalizedName(Strings.LevelUpWisdom).setCreativeTab(tabKingdomKeys);
 		LevelUpLimit = new ItemUpgradeLimit().setUnlocalizedName(Strings.LevelUpLimit).setCreativeTab(tabKingdomKeys);
 		LevelUpMaster = new ItemUpgradeMaster().setUnlocalizedName(Strings.LevelUpMaster).setCreativeTab(tabKingdomKeys);

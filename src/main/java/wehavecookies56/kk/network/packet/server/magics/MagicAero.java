@@ -37,13 +37,13 @@ public class MagicAero extends AbstractServerMessage<MagicAero> {
 		{
 			switch(ExtendedPlayer.get(player).getMagicLevel("Aero"))
 			{
-			case 1:
+			case 0:
 				world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
 			break;
-			case 2:
+			case 1:
 				world.spawnEntityInWorld(new EntityAerora(world, player, player.posX, player.posY, player.posZ));
 			break;
-			case 3:
+			case 2:
 				world.spawnEntityInWorld(new EntityAeroga(world, player, player.posX, player.posY, player.posZ));
 			break;
 			}

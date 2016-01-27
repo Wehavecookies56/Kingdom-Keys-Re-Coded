@@ -35,13 +35,13 @@ public class MagicBlizzard extends AbstractServerMessage<MagicBlizzard> {
 		}	
 		World world = player.worldObj;
 		switch(ExtendedPlayer.get(player).getMagicLevel("Blizzard")){
-		case 1:
+		case 0:
 			world.spawnEntityInWorld(new EntityBlizzard(world, player));
 			break;
-		case 2:
+		case 1:
 			world.spawnEntityInWorld(new EntityBlizzara(world, player));
 			break;
-		case 3:
+		case 2:
 			world.spawnEntityInWorld(new EntityBlizzaga(world, player));
 			break;
 		}

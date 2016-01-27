@@ -35,13 +35,13 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 		}
 		World world = player.worldObj;
 		switch(ExtendedPlayer.get(player).getMagicLevel("Fire")){
-		case 1:
+		case 0:
 			world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
 			break;
-		case 2:
+		case 1:
 			world.spawnEntityInWorld(new EntityFira(world, player, player.posX, player.posY, player.posZ, 1));
 			break;
-		case 3:
+		case 2:
 			world.spawnEntityInWorld(new EntityFiraga(world, player, player.posX, player.posY, player.posZ, 1));
 			break;
 		}
