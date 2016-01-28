@@ -48,7 +48,14 @@ public class Constants {
 		costs.put("gui.commandmenu.magic.stop", 15);
 		costs.put("gui.commandmenu.magic.cure", -1);
 		
+		costs.put("potion", 1);
+		
 		costs.put("gui.commandmenu.drive.valor", 300);
+		costs.put("gui.commandmenu.drive.wisdom", 300);
+		costs.put("gui.commandmenu.drive.limit", 400);
+		costs.put("gui.commandmenu.drive.master", 400);
+		costs.put("gui.commandmenu.drive.final", 500);
+
 	}
 	
 	public static int getCost(String name){

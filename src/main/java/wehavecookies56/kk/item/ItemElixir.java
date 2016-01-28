@@ -7,7 +7,7 @@ public class ItemElixir extends ItemKKPotion{
 	String potionType;
 	
     public ItemElixir(int food, boolean wolf, String type) {
-        super(food, wolf, type);       
+        super(food, wolf, type,"elixir");       
         this.setUnlocalizedName(Strings.Potion);
         this.setAlwaysEdible();
         this.potionType = type;

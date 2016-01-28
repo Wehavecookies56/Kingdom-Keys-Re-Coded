@@ -40,8 +40,5 @@ public class ItemSpellOrb extends Item {
 
 	public void setMagicName(String unlocalizedName) {
 		this.unlocalizedName = unlocalizedName;
-	}
-	
-	
-	
+	}	
 }

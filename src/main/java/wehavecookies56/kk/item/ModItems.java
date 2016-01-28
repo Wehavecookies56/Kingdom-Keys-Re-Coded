@@ -709,10 +709,10 @@ public class ModItems {
 		LevelUpMagicStop = new ItemUpgradeStop("Stop", Strings.Gui_CommandMenu_Magic_Stop).setUnlocalizedName(Strings.LevelUpMagicStop).setCreativeTab(tabKingdomKeys);
 
 		LevelUpValor = new ItemUpgradeValor("Valor", Strings.Gui_CommandMenu_Drive_Valor).setUnlocalizedName(Strings.LevelUpValor).setCreativeTab(tabKingdomKeys);
-		LevelUpWisdom = new ItemUpgradeWisdom().setUnlocalizedName(Strings.LevelUpWisdom).setCreativeTab(tabKingdomKeys);
-		LevelUpLimit = new ItemUpgradeLimit().setUnlocalizedName(Strings.LevelUpLimit).setCreativeTab(tabKingdomKeys);
-		LevelUpMaster = new ItemUpgradeMaster().setUnlocalizedName(Strings.LevelUpMaster).setCreativeTab(tabKingdomKeys);
-		LevelUpFinal = new ItemUpgradeFinal().setUnlocalizedName(Strings.LevelUpFinal).setCreativeTab(tabKingdomKeys);
+		LevelUpWisdom = new ItemUpgradeWisdom("Wisdom", Strings.Gui_CommandMenu_Drive_Wisdom).setUnlocalizedName(Strings.LevelUpWisdom).setCreativeTab(tabKingdomKeys);
+		LevelUpLimit = new ItemUpgradeLimit("Limit", Strings.Gui_CommandMenu_Drive_Limit).setUnlocalizedName(Strings.LevelUpLimit).setCreativeTab(tabKingdomKeys);
+		LevelUpMaster = new ItemUpgradeMaster("Master", Strings.Gui_CommandMenu_Drive_Master).setUnlocalizedName(Strings.LevelUpMaster).setCreativeTab(tabKingdomKeys);
+		LevelUpFinal = new ItemUpgradeFinal("Final", Strings.Gui_CommandMenu_Drive_Final).setUnlocalizedName(Strings.LevelUpFinal).setCreativeTab(tabKingdomKeys);
 		
 		SynthesisBagS = new ItemSynthesisBagS().setUnlocalizedName(Strings.SynthesisBagS).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		SynthesisBagM = new ItemSynthesisBagM().setUnlocalizedName(Strings.SynthesisBagM).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);

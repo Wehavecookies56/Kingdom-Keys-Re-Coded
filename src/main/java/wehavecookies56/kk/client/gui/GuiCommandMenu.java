@@ -136,7 +136,14 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 			else
 			{
-				drawString(mc.fontRendererObj, 	TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6+textX, 4, 0xFFFFFF);
+				if(ExtendedPlayer.driveForms.isEmpty())
+				{
+					drawString(mc.fontRendererObj, 	TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6+textX, 4, 0x888888);
+				}
+				else
+				{
+					drawString(mc.fontRendererObj, 	TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6+textX, 4, 0xFFFFFF);
+				}
 			}
 
 		}GL11.glPopMatrix();

@@ -13,7 +13,7 @@ public class InventoryDriveForms extends AbstractInventory {
 	private final String name = TextHelper.localize("Drive Forms");
 
 	/** The key used to store and retrieve the inventory from NBT */
-	private static final String SAVE_KEY = "SpellsInvKey";
+	private static final String SAVE_KEY = "DriveInvKey";
     private ItemStack[] inv;
 	public static final int INV_SIZE = 5;
 	

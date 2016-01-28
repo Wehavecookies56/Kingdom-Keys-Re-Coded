@@ -13,24 +13,9 @@ import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.LevelUpDrive;
 import wehavecookies56.kk.util.TextHelper;
 
-public class ItemUpgradeMaster extends Item
+public class ItemUpgradeMaster extends ItemDriveForm
 {
-	public ItemUpgradeMaster(){
-		this.setMaxStackSize(1);
-	}
-
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
-		if(world.isRemote){
-			PacketDispatcher.sendToServer(new LevelUpDrive("Master"));
-			GuiCommandMenu.driveCommands = ExtendedPlayer.get(player).driveForms;
-		}
-		return stack;
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-		tooltip.add(TextHelper.localize(Strings.Gui_CommandMenu_Drive_Master));
-		super.addInformation(stack, playerIn, tooltip, advanced);
+	public ItemUpgradeMaster(String form, String unlocalizedName){
+		super(form, unlocalizedName);
 	}
 }

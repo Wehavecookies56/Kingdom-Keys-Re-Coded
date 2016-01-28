@@ -4,7 +4,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
+import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKKPotion;
+import wehavecookies56.kk.item.ItemPotion;
 import wehavecookies56.kk.util.TextHelper;
 
 public class InventoryPotionsMenu extends AbstractInventory {
@@ -37,6 +39,17 @@ public class InventoryPotionsMenu extends AbstractInventory {
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
 		return stack.getItem() instanceof ItemKKPotion;
+	}
+
+	@Override
+	public void markDirty() {
+		ExtendedPlayer.items.clear();
+		for (int i = 0; i < this.getSizeInventory(); i++){
+			if(this.getStackInSlot(i) != null){
+				ExtendedPlayer.items.add(((ItemKKPotion)this.getStackInSlot(i).getItem()).getItemName());
+			}
+		}
+		super.markDirty();
 	}
 	
 	@Override

@@ -8,25 +8,22 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import net.minecraftforge.common.util.Constants;
 import wehavecookies56.kk.api.driveforms.DriveForm;
-import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.inventory.InventoryDriveForms;
 import wehavecookies56.kk.inventory.InventoryKeychain;
 import wehavecookies56.kk.inventory.InventoryPotionsMenu;
 import wehavecookies56.kk.inventory.InventorySpells;
 import wehavecookies56.kk.inventory.InventorySynthBagMenu;
 import wehavecookies56.kk.item.ItemDriveForm;
+import wehavecookies56.kk.item.ItemPotion;
 import wehavecookies56.kk.item.ItemSpellOrb;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.ShowOverlayPacket;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.server.SyncStatMessagesPacket;
-import wehavecookies56.kk.util.LogHelper;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
 
@@ -69,7 +66,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public static List<String> driveForms = new ArrayList<String>();
 	public static List<String> spells = new ArrayList<String>();
-	public List<String> items = new ArrayList<String>();
+	public static List<String> items = new ArrayList<String>();
 	
 	public boolean keybladeSummoned, firstKeyblade, inDrive, cheatMode, inRecharge;
 
@@ -167,7 +164,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.inventorySynthBag.readFromNBT(properties);
 		this.inventoryPotions.readFromNBT(properties);
 		this.inventorySpells.readFromNBT(properties);
-		
+		this.inventoryDrive.readFromNBT(properties);
+
 		this.spells.clear();
 		for (int i = 0; i < this.inventorySpells.getSizeInventory(); i++){
 			if(this.inventorySpells.getStackInSlot(i) != null){
@@ -178,6 +176,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		for (int i = 0; i < this.inventoryDrive.getSizeInventory(); i++){
 			if(this.inventoryDrive.getStackInSlot(i) != null){
 				this.driveForms.add(((ItemDriveForm) this.inventoryDrive.getStackInSlot(i).getItem()).getDriveFormName());
+			}
+		}
+		this.items.clear();
+		for (int i = 0; i < this.inventoryPotions.getSizeInventory(); i++){
+			if(this.inventoryDrive.getStackInSlot(i) != null){
+				this.items.add(((ItemPotion) this.inventoryPotions.getStackInSlot(i).getItem()).getItemName());
 			}
 		}
 		this.munny = properties.getInteger("Munny");
