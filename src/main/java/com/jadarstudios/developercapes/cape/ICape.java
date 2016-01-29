@@ -12,18 +12,18 @@ import net.minecraft.util.ResourceLocation;
 
 /**
  * Any class implementing this will be requested to act as a cape.
- * 
+ *
  * @author jadar
  */
 public interface ICape {
 
-    public String getName();
+	public String getName ();
 
-    public ITextureObject getTexture();
+	public ITextureObject getTexture ();
 
-    public ResourceLocation getLocation();
+	public ResourceLocation getLocation ();
 
-    public void loadTexture(AbstractClientPlayer player);
+	public void loadTexture (AbstractClientPlayer player);
 
-    public boolean isTextureLoaded(AbstractClientPlayer player);
+	public boolean isTextureLoaded (AbstractClientPlayer player);
 }

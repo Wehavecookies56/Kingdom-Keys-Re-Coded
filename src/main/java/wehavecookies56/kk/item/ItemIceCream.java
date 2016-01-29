@@ -9,36 +9,30 @@ import net.minecraft.world.World;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.EventHandler;
 
-public class ItemIceCream extends ItemFood{
+public class ItemIceCream extends ItemFood {
 
 	int win;
-	
-	public ItemIceCream(int food, boolean wolf) {
-        super(food, wolf);       
-        this.setUnlocalizedName(Strings.Potion);
-        this.setAlwaysEdible();
-    }
-    
-    public EnumAction getItemUseAction(ItemStack p_77661_1_)
-    {
-        return EnumAction.EAT;
-    }
-    
-    @Override
-    public void onFoodEaten(ItemStack item, World world, EntityPlayer player)
-    {   	
-        if (!player.capabilities.isCreativeMode && world.isRemote)
-        {
-        	win = EventHandler.randomWithRange(0, 20);
-        	System.out.println("Winner: "+win);
-        	if(win == 3)
-        	{
-        		player.inventory.addItemStackToInventory(new ItemStack(ModItems.WinnerStick));
-        	}
-        	else
-        	{
-        		player.inventory.addItemStackToInventory(new ItemStack(Items.stick));
-        	}
-        }
-    }
+
+	public ItemIceCream (int food, boolean wolf) {
+		super(food, wolf);
+		setUnlocalizedName(Strings.Potion);
+		setAlwaysEdible();
+	}
+
+	@Override
+	public EnumAction getItemUseAction (ItemStack p_77661_1_) {
+		return EnumAction.EAT;
+	}
+
+	@Override
+	public void onFoodEaten (ItemStack item, World world, EntityPlayer player) {
+		if (!player.capabilities.isCreativeMode && world.isRemote) {
+			win = EventHandler.randomWithRange(0, 20);
+			System.out.println("Winner: " + win);
+			if (win == 3)
+				player.inventory.addItemStackToInventory(new ItemStack(ModItems.WinnerStick));
+			else
+				player.inventory.addItemStackToInventory(new ItemStack(Items.stick));
+		}
+	}
 }

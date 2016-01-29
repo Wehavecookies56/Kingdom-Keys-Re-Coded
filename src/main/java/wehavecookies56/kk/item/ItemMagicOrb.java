@@ -9,16 +9,18 @@ import net.minecraft.item.ItemStack;
 
 public class ItemMagicOrb extends Item {
 
-	public ItemMagicOrb() {this.setMaxStackSize(1);}
+	public ItemMagicOrb () {
+		setMaxStackSize(1);
+	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-		if(stack.hasTagCompound()){
+	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
+		if (stack.hasTagCompound()) {
 			int amount = stack.getTagCompound().getInteger("amount");
 			tooltip.add("" + amount);
 		}
 	}
 
 	@Override
-	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems) {}
+	public void getSubItems (Item itemIn, CreativeTabs tab, List subItems) {}
 }

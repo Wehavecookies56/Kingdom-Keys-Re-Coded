@@ -32,29 +32,27 @@ public class RenderEntitySharpshooterBullet extends Render<EntitySharpshooterBul
 	public ModelResourceLocation model = new ModelResourceLocation(Reference.MODID + ":models/item/" + Strings.EternalFlames + ".b3d", "inventory");
 	public ResourceLocation texture = new ResourceLocation(Reference.MODID + ":textures/items/models/" + Strings.EternalFlames + ".png");
 
-	public RenderEntitySharpshooterBullet(RenderManager renderManager) {
+	public RenderEntitySharpshooterBullet (RenderManager renderManager) {
 		super(renderManager);
 	}
 
-	Function<ResourceLocation, TextureAtlasSprite> textureGetter = new Function<ResourceLocation, TextureAtlasSprite>()
-	{
-		public TextureAtlasSprite apply(ResourceLocation location)
-		{
+	Function<ResourceLocation, TextureAtlasSprite> textureGetter = new Function<ResourceLocation, TextureAtlasSprite>() {
+		@Override
+		public TextureAtlasSprite apply (ResourceLocation location) {
 			return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
 		}
 	};
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntitySharpshooterBullet entity) {
+	protected ResourceLocation getEntityTexture (EntitySharpshooterBullet entity) {
 		return texture;
 	}
 
 	@Override
-	public void doRender(EntitySharpshooterBullet entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void doRender (EntitySharpshooterBullet entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		Tessellator tessellator = Tessellator.getInstance();
 		WorldRenderer worldRenderer = tessellator.getWorldRenderer();
-		if (entity.ticksExisted < 1)
-			return;
+		if (entity.ticksExisted < 1) return;
 
 		textureGetter.apply(texture);
 		bindEntityTexture(entity);
@@ -62,17 +60,16 @@ public class RenderEntitySharpshooterBullet extends Render<EntitySharpshooterBul
 		GL11.glPushMatrix();
 		{
 			GL11.glTranslatef((float) x, (float) y, (float) z);
-			//GL11.glRotatef(entityYaw, 0.0F, 1.0F, -1.0F);
+			// GL11.glRotatef(entityYaw, 0.0F, 1.0F, -1.0F);
 			GL11.glScalef(0.02f, 0.02f, 0.02f);
-			//GL11.glRotatef(90F - entity.prevRotationPitch - (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 1.0F, 0.0F, 0.0F);
+			// GL11.glRotatef(90F - entity.prevRotationPitch -
+			// (entity.rotationPitch - entity.prevRotationPitch) * partialTicks,
+			// 1.0F, 0.0F, 0.0F);
 			IModel model = null;
 
-			try
-			{
+			try {
 				model = B3DLoader.instance.loadModel(this.model);
-			}
-			catch (IOException e)
-			{
+			} catch (IOException e) {
 				model = ModelLoaderRegistry.getMissingModel();
 			}
 
@@ -82,17 +79,14 @@ public class RenderEntitySharpshooterBullet extends Render<EntitySharpshooterBul
 			// Get Quads
 			List<BakedQuad> generalQuads = bakedModel.getGeneralQuads();
 
-			for (BakedQuad q : generalQuads)
-			{
+			for (BakedQuad q : generalQuads) {
 				int[] vd = q.getVertexData();
 				worldRenderer.addVertexData(vd);
 			}
 
-			for (EnumFacing face : EnumFacing.values())
-			{
+			for (EnumFacing face : EnumFacing.values()) {
 				List<BakedQuad> faceQuads = bakedModel.getFaceQuads(face);
-				for (BakedQuad q : faceQuads)
-				{
+				for (BakedQuad q : faceQuads) {
 					int[] vd = q.getVertexData();
 					worldRenderer.addVertexData(vd);
 				}

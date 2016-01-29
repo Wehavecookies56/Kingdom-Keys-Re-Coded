@@ -12,24 +12,24 @@ public class MaterialRemembranceStone extends Material {
 
 	String name;
 
-	public MaterialRemembranceStone(String name) {
+	public MaterialRemembranceStone (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem() {
+	public ItemStack getItem () {
 		ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
 		ItemStacks.createSynthesisItem(stack, Strings.SM_RemembranceStone, "B");
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture() {
+	public ResourceLocation getTexture () {
 		return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/remembrancestone.png");
 	}
 

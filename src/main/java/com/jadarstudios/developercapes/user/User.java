@@ -13,16 +13,16 @@ import com.jadarstudios.developercapes.cape.ICape;
 
 /**
  * This player is getting their own cape
- * 
+ *
  * @author jadar
  */
 public class User {
 
-    public List<ICape> capes;
-    public final String username;
+	public List<ICape> capes;
+	public final String username;
 
-    public User(String username) {
-        this.username = username;
-        this.capes = new ArrayList<ICape>();
-    }
+	public User (String username) {
+		this.username = username;
+		this.capes = new ArrayList<ICape>();
+	}
 }

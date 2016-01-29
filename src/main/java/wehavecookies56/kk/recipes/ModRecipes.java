@@ -6,7 +6,7 @@ import wehavecookies56.kk.item.ModItems;
 
 public class ModRecipes {
 
-	public static void init(){
+	public static void init () {
 		registerRecipe(new RecipeAbaddonPlasma(ModItems.AbaddonPlasma.getUnlocalizedName()));
 		registerRecipe(new RecipeAbyssalTide(ModItems.AbyssalTide.getUnlocalizedName()));
 		registerRecipe(new RecipeAllforOne(ModItems.AllforOne.getUnlocalizedName()));

@@ -23,43 +23,37 @@ import wehavecookies56.kk.util.GuiHelper;
 
 public class BlockKKChest extends BlockContainer implements ITileEntityProvider {
 	protected Random rand = new Random();
-	
-	protected BlockKKChest(Material material, String toolClass, int level, float hardness, float resistance) {
+
+	protected BlockKKChest (Material material, String toolClass, int level, float hardness, float resistance) {
 		super(material);
 		this.setHarvestLevel(toolClass, level);
-		this.setHardness(hardness);
-		this.setResistance(resistance);
+		setHardness(hardness);
+		setResistance(resistance);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
+	public TileEntity createNewTileEntity (World worldIn, int meta) {
 		return new TileEntityKKChest();
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated (World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (world.isRemote) return true;
-		if(player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemKeyblade)
-		{
-			if(player.getHeldItem().getItem() != ModItems.WoodenKeyblade && player.getHeldItem().getItem() != ModItems.WoodenStick && player.getHeldItem().getItem() != ModItems.DreamSword)
-			{
-				GuiHelper.openKKChest(player, world, pos);
-				return true;
-			}
+		if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemKeyblade) if (player.getHeldItem().getItem() != ModItems.WoodenKeyblade && player.getHeldItem().getItem() != ModItems.WoodenStick && player.getHeldItem().getItem() != ModItems.DreamSword) {
+			GuiHelper.openKKChest(player, world, pos);
+			return true;
 		}
 		return false;
 	}
 
-
 	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+	public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {
 
-		IInventory inventory = worldIn.getTileEntity(pos) instanceof IInventory ? (IInventory)worldIn.getTileEntity(pos) : null;
+		IInventory inventory = worldIn.getTileEntity(pos) instanceof IInventory ? (IInventory) worldIn.getTileEntity(pos) : null;
 
-		if (inventory != null){
-			for (int i = 0; i < inventory.getSizeInventory(); i++){
-				if (inventory.getStackInSlot(i) != null)
-				{
+		if (inventory != null) {
+			for (int i = 0; i < inventory.getSizeInventory(); i++)
+				if (inventory.getStackInSlot(i) != null) {
 					EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, inventory.getStackInSlot(i));
 
 					float multiplier = 0.1f;
@@ -73,35 +67,34 @@ public class BlockKKChest extends BlockContainer implements ITileEntityProvider 
 
 					worldIn.spawnEntityInWorld(item);
 				}
-			}
 			inventory.clear();
 		}
 		super.breakBlock(worldIn, pos, state);
 	}
 
-	@SideOnly(Side.CLIENT)
-	public EnumWorldBlockLayer getBlockLayer()
-	{
+	@Override
+	@SideOnly (Side.CLIENT)
+	public EnumWorldBlockLayer getBlockLayer () {
 		return EnumWorldBlockLayer.SOLID;
 	}
 
 	@Override
-	public boolean isOpaqueCube() {
+	public boolean isOpaqueCube () {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube() {
+	public boolean isFullCube () {
 		return false;
 	}
 
 	@Override
-	public boolean isVisuallyOpaque() {
+	public boolean isVisuallyOpaque () {
 		return false;
 	}
 
 	@Override
-	public int getRenderType() {
+	public int getRenderType () {
 		return 3;
 	}
 }

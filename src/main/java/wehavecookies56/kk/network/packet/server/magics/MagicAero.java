@@ -15,38 +15,32 @@ import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicAero extends AbstractServerMessage<MagicAero> {
 
-	public MagicAero() {}
+	public MagicAero () {}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side){
-		if(!ExtendedPlayer.get(player).cheatMode)
-		{
-			ExtendedPlayer.get(player).removeMp(Constants.AERO_COST);
-		}		World world = player.worldObj;
-		if(!world.isRemote)
-		{
-			switch(ExtendedPlayer.get(player).getMagicLevel("Aero"))
-			{
+	public void process (EntityPlayer player, Side side) {
+		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.AERO_COST);
+		World world = player.worldObj;
+		if (!world.isRemote) switch (ExtendedPlayer.get(player).getMagicLevel("Aero")) {
 			case 0:
 				world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
-			break;
+				break;
 			case 1:
 				world.spawnEntityInWorld(new EntityAerora(world, player, player.posX, player.posY, player.posZ));
-			break;
+				break;
 			case 2:
 				world.spawnEntityInWorld(new EntityAeroga(world, player, player.posX, player.posY, player.posZ));
-			break;
-			}
+				break;
 		}
 	}
 

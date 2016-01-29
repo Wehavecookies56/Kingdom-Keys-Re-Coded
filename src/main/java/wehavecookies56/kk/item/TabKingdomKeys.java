@@ -15,18 +15,18 @@ import wehavecookies56.kk.util.LogHelper;
 
 public class TabKingdomKeys extends CreativeTabs {
 
-	public TabKingdomKeys(int index, String label) {
+	public TabKingdomKeys (int index, String label) {
 		super(index, label);
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public Item getTabIconItem() {
+	@SideOnly (Side.CLIENT)
+	public Item getTabIconItem () {
 		return ModItems.KingdomHearts;
 	}
 
 	@Override
-	public void displayAllReleventItems(List list) {
+	public void displayAllReleventItems (List list) {
 		super.displayAllReleventItems(list);
 		ItemStack munny = new ItemStack(ModItems.Munny, 1);
 		munny.setTagCompound(new NBTTagCompound());
@@ -47,9 +47,9 @@ public class TabKingdomKeys extends CreativeTabs {
 		}
 	}
 
-	public void getSkulls(List list) throws IOException {
+	public void getSkulls (List list) throws IOException {
 		ItemStack WHC56skull = new ItemStack(Items.skull, 1, 3);
-		try{
+		try {
 			WHC56skull.setTagCompound(new NBTTagCompound());
 			WHC56skull.getTagCompound().setTag("SkullOwner", new NBTTagString("Qwenit"));
 			list.add(WHC56skull);
@@ -57,10 +57,10 @@ public class TabKingdomKeys extends CreativeTabs {
 			AAskull.setTagCompound(new NBTTagCompound());
 			AAskull.getTagCompound().setTag("SkullOwner", new NBTTagString("Abelatox"));
 			list.add(AAskull);
-		}catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
-		
+
 	}
 
 }

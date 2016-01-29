@@ -14,24 +14,27 @@ import wehavecookies56.kk.util.TextHelper;
 
 public class ItemSynthesisBagL extends Item {
 
-	public ItemSynthesisBagL() {this.setMaxStackSize(1);}
+	public ItemSynthesisBagL () {
+		setMaxStackSize(1);
+	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer player) {
-		//if (!world.isRemote){
-			//player.openGui(KingdomKeys.instance, KingdomKeys.GUI_SYNTHESISBAG_INV, player.worldObj, 0, 0, 0);
-			PacketDispatcher.sendToServer(new OpenGui(KingdomKeys.GUI_SYNTHESISBAGL_INV));
-		//}
+	public ItemStack onItemRightClick (ItemStack itemStackIn, World world, EntityPlayer player) {
+		// if (!world.isRemote){
+		// player.openGui(KingdomKeys.instance,
+		// KingdomKeys.GUI_SYNTHESISBAG_INV, player.worldObj, 0, 0, 0);
+		PacketDispatcher.sendToServer(new OpenGui(KingdomKeys.GUI_SYNTHESISBAGL_INV));
+		// }
 		return itemStackIn;
 	}
+
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
+	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
 		int x = 30;
 		String s = TextHelper.localize(Strings.SynthesisBagDesc);
 		s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
-		String []splitS = s.split("\n");
-		for(int i = 0; i < splitS.length; i++){
-			tooltip.add(splitS[i]);
-		}
+		String[] splitS = s.split("\n");
+		for (String element : splitS)
+			tooltip.add(element);
 	}
 }

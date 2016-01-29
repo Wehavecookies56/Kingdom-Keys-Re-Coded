@@ -15,43 +15,40 @@ public class InventorySynthBagMenu extends AbstractInventory {
 
 	/** The key used to store and retrieve the inventory from NBT */
 	private static final String SAVE_KEY = "SynthBagInvKey";
-	
+
 	public static final int INV_SIZE = 1;
-	
-	public InventorySynthBagMenu() {
+
+	public InventorySynthBagMenu () {
 		this.inventory = new ItemStack[INV_SIZE];
 	}
-	
+
 	@Override
-	public boolean hasCustomName() {
+	public boolean hasCustomName () {
 		return true;
 	}
-	
+
 	@Override
-	public int getInventoryStackLimit() {
+	public int getInventoryStackLimit () {
 		return 1;
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
+	public boolean isUseableByPlayer (EntityPlayer player) {
 		return true;
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		if(stack.getItem() instanceof ItemSynthesisBagS || stack.getItem() instanceof ItemSynthesisBagM || stack.getItem() instanceof ItemSynthesisBagL)
-		{
-			return true;
-		}
+	public boolean isItemValidForSlot (int index, ItemStack stack) {
+		if (stack.getItem() instanceof ItemSynthesisBagS || stack.getItem() instanceof ItemSynthesisBagM || stack.getItem() instanceof ItemSynthesisBagL) return true;
 		return false;
 	}
 
 	@Override
-	protected String getNbtKey() {
+	protected String getNbtKey () {
 		return SAVE_KEY;
 	}
-	
-	public void copy(AbstractInventory inv) {
+
+	public void copy (AbstractInventory inv) {
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
 			ItemStack stack = inv.getStackInSlot(i);
 			inventory[i] = (stack == null ? null : stack.copy());
@@ -60,12 +57,12 @@ public class InventorySynthBagMenu extends AbstractInventory {
 	}
 
 	@Override
-	public String getCommandSenderName() {
+	public String getCommandSenderName () {
 		return name;
 	}
-	
+
 	@Override
-	public IChatComponent getDisplayName() {
+	public IChatComponent getDisplayName () {
 		return new ChatComponentText(name);
 	}
 

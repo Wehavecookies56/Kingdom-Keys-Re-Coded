@@ -14,22 +14,22 @@ public class RecipeSweetDreams extends Recipe {
 
 	public String name;
 
-	public RecipeSweetDreams(String name) {
+	public RecipeSweetDreams (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public Item getResult() {
+	public Item getResult () {
 		return ModItems.Chain_SweetDreams;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements() {
+	public Map<Material, Integer> getRequirements () {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_TwilightShard), 4);
 		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 2);

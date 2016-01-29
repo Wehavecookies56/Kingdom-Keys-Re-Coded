@@ -14,9 +14,9 @@ public class SpawnAeroParticles extends AbstractClientMessage<SpawnAeroParticles
 	double x, y, z;
 	int lvl;
 
-	public SpawnAeroParticles() {}
+	public SpawnAeroParticles () {}
 
-	public SpawnAeroParticles(Entity entity, int level) {
+	public SpawnAeroParticles (Entity entity, int level) {
 		x = entity.posX;
 		y = entity.posY;
 		z = entity.posZ;
@@ -24,7 +24,7 @@ public class SpawnAeroParticles extends AbstractClientMessage<SpawnAeroParticles
 	}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 		x = buffer.readDouble();
 		y = buffer.readDouble();
 		z = buffer.readDouble();
@@ -32,7 +32,7 @@ public class SpawnAeroParticles extends AbstractClientMessage<SpawnAeroParticles
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeDouble(x);
 		buffer.writeDouble(y);
 		buffer.writeDouble(z);
@@ -40,26 +40,23 @@ public class SpawnAeroParticles extends AbstractClientMessage<SpawnAeroParticles
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
+	public void process (EntityPlayer player, Side side) {
 		double r;
-		switch(this.lvl)
-		{
+		switch (this.lvl) {
 			case 1:
 				r = 1.5D;
-				for(int a = 1; a <= 360; a+=15)
-				{
+				for (int a = 1; a <= 360; a += 15) {
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
 					player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
 				}
 				break;
 			case 2:
-				
+
 				break;
 			case 3:
 				r = 4.0D;
-				for(int a = 1; a <= 360; a+=15)
-				{
+				for (int a = 1; a <= 360; a += 15) {
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
 					player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);

@@ -28,383 +28,47 @@ import wehavecookies56.kk.lib.Strings;
 
 public class ModItems {
 
-	//Organization
-	public static Item
-	Interdiction,
-	Sharpshooter,
-	Lindworm,
-	FrozenPride,
-	Skysplitter,
-	BookofRetribution,
-	Lunatic,
-	EternalFlames,
-	Arpeggio,
-	FairGame,
-	GracefulDahlia,
-	Foudre,
+	// Organization
+	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit;
 
-	BlazeofGlory,
-	Prometheus,
-	Ifrit
-	;
+	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
-	public static Item
-	BlazingInfusedCoal,
-	FrostInfusedSnowBall,
-	StormyInfusedIron,
-	MythrilInfusedDiamond,
-	LightningInfusedGold,
-	BrightInfusedGlowStone,
-	DarkInfusedIron,
+	// Keyblades
+	public static Item AbaddonPlasma, AbyssalTide, AllforOne, AnguisForetellersKeyblade, AstralBlast, Aubade, BondofFlame, Brightcrest, ChaosRipper, CircleofLife, Counterpoint, Crabclaw, CrownofGuilt, DarkerThanDark, Darkgnaw, DecisivePumpkin, DestinysEmbrace, DiamondDust, Divewing, DivineRose, DreamSword, DualDisc, Earthshaker, EndofPain, EndsoftheEarth, FairyHarp, FairyStars, FatalCrest, Fenrir, FerrisGear, FollowtheWind, FrolicFlame, GlimpseofDarkness, GuardianBell, GuardianSoul, GullWing, HerosCrest, HiddenDragon, Hyperdrive, IncompleteKiblade, JungleKing, KeybladeofPeoplesHearts, Kiblade, KingdomKey, KingdomKeyD, KnockoutPunch, LadyLuck, LeasKeyblade, LeopardosForetellersKeyblade, Leviathan, Lionheart, LostMemory, LunarEclipse, MarkofaHero, MasterXehanortsKeyblade, MastersDefender, MaverickFlare, MetalChocobo, MidnightRoar, MirageSplit, MissingAche, Monochrome, MysteriousAbyss, NightmaresEnd, NightmaresEndandMirageSplit, NoName, Oathkeeper, Oblivion, OceansRage, Olympia,
+			OmegaWeapon, OminousBlight, OneWingedAngel, PainofSolitude, PhotonDebugger, PixiePetal, Pumpkinhead, Rainfell, RejectionofFate, RoyalRadiance, RumblingRose, SignofInnocence, SilentDirge, SkullNoise, SleepingLion, SoulEater, Spellbinder, StarSeeker, Starlight, Stormfall, StrokeofMidnight, SweetDreams, SweetMemories, Sweetstack, ThreeWishes, TotalEclipse, TreasureTrove, TrueLightsFlight, TwilightBlaze, TwoBecomeOne, UltimaWeaponKH1, UltimaWeaponKH2, UltimaWeaponBBS, UltimaWeaponDDD, Umbrella, Unbound, UnicornisForetellersKeyblade, UrsusForetellersKeyblade, VictoryLine, VoidGear, VulpeusForetellersKeyblade, WaytotheDawn, WaywardWind, WinnersProof, WishingLamp, WishingStar, WoodenKeyblade, WoodenStick, YoungXehanortsKeyblade, ZeroOne;
 
-	AbandonedKnowledge,
-	DarkKnowledge,
-	EclipsedKnowledge,
-	ForgottenKnowledge,
-	IlludedKnowledge,
-	LostKnowledge,
-	ManifestKnowledge,
-	ObscuredKnowledge,
-	UnknownKnowledge,
-	VoidKnowledge
-	;
+	// Chains
+	public static Item Chain_AbaddonPlasma, Chain_AbyssalTide, Chain_AllforOne, Chain_AnguisForetellersKeyblade, Chain_AstralBlast, Chain_Aubade, Chain_BondofFlame, Chain_Brightcrest, Chain_ChaosRipper, Chain_CircleofLife, Chain_Counterpoint, Chain_Crabclaw, Chain_CrownofGuilt, Chain_DarkerThanDark, Chain_Darkgnaw, Chain_DecisivePumpkin, Chain_DestinysEmbrace, Chain_DiamondDust, Chain_Divewing, Chain_DivineRose, Chain_DreamSword, Chain_DualDisc, Chain_Earthshaker, Chain_EndofPain, Chain_EndsoftheEarth, Chain_FairyHarp, Chain_FairyStars, Chain_FatalCrest, Chain_Fenrir, Chain_FerrisGear, Chain_FollowtheWind, Chain_FrolicFlame, Chain_GlimpseofDarkness, Chain_GuardianBell, Chain_GuardianSoul, Chain_GullWing, Chain_HerosCrest, Chain_HiddenDragon, Chain_Hyperdrive, Chain_IncompleteKiblade, Chain_JungleKing, Chain_KeybladeofPeoplesHearts, Chain_Kiblade, Chain_KingdomKey, Chain_KingdomKeyD, Chain_KnockoutPunch, Chain_LadyLuck, Chain_LeasKeyblade, Chain_LeopardosForetellersKeyblade,
+			Chain_Leviathan, Chain_Lionheart, Chain_LostMemory, Chain_LunarEclipse, Chain_MarkofaHero, Chain_MasterXehanortsKeyblade, Chain_MastersDefender, Chain_MaverickFlare, Chain_MetalChocobo, Chain_MidnightRoar, Chain_MirageSplit, Chain_MissingAche, Chain_Monochrome, Chain_MysteriousAbyss, Chain_NightmaresEnd, Chain_NightmaresEndandMirageSplit, Chain_NoName, Chain_Oathkeeper, Chain_Oblivion, Chain_OceansRage, Chain_Olympia, Chain_OmegaWeapon, Chain_OminousBlight, Chain_OneWingedAngel, Chain_PainofSolitude, Chain_PhotonDebugger, Chain_PixiePetal, Chain_Pumpkinhead, Chain_Rainfell, Chain_RejectionofFate, Chain_RoyalRadiance, Chain_RumblingRose, Chain_SignofInnocence, Chain_SilentDirge, Chain_SkullNoise, Chain_SleepingLion, Chain_SoulEater, Chain_Spellbinder, Chain_StarSeeker, Chain_Starlight, Chain_Stormfall, Chain_StrokeofMidnight, Chain_SweetDreams, Chain_SweetMemories, Chain_Sweetstack, Chain_ThreeWishes, Chain_TotalEclipse, Chain_TreasureTrove, Chain_TrueLightsFlight,
+			Chain_TwilightBlaze, Chain_TwoBecomeOne, Chain_UltimaWeaponKH1, Chain_UltimaWeaponKH2, Chain_UltimaWeaponBBS, Chain_UltimaWeaponDDD, Chain_Umbrella, Chain_Unbound, Chain_UnicornisForetellersKeyblade, Chain_UrsusForetellersKeyblade, Chain_VictoryLine, Chain_VoidGear, Chain_VulpeusForetellersKeyblade, Chain_WaytotheDawn, Chain_WaywardWind, Chain_WinnersProof, Chain_WishingLamp, Chain_WishingStar, Chain_YoungXehanortsKeyblade, Chain_ZeroOne;
 
-	//Keyblades
-	public static Item
-	AbaddonPlasma,
-	AbyssalTide,
-	AllforOne,
-	AnguisForetellersKeyblade,
-	AstralBlast,
-	Aubade,
-	BondofFlame,
-	Brightcrest,
-	ChaosRipper,
-	CircleofLife,
-	Counterpoint,
-	Crabclaw,
-	CrownofGuilt,
-	DarkerThanDark,
-	Darkgnaw,
-	DecisivePumpkin,
-	DestinysEmbrace,
-	DiamondDust,
-	Divewing,
-	DivineRose,
-	DreamSword,
-	DualDisc,
-	Earthshaker,
-	EndofPain,
-	EndsoftheEarth,
-	FairyHarp,
-	FairyStars,
-	FatalCrest,
-	Fenrir,
-	FerrisGear,
-	FollowtheWind,
-	FrolicFlame,
-	GlimpseofDarkness,
-	GuardianBell,
-	GuardianSoul,
-	GullWing,
-	HerosCrest,
-	HiddenDragon,
-	Hyperdrive,
-	IncompleteKiblade,
-	JungleKing,
-	KeybladeofPeoplesHearts,
-	Kiblade,
-	KingdomKey,
-	KingdomKeyD,
-	KnockoutPunch,
-	LadyLuck,
-	LeasKeyblade,
-	LeopardosForetellersKeyblade,
-	Leviathan,
-	Lionheart,
-	LostMemory,
-	LunarEclipse,
-	MarkofaHero,
-	MasterXehanortsKeyblade,
-	MastersDefender,
-	MaverickFlare,
-	MetalChocobo,
-	MidnightRoar,
-	MirageSplit,
-	MissingAche,
-	Monochrome,
-	MysteriousAbyss,
-	NightmaresEnd,
-	NightmaresEndandMirageSplit,
-	NoName,
-	Oathkeeper,
-	Oblivion,
-	OceansRage,
-	Olympia,
-	OmegaWeapon,
-	OminousBlight,
-	OneWingedAngel,
-	PainofSolitude,
-	PhotonDebugger,
-	PixiePetal,
-	Pumpkinhead,
-	Rainfell,
-	RejectionofFate,
-	RoyalRadiance,
-	RumblingRose,
-	SignofInnocence,
-	SilentDirge,
-	SkullNoise,
-	SleepingLion,
-	SoulEater,
-	Spellbinder,
-	StarSeeker,
-	Starlight,
-	Stormfall,
-	StrokeofMidnight,
-	SweetDreams,
-	SweetMemories,
-	Sweetstack,
-	ThreeWishes,
-	TotalEclipse,
-	TreasureTrove,
-	TrueLightsFlight,
-	TwilightBlaze,
-	TwoBecomeOne,
-	UltimaWeaponKH1,
-	UltimaWeaponKH2,
-	UltimaWeaponBBS,
-	UltimaWeaponDDD,
-	Umbrella,
-	Unbound,
-	UnicornisForetellersKeyblade,
-	UrsusForetellersKeyblade,
-	VictoryLine,
-	VoidGear,
-	VulpeusForetellersKeyblade,
-	WaytotheDawn,
-	WaywardWind,
-	WinnersProof,
-	WishingLamp,
-	WishingStar,
-	WoodenKeyblade,
-	WoodenStick,
-	YoungXehanortsKeyblade,
-	ZeroOne
-	;
+	// Misc
+	public static Item Munny, EmptyBottle, Potion, Ether, Elixir, HpOrb, DriveOrb, MagicOrb, Heart, DarkHeart, PureHeart, KingdomHearts, DarkLeather, SynthesisMaterial, Recipe, IceCream, WinnerStick, LevelUpMagicFire, LevelUpMagicBlizzard, LevelUpMagicThunder, LevelUpMagicCure, LevelUpMagicAero, LevelUpMagicStop, LevelUpValor, LevelUpWisdom, LevelUpLimit, LevelUpMaster, LevelUpFinal, SynthesisBagS, SynthesisBagM, SynthesisBagL;
 
-	//Chains
-	public static Item
-	Chain_AbaddonPlasma,
-	Chain_AbyssalTide,
-	Chain_AllforOne,
-	Chain_AnguisForetellersKeyblade,
-	Chain_AstralBlast,
-	Chain_Aubade,
-	Chain_BondofFlame,
-	Chain_Brightcrest,
-	Chain_ChaosRipper,
-	Chain_CircleofLife,
-	Chain_Counterpoint,
-	Chain_Crabclaw,
-	Chain_CrownofGuilt,
-	Chain_DarkerThanDark,
-	Chain_Darkgnaw,
-	Chain_DecisivePumpkin,
-	Chain_DestinysEmbrace,
-	Chain_DiamondDust,
-	Chain_Divewing,
-	Chain_DivineRose,
-	Chain_DreamSword,
-	Chain_DualDisc,
-	Chain_Earthshaker,
-	Chain_EndofPain,
-	Chain_EndsoftheEarth,
-	Chain_FairyHarp,
-	Chain_FairyStars,
-	Chain_FatalCrest,
-	Chain_Fenrir,
-	Chain_FerrisGear,
-	Chain_FollowtheWind,
-	Chain_FrolicFlame,
-	Chain_GlimpseofDarkness,
-	Chain_GuardianBell,
-	Chain_GuardianSoul,
-	Chain_GullWing,
-	Chain_HerosCrest,
-	Chain_HiddenDragon,
-	Chain_Hyperdrive,
-	Chain_IncompleteKiblade,
-	Chain_JungleKing,
-	Chain_KeybladeofPeoplesHearts,
-	Chain_Kiblade,
-	Chain_KingdomKey,
-	Chain_KingdomKeyD,
-	Chain_KnockoutPunch,
-	Chain_LadyLuck,
-	Chain_LeasKeyblade,
-	Chain_LeopardosForetellersKeyblade,
-	Chain_Leviathan,
-	Chain_Lionheart,
-	Chain_LostMemory,
-	Chain_LunarEclipse,
-	Chain_MarkofaHero,
-	Chain_MasterXehanortsKeyblade,
-	Chain_MastersDefender,
-	Chain_MaverickFlare,
-	Chain_MetalChocobo,
-	Chain_MidnightRoar,
-	Chain_MirageSplit,
-	Chain_MissingAche,
-	Chain_Monochrome,
-	Chain_MysteriousAbyss,
-	Chain_NightmaresEnd,
-	Chain_NightmaresEndandMirageSplit,
-	Chain_NoName,
-	Chain_Oathkeeper,
-	Chain_Oblivion,
-	Chain_OceansRage,
-	Chain_Olympia,
-	Chain_OmegaWeapon,
-	Chain_OminousBlight,
-	Chain_OneWingedAngel,
-	Chain_PainofSolitude,
-	Chain_PhotonDebugger,
-	Chain_PixiePetal,
-	Chain_Pumpkinhead,
-	Chain_Rainfell,
-	Chain_RejectionofFate,
-	Chain_RoyalRadiance,
-	Chain_RumblingRose,
-	Chain_SignofInnocence,
-	Chain_SilentDirge,
-	Chain_SkullNoise,
-	Chain_SleepingLion,
-	Chain_SoulEater,
-	Chain_Spellbinder,
-	Chain_StarSeeker,
-	Chain_Starlight,
-	Chain_Stormfall,
-	Chain_StrokeofMidnight,
-	Chain_SweetDreams,
-	Chain_SweetMemories,
-	Chain_Sweetstack,
-	Chain_ThreeWishes,
-	Chain_TotalEclipse,
-	Chain_TreasureTrove,
-	Chain_TrueLightsFlight,
-	Chain_TwilightBlaze,
-	Chain_TwoBecomeOne,
-	Chain_UltimaWeaponKH1,
-	Chain_UltimaWeaponKH2,
-	Chain_UltimaWeaponBBS,
-	Chain_UltimaWeaponDDD,
-	Chain_Umbrella,
-	Chain_Unbound,
-	Chain_UnicornisForetellersKeyblade,
-	Chain_UrsusForetellersKeyblade,
-	Chain_VictoryLine,
-	Chain_VoidGear,
-	Chain_VulpeusForetellersKeyblade,
-	Chain_WaytotheDawn,
-	Chain_WaywardWind,
-	Chain_WinnersProof,
-	Chain_WishingLamp,
-	Chain_WishingStar,
-	Chain_YoungXehanortsKeyblade,
-	Chain_ZeroOne
-	;
+	// Music Discs
+	public static Item Disc_Birth_by_Sleep_A_Link_to_the_Future, Disc_Darkness_of_the_Unknown, Disc_Dearly_Beloved_Symphony_Version, Disc_Dream_Drop_Distance_The_Next_Awakening, Disc_Hikari_KINGDOM_Instrumental_Version, Disc_L_Oscurita_Dell_Ignoto, Disc_Musique_pour_la_tristesse_de_Xion, Disc_No_More_Bugs_Bug_Version, Disc_Organization_XIII, Disc_Sanctuary, Disc_Simple_And_Clean_PLANITb_Remix, Disc_Sinister_Sundown, Disc_The_13th_Anthology;
 
-	//Misc
-	public static Item
-	Munny,
-	EmptyBottle,
-	Potion,
-	Ether,
-	Elixir,
-	HpOrb,
-	DriveOrb,
-	MagicOrb,
-	Heart,
-	DarkHeart,
-	PureHeart,
-	KingdomHearts,
-	DarkLeather,
-	SynthesisMaterial,
-	Recipe,
-	IceCream,
-	WinnerStick,
-	LevelUpMagicFire,
-	LevelUpMagicBlizzard,
-	LevelUpMagicThunder,
-	LevelUpMagicCure,
-	LevelUpMagicAero,
-	LevelUpMagicStop,
-	LevelUpValor,
-	LevelUpWisdom,
-	LevelUpLimit,
-	LevelUpMaster,
-	LevelUpFinal,
-	SynthesisBagS,
-	SynthesisBagM,
-	SynthesisBagL
-	;
+	// Armour
+	public static Item OrganizationRobe_Helmet, OrganizationRobe_Chestplate, OrganizationRobe_Leggings, OrganizationRobe_Boots,
 
-	//Music Discs
-	public static Item
-	Disc_Birth_by_Sleep_A_Link_to_the_Future,
-	Disc_Darkness_of_the_Unknown,
-	Disc_Dearly_Beloved_Symphony_Version,
-	Disc_Dream_Drop_Distance_The_Next_Awakening,
-	Disc_Hikari_KINGDOM_Instrumental_Version,
-	Disc_L_Oscurita_Dell_Ignoto,
-	Disc_Musique_pour_la_tristesse_de_Xion,
-	Disc_No_More_Bugs_Bug_Version,
-	Disc_Organization_XIII,
-	Disc_Sanctuary,
-	Disc_Simple_And_Clean_PLANITb_Remix,
-	Disc_Sinister_Sundown,
-	Disc_The_13th_Anthology
-	;
+			Terra_Helmet, Terra_Chestplate, Terra_Leggings, Terra_Boots,
 
-	//Armour
-	public static Item
-	OrganizationRobe_Helmet,
-	OrganizationRobe_Chestplate,
-	OrganizationRobe_Leggings,
-	OrganizationRobe_Boots,
+			Aqua_Helmet, Aqua_Chestplate, Aqua_Leggings, Aqua_Boots,
 
-	Terra_Helmet,
-	Terra_Chestplate,
-	Terra_Leggings,
-	Terra_Boots,
+			Ventus_Helmet, Ventus_Chestplate, Ventus_Leggings, Ventus_Boots,
 
-	Aqua_Helmet,
-	Aqua_Chestplate,
-	Aqua_Leggings,
-	Aqua_Boots,
+			Eraqus_Helmet, Eraqus_Chestplate, Eraqus_Leggings, Eraqus_Boots;
 
-	Ventus_Helmet,
-	Ventus_Chestplate,
-	Ventus_Leggings,
-	Ventus_Boots,
-
-	Eraqus_Helmet,
-	Eraqus_Chestplate,
-	Eraqus_Leggings,
-	Eraqus_Boots
-	;
-
-	//Armour materials
-	public static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", 35, new int[]{4, 8, 5, 3}, 15);
-	public static ArmorMaterial TERRA = EnumHelper.addArmorMaterial("TERRA", Reference.MODID + ":terra", 35, new int[]{5, 9, 6, 5}, 15);
-	public static ArmorMaterial AQUA = EnumHelper.addArmorMaterial("AQUA", Reference.MODID + ":aqua", 35, new int[]{5, 9, 6, 5}, 15);
-	public static ArmorMaterial VENTUS = EnumHelper.addArmorMaterial("VENTUS", Reference.MODID + ":ventus", 35, new int[]{5, 9, 6, 5}, 15);
-	public static ArmorMaterial ERAQUS = EnumHelper.addArmorMaterial("ERAQUS", Reference.MODID + ":eraqus", 35, new int[]{5, 9, 6, 5}, 15);
+	// Armour materials
+	public static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", 35, new int[] { 4, 8, 5, 3 }, 15);
+	public static ArmorMaterial TERRA = EnumHelper.addArmorMaterial("TERRA", Reference.MODID + ":terra", 35, new int[] { 5, 9, 6, 5 }, 15);
+	public static ArmorMaterial AQUA = EnumHelper.addArmorMaterial("AQUA", Reference.MODID + ":aqua", 35, new int[] { 5, 9, 6, 5 }, 15);
+	public static ArmorMaterial VENTUS = EnumHelper.addArmorMaterial("VENTUS", Reference.MODID + ":ventus", 35, new int[] { 5, 9, 6, 5 }, 15);
+	public static ArmorMaterial ERAQUS = EnumHelper.addArmorMaterial("ERAQUS", Reference.MODID + ":eraqus", 35, new int[] { 5, 9, 6, 5 }, 15);
 
 	public static CreativeTabs tabKingdomKeys;
 
-	public static void init(){
+	public static void init () {
 		tabKingdomKeys = new TabKingdomKeys(CreativeTabs.getNextID(), Strings.tabKingdomKeys);
 
 		BlazingInfusedCoal = new Item().setUnlocalizedName(Strings.BlazingInfusedCoal).setCreativeTab(tabKingdomKeys);
@@ -441,7 +105,7 @@ public class ModItems {
 		BlazeofGlory = new ItemBlazeofGlory(EnumHelper.addToolMaterial(Config.A_TM_BlazeofGlory[0], Integer.parseInt(Config.A_TM_BlazeofGlory[1]), Integer.parseInt(Config.A_TM_BlazeofGlory[2]), Float.parseFloat(Config.A_TM_BlazeofGlory[3]), Float.parseFloat(Config.A_TM_BlazeofGlory[4]), Integer.parseInt(Config.A_TM_BlazeofGlory[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
 		Prometheus = new ItemPrometheus(EnumHelper.addToolMaterial(Config.A_TM_Prometheus[0], Integer.parseInt(Config.A_TM_Prometheus[1]), Integer.parseInt(Config.A_TM_Prometheus[2]), Float.parseFloat(Config.A_TM_Prometheus[3]), Float.parseFloat(Config.A_TM_Prometheus[4]), Integer.parseInt(Config.A_TM_Prometheus[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
 		Ifrit = new ItemIfrit(EnumHelper.addToolMaterial(Config.A_TM_Ifrit[0], Integer.parseInt(Config.A_TM_Ifrit[1]), Integer.parseInt(Config.A_TM_Ifrit[2]), Float.parseFloat(Config.A_TM_Ifrit[3]), Float.parseFloat(Config.A_TM_Ifrit[4]), Integer.parseInt(Config.A_TM_Ifrit[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
-		
+
 		AbaddonPlasma = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbaddonPlasma[0], Integer.parseInt(Config.A_TM_AbaddonPlasma[1]), Integer.parseInt(Config.A_TM_AbaddonPlasma[2]), Float.parseFloat(Config.A_TM_AbaddonPlasma[3]), Float.parseFloat(Config.A_TM_AbaddonPlasma[4]), Integer.parseInt(Config.A_TM_AbaddonPlasma[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbaddonPlasma);
 		AbyssalTide = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AbyssalTide[0], Integer.parseInt(Config.A_TM_AbyssalTide[1]), Integer.parseInt(Config.A_TM_AbyssalTide[2]), Float.parseFloat(Config.A_TM_AbyssalTide[3]), Float.parseFloat(Config.A_TM_AbyssalTide[4]), Integer.parseInt(Config.A_TM_AbyssalTide[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbyssalTide);
 		AllforOne = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_AllforOne[0], Integer.parseInt(Config.A_TM_AllforOne[1]), Integer.parseInt(Config.A_TM_AllforOne[2]), Float.parseFloat(Config.A_TM_AllforOne[3]), Float.parseFloat(Config.A_TM_AllforOne[4]), Integer.parseInt(Config.A_TM_AllforOne[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AllforOne);
@@ -563,7 +227,7 @@ public class ModItems {
 		YoungXehanortsKeyblade = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_YoungXehanortsKeyblade[0], Integer.parseInt(Config.A_TM_YoungXehanortsKeyblade[1]), Integer.parseInt(Config.A_TM_YoungXehanortsKeyblade[2]), Float.parseFloat(Config.A_TM_YoungXehanortsKeyblade[3]), Float.parseFloat(Config.A_TM_YoungXehanortsKeyblade[4]), Integer.parseInt(Config.A_TM_YoungXehanortsKeyblade[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.YoungXehanortsKeyblade);
 		ZeroOne = new ItemKeyblade(EnumHelper.addToolMaterial(Config.A_TM_ZeroOne[0], Integer.parseInt(Config.A_TM_ZeroOne[1]), Integer.parseInt(Config.A_TM_ZeroOne[2]), Float.parseFloat(Config.A_TM_ZeroOne[3]), Float.parseFloat(Config.A_TM_ZeroOne[4]), Integer.parseInt(Config.A_TM_ZeroOne[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ZeroOne);
 
-		//CHAINS
+		// CHAINS
 		Chain_AbaddonPlasma = new ItemKeychain((ItemKeyblade) AbaddonPlasma).setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
 		Chain_AbyssalTide = new ItemKeychain((ItemKeyblade) AbyssalTide).setUnlocalizedName(Strings.Chain_AbyssalTide).setCreativeTab(tabKingdomKeys);
 		Chain_AllforOne = new ItemKeychain((ItemKeyblade) AllforOne).setUnlocalizedName(Strings.Chain_AllforOne).setCreativeTab(tabKingdomKeys);
@@ -698,7 +362,7 @@ public class ModItems {
 		KingdomHearts = new Item().setUnlocalizedName(Strings.KingdomHearts).setCreativeTab(tabKingdomKeys);
 		DarkLeather = new Item().setUnlocalizedName(Strings.DarkLeather).setCreativeTab(tabKingdomKeys);
 		SynthesisMaterial = new ItemSynthesisMaterial().setUnlocalizedName(Strings.SynthesisMaterial).setCreativeTab(tabKingdomKeys);
-		IceCream = new ItemIceCream(5,true).setUnlocalizedName(Strings.IceCream).setCreativeTab(tabKingdomKeys);
+		IceCream = new ItemIceCream(5, true).setUnlocalizedName(Strings.IceCream).setCreativeTab(tabKingdomKeys);
 		WinnerStick = new Item().setUnlocalizedName(Strings.WinnerStick).setCreativeTab(tabKingdomKeys);
 
 		LevelUpMagicFire = new ItemUpgradeFire("Fire", Strings.Gui_CommandMenu_Magic_Fire).setUnlocalizedName(Strings.LevelUpMagicFire).setCreativeTab(tabKingdomKeys);
@@ -713,11 +377,10 @@ public class ModItems {
 		LevelUpLimit = new ItemUpgradeLimit("Limit", Strings.Gui_CommandMenu_Drive_Limit).setUnlocalizedName(Strings.LevelUpLimit).setCreativeTab(tabKingdomKeys);
 		LevelUpMaster = new ItemUpgradeMaster("Master", Strings.Gui_CommandMenu_Drive_Master).setUnlocalizedName(Strings.LevelUpMaster).setCreativeTab(tabKingdomKeys);
 		LevelUpFinal = new ItemUpgradeFinal("Final", Strings.Gui_CommandMenu_Drive_Final).setUnlocalizedName(Strings.LevelUpFinal).setCreativeTab(tabKingdomKeys);
-		
+
 		SynthesisBagS = new ItemSynthesisBagS().setUnlocalizedName(Strings.SynthesisBagS).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		SynthesisBagM = new ItemSynthesisBagM().setUnlocalizedName(Strings.SynthesisBagM).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		SynthesisBagL = new ItemSynthesisBagL().setUnlocalizedName(Strings.SynthesisBagL).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-
 
 		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
 		Disc_Darkness_of_the_Unknown = new ItemKKRecord(Strings.Disc_Darkness_of_the_Unknown_Name, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
@@ -736,8 +399,8 @@ public class ModItems {
 		Recipe = new ItemRecipe().setUnlocalizedName(Strings.Recipe).setCreativeTab(tabKingdomKeys);
 	}
 
-	public static void register(){
-		//Materials
+	public static void register () {
+		// Materials
 		GameRegistry.registerItem(BlazingInfusedCoal, Strings.BlazingInfusedCoal);
 		GameRegistry.registerItem(FrostInfusedSnowBall, Strings.FrostInfusedSnowBall);
 		GameRegistry.registerItem(StormyInfusedIron, Strings.StormyInfusedIron);
@@ -746,7 +409,7 @@ public class ModItems {
 		GameRegistry.registerItem(BrightInfusedGlowStone, Strings.BrightInfusedGlowStone);
 		GameRegistry.registerItem(DarkInfusedIron, Strings.DarkInfusedIron);
 
-		//Armour
+		// Armour
 		GameRegistry.registerItem(OrganizationRobe_Helmet = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, 0, Strings.OrganizationRobe_Helmet), Strings.OrganizationRobe_Helmet);
 		GameRegistry.registerItem(OrganizationRobe_Chestplate = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, 1, Strings.OrganizationRobe_Chestplate), Strings.OrganizationRobe_Chestplate);
 		GameRegistry.registerItem(OrganizationRobe_Leggings = new ItemOrganizationRobe(ORGANIZATIONROBE, 2, 2, Strings.OrganizationRobe_Leggings), Strings.OrganizationRobe_Leggings);
@@ -772,8 +435,7 @@ public class ModItems {
 		GameRegistry.registerItem(Eraqus_Leggings = new ItemEraqusArmor(ERAQUS, 2, 2, Strings.Eraqus_Leggings), Strings.Eraqus_Leggings);
 		GameRegistry.registerItem(Eraqus_Boots = new ItemEraqusArmor(ERAQUS, 1, 3, Strings.Eraqus_Boots), Strings.Eraqus_Boots);
 
-
-		//Organization
+		// Organization
 		GameRegistry.registerItem(Interdiction, Strings.Interdiction);
 		GameRegistry.registerItem(Sharpshooter, Strings.Sharpshooter);
 		GameRegistry.registerItem(Lindworm, Strings.Lindworm);
@@ -790,7 +452,7 @@ public class ModItems {
 		GameRegistry.registerItem(Prometheus, Strings.Prometheus);
 		GameRegistry.registerItem(Ifrit, Strings.Ifrit);
 
-		//Knowledge
+		// Knowledge
 		GameRegistry.registerItem(AbandonedKnowledge, Strings.AbandonedKnowledge);
 		GameRegistry.registerItem(DarkKnowledge, Strings.DarkKnowledge);
 		GameRegistry.registerItem(EclipsedKnowledge, Strings.EclipsedKnowledge);
@@ -802,7 +464,7 @@ public class ModItems {
 		GameRegistry.registerItem(UnknownKnowledge, Strings.UnknownKnowledge);
 		GameRegistry.registerItem(VoidKnowledge, Strings.VoidKnowledge);
 
-		//Keyblades
+		// Keyblades
 		GameRegistry.registerItem(AbaddonPlasma, Strings.AbaddonPlasma);
 		GameRegistry.registerItem(AbyssalTide, Strings.AbyssalTide);
 		GameRegistry.registerItem(AllforOne, Strings.AllforOne);
@@ -924,7 +586,7 @@ public class ModItems {
 		GameRegistry.registerItem(YoungXehanortsKeyblade, Strings.YoungXehanortsKeyblade);
 		GameRegistry.registerItem(ZeroOne, Strings.ZeroOne);
 
-		//CHAINS
+		// CHAINS
 		GameRegistry.registerItem(Chain_AbaddonPlasma, Strings.Chain_AbaddonPlasma);
 		GameRegistry.registerItem(Chain_AbyssalTide, Strings.Chain_AbyssalTide);
 		GameRegistry.registerItem(Chain_AllforOne, Strings.Chain_AllforOne);
@@ -1044,7 +706,7 @@ public class ModItems {
 		GameRegistry.registerItem(Chain_YoungXehanortsKeyblade, Strings.Chain_YoungXehanortsKeyblade);
 		GameRegistry.registerItem(Chain_ZeroOne, Strings.Chain_ZeroOne);
 
-		//ITEMS
+		// ITEMS
 		GameRegistry.registerItem(Munny, Strings.Munny);
 		GameRegistry.registerItem(EmptyBottle, Strings.EmptyBottle);
 		GameRegistry.registerItem(Potion, Strings.Potion);
@@ -1077,7 +739,7 @@ public class ModItems {
 		GameRegistry.registerItem(SynthesisBagM, Strings.SynthesisBagM);
 		GameRegistry.registerItem(SynthesisBagL, Strings.SynthesisBagL);
 
-		//DISCS
+		// DISCS
 		GameRegistry.registerItem(Disc_Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future);
 		GameRegistry.registerItem(Disc_Darkness_of_the_Unknown, Strings.Disc_Darkness_of_the_Unknown);
 		GameRegistry.registerItem(Disc_Dearly_Beloved_Symphony_Version, Strings.Disc_Dearly_Beloved_Symphony_Version);
@@ -1093,8 +755,8 @@ public class ModItems {
 		GameRegistry.registerItem(Disc_The_13th_Anthology, Strings.Disc_The_13th_Anthology);
 	}
 
-	public static void registerRenders(){
-		//Materials
+	public static void registerRenders () {
+		// Materials
 		registerRender(BlazingInfusedCoal);
 		registerRender(FrostInfusedSnowBall);
 		registerRender(StormyInfusedIron);
@@ -1103,7 +765,7 @@ public class ModItems {
 		registerRender(BrightInfusedGlowStone);
 		registerRender(DarkInfusedIron);
 
-		//Armour
+		// Armour
 		registerRender(OrganizationRobe_Helmet);
 		registerRender(OrganizationRobe_Chestplate);
 		registerRender(OrganizationRobe_Leggings);
@@ -1129,7 +791,7 @@ public class ModItems {
 		registerRender(Eraqus_Leggings);
 		registerRender(Eraqus_Boots);
 
-		//Organization
+		// Organization
 		registerRender(Interdiction);
 		registerRender(Sharpshooter);
 		registerRender(Lindworm);
@@ -1143,7 +805,7 @@ public class ModItems {
 		registerRender(GracefulDahlia);
 		registerRender(Foudre);
 
-		//Knowledge
+		// Knowledge
 		registerRender(AbandonedKnowledge);
 		registerRender(DarkKnowledge);
 		registerRender(EclipsedKnowledge);
@@ -1155,7 +817,7 @@ public class ModItems {
 		registerRender(UnknownKnowledge);
 		registerRender(VoidKnowledge);
 
-		//Keyblades
+		// Keyblades
 		registerRender(AbaddonPlasma);
 		registerRender(AbyssalTide);
 		registerRender(AllforOne);
@@ -1214,7 +876,7 @@ public class ModItems {
 		registerRender(MasterXehanortsKeyblade);
 		registerRender(MastersDefender);
 		registerRender(MaverickFlare);
-		//registerRender(MetalChocobo);
+		// registerRender(MetalChocobo);
 		registerRender(MidnightRoar);
 		registerRender(MissingAche);
 		registerRender(Monochrome);
@@ -1275,7 +937,7 @@ public class ModItems {
 		registerRender(YoungXehanortsKeyblade);
 		registerRender(ZeroOne);
 
-		//CHAINS
+		// CHAINS
 		registerRender(Chain_AbaddonPlasma);
 		registerRender(Chain_AbyssalTide);
 		registerRender(Chain_AllforOne);
@@ -1396,7 +1058,7 @@ public class ModItems {
 		registerRender(Chain_YoungXehanortsKeyblade);
 		registerRender(Chain_ZeroOne);
 
-		//Other items
+		// Other items
 		registerRender(Munny);
 		registerRender(EmptyBottle);
 		registerRender(Potion);
@@ -1429,7 +1091,7 @@ public class ModItems {
 		registerRender(SynthesisBagM);
 		registerRender(SynthesisBagL);
 
-		//Discs
+		// Discs
 		registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);
 		registerRender(Disc_Darkness_of_the_Unknown);
 		registerRender(Disc_Dearly_Beloved_Symphony_Version);
@@ -1446,7 +1108,7 @@ public class ModItems {
 
 	}
 
-	public static void registerRender(Item item){
+	public static void registerRender (Item item) {
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
 	}
 }

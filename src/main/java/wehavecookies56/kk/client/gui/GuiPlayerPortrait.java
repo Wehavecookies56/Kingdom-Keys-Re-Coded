@@ -15,286 +15,319 @@ import wehavecookies56.kk.lib.Reference;
 public class GuiPlayerPortrait extends GuiScreen {
 
 	@SubscribeEvent
-	public void onRenderOverlayPost(RenderGameOverlayEvent event){
+	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
 		Minecraft mc = Minecraft.getMinecraft();
 		int screenWidth = event.resolution.getScaledWidth();
 		int screenHeight = event.resolution.getScaledHeight();
-		if(event.type == RenderGameOverlayEvent.ElementType.TEXT) {
+		if (event.type == RenderGameOverlayEvent.ElementType.TEXT) {
 			GL11.glColor3f(1, 1, 1);
 			ResourceLocation skin = ((AbstractClientPlayer) mc.thePlayer).getLocationSkin();
 			mc.getTextureManager().bindTexture(skin);
 			float scale = 0.5f;
-			switch(mc.gameSettings.guiScale){
-			case Constants.SCALE_AUTO:
-				scale = 0.85f;
-				break;
-			case Constants.SCALE_NORMAL:
-				scale = 0.85f;
-				break;
-			default:
-				scale = 0.65f;
-				break;
+			switch (mc.gameSettings.guiScale) {
+				case Constants.SCALE_AUTO:
+					scale = 0.85f;
+					break;
+				case Constants.SCALE_NORMAL:
+					scale = 0.85f;
+					break;
+				default:
+					scale = 0.65f;
+					break;
 			}
 
-			if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti"))
-			{
-				GL11.glColor3ub((byte)30, (byte)30, (byte)30);
+			if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti")) GL11.glColor3ub((byte) 30, (byte) 30, (byte) 30);
 
-			}
-
-			//HEAD
+			// HEAD
 			int headWidth = 32;
 			int headHeight = 32;
 			float headPosX = 16;
 			float headPosY = 32;
-			float scaledHeadPosX = headPosX*scale;
-			float scaledHeadPosY = headPosY*scale;
+			float scaledHeadPosX = headPosX * scale;
+			float scaledHeadPosY = headPosY * scale;
 
-			GL11.glPushMatrix();{
-				GL11.glTranslatef((screenWidth - headWidth*scale) - scaledHeadPosX, (screenHeight - headHeight*scale) - scaledHeadPosY, 0);
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef((screenWidth - headWidth * scale) - scaledHeadPosX, (screenHeight - headHeight * scale) - scaledHeadPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 32, 32, headWidth, headHeight);
-			}GL11.glPopMatrix();
+			}
+			GL11.glPopMatrix();
 
-			//HAT
+			// HAT
 			int hatWidth = 32;
 			int hatHeight = 32;
 			float hatPosX = 16;
 			float hatPosY = 32;
-			float scaledHatPosX = hatPosX*scale;
-			float scaledHatPosY = hatPosY*scale;
+			float scaledHatPosX = hatPosX * scale;
+			float scaledHatPosY = hatPosY * scale;
 
-			GL11.glPushMatrix();{
-				GL11.glTranslatef((screenWidth - hatWidth*scale) - scaledHatPosX, (screenHeight - hatHeight*scale) - scaledHatPosY, 0);
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef((screenWidth - hatWidth * scale) - scaledHatPosX, (screenHeight - hatHeight * scale) - scaledHatPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 160, 32, hatWidth, hatHeight);
-			}GL11.glPopMatrix();
+			}
+			GL11.glPopMatrix();
 
-			//BODY
+			// BODY
 			int bodyWidth = 32;
 			int bodyHeight = 64;
 			float bodyPosX = 16;
 			float bodyPosY = -32;
-			float scaledBodyPosX = bodyPosX*scale;
-			float scaledBodyPosY = bodyPosY*scale;
+			float scaledBodyPosX = bodyPosX * scale;
+			float scaledBodyPosY = bodyPosY * scale;
 
-			GL11.glPushMatrix();{
-				GL11.glTranslatef((screenWidth - bodyWidth*scale) - scaledBodyPosX, (screenHeight - bodyHeight*scale) - scaledBodyPosY, 0);
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef((screenWidth - bodyWidth * scale) - scaledBodyPosX, (screenHeight - bodyHeight * scale) - scaledBodyPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 80, 80, bodyWidth, bodyHeight);
-			}GL11.glPopMatrix();
-			
-			//JACKET
+			}
+			GL11.glPopMatrix();
+
+			// JACKET
 			int jacketWidth = 32;
 			int jacketHeight = 64;
 			float jacketPosX = 16;
 			float jacketPosY = -32;
-			float scaledjacketPosX = jacketPosX*scale;
-			float scaledjacketPosY = jacketPosY*scale;
+			float scaledjacketPosX = jacketPosX * scale;
+			float scaledjacketPosY = jacketPosY * scale;
 
-			GL11.glPushMatrix();{
-				GL11.glTranslatef((screenWidth - bodyWidth*scale) - scaledBodyPosX, (screenHeight - bodyHeight*scale) - scaledBodyPosY, 0);
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef((screenWidth - bodyWidth * scale) - scaledBodyPosX, (screenHeight - bodyHeight * scale) - scaledBodyPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 80, 148, bodyWidth, bodyHeight);
-			}GL11.glPopMatrix();
+			}
+			GL11.glPopMatrix();
 
-			//ARMS
+			// ARMS
 			int armWidth = 16;
 			int armHeight = 64;
 			float armRPosX = 48;
 			float armRPosY = -32;
-			float scaledArmRPosX = armRPosX*scale;
-			float scaledArmRPosY = armRPosY*scale;
+			float scaledArmRPosX = armRPosX * scale;
+			float scaledArmRPosY = armRPosY * scale;
 			float armLPosX = 0;
 			float armLPosY = -32;
-			float scaledArmLPosX = armLPosX*scale;
-			float scaledArmLPosY = armLPosY*scale;
+			float scaledArmLPosX = armLPosX * scale;
+			float scaledArmLPosY = armLPosY * scale;
 
-			GL11.glPushMatrix();{
-				GL11.glTranslatef((screenWidth - armWidth*scale) - scaledArmRPosX, (screenHeight - armHeight*scale) - scaledArmRPosY, 0);
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef((screenWidth - armWidth * scale) - scaledArmRPosX, (screenHeight - armHeight * scale) - scaledArmRPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 176, 80, armWidth, armHeight);
-			}GL11.glPopMatrix();
+			}
+			GL11.glPopMatrix();
 
-			GL11.glPushMatrix();{
-				GL11.glTranslatef((screenWidth - armWidth*scale) - scaledArmLPosX, (screenHeight - armHeight*scale) - scaledArmLPosY, 0);
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef((screenWidth - armWidth * scale) - scaledArmLPosX, (screenHeight - armHeight * scale) - scaledArmLPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 176, 80, armWidth, armHeight);
-			}GL11.glPopMatrix();
+			}
+			GL11.glPopMatrix();
 			GL11.glColor4f(100.0F, 1.0F, 1.0F, 1.0F);
-			
-			//GLOVES
+
+			// GLOVES
 			int gloveWidth = 16;
 			int gloveHeight = 64;
 			float gloveRPosX = 48;
 			float gloveRPosY = -32;
-			float scaledgloveRPosX = gloveRPosX*scale;
-			float scaledgloveRPosY = gloveRPosY*scale;
+			float scaledgloveRPosX = gloveRPosX * scale;
+			float scaledgloveRPosY = gloveRPosY * scale;
 			float gloveLPosX = 0;
 			float gloveLPosY = -32;
-			float scaledgloveLPosX = gloveLPosX*scale;
-			float scaledgloveLPosY = gloveLPosY*scale;
+			float scaledgloveLPosX = gloveLPosX * scale;
+			float scaledgloveLPosY = gloveLPosY * scale;
 
-			GL11.glPushMatrix();{
-				GL11.glTranslatef((screenWidth - gloveWidth*scale) - scaledgloveRPosX, (screenHeight - gloveHeight*scale) - scaledgloveRPosY, 0);
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef((screenWidth - gloveWidth * scale) - scaledgloveRPosX, (screenHeight - gloveHeight * scale) - scaledgloveRPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 176, 150, gloveWidth, gloveHeight);
-			}GL11.glPopMatrix();
+			}
+			GL11.glPopMatrix();
 
-			GL11.glPushMatrix();{
-				GL11.glTranslatef((screenWidth - gloveWidth*scale) - scaledgloveLPosX, (screenHeight - gloveHeight*scale) - scaledgloveLPosY, 0);
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef((screenWidth - gloveWidth * scale) - scaledgloveLPosX, (screenHeight - gloveHeight * scale) - scaledgloveLPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 176, 150, gloveWidth, gloveHeight);
-			}GL11.glPopMatrix();
+			}
+			GL11.glPopMatrix();
 			GL11.glColor4f(100.0F, 1.0F, 1.0F, 1.0F);
 
-			if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
-			{
+			if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor")) {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Valor_A.png");
 				mc.renderEngine.bindTexture(texture);
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 32*scale) - 16*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 16*scale) - 48*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 16*scale) - 0*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 
-			}
-			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Wisdom"))
-			{
+			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Wisdom")) {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Wisdom_A.png");
 				mc.renderEngine.bindTexture(texture);
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 32*scale) - 16*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 16*scale) - 48*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 16*scale) - 0*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
-				}GL11.glPopMatrix();
-			}
-			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Limit"))
-			{
+				}
+				GL11.glPopMatrix();
+			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Limit")) {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Limit_A.png");
 				mc.renderEngine.bindTexture(texture);
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 32*scale) - 16*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 16*scale) - 48*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 16*scale) - 0*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
-				}GL11.glPopMatrix();
-			}
-			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Master"))
-			{
+				}
+				GL11.glPopMatrix();
+			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Master")) {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Master_A.png");
 				mc.renderEngine.bindTexture(texture);
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 32*scale) - 16*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 16*scale) - 48*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 16*scale) - 0*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
-				}GL11.glPopMatrix();
-			}
-			else if(ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Final"))
-			{
+				}
+				GL11.glPopMatrix();
+			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Final")) {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Final_A.png");
 				mc.renderEngine.bindTexture(texture);
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 32*scale) - 16*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 16*scale) - 48*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 
-				GL11.glPushMatrix();{
-					GL11.glTranslatef((screenWidth - 16*scale) - 0*scale, (screenHeight - 80*scale) - -48*scale, 0);
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
 					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
-				}GL11.glPopMatrix();
+				}
+				GL11.glPopMatrix();
 			}
-			
+
 		}
 	}
 }

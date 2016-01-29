@@ -14,31 +14,29 @@ public class RecipeRegistry {
 
 	private static Map<String, Recipe> recipeMap = new HashMap<String, Recipe>();
 
-	public static Map<String, Recipe> getRecipeMap() {
+	public static Map<String, Recipe> getRecipeMap () {
 		return ImmutableMap.copyOf(recipeMap);
 	}
 
-	public static boolean registerRecipe(Recipe recipe) {
-		if (isRecipeRegistered(recipe.getName())) {
-			return false;
-		}
+	public static boolean registerRecipe (Recipe recipe) {
+		if (isRecipeRegistered(recipe.getName())) return false;
 		recipeMap.put(recipe.getName(), recipe);
 		return true;
 	}
 
-	public static boolean isRecipeRegistered(Recipe recipe) {
+	public static boolean isRecipeRegistered (Recipe recipe) {
 		return isRecipeRegistered(recipe.getName());
 	}
 
-	public static boolean isRecipeRegistered(String name) {
+	public static boolean isRecipeRegistered (String name) {
 		return recipeMap.containsKey(name);
 	}
 
-	public static Recipe get(String name) {
+	public static Recipe get (String name) {
 		return recipeMap.get(name);
 	}
 
-	public static boolean learnrecipe(EntityPlayer player, String recipeName) {
+	public static boolean learnrecipe (EntityPlayer player, String recipeName) {
 		if (player != null && !isRecipeKnown(player, recipeName)) {
 			Recipe recipe = recipeMap.get(recipeName);
 			ExtendedPlayerRecipes.get(player).learnRecipe(recipe);
@@ -48,10 +46,8 @@ public class RecipeRegistry {
 		return false;
 	}
 
-	public static boolean isRecipeKnown(EntityPlayer player, String name) {
-		if (ExtendedPlayerRecipes.get(player) != null) {
-			return ExtendedPlayerRecipes.get(player).knownRecipes.contains(name);
-		}
+	public static boolean isRecipeKnown (EntityPlayer player, String name) {
+		if (ExtendedPlayerRecipes.get(player) != null) return ExtendedPlayerRecipes.get(player).knownRecipes.contains(name);
 		return false;
 	}
 

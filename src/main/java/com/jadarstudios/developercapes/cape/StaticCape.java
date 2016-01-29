@@ -26,57 +26,59 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
  */
 public class StaticCape extends AbstractCape {
 
-    public StaticCape(String name, URL url) {
-        this.setName(name);
-        this.setURL(url);
-    }
+	public StaticCape (String name, URL url) {
+		setName(name);
+		setURL(url);
+	}
 
-    public StaticCape(String name) {
-        this(name, null);
-    }
+	public StaticCape (String name) {
+		this(name, null);
+	}
 
-    @Override
-    public void loadTexture(AbstractClientPlayer player) {
-        ResourceLocation location = this.getLocation();
+	@Override
+	public void loadTexture (AbstractClientPlayer player) {
+		ResourceLocation location = getLocation();
 
-        //mmdanggg2: using reflection to modify the private locationCape, hacky but it works.
-        //Wehavecookies56: Added obfuscated field names for reflection
-        try {
-        	Field playerInfoF = ReflectionHelper.findField(AbstractClientPlayer.class, "playerInfo", "field_175157_a");
-            playerInfoF.setAccessible(true);
-            NetworkPlayerInfo nci = (NetworkPlayerInfo) playerInfoF.get(player);
+		// mmdanggg2: using reflection to modify the private locationCape, hacky
+		// but it works.
+		// Wehavecookies56: Added obfuscated field names for reflection
+		try {
+			Field playerInfoF = ReflectionHelper.findField(AbstractClientPlayer.class, "playerInfo", "field_175157_a");
+			playerInfoF.setAccessible(true);
+			NetworkPlayerInfo nci = (NetworkPlayerInfo) playerInfoF.get(player);
 
-            Field locationCapeF = ReflectionHelper.findField(NetworkPlayerInfo.class, "locationCape", "field_178862_f");
-            locationCapeF.setAccessible(true);
-            locationCapeF.set(nci, location);
+			Field locationCapeF = ReflectionHelper.findField(NetworkPlayerInfo.class, "locationCape", "field_178862_f");
+			locationCapeF.setAccessible(true);
+			locationCapeF.set(nci, location);
 
-            playerInfoF.setAccessible(false);
-            locationCapeF.setAccessible(false);
+			playerInfoF.setAccessible(false);
+			locationCapeF.setAccessible(false);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            DevCapes.getInstance().logger.error("Setting cape ResourceLocation failed!");
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+			DevCapes.getInstance();
+			DevCapes.logger.error("Setting cape ResourceLocation failed!");
+		}
 
-        Minecraft.getMinecraft().renderEngine.loadTexture(location, this.getTexture());
-    }
+		Minecraft.getMinecraft().renderEngine.loadTexture(location, getTexture());
+	}
 
-    @Override
-    public boolean isTextureLoaded(AbstractClientPlayer player) {
-        ResourceLocation cape = player.getLocationCape();
-        return cape != null;
-    }
+	@Override
+	public boolean isTextureLoaded (AbstractClientPlayer player) {
+		ResourceLocation cape = player.getLocationCape();
+		return cape != null;
+	}
 
-    public void setURL(URL url) {
-        if (url == null) {
-            this.texture = null;
-            return;
-        }
-        this.texture = new ThreadDownloadImageData(null, url.toString(), null, new HDImageBuffer());
-    }
+	public void setURL (URL url) {
+		if (url == null) {
+			this.texture = null;
+			return;
+		}
+		this.texture = new ThreadDownloadImageData(null, url.toString(), null, new HDImageBuffer());
+	}
 
-    public void setName(String name) {
-        this.name = name;
-        this.location = new ResourceLocation("DevCapes/" + name);
-    }
+	public void setName (String name) {
+		this.name = name;
+		this.location = new ResourceLocation("DevCapes/" + name);
+	}
 }

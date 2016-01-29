@@ -17,88 +17,73 @@ public class CommandLearnRecipe implements ICommand {
 
 	private List aliases;
 	private List autoComplete;
-	public CommandLearnRecipe(){
+
+	public CommandLearnRecipe () {
 		this.aliases = new ArrayList();
 		this.aliases.add("learnrecipe");
 		this.aliases.add("addrecipe");
 		this.aliases.add("giverecipe");
 		this.aliases.add("kklearnrecipe");
 
-
 		this.autoComplete = new ArrayList();
 		this.autoComplete.add("all");
-		for (Object value : RecipeRegistry.getRecipeMap().values()) {
-			if(value instanceof Recipe){
-				this.autoComplete.add(((Recipe) value).getName().substring(5));
-			}
-		}
+		for (Object value : RecipeRegistry.getRecipeMap().values())
+			if (value instanceof Recipe) this.autoComplete.add(((Recipe) value).getName().substring(5));
 	}
 
 	@Override
-	public int compareTo(ICommand arg0) {
+	public int compareTo (ICommand arg0) {
 		return 0;
 	}
 
 	@Override
-	public String getCommandName() {
+	public String getCommandName () {
 		return "learnrecipe";
 	}
-	
-	public int getRequiredPermissionLevel()
-    {
-        return 2;
-    }
+
+	public int getRequiredPermissionLevel () {
+		return 2;
+	}
 
 	@Override
-	public String getCommandUsage(ICommandSender sender) {
+	public String getCommandUsage (ICommandSender sender) {
 		return "/learnrecipe <value>";
 	}
 
 	@Override
-	public List<String> getCommandAliases() {
+	public List<String> getCommandAliases () {
 		return this.aliases;
 	}
 
 	@Override
-	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-		if(sender.getCommandSenderEntity() instanceof EntityPlayer){
-			if(args.length == 0){
-				TextHelper.sendFormattedChatMessage("Invalid arguments, usage \"/learnrecipe <name>\"", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-			}else{
-				if(RecipeRegistry.isRecipeKnown((EntityPlayer) sender.getCommandSenderEntity(), "item." + args[0].toLowerCase())){
-					TextHelper.sendFormattedChatMessage("You already know this recipe", EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
-				}else if (RecipeRegistry.isRecipeRegistered("item." + args[0].toLowerCase())){
-					RecipeRegistry.learnrecipe((EntityPlayer) sender.getCommandSenderEntity(), "item." + args[0].toLowerCase());
-					TextHelper.sendFormattedChatMessage("Successfully learnt recipe for " + TextHelper.localize("item." + args[0].toLowerCase() + ".name"), EnumChatFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
-				}else if (args[0].equals("all")){
-					for (Object value : RecipeRegistry.getRecipeMap().values()) {
-						if(value instanceof Recipe){
-							if(!RecipeRegistry.isRecipeKnown((EntityPlayer) sender.getCommandSenderEntity(), ((Recipe) value).getName())){
-								RecipeRegistry.learnrecipe((EntityPlayer) sender.getCommandSenderEntity(), ((Recipe) value).getName());
-							}
-						}
-					}
-					TextHelper.sendFormattedChatMessage("Successfully learnt all the recipes", EnumChatFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
-				}else{
-					TextHelper.sendFormattedChatMessage("This recipe doesn't exist", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-				}
-			}
-		}
+	public void processCommand (ICommandSender sender, String[] args) throws CommandException {
+		if (sender.getCommandSenderEntity() instanceof EntityPlayer) if (args.length == 0)
+			TextHelper.sendFormattedChatMessage("Invalid arguments, usage \"/learnrecipe <name>\"", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+		else if (RecipeRegistry.isRecipeKnown((EntityPlayer) sender.getCommandSenderEntity(), "item." + args[0].toLowerCase()))
+			TextHelper.sendFormattedChatMessage("You already know this recipe", EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
+		else if (RecipeRegistry.isRecipeRegistered("item." + args[0].toLowerCase())) {
+			RecipeRegistry.learnrecipe((EntityPlayer) sender.getCommandSenderEntity(), "item." + args[0].toLowerCase());
+			TextHelper.sendFormattedChatMessage("Successfully learnt recipe for " + TextHelper.localize("item." + args[0].toLowerCase() + ".name"), EnumChatFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+		} else if (args[0].equals("all")) {
+			for (Object value : RecipeRegistry.getRecipeMap().values())
+				if (value instanceof Recipe) if (!RecipeRegistry.isRecipeKnown((EntityPlayer) sender.getCommandSenderEntity(), ((Recipe) value).getName())) RecipeRegistry.learnrecipe((EntityPlayer) sender.getCommandSenderEntity(), ((Recipe) value).getName());
+			TextHelper.sendFormattedChatMessage("Successfully learnt all the recipes", EnumChatFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+		} else
+			TextHelper.sendFormattedChatMessage("This recipe doesn't exist", EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 	}
 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-        return sender.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName());
-    }
+	public boolean canCommandSenderUseCommand (ICommandSender sender) {
+		return sender.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName());
+	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
+	public List addTabCompletionOptions (ICommandSender sender, String[] args, BlockPos pos) {
 		return this.autoComplete;
 	}
 
 	@Override
-	public boolean isUsernameIndex(String[] args, int index) {
+	public boolean isUsernameIndex (String[] args, int index) {
 		return false;
 	}
 

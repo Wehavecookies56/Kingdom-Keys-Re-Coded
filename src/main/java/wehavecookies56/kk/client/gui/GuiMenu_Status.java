@@ -16,56 +16,56 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 
 	GuiButton stats_player, stats_valor, stats_wisdom, stats_limit, stats_master, stats_final, stats_back;
 
-	public GuiMenu_Status(String name) {
+	public GuiMenu_Status (String name) {
 		super("Status");
 		drawPlayerInfo = false;
 	}
 
 	@Override
-	protected void actionPerformed(GuiButton button) throws IOException {
-		switch(button.id){
-		case STATS_PLAYER:
-			selected = STATS_PLAYER;
-			break;
-		case STATS_VALOR:
-			selected = STATS_VALOR;
-			break;
-		case STATS_WISDOM:
-			selected = STATS_WISDOM;
-			break;
-		case STATS_LIMIT:
-			selected = STATS_LIMIT;
-			break;
-		case STATS_MASTER:
-			selected = STATS_MASTER;
-			break;
-		case STATS_FINAL:
-			selected = STATS_FINAL;
-			break;
-		case STATS_BACK:
-			GuiHelper.openMenu();
-			break;
+	protected void actionPerformed (GuiButton button) throws IOException {
+		switch (button.id) {
+			case STATS_PLAYER:
+				selected = STATS_PLAYER;
+				break;
+			case STATS_VALOR:
+				selected = STATS_VALOR;
+				break;
+			case STATS_WISDOM:
+				selected = STATS_WISDOM;
+				break;
+			case STATS_LIMIT:
+				selected = STATS_LIMIT;
+				break;
+			case STATS_MASTER:
+				selected = STATS_MASTER;
+				break;
+			case STATS_FINAL:
+				selected = STATS_FINAL;
+				break;
+			case STATS_BACK:
+				GuiHelper.openMenu();
+				break;
 		}
 		updateButtons();
 	}
 
-	private void updateButtons() {
+	private void updateButtons () {
 		stats_player.enabled = selected != STATS_PLAYER;
 		stats_valor.enabled = selected != STATS_VALOR;
 		stats_wisdom.enabled = selected != STATS_WISDOM;
 		stats_limit.enabled = selected != STATS_LIMIT;
 		stats_master.enabled = selected != STATS_MASTER;
 		stats_final.enabled = selected != STATS_FINAL;
-		this.updateScreen();
+		updateScreen();
 	}
 
 	@Override
-	public void initGui() {
-		//super.initGui();
+	public void initGui () {
+		// super.initGui();
 
 		selected = 0;
 
-		int button_statsY = (-140/16) + 75;
+		int button_statsY = (-140 / 16) + 75;
 		int button_stats_playerY = button_statsY;
 		int button_stats_valorY = button_stats_playerY + 22;
 		int button_stats_wisdomY = button_stats_valorY + 22;
@@ -87,60 +87,60 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 	}
 
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+	public void drawScreen (int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
-		switch(selected){
-		case STATS_PLAYER:
-			drawRect(125, ((-140/16) + 75) + 10, 200, ((-140/16) + 75) + 20, 0xFFFFFF);
-			drawString(fontRendererObj, "Level", 125, ((-140/16) + 75) + 10, 0xFFFFFF);
-			drawString(fontRendererObj, "Total Experience", 125, ((-140/16) + 75) + 22, 0xFFFFFF);
-			drawString(fontRendererObj, "Next Level", 125, ((-140/16) + 75) + 34, 0xFFFFFF);
-			drawString(fontRendererObj, "HP", 125, ((-140/16) + 75) + 46, 0xFFFFFF);
-			drawString(fontRendererObj, "MP", 125, ((-140/16) + 75) + 58, 0xFFFFFF);
-			drawString(fontRendererObj, "AP", 125, ((-140/16) + 75) + 70, 0xFFFFFF);
-			drawString(fontRendererObj, "Drive Guage", 125, ((-140/16) + 75) + 82, 0xFFFFFF);
-			drawString(fontRendererObj, "Bonus Level", 125, ((-140/16) + 75) + 94, 0xFFFFFF);
-			drawString(fontRendererObj, "Strength", 125, ((-140/16) + 75) + 106, 0xFFFFFF);
-			drawString(fontRendererObj, "Magic", 125, ((-140/16) + 75) + 118, 0xFFFFFF);
-			drawString(fontRendererObj, "Defense", 125, ((-140/16) + 75) + 130, 0xFFFFFF);
-			drawString(fontRendererObj, "Fire Resistance", 125, ((-140/16) + 75) + 142, 0xFFFFFF);
-			drawString(fontRendererObj, "Blizzard Resistance", 125, ((-140/16) + 75) + 154, 0xFFFFFF);
-			drawString(fontRendererObj, "Thunder Resistance", 125, ((-140/16) + 75) + 166, 0xFFFFFF);
-			drawString(fontRendererObj, "Dark Resistance", 125, ((-140/16) + 75) + 178, 0xFFFFFF);
+		switch (selected) {
+			case STATS_PLAYER:
+				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
+				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRendererObj, "Total Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				drawString(fontRendererObj, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+				drawString(fontRendererObj, "HP", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
+				drawString(fontRendererObj, "MP", 125, ((-140 / 16) + 75) + 58, 0xFFFFFF);
+				drawString(fontRendererObj, "AP", 125, ((-140 / 16) + 75) + 70, 0xFFFFFF);
+				drawString(fontRendererObj, "Drive Guage", 125, ((-140 / 16) + 75) + 82, 0xFFFFFF);
+				drawString(fontRendererObj, "Bonus Level", 125, ((-140 / 16) + 75) + 94, 0xFFFFFF);
+				drawString(fontRendererObj, "Strength", 125, ((-140 / 16) + 75) + 106, 0xFFFFFF);
+				drawString(fontRendererObj, "Magic", 125, ((-140 / 16) + 75) + 118, 0xFFFFFF);
+				drawString(fontRendererObj, "Defense", 125, ((-140 / 16) + 75) + 130, 0xFFFFFF);
+				drawString(fontRendererObj, "Fire Resistance", 125, ((-140 / 16) + 75) + 142, 0xFFFFFF);
+				drawString(fontRendererObj, "Blizzard Resistance", 125, ((-140 / 16) + 75) + 154, 0xFFFFFF);
+				drawString(fontRendererObj, "Thunder Resistance", 125, ((-140 / 16) + 75) + 166, 0xFFFFFF);
+				drawString(fontRendererObj, "Dark Resistance", 125, ((-140 / 16) + 75) + 178, 0xFFFFFF);
 
-			ExtendedPlayer ep = ExtendedPlayer.get(mc.thePlayer);
+				ExtendedPlayer ep = ExtendedPlayer.get(mc.thePlayer);
 
-			drawString(fontRendererObj, "" + ep.getLevel(), 230, ((-140/16) + 75) + 10, 0xFFD900);
-			drawString(fontRendererObj, "" + ep.getXP(), 230, ((-140/16) + 75) + 22, 0xFFD900);
-			drawString(fontRendererObj, "" + ((Arrays.stream(PlayerLevel.expNeeded, 0, ep.getLevel()).sum()) - ep.getXP()), 230, ((-140/16) + 75) + 34, 0xFFD900);
-			drawString(fontRendererObj, "" + (int)mc.thePlayer.getMaxHealth(), 230, ((-140/16) + 75) + 46, 0xFFD900);
-			drawString(fontRendererObj, "" + (int)ep.getMaxMp(), 230, ((-140/16) + 75) + 58, 0xFFD900);
-			drawString(fontRendererObj, "N/A", 230, ((-140/16) + 75) + 70, 0xFFD900);
-			drawString(fontRendererObj, "9", 230, ((-140/16) + 75) + 82, 0xFFD900);
-			drawString(fontRendererObj, "N/A", 230, ((-140/16) + 75) + 94, 0xFFD900);
-			drawString(fontRendererObj, "" + ep.getStrength(), 230, ((-140/16) + 75) + 106, 0xFFD900);
-			drawString(fontRendererObj, "" + ep.getMagic(), 230, ((-140/16) + 75) + 118, 0xFFD900);
-			drawString(fontRendererObj, "" + ep.getDefense(), 230, ((-140/16) + 75) + 130, 0xFFD900);
-			drawString(fontRendererObj, "0%", 230, ((-140/16) + 75) + 142, 0xFFD900);
-			drawString(fontRendererObj, "0%", 230, ((-140/16) + 75) + 154, 0xFFD900);
-			drawString(fontRendererObj, "0%", 230, ((-140/16) + 75) + 166, 0xFFD900);
-			drawString(fontRendererObj, "0%", 230, ((-140/16) + 75) + 178, 0xFFD900);
-			break;
-		case STATS_VALOR:
+				drawString(fontRendererObj, "" + ep.getLevel(), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRendererObj, "" + ep.getXP(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+				drawString(fontRendererObj, "" + ((Arrays.stream(PlayerLevel.expNeeded, 0, ep.getLevel()).sum()) - ep.getXP()), 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+				drawString(fontRendererObj, "" + (int) mc.thePlayer.getMaxHealth(), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
+				drawString(fontRendererObj, "" + (int) ep.getMaxMp(), 230, ((-140 / 16) + 75) + 58, 0xFFD900);
+				drawString(fontRendererObj, "N/A", 230, ((-140 / 16) + 75) + 70, 0xFFD900);
+				drawString(fontRendererObj, "9", 230, ((-140 / 16) + 75) + 82, 0xFFD900);
+				drawString(fontRendererObj, "N/A", 230, ((-140 / 16) + 75) + 94, 0xFFD900);
+				drawString(fontRendererObj, "" + ep.getStrength(), 230, ((-140 / 16) + 75) + 106, 0xFFD900);
+				drawString(fontRendererObj, "" + ep.getMagic(), 230, ((-140 / 16) + 75) + 118, 0xFFD900);
+				drawString(fontRendererObj, "" + ep.getDefense(), 230, ((-140 / 16) + 75) + 130, 0xFFD900);
+				drawString(fontRendererObj, "0%", 230, ((-140 / 16) + 75) + 142, 0xFFD900);
+				drawString(fontRendererObj, "0%", 230, ((-140 / 16) + 75) + 154, 0xFFD900);
+				drawString(fontRendererObj, "0%", 230, ((-140 / 16) + 75) + 166, 0xFFD900);
+				drawString(fontRendererObj, "0%", 230, ((-140 / 16) + 75) + 178, 0xFFD900);
+				break;
+			case STATS_VALOR:
 
-			break;
-		case STATS_WISDOM:
+				break;
+			case STATS_WISDOM:
 
-			break;
-		case STATS_LIMIT:
+				break;
+			case STATS_LIMIT:
 
-			break;
-		case STATS_MASTER:
+				break;
+			case STATS_MASTER:
 
-			break;
-		case STATS_FINAL:
+				break;
+			case STATS_FINAL:
 
-			break;
+				break;
 		}
 	}
 

@@ -1,4 +1,5 @@
 package wehavecookies56.kk.block;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -11,41 +12,11 @@ import wehavecookies56.kk.lib.Strings;
 
 public class ModBlocks {
 
-	public static Block
-		NormalBlox,
-		HardBlox,
-		MetalBlox,
-		DangerBlox,
-		BounceBlox,
-		BlastBlox,
-		PrizeBlox,
-		RarePrizeBlox,
-		GhostBlox,
-		BlazingOre,
-		BrightOre,
-		DarkOre,
-		DarkOreE,
-		DenseOre,
-		EnergyOre,
-		FrostOre,
-		LightningOre,
-		LucidOre,
-		PowerOre,
-		PowerOreE,
-		RemembranceOre,
-		SerenityOre,
-		StormyOre,
-		TranquilOre,
-		TwilightOre,
-		SynthesisTable,
-		KKChest,
-		SavePoint,
-		MagnetBlox
-		;
+	public static Block NormalBlox, HardBlox, MetalBlox, DangerBlox, BounceBlox, BlastBlox, PrizeBlox, RarePrizeBlox, GhostBlox, BlazingOre, BrightOre, DarkOre, DarkOreE, DenseOre, EnergyOre, FrostOre, LightningOre, LucidOre, PowerOre, PowerOreE, RemembranceOre, SerenityOre, StormyOre, TranquilOre, TwilightOre, SynthesisTable, KKChest, SavePoint, MagnetBlox;
 
 	public static CreativeTabs tabKingdomKeysBlocks;
 
-	public static void init(){
+	public static void init () {
 		tabKingdomKeysBlocks = new TabKingdomKeysBlocks(CreativeTabs.getNextID(), Strings.tabKingdomKeysBlocks);
 		NormalBlox = new BlockNormalBlox(Material.iron, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.NormalBlox).setCreativeTab(tabKingdomKeysBlocks);
 		HardBlox = new BlockHardBlox(Material.iron, "pickaxe", 1, 5f, 20f).setUnlocalizedName(Strings.HardBlox).setCreativeTab(tabKingdomKeysBlocks);
@@ -61,7 +32,7 @@ public class ModBlocks {
 		DarkOre = new BlockDarkOre(Material.iron, "pickaxe", 2, 1f, 1f).setUnlocalizedName(Strings.DarkOre).setCreativeTab(tabKingdomKeysBlocks);
 		DarkOreE = new BlockDarkOreE(Material.iron, "pickaxe", 2, 1f, 1f).setUnlocalizedName(Strings.DarkOreE).setCreativeTab(tabKingdomKeysBlocks);
 		DenseOre = new BlockDenseOre(Material.iron, "pickaxe", 2, 1f, 1f).setUnlocalizedName(Strings.DenseOre).setCreativeTab(tabKingdomKeysBlocks);
-		EnergyOre = new BlockEnergyOre(Material.iron, "pickaxe", 1, 1f,	1f).setUnlocalizedName(Strings.EnergyOre).setCreativeTab(tabKingdomKeysBlocks);
+		EnergyOre = new BlockEnergyOre(Material.iron, "pickaxe", 1, 1f, 1f).setUnlocalizedName(Strings.EnergyOre).setCreativeTab(tabKingdomKeysBlocks);
 		FrostOre = new BlockFrostOre(Material.iron, "pickaxe", 1, 1f, 1f).setUnlocalizedName(Strings.FrostOre).setCreativeTab(tabKingdomKeysBlocks);
 		LightningOre = new BlockLightningOre(Material.iron, "pickaxe", 1, 1f, 1f).setUnlocalizedName(Strings.LightningOre).setCreativeTab(tabKingdomKeysBlocks);
 		LucidOre = new BlockLucidOre(Material.iron, "pickaxe", 1, 1f, 1f).setUnlocalizedName(Strings.LucidOre).setCreativeTab(tabKingdomKeysBlocks);
@@ -73,17 +44,17 @@ public class ModBlocks {
 		StormyOre = new BlockStormyOre(Material.iron, "pickaxe", 2, 1f, 1f).setUnlocalizedName(Strings.StormyOre).setCreativeTab(tabKingdomKeysBlocks);
 		TwilightOre = new BlockTwilightOre(Material.iron, "pickaxe", 2, 1f, 1f).setUnlocalizedName(Strings.TwilightOre).setCreativeTab(tabKingdomKeysBlocks);
 		SynthesisTable = new BlockSynthesisTable(Material.wood, "axe", 0, 1, 1).setUnlocalizedName(Strings.SynthesisTable).setCreativeTab(tabKingdomKeysBlocks);
-		KKChest = new BlockKKChest(Material.rock, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.KKChest).setCreativeTab(tabKingdomKeysBlocks).setStepSound(KKChest.soundTypeStone);
-		SavePoint = new BlockSavePoint(Material.circuits, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.SavePoint).setCreativeTab(tabKingdomKeysBlocks).setStepSound(SavePoint.soundTypeStone);
+		KKChest = new BlockKKChest(Material.rock, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.KKChest).setCreativeTab(tabKingdomKeysBlocks).setStepSound(Block.soundTypeStone);
+		SavePoint = new BlockSavePoint(Material.circuits, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.SavePoint).setCreativeTab(tabKingdomKeysBlocks).setStepSound(Block.soundTypeStone);
 		MagnetBlox = new BlockMagnetBlox(Material.iron, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.MagnetBlox).setCreativeTab(tabKingdomKeysBlocks);
 
 	}
 
-	public static void registerBlock(Block block){
+	public static void registerBlock (Block block) {
 		GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));
 	}
 
-	public static void register(){
+	public static void register () {
 		GameRegistry.registerBlock(NormalBlox, Strings.NormalBlox);
 		GameRegistry.registerBlock(HardBlox, Strings.HardBlox);
 		GameRegistry.registerBlock(MetalBlox, Strings.MetalBlox);
@@ -116,7 +87,7 @@ public class ModBlocks {
 
 	}
 
-	public static void registerRenders(){
+	public static void registerRenders () {
 		Item item = Item.getItemFromBlock(GhostBlox);
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "visible=0"));
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 1, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "visible=1"));
@@ -152,9 +123,8 @@ public class ModBlocks {
 
 	}
 
-	public static void registerRender(Block block){
+	public static void registerRender (Block block) {
 		Item item = Item.getItemFromBlock(block);
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
 	}
 }
-

@@ -14,25 +14,25 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 
 	double x, y, z;
 	int lvl;
-	double ex=0, ey, ez;
-	public SpawnThunderParticles() {}
+	double ex = 0, ey, ez;
 
-	public SpawnThunderParticles(Entity entity, int level) {
+	public SpawnThunderParticles () {}
+
+	public SpawnThunderParticles (Entity entity, int level) {
 		x = entity.posX;
 		y = entity.posY;
 		z = entity.posZ;
 		lvl = level;
 	}
-	
-	public SpawnThunderParticles(double ex, double ey, double ez)
-	{
+
+	public SpawnThunderParticles (double ex, double ey, double ez) {
 		this.ex = ex;
 		this.ey = ey;
 		this.ez = ez;
 	}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 		x = buffer.readDouble();
 		y = buffer.readDouble();
 		z = buffer.readDouble();
@@ -43,7 +43,7 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeDouble(x);
 		buffer.writeDouble(y);
 		buffer.writeDouble(z);
@@ -54,23 +54,19 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
+	public void process (EntityPlayer player, Side side) {
 		double r = 2.0D;
-		if(ex != 0)
-		{
-			player.worldObj.spawnEntityInWorld((new EntityLightningBolt(player.worldObj, ex, ey, ez)));
-		}
-		switch(this.lvl)
-		{
+		if (ex != 0) player.worldObj.spawnEntityInWorld((new EntityLightningBolt(player.worldObj, ex, ey, ez)));
+		switch (this.lvl) {
 			case 1:
 
-				for(int a = 1; a <= 360; a+=7){
+				for (int a = 1; a <= 360; a += 7) {
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-		
-					player.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, this.y+1, z, 30, 15, 0);
+
+					player.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, this.y + 1, z, 30, 15, 0);
 				}
-			break;
+				break;
 		}
 	}
 }

@@ -49,10 +49,10 @@ import wehavecookies56.kk.util.LogHelper;
 import wehavecookies56.kk.worldgen.ChestGen;
 import wehavecookies56.kk.worldgen.WorldGenBlox;
 
-@Mod(name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER, guiFactory = Reference.GUIFACTORY, modLanguage = "java")
+@Mod (name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER, guiFactory = Reference.GUIFACTORY, modLanguage = "java")
 public class KingdomKeys {
 
-	@SidedProxy(clientSide = Reference.CLIENTPROXY, serverSide = Reference.COMMONPROXY)
+	@SidedProxy (clientSide = Reference.CLIENTPROXY, serverSide = Reference.COMMONPROXY)
 	public static CommonProxy proxy;
 	public static ClientProxy cproxy;
 
@@ -70,81 +70,78 @@ public class KingdomKeys {
 	public static final int GUI_SYNTHESISBAGM_INV = modGuiIndex++;
 	public static final int GUI_SYNTHESISBAGL_INV = modGuiIndex++;
 
-	@Mod.Instance(Reference.MODID)
+	@Mod.Instance (Reference.MODID)
 	public static KingdomKeys instance;
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent e){
-		//Display mod info in console
+	public void preInit (FMLPreInitializationEvent e) {
+		// Display mod info in console
 		LogHelper.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft 1.8.9");
 
-		//Config
+		// Config
 		config = new Configuration(e.getSuggestedConfigurationFile());
 		Config.syncConfig();
 		LogHelper.info("Configuration loaded");
 
-		//World generation
+		// World generation
 		GameRegistry.registerWorldGenerator(new WorldGenBlox(), 2);
 		LogHelper.info("World generation loaded");
 
-		//Packets
+		// Packets
 		PacketDispatcher.registerPackets();
 		LogHelper.info("Packets loaded");
 
-		//Items
+		// Items
 		ModItems.init();
 		ModItems.register();
 		LogHelper.info("Items loaded");
 
-		//Blocks
+		// Blocks
 		ModBlocks.init();
 		ModBlocks.register();
 		LogHelper.info("Blocks loaded");
-		
+
 		proxy.preInit();
 
 	}
 
-
-	//Sync config when changed
+	// Sync config when changed
 	@SubscribeEvent
-	public void OnConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event){
-		if(event.modID.equals(Reference.MODID)){
-			Config.syncConfig();
-		}
+	public void OnConfigChanged (ConfigChangedEvent.OnConfigChangedEvent event) {
+		if (event.modID.equals(Reference.MODID)) Config.syncConfig();
 	}
 
 	@EventHandler
-	public void init(FMLInitializationEvent e){
-		//Instance
+	public void init (FMLInitializationEvent e) {
+		// Instance
 		MinecraftForge.EVENT_BUS.register(instance);
 
 		Constants.registerCosts();
-		
-		//Update checker
+
+		// Update checker
 		MinecraftForge.EVENT_BUS.register(new UpdateChecker());
 		LogHelper.info("Update checker loaded");
 
-		//Crafting recipes
+		// Crafting recipes
 		ModItemsRecipes.init();
 		ModBlocksRecipes.init();
 		LogHelper.info("Crafting recipes loaded");
 
-		//Fuel Handler
+		// Fuel Handler
 		GameRegistry.registerFuelHandler(new FuelHandler());
 		LogHelper.info("Fuel handler loaded");
 		proxy.registerAchievements();
-		
-		//Register renders
+
+		// Register renders
 		proxy.init();
 		LogHelper.info("Renders loaded");
-		
-		//Tile entity registry
+
+		// Tile entity registry
 		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
 		GameRegistry.registerTileEntity(TileEntityKKChest.class, "kkchest");
 		LogHelper.info("Tile entities loaded");
 
-		//Proxy used as Gui handler
+		// Proxy used as Gui handler
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 
 		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 0, instance, 16, 1, false);
@@ -153,35 +150,35 @@ public class KingdomKeys {
 
 		Lists.init();
 
-		//Drive forms init
+		// Drive forms init
 		ModDriveForms.init();
 		LogHelper.info(DriveFormRegistry.getDriveFormMap().size() + " Drive form(s) loaded");
 
-		//Synthesis Recipes init
+		// Synthesis Recipes init
 		ModRecipes.init();
 		LogHelper.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipe(s) loaded");
 
 		ModMaterials.init();
 		LogHelper.info(MaterialRegistry.getMaterialMap().size() + " Material(s) loaded");
-		
-		//Chest loot init
+
+		// Chest loot init
 		ChestGen.init();
 		LogHelper.info("Chest loot loaded");
 
 	}
 
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent e){
+	public void postInit (FMLPostInitializationEvent e) {
 
 		new PlayerLevel();
-		
-		//Event handler
+
+		// Event handler
 		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.EventHandler());
 		LogHelper.info("Events loaded");
 	}
 
 	@EventHandler
-	public void serverStart(FMLServerStartingEvent e){
+	public void serverStart (FMLServerStartingEvent e) {
 		e.registerServerCommand(new CommandLearnRecipe());
 		e.registerServerCommand(new CommandGiveMunny());
 		e.registerServerCommand(new CommandCheatMode());

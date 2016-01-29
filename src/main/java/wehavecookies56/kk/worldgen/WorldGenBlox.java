@@ -13,21 +13,19 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import wehavecookies56.kk.block.ModBlocks;
 import wehavecookies56.kk.lib.Config;
 
-public class WorldGenBlox implements IWorldGenerator{
+public class WorldGenBlox implements IWorldGenerator {
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate (Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		switch (world.provider.getDimensionId()) {
-		case -1:
-			break;
-		case 0:
-			if(Config.EnableWorldGen)
-				generateSurface(world, random, chunkX * 16, chunkZ * 16);
-			break;
-		case 1:
-			if(Config.EnableWorldGen)
-				generateEnd(world, random, chunkX * 16, chunkZ * 16);
-			break;
+			case -1:
+				break;
+			case 0:
+				if (Config.EnableWorldGen) generateSurface(world, random, chunkX * 16, chunkZ * 16);
+				break;
+			case 1:
+				if (Config.EnableWorldGen) generateEnd(world, random, chunkX * 16, chunkZ * 16);
+				break;
 		}
 	}
 
@@ -39,9 +37,8 @@ public class WorldGenBlox implements IWorldGenerator{
 	 * @param chunkX
 	 * @param chunkZ
 	 */
-	private void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
-		for (int k = 0; k < 85; k++)
-		{
+	private void generateSurface (World world, Random rand, int chunkX, int chunkZ) {
+		for (int k = 0; k < 85; k++) {
 			BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(chunkX, 0, chunkZ));
 			int firstBlockXCoord = chunkX + rand.nextInt(16);
 			int firstBlockZCoord = chunkZ + rand.nextInt(16);
@@ -49,32 +46,28 @@ public class WorldGenBlox implements IWorldGenerator{
 			int OreY = rand.nextInt(100);
 			BlockPos quisquePos = new BlockPos(firstBlockXCoord, quisqueY, firstBlockZCoord);
 			BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
-			
+
 			new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.EnergyOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 
-			if(biome == BiomeGenBase.taiga || biome == BiomeGenBase.frozenOcean || biome == BiomeGenBase.coldBeach || biome == BiomeGenBase.coldTaiga || biome == BiomeGenBase.coldTaigaHills || biome == BiomeGenBase.forestHills || biome == BiomeGenBase.frozenRiver || biome == BiomeGenBase.iceMountains || biome == BiomeGenBase.icePlains || biome == BiomeGenBase.megaTaiga || biome == BiomeGenBase.megaTaigaHills || biome == BiomeGenBase.taigaHills)
-				new WorldGenMinable(ModBlocks.FrostOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+			if (biome == BiomeGenBase.taiga || biome == BiomeGenBase.frozenOcean || biome == BiomeGenBase.coldBeach || biome == BiomeGenBase.coldTaiga || biome == BiomeGenBase.coldTaigaHills || biome == BiomeGenBase.forestHills || biome == BiomeGenBase.frozenRiver || biome == BiomeGenBase.iceMountains || biome == BiomeGenBase.icePlains || biome == BiomeGenBase.megaTaiga || biome == BiomeGenBase.megaTaigaHills || biome == BiomeGenBase.taigaHills) new WorldGenMinable(ModBlocks.FrostOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.LightningOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.LucidOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.RemembranceOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.TranquilOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.TwilightOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 
-			if(OreY < 20)
-			{
+			if (OreY < 20) {
 				new WorldGenMinable(ModBlocks.DarkOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 				new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
-				if(biome == BiomeGenBase.beach || biome == BiomeGenBase.ocean || biome == BiomeGenBase.deepOcean || biome == BiomeGenBase.frozenOcean || biome == BiomeGenBase.coldBeach || biome == BiomeGenBase.stoneBeach)
-					new WorldGenMinable(ModBlocks.StormyOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
+				if (biome == BiomeGenBase.beach || biome == BiomeGenBase.ocean || biome == BiomeGenBase.deepOcean || biome == BiomeGenBase.frozenOcean || biome == BiomeGenBase.coldBeach || biome == BiomeGenBase.stoneBeach) new WorldGenMinable(ModBlocks.StormyOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 				new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone)).generate(world, rand, OrePos);
 			}
 		}
-		for (int k = 0; k < 10; k++)
-		{
-			
+		for (int k = 0; k < 10; k++) {
+
 			int firstBlockXCoord = chunkX + rand.nextInt(16);
 			int firstBlockZCoord = chunkZ + rand.nextInt(16);
 			int quisqueY = rand.nextInt(world.getHeight() - 40) + 40;
@@ -109,10 +102,8 @@ public class WorldGenBlox implements IWorldGenerator{
 	 * @param chunkX
 	 * @param chunkZ
 	 */
-	private void generateEnd(World world, Random rand, int chunkX, int chunkZ)
-	{
-		for (int k = 0; k < 10; k++)
-		{
+	private void generateEnd (World world, Random rand, int chunkX, int chunkZ) {
+		for (int k = 0; k < 10; k++) {
 			int firstBlockXCoord = chunkX + rand.nextInt(16);
 			int firstBlockZCoord = chunkZ + rand.nextInt(16);
 			int OreY = rand.nextInt(200);

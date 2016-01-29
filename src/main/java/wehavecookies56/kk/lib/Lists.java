@@ -13,7 +13,7 @@ public class Lists {
 	public static List<String> recipes = new ArrayList<String>();
 	public static List<Item> orgWeapons = new ArrayList<Item>();
 
-	public static void init(){
+	public static void init () {
 		orgWeapons.add(ModItems.Interdiction);
 		orgWeapons.add(ModItems.Sharpshooter);
 		orgWeapons.add(ModItems.Lindworm);
@@ -27,7 +27,7 @@ public class Lists {
 		orgWeapons.add(ModItems.GracefulDahlia);
 		orgWeapons.add(ModItems.Foudre);
 		orgWeapons.add(ModItems.BlazeofGlory);
-		
+
 		recipes.add(AbaddonPlasma.getUnlocalizedName());
 		recipes.add(AbyssalTide.getUnlocalizedName());
 		recipes.add(AllforOne.getUnlocalizedName());

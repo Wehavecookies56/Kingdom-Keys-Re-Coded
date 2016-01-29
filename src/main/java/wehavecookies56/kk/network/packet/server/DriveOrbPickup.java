@@ -11,26 +11,26 @@ import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class DriveOrbPickup extends AbstractServerMessage<DriveOrbPickup> {
 
-	public DriveOrbPickup() {}
+	public DriveOrbPickup () {}
 
 	ItemStack toRemove;
 
-	public DriveOrbPickup(ItemStack toRemove){
+	public DriveOrbPickup (ItemStack toRemove) {
 		this.toRemove = toRemove;
 	}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 		toRemove = buffer.readItemStackFromBuffer();
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeItemStackToBuffer(toRemove);
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
+	public void process (EntityPlayer player, Side side) {
 		player.inventory.consumeInventoryItem(toRemove.getItem());
 		toRemove.stackSize--;
 		ExtendedPlayer.get(player).addDP(toRemove.getTagCompound().getInteger("amount"));

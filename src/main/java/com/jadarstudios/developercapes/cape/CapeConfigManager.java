@@ -23,151 +23,138 @@ import com.jadarstudios.developercapes.user.UserManager;
 
 /**
  * All configs need a manager, this is it.
- * 
+ *
  * @author jadar
  */
 public class CapeConfigManager {
 
-    protected static CapeConfigManager instance;
-    
-    protected static BitSet availableIds = new BitSet(256);
-    protected HashBiMap<Integer, CapeConfig> configs;
+	protected static CapeConfigManager instance;
 
-    static {
-        availableIds.clear(availableIds.size());
-    }
+	protected static BitSet availableIds = new BitSet(256);
+	protected HashBiMap<Integer, CapeConfig> configs;
 
-    public CapeConfigManager() {
-        configs = HashBiMap.create();
-    }
+	static {
+		availableIds.clear(availableIds.size());
+	}
 
-    public static CapeConfigManager getInstance() {
-        if (instance == null) {
-            instance = new CapeConfigManager();
-        }
-        return instance;
-    }
+	public CapeConfigManager () {
+		configs = HashBiMap.create();
+	}
 
-    public void addConfig(int id, CapeConfig config) throws InvalidCapeConfigIdException {
-        int realId = claimId(id);
-        this.configs.put(realId, config);
-        addUsers(config.users);
-        addGroups(config.groups);
-    }
-    
-    protected void addUsers(Map<String, User> users){
-    	try {
-    		UserManager.getInstance().addUsers(users.values());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    protected void addGroups(Map<String, Group> groups){
-    	try {
-    		GroupManager.getInstance().addGroups(groups.values());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+	public static CapeConfigManager getInstance () {
+		if (instance == null) instance = new CapeConfigManager();
+		return instance;
+	}
 
-    public CapeConfig getConfig(int id) {
-        return this.configs.get(id);
-    }
+	public void addConfig (int id, CapeConfig config) throws InvalidCapeConfigIdException {
+		int realId = claimId(id);
+		this.configs.put(realId, config);
+		addUsers(config.users);
+		addGroups(config.groups);
+	}
 
-    public int getIdForConfig(CapeConfig config) {
-        return this.configs.inverse().get(config);
-    }
+	protected void addUsers (Map<String, User> users) {
+		try {
+			UserManager.getInstance().addUsers(users.values());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    public static int getUniqueId() {
-        return availableIds.nextClearBit(1);
-    }
+	protected void addGroups (Map<String, Group> groups) {
+		try {
+			GroupManager.getInstance().addGroups(groups.values());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    public static int claimId(int id) throws InvalidCapeConfigIdException {
-        if(id <= 0){
-            throw new InvalidCapeConfigIdException("The config ID must be a positive non-zero integer");
-        }
-        try {
-            UnsignedBytes.checkedCast(id);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
+	public CapeConfig getConfig (int id) {
+		return this.configs.get(id);
+	}
 
-        boolean isRegistered = availableIds.get(id);
-        if (isRegistered) {
-            throw new InvalidCapeConfigIdException(String.format("The config ID %d is already claimed.", id));
-        }
+	public int getIdForConfig (CapeConfig config) {
+		return this.configs.inverse().get(config);
+	}
 
-        availableIds.set(id);
-        return id;
-    }
+	public static int getUniqueId () {
+		return availableIds.nextClearBit(1);
+	}
 
-    public CapeConfig parse(InputStream is) {
-        if (is == null) {
-            throw new NullPointerException("Can not parse a null input stream!");
-        }
+	public static int claimId (int id) throws InvalidCapeConfigIdException {
+		if (id <= 0) throw new InvalidCapeConfigIdException("The config ID must be a positive non-zero integer");
+		try {
+			UnsignedBytes.checkedCast(id);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
 
-        CapeConfig instance = new CapeConfig();
-        InputStreamReader isr = new InputStreamReader(is);
+		boolean isRegistered = availableIds.get(id);
+		if (isRegistered) throw new InvalidCapeConfigIdException(String.format("The config ID %d is already claimed.", id));
 
-        try {
-            Map<String, Object> entries = new Gson().fromJson(isr, Map.class);
+		availableIds.set(id);
+		return id;
+	}
 
-            for (Map.Entry<String, Object> entry : entries.entrySet()) {
-                final String nodeName = entry.getKey();
-                final Object obj = entry.getValue();
-                if (obj instanceof Map) {
-                    parseGroup(instance, nodeName, (Map) obj);
-                } else if (obj instanceof String) {
-                	parseUser(instance, nodeName, (String) obj);
-                }
-            }
-        } catch (JsonSyntaxException e) {
-        	DevCapes.logger.error("CapeConfig could not be parsed because:");
-            e.printStackTrace();
-        }
+	public CapeConfig parse (InputStream is) {
+		if (is == null) throw new NullPointerException("Can not parse a null input stream!");
 
-        return instance;
-    }
-    
-    protected void parseGroup(CapeConfig config, String node, Map group) {
-        Group g = GroupManager.getInstance().parse(node, group);
-        if (g != null) {
-        	config.groups.put(g.name, g);
-        }
-    }
-    
-    protected void parseUser(CapeConfig config, String node, String user) {
-    	User u = UserManager.getInstance().parse(node, user);
-        if (u != null) {
-        	config.users.put(node, u);
-        }
-    }
+		CapeConfig instance = new CapeConfig();
+		InputStreamReader isr = new InputStreamReader(is);
 
-    /**
-     * DEPRECATED! Please use {@link com.jadarstudios.developercapes.cape.CapeConfigManager#parse(java.io.InputStream is)}
-     * This will be removed in the next major release.
-     */
-    @Deprecated
-    public CapeConfig parseFromStream(InputStream is) {
-        return this.parse(is);
-    }
+		try {
+			Map<String, Object> entries = new Gson().fromJson(isr, Map.class);
 
-    public static class InvalidCapeConfigIdException extends Exception {
-        public InvalidCapeConfigIdException() {
-            super();
-        }
+			for (Map.Entry<String, Object> entry : entries.entrySet()) {
+				final String nodeName = entry.getKey();
+				final Object obj = entry.getValue();
+				if (obj instanceof Map)
+					parseGroup(instance, nodeName, (Map) obj);
+				else if (obj instanceof String) parseUser(instance, nodeName, (String) obj);
+			}
+		} catch (JsonSyntaxException e) {
+			DevCapes.logger.error("CapeConfig could not be parsed because:");
+			e.printStackTrace();
+		}
 
-        public InvalidCapeConfigIdException(String s) {
-            super(s);
-        }
+		return instance;
+	}
 
-        public InvalidCapeConfigIdException(Throwable cause) {
-            super(cause);
-        }
+	protected void parseGroup (CapeConfig config, String node, Map group) {
+		Group g = GroupManager.getInstance().parse(node, group);
+		if (g != null) config.groups.put(g.name, g);
+	}
 
-        public InvalidCapeConfigIdException(String message, Throwable cause) {
-            super(message, cause);
-        }
-    }
+	protected void parseUser (CapeConfig config, String node, String user) {
+		User u = UserManager.getInstance().parse(node, user);
+		if (u != null) config.users.put(node, u);
+	}
+
+	/**
+	 * DEPRECATED! Please use
+	 * {@link com.jadarstudios.developercapes.cape.CapeConfigManager#parse(java.io.InputStream is)}
+	 * This will be removed in the next major release.
+	 */
+	@Deprecated
+	public CapeConfig parseFromStream (InputStream is) {
+		return parse(is);
+	}
+
+	public static class InvalidCapeConfigIdException extends Exception {
+		public InvalidCapeConfigIdException () {
+			super();
+		}
+
+		public InvalidCapeConfigIdException (String s) {
+			super(s);
+		}
+
+		public InvalidCapeConfigIdException (Throwable cause) {
+			super(cause);
+		}
+
+		public InvalidCapeConfigIdException (String message, Throwable cause) {
+			super(message, cause);
+		}
+	}
 }

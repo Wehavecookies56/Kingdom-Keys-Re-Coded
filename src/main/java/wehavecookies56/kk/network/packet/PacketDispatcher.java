@@ -21,13 +21,6 @@ import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerMaterials;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayerRecipes;
 import wehavecookies56.kk.network.packet.server.AntiPoints;
-import wehavecookies56.kk.network.packet.server.ChangeDP;
-import wehavecookies56.kk.network.packet.server.ChangeDefense;
-import wehavecookies56.kk.network.packet.server.ChangeHP;
-import wehavecookies56.kk.network.packet.server.ChangeMP;
-import wehavecookies56.kk.network.packet.server.ChangeMaxHP;
-import wehavecookies56.kk.network.packet.server.ChangeStrength;
-import wehavecookies56.kk.network.packet.server.ChangeXP;
 import wehavecookies56.kk.network.packet.server.CreateFromSynthesisRecipe;
 import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.DriveFormPacket;
@@ -58,15 +51,14 @@ import wehavecookies56.kk.network.packet.server.magics.MagicFire;
 import wehavecookies56.kk.network.packet.server.magics.MagicStop;
 import wehavecookies56.kk.network.packet.server.magics.MagicThunder;
 
-public class PacketDispatcher
-{
+public class PacketDispatcher {
 	private static byte packetId = 0;
 
 	private static final SimpleNetworkWrapper dispatcher = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MODCHANNEL);
 
-	public static final void registerPackets() {
+	public static final void registerPackets () {
 
-		//Server to Client
+		// Server to Client
 		registerMessage(SyncExtendedPlayer.class);
 		registerMessage(SyncExtendedPlayerRecipes.class);
 		registerMessage(SyncExtendedPlayerMaterials.class);
@@ -81,7 +73,7 @@ public class PacketDispatcher
 		registerMessage(SpawnThunderEntity.class);
 		registerMessage(SpawnDriveFormParticles.class);
 
-		//Client to Server
+		// Client to Server
 		registerMessage(MunnyPickup.class);
 		registerMessage(HpOrbPickup.class);
 		registerMessage(OpenGui.class);
@@ -102,13 +94,6 @@ public class PacketDispatcher
 		registerMessage(GiveAchievementOpenMenu.class);
 		registerMessage(DriveFormPacket.class);
 		registerMessage(AntiPoints.class);
-		registerMessage(ChangeDP.class);
-		registerMessage(ChangeMP.class);
-		registerMessage(ChangeXP.class);
-		registerMessage(ChangeHP.class);
-		registerMessage(ChangeStrength.class);
-		registerMessage(ChangeDefense.class);
-		registerMessage(ChangeMaxHP.class);
 		registerMessage(GlidePacket.class);
 		registerMessage(MasterFormPacket.class);
 		registerMessage(LevelUpMagic.class);
@@ -118,45 +103,46 @@ public class PacketDispatcher
 		registerMessage(MagnetBloxMotion.class);
 		registerMessage(TakeMaterials.class);
 		registerMessage(RemoveItemInSlot.class);
-		//Bidirectional
+
+		// Bidirectional
 	}
 
-	private static final <T extends AbstractMessage<T> & IMessageHandler<T, IMessage>> void registerMessage(Class<T> clazz) {
-		if (AbstractMessage.AbstractClientMessage.class.isAssignableFrom(clazz)) {
+	private static final <T extends AbstractMessage<T> & IMessageHandler<T, IMessage>> void registerMessage (Class<T> clazz) {
+		if (AbstractMessage.AbstractClientMessage.class.isAssignableFrom(clazz))
 			PacketDispatcher.dispatcher.registerMessage(clazz, clazz, packetId++, Side.CLIENT);
-		} else if (AbstractMessage.AbstractServerMessage.class.isAssignableFrom(clazz)) {
+		else if (AbstractMessage.AbstractServerMessage.class.isAssignableFrom(clazz))
 			PacketDispatcher.dispatcher.registerMessage(clazz, clazz, packetId++, Side.SERVER);
-		} else {
+		else {
 			PacketDispatcher.dispatcher.registerMessage(clazz, clazz, packetId, Side.CLIENT);
 			PacketDispatcher.dispatcher.registerMessage(clazz, clazz, packetId++, Side.SERVER);
 		}
 	}
 
-	public static final void sendTo(IMessage message, EntityPlayerMP player) {
+	public static final void sendTo (IMessage message, EntityPlayerMP player) {
 		PacketDispatcher.dispatcher.sendTo(message, player);
 	}
 
-	public static void sendToAll(IMessage message) {
+	public static void sendToAll (IMessage message) {
 		PacketDispatcher.dispatcher.sendToAll(message);
 	}
 
-	public static final void sendToAllAround(IMessage message, NetworkRegistry.TargetPoint point) {
+	public static final void sendToAllAround (IMessage message, NetworkRegistry.TargetPoint point) {
 		PacketDispatcher.dispatcher.sendToAllAround(message, point);
 	}
 
-	public static final void sendToAllAround(IMessage message, int dimension, double x, double y, double z, double range) {
+	public static final void sendToAllAround (IMessage message, int dimension, double x, double y, double z, double range) {
 		PacketDispatcher.sendToAllAround(message, new NetworkRegistry.TargetPoint(dimension, x, y, z, range));
 	}
 
-	public static final void sendToAllAround(IMessage message, EntityPlayer player, double range) {
+	public static final void sendToAllAround (IMessage message, EntityPlayer player, double range) {
 		PacketDispatcher.sendToAllAround(message, player.worldObj.provider.getDimensionId(), player.posX, player.posY, player.posZ, range);
 	}
 
-	public static final void sendToDimension(IMessage message, int dimensionId) {
+	public static final void sendToDimension (IMessage message, int dimensionId) {
 		PacketDispatcher.dispatcher.sendToDimension(message, dimensionId);
 	}
 
-	public static final void sendToServer(IMessage message) {
+	public static final void sendToServer (IMessage message) {
 		PacketDispatcher.dispatcher.sendToServer(message);
 	}
 }

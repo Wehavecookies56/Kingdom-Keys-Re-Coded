@@ -10,20 +10,20 @@ import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 public class MagnetBloxMotion extends AbstractServerMessage<MagnetBloxMotion> {
 
 	double x, y, z;
-	
+
 	int facing;
-	
-	public MagnetBloxMotion() {}
-	
-	public MagnetBloxMotion(double x, double y, double z, int facing) {
+
+	public MagnetBloxMotion () {}
+
+	public MagnetBloxMotion (double x, double y, double z, int facing) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
 		this.facing = facing;
 	}
-	
+
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 		this.x = buffer.readDouble();
 		this.y = buffer.readDouble();
 		this.z = buffer.readDouble();
@@ -31,7 +31,7 @@ public class MagnetBloxMotion extends AbstractServerMessage<MagnetBloxMotion> {
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeDouble(this.x);
 		buffer.writeDouble(this.y);
 		buffer.writeDouble(this.z);
@@ -40,7 +40,7 @@ public class MagnetBloxMotion extends AbstractServerMessage<MagnetBloxMotion> {
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
+	public void process (EntityPlayer player, Side side) {
 		player.motionY *= this.y;
 	}
 

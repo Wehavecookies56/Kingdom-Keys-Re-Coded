@@ -14,22 +14,22 @@ public class RecipeVoidGear extends Recipe {
 
 	public String name;
 
-	public RecipeVoidGear(String name) {
+	public RecipeVoidGear (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public Item getResult() {
+	public Item getResult () {
 		return ModItems.Chain_VoidGear;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements() {
+	public Map<Material, Integer> getRequirements () {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_LucidShard), 1);
 		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 1);

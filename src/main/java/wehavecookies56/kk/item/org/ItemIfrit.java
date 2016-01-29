@@ -13,42 +13,40 @@ import wehavecookies56.kk.entities.projectiles.EntityIfrit;
 
 public class ItemIfrit extends ItemSword {
 	int strength;
-	public ItemIfrit(ToolMaterial material) {
+
+	public ItemIfrit (ToolMaterial material) {
 		super(material);
-		this.setMaxStackSize(1);
+		setMaxStackSize(1);
 	}
 
 	@Override
-    @SideOnly(Side.CLIENT)
-    public EnumRarity getRarity(ItemStack par1ItemStack){
-        return EnumRarity.UNCOMMON;
-    }
-
-	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int timeLeft)
-    {
-    	this.strength = timeLeft;
-    	if (!player.isSneaking())
-		{
-			//TODO set strength
-			
-			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-			world.spawnEntityInWorld(new EntityIfrit(world, player, -(strength)+71999));
-			player.swingItem();
-		}
-		else
-		{
-			player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
-		}
-    }
-    
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
-	{
-        player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
-        return stack;
+	@SideOnly (Side.CLIENT)
+	public EnumRarity getRarity (ItemStack par1ItemStack) {
+		return EnumRarity.UNCOMMON;
 	}
-	
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool){
+
+	@Override
+	public void onPlayerStoppedUsing (ItemStack stack, World world, EntityPlayer player, int timeLeft) {
+		this.strength = timeLeft;
+		if (!player.isSneaking()) {
+			// TODO set strength
+
+			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+			world.spawnEntityInWorld(new EntityIfrit(world, player, -(strength) + 71999));
+			player.swingItem();
+		} else
+			player.setItemInUse(stack, getMaxItemUseDuration(stack));
+	}
+
+	@Override
+	public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player) {
+		player.setItemInUse(stack, getMaxItemUseDuration(stack));
+		return stack;
+	}
+
+	@Override
+	@SideOnly (Side.CLIENT)
+	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
 		dataList.add("VIII Axel");
 	}
 }

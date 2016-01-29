@@ -44,7 +44,7 @@ import wehavecookies56.kk.util.StatStringFormatterMenu;
 public class ClientProxy extends CommonProxy {
 
 	@Override
-	public void preInit(){
+	public void preInit () {
 		B3DLoader.instance.addDomain(Reference.MODID);
 		OBJLoader.instance.addDomain(Reference.MODID);
 		ModelLoader.setCustomModelResourceLocation(ModItems.AllforOne, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.AllforOne, "inventory"));
@@ -143,7 +143,7 @@ public class ClientProxy extends CommonProxy {
 		ModelLoader.setCustomModelResourceLocation(ModItems.WoodenKeyblade, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.WoodenKeyblade, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.WoodenStick, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.WoodenStick, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.YoungXehanortsKeyblade, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.YoungXehanortsKeyblade, "inventory"));
-		
+
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlastBlox.class, new RenderFactoryBlastBlox());
 		RenderingRegistry.registerEntityRenderingHandler(EntityEternalFlames.class, (IRenderFactory) new RenderEntityEternalFlames(Minecraft.getMinecraft().getRenderManager()));
@@ -153,14 +153,14 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@Override
-	public void init(){
+	public void init () {
 		registerRenders();
 		registerKeyBindings();
 		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.ClientEventHandler());
 		ModAchievements.openMenu.setStatStringFormatter(new StatStringFormatterMenu());
 	}
 
-	private void registerRenders(){
+	private void registerRenders () {
 		MinecraftForge.EVENT_BUS.register(new GuiPlayerPortrait());
 		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());
 		MinecraftForge.EVENT_BUS.register(new GuiHP());
@@ -172,26 +172,25 @@ public class ClientProxy extends CommonProxy {
 		DevCapes.getInstance().registerConfig("https://www.dropbox.com/s/hb0wg5ky5wblz9g/Capes.json?raw=1");
 	}
 
-	private void registerKeyBindings(){
+	private void registerKeyBindings () {
 		MinecraftForge.EVENT_BUS.register(new InputHandler());
-		for(Keybinds key : Keybinds.values()){
+		for (Keybinds key : Keybinds.values())
 			ClientRegistry.registerKeyBinding(key.getKeybind());
-		}
 	}
 
 	@Override
-	public EntityPlayer getPlayerEntity(MessageContext ctx) {
+	public EntityPlayer getPlayerEntity (MessageContext ctx) {
 		return (ctx.side.isClient() ? Minecraft.getMinecraft().thePlayer : super.getPlayerEntity(ctx));
 	}
 
 	@Override
-	public IThreadListener getThreadFromContext(MessageContext ctx) {
+	public IThreadListener getThreadFromContext (MessageContext ctx) {
 		return (ctx.side.isClient() ? Minecraft.getMinecraft() : super.getThreadFromContext(ctx));
 	}
-	
+
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent e){	
-		//Event handler
+	public void postInit (FMLPostInitializationEvent e) {
+		// Event handler
 		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.ClientEventHandler());
 		LogHelper.info("Events loaded");
 	}

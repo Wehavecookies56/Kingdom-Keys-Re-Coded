@@ -14,22 +14,22 @@ public class RecipeSignofInnocence extends Recipe {
 
 	public String name;
 
-	public RecipeSignofInnocence(String name) {
+	public RecipeSignofInnocence (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public Item getResult() {
+	public Item getResult () {
 		return ModItems.Chain_SignofInnocence;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements() {
+	public Map<Material, Integer> getRequirements () {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 3);
 		reqs.put(MaterialRegistry.get(Strings.SM_TwilightGem), 2);

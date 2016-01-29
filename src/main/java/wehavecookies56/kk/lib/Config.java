@@ -14,314 +14,42 @@ public class Config {
 
 	public static String[] items;
 
-	public static boolean
-	EnableWorldGen,
-	EnableUpdateCheck,
-	EnableHeartsOnHUD
-	;
-	
-	public static String
-		TM_Interdiction,
-		TM_Sharpshooter,
-		TM_Lindworm,
-		TM_FrozenPride,
-		TM_Skysplitter,
-		TM_BookofRetribution,
-		TM_Lunatic,
-		TM_EternalFlames,
-		TM_Arpeggio,
-		TM_FairGame,
-		TM_GracefulDahlia,
-		TM_Foudre,
-		TM_BlazeofGlory,
-		TM_Prometheus,
-		TM_Ifrit
-		;
+	public static boolean EnableWorldGen, EnableUpdateCheck, EnableHeartsOnHUD;
 
-	public static String
-		TM_KingdomKey,
-		TM_Oathkeeper,
-		TM_Oblivion,
-		TM_UltimaWeaponKH1,
-		TM_KingdomKeyD,
-		TM_KeybladeofPeoplesHearts,
-		TM_LadyLuck,
-		TM_Olympia,
-		TM_JungleKing,
-		TM_ThreeWishes,
-		TM_Crabclaw,
-		TM_FairyHarp,
-		TM_DivineRose,
-		TM_Spellbinder,
-		TM_MetalChocobo,
-		TM_Lionheart,
-		TM_DiamondDust,
-		TM_OneWingedAngel,
-		TM_SoulEater,
-		TM_Pumpkinhead,
-		TM_WishingStar,
-		TM_BondofFlame,
-		TM_FollowtheWind,
-		TM_HiddenDragon,
-		TM_Monochrome,
-		TM_PhotonDebugger,
-		TM_StarSeeker,
-		TM_MaverickFlare,
-		TM_TotalEclipse,
-		TM_MidnightRoar,
-		TM_TwoBecomeOne,
-		TM_UltimaWeaponKH2,
-		TM_WaytotheDawn,
-		TM_DestinysEmbrace,
-		TM_Stormfall,
-		TM_EndsoftheEarth,
-		TM_RumblingRose,
-		TM_HerosCrest,
-		TM_MysteriousAbyss,
-		TM_WishingLamp,
-		TM_DecisivePumpkin,
-		TM_CircleofLife,
-		TM_SweetMemories,
-		TM_GullWing,
-		TM_GuardianSoul,
-		TM_SleepingLion,
-		TM_Fenrir,
-		TM_FatalCrest,
-		TM_WinnersProof,
-		TM_MissingAche,
-		TM_OminousBlight,
-		TM_AbaddonPlasma,
-		TM_PainofSolitude,
-		TM_SignofInnocence,
-		TM_CrownofGuilt,
-		TM_AbyssalTide,
-		TM_Leviathan,
-		TM_TrueLightsFlight,
-		TM_RejectionofFate,
-		TM_GlimpseofDarkness,
-		TM_SilentDirge,
-		TM_LunarEclipse,
-		TM_DarkerThanDark,
-		TM_AstralBlast,
-		TM_TwilightBlaze,
-		TM_OmegaWeapon,
-		TM_Umbrella,
-		TM_Aubade,
-		TM_WoodenStick,
-		TM_DreamSword,
-		TM_ZeroOne,
-		TM_Earthshaker,
-		TM_Darkgnaw,
-		TM_ChaosRipper,
-		TM_MasterXehanortsKeyblade,
-		TM_TreasureTrove,
-		TM_StrokeofMidnight,
-		TM_FairyStars,
-		TM_VictoryLine,
-		TM_MarkofaHero,
-		TM_Hyperdrive,
-		TM_PixiePetal,
-		TM_Sweetstack,
-		TM_UltimaWeaponBBS,
-		TM_VoidGear,
-		TM_NoName,
-		TM_RoyalRadiance,
-		TM_Rainfell,
-		TM_Brightcrest,
-		TM_MastersDefender,
-		TM_WaywardWind,
-		TM_FrolicFlame,
-		TM_LostMemory,
-		TM_Kiblade,
-		TM_IncompleteKiblade,
-		TM_WoodenKeyblade,
-		TM_SkullNoise,
-		TM_GuardianBell,
-		TM_DualDisc,
-		TM_FerrisGear,
-	    TM_KnockoutPunch,
-		TM_AllforOne,
-		TM_Counterpoint,
-		TM_Divewing,
-		TM_SweetDreams,
-		TM_UltimaWeaponDDD,
-		TM_Unbound,
-		TM_EndofPain,
-		TM_OceansRage,
-		TM_LeasKeyblade,
-		TM_YoungXehanortsKeyblade,
-		TM_MirageSplit,
-		TM_NightmaresEnd,
-		TM_NightmaresEndandMirageSplit,
-		TM_Starlight,
-		TM_AnguisForetellersKeyblade,
-		TM_LeopardosForetellersKeyblade,
-		TM_UnicornisForetellersKeyblade,
-		TM_UrsusForetellersKeyblade,
-		TM_VulpeusForetellersKeyblade;
+	public static String TM_Interdiction, TM_Sharpshooter, TM_Lindworm, TM_FrozenPride, TM_Skysplitter, TM_BookofRetribution, TM_Lunatic, TM_EternalFlames, TM_Arpeggio, TM_FairGame, TM_GracefulDahlia, TM_Foudre, TM_BlazeofGlory, TM_Prometheus, TM_Ifrit;
 
-	public static String[]
-		A_TM_Interdiction,
-		A_TM_Sharpshooter,
-		A_TM_Lindworm,
-		A_TM_FrozenPride,
-		A_TM_Skysplitter,
-		A_TM_BookofRetribution,
-		A_TM_Lunatic,
-		A_TM_EternalFlames,
-		A_TM_Arpeggio,
-		A_TM_FairGame,
-		A_TM_GracefulDahlia,
-		A_TM_Foudre,
-		A_TM_BlazeofGlory,
-		A_TM_Prometheus,
-		A_TM_Ifrit
-		;
-	
-	public static String[]
-		A_TM_AbaddonPlasma,
-		A_TM_AbyssalTide,
-		A_TM_AllforOne,
-		A_TM_AnguisForetellersKeyblade,
-		A_TM_AstralBlast,
-		A_TM_Aubade,
-		A_TM_BondofFlame,
-		A_TM_Brightcrest,
-		A_TM_ChaosRipper,
-		A_TM_CircleofLife,
-		A_TM_Counterpoint,
-		A_TM_Crabclaw,
-		A_TM_CrownofGuilt,
-		A_TM_DarkerThanDark,
-		A_TM_Darkgnaw,
-		A_TM_DecisivePumpkin,
-		A_TM_DestinysEmbrace,
-		A_TM_DiamondDust,
-		A_TM_Divewing,
-		A_TM_DivineRose,
-		A_TM_DreamSword,
-		A_TM_DualDisc,
-		A_TM_Earthshaker,
-		A_TM_EndofPain,
-		A_TM_EndsoftheEarth,
-		A_TM_FairyHarp,
-		A_TM_FairyStars,
-		A_TM_FatalCrest,
-		A_TM_Fenrir,
-		A_TM_FerrisGear,
-		A_TM_FollowtheWind,
-		A_TM_FrolicFlame,
-		A_TM_GlimpseofDarkness,
-		A_TM_GuardianBell,
-		A_TM_GuardianSoul,
-		A_TM_GullWing,
-		A_TM_HerosCrest,
-		A_TM_HiddenDragon,
-		A_TM_Hyperdrive,
-		A_TM_IncompleteKiblade,
-		A_TM_JungleKing,
-		A_TM_KeybladeofPeoplesHearts,
-		A_TM_Kiblade,
-		A_TM_KingdomKey,
-		A_TM_KingdomKeyD,
-		A_TM_KnockoutPunch,
-		A_TM_LadyLuck,
-		A_TM_LeasKeyblade,
-		A_TM_LeopardosForetellersKeyblade,
-		A_TM_Leviathan,
-		A_TM_Lionheart,
-		A_TM_LostMemory,
-		A_TM_LunarEclipse,
-		A_TM_MarkofaHero,
-		A_TM_MasterXehanortsKeyblade,
-		A_TM_MastersDefender,
-		A_TM_MaverickFlare,
-		A_TM_MetalChocobo,
-		A_TM_MidnightRoar,
-		A_TM_MirageSplit,
-		A_TM_MissingAche,
-		A_TM_Monochrome,
-		A_TM_MysteriousAbyss,
-		A_TM_NightmaresEnd,
-		A_TM_NightmaresEndandMirageSplit,
-		A_TM_NoName,
-		A_TM_Oathkeeper,
-		A_TM_Oblivion,
-		A_TM_OceansRage,
-		A_TM_Olympia,
-		A_TM_OmegaWeapon,
-		A_TM_OminousBlight,
-		A_TM_OneWingedAngel,
-		A_TM_PainofSolitude,
-		A_TM_PhotonDebugger,
-		A_TM_PixiePetal,
-		A_TM_Pumpkinhead,
-		A_TM_Rainfell,
-		A_TM_RejectionofFate,
-		A_TM_RoyalRadiance,
-		A_TM_RumblingRose,
-		A_TM_SignofInnocence,
-		A_TM_SilentDirge,
-		A_TM_SkullNoise,
-		A_TM_SleepingLion,
-		A_TM_SoulEater,
-		A_TM_Spellbinder,
-		A_TM_StarSeeker,
-		A_TM_Starlight,
-		A_TM_Stormfall,
-		A_TM_StrokeofMidnight,
-		A_TM_SweetDreams,
-		A_TM_SweetMemories,
-		A_TM_Sweetstack,
-		A_TM_ThreeWishes,
-		A_TM_TotalEclipse,
-		A_TM_TreasureTrove,
-		A_TM_TrueLightsFlight,
-		A_TM_TwilightBlaze,
-		A_TM_TwoBecomeOne,
-		A_TM_UltimaWeaponKH1,
-		A_TM_UltimaWeaponKH2,
-		A_TM_UltimaWeaponBBS,
-		A_TM_UltimaWeaponDDD,
-		A_TM_Umbrella,
-		A_TM_Unbound,
-		A_TM_UnicornisForetellersKeyblade,
-		A_TM_UrsusForetellersKeyblade,
-		A_TM_VictoryLine,
-		A_TM_VoidGear,
-		A_TM_VulpeusForetellersKeyblade,
-		A_TM_WaytotheDawn,
-		A_TM_WaywardWind,
-		A_TM_WinnersProof,
-		A_TM_WishingLamp,
-		A_TM_WishingStar,
-		A_TM_WoodenKeyblade,
-		A_TM_WoodenStick,
-		A_TM_YoungXehanortsKeyblade,
-		A_TM_ZeroOne;
+	public static String TM_KingdomKey, TM_Oathkeeper, TM_Oblivion, TM_UltimaWeaponKH1, TM_KingdomKeyD, TM_KeybladeofPeoplesHearts, TM_LadyLuck, TM_Olympia, TM_JungleKing, TM_ThreeWishes, TM_Crabclaw, TM_FairyHarp, TM_DivineRose, TM_Spellbinder, TM_MetalChocobo, TM_Lionheart, TM_DiamondDust, TM_OneWingedAngel, TM_SoulEater, TM_Pumpkinhead, TM_WishingStar, TM_BondofFlame, TM_FollowtheWind, TM_HiddenDragon, TM_Monochrome, TM_PhotonDebugger, TM_StarSeeker, TM_MaverickFlare, TM_TotalEclipse, TM_MidnightRoar, TM_TwoBecomeOne, TM_UltimaWeaponKH2, TM_WaytotheDawn, TM_DestinysEmbrace, TM_Stormfall, TM_EndsoftheEarth, TM_RumblingRose, TM_HerosCrest, TM_MysteriousAbyss, TM_WishingLamp, TM_DecisivePumpkin, TM_CircleofLife, TM_SweetMemories, TM_GullWing, TM_GuardianSoul, TM_SleepingLion, TM_Fenrir, TM_FatalCrest, TM_WinnersProof, TM_MissingAche, TM_OminousBlight, TM_AbaddonPlasma, TM_PainofSolitude, TM_SignofInnocence, TM_CrownofGuilt, TM_AbyssalTide, TM_Leviathan, TM_TrueLightsFlight,
+			TM_RejectionofFate, TM_GlimpseofDarkness, TM_SilentDirge, TM_LunarEclipse, TM_DarkerThanDark, TM_AstralBlast, TM_TwilightBlaze, TM_OmegaWeapon, TM_Umbrella, TM_Aubade, TM_WoodenStick, TM_DreamSword, TM_ZeroOne, TM_Earthshaker, TM_Darkgnaw, TM_ChaosRipper, TM_MasterXehanortsKeyblade, TM_TreasureTrove, TM_StrokeofMidnight, TM_FairyStars, TM_VictoryLine, TM_MarkofaHero, TM_Hyperdrive, TM_PixiePetal, TM_Sweetstack, TM_UltimaWeaponBBS, TM_VoidGear, TM_NoName, TM_RoyalRadiance, TM_Rainfell, TM_Brightcrest, TM_MastersDefender, TM_WaywardWind, TM_FrolicFlame, TM_LostMemory, TM_Kiblade, TM_IncompleteKiblade, TM_WoodenKeyblade, TM_SkullNoise, TM_GuardianBell, TM_DualDisc, TM_FerrisGear, TM_KnockoutPunch, TM_AllforOne, TM_Counterpoint, TM_Divewing, TM_SweetDreams, TM_UltimaWeaponDDD, TM_Unbound, TM_EndofPain, TM_OceansRage, TM_LeasKeyblade, TM_YoungXehanortsKeyblade, TM_MirageSplit, TM_NightmaresEnd, TM_NightmaresEndandMirageSplit, TM_Starlight, TM_AnguisForetellersKeyblade,
+			TM_LeopardosForetellersKeyblade, TM_UnicornisForetellersKeyblade, TM_UrsusForetellersKeyblade, TM_VulpeusForetellersKeyblade;
 
-	public static void syncConfig(){
+	public static String[] A_TM_Interdiction, A_TM_Sharpshooter, A_TM_Lindworm, A_TM_FrozenPride, A_TM_Skysplitter, A_TM_BookofRetribution, A_TM_Lunatic, A_TM_EternalFlames, A_TM_Arpeggio, A_TM_FairGame, A_TM_GracefulDahlia, A_TM_Foudre, A_TM_BlazeofGlory, A_TM_Prometheus, A_TM_Ifrit;
+
+	public static String[] A_TM_AbaddonPlasma, A_TM_AbyssalTide, A_TM_AllforOne, A_TM_AnguisForetellersKeyblade, A_TM_AstralBlast, A_TM_Aubade, A_TM_BondofFlame, A_TM_Brightcrest, A_TM_ChaosRipper, A_TM_CircleofLife, A_TM_Counterpoint, A_TM_Crabclaw, A_TM_CrownofGuilt, A_TM_DarkerThanDark, A_TM_Darkgnaw, A_TM_DecisivePumpkin, A_TM_DestinysEmbrace, A_TM_DiamondDust, A_TM_Divewing, A_TM_DivineRose, A_TM_DreamSword, A_TM_DualDisc, A_TM_Earthshaker, A_TM_EndofPain, A_TM_EndsoftheEarth, A_TM_FairyHarp, A_TM_FairyStars, A_TM_FatalCrest, A_TM_Fenrir, A_TM_FerrisGear, A_TM_FollowtheWind, A_TM_FrolicFlame, A_TM_GlimpseofDarkness, A_TM_GuardianBell, A_TM_GuardianSoul, A_TM_GullWing, A_TM_HerosCrest, A_TM_HiddenDragon, A_TM_Hyperdrive, A_TM_IncompleteKiblade, A_TM_JungleKing, A_TM_KeybladeofPeoplesHearts, A_TM_Kiblade, A_TM_KingdomKey, A_TM_KingdomKeyD, A_TM_KnockoutPunch, A_TM_LadyLuck, A_TM_LeasKeyblade, A_TM_LeopardosForetellersKeyblade, A_TM_Leviathan, A_TM_Lionheart, A_TM_LostMemory,
+			A_TM_LunarEclipse, A_TM_MarkofaHero, A_TM_MasterXehanortsKeyblade, A_TM_MastersDefender, A_TM_MaverickFlare, A_TM_MetalChocobo, A_TM_MidnightRoar, A_TM_MirageSplit, A_TM_MissingAche, A_TM_Monochrome, A_TM_MysteriousAbyss, A_TM_NightmaresEnd, A_TM_NightmaresEndandMirageSplit, A_TM_NoName, A_TM_Oathkeeper, A_TM_Oblivion, A_TM_OceansRage, A_TM_Olympia, A_TM_OmegaWeapon, A_TM_OminousBlight, A_TM_OneWingedAngel, A_TM_PainofSolitude, A_TM_PhotonDebugger, A_TM_PixiePetal, A_TM_Pumpkinhead, A_TM_Rainfell, A_TM_RejectionofFate, A_TM_RoyalRadiance, A_TM_RumblingRose, A_TM_SignofInnocence, A_TM_SilentDirge, A_TM_SkullNoise, A_TM_SleepingLion, A_TM_SoulEater, A_TM_Spellbinder, A_TM_StarSeeker, A_TM_Starlight, A_TM_Stormfall, A_TM_StrokeofMidnight, A_TM_SweetDreams, A_TM_SweetMemories, A_TM_Sweetstack, A_TM_ThreeWishes, A_TM_TotalEclipse, A_TM_TreasureTrove, A_TM_TrueLightsFlight, A_TM_TwilightBlaze, A_TM_TwoBecomeOne, A_TM_UltimaWeaponKH1, A_TM_UltimaWeaponKH2, A_TM_UltimaWeaponBBS,
+			A_TM_UltimaWeaponDDD, A_TM_Umbrella, A_TM_Unbound, A_TM_UnicornisForetellersKeyblade, A_TM_UrsusForetellersKeyblade, A_TM_VictoryLine, A_TM_VoidGear, A_TM_VulpeusForetellersKeyblade, A_TM_WaytotheDawn, A_TM_WaywardWind, A_TM_WinnersProof, A_TM_WishingLamp, A_TM_WishingStar, A_TM_WoodenKeyblade, A_TM_WoodenStick, A_TM_YoungXehanortsKeyblade, A_TM_ZeroOne;
+
+	public static void syncConfig () {
 		FMLCommonHandler.instance().bus().register(KingdomKeys.instance);
 		config.load();
-		/**WORLDGEN******************************/
-		final String WORLDGEN = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "worldgen";
+		/** WORLDGEN ******************************/
+		final String WORLDGEN = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "worldgen";
 		EnableWorldGen = config.getBoolean("Enable World Gen", WORLDGEN, Booleans.ENABLEWORLDGEN_DEFAULT, "Toggles all world generation performed by this mod");
 
-		/**NETWORK*******************************/
-		final String NETWORK = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "network";
+		/** NETWORK *******************************/
+		final String NETWORK = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "network";
 		EnableUpdateCheck = config.getBoolean("Enable Update Checking", NETWORK, Booleans.ENABLEUPDATECHECK, "Toggles whether the update checker checks for updates");
 
-		/**INTERFACE*****************************/
-		final String INTERFACE = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "interface";
+		/** INTERFACE *****************************/
+		final String INTERFACE = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "interface";
 		EnableHeartsOnHUD = config.getBoolean("Enable hearts on HUD", INTERFACE, Booleans.ENABLEHEARTSONHUD, "Toggles rendering of hearts on the HUD");
-		
-		/**ITEMS*********************************/
-		final String ITEMS = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "items";
-		
-		/**TOOLMATERIALS*************************/
-		final String TM = ITEMS + config.CATEGORY_SPLITTER + "ToolMaterials";
+
+		/** ITEMS *********************************/
+		final String ITEMS = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "items";
+
+		/** TOOLMATERIALS *************************/
+		final String TM = ITEMS + Configuration.CATEGORY_SPLITTER + "ToolMaterials";
 		config.addCustomCategoryComment(TM, "The tool materials for items which use them, A space after commas is required. \nParameters {(String) NAME, (int) HARVESTLEVEL, (int) MAXUSES, (float) EFFICIENCY, (float) DAMAGE, (int) ENCHANTABILITY}");
-		
+
 		TM_Interdiction = config.get(TM, StatCollector.translateToLocal(Strings.TM_Interdiction_NAME), TM_Interdiction_DEFAULT).getString();
 		TM_Sharpshooter = config.get(TM, StatCollector.translateToLocal(Strings.TM_Sharpshooter_NAME), TM_Sharpshooter_DEFAULT).getString();
 		TM_Lindworm = config.get(TM, StatCollector.translateToLocal(Strings.TM_Lindworm_NAME), TM_Lindworm_DEFAULT).getString();
@@ -337,7 +65,7 @@ public class Config {
 		TM_BlazeofGlory = config.get(TM, StatCollector.translateToLocal(Strings.TM_BlazeofGlory_NAME), TM_BlazeofGlory_DEFAULT).getString();
 		TM_Prometheus = config.get(TM, StatCollector.translateToLocal(Strings.TM_Prometheus_NAME), TM_Prometheus_DEFAULT).getString();
 		TM_Ifrit = config.get(TM, StatCollector.translateToLocal(Strings.TM_Ifrit_NAME), TM_Ifrit_DEFAULT).getString();
-		
+
 		TM_AbaddonPlasma = config.get(TM, StatCollector.translateToLocal(Strings.TM_AbaddonPlasma_NAME), TM_AbaddonPlasma_DEFAULT).getString();
 		TM_AbyssalTide = config.get(TM, StatCollector.translateToLocal(TM_AbyssalTide_NAME), TM_AbyssalTide_DEFAULT).getString();
 		TM_AllforOne = config.get(TM, StatCollector.translateToLocal(TM_AllforOne_NAME), TM_AllforOne_DEFAULT).getString();
@@ -459,7 +187,6 @@ public class Config {
 		TM_YoungXehanortsKeyblade = config.get(TM, StatCollector.translateToLocal(TM_YoungXehanortsKeyblade_NAME), TM_YoungXehanortsKeyblade_DEFAULT).getString();
 		TM_ZeroOne = config.get(TM, StatCollector.translateToLocal(TM_ZeroOne_NAME), TM_ZeroOne_DEFAULT).getString();
 
-		
 		A_TM_Interdiction = TM_Interdiction.split(", ");
 		A_TM_Sharpshooter = TM_Sharpshooter.split(", ");
 		A_TM_Lindworm = TM_Lindworm.split(", ");
@@ -476,7 +203,6 @@ public class Config {
 		A_TM_Prometheus = TM_Prometheus.split(", ");
 		A_TM_Ifrit = TM_Ifrit.split(", ");
 
-		
 		A_TM_AbaddonPlasma = TM_AbaddonPlasma.split(", ");
 		A_TM_AbyssalTide = TM_AbyssalTide.split(", ");
 		A_TM_AllforOne = TM_AllforOne.split(", ");
@@ -598,9 +324,7 @@ public class Config {
 		A_TM_YoungXehanortsKeyblade = TM_YoungXehanortsKeyblade.split(", ");
 		A_TM_ZeroOne = TM_ZeroOne.split(", ");
 		Console.println(A_TM_KingdomKey);
-		if(config.hasChanged()){
-			config.save();
-		}
+		if (config.hasChanged()) config.save();
 
 	}
 }

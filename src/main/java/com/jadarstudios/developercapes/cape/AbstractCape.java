@@ -11,32 +11,32 @@ import net.minecraft.util.ResourceLocation;
 
 /**
  * Abstract Implementation of ICape used within Dev. Capes
- * 
+ *
  * @author jadar
  */
 public abstract class AbstractCape implements ICape {
-    protected String name;
-    protected ITextureObject texture;
-    protected ResourceLocation location;
+	protected String name;
+	protected ITextureObject texture;
+	protected ResourceLocation location;
 
-    public AbstractCape(String name) {
-        this.name = name;
-    }
+	public AbstractCape (String name) {
+		this.name = name;
+	}
 
-    public AbstractCape() {}
+	public AbstractCape () {}
 
-    @Override
-    public String getName() {
-        return name;
-    }
+	@Override
+	public String getName () {
+		return name;
+	}
 
-    @Override
-    public ITextureObject getTexture() {
-        return this.texture;
-    }
+	@Override
+	public ITextureObject getTexture () {
+		return this.texture;
+	}
 
-    @Override
-    public ResourceLocation getLocation() {
-        return this.location;
-    }
+	@Override
+	public ResourceLocation getLocation () {
+		return this.location;
+	}
 }

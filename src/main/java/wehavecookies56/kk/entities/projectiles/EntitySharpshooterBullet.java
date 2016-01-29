@@ -9,63 +9,57 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 
-public class EntitySharpshooterBullet extends EntityThrowable{
+public class EntitySharpshooterBullet extends EntityThrowable {
 
 	int ticks;
 	EntityPlayer player;
-	public EntitySharpshooterBullet(World world) {
+
+	public EntitySharpshooterBullet (World world) {
 		super(world);
 	}
 
-	public EntitySharpshooterBullet(World world, EntityLivingBase entity, int ticksExisted) {
+	public EntitySharpshooterBullet (World world, EntityLivingBase entity, int ticksExisted) {
 		super(world, entity);
 		this.ticks = ticksExisted;
 		this.player = (EntityPlayer) entity;
 	}
 
-	public EntitySharpshooterBullet(World world, double x, double y, double z) {
+	public EntitySharpshooterBullet (World world, double x, double y, double z) {
 		super(world, x, y, z);
 	}
-	
+
 	@Override
-	protected float getGravityVelocity() {
+	protected float getGravityVelocity () {
 		return 0.0F;
 	}
-		
+
 	@Override
-	public void onUpdate() {
+	public void onUpdate () {
 		int rotation = 0;
-		this.worldObj.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX, this.posY, this.posZ, 0,0,0);
+		this.worldObj.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX, this.posY, this.posZ, 0, 0, 0);
 		this.rotationYaw = (rotation + 1) % 360;
-		if(this.ticks < 10){this.ticks = 10;}
-		
-		if(ticksExisted > this.ticks || ticksExisted > 60){
-			setDead();
-		}
+		if (this.ticks < 10) this.ticks = 10;
+
+		if (ticksExisted > this.ticks || ticksExisted > 60) setDead();
 		super.onUpdate();
 	}
+
 	@Override
-	protected void onImpact(MovingObjectPosition mop) {
+	protected void onImpact (MovingObjectPosition mop) {
 		if (mop.entityHit != null) {
 			mop.entityHit.setFire(8);
 			float shotDamage;
-			if(ExtendedPlayer.get(player).getStrength()/2 <8)
-			{
+			if (ExtendedPlayer.get(player).getStrength() / 2 < 8)
 				shotDamage = 8;
-			}
 			else
-			{
-				shotDamage = ExtendedPlayer.get(player).getStrength()/2;
-			}
-			
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), shotDamage);
+				shotDamage = ExtendedPlayer.get(player).getStrength() / 2;
+
+			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), shotDamage);
 		}
 
 		this.worldObj.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 
-		if (!worldObj.isRemote) {
-			setDead();
-		}
-		
+		if (!worldObj.isRemote) setDead();
+
 	}
 }

@@ -13,23 +13,19 @@ import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicThunder extends AbstractServerMessage<MagicThunder> {
 
-	public MagicThunder() {}
+	public MagicThunder () {}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {}
+	protected void read (PacketBuffer buffer) throws IOException {}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {}
+	protected void write (PacketBuffer buffer) throws IOException {}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
-		if(!ExtendedPlayer.get(player).cheatMode)
-		{
-			ExtendedPlayer.get(player).removeMp(Constants.THUNDER_COST);
-		}
+	public void process (EntityPlayer player, Side side) {
+		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.THUNDER_COST);
 		World world = player.worldObj;
-		if(!world.isRemote)
-		world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
+		if (!world.isRemote) world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
 	}
 
 }

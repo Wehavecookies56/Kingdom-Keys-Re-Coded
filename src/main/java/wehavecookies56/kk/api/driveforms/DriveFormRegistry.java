@@ -12,31 +12,29 @@ public class DriveFormRegistry {
 
 	private static Map<String, DriveForm> driveFormMap = new HashMap<String, DriveForm>();
 
-	public static Map<String, DriveForm> getDriveFormMap() {
+	public static Map<String, DriveForm> getDriveFormMap () {
 		return ImmutableMap.copyOf(driveFormMap);
 	}
 
-	public static boolean registerDriveForm(DriveForm driveForm) {
-		if (isDriveFormRegistered(driveForm.getName())) {
-			return false;
-		}
+	public static boolean registerDriveForm (DriveForm driveForm) {
+		if (isDriveFormRegistered(driveForm.getName())) return false;
 		driveFormMap.put(driveForm.getName(), driveForm);
 		return true;
 	}
 
-	public static boolean isDriveFormRegistered(DriveForm driveForm) {
+	public static boolean isDriveFormRegistered (DriveForm driveForm) {
 		return isDriveFormRegistered(driveForm.getName());
 	}
 
-	public static boolean isDriveFormRegistered(String name) {
+	public static boolean isDriveFormRegistered (String name) {
 		return driveFormMap.containsKey(name);
 	}
 
-	public static DriveForm get(String name) {
+	public static DriveForm get (String name) {
 		return driveFormMap.get(name);
 	}
 
-	public static boolean learnDriveForm(EntityPlayer player, String name) {
+	public static boolean learnDriveForm (EntityPlayer player, String name) {
 		if (player != null && !isDriveFormKnown(player, name)) {
 			DriveForm driveForm = driveFormMap.get(name);
 			ExtendedPlayer.get(player).learnDriveForm(driveForm);
@@ -45,9 +43,10 @@ public class DriveFormRegistry {
 		return false;
 	}
 
-	public static boolean isDriveFormKnown(EntityPlayer player, String name) {
+	public static boolean isDriveFormKnown (EntityPlayer player, String name) {
 		if (ExtendedPlayer.get(player) != null) {
-			return ExtendedPlayer.get(player).driveForms.contains(name);
+			ExtendedPlayer.get(player);
+			return ExtendedPlayer.driveForms.contains(name);
 		}
 		return false;
 	}

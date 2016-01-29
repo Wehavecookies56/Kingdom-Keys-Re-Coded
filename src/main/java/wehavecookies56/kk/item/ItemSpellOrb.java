@@ -10,35 +10,33 @@ import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.magics.LevelUpMagic;
 import wehavecookies56.kk.util.TextHelper;
 
-public class ItemSpellOrb extends Item {
+public abstract class ItemSpellOrb extends Item {
 
 	String magic, unlocalizedName;
-	
-	public ItemSpellOrb(String magic, String unlocalizedName) {
+
+	public ItemSpellOrb (String magic, String unlocalizedName) {
 		this.magic = magic;
 		this.unlocalizedName = unlocalizedName;
-		this.setMaxStackSize(1);
+		setMaxStackSize(1);
 	}
-	
+
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
-		if(world.isRemote){
-			PacketDispatcher.sendToServer(new LevelUpMagic(this.magic));
-		}
+	public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player) {
+		if (world.isRemote) PacketDispatcher.sendToServer(new LevelUpMagic(this.magic));
 		return stack;
 	}
-	
+
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
+	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
 		tooltip.add(TextHelper.localize(this.unlocalizedName));
 		super.addInformation(stack, playerIn, tooltip, advanced);
 	}
 
-	public String getMagicName() {
+	public String getMagicName () {
 		return unlocalizedName;
 	}
 
-	public void setMagicName(String unlocalizedName) {
+	public void setMagicName (String unlocalizedName) {
 		this.unlocalizedName = unlocalizedName;
-	}	
+	}
 }

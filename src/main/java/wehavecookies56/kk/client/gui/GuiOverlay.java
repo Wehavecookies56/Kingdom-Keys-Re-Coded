@@ -17,8 +17,7 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.PlayerLevel;
 import wehavecookies56.kk.lib.Reference;
 
-public class GuiOverlay extends GuiScreen
-{
+public class GuiOverlay extends GuiScreen {
 	public static boolean showExp;
 	public static boolean showMunny;
 	public static boolean showLevelUp;
@@ -27,135 +26,135 @@ public class GuiOverlay extends GuiScreen
 	public static long timeLevelUp;
 	public static int munnyGet;
 	int levelSeconds = 6;
+
 	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
-	public void RenderGameOverlayEvent(RenderGameOverlayEvent event)
-	{
-		if(event.type == ElementType.TEXT){
+	@SideOnly (Side.CLIENT)
+	public void RenderGameOverlayEvent (RenderGameOverlayEvent event) {
+		if (event.type == ElementType.TEXT) {
 			Minecraft mc = Minecraft.getMinecraft();
 			int screenWidth = event.resolution.getScaledWidth();
 			int screenHeight = event.resolution.getScaledHeight();
-			String reqExp = ""+(Arrays.stream(PlayerLevel.expNeeded, 0, ExtendedPlayer.get(mc.thePlayer).getLevel()).sum() - ExtendedPlayer.get(mc.thePlayer).getXP());
-			if(showExp)
-			{
+			String reqExp = "" + (Arrays.stream(PlayerLevel.expNeeded, 0, ExtendedPlayer.get(mc.thePlayer).getLevel()).sum() - ExtendedPlayer.get(mc.thePlayer).getXP());
+			if (showExp) {
 				mc.fontRendererObj.drawString("Next LV", 5, 5, 0xFFFFFF);
 				mc.fontRendererObj.drawString(reqExp, 5, 5 + mc.fontRendererObj.FONT_HEIGHT, 0xFFFFFF);
-				if(timeExp+4 <= (int)mc.getSystemTime()/1000)
-				{
-					showExp = false;
-				}
+				if (timeExp + 4 <= (int) Minecraft.getSystemTime() / 1000) showExp = false;
 			}
-			if(showMunny){
-				if(!showExp)
-				{
+			if (showMunny) {
+				if (!showExp) {
 					GL11.glPushMatrix();
 					GL11.glTranslatef(1, 1, 0);
 					mc.fontRendererObj.drawString("Munny Get!", 5, 5, 0xFFFFFF);
-					mc.fontRendererObj.drawString(munnyGet+"", 5, 5 + mc.fontRendererObj.FONT_HEIGHT, 0xFFFFFF);
+					mc.fontRendererObj.drawString(munnyGet + "", 5, 5 + mc.fontRendererObj.FONT_HEIGHT, 0xFFFFFF);
 					GL11.glPopMatrix();
-				}
-				else
-				{
+				} else {
 					mc.fontRendererObj.drawString("Munny Get!", 5, 5 + mc.fontRendererObj.FONT_HEIGHT + 10, 0xFFFFFF);
-					mc.fontRendererObj.drawString(munnyGet+"", 5, 5 + (mc.fontRendererObj.FONT_HEIGHT*2) + 10, 0xFFFFFF);
+					mc.fontRendererObj.drawString(munnyGet + "", 5, 5 + (mc.fontRendererObj.FONT_HEIGHT * 2) + 10, 0xFFFFFF);
 				}
-				if(timeMunny+4 <= (int)mc.getSystemTime()/1000)
-				{
-					showMunny = false;
-				}
+				if (timeMunny + 4 <= (int) Minecraft.getSystemTime() / 1000) showMunny = false;
 			}
-			if(showLevelUp){
+			if (showLevelUp) {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/levelup.png");
-				GL11.glPushMatrix();{
+				GL11.glPushMatrix();
+				{
 					int height = (mc.fontRendererObj.FONT_HEIGHT - 3) * PlayerLevel.messages.size();
 					GL11.glEnable(GL11.GL_BLEND);
-					GL11.glColor4ub((byte)255, (byte)0, (byte)0, (byte)255);
-					GL11.glPushMatrix();{
+					GL11.glColor4ub((byte) 255, (byte) 0, (byte) 0, (byte) 255);
+					GL11.glPushMatrix();
+					{
 						mc.renderEngine.bindTexture(texture);
 						int width = event.resolution.getScaledWidth();
-						GL11.glPushMatrix();{
+						GL11.glPushMatrix();
+						{
 							GL11.glTranslatef((width - 153.6f - 2), 0, 0);
 							GL11.glScalef(0.6f, 0.6f, 1);
 							drawTexturedModalRect(0, 0, 0, 0, 256, 36);
-						}GL11.glPopMatrix();
-						GL11.glPushMatrix();{
-							GL11.glTranslatef(width - ((float)(mc.fontRendererObj.getStringWidth("LEVEL UP!"))*0.75f) - 115, 4, 0);
+						}
+						GL11.glPopMatrix();
+						GL11.glPushMatrix();
+						{
+							GL11.glTranslatef(width - ((mc.fontRendererObj.getStringWidth("LEVEL UP!")) * 0.75f) - 115, 4, 0);
 							GL11.glScalef(0.75f, 0.75f, 1);
 							drawString(mc.fontRendererObj, "LEVEL UP!" + EnumChatFormatting.ITALIC, 0, 0, 0xC74326);
-						}GL11.glPopMatrix();
-						GL11.glPushMatrix();{
-							GL11.glPushMatrix();{
-								GL11.glTranslatef(width - ((float)(mc.fontRendererObj.getStringWidth("LV. "))*0.75f) - 90, 4, 0);
+						}
+						GL11.glPopMatrix();
+						GL11.glPushMatrix();
+						{
+							GL11.glPushMatrix();
+							{
+								GL11.glTranslatef(width - ((mc.fontRendererObj.getStringWidth("LV. ")) * 0.75f) - 90, 4, 0);
 								GL11.glScalef(0.75f, 0.75f, 1);
 								drawString(mc.fontRendererObj, "LV.", 0, 0, 0xE3D000);
-							}GL11.glPopMatrix();
-							GL11.glPushMatrix();{
-								GL11.glTranslatef(width - 256.0f*0.75f + ((float)(mc.fontRendererObj.getStringWidth("999"))*0.75f) + 88, 4, 0);
+							}
+							GL11.glPopMatrix();
+							GL11.glPushMatrix();
+							{
+								GL11.glTranslatef(width - 256.0f * 0.75f + ((mc.fontRendererObj.getStringWidth("999")) * 0.75f) + 88, 4, 0);
 								GL11.glScalef(0.75f, 0.75f, 1);
-								drawString(mc.fontRendererObj, ""+ExtendedPlayer.get(mc.thePlayer).getLevel(), 0, 0, 0xFFFFFF);
-							}GL11.glPopMatrix();
-							GL11.glPushMatrix();{
-								GL11.glTranslatef(width - ((float)(mc.fontRendererObj.getStringWidth(mc.thePlayer.getDisplayNameString()))*0.75f) - 7, 4, 0);
+								drawString(mc.fontRendererObj, "" + ExtendedPlayer.get(mc.thePlayer).getLevel(), 0, 0, 0xFFFFFF);
+							}
+							GL11.glPopMatrix();
+							GL11.glPushMatrix();
+							{
+								GL11.glTranslatef(width - ((mc.fontRendererObj.getStringWidth(mc.thePlayer.getDisplayNameString())) * 0.75f) - 7, 4, 0);
 								GL11.glScalef(0.75f, 0.75f, 1);
 								drawString(mc.fontRendererObj, mc.thePlayer.getDisplayNameString(), 0, 0, 0xFFFFFF);
-							}GL11.glPopMatrix();
-						}GL11.glPopMatrix();
-					}GL11.glPopMatrix();
-					GL11.glColor4ub((byte)255, (byte)0, (byte)0, (byte)255);
-					GL11.glPushMatrix();{
+							}
+							GL11.glPopMatrix();
+						}
+						GL11.glPopMatrix();
+					}
+					GL11.glPopMatrix();
+					GL11.glColor4ub((byte) 255, (byte) 0, (byte) 0, (byte) 255);
+					GL11.glPushMatrix();
+					{
 						mc.renderEngine.bindTexture(texture);
 						int width = event.resolution.getScaledWidth();
-						GL11.glTranslatef(((float)width - 256.0f*0.6f - 2), 36.0f*0.6f, 0);
+						GL11.glTranslatef((width - 256.0f * 0.6f - 2), 36.0f * 0.6f, 0);
 						GL11.glScalef(0.6f, height, 1);
 						drawTexturedModalRect(0, 0, 0, 36, 256, 1);
-					}GL11.glPopMatrix();
-					GL11.glColor4ub((byte)255, (byte)0, (byte)0, (byte)255);
-					GL11.glPushMatrix();{
+					}
+					GL11.glPopMatrix();
+					GL11.glColor4ub((byte) 255, (byte) 0, (byte) 0, (byte) 255);
+					GL11.glPushMatrix();
+					{
 						mc.renderEngine.bindTexture(texture);
 						int width = event.resolution.getScaledWidth();
-						GL11.glTranslatef(((float)width - 256.0f*0.6f - 2), height + (36.0f*0.6f), 0);
+						GL11.glTranslatef((width - 256.0f * 0.6f - 2), height + (36.0f * 0.6f), 0);
 						GL11.glScalef(0.6f, 0.6f, 1);
 						drawTexturedModalRect(0, 0, 0, 37, 256, 14);
-					}GL11.glPopMatrix();
-					GL11.glColor4ub((byte)255, (byte)0, (byte)0, (byte)255);
+					}
+					GL11.glPopMatrix();
+					GL11.glColor4ub((byte) 255, (byte) 0, (byte) 0, (byte) 255);
 					String message = "";
 					String strMessage = "Strength Increased!";
 					String defMessage = "Defense Increased!";
 					String magMessage = "Magic Increased!";
 					String hpMessage = "Maximum HP Increased!";
-					for(int i = 0; i < PlayerLevel.messages.size(); i++){
-						GL11.glPushMatrix();{
+					for (int i = 0; i < PlayerLevel.messages.size(); i++) {
+						GL11.glPushMatrix();
+						{
 							int width = event.resolution.getScaledWidth();
 
-							if(PlayerLevel.messages.get(i).toString().equals("str"))
-							{
+							if (PlayerLevel.messages.get(i).toString().equals("str"))
 								message = strMessage;
-							}
-							else if(PlayerLevel.messages.get(i).toString().equals("def"))
-							{
+							else if (PlayerLevel.messages.get(i).toString().equals("def"))
 								message = defMessage;
-							}
-							else if(PlayerLevel.messages.get(i).toString().equals("mag"))
-							{
+							else if (PlayerLevel.messages.get(i).toString().equals("mag"))
 								message = magMessage;
-							}
-							else if(PlayerLevel.messages.get(i).toString().equals("hp"))
-							{
-								message = hpMessage;
-							}
-							GL11.glTranslatef((width - (float)(256.0f*0.8f) + (float)(mc.fontRendererObj.getStringWidth("Maximum HP Increased!"))*0.8f), (float)(mc.fontRendererObj.FONT_HEIGHT*0.8f)*i + 23, 0);
+							else if (PlayerLevel.messages.get(i).toString().equals("hp")) message = hpMessage;
+							GL11.glTranslatef((width - 256.0f * 0.8f + (mc.fontRendererObj.getStringWidth("Maximum HP Increased!")) * 0.8f), mc.fontRendererObj.FONT_HEIGHT * 0.8f * i + 23, 0);
 							GL11.glTranslatef(-35, 0, 0);
 							GL11.glScalef(0.8f, 0.8f, 1);
 							drawString(mc.fontRendererObj, message, 0, 0, 0xFFFFFF);
 
-						}GL11.glPopMatrix();
+						}
+						GL11.glPopMatrix();
 					}
-					GL11.glColor4ub((byte)255, (byte)255, (byte)255, (byte)255);
-				}GL11.glPopMatrix();
-				if(timeLevelUp+levelSeconds <= (int)mc.getSystemTime()/1000)
-				{
-					showLevelUp = false;
+					GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) 255);
 				}
+				GL11.glPopMatrix();
+				if (timeLevelUp + levelSeconds <= (int) Minecraft.getSystemTime() / 1000) showLevelUp = false;
 			}
 		}
 	}

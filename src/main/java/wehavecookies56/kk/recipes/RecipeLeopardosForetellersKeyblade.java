@@ -14,22 +14,22 @@ public class RecipeLeopardosForetellersKeyblade extends Recipe {
 
 	public String name;
 
-	public RecipeLeopardosForetellersKeyblade(String name) {
+	public RecipeLeopardosForetellersKeyblade (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public Item getResult() {
+	public Item getResult () {
 		return ModItems.Chain_LeopardosForetellersKeyblade;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements() {
+	public Map<Material, Integer> getRequirements () {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_LightningStone), 4);
 		reqs.put(MaterialRegistry.get(Strings.SM_Orichalcum), 2);

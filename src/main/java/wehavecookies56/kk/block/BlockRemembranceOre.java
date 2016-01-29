@@ -12,23 +12,21 @@ import net.minecraft.world.IBlockAccess;
 public class BlockRemembranceOre extends BlockBlox {
 	private Random rand = new Random();
 
-	protected BlockRemembranceOre(Material material, String toolClass, int level,
-			float hardness, float resistance) {
+	protected BlockRemembranceOre (Material material, String toolClass, int level, float hardness, float resistance) {
 		super(material, toolClass, level, hardness, resistance);
 	}
+
 	@Override
-	public Item getItemDropped(IBlockState state, Random r, int fortune) 
-	{
+	public Item getItemDropped (IBlockState state, Random r, int fortune) {
 		return null;
 	}
+
 	@Override
-	public int getExpDrop(IBlockAccess world, BlockPos pos, int fortune)
-    {
-    	if (this.getItemDropped(world.getBlockState(pos), rand, fortune) != Item.getItemFromBlock(this))
-        {
-            int i = MathHelper.getRandomIntegerInRange(rand, 2, 4);
-            return i;
-        }
-        return 0;
-    }
+	public int getExpDrop (IBlockAccess world, BlockPos pos, int fortune) {
+		if (getItemDropped(world.getBlockState(pos), rand, fortune) != Item.getItemFromBlock(this)) {
+			int i = MathHelper.getRandomIntegerInRange(rand, 2, 4);
+			return i;
+		}
+		return 0;
+	}
 }

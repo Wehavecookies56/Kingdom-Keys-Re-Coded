@@ -6,13 +6,16 @@ public class ItemKeychain extends Item {
 
 	ItemKeyblade blade;
 
-	public ItemKeychain(ItemKeyblade blade) {this.blade = blade; this.setMaxStackSize(1);}
+	public ItemKeychain (ItemKeyblade blade) {
+		this.blade = blade;
+		setMaxStackSize(1);
+	}
 
-	public void setKeyblade(ItemKeyblade blade){
+	public void setKeyblade (ItemKeyblade blade) {
 		this.blade = blade;
 	}
 
-	public ItemKeyblade getKeyblade(){
+	public ItemKeyblade getKeyblade () {
 		return this.blade;
 	}
 }

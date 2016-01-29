@@ -14,29 +14,29 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
- * This class is an implementation of {@link IImageBuffer} that allows capes to be in HD
+ * This class is an implementation of {@link IImageBuffer} that allows capes to
+ * be in HD
  *
  * @author Jadar
  */
-@SideOnly(Side.CLIENT)
+@SideOnly (Side.CLIENT)
 public class HDImageBuffer implements IImageBuffer {
-    @Override
-    public BufferedImage parseUserSkin(final BufferedImage texture) {
-        if (texture == null)
-            return null;
-        int imageWidth = texture.getWidth(null) <= 64 ? 64 : texture.getWidth(null);
-        int imageHeight = texture.getHeight(null) <= 32 ? 32 : texture.getHeight(null);
+	@Override
+	public BufferedImage parseUserSkin (final BufferedImage texture) {
+		if (texture == null) return null;
+		int imageWidth = texture.getWidth(null) <= 64 ? 64 : texture.getWidth(null);
+		int imageHeight = texture.getHeight(null) <= 32 ? 32 : texture.getHeight(null);
 
-        BufferedImage capeImage = new BufferedImage(imageWidth, imageHeight, 2);
+		BufferedImage capeImage = new BufferedImage(imageWidth, imageHeight, 2);
 
-        Graphics graphics = capeImage.getGraphics();
-        graphics.drawImage(texture, 0, 0, null);
-        graphics.dispose();
+		Graphics graphics = capeImage.getGraphics();
+		graphics.drawImage(texture, 0, 0, null);
+		graphics.dispose();
 
-        return capeImage;
-    }
+		return capeImage;
+	}
 
-    @Override
-    public void skinAvailable() {}
+	@Override
+	public void skinAvailable () {}
 
 }

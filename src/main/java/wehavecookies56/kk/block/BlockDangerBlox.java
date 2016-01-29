@@ -12,42 +12,30 @@ import net.minecraft.world.World;
 
 public class BlockDangerBlox extends BlockBlox {
 
-	protected BlockDangerBlox(Material material, String toolClass, int level, float hardness, float resistance)
-	{
+	protected BlockDangerBlox (Material material, String toolClass, int level, float hardness, float resistance) {
 		super(material, toolClass, level, hardness, resistance);
 	}
 
 	@Override
-	public void onBlockClicked(World par1World, BlockPos pos, EntityPlayer par5EntityPlayer)
-	{
-	    par5EntityPlayer.attackEntityFrom(DamageSource.magic, 3);
+	public void onBlockClicked (World par1World, BlockPos pos, EntityPlayer par5EntityPlayer) {
+		par5EntityPlayer.attackEntityFrom(DamageSource.magic, 3);
 	}
-	
+
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
-	{
+	public AxisAlignedBB getCollisionBoundingBox (World worldIn, BlockPos pos, IBlockState state) {
 		float f = 0.0625F;
-        return AxisAlignedBB.fromBounds((double)((float)pos.getX() + f), (double)pos.getY(), (double)((float)pos.getZ() + f), (double)((float)(pos.getX() + 1) - f), (double)((float)(pos.getY() + 1) - f), (double)((float)(pos.getZ() + 1) - f));
+		return AxisAlignedBB.fromBounds(pos.getX() + f, pos.getY(), pos.getZ() + f, pos.getX() + 1 - f, pos.getY() + 1 - f, pos.getZ() + 1 - f);
 	}
-	
-	 @Override
-	 public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
-	 {
-		if(entityIn instanceof EntityPlayer)
-		{
+
+	@Override
+	public void onEntityCollidedWithBlock (World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+		if (entityIn instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) entityIn;
-			if (player.inventory.armorItemInSlot(0) != null)
-			{
+			if (player.inventory.armorItemInSlot(0) != null) {
 				ItemStack itemstack = player.inventory.armorItemInSlot(0);
-			}
-			else
-			{
+			} else
 				entityIn.attackEntityFrom(DamageSource.magic, 3.0F);
-			}
-        }	
-		else
-    	{
+		} else
 			entityIn.attackEntityFrom(DamageSource.magic, 3);
-    	}
-	 }
+	}
 }

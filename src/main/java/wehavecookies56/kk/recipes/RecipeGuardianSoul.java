@@ -14,22 +14,22 @@ public class RecipeGuardianSoul extends Recipe {
 
 	public String name;
 
-	public RecipeGuardianSoul(String name) {
+	public RecipeGuardianSoul (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public Item getResult() {
+	public Item getResult () {
 		return ModItems.Chain_GuardianSoul;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements() {
+	public Map<Material, Integer> getRequirements () {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 3);
 		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 4);
