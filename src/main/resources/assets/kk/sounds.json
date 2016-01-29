@@ -193,6 +193,13 @@
             {"name": "music/Dearly Beloved (BBS)", "stream": true}
         ]
     },
+	
+	 "music.Dearly Beloved (CHI)": {
+        "category": "music",
+        "sounds": [
+            {"name": "music/Dearly Beloved (CHI)", "stream": true}
+        ]
+    },
 
     "music.Dearly Beloved (KH1)": {
         "category": "music",

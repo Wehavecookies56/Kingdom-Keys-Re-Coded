@@ -150,6 +150,7 @@ public class InputHandler {
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
 					GuiCommandMenu.potionselected = 0;
 					Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Select, 1f, 1f, false);
+					return;
 				}
 				break;
 

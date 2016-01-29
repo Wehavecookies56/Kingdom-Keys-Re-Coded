@@ -186,12 +186,18 @@ public class GuiCommandMenu extends GuiScreen {
 				else
 					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
-
+			
+			if(spells == null)
+			{
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
+			}
+			else{
 			if (ExtendedPlayer.get(mc.thePlayer).getRecharge() == false && !spells.isEmpty() && !ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0xFFFFFF);
 			else
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+			}
 		}
 		GL11.glPopMatrix();
 		// ATTACK
@@ -273,6 +279,8 @@ public class GuiCommandMenu extends GuiScreen {
 						else
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 						colour = Constants.costs.get(spells.get(i)) < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
+						if(spells.get(i).equals("gui.commandmenu.magic.cure"))
+							colour = 0xFF9900;
 						colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 						drawString(mc.fontRendererObj, TextHelper.localize(spells.get(i)), 6, 4, colour);
 						GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
