@@ -41,7 +41,6 @@ public class ClientEventHandler {
 	public void clientTick (ClientTickEvent event) {
 		// System.out.println("Battle Played: "+this.battlePlayed[0]);
 
-		clientTick++;
 		if (event.phase == Phase.END) if (!(Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu || Minecraft.getMinecraft().currentScreen instanceof GuiModList || Minecraft.getMinecraft().currentScreen instanceof GuiScreenServerList || Minecraft.getMinecraft().currentScreen instanceof GuiMultiplayer || Minecraft.getMinecraft().currentScreen instanceof GuiLanguage || Minecraft.getMinecraft().currentScreen instanceof GuiSelectWorld)) {
 			SoundManager soundManager = ReflectionHelper.getPrivateValue(SoundHandler.class, Minecraft.getMinecraft().getSoundHandler(), "sndManager", "field_147694_f");
 			Map playingSounds = ReflectionHelper.getPrivateValue(SoundManager.class, soundManager, "playingSounds", "field_148629_h");
@@ -58,18 +57,22 @@ public class ClientEventHandler {
 
 			if ("music.game".equals(resLoc.getResourcePath()) || "music.game.creative".equals(resLoc.getResourcePath())) {
 				Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
-				this.posSound = Music.lazyAfternoons;
+				//this.posSound = Music.lazyAfternoons;
 				this.resLoc = new ResourceLocation(Reference.MODID, "");
 			}
 			//TODO implement this boss thing into this hard file
 			if (!EventHandler.isBoss) {
-				Minecraft.getMinecraft().getSoundHandler().stopSound(Music.sinisterSundown);
-				this.bossBattlePlayed[0] = false;
+				//Minecraft.getMinecraft().getSoundHandler().stopSound(Music.sinisterSundown);
+				//this.bossBattlePlayed[0] = false;
 			}
-			
+
 			if (!EventHandler.isHostiles) {
-				Minecraft.getMinecraft().getSoundHandler().stopSound(Music.sinisterSundown);
-				this.battlePlayed[0] = false;
+				clientTick++;
+				if(clientTick >= 20){
+					Minecraft.getMinecraft().getSoundHandler().stopSound(Music.sinisterSundown);
+					this.battlePlayed[0] = false;
+					clientTick = 0;
+				}
 
 				// System.out.println("Lazy afternoons");
 				/*
@@ -114,12 +117,14 @@ public class ClientEventHandler {
 				 * Music.song); for(int i = 0; i < this.played.length; i++) {
 				 * this.played[i] = false; } this.played[5] = true; } }
 				 */
-			} else if (EventHandler.isHostiles) if (!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.sinisterSundown) && !"music.game".equals(this.resLoc.getResourcePath()) && !"music.game.creative".equals(this.resLoc.getResourcePath())) if (!this.battlePlayed[0]) {
-
-				Minecraft.getMinecraft().getSoundHandler().playSound(Music.sinisterSundown);
-				for (int i = 0; i < this.battlePlayed.length; i++)
-					this.battlePlayed[i] = false;
-				this.battlePlayed[0] = true;
+			} else if (EventHandler.isHostiles) {
+				if (!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.sinisterSundown) && !Music.sinisterSundown.getSoundLocation().equals(this.resLoc) && !"music.game".equals(this.resLoc.getResourcePath()) && !"music.game.creative".equals(this.resLoc.getResourcePath())) if (!this.battlePlayed[0]) {
+					System.out.println("Ok");
+					Minecraft.getMinecraft().getSoundHandler().playDelayedSound(Music.sinisterSundown, 5);
+					for (int i = 0; i < this.battlePlayed.length; i++)
+						this.battlePlayed[i] = false;
+					this.battlePlayed[0] = true;
+				}
 			}
 		} else {
 			SoundManager soundManager = ReflectionHelper.getPrivateValue(SoundHandler.class, Minecraft.getMinecraft().getSoundHandler(), "sndManager", "field_147694_f");
@@ -137,7 +142,7 @@ public class ClientEventHandler {
 
 			if ("music.menu".equals(resLoc.getResourcePath())) {
 				Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
-				this.posSound = Music.dearlyBelovedKH1;
+				//this.posSound = Music.dearlyBelovedKH1;
 				this.resLoc = new ResourceLocation(Reference.MODID, "");
 			}
 			if (!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedDDD) && 
@@ -150,7 +155,7 @@ public class ClientEventHandler {
 				!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedDays) && 
 				!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedCHI) && 
 				!"music.menu".equals(this.resLoc.getResourcePath())) {
-				
+
 				int r = randomWithRange(0, 8);
 				if (resLoc.getResourcePath().contains("music.menu")) Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
 				Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
@@ -159,48 +164,60 @@ public class ClientEventHandler {
 					for (int i = 0; i < this.menuPlayed.length; i++)
 						this.menuPlayed[i] = false;
 					this.menuPlayed[0] = true;
+					return;
 				} else if (r == 1 && !this.menuPlayed[1]) {
 					Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedKH2);
 					for (int i = 0; i < this.menuPlayed.length; i++)
 						this.menuPlayed[i] = false;
 					this.menuPlayed[1] = true;
+					return;
 				} else if (r == 2 && !this.menuPlayed[2]) {
 					Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedBBS);
 					for (int i = 0; i < this.menuPlayed.length; i++)
 						this.menuPlayed[i] = false;
 					this.menuPlayed[2] = true;
+					return;
 				} else if (r == 3 && !this.menuPlayed[3]) {
 					Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedDDD);
 					for (int i = 0; i < this.menuPlayed.length; i++)
 						this.menuPlayed[i] = false;
 					this.menuPlayed[3] = true;
+					return;
 				} else if (r == 4 && !this.menuPlayed[4]) {
 					Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedDays);
 					for (int i = 0; i < this.menuPlayed.length; i++)
 						this.menuPlayed[i] = false;
 					this.menuPlayed[4] = true;
+					return;
 				} else if (r == 5 && !this.menuPlayed[5]) {
 					Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedCoded);
 					for (int i = 0; i < this.menuPlayed.length; i++)
 						this.menuPlayed[i] = false;
 					this.menuPlayed[5] = true;
+					return;
 				} else if (r == 6 && !this.menuPlayed[6]) {
 					Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedCoM);
 					for (int i = 0; i < this.menuPlayed.length; i++)
 						this.menuPlayed[i] = false;
 					this.menuPlayed[6] = true;
+					return;
 				} else if (r == 7 && !this.menuPlayed[7]) {
 					Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedReCoM);
 					for (int i = 0; i < this.menuPlayed.length; i++)
 						this.menuPlayed[i] = false;
 					this.menuPlayed[7] = true;
+					return;
 				} else if (r == 8 && !this.menuPlayed[8]) {
 					Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedCHI);
 					for (int i = 0; i < this.menuPlayed.length; i++)
 						this.menuPlayed[i] = false;
 					this.menuPlayed[8] = true;
+					return;
 				}
 			}
+		}
+		if(posSound != null){
+			System.out.println(posSound.getSoundLocation());
 		}
 	}
 
