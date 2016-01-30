@@ -63,9 +63,9 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 
 		buttonList.add(keychain = new GuiButton(KEYCHAIN, 5, button_items_playerY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Keychain)));
 		buttonList.add(synthbag = new GuiButton(SYNTHBAG, 5, button_items_stockY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_SynthBag)));
-		buttonList.add(potions = new GuiButton(POTIONS, 5, button_items_potionsY, 100, 20, TextHelper.localize("Potions")));
-		buttonList.add(spells = new GuiButton(SPELLS, 5, button_items_spellsY, 100, 20, TextHelper.localize("Spells")));
-		buttonList.add(spells = new GuiButton(DRIVE, 5, button_items_driveY, 100, 20, TextHelper.localize("Drive Forms")));
+		buttonList.add(potions = new GuiButton(POTIONS, 5, button_items_potionsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Potions)));
+		buttonList.add(spells = new GuiButton(SPELLS, 5, button_items_spellsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Spells)));
+		buttonList.add(spells = new GuiButton(DRIVE, 5, button_items_driveY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Drive)));
 		buttonList.add(back = new GuiButton(BACK, 5, button_items_backY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
 		synthbag.enabled = true;
 

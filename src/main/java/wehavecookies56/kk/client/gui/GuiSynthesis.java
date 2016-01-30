@@ -61,12 +61,12 @@ public class GuiSynthesis extends GuiTooltip {
 		this.buttonList.add(FreeDev = new GuiButton(FREEDEV, 5, 65 + 25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_FreeDev)));
 		this.buttonList.add(Materials = new GuiButton(MATERIALS, 5, 90 + 25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials)));
 
-		this.buttonList.add(Deposit = new GuiButton(DEPOSIT, 200, height - ((height / 8) + 70 / 16), 100, 20, TextHelper.localize("Deposit Materials")));
+		this.buttonList.add(Deposit = new GuiButton(DEPOSIT, 200, height - ((height / 8) + 70 / 16), 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials_Deposit)));
 
-		this.buttonList.add(Take1 = new GuiButton(TAKE1, 195, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize("Take 1")));
-		this.buttonList.add(TakeHalfStack = new GuiButton(TAKEHALFSTACK, 270, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize("Take 32")));
-		this.buttonList.add(TakeStack = new GuiButton(TAKESTACK, 345, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize("Take 64")));
-		this.buttonList.add(TakeAll = new GuiButton(TAKEALL, 420, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize("Take All")));
+		this.buttonList.add(Take1 = new GuiButton(TAKE1, 195, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials_TakeOne)));
+		this.buttonList.add(TakeHalfStack = new GuiButton(TAKEHALFSTACK, 270, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials_TakeHalfStack)));
+		this.buttonList.add(TakeStack = new GuiButton(TAKESTACK, 345, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials_TakeStack)));
+		this.buttonList.add(TakeAll = new GuiButton(TAKEALL, 420, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials_TakeAll)));
 
 		updateButtons();
 	}

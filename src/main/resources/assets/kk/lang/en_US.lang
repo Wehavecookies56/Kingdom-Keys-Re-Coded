@@ -610,6 +610,9 @@ gui.menu.main.munny=Munny
 gui.menu.items.title=Items
 gui.menu.items.keychain=Keychain
 gui.menu.items.synthbag=Synthesis Bag
+gui.menu.items.potions=Potions
+gui.menu.items.spells=Spells
+gui.menu.items.drives=Drive Forms
 gui.menu.items.button.stock=Stock
 gui.menu.items.button.back=Back
 
@@ -630,6 +633,11 @@ gui.synthesis.main.freedevelopment=Free Development
 gui.synthesis.main.materials=Materials
 gui.synthesis.main.recipes.requiredmaterials=Required Materials
 gui.synthesis.main.recipes.create=Create
+gui.synthesis.main.materials.deposit=Deposit Materials
+gui.synthesis.main.materials.takeone=Take 1
+gui.synthesis.main.materials.takehalfstack=Take Half Stack
+gui.synthesis.main.materials.takestack=Take Stack
+gui.synthesis.main.materials.takeall=Take All
 
 ############################
 #Keybinds

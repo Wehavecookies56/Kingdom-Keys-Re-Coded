@@ -1,0 +1,648 @@
+#Pirate Speak (PIRATE) language file for Kingdom Keys Re:Coded
+#Version 0.7.6
+#Created by Wehavecookies56
+
+############################
+#Achievements
+############################
+achievement.openMenu=LOCALIZEDOpen the menu
+achievement.openMenu.desc=LOCALIZEDPress the '%1$s' key to open the menu.
+
+achievement.getBlox=LOCALIZEDIs this a bug?
+achievement.getBlox.desc=LOCALIZEDGet a Bug Blox
+
+achievement.getSynthesisTable=LOCALIZEDWill I be able to make better items?
+achievement.getSynthesisTable.desc=LOCALIZEDGet a Synthesis Table
+
+achievement.getKeyblade=LOCALIZEDA Keychain? Why would I want it?
+achievement.getKeyblade.desc=LOCALIZEDObtain your first Keychain
+
+achievement.getWehavecookies56Skull=LOCALIZEDFamiliar Face!
+achievement.getAbelatoxSkull=LOCALIZEDAnother Familiar Face!
+achievement.getWehavecookies56Skull.desc=LOCALIZEDCraft Wehavecookies56's head
+achievement.getAbelatoxSkull.desc=LOCALIZEDCraft Abelatox's head
+
+
+############################
+#Creative Tabs
+############################
+
+itemGroup.tabKingdomKeys=LOCALIZEDKingdom Keys (Items)
+itemGroup.tabKingdomKeysblocks=LOCALIZEDKingdom Keys (Blocks)
+
+############################
+#Blocks
+############################
+#Blox
+tile.normalblox.name=LOCALIZEDNormal Blox
+tile.hardblox.name=LOCALIZEDHard Blox
+tile.metalblox.name=LOCALIZEDMetal Blox
+tile.dangerblox.name=LOCALIZEDDanger Blox
+tile.bounceblox.name=LOCALIZEDBounce Blox
+tile.blastblox.name=LOCALIZEDBlast Blox
+tile.prizeblox.name=LOCALIZEDPrize Blox
+tile.rareprizeblox.name=LOCALIZEDRare Prize Blox
+tile.ghostblox.name=LOCALIZEDGhost Blox
+tile.magnetblox.name=LOCALIZEDMagnet Blox
+
+tile.ghostblox.desc=LOCALIZEDWhen powered with redstone the %s turns transparent and has no collision
+tile.dangerblox.desc=LOCALIZEDThe %s deals 1.5 hearts of damage when touching or hitting it
+tile.bounceblox.desc=LOCALIZEDWhen standing on the %s it causes entities to bounce
+
+holdforinfo.desc=LOCALIZEDHold shift for more info
+
+#Synthesis Ore
+tile.blazingore.name=LOCALIZEDBlazing Ore
+tile.brightore.name=LOCALIZEDBright Ore
+tile.darkore.name=LOCALIZEDDark Ore
+tile.darkoree.name=LOCALIZEDDark Ore
+tile.denseore.name=LOCALIZEDDense Ore
+tile.energyore.name=LOCALIZEDEnergy Ore
+tile.frostore.name=LOCALIZEDFrost Ore
+tile.lightningore.name=LOCALIZEDLightning Ore
+tile.lucidore.name=LOCALIZEDLucid Ore
+tile.powerore.name=LOCALIZEDPower Ore
+tile.poweroree.name=LOCALIZEDPower Ore
+tile.remembranceore.name=LOCALIZEDRemembrance Ore
+tile.serenityore.name=LOCALIZEDSerenity Ore
+tile.stormyore.name=LOCALIZEDStormy Ore
+tile.tranquilore.name=LOCALIZEDTranquil Ore
+tile.twilightore.name=LOCALIZEDTwilight Ore
+
+#Other
+tile.synthesistable.name=LOCALIZEDSynthesis Table
+tile.kkchest.name=LOCALIZEDChest
+tile.kkchest.desc1=LOCALIZEDYes I know, the chest is stuck open right now.
+tile.kkchest.desc2=LOCALIZEDWill only open with a keyblade in hand
+tile.savepoint.name=LOCALIZEDSave Point
+tile.savepoint.desc=LOCALIZEDSneak while standing on it to set your spawn point
+
+############################
+#Items
+############################
+
+#Synthesis Materials
+sm.rank=LOCALIZEDRank
+
+sm.blazingshard.name=LOCALIZEDBlazing Shard
+sm.blazingstone.name=LOCALIZEDBlazing Stone
+sm.blazinggem.name=LOCALIZEDBlazing Gem
+sm.blazingcrystal.name=LOCALIZEDBlazing Crystal
+
+sm.brightshard.name=LOCALIZEDBright Shard
+sm.brightstone.name=LOCALIZEDBright Stone
+sm.brightgem.name=LOCALIZEDBright Gem
+sm.brightcrystal.name=LOCALIZEDBright Crystal
+
+sm.darkshard.name=LOCALIZEDDark Shard
+sm.darkstone.name=LOCALIZEDDark Stone
+sm.darkgem.name=LOCALIZEDDark Gem
+sm.darkcrystal.name=LOCALIZEDDark Crystal
+
+sm.denseshard.name=LOCALIZEDDense Shard
+sm.densestone.name=LOCALIZEDDense Stone
+sm.densegem.name=LOCALIZEDDense Gem
+sm.densecrystal.name=LOCALIZEDDense Crystal
+
+sm.energyshard.name=LOCALIZEDEnergy Shard
+sm.energystone.name=LOCALIZEDEnergy Stone
+sm.energygem.name=LOCALIZEDEnergy Gem
+sm.energycrystal.name=LOCALIZEDEnergy Crystal
+
+sm.frostshard.name=LOCALIZEDFrost Shard
+sm.froststone.name=LOCALIZEDFrost Stone
+sm.frostgem.name=LOCALIZEDFrost Gem
+sm.frostcrystal.name=LOCALIZEDFrost Crystal
+
+sm.lightningshard.name=LOCALIZEDLightning Shard
+sm.lightningstone.name=LOCALIZEDLightning Stone
+sm.lightninggem.name=LOCALIZEDLightning Gem
+sm.lightningcrystal.name=LOCALIZEDLightning Crystal
+
+sm.lostillusion.name=LOCALIZEDLost Illusion
+
+sm.lucidshard.name=LOCALIZEDLucid Shard
+sm.lucidstone.name=LOCALIZEDLucid Stone
+sm.lucidgem.name=LOCALIZEDLucid Gem
+sm.lucidcrystal.name=LOCALIZEDLucid Crystal
+
+sm.manifestillusion.name=LOCALIZEDManifest Illusion
+
+sm.mythrilshard.name=LOCALIZEDMythril Shard
+sm.mythrilstone.name=LOCALIZEDMythril Stone
+sm.mythrilgem.name=LOCALIZEDMythril Gem
+sm.mythrilcrystal.name=LOCALIZEDMythril Crystal
+
+sm.orichalcum.name=LOCALIZEDOrichalcum
+sm.orichalcum+.name=LOCALIZEDOrichalcum+
+
+sm.powershard.name=LOCALIZEDPower Shard
+sm.powerstone.name=LOCALIZEDPower Stone
+sm.powergem.name=LOCALIZEDPower Gem
+sm.powercrystal.name=LOCALIZEDPower Crystal
+
+sm.remembranceshard.name=LOCALIZEDRemembrance Shard
+sm.remembrancestone.name=LOCALIZEDRemembrance Stone
+sm.remembrancegem.name=LOCALIZEDRemembrance Gem
+sm.remembrancecrystal.name=LOCALIZEDRemembrance Crystal
+
+sm.serenityshard.name=LOCALIZEDSerenity Shard
+sm.serenitystone.name=LOCALIZEDSerenity Stone
+sm.serenitygem.name=LOCALIZEDSerenity Gem
+sm.serenitycrystal.name=LOCALIZEDSerenity Crystal
+
+sm.stormyshard.name=LOCALIZEDStormy Shard
+sm.stormystone.name=LOCALIZEDStormy Stone
+sm.stormygem.name=LOCALIZEDStormy Gem
+sm.stormycrystal.name=LOCALIZEDStormy Crystal
+
+sm.tranquilshard.name=LOCALIZEDTranquil Shard
+sm.tranquilstone.name=LOCALIZEDTranquil Stone
+sm.tranquilgem.name=LOCALIZEDTranquil Gem
+sm.tranquilcrystal.name=LOCALIZEDTranquil Crystal
+
+sm.twilightshard.name=LOCALIZEDTwilight Shard
+sm.twilightstone.name=LOCALIZEDTwilight Stone
+sm.twilightgem.name=LOCALIZEDTwilight Gem
+sm.twilightcrystal.name=LOCALIZEDTwilight Crystal
+
+
+#Armor
+item.organizationrobe_helmet.name=LOCALIZEDOrganization Hood
+item.organizationrobe_chestplate.name=LOCALIZEDOrganization Coat
+item.organizationrobe_leggings.name=LOCALIZEDOrganization Leggings
+item.organizationrobe_boots.name=LOCALIZEDOrganization Boots
+
+item.aqua_helmet.name=LOCALIZEDAqua's Helmet
+item.aqua_chestplate.name=LOCALIZEDAqua's Chestplate
+item.aqua_leggings.name=LOCALIZEDAqua's Leggings
+item.aqua_boots.name=LOCALIZEDAqua's Boots
+
+item.eraqus_helmet.name=LOCALIZEDEraqus's Helmet
+item.eraqus_chestplate.name=LOCALIZEDEraqus's Chestplate
+item.eraqus_leggings.name=LOCALIZEDEraqus's Leggings
+item.eraqus_boots.name=LOCALIZEDEraqus's boots
+
+item.terra_helmet.name=LOCALIZEDTerra's Helmet
+item.terra_chestplate.name=LOCALIZEDTerra's Chestplate
+item.terra_leggings.name=LOCALIZEDTerra's Leggings
+item.terra_boots.name=LOCALIZEDTerra's Boots
+
+item.ventus_helmet.name=LOCALIZEDVentus's Helmet
+item.ventus_chestplate.name=LOCALIZEDVentus's Chestplate
+item.ventus_leggings.name=LOCALIZEDVentus's Leggings
+item.ventus_boots.name=LOCALIZEDVentus's Boots
+
+#Misc
+item.emptybottle.name=LOCALIZEDEmpty Bottle
+item.potion.name=LOCALIZEDPotion
+item.ether.name=LOCALIZEDEther
+item.elixir.name=LOCALIZEDElixir
+item.hporb.name=LOCALIZEDHP Orb
+item.driveorb.name=LOCALIZEDDP Orb
+item.magicorb.name=LOCALIZEDMP Orb
+item.munny.name=LOCALIZEDMunny
+item.heart.name=LOCALIZEDHeart
+item.pureheart.name=LOCALIZEDPure Heart
+item.kingdomhearts.name=LOCALIZEDKingdom Hearts
+item.darkheart.name=LOCALIZEDDark Heart
+item.darkleather.name=LOCALIZEDDark Leather
+item.synthesismaterial.name=LOCALIZEDSynthesis Material
+item.recipe.name=LOCALIZEDSynthesis Recipe
+item.icecream.name=LOCALIZEDSea Salt Ice Cream
+item.winnerstick.name=LOCALIZEDWINNER Stick
+item.levelupmagicfire.name=LOCALIZEDSpell Orb
+item.levelupmagicthunder.name=LOCALIZEDSpell Orb
+item.levelupmagicblizzard.name=LOCALIZEDSpell Orb
+item.levelupmagicstop.name=LOCALIZEDSpell Orb
+item.levelupmagiccure.name=LOCALIZEDSpell Orb
+item.levelupmagicaero.name=LOCALIZEDSpell Orb
+
+item.levelupdrivevalor.name=LOCALIZEDForm Orb
+item.levelupdrivewisdom.name=LOCALIZEDForm Orb
+item.levelupdrivelimit.name=LOCALIZEDForm Orb
+item.levelupdrivemaster.name=LOCALIZEDForm Orb
+item.levelupdrivefinal.name=LOCALIZEDForm Orb
+
+item.synthesisbags.name=LOCALIZEDSmall Synthesis Material Bag
+item.synthesisbagm.name=LOCALIZEDMedium Synthesis Material Bag
+item.synthesisbagl.name=LOCALIZEDLarge Synthesis Material Bag
+
+item.frostinfusedsnowball.name=LOCALIZEDFrost-Infused Snowball
+item.blazinginfusedcoal.name=LOCALIZEDBlazing-Infused Coal
+item.stormyinfusediron.name=LOCALIZEDStormy-Infused Iron Ingot
+item.brightinfusedglowstone.name=LOCALIZEDBright-Infused Glowstone Dust
+item.darkinfusediron.name=LOCALIZEDDark-Infused Iron Ingot
+item.lightninginfusedgold.name=LOCALIZEDLightning-Infused Gold Ingot
+item.mythrilinfuseddiamond.name=LOCALIZEDMythril-Infused Diamond
+
+item.abandonedknowledge.name=LOCALIZEDAbandoned Knowledge
+item.darkknowledge.name=LOCALIZEDDark Knowledge
+item.eclipsedknowledge.name=LOCALIZEDEclipsed Knowledge
+item.forgottenknowledge.name=LOCALIZEDForgotten Knowledge
+item.illudedknowledge.name=LOCALIZEDIlluded Knowledge
+item.lostknowledge.name=LOCALIZEDLost Knowledge
+item.manifestknowledge.name=LOCALIZEDManifest Knowledge
+item.obscuredknowledge.name=LOCALIZEDObscured Knowledge
+item.unknownknowledge.name=LOCALIZEDUnknown Knowledge
+item.voidknowledge.name=LOCALIZEDVoid Knowledge
+
+#Music Discs
+disc.duration.desc=LOCALIZEDDuration
+disc.durationunits.desc=LOCALIZED(mins:secs)
+item.birthbysleep-alinktothefuture-.name=LOCALIZEDMusic Disc
+item.record.Birth by Sleep -A Link to the Future-.desc=LOCALIZEDYoko Shimomura - Birth by Sleep -A Link to the Future-
+item.darknessoftheunknown.name=LOCALIZEDMusic Disc
+item.record.Darkness of the Unknown.desc=LOCALIZEDYoko Shimomura - Darkness of the Unknown
+item.dearlybeloved-symphonyversion-.name=LOCALIZEDMusic Disc
+item.record.Dearly Beloved -Symphony Version-.desc=LOCALIZEDYoko Shimomura - Dearly Beloved -Symphony Version-
+item.dreamdropdistance-thenextawakening-.name=LOCALIZEDMusic Disc
+item.record.Dream Drop Distance -The Next Awakening-.desc=LOCALIZEDYoko Shimomura - Dream Drop Distance -The Next Awakening-
+item.hikari-kingdominstrumentalversion-.name=LOCALIZEDMusic Disc
+item.record.Hikari -KINGDOM Instrumental Version-.desc=LOCALIZEDYoko Shimomura - Hikari -KINGDOM Instrumental Version-
+item.l'oscuritadell'ignoto.name=LOCALIZEDMusic Disc
+item.record.L'Oscurita Dell'Ignoto.desc=LOCALIZEDYoko Shimomura - L'Oscurita Dell'Ignoto
+item.musiquepourlatristessedexion.name=LOCALIZEDMusic Disc
+item.record.Musique pour la tristesse de Xion.desc=LOCALIZEDYoko Shimomura - Musique pour la tristesse de Xion
+item.nomorebugs-bugversion-.name=LOCALIZEDMusic Disc
+item.record.No More Bugs -Bug Version-.desc=LOCALIZEDYoko Shimomura - No More Bugs!! -Bug Version-
+item.organizationxiii.name=LOCALIZEDMusic Disc
+item.record.Organization XIII.desc=LOCALIZEDYoko Shimomura - Organization XIII
+item.sanctuary.name=LOCALIZEDMusic Disc
+item.record.Sanctuary.desc=LOCALIZEDHikaru Utada - Sanctuary
+item.simpleandcleanplanitbremix.name=LOCALIZEDMusic Disc
+item.record.Simple And Clean PLANITb Remix.desc=LOCALIZEDHikaru Utada - Simple And Clean -PLANITb Remix-
+item.sinistersundown.name=LOCALIZEDMusic Disc
+item.record.Sinister Sundown.desc=LOCALIZEDYoko Shimomura - Sinister Sundown
+item.the13thanthology.name=LOCALIZEDMusic Disc
+item.record.The 13th Anthology.desc=LOCALIZEDYoko Shimomura - The 13th Anthology
+
+#Organization XIII weapons
+item.interdiction.name=LOCALIZEDInterdiction
+item.sharpshooter.name=LOCALIZEDSharpshooter
+item.lindworm.name=LOCALIZEDLindworm
+item.frozenpride.name=LOCALIZEDFrozen Pride
+item.skysplitter.name=LOCALIZEDSkysplitter
+item.bookofretribution.name=LOCALIZEDBook of Retribution
+item.lunatic.name=LOCALIZEDLunatic
+item.lunatic.desc=LOCALIZEDVII Saïx
+item.eternalflames.name=LOCALIZEDEternal Flames
+item.arpeggio.name=LOCALIZEDArpeggio
+item.fairgame.name=LOCALIZEDFair Game
+item.gracefuldahlia.name=LOCALIZEDGraceful Dahlia
+item.foudre.name=LOCALIZEDFoudre
+
+item.blazeofglory.name=LOCALIZEDBlaze of Glory
+item.prometheus.name=LOCALIZEDPrometheus
+item.ifrit.name=LOCALIZEDIfrit
+
+#Keyblades
+item.abaddonplasma.name=LOCALIZEDAbaddon Plasma
+item.abyssaltide.name=LOCALIZEDAbyssal Tide
+item.allforone.name=LOCALIZEDAll for One
+item.anguisforetellerskeyblade.name=LOCALIZEDAnguis Foreteller's Keyblade
+item.astralblast.name=LOCALIZEDAstral Blast
+item.aubade.name=LOCALIZEDAubade
+item.bondofflame.name=LOCALIZEDBond of Flame
+item.brightcrest.name=LOCALIZEDBrightcrest
+item.chaosripper.name=LOCALIZEDChaos Ripper
+item.circleoflife.name=LOCALIZEDCircle of Life
+item.counterpoint.name=LOCALIZEDCounterpoint
+item.crabclaw.name=LOCALIZEDCrabclaw
+item.crownofguilt.name=LOCALIZEDCrown of Guilt
+item.darkerthandark.name=LOCALIZEDDarker Than Dark
+item.darkgnaw.name=LOCALIZEDDarkgnaw
+item.decisivepumpkin.name=LOCALIZEDDecisive Pumpkin
+item.destinysembrace.name=LOCALIZEDDestiny's Embrace
+item.diamonddust.name=LOCALIZEDDiamond Dust
+item.divewing.name=LOCALIZEDDivewing
+item.divinerose.name=LOCALIZEDDivine Rose
+item.dreamsword.name=LOCALIZEDDream Sword
+item.dualdisc.name=LOCALIZEDDual Disc
+item.earthshaker.name=LOCALIZEDEarthshaker
+item.endofpain.name=LOCALIZEDEnd of Pain
+item.endsoftheearth.name=LOCALIZEDEnds of the Earth
+item.fairyharp.name=LOCALIZEDFairy Harp
+item.fairystars.name=LOCALIZEDFairy Stars
+item.fatalcrest.name=LOCALIZEDFatal Crest
+item.fenrir.name=LOCALIZEDFenrir
+item.ferrisgear.name=LOCALIZEDFerris Gear
+item.followthewind.name=LOCALIZEDFollow the Wind
+item.frolicflame.name=LOCALIZEDFrolic Flame
+item.glimpseofdarkness.name=LOCALIZEDGlimpse of Darkness
+item.guardianbell.name=LOCALIZEDGuardian Bell
+item.guardiansoul.name=LOCALIZEDGuardian Soul
+item.gullwing.name=LOCALIZEDGull Wing
+item.heroscrest.name=LOCALIZEDHero's Crest
+item.hiddendragon.name=LOCALIZEDHidden Dragon
+item.hyperdrive.name=LOCALIZEDHyperdrive
+item.incompletekiblade.name=LOCALIZEDIncomplete χ-blade
+item.jungleking.name=LOCALIZEDJungle King
+item.keybladeofpeopleshearts.name=LOCALIZEDKeyblade of People's Hearts
+item.kiblade.name=LOCALIZEDχ-blade
+item.kingdomkey.name=LOCALIZEDKingdom Key
+item.kingdomkeyd.name=LOCALIZEDKingdom Key D
+item.knockoutpunch.name=LOCALIZEDKnockout Punch
+item.ladyluck.name=LOCALIZEDLady Luck
+item.leaskeyblade.name=LOCALIZEDLea's Keyblade
+item.leopardosforetellerskeyblade.name=LOCALIZEDLeopardos Foreteller's Keyblade
+item.leviathan.name=LOCALIZEDLeviathan
+item.lionheart.name=LOCALIZEDLionheart
+item.lostmemory.name=LOCALIZEDLost Memory
+item.lunareclipse.name=LOCALIZEDLunar Eclipse
+item.markofahero.name=LOCALIZEDMark of a Hero
+item.masterxehanortskeyblade.name=LOCALIZEDMaster Xehanort's Keyblade
+item.mastersdefender.name=LOCALIZEDMaster's Defender
+item.maverickflare.name=LOCALIZEDMaverick Flare
+item.metalchocobo.name=LOCALIZEDMetal Chocobo
+item.midnightroar.name=LOCALIZEDMidnight Roar
+item.miragesplit.name=LOCALIZEDMirage Split
+item.missingache.name=LOCALIZEDMissing Ache
+item.monochrome.name=LOCALIZEDMonochrome
+item.mysteriousabyss.name=LOCALIZEDMysterious Abyss
+item.nightmaresend.name=LOCALIZEDNightmare's End
+item.nightmaresendandmiragesplit.name=LOCALIZEDCombined Keyblade
+item.noname.name=LOCALIZEDNo Name
+item.oathkeeper.name=LOCALIZEDOathkeeper
+item.oblivion.name=LOCALIZEDOblivion
+item.oceansrage.name=LOCALIZEDOcean's Rage
+item.olympia.name=LOCALIZEDOlympia
+item.omegaweapon.name=LOCALIZEDOmega Weapon
+item.ominousblight.name=LOCALIZEDOminous Blight
+item.onewingedangel.name=LOCALIZEDOne-Winged Angel
+item.painofsolitude.name=LOCALIZEDPain of Solitude
+item.photondebugger.name=LOCALIZEDPhoton Debugger
+item.pixiepetal.name=LOCALIZEDPixie Petal
+item.pumpkinhead.name=LOCALIZEDPumpkinhead
+item.rainfell.name=LOCALIZEDRainfell
+item.rejectionoffate.name=LOCALIZEDRejection of Fate
+item.royalradiance.name=LOCALIZEDRoyal Radiance
+item.rumblingrose.name=LOCALIZEDRumbling Rose
+item.signofinnocence.name=LOCALIZEDSign of Innocence
+item.silentdirge.name=LOCALIZEDSilent Dirge
+item.skullnoise.name=LOCALIZEDSkull Noise
+item.sleepinglion.name=LOCALIZEDSleeping Lion
+item.souleater.name=LOCALIZEDSoul Eater
+item.spellbinder.name=LOCALIZEDSpellbinder
+item.starseeker.name=LOCALIZEDStar Seeker
+item.starlight.name=LOCALIZEDStarlight
+item.stormfall.name=LOCALIZEDStormfall
+item.strokeofmidnight.name=LOCALIZEDStroke of Midnight
+item.sweetdreams.name=LOCALIZEDSweet Dreams
+item.sweetmemories.name=LOCALIZEDSweet Memories
+item.sweetstack.name=LOCALIZEDSweetstack
+item.threewishes.name=LOCALIZEDThree Wishes
+item.totaleclipse.name=LOCALIZEDTotal Eclipse
+item.treasuretrove.name=LOCALIZEDTreasure Trove
+item.truelightsflight.name=LOCALIZEDTrue Light's Flight
+item.twilightblaze.name=LOCALIZEDTwilight Blaze
+item.twobecomeone.name=LOCALIZEDTwo Become One
+item.ultimaweaponkh1.name=LOCALIZEDUltima Weapon (KH1)
+item.ultimaweaponkh2.name=LOCALIZEDUltima Weapon (KH2)
+item.ultimaweaponbbs.name=LOCALIZEDUltima Weapon (BBS)
+item.ultimaweaponddd.name=LOCALIZEDUltima Weapon (DDD)
+item.umbrella.name=LOCALIZEDUmbrella
+item.unbound.name=LOCALIZEDUnbound
+item.unicornisforetellerskeyblade.name=LOCALIZEDUnicornis Foreteller's Keyblade
+item.ursusforetellerskeyblade.name=LOCALIZEDUrsus Foreteller's Keyblade
+item.victoryline.name=LOCALIZEDVictory Line
+item.voidgear.name=LOCALIZEDVoid Gear
+item.vulpeusforetellerskeyblade.name=LOCALIZEDVulpeus Foreteller's Keyblade
+item.waytothedawn.name=LOCALIZEDWay to the Dawn
+item.waywardwind.name=LOCALIZEDWayward Wind
+item.winnersproof.name=LOCALIZEDWinner's Proof
+item.wishinglamp.name=LOCALIZEDWishing Lamp
+item.wishingstar.name=LOCALIZEDWishing Star
+item.woodenkeyblade.name=LOCALIZEDWooden Keyblade
+item.woodenstick.name=LOCALIZEDWooden Stick
+item.youngxehanortskeyblade.name=LOCALIZEDYoung Xehanort's Keyblade
+item.zeroone.name=LOCALIZEDZero/One
+
+#Chains
+item.abaddonplasmachain.name=LOCALIZEDAbaddon Plasma Chain
+item.abyssaltidechain.name=LOCALIZEDAbyssal Tide Chain
+item.allforonechain.name=LOCALIZEDAll for One Chain
+item.anguisforetellerskeybladechain.name=LOCALIZEDAnguis Foreteller's Keyblade Chain
+item.astralblastchain.name=LOCALIZEDAstral Blast Chain
+item.aubadechain.name=LOCALIZEDAubade Chain
+item.bondofflamechain.name=LOCALIZEDBond of Flame Chain
+item.brightcrestchain.name=LOCALIZEDBrightcrest Chain
+item.chaosripperchain.name=LOCALIZEDChaos Ripper Chain
+item.circleoflifechain.name=LOCALIZEDCircle of Life Chain
+item.counterpointchain.name=LOCALIZEDCounterpoint Chain
+item.crabclawchain.name=LOCALIZEDCrabclaw Chain
+item.crownofguiltchain.name=LOCALIZEDCrown of Guilt Chain
+item.darkerthandarkchain.name=LOCALIZEDDarker Than Dark Chain
+item.darkgnawchain.name=LOCALIZEDDarkgnaw Chain
+item.decisivepumpkinchain.name=LOCALIZEDDecisive Pumpkin Chain
+item.destinysembracechain.name=LOCALIZEDDestiny's Embrace Chain
+item.diamonddustchain.name=LOCALIZEDDiamond Dust Chain
+item.divewingchain.name=LOCALIZEDDivewing Chain
+item.divinerosechain.name=LOCALIZEDDivine Rose Chain
+item.dreamswordchain.name=LOCALIZEDDream Sword Chain
+item.dualdiscchain.name=LOCALIZEDDual Disc Chain
+item.earthshakerchain.name=LOCALIZEDEarthshaker Chain
+item.endofpainchain.name=LOCALIZEDEnd of Pain Chain
+item.endsoftheearthchain.name=LOCALIZEDEnds of the Earth Chain
+item.fairyharpchain.name=LOCALIZEDFairy Harp Chain
+item.fairystarschain.name=LOCALIZEDFairy Stars Chain
+item.fatalcrestchain.name=LOCALIZEDFatal Crest Chain
+item.fenrirchain.name=LOCALIZEDFenrir Chain
+item.ferrisgearchain.name=LOCALIZEDFerris Gear Chain
+item.followthewindchain.name=LOCALIZEDFollow the Wind Chain
+item.frolicflamechain.name=LOCALIZEDFrolic Flame Chain
+item.glimpseofdarknesschain.name=LOCALIZEDGlimpse of Darkness Chain
+item.guardianbellchain.name=LOCALIZEDGuardian Bell Chain
+item.guardiansoulchain.name=LOCALIZEDGuardian Soul Chain
+item.gullwingchain.name=LOCALIZEDGull Wing Chain
+item.heroscrestchain.name=LOCALIZEDHero's Crest Chain
+item.hiddendragonchain.name=LOCALIZEDHidden Dragon Chain
+item.hyperdrivechain.name=LOCALIZEDHyperdrive Chain
+item.incompletekibladechain.name=LOCALIZEDIncomplete χ-blade Chain
+item.junglekingchain.name=LOCALIZEDJungle King Chain
+item.keybladeofpeoplesheartschain.name=LOCALIZEDKeyblade of People's Hearts Chain
+item.kibladechain.name=LOCALIZEDKi-blade Chain
+item.kingdomkeychain.name=LOCALIZEDKingdom Key Chain
+item.kingdomkeydchain.name=LOCALIZEDKingdom Key D Chain
+item.knockoutpunchchain.name=LOCALIZEDKnockout Punch Chain
+item.ladyluckchain.name=LOCALIZEDLady Luck Chain
+item.leaskeybladechain.name=LOCALIZEDLea's Keyblade Chain
+item.leopardosforetellerskeybladechain.name=LOCALIZEDLeopardos Foreteller's Keyblade Chain
+item.leviathanchain.name=LOCALIZEDLeviathan Chain
+item.lightseekerchain.name=LOCALIZEDLight Seeker Chain
+item.lionheartchain.name=LOCALIZEDLionheart Chain
+item.lostmemorychain.name=LOCALIZEDLost Memory Chain
+item.lunareclipsechain.name=LOCALIZEDLunar Eclipse Chain
+item.markofaherochain.name=LOCALIZEDMark of a Hero Chain
+item.masterxehanortskeybladechain.name=LOCALIZEDMaster Xehanort's Keyblade Chain
+item.mastersdefenderchain.name=LOCALIZEDMaster's Defender Chain
+item.maverickflarechain.name=LOCALIZEDMaverick Flare Chain
+item.metalchocobochain.name=LOCALIZEDMetal Chocobo Chain
+item.midnightroarchain.name=LOCALIZEDMidnight Roar Chain
+item.miragesplitchain.name=LOCALIZEDMirage Split Chain
+item.missingachechain.name=LOCALIZEDMissing Ache Chain
+item.monochromechain.name=LOCALIZEDMonochrome Chain
+item.mysteriousabysschain.name=LOCALIZEDMysterious Abyss Chain
+item.nightmaresendchain.name=LOCALIZEDNightmare's End Chain
+item.nightmaresendandmiragesplitchain.name=LOCALIZEDCombined Keyblade Chain
+item.nonamechain.name=LOCALIZEDNo Name Chain
+item.oathkeeperchain.name=LOCALIZEDOathkeeper Chain
+item.oblivionchain.name=LOCALIZEDOblivion Chain
+item.oceansragechain.name=LOCALIZEDOcean's Rage Chain
+item.olympiachain.name=LOCALIZEDOlympia Chain
+item.omegaweaponchain.name=LOCALIZEDOmega Weapon Chain
+item.ominousblightchain.name=LOCALIZEDOminous Blight Chain
+item.onewingedangelchain.name=LOCALIZEDOne-Winged Angel Chain
+item.painofsolitudechain.name=LOCALIZEDPain of Solitude Chain
+item.photondebuggerchain.name=LOCALIZEDPhoton Debugger Chain
+item.pixiepetalchain.name=LOCALIZEDPixie Petal Chain
+item.pumpkinheadchain.name=LOCALIZEDPumpkinhead Chain
+item.rainfellchain.name=LOCALIZEDRainfell Chain
+item.rejectionoffatechain.name=LOCALIZEDRejection of Fate Chain
+item.royalradiancechain.name=LOCALIZEDRoyal Radiance Chain
+item.rumblingrosechain.name=LOCALIZEDRumbling Rose Chain
+item.signofinnocencechain.name=LOCALIZEDSign of Innocence Chain
+item.silentdirgechain.name=LOCALIZEDSilent Dirge Chain
+item.skullnoisechain.name=LOCALIZEDSkull Noise Chain
+item.sleepinglionchain.name=LOCALIZEDSleeping Lion Chain
+item.souleaterchain.name=LOCALIZEDSoul Eater Chain
+item.spellbinderchain.name=LOCALIZEDSpellbinder Chain
+item.starseekerchain.name=LOCALIZEDStar Seeker Chain
+item.starlightchain.name=LOCALIZEDStarlight Chain
+item.stormfallchain.name=LOCALIZEDStormfall Chain
+item.strokeofmidnightchain.name=LOCALIZEDStroke of Midnight Chain
+item.sweetdreamschain.name=LOCALIZEDSweet Dreams Chain
+item.sweetmemorieschain.name=LOCALIZEDSweet Memories Chain
+item.sweetstackchain.name=LOCALIZEDSweetstack Chain
+item.threewisheschain.name=LOCALIZEDThree Wishes Chain
+item.totaleclipsechain.name=LOCALIZEDTotal Eclipse Chain
+item.treasuretrovechain.name=LOCALIZEDTreasure Trove Chain
+item.truelightsflightchain.name=LOCALIZEDTrue Light's Flight Chain
+item.twilightblazechain.name=LOCALIZEDTwilight Blaze Chain
+item.twobecomeonechain.name=LOCALIZEDTwo Become One Chain
+item.ultimaweaponkh1chain.name=LOCALIZEDUltima Weapon (KH1) Chain
+item.ultimaweaponkh2chain.name=LOCALIZEDUltima Weapon (KH2) Chain
+item.ultimaweaponbbschain.name=LOCALIZEDUltima Weapon (BBS) Chain
+item.ultimaweapondddchain.name=LOCALIZEDUltima Weapon (DDD) Chain
+item.umbrellachain.name=LOCALIZEDUmbrella Chain
+item.unboundchain.name=LOCALIZEDUnbound Chain
+item.unicornisforetellerskeybladechain.name=LOCALIZEDUnicornis Foreteller's Keyblade Chain
+item.ursusforetellerskeybladechain.name=LOCALIZEDUrsus Foreteller's Keyblade Chain
+item.victorylinechain.name=LOCALIZEDVictory Line Chain
+item.voidgearchain.name=LOCALIZEDVoid Gear Chain
+item.vulpeusforetellerskeybladechain.name=LOCALIZEDVulpeus Foreteller's Keyblade Chain
+item.waytothedawnchain.name=LOCALIZEDWay to the Dawn Chain
+item.waywardwindchain.name=LOCALIZEDWayward Wind Chain
+item.winnersproofchain.name=LOCALIZEDWinner's Proof Chain
+item.wishinglampchain.name=LOCALIZEDWishing Lamp Chain
+item.wishingstarchain.name=LOCALIZEDWishing Star Chain
+item.youngxehanortskeybladechain.name=LOCALIZEDYoung Xehanort's Keyblade Chain
+item.zeroonechain.name=LOCALIZEDZero/One Chain
+
+############################
+#GUI
+############################
+
+#Reports#
+gui.kk.reports.title.main=LOCALIZEDReports
+gui.kk.reports.keyblades.title.main=LOCALIZEDKeyblades
+
+#Command Menu#
+#Commands
+gui.commandmenu.command=LOCALIZEDCOMMANDS
+gui.commandmenu.attack=LOCALIZEDAttack
+gui.commandmenu.magic=LOCALIZEDMagic
+gui.commandmenu.items=LOCALIZEDItems
+gui.commandmenu.drive=LOCALIZEDDrive
+
+#Magic
+gui.commandmenu.magic.title=LOCALIZEDMAGIC
+gui.commandmenu.magic.fire=LOCALIZEDFire
+gui.commandmenu.magic.fira=LOCALIZEDFira
+gui.commandmenu.magic.firaga=LOCALIZEDFiraga
+
+gui.commandmenu.magic.blizzard=LOCALIZEDBlizzard
+gui.commandmenu.magic.blizzara=LOCALIZEDBlizzara
+gui.commandmenu.magic.blizzaga=LOCALIZEDBlizzaga
+
+gui.commandmenu.magic.thunder=LOCALIZEDThunder
+gui.commandmenu.magic.thundara=LOCALIZEDThundara
+gui.commandmenu.magic.thundaga=LOCALIZEDThundaga
+
+gui.commandmenu.magic.cure=LOCALIZEDCure
+gui.commandmenu.magic.cura=LOCALIZEDCura
+gui.commandmenu.magic.curaga=LOCALIZEDCuraga
+
+gui.commandmenu.magic.gravity=LOCALIZEDGravity
+gui.commandmenu.magic.gravira=LOCALIZEDGravira
+gui.commandmenu.magic.graviga=LOCALIZEDGraviga
+
+gui.commandmenu.magic.aero=LOCALIZEDAero
+gui.commandmenu.magic.aerora=LOCALIZEDAerora
+gui.commandmenu.magic.aeroga=LOCALIZEDAeroga
+
+gui.commandmenu.magic.stop=LOCALIZEDStop
+gui.commandmenu.magic.stopra=LOCALIZEDStopra
+gui.commandmenu.magic.stopga=LOCALIZEDStopga
+
+#Drive Forms
+gui.commandmenu.drive.title=LOCALIZEDTRANSFORM
+gui.commandmenu.drive.valor=LOCALIZEDValor Form
+gui.commandmenu.drive.wisdom=LOCALIZEDWisdom Form
+gui.commandmenu.drive.limit=LOCALIZEDLimit Form
+gui.commandmenu.drive.master=LOCALIZEDMaster Form
+gui.commandmenu.drive.final=LOCALIZEDFinal Form
+
+#Menu#
+#Main
+gui.menu.main.title=LOCALIZEDMenu
+gui.menu.main.time=LOCALIZEDTime
+gui.menu.main.button.items=LOCALIZEDItems
+gui.menu.main.button.abilities=LOCALIZEDAbilities
+gui.menu.main.button.customize=LOCALIZEDCustomize
+gui.menu.main.button.party=LOCALIZEDParty
+gui.menu.main.button.status=LOCALIZEDStatus
+gui.menu.main.button.journal=LOCALIZEDJournal
+gui.menu.main.button.config=LOCALIZEDConfig
+gui.menu.main.munny=LOCALIZEDMunny
+
+#Items
+gui.menu.items.title=LOCALIZEDItems
+gui.menu.items.keychain=LOCALIZEDKeychain
+gui.menu.items.synthbag=LOCALIZEDSynthesis Bag
+gui.menu.items.potions=LOCALIZEDPotions
+gui.menu.items.spells=LOCALIZEDSpells
+gui.menu.items.drives=LOCALIZEDDrive Forms
+gui.menu.items.button.stock=LOCALIZEDStock
+gui.menu.items.button.back=LOCALIZEDBack
+
+#Keychain Container
+container.keychain=LOCALIZEDPlace a keychain here
+container.kkchest.name=LOCALIZEDChest
+
+#SynthBag Container
+container.synthbag=LOCALIZEDPlace a Synthesis Bag here
+container.synthesisbagsinventory=LOCALIZEDSmall Synthesis Material Bag
+container.synthesisbagminventory=LOCALIZEDMedium Synthesis Material Bag
+container.synthesisbaglinventory=LOCALIZEDLarge Synthesis Material Bag
+
+#Synthesis#
+gui.synthesis.main.title=LOCALIZEDItem Synthesis
+gui.synthesis.main.recipes=LOCALIZEDRecipes
+gui.synthesis.main.freedevelopment=LOCALIZEDFree Development
+gui.synthesis.main.materials=LOCALIZEDMaterials
+gui.synthesis.main.recipes.requiredmaterials=LOCALIZEDRequired Materials
+gui.synthesis.main.recipes.create=LOCALIZEDCreate
+
+############################
+#Keybinds
+############################
+
+key.categories.kingdomkeys=LOCALIZEDKingdom Keys
+key.kingdomkeys.back=LOCALIZEDCommand Menu Back
+key.kingdomkeys.enter=LOCALIZEDCommand Menu Enter
+key.kingdomkeys.scrollactivator=LOCALIZEDHold for Command Menu mouse controls
+key.kingdomkeys.scrolldown=LOCALIZEDCommand Menu Scroll Down
+key.kingdomkeys.scrollup=LOCALIZEDCommand Menu Scroll Up
+key.kingdomkeys.openmenu=LOCALIZEDOpen Menu
+key.kingdomkeys.summonkeyblade=LOCALIZEDSummon Keyblade
