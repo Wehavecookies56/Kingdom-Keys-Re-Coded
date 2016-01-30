@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.client.gui.GuiJournal;
 import wehavecookies56.kk.client.gui.GuiMenu;
+import wehavecookies56.kk.client.gui.GuiMenu_Config;
 import wehavecookies56.kk.client.gui.GuiMenu_Items;
 import wehavecookies56.kk.client.gui.GuiMenu_Items_Player;
 import wehavecookies56.kk.client.gui.GuiMenu_Status;
@@ -23,6 +24,10 @@ public class GuiHelper {
 
 	public static void openMenu_Items () {
 		Minecraft.getMinecraft().displayGuiScreen(new GuiMenu_Items(Strings.Gui_Menu_Items_Title));
+	}
+	
+	public static void openMenu_Config () {
+		Minecraft.getMinecraft().displayGuiScreen(new GuiMenu_Config(Strings.Gui_Menu_Config_Title));
 	}
 
 	public static void openMenu_Items_Player () {

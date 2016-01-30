@@ -34,6 +34,9 @@ public class GuiMenu extends GuiMenu_Bars {
 			case JOURNAL:
 				GuiHelper.openReports();
 				break;
+			case CONFIG:
+				GuiHelper.openMenu_Config();
+				break;
 		}
 		updateButtons();
 	}
@@ -73,9 +76,7 @@ public class GuiMenu extends GuiMenu_Bars {
 				this.abilities.enabled = false;
 				this.customize.enabled = false;
 				this.party.enabled = false;
-				this.status.enabled = true;
 				this.journal.enabled = false;
-				this.config.enabled = false;
 				break;
 			case SUBMENU_ITEMS:
 				items.visible = false;

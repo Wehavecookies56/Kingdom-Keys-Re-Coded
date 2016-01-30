@@ -62,8 +62,7 @@ dependencies {
 
 }
 
-processResources
-{
+processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
@@ -81,6 +80,9 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 jar {
     dependsOn "incrementBuildNumber"

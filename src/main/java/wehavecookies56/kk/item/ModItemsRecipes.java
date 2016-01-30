@@ -84,6 +84,8 @@ public class ModItemsRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.SynthesisBagM), "LSL", "LBL", "LLL", 'L', Items.leather, 'S', Items.string, 'B', ModItems.SynthesisBagS);
 
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.SynthesisBagL), "LSL", "LBL", "LLL", 'L', Items.leather, 'S', Items.string, 'B', ModItems.SynthesisBagM);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.EmptyBottle), "G G", "GBG", "GGG", 'G', Blocks.glass, 'B', Items.glass_bottle);
 
 		ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 		ItemStacks.createSynthesisItem(BlazingCrystal, Strings.SM_BlazingCrystal, "S");

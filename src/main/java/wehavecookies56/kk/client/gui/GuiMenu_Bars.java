@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.TextHelper;
@@ -67,7 +68,7 @@ public class GuiMenu_Bars extends GuiScreen {
 		Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
 		GL11.glPushMatrix();
 		{
-			GL11.glColor3ub((byte) 24, (byte) 36, (byte) 214);
+			GL11.glColor4ub((byte) Config.interfaceColour[0], (byte) Config.interfaceColour[1], (byte) Config.interfaceColour[2], (byte) 255);
 			// GL11.glColor4f(0.3F, 0.3F, 0.3F, 1.0F);
 			// GL11.glScalef(2f, 2f, 2f);
 			drawDefaultBackground();

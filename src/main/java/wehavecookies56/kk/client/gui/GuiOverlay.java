@@ -13,8 +13,10 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.PlayerLevel;
+import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
 
 public class GuiOverlay extends GuiScreen {
@@ -59,7 +61,7 @@ public class GuiOverlay extends GuiScreen {
 				{
 					int height = (mc.fontRendererObj.FONT_HEIGHT - 3) * PlayerLevel.messages.size();
 					GL11.glEnable(GL11.GL_BLEND);
-					GL11.glColor4ub((byte) 255, (byte) 0, (byte) 0, (byte) 255);
+					GL11.glColor4ub((byte) Config.interfaceColour[0], (byte) Config.interfaceColour[1], (byte) Config.interfaceColour[2], (byte) 255);
 					GL11.glPushMatrix();
 					{
 						mc.renderEngine.bindTexture(texture);
@@ -105,7 +107,7 @@ public class GuiOverlay extends GuiScreen {
 						GL11.glPopMatrix();
 					}
 					GL11.glPopMatrix();
-					GL11.glColor4ub((byte) 255, (byte) 0, (byte) 0, (byte) 255);
+					GL11.glColor4ub((byte) Config.interfaceColour[0], (byte) Config.interfaceColour[1], (byte) Config.interfaceColour[2], (byte) 255);
 					GL11.glPushMatrix();
 					{
 						mc.renderEngine.bindTexture(texture);
@@ -115,7 +117,7 @@ public class GuiOverlay extends GuiScreen {
 						drawTexturedModalRect(0, 0, 0, 36, 256, 1);
 					}
 					GL11.glPopMatrix();
-					GL11.glColor4ub((byte) 255, (byte) 0, (byte) 0, (byte) 255);
+					GL11.glColor4ub((byte) Config.interfaceColour[0], (byte) Config.interfaceColour[1], (byte) Config.interfaceColour[2], (byte) 255);
 					GL11.glPushMatrix();
 					{
 						mc.renderEngine.bindTexture(texture);
@@ -125,7 +127,7 @@ public class GuiOverlay extends GuiScreen {
 						drawTexturedModalRect(0, 0, 0, 37, 256, 14);
 					}
 					GL11.glPopMatrix();
-					GL11.glColor4ub((byte) 255, (byte) 0, (byte) 0, (byte) 255);
+					GL11.glColor4ub((byte) Config.interfaceColour[0], (byte) Config.interfaceColour[1], (byte) Config.interfaceColour[2], (byte) 255);
 					String message = "";
 					String strMessage = "Strength Increased!";
 					String defMessage = "Defense Increased!";
