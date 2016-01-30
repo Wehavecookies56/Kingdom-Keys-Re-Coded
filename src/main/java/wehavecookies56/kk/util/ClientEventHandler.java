@@ -29,6 +29,7 @@ public class ClientEventHandler {
 	PositionedSound vanillaSound;
 	ResourceLocation resLoc = new ResourceLocation(Reference.MODID, "");
 	boolean[] played = { false };
+	boolean[] bossBattlePlayed = { false };
 	boolean[] battlePlayed = { false };
 	boolean[] menuPlayed = { false, false, false, false, false, false, false, false, false };
 	int interval = 100;
@@ -60,6 +61,12 @@ public class ClientEventHandler {
 				this.posSound = Music.lazyAfternoons;
 				this.resLoc = new ResourceLocation(Reference.MODID, "");
 			}
+			//TODO implement this boss thing into this hard file
+			if (!EventHandler.isBoss) {
+				Minecraft.getMinecraft().getSoundHandler().stopSound(Music.sinisterSundown);
+				this.bossBattlePlayed[0] = false;
+			}
+			
 			if (!EventHandler.isHostiles) {
 				Minecraft.getMinecraft().getSoundHandler().stopSound(Music.sinisterSundown);
 				this.battlePlayed[0] = false;
@@ -108,8 +115,6 @@ public class ClientEventHandler {
 				 * this.played[i] = false; } this.played[5] = true; } }
 				 */
 			} else if (EventHandler.isHostiles) if (!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.sinisterSundown) && !"music.game".equals(this.resLoc.getResourcePath()) && !"music.game.creative".equals(this.resLoc.getResourcePath())) if (!this.battlePlayed[0]) {
-				// Minecraft.getMinecraft().getSoundHandler().stopSound(Music.lazyAfternoons);
-				// Minecraft.getMinecraft().getSoundHandler().stopSound(this.vanillaSound);
 
 				Minecraft.getMinecraft().getSoundHandler().playSound(Music.sinisterSundown);
 				for (int i = 0; i < this.battlePlayed.length; i++)

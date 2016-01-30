@@ -57,10 +57,22 @@ public class BlockMagnetBlox extends BlockBlox {
 
 	private void updateState (World world, BlockPos pos) {
 		List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, getCollisionBoundingBox(world, pos, world.getBlockState(pos)));
-		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
+		if (list.isEmpty())
+			return; 
+		
+		for (int i = 0; i < list.size(); i++) 
+		{
 			Entity e = (Entity) list.get(i);
-			if (e instanceof EntityLivingBase) if (e instanceof EntityPlayer) ((EntityPlayer) e).jump();
+			System.out.println("player: "+e);
 
+			if (e instanceof EntityLivingBase)
+			{ 
+
+				if (e instanceof EntityPlayer)
+				{
+					((EntityPlayer) e).jump();
+				}
+			}
 		}
 		world.scheduleUpdate(pos, this, tickRate(world));
 	}
@@ -77,7 +89,8 @@ public class BlockMagnetBlox extends BlockBlox {
 				state.getBlock().setBlockBounds(0, 0, 0, 1, 1, -10);
 			else if (facing == EnumFacing.EAST)
 				state.getBlock().setBlockBounds(0, 0, 0, -10, 1, 1);
-			else if (facing == EnumFacing.WEST) state.getBlock().setBlockBounds(0, 0, 0, 10, 1, 1);
+			else if (facing == EnumFacing.WEST)
+				state.getBlock().setBlockBounds(0, 0, 0, 10, 1, 1);
 		} else
 			state.getBlock().setBlockBounds(0, 0, 0, 1, 1, 1);
 		super.setBlockBoundsBasedOnState(world, pos);

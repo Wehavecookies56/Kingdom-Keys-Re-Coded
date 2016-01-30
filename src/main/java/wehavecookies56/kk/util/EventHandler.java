@@ -436,6 +436,7 @@ public class EventHandler {
 
 		if (event.crafting.getItem() == AAskull.getItem()) AchievementHelper.addAchievement(event.player, ModAchievements.getAbelatoxSkull);
 	}
+	public static boolean isBoss = false;
 
 	public static boolean isHostiles = false;
 
@@ -455,15 +456,40 @@ public class EventHandler {
 		if (!ExtendedPlayer.get(event.player).getDriveInUse().equals("none") && DriveFormRegistry.isDriveFormRegistered(ExtendedPlayer.get(event.player).getDriveInUse())) DriveFormRegistry.get(ExtendedPlayer.get(event.player).getDriveInUse()).update(event.player);
 		if (event.player != null) {
 			List<Entity> entities = event.player.worldObj.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(16.0D, 10.0D, 16.0D));
+			List<Entity> bossEntities = event.player.worldObj.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(150.0D, 100.0D, 150.0D));
+			if(!bossEntities.isEmpty())
+			{
+				for(int i = 0; i < bossEntities.size(); i++)
+				{
+					if(bossEntities.get(i) instanceof EntityDragon || bossEntities.get(i) instanceof EntityWither)
+					{
+						isBoss = true;
+						break;
+					}
+					else
+					{
+						isBoss = false;
+					}
+				}				
+			}
+			else
+			{
+				isBoss = false;
+			}
 			if (!entities.isEmpty()) {
-				for (int i = 0; i < entities.size(); i++)
+				for (int i = 0; i < entities.size(); i++){
 					if (entities.get(i) instanceof EntityMob) {
 						isHostiles = true;
 						break;
-					} else
+					} else{
 						isHostiles = false;
-			} else
+					}
+				}
+			} 
+			else
+			{
 				isHostiles = false;
+			}
 		}
 
 	}
