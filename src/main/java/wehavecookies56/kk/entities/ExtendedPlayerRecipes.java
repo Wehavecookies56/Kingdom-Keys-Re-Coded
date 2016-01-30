@@ -24,14 +24,14 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 
 	private final EntityPlayer player;
 
-	public ExtendedPlayerRecipes(EntityPlayer player) {
+	public ExtendedPlayerRecipes (EntityPlayer player) {
 		this.player = player;
 	}
 
 	public List<String> knownRecipes = new ArrayList<String>();
 
 	@Override
-	public void saveNBTData(NBTTagCompound compound) {
+	public void saveNBTData (NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
 
 		NBTTagList tagList = new NBTTagList();
@@ -51,7 +51,7 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 	}
 
 	@Override
-	public void loadNBTData(NBTTagCompound compound) {
+	public void loadNBTData (NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
 
 		NBTTagList tagList = properties.getTagList("RecipeList", Constants.NBT.TAG_COMPOUND);
@@ -67,19 +67,16 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 	}
 
 	@Override
-	public void init(Entity entity, World world) {
-	}
+	public void init (Entity entity, World world) {}
 
-	public void learnRecipe(Recipe recipe) {
+	public void learnRecipe (Recipe recipe) {
 		knownRecipes.add(recipe.getName());
-		if (player instanceof EntityPlayerMP)
-			sync();
+		if (player instanceof EntityPlayerMP) sync();
 	}
 
-	public final void sync() {
+	public final void sync () {
 		SyncExtendedPlayerRecipes packet = new SyncExtendedPlayerRecipes(player);
-		if (player.worldObj.isRemote)
-			PacketDispatcher.sendToServer(packet);
+		if (player.worldObj.isRemote) PacketDispatcher.sendToServer(packet);
 
 		if (!player.worldObj.isRemote) {
 			EntityPlayerMP player1 = (EntityPlayerMP) player;
@@ -87,11 +84,11 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 		}
 	}
 
-	private static String getSaveKey(EntityPlayer player) {
+	private static String getSaveKey (EntityPlayer player) {
 		return player.getDisplayName() + ":" + EXT_PROP_NAME;
 	}
 
-	public static void saveProxyData(EntityPlayer player) {
+	public static void saveProxyData (EntityPlayer player) {
 		ExtendedPlayerRecipes playerData = ExtendedPlayerRecipes.get(player);
 		NBTTagCompound SavedData = new NBTTagCompound();
 
@@ -99,20 +96,19 @@ public class ExtendedPlayerRecipes implements IExtendedEntityProperties {
 		CommonProxy.storeEntityData(getSaveKey(player), SavedData);
 	}
 
-	public static void loadProxyData(EntityPlayer player) {
+	public static void loadProxyData (EntityPlayer player) {
 		ExtendedPlayerRecipes playerData = ExtendedPlayerRecipes.get(player);
 		NBTTagCompound savedData = CommonProxy.getEntityData(getSaveKey(player));
 
-		if (savedData != null)
-			playerData.loadNBTData(savedData);
+		if (savedData != null) playerData.loadNBTData(savedData);
 		playerData.sync();
 	}
 
-	public static final void register(EntityPlayer player) {
+	public static final void register (EntityPlayer player) {
 		player.registerExtendedProperties(EXT_PROP_NAME, new ExtendedPlayerRecipes(player));
 	}
 
-	public static final ExtendedPlayerRecipes get(EntityPlayer player) {
+	public static final ExtendedPlayerRecipes get (EntityPlayer player) {
 		return (ExtendedPlayerRecipes) player.getExtendedProperties(EXT_PROP_NAME);
 	}
 

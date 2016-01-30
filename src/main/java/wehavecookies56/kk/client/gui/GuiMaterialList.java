@@ -31,35 +31,32 @@ public class GuiMaterialList extends GuiScrollingList {
 	static int posX = 5;
 	static int posY = (height - 200) / 2;
 
-	public GuiMaterialList(GuiSynthesis parent) {
-		super(parent.mc, 150, 500, 60, parent.height - ((parent.height / 8) + 70 / 16), 8, 35, parent.width,
-				parent.width);
+	public GuiMaterialList (GuiSynthesis parent) {
+		super(parent.mc, 150, 500, 60, parent.height - ((parent.height / 8) + 70 / 16), 8, 35, parent.width, parent.width);
 		this.parent = parent;
 	}
 
 	@Override
-	protected int getSize() {
+	protected int getSize () {
 		return ExtendedPlayerMaterials.get(Minecraft.getMinecraft().thePlayer).knownMaterialsMap.size();
 	}
 
 	@Override
-	protected void elementClicked(int index, boolean doubleClick) {
+	protected void elementClicked (int index, boolean doubleClick) {
 		parent.materialSelected = index;
 	}
 
 	@Override
-	protected boolean isSelected(int index) {
-		if (index == parent.materialSelected)
-			return true;
+	protected boolean isSelected (int index) {
+		if (index == parent.materialSelected) return true;
 		return false;
 	}
 
 	@Override
-	protected void drawBackground() {
-	}
+	protected void drawBackground () {}
 
 	@Override
-	protected void drawSlot(int var1, int var2, int var3, int var4, Tessellator var5) {
+	protected void drawSlot (int var1, int var2, int var3, int var4, Tessellator var5) {
 
 		ExtendedPlayerMaterials props = ExtendedPlayerMaterials.get(Minecraft.getMinecraft().thePlayer);
 
@@ -67,10 +64,7 @@ public class GuiMaterialList extends GuiScrollingList {
 
 		materials.addAll(props.getKnownMaterialsMap().keySet());
 
-		this.f.drawString(
-				f.trimStringToWidth(TextHelper.localize(materials.get(var1).toString() + ".name") + " x"
-						+ props.knownMaterialsMap.get(materials.get(var1)), listWidth - 10),
-				this.left + 3, var3 + 2, 0xFFFFFF);
+		this.f.drawString(f.trimStringToWidth(TextHelper.localize(materials.get(var1).toString() + ".name") + " x" + props.knownMaterialsMap.get(materials.get(var1)), listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
 		Material m = MaterialRegistry.get(materials.get(var1).toString());
 		if (m.getTexture() != null) {
 			GL11.glPushMatrix();

@@ -21,19 +21,18 @@ import wehavecookies56.kk.util.TextHelper;
 
 public class ItemRecipe extends Item {
 
-	public ItemRecipe() {
+	public ItemRecipe () {
 		setMaxStackSize(1);
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+	public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player) {
 		// Send packet to process the recipe registering and remove it from the
 		// player's inventory
 		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
 			ExtendedPlayerRecipes.get(player);
 			ExtendedPlayerRecipes.loadProxyData((player));
-			PacketDispatcher.sendToServer(new UseRecipe(stack.getTagCompound().getString("recipe1"),
-					stack.getTagCompound().getString("recipe2"), stack.getTagCompound().getString("recipe3")));
+			PacketDispatcher.sendToServer(new UseRecipe(stack.getTagCompound().getString("recipe1"), stack.getTagCompound().getString("recipe2"), stack.getTagCompound().getString("recipe3")));
 			return stack;
 		} else if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
 			String recipe1 = stack.getTagCompound().getString("recipe1");
@@ -41,28 +40,21 @@ public class ItemRecipe extends Item {
 			String recipe3 = stack.getTagCompound().getString("recipe3");
 
 			boolean consume = false;
-			if (RecipeRegistry.get(recipe1) == null) {
-			} else if (RecipeRegistry.isRecipeKnown(player, recipe1)) {
-			} else
+			if (RecipeRegistry.get(recipe1) == null) {} else if (RecipeRegistry.isRecipeKnown(player, recipe1)) {} else
 				consume = true;
-			if (RecipeRegistry.get(recipe2) == null) {
-			} else if (RecipeRegistry.isRecipeKnown(player, recipe2)) {
-			} else
+			if (RecipeRegistry.get(recipe2) == null) {} else if (RecipeRegistry.isRecipeKnown(player, recipe2)) {} else
 				consume = true;
-			if (RecipeRegistry.get(recipe3) == null) {
-			} else if (RecipeRegistry.isRecipeKnown(player, recipe3)) {
-			} else
+			if (RecipeRegistry.get(recipe3) == null) {} else if (RecipeRegistry.isRecipeKnown(player, recipe3)) {} else
 				consume = true;
 
-			if (consume)
-				stack.stackSize--;
+			if (consume) stack.stackSize--;
 
 		}
 		return stack;
 	}
 
 	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+	public void onUpdate (ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		if (!stack.hasTagCompound()) {
 			long seed = System.nanoTime();
 			// Shuffles the list of recipes to increase randomness
@@ -90,13 +82,13 @@ public class ItemRecipe extends Item {
 	/**
 	 * Generates a random number between 2 values, min and max can be swapped
 	 */
-	public int randomWithRange(int min, int max) {
+	public int randomWithRange (int min, int max) {
 		int range = Math.abs(max - min) + 1;
 		return (int) (Math.random() * range) + (min <= max ? min : max);
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
+	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
 		// Make sure it has NBT data
 		if (stack.hasTagCompound()) {
 			// Get NBT data that was set

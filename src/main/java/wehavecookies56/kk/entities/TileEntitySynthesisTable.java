@@ -5,16 +5,15 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntitySynthesisTable extends TileEntity {
 
-	public TileEntitySynthesisTable() {
-	}
+	public TileEntitySynthesisTable () {}
 
 	@Override
-	public void writeToNBT(NBTTagCompound compound) {
+	public void writeToNBT (NBTTagCompound compound) {
 		super.writeToNBT(compound);
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound compound) {
+	public void readFromNBT (NBTTagCompound compound) {
 		super.readFromNBT(compound);
 	}
 }

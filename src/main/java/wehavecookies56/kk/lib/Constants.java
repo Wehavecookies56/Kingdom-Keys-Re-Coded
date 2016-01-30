@@ -17,12 +17,11 @@ public class Constants {
 			TICKS_PER_SECOND = 20;
 
 	// MP Costs
-	public static final int FIRE_COST = 20, BLIZZARD_COST = 15, THUNDER_COST = 30, GRAVITY_COST = 25, AERO_COST = 20,
-			STOP_COST = 15;
+	public static final int FIRE_COST = 20, BLIZZARD_COST = 15, THUNDER_COST = 30, GRAVITY_COST = 25, AERO_COST = 20, STOP_COST = 15;
 
 	public static Map<String, Integer> costs;
 
-	public static void registerCosts() {
+	public static void registerCosts () {
 		costs = new HashMap<String, Integer>();
 		costs.put("gui.commandmenu.magic.fire", 20);
 		costs.put("gui.commandmenu.magic.blizzard", 15);
@@ -44,7 +43,7 @@ public class Constants {
 
 	}
 
-	public static int getCost(String name) {
+	public static int getCost (String name) {
 		return costs.get(name);
 	}
 

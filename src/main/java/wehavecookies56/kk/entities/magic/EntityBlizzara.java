@@ -14,45 +14,42 @@ import wehavecookies56.kk.network.packet.client.SpawnBlizzardParticles;
 public class EntityBlizzara extends EntityThrowable {
 	public EntityPlayer shootingEntity;
 
-	public EntityBlizzara(World world) {
+	public EntityBlizzara (World world) {
 		super(world);
 	}
 
-	public EntityBlizzara(World world, EntityLivingBase entity) {
+	public EntityBlizzara (World world, EntityLivingBase entity) {
 		super(world, entity);
 		shootingEntity = (EntityPlayer) entity;
 
 	}
 
-	public EntityBlizzara(World world, double x, double y, double z) {
+	public EntityBlizzara (World world, double x, double y, double z) {
 		super(world, x, y, z);
 	}
 
 	@Override
-	protected float getVelocity() {
+	protected float getVelocity () {
 		return 5.0F;
 	}
 
 	@Override
-	protected float getInaccuracy() {
+	protected float getInaccuracy () {
 		return 0.0F;
 	}
 
 	@Override
-	public void onUpdate() {
+	public void onUpdate () {
 		super.onUpdate();
-		if (shootingEntity == null)
-			return;
+		if (shootingEntity == null) return;
 		int rotation = 0;
-		if (!worldObj.isRemote)
-			PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this, 2), shootingEntity, 64.0D);
+		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this, 2), shootingEntity, 64.0D);
 		this.rotationYaw = (rotation + 1) % 360;
-		if (ticksExisted > 60)
-			setDead();
+		if (ticksExisted > 60) setDead();
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition movingObject) {
+	protected void onImpact (MovingObjectPosition movingObject) {
 		if (!this.worldObj.isRemote) {
 			boolean flag;
 			if (movingObject.entityHit != null) {
@@ -67,8 +64,7 @@ public class EntityBlizzara extends EntityThrowable {
 			} else {
 				flag = true;
 
-				if (this.shootingEntity != null && this.shootingEntity instanceof EntityPlayer)
-					flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+				if (this.shootingEntity != null && this.shootingEntity instanceof EntityPlayer) flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 
 				if (flag) {
 					BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);
@@ -77,8 +73,7 @@ public class EntityBlizzara extends EntityThrowable {
 						this.worldObj.setBlockState(blockpos, Blocks.ice.getDefaultState());
 					else if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.fire)
 						this.worldObj.setBlockState(blockpos, Blocks.air.getDefaultState());
-					else if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.lava)
-						this.worldObj.setBlockState(blockpos, Blocks.obsidian.getDefaultState());
+					else if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.lava) this.worldObj.setBlockState(blockpos, Blocks.obsidian.getDefaultState());
 				}
 			}
 			setDead();

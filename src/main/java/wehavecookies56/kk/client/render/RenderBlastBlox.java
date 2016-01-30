@@ -13,13 +13,13 @@ import wehavecookies56.kk.entities.block.EntityBlastBlox;
 
 public class RenderBlastBlox extends Render<EntityBlastBlox> {
 
-	public RenderBlastBlox(RenderManager render) {
+	public RenderBlastBlox (RenderManager render) {
 		super(render);
 		this.shadowSize = 0.5F;
 	}
 
 	@Override
-	public void doRender(EntityBlastBlox entity, double x, double y, double z, float p_76986_8_, float p_76986_9_) {
+	public void doRender (EntityBlastBlox entity, double x, double y, double z, float p_76986_8_, float p_76986_9_) {
 		BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
 		GlStateManager.pushMatrix();
 		GlStateManager.translate((float) x, (float) y + 0.5F, (float) z);
@@ -37,8 +37,7 @@ public class RenderBlastBlox extends Render<EntityBlastBlox> {
 		f2 = (1.0F - (entity.fuse - p_76986_9_ + 1.0F) / 100.0F) * 0.8F;
 		bindEntityTexture(entity);
 		GlStateManager.translate(-0.5F, -0.5F, 0.5F);
-		blockrendererdispatcher.renderBlockBrightness(ModBlocks.BlastBlox.getDefaultState(),
-				entity.getBrightness(p_76986_9_));
+		blockrendererdispatcher.renderBlockBrightness(ModBlocks.BlastBlox.getDefaultState(), entity.getBrightness(p_76986_9_));
 		GlStateManager.translate(0.0F, 0.0F, 1.0F);
 
 		if (entity.fuse / 5 % 2 == 0) {
@@ -62,7 +61,7 @@ public class RenderBlastBlox extends Render<EntityBlastBlox> {
 		super.doRender(entity, x, y, z, p_76986_8_, p_76986_9_);
 	}
 
-	protected ResourceLocation func_180563_a(EntityBlastBlox p_180563_1_) {
+	protected ResourceLocation func_180563_a (EntityBlastBlox p_180563_1_) {
 		return TextureMap.locationBlocksTexture;
 	}
 
@@ -71,7 +70,7 @@ public class RenderBlastBlox extends Render<EntityBlastBlox> {
 	 * unless you call Render.bindEntityTexture.
 	 */
 	@Override
-	protected ResourceLocation getEntityTexture(EntityBlastBlox par1Entity) {
+	protected ResourceLocation getEntityTexture (EntityBlastBlox par1Entity) {
 		return func_180563_a(par1Entity);
 
 	}

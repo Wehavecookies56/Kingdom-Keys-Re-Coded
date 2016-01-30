@@ -12,24 +12,24 @@ public class MaterialDarkStone extends Material {
 
 	String name;
 
-	public MaterialDarkStone(String name) {
+	public MaterialDarkStone (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem() {
+	public ItemStack getItem () {
 		ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
 		ItemStacks.createSynthesisItem(stack, Strings.SM_DarkStone, "B");
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture() {
+	public ResourceLocation getTexture () {
 		return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/darkstone.png");
 	}
 

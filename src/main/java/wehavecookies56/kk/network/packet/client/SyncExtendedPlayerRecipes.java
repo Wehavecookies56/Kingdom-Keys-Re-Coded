@@ -13,28 +13,27 @@ public class SyncExtendedPlayerRecipes extends AbstractClientMessage<SyncExtende
 
 	private NBTTagCompound data;
 
-	public SyncExtendedPlayerRecipes() {
-	}
+	public SyncExtendedPlayerRecipes () {}
 
-	public SyncExtendedPlayerRecipes(EntityPlayer player) {
+	public SyncExtendedPlayerRecipes (EntityPlayer player) {
 		data = new NBTTagCompound();
 		ExtendedPlayerRecipes.get(player).saveNBTData(data);
 	}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 		data = buffer.readNBTTagCompoundFromBuffer();
 
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeNBTTagCompoundToBuffer(data);
 
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
+	public void process (EntityPlayer player, Side side) {
 		ExtendedPlayerRecipes.get(player).loadNBTData(data);
 	}
 

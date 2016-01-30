@@ -7,13 +7,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TabKingdomKeysBlocks extends CreativeTabs {
 
-	public TabKingdomKeysBlocks(int index, String label) {
+	public TabKingdomKeysBlocks (int index, String label) {
 		super(index, label);
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public Item getTabIconItem() {
+	@SideOnly (Side.CLIENT)
+	public Item getTabIconItem () {
 		return Item.getItemFromBlock(ModBlocks.NormalBlox);
 	}
 

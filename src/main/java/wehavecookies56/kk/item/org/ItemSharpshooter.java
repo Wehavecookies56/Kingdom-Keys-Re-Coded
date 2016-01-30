@@ -15,30 +15,27 @@ import wehavecookies56.kk.entities.projectiles.EntitySharpshooterBullet;
 public class ItemSharpshooter extends ItemSword {
 	int strength = 30;
 
-	public ItemSharpshooter(ToolMaterial material) {
+	public ItemSharpshooter (ToolMaterial material) {
 		super(material);
 		setMaxStackSize(1);
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public EnumRarity getRarity(ItemStack par1ItemStack) {
+	@SideOnly (Side.CLIENT)
+	public EnumRarity getRarity (ItemStack par1ItemStack) {
 		return EnumRarity.UNCOMMON;
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+	public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player) {
 		strength = -(strength) + 71999;
 		if (!player.isSneaking()) {
 			// TODO set strength
 
-			if ((ExtendedPlayer.get(player).getMp() > 0 && !ExtendedPlayer.get(player).inRecharge)
-					|| ExtendedPlayer.get(player).cheatMode) {
-				world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F,
-						0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+			if ((ExtendedPlayer.get(player).getMp() > 0 && !ExtendedPlayer.get(player).inRecharge) || ExtendedPlayer.get(player).cheatMode) {
+				world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 				world.spawnEntityInWorld(new EntitySharpshooterBullet(world, player, strength));
-				if (!ExtendedPlayer.get(player).cheatMode)
-					ExtendedPlayer.get(player).removeMp(10);
+				if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(10);
 				player.swingItem();
 			}
 		} else {
@@ -49,8 +46,8 @@ public class ItemSharpshooter extends ItemSword {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
+	@SideOnly (Side.CLIENT)
+	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
 		dataList.add("II Xigbar");
 	}
 }

@@ -6,11 +6,11 @@ import net.minecraft.stats.Achievement;
 
 public class AchievementHelper {
 
-	public static void addAchievement(EntityPlayer player, Achievement achievement) {
+	public static void addAchievement (EntityPlayer player, Achievement achievement) {
 		player.triggerAchievement(achievement);
 	}
 
-	public static void displayAchievement(Achievement achievement) {
+	public static void displayAchievement (Achievement achievement) {
 		Minecraft.getMinecraft().guiAchievement.displayAchievement(achievement);
 	}
 

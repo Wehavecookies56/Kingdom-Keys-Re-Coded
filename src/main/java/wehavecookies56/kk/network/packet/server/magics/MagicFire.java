@@ -16,34 +16,32 @@ import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicFire extends AbstractServerMessage<MagicFire> {
 
-	public MagicFire() {
-	}
+	public MagicFire () {}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
-
-	}
-
-	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
-		if (!ExtendedPlayer.get(player).cheatMode)
-			ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Gui_CommandMenu_Magic_Fire));
+	protected void write (PacketBuffer buffer) throws IOException {
+
+	}
+
+	@Override
+	public void process (EntityPlayer player, Side side) {
+		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Gui_CommandMenu_Magic_Fire));
 		World world = player.worldObj;
 		switch (ExtendedPlayer.get(player).getMagicLevel("Fire")) {
-		case 1:
-			world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
-			break;
-		case 2:
-			world.spawnEntityInWorld(new EntityFira(world, player, player.posX, player.posY, player.posZ, 1));
-			break;
-		case 3:
-			world.spawnEntityInWorld(new EntityFiraga(world, player, player.posX, player.posY, player.posZ, 1));
-			break;
+			case 1:
+				world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
+				break;
+			case 2:
+				world.spawnEntityInWorld(new EntityFira(world, player, player.posX, player.posY, player.posZ, 1));
+				break;
+			case 3:
+				world.spawnEntityInWorld(new EntityFiraga(world, player, player.posX, player.posY, player.posZ, 1));
+				break;
 		}
 	}
 }

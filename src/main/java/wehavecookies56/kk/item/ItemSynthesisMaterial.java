@@ -12,21 +12,19 @@ import wehavecookies56.kk.util.TextHelper;
 
 public class ItemSynthesisMaterial extends Item {
 
-	public ItemSynthesisMaterial() {
-	}
+	public ItemSynthesisMaterial () {}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
+	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
 		if (stack.hasTagCompound()) {
 			String material = stack.getTagCompound().getString("material");
 			String rank = stack.getTagCompound().getString("rank");
-			tooltip.add(TextHelper.localize(Strings.SM_Rank) + " " + TextHelper.localize(rank) + ": "
-					+ TextHelper.localize(material + ".name"));
+			tooltip.add(TextHelper.localize(Strings.SM_Rank) + " " + TextHelper.localize(rank) + ": " + TextHelper.localize(material + ".name"));
 		}
 	}
 
 	@Override
-	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems) {
+	public void getSubItems (Item itemIn, CreativeTabs tab, List subItems) {
 		ItemStack BlazingShard = new ItemStack(ModItems.SynthesisMaterial, 1);
 		ItemStack BlazingStone = new ItemStack(ModItems.SynthesisMaterial, 1);
 		ItemStack BlazingGem = new ItemStack(ModItems.SynthesisMaterial, 1);
@@ -189,7 +187,7 @@ public class ItemSynthesisMaterial extends Item {
 		createSynthesisItem(StormyCrystal, Strings.SM_StormyCrystal, "S", subItems);
 	}
 
-	public void createSynthesisItem(ItemStack stack, String material, String rank, List list) {
+	public void createSynthesisItem (ItemStack stack, String material, String rank, List list) {
 		stack.setTagCompound(new NBTTagCompound());
 		stack.getTagCompound().setString("material", material);
 		stack.getTagCompound().setString("rank", rank);

@@ -34,13 +34,12 @@ public class DevCapes {
 
 	public static final Logger logger = LogManager.getLogger("DevCapes");
 
-	protected DevCapes() {
+	protected DevCapes () {
 		MinecraftForge.EVENT_BUS.register(new RenderEventHandler());
 	}
 
-	public static DevCapes getInstance() {
-		if (instance == null)
-			instance = new DevCapes();
+	public static DevCapes getInstance () {
+		if (instance == null) instance = new DevCapes();
 		return instance;
 	}
 
@@ -49,7 +48,7 @@ public class DevCapes {
 	 *
 	 * @return {@link InputStream} for the {@link URL}
 	 */
-	public InputStream getStreamForURL(URL url) {
+	public InputStream getStreamForURL (URL url) {
 		InputStream is = null;
 		try {
 			URLConnection connection = url.openConnection();
@@ -68,7 +67,7 @@ public class DevCapes {
 	 *
 	 * @return {@link InputStream} for the {@link File}
 	 */
-	public InputStream getStreamForFile(File file) {
+	public InputStream getStreamForFile (File file) {
 		InputStream is = null;
 		try {
 			is = new FileInputStream(file);
@@ -91,7 +90,7 @@ public class DevCapes {
 	 *            A unique Identifier, normally your mod id
 	 * @return The id of the registered config
 	 */
-	public int registerConfig(String jsonURL, String identifier) {
+	public int registerConfig (String jsonURL, String identifier) {
 		return this.registerConfig(jsonURL);
 	}
 
@@ -103,7 +102,7 @@ public class DevCapes {
 	 *            to add
 	 * @return The id of the registered config
 	 */
-	public int registerConfig(String jsonUrl) {
+	public int registerConfig (String jsonUrl) {
 		int id = -1;
 		try {
 			URL url = new URL(jsonUrl);
@@ -126,7 +125,7 @@ public class DevCapes {
 	 *            A unique Identifier, normally your mod id
 	 * @return The id of the registered config
 	 */
-	public int registerConfig(URL url, String identifier) {
+	public int registerConfig (URL url, String identifier) {
 		return this.registerConfig(url);
 	}
 
@@ -137,13 +136,12 @@ public class DevCapes {
 	 *            A {@link URL} that links to the Json file that you want to add
 	 * @return The id of the registered config
 	 */
-	public int registerConfig(URL jsonUrl) {
+	public int registerConfig (URL jsonUrl) {
 		int id = -1;
 		InputStream is = getStreamForURL(jsonUrl);
 
 		if (is == null) {
-			DevCapes.logger
-					.error(String.format("Unable to establish a connection to the server, %s", jsonUrl.getHost()));
+			DevCapes.logger.error(String.format("Unable to establish a connection to the server, %s", jsonUrl.getHost()));
 			return id;
 		}
 
@@ -161,10 +159,9 @@ public class DevCapes {
 		return id;
 	}
 
-	private static void silentClose(InputStream is) {
+	private static void silentClose (InputStream is) {
 		try {
 			is.close();
-		} catch (IOException ignored) {
-		}
+		} catch (IOException ignored) {}
 	}
 }

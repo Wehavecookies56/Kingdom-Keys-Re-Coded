@@ -24,22 +24,19 @@ public class RenderEventHandler {
 	// mmdanggg2: renderPlayerEvent seems to be getting depreciated so this will
 	// do for now.
 	@SubscribeEvent
-	public void renderPlayer(RenderLivingEvent.Pre event) {
+	public void renderPlayer (RenderLivingEvent.Pre event) {
 		if (event.entity instanceof AbstractClientPlayer) {
 			AbstractClientPlayer player = (AbstractClientPlayer) event.entity;
 
 			UserManager manager = UserManager.getInstance();
 			User user = manager.getUser(player.getDisplayName().getUnformattedText());
-			if (user == null)
-				return;
+			if (user == null) return;
 
 			ICape cape = user.capes.get(0);
-			if (cape == null)
-				return;
+			if (cape == null) return;
 
 			boolean flag = cape.isTextureLoaded(player);
-			if (!flag)
-				cape.loadTexture(player);
+			if (!flag) cape.loadTexture(player);
 		}
 	}
 }

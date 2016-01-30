@@ -18,37 +18,36 @@ public class RemoveItemInSlot extends AbstractServerMessage<RemoveItemInSlot> {
 	InventoryKeychain keychain;
 	boolean sound;
 
-	public RemoveItemInSlot() {
-	}
+	public RemoveItemInSlot () {}
 
-	public RemoveItemInSlot(String inventory, int slot) {
+	public RemoveItemInSlot (String inventory, int slot) {
 		this.inv = inventory;
 		this.slot = slot;
 		this.sound = false;
 	}
 
-	public RemoveItemInSlot(String inventory, int slot, boolean sound) {
+	public RemoveItemInSlot (String inventory, int slot, boolean sound) {
 		this.inv = inventory;
 		this.slot = slot;
 		this.sound = sound;
 	}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 		inv = buffer.readStringFromBuffer(100);
 		slot = buffer.readInt();
 		sound = buffer.readBoolean();
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeString(inv);
 		buffer.writeInt(slot);
 		buffer.writeBoolean(sound);
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
+	public void process (EntityPlayer player, Side side) {
 		if (inv.equals("keychain")) {
 			keychain = ExtendedPlayer.get(player).inventoryKeychain;
 			keychain.setInventorySlotContents(slot, null);
@@ -57,8 +56,7 @@ public class RemoveItemInSlot extends AbstractServerMessage<RemoveItemInSlot> {
 		if (inv.equals("potion")) {
 			potions = ExtendedPlayer.get(player).inventoryPotions;
 			potions.setInventorySlotContents(slot, null);
-			if (sound)
-				SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.Potion, 0.5f, 1);
+			if (sound) SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.Potion, 0.5f, 1);
 		}
 	}
 }

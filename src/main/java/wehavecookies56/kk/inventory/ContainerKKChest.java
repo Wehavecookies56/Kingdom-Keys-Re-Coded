@@ -34,7 +34,7 @@ public class ContainerKKChest extends Container {
 	private final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 	private final int TE_INVENTORY_SLOT_COUNT = 9;
 
-	public ContainerKKChest(InventoryPlayer invPlayer, TileEntityKKChest tileEntityKKChest) {
+	public ContainerKKChest (InventoryPlayer invPlayer, TileEntityKKChest tileEntityKKChest) {
 		this.tileEntityKKChest = tileEntityKKChest;
 
 		final int SLOT_X_SPACING = 18;
@@ -59,48 +59,38 @@ public class ContainerKKChest extends Container {
 				addSlotToContainer(new Slot(invPlayer, slotNumber, xpos, ypos));
 			}
 
-		if (TE_INVENTORY_SLOT_COUNT != tileEntityKKChest.getSizeInventory())
-			System.err.println("Mismatched slot count in ContainerBasic(" + TE_INVENTORY_SLOT_COUNT
-					+ ") and TileInventory (" + tileEntityKKChest.getSizeInventory() + ")");
+		if (TE_INVENTORY_SLOT_COUNT != tileEntityKKChest.getSizeInventory()) System.err.println("Mismatched slot count in ContainerBasic(" + TE_INVENTORY_SLOT_COUNT + ") and TileInventory (" + tileEntityKKChest.getSizeInventory() + ")");
 		final int TILE_INVENTORY_XPOS = 8;
 		final int TILE_INVENTORY_YPOS = 20;
 		// Add the tile inventory container to the gui
 		for (int x = 0; x < TE_INVENTORY_SLOT_COUNT; x++) {
 			int slotNumber = x;
-			addSlotToContainer(new Slot(tileEntityKKChest, slotNumber, TILE_INVENTORY_XPOS + SLOT_X_SPACING * x,
-					TILE_INVENTORY_YPOS));
+			addSlotToContainer(new Slot(tileEntityKKChest, slotNumber, TILE_INVENTORY_XPOS + SLOT_X_SPACING * x, TILE_INVENTORY_YPOS));
 		}
 	}
 
 	// Vanilla calls this method every tick to make sure the player is still
 	// able to access the inventory, and if not closes the gui
 	@Override
-	public boolean canInteractWith(EntityPlayer player) {
+	public boolean canInteractWith (EntityPlayer player) {
 		return tileEntityKKChest.isUseableByPlayer(player);
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex) {
+	public ItemStack transferStackInSlot (EntityPlayer player, int sourceSlotIndex) {
 		Slot sourceSlot = inventorySlots.get(sourceSlotIndex);
-		if (sourceSlot == null || !sourceSlot.getHasStack())
-			return null;
+		if (sourceSlot == null || !sourceSlot.getHasStack()) return null;
 		ItemStack sourceStack = sourceSlot.getStack();
 		ItemStack copyOfSourceStack = sourceStack.copy();
 
 		// Check if the slot clicked is one of the vanilla container slots
-		if (sourceSlotIndex >= VANILLA_FIRST_SLOT_INDEX
-				&& sourceSlotIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
+		if (sourceSlotIndex >= VANILLA_FIRST_SLOT_INDEX && sourceSlotIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
 			// This is a vanilla container slot so merge the stack into the tile
 			// inventory
-			if (!mergeItemStack(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX,
-					TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false))
-				return null;
-		} else if (sourceSlotIndex >= TE_INVENTORY_FIRST_SLOT_INDEX
-				&& sourceSlotIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
+			if (!mergeItemStack(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false)) return null;
+		} else if (sourceSlotIndex >= TE_INVENTORY_FIRST_SLOT_INDEX && sourceSlotIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
 			// This is a TE slot so merge the stack into the players inventory
-			if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT,
-					false))
-				return null;
+			if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) return null;
 		} else {
 			System.err.print("Invalid slotIndex:" + sourceSlotIndex);
 			return null;
@@ -121,7 +111,7 @@ public class ContainerKKChest extends Container {
 	// needed for this example)
 	// see ContainerChest and TileEntityChest
 	@Override
-	public void onContainerClosed(EntityPlayer playerIn) {
+	public void onContainerClosed (EntityPlayer playerIn) {
 		super.onContainerClosed(playerIn);
 		this.tileEntityKKChest.closeInventory(playerIn);
 	}

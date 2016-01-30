@@ -14,22 +14,22 @@ public class RecipeDestinysEmbrace extends Recipe {
 
 	public String name;
 
-	public RecipeDestinysEmbrace(String name) {
+	public RecipeDestinysEmbrace (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public Item getResult() {
+	public Item getResult () {
 		return ModItems.Chain_DestinysEmbrace;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements() {
+	public Map<Material, Integer> getRequirements () {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_LightningStone), 5);
 		reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 5);

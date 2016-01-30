@@ -20,14 +20,14 @@ public abstract class AbstractMessage<T extends AbstractMessage<T>> implements I
 	 * the exception. if an IOException is expected but should not be fatal,
 	 * handle it within this method.
 	 */
-	protected abstract void read(PacketBuffer buffer) throws IOException;
+	protected abstract void read (PacketBuffer buffer) throws IOException;
 
 	/**
 	 * Some PacketBuffer methods throw IOException - default handling propagates
 	 * the exception. if an IOException is expected but should not be fatal,
 	 * handle it within this method.
 	 */
-	protected abstract void write(PacketBuffer buffer) throws IOException;
+	protected abstract void write (PacketBuffer buffer) throws IOException;
 
 	/**
 	 * Called on whichever side the message is received; for bidirectional
@@ -35,7 +35,7 @@ public abstract class AbstractMessage<T extends AbstractMessage<T>> implements I
 	 * true, this method is guaranteed to be called on the main Minecraft thread
 	 * for this side.
 	 */
-	public abstract void process(EntityPlayer player, Side side);
+	public abstract void process (EntityPlayer player, Side side);
 
 	/**
 	 * If message is sent to the wrong side, an exception will be thrown during
@@ -43,7 +43,7 @@ public abstract class AbstractMessage<T extends AbstractMessage<T>> implements I
 	 *
 	 * @return True if the message is allowed to be handled on the given side
 	 */
-	protected boolean isValidOnSide(Side side) {
+	protected boolean isValidOnSide (Side side) {
 		return true; // default allows handling on both sides, i.e. a
 						// bidirectional packet
 	}
@@ -52,12 +52,12 @@ public abstract class AbstractMessage<T extends AbstractMessage<T>> implements I
 	 * Whether this message requires the main thread to be processed (i.e. it
 	 * requires that the world, player, and other objects are in a valid state).
 	 */
-	protected boolean requiresMainThread() {
+	protected boolean requiresMainThread () {
 		return true;
 	}
 
 	@Override
-	public void fromBytes(ByteBuf buffer) {
+	public void fromBytes (ByteBuf buffer) {
 		try {
 			read(new PacketBuffer(buffer));
 		} catch (IOException e) {
@@ -66,7 +66,7 @@ public abstract class AbstractMessage<T extends AbstractMessage<T>> implements I
 	}
 
 	@Override
-	public void toBytes(ByteBuf buffer) {
+	public void toBytes (ByteBuf buffer) {
 		try {
 			write(new PacketBuffer(buffer));
 		} catch (IOException e) {
@@ -86,7 +86,7 @@ public abstract class AbstractMessage<T extends AbstractMessage<T>> implements I
 	 * in every single message class for the sole purpose of registration.
 	 */
 	@Override
-	public final IMessage onMessage(T msg, MessageContext ctx) {
+	public final IMessage onMessage (T msg, MessageContext ctx) {
 		if (!msg.isValidOnSide(ctx.side))
 			throw new RuntimeException("Invalid side " + ctx.side.name() + " for " + msg.getClass().getSimpleName());
 		else if (msg.requiresMainThread())
@@ -99,16 +99,14 @@ public abstract class AbstractMessage<T extends AbstractMessage<T>> implements I
 	/**
 	 * 1.8 ONLY: Ensures that the message is being handled on the main thread
 	 */
-	private static final <T extends AbstractMessage<T>> void checkThreadAndEnqueue(final AbstractMessage<T> msg,
-			final MessageContext ctx) {
+	private static final <T extends AbstractMessage<T>> void checkThreadAndEnqueue (final AbstractMessage<T> msg, final MessageContext ctx) {
 		IThreadListener thread = KingdomKeys.proxy.getThreadFromContext(ctx);
-		if (!thread.isCallingFromMinecraftThread())
-			thread.addScheduledTask(new Runnable() {
-				@Override
-				public void run() {
-					msg.process(KingdomKeys.proxy.getPlayerEntity(ctx), ctx.side);
-				}
-			});
+		if (!thread.isCallingFromMinecraftThread()) thread.addScheduledTask(new Runnable() {
+			@Override
+			public void run () {
+				msg.process(KingdomKeys.proxy.getPlayerEntity(ctx), ctx.side);
+			}
+		});
 	}
 
 	/**
@@ -117,7 +115,7 @@ public abstract class AbstractMessage<T extends AbstractMessage<T>> implements I
 	 */
 	public static abstract class AbstractClientMessage<T extends AbstractMessage<T>> extends AbstractMessage<T> {
 		@Override
-		protected final boolean isValidOnSide(Side side) {
+		protected final boolean isValidOnSide (Side side) {
 			return side.isClient();
 		}
 	}
@@ -128,7 +126,7 @@ public abstract class AbstractMessage<T extends AbstractMessage<T>> implements I
 	 */
 	public static abstract class AbstractServerMessage<T extends AbstractMessage<T>> extends AbstractMessage<T> {
 		@Override
-		protected final boolean isValidOnSide(Side side) {
+		protected final boolean isValidOnSide (Side side) {
 			return side.isServer();
 		}
 	}

@@ -8,7 +8,7 @@ import wehavecookies56.kk.client.input.Keybinds;
 public class StatStringFormatterMenu implements IStatStringFormat {
 
 	@Override
-	public String formatString(String s) {
+	public String formatString (String s) {
 		try {
 			return String.format(s, Keyboard.getKeyName(Keybinds.OPENMENU.getKeybind().getKeyCode()));
 		} catch (Exception e) {

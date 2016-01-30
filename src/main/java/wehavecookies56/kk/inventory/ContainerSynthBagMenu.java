@@ -10,11 +10,9 @@ import wehavecookies56.kk.item.ItemSynthesisBagM;
 import wehavecookies56.kk.item.ItemSynthesisBagS;
 
 public class ContainerSynthBagMenu extends Container {
-	private static final int INV_START = InventorySynthBagMenu.INV_SIZE, INV_END = INV_START + 26,
-			HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;
+	private static final int INV_START = InventorySynthBagMenu.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;
 
-	public ContainerSynthBagMenu(EntityPlayer player, InventoryPlayer inventoryPlayer,
-			InventorySynthBagMenu inventorySynthBagMenu) {
+	public ContainerSynthBagMenu (EntityPlayer player, InventoryPlayer inventoryPlayer, InventorySynthBagMenu inventorySynthBagMenu) {
 		int i;
 		addSlotToContainer(new SlotCustom(inventorySynthBagMenu, 0, 80, 30, 2));
 		for (i = 0; i < 3; ++i)
@@ -25,12 +23,12 @@ public class ContainerSynthBagMenu extends Container {
 	}
 
 	@Override
-	public boolean canInteractWith(EntityPlayer player) {
+	public boolean canInteractWith (EntityPlayer player) {
 		return true;
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int par2) {
+	public ItemStack transferStackInSlot (EntityPlayer player, int par2) {
 		ItemStack itemstack = null;
 		Slot slot = this.inventorySlots.get(par2);
 
@@ -39,27 +37,19 @@ public class ContainerSynthBagMenu extends Container {
 			itemstack = itemstack1.copy();
 
 			if (par2 < INV_START) {
-				if (!mergeItemStack(itemstack1, INV_START, HOTBAR_END + 1, true))
-					return null;
+				if (!mergeItemStack(itemstack1, INV_START, HOTBAR_END + 1, true)) return null;
 				slot.onSlotChange(itemstack1, itemstack);
-			} else if (itemstack1.getItem() instanceof ItemSynthesisBagS
-					|| itemstack1.getItem() instanceof ItemSynthesisBagM
-					|| itemstack1.getItem() instanceof ItemSynthesisBagL) {
-				if (!mergeItemStack(itemstack1, 0, InventorySynthBagMenu.INV_SIZE, false))
-					return null;
+			} else if (itemstack1.getItem() instanceof ItemSynthesisBagS || itemstack1.getItem() instanceof ItemSynthesisBagM || itemstack1.getItem() instanceof ItemSynthesisBagL) {
+				if (!mergeItemStack(itemstack1, 0, InventorySynthBagMenu.INV_SIZE, false)) return null;
 			} else if (par2 >= INV_START && par2 < HOTBAR_START) {
-				if (!mergeItemStack(itemstack1, HOTBAR_START, HOTBAR_START + 1, false))
-					return null;
-			} else if (par2 >= HOTBAR_START && par2 < HOTBAR_END + 1)
-				if (!mergeItemStack(itemstack1, INV_START, INV_END + 1, false))
-					return null;
+				if (!mergeItemStack(itemstack1, HOTBAR_START, HOTBAR_START + 1, false)) return null;
+			} else if (par2 >= HOTBAR_START && par2 < HOTBAR_END + 1) if (!mergeItemStack(itemstack1, INV_START, INV_END + 1, false)) return null;
 			if (itemstack1.stackSize == 0)
 				slot.putStack((ItemStack) null);
 			else
 				slot.onSlotChanged();
 
-			if (itemstack1.stackSize == itemstack.stackSize)
-				return null;
+			if (itemstack1.stackSize == itemstack.stackSize) return null;
 
 			slot.onPickupFromSlot(player, itemstack1);
 		}

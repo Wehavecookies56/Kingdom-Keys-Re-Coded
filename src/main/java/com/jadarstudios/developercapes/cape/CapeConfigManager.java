@@ -37,24 +37,23 @@ public class CapeConfigManager {
 		availableIds.clear(availableIds.size());
 	}
 
-	public CapeConfigManager() {
+	public CapeConfigManager () {
 		configs = HashBiMap.create();
 	}
 
-	public static CapeConfigManager getInstance() {
-		if (instance == null)
-			instance = new CapeConfigManager();
+	public static CapeConfigManager getInstance () {
+		if (instance == null) instance = new CapeConfigManager();
 		return instance;
 	}
 
-	public void addConfig(int id, CapeConfig config) throws InvalidCapeConfigIdException {
+	public void addConfig (int id, CapeConfig config) throws InvalidCapeConfigIdException {
 		int realId = claimId(id);
 		this.configs.put(realId, config);
 		addUsers(config.users);
 		addGroups(config.groups);
 	}
 
-	protected void addUsers(Map<String, User> users) {
+	protected void addUsers (Map<String, User> users) {
 		try {
 			UserManager.getInstance().addUsers(users.values());
 		} catch (Exception e) {
@@ -62,7 +61,7 @@ public class CapeConfigManager {
 		}
 	}
 
-	protected void addGroups(Map<String, Group> groups) {
+	protected void addGroups (Map<String, Group> groups) {
 		try {
 			GroupManager.getInstance().addGroups(groups.values());
 		} catch (Exception e) {
@@ -70,21 +69,20 @@ public class CapeConfigManager {
 		}
 	}
 
-	public CapeConfig getConfig(int id) {
+	public CapeConfig getConfig (int id) {
 		return this.configs.get(id);
 	}
 
-	public int getIdForConfig(CapeConfig config) {
+	public int getIdForConfig (CapeConfig config) {
 		return this.configs.inverse().get(config);
 	}
 
-	public static int getUniqueId() {
+	public static int getUniqueId () {
 		return availableIds.nextClearBit(1);
 	}
 
-	public static int claimId(int id) throws InvalidCapeConfigIdException {
-		if (id <= 0)
-			throw new InvalidCapeConfigIdException("The config ID must be a positive non-zero integer");
+	public static int claimId (int id) throws InvalidCapeConfigIdException {
+		if (id <= 0) throw new InvalidCapeConfigIdException("The config ID must be a positive non-zero integer");
 		try {
 			UnsignedBytes.checkedCast(id);
 		} catch (IllegalArgumentException e) {
@@ -92,16 +90,14 @@ public class CapeConfigManager {
 		}
 
 		boolean isRegistered = availableIds.get(id);
-		if (isRegistered)
-			throw new InvalidCapeConfigIdException(String.format("The config ID %d is already claimed.", id));
+		if (isRegistered) throw new InvalidCapeConfigIdException(String.format("The config ID %d is already claimed.", id));
 
 		availableIds.set(id);
 		return id;
 	}
 
-	public CapeConfig parse(InputStream is) {
-		if (is == null)
-			throw new NullPointerException("Can not parse a null input stream!");
+	public CapeConfig parse (InputStream is) {
+		if (is == null) throw new NullPointerException("Can not parse a null input stream!");
 
 		CapeConfig instance = new CapeConfig();
 		InputStreamReader isr = new InputStreamReader(is);
@@ -114,8 +110,7 @@ public class CapeConfigManager {
 				final Object obj = entry.getValue();
 				if (obj instanceof Map)
 					parseGroup(instance, nodeName, (Map) obj);
-				else if (obj instanceof String)
-					parseUser(instance, nodeName, (String) obj);
+				else if (obj instanceof String) parseUser(instance, nodeName, (String) obj);
 			}
 		} catch (JsonSyntaxException e) {
 			DevCapes.logger.error("CapeConfig could not be parsed because:");
@@ -125,16 +120,14 @@ public class CapeConfigManager {
 		return instance;
 	}
 
-	protected void parseGroup(CapeConfig config, String node, Map group) {
+	protected void parseGroup (CapeConfig config, String node, Map group) {
 		Group g = GroupManager.getInstance().parse(node, group);
-		if (g != null)
-			config.groups.put(g.name, g);
+		if (g != null) config.groups.put(g.name, g);
 	}
 
-	protected void parseUser(CapeConfig config, String node, String user) {
+	protected void parseUser (CapeConfig config, String node, String user) {
 		User u = UserManager.getInstance().parse(node, user);
-		if (u != null)
-			config.users.put(node, u);
+		if (u != null) config.users.put(node, u);
 	}
 
 	/**
@@ -143,24 +136,24 @@ public class CapeConfigManager {
 	 * This will be removed in the next major release.
 	 */
 	@Deprecated
-	public CapeConfig parseFromStream(InputStream is) {
+	public CapeConfig parseFromStream (InputStream is) {
 		return parse(is);
 	}
 
 	public static class InvalidCapeConfigIdException extends Exception {
-		public InvalidCapeConfigIdException() {
+		public InvalidCapeConfigIdException () {
 			super();
 		}
 
-		public InvalidCapeConfigIdException(String s) {
+		public InvalidCapeConfigIdException (String s) {
 			super(s);
 		}
 
-		public InvalidCapeConfigIdException(Throwable cause) {
+		public InvalidCapeConfigIdException (Throwable cause) {
 			super(cause);
 		}
 
-		public InvalidCapeConfigIdException(String message, Throwable cause) {
+		public InvalidCapeConfigIdException (String message, Throwable cause) {
 			super(message, cause);
 		}
 	}

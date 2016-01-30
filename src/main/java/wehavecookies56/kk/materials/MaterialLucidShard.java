@@ -12,24 +12,24 @@ public class MaterialLucidShard extends Material {
 
 	String name;
 
-	public MaterialLucidShard(String name) {
+	public MaterialLucidShard (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem() {
+	public ItemStack getItem () {
 		ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
 		ItemStacks.createSynthesisItem(stack, Strings.SM_LucidShard, "C");
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture() {
+	public ResourceLocation getTexture () {
 		return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/lucidshard.png");
 	}
 

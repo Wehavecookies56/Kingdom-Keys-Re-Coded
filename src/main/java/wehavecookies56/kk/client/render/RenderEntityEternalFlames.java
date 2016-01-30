@@ -17,19 +17,19 @@ public class RenderEntityEternalFlames extends Render implements IRenderFactory<
 
 	ModelBase model;
 
-	public RenderEntityEternalFlames(RenderManager renderManager) {
+	public RenderEntityEternalFlames (RenderManager renderManager) {
 		super(renderManager);
 		shadowSize = 1;
 		this.model = new ModelEternalFlames();
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
+	protected ResourceLocation getEntityTexture (Entity entity) {
 		return new ResourceLocation(Reference.MODID, "textures/items/models/" + Strings.EternalFlames + ".png");
 	}
 
 	@Override
-	public void doRender(Entity entity, double x, double y, double z, float yaw, float pitch) {
+	public void doRender (Entity entity, double x, double y, double z, float yaw, float pitch) {
 		GL11.glPushMatrix();
 		GL11.glTranslated(x, y, z);
 		GL11.glRotatef(90, 1.0F, 0.0F, 0.0F);
@@ -50,7 +50,7 @@ public class RenderEntityEternalFlames extends Render implements IRenderFactory<
 	}
 
 	@Override
-	public Render<? super EntityEternalFlames> createRenderFor(RenderManager manager) {
+	public Render<? super EntityEternalFlames> createRenderFor (RenderManager manager) {
 		return new RenderEntityEternalFlames(manager);
 	}
 

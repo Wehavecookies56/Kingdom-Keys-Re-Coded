@@ -14,22 +14,22 @@ public class RecipeEndsoftheEarth extends Recipe {
 
 	public String name;
 
-	public RecipeEndsoftheEarth(String name) {
+	public RecipeEndsoftheEarth (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public Item getResult() {
+	public Item getResult () {
 		return ModItems.Chain_EndsoftheEarth;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements() {
+	public Map<Material, Integer> getRequirements () {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
 		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 3);

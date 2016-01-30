@@ -9,14 +9,13 @@ import wehavecookies56.kk.network.packet.server.ManifestKnowledgePacket;
 
 public class ItemManifestKnowledge extends Item {
 
-	public ItemManifestKnowledge() {
+	public ItemManifestKnowledge () {
 		setMaxStackSize(1);
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn) {
-		if (worldIn.isRemote)
-			PacketDispatcher.sendToServer(new ManifestKnowledgePacket());
+	public ItemStack onItemRightClick (ItemStack itemStackIn, World worldIn, EntityPlayer playerIn) {
+		if (worldIn.isRemote) PacketDispatcher.sendToServer(new ManifestKnowledgePacket());
 		return super.onItemRightClick(itemStackIn, worldIn, playerIn);
 	}
 

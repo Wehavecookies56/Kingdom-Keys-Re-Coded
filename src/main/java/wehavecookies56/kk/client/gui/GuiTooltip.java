@@ -40,7 +40,7 @@ public abstract class GuiTooltip extends GuiScreen {
 	private long prevSystemTime = -1;
 
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float f) {
+	public void drawScreen (int mouseX, int mouseY, float f) {
 		super.drawScreen(mouseX, mouseY, f);
 
 		DrawTooltipScreen(mouseX, mouseY);
@@ -56,7 +56,7 @@ public abstract class GuiTooltip extends GuiScreen {
 	 * @return The tooltip string for the specified buttonId. null if no tooltip
 	 *         exists for this button.
 	 */
-	protected abstract String GetButtonTooltip(int buttonId);
+	protected abstract String GetButtonTooltip (int buttonId);
 
 	/**
 	 * Renders any special effects applied to tooltip buttons, and renders any
@@ -65,9 +65,8 @@ public abstract class GuiTooltip extends GuiScreen {
 	 * @param mouseX
 	 * @param mouseY
 	 */
-	protected void DrawTooltipScreen(int mouseX, int mouseY) {
-		if (ShowTooltipButtonEffect)
-			RenderTooltipButtonEffect();
+	protected void DrawTooltipScreen (int mouseX, int mouseY) {
+		if (ShowTooltipButtonEffect) RenderTooltipButtonEffect();
 
 		int mousedOverButtonId = -1;
 
@@ -78,8 +77,7 @@ public abstract class GuiTooltip extends GuiScreen {
 			if (IsButtonMouseovered(mouseX, mouseY, button)) {
 				mousedOverButtonId = button.id;
 
-				if (ShowTooltipButtonMouseoverEffect && GetButtonTooltip(mousedOverButtonId) != null)
-					RenderTooltipButtonMouseoverEffect(button);
+				if (ShowTooltipButtonMouseoverEffect && GetButtonTooltip(mousedOverButtonId) != null) RenderTooltipButtonMouseoverEffect(button);
 
 				break;
 			}
@@ -89,8 +87,7 @@ public abstract class GuiTooltip extends GuiScreen {
 		if (mousedOverButtonId > -1) {
 			long systemTime = System.currentTimeMillis();
 
-			if (prevSystemTime > 0)
-				mouseoverTime += systemTime - prevSystemTime;
+			if (prevSystemTime > 0) mouseoverTime += systemTime - prevSystemTime;
 
 			prevSystemTime = systemTime;
 		} else
@@ -99,8 +96,7 @@ public abstract class GuiTooltip extends GuiScreen {
 		// render the button's tooltip
 		if (mouseoverTime > tooltipDelay) {
 			String tooltip = GetButtonTooltip(mousedOverButtonId);
-			if (tooltip != null)
-				RenderTooltip(mouseX, mouseY, tooltip);
+			if (tooltip != null) RenderTooltip(mouseX, mouseY, tooltip);
 		}
 	}
 
@@ -112,15 +108,13 @@ public abstract class GuiTooltip extends GuiScreen {
 	 * @param button
 	 * @return true if this button is mouseovered
 	 */
-	protected boolean IsButtonMouseovered(int mouseX, int mouseY, GuiButton button) {
-		if (mouseX >= button.xPosition && mouseX <= button.xPosition + button.getButtonWidth()
-				&& mouseY >= button.yPosition) {
+	protected boolean IsButtonMouseovered (int mouseX, int mouseY, GuiButton button) {
+		if (mouseX >= button.xPosition && mouseX <= button.xPosition + button.getButtonWidth() && mouseY >= button.yPosition) {
 			// for some god-forsaken reason they made GuiButton.getButtonWidth()
 			// public but not height,
 			// so use reflection to grab it
 			int buttonHeight = GetFieldByReflection(GuiButton.class, button, "height", "field_146121_g");
-			if (mouseY <= button.yPosition + buttonHeight)
-				return true;
+			if (mouseY <= button.yPosition + buttonHeight) return true;
 		}
 		return false;
 	}
@@ -129,15 +123,14 @@ public abstract class GuiTooltip extends GuiScreen {
 	 * Render anything special onto all buttons that have tooltips assigned to
 	 * them.
 	 */
-	protected void RenderTooltipButtonEffect() {
+	protected void RenderTooltipButtonEffect () {
 		for (int i = 0; i < buttonList.size(); i++) {
 			GuiButton button = buttonList.get(i);
 
 			if (GetButtonTooltip(button.id) != null) {
 				boolean flag = mc.fontRendererObj.getUnicodeFlag();
 				mc.fontRendererObj.setUnicodeFlag(true);
-				mc.fontRendererObj.drawString("?", button.xPosition + button.getButtonWidth() - 5, button.yPosition,
-						0x99FFFFFF);
+				mc.fontRendererObj.drawString("?", button.xPosition + button.getButtonWidth() - 5, button.yPosition, 0x99FFFFFF);
 				mc.fontRendererObj.setUnicodeFlag(flag);
 			}
 		}
@@ -149,11 +142,10 @@ public abstract class GuiTooltip extends GuiScreen {
 	 *
 	 * @param button
 	 */
-	protected void RenderTooltipButtonMouseoverEffect(GuiButton button) {
+	protected void RenderTooltipButtonMouseoverEffect (GuiButton button) {
 		boolean flag = mc.fontRendererObj.getUnicodeFlag();
 		mc.fontRendererObj.setUnicodeFlag(true);
-		mc.fontRendererObj.drawString(FontCodes.AQUA + "?", button.xPosition + button.getButtonWidth() - 5,
-				button.yPosition, 0xFFFFFF);
+		mc.fontRendererObj.drawString(FontCodes.AQUA + "?", button.xPosition + button.getButtonWidth() - 5, button.yPosition, 0xFFFFFF);
 		mc.fontRendererObj.setUnicodeFlag(flag);
 	}
 
@@ -164,7 +156,7 @@ public abstract class GuiTooltip extends GuiScreen {
 	 * @param y
 	 * @param tooltip
 	 */
-	protected void RenderTooltip(int x, int y, String tooltip) {
+	protected void RenderTooltip (int x, int y, String tooltip) {
 		String[] tooltipArray = ParseTooltipArrayFromString(tooltip);
 
 		int tooltipWidth = GetTooltipWidth(tooltipArray);
@@ -173,32 +165,24 @@ public abstract class GuiTooltip extends GuiScreen {
 		int tooltipX = x + tooltipXOffset;
 		int tooltipY = y + tooltipYOffset;
 
-		if (tooltipX > width - tooltipWidth - 7)
-			tooltipX = width - tooltipWidth - 7;
-		if (tooltipY > height - tooltipHeight - 8)
-			tooltipY = height - tooltipHeight - 8;
+		if (tooltipX > width - tooltipWidth - 7) tooltipX = width - tooltipWidth - 7;
+		if (tooltipY > height - tooltipHeight - 8) tooltipY = height - tooltipHeight - 8;
 
 		// render the background inside box
 		int innerAlpha = -0xFEFFFF0; // very very dark purple
 		drawGradientRect(tooltipX, tooltipY - 1, tooltipX + tooltipWidth + 6, tooltipY, innerAlpha, innerAlpha);
-		drawGradientRect(tooltipX, tooltipY + tooltipHeight + 6, tooltipX + tooltipWidth + 6,
-				tooltipY + tooltipHeight + 7, innerAlpha, innerAlpha);
-		drawGradientRect(tooltipX, tooltipY, tooltipX + tooltipWidth + 6, tooltipY + tooltipHeight + 6, innerAlpha,
-				innerAlpha);
+		drawGradientRect(tooltipX, tooltipY + tooltipHeight + 6, tooltipX + tooltipWidth + 6, tooltipY + tooltipHeight + 7, innerAlpha, innerAlpha);
+		drawGradientRect(tooltipX, tooltipY, tooltipX + tooltipWidth + 6, tooltipY + tooltipHeight + 6, innerAlpha, innerAlpha);
 		drawGradientRect(tooltipX - 1, tooltipY, tooltipX, tooltipY + tooltipHeight + 6, innerAlpha, innerAlpha);
-		drawGradientRect(tooltipX + tooltipWidth + 6, tooltipY, tooltipX + tooltipWidth + 7,
-				tooltipY + tooltipHeight + 6, innerAlpha, innerAlpha);
+		drawGradientRect(tooltipX + tooltipWidth + 6, tooltipY, tooltipX + tooltipWidth + 7, tooltipY + tooltipHeight + 6, innerAlpha, innerAlpha);
 
 		// render the background outside box
 		int outerAlpha1 = 0x505000FF;
 		int outerAlpha2 = (outerAlpha1 & 0xFEFEFE) >> 1 | outerAlpha1 & -0x1000000;
-		drawGradientRect(tooltipX, tooltipY + 1, tooltipX + 1, tooltipY + tooltipHeight + 6 - 1, outerAlpha1,
-				outerAlpha2);
-		drawGradientRect(tooltipX + tooltipWidth + 5, tooltipY + 1, tooltipX + tooltipWidth + 7,
-				tooltipY + tooltipHeight + 6 - 1, outerAlpha1, outerAlpha2);
+		drawGradientRect(tooltipX, tooltipY + 1, tooltipX + 1, tooltipY + tooltipHeight + 6 - 1, outerAlpha1, outerAlpha2);
+		drawGradientRect(tooltipX + tooltipWidth + 5, tooltipY + 1, tooltipX + tooltipWidth + 7, tooltipY + tooltipHeight + 6 - 1, outerAlpha1, outerAlpha2);
 		drawGradientRect(tooltipX, tooltipY, tooltipX + tooltipWidth + 3, tooltipY + 1, outerAlpha1, outerAlpha1);
-		drawGradientRect(tooltipX, tooltipY + tooltipHeight + 5, tooltipX + tooltipWidth + 7,
-				tooltipY + tooltipHeight + 6, outerAlpha2, outerAlpha2);
+		drawGradientRect(tooltipX, tooltipY + tooltipHeight + 5, tooltipX + tooltipWidth + 7, tooltipY + tooltipHeight + 6, outerAlpha2, outerAlpha2);
 
 		// render the foreground text
 		int lineCount = 0;
@@ -217,7 +201,7 @@ public abstract class GuiTooltip extends GuiScreen {
 	 * @return An array of Strings such that each String width does not exceed
 	 *         tooltipMaxWidth
 	 */
-	protected String[] ParseTooltipArrayFromString(String s) {
+	protected String[] ParseTooltipArrayFromString (String s) {
 		s = DecodeStringCodes(s);
 		String[] tooltipSections = s.split(tooltipNewlineDelimeter);
 		ArrayList<String> tooltipArrayList = new ArrayList<String>();
@@ -252,15 +236,8 @@ public abstract class GuiTooltip extends GuiScreen {
 	 * @return E.x. output (html not included): <br>
 	 *         "Hello,<br>I am your <b>tooltip</b> and you love me."
 	 */
-	private String DecodeStringCodes(String s) {
-		return s.replace("_0", FontCodes.BLACK).replace("_1", FontCodes.DARK_BLUE).replace("_2", FontCodes.DARK_GREEN)
-				.replace("_3", FontCodes.DARK_AQUA).replace("_4", FontCodes.DARK_RED)
-				.replace("_5", FontCodes.DARK_PURPLE).replace("_6", FontCodes.GOLD).replace("_7", FontCodes.GRAY)
-				.replace("_8", FontCodes.DARK_GREY).replace("_9", FontCodes.BLUE).replace("_a", FontCodes.GREEN)
-				.replace("_b", FontCodes.AQUA).replace("_c", FontCodes.RED).replace("_d", FontCodes.LIGHT_PURPLE)
-				.replace("_e", FontCodes.YELLOW).replace("_f", FontCodes.WHITE).replace("_k", FontCodes.OBFUSCATED)
-				.replace("_l", FontCodes.BOLD).replace("_m", FontCodes.STRIKETHROUGH).replace("_n", FontCodes.UNDERLINE)
-				.replace("_o", FontCodes.ITALICS).replace("_r", FontCodes.RESET);
+	private String DecodeStringCodes (String s) {
+		return s.replace("_0", FontCodes.BLACK).replace("_1", FontCodes.DARK_BLUE).replace("_2", FontCodes.DARK_GREEN).replace("_3", FontCodes.DARK_AQUA).replace("_4", FontCodes.DARK_RED).replace("_5", FontCodes.DARK_PURPLE).replace("_6", FontCodes.GOLD).replace("_7", FontCodes.GRAY).replace("_8", FontCodes.DARK_GREY).replace("_9", FontCodes.BLUE).replace("_a", FontCodes.GREEN).replace("_b", FontCodes.AQUA).replace("_c", FontCodes.RED).replace("_d", FontCodes.LIGHT_PURPLE).replace("_e", FontCodes.YELLOW).replace("_f", FontCodes.WHITE).replace("_k", FontCodes.OBFUSCATED).replace("_l", FontCodes.BOLD).replace("_m", FontCodes.STRIKETHROUGH).replace("_n", FontCodes.UNDERLINE).replace("_o", FontCodes.ITALICS).replace("_r", FontCodes.RESET);
 	}
 
 	/***
@@ -269,12 +246,11 @@ public abstract class GuiTooltip extends GuiScreen {
 	 * @param tooltipArray
 	 * @return
 	 */
-	private int GetTooltipWidth(String[] tooltipArray) {
+	private int GetTooltipWidth (String[] tooltipArray) {
 		int longestWidth = 0;
 		for (String s : tooltipArray) {
 			int width = mc.fontRendererObj.getStringWidth(s);
-			if (width > longestWidth)
-				longestWidth = width;
+			if (width > longestWidth) longestWidth = width;
 		}
 		return longestWidth;
 	}
@@ -285,10 +261,9 @@ public abstract class GuiTooltip extends GuiScreen {
 	 * @param tooltipArray
 	 * @return
 	 */
-	private int GetTooltipHeight(String[] tooltipArray) {
+	private int GetTooltipHeight (String[] tooltipArray) {
 		int tooltipHeight = mc.fontRendererObj.FONT_HEIGHT - 2;
-		if (tooltipArray.length > 1)
-			tooltipHeight += (tooltipArray.length - 1) * LINE_HEIGHT;
+		if (tooltipArray.length > 1) tooltipHeight += (tooltipArray.length - 1) * LINE_HEIGHT;
 		return tooltipHeight;
 	}
 
@@ -309,16 +284,14 @@ public abstract class GuiTooltip extends GuiScreen {
 	 *            fml/conf/fields.csv
 	 * @return
 	 */
-	public static <T, E> T GetFieldByReflection(Class<? super E> classToAccess, E instance, String... fieldNames) {
+	public static <T, E> T GetFieldByReflection (Class<? super E> classToAccess, E instance, String... fieldNames) {
 		Field field = null;
 		for (String fieldName : fieldNames) {
 			try {
 				field = classToAccess.getDeclaredField(fieldName);
-			} catch (NoSuchFieldException e) {
-			}
+			} catch (NoSuchFieldException e) {}
 
-			if (field != null)
-				break;
+			if (field != null) break;
 		}
 
 		if (field != null) {
@@ -326,9 +299,7 @@ public abstract class GuiTooltip extends GuiScreen {
 			T fieldT = null;
 			try {
 				fieldT = (T) field.get(instance);
-			} catch (IllegalArgumentException e) {
-			} catch (IllegalAccessException e) {
-			}
+			} catch (IllegalArgumentException e) {} catch (IllegalAccessException e) {}
 
 			return fieldT;
 		}

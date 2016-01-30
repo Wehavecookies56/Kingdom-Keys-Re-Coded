@@ -14,22 +14,22 @@ public class RecipeDarkgnaw extends Recipe {
 
 	public String name;
 
-	public RecipeDarkgnaw(String name) {
+	public RecipeDarkgnaw (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public Item getResult() {
+	public Item getResult () {
 		return ModItems.Chain_Darkgnaw;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements() {
+	public Map<Material, Integer> getRequirements () {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_DarkCrystal), 5);
 		reqs.put(MaterialRegistry.get(Strings.SM_LucidShard), 5);

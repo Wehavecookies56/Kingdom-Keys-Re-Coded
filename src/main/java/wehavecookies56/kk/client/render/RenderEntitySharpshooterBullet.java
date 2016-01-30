@@ -29,34 +29,30 @@ import wehavecookies56.kk.lib.Strings;
 
 public class RenderEntitySharpshooterBullet extends Render<EntitySharpshooterBullet> {
 
-	public ModelResourceLocation model = new ModelResourceLocation(
-			Reference.MODID + ":models/item/" + Strings.EternalFlames + ".b3d", "inventory");
-	public ResourceLocation texture = new ResourceLocation(
-			Reference.MODID + ":textures/items/models/" + Strings.EternalFlames + ".png");
+	public ModelResourceLocation model = new ModelResourceLocation(Reference.MODID + ":models/item/" + Strings.EternalFlames + ".b3d", "inventory");
+	public ResourceLocation texture = new ResourceLocation(Reference.MODID + ":textures/items/models/" + Strings.EternalFlames + ".png");
 
-	public RenderEntitySharpshooterBullet(RenderManager renderManager) {
+	public RenderEntitySharpshooterBullet (RenderManager renderManager) {
 		super(renderManager);
 	}
 
 	Function<ResourceLocation, TextureAtlasSprite> textureGetter = new Function<ResourceLocation, TextureAtlasSprite>() {
 		@Override
-		public TextureAtlasSprite apply(ResourceLocation location) {
+		public TextureAtlasSprite apply (ResourceLocation location) {
 			return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
 		}
 	};
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntitySharpshooterBullet entity) {
+	protected ResourceLocation getEntityTexture (EntitySharpshooterBullet entity) {
 		return texture;
 	}
 
 	@Override
-	public void doRender(EntitySharpshooterBullet entity, double x, double y, double z, float entityYaw,
-			float partialTicks) {
+	public void doRender (EntitySharpshooterBullet entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		Tessellator tessellator = Tessellator.getInstance();
 		WorldRenderer worldRenderer = tessellator.getWorldRenderer();
-		if (entity.ticksExisted < 1)
-			return;
+		if (entity.ticksExisted < 1) return;
 
 		textureGetter.apply(texture);
 		bindEntityTexture(entity);
@@ -77,8 +73,7 @@ public class RenderEntitySharpshooterBullet extends Render<EntitySharpshooterBul
 				model = ModelLoaderRegistry.getMissingModel();
 			}
 
-			IBakedModel bakedModel = model.bake((TRSRTransformation.identity()), Attributes.DEFAULT_BAKED_FORMAT,
-					textureGetter);
+			IBakedModel bakedModel = model.bake((TRSRTransformation.identity()), Attributes.DEFAULT_BAKED_FORMAT, textureGetter);
 			worldRenderer.func_181668_a(7, Attributes.DEFAULT_BAKED_FORMAT);
 
 			// Get Quads

@@ -26,17 +26,17 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
  */
 public class StaticCape extends AbstractCape {
 
-	public StaticCape(String name, URL url) {
+	public StaticCape (String name, URL url) {
 		setName(name);
 		setURL(url);
 	}
 
-	public StaticCape(String name) {
+	public StaticCape (String name) {
 		this(name, null);
 	}
 
 	@Override
-	public void loadTexture(AbstractClientPlayer player) {
+	public void loadTexture (AbstractClientPlayer player) {
 		ResourceLocation location = getLocation();
 
 		// mmdanggg2: using reflection to modify the private locationCape, hacky
@@ -64,12 +64,12 @@ public class StaticCape extends AbstractCape {
 	}
 
 	@Override
-	public boolean isTextureLoaded(AbstractClientPlayer player) {
+	public boolean isTextureLoaded (AbstractClientPlayer player) {
 		ResourceLocation cape = player.getLocationCape();
 		return cape != null;
 	}
 
-	public void setURL(URL url) {
+	public void setURL (URL url) {
 		if (url == null) {
 			this.texture = null;
 			return;
@@ -77,7 +77,7 @@ public class StaticCape extends AbstractCape {
 		this.texture = new ThreadDownloadImageData(null, url.toString(), null, new HDImageBuffer());
 	}
 
-	public void setName(String name) {
+	public void setName (String name) {
 		this.name = name;
 		this.location = new ResourceLocation("DevCapes/" + name);
 	}

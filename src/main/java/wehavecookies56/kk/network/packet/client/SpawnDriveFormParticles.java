@@ -14,31 +14,30 @@ public class SpawnDriveFormParticles extends AbstractClientMessage<SpawnDriveFor
 	double px, py, pz;
 	EntityPlayer player;
 
-	public SpawnDriveFormParticles() {
-	}
+	public SpawnDriveFormParticles () {}
 
-	public SpawnDriveFormParticles(Entity entity) {
+	public SpawnDriveFormParticles (Entity entity) {
 		px = entity.posX;
 		py = entity.posY;
 		pz = entity.posZ;
 	}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 		px = buffer.readDouble();
 		py = buffer.readDouble();
 		pz = buffer.readDouble();
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeDouble(px);
 		buffer.writeDouble(py);
 		buffer.writeDouble(pz);
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
+	public void process (EntityPlayer player, Side side) {
 
 		double r;
 		r = 1.2D;

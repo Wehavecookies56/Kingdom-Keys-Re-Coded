@@ -39,14 +39,14 @@ public class TextHelper {
 	/**
 	 * Enable Localizationizing
 	 */
-	public static String localize(String key) {
+	public static String localize (String key) {
 		return StatCollector.translateToLocal(key);
 	}
 
 	/**
 	 * Send message in the chat with formatting
 	 */
-	public static void sendFormattedChatMessage(String message, EnumChatFormatting formatting, EntityPlayer player) {
+	public static void sendFormattedChatMessage (String message, EnumChatFormatting formatting, EntityPlayer player) {
 		String s = "";
 		String[] m = message.split(" ");
 		for (String t : m) {
@@ -60,7 +60,7 @@ public class TextHelper {
 	/**
 	 * Send message in the chat
 	 */
-	public static void sendChatMessage(String message, EntityPlayer player) {
+	public static void sendChatMessage (String message, EntityPlayer player) {
 		player.addChatMessage(new ChatComponentText(message));
 	}
 }

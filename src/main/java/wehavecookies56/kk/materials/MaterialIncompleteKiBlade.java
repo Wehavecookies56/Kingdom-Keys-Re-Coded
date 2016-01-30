@@ -9,23 +9,23 @@ public class MaterialIncompleteKiBlade extends Material {
 
 	String name;
 
-	public MaterialIncompleteKiBlade(String name) {
+	public MaterialIncompleteKiBlade (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem() {
+	public ItemStack getItem () {
 		ItemStack stack = new ItemStack(ModItems.Chain_IncompleteKiblade);
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture() {
+	public ResourceLocation getTexture () {
 		return null;
 	}
 

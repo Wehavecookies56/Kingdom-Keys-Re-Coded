@@ -14,32 +14,31 @@ public class ShowOverlayPacket extends AbstractClientMessage<ShowOverlayPacket> 
 	String type;
 	int munny;
 
-	public ShowOverlayPacket() {
-	}
+	public ShowOverlayPacket () {}
 
-	public ShowOverlayPacket(String type) {
+	public ShowOverlayPacket (String type) {
 		this.type = type;
 	}
 
-	public ShowOverlayPacket(String type, int munny) {
+	public ShowOverlayPacket (String type, int munny) {
 		this.type = type;
 		this.munny = munny;
 	}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 		this.type = buffer.readStringFromBuffer(50);
 		this.munny = buffer.readInt();
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeString(this.type);
 		buffer.writeInt(this.munny);
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
+	public void process (EntityPlayer player, Side side) {
 		if (this.type.equals("exp")) {
 			GuiOverlay.showExp = true;
 			Minecraft.getMinecraft();

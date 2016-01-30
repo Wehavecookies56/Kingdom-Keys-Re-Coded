@@ -11,91 +11,84 @@ public abstract class AbstractInventory implements IInventory {
 	protected ItemStack[] inventory;
 
 	@Override
-	public int getSizeInventory() {
+	public int getSizeInventory () {
 		return inventory.length;
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int slot) {
+	public ItemStack getStackInSlot (int slot) {
 		return inventory[slot];
 	}
 
 	@Override
-	public ItemStack decrStackSize(int slot, int amount) {
+	public ItemStack decrStackSize (int slot, int amount) {
 		ItemStack stack = getStackInSlot(slot);
-		if (stack != null)
-			if (stack.stackSize > amount) {
-				stack = stack.splitStack(amount);
-				markDirty();
-			} else
-				setInventorySlotContents(slot, null);
+		if (stack != null) if (stack.stackSize > amount) {
+			stack = stack.splitStack(amount);
+			markDirty();
+		} else
+			setInventorySlotContents(slot, null);
 
 		return stack;
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
+	public ItemStack getStackInSlotOnClosing (int slot) {
 		ItemStack stack = getStackInSlot(slot);
 		setInventorySlotContents(slot, null);
 		return stack;
 	}
 
 	@Override
-	public void setInventorySlotContents(int slot, ItemStack itemstack) {
+	public void setInventorySlotContents (int slot, ItemStack itemstack) {
 		inventory[slot] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit())
-			itemstack.stackSize = getInventoryStackLimit();
+		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) itemstack.stackSize = getInventoryStackLimit();
 		markDirty();
 	}
 
 	@Override
-	public void markDirty() {
-	}
+	public void markDirty () {}
 
 	@Override
-	public void openInventory(EntityPlayer player) {
-	}
+	public void openInventory (EntityPlayer player) {}
 
 	@Override
-	public void closeInventory(EntityPlayer player) {
-	}
+	public void closeInventory (EntityPlayer player) {}
 
 	@Override
-	public int getField(int id) {
+	public int getField (int id) {
 		return 0;
 	}
 
 	@Override
-	public void setField(int id, int value) {
-	}
+	public void setField (int id, int value) {}
 
 	@Override
-	public int getFieldCount() {
+	public int getFieldCount () {
 		return 0;
 	}
 
 	@Override
-	public void clear() {
+	public void clear () {
 		for (int i = 0; i < inventory.length; ++i)
 			inventory[i] = null;
 	}
 
 	@Override
-	public boolean hasCustomName() {
+	public boolean hasCustomName () {
 		return false;
 	}
 
 	@Override
-	public IChatComponent getDisplayName() {
+	public IChatComponent getDisplayName () {
 		return null;
 	}
 
-	protected abstract String getNbtKey();
+	protected abstract String getNbtKey ();
 
-	public void writeToNBT(NBTTagCompound compound) {
+	public void writeToNBT (NBTTagCompound compound) {
 		String key = getNbtKey();
-		if (key == null || key.equals(""))
-			return;
+		if (key == null || key.equals("")) return;
 		NBTTagList items = new NBTTagList();
 		for (int i = 0; i < getSizeInventory(); ++i)
 			if (getStackInSlot(i) != null) {
@@ -107,21 +100,19 @@ public abstract class AbstractInventory implements IInventory {
 		compound.setTag(key, items);
 	}
 
-	public void readFromNBT(NBTTagCompound compound) {
+	public void readFromNBT (NBTTagCompound compound) {
 		String key = getNbtKey();
-		if (key == null || key.equals(""))
-			return;
+		if (key == null || key.equals("")) return;
 		NBTTagList items = compound.getTagList(key, compound.getId());
 		for (int i = 0; i < items.tagCount(); ++i) {
 			NBTTagCompound item = items.getCompoundTagAt(i);
 			byte slot = item.getByte("Slot");
-			if (slot >= 0 && slot < getSizeInventory())
-				inventory[slot] = ItemStack.loadItemStackFromNBT(item);
+			if (slot >= 0 && slot < getSizeInventory()) inventory[slot] = ItemStack.loadItemStackFromNBT(item);
 		}
 	}
 
 	@Override
-	public String getCommandSenderName() {
+	public String getCommandSenderName () {
 		return "";
 	}
 

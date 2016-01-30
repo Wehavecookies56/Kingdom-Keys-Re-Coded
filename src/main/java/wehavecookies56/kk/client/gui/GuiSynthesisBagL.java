@@ -17,11 +17,10 @@ public class GuiSynthesisBagL extends GuiContainer {
 	private float xSize_lo;
 	private float ySize_lo;
 
-	private static final ResourceLocation texture = new ResourceLocation(Reference.MODID,
-			"textures/gui/SynthesisBagL.png");
+	private static final ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/SynthesisBagL.png");
 	private InventorySynthesisBagL inventory;
 
-	public GuiSynthesisBagL(EntityPlayer player, InventoryPlayer inv1, InventorySynthesisBagL inv2) {
+	public GuiSynthesisBagL (EntityPlayer player, InventoryPlayer inv1, InventorySynthesisBagL inv2) {
 		super(new ContainerSynthesisBagL(player, inv1, inv2));
 		this.inventory = inv2;
 		xSize = 176;
@@ -29,21 +28,21 @@ public class GuiSynthesisBagL extends GuiContainer {
 	}
 
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+	public void drawScreen (int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.xSize_lo = mouseX;
 		this.ySize_lo = mouseY;
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
+	protected void drawGuiContainerBackgroundLayer (float partialTicks, int x, int y) {
 		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+	protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY) {
 		String s = inventory.getDisplayName().getUnformattedText();
 		GL11.glPushMatrix();
 		{

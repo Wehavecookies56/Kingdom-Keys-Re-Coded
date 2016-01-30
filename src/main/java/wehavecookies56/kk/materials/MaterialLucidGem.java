@@ -12,24 +12,24 @@ public class MaterialLucidGem extends Material {
 
 	String name;
 
-	public MaterialLucidGem(String name) {
+	public MaterialLucidGem (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem() {
+	public ItemStack getItem () {
 		ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
 		ItemStacks.createSynthesisItem(stack, Strings.SM_LucidGem, "A");
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture() {
+	public ResourceLocation getTexture () {
 		return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/lucidgem.png");
 	}
 

@@ -14,33 +14,32 @@ import wehavecookies56.kk.item.ModItems;
 
 public class ItemFrozenPride extends ItemSword {
 
-	public ItemFrozenPride(ToolMaterial material) {
+	public ItemFrozenPride (ToolMaterial material) {
 		super(material);
 		setMaxStackSize(1);
 	}
 
 	@Override
-	public void onUpdate(ItemStack item, World world, Entity entity, int p_77663_4_, boolean p_77663_5_) {
+	public void onUpdate (ItemStack item, World world, Entity entity, int p_77663_4_, boolean p_77663_5_) {
 		EntityPlayer player = (EntityPlayer) entity;
 
-		if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.FrozenPride)
-			if (player.isBlocking())
-				player.setInWeb();
-			else {
-				// player.capabilities.setPlayerWalkSpeed(0.1F);
-			}
+		if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.FrozenPride) if (player.isBlocking())
+			player.setInWeb();
+		else {
+			// player.capabilities.setPlayerWalkSpeed(0.1F);
+		}
 		super.onUpdate(item, world, entity, p_77663_4_, p_77663_5_);
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public EnumRarity getRarity(ItemStack par1ItemStack) {
+	@SideOnly (Side.CLIENT)
+	public EnumRarity getRarity (ItemStack par1ItemStack) {
 		return EnumRarity.UNCOMMON;
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
+	@SideOnly (Side.CLIENT)
+	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
 		dataList.add("IV Vexen");
 	}
 

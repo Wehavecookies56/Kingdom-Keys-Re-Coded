@@ -8,7 +8,7 @@ import wehavecookies56.kk.entities.projectiles.EntitySharpshooterBullet;
 public class RenderFactorySharpshooterBullet implements IRenderFactory<EntitySharpshooterBullet> {
 
 	@Override
-	public Render<? super EntitySharpshooterBullet> createRenderFor(RenderManager manager) {
+	public Render<? super EntitySharpshooterBullet> createRenderFor (RenderManager manager) {
 		return new RenderEntitySharpshooterBullet(manager);
 	}
 

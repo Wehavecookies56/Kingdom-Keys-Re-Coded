@@ -21,7 +21,7 @@ public class User {
 	public List<ICape> capes;
 	public final String username;
 
-	public User(String username) {
+	public User (String username) {
 		this.username = username;
 		this.capes = new ArrayList<ICape>();
 	}

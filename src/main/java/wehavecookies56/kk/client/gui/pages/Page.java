@@ -17,7 +17,7 @@ public class Page extends GuiScreen {
 
 	ScaledResolution res;
 
-	public Page(String name, int xPos, int yPos) {
+	public Page (String name, int xPos, int yPos) {
 		this.name = name;
 		this.xPos = xPos;
 		this.yPos = yPos;
@@ -25,35 +25,28 @@ public class Page extends GuiScreen {
 	}
 
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+	public void drawScreen (int mouseX, int mouseY, float partialTicks) {
 		drawPageBackground(res.getScaledWidth(), res.getScaledHeight());
 		drawPageForeground(res.getScaledWidth(), res.getScaledHeight());
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
 	@Override
-	public void initGui() {
+	public void initGui () {
 		res = new ScaledResolution(Minecraft.getMinecraft());
 		super.initGui();
 	}
 
-	public void drawPageForeground(int width, int height) {
-		drawString(Minecraft.getMinecraft().fontRendererObj,
-				name.substring(name.lastIndexOf("_") + 1) + EnumChatFormatting.UNDERLINE + EnumChatFormatting.BOLD,
-				xPos, yPos, 0xFFFFFF);
+	public void drawPageForeground (int width, int height) {
+		drawString(Minecraft.getMinecraft().fontRendererObj, name.substring(name.lastIndexOf("_") + 1) + EnumChatFormatting.UNDERLINE + EnumChatFormatting.BOLD, xPos, yPos, 0xFFFFFF);
 	}
 
-	public void drawPageBackground(int width, int height) {
+	public void drawPageBackground (int width, int height) {
 		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
-		drawBG(new ResourceLocation(Reference.MODID, "textures/gui/journal.png"), getxPos() - 5, getyPos() - 5,
-				(new ScaledResolution(Minecraft.getMinecraft())).getScaledWidth() - getxPos()
-						- (fontRendererObj.FONT_HEIGHT * 2) + 5,
-				(new ScaledResolution(Minecraft.getMinecraft())).getScaledHeight() - getyPos()
-						- (fontRendererObj.FONT_HEIGHT * 2) + 5,
-				1F);
+		drawBG(new ResourceLocation(Reference.MODID, "textures/gui/journal.png"), getxPos() - 5, getyPos() - 5, (new ScaledResolution(Minecraft.getMinecraft())).getScaledWidth() - getxPos() - (fontRendererObj.FONT_HEIGHT * 2) + 5, (new ScaledResolution(Minecraft.getMinecraft())).getScaledHeight() - getyPos() - (fontRendererObj.FONT_HEIGHT * 2) + 5, 1F);
 	}
 
-	public void drawBG(ResourceLocation res, int posX, int posY, int width, int height, float scale) {
+	public void drawBG (ResourceLocation res, int posX, int posY, int width, int height, float scale) {
 		Minecraft.getMinecraft().renderEngine.bindTexture(res);
 		GL11.glPushMatrix();
 		{
@@ -103,35 +96,35 @@ public class Page extends GuiScreen {
 		GL11.glPopMatrix();
 	}
 
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName (String name) {
 		this.name = name;
 	}
 
-	public int getxPos() {
+	public int getxPos () {
 		return xPos;
 	}
 
-	public void setxPos(int xPos) {
+	public void setxPos (int xPos) {
 		this.xPos = xPos;
 	}
 
-	public int getyPos() {
+	public int getyPos () {
 		return yPos;
 	}
 
-	public void setyPos(int yPos) {
+	public void setyPos (int yPos) {
 		this.yPos = yPos;
 	}
 
-	public int getWidth() {
+	public int getWidth () {
 		return res.getScaledWidth();
 	}
 
-	public int getHeight() {
+	public int getHeight () {
 		return res.getScaledHeight();
 	}
 

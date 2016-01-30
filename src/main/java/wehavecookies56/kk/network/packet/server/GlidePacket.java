@@ -12,25 +12,24 @@ public class GlidePacket extends AbstractServerMessage<GlidePacket> {
 
 	boolean jumpHeld;
 
-	public GlidePacket() {
-	}
+	public GlidePacket () {}
 
-	public GlidePacket(boolean jumpHeld) {
+	public GlidePacket (boolean jumpHeld) {
 		this.jumpHeld = jumpHeld;
 	}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 		this.jumpHeld = buffer.readBoolean();
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeBoolean(this.jumpHeld);
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
+	public void process (EntityPlayer player, Side side) {
 		DriveFormFinal.jumpHeld = this.jumpHeld;
 	}
 

@@ -14,22 +14,22 @@ public class RecipeMetalChocobo extends Recipe {
 
 	public String name;
 
-	public RecipeMetalChocobo(String name) {
+	public RecipeMetalChocobo (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public Item getResult() {
+	public Item getResult () {
 		return ModItems.Chain_MetalChocobo;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements() {
+	public Map<Material, Integer> getRequirements () {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 5);
 		reqs.put(MaterialRegistry.get(Strings.SM_DenseCrystal), 3);

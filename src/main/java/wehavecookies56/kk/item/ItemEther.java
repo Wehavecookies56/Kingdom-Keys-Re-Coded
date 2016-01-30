@@ -8,7 +8,7 @@ public class ItemEther extends ItemKKPotion {
 
 	String potionType;
 
-	public ItemEther(int food, boolean wolf, String type) {
+	public ItemEther (int food, boolean wolf, String type) {
 		super(food, wolf, type, "ether");
 		setUnlocalizedName(Strings.Potion);
 		setAlwaysEdible();
@@ -16,7 +16,7 @@ public class ItemEther extends ItemKKPotion {
 	}
 
 	@Override
-	public void potionEffect(EntityPlayer player) {
+	public void potionEffect (EntityPlayer player) {
 		ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp() / 3);
 	}
 

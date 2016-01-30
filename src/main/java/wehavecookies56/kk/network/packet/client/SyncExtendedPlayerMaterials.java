@@ -13,28 +13,27 @@ public class SyncExtendedPlayerMaterials extends AbstractClientMessage<SyncExten
 
 	private NBTTagCompound data;
 
-	public SyncExtendedPlayerMaterials() {
-	}
+	public SyncExtendedPlayerMaterials () {}
 
-	public SyncExtendedPlayerMaterials(EntityPlayer player) {
+	public SyncExtendedPlayerMaterials (EntityPlayer player) {
 		data = new NBTTagCompound();
 		ExtendedPlayerMaterials.get(player).saveNBTData(data);
 	}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 		data = buffer.readNBTTagCompoundFromBuffer();
 
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeNBTTagCompoundToBuffer(data);
 
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
+	public void process (EntityPlayer player, Side side) {
 		ExtendedPlayerMaterials.get(player).loadNBTData(data);
 	}
 

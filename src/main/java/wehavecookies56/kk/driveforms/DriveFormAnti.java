@@ -11,27 +11,27 @@ import wehavecookies56.kk.util.SoundHelper;
 
 public class DriveFormAnti extends DriveForm {
 
-	public DriveFormAnti() {
+	public DriveFormAnti () {
 
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return "Anti";
 	}
 
 	@Override
-	public ResourceLocation getTexture() {
+	public ResourceLocation getTexture () {
 		return new ResourceLocation(Reference.MODID, "textures/driveforms/anti.png");
 	}
 
 	@Override
-	public double getCost() {
+	public double getCost () {
 		return 0;
 	}
 
 	@Override
-	public void initDrive(EntityPlayer player) {
+	public void initDrive (EntityPlayer player) {
 		ExtendedPlayer.get(player).setDriveInUse(getName());
 		ExtendedPlayer.get(player).setInDrive(true);
 		PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(player), player, 64.0D);
@@ -39,18 +39,16 @@ public class DriveFormAnti extends DriveForm {
 	}
 
 	@Override
-	public void update(EntityPlayer player) {
-		if (ExtendedPlayer.get(player).cheatMode == false)
-			if (ExtendedPlayer.get(player).dp > 0) {
-				ExtendedPlayer.get(player).dp -= 0.1;
-				if (ExtendedPlayer.get(player).dp < 0)
-					ExtendedPlayer.get(player).dp = 0;
-			} else
-				endDrive(player);
+	public void update (EntityPlayer player) {
+		if (ExtendedPlayer.get(player).cheatMode == false) if (ExtendedPlayer.get(player).dp > 0) {
+			ExtendedPlayer.get(player).dp -= 0.1;
+			if (ExtendedPlayer.get(player).dp < 0) ExtendedPlayer.get(player).dp = 0;
+		} else
+			endDrive(player);
 	}
 
 	@Override
-	public void endDrive(EntityPlayer player) {
+	public void endDrive (EntityPlayer player) {
 		ExtendedPlayer.get(player).setDP(0);
 		ExtendedPlayer.get(player).setInDrive(false);
 		ExtendedPlayer.get(player).setDriveInUse("none");

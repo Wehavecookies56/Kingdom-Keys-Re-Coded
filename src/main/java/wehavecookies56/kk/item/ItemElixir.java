@@ -8,7 +8,7 @@ public class ItemElixir extends ItemKKPotion {
 
 	String potionType;
 
-	public ItemElixir(int food, boolean wolf, String type) {
+	public ItemElixir (int food, boolean wolf, String type) {
 		super(food, wolf, type, "elixir");
 		setUnlocalizedName(Strings.Potion);
 		setAlwaysEdible();
@@ -16,7 +16,7 @@ public class ItemElixir extends ItemKKPotion {
 	}
 
 	@Override
-	public void potionEffect(EntityPlayer player) {
+	public void potionEffect (EntityPlayer player) {
 		ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp() / 3);
 		player.heal(player.getMaxHealth() / 3);
 	}

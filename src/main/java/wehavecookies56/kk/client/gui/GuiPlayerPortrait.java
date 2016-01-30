@@ -15,7 +15,7 @@ import wehavecookies56.kk.lib.Reference;
 public class GuiPlayerPortrait extends GuiScreen {
 
 	@SubscribeEvent
-	public void onRenderOverlayPost(RenderGameOverlayEvent event) {
+	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
 		Minecraft mc = Minecraft.getMinecraft();
 		int screenWidth = event.resolution.getScaledWidth();
 		int screenHeight = event.resolution.getScaledHeight();
@@ -25,19 +25,18 @@ public class GuiPlayerPortrait extends GuiScreen {
 			mc.getTextureManager().bindTexture(skin);
 			float scale = 0.5f;
 			switch (mc.gameSettings.guiScale) {
-			case Constants.SCALE_AUTO:
-				scale = 0.85f;
-				break;
-			case Constants.SCALE_NORMAL:
-				scale = 0.85f;
-				break;
-			default:
-				scale = 0.65f;
-				break;
+				case Constants.SCALE_AUTO:
+					scale = 0.85f;
+					break;
+				case Constants.SCALE_NORMAL:
+					scale = 0.85f;
+					break;
+				default:
+					scale = 0.65f;
+					break;
 			}
 
-			if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti"))
-				GL11.glColor3ub((byte) 30, (byte) 30, (byte) 30);
+			if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti")) GL11.glColor3ub((byte) 30, (byte) 30, (byte) 30);
 
 			// HEAD
 			int headWidth = 32;
@@ -49,8 +48,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 			GL11.glPushMatrix();
 			{
-				GL11.glTranslatef((screenWidth - headWidth * scale) - scaledHeadPosX,
-						(screenHeight - headHeight * scale) - scaledHeadPosY, 0);
+				GL11.glTranslatef((screenWidth - headWidth * scale) - scaledHeadPosX, (screenHeight - headHeight * scale) - scaledHeadPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 32, 32, headWidth, headHeight);
 			}
@@ -66,8 +64,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 			GL11.glPushMatrix();
 			{
-				GL11.glTranslatef((screenWidth - hatWidth * scale) - scaledHatPosX,
-						(screenHeight - hatHeight * scale) - scaledHatPosY, 0);
+				GL11.glTranslatef((screenWidth - hatWidth * scale) - scaledHatPosX, (screenHeight - hatHeight * scale) - scaledHatPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 160, 32, hatWidth, hatHeight);
 			}
@@ -83,8 +80,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 			GL11.glPushMatrix();
 			{
-				GL11.glTranslatef((screenWidth - bodyWidth * scale) - scaledBodyPosX,
-						(screenHeight - bodyHeight * scale) - scaledBodyPosY, 0);
+				GL11.glTranslatef((screenWidth - bodyWidth * scale) - scaledBodyPosX, (screenHeight - bodyHeight * scale) - scaledBodyPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 80, 80, bodyWidth, bodyHeight);
 			}
@@ -100,8 +96,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 			GL11.glPushMatrix();
 			{
-				GL11.glTranslatef((screenWidth - bodyWidth * scale) - scaledBodyPosX,
-						(screenHeight - bodyHeight * scale) - scaledBodyPosY, 0);
+				GL11.glTranslatef((screenWidth - bodyWidth * scale) - scaledBodyPosX, (screenHeight - bodyHeight * scale) - scaledBodyPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 80, 148, bodyWidth, bodyHeight);
 			}
@@ -121,8 +116,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 			GL11.glPushMatrix();
 			{
-				GL11.glTranslatef((screenWidth - armWidth * scale) - scaledArmRPosX,
-						(screenHeight - armHeight * scale) - scaledArmRPosY, 0);
+				GL11.glTranslatef((screenWidth - armWidth * scale) - scaledArmRPosX, (screenHeight - armHeight * scale) - scaledArmRPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 176, 80, armWidth, armHeight);
 			}
@@ -130,8 +124,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 			GL11.glPushMatrix();
 			{
-				GL11.glTranslatef((screenWidth - armWidth * scale) - scaledArmLPosX,
-						(screenHeight - armHeight * scale) - scaledArmLPosY, 0);
+				GL11.glTranslatef((screenWidth - armWidth * scale) - scaledArmLPosX, (screenHeight - armHeight * scale) - scaledArmLPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 176, 80, armWidth, armHeight);
 			}
@@ -152,8 +145,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 			GL11.glPushMatrix();
 			{
-				GL11.glTranslatef((screenWidth - gloveWidth * scale) - scaledgloveRPosX,
-						(screenHeight - gloveHeight * scale) - scaledgloveRPosY, 0);
+				GL11.glTranslatef((screenWidth - gloveWidth * scale) - scaledgloveRPosX, (screenHeight - gloveHeight * scale) - scaledgloveRPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 176, 150, gloveWidth, gloveHeight);
 			}
@@ -161,8 +153,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 			GL11.glPushMatrix();
 			{
-				GL11.glTranslatef((screenWidth - gloveWidth * scale) - scaledgloveLPosX,
-						(screenHeight - gloveHeight * scale) - scaledgloveLPosY, 0);
+				GL11.glTranslatef((screenWidth - gloveWidth * scale) - scaledgloveLPosX, (screenHeight - gloveHeight * scale) - scaledgloveLPosY, 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 176, 150, gloveWidth, gloveHeight);
 			}
@@ -175,8 +166,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale,
-							(screenHeight - 80 * scale) - -48 * scale, 0);
+					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -186,8 +176,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale,
-							(screenHeight - 80 * scale) - -48 * scale, 0);
+					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -197,8 +186,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale,
-							0);
+					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -212,8 +200,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale,
-							(screenHeight - 80 * scale) - -48 * scale, 0);
+					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -223,8 +210,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale,
-							(screenHeight - 80 * scale) - -48 * scale, 0);
+					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -234,8 +220,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale,
-							0);
+					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -248,8 +233,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale,
-							(screenHeight - 80 * scale) - -48 * scale, 0);
+					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -259,8 +243,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale,
-							(screenHeight - 80 * scale) - -48 * scale, 0);
+					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -270,8 +253,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale,
-							0);
+					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -284,8 +266,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale,
-							(screenHeight - 80 * scale) - -48 * scale, 0);
+					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -295,8 +276,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale,
-							(screenHeight - 80 * scale) - -48 * scale, 0);
+					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -306,8 +286,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale,
-							0);
+					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -320,8 +299,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale,
-							(screenHeight - 80 * scale) - -48 * scale, 0);
+					GL11.glTranslatef((screenWidth - 32 * scale) - 16 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -331,8 +309,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale,
-							(screenHeight - 80 * scale) - -48 * scale, 0);
+					GL11.glTranslatef((screenWidth - 16 * scale) - 48 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
@@ -342,8 +319,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 				GL11.glPushMatrix();
 				{
-					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale,
-							0);
+					GL11.glTranslatef((screenWidth - 16 * scale) - 0 * scale, (screenHeight - 80 * scale) - -48 * scale, 0);
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);

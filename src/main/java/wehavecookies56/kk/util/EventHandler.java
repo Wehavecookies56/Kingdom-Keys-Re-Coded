@@ -69,72 +69,60 @@ import wehavecookies56.kk.network.packet.server.MunnyPickup;
 
 public class EventHandler {
 	@SubscribeEvent
-	public void onEntityConstructing(EntityConstructing event) {
-		if (event.entity instanceof EntityPlayer && ExtendedPlayer.get((EntityPlayer) event.entity) == null)
-			ExtendedPlayer.register((EntityPlayer) event.entity);
-		if (event.entity instanceof EntityPlayer && ExtendedPlayerRecipes.get((EntityPlayer) event.entity) == null)
-			ExtendedPlayerRecipes.register((EntityPlayer) event.entity);
-		if (event.entity instanceof EntityPlayer && ExtendedPlayerMaterials.get((EntityPlayer) event.entity) == null)
-			ExtendedPlayerMaterials.register((EntityPlayer) event.entity);
+	public void onEntityConstructing (EntityConstructing event) {
+		if (event.entity instanceof EntityPlayer && ExtendedPlayer.get((EntityPlayer) event.entity) == null) ExtendedPlayer.register((EntityPlayer) event.entity);
+		if (event.entity instanceof EntityPlayer && ExtendedPlayerRecipes.get((EntityPlayer) event.entity) == null) ExtendedPlayerRecipes.register((EntityPlayer) event.entity);
+		if (event.entity instanceof EntityPlayer && ExtendedPlayerMaterials.get((EntityPlayer) event.entity) == null) ExtendedPlayerMaterials.register((EntityPlayer) event.entity);
 
 	}
 
-	@SideOnly(Side.CLIENT)
+	@SideOnly (Side.CLIENT)
 	@SubscribeEvent
-	public void onRenderItemInFrame(RenderItemInFrameEvent event) {
-		if (event.item.getItem() != null)
-			if (event.item.getItem() instanceof ItemKeyblade)
-				GlStateManager.scale(0.02f, 0.02f, 0.02f);
+	public void onRenderItemInFrame (RenderItemInFrameEvent event) {
+		if (event.item.getItem() != null) if (event.item.getItem() instanceof ItemKeyblade) GlStateManager.scale(0.02f, 0.02f, 0.02f);
 	}
 
-	@SideOnly(Side.CLIENT)
+	@SideOnly (Side.CLIENT)
 	@SubscribeEvent
-	public void fovUpdate(FOVUpdateEvent event) {
-		if (event.entity.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue() == 0)
-			event.newfov = 1f;
+	public void fovUpdate (FOVUpdateEvent event) {
+		if (event.entity.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue() == 0) event.newfov = 1f;
 	}
 
 	@SubscribeEvent
-	public void addTooltip(ItemTooltipEvent event) {
+	public void addTooltip (ItemTooltipEvent event) {
 		Item ghostBlox = Item.getItemFromBlock(ModBlocks.GhostBlox);
-		if (event.itemStack.getItem() == ghostBlox)
-			if (!KeyboardHelper.isShiftDown())
-				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
-			else {
-				int x = 30;
-				String s = TextHelper.localize(Strings.GhostBloxDesc).replace("%s",
-						TextHelper.localize(ModBlocks.GhostBlox.getUnlocalizedName() + ".name"));
-				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
-				String[] splitS = s.split("\n");
-				for (String element : splitS)
-					event.toolTip.add(element);
-			}
+		if (event.itemStack.getItem() == ghostBlox) if (!KeyboardHelper.isShiftDown())
+			event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
+		else {
+			int x = 30;
+			String s = TextHelper.localize(Strings.GhostBloxDesc).replace("%s", TextHelper.localize(ModBlocks.GhostBlox.getUnlocalizedName() + ".name"));
+			s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
+			String[] splitS = s.split("\n");
+			for (String element : splitS)
+				event.toolTip.add(element);
+		}
 		Item dangerBlox = Item.getItemFromBlock(ModBlocks.DangerBlox);
-		if (event.itemStack.getItem() == dangerBlox)
-			if (!KeyboardHelper.isShiftDown())
-				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
-			else {
-				int x = 30;
-				String s = TextHelper.localize(Strings.DangerBloxDesc).replace("%s",
-						TextHelper.localize(ModBlocks.DangerBlox.getUnlocalizedName() + ".name"));
-				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
-				String[] splitS = s.split("\n");
-				for (String element : splitS)
-					event.toolTip.add(element);
-			}
+		if (event.itemStack.getItem() == dangerBlox) if (!KeyboardHelper.isShiftDown())
+			event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
+		else {
+			int x = 30;
+			String s = TextHelper.localize(Strings.DangerBloxDesc).replace("%s", TextHelper.localize(ModBlocks.DangerBlox.getUnlocalizedName() + ".name"));
+			s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
+			String[] splitS = s.split("\n");
+			for (String element : splitS)
+				event.toolTip.add(element);
+		}
 		Item bounceBlox = Item.getItemFromBlock(ModBlocks.BounceBlox);
-		if (event.itemStack.getItem() == bounceBlox)
-			if (!KeyboardHelper.isShiftDown())
-				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
-			else {
-				int x = 30;
-				String s = TextHelper.localize(Strings.BounceBloxDesc).replace("%s",
-						TextHelper.localize(ModBlocks.BounceBlox.getUnlocalizedName() + ".name"));
-				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
-				String[] splitS = s.split("\n");
-				for (String element : splitS)
-					event.toolTip.add(element);
-			}
+		if (event.itemStack.getItem() == bounceBlox) if (!KeyboardHelper.isShiftDown())
+			event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
+		else {
+			int x = 30;
+			String s = TextHelper.localize(Strings.BounceBloxDesc).replace("%s", TextHelper.localize(ModBlocks.BounceBlox.getUnlocalizedName() + ".name"));
+			s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
+			String[] splitS = s.split("\n");
+			for (String element : splitS)
+				event.toolTip.add(element);
+		}
 		Item kkchest = Item.getItemFromBlock(ModBlocks.KKChest);
 		if (event.itemStack.getItem() == kkchest) {
 			event.toolTip.add(TextHelper.localize(Strings.KKChestDesc_1));
@@ -145,29 +133,25 @@ public class EventHandler {
 		}
 
 		Item savepoint = Item.getItemFromBlock(ModBlocks.SavePoint);
-		if (event.itemStack.getItem() == savepoint)
-			if (!KeyboardHelper.isShiftDown())
-				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
-			else
-				event.toolTip.add(TextHelper.localize(Strings.SavePointDesc));
+		if (event.itemStack.getItem() == savepoint) if (!KeyboardHelper.isShiftDown())
+			event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
+		else
+			event.toolTip.add(TextHelper.localize(Strings.SavePointDesc));
 
 	}
 
 	@SubscribeEvent
-	public void OnEntityJoinWorld(EntityJoinWorldEvent event) {
+	public void OnEntityJoinWorld (EntityJoinWorldEvent event) {
 		if (!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer) {
 			ExtendedPlayer.get((EntityPlayer) event.entity);
 			ExtendedPlayer.loadProxyData(((EntityPlayer) event.entity));
-			PacketDispatcher.sendTo(new SyncExtendedPlayer((EntityPlayer) event.entity),
-					((EntityPlayerMP) event.entity));
+			PacketDispatcher.sendTo(new SyncExtendedPlayer((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
 			ExtendedPlayerRecipes.get((EntityPlayer) event.entity);
 			ExtendedPlayerRecipes.loadProxyData(((EntityPlayer) event.entity));
-			PacketDispatcher.sendTo(new SyncExtendedPlayerRecipes((EntityPlayer) event.entity),
-					((EntityPlayerMP) event.entity));
+			PacketDispatcher.sendTo(new SyncExtendedPlayerRecipes((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
 			ExtendedPlayerMaterials.get((EntityPlayer) event.entity);
 			ExtendedPlayerMaterials.loadProxyData(((EntityPlayer) event.entity));
-			PacketDispatcher.sendTo(new SyncExtendedPlayerMaterials((EntityPlayer) event.entity),
-					((EntityPlayerMP) event.entity));
+			PacketDispatcher.sendTo(new SyncExtendedPlayerMaterials((EntityPlayer) event.entity), ((EntityPlayerMP) event.entity));
 
 			if (!ExtendedPlayer.get((EntityPlayer) event.entity).hasFirstKeyblade()) {
 				((EntityPlayer) event.entity).inventory.addItemStackToInventory(new ItemStack(ModItems.WoodenKeyblade));
@@ -175,18 +159,12 @@ public class EventHandler {
 			}
 
 			try {
-				GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache()
-						.getGameProfileForUsername("Qwenit");
+				GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Qwenit");
 				UUID uuidWehavecookies56 = profileWehavecookies56.getId();
-				if (event.entity.getUniqueID() == uuidWehavecookies56)
-					ExtendedPlayer.get((EntityPlayer) event.entity)
-							.setMunny(ExtendedPlayer.get((EntityPlayer) event.entity).getMunny() + 10000);
-				GameProfile profileAbelatox = MinecraftServer.getServer().getPlayerProfileCache()
-						.getGameProfileForUsername("Abelatox");
+				if (event.entity.getUniqueID() == uuidWehavecookies56) ExtendedPlayer.get((EntityPlayer) event.entity).setMunny(ExtendedPlayer.get((EntityPlayer) event.entity).getMunny() + 10000);
+				GameProfile profileAbelatox = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Abelatox");
 				UUID uuidAbelatox = profileAbelatox.getId();
-				if (event.entity.getUniqueID() == uuidAbelatox)
-					ExtendedPlayer.get((EntityPlayer) event.entity)
-							.setMunny(ExtendedPlayer.get((EntityPlayer) event.entity).getMunny() + 10000);
+				if (event.entity.getUniqueID() == uuidAbelatox) ExtendedPlayer.get((EntityPlayer) event.entity).setMunny(ExtendedPlayer.get((EntityPlayer) event.entity).getMunny() + 10000);
 			} catch (Exception e) {
 
 			}
@@ -196,7 +174,7 @@ public class EventHandler {
 	}
 
 	@SubscribeEvent
-	public void onLivingDeathEvent(LivingDeathEvent event) {
+	public void onLivingDeathEvent (LivingDeathEvent event) {
 		if (!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entity;
 			if (ExtendedPlayer.get(player).isKeybladeSummoned()) {
@@ -212,62 +190,54 @@ public class EventHandler {
 			ExtendedPlayerMaterials.saveProxyData((EntityPlayer) event.entity);
 		}
 
-		if (!event.entity.worldObj.isRemote && event.entity instanceof EntityMob)
-			if (event.source.getSourceOfDamage() instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
+		if (!event.entity.worldObj.isRemote && event.entity instanceof EntityMob) if (event.source.getSourceOfDamage() instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
 
-				EntityMob mob = (EntityMob) event.entity;
-				ExtendedPlayer.get(player).addXP(
-						(int) (mob.getEntityAttribute(SharedMonsterAttributes.maxHealth).getAttributeValue() / 2));
-			}
+			EntityMob mob = (EntityMob) event.entity;
+			ExtendedPlayer.get(player).addXP((int) (mob.getEntityAttribute(SharedMonsterAttributes.maxHealth).getAttributeValue() / 2));
+		}
 	}
 
 	@SubscribeEvent
-	public void onLivingDrops(LivingDropsEvent event) {
-		if (event.entity instanceof EntityPlayer)
-			for (int i = 0; i < event.drops.size(); i++)
-				if (event.drops.get(i).getEntityItem().getItem() instanceof ItemKeyblade
-						&& (event.drops.get(i).getEntityItem().getItem() != ModItems.WoodenKeyblade
-								&& event.drops.get(i).getEntityItem().getItem() != ModItems.WoodenStick)) {
-					event.drops.remove(i);
-					ExtendedPlayer.get((EntityPlayer) event.entity).setKeybladeSummoned(false);
-					i = 0;
-				}
+	public void onLivingDrops (LivingDropsEvent event) {
+		if (event.entity instanceof EntityPlayer) for (int i = 0; i < event.drops.size(); i++)
+			if (event.drops.get(i).getEntityItem().getItem() instanceof ItemKeyblade && (event.drops.get(i).getEntityItem().getItem() != ModItems.WoodenKeyblade && event.drops.get(i).getEntityItem().getItem() != ModItems.WoodenStick)) {
+				event.drops.remove(i);
+				ExtendedPlayer.get((EntityPlayer) event.entity).setKeybladeSummoned(false);
+				i = 0;
+			}
 		if (event.source.getSourceOfDamage() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
-			if (player.getCurrentEquippedItem() != null)
-				if (player.getCurrentEquippedItem().getItem() instanceof ItemKeyblade)
-					if (event.entity instanceof EntityAnimal)
-						event.entityLiving.entityDropItem(new ItemStack(ModItems.Heart), 2);
-					else if (event.entity instanceof EntityMob) {
-						event.entityLiving.entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
-						if (event.entity instanceof EntityWitch) {
-							int rand;
-							rand = randomWithRange(1, 30);
-							if (rand == 1)
-								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicFire), 1);
-							else if (rand == 5)
-								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicBlizzard), 1);
-							else if (rand == 9)
-								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicThunder), 1);
-							else if (rand == 13)
-								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicCure), 1);
-							else if (rand == 17) {
-								// event.entityLiving.entityDropItem(new
-								// ItemStack(ModItems.LevelUpMagicGravity), 1);
-							}
+			if (player.getCurrentEquippedItem() != null) if (player.getCurrentEquippedItem().getItem() instanceof ItemKeyblade) if (event.entity instanceof EntityAnimal)
+				event.entityLiving.entityDropItem(new ItemStack(ModItems.Heart), 2);
+			else if (event.entity instanceof EntityMob) {
+				event.entityLiving.entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
+				if (event.entity instanceof EntityWitch) {
+					int rand;
+					rand = randomWithRange(1, 30);
+					if (rand == 1)
+						event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicFire), 1);
+					else if (rand == 5)
+						event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicBlizzard), 1);
+					else if (rand == 9)
+						event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicThunder), 1);
+					else if (rand == 13)
+						event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicCure), 1);
+					else if (rand == 17) {
+						// event.entityLiving.entityDropItem(new
+						// ItemStack(ModItems.LevelUpMagicGravity), 1);
+					}
 
-							else if (rand == 21)
-								event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicAero), 1);
-							else if (rand == 25) {
-								// event.entityLiving.entityDropItem(new
-								// ItemStack(ModItems.LevelUpMagicStop), 1);
-							}
-						}
-					} else if (event.entity instanceof EntityAgeable)
-						event.entityLiving.entityDropItem(new ItemStack(ModItems.PureHeart), 2);
-					else if (event.entity instanceof EntityDragon || event.entity instanceof EntityWither)
-						event.entityLiving.entityDropItem(new ItemStack(ModItems.KingdomHearts), 2);
+					else if (rand == 21)
+						event.entityLiving.entityDropItem(new ItemStack(ModItems.LevelUpMagicAero), 1);
+					else if (rand == 25) {
+						// event.entityLiving.entityDropItem(new
+						// ItemStack(ModItems.LevelUpMagicStop), 1);
+					}
+				}
+			} else if (event.entity instanceof EntityAgeable)
+				event.entityLiving.entityDropItem(new ItemStack(ModItems.PureHeart), 2);
+			else if (event.entity instanceof EntityDragon || event.entity instanceof EntityWither) event.entityLiving.entityDropItem(new ItemStack(ModItems.KingdomHearts), 2);
 			ItemStack munny = new ItemStack(ModItems.Munny, 1);
 			munny.setTagCompound(new NBTTagCompound());
 			ItemStack driveOrb = new ItemStack(ModItems.DriveOrb, 1);
@@ -312,25 +282,20 @@ public class EventHandler {
 	}
 
 	@SubscribeEvent
-	public void onEntityItemPickUp(EntityItemPickupEvent event) {
+	public void onEntityItemPickUp (EntityItemPickupEvent event) {
 		if (event.item.getEntityItem().getItem() instanceof ItemMunny) {
 			MunnyPickup packet = new MunnyPickup(event.item.getEntityItem());
-			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-				PacketDispatcher.sendToServer(packet);
+			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) PacketDispatcher.sendToServer(packet);
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
 				event.item.getEntityItem().stackSize--;
-				ExtendedPlayer.get(event.entityPlayer)
-						.addMunny(event.item.getEntityItem().getTagCompound().getInteger("amount"));
+				ExtendedPlayer.get(event.entityPlayer).addMunny(event.item.getEntityItem().getTagCompound().getInteger("amount"));
 			}
 		} else if (event.item.getEntityItem().getItem() instanceof ItemHpOrb) {
-			if (event.entityPlayer.getHeldItem() != null)
-				if (event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle)
-					return;
+			if (event.entityPlayer.getHeldItem() != null) if (event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle) return;
 
 			HpOrbPickup packet = new HpOrbPickup(event.item.getEntityItem());
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-				if (event.entityPlayer.getHealth() >= ExtendedPlayer.get(event.entityPlayer).getHP())
-					return;
+				if (event.entityPlayer.getHealth() >= ExtendedPlayer.get(event.entityPlayer).getHP()) return;
 				if (event.entityPlayer.getHealth() < ExtendedPlayer.get(event.entityPlayer).getHP() - 1)
 					event.entityPlayer.heal(2);
 				else
@@ -354,159 +319,109 @@ public class EventHandler {
 			// if(dp < 1000) //Not pickup orb when full
 			{
 				DriveOrbPickup packet = new DriveOrbPickup(event.item.getEntityItem());
-				if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-					PacketDispatcher.sendToServer(packet);
+				if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) PacketDispatcher.sendToServer(packet);
 				if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
 					event.item.getEntityItem().stackSize--;
-					ExtendedPlayer.get(event.entityPlayer)
-							.addDP(event.item.getEntityItem().getTagCompound().getInteger("amount"));
+					ExtendedPlayer.get(event.entityPlayer).addDP(event.item.getEntityItem().getTagCompound().getInteger("amount"));
 				}
 			}
 		} else if (event.item.getEntityItem().getItem() == ModItems.MagicOrb) {
 
 			ExtendedPlayer props = ExtendedPlayer.get(event.entityPlayer);
 			double mp = props.getMp();
-			if (event.entityPlayer.getHeldItem() != null)
-				if (event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle)
-					return;
+			if (event.entityPlayer.getHeldItem() != null) if (event.entityPlayer.getHeldItem().getItem() == ModItems.EmptyBottle) return;
 			MagicOrbPickup packet = new MagicOrbPickup(event.item.getEntityItem());
-			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-				PacketDispatcher.sendToServer(packet);
+			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) PacketDispatcher.sendToServer(packet);
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
 				event.item.getEntityItem().stackSize--;
-				ExtendedPlayer.get(event.entityPlayer)
-						.addMp(event.item.getEntityItem().getTagCompound().getInteger("amount"));
+				ExtendedPlayer.get(event.entityPlayer).addMp(event.item.getEntityItem().getTagCompound().getInteger("amount"));
 			}
-		} else if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.NormalBlox)
-				|| event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.HardBlox)
-				|| event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.MetalBlox))
+		} else if (event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.NormalBlox) || event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.HardBlox) || event.item.getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.MetalBlox))
 			AchievementHelper.addAchievement(event.entityPlayer, ModAchievements.getBlox);
 		else if (event.item.getEntityItem().getItem() instanceof ItemSynthesisMaterial) {
-			if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0) != null)
-				if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0)
-						.getItem() == ModItems.SynthesisBagL) {
-					InventorySynthesisBagL inv = new InventorySynthesisBagL(
-							ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0));
-					for (int j = 0; j < inv.getSizeInventory(); j++) {
-						ItemStack bagItem = inv.getStackInSlot(j);
-						ItemStack pickUp = event.item.getEntityItem();
-						if (bagItem != null) {
-							if (bagItem.getItem().equals(pickUp.getItem()))
-								if (bagItem.hasTagCompound() && pickUp.hasTagCompound())
-									if (bagItem.getTagCompound().hasKey("material")
-											&& pickUp.getTagCompound().hasKey("material"))
-										if (bagItem.getTagCompound().getString("material")
-												.equals(pickUp.getTagCompound().getString("material")))
-											if (bagItem.stackSize < 64)
-												if (bagItem.stackSize + 1 <= 64) {
-													event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-													ItemStack stack = new ItemStack(pickUp.getItem(),
-															1 + bagItem.stackSize);
-													stack.setTagCompound(new NBTTagCompound());
-													stack.getTagCompound().setString("material",
-															bagItem.getTagCompound().getString("material"));
-													stack.getTagCompound().setString("rank",
-															bagItem.getTagCompound().getString("rank"));
-													inv.setInventorySlotContents(j, stack);
-													return;
-												}
-						} else if (bagItem == null) {
+			if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0) != null) if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0).getItem() == ModItems.SynthesisBagL) {
+				InventorySynthesisBagL inv = new InventorySynthesisBagL(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0));
+				for (int j = 0; j < inv.getSizeInventory(); j++) {
+					ItemStack bagItem = inv.getStackInSlot(j);
+					ItemStack pickUp = event.item.getEntityItem();
+					if (bagItem != null) {
+						if (bagItem.getItem().equals(pickUp.getItem())) if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) if (bagItem.stackSize < 64) if (bagItem.stackSize + 1 <= 64) {
 							event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-							inv.setInventorySlotContents(j, pickUp);
+							ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
+							stack.setTagCompound(new NBTTagCompound());
+							stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
+							stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+							inv.setInventorySlotContents(j, stack);
 							return;
 						}
+					} else if (bagItem == null) {
+						event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+						inv.setInventorySlotContents(j, pickUp);
+						return;
 					}
 				}
-			if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0) != null)
-				if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0)
-						.getItem() == ModItems.SynthesisBagM) {
-					InventorySynthesisBagM inv = new InventorySynthesisBagM(
-							ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0));
-					for (int j = 0; j < inv.getSizeInventory(); j++) {
-						ItemStack bagItem = inv.getStackInSlot(j);
-						ItemStack pickUp = event.item.getEntityItem();
-						if (bagItem != null) {
-							if (bagItem.getItem().equals(pickUp.getItem()))
-								if (bagItem.hasTagCompound() && pickUp.hasTagCompound())
-									if (bagItem.getTagCompound().hasKey("material")
-											&& pickUp.getTagCompound().hasKey("material"))
-										if (bagItem.getTagCompound().getString("material")
-												.equals(pickUp.getTagCompound().getString("material")))
-											if (bagItem.stackSize < 64)
-												if (bagItem.stackSize + 1 <= 64) {
-													event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-													ItemStack stack = new ItemStack(pickUp.getItem(),
-															1 + bagItem.stackSize);
-													stack.setTagCompound(new NBTTagCompound());
-													stack.getTagCompound().setString("material",
-															bagItem.getTagCompound().getString("material"));
-													stack.getTagCompound().setString("rank",
-															bagItem.getTagCompound().getString("rank"));
-													inv.setInventorySlotContents(j, stack);
-													return;
-												}
-						} else if (bagItem == null) {
+			}
+			if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0) != null) if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0).getItem() == ModItems.SynthesisBagM) {
+				InventorySynthesisBagM inv = new InventorySynthesisBagM(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0));
+				for (int j = 0; j < inv.getSizeInventory(); j++) {
+					ItemStack bagItem = inv.getStackInSlot(j);
+					ItemStack pickUp = event.item.getEntityItem();
+					if (bagItem != null) {
+						if (bagItem.getItem().equals(pickUp.getItem())) if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) if (bagItem.stackSize < 64) if (bagItem.stackSize + 1 <= 64) {
 							event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-							inv.setInventorySlotContents(j, pickUp);
+							ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
+							stack.setTagCompound(new NBTTagCompound());
+							stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
+							stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+							inv.setInventorySlotContents(j, stack);
 							return;
 						}
+					} else if (bagItem == null) {
+						event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+						inv.setInventorySlotContents(j, pickUp);
+						return;
 					}
 				}
-			if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0) != null)
-				if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0)
-						.getItem() == ModItems.SynthesisBagS) {
-					InventorySynthesisBagS inv = new InventorySynthesisBagS(
-							ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0));
-					for (int j = 0; j < inv.getSizeInventory(); j++) {
-						ItemStack bagItem = inv.getStackInSlot(j);
-						ItemStack pickUp = event.item.getEntityItem();
-						if (bagItem != null) {
-							if (bagItem.getItem().equals(pickUp.getItem()))
-								if (bagItem.hasTagCompound() && pickUp.hasTagCompound())
-									if (bagItem.getTagCompound().hasKey("material")
-											&& pickUp.getTagCompound().hasKey("material"))
-										if (bagItem.getTagCompound().getString("material")
-												.equals(pickUp.getTagCompound().getString("material")))
-											if (bagItem.stackSize < 64)
-												if (bagItem.stackSize + 1 <= 64) {
-													event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-													ItemStack stack = new ItemStack(pickUp.getItem(),
-															1 + bagItem.stackSize);
-													stack.setTagCompound(new NBTTagCompound());
-													stack.getTagCompound().setString("material",
-															bagItem.getTagCompound().getString("material"));
-													stack.getTagCompound().setString("rank",
-															bagItem.getTagCompound().getString("rank"));
-													inv.setInventorySlotContents(j, stack);
-													return;
-												}
-						} else if (bagItem == null) {
+			}
+			if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0) != null) if (ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0).getItem() == ModItems.SynthesisBagS) {
+				InventorySynthesisBagS inv = new InventorySynthesisBagS(ExtendedPlayer.get(event.entityPlayer).inventorySynthBag.getStackInSlot(0));
+				for (int j = 0; j < inv.getSizeInventory(); j++) {
+					ItemStack bagItem = inv.getStackInSlot(j);
+					ItemStack pickUp = event.item.getEntityItem();
+					if (bagItem != null) {
+						if (bagItem.getItem().equals(pickUp.getItem())) if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) if (bagItem.stackSize < 64) if (bagItem.stackSize + 1 <= 64) {
 							event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-							inv.setInventorySlotContents(j, pickUp);
+							ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
+							stack.setTagCompound(new NBTTagCompound());
+							stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
+							stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+							inv.setInventorySlotContents(j, stack);
 							return;
 						}
+					} else if (bagItem == null) {
+						event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
+						inv.setInventorySlotContents(j, pickUp);
+						return;
 					}
 				}
+			}
 		}
 	}
 
 	@SubscribeEvent
-	public void onItemTossEvent(ItemTossEvent event) {
-		if (event.entityItem.getEntityItem().getItem() instanceof ItemKeyblade
-				&& (event.entityItem.getEntityItem().getItem() != ModItems.WoodenKeyblade
-						&& event.entityItem.getEntityItem().getItem() != ModItems.WoodenStick)) {
+	public void onItemTossEvent (ItemTossEvent event) {
+		if (event.entityItem.getEntityItem().getItem() instanceof ItemKeyblade && (event.entityItem.getEntityItem().getItem() != ModItems.WoodenKeyblade && event.entityItem.getEntityItem().getItem() != ModItems.WoodenStick)) {
 			event.entityItem.isDead = true;
 			ItemStack itemStack = event.entityItem.getEntityItem();
 			ExtendedPlayer.get(event.player).setKeybladeSummoned(false);
 		} else if (event.entityItem.getEntityItem().getItem() instanceof ItemMunny) {
 			event.setCanceled(true);
-			ExtendedPlayer.get(event.player)
-					.addMunny(event.entityItem.getEntityItem().getTagCompound().getInteger("amount"));
+			ExtendedPlayer.get(event.player).addMunny(event.entityItem.getEntityItem().getTagCompound().getInteger("amount"));
 		}
 	}
 
 	@SubscribeEvent
-	public void onItemCrafted(ItemCraftedEvent event) {
+	public void onItemCrafted (ItemCraftedEvent event) {
 		ItemStack WHC56skull = new ItemStack(Items.skull, 1, 3);
 		WHC56skull.setTagCompound(new NBTTagCompound());
 		WHC56skull.getTagCompound().setTag("SkullOwner", new NBTTagString("Wehavecookies56"));
@@ -515,14 +430,11 @@ public class EventHandler {
 		AAskull.setTagCompound(new NBTTagCompound());
 		AAskull.getTagCompound().setTag("SkullOwner", new NBTTagString("Abelatox"));
 
-		if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.SynthesisTable))
-			AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisTable);
+		if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.SynthesisTable)) AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisTable);
 
-		if (event.crafting.getItem() == WHC56skull.getItem())
-			AchievementHelper.addAchievement(event.player, ModAchievements.getWehavecookies56Skull);
+		if (event.crafting.getItem() == WHC56skull.getItem()) AchievementHelper.addAchievement(event.player, ModAchievements.getWehavecookies56Skull);
 
-		if (event.crafting.getItem() == AAskull.getItem())
-			AchievementHelper.addAchievement(event.player, ModAchievements.getAbelatoxSkull);
+		if (event.crafting.getItem() == AAskull.getItem()) AchievementHelper.addAchievement(event.player, ModAchievements.getAbelatoxSkull);
 	}
 
 	public static boolean isBoss = false;
@@ -530,28 +442,22 @@ public class EventHandler {
 	public static boolean isHostiles = false;
 
 	@SubscribeEvent
-	public void onPlayerTick(PlayerTickEvent event) {
-		if (!ExtendedPlayer.get(event.player).getInDrive())
-			if (ExtendedPlayer.get(event.player).getMp() <= 0 || ExtendedPlayer.get(event.player).getRecharge()) {
-				ExtendedPlayer.get(event.player).setRecharge(true);
-				if (ExtendedPlayer.get(event.player).mp != ExtendedPlayer.get(event.player).getMaxMp()) {
-					ExtendedPlayer.get(event.player).mp += 0.1;
-					if (ExtendedPlayer.get(event.player).mp > ExtendedPlayer.get(event.player).getMaxMp())
-						ExtendedPlayer.get(event.player).mp = ExtendedPlayer.get(event.player).getMaxMp();
+	public void onPlayerTick (PlayerTickEvent event) {
+		if (!ExtendedPlayer.get(event.player).getInDrive()) if (ExtendedPlayer.get(event.player).getMp() <= 0 || ExtendedPlayer.get(event.player).getRecharge()) {
+			ExtendedPlayer.get(event.player).setRecharge(true);
+			if (ExtendedPlayer.get(event.player).mp != ExtendedPlayer.get(event.player).getMaxMp()) {
+				ExtendedPlayer.get(event.player).mp += 0.1;
+				if (ExtendedPlayer.get(event.player).mp > ExtendedPlayer.get(event.player).getMaxMp()) ExtendedPlayer.get(event.player).mp = ExtendedPlayer.get(event.player).getMaxMp();
 
-				} else {
-					ExtendedPlayer.get(event.player).setMp(ExtendedPlayer.get(event.player).getMaxMp());
-					ExtendedPlayer.get(event.player).setRecharge(false);
-				}
+			} else {
+				ExtendedPlayer.get(event.player).setMp(ExtendedPlayer.get(event.player).getMaxMp());
+				ExtendedPlayer.get(event.player).setRecharge(false);
 			}
-		if (!ExtendedPlayer.get(event.player).getDriveInUse().equals("none")
-				&& DriveFormRegistry.isDriveFormRegistered(ExtendedPlayer.get(event.player).getDriveInUse()))
-			DriveFormRegistry.get(ExtendedPlayer.get(event.player).getDriveInUse()).update(event.player);
+		}
+		if (!ExtendedPlayer.get(event.player).getDriveInUse().equals("none") && DriveFormRegistry.isDriveFormRegistered(ExtendedPlayer.get(event.player).getDriveInUse())) DriveFormRegistry.get(ExtendedPlayer.get(event.player).getDriveInUse()).update(event.player);
 		if (event.player != null) {
-			List<Entity> entities = event.player.worldObj.getEntitiesWithinAABBExcludingEntity(event.player,
-					event.player.getEntityBoundingBox().expand(16.0D, 10.0D, 16.0D));
-			List<Entity> bossEntities = event.player.worldObj.getEntitiesWithinAABBExcludingEntity(event.player,
-					event.player.getEntityBoundingBox().expand(150.0D, 100.0D, 150.0D));
+			List<Entity> entities = event.player.worldObj.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(16.0D, 10.0D, 16.0D));
+			List<Entity> bossEntities = event.player.worldObj.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(150.0D, 100.0D, 150.0D));
 			if (!bossEntities.isEmpty()) {
 				for (int i = 0; i < bossEntities.size(); i++) {
 					if (bossEntities.get(i) instanceof EntityDragon || bossEntities.get(i) instanceof EntityWither) {
@@ -581,7 +487,7 @@ public class EventHandler {
 	}
 
 	@SubscribeEvent
-	public void onLivingUpdate(LivingUpdateEvent event) {
+	public void onLivingUpdate (LivingUpdateEvent event) {
 
 	}
 
@@ -593,13 +499,13 @@ public class EventHandler {
 	 * @param max
 	 * @return
 	 */
-	public static int randomWithRange(int min, int max) {
+	public static int randomWithRange (int min, int max) {
 		int range = Math.abs(max - min) + 1;
 		return (int) (Math.random() * range) + (min <= max ? min : max);
 	}
 
 	@SubscribeEvent
-	public void onHurt(LivingHurtEvent event) {
+	public void onHurt (LivingHurtEvent event) {
 		if (event.entityLiving instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			if (event.ammount - ExtendedPlayer.get(player).getDefense() <= 0)
@@ -607,37 +513,30 @@ public class EventHandler {
 			else
 				event.ammount = event.ammount - ExtendedPlayer.get(player).getDefense();
 
-			if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.FrozenPride)
-				if (player.isBlocking())
-					event.ammount = 0.5f;
-			if (event.source.getDamageType() == "lightningBolt")
-				if (EntityThunder.summonLightning)
-					event.setCanceled(true);
+			if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.FrozenPride) if (player.isBlocking()) event.ammount = 0.5f;
+			if (event.source.getDamageType() == "lightningBolt") if (EntityThunder.summonLightning) event.setCanceled(true);
 		}
 		if (event.source.getSourceOfDamage() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
 			event.ammount = (float) (event.ammount + (ExtendedPlayer.get(player).getStrength() * 0.25));
-			if (player.getHeldItem() != null)
-				if (player.getHeldItem().getItem() instanceof ItemKeyblade) {
-					if (ExtendedPlayer.get(player).getDriveInUse().equals("Valor"))
-						event.ammount = (float) (event.ammount * 1.5);
-					ExtendedPlayer.get(player).addDP(1);
-				} else
-					return;
+			if (player.getHeldItem() != null) if (player.getHeldItem().getItem() instanceof ItemKeyblade) {
+				if (ExtendedPlayer.get(player).getDriveInUse().equals("Valor")) event.ammount = (float) (event.ammount * 1.5);
+				ExtendedPlayer.get(player).addDP(1);
+			} else
+				return;
 		}
 	}
 
 	@SubscribeEvent
-	public void onFall(LivingFallEvent event) {
+	public void onFall (LivingFallEvent event) {
 		if (event.entityLiving instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
-			if (ExtendedPlayer.get(player).getInDrive())
-				event.distance = 0;
+			if (ExtendedPlayer.get(player).getInDrive()) event.distance = 0;
 		}
 	}
 
 	@SubscribeEvent
-	public void onBlockDestroyed(HarvestDropsEvent event) {
+	public void onBlockDestroyed (HarvestDropsEvent event) {
 		int fortune;
 		if (event.state.getBlock() == ModBlocks.BlazingOre) {
 			int drop = randomWithRange(1, 4);
@@ -646,8 +545,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(BlazingShard, Strings.SM_BlazingShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(BlazingShard);
+					if (fortune < 5) event.drops.add(BlazingShard);
 				}
 				event.drops.add(BlazingShard);
 
@@ -656,8 +554,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(BlazingStone, Strings.SM_BlazingStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(BlazingStone);
+					if (fortune < 5) event.drops.add(BlazingStone);
 				}
 				event.drops.add(BlazingStone);
 
@@ -666,8 +563,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(BlazingGem, Strings.SM_BlazingGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(BlazingGem);
+					if (fortune < 5) event.drops.add(BlazingGem);
 				}
 				event.drops.add(BlazingGem);
 
@@ -676,8 +572,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(BlazingCrystal, Strings.SM_BlazingCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(BlazingCrystal);
+					if (fortune < 5) event.drops.add(BlazingCrystal);
 				}
 				event.drops.add(BlazingCrystal);
 			}
@@ -688,8 +583,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(BrightShard, Strings.SM_BrightShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(BrightShard);
+					if (fortune < 5) event.drops.add(BrightShard);
 				}
 				event.drops.add(BrightShard);
 			} else if (drop == 2) {
@@ -697,8 +591,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(BrightStone, Strings.SM_BrightStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(BrightStone);
+					if (fortune < 5) event.drops.add(BrightStone);
 				}
 				event.drops.add(BrightStone);
 			} else if (drop == 3) {
@@ -706,8 +599,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(BrightGem, Strings.SM_BrightGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(BrightGem);
+					if (fortune < 5) event.drops.add(BrightGem);
 				}
 				event.drops.add(BrightGem);
 			} else if (drop == 4) {
@@ -715,8 +607,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(BrightCrystal, Strings.SM_BrightCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(BrightCrystal);
+					if (fortune < 5) event.drops.add(BrightCrystal);
 				}
 				event.drops.add(BrightCrystal);
 			}
@@ -727,8 +618,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DarkShard, Strings.SM_DarkShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DarkShard);
+					if (fortune < 5) event.drops.add(DarkShard);
 				}
 				event.drops.add(DarkShard);
 			} else if (drop == 2) {
@@ -736,8 +626,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DarkStone, Strings.SM_DarkStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DarkStone);
+					if (fortune < 5) event.drops.add(DarkStone);
 				}
 				event.drops.add(DarkStone);
 			} else if (drop == 3) {
@@ -745,8 +634,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DarkGem, Strings.SM_DarkGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DarkGem);
+					if (fortune < 5) event.drops.add(DarkGem);
 				}
 				event.drops.add(DarkGem);
 			} else if (drop == 4) {
@@ -754,8 +642,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DarkCrystal, Strings.SM_DarkCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DarkCrystal);
+					if (fortune < 5) event.drops.add(DarkCrystal);
 				}
 				event.drops.add(DarkCrystal);
 			}
@@ -766,8 +653,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DarkShard, Strings.SM_DarkShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DarkShard);
+					if (fortune < 5) event.drops.add(DarkShard);
 				}
 				event.drops.add(DarkShard);
 			} else if (drop == 2) {
@@ -775,8 +661,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DarkStone, Strings.SM_DarkStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DarkStone);
+					if (fortune < 5) event.drops.add(DarkStone);
 				}
 				event.drops.add(DarkStone);
 			} else if (drop == 3) {
@@ -784,8 +669,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DarkGem, Strings.SM_DarkGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DarkGem);
+					if (fortune < 5) event.drops.add(DarkGem);
 				}
 				event.drops.add(DarkGem);
 			} else if (drop == 4) {
@@ -793,8 +677,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DarkCrystal, Strings.SM_DarkCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DarkCrystal);
+					if (fortune < 5) event.drops.add(DarkCrystal);
 				}
 				event.drops.add(DarkCrystal);
 			}
@@ -805,8 +688,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DenseShard, Strings.SM_DenseShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DenseShard);
+					if (fortune < 5) event.drops.add(DenseShard);
 				}
 				event.drops.add(DenseShard);
 			} else if (drop == 2) {
@@ -814,8 +696,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DenseStone, Strings.SM_DenseStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DenseStone);
+					if (fortune < 5) event.drops.add(DenseStone);
 				}
 				event.drops.add(DenseStone);
 			} else if (drop == 3) {
@@ -823,8 +704,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DenseGem, Strings.SM_DenseGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DenseGem);
+					if (fortune < 5) event.drops.add(DenseGem);
 				}
 				event.drops.add(DenseGem);
 			} else if (drop == 4) {
@@ -832,8 +712,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(DenseCrystal, Strings.SM_DenseCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(DenseCrystal);
+					if (fortune < 5) event.drops.add(DenseCrystal);
 				}
 				event.drops.add(DenseCrystal);
 			}
@@ -844,8 +723,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(EnergyShard, Strings.SM_EnergyShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(EnergyShard);
+					if (fortune < 5) event.drops.add(EnergyShard);
 				}
 				event.drops.add(EnergyShard);
 			} else if (drop == 2) {
@@ -853,8 +731,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(EnergyStone, Strings.SM_EnergyStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(EnergyStone);
+					if (fortune < 5) event.drops.add(EnergyStone);
 				}
 				event.drops.add(EnergyStone);
 			} else if (drop == 3) {
@@ -862,8 +739,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(EnergyGem, Strings.SM_EnergyGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(EnergyGem);
+					if (fortune < 5) event.drops.add(EnergyGem);
 				}
 				event.drops.add(EnergyGem);
 			} else if (drop == 4) {
@@ -871,8 +747,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(EnergyCrystal, Strings.SM_EnergyCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(EnergyCrystal);
+					if (fortune < 5) event.drops.add(EnergyCrystal);
 				}
 				event.drops.add(EnergyCrystal);
 			}
@@ -883,8 +758,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(FrostShard, Strings.SM_FrostShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(FrostShard);
+					if (fortune < 5) event.drops.add(FrostShard);
 				}
 				event.drops.add(FrostShard);
 			} else if (drop == 2) {
@@ -892,8 +766,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(FrostStone, Strings.SM_FrostStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(FrostStone);
+					if (fortune < 5) event.drops.add(FrostStone);
 				}
 				event.drops.add(FrostStone);
 			} else if (drop == 3) {
@@ -901,8 +774,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(FrostGem, Strings.SM_FrostGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(FrostGem);
+					if (fortune < 5) event.drops.add(FrostGem);
 				}
 				event.drops.add(FrostGem);
 			} else if (drop == 4) {
@@ -910,8 +782,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(FrostCrystal, Strings.SM_FrostCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(FrostCrystal);
+					if (fortune < 5) event.drops.add(FrostCrystal);
 				}
 				event.drops.add(FrostCrystal);
 			}
@@ -922,8 +793,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(LightningShard, Strings.SM_LightningShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(LightningShard);
+					if (fortune < 5) event.drops.add(LightningShard);
 				}
 				event.drops.add(LightningShard);
 			} else if (drop == 2) {
@@ -931,8 +801,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(LightningStone, Strings.SM_LightningStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(LightningStone);
+					if (fortune < 5) event.drops.add(LightningStone);
 				}
 				event.drops.add(LightningStone);
 			} else if (drop == 3) {
@@ -940,8 +809,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(LightningGem, Strings.SM_LightningGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(LightningGem);
+					if (fortune < 5) event.drops.add(LightningGem);
 				}
 				event.drops.add(LightningGem);
 			} else if (drop == 4) {
@@ -949,8 +817,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(LightningCrystal, Strings.SM_LightningCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(LightningCrystal);
+					if (fortune < 5) event.drops.add(LightningCrystal);
 				}
 				event.drops.add(LightningCrystal);
 			}
@@ -961,8 +828,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(LucidShard, Strings.SM_LucidShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(LucidShard);
+					if (fortune < 5) event.drops.add(LucidShard);
 				}
 				event.drops.add(LucidShard);
 			} else if (drop == 2) {
@@ -970,8 +836,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(LucidStone, Strings.SM_LucidStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(LucidStone);
+					if (fortune < 5) event.drops.add(LucidStone);
 				}
 				event.drops.add(LucidStone);
 			} else if (drop == 3) {
@@ -979,8 +844,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(LucidGem, Strings.SM_LucidGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(LucidGem);
+					if (fortune < 5) event.drops.add(LucidGem);
 				}
 				event.drops.add(LucidGem);
 			} else if (drop == 4) {
@@ -988,8 +852,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(LucidCrystal, Strings.SM_LucidCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(LucidCrystal);
+					if (fortune < 5) event.drops.add(LucidCrystal);
 				}
 				event.drops.add(LucidCrystal);
 			}
@@ -1000,8 +863,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(PowerShard, Strings.SM_PowerShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(PowerShard);
+					if (fortune < 5) event.drops.add(PowerShard);
 				}
 				event.drops.add(PowerShard);
 			} else if (drop == 2) {
@@ -1009,8 +871,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(PowerStone, Strings.SM_PowerStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(PowerStone);
+					if (fortune < 5) event.drops.add(PowerStone);
 				}
 				event.drops.add(PowerStone);
 			} else if (drop == 3) {
@@ -1018,8 +879,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(PowerGem, Strings.SM_PowerGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(PowerGem);
+					if (fortune < 5) event.drops.add(PowerGem);
 				}
 				event.drops.add(PowerGem);
 			} else if (drop == 4) {
@@ -1027,8 +887,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(PowerCrystal, Strings.SM_PowerCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(PowerCrystal);
+					if (fortune < 5) event.drops.add(PowerCrystal);
 				}
 				event.drops.add(PowerCrystal);
 			}
@@ -1039,8 +898,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(PowerShard, Strings.SM_PowerShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(PowerShard);
+					if (fortune < 5) event.drops.add(PowerShard);
 				}
 				event.drops.add(PowerShard);
 			} else if (drop == 2) {
@@ -1048,8 +906,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(PowerStone, Strings.SM_PowerStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(PowerStone);
+					if (fortune < 5) event.drops.add(PowerStone);
 				}
 				event.drops.add(PowerStone);
 			} else if (drop == 3) {
@@ -1057,8 +914,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(PowerGem, Strings.SM_PowerGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(PowerGem);
+					if (fortune < 5) event.drops.add(PowerGem);
 				}
 				event.drops.add(PowerGem);
 			} else if (drop == 4) {
@@ -1066,8 +922,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(PowerCrystal, Strings.SM_PowerCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(PowerCrystal);
+					if (fortune < 5) event.drops.add(PowerCrystal);
 				}
 				event.drops.add(PowerCrystal);
 			}
@@ -1078,8 +933,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(RemembranceShard, Strings.SM_RemembranceShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(RemembranceShard);
+					if (fortune < 5) event.drops.add(RemembranceShard);
 				}
 				event.drops.add(RemembranceShard);
 			} else if (drop == 2) {
@@ -1087,8 +941,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(RemembranceStone, Strings.SM_RemembranceStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(RemembranceStone);
+					if (fortune < 5) event.drops.add(RemembranceStone);
 				}
 				event.drops.add(RemembranceStone);
 			} else if (drop == 3) {
@@ -1096,8 +949,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(RemembranceGem, Strings.SM_RemembranceGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(RemembranceGem);
+					if (fortune < 5) event.drops.add(RemembranceGem);
 				}
 				event.drops.add(RemembranceGem);
 			} else if (drop == 4) {
@@ -1105,8 +957,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(RemembranceCrystal, Strings.SM_RemembranceCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(RemembranceCrystal);
+					if (fortune < 5) event.drops.add(RemembranceCrystal);
 				}
 				event.drops.add(RemembranceCrystal);
 			}
@@ -1117,8 +968,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(SerenityShard, Strings.SM_SerenityShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(SerenityShard);
+					if (fortune < 5) event.drops.add(SerenityShard);
 				}
 				event.drops.add(SerenityShard);
 			} else if (drop == 2) {
@@ -1126,8 +976,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(SerenityStone, Strings.SM_SerenityStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(SerenityStone);
+					if (fortune < 5) event.drops.add(SerenityStone);
 				}
 				event.drops.add(SerenityStone);
 			} else if (drop == 3) {
@@ -1135,8 +984,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(SerenityGem, Strings.SM_SerenityGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(SerenityGem);
+					if (fortune < 5) event.drops.add(SerenityGem);
 				}
 				event.drops.add(SerenityGem);
 			} else if (drop == 4) {
@@ -1144,8 +992,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(SerenityCrystal, Strings.SM_SerenityCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(SerenityCrystal);
+					if (fortune < 5) event.drops.add(SerenityCrystal);
 				}
 				event.drops.add(SerenityCrystal);
 			}
@@ -1156,8 +1003,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(TranquilShard, Strings.SM_TranquilShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(TranquilShard);
+					if (fortune < 5) event.drops.add(TranquilShard);
 				}
 				event.drops.add(TranquilShard);
 			} else if (drop == 2) {
@@ -1165,8 +1011,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(TranquilStone, Strings.SM_TranquilStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(TranquilStone);
+					if (fortune < 5) event.drops.add(TranquilStone);
 				}
 				event.drops.add(TranquilStone);
 			} else if (drop == 3) {
@@ -1174,8 +1019,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(TranquilGem, Strings.SM_TranquilGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(TranquilGem);
+					if (fortune < 5) event.drops.add(TranquilGem);
 				}
 				event.drops.add(TranquilGem);
 			} else if (drop == 4) {
@@ -1183,8 +1027,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(TranquilCrystal, Strings.SM_TranquilCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(TranquilCrystal);
+					if (fortune < 5) event.drops.add(TranquilCrystal);
 				}
 				event.drops.add(TranquilCrystal);
 			}
@@ -1195,8 +1038,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(TwilightShard, Strings.SM_TwilightShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(TwilightShard);
+					if (fortune < 5) event.drops.add(TwilightShard);
 				}
 				event.drops.add(TwilightShard);
 			} else if (drop == 2) {
@@ -1204,8 +1046,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(TwilightStone, Strings.SM_TwilightStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(TwilightStone);
+					if (fortune < 5) event.drops.add(TwilightStone);
 				}
 				event.drops.add(TwilightStone);
 			} else if (drop == 3) {
@@ -1213,8 +1054,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(TwilightGem, Strings.SM_TwilightGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(TwilightGem);
+					if (fortune < 5) event.drops.add(TwilightGem);
 				}
 				event.drops.add(TwilightGem);
 			} else if (drop == 4) {
@@ -1222,8 +1062,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(TwilightCrystal, Strings.SM_TwilightCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(TwilightCrystal);
+					if (fortune < 5) event.drops.add(TwilightCrystal);
 				}
 				event.drops.add(TwilightCrystal);
 			}
@@ -1234,8 +1073,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(StormyShard, Strings.SM_StormyShard, "C");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(StormyShard);
+					if (fortune < 5) event.drops.add(StormyShard);
 				}
 				event.drops.add(StormyShard);
 			} else if (drop == 2) {
@@ -1243,8 +1081,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(StormyStone, Strings.SM_StormyStone, "B");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(StormyStone);
+					if (fortune < 5) event.drops.add(StormyStone);
 				}
 				event.drops.add(StormyStone);
 			} else if (drop == 3) {
@@ -1252,8 +1089,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(StormyGem, Strings.SM_StormyGem, "A");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(StormyGem);
+					if (fortune < 5) event.drops.add(StormyGem);
 				}
 				event.drops.add(StormyGem);
 			} else if (drop == 4) {
@@ -1261,8 +1097,7 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(StormyCrystal, Strings.SM_StormyCrystal, "S");
 				for (int i = 0; i < event.fortuneLevel; i++) {
 					fortune = randomWithRange(1, 15);
-					if (fortune < 5)
-						event.drops.add(StormyCrystal);
+					if (fortune < 5) event.drops.add(StormyCrystal);
 				}
 				event.drops.add(StormyCrystal);
 			}

@@ -14,22 +14,22 @@ public class RecipeWinnersProof extends Recipe {
 
 	public String name;
 
-	public RecipeWinnersProof(String name) {
+	public RecipeWinnersProof (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public Item getResult() {
+	public Item getResult () {
 		return ModItems.Chain_WinnersProof;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements() {
+	public Map<Material, Integer> getRequirements () {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 5);
 		reqs.put(MaterialRegistry.get(Strings.SM_DarkStone), 3);

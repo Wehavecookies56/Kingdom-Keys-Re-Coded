@@ -21,37 +21,37 @@ public class CommandResetLevel implements ICommand {
 
 	private List aliases;
 
-	public CommandResetLevel() {
+	public CommandResetLevel () {
 		this.aliases = new ArrayList();
 		this.aliases.add("resetlevel");
 		this.aliases.add("kkresetlevel");
 	}
 
 	@Override
-	public int compareTo(ICommand arg0) {
+	public int compareTo (ICommand arg0) {
 		return 0;
 	}
 
 	@Override
-	public String getCommandName() {
+	public String getCommandName () {
 		return "resetlevel";
 	}
 
-	public int getRequiredPermissionLevel() {
+	public int getRequiredPermissionLevel () {
 		return 2;
 	}
 
 	@Override
-	public String getCommandUsage(ICommandSender sender) {
+	public String getCommandUsage (ICommandSender sender) {
 		return "/resetlevel [playername]";
 	}
 
 	@Override
-	public List getCommandAliases() {
+	public List getCommandAliases () {
 		return this.aliases;
 	}
 
-	public static boolean isInteger(String s) {
+	public static boolean isInteger (String s) {
 		try {
 			Integer.parseInt(s);
 		} catch (NumberFormatException e) {
@@ -63,7 +63,7 @@ public class CommandResetLevel implements ICommand {
 	}
 
 	@Override
-	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
+	public void processCommand (ICommandSender sender, String[] args) throws CommandException {
 		if (sender.getCommandSenderEntity() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) sender.getCommandSenderEntity();
 			if (args.length == 0) {
@@ -74,12 +74,10 @@ public class CommandResetLevel implements ICommand {
 				ExtendedPlayer.get(player).setMagic(1);
 				ExtendedPlayer.get(player).setHP(20);
 				player.heal(ExtendedPlayer.get(player).getHP());
-				TextHelper.sendFormattedChatMessage("You level has been reset", EnumChatFormatting.YELLOW,
-						(EntityPlayer) sender.getCommandSenderEntity());
+				TextHelper.sendFormattedChatMessage("You level has been reset", EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
 
 			} else if (args.length == 1) {
-				EntityPlayerMP entityplayermp = args.length == 1 ? getPlayer(sender, args[0])
-						: getCommandSenderAsPlayer(sender);
+				EntityPlayerMP entityplayermp = args.length == 1 ? getPlayer(sender, args[0]) : getCommandSenderAsPlayer(sender);
 				ExtendedPlayer.get(entityplayermp).level = 1;
 				ExtendedPlayer.get(entityplayermp).experience = 0;
 				ExtendedPlayer.get(entityplayermp).setStrength(1);
@@ -87,51 +85,45 @@ public class CommandResetLevel implements ICommand {
 				ExtendedPlayer.get(entityplayermp).setMagic(1);
 				ExtendedPlayer.get(entityplayermp).setHP(20);
 				player.heal(ExtendedPlayer.get(entityplayermp).getHP());
-				TextHelper.sendFormattedChatMessage(args[0] + "'s level has been reset", EnumChatFormatting.YELLOW,
-						(EntityPlayer) sender.getCommandSenderEntity());
+				TextHelper.sendFormattedChatMessage(args[0] + "'s level has been reset", EnumChatFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
 
 			} else
-				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getCommandUsage(sender),
-						EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getCommandUsage(sender), EnumChatFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 		}
 	}
 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender sender) {
+	public boolean canCommandSenderUseCommand (ICommandSender sender) {
 		return sender.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName());
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
+	public List addTabCompletionOptions (ICommandSender sender, String[] args, BlockPos pos) {
 		return null;
 	}
 
 	@Override
-	public boolean isUsernameIndex(String[] args, int index) {
+	public boolean isUsernameIndex (String[] args, int index) {
 		return false;
 	}
 
-	public static EntityPlayerMP getCommandSenderAsPlayer(ICommandSender sender) throws PlayerNotFoundException {
+	public static EntityPlayerMP getCommandSenderAsPlayer (ICommandSender sender) throws PlayerNotFoundException {
 		if (sender instanceof EntityPlayerMP)
 			return (EntityPlayerMP) sender;
 		else
-			throw new PlayerNotFoundException("You must specify which player you wish to perform this action on.",
-					new Object[0]);
+			throw new PlayerNotFoundException("You must specify which player you wish to perform this action on.", new Object[0]);
 	}
 
-	public static EntityPlayerMP getPlayer(ICommandSender sender, String username) throws PlayerNotFoundException {
+	public static EntityPlayerMP getPlayer (ICommandSender sender, String username) throws PlayerNotFoundException {
 		EntityPlayerMP entityplayermp = PlayerSelector.matchOnePlayer(sender, username);
 
-		if (entityplayermp == null)
-			try {
-				entityplayermp = MinecraftServer.getServer().getConfigurationManager()
-						.getPlayerByUUID(UUID.fromString(username));
-			} catch (IllegalArgumentException illegalargumentexception) {
-				;
-			}
+		if (entityplayermp == null) try {
+			entityplayermp = MinecraftServer.getServer().getConfigurationManager().getPlayerByUUID(UUID.fromString(username));
+		} catch (IllegalArgumentException illegalargumentexception) {
+			;
+		}
 
-		if (entityplayermp == null)
-			entityplayermp = MinecraftServer.getServer().getConfigurationManager().getPlayerByUsername(username);
+		if (entityplayermp == null) entityplayermp = MinecraftServer.getServer().getConfigurationManager().getPlayerByUsername(username);
 
 		if (entityplayermp == null)
 			throw new PlayerNotFoundException();

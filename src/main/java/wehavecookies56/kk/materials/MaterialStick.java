@@ -9,23 +9,23 @@ public class MaterialStick extends Material {
 
 	String name;
 
-	public MaterialStick(String name) {
+	public MaterialStick (String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem() {
+	public ItemStack getItem () {
 		ItemStack stack = new ItemStack(Items.stick);
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture() {
+	public ResourceLocation getTexture () {
 		return null;
 	}
 

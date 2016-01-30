@@ -19,62 +19,59 @@ public class InventorySynthesisBagL extends AbstractInventory {
 
 	private final ItemStack invStack;
 
-	public InventorySynthesisBagL(ItemStack stack) {
+	public InventorySynthesisBagL (ItemStack stack) {
 		inventory = new ItemStack[INV_SIZE];
 		this.invStack = stack;
-		if (!invStack.hasTagCompound())
-			invStack.setTagCompound(new NBTTagCompound());
+		if (!invStack.hasTagCompound()) invStack.setTagCompound(new NBTTagCompound());
 		readFromNBT(invStack.getTagCompound());
 	}
 
 	@Override
-	public int getInventoryStackLimit() {
+	public int getInventoryStackLimit () {
 		return 64;
 	}
 
 	@Override
-	public boolean hasCustomName() {
+	public boolean hasCustomName () {
 		return name.length() > 0;
 	}
 
 	@Override
-	public void markDirty() {
+	public void markDirty () {
 		for (int i = 0; i < getSizeInventory(); i++)
-			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0)
-				inventory[i] = null;
+			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0) inventory[i] = null;
 		writeToNBT(invStack.getTagCompound());
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
+	public boolean isUseableByPlayer (EntityPlayer player) {
 		return player.getHeldItem() == invStack;
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack) {
+	public boolean isItemValidForSlot (int index, ItemStack stack) {
 		return !(stack.getItem() instanceof ItemSynthesisBagL);
 	}
 
 	@Override
-	protected String getNbtKey() {
+	protected String getNbtKey () {
 		return SAVE_KEY;
 	}
 
 	@Override
-	public void setInventorySlotContents(int slot, ItemStack itemstack) {
+	public void setInventorySlotContents (int slot, ItemStack itemstack) {
 		inventory[slot] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit())
-			itemstack.stackSize = getInventoryStackLimit();
+		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) itemstack.stackSize = getInventoryStackLimit();
 		writeToNBT(invStack.getTagCompound());
 	}
 
 	@Override
-	public String getCommandSenderName() {
+	public String getCommandSenderName () {
 		return name;
 	}
 
 	@Override
-	public IChatComponent getDisplayName() {
+	public IChatComponent getDisplayName () {
 		return new ChatComponentText(name);
 	}
 

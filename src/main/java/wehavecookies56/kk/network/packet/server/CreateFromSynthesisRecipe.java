@@ -19,33 +19,31 @@ import wehavecookies56.kk.util.AchievementHelper;
 
 public class CreateFromSynthesisRecipe extends AbstractServerMessage<CreateFromSynthesisRecipe> {
 
-	public CreateFromSynthesisRecipe() {
-	}
+	public CreateFromSynthesisRecipe () {}
 
 	String name;
 	int amountToRemove;
 
-	public CreateFromSynthesisRecipe(String name, int amountToRemove) {
+	public CreateFromSynthesisRecipe (String name, int amountToRemove) {
 		this.name = name;
 		this.amountToRemove = amountToRemove;
 	}
 
 	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
+	protected void read (PacketBuffer buffer) throws IOException {
 		this.name = buffer.readStringFromBuffer(100);
 		this.amountToRemove = buffer.readInt();
 	}
 
 	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
+	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeString(name);
 		buffer.writeInt(amountToRemove);
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) {
-		if (RecipeRegistry.get(name).getResult() instanceof ItemKeychain)
-			AchievementHelper.addAchievement(player, ModAchievements.getKeyblade);
+	public void process (EntityPlayer player, Side side) {
+		if (RecipeRegistry.get(name).getResult() instanceof ItemKeychain) AchievementHelper.addAchievement(player, ModAchievements.getKeyblade);
 		player.inventory.addItemStackToInventory(new ItemStack(RecipeRegistry.get(name).getResult()));
 		Recipe r = RecipeRegistry.get(name);
 		ExtendedPlayerMaterials mats = ExtendedPlayerMaterials.get(player);

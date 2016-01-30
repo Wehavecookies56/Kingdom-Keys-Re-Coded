@@ -40,30 +40,30 @@ import wehavecookies56.kk.util.LogHelper;
 
 public class CommonProxy implements IGuiHandler {
 
-	public void init() {
+	public void init () {
 		// NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
 	}
 
-	public EntityPlayer getPlayerEntity(MessageContext ctx) {
+	public EntityPlayer getPlayerEntity (MessageContext ctx) {
 		return ctx.getServerHandler().playerEntity;
 	}
 
-	public IThreadListener getThreadFromContext(MessageContext ctx) {
+	public IThreadListener getThreadFromContext (MessageContext ctx) {
 		return ctx.getServerHandler().playerEntity.getServerForPlayer();
 	}
 
 	private static final Map<String, NBTTagCompound> extendedEntityData = new HashMap<String, NBTTagCompound>();
 
-	public static void storeEntityData(String name, NBTTagCompound compound) {
+	public static void storeEntityData (String name, NBTTagCompound compound) {
 		extendedEntityData.put(name, compound);
 	}
 
-	public static NBTTagCompound getEntityData(String name) {
+	public static NBTTagCompound getEntityData (String name) {
 		return extendedEntityData.remove(name);
 	}
 
 	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+	public Object getServerGuiElement (int ID, EntityPlayer player, World world, int x, int y, int z) {
 		BlockPos xyz = new BlockPos(x, y, z);
 		TileEntity te = world.getTileEntity(xyz);
 
@@ -79,26 +79,21 @@ public class CommonProxy implements IGuiHandler {
 			return new ContainerDriveForms(player, player.inventory, ExtendedPlayer.get(player).inventoryDrive);
 		else if (ID == KingdomKeys.GUI_KKCHEST_INV) {
 			if (te instanceof TileEntityKKChest)
-				return new ContainerKKChest(player.inventory,
-						(TileEntityKKChest) world.getTileEntity(new BlockPos(x, y, z)));
+				return new ContainerKKChest(player.inventory, (TileEntityKKChest) world.getTileEntity(new BlockPos(x, y, z)));
 			else
 				return null;
 		}
 
 		else if (ID == KingdomKeys.GUI_SYNTHESISBAGS_INV)
-			return new ContainerSynthesisBagS(player, player.inventory,
-					new InventorySynthesisBagS(player.getHeldItem()));
+			return new ContainerSynthesisBagS(player, player.inventory, new InventorySynthesisBagS(player.getHeldItem()));
 		else if (ID == KingdomKeys.GUI_SYNTHESISBAGM_INV)
-			return new ContainerSynthesisBagM(player, player.inventory,
-					new InventorySynthesisBagM(player.getHeldItem()));
-		else if (ID == KingdomKeys.GUI_SYNTHESISBAGL_INV)
-			return new ContainerSynthesisBagL(player, player.inventory,
-					new InventorySynthesisBagL(player.getHeldItem()));
+			return new ContainerSynthesisBagM(player, player.inventory, new InventorySynthesisBagM(player.getHeldItem()));
+		else if (ID == KingdomKeys.GUI_SYNTHESISBAGL_INV) return new ContainerSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem()));
 		return null;
 	}
 
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+	public Object getClientGuiElement (int ID, EntityPlayer player, World world, int x, int y, int z) {
 		BlockPos xyz = new BlockPos(x, y, z);
 		TileEntity te = world.getTileEntity(xyz);
 
@@ -122,17 +117,16 @@ public class CommonProxy implements IGuiHandler {
 			return new GuiSynthesisBagS(player, player.inventory, new InventorySynthesisBagS(player.getHeldItem()));
 		else if (ID == KingdomKeys.GUI_SYNTHESISBAGM_INV)
 			return new GuiSynthesisBagM(player, player.inventory, new InventorySynthesisBagM(player.getHeldItem()));
-		else if (ID == KingdomKeys.GUI_SYNTHESISBAGL_INV)
-			return new GuiSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem()));
+		else if (ID == KingdomKeys.GUI_SYNTHESISBAGL_INV) return new GuiSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem()));
 		return null;
 
 	}
 
-	public void preInit() {
+	public void preInit () {
 
 	}
 
-	public void registerAchievements() {
+	public void registerAchievements () {
 		// Achievements
 		ModAchievements.init();
 		ModAchievements.register();
