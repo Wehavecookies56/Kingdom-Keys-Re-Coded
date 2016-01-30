@@ -2,6 +2,7 @@ package wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.entities.ExtendedPlayer;
@@ -16,7 +17,7 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 	GuiButton keychain, synthbag, potions, spells, back;
 
 	public GuiMenu_Items_Player (String name) {
-		super(Strings.Gui_Menu_Items_Player);
+		super(Minecraft.getMinecraft().thePlayer.getDisplayName().getFormattedText());
 	}
 
 	@Override
@@ -38,7 +39,7 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 				GuiHelper.openInv(KingdomKeys.GUI_DRIVE_INV);
 				break;
 			case BACK:
-				GuiHelper.openMenu();
+				GuiHelper.openMenu_Items();
 				break;
 		}
 		updateButtons();

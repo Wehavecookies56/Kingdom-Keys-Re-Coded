@@ -7,6 +7,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.inventory.InventoryDriveForms;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 import wehavecookies56.kk.util.TextHelper;
 
@@ -39,50 +40,34 @@ public class LevelUpDrive extends AbstractServerMessage<LevelUpDrive> {
 		int masterLevel = ExtendedPlayer.get(player).getDriveLevel("Master");
 		int finalLevel = ExtendedPlayer.get(player).getDriveLevel("Final");
 
-		if (form.equals("Valor")) {
-			if (valorLevel == 0) {
-				ExtendedPlayer.driveForms.add("Valor");
-				ep.setDriveLevel("Valor", valorLevel + 1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				TextHelper.sendFormattedChatMessage("You unlocked " + form + " form!", EnumChatFormatting.YELLOW, player);
-
-			} else
-				TextHelper.sendFormattedChatMessage("You already unlocked " + form + " Form", EnumChatFormatting.YELLOW, player);
-		} else if (form.equals("Wisdom")) {
-			if (wisdomLevel == 0) {
-				ExtendedPlayer.driveForms.add("Wisdom");
-				ep.setDriveLevel("Wisdom", wisdomLevel + 1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				TextHelper.sendFormattedChatMessage("You unlocked " + form + " form!", EnumChatFormatting.YELLOW, player);
-
-			} else
-				TextHelper.sendFormattedChatMessage("You already unlocked " + form + " Form", EnumChatFormatting.YELLOW, player);
-		} else if (form.equals("Limit")) {
-			if (limitLevel == 0) {
-				ExtendedPlayer.driveForms.add("Limit");
-				ep.setDriveLevel("Limit", limitLevel + 1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				TextHelper.sendFormattedChatMessage("You unlocked " + form + " form!", EnumChatFormatting.YELLOW, player);
-
-			} else
-				TextHelper.sendFormattedChatMessage("You already unlocked " + form + " Form", EnumChatFormatting.YELLOW, player);
-		} else if (form.equals("Master")) {
-			if (masterLevel == 0) {
-				ExtendedPlayer.driveForms.add("Master");
-				ep.setDriveLevel("Master", masterLevel + 1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				TextHelper.sendFormattedChatMessage("You unlocked " + form + " form!", EnumChatFormatting.YELLOW, player);
-
-			} else
-				TextHelper.sendFormattedChatMessage("You already unlocked " + form + " Form", EnumChatFormatting.YELLOW, player);
-		} else if (form.equals("Final")) if (finalLevel == 0) {
-			ExtendedPlayer.driveForms.add("Final");
-			ep.setDriveLevel("Final", finalLevel + 1);
+		int hasDriveInSlot = -1, nullSlot = -1;
+		
+		for (int i = 0; i< InventoryDriveForms.INV_SIZE; i++)
+		{
+			if(ExtendedPlayer.get(player).inventoryDrive.getStackInSlot(i) != null)
+			{
+				if(ExtendedPlayer.get(player).inventoryDrive.getStackInSlot(i).getItem() == player.getHeldItem().getItem())
+				{
+					hasDriveInSlot = i;
+				}
+			}else{
+				nullSlot = i;
+				break;
+			}
+		}
+		
+		if(hasDriveInSlot == -1)
+		{
+			ExtendedPlayer.get(player).inventoryDrive.setInventorySlotContents(nullSlot, player.getHeldItem());
 			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-			TextHelper.sendFormattedChatMessage("You unlocked " + form + " form!", EnumChatFormatting.YELLOW, player);
+			TextHelper.sendFormattedChatMessage("Succesfully learnt " + form+" Form!", EnumChatFormatting.YELLOW, player);
+		}
+		else
+		{
+			TextHelper.sendFormattedChatMessage("Already learnt " + form+" Form!", EnumChatFormatting.YELLOW, player);
 
-		} else
-			TextHelper.sendFormattedChatMessage("You already unlocked " + form + " Form", EnumChatFormatting.YELLOW, player);
+		}
+		
 	}
 
 }

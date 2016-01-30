@@ -610,6 +610,9 @@ gui.menu.main.munny=Platines
 gui.menu.items.title=Objetos
 gui.menu.items.keychain=Llavero
 gui.menu.items.synthbag=Bolsa de Síntesis
+gui.menu.items.potions=Pociones
+gui.menu.items.spells=Magias
+gui.menu.items.drives=Formas de Fusión
 gui.menu.items.button.stock=Inventario
 gui.menu.items.button.back=Atrás
 
@@ -630,7 +633,11 @@ gui.synthesis.main.freedevelopment=Libre Desarrollo
 gui.synthesis.main.materials=Materiales
 gui.synthesis.main.recipes.requiredmaterials=Materiales Requeridos
 gui.synthesis.main.recipes.create=Fabricar
-
+gui.synthesis.main.materials.deposit=Depositar Materiales
+gui.synthesis.main.materials.takeone=Coger 1
+gui.synthesis.main.materials.takehalfstack=Coger medio stack
+gui.synthesis.main.materials.takestack=Coger un stack
+gui.synthesis.main.materials.takeall=Coger todo
 ############################
 #Keybinds
 ############################

@@ -34,6 +34,21 @@ public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
+		if(player.getHeldItem().getItem() == ModItems.LevelUpMagicFire)
+			magic = "Fire";
+		else if(player.getHeldItem().getItem() == ModItems.LevelUpMagicBlizzard)
+			magic = "Blizzard";
+		else if (player.getHeldItem().getItem() == ModItems.LevelUpMagicThunder)
+			magic = "Thunder";
+		else if (player.getHeldItem().getItem() == ModItems.LevelUpMagicCure)
+			magic = "Cure";
+		else if (player.getHeldItem().getItem() == ModItems.LevelUpMagicAero)
+			magic = "Aero";
+		else if (player.getHeldItem().getItem() == ModItems.LevelUpMagicStop)
+			magic = "Stop";
+		else
+			return;
+				
 		ExtendedPlayer ep = ExtendedPlayer.get(player);
 		int fireLevel = ExtendedPlayer.get(player).getMagicLevel("Fire");
 		int blizzardLevel = ExtendedPlayer.get(player).getMagicLevel("Blizzard");
@@ -44,28 +59,30 @@ public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
 
 		int hasMagicInSlot = -1, nullSlot = -1;
 		
-		if (magic.equals("Fire")) {
-			for (int i = 0; i< InventorySpells.INV_SIZE; i++)
+		for (int i = 0; i< InventorySpells.INV_SIZE; i++)
+		{
+			if(ExtendedPlayer.get(player).inventorySpells.getStackInSlot(i) != null)
 			{
-				if(ExtendedPlayer.get(player).inventorySpells.getStackInSlot(i) != null)
+				if(ExtendedPlayer.get(player).inventorySpells.getStackInSlot(i).getItem() == player.getHeldItem().getItem())
 				{
-					System.out.println(ExtendedPlayer.get(player).inventorySpells.getStackInSlot(i).getItem());
-	
-					if(ExtendedPlayer.get(player).inventorySpells.getStackInSlot(i).getItem() == player.getHeldItem().getItem())
-					{
-						hasMagicInSlot = i;
-
-					}
-				}else{
-					nullSlot = i;
+					hasMagicInSlot = i;
 				}
+			}else{
+				nullSlot = i;
+				break;
 			}
-			
-			if(hasMagicInSlot != -1)
-			{
-				ExtendedPlayer.get(player).inventorySpells.setInventorySlotContents(nullSlot, player.getHeldItem());
+		}
+		
+		if(hasMagicInSlot == -1)
+		{
+			ExtendedPlayer.get(player).inventorySpells.setInventorySlotContents(nullSlot, player.getHeldItem());
+			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+			TextHelper.sendFormattedChatMessage("Succesfully learnt " + magic, EnumChatFormatting.YELLOW, player);
+		}
 				
-			} else {
+		if (magic.equals("Fire")) 
+		{
+			 if (hasMagicInSlot != -1){
 				if (fireLevel == 0 || fireLevel == 1 || fireLevel == 2) {
 					ep.setMagicLevel("Fire", fireLevel + 1);
 					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
@@ -75,46 +92,83 @@ public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
 					TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + fireLevel, EnumChatFormatting.YELLOW, player);
 				}
 			}
-			
-		} else if (magic.equals("Blizzard")) {
-			if (blizzardLevel == 0 || blizzardLevel == 1 || blizzardLevel == 2) {
-				ep.setMagicLevel("Blizzard", blizzardLevel + 1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (blizzardLevel + 1), EnumChatFormatting.YELLOW, player);
-
-			} else
-				TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + blizzardLevel, EnumChatFormatting.YELLOW, player);
-		} else if (magic.equals("Thunder")) {
-			if (thunderLevel == 0 || thunderLevel == 1 || thunderLevel == 2) {
-				ep.setMagicLevel("Thunder", thunderLevel + 1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (thunderLevel + 1), EnumChatFormatting.YELLOW, player);
-
-			} else
-				TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + thunderLevel, EnumChatFormatting.YELLOW, player);
-		} else if (magic.equals("Cure")) {
-			if (cureLevel == 0 || cureLevel == 1 || cureLevel == 2) {
-				ep.setMagicLevel("Cure", cureLevel + 1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (cureLevel + 1), EnumChatFormatting.YELLOW, player);
-
-			} else
-				TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + cureLevel, EnumChatFormatting.YELLOW, player);
-		} else if (magic.equals("Aero")) {
-			if (aeroLevel == 0 || aeroLevel == 1 || aeroLevel == 2) {
-				ep.setMagicLevel("Aero", aeroLevel + 1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (aeroLevel + 1), EnumChatFormatting.YELLOW, player);
-
-			} else
-				TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + aeroLevel, EnumChatFormatting.YELLOW, player);
-		} else if (magic.equals("Stop")) if (stopLevel == 0 || stopLevel == 1 || stopLevel == 2) {
-			ep.setMagicLevel("Stop", stopLevel + 1);
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-			TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (stopLevel + 1), EnumChatFormatting.YELLOW, player);
-
-		} else
-			TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + stopLevel, EnumChatFormatting.YELLOW, player);
+			hasMagicInSlot = -1;
+			nullSlot = -1;
+		}
+		else if (magic.equals("Blizzard")) 
+		{
+			 if (hasMagicInSlot != -1){
+					if (blizzardLevel == 0 || blizzardLevel == 1 || blizzardLevel == 2) {
+						ep.setMagicLevel("Blizzard", blizzardLevel + 1);
+						player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+						TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (blizzardLevel + 1), EnumChatFormatting.YELLOW, player);
+		
+					} else {
+						TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + blizzardLevel, EnumChatFormatting.YELLOW, player);
+					}
+				}
+				hasMagicInSlot = -1;
+				nullSlot = -1;
+		} 
+		else if (magic.equals("Thunder")) 
+		{
+			 if (hasMagicInSlot != -1){
+					if (thunderLevel == 0 || thunderLevel == 1 || thunderLevel == 2) {
+						ep.setMagicLevel("Thunder", thunderLevel + 1);
+						player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+						TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (thunderLevel + 1), EnumChatFormatting.YELLOW, player);
+		
+					} else {
+						TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + thunderLevel, EnumChatFormatting.YELLOW, player);
+					}
+				}
+				hasMagicInSlot = -1;
+				nullSlot = -1;
+		} 
+		else if (magic.equals("Cure")) 
+		{
+			 if (hasMagicInSlot != -1){
+					if (cureLevel == 0 || cureLevel == 1 || cureLevel == 2) {
+						ep.setMagicLevel("Cure", cureLevel + 1);
+						player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+						TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (cureLevel + 1), EnumChatFormatting.YELLOW, player);
+		
+					} else {
+						TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + cureLevel, EnumChatFormatting.YELLOW, player);
+					}
+				}
+				hasMagicInSlot = -1;
+				nullSlot = -1;
+		} 
+		else if (magic.equals("Aero")) 
+		{
+			 if (hasMagicInSlot != -1){
+					if (aeroLevel == 0 || aeroLevel == 1 || aeroLevel == 2) {
+						ep.setMagicLevel("Aero", aeroLevel + 1);
+						player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+						TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (aeroLevel + 1), EnumChatFormatting.YELLOW, player);
+		
+					} else {
+						TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + aeroLevel, EnumChatFormatting.YELLOW, player);
+					}
+				}
+				hasMagicInSlot = -1;
+				nullSlot = -1;
+		} 
+		else if (magic.equals("Stop"))
+		{
+			 if (hasMagicInSlot != -1){
+				 if (stopLevel == 0 || stopLevel == 1 || stopLevel == 2) {
+					ep.setMagicLevel("Stop", stopLevel + 1);
+					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+					TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (stopLevel + 1), EnumChatFormatting.YELLOW, player);
+		
+				} else {
+					TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + stopLevel, EnumChatFormatting.YELLOW, player);
+				}
+			}
+			hasMagicInSlot = -1;
+			nullSlot = -1;
+		}
 	}
-
 }

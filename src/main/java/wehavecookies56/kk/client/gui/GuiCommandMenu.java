@@ -156,7 +156,10 @@ public class GuiCommandMenu extends GuiScreen {
 				else
 					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
-			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0xFFFFFF);
+			if (ExtendedPlayer.items.isEmpty())
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0x888888);
+			else
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0xFFFFFF);
 
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}
@@ -334,7 +337,7 @@ public class GuiCommandMenu extends GuiScreen {
 		ExtendedPlayer.get(mc.thePlayer);
 		// Drive form submenu //
 		driveCommands = ExtendedPlayer.driveForms;
-		if (driveCommands == null) {} else if (!driveCommands.isEmpty()) {
+		if (driveCommands != null) {} else if (!driveCommands.isEmpty()) {
 			// DRIVE TOP
 			GL11.glPushMatrix();
 			{

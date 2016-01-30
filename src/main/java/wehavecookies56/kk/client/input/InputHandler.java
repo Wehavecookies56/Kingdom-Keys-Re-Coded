@@ -134,45 +134,54 @@ public class InputHandler {
 
 		switch (GuiCommandMenu.selected) {
 			case GuiCommandMenu.MAGIC:
-				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) if (ExtendedPlayer.get(player).getRecharge() == false && (!ExtendedPlayer.spells.isEmpty() && !ExtendedPlayer.get(player).getDriveInUse().equals("Valor"))) {
-					GuiCommandMenu.magicselected = 0;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
-					world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Select, 1f, 1f, false);
-					return;
-				} else {
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-					world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Error, 2f, 1f, false);
+				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN){
+					if (ExtendedPlayer.get(player).getRecharge() == false && (!ExtendedPlayer.spells.isEmpty() && !ExtendedPlayer.get(player).getDriveInUse().equals("Valor"))) {
+						GuiCommandMenu.magicselected = 0;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
+						world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Select, 1f, 1f, false);
+						return;
+					} else {
+						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+						world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Error, 2f, 1f, false);
+					}
 				}
 				break;
 
 			case GuiCommandMenu.ITEMS:
 				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
-					GuiCommandMenu.potionselected = 0;
-					world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Select, 1f, 1f, false);
+					if (!ExtendedPlayer.items.isEmpty()){
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
+						GuiCommandMenu.potionselected = 0;
+						world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Select, 1f, 1f, false);
+					} else {
+						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+						world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Error, 2f, 1f, false);
+					}
 					return;
 				}
 				break;
 
 			case GuiCommandMenu.DRIVE:
-				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) if (ExtendedPlayer.get(player).getInDrive()) {// Revert
-					if (ExtendedPlayer.get(player).getDriveInUse().equals("Anti") && ExtendedPlayer.get(player).cheatMode == false) {
+				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN){ 
+					if (ExtendedPlayer.get(player).getInDrive()) {// Revert
+						if (ExtendedPlayer.get(player).getDriveInUse().equals("Anti") && ExtendedPlayer.get(player).cheatMode == false) {
+							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+							world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Error, 2f, 1f, false);
+						} else {
+							PacketDispatcher.sendToServer(new DriveFormPacket(true));
+							GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+							world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Select, 1f, 1f, false);
+						}
+					} else if (ExtendedPlayer.driveForms.isEmpty() || ExtendedPlayer.get(player).getDP() > 0) {
+						world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Error, 1f, 1f, false);
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-						world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Error, 2f, 1f, false);
 					} else {
-						PacketDispatcher.sendToServer(new DriveFormPacket(true));
-						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+						GuiCommandMenu.driveselected = 0;
+						GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
 						world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Select, 1f, 1f, false);
+						return;
 					}
-				} else if (ExtendedPlayer.driveForms.isEmpty() || ExtendedPlayer.get(player).getDP() > 0) {
-					world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Error, 1f, 1f, false);
-					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-				} else {
-					GuiCommandMenu.driveselected = 0;
-					GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
-					world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Select, 1f, 1f, false);
-					return;
 				}
 				break;
 		}

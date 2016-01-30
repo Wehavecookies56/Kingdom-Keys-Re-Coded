@@ -95,13 +95,13 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.magic = 1;
 		this.hp = 20;
 
-		this.fireLevel = 0;
-		this.blizzardLevel = 0;
-		this.thunderLevel = 0;
-		this.gravityLevel = 0;
-		this.cureLevel = 0;
-		this.aeroLevel = 0;
-		this.stopLevel = 0;
+		this.fireLevel = 1;
+		this.blizzardLevel = 1;
+		this.thunderLevel = 1;
+		this.gravityLevel = 1;
+		this.cureLevel = 1;
+		this.aeroLevel = 1;
+		this.stopLevel = 1;
 
 		this.valorLevel = 0;
 		this.wisdomLevel = 0;
