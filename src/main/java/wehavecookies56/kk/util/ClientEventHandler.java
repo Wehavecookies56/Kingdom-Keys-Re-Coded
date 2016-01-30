@@ -216,9 +216,6 @@ public class ClientEventHandler {
 				}
 			}
 		}
-		if(posSound != null){
-			System.out.println(posSound.getSoundLocation());
-		}
 	}
 
 	public static int randomWithRange (int min, int max) {
