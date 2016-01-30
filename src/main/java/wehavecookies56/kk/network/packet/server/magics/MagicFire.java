@@ -32,17 +32,16 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 	public void process (EntityPlayer player, Side side) {
 		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Gui_CommandMenu_Magic_Fire));
 		World world = player.worldObj;
-		world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
-		/*switch (ExtendedPlayer.get(player).getMagicLevel("Fire")) {
-			case 0:
+		switch (ExtendedPlayer.get(player).getMagicLevel("Fire")) {
+			case 1:
 				world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
 				break;
-			case 1:
+			case 2:
 				world.spawnEntityInWorld(new EntityFira(world, player, player.posX, player.posY, player.posZ, 1));
 				break;
-			case 2:
+			case 3:
 				world.spawnEntityInWorld(new EntityFiraga(world, player, player.posX, player.posY, player.posZ, 1));
 				break;
-		}*/
+		}
 	}
 }

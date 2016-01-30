@@ -32,21 +32,21 @@ public class MagicCure extends AbstractServerMessage<MagicCure> {
 		World world = player.worldObj;
 		player.extinguish();
 		switch (ExtendedPlayer.get(player).getMagicLevel("Cure")) {
-			case 0:
+			case 1:
 				if (ExtendedPlayer.get(player).getHP() / 3 + player.getHealth() > ExtendedPlayer.get(player).getHP())
 					player.heal(ExtendedPlayer.get(player).getHP() - player.getHealth());
 				else
 					player.heal(ExtendedPlayer.get(player).getHP() / 3);
 				world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
 				break;
-			case 1:
+			case 2:
 				if (ExtendedPlayer.get(player).getHP() / 3 * 2 + player.getHealth() > ExtendedPlayer.get(player).getHP())
 					player.heal(ExtendedPlayer.get(player).getHP() - player.getHealth());
 				else
 					player.heal(ExtendedPlayer.get(player).getHP() / 3 * 2);
 				world.spawnEntityInWorld(new EntityCura(world, player, player.posX, player.posY, player.posZ));
 				break;
-			case 2:
+			case 3:
 				player.heal(ExtendedPlayer.get(player).getHP() - player.getHealth());
 				world.spawnEntityInWorld(new EntityCuraga(world, player, player.posX, player.posY, player.posZ));
 				break;

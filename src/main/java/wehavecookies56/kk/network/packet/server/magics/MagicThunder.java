@@ -7,6 +7,8 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.entities.magic.EntityThundaga;
+import wehavecookies56.kk.entities.magic.EntityThundara;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Strings;
@@ -26,7 +28,16 @@ public class MagicThunder extends AbstractServerMessage<MagicThunder> {
 	public void process (EntityPlayer player, Side side) {
 		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Gui_CommandMenu_Magic_Thunder));
 		World world = player.worldObj;
-		if (!world.isRemote) world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
+		if (!world.isRemote) switch (ExtendedPlayer.get(player).getMagicLevel("Thunder")) {
+		case 1:
+			world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
+			break;
+		case 2:
+			world.spawnEntityInWorld(new EntityThundara(world, player, player.posX, player.posY, player.posZ));
+			break;
+		case 3:
+			world.spawnEntityInWorld(new EntityThundaga(world, player, player.posX, player.posY, player.posZ));
+			break;
+		}
 	}
-
 }

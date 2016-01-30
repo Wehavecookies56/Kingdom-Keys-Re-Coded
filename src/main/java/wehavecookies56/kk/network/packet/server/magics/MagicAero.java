@@ -33,13 +33,13 @@ public class MagicAero extends AbstractServerMessage<MagicAero> {
 		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Gui_CommandMenu_Magic_Aero));
 		World world = player.worldObj;
 		if (!world.isRemote) switch (ExtendedPlayer.get(player).getMagicLevel("Aero")) {
-			case 0:
+			case 1:
 				world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
 				break;
-			case 1:
+			case 2:
 				world.spawnEntityInWorld(new EntityAerora(world, player, player.posX, player.posY, player.posZ));
 				break;
-			case 2:
+			case 3:
 				world.spawnEntityInWorld(new EntityAeroga(world, player, player.posX, player.posY, player.posZ));
 				break;
 		}

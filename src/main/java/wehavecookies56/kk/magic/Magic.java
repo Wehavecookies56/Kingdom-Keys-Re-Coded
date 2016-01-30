@@ -65,7 +65,7 @@ public class Magic {
 
 	public static void Fire (EntityPlayer player, World world) {
 		switch (ExtendedPlayer.get(player).getMagicLevel("Fire")) {
-			case 0:
+			case 1:
 				PacketDispatcher.sendToServer(new MagicFire());
 				world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
 				player.swingItem();
@@ -90,7 +90,7 @@ public class Magic {
 	public static void Blizzard (EntityPlayer player, World world) {
 		Vec3 look;
 		switch (ExtendedPlayer.get(player).getMagicLevel("Blizzard")) {
-			case 0:
+			case 1:
 				look = player.getLookVec();
 				world.spawnEntityInWorld(new EntityBlizzard(world, player));
 				PacketDispatcher.sendToServer(new MagicBlizzard());
