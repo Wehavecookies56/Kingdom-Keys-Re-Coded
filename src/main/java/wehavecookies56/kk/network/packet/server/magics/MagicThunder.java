@@ -9,6 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.lib.Constants;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicThunder extends AbstractServerMessage<MagicThunder> {
@@ -23,7 +24,7 @@ public class MagicThunder extends AbstractServerMessage<MagicThunder> {
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.THUNDER_COST);
+		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Gui_CommandMenu_Magic_Thunder));
 		World world = player.worldObj;
 		if (!world.isRemote) world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
 	}

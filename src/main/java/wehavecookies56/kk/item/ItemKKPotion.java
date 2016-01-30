@@ -38,22 +38,28 @@ public abstract class ItemKKPotion extends ItemFood {
 		this.unlocalizedName = unlocalizedName;
 	}
 
-	public static void getItem (EntityPlayer player, World world, String item) {
+	public static void getItem (EntityPlayer player, World world, String item, int slot) {
+		while (ExtendedPlayer.get(player).inventoryPotions.getStackInSlot(slot) == null){
+			slot++;
+		}
 		switch (item) {
 			case "potion":
 				((ItemKKPotion)ModItems.Potion).getPotionEffect(player);
 				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Potion, 1f, 1f, false);
-
+				ExtendedPlayer.get(player).inventoryPotions.setInventorySlotContents(slot, null);
+				PacketDispatcher.sendToServer(new RemoveItemInSlot("potion", slot, true));
 				break;
 			case "ether":
 				((ItemKKPotion)ModItems.Ether).getPotionEffect(player);
 				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Potion, 1f, 1f, false);
-
+				ExtendedPlayer.get(player).inventoryPotions.setInventorySlotContents(slot, null);
+				PacketDispatcher.sendToServer(new RemoveItemInSlot("potion", slot, true));
 				break;
 			case "elixir":
 				((ItemKKPotion)ModItems.Elixir).getPotionEffect(player);
 				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Potion, 1f, 1f, false);
-
+				ExtendedPlayer.get(player).inventoryPotions.setInventorySlotContents(slot, null);
+				PacketDispatcher.sendToServer(new RemoveItemInSlot("potion", slot, true));
 				break;
 			default:
 				break;

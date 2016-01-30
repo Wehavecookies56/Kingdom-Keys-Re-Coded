@@ -11,6 +11,7 @@ import wehavecookies56.kk.entities.magic.EntityFira;
 import wehavecookies56.kk.entities.magic.EntityFiraga;
 import wehavecookies56.kk.entities.magic.EntityFire;
 import wehavecookies56.kk.lib.Constants;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicFire extends AbstractServerMessage<MagicFire> {
@@ -29,9 +30,10 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.FIRE_COST);
+		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Gui_CommandMenu_Magic_Fire));
 		World world = player.worldObj;
-		switch (ExtendedPlayer.get(player).getMagicLevel("Fire")) {
+		world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
+		/*switch (ExtendedPlayer.get(player).getMagicLevel("Fire")) {
 			case 0:
 				world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
 				break;
@@ -41,6 +43,6 @@ public class MagicFire extends AbstractServerMessage<MagicFire> {
 			case 2:
 				world.spawnEntityInWorld(new EntityFiraga(world, player, player.posX, player.posY, player.posZ, 1));
 				break;
-		}
+		}*/
 	}
 }

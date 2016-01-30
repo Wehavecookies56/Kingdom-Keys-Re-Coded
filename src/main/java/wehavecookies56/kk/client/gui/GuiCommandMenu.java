@@ -278,7 +278,7 @@ public class GuiCommandMenu extends GuiScreen {
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 						else
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
-						colour = Constants.costs.get(spells.get(i)) < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
+						colour = Constants.getCost(spells.get(i)) < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
 						if(spells.get(i).equals("gui.commandmenu.magic.cure"))
 							colour = 0xFF9900;
 						colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;

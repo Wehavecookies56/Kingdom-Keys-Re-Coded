@@ -11,6 +11,7 @@ import wehavecookies56.kk.entities.magic.EntityStop;
 import wehavecookies56.kk.entities.magic.EntityStopga;
 import wehavecookies56.kk.entities.magic.EntityStopra;
 import wehavecookies56.kk.lib.Constants;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicStop extends AbstractServerMessage<MagicStop> {
@@ -29,7 +30,7 @@ public class MagicStop extends AbstractServerMessage<MagicStop> {
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.STOP_COST);
+		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Gui_CommandMenu_Magic_Stop));
 		World world = player.worldObj;
 		if (!world.isRemote) switch (ExtendedPlayer.get(player).getMagicLevel("Aero")) {
 			case 0:

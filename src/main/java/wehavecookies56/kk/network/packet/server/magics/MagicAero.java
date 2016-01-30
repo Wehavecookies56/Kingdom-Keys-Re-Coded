@@ -11,6 +11,7 @@ import wehavecookies56.kk.entities.magic.EntityAero;
 import wehavecookies56.kk.entities.magic.EntityAeroga;
 import wehavecookies56.kk.entities.magic.EntityAerora;
 import wehavecookies56.kk.lib.Constants;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicAero extends AbstractServerMessage<MagicAero> {
@@ -29,7 +30,7 @@ public class MagicAero extends AbstractServerMessage<MagicAero> {
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.AERO_COST);
+		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Gui_CommandMenu_Magic_Aero));
 		World world = player.worldObj;
 		if (!world.isRemote) switch (ExtendedPlayer.get(player).getMagicLevel("Aero")) {
 			case 0:

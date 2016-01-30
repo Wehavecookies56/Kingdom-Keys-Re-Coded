@@ -32,6 +32,8 @@ public class Constants {
 		costs.put("gui.commandmenu.magic.cure", -1);
 
 		costs.put("potion", 1);
+		costs.put("ether", 1);
+		costs.put("elixir", 1);
 
 		costs.put("gui.commandmenu.drive.valor", 300);
 		costs.put("gui.commandmenu.drive.wisdom", 300);

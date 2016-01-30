@@ -17,7 +17,7 @@ import wehavecookies56.kk.inventory.InventoryPotionsMenu;
 import wehavecookies56.kk.inventory.InventorySpells;
 import wehavecookies56.kk.inventory.InventorySynthBagMenu;
 import wehavecookies56.kk.item.ItemDriveForm;
-import wehavecookies56.kk.item.ItemPotion;
+import wehavecookies56.kk.item.ItemKKPotion;
 import wehavecookies56.kk.item.ItemSpellOrb;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -173,7 +173,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 			if (this.inventoryDrive.getStackInSlot(i) != null) ExtendedPlayer.driveForms.add(((ItemDriveForm) this.inventoryDrive.getStackInSlot(i).getItem()).getDriveFormName());
 		ExtendedPlayer.items.clear();
 		for (int i = 0; i < this.inventoryPotions.getSizeInventory(); i++)
-			if (this.inventoryPotions.getStackInSlot(i) != null) ExtendedPlayer.items.add(((ItemPotion) this.inventoryPotions.getStackInSlot(i).getItem()).getItemName());
+			if (this.inventoryPotions.getStackInSlot(i) != null) ExtendedPlayer.items.add(((ItemKKPotion) this.inventoryPotions.getStackInSlot(i).getItem()).getItemName());
 		this.munny = properties.getInteger("Munny");
 		this.level = properties.getInteger("Level");
 		this.experience = properties.getInteger("Experience");
