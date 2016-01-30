@@ -12,5 +12,17 @@ public class SoundHelper {
 
 	public static final String BASE = Reference.MODID + ":";
 
-	public static String Summon = BASE + "summon", UnSummon = BASE + "unsummon", Error = BASE + "error", Select = BASE + "select", Move = BASE + "move", Cancel = BASE + "cancel", LazyAfternoons = BASE + "music.Lazy Afternoons", Drive = BASE + "drive", AntiDrive = BASE + "antidrive", Potion = BASE + "potion";
+	public static String 
+	Summon = BASE + "summon",
+	UnSummon = BASE + "unsummon",
+	Error = BASE + "error",
+	Select = BASE + "select",
+	Move = BASE + "move",
+	Cancel = BASE + "cancel",
+	LazyAfternoons = BASE + "music.Lazy Afternoons",
+	Drive = BASE + "drive",
+	AntiDrive = BASE + "antidrive",
+	Potion = BASE + "potion",
+	SavePoint = BASE + "savepoint",
+	SaveSpawn = BASE + "savespawn";
 }

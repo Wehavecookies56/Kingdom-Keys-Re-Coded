@@ -7,6 +7,8 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.inventory.InventorySpells;
+import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 import wehavecookies56.kk.util.TextHelper;
 
@@ -40,14 +42,40 @@ public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
 		int aeroLevel = ExtendedPlayer.get(player).getMagicLevel("Aero");
 		int stopLevel = ExtendedPlayer.get(player).getMagicLevel("Stop");
 
+		int hasMagicInSlot = -1, nullSlot = -1;
+		
 		if (magic.equals("Fire")) {
-			if (fireLevel == 0 || fireLevel == 1 || fireLevel == 2) {
-				ep.setMagicLevel("Fire", fireLevel + 1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (fireLevel + 1), EnumChatFormatting.YELLOW, player);
+			for (int i = 0; i< InventorySpells.INV_SIZE; i++)
+			{
+				if(ExtendedPlayer.get(player).inventorySpells.getStackInSlot(i) != null)
+				{
+					System.out.println(ExtendedPlayer.get(player).inventorySpells.getStackInSlot(i).getItem());
+	
+					if(ExtendedPlayer.get(player).inventorySpells.getStackInSlot(i).getItem() == player.getHeldItem().getItem())
+					{
+						hasMagicInSlot = i;
 
-			} else
-				TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + fireLevel, EnumChatFormatting.YELLOW, player);
+					}
+				}else{
+					nullSlot = i;
+				}
+			}
+			
+			if(hasMagicInSlot != -1)
+			{
+				ExtendedPlayer.get(player).inventorySpells.setInventorySlotContents(nullSlot, player.getHeldItem());
+				
+			} else {
+				if (fireLevel == 0 || fireLevel == 1 || fireLevel == 2) {
+					ep.setMagicLevel("Fire", fireLevel + 1);
+					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+					TextHelper.sendFormattedChatMessage("Leveled up " + magic + ", Actual level: " + (fireLevel + 1), EnumChatFormatting.YELLOW, player);
+	
+				} else {
+					TextHelper.sendFormattedChatMessage("Can't level up " + magic + ", Actual level: " + fireLevel, EnumChatFormatting.YELLOW, player);
+				}
+			}
+			
 		} else if (magic.equals("Blizzard")) {
 			if (blizzardLevel == 0 || blizzardLevel == 1 || blizzardLevel == 2) {
 				ep.setMagicLevel("Blizzard", blizzardLevel + 1);

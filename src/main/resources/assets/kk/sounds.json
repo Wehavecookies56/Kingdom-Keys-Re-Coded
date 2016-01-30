@@ -82,6 +82,20 @@
     		{"name": "potion", "stream": false}
     	]
     },
+	
+	"savepoint": {
+    	"category": "player",
+    	"sounds": [
+    		{"name": "savepoint", "stream": false}
+    	]
+    },
+	
+	"savespawn": {
+    	"category": "player",
+    	"sounds": [
+    		{"name": "savespawn", "stream": false}
+    	]
+    },
 
     "records.Birth by Sleep -A Link to the Future-": {
     	"category": "record", 

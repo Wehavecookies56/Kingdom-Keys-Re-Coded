@@ -44,7 +44,6 @@ public class Constants {
 	}
 
 	public static int getCost (String name) {
-		System.out.println(name);
 		return costs.get(name);
 	}
 

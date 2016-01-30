@@ -382,9 +382,9 @@ public class GuiCommandMenu extends GuiScreen {
 					GL11.glScalef(scale, scale, scale);
 					if (submenu == SUB_DRIVE) {
 						if (ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
-							drawString(mc.fontRendererObj, driveCommands.get(i) + " Form", 6, 4, 0xFFFFFF);
+							drawString(mc.fontRendererObj, TextHelper.localize(driveCommands.get(i)), 6, 4, 0xFFFFFF);
 						else
-							drawString(mc.fontRendererObj, driveCommands.get(i) + " Form", 6, 4, 0x888888);
+							drawString(mc.fontRendererObj, TextHelper.localize(driveCommands.get(i)), 6, 4, 0x888888);
 						GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					}
 				}

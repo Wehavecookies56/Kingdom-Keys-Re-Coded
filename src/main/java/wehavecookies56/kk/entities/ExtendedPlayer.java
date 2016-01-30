@@ -166,8 +166,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.inventoryDrive.readFromNBT(properties);
 
 		ExtendedPlayer.spells.clear();
-		for (int i = 0; i < this.inventorySpells.getSizeInventory(); i++)
-			if (this.inventorySpells.getStackInSlot(i) != null) ExtendedPlayer.spells.add(((ItemSpellOrb) this.inventorySpells.getStackInSlot(i).getItem()).getMagicName());
+		for (int i = 0; i < this.inventorySpells.getSizeInventory(); i++){
+			if (this.inventorySpells.getStackInSlot(i) != null) {
+				ExtendedPlayer.spells.add(((ItemSpellOrb) this.inventorySpells.getStackInSlot(i).getItem()).getMagicName());
+			}
+		}
 		ExtendedPlayer.driveForms.clear();
 		for (int i = 0; i < this.inventoryDrive.getSizeInventory(); i++)
 			if (this.inventoryDrive.getStackInSlot(i) != null) ExtendedPlayer.driveForms.add(((ItemDriveForm) this.inventoryDrive.getStackInSlot(i).getItem()).getDriveFormName());

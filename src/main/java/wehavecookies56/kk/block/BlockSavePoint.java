@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SpawnCureParticles;
+import wehavecookies56.kk.util.SoundHelper;
 import wehavecookies56.kk.util.TextHelper;
 
 public class BlockSavePoint extends Block {
@@ -57,12 +58,14 @@ public class BlockSavePoint extends Block {
 				player.heal(4);
 				ExtendedPlayer.get(player).setMp(100);
 				if (player.getFoodStats().getFoodLevel() < 20) player.getFoodStats().addStats(4, 0);
+				world.playSoundAtEntity(player, SoundHelper.SavePoint, 1, 1);
 				PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos, true), player, 64.0D);
 
-				if (e.isSneaking()) if (((EntityPlayer) e).getBedLocation() != pos) {
+				if (e.isSneaking() &&((EntityPlayer) e).getBedLocation() != pos) {
 					((EntityPlayer) e).setSpawnChunk(pos, true, 0);
 					((EntityPlayer) e).setSpawnPoint(pos, true);
 					TextHelper.sendFormattedChatMessage("Spawn point saved!", EnumChatFormatting.GREEN, player);
+					world.playSoundAtEntity(player, SoundHelper.SaveSpawn, 1, 1);
 
 				}
 			}
