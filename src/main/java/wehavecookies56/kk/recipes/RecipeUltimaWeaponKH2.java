@@ -14,22 +14,22 @@ public class RecipeUltimaWeaponKH2 extends Recipe {
 
 	public String name;
 
-	public RecipeUltimaWeaponKH2 (String name) {
+	public RecipeUltimaWeaponKH2(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public Item getResult () {
+	public Item getResult() {
 		return ModItems.Chain_UltimaWeaponKH2;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements () {
+	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_OrichalcumPlus), 13);
 		reqs.put(MaterialRegistry.get(Strings.SM_Orichalcum), 1);

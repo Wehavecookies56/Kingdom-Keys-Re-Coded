@@ -14,11 +14,11 @@ public class EntityReflect extends Entity {
 
 	EntityPlayer player;
 
-	public EntityReflect (World world) {
+	public EntityReflect(World world) {
 		super(world);
 	}
 
-	public EntityReflect (World world, EntityPlayer sender, double x, double y, double z) {
+	public EntityReflect(World world, EntityPlayer sender, double x, double y, double z) {
 		super(world);
 		this.posX = x;
 		this.posY = y;
@@ -27,8 +27,9 @@ public class EntityReflect extends Entity {
 	}
 
 	@Override
-	public void onUpdate () {
-		if (player == null) return;
+	public void onUpdate() {
+		if (player == null)
+			return;
 		int rotation = 0;
 
 		if (!worldObj.isRemote) {
@@ -46,7 +47,8 @@ public class EntityReflect extends Entity {
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
-		if (ticksExisted > 30) setDead();
+		if (ticksExisted > 30)
+			setDead();
 
 		if (ticksExisted < 10)
 			player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0D);
@@ -64,22 +66,22 @@ public class EntityReflect extends Entity {
 	}
 
 	@Override
-	protected void entityInit () {
+	protected void entityInit() {
 
 	}
 
 	@Override
-	protected void readEntityFromNBT (NBTTagCompound tagCompund) {
+	protected void readEntityFromNBT(NBTTagCompound tagCompund) {
 
 	}
 
 	@Override
-	protected void writeEntityToNBT (NBTTagCompound tagCompound) {
+	protected void writeEntityToNBT(NBTTagCompound tagCompound) {
 
 	}
 
 	@Override
-	public AxisAlignedBB getEntityBoundingBox () {
+	public AxisAlignedBB getEntityBoundingBox() {
 
 		return new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
 	}

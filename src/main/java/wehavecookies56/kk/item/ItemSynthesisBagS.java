@@ -14,12 +14,12 @@ import wehavecookies56.kk.util.TextHelper;
 
 public class ItemSynthesisBagS extends Item {
 
-	public ItemSynthesisBagS () {
+	public ItemSynthesisBagS() {
 		setMaxStackSize(1);
 	}
 
 	@Override
-	public ItemStack onItemRightClick (ItemStack itemStackIn, World world, EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer player) {
 		// if (!world.isRemote){
 		// player.openGui(KingdomKeys.instance,
 		// KingdomKeys.GUI_SYNTHESISBAG_INV, player.worldObj, 0, 0, 0);
@@ -29,7 +29,7 @@ public class ItemSynthesisBagS extends Item {
 	}
 
 	@Override
-	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
+	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
 		int x = 30;
 		String s = TextHelper.localize(Strings.SynthesisBagDesc);
 		s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");

@@ -17,7 +17,7 @@ import wehavecookies56.kk.entities.TileEntitySynthesisTable;
 
 public class BlockSynthesisTable extends Block implements ITileEntityProvider {
 
-	protected BlockSynthesisTable (Material material, String toolClass, int level, float hardness, float resistance) {
+	protected BlockSynthesisTable(Material material, String toolClass, int level, float hardness, float resistance) {
 		super(material);
 		this.setHarvestLevel(toolClass, level);
 		setHardness(hardness);
@@ -25,14 +25,15 @@ public class BlockSynthesisTable extends Block implements ITileEntityProvider {
 	}
 
 	@Override
-	@SideOnly (Side.CLIENT)
-	public boolean onBlockActivated (World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
+	@SideOnly(Side.CLIENT)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player,
+			EnumFacing side, float hitX, float hitY, float hitZ) {
 		Minecraft.getMinecraft().displayGuiScreen(new GuiSynthesis(null));
 		return true;
 	}
 
 	@Override
-	public TileEntity createNewTileEntity (World worldIn, int meta) {
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntitySynthesisTable();
 	}
 

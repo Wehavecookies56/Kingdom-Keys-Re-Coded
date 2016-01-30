@@ -10,26 +10,27 @@ import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class HpOrbPickup extends AbstractServerMessage<HpOrbPickup> {
 
-	public HpOrbPickup () {}
+	public HpOrbPickup() {
+	}
 
 	ItemStack toRemove;
 
-	public HpOrbPickup (ItemStack toRemove) {
+	public HpOrbPickup(ItemStack toRemove) {
 		this.toRemove = toRemove;
 	}
 
 	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
+	protected void read(PacketBuffer buffer) throws IOException {
 		toRemove = buffer.readItemStackFromBuffer();
 	}
 
 	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
+	protected void write(PacketBuffer buffer) throws IOException {
 		buffer.writeItemStackToBuffer(toRemove);
 	}
 
 	@Override
-	public void process (EntityPlayer player, Side side) {
+	public void process(EntityPlayer player, Side side) {
 		player.inventory.consumeInventoryItem(toRemove.getItem());
 		toRemove.stackSize--;
 	}

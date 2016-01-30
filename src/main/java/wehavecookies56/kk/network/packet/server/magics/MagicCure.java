@@ -14,42 +14,44 @@ import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 
 public class MagicCure extends AbstractServerMessage<MagicCure> {
 
-	public MagicCure () {}
+	public MagicCure() {
+	}
 
 	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
+	protected void read(PacketBuffer buffer) throws IOException {
 
 	}
 
 	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
+	protected void write(PacketBuffer buffer) throws IOException {
 
 	}
 
 	@Override
-	public void process (EntityPlayer player, Side side) {
-		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).setMp(0);
+	public void process(EntityPlayer player, Side side) {
+		if (!ExtendedPlayer.get(player).cheatMode)
+			ExtendedPlayer.get(player).setMp(0);
 		World world = player.worldObj;
 		player.extinguish();
 		switch (ExtendedPlayer.get(player).getMagicLevel("Cure")) {
-			case 1:
-				if (ExtendedPlayer.get(player).getHP() / 3 + player.getHealth() > ExtendedPlayer.get(player).getHP())
-					player.heal(ExtendedPlayer.get(player).getHP() - player.getHealth());
-				else
-					player.heal(ExtendedPlayer.get(player).getHP() / 3);
-				world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
-				break;
-			case 2:
-				if (ExtendedPlayer.get(player).getHP() / 3 * 2 + player.getHealth() > ExtendedPlayer.get(player).getHP())
-					player.heal(ExtendedPlayer.get(player).getHP() - player.getHealth());
-				else
-					player.heal(ExtendedPlayer.get(player).getHP() / 3 * 2);
-				world.spawnEntityInWorld(new EntityCura(world, player, player.posX, player.posY, player.posZ));
-				break;
-			case 3:
+		case 1:
+			if (ExtendedPlayer.get(player).getHP() / 3 + player.getHealth() > ExtendedPlayer.get(player).getHP())
 				player.heal(ExtendedPlayer.get(player).getHP() - player.getHealth());
-				world.spawnEntityInWorld(new EntityCuraga(world, player, player.posX, player.posY, player.posZ));
-				break;
+			else
+				player.heal(ExtendedPlayer.get(player).getHP() / 3);
+			world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
+			break;
+		case 2:
+			if (ExtendedPlayer.get(player).getHP() / 3 * 2 + player.getHealth() > ExtendedPlayer.get(player).getHP())
+				player.heal(ExtendedPlayer.get(player).getHP() - player.getHealth());
+			else
+				player.heal(ExtendedPlayer.get(player).getHP() / 3 * 2);
+			world.spawnEntityInWorld(new EntityCura(world, player, player.posX, player.posY, player.posZ));
+			break;
+		case 3:
+			player.heal(ExtendedPlayer.get(player).getHP() - player.getHealth());
+			world.spawnEntityInWorld(new EntityCuraga(world, player, player.posX, player.posY, player.posZ));
+			break;
 		}
 
 	}

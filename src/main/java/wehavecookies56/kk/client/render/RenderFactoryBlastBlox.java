@@ -8,7 +8,7 @@ import wehavecookies56.kk.entities.block.EntityBlastBlox;
 public class RenderFactoryBlastBlox implements IRenderFactory<EntityBlastBlox> {
 
 	@Override
-	public Render<? super EntityBlastBlox> createRenderFor (RenderManager manager) {
+	public Render<? super EntityBlastBlox> createRenderFor(RenderManager manager) {
 		return new RenderBlastBlox(manager);
 	}
 

@@ -20,7 +20,7 @@ public class GuiMP extends GuiScreen {
 	int noborderguiheight = 4;
 
 	@SubscribeEvent
-	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
+	public void onRenderOverlayPost(RenderGameOverlayEvent event) {
 		if (event.type == RenderGameOverlayEvent.ElementType.TEXT) {
 
 			Minecraft mc = Minecraft.getMinecraft();
@@ -35,18 +35,19 @@ public class GuiMP extends GuiScreen {
 			float currMP = noborderguiwidth - (float) (oneMP * ExtendedPlayer.get(player).getMp());
 			float scale = 0.65f;
 			switch (mc.gameSettings.guiScale) {
-				case Constants.SCALE_AUTO:
-					scale = 0.85f;
-					break;
-				case Constants.SCALE_NORMAL:
-					scale = 0.85f;
-					break;
-				default:
-					scale = 0.65f;
-					break;
+			case Constants.SCALE_AUTO:
+				scale = 0.85f;
+				break;
+			case Constants.SCALE_NORMAL:
+				scale = 0.85f;
+				break;
+			default:
+				scale = 0.65f;
+				break;
 			}
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - guiWidth * scale) - 13 * scale, (screenHeight - guiHeight * scale) - 12 * scale, 0);
+			GL11.glTranslatef((screenWidth - guiWidth * scale) - 13 * scale,
+					(screenHeight - guiHeight * scale) - 12 * scale, 0);
 			GL11.glScalef(scale, scale, scale);
 			// BG
 			int v = 0;
@@ -60,7 +61,8 @@ public class GuiMP extends GuiScreen {
 			GL11.glPopMatrix();
 			GL11.glPushMatrix();
 
-			GL11.glTranslatef((screenWidth - noborderguiwidth * scale) + (barProg * scale) - 23 * scale, (screenHeight - guiHeight * scale) - 12 * scale, 0);
+			GL11.glTranslatef((screenWidth - noborderguiwidth * scale) + (barProg * scale) - 23 * scale,
+					(screenHeight - guiHeight * scale) - 12 * scale, 0);
 			GL11.glScalef(scale, scale, scale);
 			// FG
 			int v2 = 0;

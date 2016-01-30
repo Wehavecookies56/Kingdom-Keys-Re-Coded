@@ -59,7 +59,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public double mp, maxMp, dp, maxDP;
 
-	public int fireLevel = 1, blizzardLevel = 1, thunderLevel = 1, cureLevel = 1, gravityLevel = 1, aeroLevel = 1, stopLevel = 1;
+	public int fireLevel = 1, blizzardLevel = 1, thunderLevel = 1, cureLevel = 1, gravityLevel = 1, aeroLevel = 1,
+			stopLevel = 1;
 
 	public int valorLevel = 1, wisdomLevel = 1, limitLevel = 1, masterLevel = 1, finalLevel = 1;
 
@@ -71,7 +72,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public String actualDrive;
 
-	public ExtendedPlayer (EntityPlayer player) {
+	public ExtendedPlayer(EntityPlayer player) {
 		this.player = player;
 		this.munny = 0;
 		this.level = 1;
@@ -111,7 +112,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	@Override
-	public void saveNBTData (NBTTagCompound compound) {
+	public void saveNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
 		this.inventoryKeychain.writeToNBT(properties);
 		this.inventorySynthBag.writeToNBT(properties);
@@ -157,7 +158,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	@Override
-	public void loadNBTData (NBTTagCompound compound) {
+	public void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
 		this.inventoryKeychain.readFromNBT(properties);
 		this.inventorySynthBag.readFromNBT(properties);
@@ -166,17 +167,22 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.inventoryDrive.readFromNBT(properties);
 
 		ExtendedPlayer.spells.clear();
-		for (int i = 0; i < this.inventorySpells.getSizeInventory(); i++){
+		for (int i = 0; i < this.inventorySpells.getSizeInventory(); i++) {
 			if (this.inventorySpells.getStackInSlot(i) != null) {
-				ExtendedPlayer.spells.add(((ItemSpellOrb) this.inventorySpells.getStackInSlot(i).getItem()).getMagicName());
+				ExtendedPlayer.spells
+						.add(((ItemSpellOrb) this.inventorySpells.getStackInSlot(i).getItem()).getMagicName());
 			}
 		}
 		ExtendedPlayer.driveForms.clear();
 		for (int i = 0; i < this.inventoryDrive.getSizeInventory(); i++)
-			if (this.inventoryDrive.getStackInSlot(i) != null) ExtendedPlayer.driveForms.add(((ItemDriveForm) this.inventoryDrive.getStackInSlot(i).getItem()).getDriveFormName());
+			if (this.inventoryDrive.getStackInSlot(i) != null)
+				ExtendedPlayer.driveForms
+						.add(((ItemDriveForm) this.inventoryDrive.getStackInSlot(i).getItem()).getDriveFormName());
 		ExtendedPlayer.items.clear();
 		for (int i = 0; i < this.inventoryPotions.getSizeInventory(); i++)
-			if (this.inventoryPotions.getStackInSlot(i) != null) ExtendedPlayer.items.add(((ItemKKPotion) this.inventoryPotions.getStackInSlot(i).getItem()).getItemName());
+			if (this.inventoryPotions.getStackInSlot(i) != null)
+				ExtendedPlayer.items
+						.add(((ItemKKPotion) this.inventoryPotions.getStackInSlot(i).getItem()).getItemName());
 		this.munny = properties.getInteger("Munny");
 		this.level = properties.getInteger("Level");
 		this.experience = properties.getInteger("Experience");
@@ -213,9 +219,10 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	@Override
-	public void init (Entity entity, World world) {}
+	public void init(Entity entity, World world) {
+	}
 
-	public int getMagicLevel (String magic) {
+	public int getMagicLevel(String magic) {
 		int magicLevel = 0;
 		if (magic == "Fire")
 			magicLevel = this.fireLevel;
@@ -229,11 +236,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 			magicLevel = this.gravityLevel;
 		else if (magic == "Aero")
 			magicLevel = this.aeroLevel;
-		else if (magic == "Stop") magicLevel = this.stopLevel;
+		else if (magic == "Stop")
+			magicLevel = this.stopLevel;
 		return magicLevel;
 	}
 
-	public boolean setDriveLevel (String form, int level) {
+	public boolean setDriveLevel(String form, int level) {
 		if (form == "Valor")
 			this.valorLevel = level;
 		else if (form == "Wisdom")
@@ -242,12 +250,13 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 			this.limitLevel = level;
 		else if (form == "Master")
 			this.masterLevel = level;
-		else if (form == "Final") this.finalLevel = level;
+		else if (form == "Final")
+			this.finalLevel = level;
 		sync();
 		return true;
 	}
 
-	public int getDriveLevel (String form) {
+	public int getDriveLevel(String form) {
 		int formLevel = 0;
 		if (form == "Valor")
 			formLevel = this.valorLevel;
@@ -257,11 +266,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 			formLevel = this.limitLevel;
 		else if (form == "Master")
 			formLevel = this.masterLevel;
-		else if (form == "Final") formLevel = this.finalLevel;
+		else if (form == "Final")
+			formLevel = this.finalLevel;
 		return formLevel;
 	}
 
-	public boolean setMagicLevel (String magic, int level) {
+	public boolean setMagicLevel(String magic, int level) {
 		if (magic == "Fire")
 			this.fireLevel = level;
 		else if (magic == "Blizzard")
@@ -272,102 +282,109 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 			this.cureLevel = level;
 		else if (magic == "Aero")
 			this.aeroLevel = level;
-		else if (magic == "Stop") this.stopLevel = level;
+		else if (magic == "Stop")
+			this.stopLevel = level;
 		sync();
 		return true;
 	}
 
-	public boolean addStrength (int amount) {
+	public boolean addStrength(int amount) {
 		this.strength += amount;
 		sync();
 		PlayerLevel.messages.add("str");
-		if (!player.worldObj.isRemote) PacketDispatcher.sendTo(new SyncStatMessagesPacket("str"), (EntityPlayerMP) player);
+		if (!player.worldObj.isRemote)
+			PacketDispatcher.sendTo(new SyncStatMessagesPacket("str"), (EntityPlayerMP) player);
 		return true;
 	}
 
-	public int getStrength () {
+	public int getStrength() {
 		return this.strength;
 	}
 
-	public void setStrength (int strength) {
+	public void setStrength(int strength) {
 		this.strength = strength;
 		sync();
 	}
 
-	public boolean addDefense (int amount) {
+	public boolean addDefense(int amount) {
 		this.defense += amount;
 		sync();
 		PlayerLevel.messages.add("def");
-		if (!player.worldObj.isRemote) PacketDispatcher.sendTo(new SyncStatMessagesPacket("def"), (EntityPlayerMP) player);
+		if (!player.worldObj.isRemote)
+			PacketDispatcher.sendTo(new SyncStatMessagesPacket("def"), (EntityPlayerMP) player);
 		return true;
 	}
 
-	public int getDefense () {
+	public int getDefense() {
 		return this.defense;
 	}
 
-	public void setDefense (int defense) {
+	public void setDefense(int defense) {
 		this.defense = defense;
 		sync();
 	}
 
-	public boolean addMagic (int amount) {
+	public boolean addMagic(int amount) {
 		this.magic += amount;
 		sync();
 		PlayerLevel.messages.add("mag");
-		if (!player.worldObj.isRemote) PacketDispatcher.sendTo(new SyncStatMessagesPacket("mag"), (EntityPlayerMP) player);
+		if (!player.worldObj.isRemote)
+			PacketDispatcher.sendTo(new SyncStatMessagesPacket("mag"), (EntityPlayerMP) player);
 		return true;
 	}
 
-	public int getMagic () {
+	public int getMagic() {
 		return this.magic;
 	}
 
-	public void setMagic (int magic) {
+	public void setMagic(int magic) {
 		this.magic = magic;
 		sync();
 	}
 
-	public boolean addHP (int amount) {
+	public boolean addHP(int amount) {
 		this.hp += amount;
 		player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.hp + amount);
 		sync();
 		PlayerLevel.messages.add("hp");
-		if (!player.worldObj.isRemote) PacketDispatcher.sendTo(new SyncStatMessagesPacket("hp"), (EntityPlayerMP) player);
+		if (!player.worldObj.isRemote)
+			PacketDispatcher.sendTo(new SyncStatMessagesPacket("hp"), (EntityPlayerMP) player);
 		return true;
 	}
 
-	public int getHP () {
+	public int getHP() {
 		return this.hp;
 	}
 
-	public void setHP (int hp) {
+	public void setHP(int hp) {
 		this.hp = hp;
 		player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(hp);
 		sync();
 	}
 
-	public boolean getRecharge () {
+	public boolean getRecharge() {
 		return this.inRecharge;
 	}
 
-	public void setRecharge (boolean recharge) {
-		if (this.inRecharge == recharge) return;
+	public void setRecharge(boolean recharge) {
+		if (this.inRecharge == recharge)
+			return;
 		this.inRecharge = recharge;
 		sync();
 	}
 
-	public int getAntiPoints () {
+	public int getAntiPoints() {
 		return this.antiPoints;
 	}
 
-	public void setAntiPoints (int points) {
-		if (this.antiPoints == points) return;
+	public void setAntiPoints(int points) {
+		if (this.antiPoints == points)
+			return;
 		this.antiPoints = points;
 		sync();
 	}
 
-	public void addAntiPoints (int points) {
+	public void addAntiPoints(int points) {
 		if (this.antiPoints <= 100) {
 			this.antiPoints += points;
 			System.out.println(this.antiPoints);
@@ -375,7 +392,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 	}
 
-	public void removeAntiPoints (int points) {
+	public void removeAntiPoints(int points) {
 		if (this.antiPoints >= 0) {
 			if (this.antiPoints - points < 0)
 				this.antiPoints = 0;
@@ -385,59 +402,62 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 	}
 
-	public boolean getInDrive () {
+	public boolean getInDrive() {
 		return this.inDrive;
 	}
 
-	public void setDriveInUse (String drive) {
-		if (this.actualDrive.equals(drive)) return;
+	public void setDriveInUse(String drive) {
+		if (this.actualDrive.equals(drive))
+			return;
 		this.actualDrive = drive;
 		sync();
 	}
 
-	public String getDriveInUse () {
+	public String getDriveInUse() {
 		return this.actualDrive;
 	}
 
-	public void setInDrive (boolean inDrive) {
-		if (this.inDrive == inDrive) return;
+	public void setInDrive(boolean inDrive) {
+		if (this.inDrive == inDrive)
+			return;
 		this.inDrive = inDrive;
 		sync();
 	}
 
-	public double getDP () {
+	public double getDP() {
 		return this.dp;
 	}
 
-	public void setDP (double amount) {
-		if (amount == this.dp) return;
+	public void setDP(double amount) {
+		if (amount == this.dp)
+			return;
 		this.dp = amount;
 		sync();
 	}
 
-	public boolean isKeybladeSummoned () {
+	public boolean isKeybladeSummoned() {
 		return this.keybladeSummoned;
 	}
 
-	public void setKeybladeSummoned (boolean summoned) {
+	public void setKeybladeSummoned(boolean summoned) {
 		this.keybladeSummoned = summoned;
 		sync();
 	}
 
-	public boolean hasFirstKeyblade () {
+	public boolean hasFirstKeyblade() {
 		return this.firstKeyblade;
 	}
 
-	public void setFirstKeyblade (boolean first) {
+	public void setFirstKeyblade(boolean first) {
 		this.firstKeyblade = first;
 		sync();
 	}
 
-	public int getLevel () {
+	public int getLevel() {
 		return level;
 	}
 
-	public void levelUp () {
+	public void levelUp() {
 		this.level++;
 		sync();
 		if (!player.worldObj.isRemote) {
@@ -446,7 +466,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 	}
 
-	public void levelUp (int level) {
+	public void levelUp(int level) {
 		this.level = level;
 		sync();
 		if (!player.worldObj.isRemote) {
@@ -455,7 +475,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 	}
 
-	public void levelUp (int level, boolean command) {
+	public void levelUp(int level, boolean command) {
 		// STUFF FOR COMMAND
 		this.level = level;
 		sync();
@@ -465,7 +485,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 	}
 
-	public int getMaxLevel () {
+	public int getMaxLevel() {
 		return maxLevel;
 	}
 
@@ -474,7 +494,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	 * this.sync(); }
 	 */
 
-	public boolean addXP (int amount) {
+	public boolean addXP(int amount) {
 		boolean sufficient = true;
 		setMaxExperience(999999);
 		if (amount + this.experience > this.maxExperience || amount > this.maxExperience) {
@@ -490,53 +510,56 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 		} else
 			return false;
-		if (!player.worldObj.isRemote) PacketDispatcher.sendTo(new ShowOverlayPacket("exp"), (EntityPlayerMP) player);
+		if (!player.worldObj.isRemote)
+			PacketDispatcher.sendTo(new ShowOverlayPacket("exp"), (EntityPlayerMP) player);
 
 		return true;
 	}
 
-	public int getXP () {
+	public int getXP() {
 		return experience;
 	}
 
-	public void setXP (int experience) {
+	public void setXP(int experience) {
 		this.experience = experience;
 		sync();
 		PlayerLevel.LevelUp(player);
 	}
 
-	public int getMaxExperience () {
+	public int getMaxExperience() {
 		return maxExperience;
 	}
 
-	public void setMaxExperience (int maxExperience) {
+	public void setMaxExperience(int maxExperience) {
 		this.maxExperience = maxExperience;
 		sync();
 	}
 
-	public double getMp () {
+	public double getMp() {
 		return mp;
 	}
 
-	public void setMp (double mp) {
-		if (this.mp == mp) return;
+	public void setMp(double mp) {
+		if (this.mp == mp)
+			return;
 		this.mp = mp;
 		sync();
 	}
 
-	public double getMaxMp () {
+	public double getMaxMp() {
 		return maxMp;
 	}
 
-	public void setMaxMp (double maxMp) {
+	public void setMaxMp(double maxMp) {
 		this.maxMp = maxMp;
 		sync();
 	}
 
-	public boolean addMaxMp (double amount) {
+	public boolean addMaxMp(double amount) {
 		boolean sufficient = true;
 
-		if (amount + this.maxMp > this.maxMp || amount > this.maxMp) sufficient = false;
+		if (amount + this.maxMp > this.maxMp || amount > this.maxMp)
+			sufficient = false;
 
 		if (sufficient) {
 			this.maxMp += amount;
@@ -546,24 +569,27 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public boolean addMunny (int amount) {
+	public boolean addMunny(int amount) {
 		boolean sufficient = true;
 
-		if (amount + this.munny > this.maxMunny || amount > this.maxMunny) sufficient = false;
+		if (amount + this.munny > this.maxMunny || amount > this.maxMunny)
+			sufficient = false;
 
 		if (sufficient) {
 			this.munny += amount;
 			sync();
 		} else
 			return false;
-		if (!player.worldObj.isRemote) PacketDispatcher.sendTo(new ShowOverlayPacket("munny", amount), (EntityPlayerMP) player);
+		if (!player.worldObj.isRemote)
+			PacketDispatcher.sendTo(new ShowOverlayPacket("munny", amount), (EntityPlayerMP) player);
 		return true;
 	}
 
-	public boolean addDP (double amount) {
+	public boolean addDP(double amount) {
 		boolean sufficient = true;
 
-		if (amount + this.dp > this.maxDP || amount > this.maxDP) sufficient = false;
+		if (amount + this.dp > this.maxDP || amount > this.maxDP)
+			sufficient = false;
 
 		if (sufficient) {
 			this.dp += amount;
@@ -576,7 +602,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public boolean addMp (double amount) {
+	public boolean addMp(double amount) {
 		boolean sufficient = true;
 
 		if (amount + this.mp > this.maxMp || amount > this.maxMp) {
@@ -593,7 +619,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public boolean removeMp (double amount) {
+	public boolean removeMp(double amount) {
 		boolean sufficient = true;
 
 		if (this.mp - amount < 0 || amount > this.mp) {
@@ -609,7 +635,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public boolean removeDP (double amount) {
+	public boolean removeDP(double amount) {
 		boolean sufficient = true;
 
 		if (this.maxDP - amount < 0 || amount > this.maxDP) {
@@ -625,10 +651,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public boolean removeMunny (int amount) {
+	public boolean removeMunny(int amount) {
 		boolean sufficient = true;
 
-		if (amount - this.maxMunny < 0 || amount > this.maxMunny) sufficient = false;
+		if (amount - this.maxMunny < 0 || amount > this.maxMunny)
+			sufficient = false;
 		if (sufficient) {
 			this.munny -= amount;
 			sync();
@@ -637,32 +664,33 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		return true;
 	}
 
-	public int getMunny () {
+	public int getMunny() {
 		return this.munny;
 	}
 
-	public void setMunny (int amount) {
+	public void setMunny(int amount) {
 		this.munny = amount;
 		sync();
 	}
 
-	public void setMaxMunny (int max) {
+	public void setMaxMunny(int max) {
 		this.maxMunny = max;
 		sync();
 	}
 
-	public int getMaxMunny () {
+	public int getMaxMunny() {
 		return this.maxMunny;
 	}
 
-	public void setCheatMode (boolean bool) {
+	public void setCheatMode(boolean bool) {
 		this.cheatMode = bool;
 		sync();
 	}
 
-	public final void sync () {
+	public final void sync() {
 		SyncExtendedPlayer packet = new SyncExtendedPlayer(player);
-		if (player.worldObj.isRemote) PacketDispatcher.sendToServer(packet);
+		if (player.worldObj.isRemote)
+			PacketDispatcher.sendToServer(packet);
 
 		if (!player.worldObj.isRemote) {
 			EntityPlayerMP player1 = (EntityPlayerMP) player;
@@ -670,11 +698,11 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 	}
 
-	private static String getSaveKey (EntityPlayer player) {
+	private static String getSaveKey(EntityPlayer player) {
 		return player.getDisplayName() + ":" + EXT_PROP_NAME;
 	}
 
-	public static void saveProxyData (EntityPlayer player) {
+	public static void saveProxyData(EntityPlayer player) {
 		ExtendedPlayer playerData = ExtendedPlayer.get(player);
 		NBTTagCompound SavedData = new NBTTagCompound();
 
@@ -682,24 +710,26 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		CommonProxy.storeEntityData(getSaveKey(player), SavedData);
 	}
 
-	public static void loadProxyData (EntityPlayer player) {
+	public static void loadProxyData(EntityPlayer player) {
 		ExtendedPlayer playerData = ExtendedPlayer.get(player);
 		NBTTagCompound savedData = CommonProxy.getEntityData(getSaveKey(player));
 
-		if (savedData != null) playerData.loadNBTData(savedData);
+		if (savedData != null)
+			playerData.loadNBTData(savedData);
 		playerData.sync();
 	}
 
-	public static final void register (EntityPlayer player) {
+	public static final void register(EntityPlayer player) {
 		player.registerExtendedProperties(EXT_PROP_NAME, new ExtendedPlayer(player));
 	}
 
-	public static final ExtendedPlayer get (EntityPlayer player) {
+	public static final ExtendedPlayer get(EntityPlayer player) {
 		return (ExtendedPlayer) player.getExtendedProperties(EXT_PROP_NAME);
 	}
 
-	public void learnDriveForm (DriveForm driveForm) {
+	public void learnDriveForm(DriveForm driveForm) {
 		driveForms.add(driveForm.getName());
-		if (player instanceof EntityPlayerMP) sync();
+		if (player instanceof EntityPlayerMP)
+			sync();
 	}
 }

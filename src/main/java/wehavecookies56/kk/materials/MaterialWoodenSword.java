@@ -9,23 +9,23 @@ public class MaterialWoodenSword extends Material {
 
 	String name;
 
-	public MaterialWoodenSword (String name) {
+	public MaterialWoodenSword(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem () {
+	public ItemStack getItem() {
 		ItemStack stack = new ItemStack(Items.wooden_sword);
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture () {
+	public ResourceLocation getTexture() {
 		return null;
 	}
 

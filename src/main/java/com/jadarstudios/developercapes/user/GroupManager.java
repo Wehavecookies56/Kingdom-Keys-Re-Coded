@@ -25,16 +25,17 @@ public class GroupManager {
 
 	private HashMap<String, Group> groups;
 
-	public GroupManager () {
+	public GroupManager() {
 		this.groups = new HashMap<String, Group>();
 	}
 
-	public static GroupManager getInstance () {
-		if (instance == null) instance = new GroupManager();
+	public static GroupManager getInstance() {
+		if (instance == null)
+			instance = new GroupManager();
 		return instance;
 	}
 
-	public void addGroup (Group group) {
+	public void addGroup(Group group) {
 		groups.put(group.name, group);
 
 		try {
@@ -45,29 +46,31 @@ public class GroupManager {
 		}
 	}
 
-	public void addGroups (Collection<Group> groups) {
+	public void addGroups(Collection<Group> groups) {
 		for (Group g : groups)
 			GroupManager.getInstance().addGroup(g);
 	}
 
-	public Group getGroup (String capeName) {
+	public Group getGroup(String capeName) {
 		return groups.get(capeName);
 	}
 
-	public Group newGroup (String name) {
-		if (getGroup(name) != null) return getGroup(name);
+	public Group newGroup(String name) {
+		if (getGroup(name) != null)
+			return getGroup(name);
 		Group group = new Group(name);
 		return group;
 	}
 
-	public Group parse (String name, Map<String, Object> data) {
+	public Group parse(String name, Map<String, Object> data) {
 		Group group = new Group(name);
 
 		Object usersObj = data.get("users");
 		Object capeUrlObj = data.get("capeUrl");
 
 		if (!(usersObj instanceof ArrayList) || !(capeUrlObj instanceof String)) {
-			DevCapes.logger.error(String.format("Group %s could not be parsed because it either is invalid or missing elements.", name));
+			DevCapes.logger.error(String
+					.format("Group %s could not be parsed because it either is invalid or missing elements.", name));
 			return null;
 		}
 
@@ -78,7 +81,8 @@ public class GroupManager {
 
 		for (Object obj : users) {
 			User user = UserManager.getInstance().parse((String) obj, group.cape);
-			if (user != null) group.addUser(user);
+			if (user != null)
+				group.addUser(user);
 		}
 		return group;
 	}

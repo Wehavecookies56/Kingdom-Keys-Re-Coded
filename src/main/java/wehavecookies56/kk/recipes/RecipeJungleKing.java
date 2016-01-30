@@ -14,22 +14,22 @@ public class RecipeJungleKing extends Recipe {
 
 	public String name;
 
-	public RecipeJungleKing (String name) {
+	public RecipeJungleKing(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public Item getResult () {
+	public Item getResult() {
 		return ModItems.Chain_JungleKing;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements () {
+	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_DenseShard), 3);
 		reqs.put(MaterialRegistry.get(Strings.SM_EnergyGem), 3);

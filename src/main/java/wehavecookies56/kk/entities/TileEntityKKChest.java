@@ -17,19 +17,20 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 	private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];
 
 	@Override
-	public int getSizeInventory () {
+	public int getSizeInventory() {
 		return itemStacks.length;
 	}
 
 	@Override
-	public ItemStack getStackInSlot (int slotIndex) {
+	public ItemStack getStackInSlot(int slotIndex) {
 		return itemStacks[slotIndex];
 	}
 
 	@Override
-	public ItemStack decrStackSize (int slotIndex, int count) {
+	public ItemStack decrStackSize(int slotIndex, int count) {
 		ItemStack itemStackInSlot = getStackInSlot(slotIndex);
-		if (itemStackInSlot == null) return null;
+		if (itemStackInSlot == null)
+			return null;
 
 		ItemStack itemStackRemoved;
 		if (itemStackInSlot.stackSize <= count) {
@@ -37,41 +38,45 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 			setInventorySlotContents(slotIndex, null);
 		} else {
 			itemStackRemoved = itemStackInSlot.splitStack(count);
-			if (itemStackInSlot.stackSize == 0) setInventorySlotContents(slotIndex, null);
+			if (itemStackInSlot.stackSize == 0)
+				setInventorySlotContents(slotIndex, null);
 		}
 		markDirty();
 		return itemStackRemoved;
 	}
 
 	@Override
-	public void setInventorySlotContents (int slotIndex, ItemStack itemstack) {
+	public void setInventorySlotContents(int slotIndex, ItemStack itemstack) {
 		itemStacks[slotIndex] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) itemstack.stackSize = getInventoryStackLimit();
+		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit())
+			itemstack.stackSize = getInventoryStackLimit();
 		markDirty();
 	}
 
 	@Override
-	public int getInventoryStackLimit () {
+	public int getInventoryStackLimit() {
 		return 64;
 	}
 
 	@Override
-	public boolean isUseableByPlayer (EntityPlayer player) {
-		if (this.worldObj.getTileEntity(this.pos) != this) return false;
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		if (this.worldObj.getTileEntity(this.pos) != this)
+			return false;
 		final double X_CENTRE_OFFSET = 0.5;
 		final double Y_CENTRE_OFFSET = 0.5;
 		final double Z_CENTRE_OFFSET = 0.5;
 		final double MAXIMUM_DISTANCE_SQ = 8.0 * 8.0;
-		return player.getDistanceSq(pos.getX() + X_CENTRE_OFFSET, pos.getY() + Y_CENTRE_OFFSET, pos.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DISTANCE_SQ;
+		return player.getDistanceSq(pos.getX() + X_CENTRE_OFFSET, pos.getY() + Y_CENTRE_OFFSET,
+				pos.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DISTANCE_SQ;
 	}
 
 	@Override
-	public boolean isItemValidForSlot (int slotIndex, ItemStack itemstack) {
+	public boolean isItemValidForSlot(int slotIndex, ItemStack itemstack) {
 		return true;
 	}
 
 	@Override
-	public void writeToNBT (NBTTagCompound parentNBTTagCompound) {
+	public void writeToNBT(NBTTagCompound parentNBTTagCompound) {
 		super.writeToNBT(parentNBTTagCompound);
 
 		NBTTagList dataForAllSlots = new NBTTagList();
@@ -86,7 +91,7 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public void readFromNBT (NBTTagCompound parentNBTTagCompound) {
+	public void readFromNBT(NBTTagCompound parentNBTTagCompound) {
 		super.readFromNBT(parentNBTTagCompound);
 		final byte NBT_TYPE_COMPOUND = 10;
 		NBTTagList dataForAllSlots = parentNBTTagCompound.getTagList("Items", NBT_TYPE_COMPOUND);
@@ -96,53 +101,59 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 			NBTTagCompound dataForOneSlot = dataForAllSlots.getCompoundTagAt(i);
 			int slotIndex = dataForOneSlot.getByte("Slot") & 255;
 
-			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) this.itemStacks[slotIndex] = ItemStack.loadItemStackFromNBT(dataForOneSlot);
+			if (slotIndex >= 0 && slotIndex < this.itemStacks.length)
+				this.itemStacks[slotIndex] = ItemStack.loadItemStackFromNBT(dataForOneSlot);
 		}
 	}
 
 	@Override
-	public void clear () {
+	public void clear() {
 		Arrays.fill(itemStacks, null);
 	}
 
 	@Override
-	public boolean hasCustomName () {
+	public boolean hasCustomName() {
 		return false;
 	}
 
 	@Override
-	public IChatComponent getDisplayName () {
-		return hasCustomName() ? new ChatComponentText(getCommandSenderName()) : new ChatComponentTranslation(getCommandSenderName(), new Object[0]);
+	public IChatComponent getDisplayName() {
+		return hasCustomName() ? new ChatComponentText(getCommandSenderName())
+				: new ChatComponentTranslation(getCommandSenderName(), new Object[0]);
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing (int slotIndex) {
+	public ItemStack getStackInSlotOnClosing(int slotIndex) {
 		ItemStack itemStack = getStackInSlot(slotIndex);
-		if (itemStack != null) setInventorySlotContents(slotIndex, null);
+		if (itemStack != null)
+			setInventorySlotContents(slotIndex, null);
 		return itemStack;
 	}
 
 	@Override
-	public void openInventory (EntityPlayer player) {}
+	public void openInventory(EntityPlayer player) {
+	}
 
 	@Override
-	public void closeInventory (EntityPlayer player) {}
+	public void closeInventory(EntityPlayer player) {
+	}
 
 	@Override
-	public int getField (int id) {
+	public int getField(int id) {
 		return 0;
 	}
 
 	@Override
-	public void setField (int id, int value) {}
+	public void setField(int id, int value) {
+	}
 
 	@Override
-	public int getFieldCount () {
+	public int getFieldCount() {
 		return 0;
 	}
 
 	@Override
-	public String getCommandSenderName () {
+	public String getCommandSenderName() {
 		return "container.kk.kkchest";
 	}
 }

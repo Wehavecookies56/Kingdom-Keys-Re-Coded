@@ -13,29 +13,31 @@ import wehavecookies56.kk.lib.Reference;
 
 public class ItemVentusArmor extends ItemArmor implements ISpecialArmor {
 
-	public ItemVentusArmor (ArmorMaterial material, int renderIndex, int armorType, String name) {
+	public ItemVentusArmor(ArmorMaterial material, int renderIndex, int armorType, String name) {
 		super(material, renderIndex, armorType);
 		setUnlocalizedName(name);
 	}
 
 	@Override
-	public ArmorProperties getProperties (EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
-		if (source == DamageSource.inFire || source == DamageSource.lava || source == DamageSource.onFire) return new ArmorProperties(1, 1, MathHelper.floor_double(damage * .25D));
+	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage,
+			int slot) {
+		if (source == DamageSource.inFire || source == DamageSource.lava || source == DamageSource.onFire)
+			return new ArmorProperties(1, 1, MathHelper.floor_double(damage * .25D));
 		return new ArmorProperties(0, 0, 0);
 	}
 
 	@Override
-	public int getArmorDisplay (EntityPlayer player, ItemStack armor, int slot) {
+	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
 		return 4;
 	}
 
 	@Override
-	public void damageArmor (EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
+	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
 		stack.damageItem(damage * 2, entity);
 	}
 
 	@Override
-	public String getArmorTexture (ItemStack armor, Entity entity, int slot, String type) {
+	public String getArmorTexture(ItemStack armor, Entity entity, int slot, String type) {
 		if (armor.getItem() == ModItems.Ventus_Leggings)
 			return Reference.MODID + ":textures/armour/ventus_2.png";
 		else
@@ -43,12 +45,12 @@ public class ItemVentusArmor extends ItemArmor implements ISpecialArmor {
 	}
 
 	@Override
-	public CreativeTabs[] getCreativeTabs () {
+	public CreativeTabs[] getCreativeTabs() {
 		return new CreativeTabs[] { ModItems.tabKingdomKeys };
 	}
 
 	@Override
-	public boolean getIsRepairable (ItemStack armor, ItemStack stack) {
+	public boolean getIsRepairable(ItemStack armor, ItemStack stack) {
 		return stack.getItem() == ModItems.DarkLeather;
 	}
 

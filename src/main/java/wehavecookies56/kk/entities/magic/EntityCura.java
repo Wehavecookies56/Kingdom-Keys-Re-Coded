@@ -13,11 +13,11 @@ public class EntityCura extends Entity {
 
 	EntityPlayer player;
 
-	public EntityCura (World world) {
+	public EntityCura(World world) {
 		super(world);
 	}
 
-	public EntityCura (World world, EntityPlayer sender, double x, double y, double z) {
+	public EntityCura(World world, EntityPlayer sender, double x, double y, double z) {
 		super(world);
 		this.posX = x;
 		this.posY = y;
@@ -26,16 +26,24 @@ public class EntityCura extends Entity {
 	}
 
 	@Override
-	public void onUpdate () {
-		if (player == null) return;
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnCureParticles(this, 2), player, 64.0D);
-		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.5, this.posZ, 0.0D, 1.0D, 0.0D);
-		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.8, this.posZ, 0.0D, 1.0D, 0.0D);
-		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.2, this.posZ, 0.0D, 1.0D, 0.0D);
-		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + 0.3, this.posY + 2.5, this.posZ, 0.0D, 1.0D, 0.0D);
-		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX - 0.3, this.posY + 2.5, this.posZ, 0.0D, 1.0D, 0.0D);
+	public void onUpdate() {
+		if (player == null)
+			return;
+		if (!worldObj.isRemote)
+			PacketDispatcher.sendToAllAround(new SpawnCureParticles(this, 2), player, 64.0D);
+		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.5, this.posZ, 0.0D, 1.0D,
+				0.0D);
+		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.8, this.posZ, 0.0D, 1.0D,
+				0.0D);
+		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.2, this.posZ, 0.0D, 1.0D,
+				0.0D);
+		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + 0.3, this.posY + 2.5, this.posZ, 0.0D,
+				1.0D, 0.0D);
+		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX - 0.3, this.posY + 2.5, this.posZ, 0.0D,
+				1.0D, 0.0D);
 
-		if (ticksExisted > 10) setDead();
+		if (ticksExisted > 10)
+			setDead();
 
 		if (ticksExisted < 10)
 			player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0D);
@@ -45,17 +53,17 @@ public class EntityCura extends Entity {
 	}
 
 	@Override
-	protected void entityInit () {
+	protected void entityInit() {
 
 	}
 
 	@Override
-	protected void readEntityFromNBT (NBTTagCompound tagCompund) {
+	protected void readEntityFromNBT(NBTTagCompound tagCompund) {
 
 	}
 
 	@Override
-	protected void writeEntityToNBT (NBTTagCompound tagCompound) {
+	protected void writeEntityToNBT(NBTTagCompound tagCompound) {
 
 	}
 }

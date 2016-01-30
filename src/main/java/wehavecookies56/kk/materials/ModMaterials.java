@@ -9,7 +9,7 @@ import wehavecookies56.kk.lib.Strings;
 
 public class ModMaterials {
 
-	public static void init () {
+	public static void init() {
 		registerMaterial(new MaterialBlazingShard(Strings.SM_BlazingShard));
 		registerMaterial(new MaterialBlazingStone(Strings.SM_BlazingStone));
 		registerMaterial(new MaterialBlazingGem(Strings.SM_BlazingGem));

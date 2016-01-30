@@ -14,22 +14,22 @@ public class RecipePumpkinhead extends Recipe {
 
 	public String name;
 
-	public RecipePumpkinhead (String name) {
+	public RecipePumpkinhead(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public Item getResult () {
+	public Item getResult() {
 		return ModItems.Chain_Pumpkinhead;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements () {
+	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_DarkCrystal), 2);
 		reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 3);

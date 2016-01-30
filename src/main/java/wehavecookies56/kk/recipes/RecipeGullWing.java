@@ -14,22 +14,22 @@ public class RecipeGullWing extends Recipe {
 
 	public String name;
 
-	public RecipeGullWing (String name) {
+	public RecipeGullWing(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public Item getResult () {
+	public Item getResult() {
 		return ModItems.Chain_GullWing;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements () {
+	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_PowerShard), 5);
 		reqs.put(MaterialRegistry.get(Strings.SM_BlazingGem), 2);

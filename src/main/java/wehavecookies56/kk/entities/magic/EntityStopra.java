@@ -18,11 +18,11 @@ public class EntityStopra extends Entity {
 
 	EntityPlayer player;
 
-	public EntityStopra (World world) {
+	public EntityStopra(World world) {
 		super(world);
 	}
 
-	public EntityStopra (World world, EntityPlayer sender, double x, double y, double z) {
+	public EntityStopra(World world, EntityPlayer sender, double x, double y, double z) {
 		super(world);
 		this.posX = x;
 		this.posY = y;
@@ -31,10 +31,12 @@ public class EntityStopra extends Entity {
 	}
 
 	@Override
-	public void onUpdate () {
-		if (player == null) return;
+	public void onUpdate() {
+		if (player == null)
+			return;
 		int rotation = 0;
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnStopParticles(this, 2), player, 64.0D);
+		if (!worldObj.isRemote)
+			PacketDispatcher.sendToAllAround(new SpawnStopParticles(this, 2), player, 64.0D);
 		double r = 2.0D;
 
 		for (int a = 1; a <= 360; a += 15) {
@@ -47,7 +49,8 @@ public class EntityStopra extends Entity {
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
-		if (ticksExisted > 120) setDead();
+		if (ticksExisted > 120)
+			setDead();
 
 		if (ticksExisted < 10)
 			player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0D);
@@ -58,35 +61,37 @@ public class EntityStopra extends Entity {
 		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		// TODO CHECK FOR ENTITIES AND DAMAGE THEM
-		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
-			Entity e = (Entity) list.get(i);
-			if (e instanceof EntityLiving) {
-				if (ticksExisted < 120) ((EntityLivingBase) e).setVelocity(0, 0, 0);
-				System.out.println(e);
+		if (!list.isEmpty())
+			for (int i = 0; i < list.size(); i++) {
+				Entity e = (Entity) list.get(i);
+				if (e instanceof EntityLiving) {
+					if (ticksExisted < 120)
+						((EntityLivingBase) e).setVelocity(0, 0, 0);
+					System.out.println(e);
+				}
 			}
-		}
 		aabb.contract(2, 2, 2);
 
 		super.onUpdate();
 	}
 
 	@Override
-	protected void entityInit () {
+	protected void entityInit() {
 
 	}
 
 	@Override
-	protected void readEntityFromNBT (NBTTagCompound tagCompund) {
+	protected void readEntityFromNBT(NBTTagCompound tagCompund) {
 
 	}
 
 	@Override
-	protected void writeEntityToNBT (NBTTagCompound tagCompound) {
+	protected void writeEntityToNBT(NBTTagCompound tagCompound) {
 
 	}
 
 	@Override
-	public AxisAlignedBB getEntityBoundingBox () {
+	public AxisAlignedBB getEntityBoundingBox() {
 
 		return new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
 	}

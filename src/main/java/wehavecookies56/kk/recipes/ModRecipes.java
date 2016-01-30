@@ -6,7 +6,7 @@ import wehavecookies56.kk.item.ModItems;
 
 public class ModRecipes {
 
-	public static void init () {
+	public static void init() {
 		registerRecipe(new RecipeAbaddonPlasma(ModItems.AbaddonPlasma.getUnlocalizedName()));
 		registerRecipe(new RecipeAbyssalTide(ModItems.AbyssalTide.getUnlocalizedName()));
 		registerRecipe(new RecipeAllforOne(ModItems.AllforOne.getUnlocalizedName()));
@@ -56,7 +56,8 @@ public class ModRecipes {
 		registerRecipe(new RecipeKnockoutPunch(ModItems.KnockoutPunch.getUnlocalizedName()));
 		registerRecipe(new RecipeLadyLuck(ModItems.LadyLuck.getUnlocalizedName()));
 		registerRecipe(new RecipeLeasKeyblade(ModItems.LeasKeyblade.getUnlocalizedName()));
-		registerRecipe(new RecipeLeopardosForetellersKeyblade(ModItems.LeopardosForetellersKeyblade.getUnlocalizedName()));
+		registerRecipe(
+				new RecipeLeopardosForetellersKeyblade(ModItems.LeopardosForetellersKeyblade.getUnlocalizedName()));
 		registerRecipe(new RecipeLeviathan(ModItems.Leviathan.getUnlocalizedName()));
 		registerRecipe(new RecipeLionheart(ModItems.Lionheart.getUnlocalizedName()));
 		registerRecipe(new RecipeLostMemory(ModItems.LostMemory.getUnlocalizedName()));
@@ -113,7 +114,8 @@ public class ModRecipes {
 		registerRecipe(new RecipeUltimaWeaponDDD(ModItems.UltimaWeaponDDD.getUnlocalizedName()));
 		registerRecipe(new RecipeUmbrella(ModItems.Umbrella.getUnlocalizedName()));
 		registerRecipe(new RecipeUnbound(ModItems.Unbound.getUnlocalizedName()));
-		registerRecipe(new RecipeUnicornisForetellersKeyblade(ModItems.UnicornisForetellersKeyblade.getUnlocalizedName()));
+		registerRecipe(
+				new RecipeUnicornisForetellersKeyblade(ModItems.UnicornisForetellersKeyblade.getUnlocalizedName()));
 		registerRecipe(new RecipeUrsusForetellersKeyblade(ModItems.UrsusForetellersKeyblade.getUnlocalizedName()));
 		registerRecipe(new RecipeVictoryLine(ModItems.VictoryLine.getUnlocalizedName()));
 		registerRecipe(new RecipeVoidGear(ModItems.VoidGear.getUnlocalizedName()));

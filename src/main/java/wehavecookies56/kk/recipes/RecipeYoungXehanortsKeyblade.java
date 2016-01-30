@@ -14,22 +14,22 @@ public class RecipeYoungXehanortsKeyblade extends Recipe {
 
 	public String name;
 
-	public RecipeYoungXehanortsKeyblade (String name) {
+	public RecipeYoungXehanortsKeyblade(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public Item getResult () {
+	public Item getResult() {
 		return ModItems.Chain_YoungXehanortsKeyblade;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements () {
+	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_DarkCrystal), 10);
 		reqs.put(MaterialRegistry.get(Strings.SM_FrostShard), 5);

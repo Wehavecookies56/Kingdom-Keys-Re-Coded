@@ -9,23 +9,23 @@ public class MaterialNightmaresEnd extends Material {
 
 	String name;
 
-	public MaterialNightmaresEnd (String name) {
+	public MaterialNightmaresEnd(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem () {
+	public ItemStack getItem() {
 		ItemStack stack = new ItemStack(ModItems.Chain_NightmaresEnd);
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture () {
+	public ResourceLocation getTexture() {
 		return null;
 	}
 

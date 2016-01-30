@@ -13,19 +13,19 @@ public class ItemIceCream extends ItemFood {
 
 	int win;
 
-	public ItemIceCream (int food, boolean wolf) {
+	public ItemIceCream(int food, boolean wolf) {
 		super(food, wolf);
 		setUnlocalizedName(Strings.Potion);
 		setAlwaysEdible();
 	}
 
 	@Override
-	public EnumAction getItemUseAction (ItemStack p_77661_1_) {
+	public EnumAction getItemUseAction(ItemStack p_77661_1_) {
 		return EnumAction.EAT;
 	}
 
 	@Override
-	public void onFoodEaten (ItemStack item, World world, EntityPlayer player) {
+	public void onFoodEaten(ItemStack item, World world, EntityPlayer player) {
 		if (!player.capabilities.isCreativeMode && world.isRemote) {
 			win = EventHandler.randomWithRange(0, 20);
 			System.out.println("Winner: " + win);

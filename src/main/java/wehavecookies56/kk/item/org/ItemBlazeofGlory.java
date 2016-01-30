@@ -14,19 +14,19 @@ import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 public class ItemBlazeofGlory extends ItemSword {
 	int strength;
 
-	public ItemBlazeofGlory (ToolMaterial material) {
+	public ItemBlazeofGlory(ToolMaterial material) {
 		super(material);
 		setMaxStackSize(1);
 	}
 
 	@Override
-	@SideOnly (Side.CLIENT)
-	public EnumRarity getRarity (ItemStack par1ItemStack) {
+	@SideOnly(Side.CLIENT)
+	public EnumRarity getRarity(ItemStack par1ItemStack) {
 		return EnumRarity.UNCOMMON;
 	}
 
 	@Override
-	public void onPlayerStoppedUsing (ItemStack stack, World world, EntityPlayer player, int timeLeft) {
+	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int timeLeft) {
 		this.strength = timeLeft;
 		if (!player.isSneaking()) {
 			// TODO set strength
@@ -39,14 +39,14 @@ public class ItemBlazeofGlory extends ItemSword {
 	}
 
 	@Override
-	public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		player.setItemInUse(stack, getMaxItemUseDuration(stack));
 		return stack;
 	}
 
 	@Override
-	@SideOnly (Side.CLIENT)
-	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
 		dataList.add("VIII Axel");
 	}
 }

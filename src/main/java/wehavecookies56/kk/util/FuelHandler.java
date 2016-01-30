@@ -10,8 +10,9 @@ public class FuelHandler implements IFuelHandler {
 	int ticksPerSecond = 20;
 
 	@Override
-	public int getBurnTime (ItemStack fuel) {
-		if (fuel.getItem() == ModItems.BlazingInfusedCoal) return burnTimeInSeconds * ticksPerSecond;
+	public int getBurnTime(ItemStack fuel) {
+		if (fuel.getItem() == ModItems.BlazingInfusedCoal)
+			return burnTimeInSeconds * ticksPerSecond;
 		return 0;
 	}
 

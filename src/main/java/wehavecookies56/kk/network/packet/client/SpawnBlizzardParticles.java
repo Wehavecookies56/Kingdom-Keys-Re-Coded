@@ -14,9 +14,10 @@ public class SpawnBlizzardParticles extends AbstractClientMessage<SpawnBlizzardP
 	double x, y, z;
 	int lvl;
 
-	public SpawnBlizzardParticles () {}
+	public SpawnBlizzardParticles() {
+	}
 
-	public SpawnBlizzardParticles (Entity entity, int level) {
+	public SpawnBlizzardParticles(Entity entity, int level) {
 		x = entity.posX;
 		y = entity.posY;
 		z = entity.posZ;
@@ -24,7 +25,7 @@ public class SpawnBlizzardParticles extends AbstractClientMessage<SpawnBlizzardP
 	}
 
 	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
+	protected void read(PacketBuffer buffer) throws IOException {
 		x = buffer.readDouble();
 		y = buffer.readDouble();
 		z = buffer.readDouble();
@@ -32,7 +33,7 @@ public class SpawnBlizzardParticles extends AbstractClientMessage<SpawnBlizzardP
 	}
 
 	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
+	protected void write(PacketBuffer buffer) throws IOException {
 		buffer.writeDouble(x);
 		buffer.writeDouble(y);
 		buffer.writeDouble(z);
@@ -40,20 +41,20 @@ public class SpawnBlizzardParticles extends AbstractClientMessage<SpawnBlizzardP
 	}
 
 	@Override
-	public void process (EntityPlayer player, Side side) {
+	public void process(EntityPlayer player, Side side) {
 		switch (this.lvl) {
-			case 1:
-				player.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
-				break;
-			case 2:
-				player.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
-				break;
-			case 3:
-				player.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
-				break;
+		case 1:
+			player.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+			player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+			break;
+		case 2:
+			player.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+			player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+			break;
+		case 3:
+			player.worldObj.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+			player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+			break;
 		}
 	}
 }

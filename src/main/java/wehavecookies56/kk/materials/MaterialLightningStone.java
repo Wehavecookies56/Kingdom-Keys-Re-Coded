@@ -12,24 +12,24 @@ public class MaterialLightningStone extends Material {
 
 	String name;
 
-	public MaterialLightningStone (String name) {
+	public MaterialLightningStone(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem () {
+	public ItemStack getItem() {
 		ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
 		ItemStacks.createSynthesisItem(stack, Strings.SM_LightningStone, "B");
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture () {
+	public ResourceLocation getTexture() {
 		return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/lightningstone.png");
 	}
 

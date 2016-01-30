@@ -20,8 +20,9 @@ public class GuiHP extends GuiScreen {
 	int guiHeight = 10;
 	int noborderguiwidth = 171;
 
-	public void drawHPBarBack (int posX, int posY, int width, float scale) {
-		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
+	public void drawHPBarBack(int posX, int posY, int width, float scale) {
+		Minecraft.getMinecraft().renderEngine
+				.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
 		GL11.glPushMatrix();
 		{
 			GL11.glPushMatrix();
@@ -52,8 +53,9 @@ public class GuiHP extends GuiScreen {
 
 	}
 
-	public void drawHPBarTop (int posX, int posY, int width, float scale) {
-		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
+	public void drawHPBarTop(int posX, int posY, int width, float scale) {
+		Minecraft.getMinecraft().renderEngine
+				.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
 		GL11.glPushMatrix();
 		{
 			GL11.glPushMatrix();
@@ -84,8 +86,9 @@ public class GuiHP extends GuiScreen {
 
 	}
 
-	public void drawHPBarTopRed (int posX, int posY, int width, float scale) {
-		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
+	public void drawHPBarTopRed(int posX, int posY, int width, float scale) {
+		Minecraft.getMinecraft().renderEngine
+				.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
 		GL11.glPushMatrix();
 		{
 			GL11.glPushMatrix();
@@ -117,8 +120,10 @@ public class GuiHP extends GuiScreen {
 	}
 
 	@SubscribeEvent
-	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
-		if (event.type.equals(ElementType.HEALTH) && event.isCancelable()) if (!Config.EnableHeartsOnHUD) event.setCanceled(true);
+	public void onRenderOverlayPost(RenderGameOverlayEvent event) {
+		if (event.type.equals(ElementType.HEALTH) && event.isCancelable())
+			if (!Config.EnableHeartsOnHUD)
+				event.setCanceled(true);
 		if (event.type == RenderGameOverlayEvent.ElementType.TEXT) {
 
 			Minecraft mc = Minecraft.getMinecraft();
@@ -138,33 +143,36 @@ public class GuiHP extends GuiScreen {
 			int hpBarMaxWidth = (int) ((int) player.getMaxHealth() * 1.5);
 
 			switch (mc.gameSettings.guiScale) {
-				case Constants.SCALE_AUTO:
-					scale = 0.85f;
-					break;
-				case Constants.SCALE_NORMAL:
-					scale = 0.85f;
-					break;
-				default:
-					scale = 0.65f;
-					break;
+			case Constants.SCALE_AUTO:
+				scale = 0.85f;
+				break;
+			case Constants.SCALE_NORMAL:
+				scale = 0.85f;
+				break;
+			default:
+				scale = 0.65f;
+				break;
 			}
 
 			int posX = 190 - hpBarWidth;
 
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - hpBarMaxWidth * scale) - 10 * scale, (screenHeight - guiHeight * scale) + 3 * scale, 0);
+			GL11.glTranslatef((screenWidth - hpBarMaxWidth * scale) - 10 * scale,
+					(screenHeight - guiHeight * scale) + 3 * scale, 0);
 			GL11.glScalef(scale, scale, scale);
 			drawHPBarBack(0, 0, hpBarMaxWidth, scale);
 			GL11.glPopMatrix();
 			if (player.getHealth() >= 6) {
 				GL11.glPushMatrix();
-				GL11.glTranslatef((screenWidth - (hpBarWidth) * scale) - 10 * scale, (screenHeight - (guiHeight) * scale) + 3 * scale, 0);
+				GL11.glTranslatef((screenWidth - (hpBarWidth) * scale) - 10 * scale,
+						(screenHeight - (guiHeight) * scale) + 3 * scale, 0);
 				GL11.glScalef(scale, scale, scale);
 				drawHPBarTop(0, 0, (int) ((hpBarWidth - (4 * scale))), scale);
 				GL11.glPopMatrix();
 			} else {
 				GL11.glPushMatrix();
-				GL11.glTranslatef((screenWidth - (hpBarWidth) * scale) - 10 * scale, (screenHeight - (guiHeight) * scale) + 3 * scale, 0);
+				GL11.glTranslatef((screenWidth - (hpBarWidth) * scale) - 10 * scale,
+						(screenHeight - (guiHeight) * scale) + 3 * scale, 0);
 				GL11.glScalef(scale, scale, scale);
 				drawHPBarTopRed(0, 0, (int) ((hpBarWidth - (4 * scale))), scale);
 				GL11.glPopMatrix();

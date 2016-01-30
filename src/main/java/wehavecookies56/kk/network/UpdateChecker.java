@@ -23,31 +23,40 @@ public class UpdateChecker {
 	public static boolean ableToCheck;
 
 	@SubscribeEvent
-	public void onPlayerLogin (PlayerEvent.PlayerLoggedInEvent event) throws MalformedURLException, IOException {
+	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) throws MalformedURLException, IOException {
 		if (Config.EnableUpdateCheck && isUpdateAvailable() && ableToCheck == true) {
-			BufferedReader versionFile = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/Wehavecookies56/Kingdom-Keys-Re-Coded/master/VERSION.txt").openStream()));
+			BufferedReader versionFile = new BufferedReader(new InputStreamReader(
+					new URL("https://raw.githubusercontent.com/Wehavecookies56/Kingdom-Keys-Re-Coded/master/VERSION.txt")
+							.openStream()));
 			String curVersion = versionFile.readLine();
 			String mcVersion = versionFile.readLine();
-			event.player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + Reference.MODNAME + EnumChatFormatting.RESET + "] An Update is available for this mod. Version v" + curVersion + " for Minecraft " + mcVersion + " Check http://goo.gl/40N4TP for more info."));
+			event.player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + Reference.MODNAME
+					+ EnumChatFormatting.RESET + "] An Update is available for this mod. Version v" + curVersion
+					+ " for Minecraft " + mcVersion + " Check http://goo.gl/40N4TP for more info."));
 		}
 
 		else if (Config.EnableUpdateCheck && !isUpdateAvailable() && ableToCheck) {
 			LogHelper.info(Reference.MODNAME + " is up to date");
-			event.player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + Reference.MODNAME + EnumChatFormatting.RESET + "] This mod is up to date (v" + Reference.MODVER + ")"));
+			event.player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + Reference.MODNAME
+					+ EnumChatFormatting.RESET + "] This mod is up to date (v" + Reference.MODVER + ")"));
 		}
 
 		else if (!Config.EnableUpdateCheck) {
 			LogHelper.info("The update checker is disabled");
-			event.player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + Reference.MODNAME + EnumChatFormatting.RESET + "] The update checker is not enabled"));
+			event.player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + Reference.MODNAME
+					+ EnumChatFormatting.RESET + "] The update checker is not enabled"));
 		} else if (!ableToCheck) {
 			LogHelper.info("The update checker was unable to check for an update");
-			event.player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + Reference.MODNAME + EnumChatFormatting.RESET + "] The update checker was unable to check for an update"));
+			event.player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + Reference.MODNAME
+					+ EnumChatFormatting.RESET + "] The update checker was unable to check for an update"));
 		}
 	}
 
-	public static boolean isUpdateAvailable () throws IOException, MalformedURLException {
+	public static boolean isUpdateAvailable() throws IOException, MalformedURLException {
 		try {
-			BufferedReader versionFile = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/Wehavecookies56/Kingdom-Keys-Re-Coded/master/VERSION.txt").openStream()));
+			BufferedReader versionFile = new BufferedReader(new InputStreamReader(
+					new URL("https://raw.githubusercontent.com/Wehavecookies56/Kingdom-Keys-Re-Coded/master/VERSION.txt")
+							.openStream()));
 			String curVersion = versionFile.readLine();
 			String mcVersion = versionFile.readLine();
 			ableToCheck = true;
@@ -69,7 +78,7 @@ public class UpdateChecker {
 		}
 	}
 
-	public static String getNewVersion (String address) {
+	public static String getNewVersion(String address) {
 		String newVersion = null;
 		try {
 			URL url = new URL(address);

@@ -17,7 +17,7 @@ import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.util.TextHelper;
 
-@SideOnly (Side.CLIENT)
+@SideOnly(Side.CLIENT)
 public class GuiReports extends GuiScreen {
 
 	static ResourceLocation gui = new ResourceLocation(Reference.MODID, "textures/gui/book.png");
@@ -58,15 +58,18 @@ public class GuiReports extends GuiScreen {
 	private int bookXStart;
 
 	@Override
-	@SuppressWarnings ("all")
-	public void initGui () {
+	@SuppressWarnings("all")
+	public void initGui() {
 		super.initGui();
 
 		bookXStart = (width - WIDTH) / 2;
 
-		buttonList.add(keyblades = new GuiButtonChapterChange(BOOK_BTN_KEYBLADES, bookXStart + 7, 30, false, "Keyblades"));
-		buttonList.add(summon = new GuiButtonChapterChange(BOOK_BTN_KEYBLADE_SUMMON, bookXStart + 7, 30, false, "Summoning Keyblades"));
-		buttonList.add(synthesis = new GuiButtonChapterChange(BOOK_BTN_SYNTHESIS, bookXStart + 7, 51, false, "Synthesis"));
+		buttonList.add(
+				keyblades = new GuiButtonChapterChange(BOOK_BTN_KEYBLADES, bookXStart + 7, 30, false, "Keyblades"));
+		buttonList.add(summon = new GuiButtonChapterChange(BOOK_BTN_KEYBLADE_SUMMON, bookXStart + 7, 30, false,
+				"Summoning Keyblades"));
+		buttonList.add(
+				synthesis = new GuiButtonChapterChange(BOOK_BTN_SYNTHESIS, bookXStart + 7, 51, false, "Synthesis"));
 		buttonList.add(next = new GuiButtonPageChange(BOOK_BTN_NEXT, bookXStart + WIDTH - 26, 210, false));
 		buttonList.add(prev = new GuiButtonPageChange(BOOK_BTN_PREV, bookXStart + 10, 210, true));
 		buttonList.add(back = new GuiButton(BOOK_BTN_BACK, bookXStart + (WIDTH / 2) - 30, 205, 60, 20, "Back"));
@@ -75,71 +78,71 @@ public class GuiReports extends GuiScreen {
 	}
 
 	@Override
-	protected void actionPerformed (GuiButton button) {
+	protected void actionPerformed(GuiButton button) {
 		switch (button.id) {
-			case BOOK_BTN_NEXT:
-				switch (chapterIndex) {
-					case CHAPTER_MAIN:
-						mainPageIndex++;
-						break;
-					case CHAPTER_KEYBLADES:
-						keybladesPageIndex++;
-						break;
-				}
+		case BOOK_BTN_NEXT:
+			switch (chapterIndex) {
+			case CHAPTER_MAIN:
+				mainPageIndex++;
 				break;
-			case BOOK_BTN_PREV:
-				switch (chapterIndex) {
-					case CHAPTER_MAIN:
-						--mainPageIndex;
-						break;
-					case CHAPTER_KEYBLADES:
-						--keybladesPageIndex;
-				}
+			case CHAPTER_KEYBLADES:
+				keybladesPageIndex++;
 				break;
-			case BOOK_BTN_KEYBLADES:
+			}
+			break;
+		case BOOK_BTN_PREV:
+			switch (chapterIndex) {
+			case CHAPTER_MAIN:
+				--mainPageIndex;
+				break;
+			case CHAPTER_KEYBLADES:
+				--keybladesPageIndex;
+			}
+			break;
+		case BOOK_BTN_KEYBLADES:
+			chapterIndex = CHAPTER_KEYBLADES;
+			break;
+		case BOOK_BTN_BACK:
+			switch (chapterIndex) {
+			case CHAPTER_KEYBLADES:
+				chapterIndex = CHAPTER_MAIN;
+				break;
+			case CHAPTER_SUMMON:
 				chapterIndex = CHAPTER_KEYBLADES;
-				break;
-			case BOOK_BTN_BACK:
-				switch (chapterIndex) {
-					case CHAPTER_KEYBLADES:
-						chapterIndex = CHAPTER_MAIN;
-						break;
-					case CHAPTER_SUMMON:
-						chapterIndex = CHAPTER_KEYBLADES;
-				}
-				break;
+			}
+			break;
 		}
 		updateButtons();
 	}
 
-	private void updateButtons () {
+	private void updateButtons() {
 		this.next.visible = (this.mainPageIndex < this.bookTotalPages - 1) && this.chapterIndex == CHAPTER_KEYBLADES;
 		this.prev.visible = this.mainPageIndex > 0 && this.chapterIndex == CHAPTER_KEYBLADES;
 		this.keyblades.visible = this.chapterIndex == CHAPTER_MAIN;
 		switch (chapterIndex) {
-			case CHAPTER_MAIN:
-				this.back.visible = false;
-				this.summon.visible = false;
-				this.keyblades.visible = true;
-				this.synthesis.visible = true;
-				break;
-			case CHAPTER_SUMMON:
-				this.back.visible = true;
-				this.summon.visible = false;
-				this.keyblades.visible = false;
-				this.synthesis.visible = false;
-				break;
-			case CHAPTER_KEYBLADES:
-				this.back.visible = true;
-				this.summon.visible = true;
-				this.keyblades.visible = false;
-				this.synthesis.visible = false;
-				break;
+		case CHAPTER_MAIN:
+			this.back.visible = false;
+			this.summon.visible = false;
+			this.keyblades.visible = true;
+			this.synthesis.visible = true;
+			break;
+		case CHAPTER_SUMMON:
+			this.back.visible = true;
+			this.summon.visible = false;
+			this.keyblades.visible = false;
+			this.synthesis.visible = false;
+			break;
+		case CHAPTER_KEYBLADES:
+			this.back.visible = true;
+			this.summon.visible = true;
+			this.keyblades.visible = false;
+			this.synthesis.visible = false;
+			break;
 		}
 	}
 
 	@Override
-	public void drawScreen (int mouseX, int mouseY, float renderPartials) {
+	public void drawScreen(int mouseX, int mouseY, float renderPartials) {
 		drawBackground();
 		drawForeground();
 
@@ -147,84 +150,97 @@ public class GuiReports extends GuiScreen {
 	}
 
 	@Override
-	@SideOnly (Side.CLIENT)
-	public boolean doesGuiPauseGame () {
+	@SideOnly(Side.CLIENT)
+	public boolean doesGuiPauseGame() {
 		return true;
 	}
 
 	@Override
-	protected void keyTyped (char character, int key) {
-		if (key == Keyboard.KEY_ESCAPE) mc.displayGuiScreen(null);
+	protected void keyTyped(char character, int key) {
+		if (key == Keyboard.KEY_ESCAPE)
+			mc.displayGuiScreen(null);
 	}
 
-	protected void drawBackground () {
+	protected void drawBackground() {
 		mc.renderEngine.bindTexture(gui);
 		drawTexturedModalRect(bookXStart, 5, 0, 0, WIDTH, HEIGHT);
 	}
 
-	public void drawForeground () {
+	public void drawForeground() {
 		switch (chapterIndex) {
-			case CHAPTER_MAIN:
-				switch (mainPageIndex) {
-					case 0:
-						buildPage("gui." + Reference.MODID + ".reports.title.main", "", 1, chapterPages, CHAPTER_MAIN);
-						break;
-				}
-			case CHAPTER_KEYBLADES:
-				switch (keybladesPageIndex) {
-					case 0:
-						// drawCenteredString(fontRendererObj,
-						// TextHelper.localize("Kingdom Hearts"), bookXStart +
-						// 85, 20,
-						// 0x666666);
-						buildPage("gui." + Reference.MODID + ".reports.keyblades.title.main", "", 1, keybladesPages, CHAPTER_KEYBLADES);
-						break;
-					case 1:
-						buildPage("gui." + Reference.MODID + ".reports.title.1", "gui." + Reference.MODID + ".reports.content.1", 2, keybladesPages, CHAPTER_KEYBLADES);
-						break;
-					case 2:
-						buildPage("gui." + Reference.MODID + ".reports.title.2", "gui." + Reference.MODID + ".reports.content.2", 3, keybladesPages, CHAPTER_KEYBLADES);
-						break;
-					case 3:
-						buildPage("gui." + Reference.MODID + ".reports.title.3", "gui." + Reference.MODID + ".reports.content.3", 4, keybladesPages, CHAPTER_KEYBLADES);
-						break;
-					case 4:
-						buildPage("gui." + Reference.MODID + ".reports.title.4", "gui." + Reference.MODID + ".reports.content.4", 5, keybladesPages, CHAPTER_KEYBLADES);
-						break;
-					case 5:
-						buildPage("gui." + Reference.MODID + ".reports.title.5", "gui." + Reference.MODID + ".reports.content.5", 6, keybladesPages, CHAPTER_KEYBLADES);
-						break;
-					case 6:
-						buildPage("gui." + Reference.MODID + ".reports.title.6", "gui." + Reference.MODID + ".reports.content.6", 7, keybladesPages, CHAPTER_KEYBLADES);
-						break;
-					case 7:
-						buildPage("gui." + Reference.MODID + ".reports.title.7", "gui." + Reference.MODID + ".reports.content.7", 8, keybladesPages, CHAPTER_KEYBLADES);
-						break;
-					case 8:
-						buildPage("gui." + Reference.MODID + ".reports.title.8", "gui." + Reference.MODID + ".reports.content.8", 9, keybladesPages, CHAPTER_KEYBLADES);
-						break;
-					case 9:
-						buildPage("gui." + Reference.MODID + ".reports.title.9", "gui." + Reference.MODID + ".reports.content.9", 10, keybladesPages, CHAPTER_KEYBLADES);
-						break;
-					case 10:
-						buildPage("gui." + Reference.MODID + ".reports.title.10", "gui." + Reference.MODID + ".reports.content.10", 11, keybladesPages, CHAPTER_KEYBLADES);
-						break;
-					default:
-						break;
-				}
+		case CHAPTER_MAIN:
+			switch (mainPageIndex) {
+			case 0:
+				buildPage("gui." + Reference.MODID + ".reports.title.main", "", 1, chapterPages, CHAPTER_MAIN);
 				break;
-			case CHAPTER_SUMMON:
-				switch (summonPageIndex) {
-					case 0:
-						buildPage("gui." + Reference.MODID + ".reports.keyblades.summon.title.main", "", 1, summonPages, CHAPTER_SUMMON);
-						break;
-				}
+			}
+		case CHAPTER_KEYBLADES:
+			switch (keybladesPageIndex) {
+			case 0:
+				// drawCenteredString(fontRendererObj,
+				// TextHelper.localize("Kingdom Hearts"), bookXStart +
+				// 85, 20,
+				// 0x666666);
+				buildPage("gui." + Reference.MODID + ".reports.keyblades.title.main", "", 1, keybladesPages,
+						CHAPTER_KEYBLADES);
 				break;
+			case 1:
+				buildPage("gui." + Reference.MODID + ".reports.title.1",
+						"gui." + Reference.MODID + ".reports.content.1", 2, keybladesPages, CHAPTER_KEYBLADES);
+				break;
+			case 2:
+				buildPage("gui." + Reference.MODID + ".reports.title.2",
+						"gui." + Reference.MODID + ".reports.content.2", 3, keybladesPages, CHAPTER_KEYBLADES);
+				break;
+			case 3:
+				buildPage("gui." + Reference.MODID + ".reports.title.3",
+						"gui." + Reference.MODID + ".reports.content.3", 4, keybladesPages, CHAPTER_KEYBLADES);
+				break;
+			case 4:
+				buildPage("gui." + Reference.MODID + ".reports.title.4",
+						"gui." + Reference.MODID + ".reports.content.4", 5, keybladesPages, CHAPTER_KEYBLADES);
+				break;
+			case 5:
+				buildPage("gui." + Reference.MODID + ".reports.title.5",
+						"gui." + Reference.MODID + ".reports.content.5", 6, keybladesPages, CHAPTER_KEYBLADES);
+				break;
+			case 6:
+				buildPage("gui." + Reference.MODID + ".reports.title.6",
+						"gui." + Reference.MODID + ".reports.content.6", 7, keybladesPages, CHAPTER_KEYBLADES);
+				break;
+			case 7:
+				buildPage("gui." + Reference.MODID + ".reports.title.7",
+						"gui." + Reference.MODID + ".reports.content.7", 8, keybladesPages, CHAPTER_KEYBLADES);
+				break;
+			case 8:
+				buildPage("gui." + Reference.MODID + ".reports.title.8",
+						"gui." + Reference.MODID + ".reports.content.8", 9, keybladesPages, CHAPTER_KEYBLADES);
+				break;
+			case 9:
+				buildPage("gui." + Reference.MODID + ".reports.title.9",
+						"gui." + Reference.MODID + ".reports.content.9", 10, keybladesPages, CHAPTER_KEYBLADES);
+				break;
+			case 10:
+				buildPage("gui." + Reference.MODID + ".reports.title.10",
+						"gui." + Reference.MODID + ".reports.content.10", 11, keybladesPages, CHAPTER_KEYBLADES);
+				break;
+			default:
+				break;
+			}
+			break;
+		case CHAPTER_SUMMON:
+			switch (summonPageIndex) {
+			case 0:
+				buildPage("gui." + Reference.MODID + ".reports.keyblades.summon.title.main", "", 1, summonPages,
+						CHAPTER_SUMMON);
+				break;
+			}
+			break;
 		}
 
 	}
 
-	private void buildPage (String unlocTitle, String unlocBody, int page, int totalPages, int desiredChapter) {
+	private void buildPage(String unlocTitle, String unlocBody, int page, int totalPages, int desiredChapter) {
 		RenderHelper.disableStandardItemLighting();
 		if (chapterIndex == desiredChapter) {
 			drawCenteredString(fontRendererObj, TextHelper.localize(unlocTitle), bookXStart + 85, 20, 0x666666);
@@ -240,23 +256,26 @@ public class GuiReports extends GuiScreen {
 
 		private final boolean previous;
 
-		public GuiButtonPageChange (int id, int x, int y, boolean previous) {
+		public GuiButtonPageChange(int id, int x, int y, boolean previous) {
 			super(id, x, y, 16, 16, "");
 			this.previous = previous;
 		}
 
 		@Override
-		public void drawButton (Minecraft mc, int mouseX, int mouseY) {
+		public void drawButton(Minecraft mc, int mouseX, int mouseY) {
 			if (visible) {
-				boolean mouseOver = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+				boolean mouseOver = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width
+						&& mouseY < yPosition + height;
 				glColor4f(1, 1, 1, 1);
 				mc.renderEngine.bindTexture(gui);
 				int u = 175;
 				int v = 0;
 
-				if (mouseOver) v += 17;
+				if (mouseOver)
+					v += 17;
 
-				if (previous) u += 17;
+				if (previous)
+					u += 17;
 
 				GL11.glPushMatrix();
 
@@ -278,16 +297,17 @@ public class GuiReports extends GuiScreen {
 		private final boolean previous;
 		private final String text;
 
-		public GuiButtonChapterChange (int id, int x, int y, boolean previous, String text) {
+		public GuiButtonChapterChange(int id, int x, int y, boolean previous, String text) {
 			super(id, x, y, 161, 20, "");
 			this.previous = previous;
 			this.text = text;
 		}
 
 		@Override
-		public void drawButton (Minecraft mc, int mouseX, int mouseY) {
+		public void drawButton(Minecraft mc, int mouseX, int mouseY) {
 			if (visible) {
-				boolean mouseOver = mouseX > xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+				boolean mouseOver = mouseX > xPosition && mouseY >= yPosition && mouseX < xPosition + width
+						&& mouseY < yPosition + height;
 				glColor4f(1, 1, 1, 1);
 				mc.renderEngine.bindTexture(chapterbutton);
 				int u = 0;

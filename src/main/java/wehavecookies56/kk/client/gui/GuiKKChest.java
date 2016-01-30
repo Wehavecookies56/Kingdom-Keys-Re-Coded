@@ -14,12 +14,12 @@ import wehavecookies56.kk.inventory.ContainerKKChest;
 import wehavecookies56.kk.lib.Reference;
 
 public class GuiKKChest extends GuiContainer {
-	@SideOnly (Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	// This is the resource location for the background image for the GUI
 	private static final ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/KKChest.png");
 	private TileEntityKKChest tileEntityKKChest;
 
-	public GuiKKChest (InventoryPlayer invPlayer, TileEntityKKChest tile) {
+	public GuiKKChest(InventoryPlayer invPlayer, TileEntityKKChest tile) {
 		super(new ContainerKKChest(invPlayer, tile));
 		tileEntityKKChest = tile;
 		// Set the width and height of the gui. Should match the size of the
@@ -30,7 +30,7 @@ public class GuiKKChest extends GuiContainer {
 
 	// draw the background for the GUI - rendered first
 	@Override
-	protected void drawGuiContainerBackgroundLayer (float partialTicks, int x, int y) {
+	protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
 		// Bind the image texture of our custom container
 		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
 		// Draw the image
@@ -42,9 +42,10 @@ public class GuiKKChest extends GuiContainer {
 	// the dragged items and tooltips
 	// renders relative to the top left corner of the background
 	@Override
-	protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY) {
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		final int LABEL_XPOS = 5;
 		final int LABEL_YPOS = 5;
-		fontRendererObj.drawString(tileEntityKKChest.getDisplayName().getUnformattedText(), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
+		fontRendererObj.drawString(tileEntityKKChest.getDisplayName().getUnformattedText(), LABEL_XPOS, LABEL_YPOS,
+				Color.darkGray.getRGB());
 	}
 }

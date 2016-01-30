@@ -14,22 +14,22 @@ public class RecipeDualDisc extends Recipe {
 
 	public String name;
 
-	public RecipeDualDisc (String name) {
+	public RecipeDualDisc(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public Item getResult () {
+	public Item getResult() {
 		return ModItems.Chain_DualDisc;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements () {
+	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 2);
 		reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 5);

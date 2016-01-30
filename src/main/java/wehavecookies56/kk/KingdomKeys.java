@@ -49,10 +49,10 @@ import wehavecookies56.kk.util.LogHelper;
 import wehavecookies56.kk.worldgen.ChestGen;
 import wehavecookies56.kk.worldgen.WorldGenBlox;
 
-@Mod (name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER, guiFactory = Reference.GUIFACTORY, modLanguage = "java")
+@Mod(name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER, guiFactory = Reference.GUIFACTORY, modLanguage = "java")
 public class KingdomKeys {
 
-	@SidedProxy (clientSide = Reference.CLIENTPROXY, serverSide = Reference.COMMONPROXY)
+	@SidedProxy(clientSide = Reference.CLIENTPROXY, serverSide = Reference.COMMONPROXY)
 	public static CommonProxy proxy;
 	public static ClientProxy cproxy;
 
@@ -70,13 +70,14 @@ public class KingdomKeys {
 	public static final int GUI_SYNTHESISBAGM_INV = modGuiIndex++;
 	public static final int GUI_SYNTHESISBAGL_INV = modGuiIndex++;
 
-	@Mod.Instance (Reference.MODID)
+	@Mod.Instance(Reference.MODID)
 	public static KingdomKeys instance;
 
 	@EventHandler
-	public void preInit (FMLPreInitializationEvent e) {
+	public void preInit(FMLPreInitializationEvent e) {
 		// Display mod info in console
-		LogHelper.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft 1.8.9");
+		LogHelper
+				.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft 1.8.9");
 
 		// Config
 		config = new Configuration(e.getSuggestedConfigurationFile());
@@ -107,12 +108,13 @@ public class KingdomKeys {
 
 	// Sync config when changed
 	@SubscribeEvent
-	public void OnConfigChanged (ConfigChangedEvent.OnConfigChangedEvent event) {
-		if (event.modID.equals(Reference.MODID)) Config.syncConfig();
+	public void OnConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+		if (event.modID.equals(Reference.MODID))
+			Config.syncConfig();
 	}
 
 	@EventHandler
-	public void init (FMLInitializationEvent e) {
+	public void init(FMLInitializationEvent e) {
 		// Instance
 		MinecraftForge.EVENT_BUS.register(instance);
 
@@ -168,7 +170,7 @@ public class KingdomKeys {
 	}
 
 	@EventHandler
-	public void postInit (FMLPostInitializationEvent e) {
+	public void postInit(FMLPostInitializationEvent e) {
 
 		new PlayerLevel();
 
@@ -178,7 +180,7 @@ public class KingdomKeys {
 	}
 
 	@EventHandler
-	public void serverStart (FMLServerStartingEvent e) {
+	public void serverStart(FMLServerStartingEvent e) {
 		e.registerServerCommand(new CommandLearnRecipe());
 		e.registerServerCommand(new CommandGiveMunny());
 		e.registerServerCommand(new CommandCheatMode());

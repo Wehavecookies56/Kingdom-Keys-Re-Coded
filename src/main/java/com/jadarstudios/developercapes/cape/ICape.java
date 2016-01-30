@@ -17,13 +17,13 @@ import net.minecraft.util.ResourceLocation;
  */
 public interface ICape {
 
-	public String getName ();
+	public String getName();
 
-	public ITextureObject getTexture ();
+	public ITextureObject getTexture();
 
-	public ResourceLocation getLocation ();
+	public ResourceLocation getLocation();
 
-	public void loadTexture (AbstractClientPlayer player);
+	public void loadTexture(AbstractClientPlayer player);
 
-	public boolean isTextureLoaded (AbstractClientPlayer player);
+	public boolean isTextureLoaded(AbstractClientPlayer player);
 }

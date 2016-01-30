@@ -24,32 +24,34 @@ public class UserManager {
 
 	protected HashMap<String, User> users;
 
-	public UserManager () {
+	public UserManager() {
 		this.users = new HashMap<String, User>();
 	}
 
-	public static UserManager getInstance () {
-		if (instance == null) instance = new UserManager();
+	public static UserManager getInstance() {
+		if (instance == null)
+			instance = new UserManager();
 		return instance;
 	}
 
-	public User getUser (String username) {
+	public User getUser(String username) {
 		return this.users.get(username);
 	}
 
-	public void addUser (User user) throws NullPointerException {
-		if (user == null || user.username == null || user.username.isEmpty()) throw new NullPointerException("Cannot add a null user!");
+	public void addUser(User user) throws NullPointerException {
+		if (user == null || user.username == null || user.username.isEmpty())
+			throw new NullPointerException("Cannot add a null user!");
 
 		this.users.put(user.username, user);
 		CapeManager.getInstance().addCapes(user.capes);
 	}
 
-	public void addUsers (Collection<User> users) throws NullPointerException {
+	public void addUsers(Collection<User> users) throws NullPointerException {
 		for (User u : users)
 			addUser(u);
 	}
 
-	public User newUser (String username) {
+	public User newUser(String username) {
 		User user = null;
 		if (this.users.containsKey(username))
 			user = getUser(username);
@@ -61,10 +63,11 @@ public class UserManager {
 		return user;
 	}
 
-	public User parse (String user, Object cape) {
+	public User parse(String user, Object cape) {
 		User userInstance = new User(user);
 
-		ICape capeInstance = (cape instanceof ICape) ? (ICape) cape : CapeManager.getInstance().parse(user, cape.toString());
+		ICape capeInstance = (cape instanceof ICape) ? (ICape) cape
+				: CapeManager.getInstance().parse(user, cape.toString());
 
 		if (capeInstance != null)
 			userInstance.capes.add(capeInstance);

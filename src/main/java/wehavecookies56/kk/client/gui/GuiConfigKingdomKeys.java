@@ -9,8 +9,10 @@ import wehavecookies56.kk.lib.Reference;
 
 public class GuiConfigKingdomKeys extends GuiConfig {
 
-	public GuiConfigKingdomKeys (GuiScreen parent) {
-		super(parent, new ConfigElement(KingdomKeys.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(), Reference.MODID, false, false, GuiConfig.getAbridgedConfigPath(KingdomKeys.config.toString()));
+	public GuiConfigKingdomKeys(GuiScreen parent) {
+		super(parent,
+				new ConfigElement(KingdomKeys.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
+				Reference.MODID, false, false, GuiConfig.getAbridgedConfigPath(KingdomKeys.config.toString()));
 	}
 
 }

@@ -12,24 +12,24 @@ public class MaterialSerenityCrystal extends Material {
 
 	String name;
 
-	public MaterialSerenityCrystal (String name) {
+	public MaterialSerenityCrystal(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem () {
+	public ItemStack getItem() {
 		ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
 		ItemStacks.createSynthesisItem(stack, Strings.SM_SerenityCrystal, "S");
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture () {
+	public ResourceLocation getTexture() {
 		return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/serenitycrystal.png");
 	}
 

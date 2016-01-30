@@ -16,42 +16,42 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 
 	GuiButton keychain, synthbag, potions, spells, back;
 
-	public GuiMenu_Items_Player (String name) {
+	public GuiMenu_Items_Player(String name) {
 		super(Minecraft.getMinecraft().thePlayer.getDisplayName().getFormattedText());
 	}
 
 	@Override
-	protected void actionPerformed (GuiButton button) throws IOException {
+	protected void actionPerformed(GuiButton button) throws IOException {
 		switch (button.id) {
-			case KEYCHAIN:
-				GuiHelper.openInv(KingdomKeys.GUI_KEYCHAIN_INV);
-				break;
-			case SYNTHBAG:
-				GuiHelper.openInv(KingdomKeys.GUI_SYNTHBAG_INV);
-				break;
-			case POTIONS:
-				GuiHelper.openInv(KingdomKeys.GUI_POTIONS_INV);
-				break;
-			case SPELLS:
-				GuiHelper.openInv(KingdomKeys.GUI_SPELLS_INV);
-				break;
-			case DRIVE:
-				GuiHelper.openInv(KingdomKeys.GUI_DRIVE_INV);
-				break;
-			case BACK:
-				GuiHelper.openMenu_Items();
-				break;
+		case KEYCHAIN:
+			GuiHelper.openInv(KingdomKeys.GUI_KEYCHAIN_INV);
+			break;
+		case SYNTHBAG:
+			GuiHelper.openInv(KingdomKeys.GUI_SYNTHBAG_INV);
+			break;
+		case POTIONS:
+			GuiHelper.openInv(KingdomKeys.GUI_POTIONS_INV);
+			break;
+		case SPELLS:
+			GuiHelper.openInv(KingdomKeys.GUI_SPELLS_INV);
+			break;
+		case DRIVE:
+			GuiHelper.openInv(KingdomKeys.GUI_DRIVE_INV);
+			break;
+		case BACK:
+			GuiHelper.openMenu_Items();
+			break;
 		}
 		updateButtons();
 	}
 
-	private void updateButtons () {
+	private void updateButtons() {
 		keychain.enabled = ExtendedPlayer.get(mc.thePlayer).isKeybladeSummoned() == false;
 		updateScreen();
 	}
 
 	@Override
-	public void initGui () {
+	public void initGui() {
 		super.initGui();
 		int button_itemsY = (-140 / 16) + 75;
 
@@ -62,12 +62,18 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 		int button_items_driveY = button_items_spellsY + 22;
 		int button_items_backY = button_items_driveY + 22;
 
-		buttonList.add(keychain = new GuiButton(KEYCHAIN, 5, button_items_playerY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Keychain)));
-		buttonList.add(synthbag = new GuiButton(SYNTHBAG, 5, button_items_stockY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_SynthBag)));
-		buttonList.add(potions = new GuiButton(POTIONS, 5, button_items_potionsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Potions)));
-		buttonList.add(spells = new GuiButton(SPELLS, 5, button_items_spellsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Spells)));
-		buttonList.add(spells = new GuiButton(DRIVE, 5, button_items_driveY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Drive)));
-		buttonList.add(back = new GuiButton(BACK, 5, button_items_backY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
+		buttonList.add(keychain = new GuiButton(KEYCHAIN, 5, button_items_playerY, 100, 20,
+				TextHelper.localize(Strings.Gui_Menu_Items_Button_Keychain)));
+		buttonList.add(synthbag = new GuiButton(SYNTHBAG, 5, button_items_stockY, 100, 20,
+				TextHelper.localize(Strings.Gui_Menu_Items_Button_SynthBag)));
+		buttonList.add(potions = new GuiButton(POTIONS, 5, button_items_potionsY, 100, 20,
+				TextHelper.localize(Strings.Gui_Menu_Items_Button_Potions)));
+		buttonList.add(spells = new GuiButton(SPELLS, 5, button_items_spellsY, 100, 20,
+				TextHelper.localize(Strings.Gui_Menu_Items_Button_Spells)));
+		buttonList.add(spells = new GuiButton(DRIVE, 5, button_items_driveY, 100, 20,
+				TextHelper.localize(Strings.Gui_Menu_Items_Button_Drive)));
+		buttonList.add(back = new GuiButton(BACK, 5, button_items_backY, 100, 20,
+				TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
 		synthbag.enabled = true;
 
 		updateButtons();

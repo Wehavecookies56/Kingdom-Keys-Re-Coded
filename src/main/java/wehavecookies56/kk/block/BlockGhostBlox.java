@@ -18,42 +18,43 @@ import wehavecookies56.kk.lib.Properties;
 
 public class BlockGhostBlox extends BlockBlox {
 
-	protected BlockGhostBlox (Material material, String toolClass, int level, float hardness, float resistance) {
+	protected BlockGhostBlox(Material material, String toolClass, int level, float hardness, float resistance) {
 		super(material, toolClass, level, hardness, resistance);
 	}
 
 	public static final PropertyInteger VISIBLE = PropertyInteger.create(Properties.VISIBLE, 0, 1);
 
 	@Override
-	protected BlockState createBlockState () {
+	protected BlockState createBlockState() {
 
 		return new BlockState(this, new IProperty[] { VISIBLE });
 	}
 
 	@Override
-	public IBlockState getStateFromMeta (int meta) {
+	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(VISIBLE, Integer.valueOf(meta));
 	}
 
 	@Override
-	public int getMetaFromState (IBlockState state) {
+	public int getMetaFromState(IBlockState state) {
 		return state.getValue(VISIBLE).intValue();
 	}
 
 	@Override
-	@SideOnly (Side.CLIENT)
-	public EnumWorldBlockLayer getBlockLayer () {
+	@SideOnly(Side.CLIENT)
+	public EnumWorldBlockLayer getBlockLayer() {
 		return EnumWorldBlockLayer.CUTOUT;
 	}
 
 	@Override
-	public void updateTick (World world, BlockPos pos, IBlockState state, Random rand) {
-		if (world.isBlockPowered(pos)) {}
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+		if (world.isBlockPowered(pos)) {
+		}
 		super.updateTick(world, pos, state, rand);
 	}
 
 	@Override
-	public void onNeighborBlockChange (World world, BlockPos pos, IBlockState state, Block neighborBlock) {
+	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock) {
 		/*
 		 * if(neighborBlock.getMetaFromState(state) == 1) {
 		 * world.setBlockState(pos,
@@ -70,20 +71,21 @@ public class BlockGhostBlox extends BlockBlox {
 	}
 
 	@Override
-	public void onBlockAdded (World world, BlockPos pos, IBlockState state) {
-		if (!world.isRemote && world.getTileEntity(pos) == null) if (world.isBlockPowered(pos))
-			world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(1)));
-		else
-			world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(0)));
+	public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
+		if (!world.isRemote && world.getTileEntity(pos) == null)
+			if (world.isBlockPowered(pos))
+				world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(1)));
+			else
+				world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(0)));
 	}
 
 	@Override
-	public boolean isOpaqueCube () {
+	public boolean isOpaqueCube() {
 		return false;
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox (World worldIn, BlockPos pos, IBlockState state) {
+	public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state) {
 		if (state.getValue(VISIBLE).intValue() == 0)
 			return super.getCollisionBoundingBox(worldIn, pos, state);
 		else

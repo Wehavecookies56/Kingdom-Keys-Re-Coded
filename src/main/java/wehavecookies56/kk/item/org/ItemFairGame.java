@@ -11,20 +11,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemFairGame extends ItemSword {
 
-	public ItemFairGame (ToolMaterial material) {
+	public ItemFairGame(ToolMaterial material) {
 		super(material);
 		setMaxStackSize(1);
 	}
 
 	@Override
-	@SideOnly (Side.CLIENT)
-	public EnumRarity getRarity (ItemStack par1ItemStack) {
+	@SideOnly(Side.CLIENT)
+	public EnumRarity getRarity(ItemStack par1ItemStack) {
 		return EnumRarity.UNCOMMON;
 	}
 
 	@Override
-	@SideOnly (Side.CLIENT)
-	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
 		dataList.add("X Luxord");
 	}
 }

@@ -16,16 +16,17 @@ public class SpawnCureParticles extends AbstractClientMessage<SpawnCureParticles
 	boolean savePoint;
 	int lvl;
 
-	public SpawnCureParticles () {}
+	public SpawnCureParticles() {
+	}
 
-	public SpawnCureParticles (Entity entity, int level) {
+	public SpawnCureParticles(Entity entity, int level) {
 		x = entity.posX;
 		y = entity.posY;
 		z = entity.posZ;
 		lvl = level;
 	}
 
-	public SpawnCureParticles (BlockPos pos, boolean savepoint) {
+	public SpawnCureParticles(BlockPos pos, boolean savepoint) {
 		x = pos.getX();
 		y = pos.getY();
 		z = pos.getZ();
@@ -34,7 +35,7 @@ public class SpawnCureParticles extends AbstractClientMessage<SpawnCureParticles
 	}
 
 	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
+	protected void read(PacketBuffer buffer) throws IOException {
 		x = buffer.readDouble();
 		y = buffer.readDouble();
 		z = buffer.readDouble();
@@ -43,7 +44,7 @@ public class SpawnCureParticles extends AbstractClientMessage<SpawnCureParticles
 	}
 
 	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
+	protected void write(PacketBuffer buffer) throws IOException {
 		buffer.writeDouble(x);
 		buffer.writeDouble(y);
 		buffer.writeDouble(z);
@@ -52,16 +53,21 @@ public class SpawnCureParticles extends AbstractClientMessage<SpawnCureParticles
 	}
 
 	@Override
-	public void process (EntityPlayer player, Side side) {
+	public void process(EntityPlayer player, Side side) {
 		double r;
 		switch (this.lvl) {
-			case 1:
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 2.5, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 2.8, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 2.2, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x + 0.3, this.y + 2.5, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x - 0.3, this.y + 2.5, this.z, 0.0D, 1.0D, 0.0D);
-				break;
+		case 1:
+			player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 2.5, this.z, 0.0D, 1.0D,
+					0.0D);
+			player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 2.8, this.z, 0.0D, 1.0D,
+					0.0D);
+			player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 2.2, this.z, 0.0D, 1.0D,
+					0.0D);
+			player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x + 0.3, this.y + 2.5, this.z, 0.0D,
+					1.0D, 0.0D);
+			player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x - 0.3, this.y + 2.5, this.z, 0.0D,
+					1.0D, 0.0D);
+			break;
 		}
 
 		if (savePoint) {

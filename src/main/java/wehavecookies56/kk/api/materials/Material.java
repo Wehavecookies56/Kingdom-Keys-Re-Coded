@@ -5,10 +5,10 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class Material {
 
-	public abstract String getName ();
+	public abstract String getName();
 
-	public abstract ItemStack getItem ();
+	public abstract ItemStack getItem();
 
-	public abstract ResourceLocation getTexture ();
+	public abstract ResourceLocation getTexture();
 
 }

@@ -14,39 +14,41 @@ public class EntityIfrit extends EntityThrowable {
 	int ticks;
 	EntityPlayer player;
 
-	public EntityIfrit (World world) {
+	public EntityIfrit(World world) {
 		super(world);
 	}
 
-	public EntityIfrit (World world, EntityLivingBase entity, int ticksExisted) {
+	public EntityIfrit(World world, EntityLivingBase entity, int ticksExisted) {
 		super(world, entity);
 		this.ticks = ticksExisted;
 		this.player = (EntityPlayer) entity;
 	}
 
-	public EntityIfrit (World world, double x, double y, double z) {
+	public EntityIfrit(World world, double x, double y, double z) {
 		super(world, x, y, z);
 	}
 
 	@Override
-	protected float getGravityVelocity () {
+	protected float getGravityVelocity() {
 		return 0.0F;
 	}
 
 	@Override
-	public void onUpdate () {
+	public void onUpdate() {
 		int rotation = 0;
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.rotationYaw = (rotation + 1) % 360;
-		if (this.ticks < 10) this.ticks = 10;
+		if (this.ticks < 10)
+			this.ticks = 10;
 
-		if (ticksExisted > this.ticks || ticksExisted > 60) setDead();
+		if (ticksExisted > this.ticks || ticksExisted > 60)
+			setDead();
 
 		super.onUpdate();
 	}
 
 	@Override
-	protected void onImpact (MovingObjectPosition mop) {
+	protected void onImpact(MovingObjectPosition mop) {
 		if (mop.entityHit != null) {
 			mop.entityHit.setFire(8);
 			float shotDamage;
@@ -60,7 +62,8 @@ public class EntityIfrit extends EntityThrowable {
 
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 
-		if (!worldObj.isRemote) setDead();
+		if (!worldObj.isRemote)
+			setDead();
 
 	}
 

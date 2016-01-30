@@ -14,7 +14,7 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 
-@SideOnly (Side.CLIENT)
+@SideOnly(Side.CLIENT)
 public class GuiDrive extends GuiScreen {
 	Minecraft mc = Minecraft.getMinecraft();
 
@@ -27,11 +27,11 @@ public class GuiDrive extends GuiScreen {
 	double oneValue = (guiLength / 100D);
 	double currDrive;
 
-	public GuiDrive () {
+	public GuiDrive() {
 
 	}
 
-	public int getCurrBar (double dp) {
+	public int getCurrBar(double dp) {
 		int bar = 0;
 		if (dp < 100)
 			bar = 0;
@@ -59,20 +59,22 @@ public class GuiDrive extends GuiScreen {
 		return bar;
 	}
 
-	int randomWithRange (int min, int max) {
+	int randomWithRange(int min, int max) {
 		int range = Math.abs(max - min) + 1;
 		return (int) (Math.random() * range) + (min <= max ? min : max);
 	}
 
 	@SubscribeEvent
-	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
+	public void onRenderOverlayPost(RenderGameOverlayEvent event) {
 
 		ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
 		double dp = props.getDP();
 
 		currDrive = (float) ((oneValue * dp) - getCurrBar(dp) * guiLength);
 
-		if (dp == 100 || dp == 200 || dp == 300 || dp == 400 || dp == 500 || dp == 600 || dp == 700 || dp == 800 || dp == 900) currDrive = 0;
+		if (dp == 100 || dp == 200 || dp == 300 || dp == 400 || dp == 500 || dp == 600 || dp == 700 || dp == 800
+				|| dp == 900)
+			currDrive = 0;
 
 		if (event.type == RenderGameOverlayEvent.ElementType.TEXT) {
 			int guiWidth = 95;
@@ -86,15 +88,15 @@ public class GuiDrive extends GuiScreen {
 
 			float scale = 0.65f;
 			switch (mc.gameSettings.guiScale) {
-				case Constants.SCALE_AUTO:
-					scale = 0.85f;
-					break;
-				case Constants.SCALE_NORMAL:
-					scale = 0.85f;
-					break;
-				default:
-					scale = 0.65f;
-					break;
+			case Constants.SCALE_AUTO:
+				scale = 0.85f;
+				break;
+			case Constants.SCALE_NORMAL:
+				scale = 0.85f;
+				break;
+			default:
+				scale = 0.65f;
+				break;
 			}
 			float posX = 52 * scale;
 			float posY = 20 * scale;
@@ -107,13 +109,15 @@ public class GuiDrive extends GuiScreen {
 			GL11.glPopMatrix();
 			// Yellow meter
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - guiWidth * scale) + (guiWidth - guiBarWidth) * scale + (24 * scale) - posX, (screenHeight - guiHeight * scale) - (2 * scale) - posY, 0);
+			GL11.glTranslatef((screenWidth - guiWidth * scale) + (guiWidth - guiBarWidth) * scale + (24 * scale) - posX,
+					(screenHeight - guiHeight * scale) - (2 * scale) - posY, 0);
 			GL11.glScalef(scale, scale, scale);
 			this.drawTexturedModalRect(15, 6, 0, 18, (int) currDrive, guiHeight);
 			GL11.glPopMatrix();
 			// Level
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - guiWidth * scale) + (85 * scale) - posX, (screenHeight - guiHeight * scale) - (2 * scale) - posY, 0);
+			GL11.glTranslatef((screenWidth - guiWidth * scale) + (85 * scale) - posX,
+					(screenHeight - guiHeight * scale) - (2 * scale) - posY, 0);
 			GL11.glScalef(scale, scale, scale);
 			if (getCurrBar(dp) == 0)
 				this.drawTexturedModalRect(15, 6, 0, 38, 8, guiHeight);
@@ -133,24 +137,26 @@ public class GuiDrive extends GuiScreen {
 				this.drawTexturedModalRect(15, 6, 70, 38, 8, guiHeight);
 			else if (getCurrBar(dp) == 8)
 				this.drawTexturedModalRect(15, 6, 80, 38, 8, guiHeight);
-			else if (getCurrBar(dp) == 9) this.drawTexturedModalRect(15, 6, 90, 38, 8, guiHeight);
+			else if (getCurrBar(dp) == 9)
+				this.drawTexturedModalRect(15, 6, 90, 38, 8, guiHeight);
 			GL11.glPopMatrix();
 			if (ExtendedPlayer.get(player).dp >= 1000) {
 				GL11.glPushMatrix();
 				switch (randomWithRange(1, 4)) {
-					case 1:
-						GL11.glColor3ub((byte) 255, (byte) 50, (byte) 40);
+				case 1:
+					GL11.glColor3ub((byte) 255, (byte) 50, (byte) 40);
 
-						break;
-					case 2:
-						GL11.glColor3ub((byte) 35, (byte) 255, (byte) 50);
+					break;
+				case 2:
+					GL11.glColor3ub((byte) 35, (byte) 255, (byte) 50);
 
-						break;
-					case 3:
-						GL11.glColor3ub((byte) 35, (byte) 50, (byte) 255);
-						break;
+					break;
+				case 3:
+					GL11.glColor3ub((byte) 35, (byte) 50, (byte) 255);
+					break;
 				}
-				GL11.glTranslatef(((screenWidth - guiWidth * scale) + (10 * scale)), ((screenHeight - guiHeight * scale) - (12 * scale)), 0);
+				GL11.glTranslatef(((screenWidth - guiWidth * scale) + (10 * scale)),
+						((screenHeight - guiHeight * scale) - (12 * scale)), 0);
 				GL11.glScalef(scale, scale, scale);
 				this.drawTexturedModalRect(0, 0, 0, 57, 30, guiHeight);
 				GL11.glColor3ub((byte) 255, (byte) 255, (byte) 255);

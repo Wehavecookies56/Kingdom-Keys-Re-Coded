@@ -9,23 +9,23 @@ public class MaterialHardBlox extends Material {
 
 	String name;
 
-	public MaterialHardBlox (String name) {
+	public MaterialHardBlox(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem () {
+	public ItemStack getItem() {
 		ItemStack stack = new ItemStack(ModBlocks.HardBlox);
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture () {
+	public ResourceLocation getTexture() {
 		return null;
 	}
 

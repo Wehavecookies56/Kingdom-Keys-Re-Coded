@@ -12,24 +12,24 @@ public class MaterialBlazingGem extends Material {
 
 	String name;
 
-	public MaterialBlazingGem (String name) {
+	public MaterialBlazingGem(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem () {
+	public ItemStack getItem() {
 		ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
 		ItemStacks.createSynthesisItem(stack, Strings.SM_BlazingGem, "A");
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture () {
+	public ResourceLocation getTexture() {
 		return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/blazinggem.png");
 	}
 

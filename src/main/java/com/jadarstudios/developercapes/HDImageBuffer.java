@@ -19,11 +19,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  *
  * @author Jadar
  */
-@SideOnly (Side.CLIENT)
+@SideOnly(Side.CLIENT)
 public class HDImageBuffer implements IImageBuffer {
 	@Override
-	public BufferedImage parseUserSkin (final BufferedImage texture) {
-		if (texture == null) return null;
+	public BufferedImage parseUserSkin(final BufferedImage texture) {
+		if (texture == null)
+			return null;
 		int imageWidth = texture.getWidth(null) <= 64 ? 64 : texture.getWidth(null);
 		int imageHeight = texture.getHeight(null) <= 32 ? 32 : texture.getHeight(null);
 
@@ -37,6 +38,7 @@ public class HDImageBuffer implements IImageBuffer {
 	}
 
 	@Override
-	public void skinAvailable () {}
+	public void skinAvailable() {
+	}
 
 }

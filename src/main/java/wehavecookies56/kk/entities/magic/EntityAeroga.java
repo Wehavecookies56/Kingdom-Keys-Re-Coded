@@ -18,11 +18,11 @@ public class EntityAeroga extends Entity {
 
 	EntityPlayer player;
 
-	public EntityAeroga (World world) {
+	public EntityAeroga(World world) {
 		super(world);
 	}
 
-	public EntityAeroga (World world, EntityPlayer sender, double x, double y, double z) {
+	public EntityAeroga(World world, EntityPlayer sender, double x, double y, double z) {
 		super(world);
 		this.posX = x;
 		this.posY = y;
@@ -31,11 +31,13 @@ public class EntityAeroga extends Entity {
 	}
 
 	@Override
-	public void onUpdate () {
-		if (player == null) return;
+	public void onUpdate() {
+		if (player == null)
+			return;
 		int rotation = 0;
 
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnAeroParticles(this, 3), player, 64.0D);
+		if (!worldObj.isRemote)
+			PacketDispatcher.sendToAllAround(new SpawnAeroParticles(this, 3), player, 64.0D);
 
 		double r = 4D;
 
@@ -47,7 +49,8 @@ public class EntityAeroga extends Entity {
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
-		if (ticksExisted > 30) setDead();
+		if (ticksExisted > 30)
+			setDead();
 
 		if (ticksExisted < 10)
 			player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0D);
@@ -58,39 +61,40 @@ public class EntityAeroga extends Entity {
 		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(4, 4, 4);
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		// TODO CHECK FOR ENTITIES AND DAMAGE THEM
-		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
-			Entity e = (Entity) list.get(i);
-			if (e instanceof EntityLivingBase) {
-				e.attackEntityFrom(DamageSource.magic, 1.5F);
-				double d = e.posX - posX;
-				double d1;
-				for (d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)
-					d = (Math.random() - Math.random()) * 0.01D;
-				((EntityLivingBase) e).knockBack(e, 0, d, d1);
+		if (!list.isEmpty())
+			for (int i = 0; i < list.size(); i++) {
+				Entity e = (Entity) list.get(i);
+				if (e instanceof EntityLivingBase) {
+					e.attackEntityFrom(DamageSource.magic, 1.5F);
+					double d = e.posX - posX;
+					double d1;
+					for (d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)
+						d = (Math.random() - Math.random()) * 0.01D;
+					((EntityLivingBase) e).knockBack(e, 0, d, d1);
+				}
 			}
-		}
 		aabb.contract(4, 4, 4);
 
 		super.onUpdate();
 	}
 
 	@Override
-	protected void entityInit () {
+	protected void entityInit() {
 
 	}
 
 	@Override
-	protected void readEntityFromNBT (NBTTagCompound tagCompund) {
+	protected void readEntityFromNBT(NBTTagCompound tagCompund) {
 
 	}
 
 	@Override
-	protected void writeEntityToNBT (NBTTagCompound tagCompound) {
+	protected void writeEntityToNBT(NBTTagCompound tagCompound) {
 
 	}
 
 	@Override
-	public AxisAlignedBB getEntityBoundingBox () {
+	public AxisAlignedBB getEntityBoundingBox() {
 
 		return new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
 	}

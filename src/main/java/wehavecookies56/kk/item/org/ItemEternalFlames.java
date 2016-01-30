@@ -15,25 +15,25 @@ import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 public class ItemEternalFlames extends ItemSword {
 	int strength;
 
-	public ItemEternalFlames (ToolMaterial material) {
+	public ItemEternalFlames(ToolMaterial material) {
 		super(material);
 		setMaxStackSize(1);
 	}
 
 	@Override
-	@SideOnly (Side.CLIENT)
-	public EnumRarity getRarity (ItemStack par1ItemStack) {
+	@SideOnly(Side.CLIENT)
+	public EnumRarity getRarity(ItemStack par1ItemStack) {
 		return EnumRarity.UNCOMMON;
 	}
 
 	@Override
-	public boolean hitEntity (ItemStack item, EntityLivingBase entity, EntityLivingBase p_77644_3_) {
+	public boolean hitEntity(ItemStack item, EntityLivingBase entity, EntityLivingBase p_77644_3_) {
 		entity.setFire(5);
 		return super.hitEntity(item, entity, p_77644_3_);
 	}
 
 	@Override
-	public void onPlayerStoppedUsing (ItemStack stack, World world, EntityPlayer player, int timeLeft) {
+	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int timeLeft) {
 		this.strength = timeLeft;
 		if (!player.isSneaking()) {
 			// TODO set strength
@@ -49,7 +49,7 @@ public class ItemEternalFlames extends ItemSword {
 	}
 
 	@Override
-	public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		/*
 		 * if (!player.isSneaking()) { //TODO set strength
 		 *
@@ -66,8 +66,8 @@ public class ItemEternalFlames extends ItemSword {
 	}
 
 	@Override
-	@SideOnly (Side.CLIENT)
-	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
 		dataList.add("VIII Axel");
 	}
 }

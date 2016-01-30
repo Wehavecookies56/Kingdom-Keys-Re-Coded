@@ -6,12 +6,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemHpOrb extends Item {
-	public ItemHpOrb () {
+	public ItemHpOrb() {
 		setMaxStackSize(64);
 	}
 
 	@Override
-	public ItemStack onItemRightClick (ItemStack item, World world, EntityPlayer entity) {
+	public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer entity) {
 		if (!(entity.getHealth() == 20)) {
 			entity.heal(2);
 			entity.inventory.consumeInventoryItem(ModItems.HpOrb);

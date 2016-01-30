@@ -19,24 +19,25 @@ public abstract class AbstractCape implements ICape {
 	protected ITextureObject texture;
 	protected ResourceLocation location;
 
-	public AbstractCape (String name) {
+	public AbstractCape(String name) {
 		this.name = name;
 	}
 
-	public AbstractCape () {}
+	public AbstractCape() {
+	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public ITextureObject getTexture () {
+	public ITextureObject getTexture() {
 		return this.texture;
 	}
 
 	@Override
-	public ResourceLocation getLocation () {
+	public ResourceLocation getLocation() {
 		return this.location;
 	}
 }

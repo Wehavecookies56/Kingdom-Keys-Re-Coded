@@ -30,28 +30,30 @@ public class GuiPotions extends GuiContainer {
 
 	private final InventoryPotionsMenu inventory;
 
-	public GuiPotions (EntityPlayer player, InventoryPlayer inventoryPlayer, InventoryPotionsMenu inventoryPotionsMenu) {
+	public GuiPotions(EntityPlayer player, InventoryPlayer inventoryPlayer, InventoryPotionsMenu inventoryPotionsMenu) {
 		super(new ContainerPotionsMenu(player, inventoryPlayer, inventoryPotionsMenu));
 		this.inventory = inventoryPotionsMenu;
 	}
 
 	@Override
-	protected void keyTyped (char c, int keyCode) throws IOException {
+	protected void keyTyped(char c, int keyCode) throws IOException {
 		super.keyTyped(c, keyCode);
-		if (keyCode == Keybinds.OPENMENU.getKeybind().getKeyCode()) GuiHelper.openMenu_Items();
+		if (keyCode == Keybinds.OPENMENU.getKeybind().getKeyCode())
+			GuiHelper.openMenu_Items();
 	}
 
 	@Override
-	public void drawScreen (int mouseX, int mouseY, float f) {
+	public void drawScreen(int mouseX, int mouseY, float f) {
 		xSize_lo = mouseX;
 		ySize_lo = mouseY;
 		drawBackground(width, height);
 		super.drawScreen(mouseX, mouseY, f);
 	}
 
-	public static final ResourceLocation optionsBackground = new ResourceLocation(Reference.MODID, "textures/gui/menubg.png");
+	public static final ResourceLocation optionsBackground = new ResourceLocation(Reference.MODID,
+			"textures/gui/menubg.png");
 
-	public static String getWorldMinutes (World world) {
+	public static String getWorldMinutes(World world) {
 		int time = (int) Math.abs((world.getWorldTime() + 6000) % 24000);
 		if ((time % 1000) * 6 / 100 < 10)
 			return "0" + (time % 1000) * 6 / 100;
@@ -60,23 +62,24 @@ public class GuiPotions extends GuiContainer {
 	}
 
 	@Override
-	public boolean doesGuiPauseGame () {
+	public boolean doesGuiPauseGame() {
 		return false;
 	}
 
-	public static int getWorldHours (World world) {
+	public static int getWorldHours(World world) {
 		int time = (int) Math.abs((world.getWorldTime() + 6000) % 24000);
 		return (int) (time / 1000F);
 	}
 
-	protected void drawBackground (int screenWidth, int screenHeight) {
+	protected void drawBackground(int screenWidth, int screenHeight) {
 		Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
 		GL11.glPushMatrix();
 		{
 			GL11.glColor3ub((byte) 24, (byte) 36, (byte) 214);
 			// drawDefaultBackground();
 			drawModalRectWithCustomSizedTexture(0, -140 / 16, 0, 0, screenWidth, 70, 32, 32);
-			drawModalRectWithCustomSizedTexture(0, screenHeight - ((screenHeight / 8) + 70 / 16), 0, 0, screenWidth, 70, 32, 32);
+			drawModalRectWithCustomSizedTexture(0, screenHeight - ((screenHeight / 8) + 70 / 16), 0, 0, screenWidth, 70,
+					32, 32);
 		}
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
@@ -88,25 +91,39 @@ public class GuiPotions extends GuiContainer {
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
 		{
-			drawString(fontRendererObj, mc.thePlayer.worldObj.provider.getDimensionName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.provider.getDimensionName()) - 5, 5, 0xFFFFFF);
-			drawString(fontRendererObj, mc.thePlayer.worldObj.getBiomeGenForCoords(mc.thePlayer.getPosition()).biomeName, screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.getBiomeGenForCoords(mc.thePlayer.getPosition()).biomeName) - 5, 20, 0xFFFFFF);
-			drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
+			drawString(fontRendererObj, mc.thePlayer.worldObj.provider.getDimensionName(),
+					screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.provider.getDimensionName()) - 5,
+					5, 0xFFFFFF);
+			drawString(fontRendererObj,
+					mc.thePlayer.worldObj.getBiomeGenForCoords(mc.thePlayer.getPosition()).biomeName,
+					screenWidth
+							- fontRendererObj.getStringWidth(
+									mc.thePlayer.worldObj.getBiomeGenForCoords(mc.thePlayer.getPosition()).biomeName)
+							- 5,
+					20, 0xFFFFFF);
+			drawString(fontRendererObj,
+					TextHelper.localize(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.theWorld) + ":"
+							+ getWorldMinutes(mc.theWorld),
+					5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
 			ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
-			drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Munny) + ": " + props.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
+			drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Munny) + ": " + props.getMunny(), 5,
+					screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
 		}
 		GL11.glPopMatrix();
 
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY) {
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		String s = inventory.getDisplayName().getUnformattedText();
 		fontRendererObj.drawString(s, xSize / 2 - fontRendererObj.getStringWidth(s) / 2, 12, 4210752);
-		fontRendererObj.drawString(I18n.format("container.inventory"), xSize / 2 - fontRendererObj.getStringWidth(I18n.format("container.inventory")) / 2, ySize - 96, 4210752);
+		fontRendererObj.drawString(I18n.format("container.inventory"),
+				xSize / 2 - fontRendererObj.getStringWidth(I18n.format("container.inventory")) / 2, ySize - 96,
+				4210752);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer (float f, int mouseX, int mouseY) {
+	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.getTextureManager().bindTexture(iconLocation);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);

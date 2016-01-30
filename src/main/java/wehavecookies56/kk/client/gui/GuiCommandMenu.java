@@ -21,13 +21,14 @@ import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.EventHandler;
 import wehavecookies56.kk.util.TextHelper;
 
-@SideOnly (Side.CLIENT)
+@SideOnly(Side.CLIENT)
 public class GuiCommandMenu extends GuiScreen {
 	Minecraft mc = Minecraft.getMinecraft();
 
 	public static final int TOP = 5, ATTACK = 4, MAGIC = 3, ITEMS = 2, DRIVE = 1;
 
-	public static final int MAGIC_TOP = 8, FIRE = 7, BLIZZARD = 6, THUNDER = 5, CURE = 4, GRAVITY = 3, AERO = 2, STOP = 1;
+	public static final int MAGIC_TOP = 8, FIRE = 7, BLIZZARD = 6, THUNDER = 5, CURE = 4, GRAVITY = 3, AERO = 2,
+			STOP = 1;
 	public static final int POTION_TOP = 6, POTION1 = 5, POTION2 = 4, POTION3 = 3, POTION4 = 2, POTION5 = 1;
 	// int selected = ATTACK;
 
@@ -51,12 +52,13 @@ public class GuiCommandMenu extends GuiScreen {
 	public static int magicselected = 0;
 	public static int potionselected = 0;
 	public static int driveselected = 0;
-	public static boolean FireUnlocked = true, BlizzardUnlocked, ThunderUnlocked, CureUnlocked, GravityUnlocked, AeroUnlocked, StopUnlocked, ValorUnlocked, WisdomUnlocked, LimitUnlocked, MasterUnlocked, FinalUnlocked;
+	public static boolean FireUnlocked = true, BlizzardUnlocked, ThunderUnlocked, CureUnlocked, GravityUnlocked,
+			AeroUnlocked, StopUnlocked, ValorUnlocked, WisdomUnlocked, LimitUnlocked, MasterUnlocked, FinalUnlocked;
 
 	ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/commandmenu.png");
 
-	@SubscribeEvent (priority = EventPriority.NORMAL)
-	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
+	@SubscribeEvent(priority = EventPriority.NORMAL)
+	public void onRenderOverlayPost(RenderGameOverlayEvent event) {
 		if (event.type == RenderGameOverlayEvent.ElementType.TEXT && !mc.ingameGUI.getChatGUI().getChatOpen()) {
 			GL11.glPushMatrix();
 			{
@@ -69,23 +71,23 @@ public class GuiCommandMenu extends GuiScreen {
 	}
 
 	@Override
-	public void initGui () {
+	public void initGui() {
 		super.initGui();
 	}
 
 	@Override
-	public void handleMouseInput () throws IOException {
+	public void handleMouseInput() throws IOException {
 		int i = Mouse.getEventDWheel();
 
 		super.handleMouseInput();
 	}
 
 	@Override
-	public void updateScreen () {
+	public void updateScreen() {
 		super.updateScreen();
 	}
 
-	public void drawCommandMenu (int width, int height) {
+	public void drawCommandMenu(int width, int height) {
 		// System.out.println("Submenu: "+submenu+" Selected:"+selected+"
 		// Magic:"+magicselected+" Drive:"+driveselected);
 		float scale = 1.05f;
@@ -100,7 +102,8 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * DRIVE), 0);
 			GL11.glScalef(scale, scale, scale);
-			if (submenu != 0) GL11.glColor3ub((byte) 80, (byte) 80, (byte) 80);
+			if (submenu != 0)
+				GL11.glColor3ub((byte) 80, (byte) 80, (byte) 80);
 			if (selected == DRIVE) { // Selected
 				textX = 5;
 				if (EventHandler.isHostiles)
@@ -124,9 +127,11 @@ public class GuiCommandMenu extends GuiScreen {
 					drawString(mc.fontRendererObj, "Revert", 6 + textX, 4, 0xFFFFFF);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			} else if (ExtendedPlayer.driveForms.isEmpty())
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0x888888);
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6 + textX, 4,
+						0x888888);
 			else
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0xFFFFFF);
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6 + textX, 4,
+						0xFFFFFF);
 
 		}
 		GL11.glPopMatrix();
@@ -140,7 +145,8 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * ITEMS), 0);
 			GL11.glScalef(scale, scale, scale);
-			if (submenu != 0) GL11.glColor3ub((byte) 80, (byte) 80, (byte) 80);
+			if (submenu != 0)
+				GL11.glColor3ub((byte) 80, (byte) 80, (byte) 80);
 			if (selected == ITEMS) { // Selected
 				textX = 5;
 				if (EventHandler.isHostiles)
@@ -157,9 +163,11 @@ public class GuiCommandMenu extends GuiScreen {
 					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
 			if (ExtendedPlayer.items.isEmpty())
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0x888888);
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6 + textX, 4,
+						0x888888);
 			else
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0xFFFFFF);
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6 + textX, 4,
+						0xFFFFFF);
 
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}
@@ -173,7 +181,8 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * MAGIC), 0);
 			GL11.glScalef(scale, scale, scale);
-			if (submenu != 0) GL11.glColor3ub((byte) 80, (byte) 80, (byte) 80);
+			if (submenu != 0)
+				GL11.glColor3ub((byte) 80, (byte) 80, (byte) 80);
 			if (selected == MAGIC) { // Selected
 				textX = 5;
 				if (EventHandler.isHostiles)
@@ -189,17 +198,19 @@ public class GuiCommandMenu extends GuiScreen {
 				else
 					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 			}
-			
-			if(spells == null)
-			{
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
-			}
-			else{
-			if (ExtendedPlayer.get(mc.thePlayer).getRecharge() == false && !spells.isEmpty() && !ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0xFFFFFF);
-			else
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+			if (spells == null) {
+				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4,
+						0x888888);
+			} else {
+				if (ExtendedPlayer.get(mc.thePlayer).getRecharge() == false && !spells.isEmpty()
+						&& !ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4,
+							0xFFFFFF);
+				else
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4,
+							0x888888);
+				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
 		}
 		GL11.glPopMatrix();
@@ -213,7 +224,8 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * ATTACK), 0);
 			GL11.glScalef(scale, scale, scale);
 
-			if (submenu != 0) GL11.glColor3ub((byte) 80, (byte) 80, (byte) 80);
+			if (submenu != 0)
+				GL11.glColor3ub((byte) 80, (byte) 80, (byte) 80);
 
 			if (selected == ATTACK) { // Selected
 
@@ -241,7 +253,8 @@ public class GuiCommandMenu extends GuiScreen {
 			mc.renderEngine.bindTexture(texture);
 			GL11.glTranslatef(0, (height - MENU_HEIGHT * scale * TOP), 0);
 			GL11.glScalef(scale, scale, scale);
-			if (submenu != 0) GL11.glColor3ub((byte) 80, (byte) 80, (byte) 80);
+			if (submenu != 0)
+				GL11.glColor3ub((byte) 80, (byte) 80, (byte) 80);
 			if (EventHandler.isHostiles)
 				drawTexturedModalRect(0, 0, 0, 15, TOP_WIDTH, TOP_HEIGHT);
 			else
@@ -251,7 +264,8 @@ public class GuiCommandMenu extends GuiScreen {
 		GL11.glPopMatrix();
 		// Magic submenu //
 		spells = ExtendedPlayer.spells;
-		if (spells == null) {} else if (!spells.isEmpty()) {
+		if (spells == null) {
+		} else if (!spells.isEmpty()) {
 			// MAGIC TOP
 			GL11.glPushMatrix();
 			{
@@ -260,7 +274,8 @@ public class GuiCommandMenu extends GuiScreen {
 				GL11.glScalef(scale, scale, scale);
 				if (submenu == SUB_MAGIC) {
 					drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Title), 6, 4, 0xFFFFFF);
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Title), 6, 4,
+							0xFFFFFF);
 				}
 			}
 			GL11.glPopMatrix();
@@ -281,11 +296,107 @@ public class GuiCommandMenu extends GuiScreen {
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 						else
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
-						colour = Constants.getCost(spells.get(i)) < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
-						if(spells.get(i).equals("gui.commandmenu.magic.cure"))
+						colour = Constants.getCost(spells.get(i)) < ExtendedPlayer
+								.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
+						if (spells.get(i).equals("gui.commandmenu.magic.cure"))
 							colour = 0xFF9900;
 						colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
-						drawString(mc.fontRendererObj, TextHelper.localize(spells.get(i)), 6, 4, colour);
+
+						String magic = "";
+						switch (spells.get(i)) {
+						case "gui.commandmenu.magic.fire":
+							switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Fire")) {
+							case 1:
+								magic = TextHelper.localize("gui.commandmenu.magic.fire");
+								break;
+							case 2:
+								magic = TextHelper.localize("gui.commandmenu.magic.fira");
+								break;
+							case 3:
+								magic = TextHelper.localize("gui.commandmenu.magic.firaga");
+								break;
+							}
+							break;
+						case "gui.commandmenu.magic.blizzard":
+							switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Blizzard")) {
+							case 1:
+								magic = TextHelper.localize("gui.commandmenu.magic.blizzard");
+								break;
+							case 2:
+								magic = TextHelper.localize("gui.commandmenu.magic.blizzara");
+								break;
+							case 3:
+								magic = TextHelper.localize("gui.commandmenu.magic.blizzaga");
+								break;
+							}
+							break;
+						case "gui.commandmenu.magic.thunder":
+							switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Thunder")) {
+							case 1:
+								magic = TextHelper.localize("gui.commandmenu.magic.thunder");
+								break;
+							case 2:
+								magic = TextHelper.localize("gui.commandmenu.magic.thundara");
+								break;
+							case 3:
+								magic = TextHelper.localize("gui.commandmenu.magic.thundaga");
+								break;
+							}
+							break;
+						case "gui.commandmenu.magic.cure":
+							switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Cure")) {
+							case 1:
+								magic = TextHelper.localize("gui.commandmenu.magic.cure");
+								break;
+							case 2:
+								magic = TextHelper.localize("gui.commandmenu.magic.cura");
+								break;
+							case 3:
+								magic = TextHelper.localize("gui.commandmenu.magic.curaga");
+								break;
+							}
+							break;
+						case "gui.commandmenu.magic.gravity":
+							switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Aero")) {
+							case 1:
+								magic = TextHelper.localize("gui.commandmenu.magic.aero");
+								break;
+							case 2:
+								magic = TextHelper.localize("gui.commandmenu.magic.aerora");
+								break;
+							case 3:
+								magic = TextHelper.localize("gui.commandmenu.magic.aeroga");
+								break;
+							}
+							break;
+						case "gui.commandmenu.magic.aero":
+							switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Aero")) {
+							case 1:
+								magic = TextHelper.localize("gui.commandmenu.magic.aero");
+								break;
+							case 2:
+								magic = TextHelper.localize("gui.commandmenu.magic.aerora");
+								break;
+							case 3:
+								magic = TextHelper.localize("gui.commandmenu.magic.aeroga");
+								break;
+							}
+							break;
+						case "gui.commandmenu.magic.stop":
+							switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Stop")) {
+							case 1:
+								magic = TextHelper.localize("gui.commandmenu.magic.stop");
+								break;
+							case 2:
+								magic = TextHelper.localize("gui.commandmenu.magic.stopra");
+								break;
+							case 3:
+								magic = TextHelper.localize("gui.commandmenu.magic.stopga");
+								break;
+							}
+							break;
+						}
+						drawString(mc.fontRendererObj, magic, 6, 4, colour);
 						GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					}
 				}
@@ -294,7 +405,8 @@ public class GuiCommandMenu extends GuiScreen {
 		}
 		// Items submenu //
 		items = ExtendedPlayer.items;
-		if (items == null) {} else if (!items.isEmpty()) {
+		if (items == null) {
+		} else if (!items.isEmpty()) {
 			// Items TOP
 			GL11.glPushMatrix();
 			{
@@ -325,7 +437,8 @@ public class GuiCommandMenu extends GuiScreen {
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 						else
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
-						drawString(mc.fontRendererObj, TextHelper.localize("item." + items.get(i) + ".name"), 6, 4, 0xFFFFFF);
+						drawString(mc.fontRendererObj, TextHelper.localize("item." + items.get(i) + ".name"), 6, 4,
+								0xFFFFFF);
 
 						GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					}
@@ -337,14 +450,16 @@ public class GuiCommandMenu extends GuiScreen {
 		ExtendedPlayer.get(mc.thePlayer);
 		// Drive form submenu //
 		driveCommands = ExtendedPlayer.driveForms;
-		if (driveCommands != null) {} else if (!driveCommands.isEmpty()) {
+		if (driveCommands != null) {
+		} else if (!driveCommands.isEmpty()) {
 			// DRIVE TOP
 			GL11.glPushMatrix();
 			{
 				mc.renderEngine.bindTexture(texture);
 				GL11.glTranslatef(5, (height - MENU_HEIGHT * scale * (driveCommands.size() + 1)), 0);
 				GL11.glScalef(1.25f, scale, scale);
-				if (submenu == SUB_DRIVE) drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
+				if (submenu == SUB_DRIVE)
+					drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
 			}
 			GL11.glPopMatrix();
 
@@ -352,7 +467,9 @@ public class GuiCommandMenu extends GuiScreen {
 			{
 				GL11.glTranslatef(5, (height - MENU_HEIGHT * scale * (driveCommands.size() + 1)), 0);
 				GL11.glScalef(scale, scale, scale);
-				if (submenu == SUB_DRIVE) drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Title), 6, 4, 0xFFFFFF);
+				if (submenu == SUB_DRIVE)
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Title), 6, 4,
+							0xFFFFFF);
 			}
 			GL11.glPopMatrix();
 			for (int i = 0; i < driveCommands.size(); i++) {
@@ -384,7 +501,8 @@ public class GuiCommandMenu extends GuiScreen {
 					GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * (driveCommands.size() - i)), 0);
 					GL11.glScalef(scale, scale, scale);
 					if (submenu == SUB_DRIVE) {
-						if (ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
+						if (ExtendedPlayer.get(mc.thePlayer).getDP() >= 300
+								|| ExtendedPlayer.get(mc.thePlayer).cheatMode)
 							drawString(mc.fontRendererObj, TextHelper.localize(driveCommands.get(i)), 6, 4, 0xFFFFFF);
 						else
 							drawString(mc.fontRendererObj, TextHelper.localize(driveCommands.get(i)), 6, 4, 0x888888);

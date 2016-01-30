@@ -14,22 +14,22 @@ public class RecipeStrokeofMidnight extends Recipe {
 
 	public String name;
 
-	public RecipeStrokeofMidnight (String name) {
+	public RecipeStrokeofMidnight(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public Item getResult () {
+	public Item getResult() {
 		return ModItems.Chain_StrokeofMidnight;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements () {
+	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 2);
 		reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 3);

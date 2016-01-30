@@ -15,24 +15,25 @@ public class SummonKeyblade extends AbstractServerMessage<SummonKeyblade> {
 
 	ItemStack stack;
 
-	public SummonKeyblade () {}
+	public SummonKeyblade() {
+	}
 
-	public SummonKeyblade (ItemKeyblade itemKeyblade) {
+	public SummonKeyblade(ItemKeyblade itemKeyblade) {
 		this.stack = new ItemStack(itemKeyblade);
 	}
 
 	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
+	protected void read(PacketBuffer buffer) throws IOException {
 		stack = buffer.readItemStackFromBuffer();
 	}
 
 	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
+	protected void write(PacketBuffer buffer) throws IOException {
 		buffer.writeItemStackToBuffer(stack);
 	}
 
 	@Override
-	public void process (EntityPlayer player, Side side) {
+	public void process(EntityPlayer player, Side side) {
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
 		SoundHelper.playSoundAtEntity(player.worldObj, player, SoundHelper.Summon, 0.5f, 1);
 		ExtendedPlayer.get(player).setKeybladeSummoned(true);

@@ -15,23 +15,24 @@ public class SpawnThunderEntity extends AbstractClientMessage<SpawnThunderEntity
 	int lvl;
 	double ex, ey, ez;
 
-	public SpawnThunderEntity () {}
+	public SpawnThunderEntity() {
+	}
 
-	public SpawnThunderEntity (Entity entity, int level) {
+	public SpawnThunderEntity(Entity entity, int level) {
 		x = entity.posX;
 		y = entity.posY;
 		z = entity.posZ;
 		lvl = level;
 	}
 
-	public SpawnThunderEntity (double ex, double ey, double ez) {
+	public SpawnThunderEntity(double ex, double ey, double ez) {
 		this.ex = ex;
 		this.ey = ey;
 		this.ez = ez;
 	}
 
 	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
+	protected void read(PacketBuffer buffer) throws IOException {
 		x = buffer.readDouble();
 		y = buffer.readDouble();
 		z = buffer.readDouble();
@@ -42,7 +43,7 @@ public class SpawnThunderEntity extends AbstractClientMessage<SpawnThunderEntity
 	}
 
 	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
+	protected void write(PacketBuffer buffer) throws IOException {
 		buffer.writeDouble(x);
 		buffer.writeDouble(y);
 		buffer.writeDouble(z);
@@ -53,7 +54,7 @@ public class SpawnThunderEntity extends AbstractClientMessage<SpawnThunderEntity
 	}
 
 	@Override
-	public void process (EntityPlayer player, Side side) {
+	public void process(EntityPlayer player, Side side) {
 		player.worldObj.addWeatherEffect((new EntityLightningBolt(player.worldObj, ex, ey, ez)));
 	}
 }

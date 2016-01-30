@@ -12,24 +12,24 @@ public class MaterialSerenityShard extends Material {
 
 	String name;
 
-	public MaterialSerenityShard (String name) {
+	public MaterialSerenityShard(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public ItemStack getItem () {
+	public ItemStack getItem() {
 		ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
 		ItemStacks.createSynthesisItem(stack, Strings.SM_SerenityShard, "C");
 		return stack;
 	}
 
 	@Override
-	public ResourceLocation getTexture () {
+	public ResourceLocation getTexture() {
 		return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/serenityshard.png");
 	}
 

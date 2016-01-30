@@ -22,35 +22,35 @@ public class Group {
 	protected ICape cape;
 	public final String name;
 
-	public Group (String name) {
+	public Group(String name) {
 		this.users = new HashMap<String, User>();
 		this.name = name;
 	}
 
-	public void addUser (User user) {
+	public void addUser(User user) {
 		if (!this.users.containsValue(user)) {
 			user.capes.add(this.cape);
 			this.users.put(user.username, user);
 		}
 	}
 
-	public void addUsers (Set<User> users) {
+	public void addUsers(Set<User> users) {
 		for (User user : users)
 			addUser(user);
 	}
 
-	public void removeUser (User user) {
+	public void removeUser(User user) {
 		if (this.users.containsValue(user)) {
 			this.users.remove(user);
 			user.capes.remove(this.cape);
 		}
 	}
 
-	public ICape getCape () {
+	public ICape getCape() {
 		return this.cape;
 	}
 
-	public void setCape (ICape cape) {
+	public void setCape(ICape cape) {
 		for (User user : this.users.values())
 			user.capes.remove(this.cape);
 

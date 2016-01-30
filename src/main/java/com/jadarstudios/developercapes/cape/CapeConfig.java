@@ -20,7 +20,7 @@ public class CapeConfig {
 	public HashMap<String, Group> groups;
 	public HashMap<String, User> users;
 
-	public CapeConfig () {
+	public CapeConfig() {
 		groups = new HashMap<String, Group>();
 		users = new HashMap<String, User>();
 	}

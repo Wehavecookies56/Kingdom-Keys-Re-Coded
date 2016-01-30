@@ -8,17 +8,22 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class PlayerLevel {
 
-	public static int[] expNeeded = new int[] { 20, 23, 27, 33, 39, 47, 56, 67, 80, 94, 109, 127, 146, 167, 191, 216, 244, 274, 307, 342, 381, 422, 466, 513, 564, 618, 676, 737, 803, 873, 948, 1027, 1112, 1201, 1297, 1397, 1504, 1617, 1737, 1864, 1998, 2140, 2290, 2449, 2616, 2793, 2980, 3177, 3385, 3604, 3835, 4079, 4336, 4606, 4892, 5192, 5509, 5842, 6194, 6563, 6952, 7362, 7793, 8247, 8724, 9226, 9755, 10310, 10895, 11510, 12156, 12836, 13551, 14302, 15092, 15923, 16796, 17714, 18679, 19693, 20758, 21878, 23055, 24292, 25591, 26957, 28392, 29899, 31483, 33148, 34896, 36733, 36733, 38662, 40690, 42819, 45056, 47406, 49874, 52467, 100000 };
+	public static int[] expNeeded = new int[] { 20, 23, 27, 33, 39, 47, 56, 67, 80, 94, 109, 127, 146, 167, 191, 216,
+			244, 274, 307, 342, 381, 422, 466, 513, 564, 618, 676, 737, 803, 873, 948, 1027, 1112, 1201, 1297, 1397,
+			1504, 1617, 1737, 1864, 1998, 2140, 2290, 2449, 2616, 2793, 2980, 3177, 3385, 3604, 3835, 4079, 4336, 4606,
+			4892, 5192, 5509, 5842, 6194, 6563, 6952, 7362, 7793, 8247, 8724, 9226, 9755, 10310, 10895, 11510, 12156,
+			12836, 13551, 14302, 15092, 15923, 16796, 17714, 18679, 19693, 20758, 21878, 23055, 24292, 25591, 26957,
+			28392, 29899, 31483, 33148, 34896, 36733, 36733, 38662, 40690, 42819, 45056, 47406, 49874, 52467, 100000 };
 
 	int neededExp;
 
 	public static List<String> messages;
 
-	public PlayerLevel () {
+	public PlayerLevel() {
 		messages = new ArrayList<String>();
 	}
 
-	public static void LevelUp (EntityPlayer player) {
+	public static void LevelUp(EntityPlayer player) {
 		ExtendedPlayer ep = ExtendedPlayer.get(player);
 
 		if (ep.getLevel() < 1) {
@@ -26,17 +31,20 @@ public class PlayerLevel {
 			return;
 		}
 
-		if (ep.getLevel() == 1) if (ep.getXP() >= expNeeded[ep.getLevel() - 1]) {
-			ep.levelUp(2);
-			levelUpMessage(player, ep);
-			ep.addDefense(1);
-		}
+		if (ep.getLevel() == 1)
+			if (ep.getXP() >= expNeeded[ep.getLevel() - 1]) {
+				ep.levelUp(2);
+				levelUpMessage(player, ep);
+				ep.addDefense(1);
+			}
 
-		if ((Arrays.stream(expNeeded, 0, ep.getLevel()).sum() - ep.getXP()) < 0) ep.setXP(Arrays.stream(expNeeded, 0, ep.getLevel()).sum());
-		if (ep.getLevel() > 1) if (ep.getLevel() != 100 && ep.getXP() >= Arrays.stream(expNeeded, 0, ep.getLevel()).sum()) {
-			ep.levelUp(ep.getLevel() + 1);
-			levelUpMessage(player, ep);
-			switch (ep.getLevel()) {
+		if ((Arrays.stream(expNeeded, 0, ep.getLevel()).sum() - ep.getXP()) < 0)
+			ep.setXP(Arrays.stream(expNeeded, 0, ep.getLevel()).sum());
+		if (ep.getLevel() > 1)
+			if (ep.getLevel() != 100 && ep.getXP() >= Arrays.stream(expNeeded, 0, ep.getLevel()).sum()) {
+				ep.levelUp(ep.getLevel() + 1);
+				levelUpMessage(player, ep);
+				switch (ep.getLevel()) {
 				case 3:
 					ep.addStrength(1);
 					break;
@@ -381,12 +389,12 @@ public class PlayerLevel {
 					ep.addMagic(10);
 					ep.addHP(5);
 					break;
+				}
 			}
-		}
 
 	}
 
-	public static void levelUpMessage (EntityPlayer player, ExtendedPlayer ep) {
+	public static void levelUpMessage(EntityPlayer player, ExtendedPlayer ep) {
 		messages.clear();
 	}
 }

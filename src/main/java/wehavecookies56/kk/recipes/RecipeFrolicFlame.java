@@ -14,22 +14,22 @@ public class RecipeFrolicFlame extends Recipe {
 
 	public String name;
 
-	public RecipeFrolicFlame (String name) {
+	public RecipeFrolicFlame(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public Item getResult () {
+	public Item getResult() {
 		return ModItems.Chain_FrolicFlame;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements () {
+	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 3);
 		reqs.put(MaterialRegistry.get(Strings.SM_BlazingGem), 2);

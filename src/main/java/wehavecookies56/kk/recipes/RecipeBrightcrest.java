@@ -14,22 +14,22 @@ public class RecipeBrightcrest extends Recipe {
 
 	public String name;
 
-	public RecipeBrightcrest (String name) {
+	public RecipeBrightcrest(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 
 	@Override
-	public Item getResult () {
+	public Item getResult() {
 		return ModItems.Chain_Brightcrest;
 	}
 
 	@Override
-	public Map<Material, Integer> getRequirements () {
+	public Map<Material, Integer> getRequirements() {
 		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
 		reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 1);
 		reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 2);
