@@ -1,5 +1,7 @@
 package wehavecookies56.kk.lib;
 
+import wehavecookies56.kk.client.gui.GuiMenu_Config;
+
 public class Strings {
 
 	public static final String tabKingdomKeys = "tabKingdomKeys";
@@ -106,6 +108,8 @@ public class Strings {
 	Gui_Menu_Main_Munny = Gui_Menu_Main + ".munny",
 	Gui_Menu_Config = Gui_Menu_Main + ".config",
 	Gui_Menu_Config_Title = Gui_Menu_Config + ".title",
+	Gui_Menu_Config_Colour = Gui_Menu_Config + ".colour",
+	Gui_Menu_Config_Colour_Desc = Gui_Menu_Config_Colour + ".desc",
 
 	// Synthesis
 	Gui_Synthesis = "gui.synthesis",

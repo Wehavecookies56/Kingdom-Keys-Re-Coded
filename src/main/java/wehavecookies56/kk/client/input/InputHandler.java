@@ -169,7 +169,7 @@ public class InputHandler {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Select, 1f, 1f, false);
 						}
-					} else if (ExtendedPlayer.driveForms.isEmpty() || ExtendedPlayer.get(player).getDP() > 0) {
+					} else if (ExtendedPlayer.driveForms.isEmpty() || ExtendedPlayer.get(player).getDP() <= 0) {
 						world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Error, 1f, 1f, false);
 						GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					} else {
@@ -201,7 +201,7 @@ public class InputHandler {
 		}
 
 		if (GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE) {
-			if (ExtendedPlayer.driveForms.isEmpty()) {} else if ((ExtendedPlayer.get(player).getDP() >= Constants.getCost(ExtendedPlayer.driveForms.get(GuiCommandMenu.driveselected))) || ExtendedPlayer.get(player).getDP() > 0) {
+			if (ExtendedPlayer.driveForms.isEmpty()) {} else if ((ExtendedPlayer.get(player).getDP() >= Constants.getCost(ExtendedPlayer.driveForms.get(GuiCommandMenu.driveselected)))) {
 				ModDriveForms.getDriveForm(player, world, ExtendedPlayer.driveForms.get(GuiCommandMenu.driveselected));
 				GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;

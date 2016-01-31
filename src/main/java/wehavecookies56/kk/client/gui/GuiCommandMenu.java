@@ -123,7 +123,7 @@ public class GuiCommandMenu extends GuiScreen {
 				else
 					drawString(mc.fontRendererObj, "Revert", 6 + textX, 4, 0xFFFFFF);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			} else if (ExtendedPlayer.driveForms.isEmpty())
+			} else if (ExtendedPlayer.driveForms.isEmpty() || ExtendedPlayer.get(mc.thePlayer).getDP() <= 0)
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0x888888);
 			else
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0xFFFFFF);
@@ -429,7 +429,7 @@ public class GuiCommandMenu extends GuiScreen {
 		ExtendedPlayer.get(mc.thePlayer);
 		// Drive form submenu //
 		driveCommands = ExtendedPlayer.driveForms;
-		if (driveCommands != null) {} else if (!driveCommands.isEmpty()) {
+		if (driveCommands == null) {} else if (!driveCommands.isEmpty()) {
 			// DRIVE TOP
 			GL11.glPushMatrix();
 			{
@@ -476,7 +476,7 @@ public class GuiCommandMenu extends GuiScreen {
 					GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * (driveCommands.size() - i)), 0);
 					GL11.glScalef(scale, scale, scale);
 					if (submenu == SUB_DRIVE) {
-						if (ExtendedPlayer.get(mc.thePlayer).getDP() >= 300 || ExtendedPlayer.get(mc.thePlayer).cheatMode)
+						if (ExtendedPlayer.get(mc.thePlayer).getDP() >= Constants.getCost(driveCommands.get(i)) || ExtendedPlayer.get(mc.thePlayer).cheatMode)
 							drawString(mc.fontRendererObj, TextHelper.localize(driveCommands.get(i)), 6, 4, 0xFFFFFF);
 						else
 							drawString(mc.fontRendererObj, TextHelper.localize(driveCommands.get(i)), 6, 4, 0x888888);

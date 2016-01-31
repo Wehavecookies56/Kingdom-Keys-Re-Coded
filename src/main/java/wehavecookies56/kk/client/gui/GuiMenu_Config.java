@@ -9,12 +9,15 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.GuiHelper;
 
 public class GuiMenu_Config extends GuiMenu_Bars {
 
 	GuiColourTextField r, g, b;
+	GuiButton back;
 
 	final int R = 0, G = 1, B = 2;
+	final int BACK = 0;
 
 	public GuiMenu_Config (String name) {
 		super(Strings.Gui_Menu_Config_Title);
@@ -23,7 +26,9 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 	@Override
 	protected void actionPerformed (GuiButton button) throws IOException {
 		switch (button.id) {
-
+			case BACK: 
+				GuiHelper.openMenu();
+				break;
 		}
 		updateButtons();
 	}
@@ -36,12 +41,13 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 	public void initGui () {
 		super.initGui();
 		int boxWidth = 30;
-		int rPosX = 10;
-		int gPosX = rPosX + boxWidth + 10;
-		int bPosX = gPosX + boxWidth + 10;
+		int rPosX = 15;
+		int gPosX = rPosX + boxWidth + 15;
+		int bPosX = gPosX + boxWidth + 15;
 		r = new GuiColourTextField(R, mc.fontRendererObj, rPosX, 100, boxWidth, 10);
 		g = new GuiColourTextField(G, mc.fontRendererObj, gPosX, 100, boxWidth, 10);
 		b = new GuiColourTextField(B, mc.fontRendererObj, bPosX, 100, boxWidth, 10);
+		back = new GuiButton(BACK, 10, 500, 100, 20, Strings.Gui_Menu_Items_Button_Back);
 		this.r.setText(String.valueOf(Config.interfaceColour[0]));
 		this.g.setText(String.valueOf(Config.interfaceColour[1]));
 		this.b.setText(String.valueOf(Config.interfaceColour[2]));
@@ -81,9 +87,13 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 	@Override
 	public void drawScreen (int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.drawString(mc.fontRendererObj, Strings.Gui_Menu_Config_Colour_Desc, 5, 80, 0xFFFFFF);
 		this.r.drawTextBox();
+		this.drawString(mc.fontRendererObj, "R:", 5, 101, 0xFFFFFF);
 		this.g.drawTextBox();
+		this.drawString(mc.fontRendererObj, "G:", 50, 101, 0xFFFFFF);
 		this.b.drawTextBox();
+		this.drawString(mc.fontRendererObj, "B:", 95, 101, 0xFFFFFF);
 	}
 
 	@Override
