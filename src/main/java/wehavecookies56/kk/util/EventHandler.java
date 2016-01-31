@@ -3,9 +3,15 @@ package wehavecookies56.kk.util;
 import java.util.List;
 import java.util.UUID;
 
+import org.lwjgl.opengl.GL11;
+
 import com.mojang.authlib.GameProfile;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelArmorStandArmor;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -16,14 +22,17 @@ import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -73,7 +82,6 @@ public class EventHandler {
 		if (event.entity instanceof EntityPlayer && ExtendedPlayer.get((EntityPlayer) event.entity) == null) ExtendedPlayer.register((EntityPlayer) event.entity);
 		if (event.entity instanceof EntityPlayer && ExtendedPlayerRecipes.get((EntityPlayer) event.entity) == null) ExtendedPlayerRecipes.register((EntityPlayer) event.entity);
 		if (event.entity instanceof EntityPlayer && ExtendedPlayerMaterials.get((EntityPlayer) event.entity) == null) ExtendedPlayerMaterials.register((EntityPlayer) event.entity);
-
 	}
 
 	@SideOnly (Side.CLIENT)
@@ -489,6 +497,55 @@ public class EventHandler {
 	@SubscribeEvent
 	public void onLivingUpdate (LivingUpdateEvent event) {
 
+	}
+
+
+	@SubscribeEvent
+	public void onRenderPlayer(RenderPlayerEvent.Post event){
+		Minecraft mc = Minecraft.getMinecraft();
+		ModelBiped main = event.renderer.getMainModel();
+		ModelBiped drive = new ModelBiped();
+		
+		float base = 0.0625f;
+
+		GL11.glPushMatrix();
+		
+		//Body and arms
+		mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_A.png"));
+		
+		ModelBiped.copyModelAngles(main.bipedBody, drive.bipedBody);
+		ModelBiped.copyModelAngles(main.bipedLeftArm, drive.bipedLeftArm);
+		ModelBiped.copyModelAngles(main.bipedRightArm, drive.bipedRightArm);
+		
+		drive.bipedBody.render(base);
+		drive.bipedLeftArm.render(base);
+		drive.bipedRightArm.render(base);
+		
+		//Legs
+		mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_B.png"));
+		
+		ModelBiped.copyModelAngles(main.bipedLeftLeg, drive.bipedLeftLeg);
+		ModelBiped.copyModelAngles(main.bipedRightLeg, drive.bipedRightLeg);
+		
+		drive.bipedLeftLeg.render(base);
+		drive.bipedRightLeg.render(base);
+
+		GL11.glPopMatrix();
+	}
+
+	public void renderPlayerDriveForm(EntityPlayer player, float partialTick) {
+		
+	}
+
+	public static float interpolateRotation(float prevRotation, float nextRotation, float partialTick) {
+		float rot = nextRotation - prevRotation;
+		while (rot >= 180.0F) {
+			rot -= 360.0F;
+		}
+		while (rot >= 180.0F) {
+			rot -= 360.0F;
+		}
+		return prevRotation + partialTick * rot;
 	}
 
 	/**
