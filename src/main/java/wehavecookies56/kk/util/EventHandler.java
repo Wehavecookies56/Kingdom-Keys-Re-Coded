@@ -499,55 +499,6 @@ public class EventHandler {
 
 	}
 
-
-	@SubscribeEvent
-	public void onRenderPlayer(RenderPlayerEvent.Post event){
-		Minecraft mc = Minecraft.getMinecraft();
-		ModelBiped main = event.renderer.getMainModel();
-		ModelBiped drive = new ModelBiped();
-		
-		float base = 0.0625f;
-
-		GL11.glPushMatrix();
-		
-		//Body and arms
-		mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_A.png"));
-		
-		ModelBiped.copyModelAngles(main.bipedBody, drive.bipedBody);
-		ModelBiped.copyModelAngles(main.bipedLeftArm, drive.bipedLeftArm);
-		ModelBiped.copyModelAngles(main.bipedRightArm, drive.bipedRightArm);
-		
-		drive.bipedBody.render(base);
-		drive.bipedLeftArm.render(base);
-		drive.bipedRightArm.render(base);
-		
-		//Legs
-		mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_B.png"));
-		
-		ModelBiped.copyModelAngles(main.bipedLeftLeg, drive.bipedLeftLeg);
-		ModelBiped.copyModelAngles(main.bipedRightLeg, drive.bipedRightLeg);
-		
-		drive.bipedLeftLeg.render(base);
-		drive.bipedRightLeg.render(base);
-
-		GL11.glPopMatrix();
-	}
-
-	public void renderPlayerDriveForm(EntityPlayer player, float partialTick) {
-		
-	}
-
-	public static float interpolateRotation(float prevRotation, float nextRotation, float partialTick) {
-		float rot = nextRotation - prevRotation;
-		while (rot >= 180.0F) {
-			rot -= 360.0F;
-		}
-		while (rot >= 180.0F) {
-			rot -= 360.0F;
-		}
-		return prevRotation + partialTick * rot;
-	}
-
 	/**
 	 * Method for generating random ints between the 2 parameters, The order of
 	 * min and max do not matter.

@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSound;
 import net.minecraft.client.audio.SoundHandler;
@@ -13,7 +15,9 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreenServerList;
 import net.minecraft.client.gui.GuiSelectWorld;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.client.GuiModList;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -209,6 +213,39 @@ public class ClientEventHandler {
 		}
 	}
 
+	@SubscribeEvent
+	public void onRenderPlayer(RenderPlayerEvent.Post event){
+		Minecraft mc = Minecraft.getMinecraft();
+		ModelBiped main = event.renderer.getMainModel();
+		ModelBiped drive = new ModelBiped();
+		
+		float base = 0.0625f;
+
+		GL11.glPushMatrix();
+		
+		//Body and arms
+		mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_A.png"));
+		
+		ModelBiped.copyModelAngles(main.bipedBody, drive.bipedBody);
+		ModelBiped.copyModelAngles(main.bipedLeftArm, drive.bipedLeftArm);
+		ModelBiped.copyModelAngles(main.bipedRightArm, drive.bipedRightArm);
+		
+		drive.bipedBody.render(base);
+		drive.bipedLeftArm.render(base);
+		drive.bipedRightArm.render(base);
+		
+		//Legs
+		mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_B.png"));
+		
+		ModelBiped.copyModelAngles(main.bipedLeftLeg, drive.bipedLeftLeg);
+		ModelBiped.copyModelAngles(main.bipedRightLeg, drive.bipedRightLeg);
+		
+		drive.bipedLeftLeg.render(base);
+		drive.bipedRightLeg.render(base);
+
+		GL11.glPopMatrix();
+	}
+	
 	public static int randomWithRange (int min, int max) {
 		int range = Math.abs(max - min) + 1;
 		return (int) (Math.random() * range) + (min <= max ? min : max);
