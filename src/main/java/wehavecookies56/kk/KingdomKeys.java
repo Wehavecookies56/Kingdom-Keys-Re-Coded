@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import wehavecookies56.kk.api.materials.MaterialRegistry;
 import wehavecookies56.kk.api.recipes.RecipeRegistry;
@@ -45,6 +46,7 @@ import wehavecookies56.kk.server.command.CommandLevelUp;
 import wehavecookies56.kk.server.command.CommandRemoveKeychain;
 import wehavecookies56.kk.server.command.CommandResetLevel;
 import wehavecookies56.kk.util.FuelHandler;
+import wehavecookies56.kk.util.KKOreDictionary;
 import wehavecookies56.kk.util.LogHelper;
 import wehavecookies56.kk.worldgen.ChestGen;
 import wehavecookies56.kk.worldgen.WorldGenBlox;
@@ -175,6 +177,10 @@ public class KingdomKeys {
 		// Event handler
 		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.EventHandler());
 		LogHelper.info("Events loaded");
+		
+		//Ore Dictionary registry
+		KKOreDictionary.registerOres();
+		LogHelper.info("Registered Ores");
 	}
 
 	@EventHandler

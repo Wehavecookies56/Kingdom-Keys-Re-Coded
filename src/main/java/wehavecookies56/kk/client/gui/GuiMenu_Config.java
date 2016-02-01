@@ -124,17 +124,18 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		public boolean textboxKeyTyped (char c, int id) {
 			switch (id) {
 				case Keyboard.KEY_BACK:
-					this.deleteFromCursor(1);
+					this.deleteFromCursor(0);
 					break;
 				case Keyboard.KEY_LEFT:
-					this.moveCursorBy(-1);
+					this.moveCursorBy(0);
 					break;
 				case Keyboard.KEY_RIGHT:
-					this.moveCursorBy(1);
+					this.moveCursorBy(0);
 					break;
 				default:
 					if (isNumber(c)) {
-						if (Integer.parseInt(this.getText() + c) > 255) {
+						String text = new StringBuilder(this.getText()).insert(this.getCursorPosition(), c).toString();
+						if (Integer.parseInt(text) > 255) {
 							return false;
 						}
 					} else {

@@ -7,6 +7,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.ItemStacks;
 
@@ -85,7 +88,7 @@ public class ModItemsRecipes {
 
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.SynthesisBagL), "LSL", "LBL", "LLL", 'L', Items.leather, 'S', Items.string, 'B', ModItems.SynthesisBagM);
 
-		GameRegistry.addShapedRecipe(new ItemStack(ModItems.EmptyBottle), "G G", "GBG", "GGG", 'G', Blocks.glass, 'B', Items.glass_bottle);
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.EmptyBottle), "G G", "GBG", "GGG", 'G', "blockGlass", 'B', Items.glass_bottle));
 
 		ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 		ItemStacks.createSynthesisItem(BlazingCrystal, Strings.SM_BlazingCrystal, "S");
@@ -167,18 +170,19 @@ public class ModItemsRecipes {
 		GameRegistry.addShapelessRecipe(MythrilGem, DenseCrystal, DenseGem, TwilightCrystal, TwilightGem);
 		GameRegistry.addShapelessRecipe(MythrilCrystal, DenseCrystal, DenseGem, TwilightCrystal, TwilightGem, SerenityStone);
 
+		
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.BlazingInfusedCoal), BlazingCrystal, Items.coal);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.FrostInfusedSnowBall), FrostCrystal, Items.snowball);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.StormyInfusedIron), StormyCrystal, Items.iron_ingot);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.MythrilInfusedDiamond), MythrilCrystal, Items.diamond);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.LightningInfusedGold), LightningCrystal, Items.gold_ingot);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.BrightInfusedGlowStone), BrightCrystal, Items.glowstone_dust);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.DarkInfusedIron), DarkCrystal, Items.iron_ingot);
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.StormyInfusedIron), StormyCrystal, "ingotIron"));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.MythrilInfusedDiamond), MythrilCrystal, "gemDiamond"));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.LightningInfusedGold), LightningCrystal, "ingotGold"));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.BrightInfusedGlowStone), BrightCrystal, "glowstone"));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.DarkInfusedIron), DarkCrystal, "ingotIron"));
 
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.IceCream), Items.stick, Items.sugar, Items.water_bucket, Blocks.ice);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.IceCream), Items.stick, Items.sugar, Items.water_bucket, Blocks.packed_ice);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.IceCream), Items.stick, Items.sugar, Items.potionitem, Blocks.ice);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.IceCream), Items.stick, Items.sugar, Items.potionitem, Blocks.packed_ice);
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.IceCream), "stickWood", Items.sugar, Items.water_bucket, Blocks.ice));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.IceCream), "stickWood", Items.sugar, Items.water_bucket, Blocks.packed_ice));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.IceCream), "stickWood", Items.sugar, Items.potionitem, Blocks.ice));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.IceCream), "stickWood", Items.sugar, Items.potionitem, Blocks.packed_ice));
 
 		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.Potion));
 		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.MagicOrb), new ItemStack(ModItems.Ether));
@@ -186,7 +190,7 @@ public class ModItemsRecipes {
 		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.Ether), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.Elixir));
 
 		// TODO Hi-Potion
-		// BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyPotion),
+		//BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyPotion),
 		// new ItemStack(ModItems.Potion), new ItemStack(ModItems.HiPotion));
 		// BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.Potion), new
 		// ItemStack(ModItems.HpOrb), new ItemStack(ModItems.HiPotion));
