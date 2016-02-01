@@ -5,15 +5,23 @@ import java.util.Random;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.particle.EffectRenderer;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import wehavecookies56.kk.entities.TileEntityKKChest;
@@ -23,6 +31,8 @@ import wehavecookies56.kk.util.GuiHelper;
 
 public class BlockKKChest extends BlockContainer implements ITileEntityProvider {
 	protected Random rand = new Random();
+
+	public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
 	protected BlockKKChest (Material material, String toolClass, int level, float hardness, float resistance) {
 		super(material);
@@ -45,6 +55,39 @@ public class BlockKKChest extends BlockContainer implements ITileEntityProvider 
 		}
 		return false;
 	}
+
+	public static EnumFacing getFacingFromEntity(World worldIn, BlockPos clickedBlock, EntityLivingBase entityIn) {
+		return entityIn.getHorizontalFacing().getOpposite();
+	} 
+	
+	@Override
+	public void onBlockPlacedBy (World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		worldIn.setBlockState(pos, state.withProperty(FACING, getFacingFromEntity(worldIn, pos, placer)), 2);
+		System.out.println(getFacingFromEntity(worldIn, pos, placer));
+	}
+	
+	@Override
+	public IBlockState onBlockPlaced (World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		return this.getDefaultState().withProperty(FACING, getFacingFromEntity(worldIn, pos, placer));
+	}
+	
+    
+    @SideOnly(Side.CLIENT)
+    public IBlockState getStateForEntityRender(IBlockState state) {
+        return this.getDefaultState().withProperty(FACING, EnumFacing.NORTH);
+    }
+    
+    
+    protected BlockState createBlockState() {
+        return new BlockState(this, new IProperty[] {FACING});
+    }
+    
+    public int getMetaFromState(IBlockState state) {
+        byte b0 = 0;
+        int i = b0 | ((EnumFacing)state.getValue(FACING)).getIndex();
+
+        return i;
+    }
 
 	@Override
 	public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {
