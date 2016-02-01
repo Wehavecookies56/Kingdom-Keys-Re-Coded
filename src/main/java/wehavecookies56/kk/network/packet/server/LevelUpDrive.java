@@ -8,6 +8,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.inventory.InventoryDriveForms;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
 import wehavecookies56.kk.util.TextHelper;
 
@@ -34,11 +35,11 @@ public class LevelUpDrive extends AbstractServerMessage<LevelUpDrive> {
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		ExtendedPlayer ep = ExtendedPlayer.get(player);
-		int valorLevel = ExtendedPlayer.get(player).getDriveLevel("Valor");
-		int wisdomLevel = ExtendedPlayer.get(player).getDriveLevel("Wisdom");
-		int limitLevel = ExtendedPlayer.get(player).getDriveLevel("Limit");
-		int masterLevel = ExtendedPlayer.get(player).getDriveLevel("Master");
-		int finalLevel = ExtendedPlayer.get(player).getDriveLevel("Final");
+		int valorLevel = ExtendedPlayer.get(player).getDriveLevel(Strings.Form_Valor);
+		int wisdomLevel = ExtendedPlayer.get(player).getDriveLevel(Strings.Form_Wisdom);
+		int limitLevel = ExtendedPlayer.get(player).getDriveLevel(Strings.Form_Limit);
+		int masterLevel = ExtendedPlayer.get(player).getDriveLevel(Strings.Form_Master);
+		int finalLevel = ExtendedPlayer.get(player).getDriveLevel(Strings.Form_Final);
 
 		int hasDriveInSlot = -1, nullSlot = -1;
 

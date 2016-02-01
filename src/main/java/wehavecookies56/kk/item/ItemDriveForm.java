@@ -12,11 +12,10 @@ import wehavecookies56.kk.util.TextHelper;
 
 public abstract class ItemDriveForm extends Item {
 
-	String form, unlocalizedName;
+	String form;
 
-	public ItemDriveForm (String form, String unlocalizedName) {
+	public ItemDriveForm (String form) {
 		this.form = form;
-		this.unlocalizedName = unlocalizedName;
 		setMaxStackSize(1);
 	}
 
@@ -28,16 +27,16 @@ public abstract class ItemDriveForm extends Item {
 
 	@Override
 	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-		tooltip.add(TextHelper.localize(this.unlocalizedName));
+		tooltip.add(TextHelper.localize(this.form));
 		super.addInformation(stack, playerIn, tooltip, advanced);
 	}
 
 	public String getDriveFormName () {
-		return unlocalizedName;
+		return form;
 	}
 
-	public void setDriveFormName (String unlocalizedName) {
-		this.unlocalizedName = unlocalizedName;
+	public void setDriveFormName (String form) {
+		this.form = form;
 	}
 
 }

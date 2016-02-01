@@ -6,6 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SpawnDriveFormParticles;
 import wehavecookies56.kk.network.packet.server.MasterFormPacket;
@@ -23,7 +24,7 @@ public class DriveFormMaster extends DriveForm {
 
 	@Override
 	public String getName () {
-		return "Master";
+		return Strings.Form_Master;
 	}
 
 	@Override

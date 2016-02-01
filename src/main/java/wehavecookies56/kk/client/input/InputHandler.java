@@ -13,6 +13,7 @@ import wehavecookies56.kk.item.ItemKKPotion;
 import wehavecookies56.kk.item.ItemKeyblade;
 import wehavecookies56.kk.item.ItemKeychain;
 import wehavecookies56.kk.lib.Constants;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.magic.Magic;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.SyncExtendedPlayer;
@@ -131,7 +132,7 @@ public class InputHandler {
 		switch (GuiCommandMenu.selected) {
 			case GuiCommandMenu.MAGIC:
 				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
-					if (ExtendedPlayer.get(player).getRecharge() == false && (!ExtendedPlayer.spells.isEmpty() && !ExtendedPlayer.get(player).getDriveInUse().equals("Valor"))) {
+					if (ExtendedPlayer.get(player).getRecharge() == false && (!ExtendedPlayer.spells.isEmpty() && !ExtendedPlayer.get(player).getDriveInUse().equals(Strings.Form_Valor))) {
 						GuiCommandMenu.magicselected = 0;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
 						world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Select, 1f, 1f, false);
@@ -160,7 +161,7 @@ public class InputHandler {
 			case GuiCommandMenu.DRIVE:
 				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
 					if (ExtendedPlayer.get(player).getInDrive()) {// Revert
-						if (ExtendedPlayer.get(player).getDriveInUse().equals("Anti") && ExtendedPlayer.get(player).cheatMode == false) {
+						if (ExtendedPlayer.get(player).getDriveInUse().equals(Strings.Form_Anti) && ExtendedPlayer.get(player).cheatMode == false) {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Error, 2f, 1f, false);
 						} else {

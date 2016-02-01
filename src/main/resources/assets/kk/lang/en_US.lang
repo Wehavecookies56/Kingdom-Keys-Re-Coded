@@ -616,11 +616,16 @@ gui.menu.items.drives=Drive Forms
 gui.menu.items.button.stock=Stock
 gui.menu.items.button.back=Back
 
-#Keychain Container
-container.keychain=Place a keychain here
-container.kkchest.name=Chest
+#Config
+gui.menu.config.title=Config
+gui.menu.config.colour.desc=Change the interface color by entering a RGB value
 
-#SynthBag Container
+#Containers
+container.keychain=Place a keychain here
+container.spellsinventory=Place Spell Orbs here
+container.potionsinventory=Place potions here
+container.driveinventory=Place Form Orbs here
+container.kkchest.name=Chest
 container.synthbag=Place a Synthesis Bag here
 container.synthesisbagsinventory=Small Synthesis Material Bag
 container.synthesisbagminventory=Medium Synthesis Material Bag
@@ -651,3 +656,42 @@ key.kingdomkeys.scrolldown=Command Menu Scroll Down
 key.kingdomkeys.scrollup=Command Menu Scroll Up
 key.kingdomkeys.openmenu=Open Menu
 key.kingdomkeys.summonkeyblade=Summon Keyblade
+
+############################
+#Spells and forms
+############################
+
+spell.fire=Fire
+spell.fira=Fira
+spell.firaga=Firaga
+
+spell.blizzard=Blizzard
+spell.blizzara=Blizzara
+spell.blizzaga=Blizzaga
+
+spell.thunder=Thunder
+spell.thundara=Thundara
+spell.thundaga=Thundaga
+
+spell.cure=Cure
+spell.cura=Cura
+spell.curaga=Curaga
+
+spell.aero=Aero
+spell.aerora=Aerora
+spell.aeroga=Aeroga
+
+spell.stop=Stop
+spell.stopra=Stopra
+spell.stopga=Stopga
+
+spell.gravity=Gravity
+spell.gravira=Gravira
+spell.graviga=Graviga
+
+form.valor=Valor Form
+form.wisdom=Wisdom Form
+form.limit=Limit Form
+form.master=Master Form
+form.final=Final Form
+form.anti=Anti Form

@@ -354,18 +354,18 @@ public class ModItems {
 		IceCream = new ItemIceCream(5, true).setUnlocalizedName(Strings.IceCream).setCreativeTab(tabKingdomKeys);
 		WinnerStick = new Item().setUnlocalizedName(Strings.WinnerStick).setCreativeTab(tabKingdomKeys);
 
-		LevelUpMagicFire = new ItemUpgradeFire("Fire", Strings.Gui_CommandMenu_Magic_Fire).setUnlocalizedName(Strings.LevelUpMagicFire).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicBlizzard = new ItemUpgradeBlizzard("Blizzard", Strings.Gui_CommandMenu_Magic_Blizzard).setUnlocalizedName(Strings.LevelUpMagicBlizzard).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicThunder = new ItemUpgradeThunder("Thunder", Strings.Gui_CommandMenu_Magic_Thunder).setUnlocalizedName(Strings.LevelUpMagicThunder).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicCure = new ItemUpgradeCure("Cure", Strings.Gui_CommandMenu_Magic_Cure).setUnlocalizedName(Strings.LevelUpMagicCure).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicAero = new ItemUpgradeAero("Aero", Strings.Gui_CommandMenu_Magic_Aero).setUnlocalizedName(Strings.LevelUpMagicAero).setCreativeTab(tabKingdomKeys);
-		LevelUpMagicStop = new ItemUpgradeStop("Stop", Strings.Gui_CommandMenu_Magic_Stop).setUnlocalizedName(Strings.LevelUpMagicStop).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicFire = new ItemUpgradeFire(Strings.Spell_Fire).setUnlocalizedName(Strings.LevelUpMagicFire).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicBlizzard = new ItemUpgradeBlizzard(Strings.Spell_Blizzard).setUnlocalizedName(Strings.LevelUpMagicBlizzard).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicThunder = new ItemUpgradeThunder(Strings.Spell_Thunder).setUnlocalizedName(Strings.LevelUpMagicThunder).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicCure = new ItemUpgradeCure(Strings.Spell_Cure).setUnlocalizedName(Strings.LevelUpMagicCure).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicAero = new ItemUpgradeAero(Strings.Spell_Aero).setUnlocalizedName(Strings.LevelUpMagicAero).setCreativeTab(tabKingdomKeys);
+		LevelUpMagicStop = new ItemUpgradeStop(Strings.Spell_Stop).setUnlocalizedName(Strings.LevelUpMagicStop).setCreativeTab(tabKingdomKeys);
 
-		LevelUpValor = new ItemUpgradeValor("Valor", Strings.Gui_CommandMenu_Drive_Valor).setUnlocalizedName(Strings.LevelUpValor).setCreativeTab(tabKingdomKeys);
-		LevelUpWisdom = new ItemUpgradeWisdom("Wisdom", Strings.Gui_CommandMenu_Drive_Wisdom).setUnlocalizedName(Strings.LevelUpWisdom).setCreativeTab(tabKingdomKeys);
-		LevelUpLimit = new ItemUpgradeLimit("Limit", Strings.Gui_CommandMenu_Drive_Limit).setUnlocalizedName(Strings.LevelUpLimit).setCreativeTab(tabKingdomKeys);
-		LevelUpMaster = new ItemUpgradeMaster("Master", Strings.Gui_CommandMenu_Drive_Master).setUnlocalizedName(Strings.LevelUpMaster).setCreativeTab(tabKingdomKeys);
-		LevelUpFinal = new ItemUpgradeFinal("Final", Strings.Gui_CommandMenu_Drive_Final).setUnlocalizedName(Strings.LevelUpFinal).setCreativeTab(tabKingdomKeys);
+		LevelUpValor = new ItemUpgradeValor(Strings.Form_Valor).setUnlocalizedName(Strings.LevelUpValor).setCreativeTab(tabKingdomKeys);
+		LevelUpWisdom = new ItemUpgradeWisdom(Strings.Form_Wisdom).setUnlocalizedName(Strings.LevelUpWisdom).setCreativeTab(tabKingdomKeys);
+		LevelUpLimit = new ItemUpgradeLimit(Strings.Form_Limit).setUnlocalizedName(Strings.LevelUpLimit).setCreativeTab(tabKingdomKeys);
+		LevelUpMaster = new ItemUpgradeMaster(Strings.Form_Master).setUnlocalizedName(Strings.LevelUpMaster).setCreativeTab(tabKingdomKeys);
+		LevelUpFinal = new ItemUpgradeFinal(Strings.Form_Final).setUnlocalizedName(Strings.LevelUpFinal).setCreativeTab(tabKingdomKeys);
 
 		SynthesisBagS = new ItemSynthesisBagS().setUnlocalizedName(Strings.SynthesisBagS).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		SynthesisBagM = new ItemSynthesisBagM().setUnlocalizedName(Strings.SynthesisBagM).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);

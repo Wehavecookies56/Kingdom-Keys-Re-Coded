@@ -22,6 +22,7 @@ import wehavecookies56.kk.entities.magic.EntityStopga;
 import wehavecookies56.kk.entities.magic.EntityThundaga;
 import wehavecookies56.kk.entities.magic.EntityThundara;
 import wehavecookies56.kk.entities.magic.EntityThunder;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.magics.MagicAero;
 import wehavecookies56.kk.network.packet.server.magics.MagicBlizzard;
@@ -40,22 +41,22 @@ public class Magic {
 
 	public static void getMagic (EntityPlayer player, World world, String magic) {
 		switch (magic) {
-			case "gui.commandmenu.magic.fire":
+			case Strings.Spell_Fire:
 				Fire(player, world);
 				break;
-			case "gui.commandmenu.magic.blizzard":
+			case Strings.Spell_Blizzard:
 				Blizzard(player, world);
 				break;
-			case "gui.commandmenu.magic.cure":
+			case Strings.Spell_Cure:
 				Cure(player, world);
 				break;
-			case "gui.commandmenu.magic.thunder":
+			case Strings.Spell_Thunder:
 				Thunder(player, world);
 				break;
-			case "gui.commandmenu.magic.aero":
+			case Strings.Spell_Aero:
 				Aero(player, world);
 				break;
-			case "gui.commandmenu.magic.stop":
+			case Strings.Spell_Stop:
 				Stop(player, world);
 				break;
 			default:
@@ -64,14 +65,13 @@ public class Magic {
 	}
 
 	public static void Fire (EntityPlayer player, World world) {
-		switch (ExtendedPlayer.get(player).getMagicLevel("Fire")) {
+		switch (ExtendedPlayer.get(player).getMagicLevel(Strings.Spell_Fire)) {
 			case 1:
 				PacketDispatcher.sendToServer(new MagicFire());
 				world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ, 1));
 				player.swingItem();
 				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, "fire.fire", 5f, 0.5f, false);
 				break;
-
 			case 2:
 				PacketDispatcher.sendToServer(new MagicFire());
 				world.spawnEntityInWorld(new EntityFira(world, player, player.posX, player.posY, player.posZ, 1));
@@ -89,7 +89,7 @@ public class Magic {
 
 	public static void Blizzard (EntityPlayer player, World world) {
 		Vec3 look;
-		switch (ExtendedPlayer.get(player).getMagicLevel("Blizzard")) {
+		switch (ExtendedPlayer.get(player).getMagicLevel(Strings.Spell_Blizzard)) {
 			case 1:
 				look = player.getLookVec();
 				world.spawnEntityInWorld(new EntityBlizzard(world, player));
@@ -113,13 +113,12 @@ public class Magic {
 	}
 
 	public static void Thunder (EntityPlayer player, World world) {
-		switch (ExtendedPlayer.get(player).getMagicLevel("Thunder")) {
-			case 0:
+		switch (ExtendedPlayer.get(player).getMagicLevel(Strings.Spell_Thunder)) {
+			case 1:
 				PacketDispatcher.sendToServer(new MagicThunder());
 				world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
 				player.swingItem();
 				break;
-
 			case 2:
 				PacketDispatcher.sendToServer(new MagicThunder());
 				world.spawnEntityInWorld(new EntityThundara(world, player, player.posX, player.posY, player.posZ));
@@ -134,8 +133,8 @@ public class Magic {
 	}
 
 	public static void Cure (EntityPlayer player, World world) {
-		switch (ExtendedPlayer.get(player).getMagicLevel("Cure")) {
-			case 0:
+		switch (ExtendedPlayer.get(player).getMagicLevel(Strings.Spell_Cure)) {
+			case 1:
 				world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
 				player.heal(6);
 				PacketDispatcher.sendToServer(new MagicCure());
@@ -154,8 +153,8 @@ public class Magic {
 	}
 
 	public static void Aero (EntityPlayer player, World world) {
-		switch (ExtendedPlayer.get(player).getMagicLevel("Aero")) {
-			case 0:
+		switch (ExtendedPlayer.get(player).getMagicLevel(Strings.Spell_Aero)) {
+			case 1:
 				PacketDispatcher.sendToServer(new MagicAero());
 				world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
 				player.swingItem();
@@ -180,8 +179,8 @@ public class Magic {
 	}
 
 	public static void Stop (EntityPlayer player, World world) {
-		switch (ExtendedPlayer.get(player).getMagicLevel("Stop")) {
-			case 0:
+		switch (ExtendedPlayer.get(player).getMagicLevel(Strings.Spell_Stop)) {
+			case 1:
 				PacketDispatcher.sendToServer(new MagicStop());
 				world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
 				player.swingItem();

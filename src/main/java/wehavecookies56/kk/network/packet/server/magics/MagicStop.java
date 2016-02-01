@@ -30,9 +30,9 @@ public class MagicStop extends AbstractServerMessage<MagicStop> {
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Gui_CommandMenu_Magic_Stop));
+		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Spell_Aero));
 		World world = player.worldObj;
-		if (!world.isRemote) switch (ExtendedPlayer.get(player).getMagicLevel("Aero")) {
+		if (!world.isRemote) switch (ExtendedPlayer.get(player).getMagicLevel(Strings.Spell_Aero)) {
 			case 1:
 				world.spawnEntityInWorld(new EntityStop(world, player, player.posX, player.posY, player.posZ));
 				break;

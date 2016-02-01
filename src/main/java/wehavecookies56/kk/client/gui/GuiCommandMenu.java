@@ -283,101 +283,10 @@ public class GuiCommandMenu extends GuiScreen {
 						if (spells.get(i).equals("gui.commandmenu.magic.cure")) colour = 0xFF9900;
 						colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 
-						String magic = "";
-						switch (spells.get(i)) {
-							case "gui.commandmenu.magic.fire":
-								switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Fire")) {
-									case 1:
-										magic = TextHelper.localize("gui.commandmenu.magic.fire");
-										break;
-									case 2:
-										magic = TextHelper.localize("gui.commandmenu.magic.fira");
-										break;
-									case 3:
-										magic = TextHelper.localize("gui.commandmenu.magic.firaga");
-										break;
-								}
-								break;
-							case "gui.commandmenu.magic.blizzard":
-								switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Blizzard")) {
-									case 1:
-										magic = TextHelper.localize("gui.commandmenu.magic.blizzard");
-										break;
-									case 2:
-										magic = TextHelper.localize("gui.commandmenu.magic.blizzara");
-										break;
-									case 3:
-										magic = TextHelper.localize("gui.commandmenu.magic.blizzaga");
-										break;
-								}
-								break;
-							case "gui.commandmenu.magic.thunder":
-								switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Thunder")) {
-									case 1:
-										magic = TextHelper.localize("gui.commandmenu.magic.thunder");
-										break;
-									case 2:
-										magic = TextHelper.localize("gui.commandmenu.magic.thundara");
-										break;
-									case 3:
-										magic = TextHelper.localize("gui.commandmenu.magic.thundaga");
-										break;
-								}
-								break;
-							case "gui.commandmenu.magic.cure":
-								switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Cure")) {
-									case 1:
-										magic = TextHelper.localize("gui.commandmenu.magic.cure");
-										break;
-									case 2:
-										magic = TextHelper.localize("gui.commandmenu.magic.cura");
-										break;
-									case 3:
-										magic = TextHelper.localize("gui.commandmenu.magic.curaga");
-										break;
-								}
-								break;
-							case "gui.commandmenu.magic.gravity":
-								switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Aero")) {
-									case 1:
-										magic = TextHelper.localize("gui.commandmenu.magic.aero");
-										break;
-									case 2:
-										magic = TextHelper.localize("gui.commandmenu.magic.aerora");
-										break;
-									case 3:
-										magic = TextHelper.localize("gui.commandmenu.magic.aeroga");
-										break;
-								}
-								break;
-							case "gui.commandmenu.magic.aero":
-								switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Aero")) {
-									case 1:
-										magic = TextHelper.localize("gui.commandmenu.magic.aero");
-										break;
-									case 2:
-										magic = TextHelper.localize("gui.commandmenu.magic.aerora");
-										break;
-									case 3:
-										magic = TextHelper.localize("gui.commandmenu.magic.aeroga");
-										break;
-								}
-								break;
-							case "gui.commandmenu.magic.stop":
-								switch (ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMagicLevel("Stop")) {
-									case 1:
-										magic = TextHelper.localize("gui.commandmenu.magic.stop");
-										break;
-									case 2:
-										magic = TextHelper.localize("gui.commandmenu.magic.stopra");
-										break;
-									case 3:
-										magic = TextHelper.localize("gui.commandmenu.magic.stopga");
-										break;
-								}
-								break;
-						}
-						drawString(mc.fontRendererObj, magic, 6, 4, colour);
+						String magic = spells.get(i);
+						int level = ExtendedPlayer.get(mc.thePlayer).getMagicLevel(magic);
+						String magicName = Constants.getMagicName(magic, level);
+						drawString(mc.fontRendererObj, TextHelper.localize(magicName), 6, 4, colour);
 						GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					}
 				}

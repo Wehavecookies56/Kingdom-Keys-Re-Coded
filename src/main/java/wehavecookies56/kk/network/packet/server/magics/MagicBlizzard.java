@@ -30,9 +30,9 @@ public class MagicBlizzard extends AbstractServerMessage<MagicBlizzard> {
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Gui_CommandMenu_Magic_Blizzard));
+		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Spell_Blizzard));
 		World world = player.worldObj;
-		switch (ExtendedPlayer.get(player).getMagicLevel("Blizzard")) {
+		switch (ExtendedPlayer.get(player).getMagicLevel(Strings.Spell_Blizzard)) {
 			case 1:
 				world.spawnEntityInWorld(new EntityBlizzard(world, player));
 				break;

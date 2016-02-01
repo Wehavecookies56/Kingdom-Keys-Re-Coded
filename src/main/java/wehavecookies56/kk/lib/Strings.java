@@ -35,7 +35,48 @@ public class Strings {
 	Achievement_GetSynthesisTable = "achievement.getSynthesisTable",
 	Achievement_GetRecipe = "achievement.getrecipe"
 	;
-
+	
+	//Spells
+	public static final String
+	Spell_Fire = "spell.fire",
+	Spell_Fira = "spell.fira",
+	Spell_Firaga = "spell.firaga",
+	
+	Spell_Blizzard = "spell.blizzard",
+	Spell_Blizzara = "spell.blizzara",
+	Spell_Blizzaga = "spell.blizzaga",
+	
+	Spell_Thunder = "spell.thunder",
+	Spell_Thundara = "spell.thundara",
+	Spell_Thundaga = "spell.thundaga",
+	
+	Spell_Cure = "spell.cure",
+	Spell_Cura = "spell.cura",
+	Spell_Curaga = "spell.curaga",
+	
+	Spell_Gravity = "spell.gravity",
+	Spell_Gravira = "spell.gravira",
+	Spell_Graviga = "spell.graviga",
+	
+	Spell_Aero = "spell.aero",
+	Spell_Aerora = "spell.aerora",
+	Spell_Aeroga = "spell.aeroga",
+	
+	Spell_Stop = "spell.stop",
+	Spell_Stopra = "spell.stopra",
+	Spell_Stopga = "spell.stopga"
+	;
+	
+	//Forms
+	public static final String
+	Form_Valor = "form.valor",
+	Form_Wisdom = "form.wisdom",
+	Form_Limit = "form.limit",
+	Form_Master = "form.master",
+	Form_Final = "form.final",
+	Form_Anti = "form.anti"
+	;
+	
 	// Gui
 	public static final String
 	// Command Menu
@@ -83,7 +124,8 @@ public class Strings {
 	Gui_CommandMenu_Drive_Final = Gui_CommandMenu_Drive + ".final",
 
 	// Menu
-	Gui_Menu = "gui.menu", Gui_Menu_Main = Gui_Menu + ".main",
+	Gui_Menu = "gui.menu", 
+	Gui_Menu_Main = Gui_Menu + ".main",
 	Gui_Menu_Main_Title = Gui_Menu_Main + ".title",
 	Gui_Menu_Main_Button = Gui_Menu_Main + ".button",
 	Gui_Menu_Main_Button_Items = Gui_Menu_Main_Button + ".items",
@@ -106,7 +148,7 @@ public class Strings {
 	Gui_Menu_Items_Button_Stock = Gui_Menu_Items_Button + ".stock",
 	Gui_Menu_Items_Button_Back = Gui_Menu_Items_Button + ".back",
 	Gui_Menu_Main_Munny = Gui_Menu_Main + ".munny",
-	Gui_Menu_Config = Gui_Menu_Main + ".config",
+	Gui_Menu_Config = Gui_Menu + ".config",
 	Gui_Menu_Config_Title = Gui_Menu_Config + ".title",
 	Gui_Menu_Config_Colour = Gui_Menu_Config + ".colour",
 	Gui_Menu_Config_Colour_Desc = Gui_Menu_Config_Colour + ".desc",
@@ -924,7 +966,10 @@ public class Strings {
 	SynthBagInventory = "container.synthbag",
 	SynthesisBagSInventory = "container.synthesisbagsinventory",
 	SynthesisBagMInventory = "container.synthesisbagminventory",
-	SynthesisBagLInventory = "container.synthesisbaglinventory"
+	SynthesisBagLInventory = "container.synthesisbaglinventory",
+	SpellsInventory = "container.spellsinventory",
+	DriveInventory = "container.driveinventory",
+	PotionsInventory = "container.potionsinventory"
 	;
 
 	// Keyblades

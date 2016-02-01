@@ -7,10 +7,11 @@ import net.minecraft.util.IChatComponent;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemDriveForm;
 import wehavecookies56.kk.item.ItemSpellOrb;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.TextHelper;
 
 public class InventoryDriveForms extends AbstractInventory {
-	private final String name = TextHelper.localize("Drive Forms");
+	private final String name = TextHelper.localize(Strings.DriveInventory);
 
 	/** The key used to store and retrieve the inventory from NBT */
 	private static final String SAVE_KEY = "DriveInvKey";

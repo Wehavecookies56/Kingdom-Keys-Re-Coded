@@ -6,10 +6,11 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ItemKKPotion;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.TextHelper;
 
 public class InventoryPotionsMenu extends AbstractInventory {
-	private final String name = TextHelper.localize("Potions Menu");
+	private final String name = TextHelper.localize(Strings.PotionsInventory);
 
 	/** The key used to store and retrieve the inventory from NBT */
 	private static final String SAVE_KEY = "PotionsInvKey";

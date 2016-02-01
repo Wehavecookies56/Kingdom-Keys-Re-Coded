@@ -118,8 +118,6 @@ public class KingdomKeys {
 		// Instance
 		MinecraftForge.EVENT_BUS.register(instance);
 
-		Constants.registerCosts();
-
 		// Update checker
 		MinecraftForge.EVENT_BUS.register(new UpdateChecker());
 		LogHelper.info("Update checker loaded");
@@ -162,6 +160,9 @@ public class KingdomKeys {
 
 		ModMaterials.init();
 		LogHelper.info(MaterialRegistry.getMaterialMap().size() + " Material(s) loaded");
+		
+		Constants.registerCosts();
+		Constants.registerMagicLevels();
 
 		// Chest loot init
 		ChestGen.init();

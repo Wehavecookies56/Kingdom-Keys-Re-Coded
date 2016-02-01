@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
+import wehavecookies56.kk.lib.Strings;
 
 public class GuiPlayerPortrait extends GuiScreen {
 
@@ -36,7 +37,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					break;
 			}
 
-			if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti")) GL11.glColor3ub((byte) 30, (byte) 30, (byte) 30);
+			if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals(Strings.Form_Anti)) GL11.glColor3ub((byte) 30, (byte) 30, (byte) 30);
 
 			// HEAD
 			int headWidth = 32;
@@ -160,7 +161,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 			GL11.glPopMatrix();
 			GL11.glColor4f(100.0F, 1.0F, 1.0F, 1.0F);
 
-			if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor")) {
+			if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals(Strings.Form_Valor)) {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Valor_A.png");
 				mc.renderEngine.bindTexture(texture);
 
@@ -194,7 +195,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 				}
 				GL11.glPopMatrix();
 
-			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Wisdom")) {
+			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals(Strings.Form_Wisdom)) {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Wisdom_A.png");
 				mc.renderEngine.bindTexture(texture);
 
@@ -227,7 +228,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
 				}
 				GL11.glPopMatrix();
-			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Limit")) {
+			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals(Strings.Form_Limit)) {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Limit_A.png");
 				mc.renderEngine.bindTexture(texture);
 
@@ -260,7 +261,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
 				}
 				GL11.glPopMatrix();
-			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Master")) {
+			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals(Strings.Form_Master)) {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Master_A.png");
 				mc.renderEngine.bindTexture(texture);
 
@@ -293,7 +294,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
 				}
 				GL11.glPopMatrix();
-			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Final")) {
+			} else if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals(Strings.Form_Final)) {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Final_A.png");
 				mc.renderEngine.bindTexture(texture);
 

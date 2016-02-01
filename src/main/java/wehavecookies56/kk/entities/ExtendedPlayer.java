@@ -19,6 +19,7 @@ import wehavecookies56.kk.inventory.InventorySynthBagMenu;
 import wehavecookies56.kk.item.ItemDriveForm;
 import wehavecookies56.kk.item.ItemKKPotion;
 import wehavecookies56.kk.item.ItemSpellOrb;
+import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.CommonProxy;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.client.ShowOverlayPacket;
@@ -216,65 +217,89 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void init (Entity entity, World world) {}
 
 	public int getMagicLevel (String magic) {
-		int magicLevel = 0;
-		if (magic == "Fire")
-			magicLevel = this.fireLevel;
-		else if (magic == "Blizzard")
-			magicLevel = this.blizzardLevel;
-		else if (magic == "Thunder")
-			magicLevel = this.thunderLevel;
-		else if (magic == "Cure")
-			magicLevel = this.cureLevel;
-		else if (magic == "Gravity")
-			magicLevel = this.gravityLevel;
-		else if (magic == "Aero")
-			magicLevel = this.aeroLevel;
-		else if (magic == "Stop") magicLevel = this.stopLevel;
-		return magicLevel;
+		switch(magic){
+			case Strings.Spell_Fire:
+				return this.fireLevel;
+			case Strings.Spell_Blizzard:
+				return this.blizzardLevel;
+			case Strings.Spell_Thunder:
+				return this.thunderLevel;
+			case Strings.Spell_Cure:
+				return this.cureLevel;
+			case Strings.Spell_Gravity:
+				return this.gravityLevel;
+			case Strings.Spell_Aero:
+				return this.aeroLevel;
+			case Strings.Spell_Stop:
+				return this.stopLevel;
+			default:
+				return -1;
+		}
 	}
 
-	public boolean setDriveLevel (String form, int level) {
-		if (form == "Valor")
-			this.valorLevel = level;
-		else if (form == "Wisdom")
-			this.wisdomLevel = level;
-		else if (form == "Limit")
-			this.limitLevel = level;
-		else if (form == "Master")
-			this.masterLevel = level;
-		else if (form == "Final") this.finalLevel = level;
+	public void setDriveLevel (String form, int level) {
+		switch(form){
+			case Strings.Form_Valor:
+				this.valorLevel = level;
+				break;
+			case Strings.Form_Wisdom:
+				this.wisdomLevel = level;
+				break;
+			case Strings.Form_Limit:
+				this.limitLevel = level;
+				break;
+			case Strings.Form_Master:
+				this.masterLevel = level;
+				break;
+			case Strings.Form_Final:
+				this.finalLevel = level;
+				break;
+		}
 		sync();
-		return true;
 	}
 
 	public int getDriveLevel (String form) {
-		int formLevel = 0;
-		if (form == "Valor")
-			formLevel = this.valorLevel;
-		else if (form == "Wisdom")
-			formLevel = this.wisdomLevel;
-		else if (form == "Limit")
-			formLevel = this.limitLevel;
-		else if (form == "Master")
-			formLevel = this.masterLevel;
-		else if (form == "Final") formLevel = this.finalLevel;
-		return formLevel;
+		switch(form){
+			case Strings.Form_Valor:
+				return this.valorLevel;
+			case Strings.Form_Wisdom:
+				return this.wisdomLevel;
+			case Strings.Form_Limit:
+				return this.limitLevel;
+			case Strings.Form_Master:
+				return this.masterLevel;
+			case Strings.Form_Final:
+				return this.finalLevel;
+			default:
+				return -1;
+		}
 	}
 
-	public boolean setMagicLevel (String magic, int level) {
-		if (magic == "Fire")
-			this.fireLevel = level;
-		else if (magic == "Blizzard")
-			this.blizzardLevel = level;
-		else if (magic == "Thunder")
-			this.thunderLevel = level;
-		else if (magic == "Cure")
-			this.cureLevel = level;
-		else if (magic == "Aero")
-			this.aeroLevel = level;
-		else if (magic == "Stop") this.stopLevel = level;
+	public void setMagicLevel (String magic, int level) {
+		switch(magic){
+			case Strings.Spell_Fire:
+				this.fireLevel = level;
+				break;
+			case Strings.Spell_Blizzard:
+				blizzardLevel = level;
+				break;
+			case Strings.Spell_Thunder:
+				this.thunderLevel = level;
+				break;
+			case Strings.Spell_Cure:
+				this.cureLevel = level;
+				break;
+			case Strings.Spell_Gravity:
+				this.gravityLevel = level;
+				break;
+			case Strings.Spell_Aero:
+				this.aeroLevel = level;
+				break;
+			case Strings.Spell_Stop:
+				this.stopLevel = level;
+				break;
+		}
 		sync();
-		return true;
 	}
 
 	public boolean addStrength (int amount) {

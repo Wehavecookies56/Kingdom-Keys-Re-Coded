@@ -1,5 +1,6 @@
 package wehavecookies56.kk.client.gui;
 
+import java.awt.Color;
 import java.util.Arrays;
 
 import org.lwjgl.opengl.GL11;
@@ -76,7 +77,7 @@ public class GuiOverlay extends GuiScreen {
 						{
 							GL11.glTranslatef(width - ((mc.fontRendererObj.getStringWidth("LEVEL UP!")) * 0.75f) - 115, 4, 0);
 							GL11.glScalef(0.75f, 0.75f, 1);
-							drawString(mc.fontRendererObj, "LEVEL UP!" + EnumChatFormatting.ITALIC, 0, 0, 0xC74326);
+							drawString(mc.fontRendererObj, "LEVEL UP!" + EnumChatFormatting.ITALIC, 0, 0, Color.decode(String.format("#%02x%02x%02x", (byte) Config.interfaceColour[0], (byte) Config.interfaceColour[1], (byte) Config.interfaceColour[2])).hashCode());
 						}
 						GL11.glPopMatrix();
 						GL11.glPushMatrix();

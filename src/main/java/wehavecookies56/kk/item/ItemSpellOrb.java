@@ -6,17 +6,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.magics.LevelUpMagic;
 import wehavecookies56.kk.util.TextHelper;
 
 public abstract class ItemSpellOrb extends Item {
 
-	String magic, unlocalizedName;
+	String magic;
 
-	public ItemSpellOrb (String magic, String unlocalizedName) {
+	public ItemSpellOrb (String magic) {
 		this.magic = magic;
-		this.unlocalizedName = unlocalizedName;
 		setMaxStackSize(1);
 	}
 
@@ -25,18 +26,24 @@ public abstract class ItemSpellOrb extends Item {
 		if (world.isRemote) PacketDispatcher.sendToServer(new LevelUpMagic(this.magic));
 		return stack;
 	}
+	
+	public String getMagicLevelName(EntityPlayer player, String magic){
+		String magicName;
+		int magicLevel = ExtendedPlayer.get(player).getMagicLevel(magic);
+		return magic;
+	}
 
 	@Override
-	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-		tooltip.add(TextHelper.localize(this.unlocalizedName));
-		super.addInformation(stack, playerIn, tooltip, advanced);
+	public void addInformation (ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+		tooltip.add(TextHelper.localize(Constants.getMagicName(magic, ExtendedPlayer.get(player).getMagicLevel(magic))));
+		super.addInformation(stack, player, tooltip, advanced);
 	}
 
 	public String getMagicName () {
-		return unlocalizedName;
+		return magic;
 	}
 
-	public void setMagicName (String unlocalizedName) {
-		this.unlocalizedName = unlocalizedName;
+	public void setMagicName (String magic) {
+		this.magic = magic;
 	}
 }

@@ -4,12 +4,14 @@ import java.io.IOException;
 
 import org.lwjgl.input.Keyboard;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.util.GuiHelper;
+import wehavecookies56.kk.util.TextHelper;
 
 public class GuiMenu_Config extends GuiMenu_Bars {
 
@@ -47,7 +49,8 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		r = new GuiColourTextField(R, mc.fontRendererObj, rPosX, 100, boxWidth, 10);
 		g = new GuiColourTextField(G, mc.fontRendererObj, gPosX, 100, boxWidth, 10);
 		b = new GuiColourTextField(B, mc.fontRendererObj, bPosX, 100, boxWidth, 10);
-		back = new GuiButton(BACK, 10, 500, 100, 20, Strings.Gui_Menu_Items_Button_Back);
+		back = new GuiButton(BACK, 10, this.height - (this.height / 4), 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back));
+		buttonList.add(back);
 		this.r.setText(String.valueOf(Config.interfaceColour[0]));
 		this.g.setText(String.valueOf(Config.interfaceColour[1]));
 		this.b.setText(String.valueOf(Config.interfaceColour[2]));
@@ -83,17 +86,18 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		this.b.mouseClicked(mouseX, mouseY, mouseButton);
 		super.mouseClicked(mouseX, mouseY, mouseButton);
 	}
-
+	
 	@Override
 	public void drawScreen (int mouseX, int mouseY, float partialTicks) {
-		super.drawScreen(mouseX, mouseY, partialTicks);
-		this.drawString(mc.fontRendererObj, Strings.Gui_Menu_Config_Colour_Desc, 5, 80, 0xFFFFFF);
+		drawBackground(width, height, false);
+		this.drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Config_Colour_Desc), 5, 80, 0xFFFFFF);
 		this.r.drawTextBox();
 		this.drawString(mc.fontRendererObj, "R:", 5, 101, 0xFFFFFF);
 		this.g.drawTextBox();
 		this.drawString(mc.fontRendererObj, "G:", 50, 101, 0xFFFFFF);
 		this.b.drawTextBox();
 		this.drawString(mc.fontRendererObj, "B:", 95, 101, 0xFFFFFF);
+
 	}
 
 	@Override
