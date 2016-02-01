@@ -63,7 +63,7 @@ public class EntityOldFire extends EntityThrowable {
 			} else {
 				flag = true;
 
-				if (this.shootingEntity != null && this.shootingEntity instanceof EntityLiving) flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+				if (this.shootingEntity != null && this.shootingEntity instanceof EntityLiving) flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
 
 				if (flag) {
 					BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);

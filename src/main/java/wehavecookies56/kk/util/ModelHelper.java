@@ -113,7 +113,7 @@ public class ModelHelper {
 		Tessellator tessellator = Tessellator.getInstance();
 
 		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-		worldrenderer.func_181668_a(GL11.GL_QUADS, bakedModel.getFormat());
+		worldrenderer.begin(GL11.GL_QUADS, bakedModel.getFormat());
 		for (BakedQuad bakedQuad : bakedModel.getGeneralQuads())
 			worldrenderer.addVertexData(bakedQuad.getVertexData());
 

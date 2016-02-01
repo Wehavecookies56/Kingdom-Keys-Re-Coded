@@ -33,7 +33,7 @@ public abstract class AbstractInventory implements IInventory {
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing (int slot) {
+	public ItemStack removeStackFromSlot (int slot) {
 		ItemStack stack = getStackInSlot(slot);
 		setInventorySlotContents(slot, null);
 		return stack;
@@ -112,7 +112,7 @@ public abstract class AbstractInventory implements IInventory {
 	}
 
 	@Override
-	public String getCommandSenderName () {
+	public String getName () {
 		return "";
 	}
 

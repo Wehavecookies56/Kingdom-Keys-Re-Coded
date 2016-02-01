@@ -64,7 +64,7 @@ public class EntityBlizzara extends EntityThrowable {
 			} else {
 				flag = true;
 
-				if (this.shootingEntity != null && this.shootingEntity instanceof EntityPlayer) flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+				if (this.shootingEntity != null && this.shootingEntity instanceof EntityPlayer) flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
 
 				if (flag) {
 					BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);

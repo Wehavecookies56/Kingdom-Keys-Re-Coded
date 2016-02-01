@@ -66,7 +66,7 @@ public class InventorySynthesisBagL extends AbstractInventory {
 	}
 
 	@Override
-	public String getCommandSenderName () {
+	public String getName () {
 		return name;
 	}
 

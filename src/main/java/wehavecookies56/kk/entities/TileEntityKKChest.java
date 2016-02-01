@@ -112,11 +112,11 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 
 	@Override
 	public IChatComponent getDisplayName () {
-		return hasCustomName() ? new ChatComponentText(getCommandSenderName()) : new ChatComponentTranslation(getCommandSenderName(), new Object[0]);
+		return hasCustomName() ? new ChatComponentText(getName()) : new ChatComponentTranslation(getName(), new Object[0]);
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing (int slotIndex) {
+	public ItemStack removeStackFromSlot (int slotIndex) {
 		ItemStack itemStack = getStackInSlot(slotIndex);
 		if (itemStack != null) setInventorySlotContents(slotIndex, null);
 		return itemStack;
@@ -142,7 +142,7 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public String getCommandSenderName () {
+	public String getName () {
 		return "container.kk.kkchest";
 	}
 }

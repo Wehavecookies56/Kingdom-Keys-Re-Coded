@@ -74,7 +74,7 @@ public class RenderEntitySharpshooterBullet extends Render<EntitySharpshooterBul
 			}
 
 			IBakedModel bakedModel = model.bake((TRSRTransformation.identity()), Attributes.DEFAULT_BAKED_FORMAT, textureGetter);
-			worldRenderer.func_181668_a(7, Attributes.DEFAULT_BAKED_FORMAT);
+			worldRenderer.begin(7, Attributes.DEFAULT_BAKED_FORMAT);
 
 			// Get Quads
 			List<BakedQuad> generalQuads = bakedModel.getGeneralQuads();
