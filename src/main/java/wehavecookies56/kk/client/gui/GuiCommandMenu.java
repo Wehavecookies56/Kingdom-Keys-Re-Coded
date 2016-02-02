@@ -118,10 +118,10 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 
 			if (ExtendedPlayer.get(mc.thePlayer).getInDrive()) {
-				if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Anti"))
-					drawString(mc.fontRendererObj, "Revert", 6 + textX, 4, 0x888888);
+				if (ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals(Strings.Form_Anti))
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Revert), 6 + textX, 4, 0x888888);
 				else
-					drawString(mc.fontRendererObj, "Revert", 6 + textX, 4, 0xFFFFFF);
+					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Revert), 6 + textX, 4, 0xFFFFFF);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			} else if (ExtendedPlayer.driveForms.isEmpty() || ExtendedPlayer.get(mc.thePlayer).getDP() <= 0)
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0x888888);
@@ -280,7 +280,7 @@ public class GuiCommandMenu extends GuiScreen {
 						else
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 						colour = Constants.getCost(spells.get(i)) < ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() ? 0xFFFFFF : 0xFF9900;
-						if (spells.get(i).equals("gui.commandmenu.magic.cure")) colour = 0xFF9900;
+						if (spells.get(i).equals(Strings.Spell_Cure)) colour = 0xFF9900;
 						colour = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getMp() < 1 ? 0x888888 : colour;
 
 						String magic = spells.get(i);

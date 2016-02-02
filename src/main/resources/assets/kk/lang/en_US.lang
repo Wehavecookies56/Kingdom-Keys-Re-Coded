@@ -554,6 +554,7 @@ gui.commandmenu.attack=Attack
 gui.commandmenu.magic=Magic
 gui.commandmenu.items=Items
 gui.commandmenu.drive=Drive
+gui.commandmenu.drive.revert=Revert
 
 #Magic
 gui.commandmenu.magic.title=MAGIC

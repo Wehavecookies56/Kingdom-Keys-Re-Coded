@@ -11,7 +11,7 @@
   "credits": "Thanks to Sr.Gato for supporting the mod! Thanks to stel312 and Pokemew12 for the extra 3D models! Thanks to everyone else!",
   "logoFile": "",
   "screenshots": [],
-  "requiredMods": ["Forge"],
+  "requiredMods": ["Forge", "RenderPlayerAPI"],
   "dependencies": [],
   "dependants": [],
   "useDependencyInformation": true

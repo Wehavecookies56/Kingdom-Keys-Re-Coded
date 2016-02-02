@@ -3,6 +3,8 @@ package wehavecookies56.kk;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -133,6 +135,12 @@ public class KingdomKeys {
 		proxy.registerAchievements();
 
 		// Register renders
+		if(Loader.isModLoaded("RenderPlayerAPI")){
+			LogHelper.info("RenderPlayerAPI installed everything will be fine");
+			FMLLog.bigWarning("RENDERPLAYERAPI NOT INSTALLED THIS IS GOING TO CRASH", Reference.MODID);
+
+		}else{
+		}
 		proxy.init();
 		LogHelper.info("Renders loaded");
 
