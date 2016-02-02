@@ -137,9 +137,8 @@ public class KingdomKeys {
 		// Register renders
 		if(Loader.isModLoaded("RenderPlayerAPI")){
 			LogHelper.info("RenderPlayerAPI installed everything will be fine");
-			FMLLog.bigWarning("RENDERPLAYERAPI NOT INSTALLED THIS IS GOING TO CRASH", Reference.MODID);
-
 		}else{
+			FMLLog.bigWarning("RENDERPLAYERAPI NOT INSTALLED THIS IS GOING TO CRASH", Reference.MODID);
 		}
 		proxy.init();
 		LogHelper.info("Renders loaded");
