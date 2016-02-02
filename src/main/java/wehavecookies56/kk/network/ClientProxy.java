@@ -1,10 +1,13 @@
 package wehavecookies56.kk.network;
 
+import java.util.List;
+
 import com.jadarstudios.developercapes.DevCapes;
 
 import api.player.model.ModelPlayerAPI;
 import api.player.render.RenderPlayerAPI;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.ResourcePackRepository;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -42,6 +45,7 @@ import wehavecookies56.kk.entities.projectiles.EntitySharpshooterBullet;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.util.ClientEventHandler;
 import wehavecookies56.kk.util.LogHelper;
 import wehavecookies56.kk.util.StatStringFormatterMenu;
 
