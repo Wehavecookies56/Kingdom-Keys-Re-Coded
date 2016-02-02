@@ -51,7 +51,7 @@ import wehavecookies56.kk.util.LogHelper;
 import wehavecookies56.kk.worldgen.ChestGen;
 import wehavecookies56.kk.worldgen.WorldGenBlox;
 
-@Mod (name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER, guiFactory = Reference.GUIFACTORY, modLanguage = "java")
+@Mod (name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER, guiFactory = Reference.GUIFACTORY, modLanguage = "java", dependencies = "RenderPlayerAPI:1.0")
 public class KingdomKeys {
 
 	@SidedProxy (clientSide = Reference.CLIENTPROXY, serverSide = Reference.COMMONPROXY)

@@ -2,6 +2,8 @@ package wehavecookies56.kk.network;
 
 import com.jadarstudios.developercapes.DevCapes;
 
+import api.player.model.ModelPlayerAPI;
+import api.player.render.RenderPlayerAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,10 +29,12 @@ import wehavecookies56.kk.client.gui.GuiOverlay;
 import wehavecookies56.kk.client.gui.GuiPlayerPortrait;
 import wehavecookies56.kk.client.input.InputHandler;
 import wehavecookies56.kk.client.input.Keybinds;
+import wehavecookies56.kk.client.model.ModelPlayerDrive;
 import wehavecookies56.kk.client.render.RenderEntityEternalFlames;
 import wehavecookies56.kk.client.render.RenderEntityIfrit;
 import wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
 import wehavecookies56.kk.client.render.RenderFactorySharpshooterBullet;
+import wehavecookies56.kk.client.render.RenderPlayerDrive;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
 import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 import wehavecookies56.kk.entities.projectiles.EntityIfrit;
@@ -158,6 +162,8 @@ public class ClientProxy extends CommonProxy {
 		registerKeyBindings();
 		MinecraftForge.EVENT_BUS.register(new wehavecookies56.kk.util.ClientEventHandler());
 		ModAchievements.openMenu.setStatStringFormatter(new StatStringFormatterMenu());
+		ModelPlayerAPI.register(Reference.MODID, ModelPlayerDrive.class);
+		RenderPlayerAPI.register(Reference.MODID, RenderPlayerDrive.class);
 	}
 
 	private void registerRenders () {

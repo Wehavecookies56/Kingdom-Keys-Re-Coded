@@ -45,7 +45,7 @@ public class InputHandler {
 		else if (ap >= 10) prob = 40;
 
 		if (random * 100 < prob) {
-			PacketDispatcher.sendToServer(new DriveFormPacket("Anti"));
+			PacketDispatcher.sendToServer(new DriveFormPacket(Strings.Form_Anti));
 			GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 			PacketDispatcher.sendToServer(new AntiPoints(4, "-"));
@@ -203,7 +203,9 @@ public class InputHandler {
 
 		if (GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE) {
 			if (ExtendedPlayer.driveForms.isEmpty()) {} else if ((ExtendedPlayer.get(player).getDP() >= Constants.getCost(ExtendedPlayer.driveForms.get(GuiCommandMenu.driveselected)))) {
-				ModDriveForms.getDriveForm(player, world, ExtendedPlayer.driveForms.get(GuiCommandMenu.driveselected));
+				if(!antiFormCheck()){
+					ModDriveForms.getDriveForm(player, world, ExtendedPlayer.driveForms.get(GuiCommandMenu.driveselected));
+				}
 				GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 				world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Select, 1f, 1f, false);

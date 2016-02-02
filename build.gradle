@@ -34,7 +34,7 @@ minecraft {
 }
 
 dependencies {
-
+    
 }
 
 processResources {

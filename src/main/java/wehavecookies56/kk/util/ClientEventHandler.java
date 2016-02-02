@@ -15,7 +15,9 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreenServerList;
 import net.minecraft.client.gui.GuiSelectWorld;
+import net.minecraft.client.model.ModelArmorStandArmor;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.client.GuiModList;
@@ -215,35 +217,43 @@ public class ClientEventHandler {
 
 	@SubscribeEvent
 	public void onRenderPlayer(RenderPlayerEvent.Post event){
-		Minecraft mc = Minecraft.getMinecraft();
-		ModelBiped main = event.renderer.getMainModel();
-		ModelBiped drive = new ModelBiped();
-		
-		float base = 0.0625f;
-
-		GL11.glPushMatrix();
-		
-		//Body and arms
-		mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_A.png"));
-		
-		ModelBiped.copyModelAngles(main.bipedBody, drive.bipedBody);
-		ModelBiped.copyModelAngles(main.bipedLeftArm, drive.bipedLeftArm);
-		ModelBiped.copyModelAngles(main.bipedRightArm, drive.bipedRightArm);
-		
-		drive.bipedBody.render(base);
-		drive.bipedLeftArm.render(base);
-		drive.bipedRightArm.render(base);
-		
-		//Legs
-		mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_B.png"));
-		
-		ModelBiped.copyModelAngles(main.bipedLeftLeg, drive.bipedLeftLeg);
-		ModelBiped.copyModelAngles(main.bipedRightLeg, drive.bipedRightLeg);
-		
-		drive.bipedLeftLeg.render(base);
-		drive.bipedRightLeg.render(base);
-
-		GL11.glPopMatrix();
+//		Minecraft mc = Minecraft.getMinecraft();
+//		float base = 0.0625f;
+//		ModelBiped main = event.renderer.getMainModel();
+//		ModelArmorStandArmor drive = new ModelArmorStandArmor();
+//
+//		GL11.glPushMatrix();
+//				
+//		//Body and arms
+//		mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_A.png"));
+//		
+//		//ModelBiped.copyModelAngles(main.bipedBody, drive.bipedBodyWear);
+//		//ModelBiped.copyModelAngles(main.bipedLeftArm, drive.bipedLeftArmwear);
+//		//ModelBiped.copyModelAngles(main.bipedRightArm, drive.bipedRightArmwear);
+//
+//		GL11.glRotatef(180f, 1.0f, 0, 0);
+//		
+//		//drive.render(event.entityPlayer, (float)event.x, (float)event.y, (float)event.z, event.entityPlayer.renderYawOffset, event.partialRenderTick, 1);
+//		drive.bipedBody.render(base);
+//		drive.bipedLeftArm.render(base);
+//		drive.bipedRightArm.render(base);
+//		System.out.println(event.z);
+//		//drive.bipedBody.offsetX = event.entityPlayer.renderOffsetX;
+//		//drive.bipedBody.offsetY = event.entityPlayer.renderOffsetY;
+//		//drive.bipedBody.offsetZ = event.entityPlayer.renderOffsetZ;
+//		//drive.bipedLeftArmwear.render(base);
+//		//drive.bipedRightArmwear.render(base);
+//		
+//		//Legs
+//		//mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_B.png"));
+//		
+//		//ModelBiped.copyModelAngles(main.bipedLeftLeg, drive.bipedLeftLegwear);
+//		//ModelBiped.copyModelAngles(main.bipedRightLeg, drive.bipedRightLegwear);
+//		
+//		//drive.bipedLeftLegwear.render(base);
+//		//drive.bipedRightLegwear.render(base);
+//
+//		GL11.glPopMatrix();
 	}
 	
 	public static int randomWithRange (int min, int max) {
