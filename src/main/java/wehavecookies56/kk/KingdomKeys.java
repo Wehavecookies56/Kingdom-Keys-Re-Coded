@@ -80,7 +80,7 @@ public class KingdomKeys {
 	@EventHandler
 	public void preInit (FMLPreInitializationEvent e) {
 		// Display mod info in console
-		LogHelper.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft 1.8.9");
+		LogHelper.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft " + Reference.MCVER);
 
 		// Config
 		config = new Configuration(e.getSuggestedConfigurationFile());

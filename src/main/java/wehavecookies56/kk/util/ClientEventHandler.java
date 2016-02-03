@@ -1,11 +1,11 @@
 package wehavecookies56.kk.util;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSound;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.audio.SoundManager;
@@ -14,7 +14,6 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreenServerList;
 import net.minecraft.client.gui.GuiSelectWorld;
-import net.minecraft.client.resources.ResourcePackRepository;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.client.GuiModList;
@@ -36,6 +35,7 @@ public class ClientEventHandler {
 	boolean[] bossBattlePlayed = { false };
 	boolean[] battlePlayed = { false };
 	boolean[] menuPlayed = { false, false, false, false, false, false, false, false, false };
+
 	int interval = 100;
 
 	int clientTick = 0;
@@ -45,25 +45,24 @@ public class ClientEventHandler {
 	public void clientTick (ClientTickEvent event) {
 
 		if(Config.EnableCustomMusic || Config.ForceEnableCustomMusic) {
-			// System.out.println("Battle Played: "+this.battlePlayed[0]);
 
 			if (event.phase == Phase.END) if (!(Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu || Minecraft.getMinecraft().currentScreen instanceof GuiModList || Minecraft.getMinecraft().currentScreen instanceof GuiScreenServerList || Minecraft.getMinecraft().currentScreen instanceof GuiMultiplayer || Minecraft.getMinecraft().currentScreen instanceof GuiLanguage || Minecraft.getMinecraft().currentScreen instanceof GuiSelectWorld)) {
 				SoundManager soundManager = ReflectionHelper.getPrivateValue(SoundHandler.class, Minecraft.getMinecraft().getSoundHandler(), "sndManager", "field_147694_f");
 				Map playingSounds = ReflectionHelper.getPrivateValue(SoundManager.class, soundManager, "playingSounds", "field_148629_h");
 				Iterator iter = playingSounds.keySet().iterator();
-
 				while (iter.hasNext()) {
 					Object o = iter.next();
 					if (playingSounds.get(o) instanceof PositionedSound) {
+						if (((PositionedSound) playingSounds.get(o)).getSoundLocation().getResourcePath().contains("music.game") && ((PositionedSound) playingSounds.get(o)).getSoundLocation().getResourceDomain() == "minecraft")
+							Minecraft.getMinecraft().getSoundHandler().stopSound(((PositionedSound) playingSounds.get(o)));
+						
 						this.posSound = (PositionedSound) playingSounds.get(o);
-						this.vanillaSound = (PositionedSound) playingSounds.get(o);
 						this.resLoc = ReflectionHelper.getPrivateValue(PositionedSound.class, this.posSound, "positionedSoundLocation", "field_147664_a");
 					}
 				}
 
 				if ("music.game".equals(resLoc.getResourcePath()) || "music.game.creative".equals(resLoc.getResourcePath())) {
 					Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
-					// this.posSound = Music.lazyAfternoons;
 					this.resLoc = new ResourceLocation(Reference.MODID, "");
 				}
 				// TODO implement this boss thing into this hard file
@@ -125,8 +124,9 @@ public class ClientEventHandler {
 					 */
 				} else if (EventHandler.isHostiles) {
 					if (!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.sinisterSundown) && !Music.sinisterSundown.getSoundLocation().equals(this.resLoc) && !"music.game".equals(this.resLoc.getResourcePath()) && !"music.game.creative".equals(this.resLoc.getResourcePath())) if (!this.battlePlayed[0]) {
-						System.out.println("Ok");
-						Minecraft.getMinecraft().getSoundHandler().playDelayedSound(Music.sinisterSundown, 5);
+						if(!playingSounds.containsValue(Music.sinisterSundown)){
+							try{Minecraft.getMinecraft().getSoundHandler().playDelayedSound(Music.sinisterSundown, 5);}catch(Exception e){}
+						}
 						for (int i = 0; i < this.battlePlayed.length; i++)
 							this.battlePlayed[i] = false;
 						this.battlePlayed[0] = true;
@@ -148,64 +148,72 @@ public class ClientEventHandler {
 
 				if ("music.menu".equals(resLoc.getResourcePath())) {
 					Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
-					// this.posSound = Music.dearlyBelovedKH1;
 					this.resLoc = new ResourceLocation(Reference.MODID, "");
 				}
-				if (!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedDDD) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedBBS) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedKH1) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedKH2) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedReCoM) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedCoM) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedCoded) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedDays) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedCHI) && !"music.menu".equals(this.resLoc.getResourcePath())) {
+				if (!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedDDD) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedBBS) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedKH1) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedKH2) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedReCoM) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedCoM) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedCoded) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedDays) && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.dearlyBelovedChi) && !"music.menu".equals(this.resLoc.getResourcePath())) {
 
 					int r = randomWithRange(0, 8);
 					if (resLoc.getResourcePath().contains("music.menu")) Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
 					Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
 					if (r == 0 && !this.menuPlayed[0]) {
-						Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedKH1);
+						if(!playingSounds.containsValue(Music.dearlyBelovedKH1))
+							try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedKH1);}catch(Exception e){}
 						for (int i = 0; i < this.menuPlayed.length; i++)
 							this.menuPlayed[i] = false;
 						this.menuPlayed[0] = true;
 						return;
 					} else if (r == 1 && !this.menuPlayed[1]) {
-						Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedKH2);
+						if(!playingSounds.containsValue(Music.dearlyBelovedKH2))
+							try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedKH2);}catch(Exception e){}
 						for (int i = 0; i < this.menuPlayed.length; i++)
 							this.menuPlayed[i] = false;
 						this.menuPlayed[1] = true;
 						return;
 					} else if (r == 2 && !this.menuPlayed[2]) {
-						Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedBBS);
+						if(!playingSounds.containsValue(Music.dearlyBelovedBBS))
+							try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedBBS);}catch(Exception e){}
 						for (int i = 0; i < this.menuPlayed.length; i++)
 							this.menuPlayed[i] = false;
 						this.menuPlayed[2] = true;
 						return;
 					} else if (r == 3 && !this.menuPlayed[3]) {
-						Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedDDD);
+						if(!playingSounds.containsValue(Music.dearlyBelovedDDD))
+							try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedDDD);}catch(Exception e){}
 						for (int i = 0; i < this.menuPlayed.length; i++)
 							this.menuPlayed[i] = false;
 						this.menuPlayed[3] = true;
 						return;
 					} else if (r == 4 && !this.menuPlayed[4]) {
-						Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedDays);
+						if(!playingSounds.containsValue(Music.dearlyBelovedDays))
+							try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedDays);}catch(Exception e){}
 						for (int i = 0; i < this.menuPlayed.length; i++)
 							this.menuPlayed[i] = false;
 						this.menuPlayed[4] = true;
 						return;
 					} else if (r == 5 && !this.menuPlayed[5]) {
-						Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedCoded);
+						if(!playingSounds.containsValue(Music.dearlyBelovedCoded))
+							try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedCoded);}catch(Exception e){}
 						for (int i = 0; i < this.menuPlayed.length; i++)
 							this.menuPlayed[i] = false;
 						this.menuPlayed[5] = true;
 						return;
 					} else if (r == 6 && !this.menuPlayed[6]) {
-						Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedCoM);
+						if(!playingSounds.containsValue(Music.dearlyBelovedCoM))
+							try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedCoM);}catch(Exception e){}
 						for (int i = 0; i < this.menuPlayed.length; i++)
 							this.menuPlayed[i] = false;
 						this.menuPlayed[6] = true;
 						return;
 					} else if (r == 7 && !this.menuPlayed[7]) {
-						Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedReCoM);
+						if(!playingSounds.containsValue(Music.dearlyBelovedReCoM))
+							try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedReCoM);}catch(Exception e){}
 						for (int i = 0; i < this.menuPlayed.length; i++)
 							this.menuPlayed[i] = false;
 						this.menuPlayed[7] = true;
 						return;
 					} else if (r == 8 && !this.menuPlayed[8]) {
-						Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedCHI);
+						if(!playingSounds.containsValue(Music.dearlyBelovedChi))
+							try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.dearlyBelovedChi);}catch(Exception e){}
 						for (int i = 0; i < this.menuPlayed.length; i++)
 							this.menuPlayed[i] = false;
 						this.menuPlayed[8] = true;

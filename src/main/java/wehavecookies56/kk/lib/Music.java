@@ -60,7 +60,7 @@ public class Music {
 	// Title music
 	public static PositionedSoundRecord dearlyBelovedDDD = PositionedSoundRecord.create(new ResourceLocation(Reference.MODID, "music.Dearly Beloved (DDD)"));
 	public static PositionedSoundRecord dearlyBelovedBBS = PositionedSoundRecord.create(new ResourceLocation(Reference.MODID, "music.Dearly Beloved (BBS)"));
-	public static PositionedSoundRecord dearlyBelovedCHI = PositionedSoundRecord.create(new ResourceLocation(Reference.MODID, "music.Dearly Beloved (CHI)"));
+	public static PositionedSoundRecord dearlyBelovedChi = PositionedSoundRecord.create(new ResourceLocation(Reference.MODID, "music.Dearly Beloved (CHI)"));
 	public static PositionedSoundRecord dearlyBelovedDays = PositionedSoundRecord.create(new ResourceLocation(Reference.MODID, "music.Dearly Beloved (Days)"));
 	public static PositionedSoundRecord dearlyBelovedKH1 = PositionedSoundRecord.create(new ResourceLocation(Reference.MODID, "music.Dearly Beloved (KH1)"));
 	public static PositionedSoundRecord dearlyBelovedKH2 = PositionedSoundRecord.create(new ResourceLocation(Reference.MODID, "music.Dearly Beloved (KH2)"));
