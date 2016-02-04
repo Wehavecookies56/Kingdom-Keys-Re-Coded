@@ -23,6 +23,7 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 import wehavecookies56.kk.item.ModItems;
+import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -437,7 +438,7 @@ public class GuiSynthesis extends GuiTooltip {
 		Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
 		GL11.glPushMatrix();
 		{
-			GL11.glColor3ub((byte) 24, (byte) 36, (byte) 214);
+			GL11.glColor3ub((byte) Config.interfaceColour[0], (byte) Config.interfaceColour[1], (byte) Config.interfaceColour[2]);
 			drawModalRectWithCustomSizedTexture(0, 0, 0, 0, screenWidth, 60, 32, 32);
 			drawModalRectWithCustomSizedTexture(0, screenHeight - ((screenHeight / 8) + 70 / 16), 0, 0, screenWidth, 70, 32, 32);
 		}
