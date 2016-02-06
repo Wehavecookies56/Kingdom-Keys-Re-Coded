@@ -65,7 +65,7 @@ public class ModelPlayerDrive extends ModelPlayerBase {
 				case Strings.Form_Anti:
 					GL11.glPushMatrix();
 					GL11.glEnable(GL11.GL_BLEND);
-					GL11.glColor4f(0, 0, 0, 0.9f);
+					GL11.glColor4f(0, 0, 0, 0.85f);
 					driveInUseA = null;
 					driveInUseB = null;
 					modelPlayer.bipedHead.render(0.0625f);
@@ -84,15 +84,16 @@ public class ModelPlayerDrive extends ModelPlayerBase {
 			}
 
 			if(driveInUseA != null && driveInUseB != null){
+				float size = (float) 0.0645; 
 				Minecraft.getMinecraft().renderEngine.bindTexture(driveInUseA);
 				ModelPlayerArmor drive = new ModelPlayerArmor(paramFloat6);
 				drive.setRotationAngles(paramFloat1, paramFloat2, paramFloat3, paramFloat4, paramFloat5, paramFloat6, paramEntity);
-				drive.bipedBody.render(paramFloat6);
-				drive.bipedLeftArm.render(paramFloat6);
-				drive.bipedRightArm.render(paramFloat6);
+				drive.bipedBody.render(size);
+				drive.bipedLeftArm.render(size);
+				drive.bipedRightArm.render(size);
 				Minecraft.getMinecraft().renderEngine.bindTexture(driveInUseB);
-				drive.bipedLeftLeg.render(paramFloat6);
-				drive.bipedRightLeg.render(paramFloat6);
+				drive.bipedLeftLeg.render(size);
+				drive.bipedRightLeg.render(size);
 			}
 		}
 
