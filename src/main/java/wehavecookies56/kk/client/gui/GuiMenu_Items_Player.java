@@ -12,9 +12,9 @@ import wehavecookies56.kk.util.TextHelper;
 
 public class GuiMenu_Items_Player extends GuiMenu_Bars {
 
-	final int KEYCHAIN = 1, SYNTHBAG = 2, POTIONS = 3, SPELLS = 4, DRIVE = 5, BACK = 6;
+	final int KEYCHAIN = 1, POTIONS = 2, SPELLS = 3, DRIVE = 4, BACK = 5;
 
-	GuiButton keychain, synthbag, potions, spells, back;
+	GuiButton keychain, potions, spells, back;
 
 	public GuiMenu_Items_Player (String name) {
 		super(Minecraft.getMinecraft().thePlayer.getDisplayName().getFormattedText());
@@ -25,9 +25,6 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 		switch (button.id) {
 			case KEYCHAIN:
 				GuiHelper.openInv(KingdomKeys.GUI_KEYCHAIN_INV);
-				break;
-			case SYNTHBAG:
-				GuiHelper.openInv(KingdomKeys.GUI_SYNTHBAG_INV);
 				break;
 			case POTIONS:
 				GuiHelper.openInv(KingdomKeys.GUI_POTIONS_INV);
@@ -55,20 +52,17 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 		super.initGui();
 		int button_itemsY = (-140 / 16) + 75;
 
-		int button_items_playerY = button_itemsY;
-		int button_items_stockY = button_items_playerY + 22;
-		int button_items_potionsY = button_items_stockY + 22;
+		int button_items_keybladeY = button_itemsY;
+		int button_items_potionsY = button_items_keybladeY + 22;
 		int button_items_spellsY = button_items_potionsY + 22;
 		int button_items_driveY = button_items_spellsY + 22;
 		int button_items_backY = button_items_driveY + 22;
 
-		buttonList.add(keychain = new GuiButton(KEYCHAIN, 5, button_items_playerY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Keychain)));
-		buttonList.add(synthbag = new GuiButton(SYNTHBAG, 5, button_items_stockY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_SynthBag)));
+		buttonList.add(keychain = new GuiButton(KEYCHAIN, 5, button_items_keybladeY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Keychain)));
 		buttonList.add(potions = new GuiButton(POTIONS, 5, button_items_potionsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Potions)));
 		buttonList.add(spells = new GuiButton(SPELLS, 5, button_items_spellsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Spells)));
 		buttonList.add(spells = new GuiButton(DRIVE, 5, button_items_driveY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Drive)));
 		buttonList.add(back = new GuiButton(BACK, 5, button_items_backY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
-		synthbag.enabled = true;
 
 		updateButtons();
 	}
