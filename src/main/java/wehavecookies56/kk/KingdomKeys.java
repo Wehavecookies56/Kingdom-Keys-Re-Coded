@@ -66,7 +66,6 @@ public class KingdomKeys {
 	public static final int GUI_KEYCHAIN_INV = modGuiIndex++;
 	public static final int GUI_KKCHEST_INV = modGuiIndex++;
 	public static final int GUI_ITEMS_PLAYER = modGuiIndex++;
-	public static final int GUI_SYNTHBAG_INV = modGuiIndex++;
 	public static final int GUI_POTIONS_INV = modGuiIndex++;
 	public static final int GUI_SPELLS_INV = modGuiIndex++;
 	public static final int GUI_DRIVE_INV = modGuiIndex++;

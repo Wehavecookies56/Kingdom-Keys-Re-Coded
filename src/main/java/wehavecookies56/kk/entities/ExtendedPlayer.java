@@ -15,7 +15,6 @@ import wehavecookies56.kk.inventory.InventoryDriveForms;
 import wehavecookies56.kk.inventory.InventoryKeychain;
 import wehavecookies56.kk.inventory.InventoryPotionsMenu;
 import wehavecookies56.kk.inventory.InventorySpells;
-import wehavecookies56.kk.inventory.InventorySynthBagMenu;
 import wehavecookies56.kk.item.ItemDriveForm;
 import wehavecookies56.kk.item.ItemKKPotion;
 import wehavecookies56.kk.item.ItemSpellOrb;
@@ -33,7 +32,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	private final EntityPlayer player;
 
 	public final InventoryKeychain inventoryKeychain = new InventoryKeychain();
-	public final InventorySynthBagMenu inventorySynthBag = new InventorySynthBagMenu();
 	public final InventoryPotionsMenu inventoryPotions = new InventoryPotionsMenu();
 	public final InventorySpells inventorySpells = new InventorySpells();
 	public final InventoryDriveForms inventoryDrive = new InventoryDriveForms();
@@ -115,7 +113,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void saveNBTData (NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
 		this.inventoryKeychain.writeToNBT(properties);
-		this.inventorySynthBag.writeToNBT(properties);
 		this.inventoryPotions.writeToNBT(properties);
 		this.inventorySpells.writeToNBT(properties);
 		this.inventoryDrive.writeToNBT(properties);
@@ -161,7 +158,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void loadNBTData (NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
 		this.inventoryKeychain.readFromNBT(properties);
-		this.inventorySynthBag.readFromNBT(properties);
 		this.inventoryPotions.readFromNBT(properties);
 		this.inventorySpells.readFromNBT(properties);
 		this.inventoryDrive.readFromNBT(properties);
