@@ -49,8 +49,8 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		r = new GuiColourTextField(R, mc.fontRendererObj, rPosX, 100, boxWidth, 10);
 		g = new GuiColourTextField(G, mc.fontRendererObj, gPosX, 100, boxWidth, 10);
 		b = new GuiColourTextField(B, mc.fontRendererObj, bPosX, 100, boxWidth, 10);
-		back = new GuiButton(BACK, 10, this.height - (this.height / 4), 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back));
-		buttonList.add(back);
+		//back = new GuiButton(BACK, 10, 0, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back));
+		buttonList.add(back = new GuiButton(BACK, 5, (-140 / 16) + 200, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
 		this.r.setText(String.valueOf(Config.interfaceColour[0]));
 		this.g.setText(String.valueOf(Config.interfaceColour[1]));
 		this.b.setText(String.valueOf(Config.interfaceColour[2]));

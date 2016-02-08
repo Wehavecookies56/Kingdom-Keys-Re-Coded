@@ -14,7 +14,7 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 
 	final int KEYCHAIN = 1, SYNTHBAG = 2, POTIONS = 3, SPELLS = 4, DRIVE = 5, BACK = 6;
 
-	GuiButton keychain, synthbag, potions, spells, back;
+	GuiButton keychain, synthbag, potions, spells, driveforms, back;
 
 	public GuiMenu_Items_Player (String name) {
 		super(Minecraft.getMinecraft().thePlayer.getDisplayName().getFormattedText());
@@ -66,7 +66,7 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 		buttonList.add(synthbag = new GuiButton(SYNTHBAG, 5, button_items_stockY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_SynthBag)));
 		buttonList.add(potions = new GuiButton(POTIONS, 5, button_items_potionsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Potions)));
 		buttonList.add(spells = new GuiButton(SPELLS, 5, button_items_spellsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Spells)));
-		buttonList.add(spells = new GuiButton(DRIVE, 5, button_items_driveY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Drive)));
+		buttonList.add(driveforms = new GuiButton(DRIVE, 5, button_items_driveY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Drive)));
 		buttonList.add(back = new GuiButton(BACK, 5, button_items_backY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
 		synthbag.enabled = true;
 
