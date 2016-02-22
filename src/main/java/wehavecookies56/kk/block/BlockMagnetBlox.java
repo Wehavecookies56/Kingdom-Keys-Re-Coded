@@ -13,9 +13,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -27,14 +30,19 @@ public class BlockMagnetBlox extends BlockBlox {
 
 	public static final PropertyDirection PROPERTYFACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 	public static final PropertyBool PROPERTYON = PropertyBool.create("on");
+	public static final PropertyBool PROPERTYMAGNET = PropertyBool.create("magnet");
 
 	@Override
 	public int getMetaFromState (IBlockState state) {
 		EnumFacing facing = state.getValue(PROPERTYFACING);
 		boolean on = state.getValue(PROPERTYON);
+		boolean magnet = state.getValue(PROPERTYMAGNET);
+		
 		int facingbits = facing.getHorizontalIndex();
 
 		if (on) facingbits += 4;
+		if (magnet) facingbits += 8;
+		System.out.println(facingbits);
 		return facingbits;
 	}
 
@@ -45,6 +53,7 @@ public class BlockMagnetBlox extends BlockBlox {
 
 	@Override
 	public void onEntityCollidedWithBlock (World world, BlockPos pos, Entity entityIn) {
+		System.out.println("Collision");
 		if (!world.isRemote) updateState(world, pos);
 		super.onEntityCollidedWithBlock(world, pos, entityIn);
 	}
@@ -54,7 +63,12 @@ public class BlockMagnetBlox extends BlockBlox {
 		if (!world.isRemote) updateState(world, pos);
 		super.updateTick(world, pos, state, rand);
 	}
-
+	
+	@Override
+	public EnumWorldBlockLayer getBlockLayer () {
+		return EnumWorldBlockLayer.TRANSLUCENT;
+	}
+	
 	private void updateState (World world, BlockPos pos) {
 		List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, getCollisionBoundingBox(world, pos, world.getBlockState(pos)));
 		if (list.isEmpty()) return;
@@ -78,6 +92,9 @@ public class BlockMagnetBlox extends BlockBlox {
 		IBlockState state = world.getBlockState(pos);
 		EnumFacing facing = state.getValue(PROPERTYFACING);
 		boolean isOn = state.getValue(PROPERTYON);
+		if(state.getValue(PROPERTYMAGNET)){
+			state.getBlock().setBlockBounds(0, 0, 0, 1, 1, 1);
+		}
 		if (isOn) {
 			if (facing == EnumFacing.NORTH)
 				state.getBlock().setBlockBounds(0, 0, 0, 1, 1, 10);
@@ -94,15 +111,51 @@ public class BlockMagnetBlox extends BlockBlox {
 	@Override
 	public void onNeighborBlockChange (World world, BlockPos pos, IBlockState state, Block neighborBlock) {
 
-		if (world.isBlockPowered(pos))
+		if (world.isBlockPowered(pos)) {
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYON, true));
-		else
+			EnumFacing facing = world.getBlockState(pos).getValue(PROPERTYFACING);
+			for (int i = 1; i < 10; i++) {
+				if(facing == EnumFacing.NORTH) {
+					if(world.getBlockState(pos.offset(facing, i)).getBlock() == Blocks.air){
+						world.setBlockState(pos.offset(facing, i), ModBlocks.MagnetBlox.getDefaultState().withProperty(PROPERTYFACING, facing.getOpposite()).withProperty(PROPERTYMAGNET, true).withProperty(PROPERTYON, false));
+					}else {
+						System.out.println("Ok");
+						break;
+					}
+				}
+				if(facing == EnumFacing.SOUTH) {
+					if(world.getBlockState(pos.south()) == Blocks.air){
+						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+					}else {
+						break;
+					}
+				}
+				if(facing == EnumFacing.EAST) {
+					if(world.getBlockState(pos.east()) == Blocks.air){
+						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+					}else {
+						break;
+					}
+				}
+				if(facing == EnumFacing.WEST) {
+					if(world.getBlockState(pos.west()) == Blocks.air){
+						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+					}else {
+						break;
+					}
+				}
+			}
+		} else {
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYON, false));
+		}
 	}
 
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox (World world, BlockPos pos, IBlockState state) {
 		EnumFacing facing = state.getValue(PROPERTYFACING);
+		if(state.getValue(PROPERTYMAGNET)){
+			return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(0, 0, 0));
+		}
 		if (world.isBlockPowered(pos)) {
 			if (facing == EnumFacing.NORTH)
 				return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 10));
@@ -118,13 +171,13 @@ public class BlockMagnetBlox extends BlockBlox {
 
 	@Override
 	protected BlockState createBlockState () {
-		return new BlockState(this, new IProperty[] { PROPERTYFACING, PROPERTYON });
+		return new BlockState(this, new IProperty[] { PROPERTYFACING, PROPERTYON, PROPERTYMAGNET });
 	}
 
 	@Override
 	public IBlockState onBlockPlaced (World world, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
 		EnumFacing enumfacing = (placer == null) ? EnumFacing.NORTH : EnumFacing.fromAngle(placer.rotationYaw);
 
-		return getDefaultState().withProperty(PROPERTYFACING, enumfacing).withProperty(PROPERTYON, false);
+		return getDefaultState().withProperty(PROPERTYFACING, enumfacing).withProperty(PROPERTYON, false).withProperty(PROPERTYMAGNET, false);
 	}
 }
