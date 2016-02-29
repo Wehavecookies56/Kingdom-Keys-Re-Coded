@@ -7,6 +7,7 @@ import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSound;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.audio.SoundManager;
 import net.minecraft.client.gui.GuiLanguage;
@@ -33,13 +34,14 @@ public class ClientEventHandler {
 	ResourceLocation resLoc = new ResourceLocation(Reference.MODID, "");
 	boolean[] played = { false };
 	boolean[] bossBattlePlayed = { false };
-	boolean[] battlePlayed = { false };
+	boolean[] battlePlayed = { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
 	boolean[] menuPlayed = { false, false, false, false, false, false, false, false, false };
 
 	int interval = 100;
 
 	int clientTick = 0;
 	float volume = 1.0f;
+	PositionedSoundRecord currMusic = Music.sinisterSundown;
 
 	@SubscribeEvent (priority = EventPriority.HIGHEST)
 	public void clientTick (ClientTickEvent event) {
@@ -55,7 +57,7 @@ public class ClientEventHandler {
 					if (playingSounds.get(o) instanceof PositionedSound) {
 						if (((PositionedSound) playingSounds.get(o)).getSoundLocation().getResourcePath().contains("music.game") && ((PositionedSound) playingSounds.get(o)).getSoundLocation().getResourceDomain() == "minecraft")
 							Minecraft.getMinecraft().getSoundHandler().stopSound(((PositionedSound) playingSounds.get(o)));
-						
+
 						this.posSound = (PositionedSound) playingSounds.get(o);
 						this.resLoc = ReflectionHelper.getPrivateValue(PositionedSound.class, this.posSound, "positionedSoundLocation", "field_147664_a");
 					}
@@ -70,66 +72,278 @@ public class ClientEventHandler {
 					// Minecraft.getMinecraft().getSoundHandler().stopSound(Music.sinisterSundown);
 					// this.bossBattlePlayed[0] = false;
 				}
-
+				
 				if (!EventHandler.isHostiles) {
 					clientTick++;
 					if (clientTick >= 20) {
-						Minecraft.getMinecraft().getSoundHandler().stopSound(Music.sinisterSundown);
-						this.battlePlayed[0] = false;
+						Minecraft.getMinecraft().getSoundHandler().stopSound(currMusic);
 						clientTick = 0;
 					}
-
-					// System.out.println("Lazy afternoons");
-					/*
-					 * if(!Minecraft.getMinecraft().getSoundHandler().
-					 * isSoundPlaying(Music.lazyAfternoons) &&
-					 * !"music.game".equals(this.resLoc.getResourcePath()) &&
-					 * !"music.game.creative".equals(this.resLoc.getResourcePath
-					 * ())) { if(!this.played[0]){
-					 * Minecraft.getMinecraft().getSoundHandler().stopSound(
-					 * Music.sinisterSundown);
-					 * Minecraft.getMinecraft().getSoundHandler().playSound(
-					 * Music.lazyAfternoons); for(int i = 0; i < this.played.length;
-					 * i++){ this.played[i] = false; } //this.played[0] = true; } }
-					 */
-
-					/*
-					 * if(this.day && !this.raining) { if(this.rand.nextInt(2) == 0
-					 * && !this.played[0]) {
-					 * Minecraft.getMinecraft().getSoundHandler().playSound(
-					 * Sounds.posDay1); for(int i = 0; i < this.played.length; i++)
-					 * { this.played[i] = false; } this.played[0] = true; } else
-					 * if(!this.played[1]) {
-					 * Minecraft.getMinecraft().getSoundHandler().playSound(
-					 * Sounds.posDay2); for(int i = 0; i < this.played.length; i++)
-					 * { this.played[i] = false; } this.played[1] = true; } }
-					 * //Night if(!this.day && !this.raining) {
-					 * if(this.rand.nextInt(2) == 0 && !this.played[2]) {
-					 * Minecraft.getMinecraft().getSoundHandler().playSound(
-					 * Sounds.posNight1); for(int i = 0; i < this.played.length;
-					 * i++) { this.played[i] = false; } this.played[2] = true; }
-					 * else if(!this.played[3]) {
-					 * Minecraft.getMinecraft().getSoundHandler().playSound(
-					 * Sounds.posNight2); for(int i = 0; i < this.played.length;
-					 * i++) { this.played[i] = false; } this.played[3] = true; } }
-					 * //Raining if(this.raining) { if(this.rand.nextInt(2) == 0 &&
-					 * !this.played[4]) {
-					 * Minecraft.getMinecraft().getSoundHandler().playSound(
-					 * Music.song); for(int i = 0; i < this.played.length; i++) {
-					 * this.played[i] = false; } this.played[4] = true; } else
-					 * if(!this.played[5]) {
-					 * Minecraft.getMinecraft().getSoundHandler().playSound(
-					 * Music.song); for(int i = 0; i < this.played.length; i++) {
-					 * this.played[i] = false; } this.played[5] = true; } }
-					 */
 				} else if (EventHandler.isHostiles) {
-					if (!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.sinisterSundown) && !Music.sinisterSundown.getSoundLocation().equals(this.resLoc) && !"music.game".equals(this.resLoc.getResourcePath()) && !"music.game.creative".equals(this.resLoc.getResourcePath())) if (!this.battlePlayed[0]) {
-						if(!playingSounds.containsValue(Music.sinisterSundown)){
-							try{Minecraft.getMinecraft().getSoundHandler().playDelayedSound(Music.sinisterSundown, 5);}catch(Exception e){}
+					if (!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.aFightToTheDeath)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.arabianDream)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.beneathTheGround)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.criticalDrive)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.darkImpetus)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.deepDrive)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.deepDrop)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.handInHand)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.happyHolidays)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.havingAWildTime)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.lImpetoOscuro)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.lOscuritaDellIgnoto)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.monstrousMonstro)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.nightOfFate)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.nightOfTragedy)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.rageAwakened)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.riskyRomp)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.savannahPride)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.sinisterSundown)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.spooksOfHalloweenTown)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.tensionRising)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.theDreadOfNight)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.theRustlingForest)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.toOurSurprise)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.whatLiesBeneath)
+						&& !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(Music.workingTogether)
+						&& !"music.game".equals(this.resLoc.getResourcePath()) && !"music.game.creative".equals(this.resLoc.getResourcePath())) { 
+						int r = randomWithRange(0, 25);
+						if (resLoc.getResourcePath().contains("music.game") || resLoc.getResourcePath().contains("music.game.creative")) Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
+						Minecraft.getMinecraft().getSoundHandler().stopSound(this.posSound);
+						if (r == 0 && !this.battlePlayed[0]) {
+							if(!playingSounds.containsValue(Music.aFightToTheDeath)) {
+								currMusic = Music.aFightToTheDeath;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.aFightToTheDeath);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[0] = true;
+							return;
+						} else if (r == 1 && !this.battlePlayed[1]) {
+							if(!playingSounds.containsValue(Music.arabianDream)) {
+								currMusic = Music.arabianDream;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.arabianDream);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[1] = true;
+							return;
+						} else if (r == 2 && !this.battlePlayed[2]) {
+							if(!playingSounds.containsValue(Music.beneathTheGround)) {
+								currMusic = Music.beneathTheGround;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.beneathTheGround);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[2] = true;
+							return;
+						} else if (r == 3 && !this.battlePlayed[3]) {
+							if(!playingSounds.containsValue(Music.criticalDrive)) {
+								currMusic = Music.criticalDrive;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.criticalDrive);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[3] = true;
+							return;
+						} else if (r == 4 && !this.battlePlayed[4]) {
+							if(!playingSounds.containsValue(Music.darkImpetus)) {
+								currMusic = Music.darkImpetus;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.darkImpetus);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[4] = true;
+							return;
+						} else if (r == 5 && !this.battlePlayed[5]) {
+							if(!playingSounds.containsValue(Music.deepDrive)) {
+								currMusic = Music.deepDrive;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.deepDrive);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[5] = true;
+							return;
+						} else if (r == 6 && !this.battlePlayed[6]) {
+							if(!playingSounds.containsValue(Music.deepDrop)) {
+								currMusic = Music.deepDrop;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.deepDrop);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[6] = true;
+							return;
+						} else if (r == 7 && !this.battlePlayed[7]) {
+							if(!playingSounds.containsValue(Music.handInHand)) {
+								currMusic = Music.handInHand;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.handInHand);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[7] = true;
+							return;
+						} else if (r == 8 && !this.battlePlayed[8]) {
+							if(!playingSounds.containsValue(Music.happyHolidays)) {
+								currMusic = Music.happyHolidays;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.happyHolidays);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[8] = true;
+							return;
+						} else if (r == 9 && !this.battlePlayed[9]) {
+							if(!playingSounds.containsValue(Music.havingAWildTime)) {
+								currMusic = Music.havingAWildTime;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.havingAWildTime);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[9] = true;
+							return;
+						}  else if (r == 10 && !this.battlePlayed[10]) {
+							if(!playingSounds.containsValue(Music.lImpetoOscuro)) {
+								currMusic = Music.lImpetoOscuro;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.lImpetoOscuro);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[10] = true;
+							return;
+						} else if (r == 11 && !this.battlePlayed[11]) {
+							if(!playingSounds.containsValue(Music.lOscuritaDellIgnoto)) {
+								currMusic = Music.lOscuritaDellIgnoto;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.happyHolidays);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[11] = true;
+							return;
+						} else if (r == 12 && !this.battlePlayed[12]) {
+							if(!playingSounds.containsValue(Music.monstrousMonstro)) {
+								currMusic = Music.monstrousMonstro;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.monstrousMonstro);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[12] = true;
+							return;
+						} else if (r == 13 && !this.battlePlayed[13]) {
+							if(!playingSounds.containsValue(Music.nightOfFate)) {
+								currMusic = Music.nightOfFate;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.nightOfFate);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[13] = true;
+							return;
+						} else if (r == 14 && !this.battlePlayed[14]) {
+							if(!playingSounds.containsValue(Music.nightOfTragedy)) {
+								currMusic = Music.nightOfTragedy;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.nightOfTragedy);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[14] = true;
+							return;
+						} else if (r == 15 && !this.battlePlayed[15]) {
+							if(!playingSounds.containsValue(Music.rageAwakened)) {
+								currMusic = Music.rageAwakened;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.rageAwakened);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[15] = true;
+							return;
+						} else if (r == 16 && !this.battlePlayed[16]) {
+							if(!playingSounds.containsValue(Music.riskyRomp))
+								currMusic = Music.riskyRomp;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.riskyRomp);}catch(Exception e){}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[16] = true;
+							return;
+						} else if (r == 17 && !this.battlePlayed[17]) {
+							if(!playingSounds.containsValue(Music.savannahPride)) {
+								currMusic = Music.savannahPride;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.savannahPride);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[17] = true;
+							return;
+						} else if (r == 18 && !this.battlePlayed[18]) {
+							if(!playingSounds.containsValue(Music.sinisterSundown)) {
+								currMusic = Music.sinisterSundown;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.sinisterSundown);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[18] = true;
+							return;
+						} else if (r == 19 && !this.battlePlayed[19]) {
+							if(!playingSounds.containsValue(Music.spooksOfHalloweenTown)) {
+								currMusic = Music.spooksOfHalloweenTown;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.spooksOfHalloweenTown);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[19] = true;
+							return;
+						} else if (r == 20 && !this.battlePlayed[20]) {
+							if(!playingSounds.containsValue(Music.tensionRising)) {
+								currMusic = Music.tensionRising;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.tensionRising);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[20] = true;
+							return;
+						} else if (r == 21 && !this.battlePlayed[21]) {
+							if(!playingSounds.containsValue(Music.theDreadOfNight)) {
+								currMusic = Music.theDreadOfNight;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.theDreadOfNight);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[21] = true;
+							return;
+						} else if (r == 22 && !this.battlePlayed[22]) {
+							if(!playingSounds.containsValue(Music.theRustlingForest)) {
+								currMusic = Music.theRustlingForest;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.theRustlingForest);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[22] = true;
+							return;
+						} else if (r == 23 && !this.battlePlayed[23]) {
+							if(!playingSounds.containsValue(Music.toOurSurprise)) {
+								currMusic = Music.toOurSurprise;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.toOurSurprise);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[23] = true;
+							return;
+						} else if (r == 24 && !this.battlePlayed[24]) {
+							if(!playingSounds.containsValue(Music.whatLiesBeneath)) {
+								currMusic = Music.whatLiesBeneath;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.whatLiesBeneath);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[24] = true;
+							return;
+						} else if (r == 25 && !this.battlePlayed[25]) {
+							if(!playingSounds.containsValue(Music.workingTogether)) {
+								currMusic = Music.workingTogether;
+								try{Minecraft.getMinecraft().getSoundHandler().playSound(Music.workingTogether);}catch(Exception e){}
+							}
+							for (int i = 0; i < this.battlePlayed.length; i++)
+								this.battlePlayed[i] = false;
+							this.battlePlayed[25] = true;
+							return;
 						}
-						for (int i = 0; i < this.battlePlayed.length; i++)
-							this.battlePlayed[i] = false;
-						this.battlePlayed[0] = true;
 					}
 				}
 			} else {
@@ -226,43 +440,7 @@ public class ClientEventHandler {
 
 	@SubscribeEvent
 	public void onRenderPlayer(RenderPlayerEvent.Post event){
-		//		Minecraft mc = Minecraft.getMinecraft();
-		//		float base = 0.0625f;
-		//		ModelBiped main = event.renderer.getMainModel();
-		//		ModelArmorStandArmor drive = new ModelArmorStandArmor();
-		//
-		//		GL11.glPushMatrix();
-		//				
-		//		//Body and arms
-		//		mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_A.png"));
-		//		
-		//		//ModelBiped.copyModelAngles(main.bipedBody, drive.bipedBodyWear);
-		//		//ModelBiped.copyModelAngles(main.bipedLeftArm, drive.bipedLeftArmwear);
-		//		//ModelBiped.copyModelAngles(main.bipedRightArm, drive.bipedRightArmwear);
-		//
-		//		GL11.glRotatef(180f, 1.0f, 0, 0);
-		//		
-		//		//drive.render(event.entityPlayer, (float)event.x, (float)event.y, (float)event.z, event.entityPlayer.renderYawOffset, event.partialRenderTick, 1);
-		//		drive.bipedBody.render(base);
-		//		drive.bipedLeftArm.render(base);
-		//		drive.bipedRightArm.render(base);
-		//		System.out.println(event.z);
-		//		//drive.bipedBody.offsetX = event.entityPlayer.renderOffsetX;
-		//		//drive.bipedBody.offsetY = event.entityPlayer.renderOffsetY;
-		//		//drive.bipedBody.offsetZ = event.entityPlayer.renderOffsetZ;
-		//		//drive.bipedLeftArmwear.render(base);
-		//		//drive.bipedRightArmwear.render(base);
-		//		
-		//		//Legs
-		//		//mc.renderEngine.bindTexture(new ResourceLocation("kk:textures/armour/Valor_B.png"));
-		//		
-		//		//ModelBiped.copyModelAngles(main.bipedLeftLeg, drive.bipedLeftLegwear);
-		//		//ModelBiped.copyModelAngles(main.bipedRightLeg, drive.bipedRightLegwear);
-		//		
-		//		//drive.bipedLeftLegwear.render(base);
-		//		//drive.bipedRightLegwear.render(base);
-		//
-		//		GL11.glPopMatrix();
+
 	}
 
 	public static int randomWithRange (int min, int max) {

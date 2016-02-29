@@ -18,7 +18,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.Vec3i;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -53,7 +53,6 @@ public class BlockMagnetBlox extends BlockBlox {
 
 	@Override
 	public void onEntityCollidedWithBlock (World world, BlockPos pos, Entity entityIn) {
-		System.out.println("Collision");
 		if (!world.isRemote) updateState(world, pos);
 		super.onEntityCollidedWithBlock(world, pos, entityIn);
 	}
@@ -67,6 +66,11 @@ public class BlockMagnetBlox extends BlockBlox {
 	@Override
 	public EnumWorldBlockLayer getBlockLayer () {
 		return EnumWorldBlockLayer.TRANSLUCENT;
+	}
+	
+	@Override
+	public boolean isOpaqueCube () {
+		return false;
 	}
 	
 	private void updateState (World world, BlockPos pos) {
@@ -110,16 +114,16 @@ public class BlockMagnetBlox extends BlockBlox {
 
 	@Override
 	public void onNeighborBlockChange (World world, BlockPos pos, IBlockState state, Block neighborBlock) {
-
+		
 		if (world.isBlockPowered(pos)) {
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYON, true));
+			/*
 			EnumFacing facing = world.getBlockState(pos).getValue(PROPERTYFACING);
 			for (int i = 1; i < 10; i++) {
 				if(facing == EnumFacing.NORTH) {
 					if(world.getBlockState(pos.offset(facing, i)).getBlock() == Blocks.air){
 						world.setBlockState(pos.offset(facing, i), ModBlocks.MagnetBlox.getDefaultState().withProperty(PROPERTYFACING, facing.getOpposite()).withProperty(PROPERTYMAGNET, true).withProperty(PROPERTYON, false));
 					}else {
-						System.out.println("Ok");
 						break;
 					}
 				}
@@ -145,8 +149,44 @@ public class BlockMagnetBlox extends BlockBlox {
 					}
 				}
 			}
+			*/
 		} else {
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYON, false));
+			/*
+			EnumFacing facing = world.getBlockState(pos).getValue(PROPERTYFACING);
+			for (int i = 1; i < 10; i++) {
+				if(facing == EnumFacing.NORTH) {
+					System.out.println("North");
+					if(world.getBlockState(pos.offset(facing, i)).getBlock() == ModBlocks.MagnetBlox){
+						System.out.println("Magnet blox");
+						world.setBlockState(pos.offset(facing, i), Blocks.air.getDefaultState());
+					}else {
+						break;
+					}
+				}
+				if(facing == EnumFacing.SOUTH) {
+					if(world.getBlockState(pos.south()) == Blocks.air){
+						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+					}else {
+						break;
+					}
+				}
+				if(facing == EnumFacing.EAST) {
+					if(world.getBlockState(pos.east()) == Blocks.air){
+						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+					}else {
+						break;
+					}
+				}
+				if(facing == EnumFacing.WEST) {
+					if(world.getBlockState(pos.west()) == Blocks.air){
+						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+					}else {
+						break;
+					}
+				}
+			}
+			*/
 		}
 	}
 

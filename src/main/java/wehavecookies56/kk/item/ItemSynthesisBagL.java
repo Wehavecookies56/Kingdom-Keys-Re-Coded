@@ -23,7 +23,7 @@ public class ItemSynthesisBagL extends Item {
 		// if (!world.isRemote){
 		// player.openGui(KingdomKeys.instance,
 		// KingdomKeys.GUI_SYNTHESISBAG_INV, player.worldObj, 0, 0, 0);
-		PacketDispatcher.sendToServer(new OpenGui(KingdomKeys.GUI_SYNTHESISBAGL_INV));
+		if (world.isRemote) PacketDispatcher.sendToServer(new OpenGui(KingdomKeys.GUI_SYNTHESISBAGL_INV));
 		// }
 		return itemStackIn;
 	}

@@ -24,6 +24,7 @@ import wehavecookies56.kk.entities.ExtendedPlayerMaterials;
 import wehavecookies56.kk.entities.ExtendedPlayerRecipes;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Config;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -237,8 +238,9 @@ public class GuiSynthesis extends GuiTooltip {
 					TakeAll.enabled = false;
 
 				}
-			} else
+			} else {
 				materialSelected = -1;
+			}
 			Take1.visible = true;
 			TakeStack.visible = true;
 			TakeHalfStack.visible = true;
@@ -300,8 +302,7 @@ public class GuiSynthesis extends GuiTooltip {
 		materials.addAll(mats.getKnownMaterialsMap().keySet());
 		for (int i = 0; i < mats.getKnownMaterialsMap().size(); i++)
 			if (materialSelected == i) {
-				GL11.glPushMatrix();
-				{
+				GL11.glPushMatrix(); {
 					GL11.glTranslatef(200, 70, 0);
 					GL11.glScalef(2, 2, 2);
 					drawString(fontRendererObj, TextHelper.localize(materials.get(i).toString() + ".name") + " x" + mats.getKnownMaterialsMap().get(materials.get(i)), 0, 0, 0xFFF700);
@@ -309,8 +310,7 @@ public class GuiSynthesis extends GuiTooltip {
 				GL11.glPopMatrix();
 				Material m = MaterialRegistry.get(materials.get(i).toString());
 				if (m.getTexture() != null) {
-					GL11.glPushMatrix();
-					{
+					GL11.glPushMatrix(); {
 						GL11.glColor3f(1, 1, 1);
 						ResourceLocation texture = m.getTexture();
 						Minecraft.getMinecraft().renderEngine.bindTexture(texture);
@@ -321,8 +321,7 @@ public class GuiSynthesis extends GuiTooltip {
 					}
 					GL11.glPopMatrix();
 				} else {
-					GL11.glPushMatrix();
-					{
+					GL11.glPushMatrix(); {
 						ItemStack item = m.getItem();
 						GL11.glTranslatef(200, 100, 0);
 						GL11.glScalef(3, 3, 3);
@@ -341,14 +340,16 @@ public class GuiSynthesis extends GuiTooltip {
 			Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
 			drawGradientRect(posX - 10, 60, 700, height - ((height / 8) + 70 / 16), -1072689136, -804253680);
 		}
-		GL11.glPushMatrix();
-		{
+		GL11.glPushMatrix(); {
 			for (int i = 0; i < props.knownRecipes.size(); i++)
 				if (selected == i) {
-					GL11.glPushMatrix();
-					{
+					float scale = 1.0f;
+					if(mc.gameSettings.guiScale == Constants.SCALE_LARGE) {
+						scale = 0.5f;
+					}
+					GL11.glPushMatrix(); {
 						GL11.glTranslatef(posX, 70, 0);
-						GL11.glScalef(2, 2, 2);
+						GL11.glScalef(2 * scale, 2 * scale, 2 * scale);
 						drawString(fontRendererObj, TextHelper.localize(props.knownRecipes.get(i).toString() + ".name"), 0, 0, 0xFFF700);
 					}
 					GL11.glPopMatrix();
@@ -361,19 +362,20 @@ public class GuiSynthesis extends GuiTooltip {
 					Iterator it = RecipeRegistry.get(props.knownRecipes.get(i)).getRequirements().entrySet().iterator();
 					while (it.hasNext()) {
 						Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>) it.next();
-						int distY = 24;
-						int distX = 100;
+						int distY = (int) (24 * scale);
+						int distX = (int) (100 * scale);
 						GL11.glPushMatrix();
 						{
 							GL11.glColor4f(1, 1, 1, 1);
 							ResourceLocation synthMaterial = pair.getKey().getTexture();
 							if (synthMaterial == null) {
 								GL11.glTranslatef((int) (posX + (materialLength * 1.05f)), 110 + (distY * row), 0);
+								GL11.glScalef(scale, scale, 0);
 								Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(pair.getKey().getItem(), 0, 0);
 							} else {
 								mc.renderEngine.bindTexture(synthMaterial);
-								GL11.glTranslatef(posX + (materialLength * 1.05f), 110 + (distY * row), 0);
-								GL11.glScalef(0.0625f, 0.0625f, 0.0625f);
+								GL11.glTranslatef(posX + (materialLength * 1.05f * scale), 110 + (distY * row), 0);
+								GL11.glScalef(0.0625f * scale, 0.0625f * scale, 0);
 								drawTexturedModalRect(0, 0, 0, 0, 256, 256);
 							}
 						}
@@ -393,23 +395,24 @@ public class GuiSynthesis extends GuiTooltip {
 							colour = 0xB50000;
 						}
 						String material = TextHelper.localize(name + ".name") + " x" + pair.getValue();
-						drawString(fontRendererObj, material, (int) (posX + 18 + (materialLength * 1.05f)), 114 + (distY * row), 0xFFFFFF);
-						drawString(fontRendererObj, info, (int) (posX + 18 + fontRendererObj.getStringWidth(material) + (materialLength * 1.05f)), 114 + (distY * row), colour);
+						
+						GL11.glPushMatrix(); {
+							GL11.glTranslatef((int) (posX + 18 + (materialLength * 1.05f * scale)), 114 + (distY * row), 0);
+							GL11.glScalef(scale, scale, 0);
+							drawString(fontRendererObj, material, 0, 0, 0xFFFFFF);
+						} GL11.glPopMatrix();
+						GL11.glPushMatrix(); {
+							GL11.glTranslatef((int) (posX + 18 + (fontRendererObj.getStringWidth(material) * scale) + (materialLength * 1.05f * scale)), 114 + (distY * row), 0);
+							GL11.glScalef(scale, scale, 0);
+							drawString(fontRendererObj, info, 0, 0, colour);
+						} GL11.glPopMatrix();
+						
 						if (column == 1) {
 							row++;
 							column = 0;
 							materialLength = 0;
 						} else {
-							materialLength = (fontRendererObj.getStringWidth(TextHelper.localize(ModItems.Chain_IncompleteKiblade.getUnlocalizedName() + ".name") + " - You have XXXX")) + 20/*
-																																																 * fontRendererObj
-																																																 * .
-																																																 * getStringWidth(
-																																																 * material
-																																																 * +
-																																																 * info)
-																																																 * +
-																																																 * 16
-																																																 */;
+							materialLength = (fontRendererObj.getStringWidth(TextHelper.localize(ModItems.Chain_IncompleteKiblade.getUnlocalizedName() + ".name") + " - You have XXXX")) + 20;
 							column = 1;
 						}
 

@@ -90,37 +90,52 @@ public class EventHandler {
 	@SubscribeEvent
 	public void addTooltip (ItemTooltipEvent event) {
 		Item ghostBlox = Item.getItemFromBlock(ModBlocks.GhostBlox);
-		if (event.itemStack.getItem() == ghostBlox) if (!KeyboardHelper.isShiftDown())
-			event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
-		else {
-			int x = 30;
-			String s = TextHelper.localize(Strings.GhostBloxDesc).replace("%s", TextHelper.localize(ModBlocks.GhostBlox.getUnlocalizedName() + ".name"));
-			s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
-			String[] splitS = s.split("\n");
-			for (String element : splitS)
-				event.toolTip.add(element);
+		if (event.itemStack.getItem() == ghostBlox) {
+			if (!KeyboardHelper.isShiftDown()) {
+				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
+			} else {
+				int x = 30;
+				String s = TextHelper.localize(Strings.GhostBloxDesc).replace("%s", TextHelper.localize(ModBlocks.GhostBlox.getUnlocalizedName() + ".name"));
+				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
+				String[] splitS = s.split("\n");
+				for (String element : splitS)
+					event.toolTip.add(element);
+			}
 		}
 		Item dangerBlox = Item.getItemFromBlock(ModBlocks.DangerBlox);
-		if (event.itemStack.getItem() == dangerBlox) if (!KeyboardHelper.isShiftDown())
-			event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
-		else {
-			int x = 30;
-			String s = TextHelper.localize(Strings.DangerBloxDesc).replace("%s", TextHelper.localize(ModBlocks.DangerBlox.getUnlocalizedName() + ".name"));
-			s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
-			String[] splitS = s.split("\n");
-			for (String element : splitS)
-				event.toolTip.add(element);
+		if (event.itemStack.getItem() == dangerBlox) {
+			if (!KeyboardHelper.isShiftDown()) {
+				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
+			} else {
+				int x = 30;
+				String s = TextHelper.localize(Strings.DangerBloxDesc).replace("%s", TextHelper.localize(ModBlocks.DangerBlox.getUnlocalizedName() + ".name"));
+				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
+				String[] splitS = s.split("\n");
+				for (String element : splitS)
+					event.toolTip.add(element);
+			}
 		}
 		Item bounceBlox = Item.getItemFromBlock(ModBlocks.BounceBlox);
-		if (event.itemStack.getItem() == bounceBlox) if (!KeyboardHelper.isShiftDown())
-			event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
-		else {
-			int x = 30;
-			String s = TextHelper.localize(Strings.BounceBloxDesc).replace("%s", TextHelper.localize(ModBlocks.BounceBlox.getUnlocalizedName() + ".name"));
-			s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
-			String[] splitS = s.split("\n");
-			for (String element : splitS)
-				event.toolTip.add(element);
+		if (event.itemStack.getItem() == bounceBlox) {
+			if (!KeyboardHelper.isShiftDown()) {
+				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
+			} else {
+				int x = 30;
+				String s = TextHelper.localize(Strings.BounceBloxDesc).replace("%s", TextHelper.localize(ModBlocks.BounceBlox.getUnlocalizedName() + ".name"));
+				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
+				String[] splitS = s.split("\n");
+				for (String element : splitS)
+					event.toolTip.add(element);
+			}
+		}
+		Item magnetBlox = Item.getItemFromBlock(ModBlocks.MagnetBlox);
+		if (event.itemStack.getItem() == magnetBlox) {
+			if (!KeyboardHelper.isShiftDown()) {
+				event.toolTip.add(TextHelper.ITALIC + TextHelper.localize(Strings.HoldForInfo));
+			} else {
+				event.toolTip.add("This Block is WIP and doesn't work at all.");
+				event.toolTip.add("It won't crash your game though.");
+			}
 		}
 		Item kkchest = Item.getItemFromBlock(ModBlocks.KKChest);
 		if (event.itemStack.getItem() == kkchest) {
@@ -340,6 +355,7 @@ public class EventHandler {
 		} else if (event.item.getEntityItem().getItem() instanceof ItemSynthesisMaterial) {
 			for(int i = 0; i < event.entityPlayer.inventory.getSizeInventory(); i++) {
 				if (event.entityPlayer.inventory.getStackInSlot(i) != null) {
+					System.out.println(event.entityPlayer.inventory.getStackInSlot(i));
 					if (event.entityPlayer.inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagL) {
 						InventorySynthesisBagL inv = new InventorySynthesisBagL(event.entityPlayer.inventory.getStackInSlot(i));
 						for (int j = 0; j < inv.getSizeInventory(); j++) {
@@ -351,13 +367,13 @@ public class EventHandler {
 										if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
 											if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) {
 												if (bagItem.stackSize < 64) {
-													if (bagItem.stackSize + 1 <= 64) {
-														event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-														ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
+													if (bagItem.stackSize + pickUp.stackSize <= 64) {
+														ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.stackSize + bagItem.stackSize);
 														stack.setTagCompound(new NBTTagCompound());
 														stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
 														stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
 														inv.setInventorySlotContents(j, stack);
+														pickUp.stackSize--;
 														return;
 													}
 												}
@@ -366,8 +382,8 @@ public class EventHandler {
 									}
 								}
 							} else if (bagItem == null) {
-								event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
 								inv.setInventorySlotContents(j, pickUp);
+								pickUp.stackSize--;
 								return;
 							}
 						}
@@ -382,27 +398,13 @@ public class EventHandler {
 										if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
 											if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) {
 												if (bagItem.stackSize < 64) {
-													if (bagItem.stackSize + 1 <= 64) {
-														for(int k = 0; k < event.entityPlayer.inventory.getSizeInventory(); k++){
-															if(event.entityPlayer.inventory.getStackInSlot(k) != null){
-																ItemStack stackToRemove = event.entityPlayer.inventory.getStackInSlot(k);
-																if(stackToRemove.hasTagCompound()){
-																	if(stackToRemove.getTagCompound().hasKey("material") && stackToRemove.getTagCompound().hasKey("rank")){
-																		if(stackToRemove.getTagCompound().getString("material").equals(bagItem.getTagCompound().getString("material"))){
-																			if(stackToRemove.getTagCompound().getString("rank").equals(bagItem.getTagCompound().getString("rank"))){
-																				System.out.println("Ok");
-																				event.entityPlayer.inventory.decrStackSize(k, 1);
-																			}
-																		}
-																	}
-																}
-															}
-														}
-														ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
+													if (bagItem.stackSize + pickUp.stackSize <= 64) {
+														ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.stackSize + bagItem.stackSize);
 														stack.setTagCompound(new NBTTagCompound());
 														stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
 														stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
 														inv.setInventorySlotContents(j, stack);
+														pickUp.stackSize--;
 														return;
 													}
 												}
@@ -411,8 +413,8 @@ public class EventHandler {
 									}
 								}
 							} else if (bagItem == null) {
-								event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
 								inv.setInventorySlotContents(j, pickUp);
+								pickUp.stackSize--;
 								return;
 							}
 						}
@@ -426,22 +428,24 @@ public class EventHandler {
 									if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) {
 										if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
 											if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) {
-												if (bagItem.stackSize < 64) if (bagItem.stackSize + 1 <= 64) {
-													event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
-													ItemStack stack = new ItemStack(pickUp.getItem(), 1 + bagItem.stackSize);
-													stack.setTagCompound(new NBTTagCompound());
-													stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
-													stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
-													inv.setInventorySlotContents(j, stack);
-													return;
+												if (bagItem.stackSize < 64) { 
+													if (bagItem.stackSize + pickUp.stackSize <= 64) {
+														ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.stackSize + bagItem.stackSize);
+														stack.setTagCompound(new NBTTagCompound());
+														stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
+														stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+														inv.setInventorySlotContents(j, stack);
+														pickUp.stackSize = 0;
+														return;
+													}
 												}
 											}
 										}
 									}
 								}
 							} else if (bagItem == null) {
-								event.entityPlayer.inventory.consumeInventoryItem(pickUp.getItem());
 								inv.setInventorySlotContents(j, pickUp);
+								pickUp.stackSize = 0;
 								return;
 							}
 						}

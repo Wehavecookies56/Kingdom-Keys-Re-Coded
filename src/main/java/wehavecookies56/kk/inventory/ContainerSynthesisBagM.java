@@ -38,7 +38,7 @@ public class ContainerSynthesisBagM extends Container {
 
 	@Override
 	public ItemStack transferStackInSlot (EntityPlayer playerIn, int index) {
-		int numRows = 56 / 7;
+		int numRows = 28 / 7;
 		ItemStack itemstack = null;
 		Slot slot = this.inventorySlots.get(index);
 

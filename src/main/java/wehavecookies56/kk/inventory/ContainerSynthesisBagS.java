@@ -12,16 +12,6 @@ public class ContainerSynthesisBagS extends Container {
 
 	private static final int INV_START = InventorySynthesisBagS.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;
 
-	private final int HOTBAR_SLOT_COUNT = 9;
-	private final int PLAYER_INVENTORY_ROW_COUNT = 3;
-	private final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-	private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-	private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
-
-	private final int VANILLA_FIRST_SLOT_INDEX = 0;
-	private final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-	private final int TE_INVENTORY_SLOT_COUNT = 14;
-
 	public ContainerSynthesisBagS (EntityPlayer player, InventoryPlayer invPlayer, InventorySynthesisBagS invBag) {
 		inventory = invBag;
 
@@ -48,7 +38,7 @@ public class ContainerSynthesisBagS extends Container {
 
 	@Override
 	public ItemStack transferStackInSlot (EntityPlayer playerIn, int index) {
-		int numRows = 56 / 7;
+		int numRows = 14 / 7;
 		ItemStack itemstack = null;
 		Slot slot = this.inventorySlots.get(index);
 
