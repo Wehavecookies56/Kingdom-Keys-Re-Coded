@@ -1,13 +1,10 @@
 package wehavecookies56.kk.network;
 
-import java.util.List;
-
 import com.jadarstudios.developercapes.DevCapes;
 
 import api.player.model.ModelPlayerAPI;
 import api.player.render.RenderPlayerAPI;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.ResourcePackRepository;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -33,19 +30,22 @@ import wehavecookies56.kk.client.gui.GuiPlayerPortrait;
 import wehavecookies56.kk.client.input.InputHandler;
 import wehavecookies56.kk.client.input.Keybinds;
 import wehavecookies56.kk.client.model.ModelPlayerDrive;
+import wehavecookies56.kk.client.render.RenderEntityBlazeofGlory;
 import wehavecookies56.kk.client.render.RenderEntityEternalFlames;
 import wehavecookies56.kk.client.render.RenderEntityIfrit;
+import wehavecookies56.kk.client.render.RenderEntityPrometheus;
 import wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
 import wehavecookies56.kk.client.render.RenderFactorySharpshooterBullet;
 import wehavecookies56.kk.client.render.RenderPlayerDrive;
 import wehavecookies56.kk.entities.block.EntityBlastBlox;
+import wehavecookies56.kk.entities.projectiles.EntityBlazeofGlory;
 import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 import wehavecookies56.kk.entities.projectiles.EntityIfrit;
+import wehavecookies56.kk.entities.projectiles.EntityPrometheus;
 import wehavecookies56.kk.entities.projectiles.EntitySharpshooterBullet;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
-import wehavecookies56.kk.util.ClientEventHandler;
 import wehavecookies56.kk.util.LogHelper;
 import wehavecookies56.kk.util.StatStringFormatterMenu;
 
@@ -156,6 +156,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlastBlox.class, new RenderFactoryBlastBlox());
 		RenderingRegistry.registerEntityRenderingHandler(EntityEternalFlames.class, (IRenderFactory) new RenderEntityEternalFlames(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityIfrit.class, (IRenderFactory) new RenderEntityIfrit(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPrometheus.class, (IRenderFactory) new RenderEntityPrometheus(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlazeofGlory.class, (IRenderFactory) new RenderEntityBlazeofGlory(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySharpshooterBullet.class, new RenderFactorySharpshooterBullet());
 
 	}

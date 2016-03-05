@@ -9,22 +9,22 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 
-public class EntityIfrit extends EntityThrowable {
+public class EntityBlazeofGlory extends EntityThrowable {
 
 	int ticks;
 	EntityPlayer player;
 
-	public EntityIfrit (World world) {
+	public EntityBlazeofGlory (World world) {
 		super(world);
 	}
 
-	public EntityIfrit (World world, EntityLivingBase entity, int ticksExisted) {
+	public EntityBlazeofGlory (World world, EntityLivingBase entity, int ticksExisted) {
 		super(world, entity);
 		this.ticks = ticksExisted;
 		this.player = (EntityPlayer) entity;
 	}
 
-	public EntityIfrit (World world, double x, double y, double z) {
+	public EntityBlazeofGlory (World world, double x, double y, double z) {
 		super(world, x, y, z);
 	}
 
@@ -63,4 +63,5 @@ public class EntityIfrit extends EntityThrowable {
 		if (!worldObj.isRemote) setDead();
 
 	}
+
 }

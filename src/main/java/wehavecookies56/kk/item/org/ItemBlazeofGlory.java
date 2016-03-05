@@ -9,6 +9,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import wehavecookies56.kk.entities.projectiles.EntityBlazeofGlory;
 import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 
 public class ItemBlazeofGlory extends ItemSword {
@@ -32,7 +33,7 @@ public class ItemBlazeofGlory extends ItemSword {
 			// TODO set strength
 
 			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-			world.spawnEntityInWorld(new EntityEternalFlames(world, player, -(strength) + 71999));
+			world.spawnEntityInWorld(new EntityBlazeofGlory(world, player, -(strength) + 71999));
 			player.swingItem();
 		} else
 			player.setItemInUse(stack, getMaxItemUseDuration(stack));
