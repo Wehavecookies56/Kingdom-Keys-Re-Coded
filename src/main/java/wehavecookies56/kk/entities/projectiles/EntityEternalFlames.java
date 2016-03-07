@@ -71,7 +71,7 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 					if (owner == this.getThrower()) {
 						if (item != null) {
 							int slot = owner.inventory.getFirstEmptyStack();
-							PacketDispatcher.sendToServer(new GiveItemInSlot(item, slot, this.posX, this.posY, this.posZ));
+							PacketDispatcher.sendToServer(new GiveItemInSlot(item, slot, this.posX, this.posY, this.posZ, true));
 						}
 						this.setDead();
 					}

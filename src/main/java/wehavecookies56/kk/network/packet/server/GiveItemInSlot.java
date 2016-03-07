@@ -15,6 +15,7 @@ public class GiveItemInSlot extends AbstractMessage<GiveItemInSlot> {
 	ItemStack itemstack;
 	int slot;
 	double x,y,z;
+	boolean shouldDrop = false;
 	public GiveItemInSlot () {}
 
 	public GiveItemInSlot (ItemStack itemstack, int slot) 
@@ -27,7 +28,7 @@ public class GiveItemInSlot extends AbstractMessage<GiveItemInSlot> {
 		this.z = 0;
 	}
 	
-	public GiveItemInSlot (ItemStack itemstack, int slot, double x, double y, double z) 
+	public GiveItemInSlot (ItemStack itemstack, int slot, double x, double y, double z, boolean drop) 
 	{
 		//this.player = player;
 		this.itemstack = itemstack;
@@ -35,6 +36,7 @@ public class GiveItemInSlot extends AbstractMessage<GiveItemInSlot> {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		this.shouldDrop = drop;
 	}
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
@@ -44,6 +46,7 @@ public class GiveItemInSlot extends AbstractMessage<GiveItemInSlot> {
 		x = buffer.readDouble();
 		y = buffer.readDouble();
 		z = buffer.readDouble();
+		shouldDrop = buffer.readBoolean();
 	}
 
 	@Override
@@ -54,12 +57,14 @@ public class GiveItemInSlot extends AbstractMessage<GiveItemInSlot> {
 		buffer.writeDouble(x);
 		buffer.writeDouble(y);
 		buffer.writeDouble(z);
+		buffer.writeBoolean(shouldDrop);
 	}
 
 	@Override
 	public void process (EntityPlayer player, Side side) 
 	{
 		if(!player.worldObj.isRemote){
+			if(!shouldDrop){return;}
 			if(slot >= 0){
 				player.inventory.setInventorySlotContents(slot, itemstack);
 			} else {
