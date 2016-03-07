@@ -62,7 +62,6 @@ public class EntityStopra extends Entity {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityLiving) {
 				if (ticksExisted < 120) ((EntityLivingBase) e).setVelocity(0, 0, 0);
-				System.out.println(e);
 			}
 		}
 		aabb.contract(2, 2, 2);

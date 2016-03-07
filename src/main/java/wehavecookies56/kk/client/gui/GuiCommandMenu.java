@@ -86,7 +86,6 @@ public class GuiCommandMenu extends GuiScreen {
 	}
 
 	public void drawCommandMenu (int width, int height) {
-		// System.out.println("Submenu: "+submenu+" Selected:"+selected+"
 		// Magic:"+magicselected+" Drive:"+driveselected);
 		float scale = 1.05f;
 		int colour;

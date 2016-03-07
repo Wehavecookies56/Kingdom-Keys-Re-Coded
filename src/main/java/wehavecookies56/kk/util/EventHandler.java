@@ -355,7 +355,6 @@ public class EventHandler {
 		} else if (event.item.getEntityItem().getItem() instanceof ItemSynthesisMaterial) {
 			for(int i = 0; i < event.entityPlayer.inventory.getSizeInventory(); i++) {
 				if (event.entityPlayer.inventory.getStackInSlot(i) != null) {
-					System.out.println(event.entityPlayer.inventory.getStackInSlot(i));
 					if (event.entityPlayer.inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagL) {
 						InventorySynthesisBagL inv = new InventorySynthesisBagL(event.entityPlayer.inventory.getStackInSlot(i));
 						for (int j = 0; j < inv.getSizeInventory(); j++) {

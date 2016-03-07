@@ -28,7 +28,6 @@ public class ItemIceCream extends ItemFood {
 	public void onFoodEaten (ItemStack item, World world, EntityPlayer player) {
 		if (!player.capabilities.isCreativeMode && world.isRemote) {
 			win = EventHandler.randomWithRange(0, 20);
-			System.out.println("Winner: " + win);
 			if (win == 3)
 				player.inventory.addItemStackToInventory(new ItemStack(ModItems.WinnerStick));
 			else

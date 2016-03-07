@@ -40,15 +40,12 @@ public class SynthesisMaterialPickup extends AbstractServerMessage<SynthesisMate
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		System.out.println("Ok");
 		player.inventory.consumeInventoryItem(toRemove.getItem());
 		if (bag.getItem().equals(ModItems.SynthesisBagL)) {
 			InventorySynthesisBagL bagL = new InventorySynthesisBagL(bag);
 			for (int i = 0; i < bagL.getSizeInventory(); i++)
 				if (bagL.getStackInSlot(i) == null) {
-					System.out.println(i);
 					bagL.setInventorySlotContents(0, toRemove);
-					System.out.println(bagL.getStackInSlot(0));
 					bagL.markDirty();
 					break;
 				}

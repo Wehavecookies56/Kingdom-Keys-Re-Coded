@@ -42,7 +42,6 @@ public class BlockMagnetBlox extends BlockBlox {
 
 		if (on) facingbits += 4;
 		if (magnet) facingbits += 8;
-		System.out.println(facingbits);
 		return facingbits;
 	}
 
@@ -79,7 +78,6 @@ public class BlockMagnetBlox extends BlockBlox {
 
 		for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
-			System.out.println("player: " + e);
 
 			if (e instanceof EntityLivingBase) {
 
@@ -156,9 +154,7 @@ public class BlockMagnetBlox extends BlockBlox {
 			EnumFacing facing = world.getBlockState(pos).getValue(PROPERTYFACING);
 			for (int i = 1; i < 10; i++) {
 				if(facing == EnumFacing.NORTH) {
-					System.out.println("North");
 					if(world.getBlockState(pos.offset(facing, i)).getBlock() == ModBlocks.MagnetBlox){
-						System.out.println("Magnet blox");
 						world.setBlockState(pos.offset(facing, i), Blocks.air.getDefaultState());
 					}else {
 						break;

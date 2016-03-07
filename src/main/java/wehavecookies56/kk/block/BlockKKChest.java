@@ -63,7 +63,6 @@ public class BlockKKChest extends BlockContainer implements ITileEntityProvider 
 	@Override
 	public void onBlockPlacedBy (World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		worldIn.setBlockState(pos, state.withProperty(FACING, getFacingFromEntity(worldIn, pos, placer)), 2);
-		System.out.println(getFacingFromEntity(worldIn, pos, placer));
 	}
 	
 	@Override

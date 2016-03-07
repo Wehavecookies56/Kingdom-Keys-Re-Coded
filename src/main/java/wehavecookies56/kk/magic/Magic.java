@@ -162,14 +162,12 @@ public class Magic {
 				break;
 
 			case 2:
-				System.out.println("Aerora");
 				PacketDispatcher.sendToServer(new MagicAero());
 				world.spawnEntityInWorld(new EntityAerora(world, player, player.posX, player.posY, player.posZ));
 				player.swingItem();
 				world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 				break;
 			case 3:
-				System.out.println("Aeroga");
 				PacketDispatcher.sendToServer(new MagicAero());
 				world.spawnEntityInWorld(new EntityAeroga(world, player, player.posX, player.posY, player.posZ));
 				player.swingItem();
@@ -187,7 +185,6 @@ public class Magic {
 				world.playSoundAtEntity(player, "fire.ignite", 1, 1);
 				break;
 			case 2:
-				System.out.println("Stopra");
 				break;
 			case 3:
 				PacketDispatcher.sendToServer(new MagicStop());

@@ -62,7 +62,6 @@ public class BlockBlastBlox extends BlockBlox {
 
 	@Override
 	public void onBlockDestroyedByPlayer (World world, BlockPos pos, IBlockState state) {
-		System.out.println(Minecraft.getMinecraft().thePlayer.getHeldItem().getItem());
 		if (Minecraft.getMinecraft().thePlayer.getHeldItem().getItem() == Items.apple) explode(world, pos.getX(), pos.getY(), pos.getZ(), state.getBlock().getMetaFromState(state), (EntityLivingBase) null);
 	}
 

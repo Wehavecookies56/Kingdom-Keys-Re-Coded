@@ -391,7 +391,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void addAntiPoints (int points) {
 		if (this.antiPoints <= 100) {
 			this.antiPoints += points;
-			System.out.println(this.antiPoints);
 			sync();
 		}
 	}
