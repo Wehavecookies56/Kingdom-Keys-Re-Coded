@@ -5,7 +5,8 @@
             "eternalflames": "kk:items/models/eternalflames",
             "#eternalflames": "kk:items/models/eternalflames"
         },
-        "model": "kk:eternalflames.b3d"
+        "model": "kk:eternalflames.obj",
+        "custom": { "flip-v": true }
     },
     "variants": {
         "inventory": [
@@ -30,11 +31,6 @@
                         "scale": 0.03
                     }
                 }
-            }
-        ],
-        "normal": [
-            {
-              
             }
         ]
     }

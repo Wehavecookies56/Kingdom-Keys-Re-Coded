@@ -43,6 +43,8 @@ public class ItemEternalFlames extends ItemSword {
 			{
 				world.spawnEntityInWorld(new EntityEternalFlames(world, player, -(strength) + 71999));
 				player.swingItem();
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+				
 			}
 		} else
 			player.setItemInUse(stack, getMaxItemUseDuration(stack));
