@@ -26,6 +26,7 @@ import wehavecookies56.kk.network.packet.server.DeSummonKeyblade;
 import wehavecookies56.kk.network.packet.server.DriveFormPacket;
 import wehavecookies56.kk.network.packet.server.DriveOrbPickup;
 import wehavecookies56.kk.network.packet.server.GiveAchievementOpenMenu;
+import wehavecookies56.kk.network.packet.server.GiveItemInSlot;
 import wehavecookies56.kk.network.packet.server.GlidePacket;
 import wehavecookies56.kk.network.packet.server.HpOrbPickup;
 import wehavecookies56.kk.network.packet.server.LevelUpDrive;
@@ -103,7 +104,7 @@ public class PacketDispatcher {
 		registerMessage(MagnetBloxMotion.class);
 		registerMessage(TakeMaterials.class);
 		registerMessage(RemoveItemInSlot.class);
-
+		registerMessage(GiveItemInSlot.class);
 		// Bidirectional
 	}
 

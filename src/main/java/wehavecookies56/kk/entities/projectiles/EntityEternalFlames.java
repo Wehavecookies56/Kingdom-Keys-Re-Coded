@@ -15,6 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IThrowableEntity;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ModItems;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.server.GiveItemInSlot;
 
 public class EntityEternalFlames extends EntityThrowable implements IThrowableEntity {
 
@@ -49,7 +51,7 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 		
 		if (ticksExisted > 15) {
 			returning = true;
-			setThrowableHeading(this.getThrower().posX - this.posX, this.getThrower().posY - this.posY, this.getThrower().posZ - this.posZ, 1.5f, 0);
+			setThrowableHeading(this.getThrower().posX - this.posX, this.getThrower().posY - this.posY + 1.25, this.getThrower().posZ - this.posZ, 1.5f, 0);
 		}
 		
 		if (ticksExisted > 60) setDead();
@@ -57,6 +59,8 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 		if (this.getThrower() == null) setDead();
 		
 		if (returning) {
+			this.rotationYaw = (rotation + 1) % 360;
+
 			ItemStack item = new ItemStack(ModItems.EternalFlames);
 			List entityTagetList = this.worldObj.getEntitiesWithinAABB(
 			Entity.class, this.getEntityBoundingBox().expand(1.0D, 1.0D, 1.0D));
@@ -67,11 +71,7 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 					if (owner == this.getThrower()) {
 						if (item != null) {
 							int slot = owner.inventory.getFirstEmptyStack();
-							if(slot >= 0){
-								owner.inventory.setInventorySlotContents(slot, item);
-							} else {
-								worldObj.spawnEntityInWorld(new EntityItem(worldObj, this.posX, this.posY, this.posZ, item));
-							}
+							PacketDispatcher.sendToServer(new GiveItemInSlot(item, slot, this.posX, this.posY, this.posZ));
 						}
 						this.setDead();
 					}
@@ -84,6 +84,7 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 
 	@Override
 	protected void onImpact (MovingObjectPosition mop) {
+		System.out.println("Impacted");
 		if (mop.entityHit != null) {
 			if (mop.entityHit == this.getThrower()) {
 				this.setDead();
