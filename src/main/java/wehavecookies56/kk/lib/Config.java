@@ -26,7 +26,7 @@ public class Config {
 	public static String[] A_TM_AbaddonPlasma, A_TM_AbyssalTide, A_TM_AllforOne, A_TM_AnguisForetellersKeyblade, A_TM_AstralBlast, A_TM_Aubade, A_TM_BondofFlame, A_TM_Brightcrest, A_TM_ChaosRipper, A_TM_CircleofLife, A_TM_Counterpoint, A_TM_Crabclaw, A_TM_CrownofGuilt, A_TM_DarkerThanDark, A_TM_Darkgnaw, A_TM_DecisivePumpkin, A_TM_DestinysEmbrace, A_TM_DiamondDust, A_TM_Divewing, A_TM_DivineRose, A_TM_DreamSword, A_TM_DualDisc, A_TM_Earthshaker, A_TM_EndofPain, A_TM_EndsoftheEarth, A_TM_FairyHarp, A_TM_FairyStars, A_TM_FatalCrest, A_TM_Fenrir, A_TM_FerrisGear, A_TM_FollowtheWind, A_TM_FrolicFlame, A_TM_GlimpseofDarkness, A_TM_GuardianBell, A_TM_GuardianSoul, A_TM_GullWing, A_TM_HerosCrest, A_TM_HiddenDragon, A_TM_Hyperdrive, A_TM_IncompleteKiblade, A_TM_JungleKing, A_TM_KeybladeofPeoplesHearts, A_TM_Kiblade, A_TM_KingdomKey, A_TM_KingdomKeyD, A_TM_KnockoutPunch, A_TM_LadyLuck, A_TM_LeasKeyblade, A_TM_LeopardosForetellersKeyblade, A_TM_Leviathan, A_TM_Lionheart, A_TM_LostMemory, A_TM_LunarEclipse, A_TM_MarkofaHero, A_TM_MasterXehanortsKeyblade, A_TM_MastersDefender, A_TM_MaverickFlare, A_TM_MetalChocobo, A_TM_MidnightRoar, A_TM_MirageSplit, A_TM_MissingAche, A_TM_Monochrome, A_TM_MysteriousAbyss, A_TM_NightmaresEnd, A_TM_NightmaresEndandMirageSplit, A_TM_NoName, A_TM_Oathkeeper, A_TM_Oblivion, A_TM_OceansRage, A_TM_Olympia, A_TM_OmegaWeapon, A_TM_OminousBlight, A_TM_OneWingedAngel, A_TM_PainofSolitude, A_TM_PhotonDebugger, A_TM_PixiePetal, A_TM_Pumpkinhead, A_TM_Rainfell, A_TM_RejectionofFate, A_TM_RoyalRadiance, A_TM_RumblingRose, A_TM_SignofInnocence, A_TM_SilentDirge, A_TM_SkullNoise, A_TM_SleepingLion, A_TM_SoulEater, A_TM_Spellbinder, A_TM_StarSeeker, A_TM_Starlight, A_TM_Stormfall, A_TM_StrokeofMidnight, A_TM_SweetDreams, A_TM_SweetMemories, A_TM_Sweetstack, A_TM_ThreeWishes, A_TM_TotalEclipse, A_TM_TreasureTrove, A_TM_TrueLightsFlight, A_TM_TwilightBlaze, A_TM_TwoBecomeOne, A_TM_UltimaWeaponKH1, A_TM_UltimaWeaponKH2, A_TM_UltimaWeaponBBS, A_TM_UltimaWeaponDDD, A_TM_Umbrella, A_TM_Unbound, A_TM_UnicornisForetellersKeyblade, A_TM_UrsusForetellersKeyblade, A_TM_VictoryLine, A_TM_VoidGear, A_TM_VulpeusForetellersKeyblade, A_TM_WaytotheDawn, A_TM_WaywardWind, A_TM_WinnersProof, A_TM_WishingLamp, A_TM_WishingStar, A_TM_WoodenKeyblade, A_TM_WoodenStick, A_TM_YoungXehanortsKeyblade, A_TM_ZeroOne;
 
 	public static int[] interfaceColour;
-	public static Property interfaceColourProperty;
+	public static Property interfaceColourProperty, EnableHeartsOnHUDProperty, EnableCustomMusicProperty;
 
 	public static void syncConfig () {
 		MinecraftForge.EVENT_BUS.register(KingdomKeys.instance);
@@ -41,13 +41,15 @@ public class Config {
 
 		/** INTERFACE *****************************/
 		final String INTERFACE = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "interface";
-		EnableHeartsOnHUD = config.getBoolean("Enable hearts on HUD", INTERFACE, Booleans.ENABLEHEARTSONHUD_DEFAULT, "Toggles rendering of hearts on the HUD");
+		EnableHeartsOnHUDProperty = config.get(INTERFACE, "Enable hearts on HUD", Booleans.ENABLEHEARTSONHUD_DEFAULT, "Toggles rendering of hearts on the HUD");
+		EnableHeartsOnHUD = EnableHeartsOnHUDProperty.getBoolean();
 		interfaceColourProperty = config.get(INTERFACE, "Set the colour of the interface with RGB values", new int[] { 255, 0, 0 });
 		interfaceColour = interfaceColourProperty.getIntList();
 
 		/** MUSIC *********************************/
 		final String MUSIC = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "music";
-		EnableCustomMusic = config.getBoolean("Enable custom music", MUSIC, Booleans.ENABLECUSTOMMUSIC_DEFAULT, "Toggles the custom music that plays, requires the music resource pack");
+		EnableCustomMusicProperty = config.get(MUSIC, "Enable custom music", Booleans.ENABLECUSTOMMUSIC_DEFAULT, "Toggles the custom music that plays, requires the music resource pack");
+		EnableCustomMusic = EnableCustomMusicProperty.getBoolean();
 		ForceEnableCustomMusic = config.getBoolean("Force Enable custom music", MUSIC, Booleans.FORCEENABLECUSTOMMUSIC_DEFAULT, "Force toggles the custom music that plays regardless of whether the resource pack is loaded");
 
 		

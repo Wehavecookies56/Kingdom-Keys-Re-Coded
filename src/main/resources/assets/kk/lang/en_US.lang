@@ -620,6 +620,8 @@ gui.menu.items.button.back=Back
 #Config
 gui.menu.config.title=Config
 gui.menu.config.colour.desc=Change the interface color by entering a RGB value
+gui.menu.config.hearts=Show hearts on hud
+gui.menu.config.music=Enable custom music
 
 #Containers
 container.keychain=Place a keychain here
