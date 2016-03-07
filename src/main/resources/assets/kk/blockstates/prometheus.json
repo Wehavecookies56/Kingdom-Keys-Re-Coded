@@ -4,21 +4,22 @@
     	"textures": {
 
     		},
-        "model": "kk:prometheus.obj"
+        "model": "kk:prometheus.obj",
+        "custom": { "flip-v": true }
     },
     "variants": {
         "inventory": [
             {
                 "transform": {
                     "thirdperson": {
-                        "rotation": [ { "x": 200 }, { "y": 90 }, { "z": 45 } ],
-                        "translation": [ 0, 0, 0 ],
-                        "scale": 0.015
+                        "rotation": [ { "x": 75 }, { "y": 0 }, { "z": 180 } ],
+                        "translation": [ 0, 0.04, -0.04 ],
+                        "scale": 0.018
                     },
                     "gui": {
-                        "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 30 } ],
+                        "rotation": [ { "x": 0 }, { "y":50 }, { "z": 0 } ],
                         "translation": [ 0, 0, 0 ],
-                        "scale": 0.015
+                        "scale": 0.018
                     },
                     "firstperson": {
                         "rotation": [ { "x": 180 }, { "y": -120 }, { "z": 170 } ],

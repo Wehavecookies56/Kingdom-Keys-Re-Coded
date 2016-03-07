@@ -373,7 +373,7 @@ public class EventHandler {
 														stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
 														stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
 														inv.setInventorySlotContents(j, stack);
-														pickUp.stackSize--;
+														pickUp.stackSize = 0;
 														return;
 													}
 												}
@@ -383,7 +383,7 @@ public class EventHandler {
 								}
 							} else if (bagItem == null) {
 								inv.setInventorySlotContents(j, pickUp);
-								pickUp.stackSize--;
+								pickUp.stackSize = 0;
 								return;
 							}
 						}
@@ -404,7 +404,7 @@ public class EventHandler {
 														stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
 														stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
 														inv.setInventorySlotContents(j, stack);
-														pickUp.stackSize--;
+														pickUp.stackSize = 0;
 														return;
 													}
 												}
@@ -414,7 +414,7 @@ public class EventHandler {
 								}
 							} else if (bagItem == null) {
 								inv.setInventorySlotContents(j, pickUp);
-								pickUp.stackSize--;
+								pickUp.stackSize = 0;
 								return;
 							}
 						}

@@ -7,7 +7,8 @@
             "blazeofglory_3": "kk:items/models/blazeofglory_3"
 
         },
-        "model": "kk:blazeofglory.b3d"
+        "model": "kk:blazeofglory.obj",
+        "custom": { "flip-v": true }
     },
     "variants": {
         "inventory": [
@@ -15,11 +16,11 @@
                 "transform": {
                     "thirdperson": {
                         "rotation": [ { "x": 75 }, { "y": 0 }, { "z": 180 } ],
-                        "translation": [ 0, 0, 0 ],
-                        "scale": 0.02
+                        "translation": [ 0, 0.04, -0.04 ],
+                        "scale": 0.018
                     },
                     "gui": {
-                        "rotation": [ { "x": -40 }, { "y": 0 }, { "z": 0 } ],
+                        "rotation": [ { "x": 0 }, { "y":50 }, { "z": 0 } ],
                         "translation": [ 0, 0, 0 ],
                         "scale": 0.018
                     },
