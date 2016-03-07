@@ -64,15 +64,17 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 				Entity entityTarget = (Entity) entityTagetList.get(i);
 				if (entityTarget != null && entityTarget instanceof EntityPlayer) {
 					EntityPlayer owner = (EntityPlayer) entityTarget;
-					if (item != null) {
-						int slot = owner.inventory.getFirstEmptyStack();
-						if(slot >= 0){
-							owner.inventory.setInventorySlotContents(slot, item);
-						} else {
-							worldObj.spawnEntityInWorld(new EntityItem(worldObj, this.posX, this.posY, this.posZ, item));
+					if (owner == this.getThrower()) {
+						if (item != null) {
+							int slot = owner.inventory.getFirstEmptyStack();
+							if(slot >= 0){
+								owner.inventory.setInventorySlotContents(slot, item);
+							} else {
+								worldObj.spawnEntityInWorld(new EntityItem(worldObj, this.posX, this.posY, this.posZ, item));
+							}
 						}
+						this.setDead();
 					}
-					this.setDead();
 				}
 			}
 		}
