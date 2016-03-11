@@ -192,7 +192,9 @@ public class GuiCommandMenu extends GuiScreen {
 			if (spells == null) {
 				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
 			} else {
-				if (ExtendedPlayer.get(mc.thePlayer).getRecharge() == false && !spells.isEmpty() && !ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
+				//if (!ExtendedPlayer.get(mc.thePlayer).getRecharge() && !spells.isEmpty() && !ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
+				if (!ExtendedPlayer.get(mc.thePlayer).getRecharge() && (!ExtendedPlayer.spells.isEmpty() && !ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals(Strings.Form_Valor))) 
+
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0xFFFFFF);
 				else
 					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);

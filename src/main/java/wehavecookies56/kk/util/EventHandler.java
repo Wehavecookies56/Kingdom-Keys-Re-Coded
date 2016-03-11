@@ -557,9 +557,15 @@ public class EventHandler {
 			if (event.ammount - ExtendedPlayer.get(player).getDefense() <= 0)
 				event.ammount = 1;
 			else
-				event.ammount = event.ammount - ExtendedPlayer.get(player).getDefense();
+				event.ammount = (float)( event.ammount - (ExtendedPlayer.get(player).getDefense()*0.25));
 
-			if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.FrozenPride) if (player.isBlocking()) event.ammount = 0.5f;
+			if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.FrozenPride) 
+			{
+				if (player.isBlocking()) 
+				{
+					event.ammount = 0.5f;
+				}
+			}
 			if (event.source.getDamageType() == "lightningBolt") if (EntityThunder.summonLightning) event.setCanceled(true);
 		}
 		if (event.source.getSourceOfDamage() instanceof EntityPlayer) {

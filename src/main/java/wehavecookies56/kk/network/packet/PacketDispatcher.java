@@ -38,6 +38,7 @@ import wehavecookies56.kk.network.packet.server.MunnyPickup;
 import wehavecookies56.kk.network.packet.server.OpenGui;
 import wehavecookies56.kk.network.packet.server.OpenMaterials;
 import wehavecookies56.kk.network.packet.server.PlaySoundAtPlayer;
+import wehavecookies56.kk.network.packet.server.PotionConsume;
 import wehavecookies56.kk.network.packet.server.RemoveItemInSlot;
 import wehavecookies56.kk.network.packet.server.SummonKeyblade;
 import wehavecookies56.kk.network.packet.server.SyncStatMessagesPacket;
@@ -105,6 +106,7 @@ public class PacketDispatcher {
 		registerMessage(TakeMaterials.class);
 		registerMessage(RemoveItemInSlot.class);
 		registerMessage(GiveItemInSlot.class);
+		registerMessage(PotionConsume.class);
 		// Bidirectional
 	}
 

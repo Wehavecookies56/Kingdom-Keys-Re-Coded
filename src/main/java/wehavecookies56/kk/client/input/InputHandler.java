@@ -132,7 +132,7 @@ public class InputHandler {
 		switch (GuiCommandMenu.selected) {
 			case GuiCommandMenu.MAGIC:
 				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
-					if (ExtendedPlayer.get(player).getRecharge() == false && (!ExtendedPlayer.spells.isEmpty() && !ExtendedPlayer.get(player).getDriveInUse().equals(Strings.Form_Valor))) {
+					if (!ExtendedPlayer.get(player).getRecharge() && (!ExtendedPlayer.spells.isEmpty() && !ExtendedPlayer.get(player).getDriveInUse().equals(Strings.Form_Valor))) {
 						GuiCommandMenu.magicselected = 0;
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
 						world.playSound(player.posX, player.posY, player.posZ, SoundHelper.Select, 1f, 1f, false);
@@ -183,7 +183,9 @@ public class InputHandler {
 				break;
 		}
 		if (GuiCommandMenu.selected == GuiCommandMenu.MAGIC && GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC) {
-			if (ExtendedPlayer.spells.isEmpty()) {} else if (!ExtendedPlayer.get(player).getRecharge() || Constants.getCost(ExtendedPlayer.spells.get(GuiCommandMenu.magicselected)) == -1 && ExtendedPlayer.get(player).getMp() > 0) {
+			if (ExtendedPlayer.spells.isEmpty()) 
+			{} 
+			else if (!ExtendedPlayer.get(player).getRecharge() || Constants.getCost(ExtendedPlayer.spells.get(GuiCommandMenu.magicselected)) == -1 && ExtendedPlayer.get(player).getMp() > 0) {
 				Magic.getMagic(player, world, ExtendedPlayer.spells.get(GuiCommandMenu.magicselected));
 				GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 				GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;

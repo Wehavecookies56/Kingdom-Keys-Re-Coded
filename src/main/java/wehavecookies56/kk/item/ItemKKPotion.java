@@ -10,6 +10,7 @@ import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.inventory.InventoryPotionsMenu;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.server.PotionConsume;
 import wehavecookies56.kk.network.packet.server.RemoveItemInSlot;
 import wehavecookies56.kk.util.SoundHelper;
 
@@ -47,18 +48,21 @@ public abstract class ItemKKPotion extends ItemFood {
 				((ItemKKPotion) ModItems.Potion).getPotionEffect(player);
 				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Potion, 1f, 1f, false);
 				ExtendedPlayer.get(player).inventoryPotions.setInventorySlotContents(slot, null);
+				PacketDispatcher.sendToServer(new PotionConsume("potion"));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot("potion", slot, true));
 				break;
 			case "ether":
 				((ItemKKPotion) ModItems.Ether).getPotionEffect(player);
 				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Potion, 1f, 1f, false);
 				ExtendedPlayer.get(player).inventoryPotions.setInventorySlotContents(slot, null);
+				PacketDispatcher.sendToServer(new PotionConsume("ether"));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot("potion", slot, true));
 				break;
 			case "elixir":
 				((ItemKKPotion) ModItems.Elixir).getPotionEffect(player);
 				Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, SoundHelper.Potion, 1f, 1f, false);
-				ExtendedPlayer.get(player).inventoryPotions.setInventorySlotContents(slot, null);
+				ExtendedPlayer.get(player).inventoryPotions.setInventorySlotContents(slot, null);	
+				PacketDispatcher.sendToServer(new PotionConsume("elixir"));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot("potion", slot, true));
 				break;
 			default:
