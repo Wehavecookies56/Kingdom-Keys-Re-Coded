@@ -49,7 +49,17 @@ public class DriveFormValor extends DriveForm {
 			player.motionZ *= Constants.VALOR_SPEED;
 		}
 
-		if (player.motionY > 0) player.motionY *= Constants.VALOR_JUMP_1;
+		if (player.motionY > 0)
+		{
+			if(player.motionY < 1)
+			{
+				player.motionY += 0.025f;
+			}
+			else
+			{
+				player.motionY = 0 ;
+			}
+		}
 
 		if (ExtendedPlayer.get(player).cheatMode == false) if (ExtendedPlayer.get(player).dp > 0) {
 			ExtendedPlayer.get(player).dp -= 0.1;

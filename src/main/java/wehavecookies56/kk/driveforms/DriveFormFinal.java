@@ -48,7 +48,10 @@ public class DriveFormFinal extends DriveForm {
 
 	@Override
 	public void update (EntityPlayer player) {
-		if (player.motionY > 0) player.motionY *= Constants.FINAL_JUMP;
+		if (player.motionY > 0) 
+		{
+			player.motionY *= Constants.FINAL_JUMP;
+		}
 
 		if (player.onGround && !player.isInWater()) {
 			player.motionX *= 1.2D;
