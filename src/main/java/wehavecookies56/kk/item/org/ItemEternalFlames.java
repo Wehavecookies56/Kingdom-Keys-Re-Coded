@@ -35,7 +35,7 @@ public class ItemEternalFlames extends ItemSword {
 	public void onPlayerStoppedUsing (ItemStack stack, World world, EntityPlayer player, int timeLeft) {
 		if (!player.isSneaking()) {
 			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-			world.spawnEntityInWorld(new EntityBlazeofGlory(world, player));
+			world.spawnEntityInWorld(new EntityEternalFlames(world, player));
 			player.swingItem();
 		} else
 			player.setItemInUse(stack, getMaxItemUseDuration(stack));

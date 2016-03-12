@@ -15,21 +15,29 @@ import wehavecookies56.kk.util.TextHelper;
 public class LevelUpDrive extends AbstractServerMessage<LevelUpDrive> {
 
 	String form;
+	boolean isLevelUp = false;
 
 	public LevelUpDrive () {}
 
 	public LevelUpDrive (String form) {
 		this.form = form;
 	}
-
+	
+	public LevelUpDrive (String form, boolean levelup) {
+		this.form = form;
+		this.isLevelUp = levelup;
+	}
+	
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
 		form = buffer.readStringFromBuffer(40);
+		isLevelUp = buffer.readBoolean();
 	}
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeString(form);
+		buffer.writeBoolean(isLevelUp);
 	}
 
 	@Override
@@ -42,27 +50,54 @@ public class LevelUpDrive extends AbstractServerMessage<LevelUpDrive> {
 		int finalLevel = ExtendedPlayer.get(player).getDriveLevel(Strings.Form_Final);
 
 		int hasDriveInSlot = -1, nullSlot = -1;
-
-		for (int i = 0; i < InventoryDriveForms.INV_SIZE; i++) {
-			if (ExtendedPlayer.get(player).inventoryDrive.getStackInSlot(i) != null) {
-				if (ExtendedPlayer.get(player).inventoryDrive.getStackInSlot(i).getItem() == player.getHeldItem().getItem()) {
-					hasDriveInSlot = i;
-				}
-			} else {
-				nullSlot = i;
+		
+		int formLevel = 0;
+		switch(form)
+		{
+			case Strings.Form_Valor:
+				formLevel = valorLevel;
 				break;
+			case Strings.Form_Wisdom:
+				formLevel = wisdomLevel;
+				break;
+			case Strings.Form_Limit:
+				formLevel = limitLevel;
+				break;
+			case Strings.Form_Master:
+				formLevel = masterLevel;
+				break;
+			case Strings.Form_Final:
+				formLevel = finalLevel;
+				break;
+			default:
+			break;
+		}
+		if(isLevelUp)
+		{//TODO
+			ExtendedPlayer.get(player).setDriveLevel(form, finalLevel+1);
+			System.out.println(form+" level: "+(formLevel+1));
+		}
+		else
+		{
+			for (int i = 0; i < InventoryDriveForms.INV_SIZE; i++) {
+				if (ExtendedPlayer.get(player).inventoryDrive.getStackInSlot(i) != null) {
+					if (ExtendedPlayer.get(player).inventoryDrive.getStackInSlot(i).getItem() == player.getHeldItem().getItem()) {
+						hasDriveInSlot = i;
+					}
+				} else {
+					nullSlot = i;
+					break;
+				}
+			}
+	
+			if (hasDriveInSlot == -1) {
+				ExtendedPlayer.get(player).inventoryDrive.setInventorySlotContents(nullSlot, player.getHeldItem());
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+				TextHelper.sendFormattedChatMessage("Succesfully learnt " + form + " Form!", EnumChatFormatting.YELLOW, player);
+			} else {
+				TextHelper.sendFormattedChatMessage("Already learnt " + form + " Form!", EnumChatFormatting.YELLOW, player);
+	
 			}
 		}
-
-		if (hasDriveInSlot == -1) {
-			ExtendedPlayer.get(player).inventoryDrive.setInventorySlotContents(nullSlot, player.getHeldItem());
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-			TextHelper.sendFormattedChatMessage("Succesfully learnt " + form + " Form!", EnumChatFormatting.YELLOW, player);
-		} else {
-			TextHelper.sendFormattedChatMessage("Already learnt " + form + " Form!", EnumChatFormatting.YELLOW, player);
-
-		}
-
 	}
-
 }

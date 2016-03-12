@@ -56,7 +56,7 @@ public class DriveFormFinal extends DriveForm {
 			}
 			else
 			{
-				player.motionY -= Constants.FINAL_JUMP;
+				//player.motionY -= Constants.FINAL_JUMP;
 			}
 		}
 
@@ -66,15 +66,7 @@ public class DriveFormFinal extends DriveForm {
 		} else if (player.motionY < 0) if (player.worldObj.isRemote) {
 			if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
 				jumpHeld = true;
-				player.motionY *= Constants.FINAL_GLIDE_1;
-				PacketDispatcher.sendToServer(new GlidePacket(jumpHeld));
-			} else {
-				jumpHeld = false;
-				PacketDispatcher.sendToServer(new GlidePacket(jumpHeld));
-			}
-		} else if (jumpHeld) 
-			{
-				switch(ExtendedPlayer.get(player).getDriveLevel(Strings.Form_Valor))
+				switch(ExtendedPlayer.get(player).getDriveLevel(Strings.Form_Final))
 				{
 				case 1:
 					player.motionY *= Constants.FINAL_GLIDE_1;
@@ -86,6 +78,26 @@ public class DriveFormFinal extends DriveForm {
 					player.motionY *= Constants.FINAL_GLIDE_3;
 					break;
 				}
+				//player.motionY *= Constants.FINAL_GLIDE_1;
+				PacketDispatcher.sendToServer(new GlidePacket(jumpHeld));
+			} else {
+				jumpHeld = false;
+				PacketDispatcher.sendToServer(new GlidePacket(jumpHeld));
+			}
+		} else if (jumpHeld) 
+			{
+/*				switch(ExtendedPlayer.get(player).getDriveLevel(Strings.Form_Final))
+				{
+				case 1:
+					player.motionY *= Constants.FINAL_GLIDE_1;
+					break;
+				case 2:
+					player.motionY *= Constants.FINAL_GLIDE_2;
+					break;
+				case 3:
+					player.motionY *= Constants.FINAL_GLIDE_3;
+					break;
+				}*/
 			}
 
 		if (ExtendedPlayer.get(player).cheatMode == false) if (ExtendedPlayer.get(player).dp > 0) {
