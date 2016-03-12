@@ -7,7 +7,9 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -57,7 +59,17 @@ public class EntityStop extends Entity {
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
-			if (e instanceof EntityLiving) if (ticksExisted < 50) ((EntityLivingBase) e).setVelocity(0, 0, 0);
+			if (e instanceof EntityLiving) {
+				if (ticksExisted < 50) {
+					((EntityLivingBase) e).motionX = 0;
+					((EntityLivingBase) e).motionY = 0;
+					((EntityLivingBase) e).motionZ = 0;
+				}
+			}
+			if (!worldObj.isRemote) {
+				((EntityPlayerMP) player).playerNetServerHandler.sendPacket(new S12PacketEntityVelocity(e.getEntityId(), 0, 0, 0));
+			}
+			
 		}
 		aabb.contract(2, 2, 2);
 
