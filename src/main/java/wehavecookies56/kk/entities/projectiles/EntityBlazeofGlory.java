@@ -11,12 +11,13 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IThrowableEntity;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.GiveItemInSlot;
 
-public class EntityBlazeofGlory extends EntityThrowable {
+public class EntityBlazeofGlory extends EntityThrowable implements IThrowableEntity {
 
 	int ticks;
 	EntityPlayer player;
@@ -82,6 +83,10 @@ public class EntityBlazeofGlory extends EntityThrowable {
 	@Override
 	protected void onImpact (MovingObjectPosition mop) {
 		if (mop.entityHit != null) {
+			if (mop.entityHit == this.getThrower()) {
+				this.setDead();
+				return;
+			}
 			mop.entityHit.setFire(8);
 			float shotDamage;
 			if (ExtendedPlayer.get(player).getStrength() / 2 < 8)
@@ -94,8 +99,11 @@ public class EntityBlazeofGlory extends EntityThrowable {
 
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 
-		if (!worldObj.isRemote) setDead();
-
+	}
+	
+	@Override
+	public void setThrower (Entity entity) {
+		
 	}
 
 }
