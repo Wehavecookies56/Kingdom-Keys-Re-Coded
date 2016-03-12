@@ -124,7 +124,7 @@ public class Constants {
 	// Drive abilities
 	public static double 
 	VALOR_SPEED = 1.1, 
-	VALOR_JUMP_1 = 1.08, 
+	VALOR_JUMP_1 = 0.025, 
 	VALOR_JUMP_2 = 1.1, 
 	VALOR_JUMP_3 = 1.15, 
 	FINAL_SPEED = 1.23, 

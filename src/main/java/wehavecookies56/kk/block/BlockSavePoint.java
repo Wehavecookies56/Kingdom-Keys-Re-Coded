@@ -61,17 +61,15 @@ public class BlockSavePoint extends Block {
 					player.setSpawnPoint(pos, true);
 					TextHelper.sendFormattedChatMessage("Spawn point saved!", EnumChatFormatting.GREEN, player);
 					world.playSoundAtEntity(player, SoundHelper.SaveSpawn, 1, 1);
+				}
 					
-			/*	if(player.getHealth() == player.getMaxHealth())
-					return;*/
-				player.heal(4);
-				ExtendedPlayer.get(player).setMp(100);
-				if (player.getFoodStats().getFoodLevel() < 20) player.getFoodStats().addStats(4, 0);
-				world.playSoundAtEntity(player, SoundHelper.SavePoint, 1, 1);
-				PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos, true), player, 64.0D);
-
-				
-
+				if(!(player.getHealth() == player.getMaxHealth()))
+				{
+					player.heal(4);
+					ExtendedPlayer.get(player).setMp(100);
+					if (player.getFoodStats().getFoodLevel() < 20) player.getFoodStats().addStats(4, 0);
+					world.playSoundAtEntity(player, SoundHelper.SavePoint, 1, 1);
+					PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos, true), player, 64.0D);
 				}
 			}
 		}

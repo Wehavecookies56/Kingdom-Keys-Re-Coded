@@ -48,16 +48,16 @@ public class DriveFormValor extends DriveForm {
 			player.motionX *= Constants.VALOR_SPEED;
 			player.motionZ *= Constants.VALOR_SPEED;
 		}
-
+		System.out.println(player.motionY);
 		if (player.motionY > 0)
 		{
 			if(player.motionY < 1)
 			{
-				player.motionY += 0.025f;
+				player.motionY += 0.025;
 			}
 			else
 			{
-				player.motionY = 0 ;
+				player.motionY=0;
 			}
 		}
 
