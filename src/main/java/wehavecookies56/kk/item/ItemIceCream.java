@@ -16,7 +16,7 @@ public class ItemIceCream extends ItemFood {
 	public ItemIceCream (int food, boolean wolf) {
 		super(food, wolf);
 		setUnlocalizedName(Strings.Potion);
-		setAlwaysEdible();
+		//setAlwaysEdible();
 	}
 
 	@Override

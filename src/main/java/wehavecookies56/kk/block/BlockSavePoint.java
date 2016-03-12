@@ -55,19 +55,22 @@ public class BlockSavePoint extends Block {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) e;
-				if(player.getHealth() == player.getMaxHealth())
-					return;
+				
+				if (player.isSneaking() && player.getBedLocation() != pos) {
+					player.setSpawnChunk(pos, true, 0);
+					player.setSpawnPoint(pos, true);
+					TextHelper.sendFormattedChatMessage("Spawn point saved!", EnumChatFormatting.GREEN, player);
+					world.playSoundAtEntity(player, SoundHelper.SaveSpawn, 1, 1);
+					
+			/*	if(player.getHealth() == player.getMaxHealth())
+					return;*/
 				player.heal(4);
 				ExtendedPlayer.get(player).setMp(100);
 				if (player.getFoodStats().getFoodLevel() < 20) player.getFoodStats().addStats(4, 0);
 				world.playSoundAtEntity(player, SoundHelper.SavePoint, 1, 1);
 				PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos, true), player, 64.0D);
 
-				if (e.isSneaking() && ((EntityPlayer) e).getBedLocation() != pos) {
-					((EntityPlayer) e).setSpawnChunk(pos, true, 0);
-					((EntityPlayer) e).setSpawnPoint(pos, true);
-					TextHelper.sendFormattedChatMessage("Spawn point saved!", EnumChatFormatting.GREEN, player);
-					world.playSoundAtEntity(player, SoundHelper.SaveSpawn, 1, 1);
+				
 
 				}
 			}
