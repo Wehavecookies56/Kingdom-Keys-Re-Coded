@@ -1,5 +1,6 @@
 package wehavecookies56.kk.driveforms;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.api.driveforms.DriveForm;
@@ -48,16 +49,16 @@ public class DriveFormValor extends DriveForm {
 			player.motionX *= Constants.VALOR_SPEED;
 			player.motionZ *= Constants.VALOR_SPEED;
 		}
-		System.out.println(player.motionY);
-		if (player.motionY > 0)
+		
+		if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown())
 		{
-			if(player.motionY < 1)
+			if(player.motionY > 0)
 			{
-				player.motionY += 0.025;
+				player.motionY += Constants.VALOR_JUMP_1;
 			}
 			else
 			{
-				player.motionY=0;
+				player.motionY -= Constants.VALOR_JUMP_1;
 			}
 		}
 

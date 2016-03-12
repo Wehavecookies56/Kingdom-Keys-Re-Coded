@@ -19,17 +19,14 @@ import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.GiveItemInSlot;
 
 public class EntityEternalFlames extends EntityThrowable implements IThrowableEntity {
-
-	int ticks;
 	EntityPlayer player;
 
 	public EntityEternalFlames (World world) {
 		super(world);
 	}
 
-	public EntityEternalFlames (World world, EntityLivingBase entity, int ticksExisted) {
+	public EntityEternalFlames (World world, EntityLivingBase entity) {
 		super(world, entity);
-		this.ticks = ticksExisted;
 		this.player = (EntityPlayer) entity;
 	}
 
@@ -43,25 +40,24 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 	}
 
 	@Override
-	public void onUpdate () {
+	public void onUpdate () 
+	{
 		int rotation = 0;
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.rotationYaw = (rotation + 1) % 360;
 		boolean returning = false;
-		
+			
 		if (ticksExisted > 15) {
 			returning = true;
 			setThrowableHeading(this.getThrower().posX - this.posX, this.getThrower().posY - this.posY + 1.25, this.getThrower().posZ - this.posZ, 1.5f, 0);
 		}
 		
 		if (ticksExisted > 60) setDead();
-
 		if (this.getThrower() == null) setDead();
 		
 		if (returning) {
 			this.rotationYaw = (rotation + 1) % 360;
-
-			ItemStack item = new ItemStack(ModItems.EternalFlames);
+			ItemStack item = new ItemStack(ModItems.BlazeofGlory);
 			List entityTagetList = this.worldObj.getEntitiesWithinAABB(
 			Entity.class, this.getEntityBoundingBox().expand(1.0D, 1.0D, 1.0D));
 			for (int i = 0; i < entityTagetList.size(); i++) {
@@ -71,7 +67,7 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 					if (owner == this.getThrower()) {
 						if (item != null) {
 							int slot = owner.inventory.getFirstEmptyStack();
-							PacketDispatcher.sendToServer(new GiveItemInSlot(item, slot, this.posX, this.posY, this.posZ, true));
+							PacketDispatcher.sendToServer(new GiveItemInSlot(item, slot, this.posX, this.posY, this.posZ, false));
 						}
 						this.setDead();
 					}
@@ -84,7 +80,6 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 
 	@Override
 	protected void onImpact (MovingObjectPosition mop) {
-		System.out.println("Impacted");
 		if (mop.entityHit != null) {
 			if (mop.entityHit == this.getThrower()) {
 				this.setDead();
@@ -103,9 +98,10 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 
 	}
-
+	
 	@Override
 	public void setThrower (Entity entity) {
 		
 	}
+
 }

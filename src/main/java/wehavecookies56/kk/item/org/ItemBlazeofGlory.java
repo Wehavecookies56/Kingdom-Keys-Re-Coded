@@ -2,6 +2,7 @@ package wehavecookies56.kk.item.org;
 
 import java.util.List;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -13,8 +14,6 @@ import wehavecookies56.kk.entities.projectiles.EntityBlazeofGlory;
 import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 
 public class ItemBlazeofGlory extends ItemSword {
-	int strength;
-
 	public ItemBlazeofGlory (ToolMaterial material) {
 		super(material);
 		setMaxStackSize(1);
@@ -25,15 +24,18 @@ public class ItemBlazeofGlory extends ItemSword {
 	public EnumRarity getRarity (ItemStack par1ItemStack) {
 		return EnumRarity.UNCOMMON;
 	}
+	
+	@Override
+	public boolean hitEntity (ItemStack item, EntityLivingBase entity, EntityLivingBase p_77644_3_) {
+		entity.setFire(5);
+		return super.hitEntity(item, entity, p_77644_3_);
+	}
 
 	@Override
 	public void onPlayerStoppedUsing (ItemStack stack, World world, EntityPlayer player, int timeLeft) {
-		this.strength = timeLeft;
 		if (!player.isSneaking()) {
-			// TODO set strength
-
 			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-			world.spawnEntityInWorld(new EntityBlazeofGlory(world, player, -(strength) + 71999));
+			world.spawnEntityInWorld(new EntityBlazeofGlory(world, player));
 			player.swingItem();
 		} else
 			player.setItemInUse(stack, getMaxItemUseDuration(stack));

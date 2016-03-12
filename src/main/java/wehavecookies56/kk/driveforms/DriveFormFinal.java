@@ -48,9 +48,16 @@ public class DriveFormFinal extends DriveForm {
 
 	@Override
 	public void update (EntityPlayer player) {
-		if (player.motionY > 0) 
+		if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown())
 		{
-			player.motionY *= Constants.FINAL_JUMP;
+			if(player.motionY > 0)
+			{
+				player.motionY += Constants.FINAL_JUMP;
+			}
+			else
+			{
+				player.motionY -= Constants.FINAL_JUMP;
+			}
 		}
 
 		if (player.onGround && !player.isInWater()) {
@@ -65,7 +72,21 @@ public class DriveFormFinal extends DriveForm {
 				jumpHeld = false;
 				PacketDispatcher.sendToServer(new GlidePacket(jumpHeld));
 			}
-		} else if (jumpHeld) player.motionY *= Constants.FINAL_GLIDE_1;
+		} else if (jumpHeld) 
+			{
+				switch(ExtendedPlayer.get(player).getDriveLevel(Strings.Form_Valor))
+				{
+				case 1:
+					player.motionY *= Constants.FINAL_GLIDE_1;
+					break;
+				case 2:
+					player.motionY *= Constants.FINAL_GLIDE_2;
+					break;
+				case 3:
+					player.motionY *= Constants.FINAL_GLIDE_3;
+					break;
+				}
+			}
 
 		if (ExtendedPlayer.get(player).cheatMode == false) if (ExtendedPlayer.get(player).dp > 0) {
 			ExtendedPlayer.get(player).dp -= 0.1;

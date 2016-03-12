@@ -10,11 +10,10 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import wehavecookies56.kk.entities.projectiles.EntityBlazeofGlory;
 import wehavecookies56.kk.entities.projectiles.EntityEternalFlames;
 
 public class ItemEternalFlames extends ItemSword {
-	int strength;
-
 	public ItemEternalFlames (ToolMaterial material) {
 		super(material);
 		setMaxStackSize(1);
@@ -34,36 +33,17 @@ public class ItemEternalFlames extends ItemSword {
 
 	@Override
 	public void onPlayerStoppedUsing (ItemStack stack, World world, EntityPlayer player, int timeLeft) {
-		this.strength = timeLeft;
 		if (!player.isSneaking()) {
-			// TODO set strength
-
 			world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-			// if (!world.isRemote)
-			{
-				world.spawnEntityInWorld(new EntityEternalFlames(world, player, -(strength) + 71999));
-				player.swingItem();
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				
-			}
+			world.spawnEntityInWorld(new EntityBlazeofGlory(world, player));
+			player.swingItem();
 		} else
 			player.setItemInUse(stack, getMaxItemUseDuration(stack));
 	}
 
 	@Override
 	public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player) {
-		/*
-		 * if (!player.isSneaking()) { //TODO set strength
-		 *
-		 * world.playSoundAtEntity(player, "mob.ghast.fireball", 0.5F, 0.4F /
-		 * (itemRand.nextFloat() * 0.4F + 0.8F)); //if (!world.isRemote) {
-		 * world.spawnEntityInWorld(new EntityEternalFlamesProjectile(world,
-		 * player, strength)); player.swingItem(); } } else {
-		 * player.setItemInUse(stack, this.getMaxItemUseDuration(stack)); return
-		 * stack; }
-		 */
 		player.setItemInUse(stack, getMaxItemUseDuration(stack));
-
 		return stack;
 	}
 

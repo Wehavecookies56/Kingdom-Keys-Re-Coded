@@ -19,16 +19,14 @@ import wehavecookies56.kk.network.packet.server.GiveItemInSlot;
 
 public class EntityBlazeofGlory extends EntityThrowable implements IThrowableEntity {
 
-	int ticks;
 	EntityPlayer player;
 
 	public EntityBlazeofGlory (World world) {
 		super(world);
 	}
 
-	public EntityBlazeofGlory (World world, EntityLivingBase entity, int ticksExisted) {
+	public EntityBlazeofGlory (World world, EntityLivingBase entity) {
 		super(world, entity);
-		this.ticks = ticksExisted;
 		this.player = (EntityPlayer) entity;
 	}
 
