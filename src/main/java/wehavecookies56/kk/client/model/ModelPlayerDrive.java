@@ -6,6 +6,7 @@ import api.player.model.ModelPlayerAPI;
 import api.player.model.ModelPlayerArmor;
 import api.player.model.ModelPlayerBase;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.entities.ExtendedPlayer;
@@ -36,10 +37,27 @@ public class ModelPlayerDrive extends ModelPlayerBase {
 	ResourceLocation driveInUseA;
 	ResourceLocation driveInUseB;
 
+	ModelPlayerArmor drive;
+
+	@Override
+	public void beforeRender (Entity paramEntity, float paramFloat1, float paramFloat2, float paramFloat3, float paramFloat4, float paramFloat5, float paramFloat6) {
+		super.beforeRender(paramEntity, paramFloat1, paramFloat2, paramFloat3, paramFloat4, paramFloat5, paramFloat6);
+	}
+
+	@Override
+	public void afterRender (Entity paramEntity, float paramFloat1, float paramFloat2, float paramFloat3, float paramFloat4, float paramFloat5, float paramFloat6) {
+		super.afterRender(paramEntity, paramFloat1, paramFloat2, paramFloat3, paramFloat4, paramFloat5, paramFloat6);
+
+	}
+
+	@Override
+	public void afterSetRotationAngles (float paramFloat1, float paramFloat2, float paramFloat3, float paramFloat4, float paramFloat5, float paramFloat6, Entity paramEntity) {
+		super.afterSetRotationAngles(paramFloat1, paramFloat2, paramFloat3, paramFloat4, paramFloat5, paramFloat6, paramEntity);
+	}
+
 	@Override
 	public void render (Entity paramEntity, float paramFloat1, float paramFloat2, float paramFloat3, float paramFloat4, float paramFloat5, float paramFloat6) {
 		super.render(paramEntity, paramFloat1, paramFloat2, paramFloat3, paramFloat4, paramFloat5, paramFloat6);
-
 		if(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).inDrive){
 			switch(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getDriveInUse()){
 				case Strings.Form_Valor:
@@ -82,22 +100,23 @@ public class ModelPlayerDrive extends ModelPlayerBase {
 					driveInUseB = null;
 					break;
 			}
-
 			if(driveInUseA != null && driveInUseB != null){
-				float size = (float) 0.0645; 
+				float size = (float) paramFloat6;
+				drive = new ModelPlayerArmor(size);
 				Minecraft.getMinecraft().renderEngine.bindTexture(driveInUseA);
-				ModelPlayerArmor drive = new ModelPlayerArmor(paramFloat6);
-				drive.setRotationAngles(paramFloat1, paramFloat2, paramFloat3, paramFloat4, paramFloat5, paramFloat6, paramEntity);
+				drive.copyModelAngles(modelPlayer.bipedBodyWear, drive.bipedBody);
 				drive.bipedBody.render(size);
+				drive.copyModelAngles(modelPlayer.bipedLeftArm, drive.bipedLeftArm);
 				drive.bipedLeftArm.render(size);
+				drive.copyModelAngles(modelPlayer.bipedRightArm, drive.bipedRightArm);
 				drive.bipedRightArm.render(size);
 				Minecraft.getMinecraft().renderEngine.bindTexture(driveInUseB);
+				drive.copyModelAngles(modelPlayer.bipedLeftLeg, drive.bipedLeftLeg);
 				drive.bipedLeftLeg.render(size);
+				drive.copyModelAngles(modelPlayer.bipedRightLeg, drive.bipedRightLeg);
 				drive.bipedRightLeg.render(size);
 			}
 		}
-
-
 	}
 
 	@Override
@@ -140,7 +159,6 @@ public class ModelPlayerDrive extends ModelPlayerBase {
 				armour.setRotationAngles(0, 0, 0, 0, 0, 0.0625f, Minecraft.getMinecraft().thePlayer);
 				armour.bipedRightArm.render(0.0625f);
 			}	
-
 		}
 	}
 }
