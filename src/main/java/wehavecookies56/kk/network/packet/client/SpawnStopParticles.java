@@ -51,7 +51,22 @@ public class SpawnStopParticles extends AbstractClientMessage<SpawnStopParticles
 					player.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.y + 2, z, 0.0D, 0.5D, 0.0D);
 				}
 				break;
-
+			case 2:
+				r = 1.5D;
+				for (int a = 1; a <= 360; a += 15) {
+					double x = this.x + (r * Math.cos(Math.toRadians(a)));
+					double z = this.z + (r * Math.sin(Math.toRadians(a)));
+					player.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.y + 2, z, 0.0D, 0.5D, 0.0D);
+				}
+				break;
+			case 3:
+				r = 1.5D;
+				for (int a = 1; a <= 360; a += 15) {
+					double x = this.x + (r * Math.cos(Math.toRadians(a)));
+					double z = this.z + (r * Math.sin(Math.toRadians(a)));
+					player.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.y + 2, z, 0.0D, 0.5D, 0.0D);
+				}
+				break;
 			// player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL,
 			// x,
 			// player.posY, z, 0.0D, 1.0D, 0.0D);

@@ -69,6 +69,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public boolean keybladeSummoned, firstKeyblade, inDrive, cheatMode, inRecharge;
 
 	public String actualDrive;
+	
+	public boolean isKH1Fire;
 
 	public ExtendedPlayer (EntityPlayer player) {
 		this.player = player;
@@ -107,6 +109,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.limitLevel = 0;
 		this.masterLevel = 0;
 		this.finalLevel = 0;
+		
+		this.isKH1Fire = true;
 	}
 
 	@Override
@@ -149,6 +153,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		properties.setInteger("LimitLevel", this.limitLevel);
 		properties.setInteger("MasterLevel", this.masterLevel);
 		properties.setInteger("FinalLevel", this.finalLevel);
+		
+		properties.setBoolean("isKH1Fire", this.isKH1Fire);
 
 		compound.setTag(EXT_PROP_NAME, properties);
 
@@ -207,6 +213,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.limitLevel = properties.getInteger("LimitLevel");
 		this.masterLevel = properties.getInteger("MasterLevel");
 		this.finalLevel = properties.getInteger("FinalLevel");
+		
+		this.isKH1Fire = properties.getBoolean("isKH1Fire");
 	}
 
 	@Override

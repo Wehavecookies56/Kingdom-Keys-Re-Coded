@@ -22,8 +22,9 @@ public class EntityParticleFXTest extends EntityFX {
 		this.texture = texture;
 		double newrand = (float) Math.random();
 		setGravity(.005F);
-		//setScale(2F);
+		setScale(10F);
 		setMaxAge(10);
+		setAlphaF(0.5F);
 		//setRBGColorF(0x255, 0x0, 0x0);
 	}
 	
