@@ -155,6 +155,7 @@ public class Strings {
 	Gui_Menu_Config_Colour_Desc = Gui_Menu_Config_Colour + ".desc",
 	Gui_Menu_Config_Hearts = Gui_Menu_Config + ".hearts",
 	Gui_Menu_Config_Music = Gui_Menu_Config + ".music",
+	Gui_Menu_Config_Fire = Gui_Menu_Config + ".fire",
 
 	// Synthesis
 	Gui_Synthesis = "gui.synthesis",

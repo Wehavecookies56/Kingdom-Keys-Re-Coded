@@ -13,6 +13,8 @@ import wehavecookies56.kk.entities.magic.EntityThunder;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SpawnThunderParticles;
 
 public class MagicThunder extends AbstractServerMessage<MagicThunder> {
 
@@ -28,15 +30,19 @@ public class MagicThunder extends AbstractServerMessage<MagicThunder> {
 	public void process (EntityPlayer player, Side side) {
 		if (!ExtendedPlayer.get(player).cheatMode) ExtendedPlayer.get(player).removeMp(Constants.getCost(Strings.Spell_Thunder));
 		World world = player.worldObj;
+
 		if (!world.isRemote) switch (ExtendedPlayer.get(player).getMagicLevel(Strings.Spell_Thunder)) {
 			case 1:
 				world.spawnEntityInWorld(new EntityThunder(world, player, player.posX, player.posY, player.posZ));
+				PacketDispatcher.sendToAllAround(new SpawnThunderParticles(player,1), player, 64.0D);
 				break;
 			case 2:
 				world.spawnEntityInWorld(new EntityThundara(world, player, player.posX, player.posY, player.posZ));
+				PacketDispatcher.sendToAllAround(new SpawnThunderParticles(player,2), player, 64.0D);
 				break;
 			case 3:
-				world.spawnEntityInWorld(new EntityThundaga(world, player, player.posX, player.posY, player.posZ));
+				world.spawnEntityInWorld(new EntityThundaga(world, player, player.posX, player.posY, player.posZ));	
+				PacketDispatcher.sendToAllAround(new SpawnThunderParticles(player,3), player, 64.0D);
 				break;
 		}
 	}
