@@ -50,15 +50,23 @@ public class DriveFormValor extends DriveForm {
 			player.motionZ *= Constants.VALOR_SPEED;
 		}
 		
+		
 		if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown())
 		{
 			if(player.motionY > 0)
 			{
-				player.motionY += Constants.VALOR_JUMP_1;
-			}
-			else
-			{
-				player.motionY -= Constants.VALOR_JUMP_1;
+				switch(ExtendedPlayer.get(player).getDriveLevel(Strings.Form_Final))
+				{
+				case 1:
+					player.motionY += Constants.VALOR_JUMP_1;
+					break;
+				case 2:
+					player.motionY += Constants.VALOR_JUMP_2;
+					break;
+				case 3:
+					player.motionY += Constants.VALOR_JUMP_3;
+					break;
+				}
 			}
 		}
 

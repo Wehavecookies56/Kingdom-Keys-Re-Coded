@@ -54,10 +54,6 @@ public class DriveFormFinal extends DriveForm {
 			{
 				player.motionY += Constants.FINAL_JUMP;
 			}
-			else
-			{
-				//player.motionY -= Constants.FINAL_JUMP;
-			}
 		}
 
 		if (player.onGround && !player.isInWater()) {
@@ -78,7 +74,6 @@ public class DriveFormFinal extends DriveForm {
 					player.motionY *= Constants.FINAL_GLIDE_3;
 					break;
 				}
-				//player.motionY *= Constants.FINAL_GLIDE_1;
 				PacketDispatcher.sendToServer(new GlidePacket(jumpHeld));
 			} else {
 				jumpHeld = false;

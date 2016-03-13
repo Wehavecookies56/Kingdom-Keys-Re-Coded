@@ -42,8 +42,6 @@ public class EntityStopra extends Entity {
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
 			this.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.posY, z, 0.0D, 0.5D, 0.0D);
-			// this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL,
-			// x, this.posY, z, 0.0D, 1.0D, 0.0D);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
@@ -61,8 +59,11 @@ public class EntityStopra extends Entity {
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityLiving) {
-				if (ticksExisted < 120) ((EntityLivingBase) e).setVelocity(0, 0, 0);
-			}
+				if (ticksExisted < 200) {
+					((EntityLivingBase) e).motionX = 0;
+					((EntityLivingBase) e).motionY = 0;
+					((EntityLivingBase) e).motionZ = 0;
+				}			}
 		}
 		aabb.contract(2, 2, 2);
 

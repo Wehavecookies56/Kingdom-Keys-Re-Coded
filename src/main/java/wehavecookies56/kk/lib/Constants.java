@@ -125,8 +125,11 @@ public class Constants {
 	public static double 
 	VALOR_SPEED = 1.1, 
 	VALOR_JUMP_1 = 0.025, 
-	VALOR_JUMP_2 = 1.1, 
-	VALOR_JUMP_3 = 1.15, 
+	VALOR_JUMP_2 = 0.03, 
+	VALOR_JUMP_3 = 0.035,
+	MASTER_JUMP_1 = 0.015,
+	MASTER_JUMP_2 = 0.0175,
+	MASTER_JUMP_3 = 0.02,
 	FINAL_SPEED = 1.23, 
 	FINAL_JUMP = 0.03, 
 	FINAL_GLIDE_1 = 0.8,

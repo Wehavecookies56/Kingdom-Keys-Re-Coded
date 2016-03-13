@@ -16,11 +16,11 @@ import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
 import wehavecookies56.kk.network.packet.server.LevelUpDrive;
 
-public class CommandTest implements ICommand {
+public class CommandDriveLevel implements ICommand {
 
 	private List aliases;
 
-	public CommandTest () {
+	public CommandDriveLevel () {
 		this.aliases = new ArrayList();
 		this.aliases.add("drivelevel");
 	}

@@ -42,14 +42,12 @@ public class EntityStopga extends Entity {
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
 			this.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.posY + 2, z, 0.0D, 0.5D, 0.0D);
-			// this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL,
-			// x, this.posY, z, 0.0D, 1.0D, 0.0D);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
 		if (ticksExisted > 200) setDead();
 
-		if (ticksExisted < 10)
+		if (ticksExisted < 10)//Time the player is stopped for using the magic
 			player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0D);
 		else
 			player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.10000000149011612D);
@@ -61,7 +59,11 @@ public class EntityStopga extends Entity {
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityLiving) {
-				if (ticksExisted < 200) ((EntityLivingBase) e).setVelocity(0, 0, 0);
+				if (ticksExisted < 100) {
+					((EntityLivingBase) e).motionX = 0;
+					((EntityLivingBase) e).motionY = 0;
+					((EntityLivingBase) e).motionZ = 0;
+				}
 			}
 		}
 		aabb.contract(2, 2, 2);

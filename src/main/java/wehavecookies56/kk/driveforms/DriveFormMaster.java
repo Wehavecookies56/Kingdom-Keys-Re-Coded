@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import wehavecookies56.kk.api.driveforms.DriveForm;
 import wehavecookies56.kk.entities.ExtendedPlayer;
+import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Reference;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -50,8 +51,15 @@ public class DriveFormMaster extends DriveForm {
 		if (player.onGround && !player.isInWater()) {
 			player.motionX *= 1.18D;
 			player.motionZ *= 1.18D;
-		} else if (!player.onGround) if (player.motionY > 0) player.motionY *= 1.05D;
-
+		}
+		
+		if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown())
+		{
+			if(player.motionY > 0)
+			{
+				player.motionY += Constants.MASTER_JUMP_1;
+			}
+		}
 		if (player.onGround)
 			jumps = 0;
 		else if (player.worldObj.isRemote) if (player.motionY < 0 && Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) if (this.jumps < 1) {
