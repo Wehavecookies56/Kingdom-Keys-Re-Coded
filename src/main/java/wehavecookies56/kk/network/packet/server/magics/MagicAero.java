@@ -13,6 +13,8 @@ import wehavecookies56.kk.entities.magic.EntityAerora;
 import wehavecookies56.kk.lib.Constants;
 import wehavecookies56.kk.lib.Strings;
 import wehavecookies56.kk.network.packet.AbstractMessage.AbstractServerMessage;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.client.SpawnAeroParticles;
 
 public class MagicAero extends AbstractServerMessage<MagicAero> {
 
@@ -35,12 +37,15 @@ public class MagicAero extends AbstractServerMessage<MagicAero> {
 		if (!world.isRemote) switch (ExtendedPlayer.get(player).getMagicLevel(Strings.Spell_Aero)) {
 			case 1:
 				world.spawnEntityInWorld(new EntityAero(world, player, player.posX, player.posY, player.posZ));
+				PacketDispatcher.sendToAllAround(new SpawnAeroParticles(player,1), player, 64.0D);
 				break;
 			case 2:
 				world.spawnEntityInWorld(new EntityAerora(world, player, player.posX, player.posY, player.posZ));
+				PacketDispatcher.sendToAllAround(new SpawnAeroParticles(player,2), player, 64.0D);
 				break;
 			case 3:
 				world.spawnEntityInWorld(new EntityAeroga(world, player, player.posX, player.posY, player.posZ));
+				PacketDispatcher.sendToAllAround(new SpawnAeroParticles(player,3), player, 64.0D);
 				break;
 		}
 	}
