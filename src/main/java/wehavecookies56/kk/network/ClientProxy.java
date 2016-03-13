@@ -194,7 +194,6 @@ public class ClientProxy extends CommonProxy {
 //		double motionX = e.worldObj.rand.nextGaussian() * 0.02D;
 //		double motionY = e.worldObj.rand.nextGaussian() * 0.02D;
 //		double motionZ = e.worldObj.rand.nextGaussian() * 0.02D;
-
 		/*
 		EntityFX particleTest = new EntityParticleFXTest(e.worldObj, 
 		e.posX + e.worldObj.rand.nextDouble() * e.width * 2.0F - e.width,

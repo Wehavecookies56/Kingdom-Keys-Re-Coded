@@ -22,33 +22,9 @@ public class EntityParticleFXTest extends EntityFX {
 		this.texture = texture;
 		double newrand = (float) Math.random();
 		setGravity(.005F);
-		setScale(2F);
-		setMaxAge(5);
-		setRBGColorF(0x255, 0x0, 0x0);
-	}
-	
-	@Override
-	public void onUpdate () {
-		this.prevPosX = this.posX;
-        this.prevPosY = this.posY;
-        this.prevPosZ = this.posZ;
-
-        if (this.particleAge++ >= this.particleMaxAge)
-        {
-            this.setDead();
-        }
-        //this.particleScale = rand.nextFloat();
-
-        this.motionY = 0;
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
-        this.motionX = 0;
-        this.motionY = 0;
-        this.motionZ = 0;
-
-        if (this.onGround) {
-            this.motionX = 0;
-            this.motionZ = 0;
-        }
+		//setScale(2F);
+		setMaxAge(10);
+		//setRBGColorF(0x255, 0x0, 0x0);
 	}
 	
 	@Override
