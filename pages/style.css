@@ -1,0 +1,65 @@
+.header {
+  background: #00ADB5;
+  text-align: center;
+  padding: 30px;
+}
+
+html {
+  background: #222831;
+  color: #EEEEEE;
+}
+
+nav.navbar {
+  background: #222831;
+  border: none;
+  border-radius: 0;
+}
+
+.body-header {
+  background: #393E46;
+  color: #ffffff;
+  padding: 10px;
+}
+
+body {
+  background: none;
+}
+
+.navbar-nav.nav-justified > li{
+  float:none;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+
+.navbar-nav.nav-justified > li.active > a{
+  border: 
+}
+
+.body-header > .container {
+  padding: 10px;
+}
+
+.body > .container {
+  height: 100%;
+  padding: 30px 70px 70px 70px;
+}
+
+html, body, .body{
+  height: 100%;
+}
+
+.body {
+  
+}
+
+.article {
+  background: #EEEEEE;
+}
+
+hr {
+  height: 12px;
+  width: inherit;
+  margin-left: -70px;
+  border: 0;
+  box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
