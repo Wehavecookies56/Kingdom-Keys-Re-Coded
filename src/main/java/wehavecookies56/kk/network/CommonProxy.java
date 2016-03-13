@@ -3,6 +3,7 @@ package wehavecookies56.kk.network;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -56,6 +57,8 @@ public class CommonProxy implements IGuiHandler {
 		extendedEntityData.put(name, compound);
 	}
 
+	public void spawnTestParticle(World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ) {}
+	
 	public static NBTTagCompound getEntityData (String name) {
 		return extendedEntityData.remove(name);
 	}

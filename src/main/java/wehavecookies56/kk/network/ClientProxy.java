@@ -5,10 +5,14 @@ import com.jadarstudios.developercapes.DevCapes;
 import api.player.model.ModelPlayerAPI;
 import api.player.render.RenderPlayerAPI;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.IThreadListener;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.b3d.B3DLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -21,6 +25,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import wehavecookies56.kk.achievements.ModAchievements;
 import wehavecookies56.kk.block.ModBlocks;
+import wehavecookies56.kk.client.fx.EntityParticleFXTest;
 import wehavecookies56.kk.client.gui.GuiCommandMenu;
 import wehavecookies56.kk.client.gui.GuiDrive;
 import wehavecookies56.kk.client.gui.GuiHP;
@@ -184,6 +189,26 @@ public class ClientProxy extends CommonProxy {
 		DevCapes.getInstance().registerConfig("https://www.dropbox.com/s/hb0wg5ky5wblz9g/Capes.json?raw=1");
 	}
 
+	@Override
+	public void spawnTestParticle (World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ) {
+//		double motionX = e.worldObj.rand.nextGaussian() * 0.02D;
+//		double motionY = e.worldObj.rand.nextGaussian() * 0.02D;
+//		double motionZ = e.worldObj.rand.nextGaussian() * 0.02D;
+
+		/*
+		EntityFX particleTest = new EntityParticleFXTest(e.worldObj, 
+		e.posX + e.worldObj.rand.nextDouble() * e.width * 2.0F - e.width,
+		e.posY + e.worldObj.rand.nextDouble() * e.height,
+		e.posZ + e.worldObj.rand.nextDouble() * e.width * 2.0F - e.width, 
+		motionX,
+		motionY,
+		motionZ
+		);
+		*/
+		EntityFX particleTest = new EntityParticleFXTest(new ResourceLocation(Reference.MODID, "textures/fx/flame.png"), world, posX, posY, posZ, motionX, motionY, motionZ);
+		Minecraft.getMinecraft().effectRenderer.addEffect(particleTest);
+	}
+	
 	private void registerKeyBindings () {
 		MinecraftForge.EVENT_BUS.register(new InputHandler());
 		for (Keybinds key : Keybinds.values())

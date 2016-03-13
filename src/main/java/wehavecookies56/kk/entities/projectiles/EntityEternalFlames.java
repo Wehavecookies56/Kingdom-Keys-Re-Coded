@@ -13,6 +13,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IThrowableEntity;
+import wehavecookies56.kk.KingdomKeys;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.item.ModItems;
 import wehavecookies56.kk.network.packet.PacketDispatcher;
@@ -44,6 +45,7 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 	{
 		int rotation = 0;
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+		//KingdomKeys.proxy.spawnTestParticle(this);
 		this.rotationYaw = (rotation + 1) % 360;
 		boolean returning = false;
 			
