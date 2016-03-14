@@ -52,6 +52,7 @@ import wehavecookies56.kk.network.packet.server.magics.MagicCure;
 import wehavecookies56.kk.network.packet.server.magics.MagicFire;
 import wehavecookies56.kk.network.packet.server.magics.MagicStop;
 import wehavecookies56.kk.network.packet.server.magics.MagicThunder;
+import wehavecookies56.kk.network.packet.server.magics.SetKH1Fire;
 
 public class PacketDispatcher {
 	private static byte packetId = 0;
@@ -107,6 +108,9 @@ public class PacketDispatcher {
 		registerMessage(RemoveItemInSlot.class);
 		registerMessage(GiveItemInSlot.class);
 		registerMessage(PotionConsume.class);
+		
+		registerMessage(SetKH1Fire.class);
+
 		// Bidirectional
 	}
 

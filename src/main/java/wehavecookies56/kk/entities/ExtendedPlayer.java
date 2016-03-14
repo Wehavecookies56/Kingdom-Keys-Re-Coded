@@ -110,7 +110,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		this.masterLevel = 0;
 		this.finalLevel = 0;
 		
-		this.isKH1Fire = true;
+		this.isKH1Fire = false;
 	}
 
 	@Override
