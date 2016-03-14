@@ -87,6 +87,7 @@ public class GuiCommandMenu extends GuiScreen {
 
 	public void drawCommandMenu (int width, int height) {
 		// Magic:"+magicselected+" Drive:"+driveselected);
+		//System.out.println("Is KH1 Fire?: "+ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getKH1Fire());
 		float scale = 1.05f;
 		int colour;
 		// DRIVE

@@ -11,6 +11,8 @@ import net.minecraft.client.gui.GuiTextField;
 import wehavecookies56.kk.entities.ExtendedPlayer;
 import wehavecookies56.kk.lib.Config;
 import wehavecookies56.kk.lib.Strings;
+import wehavecookies56.kk.network.packet.PacketDispatcher;
+import wehavecookies56.kk.network.packet.server.magics.SetKH1Fire;
 import wehavecookies56.kk.util.GuiHelper;
 import wehavecookies56.kk.util.TextHelper;
 
@@ -45,9 +47,8 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 				musicToggle.displayString = String.valueOf(Config.EnableCustomMusic);
 				break;
 			case FIRE:
-				ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire ? false: true;
-				ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).sync();
-				fire.displayString = String.valueOf(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire);
+				PacketDispatcher.sendToServer(new SetKH1Fire((ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire ? false: true)));
+				fire.displayString = String.valueOf(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getKH1Fire());
 				break;
 		}
 		//System.out.println(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire);
