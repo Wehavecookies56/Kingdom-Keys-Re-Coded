@@ -68,9 +68,14 @@ public class Magic {
 	}
 
 	public static void Fire (EntityPlayer player, World world) {
-		PacketDispatcher.sendToServer(new MagicFire());
-		player.swingItem();
-		Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, "fire.fire", 5f, 0.5f, false);
+		if(ExtendedPlayer.get(player).getKH1Fire())
+			System.out.println("KH1");
+		else
+		{
+			PacketDispatcher.sendToServer(new MagicFire());
+			player.swingItem();
+			Minecraft.getMinecraft().theWorld.playSound(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ, "fire.fire", 5f, 0.5f, false);
+		}
 	}
 
 	public static void Blizzard (EntityPlayer player, World world) {

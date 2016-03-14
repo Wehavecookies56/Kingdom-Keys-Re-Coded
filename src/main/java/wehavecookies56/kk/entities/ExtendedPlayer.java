@@ -241,6 +241,17 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 	}
 
+	public void setKH1Fire(boolean kh1)
+	{
+		this.isKH1Fire = kh1;
+		sync();
+	}
+	
+	public boolean getKH1Fire()
+	{
+		return this.isKH1Fire;
+	}
+	
 	public void setDriveLevel (String form, int level) {
 		switch(form){
 			case Strings.Form_Valor:

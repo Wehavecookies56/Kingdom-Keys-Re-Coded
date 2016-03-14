@@ -45,9 +45,8 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 				musicToggle.displayString = String.valueOf(Config.EnableCustomMusic);
 				break;
 			case FIRE:
-				ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire ? false: true;
-				ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).sync();
-				fire.displayString = String.valueOf(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire);
+				ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).setKH1Fire(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire = ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire ? false: true);
+				fire.displayString = String.valueOf(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getKH1Fire());
 				break;
 		}
 		//System.out.println(ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).isKH1Fire);
