@@ -274,3 +274,19 @@ div.col-md-3.image img {
 }
 
 
+
+.image {
+  padding: 0px;
+}
+
+.thumb {
+  border: none;
+  padding: 0;
+}
+
+.thumbnail {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}

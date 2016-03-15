@@ -129,33 +129,97 @@
   </div>
   <div id="gallery" class="intro">
     <h2>Gallery</h2>
-    <p>This section is unfinished</p>
-    <div class="row">
-      <div class="col-md-3 image">
-        <img src="http://placehold.it/300x300">
+    <div id="gallery-content">
+      <div id="gallery-page1">
+        <div class="row">
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery1.png">
+           </p>
+          </div>
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery2.png">
+           </p>
+          </div>
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery3.png">
+           </p>
+          </div>
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery4.png">
+           </p>
+          </div>
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery5.png">
+           </p>
+          </div>
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery6.png">
+           </p>
+          </div>
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery7.png">
+           </p>
+          </div>
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery8.png">
+           </p>
+          </div>
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery9.png">
+           </p>
+          </div>
+        </div>
       </div>
-      <div class="col-md-3 image">
-        <img src="http://placehold.it/300x300">
-      </div>
-      <div class="col-md-3 image">
-        <img src="http://placehold.it/300x300">
-      </div>
-      <div class="col-md-3 image">
-        <img src="http://placehold.it/300x300">
-      </div>
-      <div class="col-md-3 image">
-        <img src="http://placehold.it/300x300">
-      </div>
-      <div class="col-md-3 image">
-        <img src="http://placehold.it/300x300">
-      </div>
-      <div class="col-md-3 image">
-        <img src="http://placehold.it/300x300">
-      </div>
-      <div class="col-md-3 image">
-        <img src="http://placehold.it/300x300">
+      <div id="gallery-page2" style="display:none;">
+        <div class="row">
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery10.png">
+           </p>
+          </div>
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery11.png">
+           </p>
+          </div>
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery12.png">
+           </p>
+          </div>
+          <div class="col-md-4 thumb">
+           <p class="thumbnail">
+             <img src="pages/images/gallery13.png">
+           </p>
+          </div>
+        </div>
       </div>
     </div>
+    <nav>
+      <ul id="gallery-pages" class="pagination">
+        <li>
+          <a href="#gallery" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="active"><a id="change-gallery-page-1" href="#gallery">1</a></li>
+        <li><a id="change-gallery-page-2" href="#gallery">2</a></li>
+        <li>
+          <a href="#gallery" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
   <div id="wiki" class="downloads invert">
     <h2>Wiki</h2>
@@ -202,27 +266,7 @@
   </div>
   <script src="https://code.jquery.com/jquery-2.2.1.min.js" integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  <script>
-    $('body').scrollspy({
-      target: '#navbar'
-    });
-
-    function dropdownfeatures() {
-      var mq = window.matchMedia("(min-width: 979px)");
-      var dropdown = document.getElementsById("features-dropdown");
-      alert("Click");
-      if (!mq.mathes) {
-        dropdown.setAttribute("class", "dropdown-toggle");
-        dropdown.setAttribute("data-toggle", "dropdown");
-        dropdown.href = "#";
-        alert("Yes");
-      } else {
-        dropdown.setAttribute("class", "");
-        dropdown.setAttribute("data-toggle", "");
-        alert("No");
-      }
-    }
-  </script>
+  <script src="pages/scripts.js"></script>
 </body>
 
 </html>
