@@ -173,7 +173,7 @@ public class EventHandler {
 			}
 
 			try {
-				GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Qwenit");
+				GameProfile profileWehavecookies56 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Wehavecookies56");
 				UUID uuidWehavecookies56 = profileWehavecookies56.getId();
 				if (event.entity.getUniqueID() == uuidWehavecookies56) ExtendedPlayer.get((EntityPlayer) event.entity).setMunny(ExtendedPlayer.get((EntityPlayer) event.entity).getMunny() + 10000);
 				GameProfile profileAbelatox = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername("Abelatox");
