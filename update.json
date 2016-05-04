@@ -1,0 +1,31 @@
+{
+  "homepage": "http://minecraft.curseforge.com/projects/kingdom-keys-re-coded/files",
+  "promos": {
+    "1.9-latest": "0.7.7",
+    "1.8.9-latest": "0.7.6",
+    "1.8-latest": "0.7.5.3",
+    "1.7.10-latest": "0.7.0",
+    "1.7.2-latest": "0.6.0 PRE",
+    "1.6.4-latest": "0.5.2",
+    "1.6.2-latest": "0.4.2",
+    "1.5.2-latest": "0.3.0"
+  },
+
+  "1.9" : {
+    "0.7.7" : "Updated to Minecraft 1.9.
+    \nFixed some items that were uncraftable.
+    \nChest can now be locked with a keyblade, so it can only be opened by that keyblade.
+    \nUpdated localisations for multiple things."
+  },
+
+  "1.8.9": {
+    "0.7.6": "Updated to Minecraft 1.8.9.
+    \nRead the full changelog at https://goo.gl/YELUt8 (docs.google.com)"
+  },
+
+  "1.8": {
+    "0.7.5": "Updated to Minecraft 1.8.
+    \nMod has completely been recoded and is now called \"Kingdom Keys Re:Coded\"
+    \nRead the full changelog at https://goo.gl/6j00Yi (docs.google.com)"
+  }
+}
