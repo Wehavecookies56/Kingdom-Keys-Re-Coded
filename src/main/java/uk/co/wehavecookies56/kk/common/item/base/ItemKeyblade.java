@@ -38,7 +38,7 @@ public class ItemKeyblade extends ItemSword {
 				RayTraceResult rtr = Minecraft.getMinecraft().objectMouseOver;
 				if (player.getHeldItem(EnumHand.OFF_HAND) != null && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
 					if(player.swingProgress <= 0)
-						player.swingArm(hand.OFF_HAND);
+						player.swingArm(EnumHand.OFF_HAND);
 					if (rtr.entityHit != null) {
 						PacketDispatcher.sendToServer(new AttackEntity(rtr.entityHit.getEntityId()));
 						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
