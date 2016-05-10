@@ -1,5 +1,4 @@
 
-// For those who want the bleeding edge
 buildscript {
     repositories {
         jcenter()
@@ -29,12 +28,12 @@ minecraft {
     version = config.mc_version + "-" + config.forge_version
     runDir = "run"
 
-    mappings = "stable_20"
+    mappings = "snapshot_20160412"
     makeObfSourceJar = false
 }
 
 dependencies {
-    
+
 }
 
 processResources {

@@ -11,6 +11,9 @@ achievement.openMenu.desc=Pulsa la tecla de abrir el menú (Por defecto M).
 achievement.getBlox=¿Es esto un error?
 achievement.getBlox.desc=Obtén un Bloque de Error
 
+achievement.getRecipe=¿Una Receta?
+achievement.getRecpie.desc=Obtén una Receta
+
 achievement.getSynthesisTable=¿Podré hacer mejores objetos?
 achievement.getSynthesisTable.desc=Obtén un Sintetizador
 
@@ -63,10 +66,10 @@ tile.lightningore.name=Mena de Rayo
 tile.lucidore.name=Mena de Ocaso
 tile.powerore.name=Mena de Poder
 tile.poweroree.name=Mena de Poder
-tile.remembranceore.name=Mena de Recuerdos
+tile.remembranceore.name=Mena Evocada
 tile.serenityore.name=Mena Serena
 tile.stormyore.name=Mena Tormentosa
-tile.tranquilore.name=Mena Calmada
+tile.tranquilore.name=Mena Sosegada
 tile.twilightore.name=Mena Crepuscular
 
 #Otros
@@ -139,12 +142,12 @@ sm.orichalcum+.name=Orichalcum+
 sm.powershard.name=Guijarro de Poder
 sm.powerstone.name=Piedra de Poder
 sm.powergem.name=Gema de Poder
-sm.powercrystal.name=Cristal Poder
+sm.powercrystal.name=Cristal de Poder
 
-sm.remembranceshard.name=Guijarro de Recuerdos
-sm.remembrancestone.name=Piedra de Recuerdos
-sm.remembrancegem.name=Gema de Recuerdos
-sm.remembrancecrystal.name=Cristal Recuerdos
+sm.remembranceshard.name=Guijarro Evocador
+sm.remembrancestone.name=Piedra Evocadora
+sm.remembrancegem.name=Gema Evocadora
+sm.remembrancecrystal.name=Cristal Evocador
 
 sm.serenityshard.name=Guijarro Sereno
 sm.serenitystone.name=Piedra Serena
@@ -156,10 +159,10 @@ sm.stormystone.name=Piedra Tormentosa
 sm.stormygem.name=Gema Tormentosa
 sm.stormycrystal.name=Cristal Tormentoso
 
-sm.tranquilshard.name=Guijarro Calmado
-sm.tranquilstone.name=Piedra Calmada
-sm.tranquilgem.name=Gema Calmada
-sm.tranquilcrystal.name=Cristal Calmado
+sm.tranquilshard.name=Guijarro Sosegado
+sm.tranquilstone.name=Piedra Sosegada
+sm.tranquilgem.name=Gema Sosegada
+sm.tranquilcrystal.name=Cristal Sosegado
 
 sm.twilightshard.name=Guijarro Crepuscular
 sm.twilightstone.name=Piedra Crepuscular
@@ -356,12 +359,12 @@ item.mastersdefender.name=Guardián del Maestro
 item.maverickflare.name=Destelleante
 item.metalchocobo.name=Acero Chocobo
 item.midnightroar.name=Rugido Nocturno
-item.miragesplit.name=Mirage Split------------------------------------
+item.miragesplit.name=Espejismo Dividido
 item.missingache.name=Dolor Pasado
 item.monochrome.name=Monocromo
 item.mysteriousabyss.name=Abismo Misterioso
-item.nightmaresend.name=Nightmare's End-------------------------------
-item.nightmaresendandmiragesplit.name=Combined Keyblade---------------
+item.nightmaresend.name=Fin de la Pesadilla
+item.nightmaresendandmiragesplit.name=Llave Espada Combinada
 item.noname.name=Innómita
 item.oathkeeper.name=Prometida
 item.oblivion.name=Recuerdos Lejanos
@@ -405,8 +408,8 @@ item.umbrella.name=Paraguas
 item.unbound.name=Sin Límite
 item.unicornisforetellerskeyblade.name=Pronosticador Unicornis
 item.ursusforetellerskeyblade.name=Pronosticador Ursus
-item.victoryline.name=Victory Line
-item.voidgear.name=Void Gear
+item.victoryline.name=Línea de Meta
+item.voidgear.name=Quid Vacuo
 item.vulpeusforetellerskeyblade.name=Pronosticador Vulpeus
 item.waytothedawn.name=Camino al Alba
 item.waywardwind.name=Brisa Descarada
@@ -461,7 +464,7 @@ item.hyperdrivechain.name=Llavero de Hiperpropulsor
 item.incompletekibladechain.name=Llavero de Llave Espada X Incompleta
 item.junglekingchain.name=Llavero de Artesana
 item.keybladeofpeoplesheartschain.name=Llavero de Llave Espada del Corazón
-item.kibladechain.name=Llavero de Ki-blade
+item.kibladechain.name=Llavero de Llave Espada X
 item.kingdomkeychain.name=Llavero de Cadena del Reino
 item.kingdomkeydchain.name=Llavero de Cadena del Reino D
 item.knockoutpunchchain.name=Llavero de Golpe de Gracia
@@ -479,12 +482,12 @@ item.mastersdefenderchain.name=Llavero de Guardián del Maestro
 item.maverickflarechain.name=Llavero de Destelleante
 item.metalchocobochain.name=Llavero de Acero Chocobo
 item.midnightroarchain.name=Llavero de Rugido Nocturno
-item.miragesplitchain.name=Mirage Split Chain--------------------------------
+item.miragesplitchain.name=Llavero de Espejismo Dividido
 item.missingachechain.name=Llavero de Dolor Pasado
 item.monochromechain.name=Llavero de Monocromo
 item.mysteriousabysschain.name=Llavero de Abismo Misterioso
-item.nightmaresendchain.name=Nightmare's End Chain---------------------------
-item.nightmaresendandmiragesplitchain.name=Combined Keyblade Chain-----------
+item.nightmaresendchain.name=Fin de Pesadilla
+item.nightmaresendandmiragesplitchain.name=Llave Espada Combinada
 item.nonamechain.name=Llavero de Innómita
 item.oathkeeperchain.name=Llavero de Prometida
 item.oblivionchain.name=Llavero de Recuerdos Lejanos
@@ -528,8 +531,8 @@ item.umbrellachain.name=Llavero de Paraguas
 item.unboundchain.name=Llavero de Sin Límite
 item.unicornisforetellerskeybladechain.name=Llavero de Pronosticador Unicornis
 item.ursusforetellerskeybladechain.name=Llavero de Pronosticador Ursus
-item.victorylinechain.name=Llavero de Victory Line
-item.voidgearchain.name=Llavero de Void Gear
+item.victorylinechain.name=Llavero de Línea de Meta
+item.voidgearchain.name=Llavero de Quid Vacuo
 item.vulpeusforetellerskeybladechain.name=Llavero de Pronosticador Vulpeus
 item.waytothedawnchain.name=Llavero de Camino al Alba
 item.waywardwindchain.name=Llavero de Brisa Descarada
@@ -554,6 +557,7 @@ gui.commandmenu.attack=Atacar
 gui.commandmenu.magic=Magia
 gui.commandmenu.items=Objetos
 gui.commandmenu.drive=Fusión
+gui.commandmenu.drive.revert=Revertir
 
 #Magic
 gui.commandmenu.magic.title=MAGIA
@@ -616,11 +620,19 @@ gui.menu.items.drives=Formas de Fusión
 gui.menu.items.button.stock=Inventario
 gui.menu.items.button.back=Atrás
 
-#Keychain Container
-container.keychain=Pon un llavero aquí
-container.kkchest.name=Chest
+#Config
+gui.menu.config.title=Config
+gui.menu.config.colour.desc=Cambia el color de la interfaz poniendo un valor RGB
+gui.menu.config.hearts=Mostrar corazones en el HUD
+gui.menu.config.music=Activar música personalizada
+gui.menu.config.fire=¿Fuego de Kingdom Hearts 2?
 
-#SynthBag Container
+#Containers
+container.keychain=Pon un llavero aquí
+container.spellsinventory=Pon las magias aquí
+container.potionsinventory=Pon las pociones aquí
+container.driveinventory=Pon las fusiones aquí
+container.kkchest=Cofre
 container.synthbag=Pon una Bolsa de Síntesis aquí
 container.synthesisbagsinventory=Bolsa de Síntesis Pequeña
 container.synthesisbagminventory=Bolsa de Síntesis Media
@@ -638,6 +650,7 @@ gui.synthesis.main.materials.takeone=Coger 1
 gui.synthesis.main.materials.takehalfstack=Coger medio stack
 gui.synthesis.main.materials.takestack=Coger un stack
 gui.synthesis.main.materials.takeall=Coger todo
+
 ############################
 #Keybinds
 ############################
@@ -650,3 +663,51 @@ key.kingdomkeys.scrolldown=Menú de Comandos Abajo
 key.kingdomkeys.scrollup=Menú de Comandos Arriba
 key.kingdomkeys.openmenu=Menú
 key.kingdomkeys.summonkeyblade=Invocar Llave Espada
+
+############################
+#Spells and forms
+############################
+
+spell.fire=Piro
+spell.fira=Piro+
+spell.firaga=Piro++
+
+spell.blizzard=Hielo
+spell.blizzara=Hielo+
+spell.blizzaga=Hielo++
+
+spell.thunder=Electro
+spell.thundara=Electro+
+spell.thundaga=Electro++
+
+spell.cure=Cura
+spell.cura=Cura+
+spell.curaga=Cura++
+
+spell.aero=Aero
+spell.aerora=Aero+
+spell.aeroga=Aero++
+
+spell.stop=Paro
+spell.stopra=Paro+
+spell.stopga=Paro++
+
+spell.gravity=Gravedad
+spell.gravira=Gravedad+
+spell.graviga=Gravedad++
+
+form.valor=Forma Valiente
+form.wisdom=Forma Sabia
+form.limit=Forma Suma
+form.master=Forma Maestra
+form.final=Forma Final
+form.anti=Anti Forma
+
+############################
+#Chat messages
+############################
+chat.recipeLearn=Aprendida la receta para '%1$s'
+chat.recipeRepeat=Receta para '%1$s' no fue aprendida porque ya la conoces
+chat.savepoint=Punto de guardado establecido
+chat.chestLockedSuccess=Cofre bloqueado con '%1$s'
+chat.chestLocked=El cofre está bloqueado con otra Llave Espada

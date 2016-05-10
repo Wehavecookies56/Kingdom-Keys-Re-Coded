@@ -61,18 +61,19 @@
             {
                 "transform": {
                     "thirdperson": {
-                    	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": 180 } ],
-                    	"translation": [ 0, 0, 0.2 ],
-                        "scale": 0.015
+                    	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": 0 } ],
+                    	"translation": [ 0, 0, -0.3 ],
+                        "scale": 0.01
                     },
                     "gui": {
-                    	"translation": [ 0.1, -0.18, 0 ],
+					    "rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
+                    	"translation": [ 0, -0.4, 0 ],
                         "scale": 0.015
                     },
                     "firstperson": {
-                    	"rotation": [ { "x": 0 }, { "y": -60 }, { "z": -10 } ],
-                    	"translation": [ 0, -0.6, 0 ],
-                        "scale": 0.03
+                    	"rotation": [ { "x": 0 }, { "y": 120 }, { "z": -10 } ],
+                    	"translation": [ 0, -0.3, 0 ],
+                        "scale": 0.01
                     },
                     "ground": {
                         "scale": 0.015

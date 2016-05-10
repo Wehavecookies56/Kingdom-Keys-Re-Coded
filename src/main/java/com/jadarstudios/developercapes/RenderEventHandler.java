@@ -25,8 +25,8 @@ public class RenderEventHandler {
 	// do for now.
 	@SubscribeEvent
 	public void renderPlayer (RenderLivingEvent.Pre event) {
-		if (event.entity instanceof AbstractClientPlayer) {
-			AbstractClientPlayer player = (AbstractClientPlayer) event.entity;
+		if (event.getEntity() instanceof AbstractClientPlayer) {
+			AbstractClientPlayer player = (AbstractClientPlayer) event.getEntity();
 
 			UserManager manager = UserManager.getInstance();
 			User user = manager.getUser(player.getDisplayName().getUnformattedText());

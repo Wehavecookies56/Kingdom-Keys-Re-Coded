@@ -1,0 +1,18 @@
+{
+	"parent": "builtin/generated",
+    "textures": {
+      "layer0": "kk:items/org/frozenpride"
+    },
+    "display": {
+        "firstperson_righthand": {
+            "rotation": [ 20, 0, -20 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1.25, 1.25, 1.25 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 20, 0, 20 ],
+            "translation": [ -5, 0, 0 ],
+            "scale": [ 1.25, 1.25, 1.25 ]
+        }
+    }
+}

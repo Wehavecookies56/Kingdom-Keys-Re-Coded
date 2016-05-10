@@ -1,5 +1,5 @@
 #English (US) language file for Kingdom Keys Re:Coded
-#Version 0.7.5.2
+#Version 0.7.7
 #Created by Wehavecookies56
 
 ############################
@@ -10,6 +10,9 @@ achievement.openMenu.desc=Press the '%1$s' key to open the menu.
 
 achievement.getBlox=Is this a bug?
 achievement.getBlox.desc=Get a Bug Blox
+
+achievement.getRecipe=A recipe?
+achievement.getRecpie.desc=Get a Recipe
 
 achievement.getSynthesisTable=Will I be able to make better items?
 achievement.getSynthesisTable.desc=Get a Synthesis Table
@@ -83,6 +86,10 @@ tile.savepoint.desc=Sneak while standing on it to set your spawn point
 
 #Synthesis Materials
 sm.rank=Rank
+sm.rank.c=C
+sm.rank.b=B
+sm.rank.a=A
+sm.rank.s=S
 
 sm.blazingshard.name=Blazing Shard
 sm.blazingstone.name=Blazing Stone
@@ -622,13 +629,14 @@ gui.menu.config.title=Config
 gui.menu.config.colour.desc=Change the interface color by entering a RGB value
 gui.menu.config.hearts=Show hearts on hud
 gui.menu.config.music=Enable custom music
+gui.menu.config.fire=Kingdom Hearts 2 Fire?
 
 #Containers
 container.keychain=Place a keychain here
 container.spellsinventory=Place Spell Orbs here
 container.potionsinventory=Place potions here
 container.driveinventory=Place Form Orbs here
-container.kk.kkchest=Chest
+container.kkchest=Chest
 container.synthbag=Place a Synthesis Bag here
 container.synthesisbagsinventory=Small Synthesis Material Bag
 container.synthesisbagminventory=Medium Synthesis Material Bag
@@ -698,3 +706,12 @@ form.limit=Limit Form
 form.master=Master Form
 form.final=Final Form
 form.anti=Anti Form
+
+############################
+#Chat messages
+############################
+chat.recipeLearn=Successfully learnt the recipe for '%1$s'
+chat.recipeRepeat=Recipe for '%1$s' was not learnt because you have already learnt it
+chat.savepoint=Spawn point saved
+chat.chestLockedSuccess=Chest locked with '%1$s'
+chat.chestLocked=Chest is locked with another keyblade
