@@ -410,76 +410,74 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public void PlayerClone (PlayerEvent.Clone event) {
-		if (event.isWasDeath()) {
-			IFirstTimeJoin ftjBefore = event.getOriginal().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
-			IFirstTimeJoin ftjAfter = event.getEntityPlayer().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
-			ftjAfter.setFirstTimeJoin(ftjBefore.getFirstTimeJoin());
-			IMunny munnyBefore = event.getOriginal().getCapability(ModCapabilities.MUNNY, null);
-			IMunny munnyAfter = event.getEntityPlayer().getCapability(ModCapabilities.MUNNY, null);
-			munnyAfter.setMunny(munnyBefore.getMunny());
-			IDriveState dsBefore = event.getOriginal().getCapability(ModCapabilities.DRIVE_STATE, null);
-			IDriveState dsAfter = event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null);
-			dsAfter.setActiveDriveName(dsBefore.getActiveDriveName());
-			dsAfter.setAntiPoints(dsBefore.getAntiPoints());
-			dsAfter.setDriveExp(Strings.Form_Valor, dsBefore.getDriveExp(Strings.Form_Valor));
-			dsAfter.setDriveExp(Strings.Form_Wisdom, dsBefore.getDriveExp(Strings.Form_Wisdom));
-			dsAfter.setDriveExp(Strings.Form_Limit, dsBefore.getDriveExp(Strings.Form_Limit));
-			dsAfter.setDriveExp(Strings.Form_Master, dsBefore.getDriveExp(Strings.Form_Master));
-			dsAfter.setDriveExp(Strings.Form_Final, dsBefore.getDriveExp(Strings.Form_Final));
-			dsAfter.setDriveLevel(Strings.Form_Valor, dsBefore.getDriveLevel(Strings.Form_Valor));
-			dsAfter.setDriveLevel(Strings.Form_Wisdom, dsBefore.getDriveLevel(Strings.Form_Wisdom));
-			dsAfter.setDriveLevel(Strings.Form_Limit, dsBefore.getDriveLevel(Strings.Form_Limit));
-			dsAfter.setDriveLevel(Strings.Form_Master, dsBefore.getDriveLevel(Strings.Form_Master));
-			dsAfter.setDriveLevel(Strings.Form_Final, dsBefore.getDriveLevel(Strings.Form_Final));
-			dsAfter.setInDrive(dsBefore.getInDrive());
-			for (int i = 0; i < dsBefore.getInventoryDriveForms().getSizeInventory(); i++) {
-				dsAfter.getInventoryDriveForms().setInventorySlotContents(i, dsBefore.getInventoryDriveForms().getStackInSlot(i));
-			}
-			MagicStateCapability.IMagicState magicBefore = event.getOriginal().getCapability(ModCapabilities.MAGIC_STATE, null);
-			MagicStateCapability.IMagicState magicAfter = event.getEntityPlayer().getCapability(ModCapabilities.MAGIC_STATE, null);
-			magicAfter.setKH1Fire(magicBefore.getKH1Fire());
-			magicAfter.setMagicLevel(Strings.Spell_Fire, magicBefore.getMagicLevel(Strings.Spell_Fire));
-			magicAfter.setMagicLevel(Strings.Spell_Blizzard, magicBefore.getMagicLevel(Strings.Spell_Blizzard));
-			magicAfter.setMagicLevel(Strings.Spell_Thunder, magicBefore.getMagicLevel(Strings.Spell_Thunder));
-			magicAfter.setMagicLevel(Strings.Spell_Cure, magicBefore.getMagicLevel(Strings.Spell_Cure));
-			magicAfter.setMagicLevel(Strings.Spell_Stop, magicBefore.getMagicLevel(Strings.Spell_Stop));
-			magicAfter.setMagicLevel(Strings.Spell_Aero, magicBefore.getMagicLevel(Strings.Spell_Aero));
-			for (int i = 0; i < magicBefore.getInventorySpells().getSizeInventory(); i++) {
-				magicAfter.getInventorySpells().setInventorySlotContents(i, magicBefore.getInventorySpells().getStackInSlot(i));
-			}
-			SummonKeybladeCapability.ISummonKeyblade skBefore = event.getOriginal().getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
-			SummonKeybladeCapability.ISummonKeyblade skAfter = event.getEntityPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
-			skAfter.setIsKeybladeSummoned(skBefore.getIsKeybladeSummoned());
-			for (int i = 0; i < skBefore.getInventoryKeychain().getSizeInventory(); i++) {
-				skAfter.getInventoryKeychain().setInventorySlotContents(i, skBefore.getInventoryKeychain().getStackInSlot(i));
-			}
-			PlayerStatsCapability.IPlayerStats statsBefore = event.getOriginal().getCapability(ModCapabilities.PLAYER_STATS, null);
-			PlayerStatsCapability.IPlayerStats statsAfter = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
-			statsAfter.setDefense(statsBefore.getDefense());
-			statsAfter.setDP(statsBefore.getDP());
-			statsAfter.setExperience(statsBefore.getExperience());
-			statsAfter.setHP(statsBefore.getHP());
-			statsAfter.setLevel(statsBefore.getLevel());
-			statsAfter.setMagic(statsBefore.getMagic());
-			statsAfter.setMaxMP(statsBefore.getMaxMP());
-			statsAfter.setMP(statsBefore.getMP());
-			statsAfter.setRecharge(statsBefore.getRecharge());
-			statsAfter.setStrength(statsBefore.getStrength());
-			for (int i = 0; i < statsBefore.getInventoryPotionsMenu().getSizeInventory(); i++) {
-				statsAfter.getInventoryPotionsMenu().setInventorySlotContents(i, statsBefore.getInventoryPotionsMenu().getStackInSlot(i));
-			}
-			SynthesisRecipeCapability.ISynthesisRecipe recipesBefore = event.getOriginal().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
-			SynthesisRecipeCapability.ISynthesisRecipe recipesAfter = event.getEntityPlayer().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
-			for (int i = 0; i < recipesBefore.getKnownRecipes().size(); i++) {
-				recipesAfter.learnRecipe(RecipeRegistry.get(recipesBefore.getKnownRecipes().get(i)));
-			}
-			SynthesisMaterialCapability.ISynthesisMaterial materialsBefore = event.getOriginal().getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
-			SynthesisMaterialCapability.ISynthesisMaterial materialsAfter = event.getEntityPlayer().getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
-			Iterator<Entry<String, Integer>> it = materialsBefore.getKnownMaterialsMap().entrySet().iterator();
-			while (it.hasNext()) {
-				Map.Entry<String, Integer> pair = (Map.Entry<String, Integer>) it.next();
-				materialsAfter.setMaterial(MaterialRegistry.get(pair.getKey().toString()), pair.getValue());
-			}
+		IFirstTimeJoin ftjBefore = event.getOriginal().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
+		IFirstTimeJoin ftjAfter = event.getEntityPlayer().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
+		ftjAfter.setFirstTimeJoin(ftjBefore.getFirstTimeJoin());
+		IMunny munnyBefore = event.getOriginal().getCapability(ModCapabilities.MUNNY, null);
+		IMunny munnyAfter = event.getEntityPlayer().getCapability(ModCapabilities.MUNNY, null);
+		munnyAfter.setMunny(munnyBefore.getMunny());
+		IDriveState dsBefore = event.getOriginal().getCapability(ModCapabilities.DRIVE_STATE, null);
+		IDriveState dsAfter = event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null);
+		dsAfter.setActiveDriveName(dsBefore.getActiveDriveName());
+		dsAfter.setAntiPoints(dsBefore.getAntiPoints());
+		dsAfter.setDriveExp(Strings.Form_Valor, dsBefore.getDriveExp(Strings.Form_Valor));
+		dsAfter.setDriveExp(Strings.Form_Wisdom, dsBefore.getDriveExp(Strings.Form_Wisdom));
+		dsAfter.setDriveExp(Strings.Form_Limit, dsBefore.getDriveExp(Strings.Form_Limit));
+		dsAfter.setDriveExp(Strings.Form_Master, dsBefore.getDriveExp(Strings.Form_Master));
+		dsAfter.setDriveExp(Strings.Form_Final, dsBefore.getDriveExp(Strings.Form_Final));
+		dsAfter.setDriveLevel(Strings.Form_Valor, dsBefore.getDriveLevel(Strings.Form_Valor));
+		dsAfter.setDriveLevel(Strings.Form_Wisdom, dsBefore.getDriveLevel(Strings.Form_Wisdom));
+		dsAfter.setDriveLevel(Strings.Form_Limit, dsBefore.getDriveLevel(Strings.Form_Limit));
+		dsAfter.setDriveLevel(Strings.Form_Master, dsBefore.getDriveLevel(Strings.Form_Master));
+		dsAfter.setDriveLevel(Strings.Form_Final, dsBefore.getDriveLevel(Strings.Form_Final));
+		dsAfter.setInDrive(dsBefore.getInDrive());
+		for (int i = 0; i < dsBefore.getInventoryDriveForms().getSizeInventory(); i++) {
+			dsAfter.getInventoryDriveForms().setInventorySlotContents(i, dsBefore.getInventoryDriveForms().getStackInSlot(i));
+		}
+		MagicStateCapability.IMagicState magicBefore = event.getOriginal().getCapability(ModCapabilities.MAGIC_STATE, null);
+		MagicStateCapability.IMagicState magicAfter = event.getEntityPlayer().getCapability(ModCapabilities.MAGIC_STATE, null);
+		magicAfter.setKH1Fire(magicBefore.getKH1Fire());
+		magicAfter.setMagicLevel(Strings.Spell_Fire, magicBefore.getMagicLevel(Strings.Spell_Fire));
+		magicAfter.setMagicLevel(Strings.Spell_Blizzard, magicBefore.getMagicLevel(Strings.Spell_Blizzard));
+		magicAfter.setMagicLevel(Strings.Spell_Thunder, magicBefore.getMagicLevel(Strings.Spell_Thunder));
+		magicAfter.setMagicLevel(Strings.Spell_Cure, magicBefore.getMagicLevel(Strings.Spell_Cure));
+		magicAfter.setMagicLevel(Strings.Spell_Stop, magicBefore.getMagicLevel(Strings.Spell_Stop));
+		magicAfter.setMagicLevel(Strings.Spell_Aero, magicBefore.getMagicLevel(Strings.Spell_Aero));
+		for (int i = 0; i < magicBefore.getInventorySpells().getSizeInventory(); i++) {
+			magicAfter.getInventorySpells().setInventorySlotContents(i, magicBefore.getInventorySpells().getStackInSlot(i));
+		}
+		SummonKeybladeCapability.ISummonKeyblade skBefore = event.getOriginal().getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
+		SummonKeybladeCapability.ISummonKeyblade skAfter = event.getEntityPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
+		skAfter.setIsKeybladeSummoned(skBefore.getIsKeybladeSummoned());
+		for (int i = 0; i < skBefore.getInventoryKeychain().getSizeInventory(); i++) {
+			skAfter.getInventoryKeychain().setInventorySlotContents(i, skBefore.getInventoryKeychain().getStackInSlot(i));
+		}
+		PlayerStatsCapability.IPlayerStats statsBefore = event.getOriginal().getCapability(ModCapabilities.PLAYER_STATS, null);
+		PlayerStatsCapability.IPlayerStats statsAfter = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
+		statsAfter.setDefense(statsBefore.getDefense());
+		statsAfter.setDP(statsBefore.getDP());
+		statsAfter.setExperience(statsBefore.getExperience());
+		statsAfter.setHP(statsBefore.getHP());
+		statsAfter.setLevel(statsBefore.getLevel());
+		statsAfter.setMagic(statsBefore.getMagic());
+		statsAfter.setMaxMP(statsBefore.getMaxMP());
+		statsAfter.setMP(statsBefore.getMP());
+		statsAfter.setRecharge(statsBefore.getRecharge());
+		statsAfter.setStrength(statsBefore.getStrength());
+		for (int i = 0; i < statsBefore.getInventoryPotionsMenu().getSizeInventory(); i++) {
+			statsAfter.getInventoryPotionsMenu().setInventorySlotContents(i, statsBefore.getInventoryPotionsMenu().getStackInSlot(i));
+		}
+		SynthesisRecipeCapability.ISynthesisRecipe recipesBefore = event.getOriginal().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		SynthesisRecipeCapability.ISynthesisRecipe recipesAfter = event.getEntityPlayer().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		for (int i = 0; i < recipesBefore.getKnownRecipes().size(); i++) {
+			recipesAfter.learnRecipe(RecipeRegistry.get(recipesBefore.getKnownRecipes().get(i)));
+		}
+		SynthesisMaterialCapability.ISynthesisMaterial materialsBefore = event.getOriginal().getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+		SynthesisMaterialCapability.ISynthesisMaterial materialsAfter = event.getEntityPlayer().getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+		Iterator<Entry<String, Integer>> it = materialsBefore.getKnownMaterialsMap().entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<String, Integer> pair = (Map.Entry<String, Integer>) it.next();
+			materialsAfter.setMaterial(MaterialRegistry.get(pair.getKey().toString()), pair.getValue());
 		}
 	}
 	
