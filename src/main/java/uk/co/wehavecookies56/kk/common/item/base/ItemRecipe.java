@@ -42,41 +42,56 @@ public class ItemRecipe extends Item {
 			SynthesisRecipeCapability.ISynthesisRecipe RECIPES = player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
 			
 			boolean consume = false;
-			if (RecipeRegistry.get(recipe1) == null) {} else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1)) {} else
+			if (RecipeRegistry.get(recipe1) == null) {} 
+			else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1)) {} 
+			else
 				consume = true;
-			if (RecipeRegistry.get(recipe2) == null) {} else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2)) {} else
+			if (RecipeRegistry.get(recipe2) == null) {}
+			else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2)) {} 
+			else
 				consume = true;
-			if (RecipeRegistry.get(recipe3) == null) {} else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3)) {} else
+			if (RecipeRegistry.get(recipe3) == null) {} 
+			else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3)) {} 
+			else
 				consume = true;
 
+			if(RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1) && RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2) && RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3))
+			{
+				
+			}
 			if (consume) stack.stackSize--;
 
 		}
 		return super.onItemRightClick(stack, world, player, hand);
 	}
 
+	public void shuffleRecipes(ItemStack stack) //TODO Test this
+	{
+		long seed = System.nanoTime();
+		// Shuffles the list of recipe to increase randomness
+		Collections.shuffle(Lists.recipes, new Random(seed));
+		String Recipe1 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
+		String Recipe2 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
+		// Generate a new random value for the second recipe until it's not
+		// equal the first
+		while (Recipe2.equals(Recipe1))
+			Recipe2 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
+		// Generate a new random value for the third recipe until it's not
+		// equal the first or the second
+		String Recipe3 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
+		while (Recipe3.equals(Recipe2) || Recipe3.equals(Recipe1))
+			Recipe3 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
+		// Set values to NBT data
+		stack.setTagCompound(new NBTTagCompound());
+		stack.getTagCompound().setString("recipe1", Recipe1);
+		stack.getTagCompound().setString("recipe2", Recipe2);
+		stack.getTagCompound().setString("recipe3", Recipe3);
+	}
+	
 	@Override
 	public void onUpdate (ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		if (!stack.hasTagCompound()) {
-			long seed = System.nanoTime();
-			// Shuffles the list of recipe to increase randomness
-			Collections.shuffle(Lists.recipes, new Random(seed));
-			String Recipe1 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
-			String Recipe2 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
-			// Generate a new random value for the second recipe until it's not
-			// equal the first
-			while (Recipe2.equals(Recipe1))
-				Recipe2 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
-			// Generate a new random value for the third recipe until it's not
-			// equal the first or the second
-			String Recipe3 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
-			while (Recipe3.equals(Recipe2) || Recipe3.equals(Recipe1))
-				Recipe3 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
-			// Set values to NBT data
-			stack.setTagCompound(new NBTTagCompound());
-			stack.getTagCompound().setString("recipe1", Recipe1);
-			stack.getTagCompound().setString("recipe2", Recipe2);
-			stack.getTagCompound().setString("recipe3", Recipe3);
+			shuffleRecipes(stack);
 		}
 
 	}

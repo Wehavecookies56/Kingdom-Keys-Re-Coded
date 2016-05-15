@@ -30,7 +30,7 @@ public class BlockSavePoint extends Block {
 		super(material);
 		//setBlockBounds(0, 0, 0, 1, 0.1F, 1);
 		setTickRandomly(true);
-		setSoundType(SoundType.STONE);
+		//setSoundType(SoundType.STONE);
 	}
 
 	@Override
