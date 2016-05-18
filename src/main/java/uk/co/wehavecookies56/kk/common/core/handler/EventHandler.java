@@ -1953,11 +1953,9 @@ public class EventHandler {
 				ItemStack masterForm = new ItemStack(ModItems.LevelUpMaster, randomWithRange(1, 3));
 				event.getDrops().add(masterForm);
 				break;
-				break;
 			case 35:
 				ItemStack finalForm = new ItemStack(ModItems.LevelUpFinal, randomWithRange(1, 3));
 				event.getDrops().add(finalForm);
-				break;
 				break;
 			}
 		}

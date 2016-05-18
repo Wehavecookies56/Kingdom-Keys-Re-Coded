@@ -57,7 +57,7 @@ public class ItemRecipe extends Item {
 
 			if(RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1) && RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2) && RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3))
 			{
-				
+				shuffleRecipes(stack);
 			}
 			if (consume) stack.stackSize--;
 
@@ -93,7 +93,6 @@ public class ItemRecipe extends Item {
 		if (!stack.hasTagCompound()) {
 			shuffleRecipes(stack);
 		}
-
 	}
 
 	/**
