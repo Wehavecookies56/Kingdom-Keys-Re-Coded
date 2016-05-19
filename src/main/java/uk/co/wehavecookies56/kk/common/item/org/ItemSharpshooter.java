@@ -13,11 +13,11 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
 
 public class ItemSharpshooter extends ItemSword {
-	int strength = 30;
 
 	public ItemSharpshooter (ToolMaterial material) {
 		super(material);
@@ -32,13 +32,10 @@ public class ItemSharpshooter extends ItemSword {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-		strength = -(strength) + 71999;
 		if (!player.isSneaking()) {
-			// TODO set strength
-
 			if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getMP() > 0 && !player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge() || player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
-				world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F), false);
-				world.spawnEntityInWorld(new EntitySharpshooterBullet(world, player, strength));
+				world.playSound(player.posX, player.posY, player.posZ, ModSounds.sharpshooterbullet, SoundCategory.PLAYERS, 0.5F, 1F / (itemRand.nextFloat() * 0.4F + 0.8F), false);
+				world.spawnEntityInWorld(new EntitySharpshooterBullet(world, player));
 				if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(10);
 				player.swingArm(EnumHand.MAIN_HAND);
 			}

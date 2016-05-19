@@ -1784,7 +1784,7 @@ public class EventHandler {
 		}
 
 		else if (event.getState().getBlock() == ModBlocks.RarePrizeBlox) {
-			int drop = randomWithRange(1, 35);
+			int drop = randomWithRange(1, 38);
 			ItemStack munny = new ItemStack(ModItems.Munny, 1);
 			switch(drop){
 			case 1:
@@ -1937,24 +1937,34 @@ public class EventHandler {
 				ItemStacks.createSynthesisItem(OrichalcumPlus, Strings.SM_OrichalcumPlus, "S");
 				event.getDrops().add(OrichalcumPlus);
 				break;
-			case 31:
-				ItemStack valorForm = new ItemStack(ModItems.LevelUpValor, randomWithRange(1, 3));
-				event.getDrops().add(valorForm);
-				break;
 			case 32:
-				ItemStack wisdomForm = new ItemStack(ModItems.LevelUpWisdom, randomWithRange(1, 3));
-				event.getDrops().add(wisdomForm);
+				ItemStack LostIllusion = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(LostIllusion, Strings.SM_LostIllusion, "S");
+				event.getDrops().add(LostIllusion);
 				break;
 			case 33:
-				ItemStack limitForm = new ItemStack(ModItems.LevelUpLimit, randomWithRange(1, 3));
-				event.getDrops().add(limitForm);
+				ItemStack ManifestIllusion = new ItemStack(ModItems.SynthesisMaterial, randomWithRange(1, 3));
+				ItemStacks.createSynthesisItem(ManifestIllusion, Strings.SM_ManifestIllusion, "S");
+				event.getDrops().add(ManifestIllusion);
 				break;
 			case 34:
-				ItemStack masterForm = new ItemStack(ModItems.LevelUpMaster, randomWithRange(1, 3));
-				event.getDrops().add(masterForm);
+				ItemStack valorForm = new ItemStack(ModItems.LevelUpValor, 1);
+				event.getDrops().add(valorForm);
 				break;
 			case 35:
-				ItemStack finalForm = new ItemStack(ModItems.LevelUpFinal, randomWithRange(1, 3));
+				ItemStack wisdomForm = new ItemStack(ModItems.LevelUpWisdom, 1);
+				event.getDrops().add(wisdomForm);
+				break;
+			case 36:
+				ItemStack limitForm = new ItemStack(ModItems.LevelUpLimit, 1);
+				event.getDrops().add(limitForm);
+				break;
+			case 37:
+				ItemStack masterForm = new ItemStack(ModItems.LevelUpMaster, 1);
+				event.getDrops().add(masterForm);
+				break;
+			case 38:
+				ItemStack finalForm = new ItemStack(ModItems.LevelUpFinal, 1);
 				event.getDrops().add(finalForm);
 				break;
 			}

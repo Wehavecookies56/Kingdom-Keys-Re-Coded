@@ -64,7 +64,9 @@ public class EntityAeroga extends Entity {
 				double d = e.posX - posX;
 				double d1;
 				for (d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)
+				{
 					d = (Math.random() - Math.random()) * 0.01D;
+				}
 				((EntityLivingBase) e).knockBack(e, 0, d, d1);
 			}
 		}
