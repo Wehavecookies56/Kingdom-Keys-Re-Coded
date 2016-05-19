@@ -34,13 +34,12 @@ public class EntitySharpshooterBullet extends EntityThrowable implements IThrowa
 
 	@Override
 	public void onUpdate () {
-		int rotation = 0;
+		super.onUpdate();
+
 		this.worldObj.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX, this.posY, this.posZ, 0, 0, 0);
-		this.rotationYaw = (rotation + 1) % 360;
 
 		if (ticksExisted > 60)
 			setDead();
-		super.onUpdate();
 	}
 
 	@Override
@@ -58,8 +57,9 @@ public class EntitySharpshooterBullet extends EntityThrowable implements IThrowa
 				shotDamage = player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() / 2;
 
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), shotDamage);
+			
 		}
-
+		this.setDead();
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 
 	}

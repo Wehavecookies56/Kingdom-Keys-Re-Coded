@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
@@ -46,8 +47,7 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 		this.rotationYaw = (rotation + 1) % 360;
 				
 		if (ticksExisted > 15) {
-			returning = true;
-			setThrowableHeading(this.getThrower().posX - this.posX, this.getThrower().posY - this.posY + 1.25, this.getThrower().posZ - this.posZ, 1.5f, 0);
+			setReturn();
 		}
 		
 		if (ticksExisted > 60) setDead();
@@ -70,6 +70,12 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 		super.onUpdate();
 	}
 
+	public void setReturn()
+	{
+		returning = true;
+		setThrowableHeading(this.getThrower().posX - this.posX, this.getThrower().posY - this.posY + 1.25, this.getThrower().posZ - this.posZ, 1.5f, 0);	
+	}
+	
 	@Override
 	protected void onImpact (RayTraceResult mop) {
 		if (mop.entityHit != null) {
@@ -86,9 +92,8 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), shotDamage);
 		}
-
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-
+		setReturn();
 	}
 	
 	@Override
