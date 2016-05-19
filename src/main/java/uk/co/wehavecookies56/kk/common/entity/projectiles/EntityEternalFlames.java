@@ -78,7 +78,10 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 	
 	@Override
 	protected void onImpact (RayTraceResult mop) {
-		if (mop.entityHit != null) {
+		if(mop.entityHit == null)
+		{
+			setReturn();
+		}else{
 			if (mop.entityHit == this.getThrower()) {
 				this.setDead();
 				return;
@@ -92,8 +95,8 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), shotDamage);
 		}
+
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-		setReturn();
 	}
 	
 	@Override

@@ -78,7 +78,10 @@ public class EntityBlazeofGlory extends EntityThrowable implements IThrowableEnt
 
 	@Override
 	protected void onImpact (RayTraceResult mop) {
-		if (mop.entityHit != null) {
+		if(mop.entityHit == null)
+		{
+			setReturn();
+		}else {
 			if (mop.entityHit == this.getThrower()) {
 				this.setDead();
 				return;
@@ -94,7 +97,6 @@ public class EntityBlazeofGlory extends EntityThrowable implements IThrowableEnt
 		}
 
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-		setReturn();
 	}
 	
 	@Override

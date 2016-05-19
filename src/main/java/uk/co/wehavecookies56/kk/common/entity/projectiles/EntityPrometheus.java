@@ -77,7 +77,10 @@ public class EntityPrometheus extends EntityThrowable implements IThrowableEntit
 	
 	@Override
 	protected void onImpact (RayTraceResult mop) {
-		if (mop.entityHit != null) {
+		if(mop.entityHit == null)
+		{
+			setReturn();
+		}else {
 			if (mop.entityHit == this.getThrower()) {
 				this.setDead();
 				return;
@@ -93,7 +96,6 @@ public class EntityPrometheus extends EntityThrowable implements IThrowableEntit
 		}
 
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-		setReturn();
 	}
 	
 	@Override
