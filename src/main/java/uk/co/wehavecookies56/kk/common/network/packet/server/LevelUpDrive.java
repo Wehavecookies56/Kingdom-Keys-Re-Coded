@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryDriveForms;
@@ -21,17 +22,18 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 	String form;
 	boolean isLevelUp = false;
 	int levels;
-
+	String playername;
 	public LevelUpDrive () {}
 
 	public LevelUpDrive (String form) {
 		this.form = form;
 	}
 	
-	public LevelUpDrive (String form, boolean levelup, int level) {
+	public LevelUpDrive (String form, boolean levelup, int level, String player) {
 		this.form = form;
 		this.isLevelUp = levelup;
 		this.levels = level;
+		this.playername = player;
 	}
 	
 	@Override
@@ -39,6 +41,7 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 		form = buffer.readStringFromBuffer(40);
 		isLevelUp = buffer.readBoolean();
 		levels = buffer.readInt();
+		playername = buffer.readStringFromBuffer(40);
 	}
 
 	@Override
@@ -46,10 +49,20 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 		buffer.writeString(form);
 		buffer.writeBoolean(isLevelUp);
 		buffer.writeInt(levels);
+		buffer.writeString(playername);
 	}
+	public static EntityPlayer getPlayerFromUsername(String username)
+    {
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+            return null;
 
+        return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(username);
+    }
 	@Override
 	public void process (EntityPlayer player, Side side) {
+		EntityPlayer entityplayer = getPlayerFromUsername(playername);
+		player = entityplayer;
+		
 		int hasDriveInSlot = -1, nullSlot = -1;
 				
 		PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);

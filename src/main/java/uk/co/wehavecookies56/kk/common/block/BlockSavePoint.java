@@ -58,7 +58,9 @@ public class BlockSavePoint extends Block {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) e;
-				
+				System.out.println("Bed: "+player.getBedLocation());
+				System.out.println("Savepoint: "+pos);
+
 				if (player.isSneaking() && player.getBedLocation() != pos) {
 					player.setSpawnChunk(pos, true, 0);
 					player.setSpawnPoint(pos, true);
@@ -76,7 +78,7 @@ public class BlockSavePoint extends Block {
 				}
 			}
 		}
-		world.scheduleUpdate(pos, this, tickRate(world));
+		world.scheduleUpdate(new BlockPos(pos), this, this.tickRate(world));
 	}
 
 	@Override
