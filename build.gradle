@@ -28,7 +28,7 @@ minecraft {
     version = config.mc_version + "-" + config.forge_version
     runDir = "run"
 
-    mappings = "snapshot_20160412"
+    mappings = "stable_24"
     makeObfSourceJar = false
 }
 

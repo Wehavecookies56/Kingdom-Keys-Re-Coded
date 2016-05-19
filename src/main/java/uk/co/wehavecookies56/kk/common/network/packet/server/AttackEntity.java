@@ -1,14 +1,7 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server;
 
-import java.io.IOException;
-import java.util.Random;
-
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.IEntityMultiPart;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.boss.EntityDragonPart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -29,6 +22,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractServerMessage;
+
+import java.io.IOException;
+import java.util.Random;
 
 public class AttackEntity extends AbstractServerMessage<AttackEntity> {
 
@@ -65,7 +61,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
 	 */
 	public void attackTargetEntityWithCurrentItem(EntityPlayer player, Entity targetEntity) {
         if (!net.minecraftforge.common.ForgeHooks.onPlayerAttackTarget(player, targetEntity)) return;
-        if (targetEntity.canAttackWithItem())
+        if (targetEntity.canBeAttackedWithItem())
         {
         	Random rand = new Random();
             if (!targetEntity.hitByEntity(player))
@@ -182,7 +178,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
 
                         if (targetEntity instanceof EntityPlayerMP && targetEntity.velocityChanged)
                         {
-                            ((EntityPlayerMP)targetEntity).playerNetServerHandler.sendPacket(new SPacketEntityVelocity(targetEntity));
+                            ((EntityPlayerMP)targetEntity).connection.sendPacket(new SPacketEntityVelocity(targetEntity));
                             targetEntity.velocityChanged = false;
                             targetEntity.motionX = d1;
                             targetEntity.motionY = d2;
