@@ -10,7 +10,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.item.ItemDriveForm;
+import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 
 public class DriveFormRegistry {
 

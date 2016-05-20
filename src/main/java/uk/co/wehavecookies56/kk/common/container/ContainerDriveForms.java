@@ -7,7 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryDriveForms;
 import uk.co.wehavecookies56.kk.common.container.slot.SlotCustom;
-import uk.co.wehavecookies56.kk.common.item.ItemDriveForm;
+import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 
 public class ContainerDriveForms extends Container {
 	private static final int INV_START = InventoryDriveForms.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;

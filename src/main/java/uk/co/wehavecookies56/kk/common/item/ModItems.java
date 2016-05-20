@@ -248,7 +248,7 @@ public class ModItems {
 		Chain_Darkgnaw = new ItemKeychain((ItemKeyblade) Darkgnaw, ToolMaterial.WOOD).setUnlocalizedName(Strings.Chain_Darkgnaw).setCreativeTab(tabKingdomKeys);
 		Chain_DecisivePumpkin = new ItemKeychain((ItemKeyblade) DecisivePumpkin, ToolMaterial.WOOD).setUnlocalizedName(Strings.Chain_DecisivePumpkin).setCreativeTab(tabKingdomKeys);
 		Chain_DestinysEmbrace = new ItemKeychain((ItemKeyblade) DestinysEmbrace, ToolMaterial.WOOD).setUnlocalizedName(Strings.Chain_DestinysEmbrace).setCreativeTab(tabKingdomKeys);
-		Chain_DiamondDust = new ItemKeychain((ItemKeyblade) DiamondDust, ToolMaterial.WOOD).setUnlocalizedName(Strings.DiamondDust).setCreativeTab(tabKingdomKeys);
+		Chain_DiamondDust = new ItemKeychain((ItemKeyblade) DiamondDust, ToolMaterial.WOOD).setUnlocalizedName(Strings.Chain_DiamondDust).setCreativeTab(tabKingdomKeys);
 		Chain_Divewing = new ItemKeychain((ItemKeyblade) Divewing, ToolMaterial.WOOD).setUnlocalizedName(Strings.Chain_Divewing).setCreativeTab(tabKingdomKeys);
 		Chain_DivineRose = new ItemKeychain((ItemKeyblade) DivineRose, ToolMaterial.WOOD).setUnlocalizedName(Strings.Chain_DivineRose).setCreativeTab(tabKingdomKeys);
 		Chain_DreamSword = new ItemKeychain((ItemKeyblade) DreamSword, ToolMaterial.WOOD).setUnlocalizedName(Strings.Chain_DreamSword).setCreativeTab(tabKingdomKeys);

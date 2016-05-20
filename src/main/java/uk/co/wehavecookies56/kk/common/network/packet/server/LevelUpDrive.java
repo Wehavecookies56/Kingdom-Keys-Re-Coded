@@ -27,13 +27,19 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 
 	public LevelUpDrive (String form) {
 		this.form = form;
+		this.playername = "test";
+
 	}
 	
 	public LevelUpDrive (String form, boolean levelup, int level, String player) {
 		this.form = form;
 		this.isLevelUp = levelup;
 		this.levels = level;
-		this.playername = player;
+		if(player != null)
+			this.playername = player;
+		else
+			this.playername = "test";
+			
 	}
 	
 	@Override
@@ -60,6 +66,8 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
     }
 	@Override
 	public void process (EntityPlayer player, Side side) {
+		if(playername.equals("test"))
+			playername = player.getName();
 		EntityPlayer entityplayer = getPlayerFromUsername(playername);
 		player = entityplayer;
 		
