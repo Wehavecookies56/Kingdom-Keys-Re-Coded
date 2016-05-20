@@ -1,8 +1,5 @@
 package uk.co.wehavecookies56.kk.common.item.base;
 
-import java.text.DecimalFormat;
-import java.util.List;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemRecord;
@@ -13,12 +10,15 @@ import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
+import java.text.DecimalFormat;
+import java.util.List;
+
 public class ItemKKRecord extends ItemRecord {
 
 	float length;
 
-	public ItemKKRecord (String recordName, SoundEvent sound, String name, CreativeTabs tab, float length) {
-		super(recordName, sound);
+	public ItemKKRecord (SoundEvent sound, String name, CreativeTabs tab, float length) {
+		super(name, sound);
 		setUnlocalizedName(name);
 		setCreativeTab(tab);
 		this.length = length;

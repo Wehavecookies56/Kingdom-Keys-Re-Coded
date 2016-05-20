@@ -385,19 +385,19 @@ public class ModItems {
 		SynthesisBagM = new ItemSynthesisBagM().setUnlocalizedName(Strings.SynthesisBagM).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		SynthesisBagL = new ItemSynthesisBagL().setUnlocalizedName(Strings.SynthesisBagL).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
 		
-		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future_Name, ModSounds.Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
-		Disc_Darkness_of_the_Unknown = new ItemKKRecord(Strings.Disc_Darkness_of_the_Unknown_Name, ModSounds.Darkness_of_the_Unknown, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
-		Disc_Dearly_Beloved_Symphony_Version = new ItemKKRecord(Strings.Disc_Dearly_Beloved_Symphony_Version_Name, ModSounds.Dearly_Beloved_Symphony_Version, Strings.Disc_Dearly_Beloved_Symphony_Version, tabKingdomKeys, 2.33F);
-		Disc_Dream_Drop_Distance_The_Next_Awakening = new ItemKKRecord(Strings.Disc_Dream_Drop_Distance_The_Next_Awakening_Name, ModSounds.Dream_Drop_Distance_The_Next_Awakening, Strings.Disc_Dream_Drop_Distance_The_Next_Awakening, tabKingdomKeys, 8.56F);
-		Disc_Hikari_KINGDOM_Instrumental_Version = new ItemKKRecord(Strings.Disc_Hikari_KINGDOM_Instrumental_Version_Name, ModSounds.Hikari_KINGDOM_Instrumental_Version, Strings.Disc_Hikari_KINGDOM_Instrumental_Version, tabKingdomKeys, 3.42F);
-		Disc_L_Oscurita_Dell_Ignoto = new ItemKKRecord(Strings.Disc_L_Oscurita_Dell_Ignoto_Name, ModSounds.L_Oscurita_Dell_Ignoto, Strings.Disc_L_Oscurita_Dell_Ignoto, tabKingdomKeys, 4.33F);
-		Disc_Musique_pour_la_tristesse_de_Xion = new ItemKKRecord(Strings.Disc_Musique_pour_la_tristesse_de_Xion_Name, ModSounds.Musique_pour_la_tristesse_de_Xion, Strings.Disc_Musique_pour_la_tristesse_de_Xion, tabKingdomKeys, 3.57F);
-		Disc_No_More_Bugs_Bug_Version = new ItemKKRecord(Strings.Disc_No_More_Bugs_Bug_Version_Name, ModSounds.No_More_Bugs_Bug_Version, Strings.Disc_No_More_Bugs_Bug_Version, tabKingdomKeys, 3.17F);
-		Disc_Organization_XIII = new ItemKKRecord(Strings.Disc_Organization_XIII_Name, ModSounds.Organization_XIII, Strings.Disc_Organization_XIII, tabKingdomKeys, 2.32F);
-		Disc_Sanctuary = new ItemKKRecord(Strings.Disc_Sanctuary_Name, ModSounds.Sanctuary, Strings.Disc_Sanctuary, tabKingdomKeys, 4.25F);
-		Disc_Simple_And_Clean_PLANITb_Remix = new ItemKKRecord(Strings.Disc_Simple_And_Clean_PLANITb_Remix_Name, ModSounds.Simple_And_Clean_PLANITb_Remix, Strings.Disc_Simple_And_Clean_PLANITb_Remix, tabKingdomKeys, 2.37F);
-		Disc_Sinister_Sundown = new ItemKKRecord(Strings.Disc_Sinister_Sundown_Name, ModSounds.Sinister_Sundown, Strings.Disc_Sinister_Sundown, tabKingdomKeys, 2.13F);
-		Disc_The_13th_Anthology = new ItemKKRecord(Strings.Disc_The_13th_Anthology_Name, ModSounds.The_13th_Anthology, Strings.Disc_The_13th_Anthology, tabKingdomKeys, 6.38F);
+		Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(ModSounds.Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
+		Disc_Darkness_of_the_Unknown = new ItemKKRecord(ModSounds.Darkness_of_the_Unknown, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
+		Disc_Dearly_Beloved_Symphony_Version = new ItemKKRecord(ModSounds.Dearly_Beloved_Symphony_Version, Strings.Disc_Dearly_Beloved_Symphony_Version, tabKingdomKeys, 2.33F);
+		Disc_Dream_Drop_Distance_The_Next_Awakening = new ItemKKRecord(ModSounds.Dream_Drop_Distance_The_Next_Awakening, Strings.Disc_Dream_Drop_Distance_The_Next_Awakening, tabKingdomKeys, 8.56F);
+		Disc_Hikari_KINGDOM_Instrumental_Version = new ItemKKRecord(ModSounds.Hikari_KINGDOM_Instrumental_Version, Strings.Disc_Hikari_KINGDOM_Instrumental_Version, tabKingdomKeys, 3.42F);
+		Disc_L_Oscurita_Dell_Ignoto = new ItemKKRecord(ModSounds.L_Oscurita_Dell_Ignoto, Strings.Disc_L_Oscurita_Dell_Ignoto, tabKingdomKeys, 4.33F);
+		Disc_Musique_pour_la_tristesse_de_Xion = new ItemKKRecord(ModSounds.Musique_pour_la_tristesse_de_Xion, Strings.Disc_Musique_pour_la_tristesse_de_Xion, tabKingdomKeys, 3.57F);
+		Disc_No_More_Bugs_Bug_Version = new ItemKKRecord(ModSounds.No_More_Bugs_Bug_Version, Strings.Disc_No_More_Bugs_Bug_Version, tabKingdomKeys, 3.17F);
+		Disc_Organization_XIII = new ItemKKRecord(ModSounds.Organization_XIII, Strings.Disc_Organization_XIII, tabKingdomKeys, 2.32F);
+		Disc_Sanctuary = new ItemKKRecord(ModSounds.Sanctuary, Strings.Disc_Sanctuary, tabKingdomKeys, 4.25F);
+		Disc_Simple_And_Clean_PLANITb_Remix = new ItemKKRecord(ModSounds.Simple_And_Clean_PLANITb_Remix, Strings.Disc_Simple_And_Clean_PLANITb_Remix, tabKingdomKeys, 2.37F);
+		Disc_Sinister_Sundown = new ItemKKRecord(ModSounds.Sinister_Sundown, Strings.Disc_Sinister_Sundown, tabKingdomKeys, 2.13F);
+		Disc_The_13th_Anthology = new ItemKKRecord(ModSounds.The_13th_Anthology, Strings.Disc_The_13th_Anthology, tabKingdomKeys, 6.38F);
 
 		Recipe = new ItemRecipe().setUnlocalizedName(Strings.Recipe).setCreativeTab(tabKingdomKeys);
 	}
