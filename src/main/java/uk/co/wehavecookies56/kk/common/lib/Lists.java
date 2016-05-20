@@ -68,6 +68,11 @@ public class Lists {
 		recipes.add(Hyperdrive.getUnlocalizedName());
 		recipes.add(IncompleteKiblade.getUnlocalizedName());
 		recipes.add(JungleKing.getUnlocalizedName());
+		recipes.add(KeybladeofPeoplesHearts.getUnlocalizedName());
+		recipes.add(Kiblade.getUnlocalizedName());
+		recipes.add(KingdomKey.getUnlocalizedName());
+		recipes.add(KingdomKeyD.getUnlocalizedName());
+		recipes.add(KnockoutPunch.getUnlocalizedName());
 		recipes.add(LadyLuck.getUnlocalizedName());
 		recipes.add(LeasKeyblade.getUnlocalizedName());
 		recipes.add(LeopardosForetellersKeyblade.getUnlocalizedName());
@@ -81,9 +86,12 @@ public class Lists {
 		recipes.add(MaverickFlare.getUnlocalizedName());
 		recipes.add(MetalChocobo.getUnlocalizedName());
 		recipes.add(MidnightRoar.getUnlocalizedName());
+		recipes.add(MirageSplit.getUnlocalizedName());
 		recipes.add(MissingAche.getUnlocalizedName());
 		recipes.add(Monochrome.getUnlocalizedName());
 		recipes.add(MysteriousAbyss.getUnlocalizedName());
+		recipes.add(NightmaresEnd.getUnlocalizedName());
+		recipes.add(NightmaresEndandMirageSplit.getUnlocalizedName());
 		recipes.add(NoName.getUnlocalizedName());
 		recipes.add(Oathkeeper.getUnlocalizedName());
 		recipes.add(Oblivion.getUnlocalizedName());
@@ -123,6 +131,10 @@ public class Lists {
 		recipes.add(UltimaWeaponDDD.getUnlocalizedName());
 		recipes.add(UltimaWeaponKH1.getUnlocalizedName());
 		recipes.add(UltimaWeaponKH2.getUnlocalizedName());
+		recipes.add(Umbrella.getUnlocalizedName());
+		recipes.add(Unbound.getUnlocalizedName());
+		recipes.add(UnicornisForetellersKeyblade.getUnlocalizedName());
+		recipes.add(UrsusForetellersKeyblade.getUnlocalizedName());
 		recipes.add(VictoryLine.getUnlocalizedName());
 		recipes.add(VoidGear.getUnlocalizedName());
 		recipes.add(VulpeusForetellersKeyblade.getUnlocalizedName());
@@ -135,7 +147,6 @@ public class Lists {
 		recipes.add(WoodenStick.getUnlocalizedName());
 		recipes.add(YoungXehanortsKeyblade.getUnlocalizedName());
 		recipes.add(ZeroOne.getUnlocalizedName());
-
 	}
 
 }
