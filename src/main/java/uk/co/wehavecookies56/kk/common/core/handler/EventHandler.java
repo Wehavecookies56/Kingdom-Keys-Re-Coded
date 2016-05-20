@@ -1,13 +1,6 @@
 package uk.co.wehavecookies56.kk.common.core.handler;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.UUID;
-
 import com.mojang.authlib.GameProfile;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -57,16 +50,10 @@ import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
-import uk.co.wehavecookies56.kk.common.capability.CheatModeCapability;
+import uk.co.wehavecookies56.kk.common.capability.*;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability.IFirstTimeJoin;
-import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
-import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
-import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
-import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
-import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
-import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagL;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagM;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagS;
@@ -83,21 +70,14 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncItemsInventory;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DriveOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MagicOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
+import uk.co.wehavecookies56.kk.common.network.packet.client.*;
+import uk.co.wehavecookies56.kk.common.network.packet.server.*;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.UUID;
 
 public class EventHandler {
 	
@@ -890,21 +870,22 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public void onItemTossEvent (ItemTossEvent event) {
-		if (event.getEntityItem().getEntityItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getEntityItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getEntityItem().getItem() != ModItems.WoodenStick)) {
-			event.getEntityItem().isDead = true;
-			ItemStack itemStack = event.getEntityItem().getEntityItem();
-			
-			event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
-			PacketDispatcher.sendTo(new SyncKeybladeData(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) event.getPlayer());
+		if (!event.getPlayer().worldObj.isRemote)
+			if (event.getEntityItem().getEntityItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getEntityItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getEntityItem().getItem() != ModItems.WoodenStick)) {
+				event.getEntityItem().isDead = true;
+				ItemStack itemStack = event.getEntityItem().getEntityItem();
 
-		} else if (event.getEntityItem().getEntityItem().getItem() instanceof ItemMunny) {
-			event.setCanceled(true);
-	    	if (!event.getPlayer().worldObj.isRemote) {
-				PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getPlayer());
+				event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
+				PacketDispatcher.sendTo(new SyncKeybladeData(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) event.getPlayer());
 
-				event.getPlayer().getCapability(ModCapabilities.MUNNY, null).addMunny(event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount"));
+			} else if (event.getEntityItem().getEntityItem().getItem() instanceof ItemMunny) {
+				event.setCanceled(true);
+				if (!event.getPlayer().worldObj.isRemote) {
+					PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getPlayer());
+
+					event.getPlayer().getCapability(ModCapabilities.MUNNY, null).addMunny(event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount"));
+				}
 			}
-		}
 	}
 
 	@SubscribeEvent
