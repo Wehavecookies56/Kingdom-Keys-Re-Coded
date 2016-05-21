@@ -20,6 +20,46 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ChestGen {
 	@SubscribeEvent
 	public void loadLoot(LootTableLoadEvent event) {
+		NBTTagCompound MythrilCrystal = new NBTTagCompound();
+		MythrilCrystal.setString("material", Strings.SM_MythrilCrystal);
+		MythrilCrystal.setString("rank", Strings.SM_Rank_S);
+		LootFunction[] setMythrilCrystal = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilCrystal), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+
+		NBTTagCompound MythrilGem = new NBTTagCompound();
+		MythrilGem.setString("material", Strings.SM_MythrilGem);
+		MythrilGem.setString("rank", Strings.SM_Rank_A);
+		LootFunction[] setMythrilGem = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilGem), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+
+		NBTTagCompound MythrilStone = new NBTTagCompound();
+		MythrilStone.setString("material", Strings.SM_MythrilStone);
+		MythrilStone.setString("rank", Strings.SM_Rank_B);
+		LootFunction[] setMythrilStone = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilStone), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+
+		NBTTagCompound MythrilShard = new NBTTagCompound();
+		MythrilShard.setString("material", Strings.SM_MythrilShard);
+		MythrilShard.setString("rank", Strings.SM_Rank_C);
+		LootFunction[] setMythrilShard = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilShard), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+
+		NBTTagCompound Orichalcum = new NBTTagCompound();
+		MythrilCrystal.setString("material", Strings.SM_Orichalcum);
+		MythrilCrystal.setString("rank", Strings.SM_Rank_A);
+		LootFunction[] setOrichalcum = new LootFunction[] {new SetNBT(new LootCondition[0], Orichalcum), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		
+		NBTTagCompound OrichalcumPlus = new NBTTagCompound();
+		MythrilCrystal.setString("material", Strings.SM_OrichalcumPlus);
+		MythrilCrystal.setString("rank", Strings.SM_Rank_S);
+		LootFunction[] setOrichalcumPlus = new LootFunction[] {new SetNBT(new LootCondition[0], OrichalcumPlus), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		
+		NBTTagCompound LostIllusion = new NBTTagCompound();
+		MythrilCrystal.setString("material", Strings.SM_LostIllusion);
+		MythrilCrystal.setString("rank", Strings.SM_Rank_S);
+		LootFunction[] setLostIllusion = new LootFunction[] {new SetNBT(new LootCondition[0], LostIllusion), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		
+		NBTTagCompound ManifestIllusion = new NBTTagCompound();
+		MythrilCrystal.setString("material", Strings.SM_ManifestIllusion);
+		MythrilCrystal.setString("rank", Strings.SM_Rank_A);
+		LootFunction[] setManifestIllusion = new LootFunction[] {new SetNBT(new LootCondition[0], ManifestIllusion), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		
 		// Using bonus chest to test
 		if (event.getName().equals(LootTableList.CHESTS_SPAWN_BONUS_CHEST)) {
 			// This page is pretty helpful for this http://minecraft.gamepedia.com/Loot_table, it's also useful to look at the vanilla loot table jsons
@@ -44,6 +84,27 @@ public class ChestGen {
 			pool3.setRolls(new RandomValueRange(1, 2));
 			// Adding the Normal blox to pool3 with a weight of 8 and 0 quality will spawn in a stack of 64
 			pool3.addEntry(new LootEntryItem(Item.getItemFromBlock(ModBlocks.NormalBlox), 8, 0, setCount, new LootCondition[0], Reference.MODID + ":" + ModBlocks.NormalBlox.getUnlocalizedName().substring(5)));
+		}
+		
+		if(event.getName().equals(LootTableList.CHESTS_ABANDONED_MINESHAFT))
+		{
+			LootFunction[] setCount = new LootFunction[]{ new SetCount(new LootCondition[0], new RandomValueRange(64, 64)) };
+			LootPool main = event.getTable().getPool("main");
+			main.addEntry(new LootEntryItem(ModItems.Recipe, 1, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+
+			event.getTable().removePool("pool1");
+			event.getTable().removePool("pool2");
+			LootPool pool3 = event.getTable().getPool("pool3");
+			pool3.setRolls(new RandomValueRange(1, 2));
+			pool3.addEntry(new LootEntryItem(Item.getItemFromBlock(ModBlocks.NormalBlox), 8, 0, setCount, new LootCondition[0], Reference.MODID + ":" + ModBlocks.NormalBlox.getUnlocalizedName().substring(5)));	
 		}
 		/*
 		ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 5));

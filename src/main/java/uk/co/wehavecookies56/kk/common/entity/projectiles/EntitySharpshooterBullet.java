@@ -49,7 +49,7 @@ public class EntitySharpshooterBullet extends EntityThrowable implements IThrowa
 				this.setDead();
 				return;
 			}
-			mop.entityHit.setFire(8);
+			//mop.entityHit.setFire(8);
 			float shotDamage;
 			if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() / 2 < 8)
 				shotDamage = 8;
@@ -60,8 +60,6 @@ public class EntitySharpshooterBullet extends EntityThrowable implements IThrowa
 			
 		}
 		this.setDead();
-		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-
 	}
 	
 	@Override
