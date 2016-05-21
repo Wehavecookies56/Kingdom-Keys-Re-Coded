@@ -21,42 +21,42 @@ public class ChestGen {
 		NBTTagCompound MythrilCrystal = new NBTTagCompound();
 		MythrilCrystal.setString("material", Strings.SM_MythrilCrystal);
 		MythrilCrystal.setString("rank", Strings.SM_Rank_S);
-		LootFunction[] setMythrilCrystal = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilCrystal), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		LootFunction[] setMythrilCrystal = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilCrystal), new SetCount(new LootCondition[0], new RandomValueRange(1, 5))};
 
 		NBTTagCompound MythrilGem = new NBTTagCompound();
 		MythrilGem.setString("material", Strings.SM_MythrilGem);
 		MythrilGem.setString("rank", Strings.SM_Rank_A);
-		LootFunction[] setMythrilGem = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilGem), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		LootFunction[] setMythrilGem = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilGem), new SetCount(new LootCondition[0], new RandomValueRange(1, 5))};
 
 		NBTTagCompound MythrilStone = new NBTTagCompound();
 		MythrilStone.setString("material", Strings.SM_MythrilStone);
 		MythrilStone.setString("rank", Strings.SM_Rank_B);
-		LootFunction[] setMythrilStone = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilStone), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		LootFunction[] setMythrilStone = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilStone), new SetCount(new LootCondition[0], new RandomValueRange(1, 5))};
 
 		NBTTagCompound MythrilShard = new NBTTagCompound();
 		MythrilShard.setString("material", Strings.SM_MythrilShard);
 		MythrilShard.setString("rank", Strings.SM_Rank_C);
-		LootFunction[] setMythrilShard = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilShard), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		LootFunction[] setMythrilShard = new LootFunction[] {new SetNBT(new LootCondition[0], MythrilShard), new SetCount(new LootCondition[0], new RandomValueRange(1, 5))};
 
 		NBTTagCompound Orichalcum = new NBTTagCompound();
 		Orichalcum.setString("material", Strings.SM_Orichalcum);
 		Orichalcum.setString("rank", Strings.SM_Rank_A);
-		LootFunction[] setOrichalcum = new LootFunction[] {new SetNBT(new LootCondition[0], Orichalcum), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		LootFunction[] setOrichalcum = new LootFunction[] {new SetNBT(new LootCondition[0], Orichalcum), new SetCount(new LootCondition[0], new RandomValueRange(1, 5))};
 		
 		NBTTagCompound OrichalcumPlus = new NBTTagCompound();
 		OrichalcumPlus.setString("material", Strings.SM_OrichalcumPlus);
 		OrichalcumPlus.setString("rank", Strings.SM_Rank_S);
-		LootFunction[] setOrichalcumPlus = new LootFunction[] {new SetNBT(new LootCondition[0], OrichalcumPlus), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		LootFunction[] setOrichalcumPlus = new LootFunction[] {new SetNBT(new LootCondition[0], OrichalcumPlus), new SetCount(new LootCondition[0], new RandomValueRange(1, 5))};
 		
 		NBTTagCompound LostIllusion = new NBTTagCompound();
 		LostIllusion.setString("material", Strings.SM_LostIllusion);
 		LostIllusion.setString("rank", Strings.SM_Rank_S);
-		LootFunction[] setLostIllusion = new LootFunction[] {new SetNBT(new LootCondition[0], LostIllusion), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		LootFunction[] setLostIllusion = new LootFunction[] {new SetNBT(new LootCondition[0], LostIllusion), new SetCount(new LootCondition[0], new RandomValueRange(1, 5))};
 		
 		NBTTagCompound ManifestIllusion = new NBTTagCompound();
 		ManifestIllusion.setString("material", Strings.SM_ManifestIllusion);
 		ManifestIllusion.setString("rank", Strings.SM_Rank_A);
-		LootFunction[] setManifestIllusion = new LootFunction[] {new SetNBT(new LootCondition[0], ManifestIllusion), new SetCount(new LootCondition[0], new RandomValueRange(1, 32))};
+		LootFunction[] setManifestIllusion = new LootFunction[] {new SetNBT(new LootCondition[0], ManifestIllusion), new SetCount(new LootCondition[0], new RandomValueRange(1, 5))};
 
 		if (event.getName().getResourcePath().contains("chests")) {
 			LootFunction[] setSingleStack = {new SetCount(new LootCondition[0], new RandomValueRange(1, 1))};
