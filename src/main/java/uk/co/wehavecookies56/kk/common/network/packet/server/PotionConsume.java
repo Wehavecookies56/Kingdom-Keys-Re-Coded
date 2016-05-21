@@ -9,6 +9,8 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
 
 public class PotionConsume extends AbstractMessage.AbstractServerMessage<PotionConsume> {
 
@@ -33,21 +35,22 @@ public class PotionConsume extends AbstractMessage.AbstractServerMessage<PotionC
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		switch (potion) {
-		case "potion":
-			((ItemKKPotion) ModItems.Potion).getPotionEffect(player);
-			player.heal(10);
-			break;
-		case "ether":
-			((ItemKKPotion) ModItems.Ether).getPotionEffect(player);
-			player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(33);
-			break;
-		case "elixir":
-			((ItemKKPotion) ModItems.Elixir).getPotionEffect(player);
-			player.heal(10);
-			player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(33);
-			break;
-		default:
-			break;
-	}
+			case "potion":
+				((ItemKKPotion) ModItems.Potion).getPotionEffect(player);
+				player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP()/3);
+				break;
+			case "ether":
+				((ItemKKPotion) ModItems.Ether).getPotionEffect(player);
+				player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxMP() / 3);
+				break;
+			case "elixir":
+				((ItemKKPotion) ModItems.Elixir).getPotionEffect(player);
+				player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP()/3);
+ 				player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxMP() / 3);
+				break;
+			default:
+				break;
+		}
+		//PacketDispatcher.sendTo(new Syn(), player);
 	}
 }

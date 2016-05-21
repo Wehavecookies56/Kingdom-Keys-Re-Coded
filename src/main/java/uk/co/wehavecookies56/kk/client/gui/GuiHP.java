@@ -158,7 +158,7 @@ public class GuiHP extends GuiScreen {
 			GL11.glScalef(scale, scale, scale);
 			drawHPBarBack(0, 0, hpBarMaxWidth, scale);
 			GL11.glPopMatrix();
-			if (player.getHealth() >= 6) {
+			if (player.getHealth() >= player.getMaxHealth()/5) {
 				GL11.glPushMatrix();
 				GL11.glTranslatef((screenWidth - (hpBarWidth) * scale) - 10 * scale, (screenHeight - (guiHeight) * scale) + 3 * scale, 0);
 				GL11.glScalef(scale, scale, scale);
