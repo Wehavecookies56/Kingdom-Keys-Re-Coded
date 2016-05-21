@@ -102,10 +102,176 @@ public class ChestGen {
 
 			event.getTable().removePool("pool1");
 			event.getTable().removePool("pool2");
-			LootPool pool3 = event.getTable().getPool("pool3");
-			pool3.setRolls(new RandomValueRange(1, 2));
-			pool3.addEntry(new LootEntryItem(Item.getItemFromBlock(ModBlocks.NormalBlox), 8, 0, setCount, new LootCondition[0], Reference.MODID + ":" + ModBlocks.NormalBlox.getUnlocalizedName().substring(5)));	
 		}
+		
+		if(event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID))
+		{
+			LootFunction[] setCount = new LootFunction[]{ new SetCount(new LootCondition[0], new RandomValueRange(64, 64)) };
+			LootPool main = event.getTable().getPool("main");
+			main.addEntry(new LootEntryItem(ModItems.Recipe, 1, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+
+			event.getTable().removePool("pool1");
+			event.getTable().removePool("pool2");	
+		}
+		
+		if(event.getName().equals(LootTableList.CHESTS_END_CITY_TREASURE))
+		{
+			LootFunction[] setCount = new LootFunction[]{ new SetCount(new LootCondition[0], new RandomValueRange(64, 64)) };
+			LootPool main = event.getTable().getPool("main");
+			main.addEntry(new LootEntryItem(ModItems.Recipe, 1, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+
+			event.getTable().removePool("pool1");
+			event.getTable().removePool("pool2");
+		}
+		
+		if(event.getName().equals(LootTableList.CHESTS_IGLOO_CHEST))
+		{
+			LootFunction[] setCount = new LootFunction[]{ new SetCount(new LootCondition[0], new RandomValueRange(64, 64)) };
+			LootPool main = event.getTable().getPool("main");
+			main.addEntry(new LootEntryItem(ModItems.Recipe, 1, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+
+			event.getTable().removePool("pool1");
+			event.getTable().removePool("pool2");
+		}
+		
+		if(event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE))
+		{
+			LootFunction[] setCount = new LootFunction[]{ new SetCount(new LootCondition[0], new RandomValueRange(64, 64)) };
+			LootPool main = event.getTable().getPool("main");
+			main.addEntry(new LootEntryItem(ModItems.Recipe, 1, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+
+			event.getTable().removePool("pool1");
+			event.getTable().removePool("pool2");
+		}
+
+		if(event.getName().equals(LootTableList.CHESTS_NETHER_BRIDGE))
+		{
+			LootFunction[] setCount = new LootFunction[]{ new SetCount(new LootCondition[0], new RandomValueRange(64, 64)) };
+			LootPool main = event.getTable().getPool("main");
+			main.addEntry(new LootEntryItem(ModItems.Recipe, 1, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+
+			event.getTable().removePool("pool1");
+			event.getTable().removePool("pool2");
+			event.getTable().removePool("pool3");
+		}
+		
+		if(event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON))
+		{
+			// TODO Music discs
+		}
+		
+		if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CORRIDOR))
+		{
+			LootFunction[] setCount = new LootFunction[]{ new SetCount(new LootCondition[0], new RandomValueRange(64, 64)) };
+			LootPool main = event.getTable().getPool("main");
+			main.addEntry(new LootEntryItem(ModItems.Recipe, 1, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+
+			event.getTable().removePool("pool1");
+			event.getTable().removePool("pool2");
+		}
+		
+		if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CROSSING))
+		{
+			LootFunction[] setCount = new LootFunction[]{ new SetCount(new LootCondition[0], new RandomValueRange(64, 64)) };
+			LootPool main = event.getTable().getPool("main");
+			main.addEntry(new LootEntryItem(ModItems.Recipe, 1, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+
+			event.getTable().removePool("pool1");
+			event.getTable().removePool("pool2");
+		}
+		
+		if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_LIBRARY))
+		{
+			LootFunction[] setCount = new LootFunction[]{ new SetCount(new LootCondition[0], new RandomValueRange(64, 64)) };
+			LootPool main = event.getTable().getPool("main");
+			main.addEntry(new LootEntryItem(ModItems.Recipe, 1, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+
+			event.getTable().removePool("pool1");
+			event.getTable().removePool("pool2");
+		}
+		
+		if(event.getName().equals(LootTableList.CHESTS_VILLAGE_BLACKSMITH))
+		{
+			LootFunction[] setCount = new LootFunction[]{ new SetCount(new LootCondition[0], new RandomValueRange(64, 64)) };
+			LootPool main = event.getTable().getPool("main");
+			main.addEntry(new LootEntryItem(ModItems.Recipe, 1, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+			main.addEntry(new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)));
+
+			event.getTable().removePool("pool1");
+			event.getTable().removePool("pool2");
+		}
+		
 		/*
 		ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 5));
 		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Recipe, 1), 1, 1, 10));
