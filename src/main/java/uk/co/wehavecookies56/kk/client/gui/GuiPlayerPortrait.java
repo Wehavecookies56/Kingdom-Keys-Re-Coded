@@ -181,7 +181,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 			GL11.glColor4f(100.0F, 1.0F, 1.0F, 1.0F);
 
 			if (DS.getActiveDriveName().equals(Strings.Form_Valor)) {
-				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Valor_A.png");
+				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Valor.png");
 				mc.renderEngine.bindTexture(texture);
 
 				GL11.glPushMatrix();
@@ -190,7 +190,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
+					this.drawTexturedModalRect(0, 0, 80, 140, 32, 80);
 				}
 				GL11.glPopMatrix();
 
@@ -200,7 +200,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
+					this.drawTexturedModalRect(0, 0, 64, 140, 16, 80);
 				}
 				GL11.glPopMatrix();
 
@@ -210,12 +210,12 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
+					this.drawTexturedModalRect(0, 0, 112, 140, 16, 80);
 				}
 				GL11.glPopMatrix();
 
 			} else if (DS.getActiveDriveName().equals(Strings.Form_Wisdom)) {
-				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Wisdom_A.png");
+				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Wisdom.png");
 				mc.renderEngine.bindTexture(texture);
 
 				GL11.glPushMatrix();
@@ -224,7 +224,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
+					this.drawTexturedModalRect(0, 0, 80, 140, 32, 80);
 				}
 				GL11.glPopMatrix();
 
@@ -234,7 +234,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
+					this.drawTexturedModalRect(0, 0, 64, 140, 16, 80);
 				}
 				GL11.glPopMatrix();
 
@@ -244,11 +244,11 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
+					this.drawTexturedModalRect(0, 0, 112, 140, 16, 80);
 				}
 				GL11.glPopMatrix();
 			} else if (DS.getActiveDriveName().equals(Strings.Form_Limit)) {
-				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Limit_A.png");
+				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Limit.png");
 				mc.renderEngine.bindTexture(texture);
 
 				GL11.glPushMatrix();
@@ -257,7 +257,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
+					this.drawTexturedModalRect(0, 0, 80, 140, 32, 80);
 				}
 				GL11.glPopMatrix();
 
@@ -267,7 +267,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
+					this.drawTexturedModalRect(0, 0, 64, 140, 16, 80);
 				}
 				GL11.glPopMatrix();
 
@@ -277,11 +277,11 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
+					this.drawTexturedModalRect(0, 0, 112, 140, 16, 80);
 				}
 				GL11.glPopMatrix();
 			} else if (DS.getActiveDriveName().equals(Strings.Form_Master)) {
-				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Master_A.png");
+				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Master.png");
 				mc.renderEngine.bindTexture(texture);
 
 				GL11.glPushMatrix();
@@ -290,7 +290,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
+					this.drawTexturedModalRect(0, 0, 80, 140, 32, 80);
 				}
 				GL11.glPopMatrix();
 
@@ -300,7 +300,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
+					this.drawTexturedModalRect(0, 0, 64, 140, 16, 80);
 				}
 				GL11.glPopMatrix();
 
@@ -310,11 +310,11 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
+					this.drawTexturedModalRect(0, 0, 112, 140, 16, 80);
 				}
 				GL11.glPopMatrix();
 			} else if (DS.getActiveDriveName().equals(Strings.Form_Final)) {
-				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Final_A.png");
+				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Final.png");
 				mc.renderEngine.bindTexture(texture);
 
 				GL11.glPushMatrix();
@@ -323,7 +323,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 80, 160, 32, 80);
+					this.drawTexturedModalRect(0, 0, 80, 140, 32, 80);
 				}
 				GL11.glPopMatrix();
 
@@ -333,7 +333,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 64, 160, 16, 80);
+					this.drawTexturedModalRect(0, 0, 64, 140, 16, 80);
 				}
 				GL11.glPopMatrix();
 
@@ -343,7 +343,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					GL11.glScalef(2, 1, 1);
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 112, 160, 16, 80);
+					this.drawTexturedModalRect(0, 0, 112, 140, 16, 80);
 				}
 				GL11.glPopMatrix();
 			}

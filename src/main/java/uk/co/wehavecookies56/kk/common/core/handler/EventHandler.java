@@ -460,7 +460,7 @@ public class EventHandler {
 			materialsAfter.setMaterial(MaterialRegistry.get(pair.getKey().toString()), pair.getValue());
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void OnEntityJoinWorld (EntityJoinWorldEvent event) {
 		if (!event.getEntity().worldObj.isRemote && event.getEntity() instanceof EntityPlayer) {
