@@ -72,7 +72,6 @@ public class DriveFormFinal extends DriveForm {
 		} else if (player.motionY < 0) if (player.worldObj.isRemote) {
 			if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
 				jumpHeld = true;
-				System.out.println(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Final));
 				switch(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Final))
 				{
 				case 0:

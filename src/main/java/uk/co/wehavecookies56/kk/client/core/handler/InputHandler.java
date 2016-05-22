@@ -1,10 +1,5 @@
 package uk.co.wehavecookies56.kk.client.core.handler;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import org.lwjgl.input.Keyboard;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.client.gui.GuiCommandMenu;
@@ -23,20 +19,15 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
-import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
-import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
+import uk.co.wehavecookies56.kk.common.item.base.*;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.magic.Magic;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InputHandler {
 
@@ -226,7 +217,6 @@ public class InputHandler {
 			case GuiCommandMenu.DRIVE:
 				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
 					if (DS.getInDrive()) {// Revert
-						System.out.println(player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode());
 						if (DS.getActiveDriveName().equals(Strings.Form_Anti) && !player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
 							GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 							world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);

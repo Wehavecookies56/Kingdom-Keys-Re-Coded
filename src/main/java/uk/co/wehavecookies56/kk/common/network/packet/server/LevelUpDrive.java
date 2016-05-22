@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server;
 
-import java.io.IOException;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
@@ -16,6 +14,8 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
+
+import java.io.IOException;
 
 public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpDrive> {
 
@@ -77,7 +77,6 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 		if(isLevelUp)
 		{
 			player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveLevel(form, levels);
-			//System.out.println(form+" level: "+(player.getCapability(KingdomKeys.DRIVE_STATE, null).getDriveLevel(form)));
 		}
 		else
 		{

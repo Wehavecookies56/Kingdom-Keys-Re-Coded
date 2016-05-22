@@ -50,10 +50,7 @@ public class Magic {
 	}
 
 	public static void Fire (EntityPlayer player, World world) {
-		if(Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire())
-			System.out.println("KH1");
-		else
-		{
+		if(!Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire()) {
 			PacketDispatcher.sendToServer(new MagicFire());
 			player.swingArm(EnumHand.MAIN_HAND);
 			world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 1, 1, false);

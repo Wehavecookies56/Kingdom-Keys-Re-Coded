@@ -137,7 +137,6 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                         }
                     }
 
-                    System.out.println("Damage: " + attackDamage);
                     double d1 = targetEntity.motionX;
                     double d2 = targetEntity.motionY;
                     double d3 = targetEntity.motionZ;

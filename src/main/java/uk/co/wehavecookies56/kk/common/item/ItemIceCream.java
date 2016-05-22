@@ -31,7 +31,6 @@ public class ItemIceCream extends ItemFood {
 		if (!player.capabilities.isCreativeMode && world.isRemote) {
 			int slot;
 			win = EventHandler.randomWithRange(0, 20);
-			System.out.println("WinnerStick Slot: "+player.inventory.getSlotFor(new ItemStack(ModItems.WinnerStick)));
 			if (win == 6){
 				if(player.inventory.hasItemStack(new ItemStack(ModItems.WinnerStick))){
 					PacketDispatcher.sendToServer(new GiveItemInSlot(new ItemStack(ModItems.WinnerStick), player.inventory.getSlotFor(new ItemStack(ModItems.WinnerStick)),true));

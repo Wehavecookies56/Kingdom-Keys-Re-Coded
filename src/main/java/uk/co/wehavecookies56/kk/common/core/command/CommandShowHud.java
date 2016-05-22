@@ -1,8 +1,5 @@
 package uk.co.wehavecookies56.kk.common.core.command;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -16,6 +13,9 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandShowHud implements ICommand {
 
@@ -65,7 +65,6 @@ public class CommandShowHud implements ICommand {
 	@Override
 	public void execute (MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		if (sender.getCommandSenderEntity() instanceof EntityPlayer) if (args.length == 0) {
-			System.out.println(sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode());
 			if (sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) {
 				sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null).setHudMode(false);
 			} else {

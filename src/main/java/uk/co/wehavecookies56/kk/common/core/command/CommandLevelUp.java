@@ -1,8 +1,5 @@
 package uk.co.wehavecookies56.kk.common.core.command;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -18,6 +15,9 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandLevelUp implements ICommand {
 
@@ -127,9 +127,6 @@ public class CommandLevelUp implements ICommand {
 					TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 100", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 					return;
 				}
-				System.out.println("args.length: "+args.length);
-				System.out.println("args[1]: "+args[1]);
-				System.out.println("sender: "+sender);
 				EntityPlayerMP entityplayermp = args.length == 2 ?  (EntityPlayerMP) getPlayerFromUsername(args[1]) : getCommandSenderAsPlayer(sender);
 				PlayerStatsCapability.IPlayerStats STATS = entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null);
 				STATS.setLevel(1);

@@ -1,8 +1,6 @@
 package uk.co.wehavecookies56.kk.common.capability;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
@@ -11,12 +9,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerStatsCapability {
 
@@ -229,7 +229,6 @@ public class PlayerStatsCapability {
 
 		@Override
 		public int getExpNeeded(int level, int currentExp) {
-			//int currentLevel = (int) ((level + 300 * (2 ^ (level / 7))) * (level * 0.25));
 			if (level == 100) return 0;
 			double nextLevel = (double) (((level+1.0)+300.0*(Math.pow(2.0,((level+1.0)/7.0))))*((level+1.0)*0.25));
 			int needed = ((int)nextLevel - currentExp);
@@ -589,17 +588,15 @@ public class PlayerStatsCapability {
 					this.addHP(5);
 					break;
 			}
-			if(this.level%5 == 0)
-			{
-				//System.out.println("Level: "+getLevel());
+			if(this.level%5 == 0) {
 				player.setHealth(getHP());
 				player.getFoodStats().addStats(20,0);
 			}
 			player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 1.0f, 1.0f);
 
+			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());
+
 			PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-			System.out.println(FMLCommonHandler.instance().getEffectiveSide()+" "+getHP());
-			System.out.println("Max vanilla hp: "+player.getMaxHealth());
 		}
 	}
 }
