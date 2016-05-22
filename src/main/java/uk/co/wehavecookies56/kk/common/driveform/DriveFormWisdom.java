@@ -12,6 +12,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnDriveFormParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveWithPlayers;
 
 public class DriveFormWisdom extends DriveForm {
 
@@ -43,6 +44,7 @@ public class DriveFormWisdom extends DriveForm {
 		PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 		PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(player), player, 64.0D);
 		player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.drive, SoundCategory.MASTER, 1.0f, 1.0f);
+		PacketDispatcher.sendToAllAround(new SyncDriveWithPlayers(player.getEntityId(), player.getCapability(ModCapabilities.DRIVE_STATE, null)), player, 64.0D);
 	}
 
 	@Override

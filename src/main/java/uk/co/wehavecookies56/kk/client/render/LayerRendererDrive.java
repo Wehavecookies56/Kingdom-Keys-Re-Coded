@@ -2,9 +2,10 @@ package uk.co.wehavecookies56.kk.client.render;
 
 import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.client.renderer.entity.RenderPlayer;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
@@ -13,18 +14,19 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 /**
  * Created by Toby on 22/05/2016.
  */
-public class LayerRendererDrive implements LayerRenderer<EntityPlayer> {
+public class LayerRendererDrive extends LayerBipedArmor {
 
     private RenderPlayer renderPlayer;
 
-    public LayerRendererDrive(RenderPlayer renderPlayer) {
-        this.renderPlayer = renderPlayer;
+    public LayerRendererDrive(RenderLivingBase<?> rendererIn) {
+        super(rendererIn);
+        this.renderPlayer = (RenderPlayer) rendererIn;
     }
 
     @Override
-    public void doRenderLayer(EntityPlayer player, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+    public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/armour/Valor.png");
-        String drive = player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName();
+        String drive = entitylivingbaseIn.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName();
         switch (drive) {
             case Strings.Form_Valor:
                 texture = new ResourceLocation(Reference.MODID, "textures/armour/Valor.png");
@@ -45,9 +47,9 @@ public class LayerRendererDrive implements LayerRenderer<EntityPlayer> {
                 texture = new ResourceLocation(Reference.MODID, "textures/armour/Anti.png");
                 break;
         }
-        if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
+        if (entitylivingbaseIn.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
             ModelPlayer model = renderPlayer.getMainModel();
-            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, player);
+            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn);
             if (model.isSneak) {
                 GlStateManager.translate(0.0F, 0.2F, 0.0F);
             }

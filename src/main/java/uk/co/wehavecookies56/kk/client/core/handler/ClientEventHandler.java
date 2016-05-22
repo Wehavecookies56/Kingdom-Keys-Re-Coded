@@ -1,11 +1,7 @@
 package uk.co.wehavecookies56.kk.client.core.handler;
 
 import net.minecraft.client.audio.PositionedSound;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import uk.co.wehavecookies56.kk.client.render.LayerRendererDrive;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 import java.util.Random;
@@ -427,16 +423,5 @@ public class ClientEventHandler {
 	public static int randomWithRange (int min, int max) {
 		int range = Math.abs(max - min) + 1;
 		return (int) (Math.random() * range) + (min <= max ? min : max);
-	}
-
-	static boolean hasLayer = false;
-
-	@SubscribeEvent
-	public void playerRender(RenderPlayerEvent.Pre event) {
-		LayerRenderer layerDrive = new LayerRendererDrive(event.getRenderer());
-		if(!hasLayer) {
-			event.getRenderer().addLayer(layerDrive);
-			hasLayer = true;
-		}
 	}
 }
