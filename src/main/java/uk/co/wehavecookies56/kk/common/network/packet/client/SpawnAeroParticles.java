@@ -52,7 +52,12 @@ public class SpawnAeroParticles extends AbstractMessage.AbstractClientMessage<Sp
 				}
 				break;
 			case 2:
-
+				r = 2.3D;
+				for (int a = 1; a <= 360; a += 15) {
+					double x = this.x + (r * Math.cos(Math.toRadians(a)));
+					double z = this.z + (r * Math.sin(Math.toRadians(a)));
+					player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
+				}
 				break;
 			case 3:
 				r = 4.0D;
