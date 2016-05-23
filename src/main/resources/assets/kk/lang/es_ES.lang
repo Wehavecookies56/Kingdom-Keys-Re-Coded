@@ -715,3 +715,6 @@ chat.recipeRepeat=Receta para '%1$s' no fue aprendida porque ya la conoces
 chat.savepoint=Punto de guardado establecido
 chat.chestLockedSuccess=Cofre bloqueado con '%1$s'
 chat.chestLocked=El cofre está bloqueado con otra Llave Espada
+chat.magic.learn=¡Aprendido '%1$s'!
+chat.magic.levelup=¡'%1$s', ha ascendido a '%2$s'!
+chat.magic.error=¡No se puede incrementar '%1$s', ya está al máximo!

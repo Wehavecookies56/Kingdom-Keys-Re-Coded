@@ -6,20 +6,7 @@ public class Strings {
 	public static final String tabKingdomKeysBlocks = "tabKingdomKeysblocks";
 
 	// Records
-	public static final String 
-	Disc_Birth_by_Sleep_A_Link_to_the_Future_Name = "Birth by Sleep -A Link to the Future-",
-	Disc_Darkness_of_the_Unknown_Name = "Darkness of the Unknown",
-	Disc_Dearly_Beloved_Symphony_Version_Name = "Dearly Beloved -Symphony Version-",
-	Disc_Dream_Drop_Distance_The_Next_Awakening_Name = "Dream Drop Distance -The Next Awakening-",
-	Disc_Hikari_KINGDOM_Instrumental_Version_Name = "Hikari -KINGDOM Instrumental Version-",
-	Disc_L_Oscurita_Dell_Ignoto_Name = "L'Oscurita Dell'Ignoto",
-	Disc_Musique_pour_la_tristesse_de_Xion_Name = "Musique pour la tristesse de Xion",
-	Disc_No_More_Bugs_Bug_Version_Name = "No More Bugs -Bug Version-",
-	Disc_Organization_XIII_Name = "Organization XIII",
-	Disc_Sanctuary_Name = "Sanctuary",
-	Disc_Simple_And_Clean_PLANITb_Remix_Name = "Simple And Clean PLANITb Remix",
-	Disc_Sinister_Sundown_Name = "Sinister Sundown",
-	Disc_The_13th_Anthology_Name = "The 13th Anthology",
+	public static final String
 	Disc_Duration_Desc = "disc.duration.desc",
 	Disc_DurationUnits_Desc = "disc.durationunits.desc";
 
@@ -87,40 +74,7 @@ public class Strings {
 	Gui_CommandMenu_Drive_Revert = Gui_CommandMenu_Drive + ".revert",
 	Gui_CommandMenu_Magic_Title = Gui_CommandMenu_Magic + ".title",
 
-	Gui_CommandMenu_Magic_Fire = Gui_CommandMenu_Magic + ".fire",
-	Gui_CommandMenu_Magic_Fira = Gui_CommandMenu_Magic + ".fira",
-	Gui_CommandMenu_Magic_Firaga = Gui_CommandMenu_Magic + ".firaga",
-
-	Gui_CommandMenu_Magic_Blizzard = Gui_CommandMenu_Magic + ".blizzard",
-	Gui_CommandMenu_Magic_Blizzara = Gui_CommandMenu_Magic + ".blizzara",
-	Gui_CommandMenu_Magic_Blizzaga = Gui_CommandMenu_Magic + ".blizzaga",
-
-	Gui_CommandMenu_Magic_Thunder = Gui_CommandMenu_Magic + ".thunder",
-	Gui_CommandMenu_Magic_Thundara = Gui_CommandMenu_Magic + ".thundara",
-	Gui_CommandMenu_Magic_Thundaga = Gui_CommandMenu_Magic + ".thundaga",
-
-	Gui_CommandMenu_Magic_Cure = Gui_CommandMenu_Magic + ".cure",
-	Gui_CommandMenu_Magic_Cura = Gui_CommandMenu_Magic + ".cura",
-	Gui_CommandMenu_Magic_Curaga = Gui_CommandMenu_Magic + ".curaga",
-
-	Gui_CommandMenu_Magic_Gravity = Gui_CommandMenu_Magic + ".gravity",
-	Gui_CommandMenu_Magic_Gravira = Gui_CommandMenu_Magic + ".gravira",
-	Gui_CommandMenu_Magic_Graviga = Gui_CommandMenu_Magic + ".graviga",
-
-	Gui_CommandMenu_Magic_Aero = Gui_CommandMenu_Magic + ".aero",
-	Gui_CommandMenu_Magic_Aerora = Gui_CommandMenu_Magic + ".aerora",
-	Gui_CommandMenu_Magic_Aeroga = Gui_CommandMenu_Magic + ".aeroga",
-
-	Gui_CommandMenu_Magic_Stop = Gui_CommandMenu_Magic + ".stop",
-	Gui_CommandMenu_Magic_Stopra = Gui_CommandMenu_Magic + ".stopra",
-	Gui_CommandMenu_Magic_Stopga = Gui_CommandMenu_Magic + ".stopga",
-
 	Gui_CommandMenu_Drive_Title = Gui_CommandMenu_Drive + ".title",
-	Gui_CommandMenu_Drive_Valor = Gui_CommandMenu_Drive + ".valor",
-	Gui_CommandMenu_Drive_Wisdom = Gui_CommandMenu_Drive + ".wisdom",
-	Gui_CommandMenu_Drive_Limit = Gui_CommandMenu_Drive + ".limit",
-	Gui_CommandMenu_Drive_Master = Gui_CommandMenu_Drive + ".master",
-	Gui_CommandMenu_Drive_Final = Gui_CommandMenu_Drive + ".final",
 
 	// Menu
 	Gui_Menu = "gui.menu", 
@@ -137,9 +91,7 @@ public class Strings {
 	Gui_Menu_Main_Time = Gui_Menu_Main + ".time",
 	Gui_Menu_Items = Gui_Menu + ".items",
 	Gui_Menu_Items_Title = Gui_Menu_Items + ".title",
-	Gui_Menu_Items_Player = Gui_Menu_Items + ".player",
 	Gui_Menu_Items_Button_Keychain = Gui_Menu_Items + ".keychain",
-	Gui_Menu_Items_Button_SynthBag = Gui_Menu_Items + ".synthbag",
 	Gui_Menu_Items_Button_Potions = Gui_Menu_Items + ".potions",
 	Gui_Menu_Items_Button_Spells = Gui_Menu_Items + ".spells",
 	Gui_Menu_Items_Button_Drive = Gui_Menu_Items + ".drives",
@@ -176,7 +128,13 @@ public class Strings {
 	RecipeRepeat = "chat.recipeRepeat",
 	SavePointSave = "chat.savePointSave",
 	ChestLockSuccess = "chat.chestLockSuccess",
-	ChestLocked = "chat.chestLocked";
+	ChestLocked = "chat.chestLocked",
+	Chat_Magic_Learn = "chat.magic.learn",
+	Chat_Magic_Error = "chat.magic.error",
+	Chat_Magic_Levelup = "chat.magic.levelup",
+	Chat_Drive_Learn = "chat.drive.learn",
+	Chat_Drive_Error = "chat.drive.error"
+	;
 	// Blocks
 	public static final String
 	// Blox

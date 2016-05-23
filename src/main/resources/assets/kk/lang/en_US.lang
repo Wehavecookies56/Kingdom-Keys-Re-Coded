@@ -715,3 +715,6 @@ chat.recipeRepeat=Recipe for '%1$s' was not learnt because you have already lear
 chat.savepoint=Spawn point saved
 chat.chestLockedSuccess=Chest locked with '%1$s'
 chat.chestLocked=Chest is locked with another keyblade
+chat.magic.learn=Successfully learnt '%1$s'!
+chat.magic.levelup=Leveled up '%1$s', it is now '%2$s'!
+chat.magic.error=Can't level up '%1$s', it is already at the max level!

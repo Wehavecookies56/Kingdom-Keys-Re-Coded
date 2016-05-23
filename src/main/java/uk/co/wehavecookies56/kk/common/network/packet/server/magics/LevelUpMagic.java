@@ -1,21 +1,22 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server.magics;
 
-import java.io.IOException;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySpells;
-import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractServerMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
+
+import java.io.IOException;
 
 public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
 
@@ -58,16 +59,21 @@ public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
 		if (!hasMagicInSlot) {
 			player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().setInventorySlotContents(firstEmptySlot, player.getHeldItem(EnumHand.MAIN_HAND));
 			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-			String magicName = TextHelper.localize(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic)));
-			TextHelper.sendFormattedChatMessage("Succesfully learnt " + magicName + "!", TextFormatting.YELLOW, player);
+			TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Magic_Learn, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
+			learnMessage.getStyle().setColor(TextFormatting.YELLOW);
+			player.addChatMessage(learnMessage);
 		} else {
 			if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) < Constants.MAX_MAGIC_LEVEL) {
 				player.getCapability(ModCapabilities.MAGIC_STATE, null).setMagicLevel(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) + 1);
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-				TextHelper.sendFormattedChatMessage("Leveled up " + TextHelper.localize(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) - 1)) + ", it is now " + TextHelper.localize(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))) + "!", TextFormatting.YELLOW, player);
+				TextComponentTranslation levelupMessage = new TextComponentTranslation(Strings.Chat_Magic_Levelup, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) - 1)), new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
+				levelupMessage.getStyle().setColor(TextFormatting.YELLOW);
+				player.addChatMessage(levelupMessage);
 
 			} else {
-				TextHelper.sendFormattedChatMessage("Can't level up " + TextHelper.localize(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))) + ", it is already at the max level!", TextFormatting.YELLOW, player);
+				TextComponentTranslation errorMessage = new TextComponentTranslation(Strings.Chat_Magic_Error, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
+				errorMessage.getStyle().setColor(TextFormatting.YELLOW);
+				player.addChatMessage(errorMessage);
 			}
 		}
 		PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
