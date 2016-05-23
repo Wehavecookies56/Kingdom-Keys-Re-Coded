@@ -124,8 +124,8 @@ public class Strings {
 
 	//Chat Messages
 	public static final String
-	RecipeLearn = "chat.recipeLearn",
-	RecipeRepeat = "chat.recipeRepeat",
+	Chat_Recipe_Learn = "chat.recipeLearn",
+	Chat_Recipe_Repeat = "chat.recipeRepeat",
 	SavePointSave = "chat.savePointSave",
 	ChestLockSuccess = "chat.chestLockSuccess",
 	ChestLocked = "chat.chestLocked",
@@ -135,6 +135,15 @@ public class Strings {
 	Chat_Drive_Learn = "chat.drive.learn",
 	Chat_Drive_Error = "chat.drive.error"
 	;
+	
+	//Stats
+	public static final String
+	Stats_LevelUp_Str = "stats.levelUpStr",
+	Stats_LevelUp_Def = "stats.levelUpDef",
+	Stats_LevelUp_Magic = "stats.levelUpMag",
+	Stats_LevelUp_HP = "stats.levelUpHP"
+	;
+	
 	// Blocks
 	public static final String
 	// Blox

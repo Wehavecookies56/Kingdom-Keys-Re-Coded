@@ -48,7 +48,7 @@ public class BlockMagnetBlox extends BlockBlox {
 	public IBlockState getActualState (IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		return state;
 	}
-
+/*
 	@Override
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entityIn) {
 		if (!world.isRemote) updateState(world, pos);
@@ -60,7 +60,7 @@ public class BlockMagnetBlox extends BlockBlox {
 		if (!world.isRemote) updateState(world, pos);
 		super.updateTick(world, pos, state, rand);
 	}
-	
+	*/
 	@Override
 	public BlockRenderLayer getBlockLayer () {
 		return BlockRenderLayer.TRANSLUCENT;
@@ -71,7 +71,7 @@ public class BlockMagnetBlox extends BlockBlox {
 		return false;
 	}
 	
-	private void updateState (World world, BlockPos pos) {
+	/*private void updateState (World world, BlockPos pos) {
 		List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, getCollisionBoundingBox(world.getBlockState(pos), world, pos));
 		if (list.isEmpty()) return;
 
@@ -87,7 +87,7 @@ public class BlockMagnetBlox extends BlockBlox {
 		}
 		world.scheduleUpdate(pos, this, tickRate(world));
 	}
-	
+	*/
 
 //	@Override
 //	public void setBlockBoundsBasedOnState (IBlockAccess world, BlockPos pos) {
@@ -186,7 +186,7 @@ public class BlockMagnetBlox extends BlockBlox {
 		}
 	}
 
-	@Override
+	/*@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
 		EnumFacing facing = state.getValue(PROPERTYFACING);
 		if(state.getValue(PROPERTYMAGNET)){
@@ -203,7 +203,7 @@ public class BlockMagnetBlox extends BlockBlox {
 		} else
 			return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1));
 		return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1));
-	}
+	}*/
 
 	@Override
 	protected BlockStateContainer createBlockState () {

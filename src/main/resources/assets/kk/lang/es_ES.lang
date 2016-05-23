@@ -708,13 +708,24 @@ form.final=Forma Final
 form.anti=Anti Forma
 
 ############################
+#Stats
+############################
+
+stats.levelUpStr=¡Fuerza aumentada!
+stats.levelUpDef=¡Defensa aumentada!
+stats.levelUpMag=¡Magia aumentada!
+stats.levelUpHP=¡VT máxima aumentada!
+
+############################
 #Chat messages
 ############################
-chat.recipeLearn=Aprendida la receta para '%1$s'
-chat.recipeRepeat=Receta para '%1$s' no fue aprendida porque ya la conoces
+chat.recipeLearn=Aprendida la receta de '%1$s'
+chat.recipeRepeat=Receta de '%1$s' no fue aprendida porque ya la conoces
 chat.savepoint=Punto de guardado establecido
 chat.chestLockedSuccess=Cofre bloqueado con '%1$s'
 chat.chestLocked=El cofre está bloqueado con otra Llave Espada
 chat.magic.learn=¡Aprendido '%1$s'!
 chat.magic.levelup=¡'%1$s', ha ascendido a '%2$s'!
 chat.magic.error=¡No se puede incrementar '%1$s', ya está al máximo!
+chat.drive.learn=¡'%1$s' aprendida!
+chat.drive.error=¡'%1$s' ya está aprendida!

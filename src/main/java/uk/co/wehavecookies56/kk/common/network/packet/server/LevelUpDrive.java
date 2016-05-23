@@ -4,12 +4,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryDriveForms;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
+import uk.co.wehavecookies56.kk.common.lib.Constants;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
@@ -96,10 +99,13 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 		    //	PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getPlayer());
 
-				TextHelper.sendFormattedChatMessage("Succesfully learnt "+TextHelper.localize(form), TextFormatting.YELLOW, player);
+				TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Drive_Learn, new TextComponentTranslation(this.form));
+				learnMessage.getStyle().setColor(TextFormatting.YELLOW);
+				player.addChatMessage(learnMessage);
 			} else {
-				TextHelper.sendFormattedChatMessage("Already learnt "+TextHelper.localize(form), TextFormatting.YELLOW, player);
-	
+				TextComponentTranslation errorMessage = new TextComponentTranslation(Strings.Chat_Drive_Error, new TextComponentTranslation(this.form));
+				errorMessage.getStyle().setColor(TextFormatting.YELLOW);
+				player.addChatMessage(errorMessage);	
 			}
 		}
 		PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);

@@ -16,7 +16,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class GuiOverlay extends GuiScreen {
 	public static boolean showExp;
@@ -139,16 +141,17 @@ public class GuiOverlay extends GuiScreen {
 							int width = event.getResolution().getScaledWidth();
 
 							if (STATS.getMessages().get(i).toString().equals("str"))
-								message = strMessage;
+								message = Strings.Stats_LevelUp_Str;
 							else if (STATS.getMessages().get(i).toString().equals("def"))
-								message = defMessage;
+								message = Strings.Stats_LevelUp_Def;
 							else if (STATS.getMessages().get(i).toString().equals("mag"))
-								message = magMessage;
-							else if (STATS.getMessages().get(i).toString().equals("hp")) message = hpMessage;
+								message = Strings.Stats_LevelUp_Magic;
+							else if (STATS.getMessages().get(i).toString().equals("hp"))
+								message = Strings.Stats_LevelUp_HP;
 							GL11.glTranslatef((width - 256.0f * 0.8f + (mc.fontRendererObj.getStringWidth("Maximum HP Increased!")) * 0.8f), mc.fontRendererObj.FONT_HEIGHT * 0.8f * i + 23, 0);
 							GL11.glTranslatef(-35, 0, 0);
 							GL11.glScalef(0.8f, 0.8f, 1);
-							drawString(mc.fontRendererObj, message, 0, 0, 0xFFFFFF);
+							drawString(mc.fontRendererObj, TextHelper.localize(message), 0, 0, 0xFFFFFF);
 
 						}
 						GL11.glPopMatrix();

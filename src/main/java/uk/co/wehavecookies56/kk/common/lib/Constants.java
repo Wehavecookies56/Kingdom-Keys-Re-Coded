@@ -113,9 +113,7 @@ public class Constants {
 			}
 		}
 		return null;
-	}
-
-	
+	}	
 
 	public static int getCost (String name) {
 		return costs.get(name);

@@ -708,6 +708,15 @@ form.final=Final Form
 form.anti=Anti Form
 
 ############################
+#Stats
+############################
+
+stats.levelUpStr=Strength Increased!
+stats.levelUpDef=Defense Increased!
+stats.levelUpMag=Magic Increased!
+stats.levelUpHP=Maximum HP Increased!
+
+############################
 #Chat messages
 ############################
 chat.recipeLearn=Successfully learnt the recipe for '%1$s'
@@ -718,3 +727,5 @@ chat.chestLocked=Chest is locked with another keyblade
 chat.magic.learn=Successfully learnt '%1$s'!
 chat.magic.levelup=Leveled up '%1$s', it is now '%2$s'!
 chat.magic.error=Can't level up '%1$s', it is already at the max level!
+chat.drive.learn='%1$s' has been learnt!
+chat.drive.error='%1$s' has already been learnt!
