@@ -1,10 +1,7 @@
 package uk.co.wehavecookies56.kk.common.block;
 
-import java.util.Random;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,6 +15,8 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
+
+import java.util.Random;
 
 public class BlockBlastBlox extends BlockBlox {
 
@@ -61,11 +60,6 @@ public class BlockBlastBlox extends BlockBlox {
 	 * Called right before the block is destroyed by a player. Args: world, x,
 	 * y, z, metaData
 	 */
-
-	@Override
-	public void onBlockDestroyedByPlayer (World world, BlockPos pos, IBlockState state) {
-		if (Minecraft.getMinecraft().thePlayer.getHeldItem(EnumHand.MAIN_HAND).getItem() == Items.APPLE) explode(world, pos.getX(), pos.getY(), pos.getZ(), state.getBlock().getMetaFromState(state), (EntityLivingBase) null);
-	}
 
 	public void explode (World world, int x, int y, int z, int state, EntityLivingBase entity) {
 		if (!world.isRemote) if ((state & 1) == 1) {
