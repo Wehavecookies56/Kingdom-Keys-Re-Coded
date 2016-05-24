@@ -67,7 +67,8 @@ public class EntityAeroga extends Entity {
 				{
 					d = (Math.random() - Math.random()) * 0.01D;
 				}
-				((EntityLivingBase) e).knockBack(e, 0, d, d1);
+				((EntityLivingBase) e).knockBack(e, 1, d, d1);
+				e.motionY*=1.2;
 			}
 		}
 		aabb.expand(-4, -4, -4);
