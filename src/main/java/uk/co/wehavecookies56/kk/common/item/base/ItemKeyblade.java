@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.item.base;
 
+import java.util.List;
+
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockDoor.EnumDoorHalf;
 import net.minecraft.client.Minecraft;
@@ -16,6 +18,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
@@ -24,9 +28,33 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
 
 public class ItemKeyblade extends ItemSword {
 
-	public ItemKeyblade (ToolMaterial material) {
+	//int strength, magic;
+	public static int abaddonplasma[] = {3,4};
+	public static int abyssaltide[] = {7,8};
+
+	public ItemKeyblade (ToolMaterial material, int damage, int magicDmg) {
 		super(material);
+		strength = damage;
+		magic = magicDmg;
 		setMaxStackSize(1);
+		setCreativeTab(ModItems.tabKingdomKeys);
+	}
+	
+	public int getKeybladeDamage()
+	{
+		return strength;
+	}
+	
+	public int getKeybladeMagic()
+	{
+		return magic;
+	}
+	
+	@Override
+	@SideOnly (Side.CLIENT)
+	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
+		dataList.add("Strength: "+getKeybladeDamage());
+		dataList.add("Magic: "+getKeybladeMagic());
 	}
 	
 	@Override
