@@ -168,10 +168,10 @@ public class ModItemsRecipes {
 		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.UnknownKnowledge), ModItems.ObscuredKnowledge, LostIllusion));
 		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.ManifestKnowledge), ModItems.UnknownKnowledge, LostIllusion));
 
-		GameRegistry.addShapelessRecipe(MythrilShard, DenseStone, DenseShard, TwilightStone, TwilightShard);
-		GameRegistry.addShapelessRecipe(MythrilStone, DenseStone, DenseShard, TwilightStone, TwilightShard, SerenityShard);
-		GameRegistry.addShapelessRecipe(MythrilGem, DenseCrystal, DenseGem, TwilightCrystal, TwilightGem);
-		GameRegistry.addShapelessRecipe(MythrilCrystal, DenseCrystal, DenseGem, TwilightCrystal, TwilightGem, SerenityStone);
+		GameRegistry.addRecipe(new ShapelessNBTRecipe(MythrilShard, DenseStone, DenseShard, TwilightStone, TwilightShard));
+		GameRegistry.addRecipe(new ShapelessNBTRecipe(MythrilStone, DenseStone, DenseShard, TwilightStone, TwilightShard, SerenityShard));
+		GameRegistry.addRecipe(new ShapelessNBTRecipe(MythrilGem, DenseCrystal, DenseGem, TwilightCrystal, TwilightGem));
+		GameRegistry.addRecipe(new ShapelessNBTRecipe(MythrilCrystal, DenseCrystal, DenseGem, TwilightCrystal, TwilightGem, SerenityStone));
 
 		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.BlazingInfusedCoal), BlazingCrystal, Items.COAL));
 		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.FrostInfusedSnowBall), FrostCrystal, Items.SNOWBALL));
