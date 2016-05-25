@@ -133,7 +133,8 @@ public class Strings {
 	Chat_Magic_Error = "chat.magic.error",
 	Chat_Magic_Levelup = "chat.magic.levelup",
 	Chat_Drive_Learn = "chat.drive.learn",
-	Chat_Drive_Error = "chat.drive.error"
+	Chat_Drive_Error = "chat.drive.error",
+	Chat_Manifest = "chat.manifest.learn"
 	;
 	
 	//Stats

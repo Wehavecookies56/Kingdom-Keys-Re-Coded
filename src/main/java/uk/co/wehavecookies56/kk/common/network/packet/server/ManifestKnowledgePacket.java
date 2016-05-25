@@ -5,9 +5,12 @@ import java.io.IOException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
 public class ManifestKnowledgePacket extends AbstractMessage.AbstractServerMessage<ManifestKnowledgePacket> {
@@ -29,7 +32,9 @@ public class ManifestKnowledgePacket extends AbstractMessage.AbstractServerMessa
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 		int rand = randomWithRange(0, Lists.orgWeapons.size() - 1);
 		player.inventory.addItemStackToInventory(new ItemStack(Lists.orgWeapons.get(rand)));
-		TextHelper.sendChatMessage("The knowledge manifested the " + TextHelper.localize(Lists.orgWeapons.get(rand).getUnlocalizedName() + ".name"), player);
+		TextComponentTranslation manifestMessage = new TextComponentTranslation(Strings.Chat_Manifest, new TextComponentTranslation(Lists.orgWeapons.get(rand).getUnlocalizedName() + ".name"));
+		manifestMessage.getStyle().setColor(TextFormatting.YELLOW);
+		player.addChatMessage(manifestMessage);
 	}
 
 	/**
