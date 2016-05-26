@@ -129,7 +129,7 @@ public class ModItems {
 		DiamondDust = new ItemRealKeyblade(KEYBLADE).setUnlocalizedName(Strings.DiamondDust);
 		Divewing = new ItemRealKeyblade(KEYBLADE).setUnlocalizedName(Strings.Divewing);
 		DivineRose = new ItemRealKeyblade(KEYBLADE).setUnlocalizedName(Strings.DivineRose);
-		DreamSword = new ItemKeyblade(KEYBLADE).setUnlocalizedName(Strings.DreamSword);
+		DreamSword = new ItemKeyblade(1, 1).setUnlocalizedName(Strings.DreamSword);
 		DualDisc = new ItemRealKeyblade(KEYBLADE).setUnlocalizedName(Strings.DualDisc);
 		Earthshaker = new ItemRealKeyblade(KEYBLADE).setUnlocalizedName(Strings.Earthshaker);
 		EndofPain = new ItemRealKeyblade(KEYBLADE).setUnlocalizedName(Strings.EndofPain);
