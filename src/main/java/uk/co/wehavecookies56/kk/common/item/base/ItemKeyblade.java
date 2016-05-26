@@ -186,12 +186,12 @@ public class ItemKeyblade extends ItemSword {
 		this.magic = magic;
 	}
 	
-	@Override
+	/*@Override
 	@SideOnly (Side.CLIENT)
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add("Strength: "+getStrength());
+		dataList.add("Strength: "+(getStrength()+(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.25))+"TOTAL"+getStrength());
 		dataList.add("Magic: "+getMagic());
-	}
+	}*/
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player, EnumHand hand) {
