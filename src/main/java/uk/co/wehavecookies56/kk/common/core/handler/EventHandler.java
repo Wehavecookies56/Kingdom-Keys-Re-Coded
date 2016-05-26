@@ -1,7 +1,13 @@
 package uk.co.wehavecookies56.kk.common.core.handler;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.UUID;
+
 import com.mojang.authlib.GameProfile;
-import net.minecraft.client.Minecraft;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -22,14 +28,12 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -42,7 +46,6 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
@@ -52,13 +55,18 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
-import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
-import uk.co.wehavecookies56.kk.common.capability.*;
+import uk.co.wehavecookies56.kk.common.capability.CheatModeCapability;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability.IFirstTimeJoin;
+import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
+import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
+import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
+import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagL;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagM;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagS;
@@ -70,19 +78,27 @@ import uk.co.wehavecookies56.kk.common.item.ItemMunny;
 import uk.co.wehavecookies56.kk.common.item.ItemStacks;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.*;
-import uk.co.wehavecookies56.kk.common.network.packet.server.*;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.UUID;
+import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncItemsInventory;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DriveOrbPickup;
+import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
+import uk.co.wehavecookies56.kk.common.network.packet.server.MagicOrbPickup;
+import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
 
 public class EventHandler {
 	
@@ -1032,12 +1048,52 @@ public class EventHandler {
 	@SubscribeEvent
 	public void itemInformation(ItemTooltipEvent event)
 	{
-	
-		if(event.getItemStack().getItem() instanceof ItemKeyblade){
+		if(event.getItemStack().getItem() instanceof ItemKeychain){
+			for(int i = 0; i<event.getToolTip().size();i++)
+			{
+				if(event.getToolTip().get(i).contains("Daño")||event.getToolTip().get(i).contains("mano")|| event.getToolTip().get(i).contains("Damage")||event.getToolTip().get(i).contains("hand"))
+				event.getToolTip().remove(event.getToolTip().get(i));
+			}
+			int baseDamage = ((ItemKeychain) event.getItemStack().getItem()).getKeyblade().getStrength();
+			double actualDamage = baseDamage + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.25);
+			int sharpnessLevel = getEnchantment(event.getItemStack(), 16);
+			double sharpnessDamage = 0;
+			switch (sharpnessLevel)
+			{
+			case 1:
+				sharpnessDamage = 1;
+				break;
+			case 2:
+				sharpnessDamage = 1.5;
+				break;
+			case 3:
+				sharpnessDamage = 2;
+				break;
+			case 4:
+				sharpnessDamage = 2.5;
+				break;
+			case 5:
+				sharpnessDamage = 3;
+				break;
+			}
+			event.getToolTip().add(TextFormatting.RED+"Strength: "+(actualDamage+sharpnessDamage)+ " ("+baseDamage+")");
+
+			int baseMagic = ((ItemKeychain) event.getItemStack().getItem()).getKeyblade().getMagic();
+			double actualMagic = baseMagic + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() * 0.25);
+			event.getToolTip().add(TextFormatting.AQUA+"Magic: "+actualMagic + " ("+baseMagic+")");
+			
+		}
+		
+		else if(event.getItemStack().getItem() instanceof ItemKeyblade){
 			if(ConfigHandler.DisableVanillaTooltip)
 			{
-				event.getToolTip().clear();
-				event.getToolTip().add(new TextComponentTranslation(event.getItemStack().getUnlocalizedName()+".name").getFormattedText());
+				//event.getToolTip().add(new TextComponentTranslation(event.getItemStack().getUnlocalizedName()+".name").getFormattedText());
+
+				for(int i = 0; i<event.getToolTip().size();i++)
+				{
+					if(event.getToolTip().get(i).contains("Daño")||event.getToolTip().get(i).contains("mano")|| event.getToolTip().get(i).contains("Damage")||event.getToolTip().get(i).contains("hand"))
+					event.getToolTip().remove(event.getToolTip().get(i));
+				}
 				int baseDamage = ((ItemKeyblade) event.getItemStack().getItem()).getStrength();
 				double actualDamage = baseDamage + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.25);
 				int sharpnessLevel = getEnchantment(event.getItemStack(), 16);
@@ -1072,7 +1128,7 @@ public class EventHandler {
 				}*/
 				if(event.isShowAdvancedItemTooltips())
 				{
-					event.getToolTip().add("§8kk:"+event.getItemStack().getUnlocalizedName().substring(5));
+				//	event.getToolTip().add("§8kk:"+event.getItemStack().getUnlocalizedName().substring(5));
 				}
 			}
 			else

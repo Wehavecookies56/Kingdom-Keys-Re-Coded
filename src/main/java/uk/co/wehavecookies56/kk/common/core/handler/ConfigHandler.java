@@ -22,7 +22,7 @@ public class ConfigHandler {
 			EnableHeartsOnHUD = false,
 			EnableCustomMusic = true,
 			ForceEnableCustomMusic = false,
-			DisableVanillaTooltip = false;
+			DisableVanillaTooltip = true;
 
 	public static String TM_Interdiction, TM_Sharpshooter, TM_Lindworm, TM_FrozenPride, TM_Skysplitter, TM_BookofRetribution, TM_Lunatic, TM_EternalFlames, TM_Arpeggio, TM_FairGame, TM_GracefulDahlia, TM_Foudre, TM_BlazeofGlory, TM_Prometheus, TM_Ifrit;
 
