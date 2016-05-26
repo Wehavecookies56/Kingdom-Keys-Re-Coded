@@ -126,8 +126,8 @@ public class ModItems {
 		CrownofGuilt = new ItemRealKeyblade(testStr, TestMag).setUnlocalizedName(Strings.CrownofGuilt);
 		DarkerThanDark = new ItemRealKeyblade(testStr, TestMag).setUnlocalizedName(Strings.DarkerThanDark);
 		Darkgnaw = new ItemRealKeyblade(15,4).setUnlocalizedName(Strings.Darkgnaw);
-		DecisivePumpkin = new ItemRealKeyblade(testStr, TestMag).setUnlocalizedName(Strings.DecisivePumpkin);
-		DestinysEmbrace = new ItemRealKeyblade(testStr, TestMag).setUnlocalizedName(Strings.DestinysEmbrace);
+		DecisivePumpkin = new ItemRealKeyblade(18,2).setUnlocalizedName(Strings.DecisivePumpkin);
+		DestinysEmbrace = new ItemRealKeyblade(9,6).setUnlocalizedName(Strings.DestinysEmbrace);
 		DiamondDust = new ItemRealKeyblade(9,6).setUnlocalizedName(Strings.DiamondDust);
 		Divewing = new ItemRealKeyblade(36,30).setUnlocalizedName(Strings.Divewing);
 		DivineRose = new ItemRealKeyblade(30,0).setUnlocalizedName(Strings.DivineRose);
@@ -162,7 +162,7 @@ public class ModItems {
 		LeopardosForetellersKeyblade = new ItemRealKeyblade(testStr, TestMag).setUnlocalizedName(Strings.LeopardosForetellersKeyblade);
 		Leviathan = new ItemRealKeyblade(testStr, TestMag).setUnlocalizedName(Strings.Leviathan);
 		Lionheart = new ItemRealKeyblade(30,2).setUnlocalizedName(Strings.Lionheart);
-		LostMemory = new ItemRealKeyblade(testStr, TestMag).setUnlocalizedName(Strings.LostMemory);
+		LostMemory = new ItemRealKeyblade(18,10).setUnlocalizedName(Strings.LostMemory);
 		LunarEclipse = new ItemRealKeyblade(testStr, TestMag).setUnlocalizedName(Strings.LunarEclipse);
 		MarkofaHero = new ItemRealKeyblade(15,2).setUnlocalizedName(Strings.MarkofaHero);
 		MasterXehanortsKeyblade = new ItemRealKeyblade(testStr, TestMag).setUnlocalizedName(Strings.MasterXehanortsKeyblade);
