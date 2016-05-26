@@ -546,7 +546,7 @@ public class EventHandler {
 
 	public void dropRecipe(LivingDropsEvent event)
 	{
-		int	recipeRand = randomWithRange(1, 100);
+		int	recipeRand = 1;//randomWithRange(1, 100);
 		if(event.getSource().getSourceOfDamage() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
@@ -555,13 +555,13 @@ public class EventHandler {
 			switch(getEnchantment(itemstack, 21))
 			{
 			case 1:
-				recipeRand = randomWithRange(1, 99);
-				break;
-			case 2:
 				recipeRand = randomWithRange(1, 98);
 				break;
+			case 2:
+				recipeRand = randomWithRange(1, 96);
+				break;
 			case 3:
-				recipeRand = randomWithRange(1, 97);
+				recipeRand = randomWithRange(1, 94);
 				break;
 			}
 			
@@ -587,14 +587,14 @@ public class EventHandler {
 			EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
 			if (player.getHeldItem(EnumHand.MAIN_HAND) != null)
 			{
-				if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRealKeyblade)
+				if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
 				{
 					dropRecipe(event);
 				}
 			}
 			if(player.getHeldItem(EnumHand.OFF_HAND) != null)
 			{
-				if(player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemRealKeyblade)
+				if(player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade)
 				{
 					dropRecipe(event);
 				}
@@ -1032,11 +1032,51 @@ public class EventHandler {
 	@SubscribeEvent
 	public void itemInformation(ItemTooltipEvent event)
 	{
-		if(ConfigHandler.DisableVanillaTooltip)
-		{
-			if(event.getItemStack().getItem() instanceof ItemKeyblade){
+	
+		if(event.getItemStack().getItem() instanceof ItemKeyblade){
+			if(ConfigHandler.DisableVanillaTooltip)
+			{
 				event.getToolTip().clear();
 				event.getToolTip().add(new TextComponentTranslation(event.getItemStack().getUnlocalizedName()+".name").getFormattedText());
+				int baseDamage = ((ItemKeyblade) event.getItemStack().getItem()).getStrength();
+				double actualDamage = baseDamage + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.25);
+				int sharpnessLevel = getEnchantment(event.getItemStack(), 16);
+				double sharpnessDamage = 0;
+				switch (sharpnessLevel)
+				{
+				case 1:
+					sharpnessDamage = 1;
+					break;
+				case 2:
+					sharpnessDamage = 1.5;
+					break;
+				case 3:
+					sharpnessDamage = 2;
+					break;
+				case 4:
+					sharpnessDamage = 2.5;
+					break;
+				case 5:
+					sharpnessDamage = 3;
+					break;
+				}
+				event.getToolTip().add(TextFormatting.RED+"Strength: "+(actualDamage+sharpnessDamage)+ " ("+baseDamage+")");
+
+				int baseMagic = ((ItemKeyblade) event.getItemStack().getItem()).getMagic();
+				double actualMagic = baseMagic + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() * 0.25);
+				event.getToolTip().add(TextFormatting.AQUA+"Magic: "+actualMagic + " ("+baseMagic+")");
+				
+				/*for(int i = 0; i<event.getItemStack().getEnchantmentTagList().tagCount() ;i++)
+				{
+					event.getToolTip().add(event.getItemStack().getEnchantmentTagList().getStringTagAt(i));
+				}*/
+				if(event.isShowAdvancedItemTooltips())
+				{
+					event.getToolTip().add("§8kk:"+event.getItemStack().getUnlocalizedName().substring(5));
+				}
+			}
+			else
+			{
 				
 				int baseDamage = ((ItemKeyblade) event.getItemStack().getItem()).getStrength();
 				double actualDamage = baseDamage + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.25);
@@ -1066,16 +1106,11 @@ public class EventHandler {
 				double actualMagic = baseMagic + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() * 0.25);
 				event.getToolTip().add(TextFormatting.AQUA+"Magic: "+actualMagic + " ("+baseMagic+")");
 				
-				for(int i = 0; i<event.getItemStack().getEnchantmentTagList().tagCount() ;i++)
-				{
-					event.getToolTip().add(event.getItemStack().getEnchantmentTagList().getStringTagAt(i));
-				}
 				
-				if(event.isShowAdvancedItemTooltips())
-				{
-					event.getToolTip().add("§8kk:"+event.getItemStack().getUnlocalizedName().substring(5));
-				}
+				
+				
 			}
+			
 		}
 	}
 
