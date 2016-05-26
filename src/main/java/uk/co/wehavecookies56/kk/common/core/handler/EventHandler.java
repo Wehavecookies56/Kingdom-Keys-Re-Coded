@@ -22,6 +22,7 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
@@ -41,6 +42,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
@@ -1009,13 +1011,32 @@ public class EventHandler {
 			EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
 			PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
 			IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-			//event.setAmount(ItemKeyblade.getKeybladeDamage());
+			System.out.println(ItemKeyblade.getKeybladeDamage(player.getHeldItem(EnumHand.MAIN_HAND).getUnlocalizedName().substring(5)));
+			event.setAmount(event.getAmount() + ItemKeyblade.getKeybladeDamage(player.getHeldItem(EnumHand.MAIN_HAND).getUnlocalizedName().substring(5)));
 			event.setAmount((float) (event.getAmount() + (STATS.getStrength() * 0.25)));
 			if (player.getHeldItem(EnumHand.MAIN_HAND) != null) if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
 				if (DS.getActiveDriveName().equals("Valor")) event.setAmount((float) (event.getAmount() * 1.5));
 				STATS.addDP(1);
 			} else
 				return;
+		}
+	}
+	
+	@SubscribeEvent
+	public void itemInformation(ItemTooltipEvent event)
+	{
+		if(ConfigHandler.DisableVanillaTooltip)
+		{
+			if(event.getItemStack().getItem() instanceof ItemKeyblade){
+				event.getToolTip().clear();
+				event.getToolTip().add(new TextComponentTranslation(event.getItemStack().getUnlocalizedName()+".name").getFormattedText());
+				event.getToolTip().add("§cStrength: "+ItemKeyblade.getKeybladeDamage(event.getItemStack().getUnlocalizedName().substring(5)));
+				event.getToolTip().add("§bMagic: "+ItemKeyblade.getKeybladeMagic(event.getItemStack().getUnlocalizedName().substring(5)));
+				if(event.isShowAdvancedItemTooltips())
+				{
+					event.getToolTip().add("§8kk:"+event.getItemStack().getUnlocalizedName().substring(5));
+				}
+			}
 		}
 	}
 

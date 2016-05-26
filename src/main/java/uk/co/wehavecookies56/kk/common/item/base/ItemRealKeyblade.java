@@ -9,10 +9,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemRealKeyblade extends ItemKeyblade {
 
-	public ItemRealKeyblade (ToolMaterial material, int damage, int magicDmg) {
-		super(material, magicDmg, magicDmg);
-		strength = damage;
-		magic = magicDmg;
+	public ItemRealKeyblade (ToolMaterial material) {
+		super(material);
 		setMaxStackSize(1);
 	}
 }

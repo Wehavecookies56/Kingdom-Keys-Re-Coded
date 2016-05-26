@@ -23,38 +23,58 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
 
 public class ItemKeyblade extends ItemSword {
 
-	//int strength, magic;
-	public static int abaddonplasma[] = {3,4};
-	public static int abyssaltide[] = {7,8};
+	public static int
+		abaddonplasma[] = {3,4},
+		abyssaltide[] = {7,8},
+		allforone[] = {10,5};
 
-	public ItemKeyblade (ToolMaterial material, int damage, int magicDmg) {
+	public ItemKeyblade (ToolMaterial material) {
 		super(material);
-		strength = damage;
-		magic = magicDmg;
 		setMaxStackSize(1);
 		setCreativeTab(ModItems.tabKingdomKeys);
 	}
-	
-	public int getKeybladeDamage()
+	public static int getKeybladeDamage(String keyblade)
 	{
-		return strength;
+		switch(keyblade)
+		{
+		case Strings.AbaddonPlasma:
+			return abaddonplasma[0];
+		case Strings.AbyssalTide:
+			return abyssaltide[0];
+		case Strings.AllforOne:
+			return allforone[0];
+		}
+		return 0;
+		
 	}
 	
-	public int getKeybladeMagic()
+	public static int getKeybladeMagic(String keyblade)
 	{
-		return magic;
+		switch(keyblade)
+		{
+		case Strings.AbaddonPlasma:
+			return abaddonplasma[1];
+		case Strings.AbyssalTide:
+			return abyssaltide[1];
+		case Strings.AllforOne:
+			return allforone[1];
+		
+		}
+		
+		return 0;
 	}
 	
 	@Override
 	@SideOnly (Side.CLIENT)
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add("Strength: "+getKeybladeDamage());
-		dataList.add("Magic: "+getKeybladeMagic());
+		dataList.add("§cStrength: "+getKeybladeDamage(itemStack.getUnlocalizedName().substring(5)));
+		dataList.add("§bMagic: "+getKeybladeMagic(itemStack.getUnlocalizedName().substring(5)));
 	}
 	
 	@Override

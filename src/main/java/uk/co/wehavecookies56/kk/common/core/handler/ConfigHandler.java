@@ -21,7 +21,8 @@ public class ConfigHandler {
 			EnableUpdateCheck = true,
 			EnableHeartsOnHUD = false,
 			EnableCustomMusic = true,
-			ForceEnableCustomMusic = false;
+			ForceEnableCustomMusic = false,
+			DisableVanillaTooltip = true;
 
 	public static String TM_Interdiction, TM_Sharpshooter, TM_Lindworm, TM_FrozenPride, TM_Skysplitter, TM_BookofRetribution, TM_Lunatic, TM_EternalFlames, TM_Arpeggio, TM_FairGame, TM_GracefulDahlia, TM_Foudre, TM_BlazeofGlory, TM_Prometheus, TM_Ifrit;
 
@@ -77,6 +78,7 @@ public class ConfigHandler {
 		ForceEnableCustomMusic = configProperty("Force Enable custom music", "Force toggles the custom music that plays regardless of whether the resource pack is loaded", ForceEnableCustomMusic, SOUND);
 
 		//ITEMS
+		DisableVanillaTooltip = configProperty("Disable Vanilla Tooltips", "Disables the vanilla tooltip information for keyblades", DisableVanillaTooltip, INTERFACE);
 		//TOOLMATERIALS
 		config.addCustomCategoryComment(TOOLMATERIALS, "The tool material for items which use them, A space after commas is required. \nParameters {(String) NAME, (int) HARVESTLEVEL, (int) MAXUSES, (float) EFFICIENCY, (float) DAMAGE, (int) ENCHANTABILITY}");
 
