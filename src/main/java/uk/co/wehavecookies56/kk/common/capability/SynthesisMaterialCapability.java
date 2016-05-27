@@ -1,15 +1,15 @@
 package uk.co.wehavecookies56.kk.common.capability;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import uk.co.wehavecookies56.kk.api.materials.Material;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class SynthesisMaterialCapability {
@@ -79,10 +79,8 @@ public class SynthesisMaterialCapability {
 				int currAmount = materials.get(material.getName());
 				if (amount <= 0) {
 					materials.remove(material.getName());
-				} else if (amount >= currAmount) {
-					materials.replace(material.getName(), currAmount + amount);
 				} else {
-					materials.replace(material.getName(), currAmount - amount);
+					materials.replace(material.getName(), currAmount + amount);
 				}
 			} else {
 				if (amount <= 0) {
