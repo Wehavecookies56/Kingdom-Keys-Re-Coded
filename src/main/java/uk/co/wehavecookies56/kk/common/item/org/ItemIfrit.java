@@ -8,6 +8,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityIfrit;
 
 public class ItemIfrit extends ItemChakram {
@@ -22,6 +23,8 @@ public class ItemIfrit extends ItemChakram {
 			EntityIfrit entity = new EntityIfrit(world, player);
 			world.spawnEntityInWorld(entity);
 			entity.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1f, 1);
+			if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) 
+				player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(7);
 			player.swingArm(hand);
 		}
 		return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);

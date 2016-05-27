@@ -624,7 +624,7 @@ public class EventHandler {
 
 	public void dropRecipe(LivingDropsEvent event)
 	{
-		int	recipeRand = 1;//randomWithRange(1, 100);
+		int	recipeRand = randomWithRange(1, 100);
 		if(event.getSource().getSourceOfDamage() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
@@ -667,14 +667,16 @@ public class EventHandler {
 			{
 				if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
 				{
-					dropRecipe(event);
+					if (event.getEntity() instanceof EntityMob)
+						dropRecipe(event);
 				}
 			}
 			if(player.getHeldItem(EnumHand.OFF_HAND) != null)
 			{
 				if(player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade)
 				{
-					dropRecipe(event);
+					if (event.getEntity() instanceof EntityMob)
+						dropRecipe(event);
 				}
 			}
 			
@@ -1090,7 +1092,7 @@ public class EventHandler {
 			EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
 			PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
 			IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-			//event.setAmount(event.getAmount()-4);
+			event.setAmount(0);
 			System.out.println("Original: "+event.getAmount());
 			//event.setAmount((float) (event.getAmount() + (STATS.getStrength() * 0.25)));
 			System.out.println("STATS: "+event.getAmount());
@@ -1107,119 +1109,6 @@ public class EventHandler {
 				System.out.println("TOTAL: "+event.getAmount());
 			}
 		}
-	}
-	
-	@SubscribeEvent
-	public void itemInformation(ItemTooltipEvent event) {
-		/*
-		if(event.getItemStack().getItem() instanceof ItemKeychain){
-			for(int i = 0; i<event.getToolTip().size();i++) {
-				if(event.getToolTip().get(i).contains("Da�o")||event.getToolTip().get(i).contains("mano")|| event.getToolTip().get(i).contains("Damage")||event.getToolTip().get(i).contains("hand"))
-				event.getToolTip().remove(event.getToolTip().get(i));
-			}
-			int baseDamage = ((ItemKeychain) event.getItemStack().getItem()).getKeyblade().getStrength();
-			double actualDamage = baseDamage + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.25);
-			int sharpnessLevel = getEnchantment(event.getItemStack(), 16);
-			double sharpnessDamage = 0;
-			switch (sharpnessLevel)
-			{
-			case 1:
-				sharpnessDamage = 1;
-				break;
-			case 2:
-				sharpnessDamage = 1.5;
-				break;
-			case 3:
-				sharpnessDamage = 2;
-				break;
-			case 4:
-				sharpnessDamage = 2.5;
-				break;
-			case 5:
-				sharpnessDamage = 3;
-				break;
-			}
-			event.getToolTip().add(TextFormatting.RED+"Strength: "+(actualDamage+sharpnessDamage)+ " ("+baseDamage+")");
-
-			int baseMagic = ((ItemKeychain) event.getItemStack().getItem()).getKeyblade().getMagic();
-			double actualMagic = baseMagic + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() * 0.25);
-			event.getToolTip().add(TextFormatting.AQUA+"Magic: "+actualMagic + " ("+baseMagic+")");
-			
-		} else if(event.getItemStack().getItem() instanceof ItemKeyblade){
-			if(ConfigHandler.DisableVanillaTooltip) {
-				//event.getToolTip().add(new TextComponentTranslation(event.getItemStack().getUnlocalizedName()+".name").getFormattedText());
-
-				for(int i = 0; i<event.getToolTip().size();i++)
-				{
-					if(event.getToolTip().get(i).contains("Da�o")||event.getToolTip().get(i).contains("mano")|| event.getToolTip().get(i).contains("Damage")||event.getToolTip().get(i).contains("hand"))
-					event.getToolTip().remove(event.getToolTip().get(i));
-				}
-				int baseDamage = ((ItemKeyblade) event.getItemStack().getItem()).getStrength();
-				double actualDamage = baseDamage + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.25);
-				int sharpnessLevel = getEnchantment(event.getItemStack(), 16);
-				double sharpnessDamage = 0;
-				switch (sharpnessLevel)
-				{
-				case 1:
-					sharpnessDamage = 1;
-					break;
-				case 2:
-					sharpnessDamage = 1.5;
-					break;
-				case 3:
-					sharpnessDamage = 2;
-					break;
-				case 4:
-					sharpnessDamage = 2.5;
-					break;
-				case 5:
-					sharpnessDamage = 3;
-					break;
-				}
-				event.getToolTip().add(TextFormatting.RED+"Strength: "+(actualDamage+sharpnessDamage)+ " ("+baseDamage+")");
-
-				int baseMagic = ((ItemKeyblade) event.getItemStack().getItem()).getMagic();
-				double actualMagic = baseMagic + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() * 0.25);
-				event.getToolTip().add(TextFormatting.AQUA+"Magic: "+actualMagic + " ("+baseMagic+")");
-				
-				/*for(int i = 0; i<event.getItemStack().getEnchantmentTagList().tagCount() ;i++) {
-					event.getToolTip().add(event.getItemStack().getEnchantmentTagList().getStringTagAt(i));
-				}
-				if(event.isShowAdvancedItemTooltips()){
-				//	event.getToolTip().add("�8kk:"+event.getItemStack().getUnlocalizedName().substring(5));
-				}
-			}else{
-				
-				int baseDamage = ((ItemKeyblade) event.getItemStack().getItem()).getStrength();
-				double actualDamage = baseDamage + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.25);
-				int sharpnessLevel = getEnchantment(event.getItemStack(), 16);
-				double sharpnessDamage = 0;
-				switch (sharpnessLevel){
-				case 1:
-					sharpnessDamage = 1;
-					break;
-				case 2:
-					sharpnessDamage = 1.5;
-					break;
-				case 3:
-					sharpnessDamage = 2;
-					break;
-				case 4:
-					sharpnessDamage = 2.5;
-					break;
-				case 5:
-					sharpnessDamage = 3;
-					break;
-				}
-				event.getToolTip().add(TextFormatting.RED+"Strength: "+(actualDamage+sharpnessDamage)+ " ("+baseDamage+")");
-
-				int baseMagic = ((ItemKeyblade) event.getItemStack().getItem()).getMagic();
-				double actualMagic = baseMagic + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() * 0.25);
-				event.getToolTip().add(TextFormatting.AQUA+"Magic: "+actualMagic + " ("+baseMagic+")");
-				
-			}
-		}
-		*/
 	}
 
 	@SubscribeEvent
