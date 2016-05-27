@@ -1,17 +1,15 @@
 package uk.co.wehavecookies56.kk.common.core.handler;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.UUID;
-
+import com.google.common.collect.Multimap;
 import com.mojang.authlib.GameProfile;
-
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityMob;
@@ -20,15 +18,18 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase.NBTPrimitive;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -51,22 +52,17 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
-import uk.co.wehavecookies56.kk.common.capability.CheatModeCapability;
+import uk.co.wehavecookies56.kk.common.capability.*;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability.IFirstTimeJoin;
-import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
-import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
-import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
-import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
-import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
-import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagL;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagM;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagS;
@@ -78,27 +74,19 @@ import uk.co.wehavecookies56.kk.common.item.ItemMunny;
 import uk.co.wehavecookies56.kk.common.item.ItemStacks;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncItemsInventory;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DriveOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MagicOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
+import uk.co.wehavecookies56.kk.common.network.packet.client.*;
+import uk.co.wehavecookies56.kk.common.network.packet.server.*;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.UUID;
 
 public class EventHandler {
 	
@@ -344,6 +332,80 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public void addTooltip (ItemTooltipEvent event) {
+		//TODO Localize all this
+		if (event.getItemStack().getItem() instanceof ItemKeyblade) {
+			List<String> tooltip = event.getToolTip();
+			ItemKeyblade keyblade = (ItemKeyblade) event.getItemStack().getItem();
+			(tooltip.subList(1, tooltip.size())).clear();
+			tooltip.add(TextFormatting.RED + "Strength: +" + keyblade.getStrength() + " (" + (int)(event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + keyblade.getStrength()) + ")");
+			tooltip.add(TextFormatting.BLUE + "Magic: +" + keyblade.getMagic() + " (" + (int)(event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() + keyblade.getMagic()) + ")");
+			if (keyblade.getDescription() != null) {
+				if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+					tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
+					tooltip.add(keyblade.description);
+					tooltip.add("");
+				} else {
+					tooltip.add("Hold " +  TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY + " for description");
+				}
+			}
+			if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
+				if (event.getItemStack().hasTagCompound()) {
+					NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
+
+					if (nbttaglist != null) {
+						tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
+						for (int i = 0; i < nbttaglist.tagCount(); i++) {
+							int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+							int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+
+							if (Enchantment.getEnchantmentByID(id) != null) {
+								tooltip.add(Enchantment.getEnchantmentByID(id).getTranslatedName(lvl));
+							}
+						}
+					}
+				}
+				for (EntityEquipmentSlot entityequipmentslot : EntityEquipmentSlot.values()) {
+					Multimap<String, AttributeModifier> multimap = event.getItemStack().getAttributeModifiers(entityequipmentslot);
+
+					if (!multimap.isEmpty()) {
+						tooltip.add("");
+						for (Entry<String, AttributeModifier> entry : multimap.entries()) {
+							AttributeModifier attributemodifier = (AttributeModifier) entry.getValue();
+							double d0 = attributemodifier.getAmount();
+							boolean flag = false;
+
+							if (attributemodifier.getID() == UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF")) {
+								d0 = d0 + event.getEntityPlayer().getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
+								d0 = d0 + (double) EnchantmentHelper.getModifierForCreature(event.getItemStack(), EnumCreatureAttribute.UNDEFINED);
+								flag = true;
+							}
+
+							double d1;
+
+							if (attributemodifier.getOperation() != 1 && attributemodifier.getOperation() != 2) {
+								d1 = d0;
+							} else {
+								d1 = d0 * 100.0D;
+							}
+
+							if (entry.getKey() == "generic.attackDamage") {
+								d1 += event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength();
+							}
+							if (flag) {
+								tooltip.add(I18n.translateToLocalFormatted("attribute.modifier.equals." + attributemodifier.getOperation(), new Object[]{ItemStack.DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + (String) entry.getKey())}));
+							} else if (d0 > 0.0D) {
+								tooltip.add(TextFormatting.BLUE + I18n.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier.getOperation(), new Object[]{ItemStack.DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + (String) entry.getKey())}));
+							} else if (d0 < 0.0D) {
+								d1 = d1 * -1.0D;
+								tooltip.add(TextFormatting.RED + I18n.translateToLocalFormatted("attribute.modifier.take." + attributemodifier.getOperation(), new Object[]{ItemStack.DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + (String) entry.getKey())}));
+							}
+						}
+					}
+				}
+			} else {
+				tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
+			}
+		}
 		Item ghostBlox = Item.getItemFromBlock(ModBlocks.GhostBlox);
 		if (event.getItemStack().getItem() == ghostBlox) {
 			if (!KeyboardHelper.isShiftDown()) {
@@ -1028,30 +1090,31 @@ public class EventHandler {
 			EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
 			PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
 			IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-			event.setAmount(event.getAmount()-4);
+			//event.setAmount(event.getAmount()-4);
 			System.out.println("Original: "+event.getAmount());
-			event.setAmount((float) (event.getAmount() + (STATS.getStrength() * 0.25)));
+			//event.setAmount((float) (event.getAmount() + (STATS.getStrength() * 0.25)));
 			System.out.println("STATS: "+event.getAmount());
 
-			if (player.getHeldItem(EnumHand.MAIN_HAND) != null) if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
-				event.setAmount(event.getAmount() + ((ItemKeyblade)player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getStrength());
-				System.out.println("Old + Keyblade:"+event.getAmount());
-
-				if (DS.getActiveDriveName().equals("Valor")) event.setAmount((float) (event.getAmount() * 1.5));
+			if (player.getHeldItem(EnumHand.MAIN_HAND) != null) {
+				if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
+					event.setAmount(event.getAmount() + ((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
+					System.out.println("Old + Keyblade:" + event.getAmount());
+				}
+			}
+			if (DS.getActiveDriveName().equals("Valor")) {
+				event.setAmount((float) (event.getAmount() * 1.5));
 				STATS.addDP(1);
 				System.out.println("TOTAL: "+event.getAmount());
-			} else
-				return;
+			}
 		}
 	}
 	
 	@SubscribeEvent
-	public void itemInformation(ItemTooltipEvent event)
-	{
+	public void itemInformation(ItemTooltipEvent event) {
+		/*
 		if(event.getItemStack().getItem() instanceof ItemKeychain){
-			for(int i = 0; i<event.getToolTip().size();i++)
-			{
-				if(event.getToolTip().get(i).contains("Daño")||event.getToolTip().get(i).contains("mano")|| event.getToolTip().get(i).contains("Damage")||event.getToolTip().get(i).contains("hand"))
+			for(int i = 0; i<event.getToolTip().size();i++) {
+				if(event.getToolTip().get(i).contains("Daï¿½o")||event.getToolTip().get(i).contains("mano")|| event.getToolTip().get(i).contains("Damage")||event.getToolTip().get(i).contains("hand"))
 				event.getToolTip().remove(event.getToolTip().get(i));
 			}
 			int baseDamage = ((ItemKeychain) event.getItemStack().getItem()).getKeyblade().getStrength();
@@ -1082,16 +1145,13 @@ public class EventHandler {
 			double actualMagic = baseMagic + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() * 0.25);
 			event.getToolTip().add(TextFormatting.AQUA+"Magic: "+actualMagic + " ("+baseMagic+")");
 			
-		}
-		
-		else if(event.getItemStack().getItem() instanceof ItemKeyblade){
-			if(ConfigHandler.DisableVanillaTooltip)
-			{
+		} else if(event.getItemStack().getItem() instanceof ItemKeyblade){
+			if(ConfigHandler.DisableVanillaTooltip) {
 				//event.getToolTip().add(new TextComponentTranslation(event.getItemStack().getUnlocalizedName()+".name").getFormattedText());
 
 				for(int i = 0; i<event.getToolTip().size();i++)
 				{
-					if(event.getToolTip().get(i).contains("Daño")||event.getToolTip().get(i).contains("mano")|| event.getToolTip().get(i).contains("Damage")||event.getToolTip().get(i).contains("hand"))
+					if(event.getToolTip().get(i).contains("Daï¿½o")||event.getToolTip().get(i).contains("mano")|| event.getToolTip().get(i).contains("Damage")||event.getToolTip().get(i).contains("hand"))
 					event.getToolTip().remove(event.getToolTip().get(i));
 				}
 				int baseDamage = ((ItemKeyblade) event.getItemStack().getItem()).getStrength();
@@ -1122,24 +1182,19 @@ public class EventHandler {
 				double actualMagic = baseMagic + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() * 0.25);
 				event.getToolTip().add(TextFormatting.AQUA+"Magic: "+actualMagic + " ("+baseMagic+")");
 				
-				/*for(int i = 0; i<event.getItemStack().getEnchantmentTagList().tagCount() ;i++)
-				{
+				/*for(int i = 0; i<event.getItemStack().getEnchantmentTagList().tagCount() ;i++) {
 					event.getToolTip().add(event.getItemStack().getEnchantmentTagList().getStringTagAt(i));
-				}*/
-				if(event.isShowAdvancedItemTooltips())
-				{
-				//	event.getToolTip().add("§8kk:"+event.getItemStack().getUnlocalizedName().substring(5));
 				}
-			}
-			else
-			{
+				if(event.isShowAdvancedItemTooltips()){
+				//	event.getToolTip().add("ï¿½8kk:"+event.getItemStack().getUnlocalizedName().substring(5));
+				}
+			}else{
 				
 				int baseDamage = ((ItemKeyblade) event.getItemStack().getItem()).getStrength();
 				double actualDamage = baseDamage + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.25);
 				int sharpnessLevel = getEnchantment(event.getItemStack(), 16);
 				double sharpnessDamage = 0;
-				switch (sharpnessLevel)
-				{
+				switch (sharpnessLevel){
 				case 1:
 					sharpnessDamage = 1;
 					break;
@@ -1162,12 +1217,9 @@ public class EventHandler {
 				double actualMagic = baseMagic + (event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() * 0.25);
 				event.getToolTip().add(TextFormatting.AQUA+"Magic: "+actualMagic + " ("+baseMagic+")");
 				
-				
-				
-				
 			}
-			
 		}
+		*/
 	}
 
 	@SubscribeEvent

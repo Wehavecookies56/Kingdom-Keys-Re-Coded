@@ -154,7 +154,8 @@ public class ModItems {
 		JungleKing = new ItemRealKeyblade(15,0).setUnlocalizedName(Strings.JungleKing);
 		KeybladeofPeoplesHearts = new ItemRealKeyblade(testStr, TestMag).setUnlocalizedName(Strings.KeybladeofPeoplesHearts);
 		Kiblade = new ItemRealKeyblade(54,30).setUnlocalizedName(Strings.Kiblade);
-		KingdomKey = new ItemRealKeyblade(9,2).setUnlocalizedName(Strings.KingdomKey);
+		KingdomKey = new ItemRealKeyblade(3,1).setUnlocalizedName(Strings.KingdomKey);
+		((ItemKeyblade)KingdomKey).setDescription("The key chain attached draws out the Keyblade's true form and power.");
 		KingdomKeyD = new ItemRealKeyblade(9,2).setUnlocalizedName(Strings.KingdomKeyD);
 		KnockoutPunch = new ItemRealKeyblade(36,20).setUnlocalizedName(Strings.KnockoutPunch);
 		LadyLuck = new ItemRealKeyblade(24,4).setUnlocalizedName(Strings.LadyLuck);

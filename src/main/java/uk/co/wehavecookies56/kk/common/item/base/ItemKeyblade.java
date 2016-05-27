@@ -12,16 +12,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
-import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
-
-import java.util.List;
 
 public class ItemKeyblade extends ItemSword {
 
@@ -162,9 +157,12 @@ public class ItemKeyblade extends ItemSword {
     youngxehanortskeyblade[] = {,},
     zeroone[] = {,};
 	int magic, strength;
+	public String description;
+
+	//TODO Set attack speed
 
 	public ItemKeyblade (int strength, int magic) {
-		super(EnumHelper.addToolMaterial("KEYBLADE", 0, -1, 0, 0, 20));
+		super(EnumHelper.addToolMaterial("KEYBLADE", -4, -1, 0, 0, 20));
 		this.magic = magic;
 		this.strength = strength;
 		setMaxStackSize(1);
@@ -185,14 +183,24 @@ public class ItemKeyblade extends ItemSword {
 	public void setMagic(int magic) {
 		this.magic = magic;
 	}
-	
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
 	/*@Override
 	@SideOnly (Side.CLIENT)
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
 		dataList.add("Strength: "+(getStrength()+(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.25))+"TOTAL"+getStrength());
 		dataList.add("Magic: "+getMagic());
 	}*/
-	
+
+
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player, EnumHand hand) {
 		if(player.isSneaking()) {
