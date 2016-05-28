@@ -60,14 +60,11 @@ public class ModItems {
 	public static Item OrganizationRobe_Helmet, OrganizationRobe_Chestplate, OrganizationRobe_Leggings, OrganizationRobe_Boots, Terra_Helmet, Terra_Chestplate, Terra_Leggings, Terra_Boots, Aqua_Helmet, Aqua_Chestplate, Aqua_Leggings, Aqua_Boots, Ventus_Helmet, Ventus_Chestplate, Ventus_Leggings, Ventus_Boots, Eraqus_Helmet, Eraqus_Chestplate, Eraqus_Leggings, Eraqus_Boots;
 
 	// Armour material
-	private static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", 0, new int[] { 7, 8, 10, 7 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
-	private static ArmorMaterial TERRA = EnumHelper.addArmorMaterial("TERRA", Reference.MODID + ":terra", 0, new int[] { 7, 8, 10, 7 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
-	private static ArmorMaterial AQUA = EnumHelper.addArmorMaterial("AQUA", Reference.MODID + ":aqua", 0, new int[] { 7, 8, 10, 7 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
-	private static ArmorMaterial VENTUS = EnumHelper.addArmorMaterial("VENTUS", Reference.MODID + ":ventus", 0, new int[] { 7, 8, 10, 7 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
-	private static ArmorMaterial ERAQUS = EnumHelper.addArmorMaterial("ERAQUS", Reference.MODID + ":eraqus", 0, new int[] { 7, 8, 10, 7 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
-
-	int dmg = 1, mag = 1;
-
+	private static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", -1, new int[] { 7, 8, 10, 7 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
+	private static ArmorMaterial TERRA = EnumHelper.addArmorMaterial("TERRA", Reference.MODID + ":terra", -1, new int[] { 9, 10, 12, 9 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
+	private static ArmorMaterial AQUA = EnumHelper.addArmorMaterial("AQUA", Reference.MODID + ":aqua", -1, new int[] { 9, 10, 12, 9 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
+	private static ArmorMaterial VENTUS = EnumHelper.addArmorMaterial("VENTUS", Reference.MODID + ":ventus", -1, new int[] { 9, 10, 12, 9 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
+	private static ArmorMaterial ERAQUS = EnumHelper.addArmorMaterial("ERAQUS", Reference.MODID + ":eraqus", -1, new int[] { 9, 10, 12, 9 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
 	
 	public static CreativeTabs tabKingdomKeys;
 
@@ -93,21 +90,21 @@ public class ModItems {
 		UnknownKnowledge = new Item().setUnlocalizedName(Strings.UnknownKnowledge).setCreativeTab(tabKingdomKeys);
 		VoidKnowledge = new Item().setUnlocalizedName(Strings.VoidKnowledge).setCreativeTab(tabKingdomKeys);
 
-		Interdiction = new ItemInterdiction(EnumHelper.addToolMaterial(ConfigHandler.A_TM_Interdiction[0], Integer.parseInt(ConfigHandler.A_TM_Interdiction[1]), Integer.parseInt(ConfigHandler.A_TM_Interdiction[2]), Float.parseFloat(ConfigHandler.A_TM_Interdiction[3]), Float.parseFloat(ConfigHandler.A_TM_Interdiction[4]), Integer.parseInt(ConfigHandler.A_TM_Interdiction[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
-		Sharpshooter = new ItemSharpshooter(EnumHelper.addToolMaterial(ConfigHandler.A_TM_Sharpshooter[0], Integer.parseInt(ConfigHandler.A_TM_Sharpshooter[1]), Integer.parseInt(ConfigHandler.A_TM_Sharpshooter[2]), Float.parseFloat(ConfigHandler.A_TM_Sharpshooter[3]), Float.parseFloat(ConfigHandler.A_TM_Sharpshooter[4]), Integer.parseInt(ConfigHandler.A_TM_Sharpshooter[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sharpshooter);
-		Lindworm = new ItemLindworm(EnumHelper.addToolMaterial(ConfigHandler.A_TM_Lindworm[0], Integer.parseInt(ConfigHandler.A_TM_Lindworm[1]), Integer.parseInt(ConfigHandler.A_TM_Lindworm[2]), Float.parseFloat(ConfigHandler.A_TM_Lindworm[3]), Float.parseFloat(ConfigHandler.A_TM_Lindworm[4]), Integer.parseInt(ConfigHandler.A_TM_Lindworm[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lindworm);
+		Interdiction = new ItemInterdiction(EnumHelper.addToolMaterial("interdiction", 3, -1, 6F, 10, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
+		Sharpshooter = new ItemSharpshooter(EnumHelper.addToolMaterial("sharpshooter", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sharpshooter);
+		Lindworm = new ItemLindworm(EnumHelper.addToolMaterial("lindworm", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lindworm);
 		FrozenPride = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FrozenPride);
-		Skysplitter = new ItemSkysplitter(EnumHelper.addToolMaterial(ConfigHandler.A_TM_Skysplitter[0], Integer.parseInt(ConfigHandler.A_TM_Skysplitter[1]), Integer.parseInt(ConfigHandler.A_TM_Skysplitter[2]), Float.parseFloat(ConfigHandler.A_TM_Skysplitter[3]), Float.parseFloat(ConfigHandler.A_TM_Skysplitter[4]), Integer.parseInt(ConfigHandler.A_TM_Skysplitter[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
-		BookofRetribution = new ItemBookofRetribution(EnumHelper.addToolMaterial(ConfigHandler.A_TM_BookofRetribution[0], Integer.parseInt(ConfigHandler.A_TM_BookofRetribution[1]), Integer.parseInt(ConfigHandler.A_TM_BookofRetribution[2]), Float.parseFloat(ConfigHandler.A_TM_BookofRetribution[3]), Float.parseFloat(ConfigHandler.A_TM_BookofRetribution[4]), Integer.parseInt(ConfigHandler.A_TM_BookofRetribution[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
-		Lunatic = new ItemLunatic(EnumHelper.addToolMaterial(ConfigHandler.A_TM_Lunatic[0], Integer.parseInt(ConfigHandler.A_TM_Lunatic[1]), Integer.parseInt(ConfigHandler.A_TM_Lunatic[2]), Float.parseFloat(ConfigHandler.A_TM_Lunatic[3]), Float.parseFloat(ConfigHandler.A_TM_Lunatic[4]), Integer.parseInt(ConfigHandler.A_TM_Lunatic[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lunatic);
-		EternalFlames = new ItemEternalFlames(EnumHelper.addToolMaterial(ConfigHandler.A_TM_EternalFlames[0], Integer.parseInt(ConfigHandler.A_TM_EternalFlames[1]), Integer.parseInt(ConfigHandler.A_TM_EternalFlames[2]), Float.parseFloat(ConfigHandler.A_TM_EternalFlames[3]), Float.parseFloat(ConfigHandler.A_TM_EternalFlames[4]), Integer.parseInt(ConfigHandler.A_TM_EternalFlames[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
-		Arpeggio = new ItemArpeggio(EnumHelper.addToolMaterial(ConfigHandler.A_TM_Arpeggio[0], Integer.parseInt(ConfigHandler.A_TM_Arpeggio[1]), Integer.parseInt(ConfigHandler.A_TM_Arpeggio[2]), Float.parseFloat(ConfigHandler.A_TM_Arpeggio[3]), Float.parseFloat(ConfigHandler.A_TM_Arpeggio[4]), Integer.parseInt(ConfigHandler.A_TM_Arpeggio[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Arpeggio);
-		FairGame = new ItemFairGame(EnumHelper.addToolMaterial(ConfigHandler.A_TM_FairGame[0], Integer.parseInt(ConfigHandler.A_TM_FairGame[1]), Integer.parseInt(ConfigHandler.A_TM_FairGame[2]), Float.parseFloat(ConfigHandler.A_TM_FairGame[3]), Float.parseFloat(ConfigHandler.A_TM_FairGame[4]), Integer.parseInt(ConfigHandler.A_TM_FairGame[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
-		GracefulDahlia = new ItemGracefulDahlia(EnumHelper.addToolMaterial(ConfigHandler.A_TM_GracefulDahlia[0], Integer.parseInt(ConfigHandler.A_TM_GracefulDahlia[1]), Integer.parseInt(ConfigHandler.A_TM_GracefulDahlia[2]), Float.parseFloat(ConfigHandler.A_TM_GracefulDahlia[3]), Float.parseFloat(ConfigHandler.A_TM_GracefulDahlia[4]), Integer.parseInt(ConfigHandler.A_TM_GracefulDahlia[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
-		Foudre = new ItemFoudre(EnumHelper.addToolMaterial(ConfigHandler.A_TM_Foudre[0], Integer.parseInt(ConfigHandler.A_TM_Foudre[1]), Integer.parseInt(ConfigHandler.A_TM_Foudre[2]), Float.parseFloat(ConfigHandler.A_TM_Foudre[3]), Float.parseFloat(ConfigHandler.A_TM_Foudre[4]), Integer.parseInt(ConfigHandler.A_TM_Foudre[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foudre);
-		BlazeofGlory = new ItemBlazeofGlory(EnumHelper.addToolMaterial(ConfigHandler.A_TM_BlazeofGlory[0], Integer.parseInt(ConfigHandler.A_TM_BlazeofGlory[1]), Integer.parseInt(ConfigHandler.A_TM_BlazeofGlory[2]), Float.parseFloat(ConfigHandler.A_TM_BlazeofGlory[3]), Float.parseFloat(ConfigHandler.A_TM_BlazeofGlory[4]), Integer.parseInt(ConfigHandler.A_TM_BlazeofGlory[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
-		Prometheus = new ItemPrometheus(EnumHelper.addToolMaterial(ConfigHandler.A_TM_Prometheus[0], Integer.parseInt(ConfigHandler.A_TM_Prometheus[1]), Integer.parseInt(ConfigHandler.A_TM_Prometheus[2]), Float.parseFloat(ConfigHandler.A_TM_Prometheus[3]), Float.parseFloat(ConfigHandler.A_TM_Prometheus[4]), Integer.parseInt(ConfigHandler.A_TM_Prometheus[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
-		Ifrit = new ItemIfrit(EnumHelper.addToolMaterial(ConfigHandler.A_TM_Ifrit[0], Integer.parseInt(ConfigHandler.A_TM_Ifrit[1]), Integer.parseInt(ConfigHandler.A_TM_Ifrit[2]), Float.parseFloat(ConfigHandler.A_TM_Ifrit[3]), Float.parseFloat(ConfigHandler.A_TM_Ifrit[4]), Integer.parseInt(ConfigHandler.A_TM_Ifrit[5]))).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
+		Skysplitter = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 20, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
+		BookofRetribution = new ItemBookofRetribution(EnumHelper.addToolMaterial("bookofretribution", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
+		Lunatic = new ItemLunatic(EnumHelper.addToolMaterial("lunatic", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lunatic);
+		EternalFlames = new ItemEternalFlames(EnumHelper.addToolMaterial("eternalflames", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
+		Arpeggio = new ItemArpeggio(EnumHelper.addToolMaterial("arpeggio", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Arpeggio);
+		FairGame = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
+		GracefulDahlia = new ItemGracefulDahlia(EnumHelper.addToolMaterial("gracefuldahlia", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
+		Foudre = new ItemFoudre(EnumHelper.addToolMaterial("foudre", 3, -1, 6F, 7, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foudre);
+		BlazeofGlory = new ItemBlazeofGlory(EnumHelper.addToolMaterial("blazeofglory", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
+		Prometheus = new ItemPrometheus(EnumHelper.addToolMaterial("prometheus", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
+		Ifrit = new ItemIfrit(EnumHelper.addToolMaterial("ifrit", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
 
 	
 	///	for(int i=i; i<;i++)
