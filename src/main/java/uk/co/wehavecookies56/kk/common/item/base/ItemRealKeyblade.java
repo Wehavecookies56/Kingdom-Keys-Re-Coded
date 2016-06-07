@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.item.base;
 
-import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,12 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+
+import java.util.List;
 
 public class ItemRealKeyblade extends ItemKeyblade {
 
@@ -39,6 +36,7 @@ public class ItemRealKeyblade extends ItemKeyblade {
 			if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 				Entity e = (Entity) list.get(i);
 				if (e instanceof EntityLivingBase) {
+					player.swingArm(hand);
 					e.motionY=1.15;
 					e.attackEntityFrom(DamageSource.magic, 2);
 					player.motionY = 1.15;	
