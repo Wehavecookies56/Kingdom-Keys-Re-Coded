@@ -6,11 +6,15 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.GuiScrollingList;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class GuiRecipeList extends GuiScrollingList {
 
@@ -55,7 +59,9 @@ public class GuiRecipeList extends GuiScrollingList {
 
 		this.f.drawString(f.trimStringToWidth(TextHelper.localize(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, 0xFFFFFF);
 		this.ir.renderItemAndEffectIntoGUI(getItemStackFromName(RECIPES.getKnownRecipes().get(var1).toString()), this.left + 3, var3 + 12);
-	}
+		this.f.drawString("Str: +"+((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)))).getStrength(),this.left + 25, var3 + 12, 0xFF0000);
+		this.f.drawString("Mag: +"+((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)))).getMagic(),this.left + 25, var3 + 20, 0x4444FF);
+		}
 
 	public ItemStack getItemStackFromName (String name) {
 		if (name.equals(ModItems.AbaddonPlasma.getUnlocalizedName())) return new ItemStack(ModItems.AbaddonPlasma, 1);
