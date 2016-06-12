@@ -57,7 +57,7 @@ public class ItemRecipe extends Item {
 
 			if(RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1) && RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2) && RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3))
 			{
-				shuffleRecipes(stack);
+				shuffleRecipes(stack, player);
 			}
 			if (consume) stack.stackSize--;
 
@@ -65,12 +65,16 @@ public class ItemRecipe extends Item {
 		return super.onItemRightClick(stack, world, player, hand);
 	}
 
-	public void shuffleRecipes(ItemStack stack) //TODO Test this
+	public void shuffleRecipes(ItemStack stack, EntityPlayer player) //TODO Test this
 	{
+		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+
 		long seed = System.nanoTime();
 		// Shuffles the list of recipe to increase randomness
 		Collections.shuffle(Lists.recipes, new Random(seed));
 		String Recipe1 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
+	/*	while (Recipe1.equals(RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe1)))
+			Recipe1 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));*/
 		String Recipe2 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
 		// Generate a new random value for the second recipe until it's not
 		// equal the first
@@ -91,7 +95,7 @@ public class ItemRecipe extends Item {
 	@Override
 	public void onUpdate (ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		if (!stack.hasTagCompound()) {
-			shuffleRecipes(stack);
+			shuffleRecipes(stack, (EntityPlayer) entityIn);
 		}
 	}
 

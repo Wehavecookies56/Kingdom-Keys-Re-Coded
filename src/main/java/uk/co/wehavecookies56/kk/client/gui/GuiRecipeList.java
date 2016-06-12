@@ -51,7 +51,12 @@ public class GuiRecipeList extends GuiScrollingList {
 	}
 
 	@Override
-	protected void drawBackground () {}
+	protected void drawBackground () 
+	{		
+		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+
+		this.f.drawString(RECIPES.getKnownRecipes().size()+"/120",this.left + 130, 65, 0xFFFFFF);
+	}
 
 	@Override
 	protected void drawSlot (int var1, int var2, int var3, int var4, Tessellator var5) {
