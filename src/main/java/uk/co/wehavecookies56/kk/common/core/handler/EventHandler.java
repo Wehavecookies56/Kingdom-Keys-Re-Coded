@@ -1092,13 +1092,15 @@ public class EventHandler {
 			EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
 			PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
 			IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-			event.setAmount(0);
+			
+			
 			System.out.println("Original: "+event.getAmount());
 			//event.setAmount((float) (event.getAmount() + (STATS.getStrength() * 0.25)));
 			System.out.println("STATS: "+event.getAmount());
 
 			if (player.getHeldItem(EnumHand.MAIN_HAND) != null) {
 				if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
+					event.setAmount(0);
 					event.setAmount((float) (event.getAmount() + ((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
 					System.out.println("Old + Keyblade:" + event.getAmount());
 				}
