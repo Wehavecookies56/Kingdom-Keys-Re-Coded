@@ -35,24 +35,24 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
 
 public class ItemKeyblade extends ItemSword {
-	int magic, strength;
+	double magic, strength;
 	public String description;
 	double speed = 1.0;
 
 	//TODO Set attack speed
 
-	public ItemKeyblade (int strength, int magic) {
+	public ItemKeyblade (double strength, double magic) {
 		super(EnumHelper.addToolMaterial("KEYBLADE", -4, -1, 0, 0, 20));
 		this.magic = magic;
 		this.strength = strength;
 		setMaxStackSize(1);
 		setCreativeTab(ModItems.tabKingdomKeys);
 	}
-	public int getStrength() {
+	public double getStrength() {
 		return this.strength;
 	}
 	
-	public int getMagic() {
+	public double getMagic() {
 		return this.magic;
 	}
 

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ItemRealKeyblade extends ItemKeyblade {
 
-	public ItemRealKeyblade (int strength, int magic) {
+	public ItemRealKeyblade (double strength, double magic) {
 		super(strength, magic);
 		setMaxStackSize(1);
 	}
@@ -67,7 +67,7 @@ public class ItemRealKeyblade extends ItemKeyblade {
 						d = (Math.random() - Math.random()) * 0.01D;
 					((EntityLivingBase) e).knockBack(e, 1, -d, -d1);
 					e.motionY*=1.15;
-					e.attackEntityFrom(DamageSource.magic, ((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).strength + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
+					e.attackEntityFrom(DamageSource.magic, (float) (((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).strength + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
 					player.cameraPitch += 100;
 				}
 			}

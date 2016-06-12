@@ -28,6 +28,8 @@ public class ConfigHandler {
 	
 	public static int guiAlpha = 255;
 	
+	public static double damageMultiplier = 1;
+	
 	public static boolean chat = true;
 	
 	public static Property interfaceColourProperty, EnableHeartsOnHUDProperty, EnableCustomMusicProperty;
@@ -71,7 +73,7 @@ public class ConfigHandler {
 
 		//ITEMS
 		DisableVanillaTooltip = configProperty("Disable Vanilla Tooltips", "Disables the vanilla tooltip information for keyblades", DisableVanillaTooltip, INTERFACE);
-	
+		damageMultiplier = configProperty("Keyblade damage multiplier", "Keyblade Strength and Magic will be multiplied by the amount (can be decimal)", damageMultiplier, ITEMS);
 		if (config.hasChanged()) config.save();
 	}
 

@@ -1099,7 +1099,7 @@ public class EventHandler {
 
 			if (player.getHeldItem(EnumHand.MAIN_HAND) != null) {
 				if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
-					event.setAmount(event.getAmount() + ((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
+					event.setAmount((float) (event.getAmount() + ((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
 					System.out.println("Old + Keyblade:" + event.getAmount());
 				}
 			}

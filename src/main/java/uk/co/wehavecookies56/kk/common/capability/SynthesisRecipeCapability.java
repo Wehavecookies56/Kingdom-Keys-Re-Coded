@@ -67,7 +67,7 @@ public class SynthesisRecipeCapability {
 
 		@Override public List<String> getKnownRecipes() { return knownRecipes; }
 
-		@Override public void learnRecipe(Recipe recipe) { if (!this.knownRecipes.contains(recipe.getName())) this.knownRecipes.add(recipe.getName()); }
+		@Override public void learnRecipe(Recipe recipe) { if (!this.knownRecipes.contains(recipe.getName())) this.knownRecipes.add(recipe.getName());  java.util.Collections.sort(knownRecipes); }
 	}
 
 }
