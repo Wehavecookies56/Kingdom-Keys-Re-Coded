@@ -1,15 +1,23 @@
 package uk.co.wehavecookies56.kk.client.core.handler;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
-import org.lwjgl.input.Keyboard;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.client.gui.GuiCommandMenu;
@@ -19,15 +27,21 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
-import uk.co.wehavecookies56.kk.common.item.base.*;
+import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.magic.Magic;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.server.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
+import uk.co.wehavecookies56.kk.common.network.packet.server.LockOn;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
+import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
 
 public class InputHandler {
 
@@ -305,6 +319,7 @@ public class InputHandler {
 				GuiHelper.openMenu();
 				PacketDispatcher.sendToServer(new OpenMenu());
 				break;
+				
 			case SCROLL_UP:
 				commandUp();
 				world.playSound(player, player.getPosition(), ModSounds.move, SoundCategory.MASTER, 1.0f, 1.0f);
@@ -338,6 +353,11 @@ public class InputHandler {
 				break;
 			case SCROLL_ACTIVATOR:
 				break;
+				
+			case LOCK_ON:
+				PacketDispatcher.sendToServer(new LockOn());
+				break;
+				
 			default:
 				break;
 		}
@@ -378,7 +398,7 @@ public class InputHandler {
 
 	public static enum Keybinds {
 
-        OPENMENU ("key.kingdomkeys.openmenu", Keyboard.KEY_M), SCROLL_UP ("key.kingdomkeys.scrollup", Keyboard.KEY_UP), SCROLL_DOWN ("key.kingdomkeys.scrolldown", Keyboard.KEY_DOWN), ENTER ("key.kingdomkeys.enter", Keyboard.KEY_RIGHT), BACK ("key.kingdomkeys.back", Keyboard.KEY_LEFT), SCROLL_ACTIVATOR ("key.kingdomkeys.scrollactivator", Keyboard.KEY_LMENU), SUMMON_KEYBLADE ("key.kingdomkeys.summonkeyblade", Keyboard.KEY_G);
+        OPENMENU ("key.kingdomkeys.openmenu", Keyboard.KEY_M), SCROLL_UP ("key.kingdomkeys.scrollup", Keyboard.KEY_UP), SCROLL_DOWN ("key.kingdomkeys.scrolldown", Keyboard.KEY_DOWN), ENTER ("key.kingdomkeys.enter", Keyboard.KEY_RIGHT), BACK ("key.kingdomkeys.back", Keyboard.KEY_LEFT), SCROLL_ACTIVATOR ("key.kingdomkeys.scrollactivator", Keyboard.KEY_LMENU), SUMMON_KEYBLADE ("key.kingdomkeys.summonkeyblade", Keyboard.KEY_G), LOCK_ON ("key.kingdomkeys.lockon", Keyboard.KEY_Z);
 
         private final KeyBinding keybinding;
 

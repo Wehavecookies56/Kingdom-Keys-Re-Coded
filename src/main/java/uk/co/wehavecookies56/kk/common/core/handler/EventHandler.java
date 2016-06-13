@@ -1076,17 +1076,9 @@ public class EventHandler {
 				event.setAmount(1);
 			else
 				event.setAmount((float)( event.getAmount() - (STATS.getDefense()*0.25)));
-
-			if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.FrozenPride) 
-			{
-				/* Blocking is gone
-				if (player.) 
-				{
-					event.ammount = 0.5f;
-				}
-				*/
-			}
-			if (event.getSource().getDamageType() == "lightningBolt") if (EntityThunder.summonLightning) event.setCanceled(true);
+			if (event.getSource().getDamageType() == "lightningBolt")
+				if (EntityThunder.summonLightning)
+					event.setCanceled(true);
 		}
 		if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
