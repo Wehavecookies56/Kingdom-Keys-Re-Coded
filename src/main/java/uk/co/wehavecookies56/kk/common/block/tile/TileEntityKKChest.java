@@ -73,6 +73,8 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 		return true;
 	}
 
+
+
 	@Override
 	public void writeToNBT (NBTTagCompound parentNBTTagCompound) {
 		super.writeToNBT(parentNBTTagCompound);

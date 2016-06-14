@@ -1,15 +1,12 @@
 package uk.co.wehavecookies56.kk.common.world;
 
-import java.util.Random;
-
 import com.google.common.base.Predicate;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -17,6 +14,8 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+
+import java.util.Random;
 
 public class WorldGenBlox implements IWorldGenerator {
 
@@ -44,7 +43,7 @@ public class WorldGenBlox implements IWorldGenerator {
 	 */
 	private void generateSurface (World world, Random rand, int chunkX, int chunkZ) {
 		for (int k = 0; k < 85; k++) {
-			BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(chunkX, 0, chunkZ));
+			Biome biome = world.getBiome(new BlockPos(chunkX, 0, chunkZ));
 			int firstBlockXCoord = chunkX + rand.nextInt(16);
 			int firstBlockZCoord = chunkZ + rand.nextInt(16);
 			int quisqueY = rand.nextInt(world.getHeight() - 40) + 40;
@@ -67,7 +66,7 @@ public class WorldGenBlox implements IWorldGenerator {
 			new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, predicate);
 			new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, predicate);
 			new WorldGenMinable(ModBlocks.EnergyOre.getDefaultState(), 3, predicate);
-			BiomeGenBase[] coldBiomes = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.COLD);
+			Biome[] coldBiomes = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.COLD);
 			for (int i = 0; i < coldBiomes.length; i++){
 				if (biome == coldBiomes[i])
 					new WorldGenMinable(ModBlocks.FrostOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
@@ -82,7 +81,7 @@ public class WorldGenBlox implements IWorldGenerator {
 				new WorldGenMinable(ModBlocks.DarkOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 				new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 				new WorldGenMinable(ModBlocks.StormyOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-				BiomeGenBase[] wetBiomes = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.WET);
+				Biome[] wetBiomes = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.WET);
 				for (int i = 0; i < coldBiomes.length; i++){
 					new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 				}

@@ -2,7 +2,7 @@ package uk.co.wehavecookies56.kk.client.core.proxy;
 
 import com.jadarstudios.developercapes.DevCapes;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -217,7 +217,7 @@ public class ClientProxy extends CommonProxy
 		motionZ
 		);
 		*/
-		EntityFX particleTest = new EntityParticleFXTest(new ResourceLocation(Reference.MODID, "textures/fx/flame.png"), world, posX, posY, posZ, motionX, motionY, motionZ);
+		Particle particleTest = new EntityParticleFXTest(new ResourceLocation(Reference.MODID, "textures/fx/flame.png"), world, posX, posY, posZ, motionX, motionY, motionZ);
 		Minecraft.getMinecraft().effectRenderer.addEffect(particleTest);
 	}
 	

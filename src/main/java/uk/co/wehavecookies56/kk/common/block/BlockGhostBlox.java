@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.block;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -16,6 +14,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
 import uk.co.wehavecookies56.kk.common.lib.Properties;
+
+import java.util.Random;
 
 public class BlockGhostBlox extends BlockBlox {
 
@@ -56,16 +56,7 @@ public class BlockGhostBlox extends BlockBlox {
 	}
 
 	@Override
-	public void onNeighborBlockChange (World world, BlockPos pos, IBlockState state, Block neighborBlock) {
-		/*
-		 * if(neighborBlock.getMetaFromState(state) == 1) {
-		 * world.setBlockState(pos,
-		 * world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(1)));
-		 * } else { world.setBlockState(pos,
-		 * world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(0)));
-		 * }
-		 */
-
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn) {
 		if (world.isBlockPowered(pos))
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(1)));
 		else
