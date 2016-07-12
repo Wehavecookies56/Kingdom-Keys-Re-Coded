@@ -1,6 +1,7 @@
 {
   "homepage": "http://minecraft.curseforge.com/projects/kingdom-keys-re-coded/files",
   "promos": {
+    "1.10.2-latest": "0.8.1 Beta",
     "1.9-latest": "0.8.0 Beta",
     "1.8.9-latest": "0.7.6",
     "1.8-latest": "0.7.5.3",
@@ -9,6 +10,10 @@
     "1.6.4-latest": "0.5.2",
     "1.6.2-latest": "0.4.2",
     "1.5.2-latest": "0.3.0"
+  },
+
+  "1.10.2": {
+    "0.8.1 Beta": "Updated to Minecraft 1.10.2" 
   },
 
   "1.9" : {
