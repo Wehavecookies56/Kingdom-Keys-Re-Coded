@@ -103,7 +103,7 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 	// entity unloads
 	// In this case, it saves the itemstacks stored in the container
 	@Override
-	public void writeToNBT (NBTTagCompound parentNBTTagCompound) {
+	public NBTTagCompound writeToNBT (NBTTagCompound parentNBTTagCompound) {
 		super.writeToNBT(parentNBTTagCompound); // The super call is required to
 												// save and load the
 												// tileEntity's location
@@ -125,6 +125,7 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 		// the array of hashmaps is then inserted into the parent hashmap for
 		// the container
 		parentNBTTagCompound.setTag("Items", dataForAllSlots);
+		return parentNBTTagCompound;
 	}
 
 	// This is where you load the data that you saved in writeToNBT

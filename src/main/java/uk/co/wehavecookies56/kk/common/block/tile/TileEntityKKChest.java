@@ -73,8 +73,12 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 		return true;
 	}
 
+
+
+
+
 	@Override
-	public void writeToNBT (NBTTagCompound parentNBTTagCompound) {
+	public NBTTagCompound writeToNBT (NBTTagCompound parentNBTTagCompound) {
 		super.writeToNBT(parentNBTTagCompound);
 
 		NBTTagList dataForAllSlots = new NBTTagList();
@@ -91,7 +95,7 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 		if (keyblade != null)
 			keyblade.writeToNBT(keybladeCompound);
 		parentNBTTagCompound.setTag("Keyblade", keybladeCompound);
-
+		return parentNBTTagCompound;
 	}
 
 	@Override

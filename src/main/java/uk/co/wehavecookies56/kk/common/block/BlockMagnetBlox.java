@@ -1,8 +1,5 @@
 package uk.co.wehavecookies56.kk.common.block;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -10,12 +7,9 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -111,7 +105,7 @@ public class BlockMagnetBlox extends BlockBlox {
 //	}
 
 	@Override
-	public void onNeighborBlockChange (World world, BlockPos pos, IBlockState state, Block neighborBlock) {
+	public void neighborChanged (IBlockState state, World world, BlockPos pos, Block blockIn) {
 		
 		if (world.isBlockPowered(pos)) {
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYON, true));
