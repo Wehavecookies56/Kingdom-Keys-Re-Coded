@@ -62,10 +62,10 @@ public class WorldGenBlox implements IWorldGenerator {
 				}
 			};
 
-			new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, predicate);
-			new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, predicate);
-			new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, predicate);
-			new WorldGenMinable(ModBlocks.EnergyOre.getDefaultState(), 3, predicate);
+			new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+			new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+			new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+			new WorldGenMinable(ModBlocks.EnergyOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 			Biome[] coldBiomes = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.COLD);
 			for (int i = 0; i < coldBiomes.length; i++){
 				if (biome == coldBiomes[i])
@@ -74,6 +74,7 @@ public class WorldGenBlox implements IWorldGenerator {
 			new WorldGenMinable(ModBlocks.LightningOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.LucidOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.RemembranceOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+			new WorldGenMinable(ModBlocks.SerenityOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.TranquilOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.TwilightOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 
