@@ -1086,21 +1086,17 @@ public class EventHandler {
 			IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 			
 			
-			System.out.println("Original: "+event.getAmount());
 			//event.setAmount((float) (event.getAmount() + (STATS.getStrength() * 0.25)));
-			System.out.println("STATS: "+event.getAmount());
 
 			if (player.getHeldItem(EnumHand.MAIN_HAND) != null) {
 				if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
 					event.setAmount(0);
-					event.setAmount((float) (event.getAmount() + ((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
-					System.out.println("Old + Keyblade:" + event.getAmount());
+					event.setAmount((float)ConfigHandler.damageMultiplier * ((float) (event.getAmount() + ((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength())));
 				}
 			}
 			if (DS.getActiveDriveName().equals("Valor")) {
 				event.setAmount((float) (event.getAmount() * 1.5));
 				STATS.addDP(1);
-				System.out.println("TOTAL: "+event.getAmount());
 			}
 		}
 	}
