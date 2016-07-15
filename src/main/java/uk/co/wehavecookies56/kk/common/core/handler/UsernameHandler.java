@@ -116,7 +116,7 @@ public class UsernameHandler {
 	                }
                     else prefix = "";
                 } else {
-                    nameFormat = chatFormat = prefixFormat = "\u00A7f";
+                    nameFormat = chatFormat = prefixFormat = "";
                     prefix = "";
                 }
                 EntityPlayer target = (EntityPlayer) players.get(i);
