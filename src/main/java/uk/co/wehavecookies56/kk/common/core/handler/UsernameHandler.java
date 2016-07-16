@@ -83,19 +83,19 @@ public class UsernameHandler {
     {
         if (event.getPlayer() != null)
         {
-            EntityPlayer player = event.getPlayer();
-            event.setCanceled(true);
-
-            List players = player.worldObj.playerEntities;
-            String nameFormat = null;
-            String chatFormat = null;
-            String prefixFormat = null;
-            String prefix = null;
-
-            for (int i = 0; i < players.size(); i++)
-            {
-                if (this.usernamePropsRegistry.containsKey(event.getUsername())) {
-                	
+            if (this.usernamePropsRegistry.containsKey(event.getUsername()))
+	        {
+	            EntityPlayer player = event.getPlayer();
+	            event.setCanceled(true);
+	
+	            List players = player.worldObj.playerEntities;
+	            String nameFormat = null;
+	            String chatFormat = null;
+	            String prefixFormat = null;
+	            String prefix = null;
+	
+	            for (int i = 0; i < players.size(); i++)
+	            {
                     if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("nameformat")){
                         nameFormat = this.usernamePropsRegistry.get(event.getUsername()).get("nameformat");
                     }
@@ -115,16 +115,14 @@ public class UsernameHandler {
                         prefix = this.usernamePropsRegistry.get(event.getUsername()).get("prefix");
 	                }
                     else prefix = "";
-                } else {
-                    nameFormat = chatFormat = prefixFormat = "";
-                    prefix = "";
-                }
-                EntityPlayer target = (EntityPlayer) players.get(i);
-                String prefixWithFormat = "";
-                if (!prefix.isEmpty()) prefixWithFormat =  "[" + prefixFormat + prefix + TextFormatting.WHITE + "] ";
-                String nameWithFormat = TextFormatting.WHITE + "<" + nameFormat + player.getDisplayNameString() + TextFormatting.WHITE + "> ";
-                target.addChatComponentMessage(new TextComponentTranslation(prefixWithFormat + nameWithFormat + chatFormat + event.getMessage()));
-            }
+                
+	                EntityPlayer target = (EntityPlayer) players.get(i);
+	                String prefixWithFormat = "";
+	                if (!prefix.isEmpty()) prefixWithFormat =  "[" + prefixFormat + prefix + TextFormatting.WHITE + "] ";
+	                String nameWithFormat = TextFormatting.WHITE + "<" + nameFormat + player.getDisplayNameString() + TextFormatting.WHITE + "> ";
+	                target.addChatComponentMessage(new TextComponentTranslation(prefixWithFormat + nameWithFormat + chatFormat + event.getMessage()));
+	            }
+	        }
         }
     }
 }
