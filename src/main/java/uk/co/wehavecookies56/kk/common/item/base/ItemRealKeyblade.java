@@ -49,21 +49,9 @@ public class ItemRealKeyblade extends ItemKeyblade {
 			else
 			{
 				if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
-					
 					Entity e = (Entity) list.get(i);
-					if (e instanceof EntityLivingBase) {
-						if(!worldIn.isRemote){
-							double timeSpinning = 1;
-							double initialTime = Minecraft.getMinecraft().getSystemTime()/1000;
-							double finalTime = Minecraft.getMinecraft().getSystemTime()/1000+timeSpinning;
-							if(finalTime-initialTime <= 1)
-								player.setRenderYawOffset(30);				
-							
-						}
-						
-					/*	for(i=0; i<360;i+=1)
-							player.rotationYaw =i;*/
-						//e.attackEntityFrom(DamageSource.magic, 1.5F);
+					if (e instanceof EntityLivingBase) 
+					{
 						double d = e.posX - posX;
 						double d1;
 						for (d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)
@@ -71,7 +59,6 @@ public class ItemRealKeyblade extends ItemKeyblade {
 						((EntityLivingBase) e).knockBack(e, 1, -d, -d1);
 						e.motionY*=1.15;
 						e.attackEntityFrom(DamageSource.magic, (float) (((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).strength + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
-						player.cameraPitch += 100;
 					}
 				}
 			}
