@@ -5,7 +5,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlot;
@@ -22,6 +24,8 @@ public class ItemMagicBoost extends Item {
 		if (world.isRemote) {
 			PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.MagicBoost, playerIn.inventory.currentItem));
 		}
+		playerIn.worldObj.playSound(playerIn, playerIn.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
+
 		return super.onItemRightClick(itemStackIn, world, playerIn, hand);
 	}
 

@@ -134,7 +134,10 @@ public class Strings {
 	Chat_Magic_Levelup = "chat.magic.levelup",
 	Chat_Drive_Learn = "chat.drive.learn",
 	Chat_Drive_Error = "chat.drive.error",
-	Chat_Manifest = "chat.manifest.learn"
+	Chat_Manifest = "chat.manifest.learn",
+	Chat_PowerBoost = "chat.powerboost",
+	Chat_DefenseBoost = "chat.defenseboost",
+	Chat_MagicBoost = "chat.magicboost"
 	;
 	
 	//Stats

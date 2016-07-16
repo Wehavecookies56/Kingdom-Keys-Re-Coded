@@ -740,3 +740,6 @@ chat.magic.error=¡No se puede incrementar '%1$s', ya está al máximo!
 chat.drive.learn=¡'%1$s' aprendida!
 chat.drive.error=¡'%1$s' ya está aprendida!
 chat.manifest.learn=El conocimiento ha manifestado '%1$s'
+chat.powerboost=¡Fuerza aumentada! Ahora es %1$s!
+chat.defenseboost=¡Defensa aumentada! Ahora es %1$s!
+chat.magicboost=¡Magia aumentada! Ahora es %1$s!
