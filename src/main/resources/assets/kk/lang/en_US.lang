@@ -1,5 +1,5 @@
 #English (US) language file for Kingdom Keys Re:Coded
-#Version 0.7.7
+#Version 0.8.1
 #Created by Wehavecookies56
 
 ############################
@@ -203,8 +203,18 @@ item.ventus_boots.name=Ventus's Boots
 #Misc
 item.emptybottle.name=Empty Bottle
 item.potion.name=Potion
+item.hipotion.name=Hi-Potion
+item.megapotion.name=Mega-Potion
 item.ether.name=Ether
+item.megaether.name=Mega-Ether
 item.elixir.name=Elixir
+item.megalixir.name=Megalixir
+item.driverecovery.name=Drive Recovery
+item.highdriverecovery.name=High Drive Recovery
+item.powerboost.name=Power Boost
+item.magicboost.name=Magic Boost
+item.defenseboost.name=Defense Boost
+item.panacea.name=Panacea
 item.hporb.name=HP Orb
 item.driveorb.name=DP Orb
 item.magicorb.name=MP Orb

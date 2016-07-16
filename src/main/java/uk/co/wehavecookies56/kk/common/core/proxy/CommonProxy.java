@@ -116,11 +116,7 @@ public class CommonProxy {
 		registerAchievements();
 
 		// Register renders
-		if(Loader.isModLoaded("RenderPlayerAPI")){
-			LogHelper.info("RenderPlayerAPI installed everything will be fine");
-		}else{
-			//FMLLog.bigWarning("RENDERPLAYERAPI NOT INSTALLED THIS IS GOING TO CRASH", Reference.MODID);
-		}
+
 		LogHelper.info("Renders loaded");
 
 		// Tile entity registry

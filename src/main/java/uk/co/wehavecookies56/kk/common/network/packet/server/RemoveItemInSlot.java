@@ -10,6 +10,7 @@ import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
 public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<RemoveItemInSlot> {
@@ -49,15 +50,28 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		if (inv.equals("keychain")) {
-			keychain = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
-			keychain.setInventorySlotContents(slot, null);
-		}
-
-		if (inv.equals("potion")) {
-			potions = player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
-			potions.setInventorySlotContents(slot, null);
-			if (sound) player.worldObj.playSound(null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 0.5f, 1);
+		switch (inv) {
+			case "keychain":
+				keychain = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
+				keychain.setInventorySlotContents(slot, null);
+				break;
+			case Strings.DefenseBoost:
+				player.inventory.removeStackFromSlot(player.inventory.currentItem);
+				player.getCapability(ModCapabilities.PLAYER_STATS, null).addDefense(1);
+				break;
+			case Strings.MagicBoost:
+				player.inventory.removeStackFromSlot(player.inventory.currentItem);
+				player.getCapability(ModCapabilities.PLAYER_STATS, null).addMagic(1);
+				break;
+			case Strings.PowerBoost:
+				player.inventory.removeStackFromSlot(player.inventory.currentItem);
+				player.getCapability(ModCapabilities.PLAYER_STATS, null).addStrength(1);
+				break;
+			case Strings.Potion:
+				potions = player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
+				potions.setInventorySlotContents(slot, null);
+				if (sound) player.worldObj.playSound(null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 0.5f, 1);
+				break;
 		}
 	}
 }

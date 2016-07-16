@@ -107,7 +107,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != null) this.spells.add(((ItemSpellOrb) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
 		this.items.clear();
 		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != null) this.items.add(((ItemKKPotion) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getItemName());
+			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != null) this.items.add(((ItemKKPotion) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
 		this.driveCommands.clear();
 		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSizeInventory(); i++)
 			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != null) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());

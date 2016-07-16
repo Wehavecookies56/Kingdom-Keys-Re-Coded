@@ -8,6 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
@@ -35,19 +36,41 @@ public class PotionConsume extends AbstractMessage.AbstractServerMessage<PotionC
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		switch (potion) {
-			case "potion":
+			case Strings.Potion:
 				((ItemKKPotion) ModItems.Potion).getPotionEffect(player);
-				player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP()/3);
+				//player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP()/3);
 				break;
-			case "ether":
+			case Strings.HiPotion:
+				((ItemKKPotion) ModItems.HiPotion).getPotionEffect(player);
+				//player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP()/2);
+				break;
+			case Strings.MegaPotion:
+				((ItemKKPotion) ModItems.MegaPotion).getPotionEffect(player);
+				//player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP());
+				break;
+			case Strings.Ether:
 				((ItemKKPotion) ModItems.Ether).getPotionEffect(player);
-				player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxMP() / 3);
+				//player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxMP() / 3);
 				break;
-			case "elixir":
+			case Strings.MegaEther:
+				((ItemKKPotion) ModItems.MegaEther).getPotionEffect(player);
+			case Strings.Elixir:
 				((ItemKKPotion) ModItems.Elixir).getPotionEffect(player);
-				player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP()/3);
- 				player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxMP() / 3);
+				//player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP()/3);
+ 				//player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxMP() / 3);
 				break;
+			case Strings.Megalixir:
+				((ItemKKPotion) ModItems.Megalixir).getPotionEffect(player);
+				break;
+			case Strings.DriveRecovery:
+				((ItemKKPotion) ModItems.DriveRecovery).getPotionEffect(player);
+				break;
+			case Strings.HighDriveRecovery:
+				((ItemKKPotion) ModItems.HighDriveRecovery).getPotionEffect(player);
+				break;
+            case Strings.Panacea:
+                ((ItemKKPotion) ModItems.Panacaea).getPotionEffect(player);
+                break;
 			default:
 				break;
 		}
