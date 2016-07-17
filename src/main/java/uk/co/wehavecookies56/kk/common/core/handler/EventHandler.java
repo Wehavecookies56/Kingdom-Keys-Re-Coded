@@ -30,6 +30,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.GameRules;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -617,6 +618,15 @@ public class EventHandler {
 					PacketDispatcher.sendTo(new SyncKeybladeData(SUMMON), (EntityPlayerMP) player);
 				}else{
 					SUMMON.setIsKeybladeSummoned(false);
+                    if (event.getEntity().worldObj.getGameRules().getBoolean("keepInventory")) {
+                        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
+                            if (player.inventory.getStackInSlot(i) != null) {
+                                if (player.inventory.getStackInSlot(i).getItem() instanceof ItemRealKeyblade) {
+                                    player.inventory.setInventorySlotContents(i, null);
+                                }
+                            }
+                        }
+                    }
 				}
 			}
 		}

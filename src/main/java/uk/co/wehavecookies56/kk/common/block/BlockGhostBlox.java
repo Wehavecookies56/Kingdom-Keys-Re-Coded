@@ -9,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -30,8 +31,8 @@ public class BlockGhostBlox extends BlockBlox {
 
 		return new BlockStateContainer(this, new IProperty[] { VISIBLE });
 	}
-	
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromMeta (int meta) {
 		return getDefaultState().withProperty(VISIBLE, Integer.valueOf(meta));
@@ -55,8 +56,9 @@ public class BlockGhostBlox extends BlockBlox {
 		super.updateTick(world, pos, state, rand);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn) {
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block) {
 		if (world.isBlockPowered(pos))
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(1)));
 		else
@@ -71,18 +73,27 @@ public class BlockGhostBlox extends BlockBlox {
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(0)));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-	
+
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState worldIn, World pos, BlockPos state) {
-		if (worldIn.getValue(VISIBLE).intValue() == 0) {
+		if (worldIn.getValue(VISIBLE).intValue() == 0)
 			return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(1, 1, 1));
-		}
 		else
 			return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(0, 0, 0));
 	}
-	
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		if (state.getValue(VISIBLE).intValue() == 0)
+			return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(1, 1, 1));
+		else
+			return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(0, 0, 0));
+	}
 }
