@@ -28,7 +28,7 @@ minecraft {
     version = config.mc_version + "-" + config.forge_version
     runDir = "run"
 
-    mappings = "snapshot_20160614"
+    mappings = config.mappings
     makeObfSourceJar = false
 }
 
@@ -42,10 +42,10 @@ processResources {
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
+
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-        
+
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }

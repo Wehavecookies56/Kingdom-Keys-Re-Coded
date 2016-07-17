@@ -12,13 +12,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.ISpecialArmor;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
-public class ItemTerraArmor extends ItemArmor implements ISpecialArmor {
+public class ItemTerraArmor extends ItemArmor /*implements ISpecialArmor*/ {
 
 	public ItemTerraArmor (ArmorMaterial material, int renderIndex, EntityEquipmentSlot slot, int armorType, String name) {
 		super(material, renderIndex, slot);
 		setUnlocalizedName(name);
 	}
-
+	/*
 	@Override
 	public ArmorProperties getProperties (EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
 		if (source == DamageSource.inFire || source == DamageSource.lava || source == DamageSource.onFire) return new ArmorProperties(1, 1, MathHelper.floor_double(damage * .25D));
@@ -34,6 +34,7 @@ public class ItemTerraArmor extends ItemArmor implements ISpecialArmor {
 	public void damageArmor (EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
 		stack.damageItem(damage * 2, entity);
 	}
+	*/
 	
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
