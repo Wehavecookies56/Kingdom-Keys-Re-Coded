@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.crafting;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -171,11 +172,6 @@ public class ModItemsRecipes {
 		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.UnknownKnowledge), ModItems.ObscuredKnowledge, LostIllusion));
 		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.ManifestKnowledge), ModItems.UnknownKnowledge, LostIllusion));
 
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(MythrilShard, DenseStone, DenseShard, TwilightStone, TwilightShard));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(MythrilStone, DenseStone, DenseShard, TwilightStone, TwilightShard, SerenityShard));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(MythrilGem, DenseCrystal, DenseGem, TwilightCrystal, TwilightGem));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(MythrilCrystal, DenseCrystal, DenseGem, TwilightCrystal, TwilightGem, SerenityStone));
-
 		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.BlazingInfusedCoal), BlazingCrystal, Items.COAL));
 		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.FrostInfusedSnowBall), FrostCrystal, Items.SNOWBALL));
 		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.StormyInfusedIron), StormyCrystal, "ingotIron"));
@@ -191,20 +187,14 @@ public class ModItemsRecipes {
 
 		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.Potion));
 		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.MagicOrb), new ItemStack(ModItems.Ether));
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.Ether), new ItemStack(ModItems.MagicOrb), new ItemStack(ModItems.MegaEther));
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.Ether), new ItemStack(ModItems.MegaEther));
 		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.Potion), new ItemStack(ModItems.MagicOrb), new ItemStack(ModItems.Elixir));
 		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.Ether), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.Elixir));
-
-		// TODO Hi-Potion
-		//BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyPotion),
-		// new ItemStack(ModItems.Potion), new ItemStack(ModItems.HiPotion));
-		// BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.Potion), new
-		// ItemStack(ModItems.HpOrb), new ItemStack(ModItems.HiPotion));
-		// TODO Mega-Potion
-		// BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyPotion),
-		// new ItemStack(ModItems.HiPotion), new
-		// ItemStack(ModItems.MegaPotion));
-		// BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.HiPotion), new
-		// ItemStack(ModItems.HpOrb), new ItemStack(ModItems.MegaPotion));
-
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.MegaEther), new ItemStack(ModItems.HiPotion), new ItemStack(ModItems.Megalixir));
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.Potion), new ItemStack(ModItems.HiPotion));
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.Potion), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.HiPotion));
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.EmptyBottle), new ItemStack(ModItems.HiPotion), new ItemStack(ModItems.MegaPotion));
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.HiPotion), new ItemStack(ModItems.HpOrb), new ItemStack(ModItems.MegaPotion));
 	}
 }

@@ -9,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.GuiScrollingList;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
+import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
@@ -51,11 +53,10 @@ public class GuiRecipeList extends GuiScrollingList {
 	}
 
 	@Override
-	protected void drawBackground () 
-	{		
+	protected void drawBackground () {
 		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
 
-		this.f.drawString(RECIPES.getKnownRecipes().size()+"/120",this.left + 130, 65, 0xFFFFFF);
+		this.f.drawString(RECIPES.getKnownRecipes().size() + "/" + RecipeRegistry.getRecipeMap().size(), this.left + 130, 65, 0xFFFFFF);
 	}
 
 	@Override

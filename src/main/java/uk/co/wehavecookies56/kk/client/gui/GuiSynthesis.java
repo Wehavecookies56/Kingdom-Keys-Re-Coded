@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.lwjgl.opengl.GL11;
 import uk.co.wehavecookies56.kk.api.materials.Material;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
+import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.Recipe;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
@@ -41,12 +42,14 @@ import java.util.Map;
 public class GuiSynthesis extends GuiTooltip {
 
 	public int selected = -1;
+	public int freeDevSelected = -1;
 	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3, CREATE = 4, TAKE1 = 5, TAKESTACK = 6, TAKEHALFSTACK = 7, TAKEALL = 8, DEPOSIT = 9;
 	public int submenu;
 	private final GuiScreen parentScreen;
 	protected String title = TextHelper.localize(Strings.Gui_Synthesis_Main_Title);
 	private GuiRecipeList recipeList;
 	private GuiMaterialList materialList;
+	private GuiFreeDevelopmentRecipeList freeDevRecipeList;
 
 	public GuiButton Back, FreeDev, Recipes, Materials, Create, Take1, TakeStack, TakeHalfStack, TakeAll, Deposit;
 	public int materialSelected = -1;
@@ -62,6 +65,8 @@ public class GuiSynthesis extends GuiTooltip {
 		this.recipeList.registerScrollButtons(this.buttonList, 7, 8);
 		this.materialList = new GuiMaterialList(this);
 		this.materialList.registerScrollButtons(this.buttonList, 7, 8);
+		this.freeDevRecipeList = new GuiFreeDevelopmentRecipeList(this);
+		this.freeDevRecipeList.registerScrollButtons(this.buttonList, 7, 8);
 		this.buttonList.add(Back = new GuiButton(BACK, width - 105, height - ((height / 8) + 70 / 16), 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
 		this.buttonList.add(Create = new GuiButton(CREATE, 270, height - ((height / 8) + 70 / 16) - 25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes_Create)));
 		this.buttonList.add(Recipes = new GuiButton(RECIPES, 5, 65, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes)));
@@ -118,11 +123,18 @@ public class GuiSynthesis extends GuiTooltip {
 				submenu = MATERIALS;
 				break;
 			case CREATE:
-				if (isRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1)) {
-					PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1));
-					mc.thePlayer.worldObj.playSound(mc.thePlayer, mc.thePlayer.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
+				if (selected != -1){
+                    if (isRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1)) {
+                        PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1));
+                        mc.thePlayer.worldObj.playSound(mc.thePlayer, mc.thePlayer.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
+                    }
+                } else if (freeDevSelected != -1) {
+                    if (isFreeDevRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected), 1)) {
+                        PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected), 1));
+                        mc.thePlayer.worldObj.playSound(mc.thePlayer, mc.thePlayer.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
+                    }
+                }
 
-				}
 				break;
 			case TAKE1:
 				materials.addAll(MATS.getKnownMaterialsMap().keySet());
@@ -188,12 +200,38 @@ public class GuiSynthesis extends GuiTooltip {
 		return false;
 	}
 
+	public boolean isFreeDevRecipeUsable (String name, int amountToRemove) {
+		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		SynthesisMaterialCapability.ISynthesisMaterial MATS = player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+		Recipe r = FreeDevRecipeRegistry.get(name);
+		List<Boolean> hasMaterials = new ArrayList<Boolean>();
+		if (isInventoryFull())
+			return false;
+		Iterator it = r.getRequirements().entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>) it.next();
+			if (MATS.getKnownMaterialsMap().containsKey(pair.getKey().getName())) {
+				if (pair.getValue() != null && MATS.getKnownMaterialsMap().get(pair.getKey().getName()) != null) {
+					if (pair.getValue() <= MATS.getKnownMaterialsMap().get(pair.getKey().getName())) {
+						hasMaterials.add(true);
+					}
+				}
+			}
+		}
+		if (r.getRequirements().size() > 0) {
+			if (hasMaterials.size() == r.getRequirements().size()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private void updateButtons () {
 		if (submenu == MAIN) {
 			Back.visible = false;
 			Recipes.visible = true;
 			FreeDev.visible = true;
-			FreeDev.enabled = false;
+			FreeDev.enabled = true;
 			Materials.visible = true;
 			Create.visible = false;
 		} else {
@@ -209,6 +247,19 @@ public class GuiSynthesis extends GuiTooltip {
 			TakeAll.visible = false;
 			Deposit.visible = false;
 
+		}
+		if (submenu == FREEDEV) {
+			if (freeDevSelected != -1) {
+				Create.visible = true;
+				if (isFreeDevRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected), 1))
+					Create.enabled = true;
+				else {
+					if (isInventoryFull()) Create.displayString = "Inventory Full";
+					Create.enabled = false;
+				}
+			} else {
+				Create.visible = false;
+			}
 		}
 		if (submenu == MATERIALS) {
 			if (materialSelected != -1) {
@@ -271,14 +322,20 @@ public class GuiSynthesis extends GuiTooltip {
 			TakeAll.visible = false;
 
 		}
-		if (selected != -1 && submenu == RECIPES) Create.visible = true;
-		if (selected == -1) Create.visible = false;
-		if (selected != -1 && isRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1))
-			Create.enabled = true;
-		else {
-			if (isInventoryFull()) Create.displayString = "Inventory Full";
-			Create.enabled = false;
-		}
+		if (submenu == RECIPES) {
+            if (selected != -1) {
+                Create.visible = true;
+                if (isRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1)) {
+                    Create.enabled = true;
+                } else {
+                    if (isInventoryFull()) Create.displayString = "Inventory Full";
+                    Create.enabled = false;
+                }
+            } else {
+                Create.visible = false;
+            }
+        }
+
 	}
 
 	private boolean isInventoryFull () {
@@ -298,14 +355,19 @@ public class GuiSynthesis extends GuiTooltip {
 		if (submenu == RECIPES)
 			this.recipeList.drawScreen(mouseX, mouseY, partialTicks);
 		else if (submenu == MATERIALS) this.materialList.drawScreen(mouseX, mouseY, partialTicks);
+		if (submenu == FREEDEV)
+			this.freeDevRecipeList.drawScreen(mouseX, mouseY, partialTicks);
 		drawBackground(width, height);
 		if (submenu != MAIN && submenu == RECIPES)
 			drawSelected(mouseX, mouseY);
 		else if (submenu != MAIN && submenu == MATERIALS)
 			drawSelectedMaterial(mouseX, mouseY);
+		else if (submenu != MAIN && submenu == FREEDEV)
+			drawSelectedFreeDev(mouseX, mouseY);
 		else {
 			selected = -1;
 			materialSelected = -1;
+			freeDevSelected = -1;
 		}
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
@@ -428,6 +490,97 @@ public class GuiSynthesis extends GuiTooltip {
 							drawString(fontRendererObj, info, 0, 0, colour);
 						} GL11.glPopMatrix();
 						
+						if (column == 1) {
+							row++;
+							column = 0;
+							materialLength = 0;
+						} else {
+							materialLength = (fontRendererObj.getStringWidth(TextHelper.localize(ModItems.Chain_IncompleteKiblade.getUnlocalizedName() + ".name") + " - You have XXXX")) + 20;
+							column = 1;
+						}
+
+					}
+				}
+		}
+		GL11.glPopMatrix();
+	}
+
+	public void drawSelectedFreeDev (int mouseX, int mouseY) {
+		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		int posX = 220;
+		if (freeDevSelected != -1) {
+			Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
+			drawGradientRect(posX - 10, 60, 700, height - ((height / 8) + 70 / 16), -1072689136, -804253680);
+		}
+		GL11.glPushMatrix(); {
+			for (int i = 0; i < RECIPES.getFreeDevRecipes().size(); i++)
+				if (freeDevSelected == i) {
+					float scale = 1.0f;
+					if(mc.gameSettings.guiScale == Constants.SCALE_LARGE) {
+						scale = 0.5f;
+					}
+					GL11.glPushMatrix(); {
+						GL11.glTranslatef(posX, 70, 0);
+						GL11.glScalef(2 * scale, 2 * scale, 2 * scale);
+						drawString(fontRendererObj, TextHelper.localize(RECIPES.getFreeDevRecipes().get(i).toString() + ".name"), 0, 0, 0xFFF700);
+						//drawString(fontRendererObj, "Strength: +"+((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getStrength(), 0, 10, 0xFF0000);
+						//drawString(fontRendererObj, "Magic: +"+ ((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getMagic(), 0, 20, 0x4444FF);
+					}
+					GL11.glPopMatrix();
+
+					drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes_ReqMaterials) + TextFormatting.ITALIC, posX, 100, 0x00C3FF);
+
+					int row = 0;
+					int column = 0;
+					int materialLength = 0;
+					Iterator it = FreeDevRecipeRegistry.get(RECIPES.getFreeDevRecipes().get(i)).getRequirements().entrySet().iterator();
+					while (it.hasNext()) {
+						Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>) it.next();
+						int distY = (int) (24 * scale);
+						int distX = (int) (100 * scale);
+						GL11.glPushMatrix();
+						{
+							GL11.glColor4f(1, 1, 1, 1);
+							ResourceLocation synthMaterial = pair.getKey().getTexture();
+							if (synthMaterial == null) {
+								GL11.glTranslatef((int) (posX + (materialLength * 1.05f)), 110 + (distY * row), 0);
+								GL11.glScalef(scale, scale, 0);
+								Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(pair.getKey().getItem(), 0, 0);
+							} else {
+								mc.renderEngine.bindTexture(synthMaterial);
+								GL11.glTranslatef(posX + (materialLength * 1.05f * scale), 110 + (distY * row), 0);
+								GL11.glScalef(0.0625f * scale, 0.0625f * scale, 0);
+								drawTexturedModalRect(0, 0, 0, 0, 256, 256);
+							}
+						}
+						GL11.glPopMatrix();
+						String name = pair.getKey().getName();
+						String info = "";
+						int colour = 0xFFFFFF;
+						SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+						if (MATS.getKnownMaterialsMap().containsKey(pair.getKey().getName())) {
+							info = " - You have " + MATS.getKnownMaterialsMap().get(pair.getKey().getName());
+							if (MATS.getKnownMaterialsMap().get(pair.getKey().getName()) >= pair.getValue())
+								colour = 0x00CF18;
+							else
+								colour = 0xB50000;
+						} else {
+							info = " - You have 0";
+							colour = 0xB50000;
+						}
+						String material = TextHelper.localize(name + ".name") + " x" + pair.getValue();
+
+						GL11.glPushMatrix(); {
+							GL11.glTranslatef((int) (posX + 18 + (materialLength * 1.05f * scale)), 114 + (distY * row), 0);
+							GL11.glScalef(scale, scale, 0);
+							drawString(fontRendererObj, material, 0, 0, 0xFFFFFF);
+						} GL11.glPopMatrix();
+						GL11.glPushMatrix(); {
+							GL11.glTranslatef((int) (posX + 18 + (fontRendererObj.getStringWidth(material) * scale) + (materialLength * 1.05f * scale)), 114 + (distY * row), 0);
+							GL11.glScalef(scale, scale, 0);
+							drawString(fontRendererObj, info, 0, 0, colour);
+						} GL11.glPopMatrix();
+
 						if (column == 1) {
 							row++;
 							column = 0;

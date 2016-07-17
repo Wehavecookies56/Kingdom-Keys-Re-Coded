@@ -50,6 +50,7 @@ public class PacketDispatcher {
 		registerMessage(SyncHudData.class);
 		registerMessage(SyncLevelData.class);
 		registerMessage(SyncDriveWithPlayers.class);
+		registerMessage(SyncFreeDevRecipeData.class);
 
 		// Client to Server
 		registerMessage(MunnyPickup.class);

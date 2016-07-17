@@ -13,6 +13,7 @@ public class Lists {
 	public static List<Item> orgWeapons = new ArrayList<Item>();
 
 	public static void init () {
+
 		orgWeapons.add(Interdiction);
 		orgWeapons.add(Sharpshooter);
 		orgWeapons.add(Lindworm);

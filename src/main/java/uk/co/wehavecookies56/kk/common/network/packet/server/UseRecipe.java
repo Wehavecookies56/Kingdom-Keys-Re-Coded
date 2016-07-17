@@ -19,6 +19,10 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
 
 	public UseRecipe () {}
 
+	public UseRecipe (String recipe1) {
+		this.recipe1 = recipe1;
+	}
+
 	public UseRecipe (String recipe1, String recipe2, String recipe3) {
 		this.recipe1 = recipe1;
 		this.recipe2 = recipe2;

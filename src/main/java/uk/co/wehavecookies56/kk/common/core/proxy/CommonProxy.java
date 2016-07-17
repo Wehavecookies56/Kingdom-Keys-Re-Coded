@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
+import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
@@ -36,6 +37,7 @@ import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisFreeDevRecipes;
 import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisMaterials;
 import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisRecipes;
 import uk.co.wehavecookies56.kk.common.world.ChestGen;
@@ -140,6 +142,9 @@ public class CommonProxy {
 		// Synthesis Recipes init
 		ModSynthesisRecipes.init();
 		LogHelper.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipe(s) loaded");
+
+		ModSynthesisFreeDevRecipes.init();
+		LogHelper.info(FreeDevRecipeRegistry.getFreeDevRecipeMap().size() + " Free Development recipe(s) loaded");
 
 		ModSynthesisMaterials.init();
 		LogHelper.info(MaterialRegistry.getMaterialMap().size() + " Material(s) loaded");

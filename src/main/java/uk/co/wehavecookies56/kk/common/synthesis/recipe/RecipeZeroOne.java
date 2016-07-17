@@ -3,7 +3,7 @@ package uk.co.wehavecookies56.kk.common.synthesis.recipe;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import uk.co.wehavecookies56.kk.api.materials.Material;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.Recipe;
@@ -25,8 +25,8 @@ public class RecipeZeroOne extends Recipe {
 	}
 
 	@Override
-	public Item getResult () {
-		return ModItems.Chain_ZeroOne;
+	public ItemStack getResult () {
+		return new ItemStack(ModItems.Chain_ZeroOne);
 	}
 
 	@Override

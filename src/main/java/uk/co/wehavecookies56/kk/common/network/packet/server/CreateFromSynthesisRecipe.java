@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.api.materials.Material;
+import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.Recipe;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
@@ -47,15 +48,32 @@ public class CreateFromSynthesisRecipe extends AbstractMessage.AbstractServerMes
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		if (RecipeRegistry.get(name).getResult() instanceof ItemKeychain) AchievementHelper.addAchievement(player, ModAchievements.getKeyblade);
-		player.inventory.addItemStackToInventory(new ItemStack(RecipeRegistry.get(name).getResult()));
-		Recipe r = RecipeRegistry.get(name);
-		SynthesisMaterialCapability.ISynthesisMaterial MATS = player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
-		Iterator it = r.getRequirements().entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>) it.next();
-			MATS.removeMaterial(pair.getKey(), pair.getValue());
+		boolean freeDev = false;
+		if (FreeDevRecipeRegistry.isFreeDevRecipeRegistered(name)) {
+			freeDev = true;
 		}
+		if (!freeDev) {
+			if (RecipeRegistry.get(name).getResult().getItem() instanceof ItemKeychain)
+				AchievementHelper.addAchievement(player, ModAchievements.getKeyblade);
+			player.inventory.addItemStackToInventory(RecipeRegistry.get(name).getResult());
+			Recipe r = RecipeRegistry.get(name);
+			SynthesisMaterialCapability.ISynthesisMaterial MATS = player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+			Iterator it = r.getRequirements().entrySet().iterator();
+			while (it.hasNext()) {
+				Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>) it.next();
+				MATS.removeMaterial(pair.getKey(), pair.getValue());
+			}
+		} else {
+            //AchievementHelper.addAchievement(player, ModAchievements.getKeyblade);
+            player.inventory.addItemStackToInventory(FreeDevRecipeRegistry.get(name).getResult());
+            Recipe r = FreeDevRecipeRegistry.get(name);
+            SynthesisMaterialCapability.ISynthesisMaterial MATS = player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+            Iterator it = r.getRequirements().entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>) it.next();
+                MATS.removeMaterial(pair.getKey(), pair.getValue());
+            }
+        }
 		PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);
 
 	}

@@ -19,6 +19,7 @@ import uk.co.wehavecookies56.kk.common.block.tile.TileEntitySynthesisTable;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncFreeDevRecipeData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMaterialData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncRecipeData;
 
@@ -38,6 +39,7 @@ public class BlockSynthesisTable extends Block implements ITileEntityProvider {
 		playerIn.openGui(KingdomKeys.instance, GuiIDs.GUI_SYNTHESISTABLE, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		if (!worldIn.isRemote){
 			PacketDispatcher.sendTo(new SyncRecipeData(playerIn.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null)), (EntityPlayerMP) playerIn);
+			PacketDispatcher.sendTo(new SyncFreeDevRecipeData(playerIn.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null)), (EntityPlayerMP) playerIn);
 			PacketDispatcher.sendTo(new SyncMaterialData(playerIn.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) playerIn);
 		}
 		return true;
