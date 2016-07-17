@@ -68,7 +68,7 @@ public class ModItemsRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.Terra_Boots), "S S", "FBF", 'B', Items.DIAMOND_BOOTS, 'S', ModItems.DarkInfusedIron, 'F', ModItems.BlazingInfusedCoal);
 
 		// Eraqus' Keyblade armour
-		GameRegistry.addShapedRecipe(new ItemStack(ModItems.Eraqus_Helmet), "SHS", "F ", 'H', Items.DIAMOND_HELMET, 'S', ModItems.BrightInfusedGlowStone, 'F', ModItems.MythrilInfusedDiamond);
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.Eraqus_Helmet), "SHS", "F F", 'H', Items.DIAMOND_HELMET, 'S', ModItems.BrightInfusedGlowStone, 'F', ModItems.MythrilInfusedDiamond);
 
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.Eraqus_Chestplate), "S S", "FCF", "SSS", 'C', Items.DIAMOND_CHESTPLATE, 'S', ModItems.BrightInfusedGlowStone, 'F', ModItems.MythrilInfusedDiamond);
 
