@@ -10,7 +10,8 @@ public class MagicDamage {
 	{
 		float damage = 0;
 		float finalDamage = 0;
-		if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
+		
+		if(player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
 		{
 			damage = (float) (((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getMagic() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic());
 		}
@@ -29,8 +30,10 @@ public class MagicDamage {
 			break;
 		case "ga":
 			finalDamage = damage + (20/100 * damage);
+			System.out.println(20/100 * damage);
 			break;
 		}
+		System.out.println(finalDamage);
 		return finalDamage;
 	}
 }
