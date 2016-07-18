@@ -46,14 +46,14 @@ public class MagicBlizzard extends AbstractMessage.AbstractServerMessage<MagicBl
 				break;
 			case 2:
 				EntityBlizzara entityBlizzara = new EntityBlizzara(world, player);
-				world.spawnEntityInWorld(entityBlizzara);
-				entityBlizzara.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
+				world.spawnEntityInWorld(entityBlizzara);				
+				entityBlizzara.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 2, 0);
 				PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzara(world), 1), player, 64.0D);
 				break;
 			case 3:
 				EntityBlizzaga entityBlizzaga = new EntityBlizzaga(world, player);
 				world.spawnEntityInWorld(entityBlizzaga);
-				entityBlizzaga.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
+				entityBlizzaga.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 3, 0);
 				PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzaga(world), 1), player, 64.0D);
 				break;
 		}

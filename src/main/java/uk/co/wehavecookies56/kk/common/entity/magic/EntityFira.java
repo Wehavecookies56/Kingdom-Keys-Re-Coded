@@ -49,7 +49,7 @@ public class EntityFira extends Entity {
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
 			e.setFire(5);
-			e.attackEntityFrom(DamageSource.causePlayerDamage(player), 3.0F);
+			e.attackEntityFrom(DamageSource.causePlayerDamage(player), MagicDamage.getMagicDamage(player,"ra"));
 		}
 		aabb.expand(-2, -2, -2);
 

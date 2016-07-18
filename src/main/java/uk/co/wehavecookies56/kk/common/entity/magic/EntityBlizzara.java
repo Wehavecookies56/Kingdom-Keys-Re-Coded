@@ -30,7 +30,7 @@ public class EntityBlizzara extends EntityThrowable {
 
 	@Override
 	protected float getGravityVelocity () {
-		return 5.0F;
+		return 0.0F;
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class EntityBlizzara extends EntityThrowable {
 					if (movingObject.entityHit.isBurning())
 						movingObject.entityHit.extinguish();
 					else
-						movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(shootingEntity), 6);
+						movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(shootingEntity), MagicDamage.getMagicDamage(shootingEntity,"ra"));
 				}
 			} else {
 				flag = true;

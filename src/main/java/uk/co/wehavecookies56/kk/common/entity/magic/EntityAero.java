@@ -8,9 +8,12 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnAeroParticles;
 
@@ -32,6 +35,9 @@ public class EntityAero extends Entity {
 
 	@Override
 	public void onUpdate () {
+		
+		double damage = ((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getMagic() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic();
+		
 		if (player == null) return;
 		int rotation = 0;
 
@@ -61,7 +67,7 @@ public class EntityAero extends Entity {
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityLivingBase) {
-				e.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.5F);
+				e.attackEntityFrom(DamageSource.causePlayerDamage(player), MagicDamage.getMagicDamage(player,"normal"));
 				double d = e.posX - posX;
 				double d1;
 				for (d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)

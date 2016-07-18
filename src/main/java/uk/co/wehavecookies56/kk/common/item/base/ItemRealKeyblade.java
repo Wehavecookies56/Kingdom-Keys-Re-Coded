@@ -41,7 +41,7 @@ public class ItemRealKeyblade extends ItemKeyblade {
 					if (e instanceof EntityLivingBase) {
 						player.swingArm(hand);
 						e.motionY=1.15;
-						e.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F);
+						e.attackEntityFrom(DamageSource.magic, 1);
 						player.motionY = 1.15;	
 					}
 				}
