@@ -26,11 +26,11 @@ public class MagicDamage {
 			finalDamage = damage;		
 			break;
 		case "ra":
-			finalDamage = damage + (10/100 * damage);
+			finalDamage = (float) (damage + (0.1 * damage));
 			break;
 		case "ga":
-			finalDamage = damage + (20/100 * damage);
-			System.out.println(20/100 * damage);
+			finalDamage = (float) (damage + (0.2 * damage));
+			System.out.println(0.2 * damage);
 			break;
 		}
 		System.out.println(finalDamage);
