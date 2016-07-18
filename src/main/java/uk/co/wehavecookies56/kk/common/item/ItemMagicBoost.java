@@ -21,6 +21,7 @@ public class ItemMagicBoost extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer playerIn, EnumHand hand) {
+		itemStackIn.stackSize--;
 		if (world.isRemote) {
 			PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.MagicBoost, playerIn.inventory.currentItem));
 		}

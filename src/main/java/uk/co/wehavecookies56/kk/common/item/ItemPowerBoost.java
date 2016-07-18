@@ -23,6 +23,7 @@ public class ItemPowerBoost extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer playerIn, EnumHand hand) {
+		itemStackIn.stackSize--;
 		if (world.isRemote) {
 			PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.PowerBoost, playerIn.inventory.currentItem));
 		}

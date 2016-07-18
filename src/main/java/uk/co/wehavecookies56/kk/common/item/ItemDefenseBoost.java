@@ -21,6 +21,7 @@ public class ItemDefenseBoost extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer playerIn, EnumHand hand) {
+		itemStackIn.stackSize--;
 		if (world.isRemote) {
 			PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.DefenseBoost, playerIn.inventory.currentItem));
 		}
