@@ -55,7 +55,7 @@ public class EntityBlizzaga extends EntityThrowable {
 					if (movingObject.entityHit.isBurning())
 						movingObject.entityHit.extinguish();
 					else
-						movingObject.entityHit.attackEntityFrom(DamageSource.magic, 8);
+						movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(shootingEntity), 8);
 				}
 			} else {
 				flag = true;

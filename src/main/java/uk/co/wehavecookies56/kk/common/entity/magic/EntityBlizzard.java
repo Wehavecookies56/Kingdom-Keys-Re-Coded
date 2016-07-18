@@ -54,7 +54,7 @@ public class EntityBlizzard extends EntityThrowable {
 					if (movingObject.entityHit.isBurning())
 						movingObject.entityHit.extinguish();
 					else
-						movingObject.entityHit.attackEntityFrom(DamageSource.magic, 4);
+						movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(shootingEntity), 4);
 				}
 			} else {
 				flag = true;

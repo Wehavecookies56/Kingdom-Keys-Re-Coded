@@ -54,7 +54,7 @@ public class EntityBlizzara extends EntityThrowable {
 					if (movingObject.entityHit.isBurning())
 						movingObject.entityHit.extinguish();
 					else
-						movingObject.entityHit.attackEntityFrom(DamageSource.magic, 6);
+						movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(shootingEntity), 6);
 				}
 			} else {
 				flag = true;

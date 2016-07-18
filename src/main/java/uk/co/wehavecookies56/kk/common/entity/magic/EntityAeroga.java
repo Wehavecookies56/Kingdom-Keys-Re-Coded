@@ -60,7 +60,7 @@ public class EntityAeroga extends Entity {
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityLivingBase) {
-				e.attackEntityFrom(DamageSource.magic, 1.5F);
+				e.attackEntityFrom(DamageSource.causePlayerDamage(player), 2.5F);
 				double d = e.posX - posX;
 				double d1;
 				for (d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)

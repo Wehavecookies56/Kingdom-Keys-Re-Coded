@@ -48,8 +48,8 @@ public class EntityFira extends Entity {
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
-			e.attackEntityFrom(DamageSource.magic, 3.0F);
 			e.setFire(5);
+			e.attackEntityFrom(DamageSource.causePlayerDamage(player), 3.0F);
 		}
 		aabb.expand(-2, -2, -2);
 

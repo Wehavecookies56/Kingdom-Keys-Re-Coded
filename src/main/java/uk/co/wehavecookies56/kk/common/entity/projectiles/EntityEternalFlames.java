@@ -93,7 +93,7 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 			else
 				shotDamage = player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() / 2;
 
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), shotDamage);
+			mop.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) getThrower()), shotDamage);
 		}
 
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
