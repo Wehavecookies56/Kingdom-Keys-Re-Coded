@@ -27,6 +27,7 @@ import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.capability.*;
 import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
@@ -495,19 +496,13 @@ public class EntityEvents {
             PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
             DriveStateCapability.IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 
-
-            //event.setAmount((float) (event.getAmount() + (STATS.getStrength() * 0.25)));
-
-            if (player.getHeldItem(EnumHand.MAIN_HAND) != null) {
-                if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
-                    event.setAmount(0);
-                    event.setAmount((float) ConfigHandler.damageMultiplier * ((float) (event.getAmount() + ((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength())));
-                }
+           // System.out.println(DamageCalculation.getStrengthDamage(player));
+            if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
+            {
+            	System.out.println(event.getAmount()-4);
+            	event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
             }
-            if (DS.getActiveDriveName().equals("Valor")) {
-                event.setAmount((float) (event.getAmount() * 1.5));
-                STATS.addDP(1);
-            }
+         
         }
     }
 

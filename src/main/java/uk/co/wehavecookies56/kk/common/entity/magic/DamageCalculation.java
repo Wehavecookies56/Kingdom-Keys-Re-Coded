@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.entity.magic;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
@@ -46,8 +47,9 @@ public class DamageCalculation {
 			finalDamage = (float) (damage + (0.2 * damage));
 			break;
 		}
-		System.out.println("Magic: "+finalDamage);
-		return finalDamage;
+		//System.out.println("Magic: "+finalDamage);
+		
+		return (float) (finalDamage * ConfigHandler.damageMultiplier);
 	}
 	
 	public static float getStrengthDamage(EntityPlayer player)
@@ -76,8 +78,8 @@ public class DamageCalculation {
 			break;
 		}
 		
-		
-		System.out.println("Strength: "+finalDamage);
+		finalDamage = (float) (damage * ConfigHandler.damageMultiplier);
+		//System.out.println("Strength: "+finalDamage);
 		return finalDamage;
 	}
 }
