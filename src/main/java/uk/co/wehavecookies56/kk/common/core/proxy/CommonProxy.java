@@ -24,6 +24,7 @@ import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntitySynthesisTable;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.*;
+import uk.co.wehavecookies56.kk.common.core.handler.event.*;
 import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
 import uk.co.wehavecookies56.kk.common.crafting.KKOreDictionary;
 import uk.co.wehavecookies56.kk.common.crafting.ModBlocksRecipes;
@@ -161,7 +162,11 @@ public class CommonProxy {
 		//TODO here was "new PlayerLevel();"
 
 		// Event handler
-		MinecraftForge.EVENT_BUS.register(new EventHandler());
+		MinecraftForge.EVENT_BUS.register(new BlockEvents());
+		MinecraftForge.EVENT_BUS.register(new CapabilityEvents());
+		MinecraftForge.EVENT_BUS.register(new EntityEvents());
+		MinecraftForge.EVENT_BUS.register(new ItemEvents());
+		MinecraftForge.EVENT_BUS.register(new RenderingEvents());
 		LogHelper.info("Events loaded");
 
 		//Ore Dictionary registry

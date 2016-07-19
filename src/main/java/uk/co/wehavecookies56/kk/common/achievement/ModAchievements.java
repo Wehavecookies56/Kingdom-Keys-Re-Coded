@@ -15,7 +15,11 @@ public class ModAchievements {
 	public static ArrayList kkAchievements = new ArrayList<Achievement>();
 	public static AchievementPage kkPage;
 
-	public static Achievement openMenu, getKeyblade, getWehavecookies56Skull, getAbelatoxSkull, getSynthesisTable, getBlox, getRecipe;
+	public static Achievement openMenu, getKeyblade, getWehavecookies56Skull, getAbelatoxSkull, getSynthesisTable,
+			getBlox, getRecipe, allRecipes, getChest, getKeybladeArmor, getOrgWeapon, getOrgRobe, getKiblade,
+			getNightmareBreakOrMirageSplit, getCombined, getIncompleteKiblade, get1milMunny, getKingdomHearts, getMagic,
+			getDriveForm, level100, level50, freeDev, getSynthesisBag, breakPrizeBlox, playMusicDisc, getUltimaWeapon,
+			getStick, getUmbrella, getDreamSword, getGhostBlox;
 
 	public static void init () {
 

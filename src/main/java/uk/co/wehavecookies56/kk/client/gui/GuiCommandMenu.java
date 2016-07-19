@@ -18,8 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
-import uk.co.wehavecookies56.kk.common.core.handler.EventHandler;
-import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
+import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
@@ -132,7 +131,7 @@ public class GuiCommandMenu extends GuiScreen {
 
 			if (selected == DRIVE) { // Selected
 				textX = 5;
-				if (EventHandler.isHostiles)
+				if (EntityEvents.isHostiles)
 					drawTexturedModalRect(5, 0, TOP_WIDTH, 30, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				else
 					drawTexturedModalRect(5, 0, TOP_WIDTH, MENU_HEIGHT, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
@@ -140,7 +139,7 @@ public class GuiCommandMenu extends GuiScreen {
 			} else { // Not selected
 				textX = 0;
 
-				if (EventHandler.isHostiles)
+				if (EntityEvents.isHostiles)
 					drawTexturedModalRect(0, 0, 0, 30, TOP_WIDTH, v + MENU_HEIGHT);
 				else
 					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
@@ -177,7 +176,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if (submenu != 0) GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) this.alpha);
 			if (selected == ITEMS) { // Selected
 				textX = 5;
-				if (EventHandler.isHostiles)
+				if (EntityEvents.isHostiles)
 					drawTexturedModalRect(5, 0, TOP_WIDTH, 30, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				else
 					drawTexturedModalRect(5, 0, TOP_WIDTH, MENU_HEIGHT, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
@@ -185,7 +184,7 @@ public class GuiCommandMenu extends GuiScreen {
 			} else { // Not selected
 				textX = 0;
 
-				if (EventHandler.isHostiles)
+				if (EntityEvents.isHostiles)
 					drawTexturedModalRect(0, 0, 0, 30, TOP_WIDTH, v + MENU_HEIGHT);
 				else
 					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
@@ -214,7 +213,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if (submenu != 0) GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) this.alpha);
 			if (selected == MAGIC) { // Selected
 				textX = 5;
-				if (EventHandler.isHostiles)
+				if (EntityEvents.isHostiles)
 					drawTexturedModalRect(5, 0, TOP_WIDTH, 30, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				else
 					drawTexturedModalRect(5, 0, TOP_WIDTH, MENU_HEIGHT, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
@@ -222,7 +221,7 @@ public class GuiCommandMenu extends GuiScreen {
 			} else { // Not selected
 				textX = 0;
 
-				if (EventHandler.isHostiles)
+				if (EntityEvents.isHostiles)
 					drawTexturedModalRect(0, 0, 0, 30, TOP_WIDTH, v + MENU_HEIGHT);
 				else
 					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
@@ -260,7 +259,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if (selected == ATTACK) { // Selected
 
 				textX = 5;
-				if (EventHandler.isHostiles)
+				if (EntityEvents.isHostiles)
 					drawTexturedModalRect(5, 0, TOP_WIDTH, 30, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 				else
 					drawTexturedModalRect(5, 0, TOP_WIDTH, MENU_HEIGHT, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
@@ -268,7 +267,7 @@ public class GuiCommandMenu extends GuiScreen {
 			} else { // Not selected
 				textX = 0;
 
-				if (EventHandler.isHostiles)
+				if (EntityEvents.isHostiles)
 					drawTexturedModalRect(0, 0, 0, 30, TOP_WIDTH, v + MENU_HEIGHT);
 				else
 					drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
@@ -290,7 +289,7 @@ public class GuiCommandMenu extends GuiScreen {
 			GL11.glScalef(scale, scale, scale);
 			if (submenu != 0) GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) this.alpha);
 
-			if (EventHandler.isHostiles)
+			if (EntityEvents.isHostiles)
 				drawTexturedModalRect(0, 0, 0, 15, TOP_WIDTH, TOP_HEIGHT);
 			else
 				drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
@@ -454,5 +453,4 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 		}
 	}
-
 }
