@@ -12,6 +12,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -639,7 +640,16 @@ public class EventHandler {
 			EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
 
 			EntityMob mob = (EntityMob) event.getEntity();
+			
 			player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,(int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2),"normal");
+			if(event.getEntity() instanceof EntityDragon)
+			{
+				player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,2000, "normal");
+			}
+			if(event.getEntity() instanceof EntityWither)
+			{
+				player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,1500, "normal");
+			}
 			PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 		}
 	}
