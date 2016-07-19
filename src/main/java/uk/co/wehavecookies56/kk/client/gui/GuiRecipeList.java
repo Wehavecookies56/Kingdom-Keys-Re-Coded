@@ -18,6 +18,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class GuiRecipeList extends GuiScrollingList {
 
@@ -71,7 +72,7 @@ public class GuiRecipeList extends GuiScrollingList {
 
 		ItemKeyblade keyblade = (ItemKeyblade) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)));
 
-		this.f.drawString(f.trimStringToWidth(TextHelper.localize(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, color);
+		this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, color);
 		this.ir.renderItemAndEffectIntoGUI(new ItemStack(keyblade), this.left + 3, var3 + 12);
 		String plus = keyblade.getStrength() < 0 ? "" : "+";
 		this.f.drawString("Str: "+ plus +keyblade.getStrength(),this.left + 25, var3 + 12, 0xFF0000);

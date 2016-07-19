@@ -14,6 +14,7 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 @SideOnly (Side.CLIENT)
 public class GuiDrive extends GuiScreen {
@@ -58,11 +59,6 @@ public class GuiDrive extends GuiScreen {
 			bar = 9;
 		// max
 		return bar;
-	}
-
-	int randomWithRange (int min, int max) {
-		int range = Math.abs(max - min) + 1;
-		return (int) (Math.random() * range) + (min <= max ? min : max);
 	}
 
 	@SubscribeEvent
@@ -138,7 +134,7 @@ public class GuiDrive extends GuiScreen {
 			GL11.glPopMatrix();
 			if (STATS.getDP() >= 1000) {
 				GL11.glPushMatrix();
-				switch (randomWithRange(1, 4)) {
+				switch (Utils.randomWithRange(1, 4)) {
 					case 1:
 						GL11.glColor3ub((byte) 255, (byte) 50, (byte) 40);
 

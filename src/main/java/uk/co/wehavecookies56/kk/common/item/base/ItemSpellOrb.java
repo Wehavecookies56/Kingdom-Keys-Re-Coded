@@ -13,6 +13,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.LevelUpMagic;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public abstract class ItemSpellOrb extends Item {
 
@@ -39,7 +40,7 @@ public abstract class ItemSpellOrb extends Item {
 
 	@Override
 	public void addInformation (ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
-		tooltip.add(TextHelper.localize(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
+		tooltip.add(Utils.translateToLocal(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
 		super.addInformation(stack, player, tooltip, advanced);
 	}
 

@@ -13,6 +13,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class TileEntityKKChest extends TileEntity implements IInventory {
 	ItemStack keyblade;
@@ -160,7 +161,7 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 
 	@Override
 	public String getName () {
-		return TextHelper.localize(Strings.KKChestInventory);
+		return Utils.translateToLocal(Strings.KKChestInventory);
 	}
 
 	public ItemStack getKeyblade() {

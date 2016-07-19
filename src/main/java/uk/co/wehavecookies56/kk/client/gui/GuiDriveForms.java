@@ -17,6 +17,7 @@ import uk.co.wehavecookies56.kk.common.container.inventory.InventoryDriveForms;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.io.IOException;
 
@@ -90,9 +91,9 @@ public class GuiDriveForms extends GuiContainer {
 		{
 			drawString(fontRendererObj, mc.thePlayer.worldObj.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
 			drawString(fontRendererObj, mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
-			drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
+			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
 			IMunny MUNNY = mc.thePlayer.getCapability(ModCapabilities.MUNNY, null);
-			drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
+			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
 		}
 		GL11.glPopMatrix();
 

@@ -24,6 +24,7 @@ public class BlockBlastBlox extends BlockBlox {
 		super(material, toolClass, level, hardness, resistance);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox (IBlockState worldIn, World pos, BlockPos state) {
 		float f = 0.0625F;

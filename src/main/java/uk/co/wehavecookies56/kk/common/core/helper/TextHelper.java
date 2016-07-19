@@ -3,16 +3,8 @@ package uk.co.wehavecookies56.kk.common.core.helper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 
 public class TextHelper {
-
-	/**
-	 * Enable Localizationizing
-	 */
-	public static String localize (String key) {
-		return I18n.translateToLocal(key);
-	}
 
 	/**
 	 * Send message in the chat with formatting

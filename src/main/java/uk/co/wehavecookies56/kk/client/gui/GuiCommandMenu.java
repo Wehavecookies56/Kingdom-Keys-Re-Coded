@@ -26,6 +26,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 @SideOnly (Side.CLIENT)
 public class GuiCommandMenu extends GuiScreen {
@@ -149,14 +150,14 @@ public class GuiCommandMenu extends GuiScreen {
 				if (DS.getInDrive()) {
 					
 					if (DS.getActiveDriveName().equals(Strings.Form_Anti))
-						drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Revert), 6 + textX, 4, 0x888888);
+						drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive_Revert), 6 + textX, 4, 0x888888);
 					else
-						drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Revert), 6 + textX, 4, 0xFFFFFF);
+						drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive_Revert), 6 + textX, 4, 0xFFFFFF);
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 				} else if (this.driveCommands.isEmpty() || STATS.getDP() <= 0)
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0x888888);
+					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0x888888);
 				else
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0xFFFFFF);
+					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0xFFFFFF);
 			}
 
 		}
@@ -192,9 +193,9 @@ public class GuiCommandMenu extends GuiScreen {
 			if(this.submenu == 0)
 			{
 				if (this.items.isEmpty())
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0x888888);
+					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0x888888);
 				else
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0xFFFFFF);
+					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0xFFFFFF);
 			}
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}
@@ -229,14 +230,14 @@ public class GuiCommandMenu extends GuiScreen {
 			if(this.submenu == 0)
 			{
 				if (spells == null) {
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
+					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
 				} else {
 					//if (!ExtendedPlayer.get(mc.thePlayer).getRecharge() && !spells.isEmpty() && !ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
 					if (!STATS.getRecharge() && (!this.spells.isEmpty() && !DS.getActiveDriveName().equals(Strings.Form_Valor))) 
 	
-						drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0xFFFFFF);
+						drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0xFFFFFF);
 					else
-						drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
+						drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 				}
 			}
@@ -274,7 +275,7 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 			if(this.submenu == 0)
 			{
-			drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Attack), 6 + textX, 4, 0xFFFFFF);
+			drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Attack), 6 + textX, 4, 0xFFFFFF);
 			}
 
 		}
@@ -295,7 +296,7 @@ public class GuiCommandMenu extends GuiScreen {
 				drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
 			if(this.submenu == 0)
 			{
-				drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Command), 6, 4, 0xFFFFFF);
+				drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Command), 6, 4, 0xFFFFFF);
 			}
 		}
 		GL11.glPopMatrix();
@@ -310,7 +311,7 @@ public class GuiCommandMenu extends GuiScreen {
 				GL11.glScalef(scale, scale, scale);
 				if (submenu == SUB_MAGIC) {
 					drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
-					drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Magic_Title), 6, 4, 0xFFFFFF);
+					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic_Title), 6, 4, 0xFFFFFF);
 				}
 			}
 			GL11.glPopMatrix();
@@ -339,7 +340,7 @@ public class GuiCommandMenu extends GuiScreen {
 						String magic = spells.get(i);
 						int level = mc.thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic);
 						String magicName = Constants.getMagicName(magic, level);
-						drawString(mc.fontRendererObj, TextHelper.localize(magicName), 6, 4, colour);
+						drawString(mc.fontRendererObj, Utils.translateToLocal(magicName), 6, 4, colour);
 						GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					}
 				}
@@ -357,7 +358,7 @@ public class GuiCommandMenu extends GuiScreen {
 				GL11.glScalef(scale, scale, scale);
 				if (submenu == SUB_ITEMS) {
 					drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
-					drawString(mc.fontRendererObj, TextHelper.localize("ITEMS"), 6, 4, 0xFFFFFF);
+					drawString(mc.fontRendererObj, Utils.translateToLocal("ITEMS"), 6, 4, 0xFFFFFF);
 				}
 
 			}
@@ -380,7 +381,7 @@ public class GuiCommandMenu extends GuiScreen {
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 						else
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
-						drawString(mc.fontRendererObj, TextHelper.localize("item." + items.get(i) + ".name"), 6, 4, 0xFFFFFF);
+						drawString(mc.fontRendererObj, Utils.translateToLocal("item." + items.get(i) + ".name"), 6, 4, 0xFFFFFF);
 
 						GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					}
@@ -407,7 +408,7 @@ public class GuiCommandMenu extends GuiScreen {
 				GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
 				GL11.glTranslatef(5, (height - MENU_HEIGHT * scale * (driveCommands.size() + 1)), 0);
 				GL11.glScalef(scale, scale, scale);
-				if (submenu == SUB_DRIVE) drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_CommandMenu_Drive_Title), 6, 4, 0xFFFFFF);
+				if (submenu == SUB_DRIVE) drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive_Title), 6, 4, 0xFFFFFF);
 			}
 			GL11.glPopMatrix();
 			for (int i = 0; i < driveCommands.size(); i++) {
@@ -442,9 +443,9 @@ public class GuiCommandMenu extends GuiScreen {
 					GL11.glScalef(scale, scale, scale);
 					if (submenu == SUB_DRIVE) {
 						if (STATS.getDP() >= Constants.getCost(driveCommands.get(i)) || mc.thePlayer.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
-							drawString(mc.fontRendererObj, TextHelper.localize(driveCommands.get(i)), 6, 4, 0xFFFFFF);
+							drawString(mc.fontRendererObj, Utils.translateToLocal(driveCommands.get(i)), 6, 4, 0xFFFFFF);
 						else
-							drawString(mc.fontRendererObj, TextHelper.localize(driveCommands.get(i)), 6, 4, 0x888888);
+							drawString(mc.fontRendererObj, Utils.translateToLocal(driveCommands.get(i)), 6, 4, 0x888888);
 					}
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 

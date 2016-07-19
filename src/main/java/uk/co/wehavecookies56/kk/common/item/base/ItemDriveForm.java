@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.LevelUpDrive;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public abstract class ItemDriveForm extends Item {
 
@@ -30,7 +31,7 @@ public abstract class ItemDriveForm extends Item {
 
 	@Override
 	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-		tooltip.add(TextHelper.localize(this.form));
+		tooltip.add(Utils.translateToLocal(this.form));
 		super.addInformation(stack, playerIn, tooltip, advanced);
 	}
 

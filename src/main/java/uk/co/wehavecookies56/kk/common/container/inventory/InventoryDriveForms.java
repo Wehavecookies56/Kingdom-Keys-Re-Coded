@@ -7,9 +7,10 @@ import net.minecraft.util.text.TextComponentString;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class InventoryDriveForms extends AbstractInventory {
-	private final String name = TextHelper.localize(Strings.DriveInventory);
+	private final String name = Utils.translateToLocal(Strings.DriveInventory);
 
 	/** The key used to store and retrieve the inventory from NBT */
 	private static final String SAVE_KEY = "DriveInvKey";

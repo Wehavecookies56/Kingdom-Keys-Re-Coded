@@ -10,6 +10,7 @@ import uk.co.wehavecookies56.kk.common.core.handler.EventHandler;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.GiveItemInSlot;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class ItemIceCream extends ItemFood {
 
@@ -30,7 +31,7 @@ public class ItemIceCream extends ItemFood {
 	public void onFoodEaten (ItemStack item, World world, EntityPlayer player) {
 		if (!player.capabilities.isCreativeMode && world.isRemote) {
 			int slot;
-			win = EventHandler.randomWithRange(0, 20);
+			win = Utils.randomWithRange(0, 20);
 			if (win == 6){
 				if(player.inventory.hasItemStack(new ItemStack(ModItems.WinnerStick))){
 					PacketDispatcher.sendToServer(new GiveItemInSlot(new ItemStack(ModItems.WinnerStick), player.inventory.getSlotFor(new ItemStack(ModItems.WinnerStick)),true));

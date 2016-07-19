@@ -6,6 +6,7 @@ import net.minecraft.client.gui.GuiButton;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class GuiMenu extends GuiMenu_Bars {
 
@@ -52,13 +53,13 @@ public class GuiMenu extends GuiMenu_Bars {
 		int button_journalY = button_statusY + 22;
 		int button_configY = button_journalY + 22;
 
-		buttonList.add(items = new GuiButton(ITEMS, 5, button_itemsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Items)));
-		buttonList.add(abilities = new GuiButton(ABILITIES, 5, button_abilitiesY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Abilities)));
-		buttonList.add(customize = new GuiButton(CUSTOMIZE, 5, button_customizeY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Customize)));
-		buttonList.add(party = new GuiButton(PARTY, 5, button_partyY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Party)));
-		buttonList.add(status = new GuiButton(STATUS, 5, button_statusY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Status)));
-		buttonList.add(journal = new GuiButton(JOURNAL, 5, button_journalY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Journal)));
-		buttonList.add(config = new GuiButton(CONFIG, 5, button_configY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Main_Button_Config)));
+		buttonList.add(items = new GuiButton(ITEMS, 5, button_itemsY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Main_Button_Items)));
+		buttonList.add(abilities = new GuiButton(ABILITIES, 5, button_abilitiesY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Main_Button_Abilities)));
+		buttonList.add(customize = new GuiButton(CUSTOMIZE, 5, button_customizeY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Main_Button_Customize)));
+		buttonList.add(party = new GuiButton(PARTY, 5, button_partyY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Main_Button_Party)));
+		buttonList.add(status = new GuiButton(STATUS, 5, button_statusY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Main_Button_Status)));
+		buttonList.add(journal = new GuiButton(JOURNAL, 5, button_journalY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Main_Button_Journal)));
+		buttonList.add(config = new GuiButton(CONFIG, 5, button_configY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Main_Button_Config)));
 
 		updateButtons();
 	}

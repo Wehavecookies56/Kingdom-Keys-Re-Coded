@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 @SideOnly (Side.CLIENT)
 public class GuiReports extends GuiScreen {
@@ -174,7 +175,7 @@ public class GuiReports extends GuiScreen {
 				switch (keybladesPageIndex) {
 					case 0:
 						// drawCenteredString(fontRendererObj,
-						// TextHelper.localize("Kingdom Hearts"), bookXStart +
+						// Utils.translateToLocal("Kingdom Hearts"), bookXStart +
 						// 85, 20,
 						// 0x666666);
 						buildPage("gui." + Reference.MODID + ".reports.keyblades.title.main", "", 1, keybladesPages, CHAPTER_KEYBLADES);
@@ -227,9 +228,9 @@ public class GuiReports extends GuiScreen {
 	private void buildPage (String unlocTitle, String unlocBody, int page, int totalPages, int desiredChapter) {
 		RenderHelper.disableStandardItemLighting();
 		if (chapterIndex == desiredChapter) {
-			drawCenteredString(fontRendererObj, TextHelper.localize(unlocTitle), bookXStart + 85, 20, 0x666666);
+			drawCenteredString(fontRendererObj, Utils.translateToLocal(unlocTitle), bookXStart + 85, 20, 0x666666);
 			fontRendererObj.setUnicodeFlag(false);
-			fontRendererObj.drawSplitString(TextHelper.localize(unlocBody), bookXStart + 20, 60, WIDTH - 40, 0x666666);
+			fontRendererObj.drawSplitString(Utils.translateToLocal(unlocBody), bookXStart + 20, 60, WIDTH - 40, 0x666666);
 		}
 		// drawCenteredString(fontRendererObj, page + " / " + totalPages,
 		// bookXStart + 85, 215, 0x666666);

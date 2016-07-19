@@ -21,6 +21,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.UseRecipe;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class ItemRecipe extends Item {
 
@@ -72,19 +73,19 @@ public class ItemRecipe extends Item {
 		long seed = System.nanoTime();
 		// Shuffles the list of recipe to increase randomness
 		Collections.shuffle(Lists.recipes, new Random(seed));
-		String Recipe1 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
+		String Recipe1 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
 	/*	while (Recipe1.equals(RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe1)))
-			Recipe1 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));*/
-		String Recipe2 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
+			Recipe1 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));*/
+		String Recipe2 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
 		// Generate a new random value for the second recipe until it's not
 		// equal the first
 		while (Recipe2.equals(Recipe1))
-			Recipe2 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
+			Recipe2 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
 		// Generate a new random value for the third recipe until it's not
 		// equal the first or the second
-		String Recipe3 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
+		String Recipe3 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
 		while (Recipe3.equals(Recipe2) || Recipe3.equals(Recipe1))
-			Recipe3 = Lists.recipes.get(randomWithRange(0, Lists.recipes.size() - 1));
+			Recipe3 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
 		// Set values to NBT data
 		stack.setTagCompound(new NBTTagCompound());
 		stack.getTagCompound().setString("recipe1", Recipe1);
@@ -99,14 +100,6 @@ public class ItemRecipe extends Item {
 		}
 	}
 
-	/**
-	 * Generates a random number between 2 values, min and max can be swapped
-	 */
-	public int randomWithRange (int min, int max) {
-		int range = Math.abs(max - min) + 1;
-		return (int) (Math.random() * range) + (min <= max ? min : max);
-	}
-
 	@Override
 	public void addInformation (ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
 		// Make sure it has NBT data
@@ -117,9 +110,9 @@ public class ItemRecipe extends Item {
 			String recipe3 = stack.getTagCompound().getString("recipe3");
 
 			// Add Strings to the tooltip
-			tooltip.add(TextHelper.localize(recipe1 + ".name"));
-			tooltip.add(TextHelper.localize(recipe2 + ".name"));
-			tooltip.add(TextHelper.localize(recipe3 + ".name"));
+			tooltip.add(Utils.translateToLocal(recipe1 + ".name"));
+			tooltip.add(Utils.translateToLocal(recipe2 + ".name"));
+			tooltip.add(Utils.translateToLocal(recipe3 + ".name"));
 		}
 	}
 }

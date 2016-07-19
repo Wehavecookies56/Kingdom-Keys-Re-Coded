@@ -88,23 +88,27 @@ public class BlockSavePoint extends Block {
 	public BlockRenderLayer getBlockLayer () {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
-	
+
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos) {
 		return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(1, 0.1, 1));
 	}
 
+    @SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state) {
 		return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(1, 0.1, 1));
 	}
-	
-	@Override
+
+    @SuppressWarnings("deprecation")
+    @Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-	
-	@Override
+
+    @SuppressWarnings("deprecation")
+    @Override
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}

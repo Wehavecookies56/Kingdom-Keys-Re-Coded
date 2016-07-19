@@ -12,6 +12,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class ManifestKnowledgePacket extends AbstractMessage.AbstractServerMessage<ManifestKnowledgePacket> {
 
@@ -30,24 +31,11 @@ public class ManifestKnowledgePacket extends AbstractMessage.AbstractServerMessa
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-		int rand = randomWithRange(0, Lists.orgWeapons.size() - 1);
+		int rand = Utils.randomWithRange(0, Lists.orgWeapons.size() - 1);
 		player.inventory.addItemStackToInventory(new ItemStack(Lists.orgWeapons.get(rand)));
 		TextComponentTranslation manifestMessage = new TextComponentTranslation(Strings.Chat_Manifest, new TextComponentTranslation(Lists.orgWeapons.get(rand).getUnlocalizedName() + ".name"));
 		manifestMessage.getStyle().setColor(TextFormatting.YELLOW);
 		player.addChatMessage(manifestMessage);
-	}
-
-	/**
-	 * Method for generating random ints between the 2 parameters, The order of
-	 * min and max do not matter.
-	 *
-	 * @param min
-	 * @param max
-	 * @return
-	 */
-	public static int randomWithRange (int min, int max) {
-		int range = Math.abs(max - min) + 1;
-		return (int) (Math.random() * range) + (min <= max ? min : max);
 	}
 
 }

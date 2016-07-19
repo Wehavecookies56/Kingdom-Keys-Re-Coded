@@ -33,6 +33,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.CreateFromSynthesisRecipe;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMaterials;
 import uk.co.wehavecookies56.kk.common.network.packet.server.TakeMaterials;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -46,7 +47,7 @@ public class GuiSynthesis extends GuiTooltip {
 	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3, CREATE = 4, TAKE1 = 5, TAKESTACK = 6, TAKEHALFSTACK = 7, TAKEALL = 8, DEPOSIT = 9;
 	public int submenu;
 	private final GuiScreen parentScreen;
-	protected String title = TextHelper.localize(Strings.Gui_Synthesis_Main_Title);
+	protected String title = Utils.translateToLocal(Strings.Gui_Synthesis_Main_Title);
 	private GuiRecipeList recipeList;
 	private GuiMaterialList materialList;
 	private GuiFreeDevelopmentRecipeList freeDevRecipeList;
@@ -67,18 +68,18 @@ public class GuiSynthesis extends GuiTooltip {
 		this.materialList.registerScrollButtons(this.buttonList, 7, 8);
 		this.freeDevRecipeList = new GuiFreeDevelopmentRecipeList(this);
 		this.freeDevRecipeList.registerScrollButtons(this.buttonList, 7, 8);
-		this.buttonList.add(Back = new GuiButton(BACK, width - 105, height - ((height / 8) + 70 / 16), 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
-		this.buttonList.add(Create = new GuiButton(CREATE, 270, height - ((height / 8) + 70 / 16) - 25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes_Create)));
-		this.buttonList.add(Recipes = new GuiButton(RECIPES, 5, 65, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes)));
-		this.buttonList.add(FreeDev = new GuiButton(FREEDEV, 5, 65 + 25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_FreeDev)));
-		this.buttonList.add(Materials = new GuiButton(MATERIALS, 5, 90 + 25, 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials)));
+		this.buttonList.add(Back = new GuiButton(BACK, width - 105, height - ((height / 8) + 70 / 16), 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
+		this.buttonList.add(Create = new GuiButton(CREATE, 270, height - ((height / 8) + 70 / 16) - 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Recipes_Create)));
+		this.buttonList.add(Recipes = new GuiButton(RECIPES, 5, 65, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Recipes)));
+		this.buttonList.add(FreeDev = new GuiButton(FREEDEV, 5, 65 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_FreeDev)));
+		this.buttonList.add(Materials = new GuiButton(MATERIALS, 5, 90 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials)));
 
-		this.buttonList.add(Deposit = new GuiButton(DEPOSIT, 200, height - ((height / 8) + 70 / 16), 100, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials_Deposit)));
+		this.buttonList.add(Deposit = new GuiButton(DEPOSIT, 200, height - ((height / 8) + 70 / 16), 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_Deposit)));
 
-		this.buttonList.add(Take1 = new GuiButton(TAKE1, 195, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials_TakeOne)));
-		this.buttonList.add(TakeHalfStack = new GuiButton(TAKEHALFSTACK, 270, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials_TakeHalfStack)));
-		this.buttonList.add(TakeStack = new GuiButton(TAKESTACK, 345, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials_TakeStack)));
-		this.buttonList.add(TakeAll = new GuiButton(TAKEALL, 420, height - ((height / 8) + 70 / 16) - 25, 75, 20, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials_TakeAll)));
+		this.buttonList.add(Take1 = new GuiButton(TAKE1, 195, height - ((height / 8) + 70 / 16) - 25, 75, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_TakeOne)));
+		this.buttonList.add(TakeHalfStack = new GuiButton(TAKEHALFSTACK, 270, height - ((height / 8) + 70 / 16) - 25, 75, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_TakeHalfStack)));
+		this.buttonList.add(TakeStack = new GuiButton(TAKESTACK, 345, height - ((height / 8) + 70 / 16) - 25, 75, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_TakeStack)));
+		this.buttonList.add(TakeAll = new GuiButton(TAKEALL, 420, height - ((height / 8) + 70 / 16) - 25, 75, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_TakeAll)));
 
 		updateButtons();
 	}
@@ -386,7 +387,7 @@ public class GuiSynthesis extends GuiTooltip {
 				GL11.glPushMatrix(); {
 					GL11.glTranslatef(200, 70, 0);
 					GL11.glScalef(2, 2, 2);
-					drawString(fontRendererObj, TextHelper.localize(materials.get(i).toString() + ".name") + " x" + MATS.getKnownMaterialsMap().get(materials.get(i)), 0, 0, 0xFFF700);
+					drawString(fontRendererObj, Utils.translateToLocal(materials.get(i).toString() + ".name") + " x" + MATS.getKnownMaterialsMap().get(materials.get(i)), 0, 0, 0xFFF700);
 				}
 				GL11.glPopMatrix();
 				Material m = MaterialRegistry.get(materials.get(i).toString());
@@ -431,13 +432,13 @@ public class GuiSynthesis extends GuiTooltip {
 					GL11.glPushMatrix(); {
 						GL11.glTranslatef(posX, 70, 0);
 						GL11.glScalef(2 * scale, 2 * scale, 2 * scale);
-						drawString(fontRendererObj, TextHelper.localize(RECIPES.getKnownRecipes().get(i).toString() + ".name"), 0, 0, 0xFFF700);
+						drawString(fontRendererObj, Utils.translateToLocal(RECIPES.getKnownRecipes().get(i).toString() + ".name"), 0, 0, 0xFFF700);
 						drawString(fontRendererObj, "Strength: +"+((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getStrength(), 0, 10, 0xFF0000);
 						drawString(fontRendererObj, "Magic: +"+ ((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getMagic(), 0, 20, 0x4444FF);
 					}
 					GL11.glPopMatrix();
 
-					drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes_ReqMaterials) + TextFormatting.ITALIC, posX, 100, 0x00C3FF);
+					drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Recipes_ReqMaterials) + TextFormatting.ITALIC, posX, 100, 0x00C3FF);
 
 					int row = 0;
 					int column = 0;
@@ -477,7 +478,7 @@ public class GuiSynthesis extends GuiTooltip {
 							info = " - You have 0";
 							colour = 0xB50000;
 						}
-						String material = TextHelper.localize(name + ".name") + " x" + pair.getValue();
+						String material = Utils.translateToLocal(name + ".name") + " x" + pair.getValue();
 						
 						GL11.glPushMatrix(); {
 							GL11.glTranslatef((int) (posX + 18 + (materialLength * 1.05f * scale)), 114 + (distY * row), 0);
@@ -495,7 +496,7 @@ public class GuiSynthesis extends GuiTooltip {
 							column = 0;
 							materialLength = 0;
 						} else {
-							materialLength = (fontRendererObj.getStringWidth(TextHelper.localize(ModItems.Chain_IncompleteKiblade.getUnlocalizedName() + ".name") + " - You have XXXX")) + 20;
+							materialLength = (fontRendererObj.getStringWidth(Utils.translateToLocal(ModItems.Chain_IncompleteKiblade.getUnlocalizedName() + ".name") + " - You have XXXX")) + 20;
 							column = 1;
 						}
 
@@ -522,13 +523,13 @@ public class GuiSynthesis extends GuiTooltip {
 					GL11.glPushMatrix(); {
 						GL11.glTranslatef(posX, 70, 0);
 						GL11.glScalef(2 * scale, 2 * scale, 2 * scale);
-						drawString(fontRendererObj, TextHelper.localize(RECIPES.getFreeDevRecipes().get(i).toString() + ".name"), 0, 0, 0xFFF700);
+						drawString(fontRendererObj, Utils.translateToLocal(RECIPES.getFreeDevRecipes().get(i).toString() + ".name"), 0, 0, 0xFFF700);
 						//drawString(fontRendererObj, "Strength: +"+((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getStrength(), 0, 10, 0xFF0000);
 						//drawString(fontRendererObj, "Magic: +"+ ((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getMagic(), 0, 20, 0x4444FF);
 					}
 					GL11.glPopMatrix();
 
-					drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes_ReqMaterials) + TextFormatting.ITALIC, posX, 100, 0x00C3FF);
+					drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Recipes_ReqMaterials) + TextFormatting.ITALIC, posX, 100, 0x00C3FF);
 
 					int row = 0;
 					int column = 0;
@@ -568,7 +569,7 @@ public class GuiSynthesis extends GuiTooltip {
 							info = " - You have 0";
 							colour = 0xB50000;
 						}
-						String material = TextHelper.localize(name + ".name") + " x" + pair.getValue();
+						String material = Utils.translateToLocal(name + ".name") + " x" + pair.getValue();
 
 						GL11.glPushMatrix(); {
 							GL11.glTranslatef((int) (posX + 18 + (materialLength * 1.05f * scale)), 114 + (distY * row), 0);
@@ -586,7 +587,7 @@ public class GuiSynthesis extends GuiTooltip {
 							column = 0;
 							materialLength = 0;
 						} else {
-							materialLength = (fontRendererObj.getStringWidth(TextHelper.localize(ModItems.Chain_IncompleteKiblade.getUnlocalizedName() + ".name") + " - You have XXXX")) + 20;
+							materialLength = (fontRendererObj.getStringWidth(Utils.translateToLocal(ModItems.Chain_IncompleteKiblade.getUnlocalizedName() + ".name") + " - You have XXXX")) + 20;
 							column = 1;
 						}
 
@@ -626,16 +627,16 @@ public class GuiSynthesis extends GuiTooltip {
 			drawString(fontRendererObj, title, 5, 5, 0xFFFFFF);
 		}
 		GL11.glPopMatrix();
-		if (submenu == RECIPES) drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_Recipes), 15, 30, 0xFFFFFF);
-		if (submenu == FREEDEV) drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_FreeDev), 15, 30, 0xFFFFFF);
-		if (submenu == MATERIALS) drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Synthesis_Main_Materials), 15, 30, 0xFFFFFF);
+		if (submenu == RECIPES) drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Recipes), 15, 30, 0xFFFFFF);
+		if (submenu == FREEDEV) drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Synthesis_Main_FreeDev), 15, 30, 0xFFFFFF);
+		if (submenu == MATERIALS) drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials), 15, 30, 0xFFFFFF);
 		GL11.glPushMatrix();
 		{
 			drawString(fontRendererObj, mc.thePlayer.worldObj.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
 			drawString(fontRendererObj, mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
-			drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
+			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
 			IMunny MUNNY = mc.thePlayer.getCapability(ModCapabilities.MUNNY, null);
-			drawString(fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
+			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
 		}
 		GL11.glPopMatrix();
 

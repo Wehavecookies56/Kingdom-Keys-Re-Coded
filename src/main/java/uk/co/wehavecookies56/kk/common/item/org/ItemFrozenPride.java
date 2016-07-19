@@ -4,19 +4,15 @@ import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
-import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class ItemFrozenPride extends ItemShield {
 
@@ -42,7 +38,7 @@ public class ItemFrozenPride extends ItemShield {
 
     @Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return I18n.translateToLocal(this.getUnlocalizedName() + ".name");
+		return Utils.translateToLocal(this.getUnlocalizedName() + ".name");
 	}
 
 	@Override

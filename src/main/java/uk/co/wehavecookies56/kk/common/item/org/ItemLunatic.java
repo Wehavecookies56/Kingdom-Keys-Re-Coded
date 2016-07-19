@@ -10,6 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class ItemLunatic extends ItemSword {
 
@@ -27,7 +28,7 @@ public class ItemLunatic extends ItemSword {
 	@Override
 	@SideOnly (Side.CLIENT)
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add(TextHelper.localize(Strings.LunaticDesc));
+		dataList.add(Utils.translateToLocal(Strings.LunaticDesc));
 	}
 
 }

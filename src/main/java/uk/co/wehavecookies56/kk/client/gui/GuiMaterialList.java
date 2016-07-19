@@ -18,6 +18,7 @@ import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability.ISynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class GuiMaterialList extends GuiScrollingList {
 
@@ -65,7 +66,7 @@ public class GuiMaterialList extends GuiScrollingList {
 
 		materials.addAll(MATS.getKnownMaterialsMap().keySet());
 
-		this.f.drawString(f.trimStringToWidth(TextHelper.localize(materials.get(var1).toString() + ".name") + " x" + MATS.getKnownMaterialsMap().get(materials.get(var1)), listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
+		this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(materials.get(var1).toString() + ".name") + " x" + MATS.getKnownMaterialsMap().get(materials.get(var1)), listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
 		Material m = MaterialRegistry.get(materials.get(var1).toString());
 		if (m.getTexture() != null) {
 			GL11.glPushMatrix();

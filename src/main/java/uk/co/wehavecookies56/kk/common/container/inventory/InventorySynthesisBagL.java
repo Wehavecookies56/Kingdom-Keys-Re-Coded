@@ -9,10 +9,11 @@ import net.minecraft.util.text.TextComponentString;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagL;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class InventorySynthesisBagL extends AbstractInventory {
 
-	private String name = TextHelper.localize(Strings.SynthesisBagLInventory);
+	private String name = Utils.translateToLocal(Strings.SynthesisBagLInventory);
 
 	private static final String SAVE_KEY = "SynthesisBagLInventory";
 

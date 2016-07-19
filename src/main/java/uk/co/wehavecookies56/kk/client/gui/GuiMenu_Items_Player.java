@@ -9,6 +9,7 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class GuiMenu_Items_Player extends GuiMenu_Bars {
 
@@ -57,11 +58,11 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 		int button_items_driveY = button_items_spellsY + 22;
 		int button_items_backY = button_items_driveY + 22;
 
-		buttonList.add(keychain = new GuiButton(KEYCHAIN, 5, button_items_keybladeY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Keychain)));
-		buttonList.add(potions = new GuiButton(POTIONS, 5, button_items_potionsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Potions)));
-		buttonList.add(spells = new GuiButton(SPELLS, 5, button_items_spellsY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Spells)));
-		buttonList.add(driveforms = new GuiButton(DRIVE, 5, button_items_driveY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Drive)));
-		buttonList.add(back = new GuiButton(BACK, 5, button_items_backY, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
+		buttonList.add(keychain = new GuiButton(KEYCHAIN, 5, button_items_keybladeY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Keychain)));
+		buttonList.add(potions = new GuiButton(POTIONS, 5, button_items_potionsY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Potions)));
+		buttonList.add(spells = new GuiButton(SPELLS, 5, button_items_spellsY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Spells)));
+		buttonList.add(driveforms = new GuiButton(DRIVE, 5, button_items_driveY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Drive)));
+		buttonList.add(back = new GuiButton(BACK, 5, button_items_backY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
 		updateButtons();
 	}
 

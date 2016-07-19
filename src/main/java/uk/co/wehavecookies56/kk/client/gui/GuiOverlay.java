@@ -19,6 +19,7 @@ import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class GuiOverlay extends GuiScreen {
 	public static boolean showExp;
@@ -151,7 +152,7 @@ public class GuiOverlay extends GuiScreen {
 							GL11.glTranslatef((width - 256.0f * 0.8f + (mc.fontRendererObj.getStringWidth("Maximum HP Increased!")) * 0.8f), mc.fontRendererObj.FONT_HEIGHT * 0.8f * i + 23, 0);
 							GL11.glTranslatef(-35, 0, 0);
 							GL11.glScalef(0.8f, 0.8f, 1);
-							drawString(mc.fontRendererObj, TextHelper.localize(message), 0, 0, 0xFFFFFF);
+							drawString(mc.fontRendererObj, Utils.translateToLocal(message), 0, 0, 0xFFFFFF);
 
 						}
 						GL11.glPopMatrix();

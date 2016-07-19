@@ -13,6 +13,7 @@ import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenGui;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class ItemSynthesisBagL extends Item {
 
@@ -29,7 +30,7 @@ public class ItemSynthesisBagL extends Item {
 	@Override
 	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
 		int x = 30;
-		String s = TextHelper.localize(Strings.SynthesisBagDesc);
+		String s = Utils.translateToLocal(Strings.SynthesisBagDesc);
 		s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
 		String[] splitS = s.split("\n");
 		for (String element : splitS)

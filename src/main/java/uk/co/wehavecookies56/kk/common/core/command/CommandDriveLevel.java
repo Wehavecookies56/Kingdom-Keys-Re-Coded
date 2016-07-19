@@ -21,6 +21,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.LevelUpDrive;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class CommandDriveLevel implements ICommand {
 
@@ -102,23 +103,23 @@ public class CommandDriveLevel implements ICommand {
 					{
 					case "valor":
 						PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Valor, true, Integer.parseInt(args[1].toString()),player.getName()));
-						form = TextHelper.localize(Strings.Form_Valor);
+						form = Utils.translateToLocal(Strings.Form_Valor);
 						break;
 					case "wisdom":
 						PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Wisdom, true, Integer.parseInt(args[1].toString()),player.getName()));
-						form = TextHelper.localize(Strings.Form_Wisdom);
+						form = Utils.translateToLocal(Strings.Form_Wisdom);
 						break;
 					case "limit":
 						PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Limit, true, Integer.parseInt(args[1].toString()),player.getName()));
-						form = TextHelper.localize(Strings.Form_Limit);
+						form = Utils.translateToLocal(Strings.Form_Limit);
 						break;
 					case "master":
 						PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Master, true, Integer.parseInt(args[1].toString()),player.getName()));
-						form = TextHelper.localize(Strings.Form_Master);
+						form = Utils.translateToLocal(Strings.Form_Master);
 						break;
 					case "final":
 						PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Final, true, Integer.parseInt(args[1].toString()),player.getName()));
-						form = TextHelper.localize(Strings.Form_Final);
+						form = Utils.translateToLocal(Strings.Form_Final);
 						break;
 					}
 					if(form != null)
@@ -146,23 +147,23 @@ public class CommandDriveLevel implements ICommand {
 						{
 						case "valor":
 							PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Valor, true, Integer.parseInt(args[1].toString()),args[2]));
-							form = TextHelper.localize(Strings.Form_Valor);
+							form = Utils.translateToLocal(Strings.Form_Valor);
 							break;
 						case "wisdom":
 							PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Wisdom, true, Integer.parseInt(args[1].toString()),args[2]));
-							form = TextHelper.localize(Strings.Form_Wisdom);
+							form = Utils.translateToLocal(Strings.Form_Wisdom);
 							break;
 						case "limit":
 							PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Limit, true, Integer.parseInt(args[1].toString()),args[2]));
-							form = TextHelper.localize(Strings.Form_Limit);
+							form = Utils.translateToLocal(Strings.Form_Limit);
 							break;
 						case "master":
 							PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Master, true, Integer.parseInt(args[1].toString()),args[2]));
-							form = TextHelper.localize(Strings.Form_Master);
+							form = Utils.translateToLocal(Strings.Form_Master);
 							break;
 						case "final":
 							PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Final, true, Integer.parseInt(args[1].toString()),args[2]));
-							form = TextHelper.localize(Strings.Form_Final);
+							form = Utils.translateToLocal(Strings.Form_Final);
 							break;
 						}
 						if(form != null)

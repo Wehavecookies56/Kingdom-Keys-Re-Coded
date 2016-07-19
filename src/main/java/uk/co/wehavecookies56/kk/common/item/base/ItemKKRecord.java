@@ -9,6 +9,7 @@ import net.minecraft.util.SoundEvent;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -35,7 +36,7 @@ public class ItemKKRecord extends ItemRecord {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
 		String length = String.format("%.02f", this.length).replace("f", "").replace("F", "").replace(".", ":");
-		tooltip.add(TextHelper.localize(Strings.Disc_Duration_Desc) + ": " + length + " " + TextHelper.localize(Strings.Disc_DurationUnits_Desc));
+		tooltip.add(Utils.translateToLocal(Strings.Disc_Duration_Desc) + ": " + length + " " + Utils.translateToLocal(Strings.Disc_DurationUnits_Desc));
 	}
 
 }

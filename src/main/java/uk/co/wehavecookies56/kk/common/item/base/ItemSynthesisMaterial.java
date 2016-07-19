@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class ItemSynthesisMaterial extends Item {
 
@@ -21,7 +22,7 @@ public class ItemSynthesisMaterial extends Item {
 		if (stack.hasTagCompound()) {
 			String material = stack.getTagCompound().getString("material");
 			String rank = stack.getTagCompound().getString("rank");
-			tooltip.add(TextHelper.localize(Strings.SM_Rank) + " " + TextHelper.localize(rank) + ": " + TextHelper.localize(material + ".name"));
+			tooltip.add(Utils.translateToLocal(Strings.SM_Rank) + " " + Utils.translateToLocal(rank) + ": " + Utils.translateToLocal(material + ".name"));
 		}
 	}
 

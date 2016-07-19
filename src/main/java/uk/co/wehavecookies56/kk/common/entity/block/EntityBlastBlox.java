@@ -9,6 +9,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class EntityBlastBlox extends Entity {
 	/** How long the fuse is */
@@ -82,12 +83,7 @@ public class EntityBlastBlox extends Entity {
 
 			if (!this.worldObj.isRemote) explode();
 		} else
-			this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, randomDoubleWithRange(-0.05D, 0.05D), 0.1D, randomDoubleWithRange(-0.05D, 0.005D));
-	}
-
-	double randomDoubleWithRange (double min, double max) {
-		Random r = new Random();
-		return min + (max - min) * r.nextDouble();
+			this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, Utils.randomWithRange(-0.05D, 0.05D), 0.1D, Utils.randomWithRange(-0.05D, 0.005D));
 	}
 
 	private void explode () {

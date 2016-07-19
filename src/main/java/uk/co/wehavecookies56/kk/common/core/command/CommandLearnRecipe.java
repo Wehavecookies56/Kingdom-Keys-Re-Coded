@@ -14,6 +14,7 @@ import uk.co.wehavecookies56.kk.api.recipes.Recipe;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class CommandLearnRecipe implements ICommand {
 
@@ -70,7 +71,7 @@ public class CommandLearnRecipe implements ICommand {
 			TextHelper.sendFormattedChatMessage("You already know this recipe", TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
 		else if (RecipeRegistry.isRecipeRegistered("item." + args[0].toLowerCase())) {
 			RecipeRegistry.learnrecipe(((EntityPlayer) sender.getCommandSenderEntity()).getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes(), (EntityPlayer) sender.getCommandSenderEntity(), "item." + args[0].toLowerCase());
-			TextHelper.sendFormattedChatMessage("Successfully learnt recipe for " + TextHelper.localize("item." + args[0].toLowerCase() + ".name"), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+			TextHelper.sendFormattedChatMessage("Successfully learnt recipe for " + Utils.translateToLocal("item." + args[0].toLowerCase() + ".name"), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
 		} else if (args[0].equals("all")) {
 			for (Object value : RecipeRegistry.getRecipeMap().values())
 				if (value instanceof Recipe) if (!RecipeRegistry.isRecipeKnown(((EntityPlayer) sender.getCommandSenderEntity()).getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes(), ((Recipe) value).getName())) RecipeRegistry.learnrecipe(((EntityPlayer) sender.getCommandSenderEntity()).getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes(), (EntityPlayer) sender.getCommandSenderEntity(), ((Recipe) value).getName());

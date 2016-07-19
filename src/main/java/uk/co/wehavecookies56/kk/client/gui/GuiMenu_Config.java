@@ -15,6 +15,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.SetKH1Fire;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class GuiMenu_Config extends GuiMenu_Bars {
 
@@ -72,10 +73,10 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		r = new GuiNumberTextField(R, mc.fontRendererObj, rPosX, 100, boxWidth, 10, 3);
 		g = new GuiNumberTextField(G, mc.fontRendererObj, gPosX, 100, boxWidth, 10, 3);
 		b = new GuiNumberTextField(B, mc.fontRendererObj, bPosX, 100, boxWidth, 10, 3);
-		buttonList.add(showHearts = new GuiButton(HEARTS, mc.fontRendererObj.getStringWidth(TextHelper.localize(Strings.Gui_Menu_Config_Hearts)) + 15, 115, 100, 20, String.valueOf(ConfigHandler.EnableHeartsOnHUD)));
-		buttonList.add(musicToggle = new GuiButton(MUSIC, mc.fontRendererObj.getStringWidth(TextHelper.localize(Strings.Gui_Menu_Config_Music)) + 15, 135, 100, 20, String.valueOf(ConfigHandler.EnableCustomMusic)));
-	    buttonList.add(fire = new GuiButton(FIRE, mc.fontRendererObj.getStringWidth(TextHelper.localize(Strings.Gui_Menu_Config_Fire)) + 15, 155, 100, 20, String.valueOf(Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire())));
-		buttonList.add(back = new GuiButton(BACK, 5, 175, 100, 20, TextHelper.localize(Strings.Gui_Menu_Items_Button_Back)));
+		buttonList.add(showHearts = new GuiButton(HEARTS, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Hearts)) + 15, 115, 100, 20, String.valueOf(ConfigHandler.EnableHeartsOnHUD)));
+		buttonList.add(musicToggle = new GuiButton(MUSIC, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Music)) + 15, 135, 100, 20, String.valueOf(ConfigHandler.EnableCustomMusic)));
+	    buttonList.add(fire = new GuiButton(FIRE, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Fire)) + 15, 155, 100, 20, String.valueOf(Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire())));
+		buttonList.add(back = new GuiButton(BACK, 5, 175, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
 
 		this.r.setText(String.valueOf(ConfigHandler.interfaceColour[0]));
 		this.g.setText(String.valueOf(ConfigHandler.interfaceColour[1]));
@@ -116,11 +117,11 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 	@Override
 	public void drawScreen (int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
-		this.drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Config_Hearts), 5, 120, 0xFFFFFF);
-		this.drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Config_Music), 5, 140, 0xFFFFFF);
-		this.drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Config_Fire), 5, 160, 0xFFFFFF);
+		this.drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Config_Hearts), 5, 120, 0xFFFFFF);
+		this.drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Config_Music), 5, 140, 0xFFFFFF);
+		this.drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Config_Fire), 5, 160, 0xFFFFFF);
 
-		this.drawString(mc.fontRendererObj, TextHelper.localize(Strings.Gui_Menu_Config_Colour_Desc), 5, 80, 0xFFFFFF);
+		this.drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Config_Colour_Desc), 5, 80, 0xFFFFFF);
 		this.r.drawTextBox();
 		this.drawString(mc.fontRendererObj, "R:", 5, 101, 0xFFFFFF);
 		this.g.drawTextBox();
