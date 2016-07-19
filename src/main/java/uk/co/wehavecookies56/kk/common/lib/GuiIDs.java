@@ -16,4 +16,5 @@ public final class GuiIDs {
     public static final int GUI_ITEMS_PLAYER = modGuiIndex++;
     public static final int GUI_KKCHEST_INV = modGuiIndex++;
     public static final int GUI_KEYCHAIN_INV = modGuiIndex++;
+    public static final int GUI_SHOP = modGuiIndex++;
 }

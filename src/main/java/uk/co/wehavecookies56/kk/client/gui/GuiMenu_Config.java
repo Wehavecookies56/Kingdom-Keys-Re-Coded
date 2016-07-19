@@ -18,7 +18,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.magics.SetKH1Fire;
 
 public class GuiMenu_Config extends GuiMenu_Bars {
 
-	GuiColourTextField r, g, b;
+	GuiNumberTextField r, g, b;
 	GuiButton back, showHearts, musicToggle, fire;
 
 	final int R = 0, G = 1, B = 2;
@@ -69,9 +69,9 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		int rPosX = 15;
 		int gPosX = rPosX + boxWidth + 15;
 		int bPosX = gPosX + boxWidth + 15;
-		r = new GuiColourTextField(R, mc.fontRendererObj, rPosX, 100, boxWidth, 10);
-		g = new GuiColourTextField(G, mc.fontRendererObj, gPosX, 100, boxWidth, 10);
-		b = new GuiColourTextField(B, mc.fontRendererObj, bPosX, 100, boxWidth, 10);
+		r = new GuiNumberTextField(R, mc.fontRendererObj, rPosX, 100, boxWidth, 10, 3);
+		g = new GuiNumberTextField(G, mc.fontRendererObj, gPosX, 100, boxWidth, 10, 3);
+		b = new GuiNumberTextField(B, mc.fontRendererObj, bPosX, 100, boxWidth, 10, 3);
 		buttonList.add(showHearts = new GuiButton(HEARTS, mc.fontRendererObj.getStringWidth(TextHelper.localize(Strings.Gui_Menu_Config_Hearts)) + 15, 115, 100, 20, String.valueOf(ConfigHandler.EnableHeartsOnHUD)));
 		buttonList.add(musicToggle = new GuiButton(MUSIC, mc.fontRendererObj.getStringWidth(TextHelper.localize(Strings.Gui_Menu_Config_Music)) + 15, 135, 100, 20, String.valueOf(ConfigHandler.EnableCustomMusic)));
 	    buttonList.add(fire = new GuiButton(FIRE, mc.fontRendererObj.getStringWidth(TextHelper.localize(Strings.Gui_Menu_Config_Fire)) + 15, 155, 100, 20, String.valueOf(Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire())));
@@ -136,49 +136,6 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		this.g.updateCursorCounter();
 		this.b.updateCursorCounter();
 		super.updateScreen();
-	}
-
-	public class GuiColourTextField extends GuiTextField {
-
-		public GuiColourTextField (int componentId, FontRenderer fontrendererObj, int x, int y, int par5Width, int par6Height) {
-			super(componentId, fontrendererObj, x, y, par5Width, par6Height);
-			this.setMaxStringLength(3);
-		}
-
-		public boolean isNumber (char c) {
-			try {
-				Integer.parseInt(String.valueOf(c));
-				return true;
-			} catch (NumberFormatException e) {
-				return false;
-			}
-		}
-
-		@Override
-		public boolean textboxKeyTyped (char c, int id) {
-			switch (id) {
-				case Keyboard.KEY_BACK:
-					this.deleteFromCursor(0);
-					break;
-				case Keyboard.KEY_LEFT:
-					this.moveCursorBy(0);
-					break;
-				case Keyboard.KEY_RIGHT:
-					this.moveCursorBy(0);
-					break;
-				default:
-					if (isNumber(c)) {
-						String text = new StringBuilder(this.getText()).insert(this.getCursorPosition(), c).toString();
-						if (Integer.parseInt(text) > 255) {
-							return false;
-						}
-					} else {
-						return false;
-					}
-					break;
-			}
-			return super.textboxKeyTyped(c, id);
-		}
 	}
 
 }

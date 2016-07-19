@@ -14,7 +14,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class ModBlocks {
 
-	public static Block NormalBlox, HardBlox, MetalBlox, DangerBlox, BounceBlox, BlastBlox, PrizeBlox, RarePrizeBlox, GhostBlox, BlazingOre, BrightOre, DarkOre, DarkOreE, DenseOre, EnergyOre, FrostOre, LightningOre, LucidOre, PowerOre, PowerOreE, RemembranceOre, SerenityOre, StormyOre, TranquilOre, TwilightOre, SynthesisTable, KKChest, SavePoint, MagnetBlox;
+	public static Block Shop, NormalBlox, HardBlox, MetalBlox, DangerBlox, BounceBlox, BlastBlox, PrizeBlox, RarePrizeBlox, GhostBlox, BlazingOre, BrightOre, DarkOre, DarkOreE, DenseOre, EnergyOre, FrostOre, LightningOre, LucidOre, PowerOre, PowerOreE, RemembranceOre, SerenityOre, StormyOre, TranquilOre, TwilightOre, SynthesisTable, KKChest, SavePoint, MagnetBlox;
 
 	public static CreativeTabs tabKingdomKeysBlocks;
 
@@ -49,6 +49,7 @@ public class ModBlocks {
 		KKChest = new BlockKKChest(Material.ROCK, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.KKChest).setCreativeTab(tabKingdomKeysBlocks);
 		SavePoint = new BlockSavePoint(Material.CIRCUITS, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.SavePoint).setCreativeTab(tabKingdomKeysBlocks);
 		MagnetBlox = new BlockMagnetBlox(Material.IRON, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.MagnetBlox).setCreativeTab(tabKingdomKeysBlocks);
+		Shop = new BlockShop(Material.CLOTH, "sword", 0, 1f, 1f).setUnlocalizedName(Strings.Shop).setCreativeTab(tabKingdomKeysBlocks);
 
 	}
 
@@ -87,6 +88,7 @@ public class ModBlocks {
 		registerBlock(KKChest, Strings.KKChest);
 		registerBlock(SavePoint, Strings.SavePoint);
 		registerBlock(MagnetBlox, Strings.MagnetBlox);
+		registerBlock(Shop, Strings.Shop);
 
 	}
 
@@ -123,6 +125,7 @@ public class ModBlocks {
 		registerRender(KKChest);
 		registerRender(SavePoint);
 		registerRender(MagnetBlox);
+		registerRender(Shop);
 
 	}
 

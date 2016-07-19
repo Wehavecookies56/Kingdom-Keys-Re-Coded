@@ -161,6 +161,7 @@ public class Strings {
 	RarePrizeBlox = "rareprizeblox", 
 	GhostBlox = "ghostblox",
 	MagnetBlox = "magnetblox",
+	Shop = "shop",
 
 	KKChest = "kkchest",
 
