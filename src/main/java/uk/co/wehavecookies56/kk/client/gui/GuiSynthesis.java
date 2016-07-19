@@ -124,12 +124,12 @@ public class GuiSynthesis extends GuiTooltip {
 				break;
 			case CREATE:
 				if (selected != -1){
-                    if (isRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1)) {
+                    if (isRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected))) {
                         PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1));
                         mc.thePlayer.worldObj.playSound(mc.thePlayer, mc.thePlayer.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
                     }
                 } else if (freeDevSelected != -1) {
-                    if (isFreeDevRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected), 1)) {
+                    if (isFreeDevRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected))) {
                         PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected), 1));
                         mc.thePlayer.worldObj.playSound(mc.thePlayer, mc.thePlayer.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
                     }
@@ -174,7 +174,7 @@ public class GuiSynthesis extends GuiTooltip {
 		updateButtons();
 	}
 
-	public boolean isRecipeUsable (String name, int amountToRemove) {
+	public boolean isRecipeUsable (String name) {
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 		SynthesisMaterialCapability.ISynthesisMaterial MATS = player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 		Recipe r = RecipeRegistry.get(name);
@@ -200,7 +200,7 @@ public class GuiSynthesis extends GuiTooltip {
 		return false;
 	}
 
-	public boolean isFreeDevRecipeUsable (String name, int amountToRemove) {
+	public boolean isFreeDevRecipeUsable (String name) {
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 		SynthesisMaterialCapability.ISynthesisMaterial MATS = player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 		Recipe r = FreeDevRecipeRegistry.get(name);
@@ -251,7 +251,7 @@ public class GuiSynthesis extends GuiTooltip {
 		if (submenu == FREEDEV) {
 			if (freeDevSelected != -1) {
 				Create.visible = true;
-				if (isFreeDevRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected), 1))
+				if (isFreeDevRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected)))
 					Create.enabled = true;
 				else {
 					if (isInventoryFull()) Create.displayString = "Inventory Full";
@@ -325,7 +325,7 @@ public class GuiSynthesis extends GuiTooltip {
 		if (submenu == RECIPES) {
             if (selected != -1) {
                 Create.visible = true;
-                if (isRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1)) {
+                if (isRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected))) {
                     Create.enabled = true;
                 } else {
                     if (isInventoryFull()) Create.displayString = "Inventory Full";

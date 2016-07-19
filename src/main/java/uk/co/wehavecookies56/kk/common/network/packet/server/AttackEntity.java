@@ -21,6 +21,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractServerMessage;
 
 import java.io.IOException;
@@ -137,6 +139,11 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                         }
                     }
 
+                    if (player.getHeldItemOffhand() != null) {
+                        if (player.getHeldItemOffhand().getItem() instanceof ItemKeyblade) {
+                            attackDamage = (float)(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + ((ItemKeyblade)player.getHeldItemOffhand().getItem()).getStrength());
+                        }
+                    }
                     double d1 = targetEntity.motionX;
                     double d2 = targetEntity.motionY;
                     double d3 = targetEntity.motionZ;
@@ -167,7 +174,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                                 if (entitylivingbase != player && entitylivingbase != targetEntity && !player.isOnSameTeam(entitylivingbase) && player.getDistanceSqToEntity(entitylivingbase) < 9.0D)
                                 {
                                     entitylivingbase.knockBack(player, 0.4F, (double)MathHelper.sin(player.rotationYaw * 0.017453292F), (double)(-MathHelper.cos(player.rotationYaw * 0.017453292F)));
-                                    entitylivingbase.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F);
+                                    entitylivingbase.attackEntityFrom(DamageSource.causePlayerDamage(player), attackDamage);
                                 }
                             }
 

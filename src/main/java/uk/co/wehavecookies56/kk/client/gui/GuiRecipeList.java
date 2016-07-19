@@ -5,6 +5,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.GuiScrollingList;
@@ -63,10 +64,19 @@ public class GuiRecipeList extends GuiScrollingList {
 	protected void drawSlot (int var1, int var2, int var3, int var4, Tessellator var5) {
 		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
 
-		this.f.drawString(f.trimStringToWidth(TextHelper.localize(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, 0xFFFFFF);
-		this.ir.renderItemAndEffectIntoGUI(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)))), this.left + 3, var3 + 12);
-		this.f.drawString("Str: +"+((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)))).getStrength(),this.left + 25, var3 + 12, 0xFF0000);
-		this.f.drawString("Mag: +"+((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)))).getMagic(),this.left + 25, var3 + 20, 0x4444FF);
+		int color = 0xFFFFFF;
+		if (parent.isRecipeUsable(RECIPES.getKnownRecipes().get(var1))) {
+			color = 0x55FF55;
+		}
+
+		ItemKeyblade keyblade = (ItemKeyblade) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)));
+
+		this.f.drawString(f.trimStringToWidth(TextHelper.localize(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, color);
+		this.ir.renderItemAndEffectIntoGUI(new ItemStack(keyblade), this.left + 3, var3 + 12);
+		String plus = keyblade.getStrength() < 0 ? "" : "+";
+		this.f.drawString("Str: "+ plus +keyblade.getStrength(),this.left + 25, var3 + 12, 0xFF0000);
+		plus = keyblade.getMagic() < 0 ? "" : "+";
+		this.f.drawString("Mag: "+ plus +keyblade.getMagic(),this.left + 25, var3 + 20, 0x4444FF);
 	}
 
 }

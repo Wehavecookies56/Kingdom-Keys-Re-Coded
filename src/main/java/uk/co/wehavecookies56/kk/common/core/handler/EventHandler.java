@@ -659,6 +659,11 @@ public class EventHandler {
 		{
 			EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
 			ItemStack itemstack = player.inventory.getCurrentItem();
+			if (player.getHeldItemMainhand() == null) {
+				if (player.getHeldItemOffhand() != null) {
+					itemstack = player.getHeldItemOffhand();
+				}
+			}
 			
 			switch(getEnchantment(itemstack, 21))
 			{
