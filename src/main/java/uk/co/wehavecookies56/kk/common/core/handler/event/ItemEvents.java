@@ -1,6 +1,13 @@
 package uk.co.wehavecookies56.kk.common.core.handler.event;
 
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import org.lwjgl.input.Keyboard;
+
 import com.google.common.collect.Multimap;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -24,7 +31,6 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import org.lwjgl.input.Keyboard;
 import uk.co.wehavecookies56.kk.api.munny.MunnyRegistry;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
@@ -40,19 +46,21 @@ import uk.co.wehavecookies56.kk.common.item.ItemHpOrb;
 import uk.co.wehavecookies56.kk.common.item.ItemMunny;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.*;
+import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DriveOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MagicOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by Toby on 19/07/2016.
@@ -292,6 +300,46 @@ public class ItemEvents {
                 tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
             }
         }
+        
+        if (event.getItemStack().getItem() instanceof ItemKeychain) {
+            List<String> tooltip = event.getToolTip();
+            ItemKeyblade keyblade = ((ItemKeychain) event.getItemStack().getItem()).getKeyblade();
+            (tooltip.subList(1, tooltip.size())).clear();
+            tooltip.add(TextFormatting.RED + "Strength: +" + keyblade.getStrength() + " (" + (int)(event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + keyblade.getStrength()) + ")");
+            tooltip.add(TextFormatting.BLUE + "Magic: +" + keyblade.getMagic() + " (" + (int)(event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() + keyblade.getMagic()) + ")");
+            if (keyblade.getDescription() != null) {
+                if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+                    tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
+                    tooltip.add(keyblade.description);
+                    tooltip.add("");
+                } else {
+                    tooltip.add("Hold " +  TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY + " for description");
+                }
+            }
+            if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
+                if (event.getItemStack().hasTagCompound()) {
+                    NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
+
+                    if (nbttaglist != null) {
+                        tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
+                        for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                            int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+                            int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+
+                            if (Enchantment.getEnchantmentByID(id) != null) {
+                                tooltip.add(Enchantment.getEnchantmentByID(id).getTranslatedName(lvl));
+                            }
+                        }
+                    }
+                }
+                
+            } else {
+            	if(!(event.getItemStack().getEnchantmentTagList() == null))
+                tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
+            }
+        }
+        
+        
         Item ghostBlox = Item.getItemFromBlock(ModBlocks.GhostBlox);
         if (event.getItemStack().getItem() == ghostBlox) {
             if (!KeyboardHelper.isShiftDown()) {
