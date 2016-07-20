@@ -1,6 +1,7 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.util.EnumHand;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
@@ -8,14 +9,14 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class DamageCalculation {
-	public static float getMagicDamage(EntityPlayer player, String suffix)
+	public static float getMagicDamage(EntityPlayer player, String suffix, Item keyblade)
 	{
 		float damage = 0;
 		float finalDamage = 0;
 		
 		if(player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
 		{
-			damage = (float) (((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getMagic() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic());
+			damage = (float) (((ItemKeyblade) keyblade).getMagic() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic());
 		}
 		else
 		{
@@ -52,14 +53,14 @@ public class DamageCalculation {
 		return (float) (finalDamage * ConfigHandler.damageMultiplier);
 	}
 	
-	public static float getStrengthDamage(EntityPlayer player)
+	public static float getStrengthDamage(EntityPlayer player, Item keyblade)
 	{
 		float damage = 0;
 		float finalDamage = 0;
 		
 		if(player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
 		{
-			damage = (float) (((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
+			damage = (float) (((ItemKeyblade) keyblade).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
 		}
 				
 		switch (player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName())

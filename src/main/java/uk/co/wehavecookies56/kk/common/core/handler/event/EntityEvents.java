@@ -500,7 +500,7 @@ public class EntityEvents {
             if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
             {
             	System.out.println(event.getAmount()-4);
-            	event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
+            	event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player,player.getHeldItem(EnumHand.MAIN_HAND).getItem()));
             }
          
         }
