@@ -18,7 +18,31 @@ public class Strings {
 	Achievement_GetAbelatoxSkull = "achievement.getAbelatoxSkull",
 	Achievement_GetBlox = "achievement.getblox",
 	Achievement_GetSynthesisTable = "achievement.getSynthesisTable",
-	Achievement_GetRecipe = "achievement.getrecipe"
+	Achievement_GetRecipe = "achievement.getrecipe",
+	Achievement_AllRecipes = "achievement.allrecipes",
+    Achievement_GetChest = "achievement.getchest",
+    Achievement_GetKeybladeArmor = "achievement.getkeybladearmor",
+    Achievement_GetOrgWeapon = "achievement.getorgweapon",
+    Achievement_GetOrgRobe = "achievement.getorgrobe",
+    Achievement_GetKiblade = "achievement.getkiblade",
+    Achievement_GetNBMS = "achievement.getnbms",
+    Achievement_GetCombined = "achievement.getcombined",
+    Achievement_GetIncomepleteKiblade = "achievement.getincompletekiblade",
+    Achievement_Get1milMunny = "achievement.get1milmunny",
+    Achievement_GetKingdomHearts = "achievement.getkingdomhearts",
+    Achievement_GetMagic = "achievement.getmagic",
+    Achievement_GetDriveForm = "achievement.getdriveform",
+    Achievement_Level100 = "achievement.level100",
+    Achievement_Level50 = "achievement.level50",
+    Achievement_FreeDev = "achievement.freedev",
+    Achievement_GetSynthesisBag = "achievement.getsynthesisbag",
+    Achievement_GetPrizeBlox = "achievement.getprizeblox",
+    Achievement_PlayMusicDisc = "achievement.playmusicdisc",
+    Achievement_GetUltimaWeapon = "achievement.getultimaweapon",
+    Achievement_GetStick = "achievement.getstick",
+    Achievement_GetUmbrella = "achievement.getumbrella",
+    Achievement_GetDreamSword = "achievement.getdreamsword",
+    Achievement_GetGhostBlox = "achievement.getghostblox"
 	;
 	
 	//Spells
