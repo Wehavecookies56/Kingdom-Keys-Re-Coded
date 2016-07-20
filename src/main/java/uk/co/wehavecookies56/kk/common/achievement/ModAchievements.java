@@ -44,6 +44,7 @@ public class ModAchievements {
         level100 = new Achievement(Strings.Achievement_Level100, "level100", -4, 7, Items.ENDER_PEARL, level50);
         getChest = new Achievement(Strings.Achievement_GetChest, "getchest", 3, 2, ModBlocks.KKChest, getBlox);
         getDriveForm = new Achievement(Strings.Achievement_GetDriveForm, "getdriveform", -9, 1, ModItems.LevelUpValor, (Achievement) null);
+        getMagic = new Achievement(Strings.Achievement_GetMagic, "getMagic", -9, 3, ModItems.MagicOrb, (Achievement) null);
         getKeybladeArmor = new Achievement(Strings.Achievement_GetKeybladeArmor, "getkeybladearmor", -5, -5, ModItems.Eraqus_Helmet, (Achievement) null);
         freeDev = new Achievement(Strings.Achievement_FreeDev, "freedev", 5, -3, ModItems.Potion, getSynthesisTable);
         getSynthesisBag = new Achievement(Strings.Achievement_GetSynthesisBag, "getsynthesisbag", -2, -2, ModItems.SynthesisBagL, openMenu);
