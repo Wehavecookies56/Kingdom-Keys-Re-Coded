@@ -210,13 +210,11 @@ public class EntityEvents {
                     UUID uuidWehavecookies56 = profileWehavecookies56.getId();
                     final MunnyCapability.IMunny munny = ((EntityPlayer) event.getEntity()).getCapability(ModCapabilities.MUNNY, null);
                     if (event.getEntity().getUniqueID() == uuidWehavecookies56) {
-                        //ExtendedPlayer.get((EntityPlayer) event.entity).setMunny(ExtendedPlayer.get((EntityPlayer) event.entity).getMunny() + 10000);
                         munny.setMunny(munny.getMunny() + 10000);
                     }
                     GameProfile profileAbelatox = player.mcServer.getPlayerProfileCache().getGameProfileForUsername("Abelatox");
                     UUID uuidAbelatox = profileAbelatox.getId();
                     if (event.getEntity().getUniqueID() == uuidAbelatox) {
-                        //ExtendedPlayer.get((EntityPlayer) event.entity).setMunny(ExtendedPlayer.get((EntityPlayer) event.entity).getMunny() + 10000);
                         munny.setMunny(munny.getMunny() + 10000);
                     }
                 }
