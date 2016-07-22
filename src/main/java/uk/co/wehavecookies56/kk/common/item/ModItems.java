@@ -338,7 +338,7 @@ public class ModItems {
 		WaywardWind = new ItemRealKeyblade(3, 1).setUnlocalizedName(Strings.WaywardWind);
         ((ItemKeyblade)WaywardWind).setDescription("The Keyblade Ventus started out with. What it lacks in reach it makes up for with a slight boost in Strength.");
 		WinnersProof = new ItemRealKeyblade(10, 14).setUnlocalizedName(Strings.WinnersProof);
-        ((ItemKeyblade)WinnersProof).setDescription("The Keyblade you started out with. What it lacks in reach it makes up for with a slight boost in Strength.");
+        ((ItemKeyblade)WinnersProof).setDescription("Has high strength and hold's an excellent magic power. When the enemies are defeated, experience points are not gained.");
 		WishingLamp = new ItemRealKeyblade(8, 6).setUnlocalizedName(Strings.WishingLamp);
         ((ItemKeyblade)WishingLamp).setDescription("Wishes come true by increasing the drop rate of munny, HP and MP orbs.");
 		WishingStar = new ItemRealKeyblade(5, 0).setUnlocalizedName(Strings.WishingStar);
