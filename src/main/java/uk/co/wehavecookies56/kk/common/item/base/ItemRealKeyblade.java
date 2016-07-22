@@ -11,6 +11,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicWisdomShot;
 
 import java.util.List;
 
@@ -21,6 +24,19 @@ public class ItemRealKeyblade extends ItemKeyblade {
 		setMaxStackSize(1);
 	}
 	
+	@Override
+	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack) 
+	{
+		if (entityLiving instanceof EntityPlayer)
+    	{
+    		EntityPlayer player = (EntityPlayer) entityLiving;
+    		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName() == Strings.Form_Wisdom)
+    		{
+    			PacketDispatcher.sendToServer(new MagicWisdomShot());
+    		}
+    	}
+		return false;
+	}
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player, EnumHand hand)
 	{
