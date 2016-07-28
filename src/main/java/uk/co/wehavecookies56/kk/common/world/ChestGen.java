@@ -96,8 +96,13 @@ public class ChestGen {
 					event.getTable().addPool(musicDiscPool);
 					break;
 			}
-			LootPool main = event.getTable().getPool("main");
-			main.addEntry(new LootEntryItem(ModItems.Recipe, 5, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			try {
+                LootPool main = event.getTable().getPool("main");
+                main.addEntry(new LootEntryItem(ModItems.Recipe, 5, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+			} catch (NullPointerException e) {
+                LootEntry[] recipeEntry = {new LootEntryItem(ModItems.Recipe, 5, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5))};
+                LootPool main = new LootPool(recipeEntry, new LootCondition[0], new RandomValueRange(1, 2), new RandomValueRange(0, 0), "kk_recipes");
+            }
 			LootPool materialPool = new LootPool(materialEntries, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0), "kk_loot_rare_materials");
 			event.getTable().addPool(materialPool);
 		}

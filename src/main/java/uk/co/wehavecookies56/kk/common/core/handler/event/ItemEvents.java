@@ -224,8 +224,8 @@ public class ItemEvents {
 
     @SubscribeEvent
     public void addTooltip (ItemTooltipEvent event) {
-        if (MunnyRegistry.munnyValues.containsKey(new ItemStack(event.getItemStack().getItem()))) {
-            event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(new ItemStack(event.getItemStack().getItem())));
+        if (MunnyRegistry.munnyValues.containsKey(event.getItemStack().getItem())) {
+            event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(event.getItemStack().getItem()));
         }
         //TODO Localize all this
         if (event.getItemStack().getItem() instanceof ItemKeyblade) {
