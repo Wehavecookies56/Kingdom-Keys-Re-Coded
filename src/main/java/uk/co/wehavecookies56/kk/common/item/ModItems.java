@@ -19,21 +19,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRecipe;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
-import uk.co.wehavecookies56.kk.common.item.org.ItemArpeggio;
-import uk.co.wehavecookies56.kk.common.item.org.ItemBlazeofGlory;
-import uk.co.wehavecookies56.kk.common.item.org.ItemBookofRetribution;
-import uk.co.wehavecookies56.kk.common.item.org.ItemEternalFlames;
-import uk.co.wehavecookies56.kk.common.item.org.ItemFairGame;
-import uk.co.wehavecookies56.kk.common.item.org.ItemFoudre;
-import uk.co.wehavecookies56.kk.common.item.org.ItemFrozenPride;
-import uk.co.wehavecookies56.kk.common.item.org.ItemGracefulDahlia;
-import uk.co.wehavecookies56.kk.common.item.org.ItemIfrit;
-import uk.co.wehavecookies56.kk.common.item.org.ItemInterdiction;
-import uk.co.wehavecookies56.kk.common.item.org.ItemLindworm;
-import uk.co.wehavecookies56.kk.common.item.org.ItemLunatic;
-import uk.co.wehavecookies56.kk.common.item.org.ItemPrometheus;
-import uk.co.wehavecookies56.kk.common.item.org.ItemSharpshooter;
-import uk.co.wehavecookies56.kk.common.item.org.ItemSkysplitter;
+import uk.co.wehavecookies56.kk.common.item.org.*;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
@@ -42,7 +28,7 @@ import java.sql.Ref;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit;
+	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -109,7 +95,7 @@ public class ModItems {
 		BlazeofGlory = new ItemBlazeofGlory(EnumHelper.addToolMaterial("blazeofglory", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
 		Prometheus = new ItemPrometheus(EnumHelper.addToolMaterial("prometheus", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
 		Ifrit = new ItemIfrit(EnumHelper.addToolMaterial("ifrit", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
-
+		Prominence = new ItemProminence(EnumHelper.addToolMaterial("prominence", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
 	
 		AbaddonPlasma = new ItemRealKeyblade(6, 0).setUnlocalizedName(Strings.AbaddonPlasma);
 		((ItemKeyblade)AbaddonPlasma).setDescription("A weapon that lets you string together faster, incredibly long ground combos.");
@@ -586,6 +572,7 @@ public class ModItems {
 		GameRegistry.register(BlazeofGlory, new ResourceLocation(Reference.MODID, Strings.BlazeofGlory));
 		GameRegistry.register(Prometheus, new ResourceLocation(Reference.MODID, Strings.Prometheus));
 		GameRegistry.register(Ifrit, new ResourceLocation(Reference.MODID, Strings.Ifrit));
+		GameRegistry.register(Prominence, new ResourceLocation(Reference.MODID, Strings.Prominence));
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));
@@ -940,12 +927,10 @@ public class ModItems {
 		registerRender(Interdiction);
 		registerRender(Sharpshooter);
 		registerRender(Lindworm);
-		registerRender(FrozenPride);
 		registerRender(Skysplitter);
 		registerRender(BookofRetribution);
 		registerRender(Lunatic);
 		registerRender(FairGame);
-		registerRender(GracefulDahlia);
 		registerRender(Foudre);
 
 		// Knowledge

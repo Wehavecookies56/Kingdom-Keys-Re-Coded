@@ -426,7 +426,8 @@ public class Strings {
 	Foudre = "foudre",
 	BlazeofGlory = "blazeofglory", 
 	Prometheus = "prometheus", 
-	Ifrit = "ifrit"
+	Ifrit = "ifrit",
+	Prominence = "prominence"
 	;
 
 	public static final String 

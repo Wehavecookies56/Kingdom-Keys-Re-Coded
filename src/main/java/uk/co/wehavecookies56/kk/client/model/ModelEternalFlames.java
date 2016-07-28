@@ -21,7 +21,7 @@ public class ModelEternalFlames extends ModelBase {
 			model = (OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("kk:models/item/eternalflames.obj"));
 			modelParts = ModelHelper.getModelsForGroups(model);
 		} catch (Exception e) {
-			e.printStackTrace();
+
 		}
 	}
 

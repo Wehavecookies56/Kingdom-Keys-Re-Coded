@@ -2,6 +2,8 @@ package uk.co.wehavecookies56.kk.client.core.handler;
 
 import net.minecraft.client.audio.PositionedSound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 import java.util.Random;
