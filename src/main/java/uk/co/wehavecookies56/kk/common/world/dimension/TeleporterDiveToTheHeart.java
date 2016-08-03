@@ -53,15 +53,22 @@ public class TeleporterDiveToTheHeart extends Teleporter {
 
         entity.setPosition(dx, dy+1, dz);
 
-        int radius = 14;
-        int barrierRadius = 14;
-        //for(float i = radius+1; i < radius+2; i += 0.5) {
+        int radius = 15;
+        int barrierRadius = 16;
+        int barrierHeight = 5;
+        for(int i = 0; i<barrierHeight; i++)
+        {
             for(float j = 0; j < 2 * Math.PI * barrierRadius; j += 0.5)
-                playerMP.worldObj.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * barrierRadius), dy +2, (int)Math.floor(dz + Math.cos(j) * barrierRadius)), Blocks.BARRIER.getDefaultState());
-      //  }
-        for(float i = 0; i < radius; i += 0.5) {
+            {
+                playerMP.worldObj.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * barrierRadius), dy +i, (int)Math.floor(dz + Math.cos(j) * barrierRadius)), Blocks.BARRIER.getDefaultState());
+            }
+        }
+        for(float i = 0; i < radius+2; i += 0.5) {
             for(float j = 0; j < 2 * Math.PI * i; j += 0.5)
-                playerMP.worldObj.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * i), dy, (int)Math.floor(dz + Math.cos(j) * i)), Blocks.GLOWSTONE.getDefaultState());
+            	if(i > radius)
+            		playerMP.worldObj.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * i), dy, (int)Math.floor(dz + Math.cos(j) * i)), Blocks.BARRIER.getDefaultState());
+            	else
+            		playerMP.worldObj.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * i), dy, (int)Math.floor(dz + Math.cos(j) * i)), Blocks.GLOWSTONE.getDefaultState());
         }
         playerMP.worldObj.setBlockState(new BlockPos(dx+(-12), dy, dz+(-13)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 0));
         playerMP.worldObj.setBlockState(new BlockPos(dx+(-4), dy, dz+(-13)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 1));
