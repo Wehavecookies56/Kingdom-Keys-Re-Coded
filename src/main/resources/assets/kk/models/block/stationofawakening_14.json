@@ -1,7 +1,7 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "all": "kk:blocks/savepoint"
+        "all": "kk:blocks/stationofawakening_15"
     },
     "elements": [
         {

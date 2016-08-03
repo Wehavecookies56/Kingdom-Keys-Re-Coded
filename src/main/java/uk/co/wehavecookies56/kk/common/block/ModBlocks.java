@@ -1,6 +1,7 @@
 package uk.co.wehavecookies56.kk.common.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockStaticLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -9,12 +10,19 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import uk.co.wehavecookies56.kk.common.block.base.BlockSoAStructureBlock;
+import uk.co.wehavecookies56.kk.common.block.base.BlockStationOfAwakening;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class ModBlocks {
 
-	public static Block Shop, NormalBlox, HardBlox, MetalBlox, DangerBlox, BounceBlox, BlastBlox, PrizeBlox, RarePrizeBlox, GhostBlox, BlazingOre, BrightOre, DarkOre, DarkOreE, DenseOre, EnergyOre, FrostOre, LightningOre, LucidOre, PowerOre, PowerOreE, RemembranceOre, SerenityOre, StormyOre, TranquilOre, TwilightOre, SynthesisTable, KKChest, SavePoint, MagnetBlox;
+	public static Block Shop, NormalBlox, HardBlox, MetalBlox, DangerBlox, BounceBlox, BlastBlox, PrizeBlox,
+            RarePrizeBlox, GhostBlox, BlazingOre, BrightOre, DarkOre, DarkOreE, DenseOre, EnergyOre, FrostOre,
+            LightningOre, LucidOre, PowerOre, PowerOreE, RemembranceOre, SerenityOre, StormyOre, TranquilOre,
+            TwilightOre, SynthesisTable, KKChest, SavePoint, MagnetBlox;
+
+	public static Block StationOfAwakening;
 
 	public static CreativeTabs tabKingdomKeysBlocks;
 
@@ -50,8 +58,9 @@ public class ModBlocks {
 		SavePoint = new BlockSavePoint(Material.CIRCUITS, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.SavePoint).setCreativeTab(tabKingdomKeysBlocks);
 		MagnetBlox = new BlockMagnetBlox(Material.IRON, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.MagnetBlox).setCreativeTab(tabKingdomKeysBlocks);
 		Shop = new BlockShop(Material.CLOTH, "sword", 0, 1f, 1f).setUnlocalizedName(Strings.Shop).setCreativeTab(tabKingdomKeysBlocks);
+		StationOfAwakening = new BlockStationOfAwakening(Strings.StationOfAwakening);
 
-	}
+    }
 
 	public static void registerBlock (Block block, String name) {
 		GameRegistry.register(block, new ResourceLocation(Reference.MODID, name));
@@ -89,6 +98,7 @@ public class ModBlocks {
 		registerBlock(SavePoint, Strings.SavePoint);
 		registerBlock(MagnetBlox, Strings.MagnetBlox);
 		registerBlock(Shop, Strings.Shop);
+        registerBlock(StationOfAwakening, Strings.StationOfAwakening);
 
 	}
 
@@ -96,7 +106,26 @@ public class ModBlocks {
 		Item item = Item.getItemFromBlock(GhostBlox);
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "visible=0"));
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 1, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "visible=1"));
-		registerRender(NormalBlox);
+        item = Item.getItemFromBlock(StationOfAwakening);
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=0"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 1, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=1"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 2, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=2"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 3, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=3"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 4, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=4"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 5, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=5"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 6, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=6"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 7, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=7"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 8, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=8"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 9, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=9"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 10, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=10"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 11, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=11"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 12, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=12"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 13, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=13"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 14, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=14"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 15, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=15"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 16, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=16"));
+
+        registerRender(NormalBlox);
 		registerRender(HardBlox);
 		registerRender(MetalBlox);
 		registerRender(DangerBlox);
@@ -132,5 +161,10 @@ public class ModBlocks {
 	public static void registerRender (Block block) {
 		Item item = Item.getItemFromBlock(block);
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+	}
+
+	public static void registerRender (Block block, int meta, String file) {
+		Item item = Item.getItemFromBlock(block);
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(Reference.MODID + ":" + file, "inventory"));
 	}
 }

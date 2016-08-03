@@ -21,6 +21,7 @@ import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
+import uk.co.wehavecookies56.kk.common.block.tile.TileEntityStationOfAwakening;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntitySynthesisTable;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.*;
@@ -43,6 +44,7 @@ import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisMaterials;
 import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisRecipes;
 import uk.co.wehavecookies56.kk.common.world.ChestGen;
 import uk.co.wehavecookies56.kk.common.world.WorldGenBlox;
+import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -85,6 +87,8 @@ public class CommonProxy {
 		ModBlocks.register();
 		LogHelper.info("Blocks loaded");
 
+		ModDimensions.init();
+
 		ModCapabilities.registerCapabilities();
 	}
 	
@@ -125,6 +129,7 @@ public class CommonProxy {
 		// Tile entity registry
 		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
 		GameRegistry.registerTileEntity(TileEntityKKChest.class, "kkchest");
+		GameRegistry.registerTileEntity(TileEntityStationOfAwakening.class, "stationofawakening");
 		LogHelper.info("Tile entity loaded");
 
 		// Proxy used as Gui handler
@@ -159,7 +164,6 @@ public class CommonProxy {
 	}
 
 	public void postInit (FMLPostInitializationEvent event) {
-		//TODO here was "new PlayerLevel();"
 
 		// Event handler
 		MinecraftForge.EVENT_BUS.register(new BlockEvents());

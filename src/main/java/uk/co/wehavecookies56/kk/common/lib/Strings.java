@@ -209,7 +209,8 @@ public class Strings {
 
 	// Others
 	SynthesisTable = "synthesistable", 
-	SavePoint = "savepoint"
+	SavePoint = "savepoint",
+	StationOfAwakening = "stationofawakening"
 	;
 
 	// Tooltips

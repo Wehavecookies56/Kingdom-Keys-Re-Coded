@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.block;
 import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -35,7 +36,7 @@ import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 public class BlockKKChest extends BlockContainer implements ITileEntityProvider {
 	protected Random rand = new Random();
 
-	public static final PropertyDirection FACING = PropertyDirection.create("facing");
+	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	protected BlockKKChest (Material material, String toolClass, int level, float hardness, float resistance) {
 		super(material);
@@ -96,9 +97,9 @@ public class BlockKKChest extends BlockContainer implements ITileEntityProvider 
 	
     
     @SideOnly(Side.CLIENT)
-    public IBlockState getStateForEntityRender(IBlockState state) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.NORTH);
-    }
+	public IBlockState getStateForEntityRender(IBlockState state) {
+		return this.getDefaultState().withProperty(FACING, EnumFacing.NORTH);
+	}
     
     
     protected BlockStateContainer createBlockState() {
@@ -106,10 +107,7 @@ public class BlockKKChest extends BlockContainer implements ITileEntityProvider 
     }
     
     public int getMetaFromState(IBlockState state) {
-        byte b0 = 0;
-        int i = b0 | ((EnumFacing)state.getValue(FACING)).getIndex();
-
-        return i;
+		return ((EnumFacing)state.getValue(FACING)).getIndex();
     }
 
 	@Override
