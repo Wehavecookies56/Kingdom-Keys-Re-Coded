@@ -32,8 +32,18 @@ minecraft {
     makeObfSourceJar = false
 }
 
-dependencies {
+repositories {
+    maven {
+        // location of the maven that hosts JEI files
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+}
 
+dependencies {
+    // compile against the JEI API
+    deobfCompile "mezz.jei:jei_1.10.2:3.7.9.236:api"
+    // at runtime, use the full JEI jar
+    runtime "mezz.jei:jei_1.10.2:3.7.9.236"
 }
 
 processResources {

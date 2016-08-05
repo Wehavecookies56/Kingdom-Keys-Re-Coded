@@ -38,6 +38,8 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.*;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
+import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDiveToTheHeart;
 
 import java.util.Iterator;
 import java.util.List;
@@ -200,6 +202,9 @@ public class EntityEvents {
             if (!FTJ.getFirstTimeJoin()) {
                 ((EntityPlayer) event.getEntity()).inventory.addItemStackToInventory(new ItemStack(ModItems.WoodenKeyblade));
                 FTJ.setFirstTimeJoin(true);
+                if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID)
+                    if (!event.getWorld().isRemote)
+                        new TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().worldServerForDimension(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer) event.getEntity()), event.getWorld());
             }
 
             ((EntityPlayer) event.getEntity()).getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getHP());
