@@ -1,21 +1,18 @@
 package uk.co.wehavecookies56.kk.common.world.dimension;
 
+import java.util.Random;
+
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import uk.co.wehavecookies56.kk.common.block.ModBlocks;
-import uk.co.wehavecookies56.kk.common.block.base.BlockStationOfAwakening;
-
-import java.util.Random;
 
 /**
  * Created by Toby on 01/08/2016.
@@ -44,14 +41,26 @@ public class TeleporterOverworld extends Teleporter {
         double dy = 64;
         double dz = -1;
 
-       // entity.setPosition(dx, dy+1, dz);
-
         entity.motionX = entity.motionY = entity.motionZ = 0.0D;
-      //  entity.setPosition(dx, dy+1, dz);
+        double spawnX = world.getSpawnPoint().getX();
+        double spawnY = world.getSpawnPoint().getY();
+        double spawnZ = world.getSpawnPoint().getZ();
+//TODO
+    	entity.setPosition(spawnX, spawnY, spawnZ);
+    	
+//Keeps moving up the entity to avoid suffocation (Not working yet)
+        while (entity.posY > 0.0D && entity.posY < 256.0D)
+        {
+        	entity.setPosition(entity.posX, entity.posY, entity.posZ);
 
+            if (world.getCollisionBoxes(entity, entity.getEntityBoundingBox()).isEmpty())
+            {
+                break;
+            }
+
+            ++entity.posY;
+        }        
         playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, this);
-
-        entity.setPositionAndRotation(dx, dy+1, dz+8, 180, 0);
     }
 
     @Override
