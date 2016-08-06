@@ -1,6 +1,12 @@
 package uk.co.wehavecookies56.kk.common.core.handler.event;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 import com.mojang.authlib.GameProfile;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -14,10 +20,15 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -26,8 +37,15 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
-import uk.co.wehavecookies56.kk.common.capability.*;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
+import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
+import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
+import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
+import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
+import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
@@ -35,16 +53,19 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.*;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncItemsInventory;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDiveToTheHeart;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
 
 /**
  * Created by Toby on 19/07/2016.
@@ -422,9 +443,60 @@ public class EntityEvents {
         }
     }
 
+	String chosen = "";
+
     @SubscribeEvent
     public void onPlayerTick (TickEvent.PlayerTickEvent event) {
-        PlayerStatsCapability.IPlayerStats STATS = event.player.getCapability(ModCapabilities.PLAYER_STATS, null);
+        EntityPlayer player = event.player;
+      /*  System.out.println("X"+player.getPosition().getX());
+        System.out.println("Y"+player.getPosition().getY());
+        System.out.println("Z"+player.getPosition().getZ());
+        */
+
+    	if(player.dimension == ModDimensions.diveToTheHeartID)
+    	{
+           // System.out.println("Chosen: "+chosen);
+
+    		if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
+    		{
+    			if(chosen != "Staff"){
+    				chosen = "Staff";
+	    			TextComponentTranslation staff = new TextComponentTranslation("Staff");
+	    			staff.getStyle().setColor(TextFormatting.YELLOW);
+	    			player.addChatMessage(staff);
+    			}
+    		}
+    		
+    		else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
+    		{
+    			if(chosen != "Sword"){
+    				chosen = "Sword";
+	    			TextComponentTranslation sword = new TextComponentTranslation("Sword");
+	    			sword.getStyle().setColor(TextFormatting.YELLOW);
+	    			player.addChatMessage(sword);
+    			}
+    		}
+    		
+    		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66)
+    		{
+    			if(chosen != "Shield"){
+    				chosen = "Shield";
+	    			TextComponentTranslation shield = new TextComponentTranslation("Shield");
+	    			shield.getStyle().setColor(TextFormatting.YELLOW);
+	    			player.addChatMessage(shield);
+    			}
+    		}
+    		
+    		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +11 && player.getPosition().getY() == 66)
+    		{
+    			if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID)
+    				if (!player.worldObj.isRemote)
+    					new TeleporterOverworld(event.player.worldObj.getMinecraftServer().getServer().worldServerForDimension(0)).teleport(( player), player.worldObj);
+    		}
+    			
+    	}
+    	
+    	PlayerStatsCapability.IPlayerStats STATS = event.player.getCapability(ModCapabilities.PLAYER_STATS, null);
         DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         if (!DS.getInDrive())
             if (STATS.getMP() <= 0 || STATS.getRecharge()) {

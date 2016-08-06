@@ -51,7 +51,7 @@ public class TeleporterDiveToTheHeart extends Teleporter {
 
         playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, ModDimensions.diveToTheHeartID, this);
 
-        entity.setPosition(dx, dy+1, dz);
+        entity.setPositionAndRotation(dx, dy+1, dz+8, 180, 0);
 
         int radius = 15;
         int barrierRadius = 16;
@@ -89,6 +89,13 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         playerMP.worldObj.setBlockState(new BlockPos(dx+(-4), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 13));
         playerMP.worldObj.setBlockState(new BlockPos(dx+(4), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 14));
         playerMP.worldObj.setBlockState(new BlockPos(dx+(12), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 15));
+        
+        playerMP.worldObj.setBlockState(new BlockPos(dx-12, dy+1, dz), ModBlocks.NormalBlox.getDefaultState());
+        playerMP.worldObj.setBlockState(new BlockPos(dx+12, dy+1, dz), ModBlocks.NormalBlox.getDefaultState());
+        playerMP.worldObj.setBlockState(new BlockPos(dx, dy+1, dz-12), ModBlocks.NormalBlox.getDefaultState());
+        playerMP.worldObj.setBlockState(new BlockPos(dx, dy+1, dz+12), ModBlocks.HardBlox.getDefaultState());
+
+        
     }
 
     @Override
