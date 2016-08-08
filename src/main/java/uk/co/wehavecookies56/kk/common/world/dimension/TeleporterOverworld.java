@@ -41,26 +41,17 @@ public class TeleporterOverworld extends Teleporter {
         double dy = 64;
         double dz = -1;
 
-        entity.motionX = entity.motionY = entity.motionZ = 0.0D;
-        double spawnX = world.getSpawnPoint().getX();
-        double spawnY = world.getSpawnPoint().getY();
-        double spawnZ = world.getSpawnPoint().getZ();
-//TODO
-    	entity.setPosition(spawnX, spawnY, spawnZ);
-    	
-//Keeps moving up the entity to avoid suffocation (Not working yet)
-        while (entity.posY > 0.0D && entity.posY < 256.0D)
-        {
-        	entity.setPosition(entity.posX, entity.posY, entity.posZ);
+        playerMP.motionX = playerMP.motionY = playerMP.motionZ = 0.0D;
+        double spawnX = world.getMinecraftServer().worldServerForDimension(0).getSpawnPoint().getX();
+        double spawnY = world.getMinecraftServer().worldServerForDimension(0).getSpawnPoint().getY()+1;
+        double spawnZ = world.getMinecraftServer().worldServerForDimension(0).getSpawnPoint().getZ();
 
-            if (world.getCollisionBoxes(entity, entity.getEntityBoundingBox()).isEmpty())
-            {
-                break;
-            }
+    	playerMP.setPosition(spawnX, spawnY, spawnZ);
 
-            ++entity.posY;
-        }        
         playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, this);
+
+        playerMP.setPosition(spawnX, spawnY, spawnZ);
+
     }
 
     @Override
