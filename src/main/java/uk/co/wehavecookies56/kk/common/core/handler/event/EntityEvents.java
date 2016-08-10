@@ -77,6 +77,9 @@ public class EntityEvents {
         FirstTimeJoinCapability.IFirstTimeJoin ftjBefore = event.getOriginal().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
         FirstTimeJoinCapability.IFirstTimeJoin ftjAfter = event.getEntityPlayer().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
         ftjAfter.setFirstTimeJoin(ftjBefore.getFirstTimeJoin());
+        ftjAfter.setPosX(ftjBefore.getPosX());
+        ftjAfter.setPosY(ftjBefore.getPosY());
+        ftjAfter.setPosZ(ftjBefore.getPosZ());
         MunnyCapability.IMunny munnyBefore = event.getOriginal().getCapability(ModCapabilities.MUNNY, null);
         MunnyCapability.IMunny munnyAfter = event.getEntityPlayer().getCapability(ModCapabilities.MUNNY, null);
         munnyAfter.setMunny(munnyBefore.getMunny());
@@ -223,6 +226,9 @@ public class EntityEvents {
             if (!FTJ.getFirstTimeJoin()) {
                 ((EntityPlayer) event.getEntity()).inventory.addItemStackToInventory(new ItemStack(ModItems.WoodenKeyblade));
                 FTJ.setFirstTimeJoin(true);
+                FTJ.setPosX(((EntityPlayer) event.getEntity()).getPosition().getX());
+                FTJ.setPosY(((EntityPlayer) event.getEntity()).getPosition().getY());
+                FTJ.setPosZ(((EntityPlayer) event.getEntity()).getPosition().getZ());
                 if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID)
                     if (!event.getWorld().isRemote)
                         new TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().worldServerForDimension(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer) event.getEntity()), event.getWorld());

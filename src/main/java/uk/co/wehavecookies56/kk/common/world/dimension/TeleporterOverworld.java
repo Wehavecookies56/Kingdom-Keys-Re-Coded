@@ -13,6 +13,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 
 /**
  * Created by Toby on 01/08/2016.
@@ -33,10 +35,12 @@ public class TeleporterOverworld extends Teleporter {
     public void teleport(Entity entity, World world) {
         EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 
+        FirstTimeJoinCapability.IFirstTimeJoin originalPos = playerMP.getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
+
         playerMP.motionX = playerMP.motionY = playerMP.motionZ = 0.0D;
-        double spawnX = world.getMinecraftServer().worldServerForDimension(0).getSpawnPoint().getX();
-        double spawnY = world.getMinecraftServer().worldServerForDimension(0).getSpawnPoint().getY()+1;
-        double spawnZ = world.getMinecraftServer().worldServerForDimension(0).getSpawnPoint().getZ();
+        double spawnX = originalPos.getPosX();
+        double spawnY = originalPos.getPosY();
+        double spawnZ = originalPos.getPosZ();
 
     	playerMP.setPosition(spawnX, spawnY, spawnZ);
 
