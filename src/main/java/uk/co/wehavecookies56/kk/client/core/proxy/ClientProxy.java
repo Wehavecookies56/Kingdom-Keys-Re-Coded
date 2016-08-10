@@ -204,6 +204,7 @@ public class ClientProxy extends CommonProxy
 		MinecraftForge.EVENT_BUS.register(new GuiCommandMenu());
 		MinecraftForge.EVENT_BUS.register(new GuiHP());
 		MinecraftForge.EVENT_BUS.register(new GuiMP());
+		MinecraftForge.EVENT_BUS.register(new GuiLockOn());
 		MinecraftForge.EVENT_BUS.register(new GuiOverlay());
 		MinecraftForge.EVENT_BUS.register(new GuiDrive());
 		ModItems.registerRenders();
