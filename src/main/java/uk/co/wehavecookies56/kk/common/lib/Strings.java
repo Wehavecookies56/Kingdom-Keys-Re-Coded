@@ -210,7 +210,8 @@ public class Strings {
 	// Others
 	SynthesisTable = "synthesistable", 
 	SavePoint = "savepoint",
-	StationOfAwakening = "stationofawakening"
+	StationOfAwakening = "stationofawakening",
+	StationOfAwakeningDoor = "stationofawakeningdoor"
 	;
 
 	// Tooltips

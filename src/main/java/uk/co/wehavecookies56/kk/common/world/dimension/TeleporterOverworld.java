@@ -33,14 +33,6 @@ public class TeleporterOverworld extends Teleporter {
     public void teleport(Entity entity, World world) {
         EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 
-        int height = 3;
-        int width = 16;
-        int depth = 16;
-
-        double dx = -1;
-        double dy = 64;
-        double dz = -1;
-
         playerMP.motionX = playerMP.motionY = playerMP.motionZ = 0.0D;
         double spawnX = world.getMinecraftServer().worldServerForDimension(0).getSpawnPoint().getX();
         double spawnY = world.getMinecraftServer().worldServerForDimension(0).getSpawnPoint().getY()+1;
