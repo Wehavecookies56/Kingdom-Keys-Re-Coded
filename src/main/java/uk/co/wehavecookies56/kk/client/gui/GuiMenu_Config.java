@@ -70,9 +70,9 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		int rPosX = 15;
 		int gPosX = rPosX + boxWidth + 15;
 		int bPosX = gPosX + boxWidth + 15;
-		r = new GuiNumberTextField(R, mc.fontRendererObj, rPosX, 100, boxWidth, 10, 3);
-		g = new GuiNumberTextField(G, mc.fontRendererObj, gPosX, 100, boxWidth, 10, 3);
-		b = new GuiNumberTextField(B, mc.fontRendererObj, bPosX, 100, boxWidth, 10, 3);
+		r = new GuiNumberTextField(R, mc.fontRendererObj, rPosX, 100, boxWidth, 10, 255);
+		g = new GuiNumberTextField(G, mc.fontRendererObj, gPosX, 100, boxWidth, 10, 255);
+		b = new GuiNumberTextField(B, mc.fontRendererObj, bPosX, 100, boxWidth, 10, 255);
 		buttonList.add(showHearts = new GuiButton(HEARTS, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Hearts)) + 15, 115, 100, 20, String.valueOf(ConfigHandler.EnableHeartsOnHUD)));
 		buttonList.add(musicToggle = new GuiButton(MUSIC, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Music)) + 15, 135, 100, 20, String.valueOf(ConfigHandler.EnableCustomMusic)));
 	    buttonList.add(fire = new GuiButton(FIRE, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Fire)) + 15, 155, 100, 20, String.valueOf(Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire())));
