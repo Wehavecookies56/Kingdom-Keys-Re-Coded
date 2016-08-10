@@ -10,6 +10,7 @@ import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
@@ -52,6 +53,8 @@ public class InputHandler {
 	List<String> magicCommands;
 	List<String> itemsCommands;
 	List<String> driveCommands;
+	
+	public static Entity lockOn = null;
 	
 	private Keybinds getPressedKey () {
 		for (Keybinds key : Keybinds.values())

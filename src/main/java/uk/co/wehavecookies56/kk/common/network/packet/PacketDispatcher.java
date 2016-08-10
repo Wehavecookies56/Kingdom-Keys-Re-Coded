@@ -14,6 +14,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardPartic
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnCureParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnDriveFormParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnFireParticles;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnLockOnParticle;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnStopParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnThunderEntity;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnThunderParticles;
@@ -103,6 +104,8 @@ public class PacketDispatcher {
 		registerMessage(SyncLevelData.class);
 		registerMessage(SyncDriveWithPlayers.class);
 		registerMessage(SyncFreeDevRecipeData.class);
+		registerMessage(SpawnLockOnParticle.class);
+
 
 		// Client to Server
 		registerMessage(MunnyPickup.class);

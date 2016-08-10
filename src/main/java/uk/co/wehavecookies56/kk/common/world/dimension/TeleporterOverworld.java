@@ -60,7 +60,6 @@ public class TeleporterOverworld extends Teleporter {
             entityIn.motionX = 0.0D;
             entityIn.motionY = 0.0D;
             entityIn.motionZ = 0.0D;
-
         }
 
     }

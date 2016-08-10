@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.common.capability;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -37,6 +38,8 @@ public class PlayerStatsCapability {
 		double getMP();
 		double getMaxMP();
 		boolean getRecharge();
+		
+		
 		boolean setLevel(int level);
 		boolean setExperience(int experience);
 		void addExperience(EntityPlayer player, int amount, String type);
@@ -103,6 +106,7 @@ public class PlayerStatsCapability {
 			instance.setMaxMP(properties.getDouble("Max MP"));
 			instance.setRecharge(properties.getBoolean("Recharge"));
 			instance.setHudMode(properties.getBoolean("HUD"));
+			
 			instance.getInventoryPotionsMenu().readFromNBT(properties);
 		}
 	}
@@ -593,9 +597,7 @@ public class PlayerStatsCapability {
 				player.getFoodStats().addStats(20,0);
 			}
 			player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 1.0f, 1.0f);
-
 			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());
-
 			PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 		}
 	}
