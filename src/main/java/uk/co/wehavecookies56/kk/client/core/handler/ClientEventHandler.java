@@ -428,6 +428,11 @@ public class ClientEventHandler {
 	@SubscribeEvent
 	public void renderTick(TickEvent.RenderTickEvent event) {
 		if (InputHandler.lockOn != null && Minecraft.getMinecraft().thePlayer != null) {
+			if(InputHandler.lockOn.isDead) 
+			{
+				InputHandler.lockOn = null;
+				return;
+			}
 			double dx = Minecraft.getMinecraft().thePlayer.posX - InputHandler.lockOn.posX;
 			double dz = Minecraft.getMinecraft().thePlayer.posZ - InputHandler.lockOn.posZ;
 			double angle = Math.atan2(dz, dx) * 180 / Math.PI;
@@ -443,7 +448,7 @@ public class ClientEventHandler {
 			rYaw += 90F;
 			float rPitch = (float) pitch - (float) (10.0F / Math.sqrt(distance)) + (float) (distance * Math.PI / 90);
             System.out.println(rPitch);
-            Minecraft.getMinecraft().thePlayer.setAngles(rYaw, -(rPitch - Minecraft.getMinecraft().thePlayer.rotationPitch));
+            Minecraft.getMinecraft().thePlayer.setAngles(rYaw, -(rPitch - Minecraft.getMinecraft().thePlayer.rotationPitch +30));//TODO change the +30 to something which changes depending on the entity size
 		}
 	}
 }
