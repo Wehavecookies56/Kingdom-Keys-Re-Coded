@@ -45,7 +45,5 @@ public class SyncDriveWithPlayers extends AbstractMessage.AbstractClientMessage<
         EntityPlayer otherPlayer = (EntityPlayer) player.worldObj.getEntityByID(this.entityId);
         otherPlayer.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(this.inDrive);
         otherPlayer.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName(this.driveName);
-        System.out.println(otherPlayer.getDisplayNameString());
-        System.out.println(player.getDisplayNameString());
     }
 }

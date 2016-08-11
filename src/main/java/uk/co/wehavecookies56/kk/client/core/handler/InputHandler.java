@@ -3,19 +3,14 @@ package uk.co.wehavecookies56.kk.client.core.handler;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.util.DamageSource;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -23,7 +18,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
@@ -35,7 +29,6 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
-import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
@@ -48,7 +41,6 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.LockOn;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
 import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
 
@@ -58,7 +50,7 @@ public class InputHandler {
 	List<String> itemsCommands;
 	List<String> driveCommands;
 	
-	public static Entity lockOn = null;
+	public static EntityLivingBase lockOn = null;
 	
 	private Keybinds getPressedKey () {
 		for (Keybinds key : Keybinds.values())
@@ -354,7 +346,6 @@ public class InputHandler {
 			case SUMMON_KEYBLADE:
 				if (mc.thePlayer.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0) == null) {
 					world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
-					System.out.println("Empty keychain inventory");
 					break;
 				}
 				if (SUMMON.getIsKeybladeSummoned() == false && player.getHeldItem(EnumHand.MAIN_HAND) == null && mc.thePlayer.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem() instanceof ItemKeychain) {
@@ -376,9 +367,9 @@ public class InputHandler {
                             double distanceSq = player.getDistanceSqToEntity(rtr.entityHit);
                             double reachSq = 100 * 100;
                             if (reachSq >= distanceSq) {
-                                lockOn = rtr.entityHit;
+                            	if (rtr.entityHit instanceof EntityLivingBase)
+                                	lockOn = (EntityLivingBase) rtr.entityHit;
                             }
-                            System.out.println(lockOn.getDisplayName());
                         }
                     }
                 } else {

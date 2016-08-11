@@ -44,7 +44,6 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.GlidePacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.LevelUpDrive;
 import uk.co.wehavecookies56.kk.common.network.packet.server.LevelUpSound;
-import uk.co.wehavecookies56.kk.common.network.packet.server.LockOn;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MagicOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MagnetBloxMotion;
 import uk.co.wehavecookies56.kk.common.network.packet.server.ManifestKnowledgePacket;
@@ -143,7 +142,6 @@ public class PacketDispatcher {
 		registerMessage(AttackEntity.class);
 		registerMessage(SetKH1Fire.class);
 		registerMessage(LevelUpSound.class);
-		registerMessage(LockOn.class);
 
 		// Bidirectional
 	}

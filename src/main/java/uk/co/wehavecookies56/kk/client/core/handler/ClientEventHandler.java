@@ -3,6 +3,8 @@ package uk.co.wehavecookies56.kk.client.core.handler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.client.audio.PositionedSound;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -427,18 +429,21 @@ public class ClientEventHandler {
 
 	@SubscribeEvent
 	public void renderTick(TickEvent.RenderTickEvent event) {
-		if (InputHandler.lockOn != null && Minecraft.getMinecraft().thePlayer != null) {
-			if(InputHandler.lockOn.isDead) 
-			{
+        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        if (InputHandler.lockOn != null && player != null) {
+			if(InputHandler.lockOn.isDead) {
 				InputHandler.lockOn = null;
 				return;
 			}
-			double dx = Minecraft.getMinecraft().thePlayer.posX - InputHandler.lockOn.posX;
-			double dz = Minecraft.getMinecraft().thePlayer.posZ - InputHandler.lockOn.posZ;
+            EntityLivingBase target = InputHandler.lockOn;
+
+			double dx = player.posX - target.posX;
+			double dz = player.posZ - target.posZ;
+            double dy = player.posY - (target.posY - (target.height / 2.0F));
 			double angle = Math.atan2(dz, dx) * 180 / Math.PI;
-			double pitch = Math.atan2(Minecraft.getMinecraft().thePlayer.posY - (InputHandler.lockOn.posY + (InputHandler.lockOn.height / 2.0F)), Math.sqrt(dx * dx + dz * dz)) * 180 / Math.PI;
-			double distance = Minecraft.getMinecraft().thePlayer.getDistanceToEntity(InputHandler.lockOn);
-			float rYaw = (float) (angle - Minecraft.getMinecraft().thePlayer.rotationYaw);
+			double pitch = Math.atan2(dy, Math.sqrt(dx * dx + dz * dz)) * 180 / Math.PI;
+			double distance = player.getDistanceToEntity(target);
+			float rYaw = (float) (angle - player.rotationYaw);
 			while (rYaw > 180) {
 				rYaw -= 360;
 			}
@@ -447,8 +452,8 @@ public class ClientEventHandler {
 			}
 			rYaw += 90F;
 			float rPitch = (float) pitch - (float) (10.0F / Math.sqrt(distance)) + (float) (distance * Math.PI / 90);
-            System.out.println(rPitch);
-            Minecraft.getMinecraft().thePlayer.setAngles(rYaw, -(rPitch - Minecraft.getMinecraft().thePlayer.rotationPitch +30));//TODO change the +30 to something which changes depending on the entity size
+            //System.out.println(target.height + (target.height / 2.0F));
+            player.setAngles(rYaw, -(rPitch - player.rotationPitch));
 		}
 	}
 }
