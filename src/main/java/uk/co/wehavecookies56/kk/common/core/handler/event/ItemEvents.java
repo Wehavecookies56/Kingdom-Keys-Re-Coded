@@ -46,8 +46,10 @@ import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.item.ItemHpOrb;
 import uk.co.wehavecookies56.kk.common.item.ItemMunny;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -120,6 +122,14 @@ public class ItemEvents {
             }
         } else if (event.getItem().getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.NormalBlox) || event.getItem().getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.HardBlox) || event.getItem().getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.MetalBlox)) {
             AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getBlox);
+        } else if (event.getItem().getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.GhostBlox)){
+            AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getGhostBlox);
+        } else if (event.getItem().getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.SynthesisTable)){
+            AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getSynthesisTable);
+        } else if (event.getItem().getEntityItem().getItem() instanceof ItemSpellOrb){
+            AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getMagic);
+        } else if (event.getItem().getEntityItem().getItem() instanceof ItemDriveForm){
+            AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getDriveForm);
         } else if (event.getItem().getEntityItem().getItem() instanceof ItemSynthesisMaterial) {
             for(int i = 0; i < event.getEntityPlayer().inventory.getSizeInventory(); i++) {
                 if (event.getEntityPlayer().inventory.getStackInSlot(i) != null) {
@@ -439,9 +449,15 @@ public class ItemEvents {
         AAskull.setTagCompound(new NBTTagCompound());
         AAskull.getTagCompound().setTag("SkullOwner", new NBTTagString("Abelatox"));
 
-        if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.SynthesisTable)) AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisTable);
-
-        if (event.crafting.getItem() == Items.SKULL)
+        if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.SynthesisTable)) 
+        	AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisTable);
+        else if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.KKChest))
+        	AchievementHelper.addAchievement(event.player, ModAchievements.getChest);
+        else if (event.crafting.getItem() == ModItems.SynthesisBagS)
+        	AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisBag);
+        else if (event.crafting.getItem() == ModItems.KingdomHearts)
+        	AchievementHelper.addAchievement(event.player, ModAchievements.getKingdomHearts);
+        else if (event.crafting.getItem() == Items.SKULL)
             if (event.crafting.hasTagCompound())
                 if (event.crafting.getTagCompound().getString("SkullOwner").equals("Wehavecookies56"))
                     AchievementHelper.addAchievement(event.player, ModAchievements.getWehavecookies56Skull);

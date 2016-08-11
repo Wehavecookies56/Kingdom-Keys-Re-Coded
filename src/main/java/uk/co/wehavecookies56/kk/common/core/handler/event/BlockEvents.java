@@ -4,7 +4,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
+import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.item.ItemStacks;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -486,6 +488,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.PrizeBlox) {
+            AchievementHelper.addAchievement(event.getHarvester(), ModAchievements.getPrizeBlox);
         	for(int i = 0; i<numberOfDrops; i++)
         	{
         		int dropAmount = Utils.randomWithRange(1, 29);
@@ -591,6 +594,7 @@ public class BlockEvents {
 	            }
             }
         } else if (event.getState().getBlock() == ModBlocks.RarePrizeBlox) {
+        	AchievementHelper.addAchievement(event.getHarvester(), ModAchievements.getPrizeBlox);
         	for(int i = 0; i<numberOfDrops; i++)
         	{
 	        	int dropAmount = Utils.randomWithRange(1, 38);

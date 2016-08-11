@@ -5,25 +5,83 @@
 ############################
 #Achievements
 ############################
-achievement.openMenu=Open the menu
-achievement.openMenu.desc=Press the '%1$s' key to open the menu.
+achievement.openmenu=Open the menu
+achievement.openmenu.desc=Press the '%1$s' key to open the menu.
 
-achievement.getBlox=Is this a bug?
-achievement.getBlox.desc=Get a Bug Blox
+achievement.getblox=Is this a bug?
+achievement.getblox.desc=Get a Bug Blox
+achievement.getghostblox=It's a G-G-Ghost!
+achievement.getghostblox.desc=Get a Ghost Blox
+achievement.getprizeblox=Eye on the Prize
+achievement.getprizeblox.desc=Get a Prize Blox
 
-achievement.getRecipe=A recipe?
-achievement.getRecpie.desc=Get a Recipe
+achievement.getrecipe=A recipe?
+achievement.getrecpie.desc=Get a Recipe
+achievement.allrecipes=Master Chef
+achievement.allrecipes.desc=Learn all the recipes
 
-achievement.getSynthesisTable=Will I be able to make better items?
-achievement.getSynthesisTable.desc=Get a Synthesis Table
+achievement.getorgrobe=Nobody wore this
+achievement.getorgrobe.desc=Wear the Organization XIII robe
+achievement.getorgweapon=Nobody owned this
+achievement.getorgweapon.desc=Get a weapon form the Organization XIII
 
-achievement.getKeyblade=A Keychain? Why would I want it?
-achievement.getKeyblade.desc=Obtain your first Keychain
+achievement.getsynthesistable=Will I be able to make better items?
+achievement.getsynthesistable.desc=Get a Synthesis Table
 
-achievement.getWehavecookies56Skull=Familiar Face!
-achievement.getAbelatoxSkull=Another Familiar Face!
-achievement.getWehavecookies56Skull.desc=Craft Wehavecookies56's head
-achievement.getAbelatoxSkull.desc=Craft Abelatox's head
+achievement.getkeyblade=A Keychain? Why would I want it?
+achievement.getkeyblade.desc=Obtain your first Keychain
+achievement.getincompletekiblade=Its still broken
+achievement.getincompletekiblade.desc=Get an Incomplete X-Blade
+achievement.getkiblade=One key to rule them all
+achievement.getkiblade.desc=Get a X-Blade
+achievement.getnbms=Is this half a dream?
+achievement.getnbms.desc=Get Nightmare's End or Mirage Split
+achievement.getcombined=Is this a dream?
+achievement.getcombined.desc=Get the Combined Keyblade
+achievement.getstick=Why?
+achievement.getstick.desc=Get a Wooden Stick
+achievement.getumbrella=It's always rainy in Minecraft
+achievement.getumbrella.desc=Get an Umbrella
+achievement.getultimaweapon=I hope it was worth it
+achievement.getultimaweapon.desc=Get any of the Ultima Weapon
+achievement.getdreamsword=This looks like a regular sword
+achievement.getdreamsword.desc=Get the Dream Sword
+
+achievement.level50=I'm half way!
+achievement.level50.desc=Reach level 50
+achievement.level100=I'm at the top!
+achievement.level100.desc=Reach level 100
+
+achievement.get1milmunny=Am I rich?
+achievement.get1milmunny.desc=Get 1.000.000 Munny
+
+achievement.getchest=I guess I have the key to this one
+achievement.getchest.desc=Get a KKChest
+
+achievement.getdriveform=Do I need a license?
+achievement.getdriveform.desc=Equip a Drive Form
+achievement.getmagic=Like a Wizard!
+achievement.getmagic.desc=Equip a Magic Spell
+
+achievement.getkeybladearmor=Protecting from Darkness
+achievement.getkeybladearmor.desc=Wear a Keyblade Armor
+
+achievement.freedev=Free, but it still costs
+achievement.freedev.desc=Try out the Free Development
+
+achievement.getsynthesisbag=How much will it hold?
+achievement.getsynthesisbag.desc=Obtain a Synthesis Bag
+
+achievement.playmusicdisc=Symphony of Sorcery
+achievement.playmusicdisc.desc=Play a music disc
+
+achievement.getkingdomhearts=KINGDOM HEARTS!
+achievement.getkingdomhearts.desc=Get Kingdom Hearts
+
+achievement.getwehavecookies56skull=Familiar Face!
+achievement.getabelatoxskull=Another Familiar Face!
+achievement.getwehavecookies56skull.desc=Craft Wehavecookies56's head
+achievement.getabelatoxskull.desc=Craft Abelatox's head
 
 
 ############################

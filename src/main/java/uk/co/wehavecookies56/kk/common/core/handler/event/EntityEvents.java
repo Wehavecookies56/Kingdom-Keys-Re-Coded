@@ -37,6 +37,7 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
+import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
 import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
@@ -46,8 +47,10 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
+import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
+import uk.co.wehavecookies56.kk.common.item.ItemAquaArmor;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
@@ -450,7 +453,6 @@ public class EntityEvents {
     }
 
 	String chosen = "";
-
     @SubscribeEvent
     public void onPlayerTick (TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
@@ -458,7 +460,20 @@ public class EntityEvents {
         System.out.println("Y"+player.getPosition().getY());
         System.out.println("Z"+player.getPosition().getZ());
         */
+        if(player.inventory.armorInventory[0] != null && player.inventory.armorInventory[1] != null && player.inventory.armorInventory[2] != null && player.inventory.armorInventory[3] != null)
+        {
+        	if(player.inventory.armorInventory[0].getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory[1].getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.OrganizationRobe_Helmet)
+	        	AchievementHelper.addAchievement(player, ModAchievements.getOrgRobe);
+        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Aqua_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Aqua_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Aqua_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Aqua_Helmet)
+	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
+        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Terra_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Terra_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Terra_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Terra_Helmet)
+	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
+        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Ventus_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Ventus_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Ventus_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Ventus_Helmet)
+	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
+        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Eraqus_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Eraqus_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Eraqus_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Eraqus_Helmet)
+	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
 
+        }
     	if(player.dimension == ModDimensions.diveToTheHeartID)
     	{
            // System.out.println("Chosen: "+chosen);

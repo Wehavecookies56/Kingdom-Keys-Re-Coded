@@ -1,6 +1,8 @@
 package uk.co.wehavecookies56.kk.common.capability;
 
-import net.minecraft.entity.Entity;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -11,13 +13,12 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
+import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PlayerStatsCapability {
 
@@ -596,6 +597,10 @@ public class PlayerStatsCapability {
 				player.setHealth(getHP());
 				player.getFoodStats().addStats(20,0);
 			}
+			if(this.level == 50)
+	            AchievementHelper.addAchievement(player, ModAchievements.level50);
+			if(this.level == 100)
+	            AchievementHelper.addAchievement(player, ModAchievements.level100);
 			player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 1.0f, 1.0f);
 			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());
 			PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);

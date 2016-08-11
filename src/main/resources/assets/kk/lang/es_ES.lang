@@ -5,25 +5,83 @@
 ############################
 #Achievements
 ############################
-achievement.openMenu=Abre el menú
-achievement.openMenu.desc=Pulsa la tecla de abrir el menú (Por defecto M).
+achievement.openmenu=Abre el menú
+achievement.openmenu.desc=Pulsa la tecla de abrir el menú (Por defecto M).
 
-achievement.getBlox=¿Es esto un error?
-achievement.getBlox.desc=Obtén un Bloque de Error
+achievement.getblox=¿Es esto un error?
+achievement.getblox.desc=Obtén un Bloque de Error
+achievement.getghostblox=¡Un fantasma!
+achievement.getghostblox.desc=Obtén un Bloque Fantasma
+achievement.getprizeblox=Mirada en el premio
+achievement.getprizeblox.desc=Obtén un Bloque de Premio
 
-achievement.getRecipe=¿Una Receta?
-achievement.getRecpie.desc=Obtén una Receta
+achievement.getrecipe=¿Una Receta?
+achievement.getrecpie.desc=Obtén una Receta
+achievement.allrecipes=Master Chef
+achievement.allrecipes.desc=Aprende todas las recetas
 
-achievement.getSynthesisTable=¿Podré hacer mejores objetos?
-achievement.getSynthesisTable.desc=Obtén un Sintetizador
+achievement.getorgrobe=Nadie vistió esto
+achievement.getorgrobe.desc=Viste la ropa de la Organización XIII
+achievement.getorgweapon=Nadie usó esto
+achievement.getorgweapon.desc=Obtén una arma de la Organización XIII
 
-achievement.getKeyblade=¿Un llavero? ¿Para qué quiero esto?
-achievement.getKeyblade.desc=Obtén tu primer llavero
+achievement.getsynthesistable=¿Podré hacer mejores objetos?
+achievement.getsynthesistable.desc=Obtén un Sintetizador
 
-achievement.getWehavecookies56Skull=¡Cara Familiar!
-achievement.getAbelatoxSkull=¡Otra Cara Familiar!
-achievement.getWehavecookies56Skull.desc=Craftea la cabeza de Wehavecookies56
-achievement.getAbelatoxSkull.desc=Craftea la cabeza de Abelatox
+achievement.getkeyblade=¿Un llavero? ¿Para qué quiero esto?
+achievement.getkeyblade.desc=Obtén tu primer llavero
+achievement.getincompletekiblade=Sigue incompleta
+achievement.getincompletekiblade.desc=Obtén la Llave Espada X Incompleta
+achievement.getkiblade=¡Una llave para gobernarlos a todos!
+achievement.getkiblade.desc=Obtén la Llave Espada X
+achievement.getnbms=¿Esto es medio sueño?
+achievement.getnbms.desc=Obtén Fin de Pesadilla o Espejismo Dividido
+achievement.getcombined=¿Esto es un sueño?
+achievement.getcombined.desc=Obtén la Llave Espada Combinada
+achievement.getstick=¿Por qué?
+achievement.getstick.desc=Obten un Palo de Madera
+achievement.getumbrella=Siempre llueve en Minecraft
+achievement.getumbrella.desc=Get an Umbrella
+achievement.getultimaweapon=Espero que haya valido la pena
+achievement.getultimaweapon.desc=Obtén cualquier Arma Artema
+achievement.getdreamsword=Esto parece una espada normal
+achievement.getdreamsword.desc=Obtén la Espada de Ensueño
+
+achievement.level50=¡Estoy a medio camino!
+achievement.level50.desc=Alcanza el nivel 50
+achievement.level100=¡Estoy en la cima!
+achievement.level100.desc=Alcanza el nivel 100
+
+achievement.get1milmunny=¿Soy rico?
+achievement.get1milmunny.desc=Obtén 1.000.000 Platines
+
+achievement.getchest=Supongo que tengo la llave de esto
+achievement.getchest.desc=Obtén un Cofre (KK)
+
+achievement.getdriveform=¿Una fusión?
+achievement.getdriveform.desc=Equípate una Forma de Fusión
+achievement.getmagic=¡Como un Hechicero!
+achievement.getmagic.desc=Equípate una magia
+
+achievement.getkeybladearmor=Protegiendo de la Oscuridad
+achievement.getkeybladearmor.desc=Viste una Armadura de Llave Espada
+
+achievement.freedev=Libre, pero sigue costando
+achievement.freedev.desc=Prueba el Libre Desarrollo
+
+achievement.getsynthesisbag=¿Cuanto aguantará?
+achievement.getsynthesisbag.desc=Obtén una Bolsa de Síntesis
+
+achievement.playmusicdisc=Sinfonía de Brujería
+achievement.playmusicdisc.desc=Escucha un Disco de Música
+
+achievement.getkingdomhearts=¡KINGDOM HEARTS!
+achievement.getkingdomhearts.desc=Obtén Kingdom Hearts
+
+achievement.getwehavecookies56skull=¡Cara Familiar!
+achievement.getabelatoxskull=¡Otra Cara Familiar!
+achievement.getwehavecookies56skull.desc=Craftea la cabeza de Wehavecookies56
+achievement.getabelatoxskull.desc=Craftea la cabeza de Abelatox
 
 
 ############################
@@ -312,6 +370,7 @@ item.foudre.name=Relámpago
 item.blazeofglory.name=Brillo Glorioso
 item.prometheus.name=Prometeo
 item.ifrit.name=Ifrit
+item.prominence.name=Importancia
 
 #Keyblades
 item.abaddonplasma.name=Plasma de Abadón
