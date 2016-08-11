@@ -517,7 +517,7 @@ public class EntityEvents {
     			}
     		}
 
-    		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +11 && player.getPosition().getY() == 66)
+    		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65)
     		{
     			if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID)
     				if (!player.worldObj.isRemote)
