@@ -424,4 +424,26 @@ public class ClientEventHandler {
 		}
 	}
 	*/
+
+	@SubscribeEvent
+	public void renderTick(TickEvent.RenderTickEvent event) {
+		if (InputHandler.lockOn != null && Minecraft.getMinecraft().thePlayer != null) {
+			double dx = Minecraft.getMinecraft().thePlayer.posX - InputHandler.lockOn.posX;
+			double dz = Minecraft.getMinecraft().thePlayer.posZ - InputHandler.lockOn.posZ;
+			double angle = Math.atan2(dz, dx) * 180 / Math.PI;
+			double pitch = Math.atan2(Minecraft.getMinecraft().thePlayer.posY - (InputHandler.lockOn.posY + (InputHandler.lockOn.height / 2.0F)), Math.sqrt(dx * dx + dz * dz)) * 180 / Math.PI;
+			double distance = Minecraft.getMinecraft().thePlayer.getDistanceToEntity(InputHandler.lockOn);
+			float rYaw = (float) (angle - Minecraft.getMinecraft().thePlayer.rotationYaw);
+			while (rYaw > 180) {
+				rYaw -= 360;
+			}
+			while (rYaw < -180) {
+				rYaw += 360;
+			}
+			rYaw += 90F;
+			float rPitch = (float) pitch - (float) (10.0F / Math.sqrt(distance)) + (float) (distance * Math.PI / 90);
+            System.out.println(rPitch);
+            Minecraft.getMinecraft().thePlayer.setAngles(rYaw, -(rPitch - Minecraft.getMinecraft().thePlayer.rotationPitch));
+		}
+	}
 }
