@@ -9,6 +9,7 @@ public class ModSounds {
 
     public static final SoundEvent
             kupo = registerSound("kupo"),
+            lockon = registerSound("lockon"),
             itemget = registerSound("itemget"),
             levelup = registerSound("levelup"),
             summon = registerSound("summon"),

@@ -367,8 +367,10 @@ public class InputHandler {
                             double distanceSq = player.getDistanceSqToEntity(rtr.entityHit);
                             double reachSq = 100 * 100;
                             if (reachSq >= distanceSq) {
-                            	if (rtr.entityHit instanceof EntityLivingBase)
+                            	if (rtr.entityHit instanceof EntityLivingBase){
                                 	lockOn = (EntityLivingBase) rtr.entityHit;
+                        			player.worldObj.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+                            	}
                             }
                         }
                     }

@@ -13,6 +13,13 @@
     	]
     },
 	
+	"lockon": {
+    	"category": "master", 
+    	"sounds": [
+    		{"name": "kk:lockon", "stream": false}
+    	]
+    },
+	
 	"itemget": {
     	"category": "master", 
     	"sounds": [
