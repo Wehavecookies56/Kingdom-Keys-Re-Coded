@@ -54,6 +54,8 @@ public class Magic {
 			PacketDispatcher.sendToServer(new MagicFire());
 			player.swingArm(EnumHand.MAIN_HAND);
 			world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 1, 1, false);
+		} else{
+			System.out.println("KH1 fire");
 		}
 	}
 

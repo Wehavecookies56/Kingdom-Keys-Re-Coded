@@ -93,8 +93,7 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         playerMP.worldObj.setBlockState(new BlockPos(dx-12, dy+1, dz), ModBlocks.NormalBlox.getDefaultState());
         playerMP.worldObj.setBlockState(new BlockPos(dx+12, dy+1, dz), ModBlocks.NormalBlox.getDefaultState());
         playerMP.worldObj.setBlockState(new BlockPos(dx, dy+1, dz-12), ModBlocks.NormalBlox.getDefaultState());
-        playerMP.worldObj.setBlockState(new BlockPos(dx, dy+1, dz+12), ModBlocks.HardBlox.getDefaultState());
-
+        playerMP.worldObj.setBlockState(new BlockPos(dx, dy+1, dz+12), ModBlocks.StationOfAwakeningDoor.getDefaultState());
         
     }
 

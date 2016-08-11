@@ -60,7 +60,8 @@ public class ItemRecipe extends Item {
 			{
 				shuffleRecipes(stack, player);
 			}
-			if (consume) stack.stackSize--;
+			if (consume) 
+				{stack.stackSize--;}
 
 		}
 		return super.onItemRightClick(stack, world, player, hand);
@@ -73,20 +74,28 @@ public class ItemRecipe extends Item {
 		long seed = System.nanoTime();
 		// Shuffles the list of recipe to increase randomness
 		Collections.shuffle(Lists.recipes, new Random(seed));
-		String Recipe1 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
-	/*	while (Recipe1.equals(RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe1)))
-			Recipe1 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));*/
-		String Recipe2 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
-		// Generate a new random value for the second recipe until it's not
-		// equal the first
-		while (Recipe2.equals(Recipe1))
-			Recipe2 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
-		// Generate a new random value for the third recipe until it's not
-		// equal the first or the second
-		String Recipe3 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
-		while (Recipe3.equals(Recipe2) || Recipe3.equals(Recipe1))
-			Recipe3 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
-		// Set values to NBT data
+		String Recipe1, Recipe2, Recipe3;
+		
+		Recipe1 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
+		if(RECIPES.getKnownRecipes().size() < 118)		
+		{
+			while(RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe1))
+				Recipe1 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
+		}
+		Recipe2 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
+		if(RECIPES.getKnownRecipes().size() < 119)
+		{
+			while (Recipe2.equals(Recipe1) || RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe2))
+				Recipe2 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
+		}
+		Recipe3 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
+		if(RECIPES.getKnownRecipes().size() < 120)	
+		{
+			while ((Recipe3.equals(Recipe2) || Recipe3.equals(Recipe1)) || RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe3))
+				Recipe3 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
+		}
+	
+	
 		stack.setTagCompound(new NBTTagCompound());
 		stack.getTagCompound().setString("recipe1", Recipe1);
 		stack.getTagCompound().setString("recipe2", Recipe2);

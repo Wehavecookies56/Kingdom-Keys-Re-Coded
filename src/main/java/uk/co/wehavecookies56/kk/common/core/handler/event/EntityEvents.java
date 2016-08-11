@@ -37,6 +37,10 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
+<<<<<<< HEAD
+=======
+import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
+>>>>>>> 04d427a3b3c04cf41b3a4da1d9b0b4310f3ebfa3
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
@@ -198,6 +202,11 @@ public class EntityEvents {
 
     @SubscribeEvent
     public void OnEntityJoinWorld (EntityJoinWorldEvent event) {
+        if (event.getEntity().worldObj.isRemote && event.getEntity() instanceof EntityPlayer) {
+            if (event.getEntity().dimension == ModDimensions.diveToTheHeartID) {
+                ((EntityPlayer) event.getEntity()).addChatComponentMessage(new TextComponentTranslation("Welcome to Kingdom Keys Re:Coded!\nPress %1$s to open the menu\nMake a choice between the Sword, Shield and Staff then leave using the door", InputHandler.Keybinds.OPENMENU.getKeybind().getDisplayName()));
+            }
+        }
         if (!event.getEntity().worldObj.isRemote && event.getEntity() instanceof EntityPlayer) {
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.DriveRecovery.getUnlocalizedName());
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.HighDriveRecovery.getUnlocalizedName());
@@ -487,7 +496,7 @@ public class EntityEvents {
 	    			player.addChatMessage(staff);
     			}
     		}
-    		
+
     		else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
     		{
     			if(chosen != "Sword"){
@@ -497,7 +506,7 @@ public class EntityEvents {
 	    			player.addChatMessage(sword);
     			}
     		}
-    		
+
     		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66)
     		{
     			if(chosen != "Shield"){
@@ -507,16 +516,16 @@ public class EntityEvents {
 	    			player.addChatMessage(shield);
     			}
     		}
-    		
+
     		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +11 && player.getPosition().getY() == 66)
     		{
     			if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID)
     				if (!player.worldObj.isRemote)
     					new TeleporterOverworld(event.player.worldObj.getMinecraftServer().getServer().worldServerForDimension(0)).teleport(( player), player.worldObj);
     		}
-    			
+
     	}
-    	
+
     	PlayerStatsCapability.IPlayerStats STATS = event.player.getCapability(ModCapabilities.PLAYER_STATS, null);
         DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         if (!DS.getInDrive())
