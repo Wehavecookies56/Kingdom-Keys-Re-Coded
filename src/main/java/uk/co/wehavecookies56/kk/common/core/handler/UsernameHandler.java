@@ -134,8 +134,9 @@ public class UsernameHandler {
 		                String prefixWithFormat = "";
 		                if (!prefix.isEmpty()) prefixWithFormat =  "[" + prefixFormat + prefix + TextFormatting.WHITE + "] ";
 		                String nameWithFormat = TextFormatting.WHITE + "<" + nameFormat + player.getDisplayNameString() + TextFormatting.WHITE + "> ";
-		                target.addChatComponentMessage(new TextComponentTranslation(prefixWithFormat + nameWithFormat + chatFormat + event.getMessage()));
-		                
+                        TextComponentTranslation message = new TextComponentTranslation(prefixWithFormat + nameWithFormat + chatFormat + event.getMessage());
+		                target.addChatComponentMessage(message);
+                        LogManager.getLogger().info(message.getUnformattedText());
 		  	        }
 	            }
 	        }
