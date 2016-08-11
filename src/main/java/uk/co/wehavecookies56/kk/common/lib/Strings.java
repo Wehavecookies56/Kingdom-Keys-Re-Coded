@@ -188,6 +188,7 @@ public class Strings {
 	Shop = "shop",
 
 	KKChest = "kkchest",
+	Pedestal = "pedestal",
 
 	// Ores
 	BlazingOre = "blazingore", 

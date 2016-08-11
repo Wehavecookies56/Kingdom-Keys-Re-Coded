@@ -4,8 +4,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.Format;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
 
 import com.google.common.collect.HashBiMap;
 import com.google.gson.JsonArray;
@@ -16,11 +21,15 @@ import com.google.gson.stream.JsonReader;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.FMLRelaunchLog;
 
 /**
  * Created by Toby on 28/03/2016.
@@ -87,40 +96,47 @@ public class UsernameHandler {
 	        {
 	            EntityPlayer player = event.getPlayer();
 	            event.setCanceled(true);
-	
-	            List players = player.worldObj.playerEntities;
-	            String nameFormat = null;
-	            String chatFormat = null;
-	            String prefixFormat = null;
-	            String prefix = null;
-	
-	            for (int i = 0; i < players.size(); i++)
+	            WorldServer worlds[] = DimensionManager.getWorlds();
+	            
+	            List players = null;
+	            for(int p=0; p<worlds.length;p++)
 	            {
-                    if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("nameformat")){
-                        nameFormat = this.usernamePropsRegistry.get(event.getUsername()).get("nameformat");
-                    }
-                    else nameFormat = "\u00A7f";
-                   
-                    if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("chatformat")){
-                        chatFormat = this.usernamePropsRegistry.get(event.getUsername()).get("chatformat");
-                    }
-	                else chatFormat = "\u00A7f";
-                   
-	                if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefixformat")){
-                        prefixFormat = this.usernamePropsRegistry.get(event.getUsername()).get("prefixformat");
-	                }
-                    else prefixFormat = "\u00A7f";
-                    
-                    if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefix")){
-                        prefix = this.usernamePropsRegistry.get(event.getUsername()).get("prefix");
-	                }
-                    else prefix = "";
-                
-	                EntityPlayer target = (EntityPlayer) players.get(i);
-	                String prefixWithFormat = "";
-	                if (!prefix.isEmpty()) prefixWithFormat =  "[" + prefixFormat + prefix + TextFormatting.WHITE + "] ";
-	                String nameWithFormat = TextFormatting.WHITE + "<" + nameFormat + player.getDisplayNameString() + TextFormatting.WHITE + "> ";
-	                target.addChatComponentMessage(new TextComponentTranslation(prefixWithFormat + nameWithFormat + chatFormat + event.getMessage()));
+	            	players = worlds[p].playerEntities;
+	            
+		            String nameFormat = null;
+		            String chatFormat = null;
+		            String prefixFormat = null;
+		            String prefix = null;
+		
+		            for (int i = 0; i < players.size(); i++)
+		            {
+	                    if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("nameformat")){
+	                        nameFormat = this.usernamePropsRegistry.get(event.getUsername()).get("nameformat");
+	                    }
+	                    else nameFormat = "\u00A7f";
+	                   
+	                    if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("chatformat")){
+	                        chatFormat = this.usernamePropsRegistry.get(event.getUsername()).get("chatformat");
+	                    }
+		                else chatFormat = "\u00A7f";
+	                   
+		                if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefixformat")){
+	                        prefixFormat = this.usernamePropsRegistry.get(event.getUsername()).get("prefixformat");
+		                }
+	                    else prefixFormat = "\u00A7f";
+	                    
+	                    if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefix")){
+	                        prefix = this.usernamePropsRegistry.get(event.getUsername()).get("prefix");
+		                }
+	                    else prefix = "";
+	                
+		                EntityPlayer target = (EntityPlayer) players.get(i);
+		                String prefixWithFormat = "";
+		                if (!prefix.isEmpty()) prefixWithFormat =  "[" + prefixFormat + prefix + TextFormatting.WHITE + "] ";
+		                String nameWithFormat = TextFormatting.WHITE + "<" + nameFormat + player.getDisplayNameString() + TextFormatting.WHITE + "> ";
+		                target.addChatComponentMessage(new TextComponentTranslation(prefixWithFormat + nameWithFormat + chatFormat + event.getMessage()));
+		                
+		  	        }
 	            }
 	        }
         }

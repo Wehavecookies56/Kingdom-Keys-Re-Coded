@@ -22,7 +22,7 @@ public class ModBlocks {
             LightningOre, LucidOre, PowerOre, PowerOreE, RemembranceOre, SerenityOre, StormyOre, TranquilOre,
             TwilightOre, SynthesisTable, KKChest, SavePoint, MagnetBlox;
 
-	public static Block StationOfAwakening, StationOfAwakeningDoor;
+	public static Block StationOfAwakening, StationOfAwakeningDoor, Pedestal;
 
 	public static CreativeTabs tabKingdomKeysBlocks;
 
@@ -60,6 +60,7 @@ public class ModBlocks {
 		Shop = new BlockShop(Material.CLOTH, "sword", 0, 1f, 1f).setUnlocalizedName(Strings.Shop).setCreativeTab(tabKingdomKeysBlocks);
 		StationOfAwakening = new BlockStationOfAwakening(Strings.StationOfAwakening);
 		StationOfAwakeningDoor = new BlockStationOfAwakeningDoor(Strings.StationOfAwakeningDoor);
+		Pedestal = new BlockPedestal(Material.IRON, "pickaxe", 2, 10f, 60f).setUnlocalizedName(Strings.Pedestal).setCreativeTab(tabKingdomKeysBlocks);
 
     }
 
@@ -101,6 +102,7 @@ public class ModBlocks {
 		registerBlock(Shop, Strings.Shop);
         registerBlock(StationOfAwakening, Strings.StationOfAwakening);
         registerBlock(StationOfAwakeningDoor, Strings.StationOfAwakeningDoor);
+        registerBlock(Pedestal, Strings.Pedestal);
 
 	}
 
@@ -158,6 +160,7 @@ public class ModBlocks {
 		registerRender(MagnetBlox);
 		registerRender(Shop);
         registerRender(StationOfAwakeningDoor);
+        registerRender(Pedestal);
 
 	}
 
