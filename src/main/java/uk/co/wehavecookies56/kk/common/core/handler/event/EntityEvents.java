@@ -38,6 +38,7 @@ import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
+import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
 import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
@@ -47,8 +48,10 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
+import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
+import uk.co.wehavecookies56.kk.common.item.ItemAquaArmor;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
@@ -456,11 +459,6 @@ public class EntityEvents {
     }
 
 	String chosen = "";
-
-    int messageNum = 0;
-    int counter = 0;
-    int time = 0;
-
     @SubscribeEvent
     public void onPlayerTick (TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
@@ -468,13 +466,22 @@ public class EntityEvents {
         System.out.println("Y"+player.getPosition().getY());
         System.out.println("Z"+player.getPosition().getZ());
         */
+        if(player.inventory.armorInventory[0] != null && player.inventory.armorInventory[1] != null && player.inventory.armorInventory[2] != null && player.inventory.armorInventory[3] != null)
+        {
+        	if(player.inventory.armorInventory[0].getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory[1].getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.OrganizationRobe_Helmet)
+	        	AchievementHelper.addAchievement(player, ModAchievements.getOrgRobe);
+        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Aqua_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Aqua_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Aqua_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Aqua_Helmet)
+	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
+        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Terra_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Terra_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Terra_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Terra_Helmet)
+	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
+        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Ventus_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Ventus_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Ventus_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Ventus_Helmet)
+	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
+        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Eraqus_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Eraqus_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Eraqus_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Eraqus_Helmet)
+	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
 
-    	if(player.dimension == ModDimensions.diveToTheHeartID) {
-    	    counter++;
-            if (counter % 20 == 0) {
-                time++;
-            }
-
+        }
+    	if(player.dimension == ModDimensions.diveToTheHeartID)
+    	{
            // System.out.println("Chosen: "+chosen);
 
     		if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
@@ -486,7 +493,7 @@ public class EntityEvents {
 	    			player.addChatMessage(staff);
     			}
     		}
-    		
+
     		else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
     		{
     			if(chosen != "Sword"){
@@ -496,7 +503,7 @@ public class EntityEvents {
 	    			player.addChatMessage(sword);
     			}
     		}
-    		
+
     		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66)
     		{
     			if(chosen != "Shield"){
@@ -506,16 +513,16 @@ public class EntityEvents {
 	    			player.addChatMessage(shield);
     			}
     		}
-    		
-    		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == 10 && player.getPosition().getY() == 65)
+
+    		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +11 && player.getPosition().getY() == 66)
     		{
     			if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID)
     				if (!player.worldObj.isRemote)
     					new TeleporterOverworld(event.player.worldObj.getMinecraftServer().getServer().worldServerForDimension(0)).teleport(( player), player.worldObj);
     		}
-    			
+
     	}
-    	
+
     	PlayerStatsCapability.IPlayerStats STATS = event.player.getCapability(ModCapabilities.PLAYER_STATS, null);
         DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         if (!DS.getInDrive())

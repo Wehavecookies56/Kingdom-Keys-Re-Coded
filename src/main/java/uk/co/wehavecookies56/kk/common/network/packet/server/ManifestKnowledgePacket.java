@@ -8,6 +8,8 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
+import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
+import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -36,6 +38,7 @@ public class ManifestKnowledgePacket extends AbstractMessage.AbstractServerMessa
 		TextComponentTranslation manifestMessage = new TextComponentTranslation(Strings.Chat_Manifest, new TextComponentTranslation(Lists.orgWeapons.get(rand).getUnlocalizedName() + ".name"));
 		manifestMessage.getStyle().setColor(TextFormatting.YELLOW);
 		player.addChatMessage(manifestMessage);
+    	AchievementHelper.addAchievement(player, ModAchievements.getOrgWeapon);
 	}
 
 }
