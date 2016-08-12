@@ -213,21 +213,8 @@ public class ClientProxy extends CommonProxy
 	}
 
 	@Override
-	public void spawnTestParticle (World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ) {
-//		double motionX = e.worldObj.rand.nextGaussian() * 0.02D;
-//		double motionY = e.worldObj.rand.nextGaussian() * 0.02D;
-//		double motionZ = e.worldObj.rand.nextGaussian() * 0.02D;
-		/*
-		EntityFX particleTest = new EntityParticleFXTest(e.worldObj, 
-		e.posX + e.worldObj.rand.nextDouble() * e.width * 2.0F - e.width,
-		e.posY + e.worldObj.rand.nextDouble() * e.height,
-		e.posZ + e.worldObj.rand.nextDouble() * e.width * 2.0F - e.width, 
-		motionX,
-		motionY,
-		motionZ
-		);
-		*/
-		Particle particleTest = new EntityParticleFXTest(new ResourceLocation(Reference.MODID, "textures/fx/flame.png"), world, posX, posY, posZ, motionX, motionY, motionZ);
+	public void spawnTestParticle (World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, float alpha) {
+		Particle particleTest = new EntityParticleFXTest(new ResourceLocation(Reference.MODID, "textures/fx/flame.png"), world, posX, posY, posZ, motionX, motionY, motionZ, alpha);
 		Minecraft.getMinecraft().effectRenderer.addEffect(particleTest);
 	}
 	

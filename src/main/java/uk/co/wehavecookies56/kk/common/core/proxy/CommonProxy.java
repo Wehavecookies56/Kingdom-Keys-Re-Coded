@@ -186,7 +186,7 @@ public class CommonProxy {
 		return ctx.getServerHandler().playerEntity.getServer();
 	}
 
-	public void spawnTestParticle(World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ) {}
+	public void spawnTestParticle(World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, float alpha) {}
 
 	public void registerAchievements () {
 		// Achievements

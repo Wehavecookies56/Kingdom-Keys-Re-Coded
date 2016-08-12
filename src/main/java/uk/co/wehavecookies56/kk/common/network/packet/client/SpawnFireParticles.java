@@ -76,12 +76,12 @@ public class SpawnFireParticles extends AbstractMessage.AbstractClientMessage<Sp
 					double x2 = this.x + (r / 1.3 * Math.cos(Math.toRadians(a)));
 					double z2 = this.z + (r / 1.3 * Math.sin(Math.toRadians(a)));
 
-					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x2, this.y + 2.0D, z2, 0.0D, 0.0D, 0.0D);
-					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x2, this.y + 2.0D, z2, 0.0D, 0.0D, 0.0D);
-					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x, this.y + 1.5D, z, 0.0D, 0.0D, 0.0D);
-					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x, this.y + 1D, z, 0.0D, 0.0D, 0.0D);
-					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x, this.y + 0.5D, z, 0.0D, 0.0D, 0.0D);
-					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x, this.y + 0.0D, z, 0.0D, 0.0D, 0.0D);
+					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x2, this.y + 2.0D, z2, 0.0D, 0.0D, 0.0D, 0.2F);
+					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x2, this.y + 2.0D, z2, 0.0D, 0.0D, 0.0D, 0.2F);
+					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x, this.y + 1.5D, z, 0.0D, 0.0D, 0.0D, 0.2F);
+					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x, this.y + 1D, z, 0.0D, 0.0D, 0.0D, 0.2F);
+					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x, this.y + 0.5D, z, 0.0D, 0.0D, 0.0D, 0.2F);
+					KingdomKeys.proxy.spawnTestParticle(player.worldObj, x, this.y + 0.0D, z, 0.0D, 0.0D, 0.0D, 0.2F);
 				}
 				break;
 		}

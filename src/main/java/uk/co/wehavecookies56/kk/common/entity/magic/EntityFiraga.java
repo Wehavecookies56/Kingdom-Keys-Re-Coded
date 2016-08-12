@@ -20,7 +20,7 @@ public class EntityFiraga extends Entity {
 		super(world);
 	}
 
-	public EntityFiraga (World world, EntityPlayer sender, double x, double y, double z, int level) {
+	public EntityFiraga (World world, EntityPlayer sender, double x, double y, double z) {
 		super(world);
 		this.posX = x;
 		this.posY = y;

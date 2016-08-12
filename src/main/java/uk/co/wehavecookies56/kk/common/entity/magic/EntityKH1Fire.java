@@ -13,21 +13,23 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnFireParticles;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticles;
 
-public class EntityOldFire extends EntityThrowable {
+public class EntityKH1Fire extends EntityThrowable {
 	private static final ResourceLocation resourceLocation = new ResourceLocation(Reference.MODID, "textures/entity/fire.png");
-	public EntityLivingBase shootingEntity;
+	public EntityPlayer shootingEntity;
 
-	public EntityOldFire (World world) {
+	public EntityKH1Fire (World world) {
 		super(world);
 	}
 
-	public EntityOldFire (World world, EntityLivingBase entity) {
+	public EntityKH1Fire (World world, EntityLivingBase entity) {
 		super(world, entity);
+		shootingEntity = (EntityPlayer) entity;
+
 	}
 
-	public EntityOldFire (World world, double x, double y, double z) {
+	public EntityKH1Fire (World world, double x, double y, double z) {
 		super(world, x, y, z);
 	}
 
@@ -38,14 +40,15 @@ public class EntityOldFire extends EntityThrowable {
 
 	@Override
 	public void onUpdate () {
+		super.onUpdate();
+
 		if (shootingEntity == null) return;
 		int rotation = 0;
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnFireParticles(this, 0), (EntityPlayer) shootingEntity, 64.0D);
+		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), shootingEntity, 64.0D);
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.rotationYaw = (rotation + 1) % 360;
 		if (ticksExisted > 60) setDead();
-		super.onUpdate();
 	}
 
 	@Override
@@ -63,7 +66,7 @@ public class EntityOldFire extends EntityThrowable {
 			} else {
 				flag = true;
 
-				if (this.shootingEntity != null && this.shootingEntity instanceof EntityLiving) flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
+				if (this.shootingEntity != null && this.shootingEntity instanceof EntityPlayer) flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
 
 				if (flag) {
 					BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);

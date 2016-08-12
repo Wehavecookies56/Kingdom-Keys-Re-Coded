@@ -13,6 +13,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicAero;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicBlizzard;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicCure;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicFire;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicKH1Fire;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicStop;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicThunder;
 
@@ -50,12 +51,14 @@ public class Magic {
 	}
 
 	public static void Fire (EntityPlayer player, World world) {
-		if(!Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire()) {
+		if(!player.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire()) {
 			PacketDispatcher.sendToServer(new MagicFire());
 			player.swingArm(EnumHand.MAIN_HAND);
 			world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 1, 1, false);
 		} else{
-			System.out.println("KH1 fire");
+			PacketDispatcher.sendToServer(new MagicKH1Fire());
+			player.swingArm(EnumHand.MAIN_HAND);
+			world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 1, 1, false);
 		}
 	}
 

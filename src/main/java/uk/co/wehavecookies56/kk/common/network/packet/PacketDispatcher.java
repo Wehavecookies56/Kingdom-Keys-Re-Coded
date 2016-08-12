@@ -14,6 +14,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardPartic
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnCureParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnDriveFormParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnFireParticles;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnLockOnParticle;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnStopParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnThunderEntity;
@@ -66,6 +67,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicAero;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicBlizzard;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicCure;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicFire;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicKH1Fire;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicStop;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicThunder;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicWisdomShot;
@@ -80,6 +82,7 @@ public class PacketDispatcher {
 
 		// Server to Client
 		registerMessage(SpawnFireParticles.class);
+		registerMessage(SpawnKH1FireParticles.class);
 		registerMessage(SpawnBlizzardParticles.class);
 		registerMessage(SpawnThunderParticles.class);
 		registerMessage(SpawnCureParticles.class);
@@ -117,6 +120,7 @@ public class PacketDispatcher {
 		registerMessage(DeSummonKeyblade.class);
 		registerMessage(PlaySoundAtPlayer.class);
 		registerMessage(MagicFire.class);
+		registerMessage(MagicKH1Fire.class);
 		registerMessage(MagicBlizzard.class);
 		registerMessage(MagicThunder.class);
 		registerMessage(MagicCure.class);

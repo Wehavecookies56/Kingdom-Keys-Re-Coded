@@ -14,14 +14,14 @@ public class EntityParticleFXTest extends Particle {
 
 	ResourceLocation texture;
 	
-	public EntityParticleFXTest (ResourceLocation texture, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
+	public EntityParticleFXTest (ResourceLocation texture, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, float alpha) {
 		super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
 		this.texture = texture;
 		double newrand = (float) Math.random();
 		setGravity(.005F);
 		setScale(5F);
 		setMaxAge(10);
-		setAlphaF(0.2F);
+		setAlphaF(alpha);
 		//setRBGColorF(0x255, 0x0, 0x0);
 	}
 	
