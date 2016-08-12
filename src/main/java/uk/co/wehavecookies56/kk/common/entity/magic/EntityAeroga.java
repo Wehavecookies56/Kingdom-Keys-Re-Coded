@@ -54,8 +54,7 @@ public class EntityAeroga extends Entity {
 		else
 			player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10000000149011612D);
 
-		double distance = 3.0D;
-		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(4, 4, 4);
+		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(r, r, r);
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
@@ -64,14 +63,12 @@ public class EntityAeroga extends Entity {
 				double d = e.posX - posX;
 				double d1;
 				for (d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)
-				{
 					d = (Math.random() - Math.random()) * 0.01D;
-				}
 				((EntityLivingBase) e).knockBack(e, 1, d, d1);
 				e.motionY*=1.2;
 			}
 		}
-		aabb.expand(-4, -4, -4);
+		aabb.expand(-r, -r, -r);
 
 		super.onUpdate();
 	}

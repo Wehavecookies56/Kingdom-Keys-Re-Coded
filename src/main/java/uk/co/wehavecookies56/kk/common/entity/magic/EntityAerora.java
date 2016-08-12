@@ -35,9 +35,9 @@ public class EntityAerora extends Entity {
 		if (player == null) return;
 		int rotation = 0;
 
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnAeroParticles(this, 2), player, 64.0D);
+		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnAeroParticles(this, 3), player, 64.0D);
 
-		double r = 2.3D;
+		double r = 3D;
 
 		for (int a = 1; a <= 360; a += 15) {
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
@@ -54,22 +54,21 @@ public class EntityAerora extends Entity {
 		else
 			player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10000000149011612D);
 
-		double distance = 3.0D;
-		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(3, 3, 3);
+		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(r, r, r);
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityLivingBase) {
-				e.attackEntityFrom(DamageSource.causePlayerDamage(player), DamageCalculation.getMagicDamage(player,2));
+				e.attackEntityFrom(DamageSource.causePlayerDamage(player), DamageCalculation.getMagicDamage(player,3));
 				double d = e.posX - posX;
 				double d1;
 				for (d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)
 					d = (Math.random() - Math.random()) * 0.01D;
 				((EntityLivingBase) e).knockBack(e, 1, d, d1);
-				e.motionY*=1.7;
+				e.motionY*=1.2;
 			}
 		}
-		aabb.expand(-3, -3, -3);
+		aabb.expand(-r, -r, -r);
 
 		super.onUpdate();
 	}

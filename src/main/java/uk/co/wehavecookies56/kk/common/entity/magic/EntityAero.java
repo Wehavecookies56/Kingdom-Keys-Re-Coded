@@ -34,10 +34,7 @@ public class EntityAero extends Entity {
 	}
 
 	@Override
-	public void onUpdate () {
-		
-		double damage = ((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).getMagic() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic();
-		
+	public void onUpdate () {		
 		if (player == null) return;
 		int rotation = 0;
 
@@ -60,25 +57,18 @@ public class EntityAero extends Entity {
 		else
 			player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10000000149011612D);
 
-		double distance = 3.0D;
 		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
 		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
-
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityLivingBase) {
-				if (player.getHeldItemMainhand() != null) {
-
-				} else if (player.getHeldItemOffhand() != null) {
-
-				}
 				e.attackEntityFrom(DamageSource.causePlayerDamage(player), DamageCalculation.getMagicDamage(player,1));
 				double d = e.posX - posX;
 				double d1;
 				for (d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)
 					d = (Math.random() - Math.random()) * 0.01D;
 				((EntityLivingBase) e).knockBack(e, 1, d, d1);
-				e.motionY*=1.15;
+				e.motionY*=1.2;
 			}
 		}
 		aabb.expand(-2, -2, -2);
