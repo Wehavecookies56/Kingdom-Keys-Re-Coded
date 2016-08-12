@@ -29,8 +29,8 @@ public class GuiLockOn extends GuiScreen {
 				return;
 			Minecraft mc = Minecraft.getMinecraft();
 			EntityPlayer player = mc.thePlayer;
-
-			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/lockon.png"));
+			float reduction = 4;
+			//mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/lockon/lock on frame"+i+".png"));
 
 			int screenWidth = event.getResolution().getScaledWidth();
 			int screenHeight = event.getResolution().getScaledHeight();
@@ -48,11 +48,18 @@ public class GuiLockOn extends GuiScreen {
 					break;
 			}
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth/2)-(guiWidth/2) * scale, (screenHeight/2)-(guiHeight/2) * scale, 0);
-			GL11.glScalef(scale, scale, scale);
+			GL11.glTranslatef((screenWidth/2)-(guiWidth/2) * scale/reduction, (screenHeight/2)-(guiHeight/2) * scale/reduction, 0);
+			GL11.glScalef(scale/reduction, scale/reduction, scale/reduction);
 			// BG
 			if(target != null)
-				this.drawTexturedModalRect(0, 0, 0, 0, guiWidth, guiHeight);
+			{
+				for(int i = 1; i<2;i++)
+				{
+					mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/lockon/lock on frame"+i+".png"));
+					this.drawTexturedModalRect(0, 0, 0, 0, guiWidth, guiHeight);
+					
+				}
+			}
 
 			GL11.glPopMatrix();
 			GL11.glPushMatrix();

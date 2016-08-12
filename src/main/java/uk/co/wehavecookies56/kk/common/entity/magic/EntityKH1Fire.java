@@ -57,11 +57,12 @@ public class EntityKH1Fire extends EntityThrowable {
 			boolean flag;
 
 			if (movingObject.entityHit != null) {
-				flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 8);
+				flag = movingObject.entityHit != null;
 				if (flag) {
 					applyEnchantments(this.shootingEntity, movingObject.entityHit);
 
 					if (!movingObject.entityHit.isImmuneToFire()) movingObject.entityHit.setFire(5);
+					movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), DamageCalculation.getMagicDamage(shootingEntity,3));
 				}
 			} else {
 				flag = true;

@@ -320,7 +320,8 @@ public class InputHandler {
 		SummonKeybladeCapability.ISummonKeyblade SUMMON = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
 
 		Keybinds key = getPressedKey();
-		if (key != null) switch (key) {
+		if (key != null) 
+			switch (key) {
 			case OPENMENU:
 				GuiHelper.openMenu();
 				PacketDispatcher.sendToServer(new OpenMenu());
