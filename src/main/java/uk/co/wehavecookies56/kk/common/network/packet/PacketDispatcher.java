@@ -26,6 +26,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveWithPlayer
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncFreeDevRecipeData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncItemsInventory;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKH1Magic;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
@@ -104,6 +105,8 @@ public class PacketDispatcher {
 		registerMessage(SyncDriveWithPlayers.class);
 		registerMessage(SyncFreeDevRecipeData.class);
 		registerMessage(SpawnLockOnParticle.class);
+		registerMessage(SyncKH1Magic.class);
+
 
 
 		// Client to Server

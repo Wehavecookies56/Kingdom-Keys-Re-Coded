@@ -2,16 +2,11 @@ package uk.co.wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
 
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiTextField;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
-import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.SetKH1Fire;
@@ -24,6 +19,7 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 
 	final int R = 0, G = 1, B = 2;
 	final int BACK = 0, HEARTS = 1, MUSIC = 2, FIRE = 3;
+	boolean kh1Fire = Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire();
 
 	public GuiMenu_Config (String name) {
 		super(Strings.Gui_Menu_Config_Title);
@@ -48,11 +44,15 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 				musicToggle.displayString = String.valueOf(ConfigHandler.EnableCustomMusic);
 				break;
 			case FIRE:
-				if(Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire() == true)
+				if(kh1Fire){
 					PacketDispatcher.sendToServer(new SetKH1Fire(false));
-				else
+					kh1Fire = false;
+				}else{
 					PacketDispatcher.sendToServer(new SetKH1Fire(true));
-				fire.displayString = String.valueOf(Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire());
+					kh1Fire = true;
+				}
+				//PacketDispatcher.sendToServer(new GetKH1Fire());
+				fire.displayString = String.valueOf(kh1Fire);
 				break;
 		}
 		updateButtons();

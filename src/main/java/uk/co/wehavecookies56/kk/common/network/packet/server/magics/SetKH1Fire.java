@@ -4,10 +4,14 @@ import java.io.IOException;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractServerMessage;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKH1Magic;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 
 public class SetKH1Fire extends AbstractServerMessage<SetKH1Fire> {
 
@@ -31,6 +35,8 @@ public class SetKH1Fire extends AbstractServerMessage<SetKH1Fire> {
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).setKH1Fire(kh1fire);
+		//Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).setKH1Fire(kh1fire);
+		player.getCapability(ModCapabilities.MAGIC_STATE, null).setKH1Fire(kh1fire);
+		PacketDispatcher.sendTo(new SyncKH1Magic(player.getCapability(ModCapabilities.MAGIC_STATE, null),kh1fire), (EntityPlayerMP)player);
 	}
 }
