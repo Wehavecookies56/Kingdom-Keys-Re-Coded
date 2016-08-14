@@ -698,7 +698,7 @@ gui.menu.config.title=Config
 gui.menu.config.colour.desc=Cambia el color de la interfaz poniendo un valor RGB
 gui.menu.config.hearts=Mostrar corazones en el HUD
 gui.menu.config.music=Activar música personalizada
-gui.menu.config.fire=¿Fuego de Kingdom Hearts 2?
+gui.menu.config.fire=¿Fuego de Kingdom Hearts 1?
 
 #Containers
 container.keychain=Pon un llavero aquí
@@ -710,6 +710,7 @@ container.synthbag=Pon una Bolsa de Síntesis aquí
 container.synthesisbagsinventory=Bolsa de Síntesis Pequeña
 container.synthesisbagminventory=Bolsa de Síntesis Media
 container.synthesisbaglinventory=Bolsa de Síntesis Grande
+synthesisbag.desc=Al tener la Bolsa de Síntesis en el inventario, los materiales de síntesis se guardarán en ella
 
 #Synthesis#
 gui.synthesis.main.title=Sintetizador

@@ -30,7 +30,7 @@ public class EntityBlastBlox extends Entity {
 		this.motionX = -((float) Math.sin(f)) * 0.02F;
 		this.motionY = 0.20000000298023224D;
 		this.motionZ = -((float) Math.cos(f)) * 0.02F;
-		this.fuse = 40;
+		this.fuse = 60;
 		this.prevPosX = par2;
 		this.prevPosY = par4;
 		this.prevPosZ = par6;
@@ -40,27 +40,16 @@ public class EntityBlastBlox extends Entity {
 	@Override
 	protected void entityInit () {}
 
-	/**
-	 * returns if this entity triggers Block.onEntityWalking on the blocks they
-	 * walk on. used for spiders and wolves to prevent them from trampling crops
-	 */
 	@Override
 	protected boolean canTriggerWalking () {
 		return false;
 	}
 
-	/**
-	 * Returns true if other Entities should be prevented from moving through
-	 * this Entity.
-	 */
 	@Override
 	public boolean canBeCollidedWith () {
 		return !this.isDead;
 	}
 
-	/**
-	 * Called to update the entity's position/logic.
-	 */
 	@Override
 	public void onUpdate () {
 		this.prevPosX = this.posX;
@@ -91,17 +80,11 @@ public class EntityBlastBlox extends Entity {
 		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, f, true);
 	}
 
-	/**
-	 * (abstract) Protected helper method to write subclass entity data to NBT.
-	 */
 	@Override
 	protected void writeEntityToNBT (NBTTagCompound par1NBTTagCompound) {
 		par1NBTTagCompound.setByte("Fuse", (byte) this.fuse);
 	}
 
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
 	@Override
 	protected void readEntityFromNBT (NBTTagCompound par1NBTTagCompound) {
 		this.fuse = par1NBTTagCompound.getByte("Fuse");
@@ -112,9 +95,6 @@ public class EntityBlastBlox extends Entity {
 		return 0.0F;
 	}
 
-	/**
-	 * returns null or the entityliving it was placed or ignited by
-	 */
 	public EntityLivingBase getTntPlacedBy () {
 		return this.tntPlacedBy;
 	}

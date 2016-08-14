@@ -710,6 +710,7 @@ container.synthbag=Place a Synthesis Bag here
 container.synthesisbagsinventory=Small Synthesis Material Bag
 container.synthesisbagminventory=Medium Synthesis Material Bag
 container.synthesisbaglinventory=Large Synthesis Material Bag
+synthesisbag.desc=By holding the synthesis bag in your inventory synthesis materials will be sent into it
 
 #Synthesis#
 gui.synthesis.main.title=Item Synthesis

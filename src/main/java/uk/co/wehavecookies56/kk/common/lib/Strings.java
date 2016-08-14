@@ -224,7 +224,7 @@ public class Strings {
 	KKChestDesc_1 = "tile.kkchest.desc1", 
 	KKChestDesc_2 = "tile.kkchest.desc2",
 	SavePointDesc = "tile.savepoint.desc", 
-	SynthesisBagDesc = "By holding the synthesis bag in your inventory items will be sent into the synthesis table"
+	SynthesisBagDesc = "synthesisbag.desc"
 	;
 
 	// Items

@@ -37,17 +37,11 @@ public class BlockBlastBlox extends BlockBlox {
 		world.setBlockToAir(pos);
 	}
 
-	/**
-	 * Returns the quantity of items to drop on block destruction.
-	 */
 	@Override
 	public int quantityDropped (Random par1Random) {
 		return 1;
 	}
 
-	/**
-	 * Called upon the block being destroyed by an explosion
-	 */
 	@Override
 	public void onBlockDestroyedByExplosion (World par1World, BlockPos pos, Explosion par5Explosion) {
 		if (!par1World.isRemote) {
@@ -57,23 +51,13 @@ public class BlockBlastBlox extends BlockBlox {
 		}
 	}
 
-	/**
-	 * Called right before the block is destroyed by a player. Args: world, x,
-	 * y, z, metaData
-	 */
-
 	public void explode (World world, int x, int y, int z, int state, EntityLivingBase entity) {
 		if (!world.isRemote) if ((state & 1) == 1) {
 			EntityBlastBlox entitytntprimed = new EntityBlastBlox(world, x + 0.5F, y + 0.5F, z + 0.5F, entity);
-			entitytntprimed.fuse = 50;
+			//entitytntprimed.fuse = 60;
 			world.spawnEntityInWorld(entitytntprimed);
-			//world.playAuxSFXAtEntity(entitytntprimed, "game.tnt.primed", 1.0F, 1.0F);
 		}
 	}
-
-	/**
-	 * Called upon block activation (right click on the block.)
-	 */
 	
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
@@ -86,10 +70,6 @@ public class BlockBlastBlox extends BlockBlox {
 			return super.onBlockActivated(world, pos, state, player, hand, heldItem, side, hitX, hitY, hitZ);
 	}
 
-	/**
-	 * Triggered whenever an entity collides with this block (enters into the
-	 * block). Args: world, x, y, z, entity
-	 */
 	@Override
 	public void onBlockClicked (World world, BlockPos pos, EntityPlayer player) {
 		if (player.getHeldItem(EnumHand.MAIN_HAND) != null) {
