@@ -596,6 +596,8 @@ public class EntityEvents {
         }
         if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
+        	if(event.getSource().causeThornsDamage(player) != null) return;
+
             PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
             DriveStateCapability.IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 
