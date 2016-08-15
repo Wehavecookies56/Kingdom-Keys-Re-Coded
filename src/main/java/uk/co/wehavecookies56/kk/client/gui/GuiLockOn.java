@@ -75,7 +75,7 @@ public class GuiLockOn extends GuiScreen {
 
 			if(target != null)//TODO && player has scan ability
 			{
-				this.drawString(mc.fontRendererObj, target.getName(), screenWidth-mc.fontRendererObj.getStringWidth(target.getName()), 10, 0xFFFFFF);
+				this.drawString(mc.fontRendererObj, target.getName(), screenWidth-mc.fontRendererObj.getStringWidth(target.getName()), 15, 0xFFFFFF);
 				drawHPBar(event, (EntityLivingBase)target);
 			}
 				
@@ -113,6 +113,14 @@ public class GuiLockOn extends GuiScreen {
 				drawTexturedModalRect(0, 0, 3, 0, 2, 10);
 			}
 			GL11.glPopMatrix();
+			
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef(posX + width-14, posY+7, 0);
+				GL11.glScalef(scale, scale, 0);
+				drawTexturedModalRect(1, 0, 0, 32, 23, 12);
+			}
+			GL11.glPopMatrix();
 		}
 		GL11.glPopMatrix();
 
@@ -143,14 +151,6 @@ public class GuiLockOn extends GuiScreen {
 				GL11.glTranslatef((posX + 4) * scale + width, scale * (posY + 2), 0);
 				GL11.glScalef(scale, scale, 0);
 				drawTexturedModalRect(0, 0, 4, 12, 2, 6);
-			}
-			GL11.glPopMatrix();
-			
-			GL11.glPushMatrix();
-			{
-				GL11.glTranslatef((posX + 17) * scale/2 + width, scale/2 * (posY), 0);
-				GL11.glScalef(scale, scale, 0);
-				drawTexturedModalRect(0, 0, 0, 32, 22, 12);
 			}
 			GL11.glPopMatrix();
 		}
@@ -190,12 +190,12 @@ public class GuiLockOn extends GuiScreen {
 			int posX = 190 - hpBarWidth;
 
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - hpBarMaxWidth * scale) - 10 * scale*2, 1, 0);
+			GL11.glTranslatef((screenWidth - hpBarMaxWidth * scale) - 2 * scale*2, 1, 0);
 			GL11.glScalef(scale, scale, scale);
 			drawHPBarBack(0, 0, hpBarMaxWidth, scale);
 			GL11.glPopMatrix();
 			GL11.glPushMatrix();
-			GL11.glTranslatef((screenWidth - (hpBarWidth) * scale) - 10 * scale*2, 1, 0);
+			GL11.glTranslatef((screenWidth - (hpBarWidth) * scale) - 2 * scale*2, 1, 0);
 			GL11.glScalef(scale, scale, scale);
 			drawHPBarTop(0, 0, (int) ((hpBarWidth - (4 * scale))), scale);
 			GL11.glPopMatrix();		

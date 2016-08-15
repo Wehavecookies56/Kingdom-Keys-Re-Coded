@@ -152,7 +152,11 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 			case STATS_VALOR:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
 				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRendererObj, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+
 				drawString(fontRendererObj, "" + ds.getDriveLevel(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRendererObj, "" + STATS.getExperience(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+
 				break;
 			case STATS_WISDOM:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);

@@ -16,6 +16,7 @@ import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
@@ -26,6 +27,7 @@ public class PlayerStatsCapability {
 
 	public interface IPlayerStats {
 		List<String> getMessages();
+		int getExperience(String type);
 		int getLevel();
 		int getMaxLevel();
 		int getExperience();
@@ -116,7 +118,17 @@ public class PlayerStatsCapability {
 		private int level = 1;
 		private int maxLevel = 100;
 		private int experience = 0;
+		private int valorExperience = 0;
+		private int wisdomExperience = 0;
+		private int limitExperience = 0;
+		private int masterExperience = 0;
+		private int finalExperience = 0;
 		private int maxExperience = Integer.MAX_VALUE;
+		private int valorMaxExperience = Integer.MAX_VALUE;
+		private int wisdomMaxExperience = Integer.MAX_VALUE;
+		private int limitMaxExperience = Integer.MAX_VALUE;
+		private int masterMaxExperience = Integer.MAX_VALUE;
+		private int finalMaxExperience = Integer.MAX_VALUE;
 		private int strength = 1;
 		private int defense = 1;
 		private int magic = 1;
@@ -141,7 +153,25 @@ public class PlayerStatsCapability {
         @Override public double getMaxMP() { return this.maxMP; }
 		@Override public int getLevel() { return this.level; }
 		@Override public int getMaxLevel() { return this.maxLevel; }
-		@Override public int getExperience() { return this.experience; }
+		@Override public int getExperience(String type) { 
+			switch(type)
+			{
+			case "normal":
+				return this.experience;
+			case Strings.Form_Valor:
+				return this.valorExperience;
+			case Strings.Form_Wisdom:
+				return this.wisdomExperience;
+			case Strings.Form_Limit:
+				return this.limitExperience;
+			case Strings.Form_Master:
+				return this.masterExperience;
+			case Strings.Form_Final:
+				return this.finalExperience;
+			}
+			return 0;
+			
+		}
 		@Override public int getMaxExperience() { return this.maxExperience; }
 		@Override public int getStrength() { return this.strength; }
 		@Override public int getDefense() { return this.defense; }
@@ -185,7 +215,11 @@ public class PlayerStatsCapability {
 							}
 							PacketDispatcher.sendTo(new ShowOverlayPacket("exp"),(EntityPlayerMP)player);
 						break;
-					case "valor":
+					case Strings.Form_Valor:
+						if (this.valorExperience + amount <= this.valorMaxExperience)
+							this.valorExperience += amount;
+						else
+							this.experience = this.maxExperience;
 						break;
 					case "wisdom":
 						break;
@@ -604,6 +638,12 @@ public class PlayerStatsCapability {
 			player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 1.0f, 1.0f);
 			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());
 			PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+		}
+
+		@Override
+		public int getExperience() {
+			// TODO Auto-generated method stub
+			return this.experience;
 		}
 	}
 }

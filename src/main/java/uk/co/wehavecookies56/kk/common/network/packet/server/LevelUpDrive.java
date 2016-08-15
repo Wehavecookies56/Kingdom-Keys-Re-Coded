@@ -97,7 +97,6 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 			if (hasDriveInSlot == -1) {
 				player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().setInventorySlotContents(nullSlot, player.getHeldItem(EnumHand.MAIN_HAND));
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-		    //	PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getPlayer());
 
 				TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Drive_Learn, new TextComponentTranslation(this.form));
 				learnMessage.getStyle().setColor(TextFormatting.YELLOW);
