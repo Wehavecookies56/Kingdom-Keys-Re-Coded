@@ -131,6 +131,13 @@ public class Strings {
 	Gui_Menu_Config_Music = Gui_Menu_Config + ".music",
 	Gui_Menu_Config_Fire = Gui_Menu_Config + ".fire",
 
+	// Shop
+	Gui_Shop = "gui.shop",
+	Gui_Shop_Main = Gui_Shop + ".main",
+	Gui_Shop_Main_Title = Gui_Shop_Main + ".title",
+	Gui_Shop_Main_Buy = Gui_Shop_Main + ".buy",
+	Gui_Shop_Main_Sell = Gui_Shop_Main + ".sell",
+
 	// Synthesis
 	Gui_Synthesis = "gui.synthesis",
 	Gui_Synthesis_Main = Gui_Synthesis + ".main",

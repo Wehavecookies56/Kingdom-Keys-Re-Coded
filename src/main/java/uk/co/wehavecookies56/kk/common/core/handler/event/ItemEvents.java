@@ -233,8 +233,20 @@ public class ItemEvents {
 
     @SubscribeEvent
     public void addTooltip (ItemTooltipEvent event) {
-        if (MunnyRegistry.munnyValues.containsKey(event.getItemStack().getItem())) {
-            event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(event.getItemStack().getItem()));
+        for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
+            if (event.getItemStack().getItem() == stack.getItem()) {
+                if (event.getItemStack().hasTagCompound() && stack.hasTagCompound()) {
+                    if (event.getItemStack().getTagCompound().hasKey("material") && stack.getTagCompound().hasKey("material")) {
+                        if (event.getItemStack().getTagCompound().getString("material").equals(stack.getTagCompound().getString("material"))) {
+                            event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack));
+                        }
+                    } else {
+                        event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack));
+                    }
+                } else {
+                    event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack));
+                }
+            }
         }
         //TODO Localize all this
         if (event.getItemStack().getItem() instanceof ItemKeyblade) {

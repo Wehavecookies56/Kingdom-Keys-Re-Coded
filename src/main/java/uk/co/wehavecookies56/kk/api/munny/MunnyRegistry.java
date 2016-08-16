@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.api.munny;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,8 +21,7 @@ import java.util.Map;
  */
 public class MunnyRegistry {
 
-    public static Map<Item, Integer> munnyValues = new HashMap<Item, Integer>();
-    public static Map<String, Integer> materialValues = new HashMap<String, Integer>();
+    public static Map<ItemStack, Integer> munnyValues = new HashMap<ItemStack, Integer>();
 
     public static Logger apiLogger = LogManager.getFormatterLogger("kkMunnyAPI");
 
@@ -32,16 +32,17 @@ public class MunnyRegistry {
         orichalcum.getTagCompound().setString("rank", "sm.rank.a");
 
         addMunnyValueFromOreDict("ingotIron", 1000);
-        //addMunnyValue(orichalcum, 10000);
+        addMunnyValue(new ItemStack(Blocks.DIRT), 1);
+        addMunnyValue(orichalcum, 10000);
     }
 
-    public static boolean addMunnyValue(Item item, int value) {
+    public static boolean addMunnyValue(ItemStack item, int value) {
         if (!munnyValues.containsKey(item)) {
             munnyValues.put(item, value);
-            apiLogger.log(Level.INFO, "Registered %s munny value.", new ItemStack(item).getDisplayName());
+            apiLogger.log(Level.INFO, "Registered %s munny value.", item.getDisplayName());
             return true;
         } else {
-            apiLogger.log(Level.WARN, "Item %s has already had a munny value registered.", new ItemStack(item).getDisplayName());
+            apiLogger.log(Level.WARN, "Item %s has already had a munny value registered.", item.getDisplayName());
             return false;
         }
     }
@@ -51,16 +52,12 @@ public class MunnyRegistry {
         if (oreStacks.isEmpty()) {
             return false;
         } else {
-            List<Item> items = new ArrayList<Item>();
             for (int i = 0; i < oreStacks.size(); i++) {
-                items.add(oreStacks.get(i).getItem());
-            }
-            for (int i = 0; i < oreStacks.size(); i++) {
-                if (!munnyValues.containsKey(items.get(i))) {
-                    munnyValues.put(items.get(i), value);
-                    apiLogger.log(Level.INFO, "Registered %s munny value.", new ItemStack(items.get(i)).getDisplayName());
+                if (!munnyValues.containsKey(oreStacks.get(i))) {
+                    munnyValues.put(oreStacks.get(i), value);
+                    apiLogger.log(Level.INFO, "Registered %s munny value.", oreStacks.get(i).getDisplayName());
                 } else {
-                    apiLogger.log(Level.WARN, "Item %s has already had a munny value registered.", new ItemStack(items.get(i)).getDisplayName());
+                    apiLogger.log(Level.WARN, "Item %s has already had a munny value registered.", oreStacks.get(i).getDisplayName());
                     return false;
                 }
             }
