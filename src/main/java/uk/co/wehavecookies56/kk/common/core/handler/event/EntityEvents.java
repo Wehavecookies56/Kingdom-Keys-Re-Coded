@@ -297,6 +297,11 @@ public class EntityEvents {
             EntityMob mob = (EntityMob) event.getEntity();
 
             player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,(int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2),"normal");
+    		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom))
+    			player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Wisdom);
+    		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Final))
+    			player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Final);
+
             if(event.getEntity() instanceof EntityDragon)
             {
                 player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,2000, "normal");
@@ -610,6 +615,9 @@ public class EntityEvents {
 	            	event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
             		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Valor))
             			STATS.addExperience(player, 1, Strings.Form_Valor);
+            		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Limit))
+            			STATS.addExperience(player, 1, Strings.Form_Limit);
+
 	            }
             }
         }

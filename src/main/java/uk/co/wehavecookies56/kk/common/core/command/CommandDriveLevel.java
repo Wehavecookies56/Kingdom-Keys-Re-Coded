@@ -19,6 +19,7 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.LevelUpDrive;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -127,8 +128,7 @@ public class CommandDriveLevel implements ICommand {
 					else
 						TextHelper.sendFormattedChatMessage("Unknown form "+args[0], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 
-					
-				} else if (args.length == 3) {
+			} else if (args.length == 3) {
 					if(FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(args[2]) != null)
 					{
 						int level = 1;

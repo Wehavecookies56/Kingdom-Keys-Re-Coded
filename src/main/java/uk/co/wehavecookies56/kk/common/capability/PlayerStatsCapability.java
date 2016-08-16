@@ -271,8 +271,16 @@ public class PlayerStatsCapability {
 							this.valorExperience = this.valorMaxExperience;
 						break;
 					case Strings.Form_Wisdom:
+						if (this.wisdomExperience + amount <= this.wisdomMaxExperience)
+							this.wisdomExperience += amount;
+						else
+							this.wisdomExperience = this.wisdomMaxExperience;
 						break;
 					case Strings.Form_Limit:
+						if (this.limitExperience + amount <= this.limitMaxExperience)
+							this.limitExperience += amount;
+						else
+							this.limitExperience = this.limitMaxExperience;
 						break;
 					case Strings.Form_Master:
 						if (this.masterExperience + amount <= this.masterMaxExperience)
@@ -281,6 +289,10 @@ public class PlayerStatsCapability {
 							this.masterExperience = this.masterMaxExperience;
 						break;
 					case Strings.Form_Final:
+						if (this.finalExperience + amount <= this.finalMaxExperience)
+							this.finalExperience += amount;
+						else
+							this.finalExperience = this.finalMaxExperience;
 						break;
 				}
 			}

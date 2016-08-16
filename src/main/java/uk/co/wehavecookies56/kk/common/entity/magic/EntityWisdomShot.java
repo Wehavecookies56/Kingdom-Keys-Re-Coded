@@ -52,7 +52,8 @@ public class EntityWisdomShot extends EntityThrowable {
 			if(dmg < 2)
 				dmg = 2;
 			if (movingObject.entityHit != null) {
-				flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 8);
+				flag = movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(shootingEntity), dmg);
+
 				if (flag) {
 					applyEnchantments(this.shootingEntity, movingObject.entityHit);
 					if (movingObject.entityHit.isBurning())
