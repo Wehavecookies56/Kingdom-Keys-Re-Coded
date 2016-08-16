@@ -27,10 +27,15 @@ public class PlayerStatsCapability {
 
 	public interface IPlayerStats {
 		List<String> getMessages();
-		int getExperience(String type);
+		int getExperience();
+		int getVExperience();
+		int getWExperience();
+		int getLExperience();
+		int getMExperience();
+		int getFExperience();
+
 		int getLevel();
 		int getMaxLevel();
-		int getExperience();
 		int getMaxExperience();
 		int getStrength();
 		int getDefense();
@@ -45,6 +50,11 @@ public class PlayerStatsCapability {
 		
 		boolean setLevel(int level);
 		boolean setExperience(int experience);
+		boolean setVExperience(int vexperience);
+		boolean setWExperience(int wexperience);
+		boolean setLExperience(int lexperience);
+		boolean setMExperience(int mexperience);
+		boolean setFExperience(int fexperience);
 		void addExperience(EntityPlayer player, int amount, String type);
 		void setStrength(int strength);
 		void addStrength(int strength);
@@ -79,6 +89,7 @@ public class PlayerStatsCapability {
 			NBTTagCompound properties = new NBTTagCompound();
 			properties.setInteger("Level", instance.getLevel());
 			properties.setInteger("Experience", instance.getExperience());
+			properties.setInteger("VExperience", instance.getVExperience());
 			properties.setInteger("Strength", instance.getStrength());
 			properties.setInteger("Defense", instance.getDefense());
 			properties.setInteger("Magic", instance.getMagic());
@@ -153,24 +164,24 @@ public class PlayerStatsCapability {
         @Override public double getMaxMP() { return this.maxMP; }
 		@Override public int getLevel() { return this.level; }
 		@Override public int getMaxLevel() { return this.maxLevel; }
-		@Override public int getExperience(String type) { 
-			switch(type)
-			{
-			case "normal":
-				return this.experience;
-			case Strings.Form_Valor:
-				return this.valorExperience;
-			case Strings.Form_Wisdom:
-				return this.wisdomExperience;
-			case Strings.Form_Limit:
-				return this.limitExperience;
-			case Strings.Form_Master:
-				return this.masterExperience;
-			case Strings.Form_Final:
-				return this.finalExperience;
-			}
-			return 0;
-			
+		@Override public int getExperience() { 
+			return this.experience;
+		}
+		@Override public int getVExperience() { 
+			return this.valorExperience;
+		}
+		
+		@Override public int getWExperience() { 
+			return this.wisdomExperience;
+		}
+		@Override public int getLExperience() { 
+			return this.limitExperience;
+		}
+		@Override public int getMExperience() { 
+			return this.masterExperience;
+		}
+		@Override public int getFExperience() { 
+			return this.finalExperience;
 		}
 		@Override public int getMaxExperience() { return this.maxExperience; }
 		@Override public int getStrength() { return this.strength; }
@@ -193,7 +204,45 @@ public class PlayerStatsCapability {
 		@Override public void clearMessages() {
 			this.getMessages().clear();
 		}
-		@Override public boolean setExperience(int experience) { if (experience <= this.maxExperience) { this.experience = experience; return true; } return false; }
+		@Override public boolean setExperience(int experience) { 
+			if (experience <= this.maxExperience) {
+				this.experience = experience; 
+				return true; 
+			} return false;
+		}
+		
+		@Override public boolean setVExperience(int experience) { 
+			if (valorExperience <= this.valorMaxExperience) {
+				this.valorExperience = experience; 
+				return true; 
+			} return false;
+		}
+		@Override public boolean setWExperience(int experience) { 
+			if (wisdomExperience <= this.wisdomMaxExperience) {
+				this.wisdomExperience = experience; 
+				return true; 
+			} return false;
+		}
+		@Override public boolean setLExperience(int experience) { 
+			if (limitExperience <= this.limitMaxExperience) {
+				this.limitExperience = experience; 
+				return true; 
+			} return false;
+		}
+		@Override public boolean setMExperience(int experience) { 
+			if (masterExperience <= this.masterMaxExperience) {
+				this.masterExperience = experience; 
+				return true; 
+			} return false;
+		}
+		@Override public boolean setFExperience(int experience) { 
+			if (finalExperience <= this.finalMaxExperience) {
+				this.finalExperience = experience; 
+				return true; 
+			} return false;
+		}
+		
+	
 		@Override 
 		public void addExperience(EntityPlayer player, int amount, String type)
 		{
@@ -219,15 +268,19 @@ public class PlayerStatsCapability {
 						if (this.valorExperience + amount <= this.valorMaxExperience)
 							this.valorExperience += amount;
 						else
-							this.experience = this.maxExperience;
+							this.valorExperience = this.valorMaxExperience;
 						break;
-					case "wisdom":
+					case Strings.Form_Wisdom:
 						break;
-					case "limit":
+					case Strings.Form_Limit:
 						break;
-					case "master":
+					case Strings.Form_Master:
+						if (this.masterExperience + amount <= this.masterMaxExperience)
+							this.masterExperience += amount;
+						else
+							this.masterExperience = this.masterMaxExperience;
 						break;
-					case "final":
+					case Strings.Form_Final:
 						break;
 				}
 			}
@@ -638,12 +691,6 @@ public class PlayerStatsCapability {
 			player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 1.0f, 1.0f);
 			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());
 			PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-		}
-
-		@Override
-		public int getExperience() {
-			// TODO Auto-generated method stub
-			return this.experience;
 		}
 	}
 }

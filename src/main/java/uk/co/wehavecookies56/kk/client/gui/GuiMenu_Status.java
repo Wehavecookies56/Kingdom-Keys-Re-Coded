@@ -155,28 +155,40 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 				drawString(fontRendererObj, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
 
 				drawString(fontRendererObj, "" + ds.getDriveLevel(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-				drawString(fontRendererObj, "" + STATS.getExperience(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+				drawString(fontRendererObj, "" + STATS.getVExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 
 				break;
 			case STATS_WISDOM:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
 				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRendererObj, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				
 				drawString(fontRendererObj, "" + ds.getDriveLevel(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRendererObj, "" + STATS.getWExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 				break;
 			case STATS_LIMIT:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
 				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRendererObj, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				
 				drawString(fontRendererObj, "" + ds.getDriveLevel(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRendererObj, "" + STATS.getLExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 				break;
 			case STATS_MASTER:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
 				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRendererObj, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				
 				drawString(fontRendererObj, "" + ds.getDriveLevel(Strings.Form_Master), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRendererObj, "" + STATS.getMExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 				break;
 			case STATS_FINAL:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
 				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRendererObj, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				
 				drawString(fontRendererObj, "" + ds.getDriveLevel(Strings.Form_Final), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRendererObj, "" + STATS.getFExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 				break;
 		}
 	}

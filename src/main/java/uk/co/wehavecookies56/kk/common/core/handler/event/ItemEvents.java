@@ -98,14 +98,14 @@ public class ItemEvents {
             }
         } else if (event.getItem().getEntityItem().getItem() == ModItems.DriveOrb) {
             final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
-            double dp = STATS.getDP();
-            // if(dp < 1000) //Not pickup orb when full
             {
-                DriveOrbPickup packet = new DriveOrbPickup(event.getItem().getEntityItem());
                 if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
                     event.getItem().getEntityItem().stackSize--;
                     STATS.addDP(event.getItem().getEntityItem().getTagCompound().getInteger("amount"));
                     EntityPlayer player = event.getEntityPlayer();
+            		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Master))
+            			player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Master);
+
                     PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
                     PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntityPlayer());
                 }
@@ -114,7 +114,6 @@ public class ItemEvents {
             final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
             double mp = STATS.getMP();
             if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND) != null) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
-            MagicOrbPickup packet = new MagicOrbPickup(event.getItem().getEntityItem());
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
                 event.getItem().getEntityItem().stackSize--;
                 STATS.addMP(event.getItem().getEntityItem().getTagCompound().getInteger("amount"));

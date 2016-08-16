@@ -608,7 +608,8 @@ public class EntityEvents {
 	            if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
 	            {
 	            	event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
-					STATS.addExperience(player, 1, Strings.Form_Valor);
+            		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Valor))
+            			STATS.addExperience(player, 1, Strings.Form_Valor);
 	            }
             }
         }
