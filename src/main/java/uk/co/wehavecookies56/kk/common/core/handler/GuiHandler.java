@@ -54,7 +54,7 @@ public class GuiHandler implements IGuiHandler {
         else if (ID == GuiIDs.GUI_SYNTHESISBAGM_INV)
             return new ContainerSynthesisBagM(player, player.inventory, new InventorySynthesisBagM(player.getHeldItem(EnumHand.MAIN_HAND)));
         else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV) return new ContainerSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem(EnumHand.MAIN_HAND)));
-        else if (ID == GuiIDs.GUI_SHOP) return new GuiShop();
+        else if (ID == GuiIDs.GUI_SHOP) return new GuiShop(null);
         return null;
     }
 
@@ -85,7 +85,7 @@ public class GuiHandler implements IGuiHandler {
         else if (ID == GuiIDs.GUI_SYNTHESISBAGM_INV)
             return new GuiSynthesisBagM(player, player.inventory, new InventorySynthesisBagM(player.getHeldItem(EnumHand.MAIN_HAND)));
         else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV) return new GuiSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem(EnumHand.MAIN_HAND)));
-        else if (ID == GuiIDs.GUI_SHOP) return new GuiShop();
+        else if (ID == GuiIDs.GUI_SHOP) return new GuiShop(null);
         return null;
 
     }

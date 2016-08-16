@@ -13,6 +13,8 @@ import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
 
 import javax.annotation.Nullable;
 
@@ -27,7 +29,8 @@ public class BlockShop extends BlockBlox {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-        playerIn.openGui(KingdomKeys.instance, GuiIDs.GUI_SHOP, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        PacketDispatcher.sendToServer(new OpenMenu());
+    	playerIn.openGui(KingdomKeys.instance, GuiIDs.GUI_SHOP, worldIn, pos.getX(), pos.getY(), pos.getZ());
         worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, ModSounds.kupo, SoundCategory.BLOCKS, 0.5F, 1.0F);
 
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
