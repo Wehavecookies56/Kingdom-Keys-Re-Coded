@@ -22,7 +22,9 @@ public class ConfigHandler {
 			EnableHeartsOnHUD = false,
 			EnableCustomMusic = true,
 			ForceEnableCustomMusic = false,
-			DisableVanillaTooltip = true;
+			DisableVanillaTooltip = true,
+			EnableStationOfAwakening = true;
+	;
 
 	public static int[] interfaceColour = new int[] { 255, 0, 0 };
 	
@@ -53,6 +55,7 @@ public class ConfigHandler {
 
 		//WORLDGEN
 		EnableWorldGen = configProperty("Enable World Gen", "Toggles all world generation performed by this mod", EnableWorldGen, WORLDGEN);
+		EnableStationOfAwakening = configProperty("Enable Station of Awakening", "Toggles whether the Station of Awakening should be enabled", EnableStationOfAwakening, WORLDGEN);
 
 		//NETWORK
 		EnableUpdateCheck = configProperty("Enable Update Checking", "Toggles whether the update checker checks for updates", EnableUpdateCheck, NETWORK);

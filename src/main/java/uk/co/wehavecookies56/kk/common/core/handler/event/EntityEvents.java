@@ -48,6 +48,7 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
+import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
 import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
@@ -238,7 +239,7 @@ public class EntityEvents {
                 FTJ.setPosX(((EntityPlayer) event.getEntity()).getPosition().getX());
                 FTJ.setPosY(((EntityPlayer) event.getEntity()).getPosition().getY());
                 FTJ.setPosZ(((EntityPlayer) event.getEntity()).getPosition().getZ());
-                if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID)
+                if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID && ConfigHandler.EnableStationOfAwakening)
                     if (!event.getWorld().isRemote)
                         new TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().worldServerForDimension(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer) event.getEntity()), event.getWorld());
             }
@@ -590,13 +591,13 @@ public class EntityEvents {
                 event.setAmount(1);
             else
                 event.setAmount((float)( event.getAmount() - (STATS.getDefense()*0.25)));
-            if (event.getSource().getDamageType() == "lightningBolt")
+            if (event.getSource().getDamageType().equals("lightningBolt"))
                 if (EntityThunder.summonLightning)
                     event.setCanceled(true);
         }
         if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
-        	//if(event.getSource().causeThornsDamage(player) != null) return;
+        	if(event.getSource().getDamageType().equals("thorns")) return;
 
             PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
             DriveStateCapability.IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);

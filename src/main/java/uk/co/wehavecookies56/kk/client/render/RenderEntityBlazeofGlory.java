@@ -13,7 +13,7 @@ import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityIfrit;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
-public class RenderEntityBlazeofGlory extends Render implements IRenderFactory<EntityIfrit> {
+public class RenderEntityBlazeofGlory extends Render implements IRenderFactory<EntityBlazeofGlory> {
 
 	ModelBase model;
 
@@ -50,7 +50,7 @@ public class RenderEntityBlazeofGlory extends Render implements IRenderFactory<E
 	}
 
 	@Override
-	public Render<? super EntityIfrit> createRenderFor (RenderManager manager) {
+	public Render<? super EntityBlazeofGlory> createRenderFor (RenderManager manager) {
 		return new RenderEntityBlazeofGlory(manager);
 	}
 
