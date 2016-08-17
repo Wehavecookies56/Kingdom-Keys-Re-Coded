@@ -1,11 +1,16 @@
 package uk.co.wehavecookies56.kk.common.core.proxy;
 
+import java.awt.Color;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -24,8 +29,16 @@ import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityStationOfAwakening;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntitySynthesisTable;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.core.handler.*;
-import uk.co.wehavecookies56.kk.common.core.handler.event.*;
+import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.FuelHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.GuiHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.UsernameHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.event.BlockEvents;
+import uk.co.wehavecookies56.kk.common.core.handler.event.CapabilityEvents;
+import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;
+import uk.co.wehavecookies56.kk.common.core.handler.event.ItemEvents;
+import uk.co.wehavecookies56.kk.common.core.handler.event.RenderingEvents;
+import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
 import uk.co.wehavecookies56.kk.common.crafting.KKOreDictionary;
 import uk.co.wehavecookies56.kk.common.crafting.ModBlocksRecipes;
@@ -34,6 +47,11 @@ import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityFire;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
@@ -45,11 +63,6 @@ import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisRecipes;
 import uk.co.wehavecookies56.kk.common.world.ChestGen;
 import uk.co.wehavecookies56.kk.common.world.WorldGenBlox;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
-
-import java.io.File;
-import java.net.MalformedURLException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CommonProxy {
 
@@ -139,6 +152,14 @@ public class CommonProxy {
 		EntityRegistry.registerModEntity(EntityFire.class, "fire", 1002, KingdomKeys.instance, 16, 1, false);
 		EntityRegistry.registerModEntity(EntityThunder.class, "thunder", 1003, KingdomKeys.instance, 16, 1, false);
 
+		// Heartless registry
+		EntityHelper.registerEntity("Shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.RED.getRGB());
+		EntityHelper.registerEntity("Red Nocturne", EntityRedNocturne.class, Color.RED.getRGB(), Color.PINK.getRGB());
+		EntityHelper.registerEntity("Blue Rhapsody", EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());
+		EntityHelper.registerEntity("Yellow Opera", EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB()); 
+		EntityHelper.registerEntity("Green Requiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB()); 
+		
+		
 		Lists.init();
 
 		// Drive forms init
