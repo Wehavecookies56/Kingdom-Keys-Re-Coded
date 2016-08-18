@@ -28,12 +28,12 @@ public class EntityHelper
 
 	public static double percentage(double i, double j) {return i * (j / 100);}
 	
-	public static void registerEntity(String name, Class<? extends Entity> entity, int color1, int color2)
-	{
-		/*if(color1 != -1 && color2 != -1)
-			EntityRegistry.registerModEntity(entity, name, entityID++, KingdomKeys.instance, 64, 3, true, color1, color2);
-		else*/
-			EntityRegistry.registerModEntity(entity, name, entityID++, KingdomKeys.instance, 64, 3, true);
+	public static void registerEntity(String name, Class<? extends Entity> entity) {
+		EntityRegistry.registerModEntity(entity, name, entityID++, KingdomKeys.instance, 64, 3, true);
+	}
+
+	public static void registerEntity(String name, Class<? extends Entity> entity, int color1, int color2) {
+		EntityRegistry.registerModEntity(entity, name, entityID++, KingdomKeys.instance, 64, 3, true, color1, color2);
 	}
 	
     public static List<EntityLivingBase> getEntitiesNear(Entity e, double radius)

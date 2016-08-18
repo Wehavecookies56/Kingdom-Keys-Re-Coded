@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -12,7 +13,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardParticles;
 
 public class EntityBlizzard extends EntityThrowable {
-	public EntityPlayer shootingEntity;
+	public EntityLivingBase shootingEntity;
 
 	public EntityBlizzard (World world) {
 		super(world);
@@ -20,7 +21,7 @@ public class EntityBlizzard extends EntityThrowable {
 
 	public EntityBlizzard (World world, EntityLivingBase entity) {
 		super(world, entity);
-		shootingEntity = (EntityPlayer) entity;
+		shootingEntity = entity;
 	}
 
 	public EntityBlizzard (World world, double x, double y, double z) {
@@ -37,7 +38,8 @@ public class EntityBlizzard extends EntityThrowable {
 		super.onUpdate();
 		if (shootingEntity == null) return;
 		int rotation = 0;
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this, 1), shootingEntity, 64.0D);
+		if (shootingEntity instanceof EntityPlayer)
+			if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this, 1), (EntityPlayer) shootingEntity, 64.0D);
 		this.rotationYaw = (rotation + 1) % 360;
 		if (ticksExisted > 60) setDead();
 	}
@@ -54,7 +56,10 @@ public class EntityBlizzard extends EntityThrowable {
 					if (movingObject.entityHit.isBurning())
 						movingObject.entityHit.extinguish();
 					else
-						movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(shootingEntity), DamageCalculation.getMagicDamage(shootingEntity,1));
+						if (shootingEntity instanceof EntityPlayer)
+							movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) shootingEntity), DamageCalculation.getMagicDamage((EntityPlayer) shootingEntity, 1));
+						else
+							movingObject.entityHit.attackEntityFrom(DamageSource.causeMobDamage(shootingEntity), 5);
 				}
 			} else {
 				flag = true;

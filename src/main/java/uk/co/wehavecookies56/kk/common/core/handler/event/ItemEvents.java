@@ -65,6 +65,8 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.MagicOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
+import javax.annotation.Nullable;
+
 /**
  * Created by Toby on 19/07/2016.
  */
@@ -231,10 +233,24 @@ public class ItemEvents {
         }
     }
 
+    public static boolean isItemStackEqualExcludingStackSize(ItemStack stack, ItemStack other) {
+        if (stack.getItem() != other.getItem()) return false;
+        if (stack.getItemDamage() != other.getItemDamage()) return false;
+        if (!ItemStack.areItemStackTagsEqual(stack, other)) return false;
+        return true;
+    }
+
+    public static boolean areItemStacksEqual(@Nullable ItemStack stackA, @Nullable ItemStack stackB) {
+        return stackA == null && stackB == null ? true : (stackA != null && stackB != null ? isItemStackEqualExcludingStackSize(stackA, stackB) : false);
+    }
+
     @SubscribeEvent
     public void addTooltip (ItemTooltipEvent event) {
         for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
-            if (event.getItemStack().getItem() == stack.getItem()) {
+            if (areItemStacksEqual(stack, event.getItemStack())) {
+                event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack) * event.getItemStack().stackSize);
+            }
+            /*if (event.getItemStack().getItem() == stack.getItem()) {
                 if (event.getItemStack().hasTagCompound() && stack.hasTagCompound()) {
                     if (event.getItemStack().getTagCompound().hasKey("material") && stack.getTagCompound().hasKey("material")) {
                         if (event.getItemStack().getTagCompound().getString("material").equals(stack.getTagCompound().getString("material"))) {
@@ -246,7 +262,7 @@ public class ItemEvents {
                 } else {
                     event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack));
                 }
-            }
+            }*/
         }
         //TODO Localize all this
         if (event.getItemStack().getItem() instanceof ItemKeyblade) {

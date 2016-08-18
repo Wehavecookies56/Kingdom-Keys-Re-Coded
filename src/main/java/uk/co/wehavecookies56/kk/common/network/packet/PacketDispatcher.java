@@ -35,33 +35,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMaterialData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncRecipeData;
-import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
-import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
-import uk.co.wehavecookies56.kk.common.network.packet.server.CreateFromSynthesisRecipe;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DriveOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.GiveItemInSlot;
-import uk.co.wehavecookies56.kk.common.network.packet.server.GlidePacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.LevelUpDrive;
-import uk.co.wehavecookies56.kk.common.network.packet.server.LevelUpSound;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MagicOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MagnetBloxMotion;
-import uk.co.wehavecookies56.kk.common.network.packet.server.ManifestKnowledgePacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MasterFormPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenGui;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMaterials;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
-import uk.co.wehavecookies56.kk.common.network.packet.server.PlaySoundAtPlayer;
-import uk.co.wehavecookies56.kk.common.network.packet.server.PotionConsume;
-import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlot;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SyncStatMessagesPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SynthesisMaterialPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.TakeMaterials;
-import uk.co.wehavecookies56.kk.common.network.packet.server.UseRecipe;
+import uk.co.wehavecookies56.kk.common.network.packet.server.*;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.LevelUpMagic;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicAero;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicBlizzard;
@@ -111,7 +85,6 @@ public class PacketDispatcher {
 		registerMessage(SyncKH1Magic.class);
 
 
-
 		// Client to Server
 		registerMessage(MunnyPickup.class);
 		registerMessage(HpOrbPickup.class);
@@ -133,6 +106,7 @@ public class PacketDispatcher {
 		registerMessage(DriveOrbPickup.class);
 		registerMessage(MagicOrbPickup.class);
 		registerMessage(OpenMenu.class);
+		registerMessage(OpenShop.class);
 		registerMessage(DriveFormPacket.class);
 		registerMessage(AntiPoints.class);
 		registerMessage(GlidePacket.class);
