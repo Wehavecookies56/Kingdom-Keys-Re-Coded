@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
+import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIBlueRhapsody;
 import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIRedNocturne;
 
 public class EntityBlueRhapsody extends EntityMob implements IKHMob
@@ -19,13 +20,13 @@ public class EntityBlueRhapsody extends EntityMob implements IKHMob
 	public EntityBlueRhapsody(World world) 
 	{
 		super(world);
-		this.isImmuneToFire = true;
+		this.isImmuneToFire = false;
 		this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
 		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-		this.targetTasks.addTask(2, new EntityAIRedNocturne(this));
+		this.targetTasks.addTask(2, new EntityAIBlueRhapsody(this));
 	}
 
 	public void applyEntityAttributes()
