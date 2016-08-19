@@ -4,10 +4,7 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookAtTradePlayer;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -34,6 +31,7 @@ public class EntityMoogle extends EntityCreature implements IKHMob {
         super(worldIn);
         this.tasks.addTask(1, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 1.0F));
+        this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(8, new EntityAILookIdle(this));
     }
 
