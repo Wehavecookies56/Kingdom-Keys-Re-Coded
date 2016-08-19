@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.client.render;
 
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLiving;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.model.ModelBase;
@@ -10,7 +12,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class RenderKHMob extends RenderLiving<EntityMob> implements IRenderFactory<EntityMob>
+public class RenderKHMob extends RenderLiving<EntityLiving> implements IRenderFactory<EntityMob>
 {
 
 	private float scale;
@@ -31,12 +33,12 @@ public class RenderKHMob extends RenderLiving<EntityMob> implements IRenderFacto
     {
     	GL11.glScalef(this.scale, this.scale, this.scale);
     }
-    
-	protected ResourceLocation getEntityTexture(EntityMob entity) 
+
+	protected ResourceLocation getEntityTexture(EntityLiving entity)
 	{
 		return this.texture;
 	}
-	
+
 	public Render<? super EntityMob> createRenderFor(RenderManager manager)
 	{
 		return new RenderKHMob(manager, model, scale, texturesSprite);

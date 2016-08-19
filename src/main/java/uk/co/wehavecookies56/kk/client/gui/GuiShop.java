@@ -28,14 +28,14 @@ public class GuiShop extends GuiScreen {
     public int buySelected = -1;
     public int sellSelected = -1;
     private final GuiScreen parent;
-    final int HOME = -1, BUY = 0, SELL = 1, BACK = 2;
+    final int HOME = -1, BUY = 0, SELL = 1, BACK = 2, BUYCONFIRM = 3, PLUS = 4, MINUS = 5;
     final int QUANTITY = 0;
     int submenu = HOME;
     private GuiBuyList buyList;
 
     protected String title = Utils.translateToLocal(Strings.Gui_Shop_Main_Title);
 
-    GuiButton buy, sell, back;
+    GuiButton buy, sell, back, buyConfirm, plus, minus;
     GuiNumberTextField quantity;
 
     public GuiShop(GuiScreen parent) {
@@ -55,6 +55,10 @@ public class GuiShop extends GuiScreen {
         this.buttonList.add(back = new GuiButton(BACK, width - 105, height - ((height / 8) + 70 / 16), 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
         this.buttonList.add(buy = new GuiButton(BUY, 5, 65, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Buy)));
         this.buttonList.add(sell = new GuiButton(SELL, 5, 65 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Sell)));
+        this.buttonList.add(buyConfirm = new GuiButton(BUYCONFIRM, 100, 100, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Buy)));
+        this.buttonList.add(plus = new GuiButton(PLUS, 100, 120, 10, 10, "+"));
+        this.buttonList.add(minus = new GuiButton(MINUS, 110, 120, 10, 10, "-"));
+        updateButtons();
     }
 
     @Override
@@ -63,6 +67,9 @@ public class GuiShop extends GuiScreen {
         drawBackground(width, height);
         if (submenu == BUY) {
             this.buyList.drawScreen(mouseX, mouseY, partialTicks);
+            if (buySelected != -1) {
+                buyList.drawBuySelected();
+            }
         }
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
@@ -78,12 +85,23 @@ public class GuiShop extends GuiScreen {
                 break;
             case BACK:
                 submenu = HOME;
+                buySelected = -1;
+                sellSelected = -1;
+                break;
+            case BUYCONFIRM:
+
+                break;
+            case PLUS:
+
+                break;
+            case MINUS:
+
                 break;
         }
         updateButtons();
     }
 
-    private void updateButtons() {
+    public void updateButtons() {
         if (submenu == HOME) {
             back.enabled = false;
             back.visible = false;
@@ -91,7 +109,27 @@ public class GuiShop extends GuiScreen {
             buy.enabled = true;
             sell.enabled = true;
             sell.visible = true;
-        } else {
+            buyConfirm.visible = false;
+            buyConfirm.enabled = false;
+            plus.visible = false;
+            minus.visible = false;
+        } else if (submenu == BUY) {
+            back.enabled = true;
+            back.visible = true;
+            buy.visible = false;
+            buy.enabled = false;
+            sell.enabled = false;
+            sell.visible = false;
+            if (buySelected != -1) {
+                buyConfirm.visible = true;
+                plus.visible = true;
+                minus.visible = true;
+            } else {
+                buyConfirm.visible = false;
+                plus.visible = false;
+                minus.visible = false;
+            }
+        } else if (submenu == SELL) {
             back.enabled = true;
             back.visible = true;
             buy.visible = false;

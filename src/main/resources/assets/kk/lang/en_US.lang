@@ -1,5 +1,5 @@
 #English (US) language file for Kingdom Keys Re:Coded
-#Version 0.8.1
+#Version 0.8.2
 #Created by Wehavecookies56
 
 ############################
@@ -712,7 +712,7 @@ container.synthesisbagminventory=Medium Synthesis Material Bag
 container.synthesisbaglinventory=Large Synthesis Material Bag
 synthesisbag.desc=By holding the synthesis bag in your inventory synthesis materials will be sent into it
 
-#Synthesis#
+#Synthesis
 gui.synthesis.main.title=Item Synthesis
 gui.synthesis.main.recipes=Recipes
 gui.synthesis.main.freedevelopment=Free Development
@@ -724,6 +724,12 @@ gui.synthesis.main.materials.takeone=Take 1
 gui.synthesis.main.materials.takehalfstack=Take Half Stack
 gui.synthesis.main.materials.takestack=Take Stack
 gui.synthesis.main.materials.takeall=Take All
+
+#Shop
+gui.shop.main=Item Shop
+gui.shop.main.title=Shop
+gui.shop.main.buy=Buy
+gui.shop.main.sell=Sell
 
 ############################
 #Keybinds

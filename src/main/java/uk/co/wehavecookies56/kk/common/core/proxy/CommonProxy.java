@@ -47,11 +47,7 @@ import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityFire;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
+import uk.co.wehavecookies56.kk.common.entity.mobs.*;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
@@ -158,7 +154,7 @@ public class CommonProxy {
 		EntityHelper.registerEntity("BlueRhapsody", EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());
 		EntityHelper.registerEntity("YellowOpera", EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());
 		EntityHelper.registerEntity("GreenRequiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
-		
+		EntityHelper.registerEntity("Moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
 		
 		Lists.init();
 
