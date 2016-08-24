@@ -107,6 +107,7 @@ public class PacketDispatcher {
 		registerMessage(MagicOrbPickup.class);
 		registerMessage(OpenMenu.class);
 		registerMessage(OpenShop.class);
+		registerMessage(OpenSynthesis.class);
 		registerMessage(DriveFormPacket.class);
 		registerMessage(AntiPoints.class);
 		registerMessage(GlidePacket.class);

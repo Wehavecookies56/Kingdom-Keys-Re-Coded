@@ -16,7 +16,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
 
-public class OpenMenu extends AbstractMessage<OpenMenu> {
+public class OpenMenu extends AbstractMessage.AbstractServerMessage<OpenMenu> {
 
 	public OpenMenu () {}
 

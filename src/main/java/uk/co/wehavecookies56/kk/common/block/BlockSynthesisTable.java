@@ -23,6 +23,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncFreeDevRecipeDa
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMaterialData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncRecipeData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OpenSynthesis;
 
 public class BlockSynthesisTable extends Block implements ITileEntityProvider {
 
@@ -36,7 +37,7 @@ public class BlockSynthesisTable extends Block implements ITileEntityProvider {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, ModSounds.kupo, SoundCategory.BLOCKS, 0.5F, 1.0F);
-        PacketDispatcher.sendToServer(new OpenMenu());
+        PacketDispatcher.sendToServer(new OpenSynthesis());
 		playerIn.openGui(KingdomKeys.instance, GuiIDs.GUI_SYNTHESISTABLE, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		if (!worldIn.isRemote){
 			PacketDispatcher.sendTo(new SyncRecipeData(playerIn.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null)), (EntityPlayerMP) playerIn);

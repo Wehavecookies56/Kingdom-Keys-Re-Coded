@@ -16,7 +16,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
 
 import java.io.IOException;
 
-public class OpenShop extends AbstractMessage<OpenShop> {
+public class OpenShop extends AbstractMessage.AbstractServerMessage<OpenShop> {
 
 	public OpenShop() {}
 

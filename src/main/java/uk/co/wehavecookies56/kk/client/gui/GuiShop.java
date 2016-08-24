@@ -16,6 +16,8 @@ import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OpenSynthesis;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.io.IOException;
@@ -28,20 +30,24 @@ public class GuiShop extends GuiScreen {
     public int buySelected = -1;
     public int sellSelected = -1;
     private final GuiScreen parent;
-    final int HOME = -1, BUY = 0, SELL = 1, BACK = 2, BUYCONFIRM = 3, PLUS = 4, MINUS = 5;
+    final int HOME = -1, BUY = 0, SELL = 1, BACK = 2, BUYCONFIRM = 3, PLUS = 4, MINUS = 5, SYNTHESIS = 6;
     final int QUANTITY = 0;
     int submenu = HOME;
     private GuiBuyList buyList;
 
     protected String title = Utils.translateToLocal(Strings.Gui_Shop_Main_Title);
 
-    GuiButton buy, sell, back, buyConfirm, plus, minus;
+    GuiButton buy, sell, back, buyConfirm, plus, minus, synthesis;
     GuiNumberTextField quantity;
 
     public GuiShop(GuiScreen parent) {
         this.parent = parent;
     }
 
+    @Override
+    public boolean doesGuiPauseGame() {
+        return false;
+    }
 
     public boolean canAffordItem(ItemStack stack) {
         //TODO
@@ -58,6 +64,7 @@ public class GuiShop extends GuiScreen {
         this.buttonList.add(buyConfirm = new GuiButton(BUYCONFIRM, 100, 100, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Buy)));
         this.buttonList.add(plus = new GuiButton(PLUS, 100, 120, 10, 10, "+"));
         this.buttonList.add(minus = new GuiButton(MINUS, 110, 120, 10, 10, "-"));
+        this.buttonList.add(synthesis = new GuiButton(SYNTHESIS, 5, 90 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Title)));
         updateButtons();
     }
 
@@ -97,6 +104,10 @@ public class GuiShop extends GuiScreen {
             case MINUS:
 
                 break;
+            case SYNTHESIS:
+                PacketDispatcher.sendToServer(new OpenSynthesis());
+                Minecraft.getMinecraft().displayGuiScreen(new GuiSynthesis(null));
+                break;
         }
         updateButtons();
     }
@@ -113,6 +124,8 @@ public class GuiShop extends GuiScreen {
             buyConfirm.enabled = false;
             plus.visible = false;
             minus.visible = false;
+            synthesis.visible = true;
+            synthesis.enabled = true;
         } else if (submenu == BUY) {
             back.enabled = true;
             back.visible = true;
@@ -120,6 +133,8 @@ public class GuiShop extends GuiScreen {
             buy.enabled = false;
             sell.enabled = false;
             sell.visible = false;
+            synthesis.visible = false;
+            synthesis.enabled = false;
             if (buySelected != -1) {
                 buyConfirm.visible = true;
                 plus.visible = true;
@@ -136,6 +151,8 @@ public class GuiShop extends GuiScreen {
             buy.enabled = false;
             sell.enabled = false;
             sell.visible = false;
+            synthesis.visible = false;
+            synthesis.enabled = false;
         }
     }
 
