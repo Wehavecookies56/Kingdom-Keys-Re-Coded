@@ -442,7 +442,7 @@ public class GuiSynthesis extends GuiTooltip {
 					}
 					GL11.glPopMatrix();
 
-					drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Recipes_ReqMaterials) + TextFormatting.ITALIC, posX, 100, 0x00C3FF);
+					drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Recipes_ReqMaterials) + TextFormatting.ITALIC, posX, 130, 0x00C3FF);
 
 					int row = 0;
 					int column = 0;
@@ -457,12 +457,12 @@ public class GuiSynthesis extends GuiTooltip {
 							GL11.glColor4f(1, 1, 1, 1);
 							ResourceLocation synthMaterial = pair.getKey().getTexture();
 							if (synthMaterial == null) {
-								GL11.glTranslatef((int) (posX + (materialLength * 1.05f)), 110 + (distY * row), 0);
+								GL11.glTranslatef((int) (posX + (materialLength * 1.05f)), 140 + (distY * row), 0);
 								GL11.glScalef(scale, scale, 0);
 								Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(pair.getKey().getItem(), 0, 0);
 							} else {
 								mc.renderEngine.bindTexture(synthMaterial);
-								GL11.glTranslatef(posX + (materialLength * 1.05f * scale), 110 + (distY * row), 0);
+								GL11.glTranslatef(posX + (materialLength * 1.05f * scale), 140 + (distY * row), 0);
 								GL11.glScalef(0.0625f * scale, 0.0625f * scale, 0);
 								drawTexturedModalRect(0, 0, 0, 0, 256, 256);
 							}
@@ -485,12 +485,12 @@ public class GuiSynthesis extends GuiTooltip {
 						String material = Utils.translateToLocal(name + ".name") + " x" + pair.getValue();
 						
 						GL11.glPushMatrix(); {
-							GL11.glTranslatef((int) (posX + 18 + (materialLength * 1.05f * scale)), 114 + (distY * row), 0);
+							GL11.glTranslatef((int) (posX + 18 + (materialLength * 1.05f * scale)), 144 + (distY * row), 0);
 							GL11.glScalef(scale, scale, 0);
 							drawString(fontRendererObj, material, 0, 0, 0xFFFFFF);
 						} GL11.glPopMatrix();
 						GL11.glPushMatrix(); {
-							GL11.glTranslatef((int) (posX + 18 + (fontRendererObj.getStringWidth(material) * scale) + (materialLength * 1.05f * scale)), 114 + (distY * row), 0);
+							GL11.glTranslatef((int) (posX + 18 + (fontRendererObj.getStringWidth(material) * scale) + (materialLength * 1.05f * scale)), 144 + (distY * row), 0);
 							GL11.glScalef(scale, scale, 0);
 							drawString(fontRendererObj, info, 0, 0, colour);
 						} GL11.glPopMatrix();
