@@ -52,6 +52,7 @@ public class BlockSoAStructureBlock extends BlockContainer {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
         if (worldIn.getTileEntity(pos).getBlockType() == Blocks.AIR) {
@@ -60,11 +61,13 @@ public class BlockSoAStructureBlock extends BlockContainer {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;

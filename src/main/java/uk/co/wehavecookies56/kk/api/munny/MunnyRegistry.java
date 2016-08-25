@@ -31,6 +31,8 @@ public class MunnyRegistry {
         orichalcum.getTagCompound().setString("material", "sm.orichalcum");
         orichalcum.getTagCompound().setString("rank", "sm.rank.a");
 
+        //TODO REGISTER MORE VALUES
+
         addMunnyValueFromOreDict("ingotIron", 1000);
         addMunnyValue(new ItemStack(Blocks.DIRT), 1);
         addMunnyValue(orichalcum, 10000);

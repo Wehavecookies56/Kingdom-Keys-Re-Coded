@@ -137,6 +137,9 @@ public class Strings {
 	Gui_Shop_Main_Title = Gui_Shop_Main + ".title",
 	Gui_Shop_Main_Buy = Gui_Shop_Main + ".buy",
 	Gui_Shop_Main_Sell = Gui_Shop_Main + ".sell",
+	Gui_Shop_Buy = Gui_Shop + ".buy",
+	Gui_Shop_Buy_Cost = Gui_Shop_Buy + ".cost",
+	Gui_Shop_Buy_Quantity = Gui_Shop_Buy + ".quantity",
 
 	// Synthesis
 	Gui_Synthesis = "gui.synthesis",

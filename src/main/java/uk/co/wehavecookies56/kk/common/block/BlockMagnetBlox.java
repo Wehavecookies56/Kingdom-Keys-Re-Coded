@@ -38,6 +38,7 @@ public class BlockMagnetBlox extends BlockBlox {
 		return facingbits;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getActualState (IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		return state;
@@ -59,7 +60,8 @@ public class BlockMagnetBlox extends BlockBlox {
 	public BlockRenderLayer getBlockLayer () {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
-	
+
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isOpaqueCube (IBlockState state) {
 		return false;
@@ -104,6 +106,7 @@ public class BlockMagnetBlox extends BlockBlox {
 //		super.setBlockBoundsBasedOnState(world, pos);
 //	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged (IBlockState state, World world, BlockPos pos, Block blockIn) {
 		

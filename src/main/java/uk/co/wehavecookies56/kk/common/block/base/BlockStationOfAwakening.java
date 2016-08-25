@@ -85,6 +85,7 @@ public class BlockStationOfAwakening extends Block {
         return (state.getValue(VARIANT)).intValue();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(VARIANT, meta);

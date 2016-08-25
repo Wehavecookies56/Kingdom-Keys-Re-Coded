@@ -20,12 +20,14 @@ public class BlockDangerBlox extends BlockBlox {
 	public void onBlockClicked (World par1World, BlockPos pos, EntityPlayer par5EntityPlayer) {
 		par5EntityPlayer.attackEntityFrom(DamageSource.magic, 3);
 	}
-	
+
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox (IBlockState worldIn, World pos, BlockPos state) {
 		return new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
 	}
-	
+
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
 		return new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 1.0D, 0.9375D).offset(pos);

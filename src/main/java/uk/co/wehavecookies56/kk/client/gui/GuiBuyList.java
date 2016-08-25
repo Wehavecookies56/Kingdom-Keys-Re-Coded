@@ -24,10 +24,13 @@ import uk.co.wehavecookies56.kk.common.core.handler.event.ItemEvents;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class GuiBuyList extends GuiScrollingList {
 
@@ -42,11 +45,12 @@ public class GuiBuyList extends GuiScrollingList {
 	static int posX = 5;
 	static int posY = (height - 200) / 2;
 
-	List<ItemStack> itemsForSale = new ArrayList<ItemStack>();
+	public static List<ItemStack> itemsForSale = new ArrayList<ItemStack>();
 
 	public GuiBuyList(GuiShop parent) {
 		super(parent.mc, 190, 300, 60, parent.height - ((parent.height / 8) + 70 / 16), 8, 35, parent.width, parent.height);
 		this.parent = parent;
+		itemsForSale.clear();
 		itemsForSale.add(new ItemStack(Items.IRON_INGOT));
 		ItemStack orichalcum = new ItemStack(ModItems.SynthesisMaterial);
 		orichalcum.setTagCompound(new NBTTagCompound());
@@ -79,7 +83,6 @@ public class GuiBuyList extends GuiScrollingList {
 
 	@Override
 	protected void drawSlot (int slotIdx, int entryRight, int slotTop, int slotBuffer, Tessellator tess) {
-		//TODO Draw list items
 
 		String name = itemsForSale.get(slotIdx).getDisplayName();
 
@@ -102,6 +105,22 @@ public class GuiBuyList extends GuiScrollingList {
 			Minecraft.getMinecraft().renderEngine.bindTexture(parent.optionsBackground);
 			drawGradientRect(posX - 10, 60, 700, parent.height - ((parent.height / 8) + 70 / 16), -1072689136, -804253680);
 		}
+		GL11.glPushMatrix(); {
+			GL11.glTranslatef(posX, 70, 0);
+			GL11.glScalef(2, 2, 2);
+			parent.drawString(Minecraft.getMinecraft().fontRendererObj, itemsForSale.get(parent.buySelected).getDisplayName(), 0, 0, 0xFFFFFF);
+		}
+		GL11.glPopMatrix();
+		parent.drawString(Minecraft.getMinecraft().fontRendererObj, Utils.translateToLocal(Strings.Gui_Shop_Buy_Quantity), 220, parent.height - ((parent.height / 8) + 70 / 16) - 60, 0xFFFFFF);
+		GL11.glPushMatrix(); {
+			GL11.glTranslatef(posX, 90, 0);
+			for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
+				if (ItemEvents.areItemStacksEqual(stack, itemsForSale.get(parent.buySelected))) {
+					Minecraft.getMinecraft().fontRendererObj.drawString(Utils.translateToLocal(Strings.Gui_Shop_Buy_Cost) + ": " + MunnyRegistry.munnyValues.get(stack), 0, 0, 0xFFFF55);
+				}
+			}
+		}
+		GL11.glPopMatrix();
 	}
 
 }

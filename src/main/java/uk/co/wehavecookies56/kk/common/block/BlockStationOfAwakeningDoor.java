@@ -36,6 +36,7 @@ public class BlockStationOfAwakeningDoor extends Block {
         setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
     }
 
+    @SuppressWarnings("deprecation")
     @Nullable
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
@@ -51,6 +52,7 @@ public class BlockStationOfAwakeningDoor extends Block {
         return new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 3.0, 1.0);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         if(state.getValue(FACING) == EnumFacing.NORTH) {
@@ -116,6 +118,7 @@ public class BlockStationOfAwakeningDoor extends Block {
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
