@@ -125,6 +125,7 @@ public class PacketDispatcher {
 		registerMessage(SetKH1Fire.class);
 		registerMessage(LevelUpSound.class);
 		registerMessage(GiveBoughtItem.class);
+		registerMessage(TakeSoldItem.class);
 
 		// Bidirectional
 	}

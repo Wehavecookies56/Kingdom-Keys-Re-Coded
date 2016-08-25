@@ -732,6 +732,7 @@ gui.shop.main.buy=Buy
 gui.shop.main.sell=Sell
 gui.shop.buy.cost=Cost
 gui.shop.buy.quantity=Quantity
+gui.shop.sell.price=Sell For
 
 ############################
 #Keybinds

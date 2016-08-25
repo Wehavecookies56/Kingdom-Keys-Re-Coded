@@ -22,6 +22,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.GiveBoughtItem;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenSynthesis;
+import uk.co.wehavecookies56.kk.common.network.packet.server.TakeSoldItem;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.io.IOException;
@@ -34,28 +35,25 @@ public class GuiShop extends GuiScreen {
     public int buySelected = -1;
     public int sellSelected = -1;
     private final GuiScreen parent;
-    final int HOME = -1, BUY = 0, SELL = 1, BACK = 2, BUYCONFIRM = 3, PLUS = 4, MINUS = 5, SYNTHESIS = 6;
+    final int HOME = -1, BUY = 0, SELL = 1, BACK = 2, BUYCONFIRM = 3, PLUS = 4, MINUS = 5, SYNTHESIS = 6, SELLCONFIRM = 4;
     final int QUANTITY = 0;
     int submenu = HOME;
     private GuiBuyList buyList;
+    private GuiSellList sellList;
 
     protected String title = Utils.translateToLocal(Strings.Gui_Shop_Main_Title);
 
-    GuiButton buy, sell, back, buyConfirm, plus, minus, synthesis;
+    GuiButton buy, sell, back, buyConfirm, plus, minus, synthesis, sellConfirm;
     GuiNumberTextField quantity;
 
     public GuiShop(GuiScreen parent) {
         this.parent = parent;
     }
 
-    public enum EnumShopType {
-        SELL, BUY
-    }
-
     public int getPriceFromSelected(int index) {
         if (index != -1 && !(index > GuiBuyList.itemsForSale.size())) {
             for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
-                if (ItemEvents.areItemStacksEqual(stack, GuiBuyList.itemsForSale.get(buySelected))) {
+                if (ItemEvents.areItemStacksEqual(stack, GuiBuyList.itemsForSale.get(index))) {
                     return MunnyRegistry.munnyValues.get(stack);
                 }
             }
@@ -70,19 +68,12 @@ public class GuiShop extends GuiScreen {
         return false;
     }
 
-    public boolean canAffordSelected(EnumShopType type) {
-        if (type == EnumShopType.BUY) {
-            if (buySelected != -1) {
-                if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MUNNY, null).getMunny() >= getPriceFromSelected(buySelected)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-        else if (type == EnumShopType.SELL) {
-            if (sellSelected != -1) {
-
+    public boolean canAffordSelected() {
+       if (buySelected != -1) {
+            if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MUNNY, null).getMunny() >= getPriceFromSelected(buySelected)) {
+                return true;
+            } else {
+                return false;
             }
         }
         return false;
@@ -103,10 +94,13 @@ public class GuiShop extends GuiScreen {
     public void initGui() {
         this.buyList = new GuiBuyList(this);
         this.buyList.registerScrollButtons(this.buttonList, 7, 8);
+        this.sellList = new GuiSellList(this);
+        this.sellList.registerScrollButtons(this.buttonList, 7, 8);
         this.buttonList.add(back = new GuiButton(BACK, width - 105, height - ((height / 8) + 70 / 16), 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
         this.buttonList.add(buy = new GuiButton(BUY, 5, 65, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Buy)));
         this.buttonList.add(sell = new GuiButton(SELL, 5, 65 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Sell)));
         this.buttonList.add(buyConfirm = new GuiButton(BUYCONFIRM, 220, height - ((height / 8) + 70 / 16) - 25, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Buy)));
+        this.buttonList.add(sellConfirm = new GuiButton(SELLCONFIRM, 220, height - ((height / 8) + 70 / 16) - 25, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Sell)));
         //this.buttonList.add(plus = new GuiButton(PLUS, 100, 120, 10, 10, "+"));
         //this.buttonList.add(minus = new GuiButton(MINUS, 110, 120, 10, 10, "-"));
         this.buttonList.add(synthesis = new GuiButton(SYNTHESIS, 5, 90 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Title)));
@@ -123,6 +117,11 @@ public class GuiShop extends GuiScreen {
             this.buyList.drawScreen(mouseX, mouseY, partialTicks);
             if (buySelected != -1) {
                 buyList.drawBuySelected();
+            }
+        } else if (submenu == SELL) {
+            this.sellList.drawScreen(mouseX, mouseY, partialTicks);
+            if (sellSelected != -1) {
+                sellList.drawSellSelected();
             }
         }
         quantity.drawTextBox();
@@ -145,13 +144,19 @@ public class GuiShop extends GuiScreen {
                 break;
             case BUYCONFIRM:
                 if (buySelected != -1) {
-                    if (canAffordSelected(EnumShopType.BUY)) {
+                    if (canAffordSelected()) {
                         ItemStack stack = GuiBuyList.itemsForSale.get(buySelected);
                         if (!quantity.getText().isEmpty())
                             stack.stackSize = Integer.parseInt(quantity.getText());
                         PacketDispatcher.sendToServer(new GiveBoughtItem(getPriceFromSelected(buySelected), stack.stackSize, stack));
                     }
                 }
+                break;
+            case SELLCONFIRM:
+                if (sellSelected != -1) {
+                    PacketDispatcher.sendToServer(new TakeSoldItem(getPriceFromSelected(sellSelected) / 2, 1, GuiSellList.sellableItems.get(sellSelected)));
+                }
+                sellList.occupyList();
                 break;
             case SYNTHESIS:
                 PacketDispatcher.sendToServer(new OpenSynthesis());
@@ -190,6 +195,8 @@ public class GuiShop extends GuiScreen {
             sell.visible = true;
             buyConfirm.visible = false;
             buyConfirm.enabled = false;
+            sellConfirm.visible = false;
+            sellConfirm.enabled = false;
             //plus.visible = false;
             //minus.visible = false;
             synthesis.visible = true;
@@ -204,6 +211,8 @@ public class GuiShop extends GuiScreen {
             sell.visible = false;
             synthesis.visible = false;
             synthesis.enabled = false;
+            sellConfirm.visible = false;
+            sellConfirm.enabled = false;
             if (buySelected != -1) {
                 buyConfirm.visible = true;
                 //plus.visible = true;
@@ -212,7 +221,7 @@ public class GuiShop extends GuiScreen {
                 if (!isInventoryFull()) {
                     if (!quantity.getText().isEmpty()) {
                         if (Integer.parseInt(quantity.getText()) > 0) {
-                            if (canAffordSelected(EnumShopType.BUY)) {
+                            if (canAffordSelected()) {
                                 buyConfirm.enabled = true;
                             } else {
                                 buyConfirm.enabled = false;
@@ -234,22 +243,18 @@ public class GuiShop extends GuiScreen {
             }
         } else if (submenu == SELL) {
             if (sellSelected != -1) {
-                //buyConfirm.visible = true;
+                sellConfirm.visible = true;
                 //plus.visible = true;
                 //minus.visible = true;
                 quantity.setVisible(true);
                 if (!isInventoryFull()) {
-                    if (canAffordSelected(EnumShopType.SELL)) {
-                        //buyConfirm.enabled = true;
-                    } else {
-                        //buyConfirm.enabled = false;
-                    }
+                    sellConfirm.enabled = true;
                 } else {
-                    //buyConfirm.enabled = false;
+                    sellConfirm.enabled = false;
                 }
             } else {
                 quantity.setVisible(false);
-                //buyConfirm.visible = false;
+                sellConfirm.visible = false;
                 //plus.visible = false;
                 //minus.visible = false;
             }
