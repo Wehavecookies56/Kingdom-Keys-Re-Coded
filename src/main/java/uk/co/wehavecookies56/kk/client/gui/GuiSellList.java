@@ -32,6 +32,7 @@ public class GuiSellList extends GuiScrollingList {
 	static int posY = (height - 200) / 2;
 
 	public static List<ItemStack> sellableItems = new ArrayList<ItemStack>();
+	public static List<Integer> stackSizes = new ArrayList<Integer>();
 
 	public GuiSellList(GuiShop parent) {
 		super(parent.mc, 190, 300, 60, parent.height - ((parent.height / 8) + 70 / 16), 8, 35, parent.width, parent.height);
@@ -41,17 +42,15 @@ public class GuiSellList extends GuiScrollingList {
 
 	public void occupyList() {
 		sellableItems.clear();
+		stackSizes.clear();
 		for (ItemStack invStack : Minecraft.getMinecraft().thePlayer.inventory.mainInventory) {
 			for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
 				if (ItemEvents.areItemStacksEqual(stack, invStack)) {
 					sellableItems.add(invStack);
+					stackSizes.add(invStack.stackSize);
 				}
 			}
 		}
-		Set<ItemStack> list = new LinkedHashSet<ItemStack>();
-		list.addAll(sellableItems);
-		sellableItems.clear();
-		sellableItems.addAll(list);
 	}
 
 	@Override
@@ -78,13 +77,13 @@ public class GuiSellList extends GuiScrollingList {
 
 	@Override
 	protected void drawSlot (int slotIdx, int entryRight, int slotTop, int slotBuffer, Tessellator tess) {
-		if (!sellableItems.isEmpty()) {
+		if (!sellableItems.isEmpty() && slotIdx < sellableItems.size()) {
 
-			String name = sellableItems.get(slotIdx).getDisplayName();
+			String name = sellableItems.get(slotIdx).getDisplayName() + " x" + stackSizes.get(slotIdx);
 
 			if (sellableItems.get(slotIdx).hasTagCompound()) {
 				if (sellableItems.get(slotIdx).getTagCompound().hasKey("material")) {
-					name = Utils.translateToLocal(sellableItems.get(slotIdx).getTagCompound().getString("material") + ".name");
+					name = Utils.translateToLocal(sellableItems.get(slotIdx).getTagCompound().getString("material") + ".name") + " x" + stackSizes.get(slotIdx);
 				}
 			}
 			Minecraft.getMinecraft().fontRendererObj.drawString(name, this.left + 3, slotTop, 0xFFFFFF);
@@ -105,9 +104,10 @@ public class GuiSellList extends GuiScrollingList {
 		GL11.glPushMatrix(); {
 			GL11.glTranslatef(posX, 70, 0);
 			GL11.glScalef(2, 2, 2);
-			parent.drawString(Minecraft.getMinecraft().fontRendererObj, sellableItems.get(parent.sellSelected).getDisplayName(), 0, 0, 0xFFFFFF);
+			parent.drawString(Minecraft.getMinecraft().fontRendererObj, sellableItems.get(parent.sellSelected).getDisplayName() + " x" + stackSizes.get(parent.sellSelected), 0, 0, 0xFFFFFF);
 		}
 		GL11.glPopMatrix();
+		parent.drawString(Minecraft.getMinecraft().fontRendererObj, Utils.translateToLocal(Strings.Gui_Shop_Buy_Quantity), 220, parent.height - ((parent.height / 8) + 70 / 16) - 60, 0xFFFFFF);
 		GL11.glPushMatrix(); {
 			GL11.glTranslatef(posX, 90, 0);
 			for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {

@@ -18,6 +18,14 @@ public class GuiNumberTextField extends GuiTextField {
 
     }
 
+    public int getMaxValue() {
+        return maxValue;
+    }
+
+    public void setMaxValue(int maxValue) {
+        this.maxValue = maxValue;
+    }
+
     public boolean isNumber (char c) {
         try {
             Integer.parseInt(String.valueOf(c));

@@ -50,12 +50,19 @@ public class GuiShop extends GuiScreen {
         this.parent = parent;
     }
 
-    public int getPriceFromSelected(int index) {
+    public int getPriceFromSelected(int index, boolean selling) {
         if (index != -1 && !(index > GuiBuyList.itemsForSale.size())) {
             for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
-                if (ItemEvents.areItemStacksEqual(stack, GuiBuyList.itemsForSale.get(index))) {
-                    return MunnyRegistry.munnyValues.get(stack);
+                if (!selling) {
+                    if (ItemEvents.areItemStacksEqual(stack, GuiBuyList.itemsForSale.get(index))) {
+                        return MunnyRegistry.munnyValues.get(stack);
+                    }
+                } else {
+                    if (ItemEvents.areItemStacksEqual(stack, GuiSellList.sellableItems.get(index))) {
+                        return MunnyRegistry.munnyValues.get(stack);
+                    }
                 }
+
             }
         } else {
             return 0;
@@ -70,7 +77,7 @@ public class GuiShop extends GuiScreen {
 
     public boolean canAffordSelected() {
        if (buySelected != -1) {
-            if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MUNNY, null).getMunny() >= getPriceFromSelected(buySelected)) {
+            if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MUNNY, null).getMunny() >= getPriceFromSelected(buySelected, false)) {
                 return true;
             } else {
                 return false;
@@ -148,19 +155,24 @@ public class GuiShop extends GuiScreen {
                         ItemStack stack = GuiBuyList.itemsForSale.get(buySelected);
                         if (!quantity.getText().isEmpty())
                             stack.stackSize = Integer.parseInt(quantity.getText());
-                        PacketDispatcher.sendToServer(new GiveBoughtItem(getPriceFromSelected(buySelected), stack.stackSize, stack));
+                        PacketDispatcher.sendToServer(new GiveBoughtItem(getPriceFromSelected(buySelected, false), stack.stackSize, stack));
                     }
                 }
                 break;
             case SELLCONFIRM:
                 if (sellSelected != -1) {
-                    PacketDispatcher.sendToServer(new TakeSoldItem(getPriceFromSelected(sellSelected) / 2, 1, GuiSellList.sellableItems.get(sellSelected)));
+                    int amount = 0;
+                    if (!quantity.getText().isEmpty())
+                        amount = Integer.parseInt(quantity.getText());
+                    PacketDispatcher.sendToServer(new TakeSoldItem(getPriceFromSelected(sellSelected, true) / 2, amount, GuiSellList.sellableItems.get(sellSelected)));
+                    sellSelected = -1;
+                    quantity.setText("0");
                 }
                 sellList.occupyList();
                 break;
             case SYNTHESIS:
                 PacketDispatcher.sendToServer(new OpenSynthesis());
-                Minecraft.getMinecraft().displayGuiScreen(new GuiSynthesis(null));
+                Minecraft.getMinecraft().displayGuiScreen(new GuiSynthesis(this));
                 break;
         }
         updateButtons();
@@ -182,6 +194,8 @@ public class GuiShop extends GuiScreen {
     @Override
     public void updateScreen() {
         quantity.updateCursorCounter();
+        if (submenu == SELL)
+            sellList.occupyList();
         super.updateScreen();
     }
 
@@ -203,6 +217,7 @@ public class GuiShop extends GuiScreen {
             synthesis.enabled = true;
             quantity.setVisible(false);
         } else if (submenu == BUY) {
+            quantity.setMaxValue(64);
             back.enabled = true;
             back.visible = true;
             buy.visible = false;
@@ -243,12 +258,22 @@ public class GuiShop extends GuiScreen {
             }
         } else if (submenu == SELL) {
             if (sellSelected != -1) {
-                sellConfirm.visible = true;
-                //plus.visible = true;
-                //minus.visible = true;
-                quantity.setVisible(true);
-                if (!isInventoryFull()) {
-                    sellConfirm.enabled = true;
+                if (!quantity.getText().isEmpty()) {
+                    sellList.occupyList();
+                    quantity.setMaxValue(sellList.stackSizes.get(sellSelected));
+                    sellConfirm.visible = true;
+                    //plus.visible = true;
+                    //minus.visible = true;
+                    quantity.setVisible(true);
+                    if (Integer.parseInt(quantity.getText()) > 0) {
+                        if (!isInventoryFull()) {
+                            sellConfirm.enabled = true;
+                        } else {
+                            sellConfirm.enabled = false;
+                        }
+                    } else {
+                        sellConfirm.enabled = false;
+                    }
                 } else {
                     sellConfirm.enabled = false;
                 }
