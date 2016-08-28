@@ -150,6 +150,7 @@ public class CommonProxy {
 
 		// Heartless registry
 		EntityHelper.registerEntity("Shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.RED.getRGB());
+		EntityHelper.registerEntity("GigaShadow", EntityGigaShadow.class, Color.BLACK.getRGB(), Color.GRAY.getRGB());
 		EntityHelper.registerEntity("RedNocturne", EntityRedNocturne.class, Color.RED.getRGB(), Color.PINK.getRGB());
 		EntityHelper.registerEntity("BlueRhapsody", EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());
 		EntityHelper.registerEntity("YellowOpera", EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());

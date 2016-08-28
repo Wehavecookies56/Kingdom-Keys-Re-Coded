@@ -1,6 +1,7 @@
 package uk.co.wehavecookies56.kk.api.munny;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -384,6 +385,10 @@ public class MunnyRegistry {
         //TODO REGISTER MORE VALUES
 
         addMunnyValueFromOreDict("ingotIron", 1000);
+        addMunnyValueFromOreDict("ingotGold", 2000);
+        addMunnyValueFromOreDict("gemDiamond", 4000);
+        addMunnyValueFromOreDict("gemEmerald",  3500);
+
         addMunnyValue(new ItemStack(Blocks.DIRT), 1);
         
         addMunnyValue(BlazingShard, 800);
@@ -411,10 +416,10 @@ public class MunnyRegistry {
         addMunnyValue(EnergyGem, 3200);
         addMunnyValue(EnergyCrystal, 6400);
 
-        addMunnyValue(FrostShard, 800);
-        addMunnyValue(FrostStone, 1600);
-        addMunnyValue(FrostGem, 3200);
-        addMunnyValue(FrostCrystal, 6400);
+        addMunnyValue(FrostShard, 1000);
+        addMunnyValue(FrostStone, 1800);
+        addMunnyValue(FrostGem, 3400);
+        addMunnyValue(FrostCrystal, 6600);
 
         addMunnyValue(LightningShard, 800);
         addMunnyValue(LightningStone, 1600);

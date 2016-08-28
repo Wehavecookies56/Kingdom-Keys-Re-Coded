@@ -50,8 +50,10 @@ import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
 import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
+import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
+import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
 import uk.co.wehavecookies56.kk.common.item.ItemAquaArmor;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
@@ -599,6 +601,29 @@ public class EntityEvents {
             if (event.getSource().getDamageType().equals("lightningBolt"))
                 if (EntityThunder.summonLightning)
                     event.setCanceled(true);
+        }
+        if(event.getEntityLiving() instanceof IKHMob)
+        {
+        	EntityPlayer player = null;
+        	IKHMob khMob = (IKHMob) event.getEntityLiving(); 
+            if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
+                player = (EntityPlayer) event.getSource().getSourceOfDamage();
+            }
+            if(player != null)
+            {
+	        	if(khMob.getType() == MobType.HEARTLESS_EMBLEM || khMob.getType() == MobType.HEARTLESS_PUREBLOOD || khMob.getType() == MobType.NOBODY)
+	        	{
+	        		if(player.getHeldItem(EnumHand.MAIN_HAND) == null)
+	                    event.setCanceled(true);
+	        		if(player.getHeldItem(EnumHand.MAIN_HAND) != null)
+	                {
+	    	            if(!(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade))
+	    	            {
+	                        event.setCanceled(true);
+	    	            }
+	                }
+	        	}
+            }
         }
         if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
