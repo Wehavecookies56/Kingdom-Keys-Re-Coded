@@ -2,7 +2,6 @@ package uk.co.wehavecookies56.kk.common.block.tile;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
 
 /**
  * Created by Toby on 02/08/2016.

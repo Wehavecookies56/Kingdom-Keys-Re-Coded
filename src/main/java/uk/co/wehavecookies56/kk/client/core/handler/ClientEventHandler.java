@@ -1,17 +1,15 @@
 package uk.co.wehavecookies56.kk.client.core.handler;
 
+import java.util.Random;
+
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.client.audio.PositionedSound;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
-
-import java.util.Random;
 
 public class ClientEventHandler {
 	Random rand = new Random();

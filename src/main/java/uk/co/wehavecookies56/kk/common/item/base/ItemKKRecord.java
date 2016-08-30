@@ -1,5 +1,8 @@
 package uk.co.wehavecookies56.kk.common.item.base;
 
+import java.text.DecimalFormat;
+import java.util.List;
+
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,13 +21,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
-import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import java.text.DecimalFormat;
-import java.util.List;
 
 public class ItemKKRecord extends ItemRecord {
 

@@ -3,7 +3,6 @@ package uk.co.wehavecookies56.kk.api.recipes;
 import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import uk.co.wehavecookies56.kk.api.materials.Material;
 

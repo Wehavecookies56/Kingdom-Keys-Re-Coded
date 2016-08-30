@@ -1,6 +1,9 @@
 package uk.co.wehavecookies56.kk.common.world;
 
+import java.util.Random;
+
 import com.google.common.base.Predicate;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
@@ -14,8 +17,6 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
-
-import java.util.Random;
 
 public class WorldGenBlox implements IWorldGenerator {
 

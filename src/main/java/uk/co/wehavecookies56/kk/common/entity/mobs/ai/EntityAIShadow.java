@@ -3,7 +3,6 @@ package uk.co.wehavecookies56.kk.common.entity.mobs.ai;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAITarget;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
-import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
 
 public class EntityAIShadow extends EntityAITarget
 {

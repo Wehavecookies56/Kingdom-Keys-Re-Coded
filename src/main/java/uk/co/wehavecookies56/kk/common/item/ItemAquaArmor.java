@@ -2,14 +2,9 @@ package uk.co.wehavecookies56.kk.common.item;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.common.ISpecialArmor;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class ItemAquaArmor extends ItemArmor /*implements ISpecialArmor*/ {

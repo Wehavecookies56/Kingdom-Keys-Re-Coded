@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.entity.block;
 
-import java.util.Random;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;

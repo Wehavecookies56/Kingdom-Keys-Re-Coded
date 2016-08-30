@@ -1,17 +1,16 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
+import java.io.IOException;
+
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
 import uk.co.wehavecookies56.kk.api.munny.MunnyRegistry;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
@@ -24,8 +23,6 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.GiveBoughtItem;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenSynthesis;
 import uk.co.wehavecookies56.kk.common.network.packet.server.TakeSoldItem;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import java.io.IOException;
 
 /**
  * Created by Toby on 19/07/2016.

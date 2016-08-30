@@ -1,8 +1,12 @@
 package uk.co.wehavecookies56.kk.common.integration.jei;
 
-import mezz.jei.api.*;
-
 import javax.annotation.Nonnull;
+
+import mezz.jei.api.IJeiHelpers;
+import mezz.jei.api.IJeiRuntime;
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.IModRegistry;
+import mezz.jei.api.JEIPlugin;
 
 /**
  * Created by Toby on 04/08/2016.

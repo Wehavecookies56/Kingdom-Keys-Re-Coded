@@ -1,8 +1,6 @@
 package uk.co.wehavecookies56.kk.common.world.dimension;
 
-import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.WorldProviderEnd;
 import net.minecraftforge.common.DimensionManager;
 
 /**

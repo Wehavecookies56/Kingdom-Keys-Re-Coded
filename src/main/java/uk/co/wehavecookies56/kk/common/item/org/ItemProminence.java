@@ -9,7 +9,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityIfrit;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityProminence;
 
 public class ItemProminence extends ItemChakram {

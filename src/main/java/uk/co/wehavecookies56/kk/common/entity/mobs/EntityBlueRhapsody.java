@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIBlueRhapsody;
-import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIRedNocturne;
 
 public class EntityBlueRhapsody extends EntityMob implements IKHMob
 {

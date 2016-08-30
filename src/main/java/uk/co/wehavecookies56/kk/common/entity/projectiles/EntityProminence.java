@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.entity.projectiles;
 
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,8 +13,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IThrowableEntity;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-
-import java.util.List;
 
 public class EntityProminence extends EntityThrowable implements IThrowableEntity{
 	EntityPlayer player;

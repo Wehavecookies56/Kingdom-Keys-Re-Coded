@@ -54,9 +54,9 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
 import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
-import uk.co.wehavecookies56.kk.common.item.ItemAquaArmor;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -617,7 +617,7 @@ public class EntityEvents {
 	                    event.setCanceled(true);
 	        		if(player.getHeldItem(EnumHand.MAIN_HAND) != null)
 	                {
-	    	            if(!(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade))
+	    	            if(!(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon))
 	    	            {
 	                        event.setCanceled(true);
 	    	            }

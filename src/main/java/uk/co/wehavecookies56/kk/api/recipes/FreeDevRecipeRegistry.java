@@ -1,14 +1,13 @@
 package uk.co.wehavecookies56.kk.api.recipes;
 
-import com.google.common.collect.ImmutableMap;
-import net.minecraft.entity.player.EntityPlayer;
-import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
-import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
+
+import net.minecraft.entity.player.EntityPlayer;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 
 public class FreeDevRecipeRegistry {
 

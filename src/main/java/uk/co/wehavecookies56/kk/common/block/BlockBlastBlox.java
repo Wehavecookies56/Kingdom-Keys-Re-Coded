@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.block;
 
+import java.util.Random;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -15,8 +17,6 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
-
-import java.util.Random;
 
 public class BlockBlastBlox extends BlockBlox {
 

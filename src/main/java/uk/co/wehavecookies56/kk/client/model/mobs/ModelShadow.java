@@ -3,8 +3,6 @@ package uk.co.wehavecookies56.kk.client.model.mobs;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 
 public class ModelShadow extends ModelBase
 {

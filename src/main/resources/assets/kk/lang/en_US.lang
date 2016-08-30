@@ -374,7 +374,6 @@ item.prominence.name=Prominence
 item.fickleerica.name=Fickle Erica
 item.poormelissa.name=Poor Melissa
 
-
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
 item.abyssaltide.name=Abyssal Tide
@@ -820,6 +819,7 @@ chat.magicboost=Magic increased! Now it's %1$s!
 #Entities
 ##########################
 entity.kk.Shadow.name=Shadow
+entity.kk.GigaShadow.name=Giga Shadow
 entity.kk.RedNocturne.name=Red Nocturne
 entity.kk.BlueRhapsody.name=Blue Rhapsody
 entity.kk.YellowOpera.name=Yellow Opera

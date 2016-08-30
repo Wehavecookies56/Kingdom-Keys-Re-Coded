@@ -22,7 +22,6 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncFreeDevRecipeData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMaterialData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncRecipeData;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenSynthesis;
 
 public class BlockSynthesisTable extends Block implements ITileEntityProvider {

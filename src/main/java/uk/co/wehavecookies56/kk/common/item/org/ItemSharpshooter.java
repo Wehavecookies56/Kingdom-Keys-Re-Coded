@@ -3,10 +3,9 @@ package uk.co.wehavecookies56.kk.common.item.org;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -16,8 +15,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
+import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 
-public class ItemSharpshooter extends ItemSword {
+public class ItemSharpshooter extends ItemOrgWeapon {
 
 	public ItemSharpshooter (ToolMaterial material) {
 		super(material);

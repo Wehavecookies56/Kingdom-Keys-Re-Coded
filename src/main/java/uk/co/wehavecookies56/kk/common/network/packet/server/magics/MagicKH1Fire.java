@@ -8,15 +8,11 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.entity.magic.EntityBlizzard;
-import uk.co.wehavecookies56.kk.common.entity.magic.EntityFira;
-import uk.co.wehavecookies56.kk.common.entity.magic.EntityFiraga;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Fire;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 

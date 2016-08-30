@@ -1,6 +1,5 @@
 package uk.co.wehavecookies56.kk.common.magic;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumHand;

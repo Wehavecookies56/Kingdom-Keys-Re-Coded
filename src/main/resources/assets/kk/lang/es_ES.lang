@@ -727,6 +727,15 @@ gui.synthesis.main.materials.takehalfstack=Coger medio stack
 gui.synthesis.main.materials.takestack=Coger un stack
 gui.synthesis.main.materials.takeall=Coger todo
 
+#Shop
+gui.shop.main=Tienda de Objetos
+gui.shop.main.title=Tienda
+gui.shop.main.buy=Comprar
+gui.shop.main.sell=Vender
+gui.shop.buy.cost=Precio
+gui.shop.buy.quantity=Candidad
+gui.shop.sell.price=Vender por
+
 ############################
 #Keybinds
 ############################
@@ -805,3 +814,14 @@ chat.manifest.learn=El conocimiento ha manifestado '%1$s'
 chat.powerboost=¡Fuerza aumentada! Ahora es %1$s!
 chat.defenseboost=¡Defensa aumentada! Ahora es %1$s!
 chat.magicboost=¡Magia aumentada! Ahora es %1$s!
+
+##########################
+#Entities
+##########################
+entity.kk.Shadow.name=Sombra
+entity.kk.GigaShadow.name=Giga Sombra
+entity.kk.RedNocturne.name=Nocturno Rojo
+entity.kk.BlueRhapsody.name=Rapsodia Azul
+entity.kk.YellowOpera.name=Ópera Amarilla
+entity.kk.GreenRequiem.name=Réquiem Verde
+entity.kk.Moogle.name=Moguri

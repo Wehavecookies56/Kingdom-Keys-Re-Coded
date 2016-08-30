@@ -2,7 +2,6 @@ package uk.co.wehavecookies56.kk.common.network.packet.server.magics;
 
 import java.io.IOException;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
@@ -11,7 +10,6 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractServerMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKH1Magic;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 
 public class SetKH1Fire extends AbstractServerMessage<SetKH1Fire> {
 

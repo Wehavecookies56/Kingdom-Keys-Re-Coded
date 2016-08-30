@@ -1,6 +1,5 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;

@@ -1,6 +1,5 @@
 package uk.co.wehavecookies56.kk.common.item.base;
 
-import java.text.NumberFormat;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;

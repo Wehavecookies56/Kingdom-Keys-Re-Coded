@@ -1,6 +1,5 @@
 package uk.co.wehavecookies56.kk.common.core.helper;
 
-import java.lang.management.ManagementFactory;
 import java.util.List;
 
 import net.minecraft.entity.Entity;

@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.world.dimension;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.init.Biomes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -9,8 +11,6 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.IChunkGenerator;
-
-import javax.annotation.Nullable;
 
 /**
  * Created by Toby on 01/08/2016.
