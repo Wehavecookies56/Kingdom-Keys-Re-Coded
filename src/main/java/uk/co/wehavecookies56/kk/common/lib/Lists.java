@@ -27,7 +27,12 @@ public class Lists {
 		orgWeapons.add(GracefulDahlia);
 		orgWeapons.add(Foudre);
 		orgWeapons.add(BlazeofGlory);
-
+		orgWeapons.add(Prometheus);
+		orgWeapons.add(Ifrit);
+		orgWeapons.add(Prominence);
+		orgWeapons.add(FickleErica);
+		orgWeapons.add(PoorMelissa);
+		
 		recipes.add(AbaddonPlasma.getUnlocalizedName());
 		recipes.add(AbyssalTide.getUnlocalizedName());
 		recipes.add(AllforOne.getUnlocalizedName());
