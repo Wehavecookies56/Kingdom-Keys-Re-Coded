@@ -21,7 +21,7 @@ public class EntityGigaShadow extends EntityMob implements IKHMob
 	public EntityGigaShadow(World world) 
 	{
 		super(world);
-		this.setSize(width*3, height/2*3);
+		this.setSize(width*4, height/2*4);
 		this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
 		this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
 		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));

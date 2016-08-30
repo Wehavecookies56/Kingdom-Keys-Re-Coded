@@ -149,7 +149,7 @@ public class CommonProxy {
 		EntityRegistry.registerModEntity(EntityThunder.class, "thunder", 1003, KingdomKeys.instance, 16, 1, false);
 
 		// Heartless registry
-		EntityHelper.registerEntity("Shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.RED.getRGB());
+		EntityHelper.registerEntity("Shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());
 		EntityHelper.registerEntity("GigaShadow", EntityGigaShadow.class, Color.BLACK.getRGB(), Color.GRAY.getRGB());
 		EntityHelper.registerEntity("RedNocturne", EntityRedNocturne.class, Color.RED.getRGB(), Color.PINK.getRGB());
 		EntityHelper.registerEntity("BlueRhapsody", EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());

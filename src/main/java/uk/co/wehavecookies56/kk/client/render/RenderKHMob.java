@@ -28,9 +28,11 @@ public class RenderKHMob extends RenderLiving<EntityLiving> implements IRenderFa
 		this.texturesSprite = staticTexture;
 		this.texture = new ResourceLocation("kk:textures/mobs/" + staticTexture + ".png");
 	}   
-
-    protected void preRenderCallback(EntityMob entity, float i)
+	@Override
+    protected void preRenderCallback(EntityLiving  entity, float i)
     {
+		if(entity instanceof EntityMob)
+			
     	GL11.glScalef(this.scale, this.scale, this.scale);
     }
 
