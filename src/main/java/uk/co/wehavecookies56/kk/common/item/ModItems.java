@@ -28,7 +28,7 @@ import java.sql.Ref;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence;
+	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa ;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -96,6 +96,8 @@ public class ModItems {
 		Prometheus = new ItemPrometheus(EnumHelper.addToolMaterial("prometheus", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
 		Ifrit = new ItemIfrit(EnumHelper.addToolMaterial("ifrit", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
 		Prominence = new ItemProminence(EnumHelper.addToolMaterial("prominence", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
+		FickleErica = new ItemGracefulDahlia(EnumHelper.addToolMaterial("fickleerica", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FickleErica);
+		PoorMelissa = new ItemGracefulDahlia(EnumHelper.addToolMaterial("poormelissa", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PoorMelissa);
 	
 		AbaddonPlasma = new ItemRealKeyblade(6, 0).setUnlocalizedName(Strings.AbaddonPlasma);
 		((ItemKeyblade)AbaddonPlasma).setDescription("A weapon that lets you string together faster, incredibly long ground combos.");
@@ -573,6 +575,8 @@ public class ModItems {
 		GameRegistry.register(Prometheus, new ResourceLocation(Reference.MODID, Strings.Prometheus));
 		GameRegistry.register(Ifrit, new ResourceLocation(Reference.MODID, Strings.Ifrit));
 		GameRegistry.register(Prominence, new ResourceLocation(Reference.MODID, Strings.Prominence));
+		GameRegistry.register(FickleErica, new ResourceLocation(Reference.MODID, Strings.FickleErica));
+		GameRegistry.register(PoorMelissa, new ResourceLocation(Reference.MODID, Strings.PoorMelissa));
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));

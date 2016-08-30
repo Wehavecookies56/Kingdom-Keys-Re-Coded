@@ -364,13 +364,15 @@ item.lunatic.desc=VII Saïx
 item.eternalflames.name=Llamas Eternas
 item.arpeggio.name=Arpegio
 item.fairgame.name=Juego Justo
-item.gracefuldahlia.name=Dalia Graciosa
+item.gracefuldahlia.name=Dalia Grácil
 item.foudre.name=Relámpago
 
 item.blazeofglory.name=Brillo Glorioso
 item.prometheus.name=Prometeo
 item.ifrit.name=Ifrit
 item.prominence.name=Importancia
+item.fickleerica.name=Ericácea Voluble
+item.poormelissa.name=Pobre Melisa
 
 #Keyblades
 item.abaddonplasma.name=Plasma de Abadón

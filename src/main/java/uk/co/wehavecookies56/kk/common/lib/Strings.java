@@ -442,7 +442,9 @@ public class Strings {
 	BlazeofGlory = "blazeofglory", 
 	Prometheus = "prometheus", 
 	Ifrit = "ifrit",
-	Prominence = "prominence"
+	Prominence = "prominence",
+	FickleErica = "fickleerica",
+	PoorMelissa = "poormelissa"
 	;
 
 	public static final String 
