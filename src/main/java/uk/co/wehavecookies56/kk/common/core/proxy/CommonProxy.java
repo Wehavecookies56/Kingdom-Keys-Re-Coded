@@ -7,9 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Biomes;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -162,7 +166,9 @@ public class CommonProxy {
 		EntityHelper.registerEntity("YellowOpera", EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());
 		EntityHelper.registerEntity("GreenRequiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
 		EntityHelper.registerEntity("Moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
-		
+
+		EntityRegistry.addSpawn(EntityMoogle.class, 5, 1, 1, EnumCreatureType.CREATURE, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+
 		Lists.init();
 
 		// Drive forms init
