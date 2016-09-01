@@ -40,7 +40,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa ;
+	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -110,7 +110,8 @@ public class ModItems {
 		Prominence = new ItemProminence(EnumHelper.addToolMaterial("prominence", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
 		FickleErica = new ItemGracefulDahlia(EnumHelper.addToolMaterial("fickleerica", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FickleErica);
 		PoorMelissa = new ItemGracefulDahlia(EnumHelper.addToolMaterial("poormelissa", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PoorMelissa);
-	
+		JiltedAnemone = new ItemGracefulDahlia(EnumHelper.addToolMaterial("jiltedanemone", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.JiltedAnemone);
+		
 		AbaddonPlasma = new ItemRealKeyblade(6, 0).setUnlocalizedName(Strings.AbaddonPlasma);
 		((ItemKeyblade)AbaddonPlasma).setDescription("A weapon that lets you string together faster, incredibly long ground combos.");
 		AbyssalTide = new ItemRealKeyblade(4, 0).setUnlocalizedName(Strings.AbyssalTide);
@@ -589,6 +590,7 @@ public class ModItems {
 		GameRegistry.register(Prominence, new ResourceLocation(Reference.MODID, Strings.Prominence));
 		GameRegistry.register(FickleErica, new ResourceLocation(Reference.MODID, Strings.FickleErica));
 		GameRegistry.register(PoorMelissa, new ResourceLocation(Reference.MODID, Strings.PoorMelissa));
+		GameRegistry.register(JiltedAnemone, new ResourceLocation(Reference.MODID, Strings.JiltedAnemone));
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));
