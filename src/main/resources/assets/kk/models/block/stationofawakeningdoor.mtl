@@ -5,16 +5,16 @@ newmtl Mat012
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
 d 1.000000
-map_Kd kk:/blocks/models/stationofawakeningdoor_1
+map_Kd kk:blocks/models/stationofawakeningdoor_1
 
 newmtl Mat013
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
 d 1.000000
-map_Kd kk:/blocks/models/stationofawakeningdoor_2
+map_Kd kk:blocks/models/stationofawakeningdoor_2
 
 newmtl Mat015
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
 d 1.000000
-map_Kd kk:/blocks/models/stationofawakeningdoor_3
+map_Kd kk:blocks/models/stationofawakeningdoor_3

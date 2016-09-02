@@ -35,7 +35,7 @@ public class GuiLockOn extends GuiScreen {
 			Minecraft mc = Minecraft.getMinecraft();
 			EntityPlayer player = mc.thePlayer;
 			float reduction = 4;
-			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/lockon/lock on frame1.png"));
+			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/lockon/lockon.png"));
 
 			int screenWidth = event.getResolution().getScaledWidth();
 			int screenHeight = event.getResolution().getScaledHeight();
