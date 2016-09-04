@@ -304,6 +304,7 @@ public class ItemEvents {
             double keyStrength = keyblade.getStrength()+sharpnessDamage;
             
             String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
+            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength + " (" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + ")");
             tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + ")");
             if (keyblade.getDescription() != null) {
                 if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
@@ -413,6 +414,7 @@ public class ItemEvents {
             
             String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
 
+            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength + " (" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + ")");
             tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + ")");
             if (keyblade.getDescription() != null) {
                 if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
