@@ -267,8 +267,44 @@ public class ItemEvents {
             List<String> tooltip = event.getToolTip();
             ItemKeyblade keyblade = (ItemKeyblade) event.getItemStack().getItem();
             (tooltip.subList(1, tooltip.size())).clear();
-            tooltip.add(TextFormatting.RED + "Strength: +" + keyblade.getStrength() + " (" + DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade) + ")");
-            tooltip.add(TextFormatting.BLUE + "Magic: +" + keyblade.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + ")");
+            
+            NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
+            double sharpnessDamage = 0;
+            if(nbttaglist != null)
+            {
+            	 for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                     int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+                     int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+
+                    //System.out.println(Enchantment.getEnchantmentByID(id).getName());
+                    if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all"))
+                    {
+                    	switch (lvl)
+                    	{
+                    	case 1:
+                    		sharpnessDamage = 1;
+                    		break;
+                    	case 2:
+                    		sharpnessDamage = 1.5;
+                    		break;
+                    	case 3:
+                    		sharpnessDamage = 2;
+                    		break;
+                    	case 4:
+                    		sharpnessDamage = 2.5;
+                    		break;
+                    	case 5:
+                    		sharpnessDamage = 3;
+                    		break;
+                    	}
+                    }
+            	 }
+            }
+
+            double keyStrength = keyblade.getStrength()+sharpnessDamage;
+            
+            String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
+            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + ")");
             if (keyblade.getDescription() != null) {
                 if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                     tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
@@ -280,8 +316,6 @@ public class ItemEvents {
             }
             if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
                 if (event.getItemStack().hasTagCompound()) {
-                    NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
-
                     if (nbttaglist != null) {
                         tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
                         for (int i = 0; i < nbttaglist.tagCount(); i++) {
@@ -341,12 +375,46 @@ public class ItemEvents {
             List<String> tooltip = event.getToolTip();
             ItemKeyblade keyblade = ((ItemKeychain) event.getItemStack().getItem()).getKeyblade();
             (tooltip.subList(1, tooltip.size())).clear();
-            tooltip.add(TextFormatting.RED + "Strength: +" + keyblade.getStrength() + " (" + DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade) + ")");
-            tooltip.add(TextFormatting.BLUE + "Magic: +" + keyblade.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + ")");
-/*
-            tooltip.add(TextFormatting.RED + "Strength: +" + keyblade.getStrength() + " (" + (int)(event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + keyblade.getStrength()) + ")");
-            tooltip.add(TextFormatting.BLUE + "Magic: +" + keyblade.getMagic() + " (" + (int)(event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() + keyblade.getMagic()) + ")");
-          */  if (keyblade.getDescription() != null) {
+           
+            NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
+            double sharpnessDamage = 0;
+            if(nbttaglist != null)
+            {
+            	 for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                     int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+                     int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+
+                    //System.out.println(Enchantment.getEnchantmentByID(id).getName());
+                    if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all"))
+                    {
+                    	switch (lvl)
+                    	{
+                    	case 1:
+                    		sharpnessDamage = 1;
+                    		break;
+                    	case 2:
+                    		sharpnessDamage = 1.5;
+                    		break;
+                    	case 3:
+                    		sharpnessDamage = 2;
+                    		break;
+                    	case 4:
+                    		sharpnessDamage = 2.5;
+                    		break;
+                    	case 5:
+                    		sharpnessDamage = 3;
+                    		break;
+                    	}
+                    }
+            	 }
+            }
+
+            double keyStrength = keyblade.getStrength()+sharpnessDamage;
+            
+            String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
+
+            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + ")");
+            if (keyblade.getDescription() != null) {
                 if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                     tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
                     tooltip.add(keyblade.description);
@@ -357,7 +425,6 @@ public class ItemEvents {
             }
             if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
                 if (event.getItemStack().hasTagCompound()) {
-                    NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
 
                     if (nbttaglist != null) {
                         tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
