@@ -14,9 +14,10 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnDriveFormParti
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 
 public class DriveFormAnti extends DriveForm {
+	double cost;
 
-	public DriveFormAnti () {
-
+	public DriveFormAnti (double cost) {
+		this.cost = cost;
 	}
 
 	@Override
@@ -31,7 +32,7 @@ public class DriveFormAnti extends DriveForm {
 
 	@Override
 	public double getCost () {
-		return 0;
+		return cost;
 	}
 
 	@Override

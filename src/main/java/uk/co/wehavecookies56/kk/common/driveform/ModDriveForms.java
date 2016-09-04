@@ -19,7 +19,7 @@ public class ModDriveForms {
 		Limit = new DriveFormLimit(400);
 		Master = new DriveFormMaster(400);
 		Final = new DriveFormFinal(500);
-		Anti = new DriveFormAnti();
+		Anti = new DriveFormAnti(1000);
 		
 		DriveFormRegistry.registerDriveForm(Valor);
 		DriveFormRegistry.registerDriveForm(Wisdom);
@@ -30,8 +30,6 @@ public class ModDriveForms {
 	}
 
 	public static void getDriveForm (EntityPlayer player, World world, String drive) {
-		//PacketDispatcher.sendToServer(new SyncData());
-
 		switch (drive) {
 			case Strings.Form_Valor:
 				PacketDispatcher.sendToServer(new DriveFormPacket(Strings.Form_Valor));

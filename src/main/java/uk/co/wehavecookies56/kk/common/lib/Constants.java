@@ -46,6 +46,8 @@ public class Constants {
 		costs.put(Strings.Form_Limit, (int) ModDriveForms.Limit.getCost());
 		costs.put(Strings.Form_Master, (int) ModDriveForms.Master.getCost());
 		costs.put(Strings.Form_Final, (int) ModDriveForms.Final.getCost());
+		costs.put(Strings.Form_Anti, (int) ModDriveForms.Anti.getCost());
+
 
 	}
 	

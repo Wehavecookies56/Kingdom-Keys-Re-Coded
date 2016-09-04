@@ -60,12 +60,16 @@ public class EntityMoogle extends EntityCreature implements IKHMob {
 
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack stack) {
-        this.worldObj.playSound(player, this.posX, this.posY, this.posZ, ModSounds.kupo, SoundCategory.BLOCKS, 1.0F, 1.0F);
-        if (!this.worldObj.isRemote) {
-            PacketDispatcher.sendTo(new SyncMunnyData(player.getCapability(ModCapabilities.MUNNY, null)), (EntityPlayerMP) player);
-        }
-        player.openGui(KingdomKeys.instance, GuiIDs.GUI_SHOP, this.worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
+    	if(!player.isSneaking())
+    	{
+	        this.worldObj.playSound(player, this.posX, this.posY, this.posZ, ModSounds.kupo, SoundCategory.BLOCKS, 1.0F, 1.0F);
+	        if (!this.worldObj.isRemote) {
+	            PacketDispatcher.sendTo(new SyncMunnyData(player.getCapability(ModCapabilities.MUNNY, null)), (EntityPlayerMP) player);
+	        }
+	        player.openGui(KingdomKeys.instance, GuiIDs.GUI_SHOP, this.worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
         return true;
+    	}
+    	return false;
     }
 
     @Override
