@@ -14,21 +14,21 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticles;
 
-public class EntityKH1Fire extends EntityThrowable {
+public class EntityKH1Fira extends EntityThrowable {
 	private static final ResourceLocation resourceLocation = new ResourceLocation(Reference.MODID, "textures/entity/fire.png");
 	public EntityPlayer shootingEntity;
 
-	public EntityKH1Fire (World world) {
+	public EntityKH1Fira (World world) {
 		super(world);
 	}
 
-	public EntityKH1Fire (World world, EntityLivingBase entity) {
+	public EntityKH1Fira (World world, EntityLivingBase entity) {
 		super(world, entity);
 		shootingEntity = (EntityPlayer) entity;
 
 	}
 
-	public EntityKH1Fire (World world, double x, double y, double z) {
+	public EntityKH1Fira (World world, double x, double y, double z) {
 		super(world, x, y, z);
 	}
 
@@ -61,7 +61,7 @@ public class EntityKH1Fire extends EntityThrowable {
 					applyEnchantments(this.shootingEntity, movingObject.entityHit);
 
 					if (!movingObject.entityHit.isImmuneToFire()) movingObject.entityHit.setFire(5);
-					movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), DamageCalculation.getMagicDamage(shootingEntity,1));
+					movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), DamageCalculation.getMagicDamage(shootingEntity,2));
 				}
 			} else {
 				flag = true;

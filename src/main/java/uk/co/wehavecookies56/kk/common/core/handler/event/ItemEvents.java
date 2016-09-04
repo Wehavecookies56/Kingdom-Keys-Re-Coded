@@ -478,6 +478,8 @@ public class ItemEvents {
         	AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisTable);
         else if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.KKChest))
         	AchievementHelper.addAchievement(event.player, ModAchievements.getChest);
+        else if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.GhostBlox))
+        	AchievementHelper.addAchievement(event.player, ModAchievements.getGhostBlox);
         else if (event.crafting.getItem() == ModItems.SynthesisBagS)
         	AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisBag);
         else if (event.crafting.getItem() == ModItems.KingdomHearts)

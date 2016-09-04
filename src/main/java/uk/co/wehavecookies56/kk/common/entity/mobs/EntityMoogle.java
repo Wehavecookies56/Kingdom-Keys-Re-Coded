@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
@@ -70,5 +71,11 @@ public class EntityMoogle extends EntityCreature implements IKHMob {
     @Override
     public EntityHelper.MobType getType() {
         return EntityHelper.MobType.NPC;
+    }
+    
+    @Override
+    public SoundEvent getAmbientSound()
+    {
+    	return ModSounds.kupoliving;
     }
 }

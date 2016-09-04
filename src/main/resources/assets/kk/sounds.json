@@ -5,6 +5,12 @@
     		{"name": "kk:kupo", "stream": false}
     	]
     },
+	 "kupoliving": {
+    	"category": "master", 
+    	"sounds": [
+    		{"name": "kk:kupoliving", "stream": false}
+    	]
+    },
 	
 	"levelup": {
     	"category": "master", 

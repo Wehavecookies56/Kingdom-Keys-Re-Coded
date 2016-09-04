@@ -90,8 +90,8 @@ public class CreateFromSynthesisRecipe extends AbstractMessage.AbstractServerMes
                 Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>) it.next();
                 MATS.removeMaterial(pair.getKey(), pair.getValue());
             }
+    		AchievementHelper.addAchievement(player, ModAchievements.freeDev);
         }
-		AchievementHelper.addAchievement(player, ModAchievements.freeDev);
 		PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);
 
 	}

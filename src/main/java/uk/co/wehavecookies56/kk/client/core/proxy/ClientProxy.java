@@ -106,7 +106,7 @@ public class ClientProxy extends CommonProxy
         ModelLoader.setCustomModelResourceLocation(ModItems.FickleErica, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FickleErica, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.PoorMelissa, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.PoorMelissa, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.JiltedAnemone, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.JiltedAnemone, "inventory"));
-
+        ModelLoader.setCustomModelResourceLocation(ModItems.MissingAche, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.MissingAche, "inventory"));
         
 		ModelLoader.setCustomModelResourceLocation(ModItems.FollowtheWind, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FollowtheWind, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.FrolicFlame, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FrolicFlame, "inventory"));

@@ -60,7 +60,12 @@
         "inventory": [
             {
                 "transform": {
-                    "thirdperson": {
+                    "thirdperson_righthand": {
+                    	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": 0 } ],
+                    	"translation": [ 0, 0, -0.3 ],
+                        "scale": 0.01
+                    },
+					 "thirdperson_lefthand": {
                     	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": 0 } ],
                     	"translation": [ 0, 0, -0.3 ],
                         "scale": 0.01
@@ -70,7 +75,12 @@
                     	"translation": [ 0, -0.4, 0 ],
                         "scale": 0.015
                     },
-                    "firstperson": {
+                    "firstperson_righthand": {
+                    	"rotation": [ { "x": 0 }, { "y": 120 }, { "z": -10 } ],
+                    	"translation": [ 0, -0.3, 0 ],
+                        "scale": 0.01
+                    },
+					"firstperson_lefthand": {
                     	"rotation": [ { "x": 0 }, { "y": 120 }, { "z": -10 } ],
                     	"translation": [ 0, -0.3, 0 ],
                         "scale": 0.01

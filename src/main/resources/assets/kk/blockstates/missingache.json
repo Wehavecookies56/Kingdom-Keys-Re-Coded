@@ -1,0 +1,46 @@
+{
+	"forge_marker": 1,
+    "defaults": {
+    	"textures": {
+
+    		},
+        "model": "kk:missingache.obj"
+    },
+	"variants": {
+        "inventory": [
+            {
+                "transform": {
+                    "thirdperson_lefthand": {
+                        "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 40 } ],
+                        "translation": [ 0, 0.3, 0.3 ],
+                        "scale": 0.0033
+                    },
+                    "thirdperson_righthand": {
+                        "rotation": [ { "x": 0 }, { "y": -90 }, { "z": -40 } ],
+                        "translation": [ 0, 0.3, 0.3 ],
+                        "scale": 0.0033
+                    },
+                    "gui": {
+                        "rotation": [ { "x": 0 }, { "y": 0 }, { "z": -90 } ],
+                        "translation": [ 0, -0.15, 0 ],
+                        "scale": 0.0018
+                    },
+                    "firstperson_righthand": {
+                        "rotation": [ { "x": 20 }, { "y": -90 }, { "z": -40 } ],
+                        "translation": [ 0.2, -0.05, 0 ],
+                        "scale": 0.0025
+                    },
+                    "firstperson_lefthand": {
+                        "rotation": [ { "x": 20 }, { "y": 90 }, { "z": 40 } ],
+                        "translation": [ 0.2, -0.05, 0 ],
+                        "scale": 0.0025
+                    },
+                    "ground": {
+                        "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+                        "scale": 0.005
+                    }
+                }
+            }
+        ]
+    }
+}

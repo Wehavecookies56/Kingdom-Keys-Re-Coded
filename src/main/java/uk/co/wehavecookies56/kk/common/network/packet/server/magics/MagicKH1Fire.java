@@ -8,6 +8,8 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Fira;
+import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Firaga;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Fire;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -42,10 +44,16 @@ public class MagicKH1Fire extends AbstractMessage.AbstractServerMessage<MagicKH1
 				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(new EntityKH1Fire(world), 1), player, 64.0D);
 				break;
 			case 2:
-				//world.spawnEntityInWorld(new EntityFira(world, player, player.posX, player.posY, player.posZ));
+				EntityKH1Fira entityKH1Fira = new EntityKH1Fira(world, player);
+				world.spawnEntityInWorld(entityKH1Fira);
+				entityKH1Fira.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
+				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(new EntityKH1Fira(world), 1), player, 64.0D);	
 				break;
 			case 3:
-				//world.spawnEntityInWorld(new EntityFiraga(world, player, player.posX, player.posY, player.posZ));
+				EntityKH1Firaga entityKH1Firaga = new EntityKH1Firaga(world, player);
+				world.spawnEntityInWorld(entityKH1Firaga);
+				entityKH1Firaga.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
+				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(new EntityKH1Firaga(world), 1), player, 64.0D);	
 				break;
 		}
 		PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);

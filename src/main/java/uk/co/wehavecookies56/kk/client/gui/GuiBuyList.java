@@ -436,7 +436,7 @@ public class GuiBuyList extends GuiScrollingList {
 		itemsForSale.add(TwilightShard);
 		itemsForSale.add(TwilightStone);
 		itemsForSale.add(TwilightGem);
-		itemsForSale.add(TranquilCrystal);
+		itemsForSale.add(TwilightCrystal);
 
 		itemsForSale.add(Orichalcum);
 		itemsForSale.add(OrichalcumPlus);
