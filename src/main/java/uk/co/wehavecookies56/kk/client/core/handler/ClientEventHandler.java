@@ -437,7 +437,8 @@ public class ClientEventHandler {
 
 			double dx = player.posX - target.posX;
 			double dz = player.posZ - target.posZ;
-            double dy = player.posY - (target.posY - (target.height / 2.0F));
+           // double dy = player.posY - (target.posY - (target.height / 2.0F));
+            double dy = player.posY - (target.posY + (target.height / 2.0F)-player.height);
 			double angle = Math.atan2(dz, dx) * 180 / Math.PI;
 			double pitch = Math.atan2(dy, Math.sqrt(dx * dx + dz * dz)) * 180 / Math.PI;
 			double distance = player.getDistanceToEntity(target);
