@@ -17,7 +17,6 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticles;
 
 public class EntityKH1Firaga extends EntityThrowable {
-	private static final ResourceLocation resourceLocation = new ResourceLocation(Reference.MODID, "textures/entity/fire.png");
 	public EntityPlayer shootingEntity;
 
 	public EntityKH1Firaga (World world) {

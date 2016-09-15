@@ -14,11 +14,12 @@ import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticles;
 
 public class EntityKH1Fire extends EntityThrowable {
 	private static final ResourceLocation resourceLocation = new ResourceLocation(Reference.MODID, "textures/entity/fire.png");
-	public EntityPlayer shootingEntity;
+	public EntityLivingBase shootingEntity;
 
 	public EntityKH1Fire (World world) {
 		super(world);
@@ -26,7 +27,8 @@ public class EntityKH1Fire extends EntityThrowable {
 
 	public EntityKH1Fire (World world, EntityLivingBase entity) {
 		super(world, entity);
-		shootingEntity = (EntityPlayer) entity;
+		shootingEntity = entity;
+
 
 	}
 
@@ -42,18 +44,19 @@ public class EntityKH1Fire extends EntityThrowable {
 	@Override
 	public void onUpdate () {
 		if (shootingEntity == null) return;
-		int rotation = 0;
 		if (shootingEntity instanceof EntityPlayer)
 		{
 			if (!worldObj.isRemote) 
-				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), shootingEntity, 64.0D);
+				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), (EntityPlayer)shootingEntity, 64.0D);
 			if(InputHandler.lockOn != null)
 			{
 				EntityLiving target = (EntityLiving)InputHandler.lockOn;
 				setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);	
 			}
-		}		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-		this.rotationYaw = (rotation + 1) % 360;
+		}else{
+			if (!worldObj.isRemote) 
+				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this,1), dimension, this.posX, this.posY, this.posZ, 64D);
+		}
 		if (ticksExisted > 60) setDead();
 		super.onUpdate();
 	}
@@ -69,7 +72,10 @@ public class EntityKH1Fire extends EntityThrowable {
 					applyEnchantments(this.shootingEntity, movingObject.entityHit);
 
 					if (!movingObject.entityHit.isImmuneToFire()) movingObject.entityHit.setFire(5);
-					movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), DamageCalculation.getMagicDamage(shootingEntity,1));
+					if (shootingEntity instanceof EntityPlayer)
+						movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) shootingEntity), DamageCalculation.getMagicDamage((EntityPlayer) shootingEntity, 1));
+					else
+						movingObject.entityHit.attackEntityFrom(DamageSource.causeMobDamage(shootingEntity), 5);
 				}
 			} else {
 				flag = true;

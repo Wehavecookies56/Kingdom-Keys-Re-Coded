@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAITarget;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.util.math.MathHelper;
+import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Fire;
 
 public class EntityAIRedNocturne extends EntityAITarget
 {
@@ -33,7 +34,8 @@ public class EntityAIRedNocturne extends EntityAITarget
 	    		double d2 = this.taskOwner.getAttackTarget().getEntityBoundingBox().minY + (double)(this.taskOwner.getAttackTarget().height / 2.0F) - (this.taskOwner.posY + (double)(this.taskOwner.height / 2.0F));
 	    		double d3 = this.taskOwner.getAttackTarget().posZ - this.taskOwner.posZ;
 	    		System.out.println(d2);
-	    		EntitySmallFireball esfb = new EntitySmallFireball(this.taskOwner.worldObj, this.taskOwner, d1 + this.taskOwner.getRNG().nextGaussian(), d2, d3 + this.taskOwner.getRNG().nextGaussian());
+	    		EntityKH1Fire esfb = new EntityKH1Fire(this.taskOwner.worldObj, this.taskOwner);
+	    		esfb.setThrowableHeading(d1, d2, d3, 1, 0);
 	    		esfb.posY = this.taskOwner.posY + (double)(this.taskOwner.height / 2.0F) + 0.5D;
 	    		this.taskOwner.worldObj.spawnEntityInWorld(esfb);
 	    		ticksBeforeNextFlame = 30 + this.taskOwner.getRNG().nextInt(10);

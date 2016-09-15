@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -38,7 +39,6 @@ public class EntityBlizzard extends EntityThrowable {
 	public void onUpdate () {
 		super.onUpdate();
 		if (shootingEntity == null) return;
-		int rotation = 0;
 		if (shootingEntity instanceof EntityPlayer)
 		{
 			if (!worldObj.isRemote) 
@@ -48,9 +48,10 @@ public class EntityBlizzard extends EntityThrowable {
 				EntityLiving target = (EntityLiving)InputHandler.lockOn;
 				setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);	
 			}
+		}else{
+			if (!worldObj.isRemote) 
+				PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this,1), dimension, this.posX, this.posY, this.posZ, 64D);
 		}
-		
-		this.rotationYaw = (rotation + 1) % 360;
 		if (ticksExisted > 60) setDead();
 	}
 
