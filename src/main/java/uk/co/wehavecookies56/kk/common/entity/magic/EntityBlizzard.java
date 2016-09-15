@@ -43,11 +43,6 @@ public class EntityBlizzard extends EntityThrowable {
 		{
 			if (!worldObj.isRemote) 
 				PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this, 1), (EntityPlayer) shootingEntity, 64.0D);
-			if(InputHandler.lockOn != null)
-			{
-				EntityLiving target = (EntityLiving)InputHandler.lockOn;
-				setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);	
-			}
 		}else{
 			if (!worldObj.isRemote) 
 				PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this,1), dimension, this.posX, this.posY, this.posZ, 64D);
