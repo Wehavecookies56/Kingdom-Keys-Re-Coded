@@ -22,21 +22,6 @@ public class ItemRealKeyblade extends ItemKeyblade {
 		super(strength, magic);
 		setMaxStackSize(1);
 	}
-	
-	@Override
-	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack) 
-	{
-		if (entityLiving instanceof EntityPlayer)
-    	{
-    		EntityPlayer player = (EntityPlayer) entityLiving;
-    		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName() == Strings.Form_Wisdom)
-    		{
-    			PacketDispatcher.sendToServer(new MagicWisdomShot());
-    		}
-
-    	}
-		return false;
-	}
 
     @Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player, EnumHand hand)

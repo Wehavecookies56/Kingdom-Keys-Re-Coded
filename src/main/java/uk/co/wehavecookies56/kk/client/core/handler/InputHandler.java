@@ -43,6 +43,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
 import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicWisdomShot;
 
 public class InputHandler {
 
@@ -205,6 +206,10 @@ public class InputHandler {
 		switch (GuiCommandMenu.selected) {
             case GuiCommandMenu.ATTACK:
                     player.swingArm(EnumHand.MAIN_HAND);
+                	if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom))
+            		{
+            			PacketDispatcher.sendToServer(new MagicWisdomShot());
+            		}
                 break;
 			case GuiCommandMenu.MAGIC:
 				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
@@ -467,13 +472,13 @@ public class InputHandler {
 			return;
 		}
 
-		if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
+		/*if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
 		    if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom)) {
 		        event.setCanceled(true);
             } else {
                 event.setCanceled(false);
             }
-        }
+        }*/
 
 		if (event.getButton() == Constants.LEFT_MOUSE && KeyboardHelper.isScrollActivatorDown() && event.isButtonstate()) {
 			commandEnter();
