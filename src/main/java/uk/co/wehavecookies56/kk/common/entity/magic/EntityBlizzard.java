@@ -46,7 +46,7 @@ public class EntityBlizzard extends EntityThrowable {
 			if(InputHandler.lockOn != null)
 			{
 				EntityLiving target = (EntityLiving)InputHandler.lockOn;
-				setThrowableHeading(target.posX - this.posX, target.posY - this.posY + 1.25, target.posZ - this.posZ, 1.5f, 0);	
+				setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);	
 			}
 		}
 		
