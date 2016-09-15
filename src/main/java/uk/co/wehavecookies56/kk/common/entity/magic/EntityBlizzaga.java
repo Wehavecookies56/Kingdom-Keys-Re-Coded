@@ -36,46 +36,23 @@ public class EntityBlizzaga extends EntityThrowable {
 	}
 
 	@Override
-	public void onUpdate () {
-		super.onUpdate();
-		if (shootingEntity == null) return;
-		int rotation = 0;
-		if (shootingEntity instanceof EntityPlayer)
-		{
-			if (!worldObj.isRemote) 
-				PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this, 3), (EntityPlayer) shootingEntity, 64.0D);
-			if(InputHandler.lockOn != null)
-			{
-				EntityLiving target = (EntityLiving)InputHandler.lockOn;
-				setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);	
-			}
-		}
-		this.rotationYaw = (rotation + 1) % 360;
-		if (ticksExisted > 60) setDead();
-	}
-	
-	@Override
 	protected void onImpact (RayTraceResult movingObject) {
 		if (!this.worldObj.isRemote) {
-			boolean flag;
-
 			if (movingObject.entityHit != null) {
-				flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 16);
-				if (flag) {
+				if (movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 8)) {
 					applyEnchantments(this.shootingEntity, movingObject.entityHit);
 					if (movingObject.entityHit.isBurning())
 						movingObject.entityHit.extinguish();
 					else
-						movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(shootingEntity), DamageCalculation.getMagicDamage(shootingEntity,3));
+						if (shootingEntity instanceof EntityPlayer)
+							movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) shootingEntity), DamageCalculation.getMagicDamage((EntityPlayer) shootingEntity, 3));
+						else
+							movingObject.entityHit.attackEntityFrom(DamageSource.causeMobDamage(shootingEntity), 5);
 				}
 			} else {
-				flag = true;
 
-				if (this.shootingEntity != null && this.shootingEntity instanceof EntityPlayer) flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
-
-				if (flag) {
+				if (this.shootingEntity != null) {
 					BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);
-
 					if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.WATER)
 						this.worldObj.setBlockState(blockpos, Blocks.ICE.getDefaultState());
 					else if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.FIRE)
@@ -86,5 +63,4 @@ public class EntityBlizzaga extends EntityThrowable {
 			setDead();
 		}
 	}
-
 }

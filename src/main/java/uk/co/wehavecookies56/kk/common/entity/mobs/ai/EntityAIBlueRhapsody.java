@@ -32,7 +32,6 @@ public class EntityAIBlueRhapsody extends EntityAITarget
 	    		double d1 = this.taskOwner.getAttackTarget().posX - this.taskOwner.posX;
 	    		double d2 = this.taskOwner.getAttackTarget().getEntityBoundingBox().minY + (double)(this.taskOwner.getAttackTarget().height / 2.0F) - (this.taskOwner.posY + (double)(this.taskOwner.height / 2.0F));
 	    		double d3 = this.taskOwner.getAttackTarget().posZ - this.taskOwner.posZ;
-
 	    		EntityBlizzard esfb = new EntityBlizzard(this.taskOwner.worldObj, this.taskOwner);
 	    		esfb.setThrowableHeading(d1, d2, d3, 1, 0);
 	    		esfb.posY = this.taskOwner.posY + (double)(this.taskOwner.height / 2.0F) + 0.5D;

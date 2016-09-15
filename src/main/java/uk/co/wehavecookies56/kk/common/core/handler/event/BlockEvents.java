@@ -11,12 +11,31 @@ import uk.co.wehavecookies56.kk.common.item.ItemStacks;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 
 /**
  * Created by Toby on 19/07/2016.
  */
 public class BlockEvents {
 
+	@SubscribeEvent
+	public void onBlockBreak(BlockEvent.BreakEvent event)
+	{
+        if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID) {
+        	if(!event.getPlayer().capabilities.isCreativeMode)
+        		event.setCanceled(true);
+        }
+	}
+	
+	@SubscribeEvent
+	public void onBlockPlace(BlockEvent.PlaceEvent event)
+	{
+        if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID) {
+        	if(!event.getPlayer().capabilities.isCreativeMode)
+        		event.setCanceled(true);
+        }
+	}
+	
     @SubscribeEvent
     public void onBlockDestroyed (BlockEvent.HarvestDropsEvent event) {
         int fortune;

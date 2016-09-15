@@ -61,30 +61,24 @@ public class EntityKH1Firaga extends EntityThrowable {
 	@Override
 	protected void onImpact (RayTraceResult movingObject) {
 		if (!this.worldObj.isRemote) {
-			boolean flag;
-
 			if (movingObject.entityHit != null) {
-				flag = movingObject.entityHit != null;
-				if (flag) {
+				if (movingObject.entityHit != null) {
 					applyEnchantments(this.shootingEntity, movingObject.entityHit);
-
 					if (!movingObject.entityHit.isImmuneToFire()) movingObject.entityHit.setFire(5);
-					movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), DamageCalculation.getMagicDamage(shootingEntity,3));
+					if (shootingEntity instanceof EntityPlayer)
+						movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) shootingEntity), DamageCalculation.getMagicDamage((EntityPlayer) shootingEntity, 3));
+					else
+						movingObject.entityHit.attackEntityFrom(DamageSource.causeMobDamage(shootingEntity), 5);
 				}
 			} else {
-				flag = true;
-
-				if (this.shootingEntity != null && this.shootingEntity instanceof EntityPlayer) flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
-
-				if (flag) {
+				if (this.shootingEntity != null) 
+				if (this.worldObj.getGameRules().getBoolean("mobGriefing")) {
 					BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);
-
-					if (this.worldObj.isAirBlock(blockpos)) this.worldObj.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
+					if (this.worldObj.isAirBlock(blockpos)) 
+						this.worldObj.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
 				}
 			}
-
 			setDead();
 		}
 	}
-
 }

@@ -58,11 +58,8 @@ public class EntityBlizzard extends EntityThrowable {
 	@Override
 	protected void onImpact (RayTraceResult movingObject) {
 		if (!this.worldObj.isRemote) {
-			boolean flag;
-
 			if (movingObject.entityHit != null) {
-				flag = movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 8);
-				if (flag) {
+				if (movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 8)) {
 					applyEnchantments(this.shootingEntity, movingObject.entityHit);
 					if (movingObject.entityHit.isBurning())
 						movingObject.entityHit.extinguish();
@@ -73,13 +70,9 @@ public class EntityBlizzard extends EntityThrowable {
 							movingObject.entityHit.attackEntityFrom(DamageSource.causeMobDamage(shootingEntity), 5);
 				}
 			} else {
-				flag = true;
 
-				if (this.shootingEntity != null && this.shootingEntity instanceof EntityPlayer) flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
-
-				if (flag) {
+				if (this.shootingEntity != null) {
 					BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);
-
 					if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.WATER)
 						this.worldObj.setBlockState(blockpos, Blocks.ICE.getDefaultState());
 					else if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.FIRE)
@@ -90,5 +83,4 @@ public class EntityBlizzard extends EntityThrowable {
 			setDead();
 		}
 	}
-
 }
