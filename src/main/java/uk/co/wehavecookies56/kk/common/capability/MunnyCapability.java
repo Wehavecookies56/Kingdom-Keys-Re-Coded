@@ -35,7 +35,14 @@ public class MunnyCapability {
         @Override public int getMunny() { return this.munny; }
         @Override public void setMunny(int value) { this.munny = value; }
         @Override public void addMunny(int value) { this.munny += value; }
-        @Override public void remMunny(int value) { this.munny -= value; }
+        @Override public void remMunny(int value) { 
+        	if(this.munny-value >= 0){
+        		this.munny -= value; 
+        	}else{
+        		this.munny = 0;
+        	}
+        	
+        }
 
     }
 }

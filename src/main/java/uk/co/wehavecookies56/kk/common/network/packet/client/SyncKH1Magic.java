@@ -33,6 +33,4 @@ public class SyncKH1Magic extends AbstractClientMessage<SyncKH1Magic> {
 	public void process(EntityPlayer player, Side side) {
 		player.getCapability(ModCapabilities.MAGIC_STATE, null).setKH1Fire(kh1fire);
 	}
-
-
 }
