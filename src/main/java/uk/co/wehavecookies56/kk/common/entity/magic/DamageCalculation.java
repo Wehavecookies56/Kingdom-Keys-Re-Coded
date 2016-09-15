@@ -8,6 +8,11 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class DamageCalculation {
+	public static float fireMultiplier = 0.8F;
+	public static float blizzardMultiplier = 1;
+	public static float aeroMultiplier = 0.4F;
+	
+	
 	public static float getMagicDamage(EntityPlayer player, int level, ItemKeyblade keyblade) {
 		float damage = 0;
 		float finalDamage = 0;

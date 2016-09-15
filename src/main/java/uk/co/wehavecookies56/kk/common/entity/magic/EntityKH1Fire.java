@@ -69,7 +69,7 @@ public class EntityKH1Fire extends EntityThrowable {
 					applyEnchantments(this.shootingEntity, movingObject.entityHit);
 					if (!movingObject.entityHit.isImmuneToFire()) movingObject.entityHit.setFire(5);
 					if (shootingEntity instanceof EntityPlayer)
-						movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) shootingEntity), DamageCalculation.getMagicDamage((EntityPlayer) shootingEntity, 1));
+						movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) shootingEntity), DamageCalculation.getMagicDamage((EntityPlayer) shootingEntity, 1)*DamageCalculation.fireMultiplier);
 					else
 						movingObject.entityHit.attackEntityFrom(DamageSource.causeMobDamage(shootingEntity), 5);
 				}

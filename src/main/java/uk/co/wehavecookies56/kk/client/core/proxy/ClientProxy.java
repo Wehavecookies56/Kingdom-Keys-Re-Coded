@@ -107,7 +107,6 @@ public class ClientProxy extends CommonProxy
         ModelLoader.setCustomModelResourceLocation(ModItems.PoorMelissa, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.PoorMelissa, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.JiltedAnemone, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.JiltedAnemone, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.MissingAche, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.MissingAche, "inventory"));
-        
 		ModelLoader.setCustomModelResourceLocation(ModItems.FollowtheWind, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FollowtheWind, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.FrolicFlame, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FrolicFlame, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.FrozenPride, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FrozenPride, "inventory"));
@@ -183,6 +182,7 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.YoungXehanortsKeyblade, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.YoungXehanortsKeyblade, "inventory"));
 
 		ModelLoader.setCustomModelResourceLocation(ModItems.Lunatic, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Lunatic, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ModItems.Standalone, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Standalone, "inventory"));
 
 		
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));

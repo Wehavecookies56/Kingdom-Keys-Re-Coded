@@ -64,7 +64,7 @@ public class EntityBlizzara extends EntityThrowable {
 						movingObject.entityHit.extinguish();
 					else
 						if (shootingEntity instanceof EntityPlayer)
-							movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) shootingEntity), DamageCalculation.getMagicDamage((EntityPlayer) shootingEntity, 2));
+							movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) shootingEntity), DamageCalculation.getMagicDamage((EntityPlayer) shootingEntity, 2)*DamageCalculation.blizzardMultiplier);
 						else
 							movingObject.entityHit.attackEntityFrom(DamageSource.causeMobDamage(shootingEntity), 5);
 				}

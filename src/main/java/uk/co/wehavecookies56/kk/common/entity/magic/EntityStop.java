@@ -67,7 +67,9 @@ public class EntityStop extends Entity {
 				}
 			}
 			if (!worldObj.isRemote) {
-				((EntityPlayerMP) player).connection.sendPacket(new SPacketEntityVelocity(e.getEntityId(), 0, 0, 0));
+				if (ticksExisted < 50) {
+					((EntityPlayerMP) player).connection.sendPacket(new SPacketEntityVelocity(e.getEntityId(), 0, 0, 0));
+				}
 			}
 			
 		}

@@ -445,7 +445,8 @@ public class Strings {
 	Prominence = "prominence",
 	FickleErica = "fickleerica",
 	PoorMelissa = "poormelissa",
-	JiltedAnemone = "jiltedanemone"
+	JiltedAnemone = "jiltedanemone",
+	Standalone = "standalone"
 	;
 
 	public static final String 
