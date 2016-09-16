@@ -32,7 +32,10 @@ public class Lists {
 		orgWeapons.add(Prominence);
 		orgWeapons.add(FickleErica);
 		orgWeapons.add(PoorMelissa);
-		
+		orgWeapons.add(JiltedAnemone);
+		orgWeapons.add(Standalone);
+		orgWeapons.add(Zephyr);
+
 		recipes.add(AbaddonPlasma.getUnlocalizedName());
 		recipes.add(AbyssalTide.getUnlocalizedName());
 		recipes.add(AllforOne.getUnlocalizedName());
