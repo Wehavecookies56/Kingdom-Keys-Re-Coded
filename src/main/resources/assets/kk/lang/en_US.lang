@@ -375,14 +375,8 @@ item.prominence.name=Prominence
 item.fickleerica.name=Fickle Erica
 item.poormelissa.name=Poor Melissa
 item.jiltedanemone.name=Jilted Anemone
-<<<<<<< HEAD
 item.zephyr.name=Zephyr
 item.standalone.name=Stand-Alone
-=======
-item.standalone.name=Standalone
-item.zephyr.name=Zephyr
-
->>>>>>> 449988881a907f24eaac178627262c2c8aef6cb3
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
