@@ -373,6 +373,10 @@ item.ifrit.name=Ifrit
 item.prominence.name=Prominence
 item.fickleerica.name=Fickle Erica
 item.poormelissa.name=Poor Melissa
+item.jiltedanemone.name=Jilted Anemone
+item.standalone.name=Standalone
+item.zephyr.name=Zephyr
+
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma

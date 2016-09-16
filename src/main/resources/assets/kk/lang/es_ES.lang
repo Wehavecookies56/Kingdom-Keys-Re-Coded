@@ -373,6 +373,9 @@ item.ifrit.name=Ifrit
 item.prominence.name=Importancia
 item.fickleerica.name=Ericácea Voluble
 item.poormelissa.name=Pobre Melisa
+item.jiltedanemone.name=Anémona Plantada
+item.standalone.name=Independiente
+item.zephyr.name=Céfiro
 
 #Keyblades
 item.abaddonplasma.name=Plasma de Abadón
