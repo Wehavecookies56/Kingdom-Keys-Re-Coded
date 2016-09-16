@@ -2,10 +2,7 @@ package uk.co.wehavecookies56.kk.common.block;
 
 import java.util.Random;
 
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -17,10 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -33,14 +27,15 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 
-public class BlockKKChest extends BlockContainer implements ITileEntityProvider {
+public class BlockKKChest extends Block implements ITileEntityProvider {
 	protected Random rand = new Random();
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-	protected BlockKKChest (Material material, String toolClass, int level, float hardness, float resistance) {
+	public BlockKKChest (Material material, String toolClass, int level, float hardness, float resistance) {
 		super(material);
 		this.setHarvestLevel(toolClass, level);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setHardness(hardness);
 		setResistance(resistance);
 		setSoundType(SoundType.STONE);
@@ -69,7 +64,7 @@ public class BlockKKChest extends BlockContainer implements ITileEntityProvider 
 						} else if (te.getKeyblade().getItem() != null && te.getKeyblade().getItem() == player.getHeldItemMainhand().getItem()) {
 							player.openGui(KingdomKeys.instance, GuiIDs.GUI_KKCHEST_INV, world, pos.getX(), pos.getY(), pos.getZ());
 							return true;
-						} else if (hand == EnumHand.MAIN_HAND){
+						} else if (hand == EnumHand.MAIN_HAND) {
 							player.addChatComponentMessage(new TextComponentString(TextFormatting.RED + "The chest is locked with another keyblade"));
 							return false;
 						} else {
@@ -81,18 +76,44 @@ public class BlockKKChest extends BlockContainer implements ITileEntityProvider 
 		return false;
 	}
 
-	public static EnumFacing getFacingFromEntity(World worldIn, BlockPos clickedBlock, EntityLivingBase entityIn) {
-		return entityIn.getHorizontalFacing().getOpposite();
-	} 
-	
 	@Override
-	public void onBlockPlacedBy (World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-		worldIn.setBlockState(pos, state.withProperty(FACING, getFacingFromEntity(worldIn, pos, placer)), 2);
+	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+		setDefaultFacing(worldIn, pos, state);
 	}
-	
+
+	private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state) {
+		if (!worldIn.isRemote) {
+			IBlockState iblockstate = worldIn.getBlockState(pos.north());
+			IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
+			IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
+			IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
+			EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+
+			if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock()) {
+				enumfacing = EnumFacing.SOUTH;
+			}
+			else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock()) {
+				enumfacing = EnumFacing.NORTH;
+			}
+			else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock()) {
+				enumfacing = EnumFacing.EAST;
+			}
+			else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock()) {
+				enumfacing = EnumFacing.WEST;
+			}
+
+			worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
+		}
+	}
+
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
+	}
+
 	@Override
 	public IBlockState onBlockPlaced (World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return this.getDefaultState().withProperty(FACING, getFacingFromEntity(worldIn, pos, placer));
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
 	}
 	
     
@@ -105,10 +126,27 @@ public class BlockKKChest extends BlockContainer implements ITileEntityProvider 
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer (this, new IProperty[] {FACING});
     }
-    
-    public int getMetaFromState(IBlockState state) {
+
+	@Override
+	public IBlockState withRotation(IBlockState state, Rotation rot) {
+		return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+	}
+
+	@Override
+	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+		return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+	}
+
+	public int getMetaFromState(IBlockState state) {
 		return ((EnumFacing)state.getValue(FACING)).getIndex();
     }
+
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		EnumFacing enumfacing = EnumFacing.getFront(meta);
+		if (enumfacing.getAxis() == EnumFacing.Axis.Y) enumfacing = EnumFacing.NORTH;
+		return this.getDefaultState().withProperty(FACING, enumfacing);
+	}
 
 	@Override
 	public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {

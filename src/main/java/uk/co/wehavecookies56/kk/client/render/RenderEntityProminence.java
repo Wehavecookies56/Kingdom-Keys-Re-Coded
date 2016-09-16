@@ -37,7 +37,7 @@ public class RenderEntityProminence extends Render implements IRenderFactory<Ent
 		float f3 = pitch;
 
 		float f4 = 0.5F;
-		GL11.glScalef(0.02f, 0.02f, 0.02f);
+		GL11.glScalef(0.25f, 0.25f, 0.25f);
 
 		GL11.glRotatef(yaw * 100, 0, 0, 1);
 

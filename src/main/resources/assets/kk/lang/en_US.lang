@@ -137,6 +137,7 @@ tile.kkchest.desc1=Yes I know, the chest is stuck open right now.
 tile.kkchest.desc2=Will only open with a keyblade in hand
 tile.savepoint.name=Save Point
 tile.savepoint.desc=Sneak while standing on it to set your spawn point
+tile.stationofawakeningdoor.name=Station of Awakening Door
 
 ############################
 #Items
@@ -373,6 +374,9 @@ item.ifrit.name=Ifrit
 item.prominence.name=Prominence
 item.fickleerica.name=Fickle Erica
 item.poormelissa.name=Poor Melissa
+item.jiltedanemone.name=Jilted Anemone
+item.zephyr.name=Zephyr
+item.standalone.name=Stand-Alone
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
