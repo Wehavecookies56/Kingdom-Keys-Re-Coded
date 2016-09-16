@@ -33,17 +33,4 @@ public class ItemBookofRetribution extends ItemOrgWeapon {
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
 		dataList.add("VI Zexion");
 	}
-
-	/*
-	TEMP WAY TO TRAVEL TO DIMENSION
-	 */
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
-		if (hand.equals(EnumHand.MAIN_HAND)){
-			if (playerIn.dimension != ModDimensions.diveToTheHeartID)
-				if (!worldIn.isRemote)
-					new TeleporterDiveToTheHeart(worldIn.getMinecraftServer().getServer().worldServerForDimension(ModDimensions.diveToTheHeartID)).teleport(playerIn, worldIn);
-		}
-		return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
-	}
 }
