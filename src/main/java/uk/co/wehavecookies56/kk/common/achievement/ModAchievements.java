@@ -127,6 +127,7 @@ public class ModAchievements {
         getPrizeBlox.registerStat();
         allRecipes.registerStat();
         getChest.registerStat();
+        getKiblade.registerStat();
 
 	}
 
