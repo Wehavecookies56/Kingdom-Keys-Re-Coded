@@ -10,8 +10,8 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 0
-map_Kd kk:items\models\standalone
-map_d  kk:items\models\standalone
+map_Kd kk:items/models/standalone
+map_d  kk:items/models/standalone
 
 newmtl mat2
 Ns 96.078431
@@ -22,8 +22,8 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 0
-map_Kd kk:items\models\standalone2
-map_d  kk:items\models\standalone2
+map_Kd kk:items/models/standalone2
+map_d  kk:items/models/standalone2
 
 newmtl mat3
 Ns 96.078431
@@ -34,5 +34,5 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 0
-map_Kd kk:items\models\standalone3
-map_d  kk:items\models\standalone3
+map_Kd kk:items/models/standalone3
+map_d  kk:items/models/standalone3
