@@ -29,6 +29,7 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
+import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
@@ -375,6 +376,7 @@ public class InputHandler {
                             if (reachSq >= distanceSq) {
                             	if (rtr.entityHit instanceof EntityLivingBase){
                                 	lockOn = (EntityLivingBase) rtr.entityHit;
+                                	LockOn.target = (EntityLivingBase) rtr.entityHit;
                         			player.worldObj.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
                             	}
                             }

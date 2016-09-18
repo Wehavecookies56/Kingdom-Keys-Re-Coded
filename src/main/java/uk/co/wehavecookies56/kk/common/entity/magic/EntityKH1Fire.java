@@ -20,16 +20,15 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticl
 public class EntityKH1Fire extends EntityThrowable {
 	private static final ResourceLocation resourceLocation = new ResourceLocation(Reference.MODID, "textures/entity/fire.png");
 	public EntityLivingBase shootingEntity;
-
+	public EntityLivingBase target;
 	public EntityKH1Fire (World world) {
 		super(world);
 	}
 
-	public EntityKH1Fire (World world, EntityLivingBase entity) {
+	public EntityKH1Fire (World world, EntityLivingBase entity, EntityLivingBase target) {
 		super(world, entity);
 		shootingEntity = entity;
-
-
+		this.target = target;
 	}
 
 	public EntityKH1Fire (World world, double x, double y, double z) {
@@ -48,7 +47,7 @@ public class EntityKH1Fire extends EntityThrowable {
 		{
 			if (!worldObj.isRemote) 
 				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), (EntityPlayer)shootingEntity, 64.0D);
-			if(InputHandler.lockOn != null)
+			if(target != null)
 			{
 				EntityLiving target = (EntityLiving)InputHandler.lockOn;
 				setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);	

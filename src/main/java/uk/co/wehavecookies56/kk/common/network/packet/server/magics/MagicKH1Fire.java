@@ -8,6 +8,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Fira;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Firaga;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Fire;
@@ -36,9 +37,10 @@ public class MagicKH1Fire extends AbstractMessage.AbstractServerMessage<MagicKH1
 	public void process (EntityPlayer player, Side side) {
 		if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(Constants.getCost(Strings.Spell_Fire));
 		World world = player.worldObj;
+		
 		switch (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(Strings.Spell_Fire)) {
 			case 1:
-				EntityKH1Fire entityKH1Fire = new EntityKH1Fire(world, player);
+				EntityKH1Fire entityKH1Fire = new EntityKH1Fire(world, player, LockOn.target);
 				world.spawnEntityInWorld(entityKH1Fire);
 				entityKH1Fire.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
 				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(new EntityKH1Fire(world), 1), player, 64.0D);
