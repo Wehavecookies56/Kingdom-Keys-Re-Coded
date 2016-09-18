@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
+import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardParticles;
@@ -20,15 +21,13 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticl
 public class EntityKH1Fire extends EntityThrowable {
 	private static final ResourceLocation resourceLocation = new ResourceLocation(Reference.MODID, "textures/entity/fire.png");
 	public EntityLivingBase shootingEntity;
-	public EntityLivingBase target;
 	public EntityKH1Fire (World world) {
 		super(world);
 	}
 
-	public EntityKH1Fire (World world, EntityLivingBase entity, EntityLivingBase target) {
+	public EntityKH1Fire (World world, EntityLivingBase entity) {
 		super(world, entity);
 		shootingEntity = entity;
-		this.target = target;
 	}
 
 	public EntityKH1Fire (World world, double x, double y, double z) {
@@ -47,9 +46,9 @@ public class EntityKH1Fire extends EntityThrowable {
 		{
 			if (!worldObj.isRemote) 
 				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), (EntityPlayer)shootingEntity, 64.0D);
-			if(target != null)
+			if(LockOn.target != null)
 			{
-				EntityLiving target = (EntityLiving)InputHandler.lockOn;
+				EntityLiving target = (EntityLiving) LockOn.target;
 				setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);	
 			}
 		}else{

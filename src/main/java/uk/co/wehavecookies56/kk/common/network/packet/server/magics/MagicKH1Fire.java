@@ -40,7 +40,7 @@ public class MagicKH1Fire extends AbstractMessage.AbstractServerMessage<MagicKH1
 		
 		switch (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(Strings.Spell_Fire)) {
 			case 1:
-				EntityKH1Fire entityKH1Fire = new EntityKH1Fire(world, player, LockOn.target);
+				EntityKH1Fire entityKH1Fire = new EntityKH1Fire(world, player);
 				world.spawnEntityInWorld(entityKH1Fire);
 				entityKH1Fire.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
 				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(new EntityKH1Fire(world), 1), player, 64.0D);
