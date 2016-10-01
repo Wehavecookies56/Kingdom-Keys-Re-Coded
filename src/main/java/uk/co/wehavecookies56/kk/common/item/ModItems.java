@@ -953,7 +953,6 @@ public class ModItems {
 		registerRender(BookofRetribution);
 		registerRender(Lunatic);
 		registerRender(FairGame);
-		registerRender(Foudre);
 
 		// Knowledge
 		registerRender(AbandonedKnowledge);
