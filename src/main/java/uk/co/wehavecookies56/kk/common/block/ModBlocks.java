@@ -99,7 +99,7 @@ public class ModBlocks {
 		registerBlock(MagnetBlox, Strings.MagnetBlox);
         registerBlock(StationOfAwakening, Strings.StationOfAwakening);
         registerBlock(StationOfAwakeningDoor, Strings.StationOfAwakeningDoor);
-        registerBlock(Pedestal, Strings.Pedestal);
+        //registerBlock(Pedestal, Strings.Pedestal);
 
 	}
 
@@ -156,7 +156,7 @@ public class ModBlocks {
 		registerRender(SavePoint);
 		registerRender(MagnetBlox);
         registerRender(StationOfAwakeningDoor);
-        registerRender(Pedestal);
+        //registerRender(Pedestal);
 
 	}
 
