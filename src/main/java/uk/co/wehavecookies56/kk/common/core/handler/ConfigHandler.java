@@ -22,7 +22,8 @@ public class ConfigHandler {
 			EnableCustomMusic = true,
 			ForceEnableCustomMusic = false,
 			DisableVanillaTooltip = true,
-			EnableStationOfAwakening = true;
+			EnableStationOfAwakening = true,
+			EnableHeartless = false;
 	;
 
 	public static int[] interfaceColour = new int[] { 255, 0, 0 };
@@ -46,6 +47,7 @@ public class ConfigHandler {
 	public static void load() {
 
 		final String WORLDGEN = propertyCategory("worldgen", Configuration.CATEGORY_GENERAL);
+		final String SPAWNING = propertyCategory("spawning", Configuration.CATEGORY_GENERAL);
 		final String NETWORK = propertyCategory("network", Configuration.CATEGORY_GENERAL);
 		final String INTERFACE = propertyCategory("interface", Configuration.CATEGORY_CLIENT);
 		final String SOUND = propertyCategory("sound", Configuration.CATEGORY_CLIENT);
@@ -55,6 +57,9 @@ public class ConfigHandler {
 		//WORLDGEN
 		EnableWorldGen = configProperty("Enable World Gen", "Toggles all world generation performed by this mod", EnableWorldGen, WORLDGEN);
 		EnableStationOfAwakening = configProperty("Enable Station of Awakening", "Toggles whether the Station of Awakening should be enabled", EnableStationOfAwakening, WORLDGEN);
+		
+		//SPAWNING
+		EnableHeartless = configProperty("Enable Heartless Spawining", "Toggles whether Heartless should spawn (Temporary option)", EnableHeartless, SPAWNING);
 
 		//NETWORK
 		EnableUpdateCheck = configProperty("Enable Update Checking", "Toggles whether the update checker checks for updates", EnableUpdateCheck, NETWORK);
@@ -76,7 +81,9 @@ public class ConfigHandler {
 		//ITEMS
 		DisableVanillaTooltip = configProperty("Disable Vanilla Tooltips", "Disables the vanilla tooltip information for keyblades", DisableVanillaTooltip, INTERFACE);
 		damageMultiplier = configProperty("Keyblade damage multiplier", "Keyblade Strength and Magic will be multiplied by the amount (can be decimal)", damageMultiplier, ITEMS);
-		if (config.hasChanged()) config.save();
+		
+		if (config.hasChanged())
+			config.save();
 	}
 
 	private static boolean configProperty(String name, String description, boolean defaultValue, String category) {
