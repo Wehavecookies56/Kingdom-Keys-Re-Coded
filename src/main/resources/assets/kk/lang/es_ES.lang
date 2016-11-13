@@ -374,8 +374,9 @@ item.prominence.name=Importancia
 item.fickleerica.name=Ericácea Voluble
 item.poormelissa.name=Pobre Melisa
 item.jiltedanemone.name=Anémona Plantada
-item.standalone.name=Independiente
 item.zephyr.name=Céfiro
+item.standalone.name=Independiente
+item.reticence.name=Reticencia
 
 #Keyblades
 item.abaddonplasma.name=Plasma de Abadón
@@ -725,6 +726,8 @@ gui.synthesis.main.materials=Materiales
 gui.synthesis.main.recipes.requiredmaterials=Materiales Requeridos
 gui.synthesis.main.recipes.create=Fabricar
 gui.synthesis.main.materials.deposit=Depositar Materiales
+gui.synthesis.main.materials.deposit.inventory=Inventario
+gui.synthesis.main.materials.deposit.bag=Bolsa de Síntesis
 gui.synthesis.main.materials.takeone=Coger 1
 gui.synthesis.main.materials.takehalfstack=Coger medio stack
 gui.synthesis.main.materials.takestack=Coger un stack

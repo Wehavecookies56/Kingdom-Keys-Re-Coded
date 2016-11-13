@@ -75,8 +75,8 @@ public class GuiSynthesis extends GuiTooltip {
 		this.buttonList.add(FreeDev = new GuiButton(FREEDEV, 5, 65 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_FreeDev)));
 		this.buttonList.add(Materials = new GuiButton(MATERIALS, 5, 90 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials)));
 
-		this.buttonList.add(Deposit = new GuiButton(DEPOSIT, 200, height - ((height / 8) + 70 / 16), 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_Deposit)));
-		this.buttonList.add(DepositBag = new GuiButton(DEPOSITBAG, 300, height - ((height / 8) + 70 / 16), 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_Deposit_Bag)));
+		this.buttonList.add(Deposit = new GuiButton(DEPOSIT, width - 105, height - ((height / 2) + 90), 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_Deposit_Inv)));
+		this.buttonList.add(DepositBag = new GuiButton(DEPOSITBAG, width - 105, height - ((height / 2) + 70), 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_Deposit_Bag)));
 
 		
 		this.buttonList.add(Take1 = new GuiButton(TAKE1, 195, height - ((height / 8) + 70 / 16) - 25, 75, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_TakeOne)));
@@ -383,8 +383,10 @@ public class GuiSynthesis extends GuiTooltip {
 		drawBackground(width, height);
 		if (submenu != MAIN && submenu == RECIPES)
 			drawSelected(mouseX, mouseY);
-		else if (submenu != MAIN && submenu == MATERIALS)
+		else if (submenu != MAIN && submenu == MATERIALS){
 			drawSelectedMaterial(mouseX, mouseY);
+			this.drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_Deposit), width - 107, height - ((height / 2) + 105), 0xFFFFFF);
+		}
 		else if (submenu != MAIN && submenu == FREEDEV)
 			drawSelectedFreeDev(mouseX, mouseY);
 		else {

@@ -377,6 +377,7 @@ item.poormelissa.name=Poor Melissa
 item.jiltedanemone.name=Jilted Anemone
 item.zephyr.name=Zephyr
 item.standalone.name=Stand-Alone
+item.reticence.name=Reticence
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
@@ -726,6 +727,7 @@ gui.synthesis.main.materials=Materials
 gui.synthesis.main.recipes.requiredmaterials=Required Materials
 gui.synthesis.main.recipes.create=Create
 gui.synthesis.main.materials.deposit=Deposit Materials
+gui.synthesis.main.materials.deposit.bag=Deposit Materials from bags
 gui.synthesis.main.materials.takeone=Take 1
 gui.synthesis.main.materials.takehalfstack=Take Half Stack
 gui.synthesis.main.materials.takestack=Take Stack

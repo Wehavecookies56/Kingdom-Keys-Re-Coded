@@ -151,6 +151,7 @@ public class Strings {
 	Gui_Synthesis_Main_FreeDev = Gui_Synthesis_Main + ".freedevelopment",
 	Gui_Synthesis_Main_Materials = Gui_Synthesis_Main + ".materials",
 	Gui_Synthesis_Main_Materials_Deposit = Gui_Synthesis_Main_Materials + ".deposit",
+	Gui_Synthesis_Main_Materials_Deposit_Inv = Gui_Synthesis_Main_Materials_Deposit + ".inventory",
 	Gui_Synthesis_Main_Materials_Deposit_Bag = Gui_Synthesis_Main_Materials_Deposit + ".bag",
 	Gui_Synthesis_Main_Materials_TakeOne = Gui_Synthesis_Main_Materials + ".takeone",
 	Gui_Synthesis_Main_Materials_TakeHalfStack = Gui_Synthesis_Main_Materials + ".takehalfstack",
