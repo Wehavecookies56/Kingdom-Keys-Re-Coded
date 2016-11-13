@@ -36,6 +36,7 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.CreateFromSynthesisRecipe;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DepositMaterialsFromBag;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMaterials;
 import uk.co.wehavecookies56.kk.common.network.packet.server.TakeMaterials;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -44,7 +45,7 @@ public class GuiSynthesis extends GuiTooltip {
 
 	public int selected = -1;
 	public int freeDevSelected = -1;
-	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3, CREATE = 4, TAKE1 = 5, TAKESTACK = 6, TAKEHALFSTACK = 7, TAKEALL = 8, DEPOSIT = 9;
+	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3, CREATE = 4, TAKE1 = 5, TAKESTACK = 6, TAKEHALFSTACK = 7, TAKEALL = 8, DEPOSIT = 9, DEPOSITBAG=10;
 	public int submenu;
 	private final GuiScreen parentScreen;
 	protected String title = Utils.translateToLocal(Strings.Gui_Synthesis_Main_Title);
@@ -52,7 +53,7 @@ public class GuiSynthesis extends GuiTooltip {
 	private GuiMaterialList materialList;
 	private GuiFreeDevelopmentRecipeList freeDevRecipeList;
 
-	public GuiButton Back, FreeDev, Recipes, Materials, Create, Take1, TakeStack, TakeHalfStack, TakeAll, Deposit;
+	public GuiButton Back, FreeDev, Recipes, Materials, Create, Take1, TakeStack, TakeHalfStack, TakeAll, Deposit, DepositBag;
 	public int materialSelected = -1;
 
 	public GuiSynthesis (GuiScreen parentScreen) {
@@ -75,7 +76,9 @@ public class GuiSynthesis extends GuiTooltip {
 		this.buttonList.add(Materials = new GuiButton(MATERIALS, 5, 90 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials)));
 
 		this.buttonList.add(Deposit = new GuiButton(DEPOSIT, 200, height - ((height / 8) + 70 / 16), 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_Deposit)));
+		this.buttonList.add(DepositBag = new GuiButton(DEPOSITBAG, 300, height - ((height / 8) + 70 / 16), 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_Deposit_Bag)));
 
+		
 		this.buttonList.add(Take1 = new GuiButton(TAKE1, 195, height - ((height / 8) + 70 / 16) - 25, 75, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_TakeOne)));
 		this.buttonList.add(TakeHalfStack = new GuiButton(TAKEHALFSTACK, 270, height - ((height / 8) + 70 / 16) - 25, 75, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_TakeHalfStack)));
 		this.buttonList.add(TakeStack = new GuiButton(TAKESTACK, 345, height - ((height / 8) + 70 / 16) - 25, 75, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_TakeStack)));
@@ -121,6 +124,7 @@ public class GuiSynthesis extends GuiTooltip {
 				break;
 			case MATERIALS:
 				Deposit.visible = true;
+				DepositBag.visible = true;
 				submenu = MATERIALS;
 				break;
 			case CREATE:
@@ -142,34 +146,50 @@ public class GuiSynthesis extends GuiTooltip {
 
 				freeSlots = getFreeSlots();
 				foundMaterial = getInventoryMaterial(materials.get(materialSelected));
-				if (foundMaterial || freeSlots >= 1) if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 1) PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));
+				if (foundMaterial || freeSlots >= 1){
+					if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 1){ 
+						PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));
+						materialSelected=-1;
+					}
+				}
 				break;
 			case TAKEHALFSTACK:
 				materials.addAll(MATS.getKnownMaterialsMap().keySet());
 
 				freeSlots = getFreeSlots();
 				foundMaterial = getInventoryMaterial(materials.get(materialSelected));
-				if (foundMaterial || freeSlots >= 1) if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 32)
-					PacketDispatcher.sendToServer(new TakeMaterials(32, materials.get(materialSelected)));
-				else
-					PacketDispatcher.sendToServer(new TakeMaterials(MATS.getKnownMaterialsMap().get(materials.get(materialSelected)), materials.get(materialSelected)));
+				if (foundMaterial || freeSlots >= 1){
+					if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 32)
+						PacketDispatcher.sendToServer(new TakeMaterials(32, materials.get(materialSelected)));
+					else
+						PacketDispatcher.sendToServer(new TakeMaterials(MATS.getKnownMaterialsMap().get(materials.get(materialSelected)), materials.get(materialSelected)));
+					materialSelected=-1;
+				}
+
 				break;
 			case TAKESTACK:
 				materials.addAll(MATS.getKnownMaterialsMap().keySet());
 
 				freeSlots = getFreeSlots();
-				if (freeSlots >= 1) if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 64)
-					PacketDispatcher.sendToServer(new TakeMaterials(64, materials.get(materialSelected)));
-				else
-					PacketDispatcher.sendToServer(new TakeMaterials(MATS.getKnownMaterialsMap().get(materials.get(materialSelected)), materials.get(materialSelected)));
+				if (freeSlots >= 1){
+					if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 64)
+						PacketDispatcher.sendToServer(new TakeMaterials(64, materials.get(materialSelected)));
+					else
+						PacketDispatcher.sendToServer(new TakeMaterials(MATS.getKnownMaterialsMap().get(materials.get(materialSelected)), materials.get(materialSelected)));
+					materialSelected=-1;
+				}
 				break;
 			case TAKEALL:
 				materials.addAll(MATS.getKnownMaterialsMap().keySet());
 				freeSlots = getFreeSlots();
 				if (freeSlots >= 1) PacketDispatcher.sendToServer(new TakeMaterials(freeSlots * 64, materials.get(materialSelected)));
+				materialSelected=-1;
 				break;
 			case DEPOSIT:
 				PacketDispatcher.sendToServer(new OpenMaterials());
+				break;
+			case DEPOSITBAG:
+				PacketDispatcher.sendToServer(new DepositMaterialsFromBag());
 				break;
 		}
 		updateButtons();
@@ -247,6 +267,7 @@ public class GuiSynthesis extends GuiTooltip {
 			TakeHalfStack.visible = false;
 			TakeAll.visible = false;
 			Deposit.visible = false;
+			DepositBag.visible = false;
 
 		}
 		if (submenu == FREEDEV) {
@@ -275,6 +296,7 @@ public class GuiSynthesis extends GuiTooltip {
 				TakeHalfStack.visible = false;
 				TakeAll.visible = false;
 				Deposit.visible = true;
+				DepositBag.visible = true;
 
 			}
 			if (materialSelected != -1 && !isInventoryFull()) {

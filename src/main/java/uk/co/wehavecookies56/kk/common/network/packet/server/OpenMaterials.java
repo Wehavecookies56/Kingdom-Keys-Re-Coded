@@ -30,6 +30,28 @@ public class OpenMaterials extends AbstractMessage.AbstractServerMessage<OpenMat
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		for (int i = 0; i < 36; i++)
+		{
+			if (player.inventory.mainInventory[i] != null) 
+			{
+				if (player.inventory.mainInventory[i].getItem() instanceof ItemSynthesisMaterial) 
+				{
+					if (player.inventory.mainInventory[i].hasTagCompound()) 
+					{
+						String s = player.inventory.mainInventory[i].getTagCompound().getString("material");
+						if (MaterialRegistry.isMaterialRegistered(s))
+						{ 
+							player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(s), player.inventory.mainInventory[i].stackSize);
+						}
+						player.inventory.setInventorySlotContents(i, null);
+					}
+				} else if (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory[i].getItem().getUnlocalizedName().toString())) {
+					player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory[i].getItem().getUnlocalizedName()), player.inventory.mainInventory[i].stackSize);
+					player.inventory.setInventorySlotContents(i, null);
+				}
+				PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);
+			}
+		}
+		/*for (int i = 0; i < 36; i++)
 			if (player.inventory.mainInventory[i] != null) if (player.inventory.mainInventory[i].getItem() instanceof ItemSynthesisMaterial) {
 				if (player.inventory.mainInventory[i].hasTagCompound()) {
 					String s = player.inventory.mainInventory[i].getTagCompound().getString("material");
@@ -42,6 +64,7 @@ public class OpenMaterials extends AbstractMessage.AbstractServerMessage<OpenMat
 				player.inventory.setInventorySlotContents(i, null);
 			}
 		PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);
+		*/
 	}
 
 }

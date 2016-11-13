@@ -129,6 +129,7 @@ public class ItemEvents {
             AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getMagic);
         } else if (event.getItem().getEntityItem().getItem() instanceof ItemDriveForm){
             AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getDriveForm);
+            
         } else if (event.getItem().getEntityItem().getItem() instanceof ItemSynthesisMaterial) {
             for(int i = 0; i < event.getEntityPlayer().inventory.getSizeInventory(); i++) {
                 if (event.getEntityPlayer().inventory.getStackInSlot(i) != null) {

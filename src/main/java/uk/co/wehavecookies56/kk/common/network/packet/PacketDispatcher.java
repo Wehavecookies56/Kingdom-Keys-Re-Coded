@@ -39,6 +39,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
 import uk.co.wehavecookies56.kk.common.network.packet.server.CreateFromSynthesisRecipe;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DepositMaterialsFromBag;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DriveOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.GiveBoughtItem;
@@ -132,6 +133,7 @@ public class PacketDispatcher {
 		registerMessage(MagicWisdomShot.class);
 		registerMessage(UseRecipe.class);
 		registerMessage(OpenMaterials.class);
+		registerMessage(DepositMaterialsFromBag.class);
 		registerMessage(CreateFromSynthesisRecipe.class);
 		registerMessage(DriveOrbPickup.class);
 		registerMessage(MagicOrbPickup.class);
