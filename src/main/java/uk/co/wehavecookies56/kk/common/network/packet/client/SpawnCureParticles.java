@@ -20,7 +20,7 @@ public class SpawnCureParticles extends AbstractMessage.AbstractClientMessage<Sp
 
 	public SpawnCureParticles (Entity entity, int level) {
 		x = entity.posX;
-		y = entity.posY;
+		y = entity.posY+entity.getEyeHeight();
 		z = entity.posZ;
 		lvl = level;
 	}
@@ -56,11 +56,13 @@ public class SpawnCureParticles extends AbstractMessage.AbstractClientMessage<Sp
 		double r;
 		switch (this.lvl) {
 			case 1:
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 2.5, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 2.8, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 2.2, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x + 0.3, this.y + 2.5, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x - 0.3, this.y + 2.5, this.z, 0.0D, 1.0D, 0.0D);
+				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.5, this.z, 0.0D, 1.0D, 0.0D);
+				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.8, this.z, 0.0D, 1.0D, 0.0D);
+				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.2, this.z, 0.0D, 1.0D, 0.0D);
+				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x + 0.3, this.y + 1.5, this.z, 0.0D, 1.0D, 0.0D);
+				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x - 0.3, this.y + 1.5, this.z, 0.0D, 1.0D, 0.0D);
+				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.5, this.z+0.3, 0.0D, 1.0D, 0.0D);
+				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.5, this.z-0.3, 0.0D, 1.0D, 0.0D);
 				break;
 		}
 

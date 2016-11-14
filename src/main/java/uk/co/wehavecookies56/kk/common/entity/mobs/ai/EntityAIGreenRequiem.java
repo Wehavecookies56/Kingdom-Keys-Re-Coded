@@ -3,9 +3,12 @@ package uk.co.wehavecookies56.kk.common.entity.mobs.ai;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
+import net.minecraft.entity.player.EntityPlayer;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnCureParticles;
 
 public class EntityAIGreenRequiem extends EntityAITarget
 {
@@ -30,8 +33,11 @@ public class EntityAIGreenRequiem extends EntityAITarget
 	    	if(ticksBeforeNextHeal <= 0)
 	    	{
 	    		for(EntityLivingBase elb : EntityHelper.getEntitiesNear(this.taskOwner, 70))
-	    			if(elb instanceof IKHMob && (((IKHMob)elb).getType() == MobType.HEARTLESS_EMBLEM || ((IKHMob)elb).getType() == MobType.HEARTLESS_PUREBLOOD))
+	    			if(elb instanceof IKHMob && (((IKHMob)elb).getType() == MobType.HEARTLESS_EMBLEM || ((IKHMob)elb).getType() == MobType.HEARTLESS_PUREBLOOD)){
 	    				elb.setHealth(elb.getHealth() + 5);
+	    				PacketDispatcher.sendToAllAround(new SpawnCureParticles(elb,1), (EntityPlayer)this.taskOwner.getAttackTarget(), 20D);
+	    				System.out.println("Healed: "+elb);
+	    			}
 	    		ticksBeforeNextHeal = 30 + this.taskOwner.getRNG().nextInt(10);
 	    	}
 	    	else
