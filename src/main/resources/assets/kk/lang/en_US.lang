@@ -729,9 +729,9 @@ gui.synthesis.main.recipes.create=Create
 gui.synthesis.main.materials.deposit=Deposit Materials
 gui.synthesis.main.materials.deposit.bag=Deposit Materials from bags
 gui.synthesis.main.materials.takeone=Take 1
-gui.synthesis.main.materials.takehalfstack=Take Half Stack
-gui.synthesis.main.materials.takestack=Take Stack
-gui.synthesis.main.materials.takeall=Take All
+gui.synthesis.main.materials.takehalfstack=Take 32
+gui.synthesis.main.materials.takestack=Take 64
+gui.synthesis.main.materials.takeall=Take all
 
 #Shop
 gui.shop.main=Item Shop

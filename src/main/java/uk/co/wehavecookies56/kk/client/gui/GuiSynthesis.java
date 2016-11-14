@@ -147,7 +147,9 @@ public class GuiSynthesis extends GuiTooltip {
 				freeSlots = getFreeSlots();
 				foundMaterial = getInventoryMaterial(materials.get(materialSelected));
 				if (foundMaterial || freeSlots >= 1){
-					if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 1){ 
+					if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) > 1){ 
+						PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));
+					}else{
 						PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));
 						materialSelected=-1;
 					}
@@ -161,9 +163,10 @@ public class GuiSynthesis extends GuiTooltip {
 				if (foundMaterial || freeSlots >= 1){
 					if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 32)
 						PacketDispatcher.sendToServer(new TakeMaterials(32, materials.get(materialSelected)));
-					else
+					else{
 						PacketDispatcher.sendToServer(new TakeMaterials(MATS.getKnownMaterialsMap().get(materials.get(materialSelected)), materials.get(materialSelected)));
-					materialSelected=-1;
+						materialSelected=-1;
+					}
 				}
 
 				break;
@@ -174,9 +177,10 @@ public class GuiSynthesis extends GuiTooltip {
 				if (freeSlots >= 1){
 					if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) >= 64)
 						PacketDispatcher.sendToServer(new TakeMaterials(64, materials.get(materialSelected)));
-					else
+					else{
 						PacketDispatcher.sendToServer(new TakeMaterials(MATS.getKnownMaterialsMap().get(materials.get(materialSelected)), materials.get(materialSelected)));
-					materialSelected=-1;
+						materialSelected=-1;
+					}
 				}
 				break;
 			case TAKEALL:
@@ -289,7 +293,6 @@ public class GuiSynthesis extends GuiTooltip {
 				TakeStack.visible = true;
 				TakeHalfStack.visible = true;
 				TakeAll.visible = true;
-
 			} else {
 				Take1.visible = false;
 				TakeStack.visible = false;
@@ -297,8 +300,8 @@ public class GuiSynthesis extends GuiTooltip {
 				TakeAll.visible = false;
 				Deposit.visible = true;
 				DepositBag.visible = true;
-
 			}
+			Create.visible = false;
 			if (materialSelected != -1 && !isInventoryFull()) {
 				Take1.enabled = true;
 				TakeStack.enabled = true;

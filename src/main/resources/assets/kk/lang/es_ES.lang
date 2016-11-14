@@ -728,10 +728,10 @@ gui.synthesis.main.recipes.create=Fabricar
 gui.synthesis.main.materials.deposit=Depositar Materiales
 gui.synthesis.main.materials.deposit.inventory=Inventario
 gui.synthesis.main.materials.deposit.bag=Bolsa de Síntesis
-gui.synthesis.main.materials.takeone=Coger 1
-gui.synthesis.main.materials.takehalfstack=Coger medio stack
-gui.synthesis.main.materials.takestack=Coger un stack
-gui.synthesis.main.materials.takeall=Coger todo
+gui.synthesis.main.materials.takeone=Retirar 1
+gui.synthesis.main.materials.takehalfstack=Retirar 32
+gui.synthesis.main.materials.takestack=Retirar 64
+gui.synthesis.main.materials.takeall=Retirar todos
 
 #Shop
 gui.shop.main=Tienda de Objetos
