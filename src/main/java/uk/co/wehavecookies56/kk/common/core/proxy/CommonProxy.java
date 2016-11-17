@@ -12,8 +12,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -30,6 +28,7 @@ import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
+import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityStationOfAwakening;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntitySynthesisTable;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -149,6 +148,7 @@ public class CommonProxy {
 		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
 		GameRegistry.registerTileEntity(TileEntityKKChest.class, "kkchest");
 		GameRegistry.registerTileEntity(TileEntityStationOfAwakening.class, "stationofawakening");
+		GameRegistry.registerTileEntity(TileEntityPedestal.class, "pedestal");
 		LogHelper.info("Tile entity loaded");
 
 		// Proxy used as Gui handler

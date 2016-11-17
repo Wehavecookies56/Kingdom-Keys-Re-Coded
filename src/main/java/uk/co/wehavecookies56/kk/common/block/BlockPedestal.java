@@ -1,9 +1,12 @@
 package uk.co.wehavecookies56.kk.common.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -19,7 +22,7 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 
-public class BlockPedestal extends Block {
+public class BlockPedestal extends Block implements ITileEntityProvider{
 
 	protected BlockPedestal (Material material, String toolClass, int level, float hardness, float resistance) {
 		super(material);
@@ -41,6 +44,30 @@ public class BlockPedestal extends Block {
 		return false;
 	}
 	
-	
+	@Override
+	public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {
+
+		IInventory inventory = worldIn.getTileEntity(pos) instanceof IInventory ? (IInventory) worldIn.getTileEntity(pos) : null;
+
+		if (inventory != null) {
+			for (int i = 0; i < inventory.getSizeInventory(); i++)
+				if (inventory.getStackInSlot(i) != null) {
+					EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, inventory.getStackInSlot(i));
+
+					float multiplier = 0.1f;
+					float motionX = worldIn.rand.nextFloat() - 0.5f;
+					float motionY = worldIn.rand.nextFloat() - 0.5f;
+					float motionZ = worldIn.rand.nextFloat() - 0.5f;
+
+					item.motionX = motionX * multiplier;
+					item.motionY = motionY * multiplier;
+					item.motionZ = motionZ * multiplier;
+
+					worldIn.spawnEntityInWorld(item);
+				}
+			inventory.clear();
+		}
+		super.breakBlock(worldIn, pos, state);
+	}
 
 }
