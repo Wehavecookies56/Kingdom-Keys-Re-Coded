@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import uk.co.wehavecookies56.kk.client.gui.GuiDriveForms;
 import uk.co.wehavecookies56.kk.client.gui.GuiKKChest;
 import uk.co.wehavecookies56.kk.client.gui.GuiKeychains;
+import uk.co.wehavecookies56.kk.client.gui.GuiPedestal;
 import uk.co.wehavecookies56.kk.client.gui.GuiPotions;
 import uk.co.wehavecookies56.kk.client.gui.GuiShop;
 import uk.co.wehavecookies56.kk.client.gui.GuiSpells;
@@ -17,10 +18,12 @@ import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagL;
 import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagM;
 import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagS;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
+import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.ContainerDriveForms;
 import uk.co.wehavecookies56.kk.common.container.ContainerKKChest;
 import uk.co.wehavecookies56.kk.common.container.ContainerKeychain;
+import uk.co.wehavecookies56.kk.common.container.ContainerPedestal;
 import uk.co.wehavecookies56.kk.common.container.ContainerPotionsMenu;
 import uk.co.wehavecookies56.kk.common.container.ContainerSpells;
 import uk.co.wehavecookies56.kk.common.container.ContainerSynthesisBagL;
@@ -62,7 +65,13 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerSynthesisBagS(player, player.inventory, new InventorySynthesisBagS(player.getHeldItem(EnumHand.MAIN_HAND)));
         else if (ID == GuiIDs.GUI_SYNTHESISBAGM_INV)
             return new ContainerSynthesisBagM(player, player.inventory, new InventorySynthesisBagM(player.getHeldItem(EnumHand.MAIN_HAND)));
-        else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV) return new ContainerSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem(EnumHand.MAIN_HAND)));
+        else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV) 
+        	return new ContainerSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem(EnumHand.MAIN_HAND)));
+        else if (ID == GuiIDs.GUI_PEDESTAL_INV)
+        	if (te instanceof TileEntityPedestal)
+            	return new ContainerPedestal(player.inventory, (TileEntityPedestal) world.getTileEntity(new BlockPos(x, y, z)));
+            else
+                return null;
         return null;
     }
 
@@ -80,7 +89,6 @@ public class GuiHandler implements IGuiHandler {
         else if (ID == GuiIDs.GUI_DRIVE_INV)
             return new GuiDriveForms(player, player.inventory, player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms());
         else if (ID == GuiIDs.GUI_KKCHEST_INV) {
-
             if (te instanceof TileEntityKKChest)
                 return new GuiKKChest(player.inventory, (TileEntityKKChest) world.getTileEntity(new BlockPos(x, y, z)));
             else
@@ -92,8 +100,15 @@ public class GuiHandler implements IGuiHandler {
             return new GuiSynthesisBagS(player, player.inventory, new InventorySynthesisBagS(player.getHeldItem(EnumHand.MAIN_HAND)));
         else if (ID == GuiIDs.GUI_SYNTHESISBAGM_INV)
             return new GuiSynthesisBagM(player, player.inventory, new InventorySynthesisBagM(player.getHeldItem(EnumHand.MAIN_HAND)));
-        else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV) return new GuiSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem(EnumHand.MAIN_HAND)));
-        else if (ID == GuiIDs.GUI_SHOP) return new GuiShop(null);
+        else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV) 
+        	return new GuiSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem(EnumHand.MAIN_HAND)));
+        else if (ID == GuiIDs.GUI_SHOP) 
+        	return new GuiShop(null);
+        else if (ID == GuiIDs.GUI_PEDESTAL_INV)
+        	if (te instanceof TileEntityPedestal)
+                return new GuiPedestal(player.inventory, (TileEntityPedestal) world.getTileEntity(new BlockPos(x, y, z)));
+            else
+                return null;
         return null;
 
     }
