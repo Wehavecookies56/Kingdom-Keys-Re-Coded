@@ -7,6 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
+import uk.co.wehavecookies56.kk.common.container.slot.SlotCustom;
 
 public class ContainerPedestal extends Container {
 
@@ -31,9 +32,8 @@ public class ContainerPedestal extends Container {
 		int i;
 		int j;
 		
-		for (i = 0; i < 4; i++)
-			for (j = 0; j < 9; j++)
-				addSlotToContainer(new Slot(tileEntityPedestal, j + i * 9, 8 + j * 18, 20 + i * 18));
+		addSlotToContainer(new SlotCustom(tileEntityPedestal, 0, 80, 56, 6));
+
 
 		for (i = 0; i < 3; ++i)
 			for (j = 0; j < 9; ++j)
@@ -60,7 +60,7 @@ public class ContainerPedestal extends Container {
 		} else if (sourceSlotIndex >= TE_INVENTORY_FIRST_SLOT_INDEX && sourceSlotIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
 			if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) return null;
 		} else {
-			System.err.print("Invalid slotIndex:" + sourceSlotIndex);
+			System.err.print("Invalid slotIndex: " + sourceSlotIndex);
 			return null;
 		}
 

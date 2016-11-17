@@ -15,7 +15,7 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class GuiPedestal extends GuiContainer {
 	@SideOnly (Side.CLIENT)
-	private static final ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/KKChest.png");
+	private static final ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/pedestal.png");
 	private TileEntityPedestal tileEntityPedestal;
 
 	public GuiPedestal (InventoryPlayer invPlayer, TileEntityPedestal tile) {
@@ -36,6 +36,6 @@ public class GuiPedestal extends GuiContainer {
 	protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY) {
 		final int LABEL_XPOS = 5;
 		final int LABEL_YPOS = 5;
-		fontRendererObj.drawString(tileEntityPedestal.getName(), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
+		fontRendererObj.drawString(tileEntityPedestal.getName().substring(0, 1).toUpperCase()+tileEntityPedestal.getName().substring(1, tileEntityPedestal.getName().length()), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
 	}
 }

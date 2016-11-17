@@ -17,7 +17,6 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
  * Created by Toby on 06/11/2016.
  */
 public class TileEntityPedestal extends TileEntity implements IInventory {
-	ItemStack keyblade;
 	final int NUMBER_OF_SLOTS = 1;
 	private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];
 
@@ -72,7 +71,7 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 
 	@Override
 	public boolean isItemValidForSlot (int slotIndex, ItemStack itemstack) {
-		return true;//TODO check if is a keychain or keyblade
+		return true; //TODO check if is a keychain or keyblade
 	}
 
 	@Override
@@ -87,12 +86,7 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 				this.itemStacks[i].writeToNBT(dataForThisSlot);
 				dataForAllSlots.appendTag(dataForThisSlot);
 			}
-		parentNBTTagCompound.setTag("Items", dataForAllSlots);
-
-		NBTTagCompound keybladeCompound = new NBTTagCompound();
-		if (keyblade != null)
-			keyblade.writeToNBT(keybladeCompound);
-		parentNBTTagCompound.setTag("Keyblade", keybladeCompound);
+		parentNBTTagCompound.setTag("Items", dataForAllSlots);		
 		return parentNBTTagCompound;
 	}
 
@@ -108,9 +102,6 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 			int slotIndex = dataForOneSlot.getByte("Slot") & 255;
 			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) this.itemStacks[slotIndex] = ItemStack.loadItemStackFromNBT(dataForOneSlot);
 		}
-
-		NBTTagCompound keybladeCompound = parentNBTTagCompound.getCompoundTag("Keyblade");
-		keyblade = ItemStack.loadItemStackFromNBT(keybladeCompound);
 	}
 
 	@Override
@@ -158,6 +149,6 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 
 	@Override
 	public String getName () {
-		return Utils.translateToLocal(Strings.KKChestInventory);
+		return Utils.translateToLocal(Strings.Pedestal);
 	}
 }

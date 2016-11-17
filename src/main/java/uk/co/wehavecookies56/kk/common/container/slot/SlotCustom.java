@@ -8,6 +8,7 @@ import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagM;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagS;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 
@@ -22,7 +23,7 @@ public class SlotCustom extends Slot {
 	@Override
 	public boolean isItemValid (ItemStack stack) {
 		/*
-		 * 1- KeyChain 2- SynthBag 3- Potion 4- Spells 5- DriveForms
+		 * 1-KeyChain 2-SynthBag 3-Potion 4-Spells 5-DriveForms 6-Pedestal
 		 */
 		switch (window) {
 			case 1:
@@ -39,6 +40,9 @@ public class SlotCustom extends Slot {
 				break;
 			case 5:
 				if (stack.getItem() instanceof ItemDriveForm) return true;
+				break;
+			case 6:
+				if (stack.getItem() instanceof ItemKeyblade || stack.getItem() instanceof ItemKeychain) return true;
 				break;
 		}
 		return false;
