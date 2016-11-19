@@ -19,7 +19,21 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 public class TileEntityPedestal extends TileEntity implements IInventory {
 	final int NUMBER_OF_SLOTS = 1;
 	private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];
+	public int rotation=0;
 
+	public void setRotation(char option){
+		if(option == '-')
+			if(rotation<=0)
+				rotation=4;
+			else
+				rotation--;
+		else if(option=='+')
+			if(rotation>=4)
+				rotation=0;
+			else
+				rotation++;
+	}
+	
 	@Override
 	public int getSizeInventory () {
 		return itemStacks.length;
@@ -86,7 +100,7 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 				this.itemStacks[i].writeToNBT(dataForThisSlot);
 				dataForAllSlots.appendTag(dataForThisSlot);
 			}
-		parentNBTTagCompound.setTag("Items", dataForAllSlots);		
+		parentNBTTagCompound.setTag("Items", dataForAllSlots);	
 		return parentNBTTagCompound;
 	}
 
@@ -102,6 +116,8 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 			int slotIndex = dataForOneSlot.getByte("Slot") & 255;
 			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) this.itemStacks[slotIndex] = ItemStack.loadItemStackFromNBT(dataForOneSlot);
 		}
+		
+		
 	}
 
 	@Override

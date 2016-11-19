@@ -490,13 +490,11 @@ public class EntityEvents {
         }
     	if(player.dimension == ModDimensions.diveToTheHeartID)
     	{
-           // System.out.println("Chosen: "+chosen);
-
     		if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
     		{
-    			if(chosen != "Staff"){
-    				chosen = "Staff";
-	    			TextComponentTranslation staff = new TextComponentTranslation("Staff");
+    			if(chosen != "Shield"){
+    				chosen = "Shield";
+	    			TextComponentTranslation staff = new TextComponentTranslation("Shield");
 	    			staff.getStyle().setColor(TextFormatting.YELLOW);
 	    			player.addChatMessage(staff);
     			}
@@ -504,9 +502,9 @@ public class EntityEvents {
 
     		else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
     		{
-    			if(chosen != "Sword"){
-    				chosen = "Sword";
-	    			TextComponentTranslation sword = new TextComponentTranslation("Sword");
+    			if(chosen != "Staff"){
+    				chosen = "Staff";
+	    			TextComponentTranslation sword = new TextComponentTranslation("Staff");
 	    			sword.getStyle().setColor(TextFormatting.YELLOW);
 	    			player.addChatMessage(sword);
     			}
@@ -514,9 +512,9 @@ public class EntityEvents {
 
     		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66)
     		{
-    			if(chosen != "Shield"){
-    				chosen = "Shield";
-	    			TextComponentTranslation shield = new TextComponentTranslation("Shield");
+    			if(chosen != "Sword"){
+    				chosen = "Sword";
+	    			TextComponentTranslation shield = new TextComponentTranslation("Sword");
 	    			shield.getStyle().setColor(TextFormatting.YELLOW);
 	    			player.addChatMessage(shield);
     			}
@@ -547,8 +545,6 @@ public class EntityEvents {
                     if(event.side.isServer())
                     {
                         PacketDispatcher.sendTo(new SyncMagicData(event.player.getCapability(ModCapabilities.MAGIC_STATE, null), event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)event.player);
-
-                        //PacketDispatcher.sendTo(new SyncMagicData(KingdomKeys.MAGIC_STATE, KingdomKeys.PLAYER_STATS), event.player);
                     }
                 }
             }

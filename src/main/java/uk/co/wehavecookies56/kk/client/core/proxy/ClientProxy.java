@@ -47,8 +47,10 @@ import uk.co.wehavecookies56.kk.client.render.RenderEntityProminence;
 import uk.co.wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
 import uk.co.wehavecookies56.kk.client.render.RenderFactorySharpshooterBullet;
 import uk.co.wehavecookies56.kk.client.render.RenderKHMob;
+import uk.co.wehavecookies56.kk.client.render.TESRPedestal;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
+import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
 import uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
@@ -236,6 +238,7 @@ public class ClientProxy extends CommonProxy
 			}
 		}
 		});
+		 ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPedestal.class, new TESRPedestal());
 		//ModelPlayerAPI.register(Reference.MODID, ModelPlayerDrive.class);
 		//RenderPlayerAPI.register(Reference.MODID, RenderPlayerDrive.class);
 	}
