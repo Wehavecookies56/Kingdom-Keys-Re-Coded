@@ -40,6 +40,7 @@ public class BlockPedestal extends Block implements ITileEntityProvider{
 		if (!world.isRemote) {
 			TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(pos);
 			player.openGui(KingdomKeys.instance, GuiIDs.GUI_PEDESTAL_INV, world, pos.getX(), pos.getY(), pos.getZ());
+			return true;
 		}
 		return false;
 	}

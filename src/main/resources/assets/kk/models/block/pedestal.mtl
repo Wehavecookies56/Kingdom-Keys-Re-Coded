@@ -1,0 +1,24 @@
+# Created by Metasequoia
+
+newmtl side
+Ka 0.60000 0.60000 0.60000
+Kd 0.80000 0.80000 0.80000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd kk:blocks/models/standside
+
+
+newmtl top
+Ka 0.60000 0.60000 0.60000
+Kd 0.80000 0.80000 0.80000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd kk:blocks/models/standtop
+
+newmtl bottom
+Ka 0.60000 0.60000 0.60000
+Kd 0.80000 0.80000 0.80000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd kk:blocks/models/standbottom
+
