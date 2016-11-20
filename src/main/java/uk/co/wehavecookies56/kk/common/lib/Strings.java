@@ -450,7 +450,8 @@ public class Strings {
 	JiltedAnemone = "jiltedanemone",
 	Standalone = "standalone",
 	Zephyr = "zephyr",
-	Reticence = "reticence"
+	Reticence = "reticence",
+	FinalWeapon = "finalweapon"
 	;
 
 	public static final String 
