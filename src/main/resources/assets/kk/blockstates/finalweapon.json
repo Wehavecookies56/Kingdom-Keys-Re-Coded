@@ -2,11 +2,7 @@
 	"forge_marker": 1,
     "defaults": {
     	"textures": {
-			
-			"finalweapon": "kk:items/models/finalweapon"
-			"finalweapon2": "kk:items/models/finalweapon2"
-			
-    		},
+    	},
         "model": "kk:finalweapon.obj"
     },
 	"variants": {

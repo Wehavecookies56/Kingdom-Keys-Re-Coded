@@ -2,8 +2,7 @@
 	"forge_marker": 1,
     "defaults": {
     	"textures": {
-
-    		},
+    	},
         "model": "kk:fickleerica.obj"
     },
 	"variants": {
