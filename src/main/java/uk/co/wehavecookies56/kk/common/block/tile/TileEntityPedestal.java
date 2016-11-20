@@ -93,7 +93,7 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 
 	@Override
 	public boolean isItemValidForSlot (int slotIndex, ItemStack itemstack) {
-		return true; //TODO check if is a keychain or keyblade
+		return true;
 	}
 
 	@Override

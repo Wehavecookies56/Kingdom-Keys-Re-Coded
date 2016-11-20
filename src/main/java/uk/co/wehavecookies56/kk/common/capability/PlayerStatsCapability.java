@@ -47,6 +47,8 @@ public class PlayerStatsCapability {
 		double getMaxMP();
 		boolean getRecharge();
 		
+		String getChoice1();
+		String getChoice2();
 		
 		boolean setLevel(int level);
 		boolean setExperience(int experience);
@@ -72,6 +74,9 @@ public class PlayerStatsCapability {
 		void remMP(double mp);
 		void setMaxMP(double mp);
 		void setRecharge(boolean recharge);
+		
+		void setChoice1(String choice);
+		void setChoice2(String choice);
 
 		InventoryPotionsMenu getInventoryPotionsMenu();
 		
@@ -101,6 +106,8 @@ public class PlayerStatsCapability {
 			
 			properties.setBoolean("HUD", instance.getHudMode());
 			
+			properties.setString("Choice1", instance.getChoice1());
+			properties.setString("Choice2", instance.getChoice2());
 			instance.getInventoryPotionsMenu().writeToNBT(properties);
 
 			return properties;
@@ -121,6 +128,8 @@ public class PlayerStatsCapability {
 			instance.setRecharge(properties.getBoolean("Recharge"));
 			instance.setHudMode(properties.getBoolean("HUD"));
 			
+			instance.setChoice1(properties.getString("Choice1"));
+			instance.setChoice2(properties.getString("Choice2"));
 			instance.getInventoryPotionsMenu().readFromNBT(properties);
 		}
 	}
@@ -153,6 +162,8 @@ public class PlayerStatsCapability {
 		private boolean hudmode = true;
 		private int remainingExp = 0;
 		private List<String> messages = new ArrayList<String>();
+		
+		private String choice1="none",choice2="none";
 		
 		private final InventoryPotionsMenu inventoryPotions = new InventoryPotionsMenu();
 
@@ -192,6 +203,9 @@ public class PlayerStatsCapability {
 		@Override public double getMaxDP() { return this.maxDP; }
 		@Override public boolean getRecharge() { return this.recharge; }
 		@Override public boolean getHudMode() {return this.hudmode;}
+		
+		@Override public String getChoice1(){return this.choice1;}
+		@Override public String getChoice2(){return this.choice2;}
 		
 		@Override public boolean setLevel(int level) {
 			if (level <= this.maxLevel) {
@@ -331,6 +345,9 @@ public class PlayerStatsCapability {
 		@Override public void setRecharge(boolean recharge) { this.recharge = recharge; }
 		@Override public void setHudMode(boolean hud) { this.hudmode = hud; }
 
+		@Override public void setChoice1(String choice){this.choice1=choice;}
+		@Override public void setChoice2(String choice){this.choice2=choice;}
+		
 		@Override
 		public int getExpNeeded(int level, int currentExp) {
 			if (level == 100) return 0;

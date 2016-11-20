@@ -8,12 +8,15 @@ import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.base.BlockStationOfAwakening;
+import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
+import uk.co.wehavecookies56.kk.common.item.ModItems;
 
 /**
  * Created by Toby on 01/08/2016.
@@ -89,8 +92,11 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         playerMP.worldObj.setBlockState(new BlockPos(dx+(12), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 15));
         
         playerMP.worldObj.setBlockState(new BlockPos(dx-12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Shield
+        
         playerMP.worldObj.setBlockState(new BlockPos(dx+12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Staff
+        
         playerMP.worldObj.setBlockState(new BlockPos(dx, dy+1, dz-12), ModBlocks.Pedestal.getDefaultState());  //Sword
+        
         playerMP.worldObj.setBlockState(new BlockPos(dx, dy+1, dz+12), ModBlocks.StationOfAwakeningDoor.getDefaultState());
         
     }
