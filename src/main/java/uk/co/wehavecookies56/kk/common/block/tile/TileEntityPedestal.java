@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -20,6 +21,7 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 	final int NUMBER_OF_SLOTS = 1;
 	private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];
 	public int rotation=0;
+	public ItemStack keyblade;
 
 	public void setRotation(char option){
 		if(option == '-')
@@ -32,8 +34,13 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 				rotation=0;
 			else
 				rotation++;
+		markDirty();
 	}
 	
+	public void setKeyblade(ItemStack keyblade){
+		this.keyblade = keyblade;
+		markDirty();
+	}
 	@Override
 	public int getSizeInventory () {
 		return itemStacks.length;
@@ -64,7 +71,8 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 	@Override
 	public void setInventorySlotContents (int slotIndex, ItemStack itemstack) {
 		itemStacks[slotIndex] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) itemstack.stackSize = getInventoryStackLimit();
+		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) 
+			itemstack.stackSize = getInventoryStackLimit();
 		markDirty();
 	}
 
@@ -101,6 +109,11 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 				dataForAllSlots.appendTag(dataForThisSlot);
 			}
 		parentNBTTagCompound.setTag("Items", dataForAllSlots);	
+		parentNBTTagCompound.setInteger("Rotation", rotation);
+		NBTTagCompound keybladeCompound = new NBTTagCompound();
+		if (keyblade != null)
+			keyblade.writeToNBT(keybladeCompound);
+		parentNBTTagCompound.setTag("Keyblade", keybladeCompound);
 		return parentNBTTagCompound;
 	}
 
@@ -114,10 +127,12 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 		for (int i = 0; i < dataForAllSlots.tagCount(); ++i) {
 			NBTTagCompound dataForOneSlot = dataForAllSlots.getCompoundTagAt(i);
 			int slotIndex = dataForOneSlot.getByte("Slot") & 255;
-			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) this.itemStacks[slotIndex] = ItemStack.loadItemStackFromNBT(dataForOneSlot);
+			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) 
+				this.itemStacks[slotIndex] = ItemStack.loadItemStackFromNBT(dataForOneSlot);
 		}
-		
-		
+		rotation = parentNBTTagCompound.getInteger("Rotation");
+		NBTTagCompound keybladeCompound = parentNBTTagCompound.getCompoundTag("Keyblade");
+		keyblade = ItemStack.loadItemStackFromNBT(keybladeCompound);
 	}
 
 	@Override

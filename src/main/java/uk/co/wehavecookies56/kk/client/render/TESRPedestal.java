@@ -35,10 +35,10 @@ public class TESRPedestal extends TileEntitySpecialRenderer<TileEntityPedestal> 
                 GlStateManager.pushMatrix();
                 {
                     GlStateManager.translate(0.5, 1.3, 0.5);
-                    //switch(te.rotation){}
                     GlStateManager.rotate(90*te.rotation, 0, 1, 0);
                     GlStateManager.scale(0.02, 0.02, 0.02);
-                    Item itemToRender = te.getStackInSlot(0).getItem();
+                    te.setKeyblade(te.getStackInSlot(0));
+                    Item itemToRender = te.keyblade.getItem();
                     if(itemToRender instanceof ItemKeyblade)
                  	  renderItem.renderItem(new ItemStack(itemToRender), ItemCameraTransforms.TransformType.NONE);
                     else if (itemToRender instanceof ItemKeychain)
