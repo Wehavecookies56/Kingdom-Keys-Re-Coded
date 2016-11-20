@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.client.render;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -39,6 +41,7 @@ public class TESRPedestal extends TileEntitySpecialRenderer<TileEntityPedestal> 
                     GlStateManager.scale(0.02, 0.02, 0.02);
                     te.setKeyblade(te.getStackInSlot(0));
                     Item itemToRender = te.keyblade.getItem();
+                    
                     if(itemToRender instanceof ItemKeyblade)
                  	  renderItem.renderItem(new ItemStack(itemToRender), ItemCameraTransforms.TransformType.NONE);
                     else if (itemToRender instanceof ItemKeychain)

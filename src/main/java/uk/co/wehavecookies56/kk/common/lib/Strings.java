@@ -10,6 +10,12 @@ public class Strings {
 	Disc_Duration_Desc = "disc.duration.desc",
 	Disc_DurationUnits_Desc = "disc.durationunits.desc";
 
+	// Choice
+	public static final String
+	Choice_Sword="sword",
+	Choice_Staff="staff",
+	Choice_Shield="shield";
+	
 	// Achievements
 	public static final String 
 	Achievement_OpenMenu = "achievement.openmenu",

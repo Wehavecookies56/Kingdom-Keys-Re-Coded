@@ -492,31 +492,31 @@ public class EntityEvents {
     	{
     		if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
     		{
-    			if(chosen != "Shield"){
-    				chosen = "Shield";
-	    			TextComponentTranslation staff = new TextComponentTranslation("Shield");
-	    			staff.getStyle().setColor(TextFormatting.YELLOW);
-	    			player.addChatMessage(staff);
+    			if(chosen != Strings.Choice_Shield){
+    				chosen = Strings.Choice_Shield;
+	    			TextComponentTranslation shield = new TextComponentTranslation("Shield");
+	    			shield.getStyle().setColor(TextFormatting.YELLOW);
+	    			player.addChatMessage(shield);
     			}
     		}
 
     		else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
     		{
-    			if(chosen != "Staff"){
-    				chosen = "Staff";
-	    			TextComponentTranslation sword = new TextComponentTranslation("Staff");
-	    			sword.getStyle().setColor(TextFormatting.YELLOW);
-	    			player.addChatMessage(sword);
+    			if(chosen != Strings.Choice_Staff){
+    				chosen = Strings.Choice_Staff;
+	    			TextComponentTranslation staff = new TextComponentTranslation("Staff");
+	    			staff.getStyle().setColor(TextFormatting.YELLOW);
+	    			player.addChatMessage(staff);
     			}
     		}
 
     		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66)
     		{
-    			if(chosen != "Sword"){
-    				chosen = "Sword";
-	    			TextComponentTranslation shield = new TextComponentTranslation("Sword");
-	    			shield.getStyle().setColor(TextFormatting.YELLOW);
-	    			player.addChatMessage(shield);
+    			if(chosen != Strings.Choice_Sword){
+    				chosen = Strings.Choice_Sword;
+	    			TextComponentTranslation sword = new TextComponentTranslation("Sword");
+	    			sword.getStyle().setColor(TextFormatting.YELLOW);
+	    			player.addChatMessage(sword);
     			}
     		}
 
