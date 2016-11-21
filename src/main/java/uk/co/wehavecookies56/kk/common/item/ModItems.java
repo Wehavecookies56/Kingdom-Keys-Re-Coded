@@ -984,17 +984,14 @@ public class ModItems {
 		registerRender(LunarEclipse);
 		registerRender(MaverickFlare);
 		registerRender(MidnightRoar);
-		registerRender(MissingAche);
 		registerRender(OmegaWeapon);
 		registerRender(OminousBlight);
-		registerRender(PainofSolitude);
 		registerRender(PixiePetal);
 		registerRender(RejectionofFate);
 		registerRender(SignofInnocence);
 		registerRender(SilentDirge);
 		registerRender(Starlight);
 		registerRender(TotalEclipse);
-		registerRender(TrueLightsFlight);
 		registerRender(TwilightBlaze);
 		registerRender(Umbrella);
 		registerRender(UnicornisForetellersKeyblade);
