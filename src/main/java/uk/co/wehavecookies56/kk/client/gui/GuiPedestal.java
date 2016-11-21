@@ -14,6 +14,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.container.ContainerPedestal;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.server.PedestalItem;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class GuiPedestal extends GuiContainer {
@@ -34,10 +36,10 @@ public class GuiPedestal extends GuiContainer {
 	protected void actionPerformed (GuiButton button) throws IOException {
 		switch (button.id) {
 		case MINUS:
-			tileEntityPedestal.setRotation('-'); 
+			PacketDispatcher.sendToServer(new PedestalItem(tileEntityPedestal.getPos(), '-'));
 			break;
 		case PLUS:
-			tileEntityPedestal.setRotation('+');
+			PacketDispatcher.sendToServer(new PedestalItem(tileEntityPedestal.getPos(), '+'));
 			break;
 		}
 	}
@@ -75,7 +77,7 @@ public class GuiPedestal extends GuiContainer {
 		int rotationX= 60;
 
 		fontRendererObj.drawString(tileEntityPedestal.getName().substring(0, 1).toUpperCase()+tileEntityPedestal.getName().substring(1, tileEntityPedestal.getName().length()), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
-		fontRendererObj.drawString("Rotation: "+tileEntityPedestal.rotation*90, rotationX, rotationY, Color.darkGray.getRGB());
+		fontRendererObj.drawString("Rotation: "+tileEntityPedestal.getRotation()*90, rotationX, rotationY, Color.darkGray.getRGB());
 		
 	}
 }

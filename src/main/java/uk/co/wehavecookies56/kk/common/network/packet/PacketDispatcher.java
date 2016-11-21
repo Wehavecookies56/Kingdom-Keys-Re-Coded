@@ -58,6 +58,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMaterials;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenShop;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenSynthesis;
+import uk.co.wehavecookies56.kk.common.network.packet.server.PedestalItem;
 import uk.co.wehavecookies56.kk.common.network.packet.server.PlaySoundAtPlayer;
 import uk.co.wehavecookies56.kk.common.network.packet.server.PotionConsume;
 import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlot;
@@ -158,7 +159,7 @@ public class PacketDispatcher {
 		registerMessage(LevelUpSound.class);
 		registerMessage(GiveBoughtItem.class);
 		registerMessage(TakeSoldItem.class);
-
+		registerMessage(PedestalItem.class);
 		// Bidirectional
 	}
 

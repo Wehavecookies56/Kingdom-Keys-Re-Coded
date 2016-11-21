@@ -37,6 +37,11 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 		markDirty();
 	}
 	
+	public int getRotation(){
+		return this.rotation;
+	}
+	
+	
 	public void setKeyblade(ItemStack keyblade){
 		this.keyblade = keyblade;
 		markDirty();
