@@ -458,7 +458,8 @@ public class Strings {
 	Zephyr = "zephyr",
 	Reticence = "reticence",
 	FinalWeapon = "finalweapon",
-    Tranchant = "tranchant"
+    Tranchant = "tranchant",
+    Malice = "malice"
 	;
 
 	public static final String 
