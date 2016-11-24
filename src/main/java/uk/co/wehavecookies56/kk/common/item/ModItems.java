@@ -40,7 +40,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence, FinalWeapon, Tranchant, Malice;
+	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence, FinalWeapon, Tranchant, Malice, Infinity, TheFool;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -117,6 +117,8 @@ public class ModItems {
 		FinalWeapon = new ItemSharpshooter(EnumHelper.addToolMaterial("finalweapon", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinalWeapon);
 		Tranchant = new ItemFoudre(EnumHelper.addToolMaterial("tranchant", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tranchant);
 		Malice = new ItemInterdiction(EnumHelper.addToolMaterial("malice", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Malice);
+		Infinity = new ItemInterdiction(EnumHelper.addToolMaterial("infinity", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Infinity);
+		TheFool = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
 
 		AbaddonPlasma = new ItemRealKeyblade(6, 0).setUnlocalizedName(Strings.AbaddonPlasma);
 		((ItemKeyblade)AbaddonPlasma).setDescription("A weapon that lets you string together faster, incredibly long ground combos.");
@@ -603,6 +605,8 @@ public class ModItems {
 		GameRegistry.register(FinalWeapon, new ResourceLocation(Reference.MODID, Strings.FinalWeapon));
 		GameRegistry.register(Tranchant, new ResourceLocation(Reference.MODID, Strings.Tranchant));
 		GameRegistry.register(Malice, new ResourceLocation(Reference.MODID, Strings.Malice));
+		GameRegistry.register(Infinity, new ResourceLocation(Reference.MODID, Strings.Infinity));
+		GameRegistry.register(TheFool, new ResourceLocation(Reference.MODID, Strings.TheFool));
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));

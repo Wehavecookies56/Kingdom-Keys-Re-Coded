@@ -197,8 +197,10 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.Sharpshooter, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sharpshooter, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Tranchant, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Tranchant, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Malice, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Malice, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Infinity, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Infinity, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.TheFool, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TheFool, "inventory"));
 
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.StationOfAwakeningDoor), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.StationOfAwakeningDoor, "inventory"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.Pedestal), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Pedestal, "inventory"));
 
