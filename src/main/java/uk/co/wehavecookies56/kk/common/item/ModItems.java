@@ -114,10 +114,10 @@ public class ModItems {
 		Standalone = new ItemSharpshooter(EnumHelper.addToolMaterial("sharpshooter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Standalone);
 		Zephyr = new ItemLindworm(EnumHelper.addToolMaterial("lindworm", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Zephyr);
 		Reticence = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Reticence);
-		FinalWeapon = new ItemSharpshooter(EnumHelper.addToolMaterial("finalweapon", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinalWeapon);
-		Tranchant = new ItemFoudre(EnumHelper.addToolMaterial("tranchant", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tranchant);
-		Malice = new ItemInterdiction(EnumHelper.addToolMaterial("malice", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Malice);
-		Infinity = new ItemInterdiction(EnumHelper.addToolMaterial("infinity", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Infinity);
+		FinalWeapon = new ItemSharpshooter(EnumHelper.addToolMaterial("sharpshooter", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinalWeapon);
+		Tranchant = new ItemFoudre(EnumHelper.addToolMaterial("foudre", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tranchant);
+		Malice = new ItemInterdiction(EnumHelper.addToolMaterial("interdiction", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Malice);
+		Infinity = new ItemInterdiction(EnumHelper.addToolMaterial("interdiction", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Infinity);
 		TheFool = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
 
 		AbaddonPlasma = new ItemRealKeyblade(6, 0).setUnlocalizedName(Strings.AbaddonPlasma);
