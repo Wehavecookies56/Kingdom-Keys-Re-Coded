@@ -27,7 +27,7 @@ public class RenderBlastBlox extends Render<EntityBlastBlox> {
 
 		if (entity.fuse - p_76986_9_ + 1.0F < 10.0F) {
 			f2 = 1.0F - (entity.fuse - p_76986_9_ + 1.0F) / 10.0F;
-			f2 = MathHelper.clamp_float(f2, 0.0F, 1.0F);
+			f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
 			f2 *= f2;
 			f2 *= f2;
 			float f3 = 1.0F + f2 * 0.3F;

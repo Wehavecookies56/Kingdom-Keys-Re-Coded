@@ -21,7 +21,7 @@ public class SyncStatMessagesPacket extends AbstractMessage.AbstractClientMessag
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		this.stat = buffer.readStringFromBuffer(3);
+		this.stat = buffer.readString(3);
 	}
 
 	@Override

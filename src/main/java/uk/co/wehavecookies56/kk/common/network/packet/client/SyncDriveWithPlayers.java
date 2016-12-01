@@ -30,7 +30,7 @@ public class SyncDriveWithPlayers extends AbstractMessage.AbstractClientMessage<
     protected void read(PacketBuffer buffer) throws IOException {
         this.entityId = buffer.readInt();
         this.inDrive = buffer.readBoolean();
-        this.driveName = buffer.readStringFromBuffer(100);
+        this.driveName = buffer.readString(100);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SyncDriveWithPlayers extends AbstractMessage.AbstractClientMessage<
 
     @Override
     public void process(EntityPlayer player, Side side) {
-        EntityPlayer otherPlayer = (EntityPlayer) player.worldObj.getEntityByID(this.entityId);
+        EntityPlayer otherPlayer = (EntityPlayer) player.world.getEntityByID(this.entityId);
         otherPlayer.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(this.inDrive);
         otherPlayer.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName(this.driveName);
     }

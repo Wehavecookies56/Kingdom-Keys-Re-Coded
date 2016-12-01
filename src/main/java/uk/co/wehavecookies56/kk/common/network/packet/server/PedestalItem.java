@@ -38,7 +38,7 @@ public class PedestalItem extends AbstractMessage.AbstractServerMessage<Pedestal
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		TileEntityPedestal pedestal = (TileEntityPedestal) player.worldObj.getTileEntity(pedestalPos);
+		TileEntityPedestal pedestal = (TileEntityPedestal) player.world.getTileEntity(pedestalPos);
 		pedestal.setRotation(rotation);
 	}
 }

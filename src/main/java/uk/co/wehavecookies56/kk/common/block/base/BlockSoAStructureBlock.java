@@ -39,7 +39,7 @@ public class BlockSoAStructureBlock extends BlockContainer {
 
     @SuppressWarnings("deprecation")
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
         if (worldIn.getTileEntity(pos).getBlockType() == Blocks.AIR) {
             worldIn.destroyBlock(pos, false);
             worldIn.removeTileEntity(pos);

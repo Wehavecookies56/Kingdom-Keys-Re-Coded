@@ -40,12 +40,12 @@ public class InventorySynthesisBagS extends AbstractInventory {
 	@Override
 	public void markDirty () {
 		for (int i = 0; i < getSizeInventory(); i++)
-			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0) inventory[i] = null;
+			if (getStackInSlot(i) != ItemStack.EMPTY && getStackInSlot(i).getCount() == 0) inventory[i] = ItemStack.EMPTY;
 		writeToNBT(invStack.getTagCompound());
 	}
 
 	@Override
-	public boolean isUseableByPlayer (EntityPlayer player) {
+	public boolean isUsableByPlayer (EntityPlayer player) {
 		return player.getHeldItem(EnumHand.MAIN_HAND) == invStack;
 	}
 
@@ -69,4 +69,8 @@ public class InventorySynthesisBagS extends AbstractInventory {
 		return new TextComponentString(name);
 	}
 
+	@Override
+	public boolean isEmpty() {
+		return inventory.length == 0;
+	}
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -41,7 +42,7 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		inv = buffer.readStringFromBuffer(100);
+		inv = buffer.readString(100);
 		slot = buffer.readInt();
 		sound = buffer.readBoolean();
 	}
@@ -58,7 +59,7 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
 		switch (inv) {
 			case "keychain":
 				keychain = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
-				keychain.setInventorySlotContents(slot, null);
+				keychain.setInventorySlotContents(slot, ItemStack.EMPTY);
 				break;
 			case Strings.DefenseBoost:
 				if(!player.capabilities.isCreativeMode)
@@ -66,7 +67,7 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).addDefense(1);
 				TextComponentTranslation strMessage = new TextComponentTranslation(Strings.Chat_DefenseBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getDefense()));
 				strMessage.getStyle().setColor(TextFormatting.GREEN);
-				player.addChatMessage(strMessage);	
+				player.sendMessage(strMessage);
 				break;
 			case Strings.MagicBoost:
 				if(!player.capabilities.isCreativeMode)
@@ -74,7 +75,7 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).addMagic(1);
 				TextComponentTranslation magMessage = new TextComponentTranslation(Strings.Chat_MagicBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic()));
 				magMessage.getStyle().setColor(TextFormatting.GREEN);
-				player.addChatMessage(magMessage);	
+				player.sendMessage(magMessage);
 
 				break;
 			case Strings.PowerBoost:
@@ -83,13 +84,13 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).addStrength(1);
 				TextComponentTranslation powMessage = new TextComponentTranslation(Strings.Chat_PowerBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
 				powMessage.getStyle().setColor(TextFormatting.GREEN);
-				player.addChatMessage(powMessage);	
+				player.sendMessage(powMessage);
 
 				break;
 			case Strings.Potion:
 				potions = player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
-				potions.setInventorySlotContents(slot, null);
-				if (sound) player.worldObj.playSound(null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 0.5f, 1);
+				potions.setInventorySlotContents(slot, ItemStack.EMPTY);
+				if (sound) player.world.playSound(null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 0.5f, 1);
 				break;
 		}
 		PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)player);

@@ -44,13 +44,13 @@ public class SpawnKH1FireParticles extends AbstractMessage.AbstractClientMessage
 	public void process (EntityPlayer player, Side side) {
 		switch (this.lvl) {
 			case 1:
-				KingdomKeys.proxy.spawnTestParticle(player.worldObj, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D, 1.0F);
+				KingdomKeys.proxy.spawnTestParticle(player.world, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D, 1.0F);
 				break;
 			case 2:
-				player.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.FLAME, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
 				break;
 			case 3:
-				player.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.FLAME, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
 				break;
 		}
 	}

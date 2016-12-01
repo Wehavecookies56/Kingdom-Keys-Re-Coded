@@ -35,7 +35,7 @@ public class TakeMaterials extends AbstractServerMessage<TakeMaterials> {
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
 		amount = buffer.readInt();
-		materialName = buffer.readStringFromBuffer(100);
+		materialName = buffer.readString(100);
 	}
 
 	@Override

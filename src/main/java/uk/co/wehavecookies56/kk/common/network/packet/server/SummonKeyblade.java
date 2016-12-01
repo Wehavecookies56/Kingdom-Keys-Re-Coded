@@ -27,22 +27,21 @@ public class SummonKeyblade extends AbstractMessage.AbstractServerMessage<Summon
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		stack = buffer.readItemStackFromBuffer();
+		stack = buffer.readItemStack();
 	}
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStackToBuffer(stack);
+		buffer.writeItemStack(stack);
 	}
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		ItemStack slot = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0);
-		ItemStack test = slot.copy();
-		test.setItem(stack.getItem());
+		ItemStack keyblade = new ItemStack(stack.getItem(), 1, 0, slot.serializeNBT());
 		
-		player.inventory.setInventorySlotContents(player.inventory.currentItem, test);
-		player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
+		player.inventory.setInventorySlotContents(player.inventory.currentItem, keyblade);
+		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
 		player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(true);
 		PacketDispatcher.sendTo(new SyncKeybladeData(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) player);
 	}

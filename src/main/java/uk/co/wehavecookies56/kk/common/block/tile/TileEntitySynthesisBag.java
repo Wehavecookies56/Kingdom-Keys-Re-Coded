@@ -44,15 +44,15 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 	@Override
 	public ItemStack decrStackSize (int slotIndex, int count) {
 		ItemStack itemStackInSlot = getStackInSlot(slotIndex);
-		if (itemStackInSlot == null) return null;
+		if (itemStackInSlot == ItemStack.EMPTY) return ItemStack.EMPTY;
 
 		ItemStack itemStackRemoved;
-		if (itemStackInSlot.stackSize <= count) {
+		if (itemStackInSlot.getCount() <= count) {
 			itemStackRemoved = itemStackInSlot;
-			setInventorySlotContents(slotIndex, null);
+			setInventorySlotContents(slotIndex, ItemStack.EMPTY);
 		} else {
 			itemStackRemoved = itemStackInSlot.splitStack(count);
-			if (itemStackInSlot.stackSize == 0) setInventorySlotContents(slotIndex, null);
+			if (itemStackInSlot.getCount() == 0) setInventorySlotContents(slotIndex, ItemStack.EMPTY);
 		}
 		markDirty();
 		return itemStackRemoved;
@@ -62,7 +62,7 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 	@Override
 	public void setInventorySlotContents (int slotIndex, ItemStack itemstack) {
 		itemStacks[slotIndex] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) itemstack.stackSize = getInventoryStackLimit();
+		if (itemstack != ItemStack.EMPTY && itemstack.getCount() > getInventoryStackLimit()) itemstack.setCount(getInventoryStackLimit());
 		markDirty();
 	}
 
@@ -80,8 +80,8 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 	// 1) the world tileentity hasn't been replaced in the meantime, and
 	// 2) the player isn't too far away from the centre of the block
 	@Override
-	public boolean isUseableByPlayer (EntityPlayer player) {
-		if (this.worldObj.getTileEntity(this.pos) != this) return false;
+	public boolean isUsableByPlayer (EntityPlayer player) {
+		if (this.world.getTileEntity(this.pos) != this) return false;
 		final double X_CENTRE_OFFSET = 0.5;
 		final double Y_CENTRE_OFFSET = 0.5;
 		final double Z_CENTRE_OFFSET = 0.5;
@@ -138,12 +138,12 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 											// a listing
 		NBTTagList dataForAllSlots = parentNBTTagCompound.getTagList("Items", NBT_TYPE_COMPOUND);
 
-		Arrays.fill(itemStacks, null); // set all slots to empty
+		Arrays.fill(itemStacks, ItemStack.EMPTY); // set all slots to empty
 		for (int i = 0; i < dataForAllSlots.tagCount(); ++i) {
 			NBTTagCompound dataForOneSlot = dataForAllSlots.getCompoundTagAt(i);
 			int slotIndex = dataForOneSlot.getByte("Slot") & 255;
 
-			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) this.itemStacks[slotIndex] = ItemStack.loadItemStackFromNBT(dataForOneSlot);
+			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) this.itemStacks[slotIndex] = new ItemStack(dataForOneSlot);
 		}
 	}
 
@@ -205,5 +205,10 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 	@Override
 	public String getName () {
 		return "container.kk.synthesisbag";
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return itemStacks.length == 0;
 	}
 }

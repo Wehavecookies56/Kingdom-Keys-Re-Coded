@@ -21,9 +21,9 @@ public class ItemSynthesisBagM extends Item {
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if (world.isRemote) PacketDispatcher.sendToServer(new OpenGui(GuiIDs.GUI_SYNTHESISBAGM_INV));
-		return super.onItemRightClick(stack, world, player, hand);
+		return super.onItemRightClick(world, player, hand);
 	}
 
 	@Override

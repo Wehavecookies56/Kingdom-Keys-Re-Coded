@@ -23,7 +23,7 @@ public class AntiPoints extends AbstractMessage.AbstractServerMessage<AntiPoints
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
 		this.points = buffer.readInt();
-		this.operation = buffer.readStringFromBuffer(100);
+		this.operation = buffer.readString(100);
 	}
 
 	@Override

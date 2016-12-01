@@ -83,16 +83,16 @@ public class GuiSpells extends GuiContainer {
 		GL11.glPushMatrix();
 		{
 			GL11.glScalef(2, 2, 2);
-			String title = mc.thePlayer.getDisplayNameString().toString();
+			String title = mc.player.getDisplayNameString().toString();
 			drawString(fontRendererObj, title, 5, 5, 0xFFFFFF);
 		}
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
 		{
-			drawString(fontRendererObj, mc.thePlayer.worldObj.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
-			drawString(fontRendererObj, mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
-			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
-			IMunny MUNNY = mc.thePlayer.getCapability(ModCapabilities.MUNNY, null);
+			drawString(fontRendererObj, mc.player.world.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
+			drawString(fontRendererObj, mc.player.world.getBiome(mc.player.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.getBiome(mc.player.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
+			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.world) + ":" + getWorldMinutes(mc.world), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
+			IMunny MUNNY = mc.player.getCapability(ModCapabilities.MUNNY, null);
 			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
 		}
 		GL11.glPopMatrix();

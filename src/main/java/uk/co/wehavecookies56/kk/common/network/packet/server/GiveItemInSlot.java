@@ -37,7 +37,7 @@ public class GiveItemInSlot extends AbstractMessage<GiveItemInSlot> {
 	}
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		itemstack = buffer.readItemStackFromBuffer();
+		itemstack = buffer.readItemStack();
 		slot = buffer.readInt();
 		x = buffer.readDouble();
 		y = buffer.readDouble();
@@ -47,7 +47,7 @@ public class GiveItemInSlot extends AbstractMessage<GiveItemInSlot> {
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStackToBuffer(itemstack);
+		buffer.writeItemStack(itemstack);
 		buffer.writeInt(slot);
 		buffer.writeDouble(x);
 		buffer.writeDouble(y);
@@ -66,7 +66,7 @@ public class GiveItemInSlot extends AbstractMessage<GiveItemInSlot> {
 			if(slot >= 0){
 				player.inventory.setInventorySlotContents(slot, itemstack);
 			} else {
-				player.worldObj.spawnEntityInWorld(new EntityItem(player.worldObj, x, y, z, itemstack));
+				player.world.spawnEntity(new EntityItem(player.world, x, y, z, itemstack));
 			}
 		}
 	

@@ -6,6 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 public class ItemMunny extends Item {
 
@@ -22,6 +23,6 @@ public class ItemMunny extends Item {
 	}
 
 	@Override
-	public void getSubItems (Item itemIn, CreativeTabs tab, List subItems) {}
+	public void getSubItems (Item itemIn, CreativeTabs tab, NonNullList subItems) {}
 
 }

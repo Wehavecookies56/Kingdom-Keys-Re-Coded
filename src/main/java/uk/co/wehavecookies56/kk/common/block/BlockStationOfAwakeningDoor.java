@@ -36,7 +36,7 @@ public class BlockStationOfAwakeningDoor extends Block {
     @SuppressWarnings("deprecation")
     @Nullable
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         if(blockState.getValue(FACING) == EnumFacing.NORTH) {
             return new AxisAlignedBB(-0.4, 0.0, 0.3, 1.4, 3.0, 0.7);
         } else if (blockState.getValue(FACING) == EnumFacing.SOUTH) {
@@ -99,12 +99,6 @@ public class BlockStationOfAwakeningDoor extends Block {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
     }
 
-    @Override
-    public IBlockState onBlockPlaced (World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
-    }
-
-
     @SideOnly(Side.CLIENT)
     public IBlockState getStateForEntityRender(IBlockState state) {
         return this.getDefaultState().withProperty(FACING, EnumFacing.NORTH);
@@ -150,11 +144,6 @@ public class BlockStationOfAwakeningDoor extends Block {
     @SuppressWarnings("deprecation")
     @Override
     public boolean isFullCube (IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isVisuallyOpaque () {
         return false;
     }
 

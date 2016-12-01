@@ -26,26 +26,26 @@ public class SynthesisMaterialPickup extends AbstractServerMessage<SynthesisMate
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStackFromBuffer();
-		bag = buffer.readItemStackFromBuffer();
+		toRemove = buffer.readItemStack();
+		bag = buffer.readItemStack();
 		slot = buffer.readInt();
 	}
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStackToBuffer(toRemove);
-		buffer.writeItemStackToBuffer(bag);
+		buffer.writeItemStack(toRemove);
+		buffer.writeItemStack(bag);
 		buffer.writeInt(slot);
 	}
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		//player.inventory.consumeInventoryItem(toRemove.getItem());
-		toRemove.stackSize--;
+		toRemove.shrink(1);
 		if (bag.getItem().equals(ModItems.SynthesisBagL)) {
 			InventorySynthesisBagL bagL = new InventorySynthesisBagL(bag);
 			for (int i = 0; i < bagL.getSizeInventory(); i++)
-				if (bagL.getStackInSlot(i) == null) {
+				if (bagL.getStackInSlot(i) == ItemStack.EMPTY) {
 					bagL.setInventorySlotContents(0, toRemove);
 					bagL.markDirty();
 					break;

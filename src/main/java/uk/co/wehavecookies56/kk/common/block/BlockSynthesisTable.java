@@ -34,15 +34,15 @@ public class BlockSynthesisTable extends Block implements ITileEntityProvider {
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, ModSounds.kupo, SoundCategory.BLOCKS, 0.5F, 1.0F);
-        if(worldIn.isRemote)
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, ModSounds.kupo, SoundCategory.BLOCKS, 0.5F, 1.0F);
+        if(world.isRemote)
 		PacketDispatcher.sendToServer(new OpenSynthesis());
-		playerIn.openGui(KingdomKeys.instance, GuiIDs.GUI_SYNTHESISTABLE, worldIn, pos.getX(), pos.getY(), pos.getZ());
-		if (!worldIn.isRemote){
-			PacketDispatcher.sendTo(new SyncRecipeData(playerIn.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null)), (EntityPlayerMP) playerIn);
-			PacketDispatcher.sendTo(new SyncFreeDevRecipeData(playerIn.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null)), (EntityPlayerMP) playerIn);
-			PacketDispatcher.sendTo(new SyncMaterialData(playerIn.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) playerIn);
+		player.openGui(KingdomKeys.instance, GuiIDs.GUI_SYNTHESISTABLE, world, pos.getX(), pos.getY(), pos.getZ());
+		if (!world.isRemote){
+			PacketDispatcher.sendTo(new SyncRecipeData(player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null)), (EntityPlayerMP) player);
+			PacketDispatcher.sendTo(new SyncFreeDevRecipeData(player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null)), (EntityPlayerMP) player);
+			PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);
 		}
 		return true;
 	}

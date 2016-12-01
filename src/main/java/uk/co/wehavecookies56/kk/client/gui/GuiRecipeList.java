@@ -36,7 +36,7 @@ public class GuiRecipeList extends GuiScrollingList {
 
 	@Override
 	protected int getSize () {
-		return Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().size();
+		return Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().size();
 	}
 
 	@Override
@@ -52,14 +52,14 @@ public class GuiRecipeList extends GuiScrollingList {
 
 	@Override
 	protected void drawBackground () {
-		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
 
 		this.f.drawString(RECIPES.getKnownRecipes().size() + "/" + RecipeRegistry.getRecipeMap().size(), this.left + 130, 65, 0xFFFFFF);
 	}
 
 	@Override
 	protected void drawSlot (int var1, int var2, int var3, int var4, Tessellator var5) {
-		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
 
 		int color = 0xFFFFFF;
 		if (parent.isRecipeUsable(RECIPES.getKnownRecipes().get(var1))) {

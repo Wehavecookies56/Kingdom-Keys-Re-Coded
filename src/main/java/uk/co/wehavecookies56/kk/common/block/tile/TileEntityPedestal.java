@@ -62,12 +62,12 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 		if (itemStackInSlot == null) return null;
 
 		ItemStack itemStackRemoved;
-		if (itemStackInSlot.stackSize <= count) {
+		if (itemStackInSlot.getCount() <= count) {
 			itemStackRemoved = itemStackInSlot;
-			setInventorySlotContents(slotIndex, null);
+			setInventorySlotContents(slotIndex, ItemStack.EMPTY);
 		} else {
 			itemStackRemoved = itemStackInSlot.splitStack(count);
-			if (itemStackInSlot.stackSize == 0) setInventorySlotContents(slotIndex, null);
+			if (itemStackInSlot.getCount() == 0) setInventorySlotContents(slotIndex, ItemStack.EMPTY);
 		}
 		markDirty();
 		return itemStackRemoved;
@@ -76,8 +76,8 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 	@Override
 	public void setInventorySlotContents (int slotIndex, ItemStack itemstack) {
 		itemStacks[slotIndex] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) 
-			itemstack.stackSize = getInventoryStackLimit();
+		if (itemstack != ItemStack.EMPTY && itemstack.getCount() > getInventoryStackLimit())
+			itemstack.setCount(getInventoryStackLimit());
 		markDirty();
 	}
 
@@ -87,8 +87,8 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public boolean isUseableByPlayer (EntityPlayer player) {
-		if (this.worldObj.getTileEntity(this.pos) != this) return false;
+	public boolean isUsableByPlayer (EntityPlayer player) {
+		if (this.world.getTileEntity(this.pos) != this) return false;
 		final double X_CENTRE_OFFSET = 0.5;
 		final double Y_CENTRE_OFFSET = 0.5;
 		final double Z_CENTRE_OFFSET = 0.5;
@@ -107,7 +107,7 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 
 		NBTTagList dataForAllSlots = new NBTTagList();
 		for (int i = 0; i < this.itemStacks.length; ++i)
-			if (this.itemStacks[i] != null) {
+			if (this.itemStacks[i] != ItemStack.EMPTY) {
 				NBTTagCompound dataForThisSlot = new NBTTagCompound();
 				dataForThisSlot.setByte("Slot", (byte) i);
 				this.itemStacks[i].writeToNBT(dataForThisSlot);
@@ -116,7 +116,7 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 		parentNBTTagCompound.setTag("Items", dataForAllSlots);	
 		parentNBTTagCompound.setInteger("Rotation", rotation);
 		NBTTagCompound keybladeCompound = new NBTTagCompound();
-		if (keyblade != null)
+		if (keyblade != ItemStack.EMPTY)
 			keyblade.writeToNBT(keybladeCompound);
 		parentNBTTagCompound.setTag("Keyblade", keybladeCompound);
 		return parentNBTTagCompound;
@@ -133,11 +133,11 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 			NBTTagCompound dataForOneSlot = dataForAllSlots.getCompoundTagAt(i);
 			int slotIndex = dataForOneSlot.getByte("Slot") & 255;
 			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) 
-				this.itemStacks[slotIndex] = ItemStack.loadItemStackFromNBT(dataForOneSlot);
+				this.itemStacks[slotIndex] = new ItemStack(dataForOneSlot);
 		}
 		rotation = parentNBTTagCompound.getInteger("Rotation");
 		NBTTagCompound keybladeCompound = parentNBTTagCompound.getCompoundTag("Keyblade");
-		keyblade = ItemStack.loadItemStackFromNBT(keybladeCompound);
+		keyblade = new ItemStack(keybladeCompound);
 	}
 
 	@Override
@@ -186,5 +186,10 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 	@Override
 	public String getName () {
 		return Utils.translateToLocal(Strings.Pedestal);
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return itemStacks.length == 0;
 	}
 }

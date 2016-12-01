@@ -42,17 +42,17 @@ public class ItemKKRecord extends ItemRecord {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		IBlockState iblockstate = worldIn.getBlockState(pos);
+		IBlockState iblockstate = world.getBlockState(pos);
         if (iblockstate.getBlock() == Blocks.JUKEBOX && !((Boolean)iblockstate.getValue(BlockJukebox.HAS_RECORD)).booleanValue())
         {
-        	if (!worldIn.isRemote) {
-                ((BlockJukebox)Blocks.JUKEBOX).insertRecord(worldIn, pos, iblockstate, stack);
-                worldIn.playEvent((EntityPlayer)null, 1010, pos, Item.getIdFromItem(this));
-                --stack.stackSize;
-                playerIn.addStat(StatList.RECORD_PLAYED);
-                AchievementHelper.addAchievement(playerIn, ModAchievements.playMusicDisc);
+        	if (!world.isRemote) {
+                ((BlockJukebox)Blocks.JUKEBOX).insertRecord(world, pos, iblockstate, player.getActiveItemStack());
+                world.playEvent((EntityPlayer)null, 1010, pos, Item.getIdFromItem(this));
+                player.getActiveItemStack().shrink(1);
+                player.addStat(StatList.RECORD_PLAYED);
+                AchievementHelper.addAchievement(player, ModAchievements.playMusicDisc);
             }
             return EnumActionResult.SUCCESS;
         }

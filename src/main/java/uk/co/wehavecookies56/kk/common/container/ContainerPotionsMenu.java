@@ -30,7 +30,7 @@ public class ContainerPotionsMenu extends Container {
 
 	@Override
 	public ItemStack transferStackInSlot (EntityPlayer player, int par2) {
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = this.inventorySlots.get(par2);
 
 		if (slot != null && slot.getHasStack()) {
@@ -38,21 +38,21 @@ public class ContainerPotionsMenu extends Container {
 			itemstack = itemstack1.copy();
 
 			if (par2 < INV_START) {
-				if (!mergeItemStack(itemstack1, INV_START, HOTBAR_END + 1, true)) return null;
+				if (!mergeItemStack(itemstack1, INV_START, HOTBAR_END + 1, true)) return ItemStack.EMPTY;
 				slot.onSlotChange(itemstack1, itemstack);
 			} else if (itemstack1.getItem() instanceof ItemKKPotion) {
-				if (!mergeItemStack(itemstack1, 0, InventoryPotionsMenu.INV_SIZE, false)) return null;
+				if (!mergeItemStack(itemstack1, 0, InventoryPotionsMenu.INV_SIZE, false)) return ItemStack.EMPTY;
 			} else if (par2 >= INV_START && par2 < HOTBAR_START) {
-				if (!mergeItemStack(itemstack1, HOTBAR_START, HOTBAR_START + 1, false)) return null;
-			} else if (par2 >= HOTBAR_START && par2 < HOTBAR_END + 1) if (!mergeItemStack(itemstack1, INV_START, INV_END + 1, false)) return null;
-			if (itemstack1.stackSize == 0)
-				slot.putStack((ItemStack) null);
+				if (!mergeItemStack(itemstack1, HOTBAR_START, HOTBAR_START + 1, false)) return ItemStack.EMPTY;
+			} else if (par2 >= HOTBAR_START && par2 < HOTBAR_END + 1) if (!mergeItemStack(itemstack1, INV_START, INV_END + 1, false)) return ItemStack.EMPTY;
+			if (itemstack1.getCount() == 0)
+				slot.putStack(ItemStack.EMPTY);
 			else
 				slot.onSlotChanged();
 
-			if (itemstack1.stackSize == itemstack.stackSize) return null;
+			if (itemstack1.getCount() == itemstack.getCount()) return ItemStack.EMPTY;
 
-			slot.onPickupFromSlot(player, itemstack1);
+			slot.onTake(player, itemstack1);
 		}
 		return itemstack;
 	}

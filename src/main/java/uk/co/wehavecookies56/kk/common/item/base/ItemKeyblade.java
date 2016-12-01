@@ -92,7 +92,7 @@ public class ItemKeyblade extends ItemSword {
 
 	private void replaceModifier(Multimap<String, AttributeModifier> modifierMultimap, IAttribute attribute, UUID id, double multiplier) {
 		// Get the modifiers for the specified attribute
-		final Collection<AttributeModifier> modifiers = modifierMultimap.get(attribute.getAttributeUnlocalizedName());
+		final Collection<AttributeModifier> modifiers = modifierMultimap.get(attribute.getName());
 
 		// Find the modifier with the specified ID, if any
 		final Optional<AttributeModifier> modifierOptional = modifiers.stream().filter(attributeModifier -> attributeModifier.getID().equals(id)).findFirst();
@@ -105,32 +105,32 @@ public class ItemKeyblade extends ItemSword {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand hand) {
 		if(player.isSneaking()) {
 			
 		} else {
 			if (worldIn.isRemote){
 				RayTraceResult rtr = Minecraft.getMinecraft().objectMouseOver;
-				if (player.getHeldItem(EnumHand.OFF_HAND) != null && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
+				if (player.getHeldItem(EnumHand.OFF_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
 					if(player.swingProgress <= 0)
 						player.swingArm(EnumHand.OFF_HAND);
 					if (rtr.entityHit != null) {
 						PacketDispatcher.sendToServer(new AttackEntity(rtr.entityHit.getEntityId()));
-						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(EnumHand.OFF_HAND));
 					}
-					return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+					return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(EnumHand.OFF_HAND));
 				}
 				
 			}
 		}
-		return super.onItemRightClick(itemStackIn, worldIn, player, hand);
+		return super.onItemRightClick(worldIn, player, hand);
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		
-		if (stack.getItem() == ModItems.WoodenKeyblade || stack.getItem() == ModItems.WoodenStick || stack.getItem() == ModItems.DreamSword)
-			return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+		if (player.getActiveItemStack().getItem() == ModItems.WoodenKeyblade || player.getActiveItemStack().getItem() == ModItems.WoodenStick || player.getActiveItemStack().getItem() == ModItems.DreamSword)
+			return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 
 		if (world.getBlockState(pos).getBlock() instanceof BlockDoor) {
 			SoundEvent sound;
@@ -151,7 +151,7 @@ public class ItemKeyblade extends ItemSword {
 				}
 			}
 		}
-		return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+		return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 	}
 	
 }

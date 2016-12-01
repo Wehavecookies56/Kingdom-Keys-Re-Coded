@@ -30,20 +30,20 @@ public class TakeSoldItem extends AbstractMessage.AbstractServerMessage<TakeSold
 	protected void read (PacketBuffer buffer) throws IOException {
 		this.munnyToGive = buffer.readInt();
 		this.quantity = buffer.readInt();
-		this.soldItem = buffer.readItemStackFromBuffer();
+		this.soldItem = buffer.readItemStack();
 	}
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeInt(munnyToGive);
 		buffer.writeInt(quantity);
-		buffer.writeItemStackToBuffer(soldItem);
+		buffer.writeItemStack(soldItem);
 	}
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		player.inventory.getStackInSlot(player.inventory.getSlotFor(soldItem)).stackSize -= quantity;
-		if (player.inventory.getStackInSlot(player.inventory.getSlotFor(soldItem)).stackSize < 1)
+		player.inventory.getStackInSlot(player.inventory.getSlotFor(soldItem)).shrink(quantity);
+		if (player.inventory.getStackInSlot(player.inventory.getSlotFor(soldItem)).getCount() < 1)
 			player.inventory.removeStackFromSlot(player.inventory.getSlotFor(soldItem));
 		player.getCapability(ModCapabilities.MUNNY, null).addMunny(munnyToGive * quantity);
 		PacketDispatcher.sendTo(new SyncMunnyData(player.getCapability(ModCapabilities.MUNNY, null)), (EntityPlayerMP) player);

@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
@@ -21,12 +22,12 @@ public class TabKingdomKeys extends CreativeTabs {
 
 	@Override
 	@SideOnly (Side.CLIENT)
-	public Item getTabIconItem () {
-		return ModItems.KingdomHearts;
+	public ItemStack getTabIconItem () {
+		return new ItemStack(ModItems.KingdomHearts);
 	}
 	
 	@Override
-	public void displayAllRelevantItems (List<ItemStack> list) {
+	public void displayAllRelevantItems (NonNullList<ItemStack> list) {
 		super.displayAllRelevantItems(list);
 		ItemStack munny = new ItemStack(ModItems.Munny, 1);
 		munny.setTagCompound(new NBTTagCompound());

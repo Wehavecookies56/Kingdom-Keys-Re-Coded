@@ -45,31 +45,31 @@ public class ContainerPedestal extends Container {
 
 	@Override
 	public boolean canInteractWith (EntityPlayer player) {
-		return tileEntityPedestal.isUseableByPlayer(player);
+		return tileEntityPedestal.isUsableByPlayer(player);
 	}
 
 	@Override
 	public ItemStack transferStackInSlot (EntityPlayer player, int sourceSlotIndex) {
 		Slot sourceSlot = inventorySlots.get(sourceSlotIndex);
-		if (sourceSlot == null || !sourceSlot.getHasStack()) return null;
+		if (sourceSlot == null || !sourceSlot.getHasStack()) return ItemStack.EMPTY;
 		ItemStack sourceStack = sourceSlot.getStack();
 		ItemStack copyOfSourceStack = sourceStack.copy();
 
 		if (sourceSlotIndex >= VANILLA_FIRST_SLOT_INDEX && sourceSlotIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-			if (!mergeItemStack(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false)) return null;
+			if (!mergeItemStack(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false)) return ItemStack.EMPTY;
 		} else if (sourceSlotIndex >= TE_INVENTORY_FIRST_SLOT_INDEX && sourceSlotIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-			if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) return null;
+			if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) return ItemStack.EMPTY;
 		} else {
 			System.err.print("Invalid slotIndex: " + sourceSlotIndex);
-			return null;
+			return ItemStack.EMPTY;
 		}
 
-		if (sourceStack.stackSize == 0)
-			sourceSlot.putStack(null);
+		if (sourceStack.getCount() == 0)
+			sourceSlot.putStack(ItemStack.EMPTY);
 		else
 			sourceSlot.onSlotChanged();
 
-		sourceSlot.onPickupFromSlot(player, sourceStack);
+		sourceSlot.onTake(player, sourceStack);
 		return copyOfSourceStack;
 	}
 

@@ -37,6 +37,6 @@ public class SpawnLockOnParticle extends AbstractMessage.AbstractClientMessage<S
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		player.worldObj.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.x, this.y+1, this.z, 0.0D, 0.0D, 0.0D);
+		player.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.x, this.y+1, this.z, 0.0D, 0.0D, 0.0D);
 	}
 }

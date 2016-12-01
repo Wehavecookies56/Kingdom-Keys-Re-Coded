@@ -29,41 +29,38 @@ public class ItemRecipe extends Item {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player,
-			EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-			PacketDispatcher.sendToServer(new UseRecipe(stack.getTagCompound().getString("recipe1"), stack.getTagCompound().getString("recipe2"), stack.getTagCompound().getString("recipe3")));
-			return super.onItemRightClick(stack, world, player, hand);
+			PacketDispatcher.sendToServer(new UseRecipe(player.getActiveItemStack().getTagCompound().getString("recipe1"), player.getActiveItemStack().getTagCompound().getString("recipe2"), player.getActiveItemStack().getTagCompound().getString("recipe3")));
+			return super.onItemRightClick(world, player, hand);
 		} else if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-			String recipe1 = stack.getTagCompound().getString("recipe1");
-			String recipe2 = stack.getTagCompound().getString("recipe2");
-			String recipe3 = stack.getTagCompound().getString("recipe3");
+			String recipe1 = player.getActiveItemStack().getTagCompound().getString("recipe1");
+			String recipe2 = player.getActiveItemStack().getTagCompound().getString("recipe2");
+			String recipe3 = player.getActiveItemStack().getTagCompound().getString("recipe3");
 
 			SynthesisRecipeCapability.ISynthesisRecipe RECIPES = player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
-			
+
 			boolean consume = false;
-			if (RecipeRegistry.get(recipe1) == null) {} 
-			else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1)) {} 
+			if (RecipeRegistry.get(recipe1) == null) {}
+			else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1)) {}
 			else
 				consume = true;
 			if (RecipeRegistry.get(recipe2) == null) {}
-			else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2)) {} 
+			else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2)) {}
 			else
 				consume = true;
-			if (RecipeRegistry.get(recipe3) == null) {} 
-			else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3)) {} 
+			if (RecipeRegistry.get(recipe3) == null) {}
+			else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3)) {}
 			else
 				consume = true;
 
 			if(RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1) && RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2) && RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3))
-			{
-				shuffleRecipes(stack, player);
-			}
-			if (consume) 
-				{stack.stackSize--;}
+				shuffleRecipes(player.getActiveItemStack(), player);
+			if (consume)
+				player.getActiveItemStack().shrink(1);
 
 		}
-		return super.onItemRightClick(stack, world, player, hand);
+		return super.onItemRightClick(world, player, hand);
 	}
 
 	public void shuffleRecipes(ItemStack stack, EntityPlayer player) //TODO Test this
@@ -74,9 +71,9 @@ public class ItemRecipe extends Item {
 		// Shuffles the list of recipe to increase randomness
 		Collections.shuffle(Lists.recipes, new Random(seed));
 		String Recipe1, Recipe2, Recipe3;
-		
+
 		Recipe1 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
-		if(RECIPES.getKnownRecipes().size() < 118)		
+		if(RECIPES.getKnownRecipes().size() < 118)
 		{
 			while(RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe1))
 				Recipe1 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
@@ -88,19 +85,19 @@ public class ItemRecipe extends Item {
 				Recipe2 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
 		}
 		Recipe3 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
-		if(RECIPES.getKnownRecipes().size() < 120)	
+		if(RECIPES.getKnownRecipes().size() < 120)
 		{
 			while ((Recipe3.equals(Recipe2) || Recipe3.equals(Recipe1)) || RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe3))
 				Recipe3 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
 		}
-	
-	
+
+
 		stack.setTagCompound(new NBTTagCompound());
 		stack.getTagCompound().setString("recipe1", Recipe1);
 		stack.getTagCompound().setString("recipe2", Recipe2);
 		stack.getTagCompound().setString("recipe3", Recipe3);
 	}
-	
+
 	@Override
 	public void onUpdate (ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		if (!stack.hasTagCompound()) {

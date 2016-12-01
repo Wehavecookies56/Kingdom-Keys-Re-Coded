@@ -16,7 +16,7 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 	GuiButton keychain, potions, spells, driveforms, back;
 
 	public GuiMenu_Items_Player (String name) {
-		super(Minecraft.getMinecraft().thePlayer.getDisplayName().getFormattedText());
+		super(Minecraft.getMinecraft().player.getDisplayName().getFormattedText());
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 	}
 
 	private void updateButtons () {
-		keychain.enabled = mc.thePlayer.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned() == false;
+		keychain.enabled = mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned() == false;
 		updateScreen();
 	}
 

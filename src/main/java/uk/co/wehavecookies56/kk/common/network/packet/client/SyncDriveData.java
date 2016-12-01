@@ -47,7 +47,7 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
 		this.inDrive = buffer.readBoolean();
-		this.driveName = buffer.readStringFromBuffer(100);
+		this.driveName = buffer.readString(100);
 		this.antiPoints = buffer.readInt();
 		this.valorLevel = buffer.readInt();
 		this.wisdomLevel = buffer.readInt();

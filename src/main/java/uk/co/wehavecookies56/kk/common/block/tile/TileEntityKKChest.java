@@ -35,12 +35,12 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 		if (itemStackInSlot == null) return null;
 
 		ItemStack itemStackRemoved;
-		if (itemStackInSlot.stackSize <= count) {
+		if (itemStackInSlot.getCount() <= count) {
 			itemStackRemoved = itemStackInSlot;
-			setInventorySlotContents(slotIndex, null);
+			setInventorySlotContents(slotIndex, ItemStack.EMPTY);
 		} else {
 			itemStackRemoved = itemStackInSlot.splitStack(count);
-			if (itemStackInSlot.stackSize == 0) setInventorySlotContents(slotIndex, null);
+			if (itemStackInSlot.getCount() == 0) setInventorySlotContents(slotIndex, ItemStack.EMPTY);
 		}
 		markDirty();
 		return itemStackRemoved;
@@ -49,7 +49,7 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 	@Override
 	public void setInventorySlotContents (int slotIndex, ItemStack itemstack) {
 		itemStacks[slotIndex] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) itemstack.stackSize = getInventoryStackLimit();
+		if (itemstack != ItemStack.EMPTY && itemstack.getCount() > getInventoryStackLimit()) itemstack.setCount(getInventoryStackLimit());
 		markDirty();
 	}
 
@@ -59,8 +59,8 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public boolean isUseableByPlayer (EntityPlayer player) {
-		if (this.worldObj.getTileEntity(this.pos) != this) return false;
+	public boolean isUsableByPlayer (EntityPlayer player) {
+		if (this.world.getTileEntity(this.pos) != this) return false;
 		final double X_CENTRE_OFFSET = 0.5;
 		final double Y_CENTRE_OFFSET = 0.5;
 		final double Z_CENTRE_OFFSET = 0.5;
@@ -83,7 +83,7 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 
 		NBTTagList dataForAllSlots = new NBTTagList();
 		for (int i = 0; i < this.itemStacks.length; ++i)
-			if (this.itemStacks[i] != null) {
+			if (this.itemStacks[i] != ItemStack.EMPTY) {
 				NBTTagCompound dataForThisSlot = new NBTTagCompound();
 				dataForThisSlot.setByte("Slot", (byte) i);
 				this.itemStacks[i].writeToNBT(dataForThisSlot);
@@ -108,11 +108,11 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 		for (int i = 0; i < dataForAllSlots.tagCount(); ++i) {
 			NBTTagCompound dataForOneSlot = dataForAllSlots.getCompoundTagAt(i);
 			int slotIndex = dataForOneSlot.getByte("Slot") & 255;
-			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) this.itemStacks[slotIndex] = ItemStack.loadItemStackFromNBT(dataForOneSlot);
+			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) this.itemStacks[slotIndex] = new ItemStack(dataForOneSlot);
 		}
 
 		NBTTagCompound keybladeCompound = parentNBTTagCompound.getCompoundTag("Keyblade");
-		keyblade = ItemStack.loadItemStackFromNBT(keybladeCompound);
+		keyblade = new ItemStack(keybladeCompound);
 	}
 
 	@Override
@@ -169,5 +169,10 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 
 	public void setKeyblade(ItemStack keyblade) {
 		this.keyblade = keyblade;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return itemStacks.length == 0;
 	}
 }

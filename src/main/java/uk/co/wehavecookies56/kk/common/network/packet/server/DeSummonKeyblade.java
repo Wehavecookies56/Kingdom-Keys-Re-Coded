@@ -26,18 +26,18 @@ public class DeSummonKeyblade extends AbstractServerMessage<DeSummonKeyblade> {
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStackFromBuffer();
+		toRemove = buffer.readItemStack();
 	}
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStackToBuffer(toRemove);
+		buffer.writeItemStack(toRemove);
 	}
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-		player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.unsummon, SoundCategory.MASTER, 1.0f, 1.0f);
+		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.unsummon, SoundCategory.MASTER, 1.0f, 1.0f);
 		player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
 		PacketDispatcher.sendTo(new SyncKeybladeData(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) player);
 	}

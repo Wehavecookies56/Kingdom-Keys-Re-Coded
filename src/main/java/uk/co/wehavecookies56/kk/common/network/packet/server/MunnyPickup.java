@@ -22,18 +22,18 @@ public class MunnyPickup extends AbstractServerMessage<MunnyPickup> {
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStackFromBuffer();
+		toRemove = buffer.readItemStack();
 	}
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStackToBuffer(toRemove);
+		buffer.writeItemStack(toRemove);
 	}
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		//player.inventory.consumeInventoryItem(toRemove.getItem());
-		toRemove.stackSize--;
+		toRemove.shrink(1);
 		IMunny munny = player.getCapability(ModCapabilities.MUNNY, null);
 		munny.addMunny(toRemove.getTagCompound().getInteger("amount"));
 	}

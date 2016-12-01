@@ -27,9 +27,9 @@ public class MagicWisdomShot extends AbstractMessage.AbstractServerMessage<Magic
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		World world = player.worldObj;
+		World world = player.world;
 		EntityWisdomShot wisdomshot = new EntityWisdomShot(world, player);
-		world.spawnEntityInWorld(wisdomshot);
+		world.spawnEntity(wisdomshot);
 		wisdomshot.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 3, 0);
 		PacketDispatcher.sendToAllAround(new SpawnWisdomShotParticles(new EntityWisdomShot(world)), player, 64.0D);	
 	}

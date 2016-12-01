@@ -6,8 +6,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
+
+import javax.annotation.Nullable;
 
 public class BlockBounceBlox extends BlockBlox {
 
@@ -30,8 +33,9 @@ public class BlockBounceBlox extends BlockBlox {
 	}
 
 	@SuppressWarnings("deprecation")
+	@Nullable
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D);
 	}
 }

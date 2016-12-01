@@ -14,11 +14,11 @@ public class ItemHpOrb extends Item {
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand hand) {
 		if (!(player.getHealth() == 20)) {
 			player.heal(2);
 			player.inventory.decrStackSize(player.inventory.currentItem, 1);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getActiveItemStack());
 	}
 }

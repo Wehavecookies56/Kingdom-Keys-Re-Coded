@@ -20,14 +20,14 @@ public class ItemMagicBoost extends Item {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer playerIn, EnumHand hand) {
-		itemStackIn.stackSize--;
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+		player.getActiveItemStack().shrink(1);
 		if (world.isRemote) {
-			PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.MagicBoost, playerIn.inventory.currentItem));
+			PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.MagicBoost, player.inventory.currentItem));
 		}
-		playerIn.worldObj.playSound(playerIn, playerIn.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
+		player.world.playSound(player, player.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
 
-		return super.onItemRightClick(itemStackIn, world, playerIn, hand);
+		return super.onItemRightClick(world, player, hand);
 	}
 
 	@Override

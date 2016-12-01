@@ -11,6 +11,7 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.IThreadListener;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -117,7 +118,7 @@ public class CommonProxy {
 	private static void registerEntityWithEgg(Class<? extends Entity> entity, String name, int modid, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int primaryColor, int secondaryColor) {
 		int id = 1;
 		stringtoIDMapping.put(name, id);
-		EntityRegistry.registerModEntity(entity, name, modid, new KingdomKeys(), trackingRange, updateFrequency, sendsVelocityUpdates, primaryColor, secondaryColor);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, name), entity, name, modid, new KingdomKeys(), trackingRange, updateFrequency, sendsVelocityUpdates, primaryColor, secondaryColor);
 	}
 
 	public void init (FMLInitializationEvent event) {
@@ -154,9 +155,9 @@ public class CommonProxy {
 		// Proxy used as Gui handler
 		NetworkRegistry.INSTANCE.registerGuiHandler(KingdomKeys.instance, new GuiHandler());
 
-		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 1001, KingdomKeys.instance, 16, 1, false);
-		EntityRegistry.registerModEntity(EntityFire.class, "fire", 1002, KingdomKeys.instance, 16, 1, false);
-		EntityRegistry.registerModEntity(EntityThunder.class, "thunder", 1003, KingdomKeys.instance, 16, 1, false);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "blastblox"), EntityBlastBlox.class, "blastblox", 1001, KingdomKeys.instance, 16, 1, false);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "fire"), EntityFire.class, "fire", 1002, KingdomKeys.instance, 16, 1, false);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, "thunder"), EntityThunder.class, "thunder", 1003, KingdomKeys.instance, 16, 1, false);
 
 		// Heartless registry
 		EntityHelper.registerEntity("Shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());

@@ -35,74 +35,74 @@ public class DepositMaterialsFromBag extends AbstractMessage.AbstractServerMessa
 	public void process (EntityPlayer player, Side side) {
 		for (int i = 0; i < 36; i++)
 		{
-			if (player.inventory.mainInventory[i] != null) 
+			if (player.inventory.mainInventory.get(i) != ItemStack.EMPTY)
 			{
-				if (player.inventory.mainInventory[i].getItem() == ModItems.SynthesisBagS) 
+				if (player.inventory.mainInventory.get(i).getItem() == ModItems.SynthesisBagS)
 				{
 					InventorySynthesisBagS bag = new InventorySynthesisBagS(player.inventory.getStackInSlot(i));
 					for (int j = 0; j < bag.getSizeInventory(); j++)
 					{
 						ItemStack bagItem = bag.getStackInSlot(j);
-						if (bagItem != null)
+						if (bagItem != ItemStack.EMPTY)
 						{
 							if (bagItem.hasTagCompound()) 
 							{
 								String s = bagItem.getTagCompound().getString("material");
 								if (MaterialRegistry.isMaterialRegistered(s))
 								{ 
-									player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(s), bag.getStackInSlot(j).stackSize);
+									player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(s), bag.getStackInSlot(j).getCount());
 								}
-								bag.setInventorySlotContents(j, null);
+								bag.setInventorySlotContents(j, ItemStack.EMPTY);
 							}
-						} else if (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory[i].getItem().getUnlocalizedName().toString())) {
-							player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory[i].getItem().getUnlocalizedName()), player.inventory.mainInventory[i].stackSize);
-							player.inventory.setInventorySlotContents(i, null);
+						} else if (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory.get(i).getItem().getUnlocalizedName().toString())) {
+							player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory.get(i).getItem().getUnlocalizedName()), player.inventory.mainInventory.get(i).getCount());
+							player.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
 						}
 						PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);
 					}
-				}else if (player.inventory.mainInventory[i].getItem() == ModItems.SynthesisBagM) 
+				}else if (player.inventory.mainInventory.get(i).getItem() == ModItems.SynthesisBagM)
 				{
 					InventorySynthesisBagM bag = new InventorySynthesisBagM(player.inventory.getStackInSlot(i));
 					for (int j = 0; j < bag.getSizeInventory(); j++)
 					{
 						ItemStack bagItem = bag.getStackInSlot(j);
-						if (bagItem != null)
+						if (bagItem != ItemStack.EMPTY)
 						{
 							if (bagItem.hasTagCompound()) 
 							{
 								String s = bagItem.getTagCompound().getString("material");
 								if (MaterialRegistry.isMaterialRegistered(s))
 								{ 
-									player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(s), bag.getStackInSlot(j).stackSize);
+									player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(s), bag.getStackInSlot(j).getCount());
 								}
-								bag.setInventorySlotContents(j, null);
+								bag.setInventorySlotContents(j, ItemStack.EMPTY);
 							}
-						} else if (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory[i].getItem().getUnlocalizedName().toString())) {
-							player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory[i].getItem().getUnlocalizedName()), player.inventory.mainInventory[i].stackSize);
-							player.inventory.setInventorySlotContents(i, null);
+						} else if (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory.get(i).getItem().getUnlocalizedName().toString())) {
+							player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory.get(i).getItem().getUnlocalizedName()), player.inventory.mainInventory.get(i).getCount());
+							player.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
 						}
 						PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);
 					}
-				}else if (player.inventory.mainInventory[i].getItem() == ModItems.SynthesisBagL) 
+				}else if (player.inventory.mainInventory.get(i).getItem() == ModItems.SynthesisBagL)
 				{
 					InventorySynthesisBagL bag = new InventorySynthesisBagL(player.inventory.getStackInSlot(i));
 					for (int j = 0; j < bag.getSizeInventory(); j++)
 					{
 						ItemStack bagItem = bag.getStackInSlot(j);
-						if (bagItem != null)
+						if (bagItem != ItemStack.EMPTY)
 						{
 							if (bagItem.hasTagCompound()) 
 							{
 								String s = bagItem.getTagCompound().getString("material");
 								if (MaterialRegistry.isMaterialRegistered(s))
 								{ 
-									player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(s), bag.getStackInSlot(j).stackSize);
+									player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(s), bag.getStackInSlot(j).getCount());
 								}
-								bag.setInventorySlotContents(j, null);
+								bag.setInventorySlotContents(j, ItemStack.EMPTY);
 							}
-						} else if (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory[i].getItem().getUnlocalizedName().toString())) {
-							player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory[i].getItem().getUnlocalizedName()), player.inventory.mainInventory[i].stackSize);
-							player.inventory.setInventorySlotContents(i, null);
+						} else if (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory.get(i).getItem().getUnlocalizedName().toString())) {
+							player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory.get(i).getItem().getUnlocalizedName()), player.inventory.mainInventory.get(i).getCount());
+							player.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
 						}
 						PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);
 					}

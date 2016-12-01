@@ -18,6 +18,8 @@ import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncCheatModeData;
 
+import javax.annotation.Nullable;
+
 public class CommandCheatMode implements ICommand {
 
 	private List<String> aliases;
@@ -34,7 +36,7 @@ public class CommandCheatMode implements ICommand {
 	}
 
 	@Override
-	public String getCommandName () {
+	public String getName () {
 		return "cheatmode";
 	}
 
@@ -43,12 +45,12 @@ public class CommandCheatMode implements ICommand {
 	}
 
 	@Override
-	public String getCommandUsage (ICommandSender sender) {
+	public String getUsage (ICommandSender sender) {
 		return "/cheatmode [player]";
 	}
 
 	@Override
-	public List<String> getCommandAliases () {
+	public List<String> getAliases () {
 		return this.aliases;
 	}
 
@@ -83,7 +85,7 @@ public class CommandCheatMode implements ICommand {
 				TextHelper.sendFormattedChatMessage(args[1] + " is now in Cheat Mode", TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
 			}
 		} else{
-			TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getCommandUsage(sender), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+			TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
 		}
 		PacketDispatcher.sendTo(new SyncCheatModeData(sender.getCommandSenderEntity().getCapability(ModCapabilities.CHEAT_MODE, null), sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) sender.getCommandSenderEntity());
 	}
@@ -102,11 +104,11 @@ public class CommandCheatMode implements ICommand {
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		return sender.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName());
+		return sender.canUseCommand(getRequiredPermissionLevel(), getName());
 	}
 
 	@Override
-	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos) {
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
 		return null;
 	}
 }

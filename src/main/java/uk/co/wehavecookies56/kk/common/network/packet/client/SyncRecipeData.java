@@ -26,7 +26,7 @@ public class SyncRecipeData extends AbstractMessage.AbstractClientMessage<SyncRe
 	protected void read(PacketBuffer buffer) throws IOException {
 		recipes = new ArrayList<String>();
 		while(buffer.isReadable()){
-			recipes.add(buffer.readStringFromBuffer(100));
+			recipes.add(buffer.readString(100));
 		}
 	}
 

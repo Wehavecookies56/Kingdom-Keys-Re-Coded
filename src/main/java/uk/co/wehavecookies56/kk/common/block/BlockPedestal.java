@@ -36,7 +36,7 @@ public class BlockPedestal extends Block implements ITileEntityProvider{
 	}
 	
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (!world.isRemote) {
 			TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(pos);
 			player.openGui(KingdomKeys.instance, GuiIDs.GUI_PEDESTAL_INV, world, pos.getX(), pos.getY(), pos.getZ());
@@ -52,7 +52,7 @@ public class BlockPedestal extends Block implements ITileEntityProvider{
 
 		if (inventory != null) {
 			for (int i = 0; i < inventory.getSizeInventory(); i++)
-				if (inventory.getStackInSlot(i) != null) {
+				if (inventory.getStackInSlot(i) != ItemStack.EMPTY) {
 					EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, inventory.getStackInSlot(i));
 
 					float multiplier = 0.1f;
@@ -64,7 +64,7 @@ public class BlockPedestal extends Block implements ITileEntityProvider{
 					item.motionY = motionY * multiplier;
 					item.motionZ = motionZ * multiplier;
 
-					worldIn.spawnEntityInWorld(item);
+					worldIn.spawnEntity(item);
 				}
 			inventory.clear();
 		}

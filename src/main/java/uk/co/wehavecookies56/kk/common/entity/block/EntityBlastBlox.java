@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.entity.block;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -54,7 +55,7 @@ public class EntityBlastBlox extends Entity {
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
 		this.motionY -= 0.03999999910593033D;
-		moveEntity(this.motionX, this.motionY, this.motionZ);
+		move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 		this.motionX *= 0.9800000190734863D;
 		this.motionY *= 0.9800000190734863D;
 		this.motionZ *= 0.9800000190734863D;
@@ -68,14 +69,14 @@ public class EntityBlastBlox extends Entity {
 		if (this.fuse-- <= 0) {
 			setDead();
 
-			if (!this.worldObj.isRemote) explode();
+			if (!this.world.isRemote) explode();
 		} else
-			this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, Utils.randomWithRange(-0.05D, 0.05D), 0.1D, Utils.randomWithRange(-0.05D, 0.005D));
+			this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, Utils.randomWithRange(-0.05D, 0.05D), 0.1D, Utils.randomWithRange(-0.05D, 0.005D));
 	}
 
 	private void explode () {
 		float f = 4.0F;
-		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, f, true);
+		this.world.createExplosion(this, this.posX, this.posY, this.posZ, f, true);
 	}
 
 	@Override

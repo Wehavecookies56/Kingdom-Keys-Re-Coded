@@ -427,7 +427,7 @@ public class ClientEventHandler {
 
 	@SubscribeEvent
 	public void renderTick(TickEvent.RenderTickEvent event) {
-        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        EntityPlayer player = Minecraft.getMinecraft().player;
         if (InputHandler.lockOn != null && player != null) {
 			if(InputHandler.lockOn.isDead) {
 				InputHandler.lockOn = null;
@@ -452,7 +452,7 @@ public class ClientEventHandler {
 			rYaw += 90F;
 			float rPitch = (float) pitch - (float) (10.0F / Math.sqrt(distance)) + (float) (distance * Math.PI / 90);
             //System.out.println(target.height + (target.height / 2.0F));
-            player.setAngles(rYaw, -(rPitch - player.rotationPitch));
+            player.turn(rYaw, -(rPitch - player.rotationPitch));
 		}
 	}
 }

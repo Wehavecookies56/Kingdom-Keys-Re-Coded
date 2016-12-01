@@ -41,7 +41,7 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 	public void onUpdate () 
 	{
 		int rotation = 0;
-		KingdomKeys.proxy.spawnTestParticle(worldObj, posX + worldObj.rand.nextDouble() * width * 2.0F - width, posY + worldObj.rand.nextDouble() * height, posZ + worldObj.rand.nextDouble() * width * 2.0F - width, worldObj.rand.nextGaussian() * 0.02D, worldObj.rand.nextGaussian() * 0.02D, worldObj.rand.nextGaussian() * 0.02D, 0.2F);
+		KingdomKeys.proxy.spawnTestParticle(world, posX + world.rand.nextDouble() * width * 2.0F - width, posY + world.rand.nextDouble() * height, posZ + world.rand.nextDouble() * width * 2.0F - width, world.rand.nextGaussian() * 0.02D, world.rand.nextGaussian() * 0.02D, world.rand.nextGaussian() * 0.02D, 0.2F);
 		this.rotationYaw = (rotation + 1) % 360;
 				
 		if (ticksExisted > 15) {
@@ -53,16 +53,15 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 		
 		if (returning) {
 			this.rotationYaw = (rotation + 1) % 360;
-			List entityTagetList = this.worldObj.getEntitiesWithinAABB(Entity.class, this.getEntityBoundingBox().expand(1.0D, 1.0D, 1.0D));
-			for (int i = 0; i < entityTagetList.size(); i++) {
-				Entity entityTarget = (Entity) entityTagetList.get(i);
+			List<Entity> entityTagetList = this.world.getEntitiesWithinAABB(Entity.class, this.getEntityBoundingBox().expand(1.0D, 1.0D, 1.0D));
+			entityTagetList.forEach(entityTarget -> {
 				if (entityTarget != null && entityTarget instanceof EntityPlayer) {
 					EntityPlayer owner = (EntityPlayer) entityTarget;
 					if (owner == this.getThrower()) {
 						this.setDead();
 					}
 				}
-			}
+			});
 		}		
 		super.onUpdate();
 	}
@@ -93,7 +92,7 @@ public class EntityEternalFlames extends EntityThrowable implements IThrowableEn
 			mop.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) getThrower()), shotDamage);
 		}
 
-		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+		this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 	}
 	
 	@Override

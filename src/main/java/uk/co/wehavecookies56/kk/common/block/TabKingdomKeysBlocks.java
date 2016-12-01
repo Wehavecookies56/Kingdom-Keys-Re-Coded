@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.block;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -13,8 +14,8 @@ public class TabKingdomKeysBlocks extends CreativeTabs {
 
 	@Override
 	@SideOnly (Side.CLIENT)
-	public Item getTabIconItem () {
-		return Item.getItemFromBlock(ModBlocks.NormalBlox);
+	public ItemStack getTabIconItem () {
+		return new ItemStack(Item.getItemFromBlock(ModBlocks.NormalBlox));
 	}
 
 }

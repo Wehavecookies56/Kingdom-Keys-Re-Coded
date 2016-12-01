@@ -28,14 +28,14 @@ public class EntityAIBlueRhapsody extends EntityAITarget
 	    	if(ticksBeforeNextBlizzard <= 0)
 	    	{
 	    		double d0 = this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget());
-	    		float f = MathHelper.sqrt_float(MathHelper.sqrt_double(d0));
+	    		float f = MathHelper.sqrt(MathHelper.sqrt(d0));
 	    		double d1 = this.taskOwner.getAttackTarget().posX - this.taskOwner.posX;
 	    		double d2 = this.taskOwner.getAttackTarget().getEntityBoundingBox().minY + (double)(this.taskOwner.getAttackTarget().height / 2.0F) - (this.taskOwner.posY + (double)(this.taskOwner.height / 2.0F));
 	    		double d3 = this.taskOwner.getAttackTarget().posZ - this.taskOwner.posZ;
-	    		EntityBlizzard esfb = new EntityBlizzard(this.taskOwner.worldObj, this.taskOwner);
+	    		EntityBlizzard esfb = new EntityBlizzard(this.taskOwner.world, this.taskOwner);
 	    		esfb.setThrowableHeading(d1, d2, d3, 1, 0);
 	    		esfb.posY = this.taskOwner.posY + (double)(this.taskOwner.height / 2.0F) + 0.5D;
-	    		this.taskOwner.worldObj.spawnEntityInWorld(esfb);
+	    		this.taskOwner.world.spawnEntity(esfb);
 	    		ticksBeforeNextBlizzard = 30 + this.taskOwner.getRNG().nextInt(10);
 	    	}
 	    	else

@@ -42,7 +42,7 @@ public class EntityBlizzara extends EntityThrowable {
 		int rotation = 0;
 		if (shootingEntity instanceof EntityPlayer)
 		{
-			if (!worldObj.isRemote) 
+			if (!world.isRemote) 
 				PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this, 2), (EntityPlayer) shootingEntity, 64.0D);
 			if(InputHandler.lockOn != null)
 			{
@@ -56,7 +56,7 @@ public class EntityBlizzara extends EntityThrowable {
 
 	@Override
 	protected void onImpact (RayTraceResult movingObject) {
-		if (!this.worldObj.isRemote) {
+		if (!this.world.isRemote) {
 			if (movingObject.entityHit != null) {
 				if (movingObject.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 8)) {
 					applyEnchantments(this.shootingEntity, movingObject.entityHit);
@@ -72,11 +72,11 @@ public class EntityBlizzara extends EntityThrowable {
 
 				if (this.shootingEntity != null) {
 					BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);
-					if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.WATER)
-						this.worldObj.setBlockState(blockpos, Blocks.ICE.getDefaultState());
-					else if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.FIRE)
-						this.worldObj.setBlockState(blockpos, Blocks.AIR.getDefaultState());
-					else if (this.worldObj.getBlockState(blockpos).getBlock() == Blocks.LAVA) this.worldObj.setBlockState(blockpos, Blocks.OBSIDIAN.getDefaultState());
+					if (this.world.getBlockState(blockpos).getBlock() == Blocks.WATER)
+						this.world.setBlockState(blockpos, Blocks.ICE.getDefaultState());
+					else if (this.world.getBlockState(blockpos).getBlock() == Blocks.FIRE)
+						this.world.setBlockState(blockpos, Blocks.AIR.getDefaultState());
+					else if (this.world.getBlockState(blockpos).getBlock() == Blocks.LAVA) this.world.setBlockState(blockpos, Blocks.OBSIDIAN.getDefaultState());
 				}
 			}
 			setDead();

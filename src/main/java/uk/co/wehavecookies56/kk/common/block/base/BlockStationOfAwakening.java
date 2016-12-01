@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
@@ -34,7 +35,7 @@ public class BlockStationOfAwakening extends Block {
     }
 
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
         list.add(new ItemStack(itemIn, 1, 0));
         list.add(new ItemStack(itemIn, 1, 1));
         list.add(new ItemStack(itemIn, 1, 2));
@@ -56,11 +57,6 @@ public class BlockStationOfAwakening extends Block {
     @Override
     public void onBlockPlacedBy (World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         worldIn.setBlockState(pos, state.withProperty(VARIANT, stack.getMetadata()), 2);
-    }
-
-    @Override
-    public IBlockState onBlockPlaced (World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(VARIANT, meta);
     }
 
     protected BlockStateContainer createBlockState() {

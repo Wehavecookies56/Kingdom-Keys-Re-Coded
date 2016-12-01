@@ -35,7 +35,7 @@ public class GuiFreeDevelopmentRecipeList extends GuiScrollingList {
 
 	@Override
 	protected int getSize () {
-		return Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().size();
+		return Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().size();
 	}
 
 	@Override
@@ -51,14 +51,14 @@ public class GuiFreeDevelopmentRecipeList extends GuiScrollingList {
 
 	@Override
 	protected void drawBackground () {
-		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
 
 		this.f.drawString(RECIPES.getFreeDevRecipes().size() + "/" + FreeDevRecipeRegistry.getFreeDevRecipeMap().size(), this.left + 130, 65, 0xFFFFFF);
 	}
 
 	@Override
 	protected void drawSlot (int var1, int var2, int var3, int var4, Tessellator var5) {
-		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
 
 		this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getFreeDevRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, 0xFFFFFF);
 		this.ir.renderItemAndEffectIntoGUI(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getFreeDevRecipes().get(var1).substring(5)))), this.left + 3, var3 + 12);

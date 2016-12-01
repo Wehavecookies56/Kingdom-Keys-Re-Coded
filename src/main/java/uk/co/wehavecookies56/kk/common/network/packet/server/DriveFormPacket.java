@@ -33,7 +33,7 @@ public class DriveFormPacket extends AbstractMessage.AbstractServerMessage<Drive
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		this.form = buffer.readStringFromBuffer(100);
+		this.form = buffer.readString(100);
 		this.revert = buffer.readBoolean();
 	}
 

@@ -74,7 +74,7 @@ public class GuiShop extends GuiScreen {
 
     public boolean canAffordSelected() {
        if (buySelected != -1) {
-            if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MUNNY, null).getMunny() >= getPriceFromSelected(buySelected, false)) {
+            if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.MUNNY, null).getMunny() >= getPriceFromSelected(buySelected, false)) {
                 return true;
             } else {
                 return false;
@@ -84,11 +84,11 @@ public class GuiShop extends GuiScreen {
     }
 
     private boolean isInventoryFull () {
-        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        EntityPlayer player = Minecraft.getMinecraft().player;
         boolean full = false;
         for (ItemStack element : player.inventory.mainInventory) {
-            if (element != null) full = true;
-            if (element == null) return false;
+            if (element != ItemStack.EMPTY) full = true;
+            if (element == ItemStack.EMPTY) return false;
         }
         if (full) return true;
         return false;
@@ -151,8 +151,8 @@ public class GuiShop extends GuiScreen {
                     if (canAffordSelected()) {
                         ItemStack stack = GuiBuyList.itemsForSale.get(buySelected);
                         if (!quantity.getText().isEmpty())
-                            stack.stackSize = Integer.parseInt(quantity.getText());
-                        PacketDispatcher.sendToServer(new GiveBoughtItem(getPriceFromSelected(buySelected, false), stack.stackSize, stack));
+                            stack.setCount(Integer.parseInt(quantity.getText()));
+                        PacketDispatcher.sendToServer(new GiveBoughtItem(getPriceFromSelected(buySelected, false), stack.getCount(), stack));
                     }
                 }
                 break;
@@ -326,10 +326,10 @@ public class GuiShop extends GuiScreen {
         if (submenu == SELL) drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Shop_Main_Sell), 15, 30, 0xFFFFFF);
         GL11.glPushMatrix();
         {
-            drawString(fontRendererObj, mc.thePlayer.worldObj.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
-            drawString(fontRendererObj, mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
-            drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
-            MunnyCapability.IMunny MUNNY = mc.thePlayer.getCapability(ModCapabilities.MUNNY, null);
+            drawString(fontRendererObj, mc.player.world.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
+            drawString(fontRendererObj, mc.player.world.getBiome(mc.player.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.getBiome(mc.player.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
+            drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.world) + ":" + getWorldMinutes(mc.world), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
+            MunnyCapability.IMunny MUNNY = mc.player.getCapability(ModCapabilities.MUNNY, null);
             drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
         }
         GL11.glPopMatrix();

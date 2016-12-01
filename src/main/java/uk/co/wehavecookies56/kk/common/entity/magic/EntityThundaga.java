@@ -32,15 +32,14 @@ public class EntityThundaga extends Entity {
 		this.player = sender;
 		double distance = 3.0D;
 		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(3, 3, 3);
-		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
-		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
-			Entity e = (Entity) list.get(i);
+		List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
+		if (!list.isEmpty()) list.forEach(e -> {
 			if (e instanceof EntityLivingBase) {
 				summonLightning = true;
-				if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnThunderEntity(this, 3), player, 64.0D);
-				this.worldObj.spawnEntityInWorld((new EntityLightningBolt(this.worldObj, e.posX, e.posY, e.posZ, false)));
+				if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnThunderEntity(this, 3), player, 64.0D);
+				this.world.spawnEntity((new EntityLightningBolt(this.world, e.posX, e.posY, e.posZ, false)));
 			}
-		}
+		});
 		aabb.expand(-3, -3, -3);
 	}
 
@@ -48,14 +47,14 @@ public class EntityThundaga extends Entity {
 	public void onUpdate () {
 		if (player == null) return;
 		int rotation = 0;
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnThunderParticles(this, 3), player, 64.0D);
+		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnThunderParticles(this, 3), player, 64.0D);
 		double r = 1.5D;
 
 		for (int a = 1; a <= 360; a += 7) {
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
-			this.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, this.posY + 1, z, 30, 15, 0);
+			this.world.spawnParticle(EnumParticleTypes.REDSTONE, x, this.posY + 1, z, 30, 15, 0);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;

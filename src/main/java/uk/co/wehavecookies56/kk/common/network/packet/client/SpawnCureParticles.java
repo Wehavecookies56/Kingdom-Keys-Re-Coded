@@ -56,13 +56,13 @@ public class SpawnCureParticles extends AbstractMessage.AbstractClientMessage<Sp
 		double r;
 		switch (this.lvl) {
 			case 1:
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.5, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.8, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.2, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x + 0.3, this.y + 1.5, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x - 0.3, this.y + 1.5, this.z, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.5, this.z+0.3, 0.0D, 1.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.5, this.z-0.3, 0.0D, 1.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.5, this.z, 0.0D, 1.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.8, this.z, 0.0D, 1.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.2, this.z, 0.0D, 1.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x + 0.3, this.y + 1.5, this.z, 0.0D, 1.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x - 0.3, this.y + 1.5, this.z, 0.0D, 1.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.5, this.z+0.3, 0.0D, 1.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.x, this.y + 1.5, this.z-0.3, 0.0D, 1.0D, 0.0D);
 				break;
 		}
 
@@ -74,9 +74,9 @@ public class SpawnCureParticles extends AbstractMessage.AbstractClientMessage<Sp
 				double x = this.x + (r * Math.cos(Math.toRadians(a)));
 				double z = this.z + (r * Math.sin(Math.toRadians(a)));
 
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, x, this.y + 1.5D, z, 0.0D, 0.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, x, this.y + 1.05D, z, 0.0D, 0.0D, 0.0D);
-				player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, x, this.y + 0.5D, z, 0.0D, 0.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, x, this.y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, x, this.y + 1.05D, z, 0.0D, 0.0D, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, x, this.y + 0.5D, z, 0.0D, 0.0D, 0.0D);
 
 			}
 		}

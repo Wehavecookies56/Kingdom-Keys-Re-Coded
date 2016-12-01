@@ -31,7 +31,7 @@ public class InventoryDriveForms extends AbstractInventory {
 	}
 
 	@Override
-	public boolean isUseableByPlayer (EntityPlayer player) {
+	public boolean isUsableByPlayer (EntityPlayer player) {
 		return true;
 	}
 
@@ -66,5 +66,10 @@ public class InventoryDriveForms extends AbstractInventory {
 	@Override
 	public ITextComponent getDisplayName () {
 		return new TextComponentString(name);
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return this.inventory.length == 0;
 	}
 }

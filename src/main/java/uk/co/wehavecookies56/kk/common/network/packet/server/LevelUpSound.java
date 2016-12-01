@@ -23,6 +23,6 @@ public class LevelUpSound extends AbstractMessage.AbstractServerMessage<LevelUpS
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 1.0f, 1.0f);
+		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 1.0f, 1.0f);
 	}
 }

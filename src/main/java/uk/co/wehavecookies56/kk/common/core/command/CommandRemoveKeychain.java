@@ -10,8 +10,10 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
@@ -19,6 +21,8 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlot;
+
+import javax.annotation.Nullable;
 
 public class CommandRemoveKeychain implements ICommand {
 
@@ -35,7 +39,7 @@ public class CommandRemoveKeychain implements ICommand {
 	}
 
 	@Override
-	public String getCommandName () {
+	public String getName () {
 		return "removechain";
 	}
 
@@ -44,12 +48,12 @@ public class CommandRemoveKeychain implements ICommand {
 	}
 
 	@Override
-	public String getCommandUsage (ICommandSender sender) {
+	public String getUsage (ICommandSender sender) {
 		return "/removechain [player]";
 	}
 
 	@Override
-	public List<String> getCommandAliases () {
+	public List<String> getAliases () {
 		return this.aliases;
 	}
 
@@ -85,7 +89,7 @@ public class CommandRemoveKeychain implements ICommand {
 					PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain", 0));
 					PacketDispatcher.sendToAllAround(new RemoveItemInSlot("keychain", 0), (EntityPlayer) sender.getCommandSenderEntity(), 1);
 
-					if (sender.getCommandSenderEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned()) if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) // props.isKeybladeSummoned()
+					if (sender.getCommandSenderEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned()) if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) // props.isKeybladeSummoned()
 																																											// ==
 																																											// true
 						PacketDispatcher.sendToServer(new DeSummonKeyblade(player.inventory.getCurrentItem()));
@@ -95,9 +99,9 @@ public class CommandRemoveKeychain implements ICommand {
 			} else if (args.length == 1) {
 				EntityPlayerMP playermp = args.length == 1 ? server.getPlayerList().getPlayerByUUID(UUID.fromString(args[0])) : getCommandSenderAsPlayer(sender);
 
-				if (playermp.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0) != null) {
+				if (playermp.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0) != ItemStack.EMPTY) {
 					PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain", 0));
-					if (playermp.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned()) if (playermp.getHeldItem(EnumHand.MAIN_HAND) != null && playermp.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) PacketDispatcher.sendToServer(new DeSummonKeyblade(playermp.getHeldItem(EnumHand.MAIN_HAND)));
+					if (playermp.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned()) if (playermp.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && playermp.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) PacketDispatcher.sendToServer(new DeSummonKeyblade(playermp.getHeldItem(EnumHand.MAIN_HAND)));
 					TextHelper.sendFormattedChatMessage(args[0] + "'s keychain has been removed!", TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
 				} else
 					TextHelper.sendFormattedChatMessage("The chain slot has no chain!", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
@@ -108,13 +112,12 @@ public class CommandRemoveKeychain implements ICommand {
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		return sender.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName());
+		return sender.canUseCommand(getRequiredPermissionLevel(), getName());
 
 	}
 
 	@Override
-	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args,
-			net.minecraft.util.math.BlockPos pos) {
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
 		return null;
 	}
 }

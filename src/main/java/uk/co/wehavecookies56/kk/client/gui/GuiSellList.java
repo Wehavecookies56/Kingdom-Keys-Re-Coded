@@ -42,11 +42,11 @@ public class GuiSellList extends GuiScrollingList {
 	public void occupyList() {
 		sellableItems.clear();
 		stackSizes.clear();
-		for (ItemStack invStack : Minecraft.getMinecraft().thePlayer.inventory.mainInventory) {
+		for (ItemStack invStack : Minecraft.getMinecraft().player.inventory.mainInventory) {
 			for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
 				if (ItemEvents.areItemStacksEqual(stack, invStack)) {
 					sellableItems.add(invStack);
-					stackSizes.add(invStack.stackSize);
+					stackSizes.add(invStack.getCount());
 				}
 			}
 		}

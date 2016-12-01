@@ -20,6 +20,8 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.LevelUpDrive;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
+import javax.annotation.Nullable;
+
 public class CommandDriveLevel implements ICommand {
 
 	private List<String> aliases;
@@ -36,7 +38,7 @@ public class CommandDriveLevel implements ICommand {
 	}
 
 	@Override
-	public String getCommandName () {
+	public String getName () {
 		return "leveldrive";
 	}
 
@@ -45,12 +47,12 @@ public class CommandDriveLevel implements ICommand {
 	}
 
 	@Override
-	public String getCommandUsage (ICommandSender sender) {
+	public String getUsage (ICommandSender sender) {
 		return "/leveldrive <form> [level (can be negative)]";
 	}
 
 	@Override
-	public List<String> getCommandAliases () {
+	public List<String> getAliases () {
 		return this.aliases;
 	}
 
@@ -82,7 +84,7 @@ public class CommandDriveLevel implements ICommand {
 		if (sender.getCommandSenderEntity() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) sender.getCommandSenderEntity();
 			if (args.length == 0 || args.length > 3)
-				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getCommandUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 			else if (args.length == 2) {
 					int level = 1;
 					try {
@@ -171,7 +173,7 @@ public class CommandDriveLevel implements ICommand {
 
 					}
 			} else
-				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getCommandUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 		}
 	}
 
@@ -185,11 +187,11 @@ public class CommandDriveLevel implements ICommand {
 	
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		return sender.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName());
+		return sender.canUseCommand(getRequiredPermissionLevel(), getName());
 	}
 
 	@Override
-	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos) {
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
 		return null;
 	}
 }

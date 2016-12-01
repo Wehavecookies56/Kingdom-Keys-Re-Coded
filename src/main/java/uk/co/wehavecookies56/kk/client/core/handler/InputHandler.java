@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.client.core.handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.Minecraft;
@@ -62,8 +63,8 @@ public class InputHandler {
 
 	public boolean antiFormCheck () {
 		Minecraft mc = Minecraft.getMinecraft();
-		EntityPlayer player = mc.thePlayer;
-		World world = mc.theWorld;
+		EntityPlayer player = mc.player;
+		World world = mc.world;
 		double random = Math.random();
 		int ap = player.getCapability(ModCapabilities.DRIVE_STATE, null).getAntiPoints();
 		int prob = 0;
@@ -90,21 +91,21 @@ public class InputHandler {
 
 	public void commandUp () {
 		Minecraft mc = Minecraft.getMinecraft();
-		EntityPlayer player = mc.thePlayer;
+		EntityPlayer player = mc.player;
 		PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
 		IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 		this.magicCommands = new ArrayList<String>();
 		this.itemsCommands = new ArrayList<String>();
 		this.driveCommands = new ArrayList<String>();
 		this.magicCommands.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != null) this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != ItemStack.EMPTY) this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
 		this.itemsCommands.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != null) this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != ItemStack.EMPTY) this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
 		this.driveCommands.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != null) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != ItemStack.EMPTY) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
 		// Mainmenu
 		if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
 			if (GuiCommandMenu.selected == GuiCommandMenu.ATTACK)
@@ -135,7 +136,7 @@ public class InputHandler {
 
 	public void commandDown () {
 		Minecraft mc = Minecraft.getMinecraft();
-		EntityPlayer player = mc.thePlayer;
+		EntityPlayer player = mc.player;
 		PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
 		IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 		this.magicCommands = new ArrayList<String>();
@@ -143,14 +144,14 @@ public class InputHandler {
 		this.driveCommands = new ArrayList<String>();
 		
 		this.magicCommands.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != null) this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != ItemStack.EMPTY) this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
 		this.itemsCommands.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != null) this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getItemName());
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != ItemStack.EMPTY) this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getItemName());
 		this.driveCommands.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != null) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != ItemStack.EMPTY) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
 		// Mainmenu
 		if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
 			if (GuiCommandMenu.selected == GuiCommandMenu.DRIVE)
@@ -187,8 +188,8 @@ public class InputHandler {
 
 	public void commandEnter () {
 		Minecraft mc = Minecraft.getMinecraft();
-		EntityPlayer player = mc.thePlayer;
-		World world = mc.theWorld;
+		EntityPlayer player = mc.player;
+		World world = mc.world;
 		PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
 		IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 		this.magicCommands = new ArrayList<String>();
@@ -197,12 +198,12 @@ public class InputHandler {
 		this.itemsCommands.clear();
 		this.driveCommands = new ArrayList<String>();
 		this.driveCommands.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != null) this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != null) this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != null) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != ItemStack.EMPTY) this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != ItemStack.EMPTY) this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != ItemStack.EMPTY) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
 		
 		switch (GuiCommandMenu.selected) {
             case GuiCommandMenu.ATTACK:
@@ -300,8 +301,8 @@ public class InputHandler {
 
 	public void commandBack () {
 		Minecraft mc = Minecraft.getMinecraft();
-		EntityPlayer player = mc.thePlayer;
-		World world = mc.theWorld;
+		EntityPlayer player = mc.player;
+		World world = mc.world;
 		if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN)
 			GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
 		else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC) {
@@ -321,8 +322,8 @@ public class InputHandler {
 	@SubscribeEvent
 	public void handleKeyInputEvent (InputEvent.KeyInputEvent event) {
 		Minecraft mc = Minecraft.getMinecraft();
-		EntityPlayer player = mc.thePlayer;
-		World world = mc.theWorld;
+		EntityPlayer player = mc.player;
+		World world = mc.world;
 		SummonKeybladeCapability.ISummonKeyblade SUMMON = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
 
 		Keybinds key = getPressedKey();
@@ -351,13 +352,13 @@ public class InputHandler {
 				commandBack();
 				break;
 			case SUMMON_KEYBLADE:
-				if (mc.thePlayer.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0) == null) {
+				if (mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0) == null) {
 					world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
 					break;
 				}
-				if (SUMMON.getIsKeybladeSummoned() == false && player.getHeldItem(EnumHand.MAIN_HAND) == null && mc.thePlayer.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem() instanceof ItemKeychain) {
-					PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) mc.thePlayer.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem()).getKeyblade()));
-				} else if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade && SUMMON.getIsKeybladeSummoned() == true) {
+				if (!SUMMON.getIsKeybladeSummoned() && player.getHeldItem(EnumHand.MAIN_HAND) == ItemStack.EMPTY && mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem() instanceof ItemKeychain) {
+					PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem()).getKeyblade()));
+				} else if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade && SUMMON.getIsKeybladeSummoned()) {
 					PacketDispatcher.sendToServer(new DeSummonKeyblade(player.inventory.getCurrentItem()));
 				} else {
 					break;
@@ -377,7 +378,7 @@ public class InputHandler {
                             	if (rtr.entityHit instanceof EntityLivingBase){
                                 	lockOn = (EntityLivingBase) rtr.entityHit;
                                 	LockOn.target = (EntityLivingBase) rtr.entityHit;
-                        			player.worldObj.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+                        			player.world.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
                             	}
                             }
                         }
@@ -403,7 +404,7 @@ public class InputHandler {
                 theRenderViewEntity.posZ+0.5D
         );
         RayTraceResult returnMOP = null;
-        if (mc.theWorld != null) {
+        if (mc.world != null) {
             double var2 = dist;
             returnMOP = theRenderViewEntity.rayTrace(var2, 0);
             double calcdist = var2;
@@ -420,7 +421,7 @@ public class InputHandler {
             Entity pointedEntity = null;
             float var9 = 1.0F;
             @SuppressWarnings("unchecked")
-            List<Entity> list = mc.theWorld.getEntitiesWithinAABBExcludingEntity(
+            List<Entity> list = mc.world.getEntitiesWithinAABBExcludingEntity(
                     theRenderViewEntity,
                     theViewBoundingBox.addCoord(
                             lookvec.xCoord * var2,
@@ -467,8 +468,8 @@ public class InputHandler {
 	@SubscribeEvent
 	public void OnMouseWheelScroll (MouseEvent event) {
 		Minecraft mc = Minecraft.getMinecraft();
-		EntityPlayer player = mc.thePlayer;
-		World world = mc.theWorld;
+		EntityPlayer player = mc.player;
+		World world = mc.world;
 		if (!mc.inGameHasFocus && !KeyboardHelper.isScrollActivatorDown()) {
 			event.setCanceled(false);
 			return;

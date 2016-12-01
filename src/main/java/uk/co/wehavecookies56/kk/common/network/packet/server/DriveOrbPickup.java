@@ -24,17 +24,17 @@ public class DriveOrbPickup extends AbstractMessage.AbstractServerMessage<DriveO
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStackFromBuffer();
+		toRemove = buffer.readItemStack();
 	}
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStackToBuffer(toRemove);
+		buffer.writeItemStack(toRemove);
 	}
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		toRemove.stackSize--;
+		toRemove.shrink(1);
 		player.getCapability(ModCapabilities.PLAYER_STATS, null).addDP(toRemove.getTagCompound().getInteger("amount"));
 		PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 	}

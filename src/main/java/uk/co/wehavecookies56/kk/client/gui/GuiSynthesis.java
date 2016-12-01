@@ -94,21 +94,21 @@ public class GuiSynthesis extends GuiTooltip {
 
 	protected int getFreeSlots () {
 		int emptySlots = 0;
-		for (ItemStack element : mc.thePlayer.inventory.mainInventory)
+		for (ItemStack element : mc.player.inventory.mainInventory)
 			if (element == null) emptySlots++;
 		return emptySlots;
 	}
 
 	protected boolean getInventoryMaterial (String material) {
 
-		for (ItemStack element : mc.thePlayer.inventory.mainInventory)
+		for (ItemStack element : mc.player.inventory.mainInventory)
 			if (element != null) if (element.getUnlocalizedName() == material) return true;
 		return false;
 	}
 
 	@Override
 	protected void actionPerformed (GuiButton button) {
-		SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+		SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 		List<String> materials = new ArrayList<String>();
 		int freeSlots = 0;
 		boolean foundMaterial = false;
@@ -129,14 +129,14 @@ public class GuiSynthesis extends GuiTooltip {
 				break;
 			case CREATE:
 				if (selected != -1){
-                    if (isRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected))) {
-                        PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1));
-                        mc.thePlayer.worldObj.playSound(mc.thePlayer, mc.thePlayer.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
+                    if (isRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected))) {
+                        PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1));
+                        mc.player.world.playSound(mc.player, mc.player.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
                     }
                 } else if (freeDevSelected != -1) {
-                    if (isFreeDevRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected))) {
-                        PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected), 1));
-                        mc.thePlayer.worldObj.playSound(mc.thePlayer, mc.thePlayer.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
+                    if (isFreeDevRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected))) {
+                        PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected), 1));
+                        mc.player.world.playSound(mc.player, mc.player.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
                     }
                 }
 
@@ -200,7 +200,7 @@ public class GuiSynthesis extends GuiTooltip {
 	}
 
 	public boolean isRecipeUsable (String name) {
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayer player = Minecraft.getMinecraft().player;
 		SynthesisMaterialCapability.ISynthesisMaterial MATS = player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 		Recipe r = RecipeRegistry.get(name);
 		List<Boolean> hasMaterials = new ArrayList<Boolean>();
@@ -226,7 +226,7 @@ public class GuiSynthesis extends GuiTooltip {
 	}
 
 	public boolean isFreeDevRecipeUsable (String name) {
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayer player = Minecraft.getMinecraft().player;
 		SynthesisMaterialCapability.ISynthesisMaterial MATS = player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 		Recipe r = FreeDevRecipeRegistry.get(name);
 		List<Boolean> hasMaterials = new ArrayList<Boolean>();
@@ -277,7 +277,7 @@ public class GuiSynthesis extends GuiTooltip {
 		if (submenu == FREEDEV) {
 			if (freeDevSelected != -1) {
 				Create.visible = true;
-				if (isFreeDevRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected)))
+				if (isFreeDevRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected)))
 					Create.enabled = true;
 				else {
 					if (isInventoryFull()) Create.displayString = "Inventory Full";
@@ -316,7 +316,7 @@ public class GuiSynthesis extends GuiTooltip {
 			}
 		}
 		if (materialSelected != -1) {
-			SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+			SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 			List<String> materials = new ArrayList<String>();
 
 			materials.addAll(MATS.getKnownMaterialsMap().keySet());
@@ -351,7 +351,7 @@ public class GuiSynthesis extends GuiTooltip {
 		if (submenu == RECIPES) {
             if (selected != -1) {
                 Create.visible = true;
-                if (isRecipeUsable(mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected))) {
+                if (isRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected))) {
                     Create.enabled = true;
                 } else {
                     if (isInventoryFull()) Create.displayString = "Inventory Full";
@@ -365,7 +365,7 @@ public class GuiSynthesis extends GuiTooltip {
 	}
 
 	private boolean isInventoryFull () {
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayer player = Minecraft.getMinecraft().player;
 		boolean full = false;
 		for (ItemStack element : player.inventory.mainInventory) {
 			if (element != null) full = true;
@@ -401,7 +401,7 @@ public class GuiSynthesis extends GuiTooltip {
 	}
 
 	public void drawSelectedMaterial (int mouseX, int mouseY) {
-		SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+		SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 		if (materialSelected != -1) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
 			drawGradientRect(190, 60, 500, height - ((height / 8) + 70 / 16), -1072689136, -804253680);
@@ -443,7 +443,7 @@ public class GuiSynthesis extends GuiTooltip {
 	}
 
 	public void drawSelected (int mouseX, int mouseY) {
-		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
 		int posX = 220;
 		if (selected != -1) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
@@ -494,7 +494,7 @@ public class GuiSynthesis extends GuiTooltip {
 						String name = pair.getKey().getName();
 						String info = "";
 						int colour = 0xFFFFFF;
-						SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+						SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 						if (MATS.getKnownMaterialsMap().containsKey(pair.getKey().getName())) {
 							info = " - You have " + MATS.getKnownMaterialsMap().get(pair.getKey().getName());
 							if (MATS.getKnownMaterialsMap().get(pair.getKey().getName()) >= pair.getValue())
@@ -534,7 +534,7 @@ public class GuiSynthesis extends GuiTooltip {
 	}
 
 	public void drawSelectedFreeDev (int mouseX, int mouseY) {
-		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
 		int posX = 220;
 		if (freeDevSelected != -1) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
@@ -585,7 +585,7 @@ public class GuiSynthesis extends GuiTooltip {
 						String name = pair.getKey().getName();
 						String info = "";
 						int colour = 0xFFFFFF;
-						SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.thePlayer.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+						SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 						if (MATS.getKnownMaterialsMap().containsKey(pair.getKey().getName())) {
 							info = " - You have " + MATS.getKnownMaterialsMap().get(pair.getKey().getName());
 							if (MATS.getKnownMaterialsMap().get(pair.getKey().getName()) >= pair.getValue())
@@ -659,10 +659,10 @@ public class GuiSynthesis extends GuiTooltip {
 		if (submenu == MATERIALS) drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials), 15, 30, 0xFFFFFF);
 		GL11.glPushMatrix();
 		{
-			drawString(fontRendererObj, mc.thePlayer.worldObj.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
-			drawString(fontRendererObj, mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
-			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
-			IMunny MUNNY = mc.thePlayer.getCapability(ModCapabilities.MUNNY, null);
+			drawString(fontRendererObj, mc.player.world.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
+			drawString(fontRendererObj, mc.player.world.getBiome(mc.player.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.getBiome(mc.player.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
+			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.world) + ":" + getWorldMinutes(mc.world), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
+			IMunny MUNNY = mc.player.getCapability(ModCapabilities.MUNNY, null);
 			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
 		}
 		GL11.glPopMatrix();

@@ -47,70 +47,70 @@ public abstract class ItemKKPotion extends ItemFood {
 		switch (item) {
 			case Strings.Potion:
 				((ItemKKPotion) ModItems.Potion).getPotionEffect(player);
-				player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
+				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().setInventorySlotContents(slot, null);
 				PacketDispatcher.sendToServer(new PotionConsume(Strings.Potion));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.Potion, slot, true));
 				break;
 			case Strings.HiPotion:
 				((ItemKKPotion) ModItems.HiPotion).getPotionEffect(player);
-				player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
+				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().setInventorySlotContents(slot, null);
 				PacketDispatcher.sendToServer(new PotionConsume(Strings.HiPotion));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.Potion, slot, true));
 				break;
 			case Strings.MegaPotion:
 				((ItemKKPotion) ModItems.MegaPotion).getPotionEffect(player);
-				player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
+				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().setInventorySlotContents(slot, null);
 				PacketDispatcher.sendToServer(new PotionConsume(Strings.MegaPotion));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.Potion, slot, true));
 				break;
 			case Strings.Ether:
 				((ItemKKPotion) ModItems.Ether).getPotionEffect(player);
-				player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
+				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().setInventorySlotContents(slot, null);
 				PacketDispatcher.sendToServer(new PotionConsume(Strings.Ether));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.Potion, slot, true));
 				break;
 			case Strings.MegaEther:
 				((ItemKKPotion) ModItems.MegaEther).getPotionEffect(player);
-				player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
+				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().setInventorySlotContents(slot, null);
 				PacketDispatcher.sendToServer(new PotionConsume(Strings.MegaEther));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.Potion, slot, true));
 				break;
 			case Strings.Elixir:
 				((ItemKKPotion) ModItems.Elixir).getPotionEffect(player);
-				player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
+				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().setInventorySlotContents(slot, null);
 				PacketDispatcher.sendToServer(new PotionConsume(Strings.Elixir));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.Potion, slot, true));
 				break;
 			case Strings.Megalixir:
 				((ItemKKPotion) ModItems.Megalixir).getPotionEffect(player);
-				player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
+				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().setInventorySlotContents(slot, null);
 				PacketDispatcher.sendToServer(new PotionConsume(Strings.Megalixir));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.Potion, slot, true));
 				break;
 			case Strings.DriveRecovery:
 				((ItemKKPotion) ModItems.DriveRecovery).getPotionEffect(player);
-				player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
+				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().setInventorySlotContents(slot, null);
 				PacketDispatcher.sendToServer(new PotionConsume(Strings.DriveRecovery));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.Potion, slot, true));
 				break;
 			case Strings.HighDriveRecovery:
 				((ItemKKPotion) ModItems.HighDriveRecovery).getPotionEffect(player);
-				player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
+				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().setInventorySlotContents(slot, null);
 				PacketDispatcher.sendToServer(new PotionConsume(Strings.HighDriveRecovery));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.Potion, slot, true));
 				break;
 			case Strings.Panacea:
 				((ItemKKPotion) ModItems.Panacaea).getPotionEffect(player);
-				player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
+				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().setInventorySlotContents(slot, null);
 				PacketDispatcher.sendToServer(new PotionConsume(Strings.Panacea));
 				PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.Potion, slot, true));
@@ -161,8 +161,8 @@ public abstract class ItemKKPotion extends ItemFood {
 
 	public void usePotion (EntityPlayer player, InventoryPotionsMenu inventory, int slot) {
 		if (inventory.getStackInSlot(slot) != null) if (inventory.getStackInSlot(slot).getItem() instanceof ItemKKPotion) {
-			inventory.setInventorySlotContents(slot, null);
-			player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
+			inventory.setInventorySlotContents(slot, ItemStack.EMPTY);
+			player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
 			PacketDispatcher.sendToServer(new RemoveItemInSlot("potion", slot, true));
 		}
 	}

@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.common.core.handler.event;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTPrimitive;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -26,7 +27,7 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 public class CapabilityEvents {
 
     @SubscribeEvent
-    public void onEntityConstructing (AttachCapabilitiesEvent.Entity event) {
+    public void onEntityConstructing (AttachCapabilitiesEvent<Entity> event) {
         event.addCapability(new ResourceLocation(Reference.MODID, "IMunny"), new ICapabilitySerializable<NBTPrimitive>()
         {
             MunnyCapability.IMunny inst = ModCapabilities.MUNNY.getDefaultInstance();

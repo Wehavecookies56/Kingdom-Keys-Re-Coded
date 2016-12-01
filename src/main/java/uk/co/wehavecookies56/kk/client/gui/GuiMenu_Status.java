@@ -76,7 +76,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 		int button_stats_finalY = button_stats_masterY + 22;
 		int button_stats_backY = button_stats_finalY + 22;
 
-		buttonList.add(stats_player = new GuiButton(STATS_PLAYER, 5, button_stats_playerY, 100, 20, mc.thePlayer.getDisplayNameString()));
+		buttonList.add(stats_player = new GuiButton(STATS_PLAYER, 5, button_stats_playerY, 100, 20, mc.player.getDisplayNameString()));
 		buttonList.add(stats_valor = new GuiButton(STATS_VALOR, 15, button_stats_valorY, 100, 20, "Valor"));
 		buttonList.add(stats_wisdom = new GuiButton(STATS_WISDOM, 15, button_stats_wisdomY, 100, 20, "Wisdom"));
 		buttonList.add(stats_limit = new GuiButton(STATS_LIMIT, 15, button_stats_limitY, 100, 20, "Limit"));
@@ -91,9 +91,9 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 	@Override
 	public void drawScreen (int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
-		final PlayerStatsCapability.IPlayerStats STATS = mc.thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null);
-		IMagicState ms = mc.thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null);
-		IDriveState ds = mc.thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null);
+		final PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
+		IMagicState ms = mc.player.getCapability(ModCapabilities.MAGIC_STATE, null);
+		IDriveState ds = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
 		//System.out.println(ds.getDriveLevel(Strings.Form_Valor)+" "+ds.getDriveLevel(Strings.Form_Wisdom)+" "+ds.getDriveLevel(Strings.Form_Limit)+" "+ds.getDriveLevel(Strings.Form_Master)+" "+ds.getDriveLevel(Strings.Form_Final));
 		switch (selected) {
 			case STATS_PLAYER:
@@ -126,7 +126,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 				drawString(fontRendererObj, "" + STATS.getLevel(), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
 				drawString(fontRendererObj, "" + STATS.getExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 				drawString(fontRendererObj, "" + (STATS.getExpNeeded(STATS.getLevel(), STATS.getExperience())), 230, ((-140 / 16) + 75) + 34, 0xFFD900);
-				drawString(fontRendererObj, "" + (int) mc.thePlayer.getMaxHealth(), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
+				drawString(fontRendererObj, "" + (int) mc.player.getMaxHealth(), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
 				drawString(fontRendererObj, "" + (int) STATS.getMaxMP(), 230, ((-140 / 16) + 75) + 58, 0xFFD900);
 				drawString(fontRendererObj, "N/A", 230, ((-140 / 16) + 75) + 70, 0xFFD900);
 				drawString(fontRendererObj, "9", 230, ((-140 / 16) + 75) + 82, 0xFFD900);

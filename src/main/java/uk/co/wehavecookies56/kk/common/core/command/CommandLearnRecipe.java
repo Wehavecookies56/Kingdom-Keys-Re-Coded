@@ -16,6 +16,8 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
+import javax.annotation.Nullable;
+
 public class CommandLearnRecipe implements ICommand {
 
 	private List<String> aliases;
@@ -40,7 +42,7 @@ public class CommandLearnRecipe implements ICommand {
 	}
 
 	@Override
-	public String getCommandName () {
+	public String getName () {
 		return "learnrecipe";
 	}
 
@@ -49,12 +51,12 @@ public class CommandLearnRecipe implements ICommand {
 	}
 
 	@Override
-	public String getCommandUsage (ICommandSender sender) {
+	public String getUsage (ICommandSender sender) {
 		return "/learnrecipe <value>";
 	}
 
 	@Override
-	public List<String> getCommandAliases () {
+	public List<String> getAliases () {
 		return this.aliases;
 	}
 
@@ -83,11 +85,11 @@ public class CommandLearnRecipe implements ICommand {
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		return sender.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName());
+		return sender.canUseCommand(getRequiredPermissionLevel(), getName());
 	}
 
 	@Override
-	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos) {
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
 		return this.autoComplete;
 	}
 

@@ -8,10 +8,13 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class EntityHelper 
 {
@@ -28,17 +31,17 @@ public class EntityHelper
 	public static double percentage(double i, double j) {return i * (j / 100);}
 	
 	public static void registerEntity(String name, Class<? extends Entity> entity) {
-		EntityRegistry.registerModEntity(entity, name, entityID++, KingdomKeys.instance, 64, 3, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, name), entity, name, entityID++, KingdomKeys.instance, 64, 3, true);
 	}
 
 	public static void registerEntity(String name, Class<? extends Entity> entity, int color1, int color2) {
-		EntityRegistry.registerModEntity(entity, name, entityID++, KingdomKeys.instance, 64, 3, true, color1, color2);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, name), entity, name, entityID++, KingdomKeys.instance, 64, 3, true, color1, color2);
 	}
 	
     public static List<EntityLivingBase> getEntitiesNear(Entity e, double radius)
     {
     	AxisAlignedBB aabb = new AxisAlignedBB(e.posX, e.posY, e.posZ, e.posX + 1, e.posY + 1, e.posZ + 1).expand(radius, radius, radius);
-    	List<EntityLivingBase> list = e.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
+    	List<EntityLivingBase> list = e.world.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
     	list.remove(e);
 	    return list;
     }
@@ -49,7 +52,7 @@ public class EntityHelper
 	 
 	public static Dir get8Directions(Entity e)
 	{
-		switch(MathHelper.floor_double(e.rotationYaw * 8.0F / 360.0F + 0.5D) & 7)
+		switch(MathHelper.floor(e.rotationYaw * 8.0F / 360.0F + 0.5D) & 7)
 		{case 0: return Dir.SOUTH; case 1: return Dir.SOUTH_WEST; case 2: return Dir.WEST; case 3: return Dir.NORTH_WEST; case 4: return Dir.NORTH; case 5: return Dir.NORTH_EAST; case 6: return Dir.EAST; case 7: return Dir.SOUTH_EAST;}
 		return null;
 	}

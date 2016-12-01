@@ -21,12 +21,12 @@ public class GuiPlayerPortrait extends GuiScreen {
 	@SubscribeEvent
 	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
 		Minecraft mc = Minecraft.getMinecraft();
-		if(!mc.thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
+		if(!mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
 		int screenWidth = event.getResolution().getScaledWidth();
 		int screenHeight = event.getResolution().getScaledHeight();
 		if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
 			GL11.glColor3f(1, 1, 1);
-			ResourceLocation skin = ((AbstractClientPlayer) mc.thePlayer).getLocationSkin();
+			ResourceLocation skin = ((AbstractClientPlayer) mc.player).getLocationSkin();
 			mc.getTextureManager().bindTexture(skin);
 			float scale = 0.5f;
 			switch (mc.gameSettings.guiScale) {
@@ -41,7 +41,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 					break;
 			}
 
-			DriveStateCapability.IDriveState DS = mc.thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null);
+			DriveStateCapability.IDriveState DS = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
 			if (DS.getActiveDriveName().equals(Strings.Form_Anti)) 			
 				GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
 

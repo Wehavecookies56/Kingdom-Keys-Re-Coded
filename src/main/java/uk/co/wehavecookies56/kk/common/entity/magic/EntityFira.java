@@ -33,7 +33,7 @@ public class EntityFira extends Entity {
 		if (player == null) return;
 		int rotation = 0;
 
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnFireParticles(this, 2), player, 64.0D);
+		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnFireParticles(this, 2), player, 64.0D);
 
 		this.rotationYaw = (rotation + 1) % 360;
 		if (ticksExisted > 15) setDead();
@@ -45,12 +45,11 @@ public class EntityFira extends Entity {
 
 		// double distance = 3.0D;
 		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
-		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
-		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
-			Entity e = (Entity) list.get(i);
+		List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
+		if (!list.isEmpty()) list.forEach((e) -> {
 			e.setFire(5);
 			e.attackEntityFrom(DamageSource.causePlayerDamage(player), DamageCalculation.getMagicDamage(player,2)*DamageCalculation.fireMultiplier);
-		}
+		});
 		aabb.expand(-2, -2, -2);
 
 		super.onUpdate();
