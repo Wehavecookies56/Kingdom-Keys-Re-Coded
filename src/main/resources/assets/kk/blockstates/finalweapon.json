@@ -2,6 +2,7 @@
 	"forge_marker": 1,
     "defaults": {
     	"textures": {
+		
     	},
         "model": "kk:finalweapon.obj"
     },
@@ -10,33 +11,33 @@
             {
                 "transform": {
                     "thirdperson_lefthand": {
-                        "rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
-                        "translation": [ 0, -1, 0 ],
-                        "scale": 0.03
+                        "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+                        "translation": [ 0, -0.15, -0.25 ],
+                        "scale": 0.014
                     },
                     "thirdperson_righthand": {
-                        "rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
-                        "translation": [ 0, -1, 0 ],
-                        "scale": 0.03
+                        "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+                        "translation": [ 0, -0.15 , -0.25 ],
+                        "scale": 0.014
                     },
                     "gui": {
-                        "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
+                        "rotation": [ { "x": 0 }, { "y": -90 }, { "z": 0 } ],
                         "translation": [ 0, 0, 0 ],
-                        "scale": 0.03
+                        "scale": 0.011
                     },
                     "firstperson_righthand": {
-                        "rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
-                        "translation": [ 0, -1, 0 ],
-                        "scale": 0.03
+                        "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+                        "translation": [ 0, 0.15, 0 ],
+                        "scale": 0.01
                     },
                     "firstperson_lefthand": {
-                        "rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
-                        "translation": [ 0, -1, 0 ],
-                        "scale": 0.03
+                        "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+                        "translation": [ 0, 0.15, 0 ],
+                        "scale": 0.01
                     },
                     "ground": {
                         "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
-                        "scale": 0.03
+                        "scale": 0.01
                     }
                 }
             }

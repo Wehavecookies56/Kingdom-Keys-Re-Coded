@@ -199,6 +199,9 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.Malice, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Malice, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Infinity, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Infinity, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.TheFool, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TheFool, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.TesterZero, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TesterZero, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Calmant, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Calmant, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Lindworm, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Lindworm, "inventory"));
 
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.StationOfAwakeningDoor), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.StationOfAwakeningDoor, "inventory"));
@@ -222,7 +225,7 @@ public class ClientProxy extends CommonProxy
 	}
 
 	@Override
-	public void init (FMLInitializationEvent event) {
+		public void init (FMLInitializationEvent event) {
 		super.init(event);
 		registerRenders();
 		registerKeyBindings();

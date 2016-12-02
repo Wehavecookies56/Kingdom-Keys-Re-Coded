@@ -461,7 +461,9 @@ public class Strings {
     Tranchant = "tranchant",
     Malice = "malice",
     Infinity = "infinity",
-    TheFool = "thefool"
+    TheFool = "thefool",
+    TesterZero = "testerzero",
+    Calmant = "calmant"
 	;
 
 	public static final String 

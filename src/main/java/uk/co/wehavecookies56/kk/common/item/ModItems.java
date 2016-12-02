@@ -11,6 +11,8 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import org.apache.logging.log4j.core.config.plugins.ResolverUtil;
+import scala.tools.nsc.interactive.tests.Tester;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKRecord;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
@@ -40,7 +42,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence, FinalWeapon, Tranchant, Malice, Infinity, TheFool;
+	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence, FinalWeapon, Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -119,6 +121,8 @@ public class ModItems {
 		Malice = new ItemInterdiction(EnumHelper.addToolMaterial("interdiction", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Malice);
 		Infinity = new ItemInterdiction(EnumHelper.addToolMaterial("interdiction", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Infinity);
 		TheFool = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
+		Calmant = new ItemFoudre(EnumHelper.addToolMaterial("calmant", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Calmant);
+		TesterZero = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TesterZero);
 
 		AbaddonPlasma = new ItemRealKeyblade(6, 0).setUnlocalizedName(Strings.AbaddonPlasma);
 		((ItemKeyblade)AbaddonPlasma).setDescription("A weapon that lets you string together faster, incredibly long ground combos.");
@@ -607,6 +611,8 @@ public class ModItems {
 		GameRegistry.register(Malice, new ResourceLocation(Reference.MODID, Strings.Malice));
 		GameRegistry.register(Infinity, new ResourceLocation(Reference.MODID, Strings.Infinity));
 		GameRegistry.register(TheFool, new ResourceLocation(Reference.MODID, Strings.TheFool));
+		GameRegistry.register(TesterZero, new ResourceLocation(Reference.MODID, Strings.TesterZero));
+		GameRegistry.register(Calmant, new ResourceLocation(Reference.MODID, Strings.Calmant));
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));
