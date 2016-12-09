@@ -167,15 +167,14 @@ public class CommonProxy {
 		EntityHelper.registerEntity("GreenRequiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
 		EntityHelper.registerEntity("Moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
 
-		if(ConfigHandler.EnableHeartless)
-		{
-			EntityRegistry.addSpawn(EntityShadow.class, 15, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-			EntityRegistry.addSpawn(EntityGigaShadow.class, 5, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-			EntityRegistry.addSpawn(EntityRedNocturne.class, 10, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-			EntityRegistry.addSpawn(EntityBlueRhapsody.class, 10, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-			EntityRegistry.addSpawn(EntityYellowOpera.class, 10, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-			EntityRegistry.addSpawn(EntityGreenRequiem.class, 10, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-		}
+		
+		EntityRegistry.addSpawn(EntityShadow.class, ConfigHandler.shadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.addSpawn(EntityGigaShadow.class, ConfigHandler.gigaShadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.addSpawn(EntityRedNocturne.class, ConfigHandler.redNocturneRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.addSpawn(EntityBlueRhapsody.class, ConfigHandler.blueRhapsodyRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.addSpawn(EntityYellowOpera.class, ConfigHandler.yellowOperaRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.addSpawn(EntityGreenRequiem.class, ConfigHandler.greenRequiemRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+			
 		EntityRegistry.addSpawn(EntityMoogle.class, 5, 1, 1, EnumCreatureType.CREATURE, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
 
 		Lists.init();

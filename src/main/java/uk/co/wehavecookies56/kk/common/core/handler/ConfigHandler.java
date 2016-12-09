@@ -22,13 +22,20 @@ public class ConfigHandler {
 			EnableCustomMusic = true,
 			ForceEnableCustomMusic = false,
 			DisableVanillaTooltip = true,
-			EnableStationOfAwakening = true,
-			EnableHeartless = false;
+			EnableStationOfAwakening = true
 	;
 
 	public static int[] interfaceColour = new int[] { 255, 0, 0 };
 	
-	public static int guiAlpha = 255;
+	public static int
+			guiAlpha = 255,
+			shadowRatio=15,
+			gigaShadowRatio=5,
+			redNocturneRatio=10,
+			blueRhapsodyRatio=10,
+			yellowOperaRatio=10,
+			greenRequiemRatio=10
+			;
 	
 	public static double damageMultiplier = 1;
 	
@@ -59,8 +66,13 @@ public class ConfigHandler {
 		EnableStationOfAwakening = configProperty("Enable Station of Awakening", "Toggles whether the Station of Awakening should be enabled", EnableStationOfAwakening, WORLDGEN);
 		
 		//SPAWNING
-		EnableHeartless = configProperty("Enable Heartless Spawining", "Toggles whether Heartless should spawn (Temporary option)", EnableHeartless, SPAWNING);
-
+		shadowRatio = configProperty("Shadow spawning ratio", "Sets Shadow heartless spawning ratio", shadowRatio, SPAWNING);
+		gigaShadowRatio = configProperty("GigaShadow spawning ratio", "Sets Giga Shadow heartless spawning ratio", gigaShadowRatio, SPAWNING);
+		redNocturneRatio = configProperty("Red Necturne spawning ratio", "Sets Red Nocturne heartless spawning ratio", redNocturneRatio, SPAWNING);
+		blueRhapsodyRatio = configProperty("Blue Rhapsody spawning ratio", "Sets Blue Rhapsody heartless spawning ratio", blueRhapsodyRatio, SPAWNING);
+		yellowOperaRatio = configProperty("Yellow Opera spawning ratio", "Sets Yellow Opera heartless spawning ratio", yellowOperaRatio, SPAWNING);
+		greenRequiemRatio = configProperty("Green Requiem spawning ratio", "Sets Green Requiem heartless spawning ratio", greenRequiemRatio, SPAWNING);
+		
 		//NETWORK
 		EnableUpdateCheck = configProperty("Enable Update Checking", "Toggles whether the update checker checks for updates", EnableUpdateCheck, NETWORK);
 
