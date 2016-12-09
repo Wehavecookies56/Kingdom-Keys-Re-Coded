@@ -10,6 +10,7 @@ import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,6 +19,8 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
+
+import javax.annotation.Nullable;
 
 public class CommandLevelUp implements ICommand {
 
@@ -35,7 +38,7 @@ public class CommandLevelUp implements ICommand {
 	}
 
 	@Override
-	public String getCommandName () {
+	public String getName () {
 		return "levelup";
 	}
 
@@ -44,12 +47,12 @@ public class CommandLevelUp implements ICommand {
 	}
 
 	@Override
-	public String getCommandUsage (ICommandSender sender) {
+	public String getUsage (ICommandSender sender) {
 		return "/levelup <level> [player] (level has to be between 1-100)";
 	}
 
 	@Override
-	public List<String> getCommandAliases () {
+	public List<String> getAliases () {
 		return this.aliases;
 	}
 
@@ -87,7 +90,7 @@ public class CommandLevelUp implements ICommand {
 		if (sender.getCommandSenderEntity() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) sender.getCommandSenderEntity();
 			if (args.length == 0 || args.length > 2)
-				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getCommandUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 			else if (args.length == 1) {
 				int level = 1;
 				try {
@@ -147,18 +150,17 @@ public class CommandLevelUp implements ICommand {
 				PacketDispatcher.sendTo(new SyncLevelData(entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) entityplayermp);
 
 			} else
-				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getCommandUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 		}
 	}
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		return sender.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName());
+		return sender.canUseCommand(getRequiredPermissionLevel(), getName());
 	}
 
 	@Override
-	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args,
-			net.minecraft.util.math.BlockPos pos) {
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
 		return null;
 	}
 }

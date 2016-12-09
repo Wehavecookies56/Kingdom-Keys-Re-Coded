@@ -34,14 +34,14 @@ public class EntityStopga extends Entity {
 	public void onUpdate () {
 		if (player == null) return;
 		int rotation = 0;
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnStopParticles(this, 3), player, 64.0D);
+		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnStopParticles(this, 3), player, 64.0D);
 		double r = 3.0D;
 
 		for (int a = 1; a <= 360; a += 15) {
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
-			this.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.posY + 2, z, 0.0D, 0.5D, 0.0D);
+			this.world.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.posY + 2, z, 0.0D, 0.5D, 0.0D);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
@@ -54,7 +54,7 @@ public class EntityStopga extends Entity {
 
 		double distance = 5.0D;
 		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
-		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
+		List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityLiving) {

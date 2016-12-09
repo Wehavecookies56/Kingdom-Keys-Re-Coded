@@ -33,7 +33,7 @@ public class MagicCure extends AbstractMessage.AbstractServerMessage<MagicCure> 
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) player.getCapability(ModCapabilities.PLAYER_STATS, null).setMP(0);
-		World world = player.worldObj;
+		World world = player.world;
 		player.extinguish();
 		switch (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(Strings.Spell_Cure)) {
 			case 1:
@@ -41,18 +41,18 @@ public class MagicCure extends AbstractMessage.AbstractServerMessage<MagicCure> 
 					player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP() - player.getHealth());
 				else
 					player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP() / 3);
-				world.spawnEntityInWorld(new EntityCure(world, player, player.posX, player.posY, player.posZ));
+				world.spawnEntity(new EntityCure(world, player, player.posX, player.posY, player.posZ));
 				break;
 			case 2:
 				if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP() / 3 * 2 + player.getHealth() > player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP())
 					player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP() - player.getHealth());
 				else
 					player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP() / 3 * 2);
-				world.spawnEntityInWorld(new EntityCura(world, player, player.posX, player.posY, player.posZ));
+				world.spawnEntity(new EntityCura(world, player, player.posX, player.posY, player.posZ));
 				break;
 			case 3:
 				player.heal(player.getCapability(ModCapabilities.PLAYER_STATS, null).getHP() - player.getHealth());
-				world.spawnEntityInWorld(new EntityCuraga(world, player, player.posX, player.posY, player.posZ));
+				world.spawnEntity(new EntityCuraga(world, player, player.posX, player.posY, player.posZ));
 				break;
 		}
 		PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);

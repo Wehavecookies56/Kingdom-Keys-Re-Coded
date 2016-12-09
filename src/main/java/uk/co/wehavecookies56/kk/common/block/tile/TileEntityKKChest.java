@@ -59,8 +59,8 @@ public class TileEntityKKChest extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public boolean isUseableByPlayer (EntityPlayer player) {
-		if (this.worldObj.getTileEntity(this.pos) != this) return false;
+	public boolean isUsableByPlayer (EntityPlayer player) {
+		if (this.world.getTileEntity(this.pos) != this) return false;
 		final double X_CENTRE_OFFSET = 0.5;
 		final double Y_CENTRE_OFFSET = 0.5;
 		final double Z_CENTRE_OFFSET = 0.5;

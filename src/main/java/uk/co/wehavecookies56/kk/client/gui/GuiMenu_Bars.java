@@ -33,10 +33,10 @@ public class GuiMenu_Bars extends GuiScreen {
 		if (drawPlayerInfo) {
 			GL11.glPushMatrix();
 			{
-				PlayerStatsCapability.IPlayerStats STATS = mc.thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null);
-				drawCenteredString(fontRendererObj, mc.thePlayer.getDisplayNameString().toString(), this.width / 2, this.height / 2 + 80, 0xFFFFFF);
+				PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
+				drawCenteredString(fontRendererObj, mc.player.getDisplayNameString().toString(), this.width / 2, this.height / 2 + 80, 0xFFFFFF);
 				drawString(fontRendererObj, "Lv: " + STATS.getLevel(), this.width / 2 - 40, this.height / 2 + 90, 0xFFD900);
-				drawString(fontRendererObj, "HP: " + (int) mc.thePlayer.getHealth() + "/" + (int) mc.thePlayer.getMaxHealth(), this.width / 2 - 40, this.height / 2 + 100, 0x00FF00);
+				drawString(fontRendererObj, "HP: " + (int) mc.player.getHealth() + "/" + (int) mc.player.getMaxHealth(), this.width / 2 - 40, this.height / 2 + 100, 0x00FF00);
 				drawString(fontRendererObj, "MP: " + (int) STATS.getMP() + "/" + (int) STATS.getMaxMP(), this.width / 2 - 40, this.height / 2 + 110, 0x4444FF);
 
 			}
@@ -88,10 +88,10 @@ public class GuiMenu_Bars extends GuiScreen {
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
 		{
-			drawString(fontRendererObj, mc.thePlayer.worldObj.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
-			drawString(fontRendererObj, mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.thePlayer.worldObj.getBiome(mc.thePlayer.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
-			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.theWorld) + ":" + getWorldMinutes(mc.theWorld), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
-			IMunny MUNNY = mc.thePlayer.getCapability(ModCapabilities.MUNNY, null);
+			drawString(fontRendererObj, mc.player.world.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
+			drawString(fontRendererObj, mc.player.world.getBiome(mc.player.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.getBiome(mc.player.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
+			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.world) + ":" + getWorldMinutes(mc.world), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
+			IMunny MUNNY = mc.player.getCapability(ModCapabilities.MUNNY, null);
 			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
 		}
 		GL11.glPopMatrix();
@@ -99,7 +99,7 @@ public class GuiMenu_Bars extends GuiScreen {
 			GL11.glPushMatrix();
 			{
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-				GuiInventory.drawEntityOnScreen(this.width / 2, this.height / 2 + 75, 70, 0, 0, mc.thePlayer);
+				GuiInventory.drawEntityOnScreen(this.width / 2, this.height / 2 + 75, 70, 0, 0, mc.player);
 				// GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.75F);
 			}
 			GL11.glPopMatrix();

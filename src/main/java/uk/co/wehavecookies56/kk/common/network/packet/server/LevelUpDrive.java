@@ -45,10 +45,10 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 	
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		form = buffer.readStringFromBuffer(40);
+		form = buffer.readString(40);
 		isLevelUp = buffer.readBoolean();
 		levels = buffer.readInt();
-		playername = buffer.readStringFromBuffer(40);
+		playername = buffer.readString(40);
 	}
 
 	@Override
@@ -98,11 +98,11 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 
 				TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Drive_Learn, new TextComponentTranslation(this.form));
 				learnMessage.getStyle().setColor(TextFormatting.YELLOW);
-				player.addChatMessage(learnMessage);
+				player.sendMessage(learnMessage);
 			} else {
 				TextComponentTranslation errorMessage = new TextComponentTranslation(Strings.Chat_Drive_Error, new TextComponentTranslation(this.form));
 				errorMessage.getStyle().setColor(TextFormatting.YELLOW);
-				player.addChatMessage(errorMessage);	
+				player.sendMessage(errorMessage);
 			}
 		}
 		PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);

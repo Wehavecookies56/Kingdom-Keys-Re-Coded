@@ -99,12 +99,6 @@ public class BlockStationOfAwakeningDoor extends Block {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
     }
 
-    @Override
-    public IBlockState onBlockPlaced (World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
-    }
-
-
     @SideOnly(Side.CLIENT)
     public IBlockState getStateForEntityRender(IBlockState state) {
         return this.getDefaultState().withProperty(FACING, EnumFacing.NORTH);
@@ -150,11 +144,6 @@ public class BlockStationOfAwakeningDoor extends Block {
     @SuppressWarnings("deprecation")
     @Override
     public boolean isFullCube (IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isVisuallyOpaque () {
         return false;
     }
 

@@ -46,7 +46,7 @@ public class ContainerKKChest extends Container {
 
 	@Override
 	public boolean canInteractWith (EntityPlayer player) {
-		return tileEntityKKChest.isUseableByPlayer(player);
+		return tileEntityKKChest.isUsableByPlayer(player);
 	}
 
 	@Override

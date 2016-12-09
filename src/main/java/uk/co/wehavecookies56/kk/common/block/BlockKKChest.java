@@ -57,7 +57,7 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
 							te.setKeyblade(player.getHeldItemMainhand());
 							te.markDirty();
 
-							player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "Set " + heldItem.getDisplayName() + " as the keyblade to unlock the chest"));
+							player.sendMessage(new TextComponentString(TextFormatting.GREEN + "Set " + heldItem.getDisplayName() + " as the keyblade to unlock the chest"));
 
 							player.openGui(KingdomKeys.instance, GuiIDs.GUI_KKCHEST_INV, world, pos.getX(), pos.getY(), pos.getZ());
 							return true;
@@ -65,7 +65,7 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
 							player.openGui(KingdomKeys.instance, GuiIDs.GUI_KKCHEST_INV, world, pos.getX(), pos.getY(), pos.getZ());
 							return true;
 						} else if (hand == EnumHand.MAIN_HAND) {
-							player.addChatComponentMessage(new TextComponentString(TextFormatting.RED + "The chest is locked with another keyblade"));
+							player.sendMessage(new TextComponentString(TextFormatting.RED + "The chest is locked with another keyblade"));
 							return false;
 						} else {
 							return false;
@@ -111,12 +111,6 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
 		worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
 	}
 
-	@Override
-	public IBlockState onBlockPlaced (World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
-	}
-	
-    
     @SideOnly(Side.CLIENT)
 	public IBlockState getStateForEntityRender(IBlockState state) {
 		return this.getDefaultState().withProperty(FACING, EnumFacing.NORTH);
@@ -167,7 +161,7 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
 					item.motionY = motionY * multiplier;
 					item.motionZ = motionZ * multiplier;
 
-					worldIn.spawnEntityInWorld(item);
+					worldIn.spawnEntity(item);
 				}
 			inventory.clear();
 		}
@@ -189,11 +183,6 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isFullCube (IBlockState state) {
-		return false;
-	}
-
-	@Override
-	public boolean isVisuallyOpaque () {
 		return false;
 	}
 

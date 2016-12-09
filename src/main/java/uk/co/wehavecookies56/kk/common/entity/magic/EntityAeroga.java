@@ -35,7 +35,7 @@ public class EntityAeroga extends Entity {
 		if (player == null) return;
 		int rotation = 0;
 
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnAeroParticles(this, 3), player, 64.0D);
+		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnAeroParticles(this, 3), player, 64.0D);
 
 		double r = 4D;
 
@@ -43,7 +43,7 @@ public class EntityAeroga extends Entity {
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
-			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.posY, z, 0.0D, 0.5D, 0.0D);
+			this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.posY, z, 0.0D, 0.5D, 0.0D);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
@@ -55,7 +55,7 @@ public class EntityAeroga extends Entity {
 			player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10000000149011612D);
 
 		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(r, r, r);
-		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
+		List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityLivingBase) {

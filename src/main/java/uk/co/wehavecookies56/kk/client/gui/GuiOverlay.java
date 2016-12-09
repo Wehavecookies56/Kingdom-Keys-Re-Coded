@@ -37,7 +37,7 @@ public class GuiOverlay extends GuiScreen {
 			Minecraft mc = Minecraft.getMinecraft();
 			int screenWidth = event.getResolution().getScaledWidth();
 			int screenHeight = event.getResolution().getScaledHeight();
-			PlayerStatsCapability.IPlayerStats STATS = mc.thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null);
+			PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
 			if (showExp) {
 				String reqExp = String.valueOf(STATS.getExpNeeded(STATS.getLevel(), STATS.getExperience()));
 				mc.fontRendererObj.drawString("Next LV", 5, 5, 0xFFFFFF);
@@ -100,9 +100,9 @@ public class GuiOverlay extends GuiScreen {
 							GL11.glPopMatrix();
 							GL11.glPushMatrix();
 							{
-								GL11.glTranslatef(width - ((mc.fontRendererObj.getStringWidth(mc.thePlayer.getDisplayNameString())) * 0.75f) - 7, 4, 0);
+								GL11.glTranslatef(width - ((mc.fontRendererObj.getStringWidth(mc.player.getDisplayNameString())) * 0.75f) - 7, 4, 0);
 								GL11.glScalef(0.75f, 0.75f, 1);
-								drawString(mc.fontRendererObj, mc.thePlayer.getDisplayNameString(), 0, 0, 0xFFFFFF);
+								drawString(mc.fontRendererObj, mc.player.getDisplayNameString(), 0, 0, 0xFFFFFF);
 							}
 							GL11.glPopMatrix();
 						}

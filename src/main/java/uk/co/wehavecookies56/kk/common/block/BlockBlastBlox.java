@@ -47,7 +47,7 @@ public class BlockBlastBlox extends BlockBlox {
 		if (!par1World.isRemote) {
 			EntityBlastBlox entitytntprimed = new EntityBlastBlox(par1World, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, par5Explosion.getExplosivePlacedBy());
 			entitytntprimed.fuse = par1World.rand.nextInt(entitytntprimed.fuse / 4) + entitytntprimed.fuse / 8;
-			par1World.spawnEntityInWorld(entitytntprimed);
+			par1World.spawnEntity(entitytntprimed);
 		}
 	}
 
@@ -55,7 +55,7 @@ public class BlockBlastBlox extends BlockBlox {
 		if (!world.isRemote) if ((state & 1) == 1) {
 			EntityBlastBlox entitytntprimed = new EntityBlastBlox(world, x + 0.5F, y + 0.5F, z + 0.5F, entity);
 			//entitytntprimed.fuse = 60;
-			world.spawnEntityInWorld(entitytntprimed);
+			world.spawnEntity(entitytntprimed);
 		}
 	}
 	

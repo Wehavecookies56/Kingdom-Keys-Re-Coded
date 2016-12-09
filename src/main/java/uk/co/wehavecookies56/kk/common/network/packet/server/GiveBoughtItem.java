@@ -30,14 +30,14 @@ public class GiveBoughtItem extends AbstractMessage.AbstractServerMessage<GiveBo
 	protected void read (PacketBuffer buffer) throws IOException {
 		this.spentMunny = buffer.readInt();
 		this.quantity = buffer.readInt();
-		this.boughtItem = buffer.readItemStackFromBuffer();
+		this.boughtItem = buffer.readItemStack();
 	}
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeInt(spentMunny);
 		buffer.writeInt(quantity);
-		buffer.writeItemStackToBuffer(boughtItem);
+		buffer.writeItemStack(boughtItem);
 	}
 
 	@Override

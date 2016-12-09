@@ -54,7 +54,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		Entity entity = player.worldObj.getEntityByID(entityId);
+		Entity entity = player.world.getEntityByID(entityId);
 		if (entity != null)
 			this.attackTargetEntityWithCurrentItem(player, entity);
 	}
@@ -86,7 +86,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                 }
                 //TODO Cooldown on off hand
                 //float f2 = player.getCooledAttackStrength(0.5F);
-                float f2 = MathHelper.clamp_float((float) (((float)20 + 0.5) / player.getCooldownPeriod()), 0.0F, 1.0F);
+                float f2 = MathHelper.clamp((float) (((float)20 + 0.5) / player.getCooldownPeriod()), 0.0F, 1.0F);
                 attackDamage = attackDamage * (0.2F + f2 * f2 * 0.8F);
                 f1 = f1 * f2;
                 player.resetCooldown();
@@ -102,7 +102,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
 
                     if (player.isSprinting() && flag)
                     {
-                        player.worldObj.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, player.getSoundCategory(), 1.0F, 1.0F);
+                        player.world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_KNOCKBACK, player.getSoundCategory(), 1.0F, 1.0F);
                         ++i;
                         flag1 = true;
                     }
@@ -173,7 +173,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
 
                         if (flag3)
                         {
-                            for (EntityLivingBase entitylivingbase : player.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, targetEntity.getEntityBoundingBox().expand(1.0D, 0.25D, 1.0D)))
+                            for (EntityLivingBase entitylivingbase : player.world.getEntitiesWithinAABB(EntityLivingBase.class, targetEntity.getEntityBoundingBox().expand(1.0D, 0.25D, 1.0D)))
                             {
                                 if (entitylivingbase != player && entitylivingbase != targetEntity && !player.isOnSameTeam(entitylivingbase) && player.getDistanceSqToEntity(entitylivingbase) < 9.0D)
                                 {
@@ -182,7 +182,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                                 }
                             }
 
-                            player.worldObj.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, player.getSoundCategory(), 1.0F, 1.0F);
+                            player.world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, player.getSoundCategory(), 1.0F, 1.0F);
                             player.spawnSweepParticles();
                         }
 
@@ -197,7 +197,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
 
                         if (flag2)
                         {
-                            player.worldObj.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_CRIT, player.getSoundCategory(), 1.0F, 1.0F);
+                            player.world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_CRIT, player.getSoundCategory(), 1.0F, 1.0F);
                             player.onCriticalHit(targetEntity);
                         }
 
@@ -205,11 +205,11 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                         {
                             if (flag)
                             {
-                                player.worldObj.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, player.getSoundCategory(), 1.0F, 1.0F);
+                                player.world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, player.getSoundCategory(), 1.0F, 1.0F);
                             }
                             else
                             {
-                                player.worldObj.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_WEAK, player.getSoundCategory(), 1.0F, 1.0F);
+                                player.world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_WEAK, player.getSoundCategory(), 1.0F, 1.0F);
                             }
                         }
 
@@ -218,7 +218,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                             player.onEnchantmentCritical(targetEntity);
                         }
 
-                        if (!player.worldObj.isRemote && targetEntity instanceof EntityPlayer)
+                        if (!player.world.isRemote && targetEntity instanceof EntityPlayer)
                         {
                             EntityPlayer entityplayer = (EntityPlayer)targetEntity;
                             ItemStack itemstack2 = player.getHeldItemOffhand();
@@ -236,7 +236,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                                 if (rand.nextFloat() < f3)
                                 {
                                     entityplayer.getCooldownTracker().setCooldown(Items.SHIELD, 100);
-                                    player.worldObj.setEntityState(entityplayer, (byte)30);
+                                    player.world.setEntityState(entityplayer, (byte)30);
                                 }
                             }
                         }
@@ -287,10 +287,10 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                                 targetEntity.setFire(j * 4);
                             }
 
-                            if (player.worldObj instanceof WorldServer && f5 > 2.0F)
+                            if (player.world instanceof WorldServer && f5 > 2.0F)
                             {
                                 int k = (int)((double)f5 * 0.5D);
-                                ((WorldServer)player.worldObj).spawnParticle(EnumParticleTypes.DAMAGE_INDICATOR, targetEntity.posX, targetEntity.posY + (double)(targetEntity.height * 0.5F), targetEntity.posZ, k, 0.1D, 0.0D, 0.1D, 0.2D, new int[0]);
+                                ((WorldServer)player.world).spawnParticle(EnumParticleTypes.DAMAGE_INDICATOR, targetEntity.posX, targetEntity.posY + (double)(targetEntity.height * 0.5F), targetEntity.posZ, k, 0.1D, 0.0D, 0.1D, 0.2D, new int[0]);
                             }
                         }
 
@@ -298,7 +298,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                     }
                     else
                     {
-                        player.worldObj.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_NODAMAGE, player.getSoundCategory(), 1.0F, 1.0F);
+                        player.world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_NODAMAGE, player.getSoundCategory(), 1.0F, 1.0F);
 
                         if (flag4)
                         {

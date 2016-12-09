@@ -22,7 +22,7 @@ public class PotionConsume extends AbstractMessage.AbstractServerMessage<PotionC
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		potion = buffer.readStringFromBuffer(100);
+		potion = buffer.readString(100);
 	}
 
 	@Override

@@ -28,12 +28,12 @@ public class EntityCuraga extends Entity {
 	@Override
 	public void onUpdate () {
 		if (player == null) return;
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnCureParticles(this, 3), player, 64.0D);
-		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.5, this.posZ, 0.0D, 1.0D, 0.0D);
-		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.8, this.posZ, 0.0D, 1.0D, 0.0D);
-		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.2, this.posZ, 0.0D, 1.0D, 0.0D);
-		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + 0.3, this.posY + 2.5, this.posZ, 0.0D, 1.0D, 0.0D);
-		this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX - 0.3, this.posY + 2.5, this.posZ, 0.0D, 1.0D, 0.0D);
+		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnCureParticles(this, 3), player, 64.0D);
+		this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.5, this.posZ, 0.0D, 1.0D, 0.0D);
+		this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.8, this.posZ, 0.0D, 1.0D, 0.0D);
+		this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX, this.posY + 2.2, this.posZ, 0.0D, 1.0D, 0.0D);
+		this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + 0.3, this.posY + 2.5, this.posZ, 0.0D, 1.0D, 0.0D);
+		this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX - 0.3, this.posY + 2.5, this.posZ, 0.0D, 1.0D, 0.0D);
 
 		if (ticksExisted > 10) setDead();
 

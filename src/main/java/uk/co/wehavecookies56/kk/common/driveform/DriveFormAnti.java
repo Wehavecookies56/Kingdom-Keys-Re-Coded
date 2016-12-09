@@ -41,7 +41,7 @@ public class DriveFormAnti extends DriveForm {
 		player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(true);
 		PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 		PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(player), player, 64.0D);
-		player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.antidrive, SoundCategory.MASTER, 1.0f, 1.0f);
+		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.antidrive, SoundCategory.MASTER, 1.0f, 1.0f);
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class DriveFormAnti extends DriveForm {
 		player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
 		player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(false);
 		player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName("none");
-		if (!player.worldObj.isRemote)
+		if (!player.world.isRemote)
 			PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 	}
 

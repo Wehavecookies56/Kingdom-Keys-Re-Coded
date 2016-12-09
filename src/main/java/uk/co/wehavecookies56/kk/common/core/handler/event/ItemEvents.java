@@ -516,7 +516,7 @@ public class ItemEvents {
 
     @SubscribeEvent
     public void onItemTossEvent (ItemTossEvent event) {
-        if (!event.getPlayer().worldObj.isRemote)
+        if (!event.getPlayer().world.isRemote)
             if (event.getEntityItem().getEntityItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getEntityItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getEntityItem().getItem() != ModItems.WoodenStick)) {
                 event.getEntityItem().isDead = true;
                 ItemStack itemStack = event.getEntityItem().getEntityItem();
@@ -526,7 +526,7 @@ public class ItemEvents {
 
             } else if (event.getEntityItem().getEntityItem().getItem() instanceof ItemMunny) {
                 event.setCanceled(true);
-                if (!event.getPlayer().worldObj.isRemote) {
+                if (!event.getPlayer().world.isRemote) {
                     PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getPlayer());
 
                     event.getPlayer().getCapability(ModCapabilities.MUNNY, null).addMunny(event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount"));

@@ -63,9 +63,9 @@ public class GuiDrive extends GuiScreen {
 
 	@SubscribeEvent
 	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
-		if(!mc.thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
+		if(!mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
 
-		PlayerStatsCapability.IPlayerStats STATS = mc.thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null);
+		PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
 		double dp = STATS.getDP();
 
 		currDrive = (float) ((oneValue * dp) - getCurrBar(dp) * guiLength);
@@ -77,7 +77,7 @@ public class GuiDrive extends GuiScreen {
 			int guiHeight = 18;
 			int screenWidth = event.getResolution().getScaledWidth();
 			int screenHeight = event.getResolution().getScaledHeight();
-			EntityPlayer player = mc.thePlayer;
+			EntityPlayer player = mc.player;
 
 			mc.renderEngine.bindTexture(texture);
 

@@ -64,7 +64,7 @@ public class BlockPedestal extends Block implements ITileEntityProvider{
 					item.motionY = motionY * multiplier;
 					item.motionZ = motionZ * multiplier;
 
-					worldIn.spawnEntityInWorld(item);
+					worldIn.spawnEntity(item);
 				}
 			inventory.clear();
 		}

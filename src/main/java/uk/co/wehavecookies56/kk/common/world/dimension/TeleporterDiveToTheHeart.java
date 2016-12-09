@@ -61,43 +61,43 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         {
             for(float j = 0; j < 2 * Math.PI * barrierRadius; j += 0.5)
             {
-                playerMP.worldObj.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * barrierRadius), dy +i, (int)Math.floor(dz + Math.cos(j) * barrierRadius)), Blocks.BARRIER.getDefaultState());
+                playerMP.world.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * barrierRadius), dy +i, (int)Math.floor(dz + Math.cos(j) * barrierRadius)), Blocks.BARRIER.getDefaultState());
             }
         }
         for(float i = 0; i < radius+2; i += 0.5) {
             for(float j = 0; j < 2 * Math.PI * i; j += 0.5)
             	if(i > radius)
-            		playerMP.worldObj.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * i), dy, (int)Math.floor(dz + Math.cos(j) * i)), Blocks.BARRIER.getDefaultState());
+            		playerMP.world.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * i), dy, (int)Math.floor(dz + Math.cos(j) * i)), Blocks.BARRIER.getDefaultState());
             	else
-            		playerMP.worldObj.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * i), dy, (int)Math.floor(dz + Math.cos(j) * i)), Blocks.GLOWSTONE.getDefaultState());
+            		playerMP.world.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * i), dy, (int)Math.floor(dz + Math.cos(j) * i)), Blocks.GLOWSTONE.getDefaultState());
         }
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(-12), dy, dz+(-13)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 0));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(-4), dy, dz+(-13)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 1));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(4), dy, dz+(-13)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 2));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(12), dy, dz+(-13)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 3));
+        playerMP.world.setBlockState(new BlockPos(dx+(-12), dy, dz+(-13)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 0));
+        playerMP.world.setBlockState(new BlockPos(dx+(-4), dy, dz+(-13)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 1));
+        playerMP.world.setBlockState(new BlockPos(dx+(4), dy, dz+(-13)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 2));
+        playerMP.world.setBlockState(new BlockPos(dx+(12), dy, dz+(-13)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 3));
 
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(-12), dy, dz+(-5)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 4));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(-4), dy, dz+(-5)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 5));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(4), dy, dz+(-5)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 6));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(12), dy, dz+(-5)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 7));
+        playerMP.world.setBlockState(new BlockPos(dx+(-12), dy, dz+(-5)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 4));
+        playerMP.world.setBlockState(new BlockPos(dx+(-4), dy, dz+(-5)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 5));
+        playerMP.world.setBlockState(new BlockPos(dx+(4), dy, dz+(-5)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 6));
+        playerMP.world.setBlockState(new BlockPos(dx+(12), dy, dz+(-5)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 7));
 
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(-12), dy, dz+(3)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 8));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(-4), dy, dz+(3)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 9));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(4), dy, dz+(3)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 10));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(12), dy, dz+(3)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 11));
+        playerMP.world.setBlockState(new BlockPos(dx+(-12), dy, dz+(3)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 8));
+        playerMP.world.setBlockState(new BlockPos(dx+(-4), dy, dz+(3)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 9));
+        playerMP.world.setBlockState(new BlockPos(dx+(4), dy, dz+(3)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 10));
+        playerMP.world.setBlockState(new BlockPos(dx+(12), dy, dz+(3)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 11));
 
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(-12), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 12));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(-4), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 13));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(4), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 14));
-        playerMP.worldObj.setBlockState(new BlockPos(dx+(12), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 15));
+        playerMP.world.setBlockState(new BlockPos(dx+(-12), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 12));
+        playerMP.world.setBlockState(new BlockPos(dx+(-4), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 13));
+        playerMP.world.setBlockState(new BlockPos(dx+(4), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 14));
+        playerMP.world.setBlockState(new BlockPos(dx+(12), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 15));
         
-        playerMP.worldObj.setBlockState(new BlockPos(dx-12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Shield
+        playerMP.world.setBlockState(new BlockPos(dx-12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Shield
         
-        playerMP.worldObj.setBlockState(new BlockPos(dx+12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Staff
+        playerMP.world.setBlockState(new BlockPos(dx+12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Staff
         
-        playerMP.worldObj.setBlockState(new BlockPos(dx, dy+1, dz-12), ModBlocks.Pedestal.getDefaultState());  //Sword
+        playerMP.world.setBlockState(new BlockPos(dx, dy+1, dz-12), ModBlocks.Pedestal.getDefaultState());  //Sword
         
-        playerMP.worldObj.setBlockState(new BlockPos(dx, dy+1, dz+12), ModBlocks.StationOfAwakeningDoor.getDefaultState());
+        playerMP.world.setBlockState(new BlockPos(dx, dy+1, dz+12), ModBlocks.StationOfAwakeningDoor.getDefaultState());
         
     }
 

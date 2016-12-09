@@ -57,7 +57,7 @@ public class SpawnDriveFormParticles extends AbstractMessage.AbstractClientMessa
 					x = px + (r * 1.1 * Math.cos(Math.toRadians(a)));
 					z = pz + (r * 1.1 * Math.sin(Math.toRadians(a)));
 				}
-				player.worldObj.spawnParticle(EnumParticleTypes.CRIT_MAGIC, x, py + i, z, 0.0D, 0.3, 0.0D);
+				player.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, x, py + i, z, 0.0D, 0.3, 0.0D);
 			}
 	}
 }

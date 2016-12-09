@@ -23,7 +23,7 @@ public class ItemBlazeofGlory extends ItemChakram {
 			if (!player.isSneaking()) {
 				world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F), false);
 				EntityBlazeofGlory entity = new EntityBlazeofGlory(world, player);
-				world.spawnEntityInWorld(entity);
+				world.spawnEntity(entity);
 				entity.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1f, 1);
 				if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) 
 					player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(7);

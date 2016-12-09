@@ -65,7 +65,7 @@ public class GuiCommandMenu extends GuiScreen {
 	
 	@SubscribeEvent (priority = EventPriority.NORMAL)
 	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
-		if(mc.thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode())
+		if(mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode())
 		{
 			if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT && !mc.ingameGUI.getChatGUI().getChatOpen()) {
 				GL11.glPushMatrix();
@@ -95,22 +95,22 @@ public class GuiCommandMenu extends GuiScreen {
 	}
 
 	public void drawCommandMenu (int width, int height) {
-		IDriveState DS = mc.thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null);
-		PlayerStatsCapability.IPlayerStats STATS = mc.thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null);
+		IDriveState DS = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
+		PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
 
 		this.spells = new ArrayList<String>();
 		this.items = new ArrayList<String>();
 		this.driveCommands = new ArrayList<String>();
 		
 		this.spells.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != null) this.spells.add(((ItemSpellOrb) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != null) this.spells.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
 		this.items.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != null) this.items.add(((ItemKKPotion) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != null) this.items.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
 		this.driveCommands.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != null) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSizeInventory(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != null) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
 		// Magic:"+magicselected+" Drive:"+driveselected);
 		//System.out.println("Is KH1 Fire?: "+ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getKH1Fire());
 		float scale = 1.05f;
@@ -337,7 +337,7 @@ public class GuiCommandMenu extends GuiScreen {
 						colour = STATS.getMP() < 1 ? 0x888888 : colour;
 
 						String magic = spells.get(i);
-						int level = mc.thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic);
+						int level = mc.player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic);
 						String magicName = Constants.getMagicName(magic, level);
 						drawString(mc.fontRendererObj, Utils.translateToLocal(magicName), 6, 4, colour);
 						GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -441,7 +441,7 @@ public class GuiCommandMenu extends GuiScreen {
 					GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * (driveCommands.size() - i)), 0);
 					GL11.glScalef(scale, scale, scale);
 					if (submenu == SUB_DRIVE) {
-						if (STATS.getDP() >= Constants.getCost(driveCommands.get(i)) || mc.thePlayer.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
+						if (STATS.getDP() >= Constants.getCost(driveCommands.get(i)) || mc.player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
 							drawString(mc.fontRendererObj, Utils.translateToLocal(driveCommands.get(i)), 6, 4, 0xFFFFFF);
 						else
 							drawString(mc.fontRendererObj, Utils.translateToLocal(driveCommands.get(i)), 6, 4, 0x888888);

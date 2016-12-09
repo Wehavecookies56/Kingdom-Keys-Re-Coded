@@ -25,7 +25,7 @@ public class ItemMagicBoost extends Item {
 		if (world.isRemote) {
 			PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.MagicBoost, playerIn.inventory.currentItem));
 		}
-		playerIn.worldObj.playSound(playerIn, playerIn.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
+		playerIn.world.playSound(playerIn, playerIn.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
 
 		return super.onItemRightClick(itemStackIn, world, playerIn, hand);
 	}

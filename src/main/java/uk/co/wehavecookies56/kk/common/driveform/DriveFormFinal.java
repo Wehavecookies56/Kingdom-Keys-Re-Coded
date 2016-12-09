@@ -47,13 +47,13 @@ public class DriveFormFinal extends DriveForm {
 		player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(true);
 		PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 		PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(player), player, 64.0D);
-		player.worldObj.playSound((EntityPlayer)null, player.getPosition(), ModSounds.drive, SoundCategory.MASTER, 1.0f, 1.0f);
+		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.drive, SoundCategory.MASTER, 1.0f, 1.0f);
 	}
 
 	@Override
 	public void update (EntityPlayer player) {
 		boolean j = false;
-		if(player.worldObj.isRemote)
+		if(player.world.isRemote)
 		{
 			j = Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown();
 		}
@@ -69,7 +69,7 @@ public class DriveFormFinal extends DriveForm {
 		if (player.onGround && !player.isInWater()) {
 			player.motionX *= 1.2D;
 			player.motionZ *= 1.2D;
-		} else if (player.motionY < 0) if (player.worldObj.isRemote) {
+		} else if (player.motionY < 0) if (player.world.isRemote) {
 			if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
 				jumpHeld = true;
 				switch(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Final))
@@ -124,7 +124,7 @@ public class DriveFormFinal extends DriveForm {
 		player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
 		player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(false);
 		player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName("none");
-		if (!player.worldObj.isRemote)
+		if (!player.world.isRemote)
 			PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 	}
 

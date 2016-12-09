@@ -22,11 +22,11 @@ public class GuiMP extends GuiScreen {
 
 	@SubscribeEvent
 	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
-		if(!Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
+		if(!Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
 		if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
 
 			Minecraft mc = Minecraft.getMinecraft();
-			EntityPlayer player = mc.thePlayer;
+			EntityPlayer player = mc.player;
 
 			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/mpbar.png"));
 
@@ -54,7 +54,7 @@ public class GuiMP extends GuiScreen {
 			// BG
 			int v = 0;
 			float barProg = currMP;
-			if (STATS.getRecharge() == false)
+			if (!STATS.getRecharge())
 				v = 0;
 			else
 				v = 10;
@@ -68,7 +68,7 @@ public class GuiMP extends GuiScreen {
 			// FG
 			int v2 = 0;
 			float barProg2 = currMP;
-			if (STATS.getRecharge() == false)
+			if (!STATS.getRecharge())
 				v2 = 6;
 			else
 				v2 = 16;

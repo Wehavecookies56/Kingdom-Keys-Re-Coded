@@ -21,12 +21,12 @@ public class WorldProviderDiveToTheHeart extends WorldProvider {
     protected void createBiomeProvider() {
         this.biomeProvider = new BiomeProviderSingle(Biomes.SKY);
         this.hasNoSky = true;
-        NBTTagCompound nbttagcompound = this.worldObj.getWorldInfo().getDimensionData(ModDimensions.diveToTheHeart);
+        NBTTagCompound nbttagcompound = this.world.getWorldInfo().getDimensionData(ModDimensions.diveToTheHeart);
     }
 
     @Override
     public IChunkGenerator createChunkGenerator() {
-        return new ChunkProviderDiveToTheHeart(this.worldObj, this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.worldObj.getSeed());
+        return new ChunkProviderDiveToTheHeart(this.world, this.world.getWorldInfo().isMapFeaturesEnabled(), this.world.getSeed());
     }
 
     @Override
@@ -43,7 +43,7 @@ public class WorldProviderDiveToTheHeart extends WorldProvider {
     @Override
     public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
         float f = MathHelper.cos(p_76562_1_ * ((float)Math.PI * 2F)) * 2.0F + 0.5F;
-        f = MathHelper.clamp_float(f, 0.0F, 1.0F);
+        f = MathHelper.clamp(f, 0.0F, 1.0F);
         float f1 = 0.627451F;
         float f2 = 0.5019608F;
         float f3 = 0.627451F;
@@ -75,7 +75,7 @@ public class WorldProviderDiveToTheHeart extends WorldProvider {
 
     @Override
     public boolean canCoordinateBeSpawn(int x, int z) {
-        return this.worldObj.getGroundAboveSeaLevel(new BlockPos(x, 0, z)).getMaterial().blocksMovement();
+        return this.world.getGroundAboveSeaLevel(new BlockPos(x, 0, z)).getMaterial().blocksMovement();
     }
 
     @Override
@@ -101,7 +101,7 @@ public class WorldProviderDiveToTheHeart extends WorldProvider {
     @Override
     public void onWorldSave() {
         NBTTagCompound nbtTagCompound = new NBTTagCompound();
-        this.worldObj.getWorldInfo().setDimensionData(getDimensionType(), nbtTagCompound);
+        this.world.getWorldInfo().setDimensionData(getDimensionType(), nbtTagCompound);
     }
 
     @Override

@@ -57,7 +57,7 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 	public void process (EntityPlayer player, Side side) {
 		double r = 2.0D;
 		if (ex != 0) 
-			player.worldObj.spawnEntityInWorld((new EntityLightningBolt(player.worldObj, ex, ey, ez, false)));
+			player.world.spawnEntity((new EntityLightningBolt(player.world, ex, ey, ez, false)));
 		switch (this.lvl) {
 			case 1:
 
@@ -65,7 +65,7 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
 
-					player.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, this.y + 1, z, 250, 100, 0);
+					player.world.spawnParticle(EnumParticleTypes.REDSTONE, x, this.y + 1, z, 250, 100, 0);
 				}
 				break;
 			case 2:
@@ -74,7 +74,7 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
 
-					player.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, this.y + 1, z, 30, 15, 0);
+					player.world.spawnParticle(EnumParticleTypes.REDSTONE, x, this.y + 1, z, 30, 15, 0);
 				}
 				break;
 			case 3:
@@ -83,7 +83,7 @@ public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderPar
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
 
-					player.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, x, this.y + 1, z, 30, 15, 0);
+					player.world.spawnParticle(EnumParticleTypes.REDSTONE, x, this.y + 1, z, 30, 15, 0);
 				}
 				break;
 		}

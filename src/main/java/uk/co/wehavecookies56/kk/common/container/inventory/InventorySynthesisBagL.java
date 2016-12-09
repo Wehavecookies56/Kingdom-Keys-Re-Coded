@@ -45,7 +45,7 @@ public class InventorySynthesisBagL extends AbstractInventory {
 	}
 
 	@Override
-	public boolean isUseableByPlayer (EntityPlayer player) {
+	public boolean isUsableByPlayer (EntityPlayer player) {
 		return player.getHeldItem(EnumHand.MAIN_HAND) == invStack;
 	}
 

@@ -17,6 +17,8 @@ import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
 
+import javax.annotation.Nullable;
+
 public class CommandShowHud implements ICommand {
 
 	private List<String> aliases;
@@ -32,7 +34,7 @@ public class CommandShowHud implements ICommand {
 	}
 
 	@Override
-	public String getCommandName () {
+	public String getName () {
 		return "showhud";
 	}
 	
@@ -42,12 +44,12 @@ public class CommandShowHud implements ICommand {
     }
 
 	@Override
-	public String getCommandUsage (ICommandSender sender) {
+	public String getUsage (ICommandSender sender) {
 		return "/showhud";
 	}
 
 	@Override
-	public List<String> getCommandAliases () {
+	public List<String> getAliases () {
 		return this.aliases;
 	}
 
@@ -71,7 +73,7 @@ public class CommandShowHud implements ICommand {
 				sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null).setHudMode(true);
 			}
 		} else if (args.length == 1) {
-			TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getCommandUsage(sender), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+			TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
 		}
 		PacketDispatcher.sendTo(new SyncHudData(sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) sender.getCommandSenderEntity());
 	}
@@ -94,7 +96,7 @@ public class CommandShowHud implements ICommand {
 	}
 
 	@Override
-	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos) {
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
 		return null;
 	}
 }

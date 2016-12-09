@@ -30,14 +30,14 @@ public class TakeSoldItem extends AbstractMessage.AbstractServerMessage<TakeSold
 	protected void read (PacketBuffer buffer) throws IOException {
 		this.munnyToGive = buffer.readInt();
 		this.quantity = buffer.readInt();
-		this.soldItem = buffer.readItemStackFromBuffer();
+		this.soldItem = buffer.readItemStack();
 	}
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
 		buffer.writeInt(munnyToGive);
 		buffer.writeInt(quantity);
-		buffer.writeItemStackToBuffer(soldItem);
+		buffer.writeItemStack(soldItem);
 	}
 
 	@Override
