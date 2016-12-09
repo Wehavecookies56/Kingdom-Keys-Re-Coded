@@ -26,13 +26,13 @@ public class SyncKeybladeData extends AbstractClientMessage<SyncKeybladeData> {
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
 		this.summoned = buffer.readBoolean();
-		this.data = buffer.readNBTTagCompoundFromBuffer();
+		this.data = buffer.readCompoundTag();
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
 		buffer.writeBoolean(this.summoned);
-		buffer.writeNBTTagCompoundToBuffer(data);
+		buffer.writeCompoundTag(data);
 	}
 
 	@Override

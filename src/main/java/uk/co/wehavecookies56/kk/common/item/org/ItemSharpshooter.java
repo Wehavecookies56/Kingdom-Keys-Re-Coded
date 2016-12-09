@@ -36,7 +36,7 @@ public class ItemSharpshooter extends ItemOrgWeapon {
 			if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getMP() > 0 && !player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge() || player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
 				world.playSound(player.posX, player.posY, player.posZ, ModSounds.sharpshooterbullet, SoundCategory.PLAYERS, 0.5F, 1F / (itemRand.nextFloat() * 0.4F + 0.8F), false);
 				EntitySharpshooterBullet bullet = new EntitySharpshooterBullet(world,player);
-				world.spawnEntityInWorld(bullet);
+				world.spawnEntity(bullet);
 				bullet.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 3f, 0);
 				if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) 
 					player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(7);

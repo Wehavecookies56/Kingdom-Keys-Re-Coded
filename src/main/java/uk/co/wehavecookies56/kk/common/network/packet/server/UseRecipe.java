@@ -35,9 +35,9 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		recipe1 = buffer.readStringFromBuffer(40);
-		recipe2 = buffer.readStringFromBuffer(40);
-		recipe3 = buffer.readStringFromBuffer(40);
+		recipe1 = buffer.readString(40);
+		recipe2 = buffer.readString(40);
+		recipe3 = buffer.readString(40);
 	}
 
 	@Override
@@ -57,14 +57,14 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
 		} else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1)) {
 			TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe1+".name"));
 			repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
-			player.addChatMessage(repeatMessage);	
+			player.sendMessage(repeatMessage);
 
 			//TextHelper.sendFormattedChatMessage(message, TextFormatting.YELLOW, player);
 		} else {
 			RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe1);
 			TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe1+".name"));
 			learnMessage.getStyle().setColor(TextFormatting.GREEN);
-			player.addChatMessage(learnMessage);	
+			player.sendMessage(learnMessage);
 			consume = true;
 		}
 		if (RecipeRegistry.get(recipe2) == null) {
@@ -73,13 +73,13 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
 		} else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2)) {
 			TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe2+".name"));
 			repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
-			player.addChatMessage(repeatMessage);	
+			player.sendMessage(repeatMessage);
 
 		} else {
 			RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe2);
 			TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe2+".name"));
 			learnMessage.getStyle().setColor(TextFormatting.GREEN);
-			player.addChatMessage(learnMessage);	
+			player.sendMessage(learnMessage);
 			consume = true;
 		}
 		if (RecipeRegistry.get(recipe3) == null) {
@@ -88,13 +88,13 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
 		} else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3)) {
 			TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe3+".name"));
 			repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
-			player.addChatMessage(repeatMessage);	
+			player.sendMessage(repeatMessage);
 
 		} else {
 			RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe3);
 			TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe3+".name"));
 			learnMessage.getStyle().setColor(TextFormatting.GREEN);
-			player.addChatMessage(learnMessage);	
+			player.sendMessage(learnMessage);
 			consume = true;
 		}
 

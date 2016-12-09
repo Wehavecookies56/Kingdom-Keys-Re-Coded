@@ -48,7 +48,7 @@ public class SpawnStopParticles extends AbstractMessage.AbstractClientMessage<Sp
 				for (int a = 1; a <= 360; a += 15) {
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-		            player.worldObj.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, x, y+1, z, 0,0.2,0);
+		            player.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, x, y+1, z, 0,0.2,0);
 				}
 				break;
 			case 2:
@@ -56,7 +56,7 @@ public class SpawnStopParticles extends AbstractMessage.AbstractClientMessage<Sp
 				for (int a = 1; a <= 360; a += 15) {
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-					player.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.y + 2, z, 0.0D, 0.5D, 0.0D);
+					player.world.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.y + 2, z, 0.0D, 0.5D, 0.0D);
 				}
 				break;
 			case 3:
@@ -64,7 +64,7 @@ public class SpawnStopParticles extends AbstractMessage.AbstractClientMessage<Sp
 				for (int a = 1; a <= 360; a += 15) {
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-					player.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.y + 2, z, 0.0D, 0.5D, 0.0D);
+					player.world.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.y + 2, z, 0.0D, 0.5D, 0.0D);
 				}
 				break;
 			// player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL,

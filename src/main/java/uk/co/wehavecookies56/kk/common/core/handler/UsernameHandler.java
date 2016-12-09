@@ -130,7 +130,7 @@ public class UsernameHandler {
 		                if (!prefix.isEmpty()) prefixWithFormat =  "[" + prefixFormat + prefix + TextFormatting.WHITE + "] ";
 		                String nameWithFormat = TextFormatting.WHITE + "<" + nameFormat + player.getDisplayNameString() + TextFormatting.WHITE + "> ";
                         TextComponentTranslation message = new TextComponentTranslation(prefixWithFormat + nameWithFormat + chatFormat + event.getMessage());
-		                target.addChatComponentMessage(message);
+		                target.sendMessage(message);
                         LogManager.getLogger().info(message.getUnformattedText());
 		  	        }
 	            }

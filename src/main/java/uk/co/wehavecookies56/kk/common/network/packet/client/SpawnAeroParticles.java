@@ -48,7 +48,7 @@ public class SpawnAeroParticles extends AbstractMessage.AbstractClientMessage<Sp
 				for (int a = 1; a <= 360; a += 15) {
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-					player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
+					player.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
 				}
 				break;
 			case 2:
@@ -56,7 +56,7 @@ public class SpawnAeroParticles extends AbstractMessage.AbstractClientMessage<Sp
 				for (int a = 1; a <= 360; a += 15) {
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-					player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
+					player.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
 				}
 				break;
 			case 3:
@@ -64,7 +64,7 @@ public class SpawnAeroParticles extends AbstractMessage.AbstractClientMessage<Sp
 				for (int a = 1; a <= 360; a += 15) {
 					double x = this.x + (r * Math.cos(Math.toRadians(a)));
 					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-					player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
+					player.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
 				}
 				break;
 		}

@@ -38,7 +38,7 @@ public class EntityHelper
     public static List<EntityLivingBase> getEntitiesNear(Entity e, double radius)
     {
     	AxisAlignedBB aabb = new AxisAlignedBB(e.posX, e.posY, e.posZ, e.posX + 1, e.posY + 1, e.posZ + 1).expand(radius, radius, radius);
-    	List<EntityLivingBase> list = e.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
+    	List<EntityLivingBase> list = e.world.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
     	list.remove(e);
 	    return list;
     }
@@ -49,7 +49,7 @@ public class EntityHelper
 	 
 	public static Dir get8Directions(Entity e)
 	{
-		switch(MathHelper.floor_double(e.rotationYaw * 8.0F / 360.0F + 0.5D) & 7)
+		switch(MathHelper.floor(e.rotationYaw * 8.0F / 360.0F + 0.5D) & 7)
 		{case 0: return Dir.SOUTH; case 1: return Dir.SOUTH_WEST; case 2: return Dir.WEST; case 3: return Dir.NORTH_WEST; case 4: return Dir.NORTH; case 5: return Dir.NORTH_EAST; case 6: return Dir.EAST; case 7: return Dir.SOUTH_EAST;}
 		return null;
 	}

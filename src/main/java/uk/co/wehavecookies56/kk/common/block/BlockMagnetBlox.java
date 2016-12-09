@@ -206,11 +206,4 @@ public class BlockMagnetBlox extends BlockBlox {
 	protected BlockStateContainer createBlockState () {
 		return new BlockStateContainer(this, new IProperty[] { PROPERTYFACING, PROPERTYON, PROPERTYMAGNET });
 	}
-
-	@Override
-	public IBlockState onBlockPlaced (World world, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		EnumFacing enumfacing = (placer == null) ? EnumFacing.NORTH : EnumFacing.fromAngle(placer.rotationYaw);
-
-		return getDefaultState().withProperty(PROPERTYFACING, enumfacing).withProperty(PROPERTYON, false).withProperty(PROPERTYMAGNET, false);
-	}
 }

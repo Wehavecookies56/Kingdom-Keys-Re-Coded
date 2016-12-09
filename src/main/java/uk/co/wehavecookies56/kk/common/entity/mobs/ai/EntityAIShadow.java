@@ -45,7 +45,7 @@ public class EntityAIShadow extends EntityAITarget
     		}    	
     		
 			EntityHelper.Dir dir = EntityHelper.get8Directions(this.taskOwner);
-    		int currentAi = this.taskOwner.worldObj.rand.nextInt(2);
+    		int currentAi = this.taskOwner.world.rand.nextInt(2);
     		
     		if(!canUseNextAttack)
     		{
@@ -78,7 +78,7 @@ public class EntityAIShadow extends EntityAITarget
     			if(dir == EntityHelper.Dir.EAST) taskOwner.motionX += 0.7;
     			if(dir == EntityHelper.Dir.SOUTH_EAST) {taskOwner.motionZ += 0.7;taskOwner.motionX += 0.7;}
 
-	    		if(this.taskOwner.worldObj.rand.nextInt(2) == 0)
+	    		if(this.taskOwner.world.rand.nextInt(2) == 0)
 	    		{
 	    			EntityHelper.setState(this.taskOwner, 0);
 	    	    	this.taskOwner.setEntityInvulnerable(false); 	
@@ -109,7 +109,7 @@ public class EntityAIShadow extends EntityAITarget
 	    		if(dir == EntityHelper.Dir.EAST) taskOwner.motionX += 1;
 	    		if(dir == EntityHelper.Dir.SOUTH_EAST) {taskOwner.motionZ += 1;taskOwner.motionX += 1;}  
 
-	    		if(this.taskOwner.worldObj.rand.nextInt(2) == 0)
+	    		if(this.taskOwner.world.rand.nextInt(2) == 0)
 	    		{
 	    			EntityHelper.setState(this.taskOwner, 0);
 	    	    	this.taskOwner.setEntityInvulnerable(false); 	

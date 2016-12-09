@@ -35,14 +35,14 @@ public class EntityWisdomShot extends EntityThrowable {
 		super.onUpdate();
 		if (shootingEntity == null) return;
 		int rotation = 0;
-		if (!worldObj.isRemote) PacketDispatcher.sendToAllAround(new SpawnWisdomShotParticles(this), shootingEntity, 64.0D);
+		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnWisdomShotParticles(this), shootingEntity, 64.0D);
 		this.rotationYaw = (rotation + 1) % 360;
 		if (ticksExisted > 60) setDead();
 	}
 
 	@Override
 	protected void onImpact (RayTraceResult movingObject) {
-		if (!this.worldObj.isRemote) {
+		if (!this.world.isRemote) {
 			boolean flag;
 			float dmg = (DamageCalculation.getMagicDamage(shootingEntity,1))/5;
 			if(dmg < 2)

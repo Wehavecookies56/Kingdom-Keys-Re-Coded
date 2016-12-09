@@ -35,24 +35,24 @@ public class MagicBlizzard extends AbstractMessage.AbstractServerMessage<MagicBl
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(Constants.getCost(Strings.Spell_Blizzard));
-		World world = player.worldObj;
+		World world = player.world;
 		
 		switch (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(Strings.Spell_Blizzard)) {
 			case 1:
 				EntityBlizzard entityBlizzard = new EntityBlizzard(world, player);
-				world.spawnEntityInWorld(entityBlizzard);
+				world.spawnEntity(entityBlizzard);
 				entityBlizzard.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
 				PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzard(world), 1), player, 64.0D);
 				break;
 			case 2:
 				EntityBlizzara entityBlizzara = new EntityBlizzara(world, player);
-				world.spawnEntityInWorld(entityBlizzara);				
+				world.spawnEntity(entityBlizzara);
 				entityBlizzara.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 2, 0);
 				PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzara(world), 1), player, 64.0D);
 				break;
 			case 3:
 				EntityBlizzaga entityBlizzaga = new EntityBlizzaga(world, player);
-				world.spawnEntityInWorld(entityBlizzaga);
+				world.spawnEntity(entityBlizzaga);
 				entityBlizzaga.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 3, 0);
 				PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzaga(world), 1), player, 64.0D);
 				break;

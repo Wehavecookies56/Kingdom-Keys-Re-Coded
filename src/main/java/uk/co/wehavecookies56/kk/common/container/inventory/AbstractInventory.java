@@ -11,6 +11,16 @@ public abstract class AbstractInventory implements IInventory {
 	protected ItemStack[] inventory;
 
 	@Override
+	public boolean isUsableByPlayer(EntityPlayer player) {
+		return false;
+	}
+
+	@Override
+	public boolean isItemValidForSlot(int index, ItemStack stack) {
+		return false;
+	}
+
+	@Override
 	public int getSizeInventory () {
 		return inventory.length;
 	}

@@ -28,7 +28,7 @@ public class SyncMaterialData extends AbstractClientMessage<SyncMaterialData> {
 	protected void read(PacketBuffer buffer) throws IOException {
 		materials = new HashMap<String, Integer>();
 		while(buffer.isReadable()){
-			materials.put(buffer.readStringFromBuffer(100), buffer.readInt());
+			materials.put(buffer.readString(100), buffer.readInt());
 		}
 	}
 

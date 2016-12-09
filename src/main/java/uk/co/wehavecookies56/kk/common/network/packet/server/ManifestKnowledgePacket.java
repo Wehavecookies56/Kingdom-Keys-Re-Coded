@@ -36,7 +36,7 @@ public class ManifestKnowledgePacket extends AbstractMessage.AbstractServerMessa
 		player.inventory.addItemStackToInventory(new ItemStack(Lists.orgWeapons.get(rand)));
 		TextComponentTranslation manifestMessage = new TextComponentTranslation(Strings.Chat_Manifest, new TextComponentTranslation(Lists.orgWeapons.get(rand).getUnlocalizedName() + ".name"));
 		manifestMessage.getStyle().setColor(TextFormatting.YELLOW);
-		player.addChatMessage(manifestMessage);
+		player.sendMessage(manifestMessage);
     	AchievementHelper.addAchievement(player, ModAchievements.getOrgWeapon);
 	}
 

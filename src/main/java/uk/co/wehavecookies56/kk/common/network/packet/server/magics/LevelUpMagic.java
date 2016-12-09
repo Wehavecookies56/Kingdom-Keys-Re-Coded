@@ -30,7 +30,7 @@ public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		magic = buffer.readStringFromBuffer(40);
+		magic = buffer.readString(40);
 	}
 
 	@Override
@@ -61,19 +61,19 @@ public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
 			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 			TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Magic_Learn, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
 			learnMessage.getStyle().setColor(TextFormatting.YELLOW);
-			player.addChatMessage(learnMessage);
+			player.sendMessage(learnMessage);
 		} else {
 			if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) < Constants.MAX_MAGIC_LEVEL) {
 				player.getCapability(ModCapabilities.MAGIC_STATE, null).setMagicLevel(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) + 1);
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 				TextComponentTranslation levelupMessage = new TextComponentTranslation(Strings.Chat_Magic_Levelup, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) - 1)), new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
 				levelupMessage.getStyle().setColor(TextFormatting.YELLOW);
-				player.addChatMessage(levelupMessage);
+				player.sendMessage(levelupMessage);
 
 			} else {
 				TextComponentTranslation errorMessage = new TextComponentTranslation(Strings.Chat_Magic_Error, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
 				errorMessage.getStyle().setColor(TextFormatting.YELLOW);
-				player.addChatMessage(errorMessage);
+				player.sendMessage(errorMessage);
 			}
 		}
 		PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);

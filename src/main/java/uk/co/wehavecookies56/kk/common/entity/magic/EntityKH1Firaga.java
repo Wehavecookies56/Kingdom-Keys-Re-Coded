@@ -44,7 +44,7 @@ public class EntityKH1Firaga extends EntityThrowable {
 		int rotation = 0;
 		if (shootingEntity instanceof EntityPlayer)
 		{
-			if (!worldObj.isRemote) 
+			if (!world.isRemote)
 				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), shootingEntity, 64.0D);
 			if(InputHandler.lockOn != null)
 			{
@@ -52,7 +52,7 @@ public class EntityKH1Firaga extends EntityThrowable {
 				setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);	
 			}
 		}
-		this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+		this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.rotationYaw = (rotation + 1) % 360;
 		if (ticksExisted > 60) setDead();
 		super.onUpdate();
@@ -60,7 +60,7 @@ public class EntityKH1Firaga extends EntityThrowable {
 
 	@Override
 	protected void onImpact (RayTraceResult movingObject) {
-		if (!this.worldObj.isRemote) {
+		if (!this.world.isRemote) {
 			if (movingObject.entityHit != null) {
 				if (movingObject.entityHit != null) {
 					applyEnchantments(this.shootingEntity, movingObject.entityHit);
@@ -72,10 +72,10 @@ public class EntityKH1Firaga extends EntityThrowable {
 				}
 			} else {
 				if (this.shootingEntity != null) 
-				if (this.worldObj.getGameRules().getBoolean("mobGriefing")) {
+				if (this.world.getGameRules().getBoolean("mobGriefing")) {
 					BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);
-					if (this.worldObj.isAirBlock(blockpos)) 
-						this.worldObj.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
+					if (this.world.isAirBlock(blockpos))
+						this.world.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
 				}
 			}
 			setDead();

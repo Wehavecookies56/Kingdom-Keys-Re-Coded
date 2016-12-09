@@ -19,6 +19,8 @@ import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDiveToTheHeart;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
 
+import javax.annotation.Nullable;
+
 public class CommandDimension implements ICommand {
 
 	private List<String> aliases;
@@ -34,7 +36,7 @@ public class CommandDimension implements ICommand {
 	}
 
 	@Override
-	public String getCommandName () {
+	public String getName () {
 		return "dimension";
 	}
 	
@@ -44,12 +46,12 @@ public class CommandDimension implements ICommand {
     }
 
 	@Override
-	public String getCommandUsage (ICommandSender sender) {
+	public String getUsage (ICommandSender sender) {
 		return "/dimension";
 	}
 
 	@Override
-	public List<String> getCommandAliases () {
+	public List<String> getAliases () {
 		return this.aliases;
 	}
 
@@ -83,20 +85,20 @@ public class CommandDimension implements ICommand {
 			} else if (args.length == 1) {
 				player = getPlayerFromUsername(args[0]);
 			} else if (args.length > 1) {
-				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getCommandUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 				return;
 			}
 			if(player != null)
 			{
-				if (!player.worldObj.isRemote)
+				if (!player.world.isRemote)
 				{
 					if (player.dimension == ModDimensions.diveToTheHeartID)
 					{
-    					new TeleporterOverworld(player.worldObj.getMinecraftServer().getServer().worldServerForDimension(0)).teleport((player), player.worldObj);
+    					new TeleporterOverworld(player.world.getMinecraftServer().getServer().worldServerForDimension(0)).teleport((player), player.world);
 					}
 					else if(player.dimension == 0)
 					{
-						new TeleporterDiveToTheHeart(player.worldObj.getMinecraftServer().getServer().worldServerForDimension(ModDimensions.diveToTheHeartID)).teleport(player, player.worldObj);
+						new TeleporterDiveToTheHeart(player.world.getMinecraftServer().getServer().worldServerForDimension(ModDimensions.diveToTheHeartID)).teleport(player, player.world);
 					}
 				}
 			}
@@ -121,7 +123,7 @@ public class CommandDimension implements ICommand {
 	}
 
 	@Override
-	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos) {
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
 		return null;
 	}
 }

@@ -39,7 +39,7 @@ public class GuiMaterialList extends GuiScrollingList {
 
 	@Override
 	protected int getSize () {
-		return Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).getKnownMaterialsMap().size();
+		return Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).getKnownMaterialsMap().size();
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class GuiMaterialList extends GuiScrollingList {
 	@Override
 	protected void drawSlot (int var1, int var2, int var3, int var4, Tessellator var5) {
 
-		ISynthesisMaterial MATS = Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+		ISynthesisMaterial MATS = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 		
 		List<String> materials = new ArrayList<String>();
 

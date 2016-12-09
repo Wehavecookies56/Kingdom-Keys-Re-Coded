@@ -26,15 +26,15 @@ public class SynthesisMaterialPickup extends AbstractServerMessage<SynthesisMate
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStackFromBuffer();
-		bag = buffer.readItemStackFromBuffer();
+		toRemove = buffer.readItemStack();
+		bag = buffer.readItemStack();
 		slot = buffer.readInt();
 	}
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStackToBuffer(toRemove);
-		buffer.writeItemStackToBuffer(bag);
+		buffer.writeItemStack(toRemove);
+		buffer.writeItemStack(bag);
 		buffer.writeInt(slot);
 	}
 

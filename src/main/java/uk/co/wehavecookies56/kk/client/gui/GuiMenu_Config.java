@@ -19,7 +19,7 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 
 	final int R = 0, G = 1, B = 2;
 	final int BACK = 0, HEARTS = 1, MUSIC = 2, FIRE = 3;
-	boolean kh1Fire = Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire();
+	boolean kh1Fire = Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire();
 
 	public GuiMenu_Config (String name) {
 		super(Strings.Gui_Menu_Config_Title);
@@ -75,7 +75,7 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		b = new GuiNumberTextField(B, mc.fontRendererObj, bPosX, 100, boxWidth, 10, 255);
 		buttonList.add(showHearts = new GuiButton(HEARTS, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Hearts)) + 15, 115, 100, 20, String.valueOf(ConfigHandler.EnableHeartsOnHUD)));
 		buttonList.add(musicToggle = new GuiButton(MUSIC, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Music)) + 15, 135, 100, 20, String.valueOf(ConfigHandler.EnableCustomMusic)));
-	    buttonList.add(fire = new GuiButton(FIRE, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Fire)) + 15, 155, 100, 20, String.valueOf(Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire())));
+	    buttonList.add(fire = new GuiButton(FIRE, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Fire)) + 15, 155, 100, 20, String.valueOf(Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire())));
 		buttonList.add(back = new GuiButton(BACK, 5, 175, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
 
 		this.r.setText(String.valueOf(ConfigHandler.interfaceColour[0]));

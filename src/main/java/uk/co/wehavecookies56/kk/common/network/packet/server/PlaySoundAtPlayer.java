@@ -26,7 +26,7 @@ public class PlaySoundAtPlayer extends AbstractMessage.AbstractServerMessage<Pla
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		this.sound = buffer.readStringFromBuffer(100);
+		this.sound = buffer.readString(100);
 		this.volume = buffer.readFloat();
 		this.pitch = buffer.readFloat();
 	}
@@ -40,7 +40,7 @@ public class PlaySoundAtPlayer extends AbstractMessage.AbstractServerMessage<Pla
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		player.worldObj.playSound(null, player.getPosition(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(Reference.MODID, sound)), SoundCategory.MASTER, volume, pitch);
+		player.world.playSound(null, player.getPosition(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(Reference.MODID, sound)), SoundCategory.MASTER, volume, pitch);
 	}
 
 }

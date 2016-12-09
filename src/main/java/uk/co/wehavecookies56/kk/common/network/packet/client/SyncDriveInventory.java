@@ -23,12 +23,12 @@ public class SyncDriveInventory extends AbstractClientMessage<SyncDriveInventory
 	
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
-		data = buffer.readNBTTagCompoundFromBuffer();
+		data = buffer.readCompoundTag();
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeNBTTagCompoundToBuffer(data);
+		buffer.writeCompoundTag(data);
 	}
 
 	@Override

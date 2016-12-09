@@ -36,7 +36,7 @@ public class EntitySharpshooterBullet extends EntityThrowable implements IThrowa
 	public void onUpdate () {
 		super.onUpdate();
 
-		this.worldObj.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX, this.posY, this.posZ, 0, 0, 0);
+		this.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.posX, this.posY, this.posZ, 0, 0, 0);
 
 		if (ticksExisted > 60)
 			setDead();

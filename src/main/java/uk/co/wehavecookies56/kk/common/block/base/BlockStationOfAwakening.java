@@ -58,11 +58,6 @@ public class BlockStationOfAwakening extends Block {
         worldIn.setBlockState(pos, state.withProperty(VARIANT, stack.getMetadata()), 2);
     }
 
-    @Override
-    public IBlockState onBlockPlaced (World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(VARIANT, meta);
-    }
-
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer (this, VARIANT);
     }

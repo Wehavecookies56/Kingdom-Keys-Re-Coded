@@ -55,7 +55,7 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
 
         this.messages = new ArrayList<String>();
         while(buffer.isReadable()) {
-            this.messages.add(buffer.readStringFromBuffer(100));
+            this.messages.add(buffer.readString(100));
         }
     }
 

@@ -27,6 +27,6 @@ public class BlockKKOre extends Block {
 	
 	@Override
 	public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
-			return MathHelper.getRandomIntegerInRange(rand, 2, 4);
+			return MathHelper.getInt(rand, 2, 4);
 	}
 }

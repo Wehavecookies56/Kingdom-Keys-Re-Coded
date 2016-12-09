@@ -34,16 +34,16 @@ public class MagicFire extends AbstractMessage.AbstractServerMessage<MagicFire> 
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(Constants.getCost(Strings.Spell_Fire));
-		World world = player.worldObj;
+		World world = player.world;
 		switch (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(Strings.Spell_Fire)) {
 			case 1:
-				world.spawnEntityInWorld(new EntityFire(world, player, player.posX, player.posY, player.posZ));
+				world.spawnEntity(new EntityFire(world, player, player.posX, player.posY, player.posZ));
 				break;
 			case 2:
-				world.spawnEntityInWorld(new EntityFira(world, player, player.posX, player.posY, player.posZ));
+				world.spawnEntity(new EntityFira(world, player, player.posX, player.posY, player.posZ));
 				break;
 			case 3:
-				world.spawnEntityInWorld(new EntityFiraga(world, player, player.posX, player.posY, player.posZ));
+				world.spawnEntity(new EntityFiraga(world, player, player.posX, player.posY, player.posZ));
 				break;
 		}
 		PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);

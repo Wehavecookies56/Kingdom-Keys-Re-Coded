@@ -44,7 +44,7 @@ public class EntityKH1Fire extends EntityThrowable {
 		if (shootingEntity == null) return;
 		if (shootingEntity instanceof EntityPlayer)
 		{
-			if (!worldObj.isRemote) 
+			if (!world.isRemote)
 				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), (EntityPlayer)shootingEntity, 64.0D);
 			if(LockOn.target != null)
 			{
@@ -52,7 +52,7 @@ public class EntityKH1Fire extends EntityThrowable {
 				setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);	
 			}
 		}else{
-			if (!worldObj.isRemote) 
+			if (!world.isRemote)
 				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this,1), dimension, this.posX, this.posY, this.posZ, 64D);
 		}
 		if (ticksExisted > 60) setDead();
@@ -61,7 +61,7 @@ public class EntityKH1Fire extends EntityThrowable {
 
 	@Override
 	protected void onImpact (RayTraceResult movingObject) {
-		if (!this.worldObj.isRemote) {
+		if (!this.world.isRemote) {
 			if (movingObject.entityHit != null) {
 				if (movingObject.entityHit != null) {
 					applyEnchantments(this.shootingEntity, movingObject.entityHit);
@@ -73,10 +73,10 @@ public class EntityKH1Fire extends EntityThrowable {
 				}
 			} else {
 				if (this.shootingEntity != null) 
-				if (this.worldObj.getGameRules().getBoolean("mobGriefing")) {
+				if (this.world.getGameRules().getBoolean("mobGriefing")) {
 					BlockPos blockpos = movingObject.getBlockPos().offset(movingObject.sideHit);
-					if (this.worldObj.isAirBlock(blockpos)) 
-						this.worldObj.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
+					if (this.world.isAirBlock(blockpos))
+						this.world.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
 				}
 			}
 			setDead();

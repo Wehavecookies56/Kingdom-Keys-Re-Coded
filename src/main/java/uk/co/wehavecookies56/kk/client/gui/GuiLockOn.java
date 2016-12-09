@@ -27,13 +27,13 @@ public class GuiLockOn extends GuiScreen {
 
 	@SubscribeEvent
 	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
-		if(!Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
+		if(!Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
 		if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
 			Entity target = InputHandler.lockOn;
 			if(target == null)
 				return;
 			Minecraft mc = Minecraft.getMinecraft();
-			EntityPlayer player = mc.thePlayer;
+			EntityPlayer player = mc.player;
 			float reduction = 4;
 			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/lockon/lockon.png"));
 
@@ -153,7 +153,7 @@ public class GuiLockOn extends GuiScreen {
 	{
 		int screenWidth = event.getResolution().getScaledWidth();
 		int screenHeight = event.getResolution().getScaledHeight();
-		if(!Minecraft.getMinecraft().thePlayer.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
+		if(!Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
 		if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
 
 			Minecraft mc = Minecraft.getMinecraft();

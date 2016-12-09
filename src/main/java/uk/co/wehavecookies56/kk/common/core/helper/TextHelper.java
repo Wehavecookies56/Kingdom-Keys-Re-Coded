@@ -17,13 +17,13 @@ public class TextHelper {
 			s += t;
 			s += " ";
 		}
-		player.addChatMessage(new TextComponentString(s));
+		player.sendMessage(new TextComponentString(s));
 	}
 
 	/**
 	 * Send message in the chat
 	 */
 	public static void sendChatMessage (String message, EntityPlayer player) {
-		player.addChatMessage(new TextComponentString(message));
+		player.sendMessage(new TextComponentString(message));
 	}
 }

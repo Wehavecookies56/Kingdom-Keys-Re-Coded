@@ -27,7 +27,7 @@ public class ShowOverlayPacket extends AbstractMessage.AbstractClientMessage<Sho
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		this.type = buffer.readStringFromBuffer(50);
+		this.type = buffer.readString(50);
 		this.munny = buffer.readInt();
 	}
 

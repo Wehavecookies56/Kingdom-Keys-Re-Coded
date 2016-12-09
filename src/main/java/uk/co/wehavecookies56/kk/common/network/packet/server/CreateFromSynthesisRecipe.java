@@ -36,7 +36,7 @@ public class CreateFromSynthesisRecipe extends AbstractMessage.AbstractServerMes
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		this.name = buffer.readStringFromBuffer(100);
+		this.name = buffer.readString(100);
 		this.amountToRemove = buffer.readInt();
 	}
 

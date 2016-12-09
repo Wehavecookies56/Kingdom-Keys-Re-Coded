@@ -54,6 +54,6 @@ public class SpawnThunderEntity extends AbstractMessage.AbstractClientMessage<Sp
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		player.worldObj.addWeatherEffect((new EntityLightningBolt(player.worldObj, ex, ey, ez, false)));
+		player.world.addWeatherEffect((new EntityLightningBolt(player.world, ex, ey, ez, false)));
 	}
 }

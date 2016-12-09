@@ -27,7 +27,7 @@ public class GuiMenu_Items extends GuiMenu_Bars {
 				GuiHelper.openMenu();
 				break;
 			case ITEMS_STOCK:
-				GuiHelper.openPlayerInventory(mc.thePlayer);
+				GuiHelper.openPlayerInventory(mc.player);
 				break;
 		}
 		updateButtons();
@@ -46,7 +46,7 @@ public class GuiMenu_Items extends GuiMenu_Bars {
 		int button_items_stockY = button_items_playerY + 22;
 		int button_items_backY = button_items_stockY + 22;
 
-		buttonList.add(items_player = new GuiButton(ITEMS_PLAYER, 5, button_items_playerY, 100, 20, mc.thePlayer.getDisplayNameString()));
+		buttonList.add(items_player = new GuiButton(ITEMS_PLAYER, 5, button_items_playerY, 100, 20, mc.player.getDisplayNameString()));
 		buttonList.add(items_stock = new GuiButton(ITEMS_STOCK, 5, button_items_stockY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Stock)));
 		buttonList.add(items_back = new GuiButton(ITEMS_BACK, 5, button_items_backY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
 

@@ -24,12 +24,12 @@ public class DriveOrbPickup extends AbstractMessage.AbstractServerMessage<DriveO
 
 	@Override
 	protected void read (PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStackFromBuffer();
+		toRemove = buffer.readItemStack();
 	}
 
 	@Override
 	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStackToBuffer(toRemove);
+		buffer.writeItemStack(toRemove);
 	}
 
 	@Override

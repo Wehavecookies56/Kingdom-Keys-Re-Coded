@@ -31,7 +31,7 @@ public class InventoryPotionsMenu extends AbstractInventory {
 	}
 
 	@Override
-	public boolean isUseableByPlayer (EntityPlayer player) {
+	public boolean isUsableByPlayer (EntityPlayer player) {
 		return true;
 	}
 

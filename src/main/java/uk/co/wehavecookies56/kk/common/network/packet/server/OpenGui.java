@@ -30,7 +30,7 @@ public class OpenGui extends AbstractServerMessage<OpenGui> {
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		player.openGui(KingdomKeys.instance, this.id, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
+		player.openGui(KingdomKeys.instance, this.id, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
 	}
 
 }

@@ -31,7 +31,7 @@ public class EntityReflect extends Entity {
 		if (player == null) return;
 		int rotation = 0;
 
-		if (!worldObj.isRemote) {
+		if (!world.isRemote) {
 			// PacketDispatcher.sendToAllAround(new SpawnAeroParticles(this),
 			// player, 64.0D);
 		}
@@ -42,7 +42,7 @@ public class EntityReflect extends Entity {
 			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
 			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
 
-			this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.posY, z, 0.0D, 0.5D, 0.0D);
+			this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.posY, z, 0.0D, 0.5D, 0.0D);
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
@@ -55,7 +55,7 @@ public class EntityReflect extends Entity {
 
 		double distance = 3.0D;
 		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
-		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(player, aabb);
+		List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		if (!list.isEmpty()) {
 
 		}
