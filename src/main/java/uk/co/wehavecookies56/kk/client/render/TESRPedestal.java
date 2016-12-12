@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.client.render;
 
+import net.minecraft.client.renderer.OpenGlHelper;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -32,8 +33,8 @@ public class TESRPedestal extends TileEntitySpecialRenderer<TileEntityPedestal> 
                 GlStateManager.translate(x, y, z);
                 GlStateManager.disableRescaleNormal();
                 this.renderItem = Minecraft.getMinecraft().getRenderItem();
-                RenderHelper.enableStandardItemLighting();
-                GlStateManager.enableLighting();
+                //RenderHelper.enableStandardItemLighting();
+                //GlStateManager.enableLighting();
                 GlStateManager.pushMatrix();
                 {
                     GlStateManager.translate(0.5, 1.3, 0.5);
@@ -41,11 +42,14 @@ public class TESRPedestal extends TileEntitySpecialRenderer<TileEntityPedestal> 
                     GlStateManager.scale(0.02, 0.02, 0.02);
                     te.setKeyblade(te.getStackInSlot(0));
                     Item itemToRender = te.keyblade.getItem();
-                    
+                    GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
+                    OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 128.0F, 128.0F);
+
                     if(itemToRender instanceof ItemKeyblade)
                  	  renderItem.renderItem(new ItemStack(itemToRender), ItemCameraTransforms.TransformType.NONE);
                     else if (itemToRender instanceof ItemKeychain)
                    	  renderItem.renderItem(new ItemStack(((ItemKeychain) itemToRender).getKeyblade()), ItemCameraTransforms.TransformType.NONE);
+                    GL11.glPopAttrib();
 
                 }
                 GlStateManager.popMatrix();

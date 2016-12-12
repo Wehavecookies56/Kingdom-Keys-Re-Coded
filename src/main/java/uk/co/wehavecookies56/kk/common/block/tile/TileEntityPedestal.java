@@ -46,6 +46,11 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 		this.keyblade = keyblade;
 		markDirty();
 	}
+
+	public ItemStack getKeyblade() {
+		return this.keyblade;
+	}
+
 	@Override
 	public int getSizeInventory () {
 		return itemStacks.length;
@@ -185,6 +190,9 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 
 	@Override
 	public String getName () {
-		return Utils.translateToLocal(Strings.Pedestal);
+		if (getKeyblade() != null) {
+			return getKeyblade().getDisplayName();
+		}
+		return "Empty"; //TODO Translate this
 	}
 }

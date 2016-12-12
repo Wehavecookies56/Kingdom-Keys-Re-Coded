@@ -71,4 +71,13 @@ public class BlockPedestal extends Block implements ITileEntityProvider{
 		super.breakBlock(worldIn, pos, state);
 	}
 
+	@Override
+	public boolean isFullyOpaque(IBlockState state) {
+		return true;
+	}
+
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return true;
+	}
 }
