@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.common.item;
 
+import gnu.trove.queue.TIntQueue;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,7 +13,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.core.config.plugins.ResolverUtil;
+import scala.tools.nsc.backend.icode.Primitives;
 import scala.tools.nsc.interactive.tests.Tester;
+import sun.security.provider.Sun;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKRecord;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
@@ -42,7 +45,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence, FinalWeapon, Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant;
+	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence, FinalWeapon, Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, Sunrise, Precision;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -123,7 +126,14 @@ public class ModItems {
 		TheFool = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
 		Calmant = new ItemFoudre(EnumHelper.addToolMaterial("calmant", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Calmant);
 		TesterZero = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TesterZero);
+		Inquisition = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inquisition);
+		ProductOne = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ProductOne);
+		Burnout= new ItemBlazeofGlory(EnumHelper.addToolMaterial("burnout", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
+		Outbreak = new ItemBlazeofGlory(EnumHelper.addToolMaterial("outbreak", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Outbreak);
+		Sunrise = new ItemSharpshooter(EnumHelper.addToolMaterial("sunrise", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sunrise);
+		Precision = new ItemSharpshooter(EnumHelper.addToolMaterial("precision", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Precision);
 
+		//keyblades
 		AbaddonPlasma = new ItemRealKeyblade(6, 0).setUnlocalizedName(Strings.AbaddonPlasma);
 		((ItemKeyblade)AbaddonPlasma).setDescription("A weapon that lets you string together faster, incredibly long ground combos.");
 		AbyssalTide = new ItemRealKeyblade(4, 0).setUnlocalizedName(Strings.AbyssalTide);
@@ -613,6 +623,13 @@ public class ModItems {
 		GameRegistry.register(TheFool, new ResourceLocation(Reference.MODID, Strings.TheFool));
 		GameRegistry.register(TesterZero, new ResourceLocation(Reference.MODID, Strings.TesterZero));
 		GameRegistry.register(Calmant, new ResourceLocation(Reference.MODID, Strings.Calmant));
+		GameRegistry.register(ProductOne, new ResourceLocation(Reference.MODID, Strings.ProductOne));
+		GameRegistry.register(Inquisition, new ResourceLocation(Reference.MODID, Strings.Inquisition));
+		GameRegistry.register(Outbreak, new ResourceLocation(Reference.MODID, Strings.Outbreak));
+		GameRegistry.register(Burnout, new ResourceLocation(Reference.MODID, Strings.Burnout));
+		GameRegistry.register(Sunrise, new ResourceLocation(Reference.MODID, Strings.Sunrise));
+		GameRegistry.register(Precision, new ResourceLocation(Reference.MODID, Strings.Precision));
+
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));

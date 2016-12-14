@@ -463,7 +463,13 @@ public class Strings {
     Infinity = "infinity",
     TheFool = "thefool",
     TesterZero = "testerzero",
-    Calmant = "calmant"
+    Calmant = "calmant",
+	ProductOne = "productone",
+	Inquisition = "inquisition",
+	Outbreak = "outbreak",
+	Burnout = "burnout",
+	Sunrise = "sunrise",
+	Precision = "precision"
 	;
 
 	public static final String 
