@@ -1,0 +1,50 @@
+{
+	"forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "burnout1": "kk:items/models/burnout1",
+            "burnout2": "kk:items/models/burnout2",
+            "burnout3": "kk:items/models/burnout3"
+
+        },
+        "model": "kk:burnout.obj",
+        
+    },
+   	"variants": {
+        "inventory": [
+            {
+                "transform": {
+                    "thirdperson_lefthand": {
+                        "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+                        "translation": [ 0, -0.1, 0.1 ],
+                        "scale": 0.02
+                    },
+                    "thirdperson_righthand": {
+                        "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+                        "translation": [ 0, -0.1, 0.1 ],
+                        "scale": 0.02
+                    },
+                    "gui": {
+                        "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
+                        "translation": [ 0, 0, 0 ],
+                        "scale": 0.01
+                    },
+                    "firstperson_righthand": {
+                        "rotation": [ { "x": 180 }, { "y": 180 }, { "z": 170 } ],
+                        "translation": [ 0, -0.1, 0 ],
+                        "scale": 0.013
+                    },
+                    "firstperson_lefthand": {
+                        "rotation": [ { "x": 180 }, { "y": 180 }, { "z": 170 } ],
+                        "translation": [ 0, -0.1, 0 ],
+                        "scale": 0.013
+                    },
+                    "ground": {
+                        "rotation": [ { "x": 45 }, { "y": 0 }, { "z": 0 } ],
+                        "scale": 0.01
+                    }
+                }
+            }
+        ]
+    }
+}
