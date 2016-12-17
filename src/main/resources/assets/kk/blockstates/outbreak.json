@@ -2,13 +2,9 @@
 	"forge_marker": 1,
     "defaults": {
         "textures": {
-            "outbreak1": "kk:items/models/outbreak1",
-            "outbreak2": "kk:items/models/outbreak2",
-            "outbreak3": "kk:items/models/outbreak3"
-
+            
         },
-        "model": "kk:outbreak.obj",
-        
+        "model": "kk:outbreak.obj"
     },
    	"variants": {
         "inventory": [
