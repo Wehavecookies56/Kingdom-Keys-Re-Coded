@@ -469,7 +469,10 @@ public class Strings {
 	Outbreak = "outbreak",
 	Burnout = "burnout",
 	Sunrise = "sunrise",
-	Precision = "precision"
+	Precision = "precision",
+	FalseTheory = "falsetheory",
+	Dragonreign = "dragonreign",
+	Crux = "crux"
 	;
 
 	public static final String 
