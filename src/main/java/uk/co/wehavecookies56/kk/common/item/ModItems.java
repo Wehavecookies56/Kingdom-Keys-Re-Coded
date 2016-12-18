@@ -1,6 +1,5 @@
 package uk.co.wehavecookies56.kk.common.item;
 
-import gnu.trove.queue.TIntQueue;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,10 +11,6 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import org.apache.logging.log4j.core.config.plugins.ResolverUtil;
-import scala.tools.nsc.backend.icode.Primitives;
-import scala.tools.nsc.interactive.tests.Tester;
-import sun.security.provider.Sun;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKRecord;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;

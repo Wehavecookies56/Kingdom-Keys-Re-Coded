@@ -105,6 +105,7 @@ tile.prizeblox.name=Bloque de Premio
 tile.rareprizeblox.name=Bloque de Premio Raro
 tile.ghostblox.name=Bloque Fantasma
 tile.magnetblox.name=Bloque Magnético
+tile.pedestal.name=Pedestal
 
 tile.ghostblox.desc=Cuando se le da corriente de redstone el %s se vuelve transparente y no hay colisión
 tile.dangerblox.desc=El %s daña 1.5 corazones cuando lo tocas o lo golpeas
@@ -137,6 +138,7 @@ tile.kkchest.desc1=Sí, ya se que el cofre está abierto.
 tile.kkchest.desc2=Sólo se abre con una llave espada.
 tile.savepoint.name=Punto de Guardado
 tile.savepoint.desc=Agachate cuando estes en él para guardar el spawn.
+tile.stationofawakeningdoor.name=Puerta de la Estación del Despertar
 
 ############################
 #Items
@@ -230,7 +232,6 @@ sm.twilightshard.name=Guijarro Crepuscular
 sm.twilightstone.name=Piedra Crepuscular
 sm.twilightgem.name=Gema Crepuscular
 sm.twilightcrystal.name=Cristal Crepuscular
-
 
 #Armor
 item.organizationrobe_helmet.name=Capucha de la Organización
@@ -377,6 +378,22 @@ item.jiltedanemone.name=Anémona Plantada
 item.zephyr.name=Céfiro
 item.standalone.name=Independiente
 item.reticence.name=Reticencia
+item.finalweapon.name=Arma Final
+item.tranchant.name=Trinchador
+item.malice.name=Malicia
+item.infinity.name=Infinidad
+item.thefool.name=El Loco
+item.testerzero.name=Prueba Cero
+item.calmant.name=Carmín
+item.crux.name=Quid
+item.falsetheory.name=Teoría Falsa
+item.precision.name=Precisión
+item.outbreak.name=Estallido
+item.productone.name=Primer Producto
+item.burnout.name=Quemazón
+item.dragonreign.name=Reino del Dragón
+item.sunrise.name=Amanecer
+item.inquisition.name=Inquisición
 
 #Keyblades
 item.abaddonplasma.name=Plasma de Abadón
