@@ -1,6 +1,5 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -9,9 +8,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
-import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardParticles;
 
 public class EntityBlizzaga extends EntityThrowable {
 	public EntityPlayer shootingEntity;

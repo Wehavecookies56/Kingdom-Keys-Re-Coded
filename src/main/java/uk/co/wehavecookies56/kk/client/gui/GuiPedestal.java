@@ -75,8 +75,9 @@ public class GuiPedestal extends GuiContainer {
 		final int LABEL_YPOS = 5;	
 		int rotationY = 75;
 		int rotationX= 60;
-
-		fontRendererObj.drawString(tileEntityPedestal.getName().substring(0, 1).toUpperCase()+tileEntityPedestal.getName().substring(1, tileEntityPedestal.getName().length()), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
+		
+		if(tileEntityPedestal.getKeyblade() != null)
+			fontRendererObj.drawString(tileEntityPedestal.getName().substring(0, 1).toUpperCase()+tileEntityPedestal.getName().substring(1, tileEntityPedestal.getName().length()), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
 		fontRendererObj.drawString("Rotation: "+tileEntityPedestal.getRotation()*90, rotationX, rotationY, Color.darkGray.getRGB());
 		
 	}

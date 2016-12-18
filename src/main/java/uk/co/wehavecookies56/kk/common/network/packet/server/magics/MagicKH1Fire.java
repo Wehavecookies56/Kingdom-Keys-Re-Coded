@@ -8,7 +8,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Fira;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Firaga;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Fire;

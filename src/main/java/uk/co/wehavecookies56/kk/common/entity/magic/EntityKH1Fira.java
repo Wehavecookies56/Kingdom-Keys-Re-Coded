@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticles;
 
 public class EntityKH1Fira extends EntityThrowable {

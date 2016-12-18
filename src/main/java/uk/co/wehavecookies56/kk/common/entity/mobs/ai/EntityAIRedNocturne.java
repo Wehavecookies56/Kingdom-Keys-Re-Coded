@@ -2,7 +2,6 @@ package uk.co.wehavecookies56.kk.common.entity.mobs.ai;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAITarget;
-import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.util.math.MathHelper;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityKH1Fire;
 

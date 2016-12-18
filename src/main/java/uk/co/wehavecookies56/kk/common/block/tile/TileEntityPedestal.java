@@ -4,15 +4,13 @@ import java.util.Arrays;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
-import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 /**
  * Created by Toby on 06/11/2016.
@@ -83,6 +81,8 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 		itemStacks[slotIndex] = itemstack;
 		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) 
 			itemstack.stackSize = getInventoryStackLimit();
+		if(itemStacks[0] == null)
+			setKeyblade(null);
 		markDirty();
 	}
 
@@ -157,7 +157,10 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 
 	@Override
 	public ITextComponent getDisplayName () {
-		return hasCustomName() ? new TextComponentString(getName()) : new TextComponentTranslation(getName(), new Object[0]);
+		if (getKeyblade() != null) {
+			return new TextComponentTranslation(getName(), new Object[0]);
+		}else
+			return null;
 	}
 	
 	
@@ -189,10 +192,13 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public String getName () {
+	public String getName() {
 		if (getKeyblade() != null) {
-			return getKeyblade().getDisplayName();
+			if(getKeyblade().getItem() instanceof ItemKeychain)
+				return Utils.translateToLocal(((ItemKeychain) getKeyblade().getItem()).getKeyblade().getUnlocalizedName()+".name");
+			else
+				return Utils.translateToLocal(getKeyblade().getDisplayName());
 		}
-		return "Empty"; //TODO Translate this
+		return ""; //TODO Translate this
 	}
 }
