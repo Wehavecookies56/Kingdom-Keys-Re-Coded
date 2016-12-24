@@ -473,7 +473,8 @@ public class Strings {
 	Precision = "precision",
 	FalseTheory = "falsetheory",
 	Dragonreign = "dragonreign",
-	Crux = "crux"
+	Crux = "crux",
+	Killerbee = "killerbee"
 	;
 
 	public static final String 
