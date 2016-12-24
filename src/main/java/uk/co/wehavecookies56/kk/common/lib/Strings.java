@@ -119,6 +119,7 @@ public class Strings {
 	Gui_Menu_Main_Button_Journal = Gui_Menu_Main_Button + ".journal",
 	Gui_Menu_Main_Button_Config = Gui_Menu_Main_Button + ".config",
 	Gui_Menu_Main_Time = Gui_Menu_Main + ".time",
+	Gui_Menu_Main_Time_Spent = Gui_Menu_Main_Time + ".spent",
 	Gui_Menu_Items = Gui_Menu + ".items",
 	Gui_Menu_Items_Title = Gui_Menu_Items + ".title",
 	Gui_Menu_Items_Button_Keychain = Gui_Menu_Items + ".keychain",

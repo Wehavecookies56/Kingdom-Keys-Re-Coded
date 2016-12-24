@@ -93,6 +93,17 @@ public class GuiMenu_Bars extends GuiScreen {
 			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.world) + ":" + getWorldMinutes(mc.world), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
 			IMunny MUNNY = mc.player.getCapability(ModCapabilities.MUNNY, null);
 			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
+			long seconds = mc.world.getTotalWorldTime()/20;
+			long h = seconds/3600;
+			long m = seconds%3600/60;
+			long s = seconds%3600%60;
+			
+			String sec=s<10?0+""+s:s+"";
+			String min=m<10?0+""+m:m+"";
+			String hou=h<10?0+""+h:h+"";
+			String time = hou+":"+min+":"+sec;
+			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time_Spent) + ": " + time, 5, screenHeight - ((screenHeight / 8) - 500 / 16), 0x42ceff);
+
 		}
 		GL11.glPopMatrix();
 		if (drawPlayer) {

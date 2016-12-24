@@ -32,5 +32,7 @@ public class ModBlocksRecipes {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.SynthesisTable), "HIH", "NCN", "HIH", 'H', ModBlocks.HardBlox, 'I', "ingotIron", 'N', ModBlocks.NormalBlox, 'C', Blocks.CRAFTING_TABLE));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.KKChest), "HGH", "GCG", "HGH", 'H', ModItems.Heart, 'G', Items.GOLD_INGOT, 'C', Blocks.CHEST));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.Pedestal), " H ", "HBH", "BBB", 'H', ModItems.PureHeart, 'B', ModBlocks.MetalBlox));
 	}
 }

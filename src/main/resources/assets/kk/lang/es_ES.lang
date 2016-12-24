@@ -696,7 +696,8 @@ gui.commandmenu.drive.final=Forma Final
 #Menu#
 #Main
 gui.menu.main.title=Menú
-gui.menu.main.time=Hora
+gui.menu.main.time=Hora del Mundo
+gui.menu.main.time.spent=Tiempo Jugado
 gui.menu.main.button.items=Objetos
 gui.menu.main.button.abilities=Habilidades
 gui.menu.main.button.customize=Personalizar
