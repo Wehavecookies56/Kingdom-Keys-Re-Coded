@@ -213,6 +213,15 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.Dragonreign, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Dragonreign, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Crux, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Crux, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Killerbee, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Killerbee, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Orage, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Orage, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Eruption, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Eruption, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Irregulier, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Irregulier, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Aggression, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Aggression, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Sanction, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sanction, "inventory"));
+
+
+
+
 
 		//blocks
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));

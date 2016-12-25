@@ -474,7 +474,12 @@ public class Strings {
 	FalseTheory = "falsetheory",
 	Dragonreign = "dragonreign",
 	Crux = "crux",
-	Killerbee = "killerbee"
+	Killerbee = "killerbee",
+	Orage = "orage",
+	Eruption = "eruption",
+	Irregulier = "irregulier",
+	Aggression = "aggression",
+	Sanction = "sanction"
 	;
 
 	public static final String 
