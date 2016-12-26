@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
-import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIYellowOpera;
+import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIRedNocturne;
 
 public class EntityYellowOpera extends EntityMob implements IKHMob
 {
@@ -25,7 +25,7 @@ public class EntityYellowOpera extends EntityMob implements IKHMob
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-		this.targetTasks.addTask(2, new EntityAIYellowOpera(this));
+		this.targetTasks.addTask(2, new EntityAIRedNocturne(this));
 	}
 
 	public void applyEntityAttributes()
