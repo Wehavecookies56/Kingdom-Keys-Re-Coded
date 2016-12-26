@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.entity.magic;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -11,44 +12,58 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnThunderEntity;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnThunderParticles;
 
 public class EntityThunder extends Entity {
 
-	EntityPlayer player;
+	EntityLivingBase player;
 	public static boolean summonLightning = false;
 
 	public EntityThunder (World world) {
 		super(world);
 	}
 
-	public EntityThunder (World world, EntityPlayer sender, double x, double y, double z) {
+	public EntityThunder (World world, EntityLivingBase sender, double x, double y, double z) {
 		super(world);
 		this.posX = x;
 		this.posY = y;
 		this.posZ = z;
 		this.player = sender;
 		double distance = 3.0D;
-		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(3, 3, 3);
+		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(5, 5, 5);
 		List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
 			Entity e = (Entity) list.get(i);
 			if (e instanceof EntityLivingBase) {
 				summonLightning = true;
-				if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnThunderEntity(this, 1), player, 64.0D);
+				if(player instanceof EntityPlayer)
+				if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnThunderEntity(this, 1), (EntityPlayer)player, 64.0D);
 				this.world.addWeatherEffect((new EntityLightningBolt(this.world, e.posX, e.posY, e.posZ, false)));
+			}else{
+				if (!world.isRemote)
+					PacketDispatcher.sendToAllAround(new SpawnThunderEntity(this,1), dimension, this.posX, this.posY, this.posZ, 64D);
 			}
 		}
-		aabb.expand(-3, -3, -3);
+		aabb.expand(-5, -5, -5);
 	}
 
 	@Override
 	public void onUpdate () {
 		if (player == null) return;
 		int rotation = 0;
-		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnThunderParticles(this, 1), player, 64.0D);
+		if (player instanceof EntityPlayer)
+		{
+			if (!world.isRemote)
+				PacketDispatcher.sendToAllAround(new SpawnThunderParticles(this, 1), (EntityPlayer)player, 64.0D);
+		}else{
+			if (!world.isRemote)
+				PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this,1), dimension, this.posX, this.posY, this.posZ, 64D);
+		}
+		
 		double r = 2.0D;
 
 		for (int a = 1; a <= 360; a += 7) {
