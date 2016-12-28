@@ -3,10 +3,8 @@
     "defaults": {
         "textures": {
             "ashes": "kk:items/models/ashes"
-
         },
-        "model": "kk:burnout.obj",
-        
+        "model": "kk:ashes.obj"
     },
    	"variants": {
         "inventory": [
