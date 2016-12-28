@@ -24,11 +24,11 @@ public class TileEntityPedestal extends TileEntity implements IInventory {
 	public void setRotation(char option){
 		if(option == '-')
 			if(rotation<=0)
-				rotation=4;
+				rotation=3;
 			else
 				rotation--;
 		else if(option=='+')
-			if(rotation>=4)
+			if(rotation>=3)
 				rotation=0;
 			else
 				rotation++;

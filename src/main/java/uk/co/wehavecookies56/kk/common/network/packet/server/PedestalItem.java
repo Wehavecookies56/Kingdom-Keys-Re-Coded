@@ -8,6 +8,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.PedestalRotation;
 
 public class PedestalItem extends AbstractMessage.AbstractServerMessage<PedestalItem> {
 
@@ -40,5 +42,6 @@ public class PedestalItem extends AbstractMessage.AbstractServerMessage<Pedestal
 	public void process (EntityPlayer player, Side side) {
 		TileEntityPedestal pedestal = (TileEntityPedestal) player.world.getTileEntity(pedestalPos);
 		pedestal.setRotation(rotation);
+		PacketDispatcher.sendToAll(new PedestalRotation(pedestal));
 	}
 }

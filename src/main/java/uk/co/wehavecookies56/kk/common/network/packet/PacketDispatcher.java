@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.network.packet.client.PedestalRotation;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnAeroParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardParticles;
@@ -115,6 +116,7 @@ public class PacketDispatcher {
 		registerMessage(SyncFreeDevRecipeData.class);
 		registerMessage(SpawnLockOnParticle.class);
 		registerMessage(SyncKH1Magic.class);
+		registerMessage(PedestalRotation.class);
 
 
 		// Client to Server

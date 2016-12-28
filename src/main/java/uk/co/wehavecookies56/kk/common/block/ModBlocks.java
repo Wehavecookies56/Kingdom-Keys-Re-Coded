@@ -56,9 +56,9 @@ public class ModBlocks {
 		KKChest = new BlockKKChest(Material.ROCK, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.KKChest).setCreativeTab(tabKingdomKeysBlocks);
 		SavePoint = new BlockSavePoint(Material.CIRCUITS, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.SavePoint).setCreativeTab(tabKingdomKeysBlocks);
 		MagnetBlox = new BlockMagnetBlox(Material.IRON, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.MagnetBlox).setCreativeTab(tabKingdomKeysBlocks);
+		Pedestal = new BlockPedestal(Material.IRON, "pickaxe", 2, 10f, 60f).setUnlocalizedName(Strings.Pedestal).setCreativeTab(tabKingdomKeysBlocks);
 		StationOfAwakening = new BlockStationOfAwakening(Strings.StationOfAwakening);
 		StationOfAwakeningDoor = new BlockStationOfAwakeningDoor(Strings.StationOfAwakeningDoor);
-		Pedestal = new BlockPedestal(Material.IRON, "pickaxe", 2, 10f, 60f).setUnlocalizedName(Strings.Pedestal).setCreativeTab(tabKingdomKeysBlocks);
 
     }
 

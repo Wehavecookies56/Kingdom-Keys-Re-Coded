@@ -13,6 +13,8 @@ import net.minecraft.item.ItemStack;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.PedestalRotation;
 
 /**
  * Created by Toby on 06/11/2016.
@@ -32,12 +34,11 @@ public class TESRPedestal extends TileEntitySpecialRenderer<TileEntityPedestal> 
                 GlStateManager.translate(x, y, z);
                 GlStateManager.disableRescaleNormal();
                 this.renderItem = Minecraft.getMinecraft().getRenderItem();
-                //RenderHelper.enableStandardItemLighting();
-                //GlStateManager.enableLighting();
                 GlStateManager.pushMatrix();
                 {
+                	int rot = te.getRotation();
                     GlStateManager.translate(0.5, 1.3, 0.5);
-                    GlStateManager.rotate(90*te.rotation, 0, 1, 0);
+                    GlStateManager.rotate(90*rot, 0, 1, 0);
                     GlStateManager.scale(0.02, 0.02, 0.02);
                     te.setKeyblade(te.getStackInSlot(0));
                     Item itemToRender = te.keyblade.getItem();

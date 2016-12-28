@@ -127,12 +127,12 @@ public class ModItems {
 		Inquisition = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inquisition);
 		ProductOne = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ProductOne);
 		FalseTheory = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FalseTheory);
-		Burnout= new ItemBlazeofGlory(EnumHelper.addToolMaterial("burnout", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
+		Burnout = new ItemBlazeofGlory(EnumHelper.addToolMaterial("burnout", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
 		Outbreak = new ItemBlazeofGlory(EnumHelper.addToolMaterial("outbreak", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Outbreak);
 		Sunrise = new ItemSharpshooter(EnumHelper.addToolMaterial("sunrise", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sunrise);
-		Precision = new ItemSharpshooter(EnumHelper.addToolMaterial("falsetheory", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Precision);
+		Precision = new ItemSharpshooter(EnumHelper.addToolMaterial("precision", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Precision);
 		Dragonreign = new ItemLindworm(EnumHelper.addToolMaterial("dragonreign", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Dragonreign);
-		Crux = new ItemLindworm(EnumHelper.addToolMaterial("lindworm", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crux);
+		Crux = new ItemLindworm(EnumHelper.addToolMaterial("crux", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crux);
 		Killerbee = new ItemSharpshooter(EnumHelper.addToolMaterial("killerbee", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Killerbee);
 		Orage = new ItemFoudre(EnumHelper.addToolMaterial("orage", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Orage);
         Eruption = new ItemFoudre(EnumHelper.addToolMaterial("eruption", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Eruption);
