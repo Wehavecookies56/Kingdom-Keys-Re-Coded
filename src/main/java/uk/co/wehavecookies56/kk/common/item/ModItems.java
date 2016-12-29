@@ -41,7 +41,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence, FinalWeapon, Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, Sunrise, Precision, FalseTheory, Dragonreign , Crux, Killerbee, Orage, Eruption, Irregulier, Aggression, Sanction, Ashes, Combustion;
+	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence, FinalWeapon, Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, Sunrise, Precision, FalseTheory, Dragonreign , Crux, Killerbee, Orage, Eruption, Irregulier, Aggression, Sanction, Ashes;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -138,7 +138,6 @@ public class ModItems {
         Eruption = new ItemFoudre(EnumHelper.addToolMaterial("eruption", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Eruption);
         Irregulier = new ItemFoudre(EnumHelper.addToolMaterial("irregulier", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Irregulier);
 		Ashes = new ItemAshes(EnumHelper.addToolMaterial("ashes", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ashes);
-		Combustion = new ItemAshes(EnumHelper.addToolMaterial("combustion", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Combustion);
 
 
 		//keyblades
@@ -647,7 +646,6 @@ public class ModItems {
         GameRegistry.register(Aggression, new ResourceLocation(Reference.MODID, Strings.Aggression));
         GameRegistry.register(Sanction, new ResourceLocation(Reference.MODID, Strings.Sanction));
 		GameRegistry.register(Ashes, new ResourceLocation(Reference.MODID, Strings.Ashes));
-		GameRegistry.register(Combustion, new ResourceLocation(Reference.MODID, Strings.Combustion));
 
 
 		// Knowledge

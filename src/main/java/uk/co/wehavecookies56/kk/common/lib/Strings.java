@@ -480,8 +480,7 @@ public class Strings {
 	Irregulier = "irregulier",
 	Aggression = "aggression",
 	Sanction = "sanction",
-	Ashes = "ashes",
-	Combustion = "combustion"
+	Ashes = "ashes"
 	;
 
 	public static final String 
