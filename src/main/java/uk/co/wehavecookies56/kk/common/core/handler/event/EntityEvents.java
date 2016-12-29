@@ -29,7 +29,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.world.ChunkDataEvent;
+import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -80,8 +80,8 @@ import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
  */
 public class EntityEvents {
    /* @SubscribeEvent
-    public void ChunkLoad (ChunkDataEvent event) {
-    	if(event.getW)
+    public void ChunkLoad (ChunkEvent.Load event) {
+    	if(event.getChunk().getTileEntityMap().)
     }*/
 	
     @SubscribeEvent
