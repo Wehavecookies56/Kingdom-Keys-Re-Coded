@@ -2,9 +2,9 @@
 	"forge_marker": 1,
     "defaults": {
         "textures": {
-            "ashes": "kk:items/models/ashes"
+            "combustion": "kk:items/models/combustion"
         },
-        "model": "kk:ashes.obj"
+        "model": "kk:combustion.obj"
     },
    	"variants": {
         "inventory": [
