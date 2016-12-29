@@ -29,6 +29,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -78,7 +79,11 @@ import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
  * Created by Toby on 19/07/2016.
  */
 public class EntityEvents {
-
+   /* @SubscribeEvent
+    public void ChunkLoad (ChunkDataEvent event) {
+    	if(event.getW)
+    }*/
+	
     @SubscribeEvent
     public void PlayerClone (PlayerEvent.Clone event) {
         FirstTimeJoinCapability.IFirstTimeJoin ftjBefore = event.getOriginal().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);

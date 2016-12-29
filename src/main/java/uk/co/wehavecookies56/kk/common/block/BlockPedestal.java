@@ -15,7 +15,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
+import uk.co.wehavecookies56.kk.common.network.packet.client.PedestalRotation;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 
 public class BlockPedestal extends Block implements ITileEntityProvider{
 
@@ -29,12 +31,12 @@ public class BlockPedestal extends Block implements ITileEntityProvider{
 	public TileEntity createNewTileEntity (World worldIn, int meta) {
 		return new TileEntityPedestal();
 	}
-	
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (!world.isRemote) {
 			TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(pos);
 			player.openGui(KingdomKeys.instance, GuiIDs.GUI_PEDESTAL_INV, world, pos.getX(), pos.getY(), pos.getZ());
+			PacketDispatcher.sendToAll(new PedestalRotation(te));
 			return true;
 		}
 		return false;
