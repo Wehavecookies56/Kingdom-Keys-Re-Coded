@@ -190,7 +190,6 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.YoungXehanortsKeyblade, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.YoungXehanortsKeyblade, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.PainofSolitude, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.PainofSolitude, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.TrueLightsFlight, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TrueLightsFlight, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.RejectionofFate, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.RejectionofFate, "inventory"));
 
 		//Organization
 		ModelLoader.setCustomModelResourceLocation(ModItems.FinalWeapon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FinalWeapon, "inventory"));
@@ -222,7 +221,6 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.Aggression, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Aggression, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Sanction, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sanction, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Ashes, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Ashes, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Combustion, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Combustion, "inventory"));
 
 
 		//Blocks
