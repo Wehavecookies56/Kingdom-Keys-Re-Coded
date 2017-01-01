@@ -196,6 +196,13 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.OminousBlight, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.OminousBlight, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.AbyssalTide, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.AbyssalTide, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.AstralBlast, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.AstralBlast, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.TwilightBlaze, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TwilightBlaze, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.AbaddonPlasma, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.AbaddonPlasma, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.TotalEclipse, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TotalEclipse, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.LunarEclipse, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.LunarEclipse, "inventory"));
+
+
+
 
 
 		//Organization
