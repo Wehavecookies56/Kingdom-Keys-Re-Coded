@@ -1,0 +1,46 @@
+{
+	"forge_marker": 1,
+    "defaults": {
+    	"textures": {
+			
+    		},
+        "model": "kk:aubade.obj"
+    },
+	"variants": {
+        "inventory": [
+            {
+                "transform": {
+                    "thirdperson_lefthand": {
+                        "rotation": [ { "x": 0 }, { "y": -90 }, { "z": 0 } ],
+                        "translation": [ 0, 0.3, 0 ],
+                        "scale": 0.01
+                    },
+                    "thirdperson_righthand": {
+                        "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0} ],
+                        "translation": [ 0, 0.3, 0 ],
+                        "scale": 0.01
+                    },
+                    "gui": {
+                        "rotation": [ { "x": 0 }, { "y": 0}, { "z": -45 } ],
+                        "translation": [ 0, 0, 0 ],
+                        "scale": 0.005
+                    },
+                    "firstperson_righthand": {
+                        "rotation": [ { "x":0 }, { "y": 90 }, { "z": 0} ],
+                        "translation": [ 0.2, -0.05, 0 ],
+                        "scale": 0.009
+                    },
+                    "firstperson_lefthand": {
+                        "rotation": [ { "x": 0 }, { "y": -90 }, { "z": 0} ],
+                        "translation": [ 0.2, -0.05, 0 ],
+                        "scale": 0.009
+                    },
+                    "ground": {
+                        "rotation": [ { "x":0 }, { "y": 0 }, { "z": 0 } ],
+                        "scale": 0.0005
+                    }
+                }
+            }
+        ]
+    }
+}
