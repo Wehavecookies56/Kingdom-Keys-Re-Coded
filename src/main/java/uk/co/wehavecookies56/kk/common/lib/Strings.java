@@ -437,6 +437,8 @@ public class Strings {
 	// Organization
 	public static final String 
 	Interdiction = "interdiction",
+	Aggression = "aggression",
+	Sanction = "sanction",
 	Sharpshooter = "sharpshooter", 
 	Lindworm = "lindworm",
 	FrozenPride = "frozenpride", 
@@ -478,10 +480,11 @@ public class Strings {
 	Orage = "orage",
 	Eruption = "eruption",
 	Irregulier = "irregulier",
-	Aggression = "aggression",
-	Sanction = "sanction",
 	Ashes = "ashes",
-	Combustion = "combustion"
+	Combustion = "combustion",
+	Twilight = "twilight",
+	LoftyGerbera = "loftygerbera",
+	HallowedLotus ="hallowedlotus"
 	;
 
 	public static final String 

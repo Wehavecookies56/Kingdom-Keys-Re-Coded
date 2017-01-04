@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.gen.structure.StructureVillagePieces;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
@@ -41,7 +42,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Sharpshooter, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence, FinalWeapon, Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, Sunrise, Precision, FalseTheory, Dragonreign , Crux, Killerbee, Orage, Eruption, Irregulier, Aggression, Sanction, Ashes, Combustion;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -94,52 +95,54 @@ public class ModItems {
 		VoidKnowledge = new Item().setUnlocalizedName(Strings.VoidKnowledge).setCreativeTab(tabKingdomKeys);
 
 		Interdiction = new ItemInterdiction(EnumHelper.addToolMaterial("interdiction", 3, -1, 6F, 10, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
+		Aggression = new ItemInterdiction(EnumHelper.addToolMaterial("aggression", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aggression);
+		Sanction = new ItemInterdiction(EnumHelper.addToolMaterial("sanction", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sanction);
+		Infinity = new ItemInterdiction(EnumHelper.addToolMaterial("infinity", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Infinity);
+		Malice = new ItemInterdiction(EnumHelper.addToolMaterial("malice", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Malice);
 		Sharpshooter = new ItemSharpshooter(EnumHelper.addToolMaterial("sharpshooter", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sharpshooter);
+		FinalWeapon = new ItemSharpshooter(EnumHelper.addToolMaterial("finalweapon", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinalWeapon);
+		Sunrise = new ItemSharpshooter(EnumHelper.addToolMaterial("sunrise", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sunrise);
+		Precision = new ItemSharpshooter(EnumHelper.addToolMaterial("precision", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Precision);
+		Killerbee = new ItemSharpshooter(EnumHelper.addToolMaterial("killerbee", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Killerbee);
+		Standalone = new ItemSharpshooter(EnumHelper.addToolMaterial("sharpshooter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Standalone);
 		Lindworm = new ItemLindworm(EnumHelper.addToolMaterial("lindworm", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lindworm);
+		Crux = new ItemLindworm(EnumHelper.addToolMaterial("crux", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crux);
+		Dragonreign = new ItemLindworm(EnumHelper.addToolMaterial("dragonreign", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Dragonreign);
+		Zephyr = new ItemLindworm(EnumHelper.addToolMaterial("lindworm", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Zephyr);
 		FrozenPride = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FrozenPride);
+		ProductOne = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ProductOne);
+		FalseTheory = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FalseTheory);
+		TesterZero = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TesterZero);
+		Inquisition = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inquisition);
 		Skysplitter = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 20, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
+		Reticence = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Reticence);
 		BookofRetribution = new ItemBookofRetribution(EnumHelper.addToolMaterial("bookofretribution", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
 		Lunatic = new ItemLunatic(EnumHelper.addToolMaterial("lunatic", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lunatic);
-		EternalFlames = new ItemEternalFlames(EnumHelper.addToolMaterial("eternalflames", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
 		Arpeggio = new ItemArpeggio(EnumHelper.addToolMaterial("arpeggio", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Arpeggio);
 		FairGame = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
-		GracefulDahlia = new ItemGracefulDahlia(EnumHelper.addToolMaterial("gracefuldahlia", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
+		TheFool = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
 		Foudre = new ItemFoudre(EnumHelper.addToolMaterial("foudre", 3, -1, 6F, 7, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foudre);
+		Calmant = new ItemFoudre(EnumHelper.addToolMaterial("calmant", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Calmant);
+		Orage = new ItemFoudre(EnumHelper.addToolMaterial("orage", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Orage);
+		Eruption = new ItemFoudre(EnumHelper.addToolMaterial("eruption", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Eruption);
+		Irregulier = new ItemFoudre(EnumHelper.addToolMaterial("irregulier", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Irregulier);
+		Tranchant = new ItemFoudre(EnumHelper.addToolMaterial("foudre", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tranchant);
+		GracefulDahlia = new ItemGracefulDahlia(EnumHelper.addToolMaterial("gracefuldahlia", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
+		FickleErica = new ItemGracefulDahlia(EnumHelper.addToolMaterial("fickleerica", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FickleErica);
+		PoorMelissa = new ItemGracefulDahlia(EnumHelper.addToolMaterial("poormelissa", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PoorMelissa);
+		JiltedAnemone = new ItemGracefulDahlia(EnumHelper.addToolMaterial("jiltedanemone", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.JiltedAnemone);
+		LoftyGerbera = new ItemGracefulDahlia(EnumHelper.addToolMaterial("partingipheion", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.LoftyGerbera);
+		HallowedLotus = new ItemGracefulDahlia(EnumHelper.addToolMaterial("partingipheion", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.HallowedLotus);
+		Burnout = new ItemBlazeofGlory(EnumHelper.addToolMaterial("burnout", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
+		Outbreak = new ItemBlazeofGlory(EnumHelper.addToolMaterial("outbreak", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Outbreak);
+		Ashes = new ItemAshes(EnumHelper.addToolMaterial("ashes", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ashes);
+		Combustion = new ItemAshes(EnumHelper.addToolMaterial("combustion", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Combustion);
 		BlazeofGlory = new ItemBlazeofGlory(EnumHelper.addToolMaterial("blazeofglory", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
 		Prometheus = new ItemPrometheus(EnumHelper.addToolMaterial("prometheus", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
 		Ifrit = new ItemIfrit(EnumHelper.addToolMaterial("ifrit", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
 		Prominence = new ItemProminence(EnumHelper.addToolMaterial("prominence", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
-		FickleErica = new ItemGracefulDahlia(EnumHelper.addToolMaterial("fickleerica", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FickleErica);
-		PoorMelissa = new ItemGracefulDahlia(EnumHelper.addToolMaterial("poormelissa", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PoorMelissa);
-		JiltedAnemone = new ItemGracefulDahlia(EnumHelper.addToolMaterial("jiltedanemone", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.JiltedAnemone);
-		Standalone = new ItemSharpshooter(EnumHelper.addToolMaterial("sharpshooter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Standalone);
-		Zephyr = new ItemLindworm(EnumHelper.addToolMaterial("lindworm", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Zephyr);
-		Reticence = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Reticence);
-		FinalWeapon = new ItemSharpshooter(EnumHelper.addToolMaterial("finalweapon", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinalWeapon);
-		Tranchant = new ItemFoudre(EnumHelper.addToolMaterial("foudre", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tranchant);
-        Malice = new ItemInterdiction(EnumHelper.addToolMaterial("malice", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Malice);
-        Aggression = new ItemInterdiction(EnumHelper.addToolMaterial("aggression", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aggression);
-        Sanction = new ItemInterdiction(EnumHelper.addToolMaterial("sanction", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sanction);
-		Infinity = new ItemInterdiction(EnumHelper.addToolMaterial("infinity", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Infinity);
-		TheFool = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
-		Calmant = new ItemFoudre(EnumHelper.addToolMaterial("calmant", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Calmant);
-		TesterZero = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TesterZero);
-		Inquisition = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inquisition);
-		ProductOne = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ProductOne);
-		FalseTheory = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FalseTheory);
-		Burnout = new ItemBlazeofGlory(EnumHelper.addToolMaterial("burnout", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
-		Outbreak = new ItemBlazeofGlory(EnumHelper.addToolMaterial("outbreak", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Outbreak);
-		Sunrise = new ItemSharpshooter(EnumHelper.addToolMaterial("sunrise", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sunrise);
-		Precision = new ItemSharpshooter(EnumHelper.addToolMaterial("precision", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Precision);
-		Dragonreign = new ItemLindworm(EnumHelper.addToolMaterial("dragonreign", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Dragonreign);
-		Crux = new ItemLindworm(EnumHelper.addToolMaterial("crux", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crux);
-		Killerbee = new ItemSharpshooter(EnumHelper.addToolMaterial("killerbee", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Killerbee);
-		Orage = new ItemFoudre(EnumHelper.addToolMaterial("orage", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Orage);
-        Eruption = new ItemFoudre(EnumHelper.addToolMaterial("eruption", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Eruption);
-        Irregulier = new ItemFoudre(EnumHelper.addToolMaterial("irregulier", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Irregulier);
-		Ashes = new ItemAshes(EnumHelper.addToolMaterial("ashes", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ashes);
-		Combustion = new ItemAshes(EnumHelper.addToolMaterial("combustion", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Combustion);
-
+		EternalFlames = new ItemEternalFlames(EnumHelper.addToolMaterial("eternalflames", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
+		Twilight = new ItemLunatic(EnumHelper.addToolMaterial("twilight", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Twilight);
 
 		//keyblades
 		AbaddonPlasma = new ItemRealKeyblade(6, 0).setUnlocalizedName(Strings.AbaddonPlasma);
@@ -602,52 +605,78 @@ public class ModItems {
 		GameRegistry.register(Eraqus_Boots = new ItemEraqusArmor(ERAQUS, 1, EntityEquipmentSlot.FEET, 3, Strings.Eraqus_Boots), new ResourceLocation(Reference.MODID, Strings.Eraqus_Boots));
 
 		// Organization
+		//Xemnas
 		GameRegistry.register(Interdiction, new ResourceLocation(Reference.MODID, Strings.Interdiction));
+		GameRegistry.register(Malice, new ResourceLocation(Reference.MODID, Strings.Malice));
+		GameRegistry.register(Infinity, new ResourceLocation(Reference.MODID, Strings.Infinity));
+		GameRegistry.register(Aggression, new ResourceLocation(Reference.MODID, Strings.Aggression));
+		GameRegistry.register(Sanction, new ResourceLocation(Reference.MODID, Strings.Sanction));
+
+		//Xigbar
 		GameRegistry.register(Sharpshooter, new ResourceLocation(Reference.MODID, Strings.Sharpshooter));
+		GameRegistry.register(Killerbee, new ResourceLocation(Reference.MODID, Strings.Killerbee));
+		GameRegistry.register(Sunrise, new ResourceLocation(Reference.MODID, Strings.Sunrise));
+		GameRegistry.register(Precision, new ResourceLocation(Reference.MODID, Strings.Precision));
+		GameRegistry.register(Standalone, new ResourceLocation(Reference.MODID, Strings.Standalone));
+		GameRegistry.register(FinalWeapon, new ResourceLocation(Reference.MODID, Strings.FinalWeapon));
+
+		//Xaldin
 		GameRegistry.register(Lindworm, new ResourceLocation(Reference.MODID, Strings.Lindworm));
+		GameRegistry.register(Zephyr, new ResourceLocation(Reference.MODID, Strings.Zephyr));
+		GameRegistry.register(Dragonreign, new ResourceLocation(Reference.MODID, Strings.Dragonreign));
+		GameRegistry.register(Crux, new ResourceLocation(Reference.MODID, Strings.Crux));
+
+		//Vexen
 		GameRegistry.register(FrozenPride, new ResourceLocation(Reference.MODID, Strings.FrozenPride));
+		GameRegistry.register(TesterZero, new ResourceLocation(Reference.MODID, Strings.TesterZero));
+		GameRegistry.register(ProductOne, new ResourceLocation(Reference.MODID, Strings.ProductOne));
+		GameRegistry.register(Inquisition, new ResourceLocation(Reference.MODID, Strings.Inquisition));
+		GameRegistry.register(FalseTheory, new ResourceLocation(Reference.MODID, Strings.FalseTheory));
+
+		//Lexaeus
 		GameRegistry.register(Skysplitter, new ResourceLocation(Reference.MODID, Strings.Skysplitter));
+		GameRegistry.register(Reticence, new ResourceLocation(Reference.MODID, Strings.Reticence));
+
+		//Zexion
 		GameRegistry.register(BookofRetribution, new ResourceLocation(Reference.MODID, Strings.BookofRetribution));
+
+		//saix
 		GameRegistry.register(Lunatic, new ResourceLocation(Reference.MODID, Strings.Lunatic));
+		GameRegistry.register(Twilight, new ResourceLocation(Reference.MODID, Strings.Twilight));
+
+		//Axel
 		GameRegistry.register(EternalFlames, new ResourceLocation(Reference.MODID, Strings.EternalFlames));
-		GameRegistry.register(Arpeggio, new ResourceLocation(Reference.MODID, Strings.Arpeggio));
-		GameRegistry.register(FairGame, new ResourceLocation(Reference.MODID, Strings.FairGame));
-		GameRegistry.register(GracefulDahlia, new ResourceLocation(Reference.MODID, Strings.GracefulDahlia));
-		GameRegistry.register(Foudre, new ResourceLocation(Reference.MODID, Strings.Foudre));
+		GameRegistry.register(Ashes, new ResourceLocation(Reference.MODID, Strings.Ashes));
+		GameRegistry.register(Combustion, new ResourceLocation(Reference.MODID, Strings.Combustion));
+		GameRegistry.register(Outbreak, new ResourceLocation(Reference.MODID, Strings.Outbreak));
+		GameRegistry.register(Burnout, new ResourceLocation(Reference.MODID, Strings.Burnout));
 		GameRegistry.register(BlazeofGlory, new ResourceLocation(Reference.MODID, Strings.BlazeofGlory));
 		GameRegistry.register(Prometheus, new ResourceLocation(Reference.MODID, Strings.Prometheus));
 		GameRegistry.register(Ifrit, new ResourceLocation(Reference.MODID, Strings.Ifrit));
 		GameRegistry.register(Prominence, new ResourceLocation(Reference.MODID, Strings.Prominence));
+
+		//Demyx
+		GameRegistry.register(Arpeggio, new ResourceLocation(Reference.MODID, Strings.Arpeggio));
+
+		//Luxord
+		GameRegistry.register(FairGame, new ResourceLocation(Reference.MODID, Strings.FairGame));
+		GameRegistry.register(TheFool, new ResourceLocation(Reference.MODID, Strings.TheFool));
+
+		//Maruxia
+		GameRegistry.register(GracefulDahlia, new ResourceLocation(Reference.MODID, Strings.GracefulDahlia));
 		GameRegistry.register(FickleErica, new ResourceLocation(Reference.MODID, Strings.FickleErica));
 		GameRegistry.register(PoorMelissa, new ResourceLocation(Reference.MODID, Strings.PoorMelissa));
 		GameRegistry.register(JiltedAnemone, new ResourceLocation(Reference.MODID, Strings.JiltedAnemone));
-		GameRegistry.register(Standalone, new ResourceLocation(Reference.MODID, Strings.Standalone));
-		GameRegistry.register(Zephyr, new ResourceLocation(Reference.MODID, Strings.Zephyr));
-		GameRegistry.register(Reticence, new ResourceLocation(Reference.MODID, Strings.Reticence));
-		GameRegistry.register(FinalWeapon, new ResourceLocation(Reference.MODID, Strings.FinalWeapon));
-		GameRegistry.register(Tranchant, new ResourceLocation(Reference.MODID, Strings.Tranchant));
-		GameRegistry.register(Malice, new ResourceLocation(Reference.MODID, Strings.Malice));
-		GameRegistry.register(Infinity, new ResourceLocation(Reference.MODID, Strings.Infinity));
-		GameRegistry.register(TheFool, new ResourceLocation(Reference.MODID, Strings.TheFool));
-		GameRegistry.register(TesterZero, new ResourceLocation(Reference.MODID, Strings.TesterZero));
-		GameRegistry.register(Calmant, new ResourceLocation(Reference.MODID, Strings.Calmant));
-		GameRegistry.register(ProductOne, new ResourceLocation(Reference.MODID, Strings.ProductOne));
-		GameRegistry.register(Inquisition, new ResourceLocation(Reference.MODID, Strings.Inquisition));
-		GameRegistry.register(Outbreak, new ResourceLocation(Reference.MODID, Strings.Outbreak));
-		GameRegistry.register(Burnout, new ResourceLocation(Reference.MODID, Strings.Burnout));
-		GameRegistry.register(Sunrise, new ResourceLocation(Reference.MODID, Strings.Sunrise));
-		GameRegistry.register(Precision, new ResourceLocation(Reference.MODID, Strings.Precision));
-		GameRegistry.register(FalseTheory, new ResourceLocation(Reference.MODID, Strings.FalseTheory));
-		GameRegistry.register(Dragonreign, new ResourceLocation(Reference.MODID, Strings.Dragonreign));
-		GameRegistry.register(Crux, new ResourceLocation(Reference.MODID, Strings.Crux));
-		GameRegistry.register(Killerbee, new ResourceLocation(Reference.MODID, Strings.Killerbee));
+		GameRegistry.register(LoftyGerbera, new ResourceLocation(Reference.MODID, Strings.LoftyGerbera));
+		GameRegistry.register(HallowedLotus, new ResourceLocation(Reference.MODID, Strings.HallowedLotus));
+
+		//Larxene
+		GameRegistry.register(Foudre, new ResourceLocation(Reference.MODID, Strings.Foudre));
 		GameRegistry.register(Orage, new ResourceLocation(Reference.MODID, Strings.Orage));
 		GameRegistry.register(Eruption, new ResourceLocation(Reference.MODID, Strings.Eruption));
-        GameRegistry.register(Irregulier, new ResourceLocation(Reference.MODID, Strings.Irregulier));
-        GameRegistry.register(Aggression, new ResourceLocation(Reference.MODID, Strings.Aggression));
-        GameRegistry.register(Sanction, new ResourceLocation(Reference.MODID, Strings.Sanction));
-		GameRegistry.register(Ashes, new ResourceLocation(Reference.MODID, Strings.Ashes));
-		GameRegistry.register(Combustion, new ResourceLocation(Reference.MODID, Strings.Combustion));
+		GameRegistry.register(Irregulier, new ResourceLocation(Reference.MODID, Strings.Irregulier));
+		GameRegistry.register(Calmant, new ResourceLocation(Reference.MODID, Strings.Calmant));
+		GameRegistry.register(Tranchant, new ResourceLocation(Reference.MODID, Strings.Tranchant));
 
 
 		// Knowledge

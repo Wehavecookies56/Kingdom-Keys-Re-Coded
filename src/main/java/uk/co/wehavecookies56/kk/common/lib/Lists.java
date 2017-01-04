@@ -14,27 +14,77 @@ public class Lists {
 
 	public static void init () {
 
+		//Xemnas
 		orgWeapons.add(Interdiction);
+		orgWeapons.add(Infinity);
+		orgWeapons.add(Sanction);
+		orgWeapons.add(Aggression);
+		orgWeapons.add(Malice);
+
+		//Xigbar
 		orgWeapons.add(Sharpshooter);
-		orgWeapons.add(Lindworm);
+		orgWeapons.add(Killerbee);
+		orgWeapons.add(Standalone);
+		orgWeapons.add(FinalWeapon);
+		orgWeapons.add(Precision);
+		orgWeapons.add(Sunrise);
+
+		//Xaldin
+		orgWeapons.add(Crux);
+		orgWeapons.add(Dragonreign);
+
+		//Vexen
 		orgWeapons.add(FrozenPride);
+		orgWeapons.add(TesterZero);
+		orgWeapons.add(ProductOne);
+		orgWeapons.add(Inquisition);
+		orgWeapons.add(FalseTheory);
+		//Lexaeus
+
 		orgWeapons.add(Skysplitter);
+		orgWeapons.add(Reticence);
+
+		//Zexion
 		orgWeapons.add(BookofRetribution);
+
+		//Saix
 		orgWeapons.add(Lunatic);
+		orgWeapons.add(Twilight);
+
+		//Axel
+		orgWeapons.add(Lindworm);
+		orgWeapons.add(Zephyr);
 		orgWeapons.add(EternalFlames);
-		orgWeapons.add(Arpeggio);
-		orgWeapons.add(FairGame);
-		orgWeapons.add(GracefulDahlia);
-		orgWeapons.add(Foudre);
 		orgWeapons.add(BlazeofGlory);
 		orgWeapons.add(Prometheus);
 		orgWeapons.add(Ifrit);
 		orgWeapons.add(Prominence);
+		orgWeapons.add(Ashes);
+		orgWeapons.add(Combustion);
+		orgWeapons.add(Burnout);
+		orgWeapons.add(Outbreak);
+		//Demyx
+		orgWeapons.add(Arpeggio);
+
+		//luxord
+		orgWeapons.add(FairGame);
+		orgWeapons.add(TheFool);
+
+		//Marluxia
+		orgWeapons.add(GracefulDahlia);
 		orgWeapons.add(FickleErica);
 		orgWeapons.add(PoorMelissa);
 		orgWeapons.add(JiltedAnemone);
-		orgWeapons.add(Standalone);
-		orgWeapons.add(Zephyr);
+		orgWeapons.add(HallowedLotus);
+		orgWeapons.add(LoftyGerbera);
+
+		//Laxene
+		orgWeapons.add(Foudre);
+		orgWeapons.add(Calmant);
+		orgWeapons.add(Tranchant);
+		orgWeapons.add(Orage);
+		orgWeapons.add(Irregulier);
+		orgWeapons.add(Eruption);
 
 		recipes.add(AbaddonPlasma.getUnlocalizedName());
 		recipes.add(AbyssalTide.getUnlocalizedName());

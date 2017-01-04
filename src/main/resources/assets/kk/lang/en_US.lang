@@ -367,7 +367,6 @@ item.arpeggio.name=Arpeggio
 item.fairgame.name=Fair Game
 item.gracefuldahlia.name=Graceful Dahlia
 item.foudre.name=Foudre
-
 item.blazeofglory.name=Blaze of Glory
 item.prometheus.name=Prometheus
 item.ifrit.name=Ifrit
@@ -394,6 +393,15 @@ item.burnout.name=Burnout
 item.dragonreign.name=Dragon Reign
 item.sunrise.name=Sunrise
 item.inquisition.name=Inquisition
+item.ashes.name=Ashes
+item.combustion=Combustion
+item.killerbee.name=Killerbee
+item.orange.name=Orage
+item.eruption.name=Eruption
+item.irregulier.name=Irregulier
+item.aggression.name=Aggression
+item.sanction.name=Sanction
+item.twilight.name=Twilight
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
