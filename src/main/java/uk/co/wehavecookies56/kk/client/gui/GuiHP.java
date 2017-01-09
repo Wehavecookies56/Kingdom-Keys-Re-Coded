@@ -119,6 +119,8 @@ public class GuiHP extends GuiScreen {
 
 	@SubscribeEvent
 	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
+		if (!ConfigHandler.displayGUI())
+			return;
 		if(!Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
 		if (event.getType().equals(ElementType.HEALTH) && event.isCancelable()) if (!ConfigHandler.EnableHeartsOnHUD) event.setCanceled(true);
 		if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {

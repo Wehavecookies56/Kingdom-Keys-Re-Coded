@@ -779,6 +779,7 @@ key.kingdomkeys.scrolldown=Command Menu Scroll Down
 key.kingdomkeys.scrollup=Command Menu Scroll Up
 key.kingdomkeys.openmenu=Open Menu
 key.kingdomkeys.summonkeyblade=Summon Keyblade
+key.kingdomkeys.showgui=Toggle Always Show GUI mode (on/off/on with keyblade)
 
 ############################
 #Spells and forms

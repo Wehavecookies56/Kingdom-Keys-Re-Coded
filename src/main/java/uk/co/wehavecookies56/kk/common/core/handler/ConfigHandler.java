@@ -2,11 +2,15 @@ package uk.co.wehavecookies56.kk.common.core.handler;
 
 import java.io.File;
 
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class ConfigHandler {
@@ -34,14 +38,15 @@ public class ConfigHandler {
 			redNocturneRatio=10,
 			blueRhapsodyRatio=10,
 			yellowOperaRatio=10,
-			greenRequiemRatio=10
+			greenRequiemRatio=10,
+			AlwaysShowGUI = 2
 			;
 	
 	public static double damageMultiplier = 1;
 	
 	public static boolean chat = true;
 	
-	public static Property interfaceColourProperty, EnableHeartsOnHUDProperty, EnableCustomMusicProperty;
+	public static Property interfaceColourProperty, EnableHeartsOnHUDProperty, EnableCustomMusicProperty, AlwaysShowGUIProperty;
 
 	public static void init(File file) {
 		config = new Configuration(file);
@@ -84,6 +89,10 @@ public class ConfigHandler {
 
 		interfaceColourProperty = configProperty("Interface colour", "Set the colour of the interface with RGB values", interfaceColour, INTERFACE);
 		interfaceColour = interfaceColourProperty.getIntList();
+
+		AlwaysShowGUIProperty = config.get(INTERFACE, "Always show GUI", AlwaysShowGUI);
+		AlwaysShowGUIProperty.setComment("Always show the GUI overlay mode (2 = always on, 1 = on with keyblade, 0 = off)");
+		AlwaysShowGUI = AlwaysShowGUIProperty.getInt();
 
 		//SOUND
 		EnableCustomMusicProperty = configBooleanProperty("Enable custom music", "Toggles the custom music that plays, requires the music resource pack", EnableCustomMusic, SOUND);
@@ -142,5 +151,21 @@ public class ConfigHandler {
 	@SubscribeEvent
 	public void OnConfigChanged (ConfigChangedEvent.OnConfigChangedEvent event) {
 		if (event.getModID().equals(Reference.MODID)) load();
+	}
+	
+	public static void toggleShowGUI () {
+		AlwaysShowGUI += 1;
+		if (AlwaysShowGUI > 2)
+			AlwaysShowGUI = 0;
+		AlwaysShowGUIProperty.set(AlwaysShowGUI);
+		config.save();
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public static boolean displayGUI () {
+		if (AlwaysShowGUI == 0)
+			return false;
+		Minecraft mc = Minecraft.getMinecraft();
+		return ((AlwaysShowGUI == 2) || ((mc.player.getHeldItemMainhand() != null) && (mc.player.getHeldItemMainhand().getItem() instanceof ItemKeyblade)));
 	}
 }

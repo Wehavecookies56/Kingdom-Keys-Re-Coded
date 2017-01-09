@@ -28,6 +28,7 @@ import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveSta
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
+import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
@@ -333,21 +334,33 @@ public class InputHandler {
 				PacketDispatcher.sendToServer(new OpenMenu());
 				break;
 				
+			case SHOW_GUI:
+				ConfigHandler.toggleShowGUI();
+				break;
+				
 			case SCROLL_UP:
+				if (!ConfigHandler.displayGUI())
+					break;
 				commandUp();
 				world.playSound(player, player.getPosition(), ModSounds.move, SoundCategory.MASTER, 1.0f, 1.0f);
 				break;
 
 			case SCROLL_DOWN:
+				if (!ConfigHandler.displayGUI())
+					break;
 				commandDown();
 				world.playSound(player, player.getPosition(), ModSounds.move, SoundCategory.MASTER, 1.0f, 1.0f);
 				break;
 
 			case ENTER:
+				if (!ConfigHandler.displayGUI())
+					break;
 				commandEnter();
 				break;
 
 			case BACK:
+				if (!ConfigHandler.displayGUI())
+					break;
 				commandBack();
 				break;
 			case SUMMON_KEYBLADE:
@@ -507,7 +520,7 @@ public class InputHandler {
 
 	public static enum Keybinds {
 
-        OPENMENU ("key.kingdomkeys.openmenu", Keyboard.KEY_M), SCROLL_UP ("key.kingdomkeys.scrollup", Keyboard.KEY_UP), SCROLL_DOWN ("key.kingdomkeys.scrolldown", Keyboard.KEY_DOWN), ENTER ("key.kingdomkeys.enter", Keyboard.KEY_RIGHT), BACK ("key.kingdomkeys.back", Keyboard.KEY_LEFT), SCROLL_ACTIVATOR ("key.kingdomkeys.scrollactivator", Keyboard.KEY_LMENU), SUMMON_KEYBLADE ("key.kingdomkeys.summonkeyblade", Keyboard.KEY_G), LOCK_ON ("key.kingdomkeys.lockon", Keyboard.KEY_Z);
+        OPENMENU ("key.kingdomkeys.openmenu", Keyboard.KEY_M), SCROLL_UP ("key.kingdomkeys.scrollup", Keyboard.KEY_UP), SCROLL_DOWN ("key.kingdomkeys.scrolldown", Keyboard.KEY_DOWN), ENTER ("key.kingdomkeys.enter", Keyboard.KEY_RIGHT), BACK ("key.kingdomkeys.back", Keyboard.KEY_LEFT), SCROLL_ACTIVATOR ("key.kingdomkeys.scrollactivator", Keyboard.KEY_LMENU), SUMMON_KEYBLADE ("key.kingdomkeys.summonkeyblade", Keyboard.KEY_G), LOCK_ON ("key.kingdomkeys.lockon", Keyboard.KEY_Z), SHOW_GUI ("key.kingdomkeys.showgui", Keyboard.KEY_O);
 
         private final KeyBinding keybinding;
 
