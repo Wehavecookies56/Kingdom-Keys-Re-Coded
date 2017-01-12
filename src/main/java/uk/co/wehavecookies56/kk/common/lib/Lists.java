@@ -32,6 +32,8 @@ public class Lists {
 		//Xaldin
 		orgWeapons.add(Crux);
 		orgWeapons.add(Dragonreign);
+		orgWeapons.add(Lindworm);
+		orgWeapons.add(Zephyr);
 
 		//Vexen
 		orgWeapons.add(FrozenPride);
@@ -39,21 +41,20 @@ public class Lists {
 		orgWeapons.add(ProductOne);
 		orgWeapons.add(Inquisition);
 		orgWeapons.add(FalseTheory);
-		//Lexaeus
 
+		//Lexaeus
 		orgWeapons.add(Skysplitter);
 		orgWeapons.add(Reticence);
 
 		//Zexion
 		orgWeapons.add(BookofRetribution);
+		orgWeapons.add(BlackPrimer);
 
 		//Saix
 		orgWeapons.add(Lunatic);
 		orgWeapons.add(Twilight);
 
 		//Axel
-		orgWeapons.add(Lindworm);
-		orgWeapons.add(Zephyr);
 		orgWeapons.add(EternalFlames);
 		orgWeapons.add(BlazeofGlory);
 		orgWeapons.add(Prometheus);
@@ -85,7 +86,10 @@ public class Lists {
 		orgWeapons.add(Orage);
 		orgWeapons.add(Irregulier);
 		orgWeapons.add(Eruption);
+		orgWeapons.add(Indigo);
+		orgWeapons.add(Lumineuse);
 
+		//Keyblades
 		recipes.add(AbaddonPlasma.getUnlocalizedName());
 		recipes.add(AbyssalTide.getUnlocalizedName());
 		recipes.add(AllforOne.getUnlocalizedName());

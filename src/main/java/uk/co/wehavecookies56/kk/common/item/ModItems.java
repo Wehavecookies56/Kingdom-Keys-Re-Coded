@@ -42,7 +42,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -168,6 +168,7 @@ public class ModItems {
 		Irregulier = new ItemFoudre(EnumHelper.addToolMaterial("irregulier", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Irregulier);
 		Tranchant = new ItemFoudre(EnumHelper.addToolMaterial("foudre", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tranchant);
 		Indigo = new ItemFoudre(EnumHelper.addToolMaterial("blackprimer", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Indigo);
+		Lumineuse = new ItemFoudre(EnumHelper.addToolMaterial("blackprimer", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lumineuse);
 
 
 		//keyblades
@@ -705,6 +706,7 @@ public class ModItems {
 		GameRegistry.register(Irregulier, new ResourceLocation(Reference.MODID, Strings.Irregulier));
 		GameRegistry.register(Calmant, new ResourceLocation(Reference.MODID, Strings.Calmant));
 		GameRegistry.register(Indigo, new ResourceLocation(Reference.MODID, Strings.Indigo));
+		GameRegistry.register(Lumineuse, new ResourceLocation(Reference.MODID, Strings.Lumineuse));
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));
