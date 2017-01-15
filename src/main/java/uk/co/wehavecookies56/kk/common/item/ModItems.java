@@ -42,7 +42,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, Whitetime, Tourbillon;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -129,6 +129,7 @@ public class ModItems {
 		// zexion
 		BookofRetribution = new ItemBookofRetribution(EnumHelper.addToolMaterial("bookofretribution", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
 		BlackPrimer = new ItemBookofRetribution(EnumHelper.addToolMaterial("blackprimer", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlackPrimer);
+		Whitetime = new ItemBookofRetribution(EnumHelper.addToolMaterial("whitetime", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Whitetime);
 
 		// saix
 		Lunatic = new ItemLunatic(EnumHelper.addToolMaterial("lunatic", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lunatic);
@@ -150,15 +151,15 @@ public class ModItems {
 
 		// luxord
 		FairGame = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
-		TheFool = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
+		TheFool = new ItemFairGame(EnumHelper.addToolMaterial("thefool", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
 
 		// Marluxia
 		GracefulDahlia = new ItemGracefulDahlia(EnumHelper.addToolMaterial("gracefuldahlia", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
 		FickleErica = new ItemGracefulDahlia(EnumHelper.addToolMaterial("fickleerica", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FickleErica);
 		PoorMelissa = new ItemGracefulDahlia(EnumHelper.addToolMaterial("poormelissa", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PoorMelissa);
 		JiltedAnemone = new ItemGracefulDahlia(EnumHelper.addToolMaterial("jiltedanemone", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.JiltedAnemone);
-		LoftyGerbera = new ItemGracefulDahlia(EnumHelper.addToolMaterial("partingipheion", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.LoftyGerbera);
-		HallowedLotus = new ItemGracefulDahlia(EnumHelper.addToolMaterial("partingipheion", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.HallowedLotus);
+		LoftyGerbera = new ItemGracefulDahlia(EnumHelper.addToolMaterial("loftygerbera", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.LoftyGerbera);
+		HallowedLotus = new ItemGracefulDahlia(EnumHelper.addToolMaterial("hallowedlotus", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.HallowedLotus);
 
 		// larxene
 		Foudre = new ItemFoudre(EnumHelper.addToolMaterial("foudre", 3, -1, 6F, 7, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foudre);
@@ -167,8 +168,9 @@ public class ModItems {
 		Eruption = new ItemFoudre(EnumHelper.addToolMaterial("eruption", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Eruption);
 		Irregulier = new ItemFoudre(EnumHelper.addToolMaterial("irregulier", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Irregulier);
 		Tranchant = new ItemFoudre(EnumHelper.addToolMaterial("foudre", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tranchant);
-		Indigo = new ItemFoudre(EnumHelper.addToolMaterial("blackprimer", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Indigo);
-		Lumineuse = new ItemFoudre(EnumHelper.addToolMaterial("blackprimer", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lumineuse);
+		Indigo = new ItemFoudre(EnumHelper.addToolMaterial("indigo", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Indigo);
+		Lumineuse = new ItemFoudre(EnumHelper.addToolMaterial("lumineuse", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lumineuse);
+		Tourbillon = new ItemFoudre(EnumHelper.addToolMaterial("tourbillon", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tourbillon);
 
 
 		//keyblades
@@ -667,6 +669,7 @@ public class ModItems {
 		//Zexion
 		GameRegistry.register(BookofRetribution, new ResourceLocation(Reference.MODID, Strings.BookofRetribution));
 		GameRegistry.register(BlackPrimer, new ResourceLocation(Reference.MODID, Strings.BlackPrimer));
+		GameRegistry.register(Whitetime, new ResourceLocation(Reference.MODID, Strings.Whitetime));
 
 		//saix
 		GameRegistry.register(Lunatic, new ResourceLocation(Reference.MODID, Strings.Lunatic));
@@ -707,6 +710,9 @@ public class ModItems {
 		GameRegistry.register(Calmant, new ResourceLocation(Reference.MODID, Strings.Calmant));
 		GameRegistry.register(Indigo, new ResourceLocation(Reference.MODID, Strings.Indigo));
 		GameRegistry.register(Lumineuse, new ResourceLocation(Reference.MODID, Strings.Lumineuse));
+		GameRegistry.register(Tourbillon, new ResourceLocation(Reference.MODID, Strings.Tourbillon));
+
+
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));

@@ -404,6 +404,9 @@ item.irregulier.name=Irregulier
 item.aggression.name=Aggression
 item.sanction.name=Sanction
 item.twilight.name=Twilight
+item.blackprimer.name=Black Primer
+item.whitetime.name=White Time
+item.tourbillon.name=Tourbillon
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma

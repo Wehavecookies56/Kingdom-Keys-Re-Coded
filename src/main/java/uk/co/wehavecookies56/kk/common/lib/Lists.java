@@ -5,6 +5,7 @@ import static uk.co.wehavecookies56.kk.common.item.ModItems.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.client.particle.ParticleSpell;
 import net.minecraft.item.Item;
 
 public class Lists {
@@ -49,6 +50,7 @@ public class Lists {
 		//Zexion
 		orgWeapons.add(BookofRetribution);
 		orgWeapons.add(BlackPrimer);
+		orgWeapons.add(Whitetime);
 
 		//Saix
 		orgWeapons.add(Lunatic);
@@ -88,6 +90,8 @@ public class Lists {
 		orgWeapons.add(Eruption);
 		orgWeapons.add(Indigo);
 		orgWeapons.add(Lumineuse);
+		orgWeapons.add(Tourbillon);
+
 
 		//Keyblades
 		recipes.add(AbaddonPlasma.getUnlocalizedName());

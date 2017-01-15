@@ -487,7 +487,9 @@ public class Strings {
 	HallowedLotus ="hallowedlotus",
 	BlackPrimer = "blackprimer",
 	Indigo = "indigo",
-	Lumineuse = "lumineuse"
+	Lumineuse = "lumineuse",
+	Whitetime = "whitetime",
+	Tourbillon = "tourbillon"
 	;
 
 	public static final String 
