@@ -9,7 +9,7 @@ import net.minecraft.client.gui.ScaledResolution;
  */
 public class PageKeybladesList extends  Page {
     String text = "\"Keyblades\" you can summon when you obtain the keychain from the moogle after crafting it." +
-            " Inorder to summon it one must put the keychain in the keychain slot within the items tab and then pressing the keybind to summon it.";
+            "In order to summon it one must put the keychain in the keychain slot within the items tab and then pressing the keybind to summon it.";
 
     public PageKeybladesList (int xPos, int yPos) {
         super("Keyblade_list", xPos, yPos);

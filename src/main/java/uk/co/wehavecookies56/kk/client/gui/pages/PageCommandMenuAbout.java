@@ -3,10 +3,12 @@ package uk.co.wehavecookies56.kk.client.gui.pages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class PageCommandMenuAbout extends Page {
 
-	String text = "The Command Menu is the menu displayed in the bottom left corner of the HUD. It has 4 options, Attack, Magic, Items and Drive, for info on these options refer to their respective pages.\n\nThe menu can be navigated using the Command Menu keybinds (default: Arrow keys) it can also be navigated by holding the hold keybind (default: Alt) and scrolling the mouse wheel, left click to enter, right click to go back.";
+	String text = Utils.translateToLocal(Strings.CommandMenuAbout);
 
 	public PageCommandMenuAbout (int xPos, int yPos) {
 		super("CommandMenu_About", xPos, yPos);

@@ -761,4 +761,9 @@ public class Strings {
 	DriveInventory = "container.driveinventory",
 	PotionsInventory = "container.potionsinventory"
 	;
+	
+	//Journal
+	public static final String
+	CommandMenuAbout="journal.commandmenuabout"
+	;
 }

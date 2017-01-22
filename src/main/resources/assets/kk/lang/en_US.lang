@@ -862,3 +862,8 @@ entity.kk.BlueRhapsody.name=Blue Rhapsody
 entity.kk.YellowOpera.name=Yellow Opera
 entity.kk.GreenRequiem.name=Green Requiem
 entity.kk.Moogle.name=Moogle
+
+##########################
+#Journal
+##########################
+journal.commandmenuabout=The Command Menu is the menu displayed in the bottom left corner of the HUD. It has 4 options, Attack, Magic, Items and Drive, for info on these options refer to their respective pages.\n\nThe menu can be navigated using the Command Menu keybinds (default: Arrow keys) it can also be navigated by holding the hold keybind (default: Alt) and scrolling the mouse wheel, left click to enter, right click to go back.

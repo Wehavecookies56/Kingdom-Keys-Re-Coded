@@ -111,7 +111,7 @@ public class GuiJournal extends GuiScreen {
 	PageBugBloxAbout page_bugblox_about;
 	PageBugBloxStandard page_bugblox_standard;
 	PageBugBloxSpecial page_bugblox_special;
-	PageSynthesisAbout page_syntheseis_about;
+	PageSynthesisAbout page_synthesis_about;
 	PageSynthesisMaterials page_synthesis_materials;
 	PageSynthesisRecipes page_synthesis_recipes;
 
@@ -121,11 +121,17 @@ public class GuiJournal extends GuiScreen {
 		page_commandmenu_magic = new PageCommandMenuMagic(0, 0);
 		page_commandmenu_items = new PageCommandMenuItems(0, 0);
 		page_commandmenu_drive = new PageCommandMenuDrive(0, 0);
+		
+		page_bugblox_about = new PageBugBloxAbout(0, 0);
+		page_bugblox_special = new PageBugBloxSpecial(0, 0);
+		page_bugblox_standard = new PageBugBloxStandard(0, 0);
+		
 		page_keyblade_about = new PageKeybladeAbout(0, 0);
 		page_keyblade_list = new PageKeybladesList(0, 0);
 		page_keyblade_summoning = new PageKeybladeSummoning(0, 0);
 		page_keyblade_creation = new PageKeybladeCreation(0, 0);
-		page_syntheseis_about = new PageSynthesisAbout(0, 0);
+		
+		page_synthesis_about = new PageSynthesisAbout(0, 0);
 		page_synthesis_materials = new PageSynthesisMaterials(0, 0);
 		page_synthesis_recipes = new PageSynthesisRecipes(0, 0);
 
@@ -193,23 +199,37 @@ public class GuiJournal extends GuiScreen {
 	public void drawScreen (int mouseX, int mouseY, float partialTicks) {
 
 		drawDefaultBackground();
-
 		if (currentPage != null) {
-			if (currentPage.equals(page_commandmenu_about.getName())) page_commandmenu_about.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_commandmenu_attack.getName())) page_commandmenu_attack.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_commandmenu_magic.getName())) page_commandmenu_magic.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_commandmenu_items.getName())) page_commandmenu_items.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_commandmenu_drive.getName())) page_commandmenu_drive.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_keyblade_about.getName())) page_keyblade_about.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_keyblade_list.getName())) page_keyblade_list.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_keyblade_summoning.getName())) page_keyblade_summoning.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_keyblade_creation.getName())) page_keyblade_creation.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_bugblox_about.getName())) page_bugblox_about.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_bugblox_standard.getName())) page_bugblox_standard.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_bugblox_special.getName())) page_bugblox_special.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_syntheseis_about.getName())) page_syntheseis_about.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_synthesis_materials.getName())) page_synthesis_materials.drawScreen(mouseX, mouseY, partialTicks);
-			if (currentPage.equals(page_synthesis_recipes.getName())) page_synthesis_recipes.drawScreen(mouseX, mouseY, partialTicks);
+			if (currentPage.equals(page_commandmenu_about.getName()))
+				page_commandmenu_about.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_commandmenu_attack.getName()))
+				page_commandmenu_attack.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_commandmenu_magic.getName()))
+				page_commandmenu_magic.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_commandmenu_items.getName())) 
+				page_commandmenu_items.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_commandmenu_drive.getName())) 
+				page_commandmenu_drive.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_keyblade_about.getName())) 
+				page_keyblade_about.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_keyblade_list.getName()))
+				page_keyblade_list.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_keyblade_summoning.getName()))
+				page_keyblade_summoning.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_keyblade_creation.getName())) 
+				page_keyblade_creation.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_bugblox_about.getName()))
+				page_bugblox_about.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_bugblox_standard.getName()))
+				page_bugblox_standard.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_bugblox_special.getName())) 
+				page_bugblox_special.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_synthesis_about.getName()))
+				page_synthesis_about.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_synthesis_materials.getName()))
+				page_synthesis_materials.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_synthesis_recipes.getName()))
+				page_synthesis_recipes.drawScreen(mouseX, mouseY, partialTicks);
 		}
 
 		int distToBottomFromMisc = (this.height / 4) - 7;
@@ -218,62 +238,25 @@ public class GuiJournal extends GuiScreen {
 		drawDarkBG(texture, xPos_coll_commandMenu - 1, yPos_coll_commandMenu - 1, 102, (this.height / 2) + 8, 1F);
 		drawDarkBG(texture, xPos_coll_commandMenu + 103, yPos_coll_commandMenu - 1, 8, (this.height / 2) + 8, 1F);
 		if (currentPage != null) {
-			if (currentPage.equals(page_commandmenu_about.getName()))
-				topic_commandmenu_about.colour = 0xFFFFFF;
-			else
-				topic_commandmenu_about.colour = 0x0645AD;
-			if (currentPage.equals(page_commandmenu_attack.getName()))
-				topic_commandmenu_attack.colour = 0xFFFFFF;
-			else
-				topic_commandmenu_attack.colour = 0x0645AD;
-			if (currentPage.equals(page_commandmenu_magic.getName()))
-				topic_commandmenu_magic.colour = 0xFFFFFF;
-			else
-				topic_commandmenu_magic.colour = 0x0645AD;
-			if (currentPage.equals(page_commandmenu_items.getName()))
-				topic_commandmenu_items.colour = 0xFFFFFF;
-			else
-				topic_commandmenu_items.colour = 0x0645AD;
-			if (currentPage.equals(page_commandmenu_drive.getName()))
-				topic_commandmenu_drive.colour = 0xFFFFFF;
-			else
-				topic_commandmenu_drive.colour = 0x0645AD;
-			if (currentPage.equals(page_keyblade_about.getName()))
-				topic_keyblades_about.colour = 0xFFFFFF;
-			else
-				topic_keyblades_about.colour = 0x0645AD;
-			if (currentPage.equals(page_keyblade_list.getName()))
-				topic_keyblades_list.colour = 0xFFFFFF;
-			else
-				topic_keyblades_list.colour = 0x0645AD;
-			if (currentPage.equals(page_keyblade_summoning.getName()))
-				topic_keyblades_summoning.colour = 0xFFFFFF;
-			else
-				topic_keyblades_summoning.colour = 0x0645AD;
-			if (currentPage.equals(page_keyblade_creation.getName()))
-				topic_keyblades_creation.colour = 0xFFFFFF;
-			else
-				topic_keyblades_creation.colour = 0x0645AD;
-			if (currentPage.equals(page_keyblade_creation.getName()))
-				topic_keyblades_creation.colour = 0xFFFFFF;
-			else
-				topic_keyblades_creation.colour = 0x0645AD;
-			if (currentPage.equals(page_keyblade_creation.getName()))
-				topic_keyblades_creation.colour = 0xFFFFFF;
-			else
-				topic_keyblades_creation.colour = 0x0645AD;
-			if (currentPage.equals(page_syntheseis_about.getName()))
-				topic_synthesis_about.colour = 0xFFFFFF;
-			else
-				topic_synthesis_about.colour = 0x0645AD;
-			if (currentPage.equals(page_synthesis_materials.getName()))
-				topic_synthesis_materials.colour = 0xFFFFFF;
-			else
-				topic_synthesis_materials.colour = 0x0645AD;
-			if (currentPage.equals(page_synthesis_recipes.getName()))
-				topic_synthesis_recipes.colour = 0xFFFFFF;
-			else
-				topic_synthesis_recipes.colour = 0x0645AD;
+			topic_commandmenu_about.colour = currentPage.equals(page_commandmenu_about.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_commandmenu_attack.colour = currentPage.equals(page_commandmenu_attack.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_commandmenu_magic.colour = currentPage.equals(page_commandmenu_magic.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_commandmenu_items.colour = currentPage.equals(page_commandmenu_items.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_commandmenu_drive.colour = currentPage.equals(page_commandmenu_drive.getName()) ? 0xFFFFFF : 0x0645AD;
+			
+			topic_bugblox_about.colour = currentPage.equals(page_bugblox_about.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_bugblox_specialblox.colour = currentPage.equals(page_bugblox_about.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_bugblox_standardblox.colour = currentPage.equals(page_bugblox_about.getName()) ? 0xFFFFFF : 0x0645AD;
+			
+			topic_keyblades_about.colour = currentPage.equals(page_keyblade_about.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_keyblades_list.colour = currentPage.equals(page_keyblade_list.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_keyblades_summoning.colour = currentPage.equals(page_keyblade_summoning.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_keyblades_creation.colour = currentPage.equals(page_keyblade_creation.getName()) ? 0xFFFFFF : 0x0645AD;
+			
+			topic_synthesis_about.colour = currentPage.equals(page_synthesis_about.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_synthesis_materials.colour = currentPage.equals(page_synthesis_materials.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_synthesis_recipes.colour = currentPage.equals(page_synthesis_recipes.getName()) ? 0xFFFFFF : 0x0645AD;
+			
 		} else {
 			topic_commandmenu_about.colour = 0x0645AD;
 			topic_commandmenu_attack.colour = 0x0645AD;
@@ -793,6 +776,15 @@ public class GuiJournal extends GuiScreen {
 
 		page_commandmenu_drive.setxPos(xPos_coll_commandMenu + 120);
 		page_commandmenu_drive.setyPos(this.height / 8);
+		
+		page_bugblox_about.setxPos(xPos_coll_bugblox+120);
+		page_bugblox_about.setyPos(this.height / 8);
+		
+		page_bugblox_special.setxPos(xPos_coll_bugblox+120);
+		page_bugblox_special.setyPos(this.height / 8);
+
+		page_bugblox_standard.setxPos(xPos_coll_bugblox+120);
+		page_bugblox_standard.setyPos(this.height / 8);
 
 		page_keyblade_about.setxPos(xPos_coll_keyblades + 120);
 		page_keyblade_about.setyPos(this.height / 8);
@@ -806,8 +798,8 @@ public class GuiJournal extends GuiScreen {
 		page_keyblade_creation.setxPos(xPos_coll_keyblades + 120);
 		page_keyblade_creation.setyPos(this.height / 8);
 
-		page_syntheseis_about.setxPos(xPos_coll_synthesis + 120);
-		page_syntheseis_about.setyPos(this.height / 8);
+		page_synthesis_about.setxPos(xPos_coll_synthesis + 120);
+		page_synthesis_about.setyPos(this.height / 8);
 
 		page_synthesis_materials.setxPos(xPos_coll_synthesis + 120);
 		page_synthesis_materials.setyPos(this.height / 8);
@@ -1046,8 +1038,18 @@ public class GuiJournal extends GuiScreen {
 			case TOPIC_KEYBLADES_CREATION:
 				currentPage = page_keyblade_creation.getName();
 				break;
+			case TOPIC_BUGBLOX_ABOUT:
+				currentPage = page_bugblox_about.getName();
+				break;
+			case TOPIC_BUGBLOX_SPECIALBLOX:
+				currentPage = page_bugblox_special.getName();
+				break;
+			case TOPIC_BUGBLOX_STANDARDBLOX:
+				currentPage = page_bugblox_standard.getName();
+				break;
+
 			case TOPIC_SYNTHESIS_ABOUT:
-				currentPage = page_syntheseis_about.getName();
+				currentPage = page_synthesis_about.getName();
 				break;
 			case TOPIC_SYNTHESIS_MATERIALS:
 				currentPage = page_synthesis_materials.getName();
