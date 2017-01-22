@@ -76,7 +76,7 @@ public class GuiMenu extends GuiMenu_Bars {
 				this.abilities.enabled = false;
 				this.customize.enabled = false;
 				this.party.enabled = false;
-				this.journal.enabled = false;
+				this.journal.enabled = true;
 				break;
 			case SUBMENU_ITEMS:
 				items.visible = false;

@@ -11,11 +11,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import uk.co.wehavecookies56.kk.client.gui.pages.PageCommandMenuAbout;
-import uk.co.wehavecookies56.kk.client.gui.pages.PageCommandMenuAttack;
-import uk.co.wehavecookies56.kk.client.gui.pages.PageCommandMenuDrive;
-import uk.co.wehavecookies56.kk.client.gui.pages.PageCommandMenuItems;
-import uk.co.wehavecookies56.kk.client.gui.pages.PageCommandMenuMagic;
+import uk.co.wehavecookies56.kk.client.gui.pages.*;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class GuiJournal extends GuiScreen {
@@ -108,6 +104,7 @@ public class GuiJournal extends GuiScreen {
 	PageCommandMenuMagic page_commandmenu_magic;
 	PageCommandMenuItems page_commandmenu_items;
 	PageCommandMenuDrive page_commandmenu_drive;
+	PageKeybladeAbout page_keyblade_about;
 
 	public GuiJournal () {
 		page_commandmenu_about = new PageCommandMenuAbout(0, 0);
@@ -115,6 +112,7 @@ public class GuiJournal extends GuiScreen {
 		page_commandmenu_magic = new PageCommandMenuMagic(0, 0);
 		page_commandmenu_items = new PageCommandMenuItems(0, 0);
 		page_commandmenu_drive = new PageCommandMenuDrive(0, 0);
+		page_keyblade_about = new PageKeybladeAbout(0, 0);
 
 		collapse_commandmenu = new GuiButtonCollapse(COLLAPSE_COMMANDMENU, 0, 0);
 		collapse_keyblades = new GuiButtonCollapse(COLLAPSE_KEYBLADES, 0, 0);
@@ -187,6 +185,7 @@ public class GuiJournal extends GuiScreen {
 			if (currentPage.equals(page_commandmenu_magic.getName())) page_commandmenu_magic.drawScreen(mouseX, mouseY, partialTicks);
 			if (currentPage.equals(page_commandmenu_items.getName())) page_commandmenu_items.drawScreen(mouseX, mouseY, partialTicks);
 			if (currentPage.equals(page_commandmenu_drive.getName())) page_commandmenu_drive.drawScreen(mouseX, mouseY, partialTicks);
+			if (currentPage.equals(page_keyblade_about.getName())) page_keyblade_about.drawScreen(mouseX, mouseY, partialTicks);
 		}
 
 		int distToBottomFromMisc = (this.height / 4) - 7;
@@ -215,12 +214,17 @@ public class GuiJournal extends GuiScreen {
 				topic_commandmenu_drive.colour = 0xFFFFFF;
 			else
 				topic_commandmenu_drive.colour = 0x0645AD;
+			if (currentPage.equals(page_keyblade_about.getName()))
+				topic_keyblades_about.colour = 0xFFFFFF;
+			else
+				topic_keyblades_about.colour = 0x0645AD;
 		} else {
 			topic_commandmenu_about.colour = 0x0645AD;
 			topic_commandmenu_attack.colour = 0x0645AD;
 			topic_commandmenu_magic.colour = 0x0645AD;
 			topic_commandmenu_items.colour = 0x0645AD;
 			topic_commandmenu_drive.colour = 0x0645AD;
+			topic_keyblades_about.colour = 0x0645AD;
 		}
 
 		GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2 - 2, this.width, listHeight * 2 - 1);
@@ -728,6 +732,9 @@ public class GuiJournal extends GuiScreen {
 		page_commandmenu_drive.setxPos(xPos_coll_commandMenu + 120);
 		page_commandmenu_drive.setyPos(this.height / 8);
 
+		page_keyblade_about.setxPos(xPos_coll_keyblades);
+		page_keyblade_about.setyPos(this.height / 8);
+
 	}
 
 	@Override
@@ -947,6 +954,9 @@ public class GuiJournal extends GuiScreen {
 				break;
 			case TOPIC_COMMANDMENU_DRIVE:
 				currentPage = page_commandmenu_drive.getName();
+				break;
+			case TOPIC_KEYBLADES_ABOUT:
+				currentPage = page_keyblade_about.getName();
 				break;
 		}
 

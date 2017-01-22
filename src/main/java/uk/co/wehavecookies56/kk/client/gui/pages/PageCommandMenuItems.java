@@ -6,7 +6,7 @@ import net.minecraft.client.gui.ScaledResolution;
 
 public class PageCommandMenuItems extends Page {
 
-	String text = "\"Items\" is an option on the Command Menu which currently has no use. In the future it will act similarly to how it does in Kingdom Hearts 2.";
+	String text = "\"Items\" is an option on the Command Menu which uses the items that you have put in the potions slots within the items tab.";
 
 	public PageCommandMenuItems (int xPos, int yPos) {
 		super("CommandMenu_Items", xPos, yPos);
