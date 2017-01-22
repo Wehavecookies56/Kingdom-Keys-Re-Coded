@@ -5,15 +5,13 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 
 /**
- * Created by NStel on 1/21/2017.
+ * Created by NStel on 1/22/2017.
  */
-public class PageKeybladeAbout extends Page {
-    String text = "\"Keyblades\" are one of the few weapons that can kill the heartless and" +
-                  " which you can get through and the synthisis table (which will evenutally be deprecated) or" +
-                  " the moogle see creation for more info about obtaining keyblades.";
+    public class PageSynthesisRecipes extends Page {
+    String text = "\"Recipes\" can be found in chest that you find around the world. Each recipe contains three keyblades right click to learn. If you know all three on a list the recipe will \"re-roll\"";
 
-    public PageKeybladeAbout (int xPos, int yPos) {
-        super("Keyblade_About", xPos, yPos);
+    public PageSynthesisRecipes (int xPos, int yPos) {
+        super("Synthesis_Recipes", xPos, yPos);
         setxPos(xPos);
         setyPos(yPos);
     }

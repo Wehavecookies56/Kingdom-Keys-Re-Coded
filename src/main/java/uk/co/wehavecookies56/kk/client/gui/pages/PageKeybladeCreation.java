@@ -3,17 +3,18 @@ package uk.co.wehavecookies56.kk.client.gui.pages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
+import uk.co.wehavecookies56.kk.client.gui.pages.Page;
 
 /**
  * Created by NStel on 1/21/2017.
  */
-public class PageKeybladeAbout extends Page {
-    String text = "\"Keyblades\" are one of the few weapons that can kill the heartless and" +
-                  " which you can get through and the synthisis table (which will evenutally be deprecated) or" +
-                  " the moogle see creation for more info about obtaining keyblades.";
+public class PageKeybladeCreation extends Page{
+    String text = "\"Keyblades\" can be created when you have all the need synthesis materials and the keyblade you have obtained from a synthesis recipe" +
+            " to see what synthesis materials a keyblade rquires, right click a moogle click item synthesis and click the Recies tab" +
+            " (see recipes in the Synthesistab for how to obtain them) ";
 
-    public PageKeybladeAbout (int xPos, int yPos) {
-        super("Keyblade_About", xPos, yPos);
+    public PageKeybladeCreation (int xPos, int yPos) {
+        super("Keyblade_Creation", xPos, yPos);
         setxPos(xPos);
         setyPos(yPos);
     }

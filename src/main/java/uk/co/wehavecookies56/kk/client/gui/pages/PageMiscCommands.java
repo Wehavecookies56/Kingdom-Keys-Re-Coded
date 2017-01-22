@@ -5,15 +5,14 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 
 /**
- * Created by NStel on 1/21/2017.
+ * Created by NStel on 1/22/2017.
  */
-public class PageKeybladeAbout extends Page {
-    String text = "\"Keyblades\" are one of the few weapons that can kill the heartless and" +
-                  " which you can get through and the synthisis table (which will evenutally be deprecated) or" +
-                  " the moogle see creation for more info about obtaining keyblades.";
+public class PageMiscCommands extends Page {
+    String text = "\"Keyblades\" you can summon when you obtain the keychain from the moogle after crafting it." +
+            " Inorder to summon it one must put the keychain in the keychain slot within the items tab and then pressing the keybind to summon it.";
 
-    public PageKeybladeAbout (int xPos, int yPos) {
-        super("Keyblade_About", xPos, yPos);
+    public PageMiscCommands (int xPos, int yPos) {
+        super("Misc_Commands", xPos, yPos);
         setxPos(xPos);
         setyPos(yPos);
     }

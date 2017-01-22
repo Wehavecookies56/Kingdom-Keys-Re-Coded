@@ -7,13 +7,14 @@ import net.minecraft.client.gui.ScaledResolution;
 /**
  * Created by NStel on 1/21/2017.
  */
-public class PageKeybladeAbout extends Page {
-    String text = "\"Keyblades\" are one of the few weapons that can kill the heartless and" +
-                  " which you can get through and the synthisis table (which will evenutally be deprecated) or" +
-                  " the moogle see creation for more info about obtaining keyblades.";
+public class PageSynthesisAbout extends Page {
+    String text = "\"Synthesis\" is what you use when you craft a keyblade which requires Synthesis Recipe and " +
+            "Synthesis Materials. \n" +
+            "(see materials for more about Synthesis Materials.)\n" +
+            "(see recipes for more about Synthesis Recipes)";
 
-    public PageKeybladeAbout (int xPos, int yPos) {
-        super("Keyblade_About", xPos, yPos);
+    public PageSynthesisAbout (int xPos, int yPos) {
+        super("Synthesis_About", xPos, yPos);
         setxPos(xPos);
         setyPos(yPos);
     }

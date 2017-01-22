@@ -5,15 +5,18 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 
 /**
- * Created by NStel on 1/21/2017.
+ * Created by NStel on 1/22/2017.
  */
-public class PageKeybladeAbout extends Page {
-    String text = "\"Keyblades\" are one of the few weapons that can kill the heartless and" +
-                  " which you can get through and the synthisis table (which will evenutally be deprecated) or" +
-                  " the moogle see creation for more info about obtaining keyblades.";
+public class PageSynthesisMaterials extends Page
+{
+    String text = "\"Materials\" are what you obtain through ores or finding them in the generated chests. " +
+            "You use them to make the keyblades, organization XIII weapons, or the crafting materials for the keyblade armor" +
+            " to deposit them use the material tab within the moogle's gui\n"
+            +"(for more info on the crafting materials see Crafting materials in the MISC tab)" +
+            "\n(for more info on how to obtain the organization XIII weapons see organization weapoms in the MISC tab";
 
-    public PageKeybladeAbout (int xPos, int yPos) {
-        super("Keyblade_About", xPos, yPos);
+    public PageSynthesisMaterials (int xPos, int yPos) {
+        super("Synthesis_Materials", xPos, yPos);
         setxPos(xPos);
         setyPos(yPos);
     }
@@ -29,4 +32,4 @@ public class PageKeybladeAbout extends Page {
         // BOTTOM.", this.getxPos(), (this.getyPos() +
         // (fontRendererObj.FONT_HEIGHT * 2)) + length, 0xFFFFFF);
     }
-}
+} // end PageSynthesisMaterials
