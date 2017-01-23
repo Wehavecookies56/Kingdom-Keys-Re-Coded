@@ -122,6 +122,9 @@ public class GuiJournal extends GuiScreen {
 	PageDriveFormsAbout page_driveforms_about;
 	PageDriveFormsDP page_driveforms_dp;
 	PageDriveFormsForms page_driveforms_forms;
+	PageMiscHearts page_misc_hearts;
+	PageMiscMunny page_misc_munny;
+	PageMiscMenu page_misc_menu;
 
 	public GuiJournal () {
 		page_commandmenu_about = new PageCommandMenuAbout(0, 0);
@@ -153,6 +156,10 @@ public class GuiJournal extends GuiScreen {
 		page_driveforms_about = new PageDriveFormsAbout(0, 0);
 		page_driveforms_dp = new PageDriveFormsDP(0, 0);
 		page_driveforms_forms = new PageDriveFormsForms(0, 0);
+
+		page_misc_hearts = new PageMiscHearts(0, 0);
+		page_misc_munny = new PageMiscMunny(0, 0);
+		page_misc_menu = new PageMiscMenu(0, 0);
 
 		collapse_commandmenu = new GuiButtonCollapse(COLLAPSE_COMMANDMENU, 0, 0);
 		collapse_keyblades = new GuiButtonCollapse(COLLAPSE_KEYBLADES, 0, 0);
@@ -263,6 +270,8 @@ public class GuiJournal extends GuiScreen {
 				page_driveforms_about.drawScreen(mouseX, mouseY, partialTicks);
 			else if (currentPage.equals(page_driveforms_dp.getName()))
 				page_driveforms_dp.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_driveforms_forms.getName()))
+				page_driveforms_forms.drawScreen(mouseX, mouseY, partialTicks);
 			else if (currentPage.equals(page_driveforms_forms.getName()))
 				page_driveforms_forms.drawScreen(mouseX, mouseY, partialTicks);
 		}
