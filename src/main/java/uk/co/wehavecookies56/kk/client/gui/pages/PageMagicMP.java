@@ -8,11 +8,12 @@ import net.minecraft.client.gui.ScaledResolution;
  * Created by NStel on 1/22/2017.
  */
 public class PageMagicMP extends Page {
-    String text = "\"Keyblades\" you can summon when you obtain the keychain from the moogle after crafting it." +
-            " Inorder to summon it one must put the keychain in the keychain slot within the items tab and then pressing the keybind to summon it.";
+    String text = "\"MP\" or Magic Points which is what the blue bar in the bottom right is" +
+            " are what is used to determine if you are able to use spells. Everytime you use a spell it takes a set " +
+            "amount of MP when the bar is depleted you must wait before you are able to use more spells.";
 
     public PageMagicMP (int xPos, int yPos) {
-        super("Keyblade_Summoning", xPos, yPos);
+        super("Magic_MP", xPos, yPos);
         setxPos(xPos);
         setyPos(yPos);
     }

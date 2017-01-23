@@ -8,8 +8,9 @@ import net.minecraft.client.gui.ScaledResolution;
  * Created by NStel on 1/22/2017.
  */
 public class PageMagicMagics extends Page {
-    String text = "\"Keyblades\" you can summon when you obtain the keychain from the moogle after crafting it." +
-            " Inorder to summon it one must put the keychain in the keychain slot within the items tab and then pressing the keybind to summon it.";
+    String text = "\"Magic\" can also be upgrade if you have the base spell equiped. " +
+            "You can upgrade the spells by obtaining more of the same kind of spell and right clicking with the spell in hand." +
+            " You can only upgrade the spells three times.";
 
     public PageMagicMagics (int xPos, int yPos) {
         super("Magic_Magics", xPos, yPos);

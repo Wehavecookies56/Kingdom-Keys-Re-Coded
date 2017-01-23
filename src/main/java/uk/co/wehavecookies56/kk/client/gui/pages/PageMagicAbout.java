@@ -8,8 +8,8 @@ import net.minecraft.client.gui.ScaledResolution;
  * Created by NStel on 1/22/2017.
  */
 public class PageMagicAbout extends Page {
-    String text = "\"Keyblades\" you can summon when you obtain the keychain from the moogle after crafting it." +
-            " Inorder to summon it one must put the keychain in the keychain slot within the items tab and then pressing the keybind to summon it.";
+    String text = "\"Magic\" can be obtained by killing witches with a keyblade and can be equiped by right clicking with spell in your hand" +
+            " or by in the magic tab within the items tab in the menu.";
 
     public PageMagicAbout (int xPos, int yPos) {
         super("Magic_About", xPos, yPos);

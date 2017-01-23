@@ -8,8 +8,8 @@ import net.minecraft.client.gui.ScaledResolution;
  * Created by NStel on 1/22/2017.
  */
 public class PageArmourKeyblade extends Page {
-    String text = "\"Keyblades\" you can summon when you obtain the keychain from the moogle after crafting it." +
-            " Inorder to summon it one must put the keychain in the keychain slot within the items tab and then pressing the keybind to summon it.";
+    String text = "Keyblade armour are sets of craftable armour that can be worn. There are Four sets of Keyblade armour, Ventus, Terra, Aqua, and Eraqus." +
+            " If you have questions on the crafting materials please refer to the crafting materials in the journal.";
 
     public PageArmourKeyblade (int xPos, int yPos) {
         super("Armour_Keyblade", xPos, yPos);

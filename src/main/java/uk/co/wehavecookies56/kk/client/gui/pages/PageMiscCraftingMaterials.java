@@ -8,8 +8,8 @@ import net.minecraft.client.gui.ScaledResolution;
  * Created by NStel on 1/22/2017.
  */
 public class PageMiscCraftingMaterials extends Page{
-    String text = "\"Keyblades\" you can summon when you obtain the keychain from the moogle after crafting it." +
-            " Inorder to summon it one must put the keychain in the keychain slot within the items tab and then pressing the keybind to summon it.";
+    String text = "\"Crafting Materials\" are what you use to make the Organization XIII armour, Keyblade armour, and the Knowledge books which are used to obtain the Organization XIII weapons." +
+            "";
 
     public PageMiscCraftingMaterials (int xPos, int yPos) {
         super("Misc_CraftingMaterials", xPos, yPos);
