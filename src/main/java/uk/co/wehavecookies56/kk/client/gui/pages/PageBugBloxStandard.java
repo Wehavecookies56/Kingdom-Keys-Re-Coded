@@ -8,8 +8,7 @@ import net.minecraft.client.gui.ScaledResolution;
  * Created by NStel on 1/22/2017.
  */
 public class PageBugBloxStandard extends Page {
-    String text = "\"Keyblades\" you can summon when you obtain the keychain from the moogle after crafting it." +
-            " Inorder to summon it one must put the keychain in the keychain slot within the items tab and then pressing the keybind to summon it.";
+    String text = "To be decided.";
 
     public PageBugBloxStandard (int xPos, int yPos) {
         super("BugBlox_Standard", xPos, yPos);

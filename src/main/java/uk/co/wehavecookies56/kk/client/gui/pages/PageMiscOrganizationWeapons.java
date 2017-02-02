@@ -8,8 +8,18 @@ import net.minecraft.client.gui.ScaledResolution;
  * Created by NStel on 1/22/2017.
  */
 public class PageMiscOrganizationWeapons extends Page{
-    String text = "\"Keyblades\" you can summon when you obtain the keychain from the moogle after crafting it." +
-            " Inorder to summon it one must put the keychain in the keychain slot within the items tab and then pressing the keybind to summon it.";
+    String text = "The organization can be obtained by right clicking with a " +
+            "manifest knowledge. The knowledge can obtained by by the other knowledge books. The recipies are as in order from top to bottom as they will be crafting" +
+            "\n  Void Knowledge = book + 8 dark leather surrounding the book" +
+            "\n  Abandoned Knowledge = Void Knowledge + 1 Lost Illusion" +
+            "\n  Dark Knowledge = Void Knowledge + 1 Lost Illusion"+
+            "\n  Eclipsed Knowledge = Dark Knowledge + + 1 Lost Illusion"+
+            "\n  Forgotten Knowledge = Eclipsed Knowledge + + 1 Lost Illusion"+
+            "\n  Illuded Knowledge  = Forgotten Knowledge + 1 Lost Illusion"+
+            "\n  Lost Knowledge = Illuded Knowledge + 1 Lost Illusion"+
+            "\n  Obscured Knowledge = Lost Knowledge + 1 Lost Illusion"+
+            "\n  Unknown Knowledge = Obscured Knowledge + 1 Lost Illusion"+
+            "\n  Manifest Knowledge = Unknown Knowledge + 1 Lost Illusion";
 
     public PageMiscOrganizationWeapons (int xPos, int yPos) {
         super("Misc_OrganizationWeapons", xPos, yPos);

@@ -9,7 +9,13 @@ import net.minecraft.client.gui.ScaledResolution;
  */
 public class PageMiscCraftingMaterials extends Page{
     String text = "\"Crafting Materials\" are what you use to make the Organization XIII armour, Keyblade armour, and the Knowledge books which are used to obtain the Organization XIII weapons." +
-            "";
+            "\n Dark-Infused Iron Ingot = Dark Crystal + Iron Ingot" +
+            "\n Bright-Infused Glowstone Dust = Bright Crystal + Glowstone Dust" +
+            "\n Stormy-Infused Iron Ingot = Stormy Crystal + Iron Ingot" +
+            "\n Mythril-Infused Diamond = Mythril Crystal + Diamond" +
+            "\n Lightig-Infused Gold Infused = Lighting Crystal + Gold Ingot" +
+            "\n Frost-Infusted Snowball = Frost Crystal + Snowball" +
+            "\n Blazing-Infused Coal = Blazing Crystal + Coal";
 
     public PageMiscCraftingMaterials (int xPos, int yPos) {
         super("Misc_CraftingMaterials", xPos, yPos);

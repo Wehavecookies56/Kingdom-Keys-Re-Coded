@@ -125,6 +125,10 @@ public class GuiJournal extends GuiScreen {
 	PageMiscHearts page_misc_hearts;
 	PageMiscMunny page_misc_munny;
 	PageMiscMenu page_misc_menu;
+	PageMiscCraftingMaterials page_misc_craftingmaterials;
+	PageMiscOrganizationWeapons page_misc_organization;
+	PageMiscMusicDiscs page_misc_musicdiscs;
+	PageMiscCommands page_misc_commands;
 
 	public GuiJournal () {
 		page_commandmenu_about = new PageCommandMenuAbout(0, 0);
@@ -160,6 +164,10 @@ public class GuiJournal extends GuiScreen {
 		page_misc_hearts = new PageMiscHearts(0, 0);
 		page_misc_munny = new PageMiscMunny(0, 0);
 		page_misc_menu = new PageMiscMenu(0, 0);
+		page_misc_craftingmaterials = new PageMiscCraftingMaterials(0, 0);
+		page_misc_organization = new PageMiscOrganizationWeapons(0, 0);
+		page_misc_musicdiscs = new PageMiscMusicDiscs(0, 0);
+		page_misc_commands =  new PageMiscCommands(0, 0);
 
 		collapse_commandmenu = new GuiButtonCollapse(COLLAPSE_COMMANDMENU, 0, 0);
 		collapse_keyblades = new GuiButtonCollapse(COLLAPSE_KEYBLADES, 0, 0);
@@ -272,8 +280,20 @@ public class GuiJournal extends GuiScreen {
 				page_driveforms_dp.drawScreen(mouseX, mouseY, partialTicks);
 			else if (currentPage.equals(page_driveforms_forms.getName()))
 				page_driveforms_forms.drawScreen(mouseX, mouseY, partialTicks);
-			else if (currentPage.equals(page_driveforms_forms.getName()))
-				page_driveforms_forms.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_misc_hearts.getName()))
+				page_misc_hearts.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_misc_munny.getName()))
+				page_misc_munny.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_misc_menu.getName()))
+				page_misc_menu.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_misc_craftingmaterials.getName()))
+				page_misc_craftingmaterials.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_misc_organization.getName()))
+				page_misc_organization.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_misc_musicdiscs.getName()))
+				page_misc_musicdiscs.drawScreen(mouseX, mouseY, partialTicks);
+			else if (currentPage.equals(page_misc_commands.getName()))
+				page_misc_commands.drawScreen(mouseX, mouseY, partialTicks);
 		}
 
 		int distToBottomFromMisc = (this.height / 4) - 7;
@@ -289,8 +309,8 @@ public class GuiJournal extends GuiScreen {
 			topic_commandmenu_drive.colour = currentPage.equals(page_commandmenu_drive.getName()) ? 0xFFFFFF : 0x0645AD;
 			
 			topic_bugblox_about.colour = currentPage.equals(page_bugblox_about.getName()) ? 0xFFFFFF : 0x0645AD;
-			topic_bugblox_specialblox.colour = currentPage.equals(page_bugblox_standard.getName()) ? 0xFFFFFF : 0x0645AD;
-			topic_bugblox_standardblox.colour = currentPage.equals(page_bugblox_special.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_bugblox_standardblox.colour = currentPage.equals(page_bugblox_standard.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_bugblox_specialblox.colour = currentPage.equals(page_bugblox_special.getName()) ? 0xFFFFFF : 0x0645AD;
 			
 			topic_keyblades_about.colour = currentPage.equals(page_keyblade_about.getName()) ? 0xFFFFFF : 0x0645AD;
 			topic_keyblades_list.colour = currentPage.equals(page_keyblade_list.getName()) ? 0xFFFFFF : 0x0645AD;
@@ -311,7 +331,17 @@ public class GuiJournal extends GuiScreen {
 			topic_driveforms_about.colour = currentPage.equals(page_driveforms_about.getName()) ? 0xFFFFFF : 0x0645AD;
 			topic_driveforms_dp.colour = currentPage.equals(page_driveforms_dp.getName()) ? 0xFFFFFF : 0x0645AD;
 			topic_driveforms_forms.colour = currentPage.equals(page_driveforms_forms.getName()) ? 0xFFFFFF : 0x0645AD;
-		} else {
+
+			topic_misc_hearts.colour = currentPage.equals(page_misc_hearts.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_misc_munny.colour = currentPage.equals(page_misc_munny.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_misc_menu.colour = currentPage.equals(page_misc_menu.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_misc_craftingmaterials.colour = currentPage.equals(page_misc_craftingmaterials.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_misc_organizationweapons.colour = currentPage.equals(page_misc_organization.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_misc_musicdiscs.colour = currentPage.equals(page_misc_musicdiscs.getName()) ? 0xFFFFFF : 0x0645AD;
+			topic_misc_commands.colour = currentPage.equals(page_misc_commands.getName()) ? 0xFFFFFF : 0x0645AD;
+
+		} // end if
+		else {
 			topic_commandmenu_about.colour = 0x0645AD;
 			topic_commandmenu_attack.colour = 0x0645AD;
 			topic_commandmenu_magic.colour = 0x0645AD;
@@ -334,7 +364,12 @@ public class GuiJournal extends GuiScreen {
 			topic_driveforms_about.colour = 0x0645AD;
 			topic_driveforms_dp.colour = 0x0645AD;
 			topic_driveforms_forms.colour = 0x0645AD;
-
+			topic_misc_hearts.colour = 0x0645AD;
+			topic_misc_munny.colour = 0x0645AD;
+			topic_misc_menu.colour = 0x0645AD;
+			topic_misc_craftingmaterials.colour = 0x0645AD;
+			topic_misc_organizationweapons.colour = 0x0645AD;
+			topic_misc_commands.colour = 0x0645AD;
 		}
 
 		GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2 - 2, this.width, listHeight * 2 - 1);
@@ -896,6 +931,26 @@ public class GuiJournal extends GuiScreen {
 		page_driveforms_forms.setxPos(xPos_coll_driveforms + 120);
 		page_driveforms_forms.setyPos(this.height / 8);
 
+		page_misc_hearts.setxPos(xPos_coll_misc + 120);
+		page_misc_hearts.setyPos(this.height / 8);
+
+		page_misc_munny.setxPos(xPos_coll_misc + 120);
+		page_misc_munny.setyPos(this.height / 8);
+
+		page_misc_menu.setxPos(xPos_coll_misc + 120);
+		page_misc_menu.setyPos(this.height / 8);
+
+		page_misc_craftingmaterials.setxPos(xPos_coll_misc + 120);
+		page_misc_craftingmaterials.setyPos(this.height / 8);
+
+		page_misc_organization.setxPos(xPos_coll_misc + 120);
+		page_misc_organization.setyPos(this.height / 8);
+
+		page_misc_musicdiscs.setxPos(xPos_coll_misc + 120);
+		page_misc_musicdiscs.setyPos(this.height / 8);
+
+		page_misc_commands.setxPos(xPos_coll_misc + 120);
+		page_misc_commands.setyPos(this.height / 8);
 
 	}
 
@@ -1171,6 +1226,27 @@ public class GuiJournal extends GuiScreen {
 				break;
 			case TOPIC_DRIVEFORMS_FORMS:
 				currentPage = page_driveforms_forms.getName();
+				break;
+			case TOPIC_MISC_HEARTS:
+				currentPage = page_misc_hearts.getName();
+				break;
+			case TOPIC_MISC_MUNNY:
+				currentPage = page_misc_munny.getName();
+				break;
+			case TOPIC_MISC_MENU:
+				currentPage = page_misc_menu.getName();
+				break;
+			case TOPIC_MISC_CRAFTINGMATERIALS:
+				currentPage = page_misc_craftingmaterials.getName();
+				break;
+			case TOPIC_MISC_ORGANIZATIONWEAPONS:
+				currentPage = page_misc_organization.getName();
+				break;
+			case TOPIC_MISC_MUSICDISCS:
+				currentPage = page_misc_musicdiscs.getName();
+				break;
+			case TOPIC_MISC_COMMANDS:
+				currentPage = page_misc_commands.getName();
 				break;
 		}
 

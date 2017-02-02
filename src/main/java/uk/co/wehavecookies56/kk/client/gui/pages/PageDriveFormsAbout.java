@@ -9,8 +9,8 @@ import net.minecraft.client.gui.ScaledResolution;
  */
 public class PageDriveFormsAbout extends Page
 {
-    String text = "\"Keyblades\" you can summon when you obtain the keychain from the moogle after crafting it." +
-        " Inorder to summon it one must put the keychain in the keychain slot within the items tab and then pressing the keybind to summon it.";
+    String text = " Drive Forms will give you stat boosts and negate fall damage. you have a change of obtaining the drive forms by destroying " +
+            "prize blocks.";
 
     public PageDriveFormsAbout (int xPos, int yPos) {
         super("DriveForms_About", xPos, yPos);
