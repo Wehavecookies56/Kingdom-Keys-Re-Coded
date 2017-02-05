@@ -17,7 +17,8 @@ public class ItemManifestKnowledge extends Item {
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn,
-			EnumHand hand) {
+			EnumHand hand)
+	{
 		if (worldIn.isRemote) PacketDispatcher.sendToServer(new ManifestKnowledgePacket());
 		return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
 	}

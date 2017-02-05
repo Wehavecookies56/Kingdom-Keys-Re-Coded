@@ -32,9 +32,9 @@ public class ManifestKnowledgePacket extends AbstractMessage.AbstractServerMessa
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-		int rand = Utils.randomWithRange(0, Lists.orgWeapons.size() - 1);
-		player.inventory.addItemStackToInventory(new ItemStack(Lists.orgWeapons.get(rand)));
-		TextComponentTranslation manifestMessage = new TextComponentTranslation(Strings.Chat_Manifest, new TextComponentTranslation(Lists.orgWeapons.get(rand).getUnlocalizedName() + ".name"));
+		int rand = Utils.randomWithRange(0, Lists.Xemnas.size() - 1);
+		player.inventory.addItemStackToInventory(new ItemStack(Lists.Xemnas.get(rand)));
+		TextComponentTranslation manifestMessage = new TextComponentTranslation(Strings.Chat_Manifest, new TextComponentTranslation(Lists.Xemnas.get(rand).getUnlocalizedName() + ".name"));
 		manifestMessage.getStyle().setColor(TextFormatting.YELLOW);
 		player.sendMessage(manifestMessage);
     	AchievementHelper.addAchievement(player, ModAchievements.getOrgWeapon);

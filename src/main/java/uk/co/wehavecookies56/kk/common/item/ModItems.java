@@ -38,6 +38,7 @@ import uk.co.wehavecookies56.kk.common.item.org.ItemSharpshooter;
 import uk.co.wehavecookies56.kk.common.item.org.ItemSkysplitter;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.network.packet.server.ItemUknownKnowledge;
 
 public class ModItems {
 
@@ -91,7 +92,7 @@ public class ModItems {
 		LostKnowledge = new Item().setUnlocalizedName(Strings.LostKnowledge).setCreativeTab(tabKingdomKeys);
 		ManifestKnowledge = new ItemManifestKnowledge().setUnlocalizedName(Strings.ManifestKnowledge).setCreativeTab(tabKingdomKeys);
 		ObscuredKnowledge = new Item().setUnlocalizedName(Strings.ObscuredKnowledge).setCreativeTab(tabKingdomKeys);
-		UnknownKnowledge = new Item().setUnlocalizedName(Strings.UnknownKnowledge).setCreativeTab(tabKingdomKeys);
+		UnknownKnowledge = new ItemUknownKnowledge().setUnlocalizedName(Strings.UnknownKnowledge).setCreativeTab(tabKingdomKeys);
 		VoidKnowledge = new Item().setUnlocalizedName(Strings.VoidKnowledge).setCreativeTab(tabKingdomKeys);
 
 		// xemnas

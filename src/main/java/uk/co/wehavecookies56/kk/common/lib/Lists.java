@@ -12,23 +12,24 @@ public class Lists {
 
 	public static List<String> recipes = new ArrayList<String>();
 	public static List<Item> orgWeapons = new ArrayList<Item>();
-
+	public static List<Item> Xemnas = new ArrayList<Item>();
+	public static List<Item> Xigbar = new ArrayList<Item>();
 	public static void init () {
 
 		//Xemnas
-		orgWeapons.add(Interdiction);
-		orgWeapons.add(Infinity);
-		orgWeapons.add(Sanction);
-		orgWeapons.add(Aggression);
-		orgWeapons.add(Malice);
+		Xemnas.add(Interdiction);
+		Xemnas.add(Infinity);
+		Xemnas.add(Sanction);
+		Xemnas.add(Aggression);
+		Xemnas.add(Malice);
 
 		//Xigbar
-		orgWeapons.add(Sharpshooter);
-		orgWeapons.add(Killerbee);
-		orgWeapons.add(Standalone);
-		orgWeapons.add(FinalWeapon);
-		orgWeapons.add(Precision);
-		orgWeapons.add(Sunrise);
+		Xigbar.add(Sharpshooter);
+		Xigbar.add(Killerbee);
+		Xigbar.add(Standalone);
+		Xigbar.add(FinalWeapon);
+		Xigbar.add(Precision);
+		Xigbar.add(Sunrise);
 
 		//Xaldin
 		orgWeapons.add(Crux);
