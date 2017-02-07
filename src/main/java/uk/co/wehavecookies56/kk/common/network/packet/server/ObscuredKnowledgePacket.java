@@ -16,11 +16,11 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 import java.io.IOException;
 
 /**
- * Created by NStel on 2/3/2017.
+ * Created by NStel on 2/7/2017.
  */
-public class UnknownKnowledgePacket extends AbstractMessage.AbstractServerMessage<UnknownKnowledgePacket>
+public class ObscuredKnowledgePacket extends AbstractMessage.AbstractServerMessage<ObscuredKnowledgePacket>
 {
-    public UnknownKnowledgePacket () {}
+    public ObscuredKnowledgePacket () {}
 
     @Override
     protected void read (PacketBuffer buffer) throws IOException {
@@ -35,9 +35,9 @@ public class UnknownKnowledgePacket extends AbstractMessage.AbstractServerMessag
     @Override
     public void process (EntityPlayer player, Side side) {
         player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-        int rand = Utils.randomWithRange(0, Lists.Xigbar.size() - 1);
-        player.inventory.addItemStackToInventory(new ItemStack(Lists.Xigbar.get(rand)));
-        TextComponentTranslation manifestMessage = new TextComponentTranslation(Strings.Chat_Manifest, new TextComponentTranslation(Lists.Xigbar.get(rand).getUnlocalizedName() + ".name"));
+        int rand = Utils.randomWithRange(0, Lists.Demyx.size() - 1);
+        player.inventory.addItemStackToInventory(new ItemStack(Lists.Demyx.get(rand)));
+        TextComponentTranslation manifestMessage = new TextComponentTranslation(Strings.Chat_Manifest, new TextComponentTranslation(Lists.Demyx.get(rand).getUnlocalizedName() + ".name"));
         manifestMessage.getStyle().setColor(TextFormatting.YELLOW);
         player.sendMessage(manifestMessage);
         AchievementHelper.addAchievement(player, ModAchievements.getOrgWeapon);

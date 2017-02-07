@@ -9,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.structure.StructureVillagePieces;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
@@ -38,7 +37,6 @@ import uk.co.wehavecookies56.kk.common.item.org.ItemSharpshooter;
 import uk.co.wehavecookies56.kk.common.item.org.ItemSkysplitter;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
-import uk.co.wehavecookies56.kk.common.network.packet.server.ItemUknownKnowledge;
 
 public class ModItems {
 
@@ -84,16 +82,17 @@ public class ModItems {
 		BrightInfusedGlowStone = new Item().setUnlocalizedName(Strings.BrightInfusedGlowStone).setCreativeTab(tabKingdomKeys);
 		DarkInfusedIron = new Item().setUnlocalizedName(Strings.DarkInfusedIron).setCreativeTab(tabKingdomKeys);
 
-		AbandonedKnowledge = new Item().setUnlocalizedName(Strings.AbandonedKnowledge).setCreativeTab(tabKingdomKeys);
-		DarkKnowledge = new Item().setUnlocalizedName(Strings.DarkKnowledge).setCreativeTab(tabKingdomKeys);
-		EclipsedKnowledge = new Item().setUnlocalizedName(Strings.EclipsedKnowledge).setCreativeTab(tabKingdomKeys);
-		ForgottenKnowledge = new Item().setUnlocalizedName(Strings.ForgottenKnowledge).setCreativeTab(tabKingdomKeys);
-		IlludedKnowledge = new Item().setUnlocalizedName(Strings.IlludedKnowledge).setCreativeTab(tabKingdomKeys);
-		LostKnowledge = new Item().setUnlocalizedName(Strings.LostKnowledge).setCreativeTab(tabKingdomKeys);
-		ManifestKnowledge = new ItemManifestKnowledge().setUnlocalizedName(Strings.ManifestKnowledge).setCreativeTab(tabKingdomKeys);
-		ObscuredKnowledge = new Item().setUnlocalizedName(Strings.ObscuredKnowledge).setCreativeTab(tabKingdomKeys);
+		AbandonedKnowledge = new ItemAbandonedKnowledgePacket().setUnlocalizedName(Strings.AbandonedKnowledge).setCreativeTab(tabKingdomKeys);
 		UnknownKnowledge = new ItemUknownKnowledge().setUnlocalizedName(Strings.UnknownKnowledge).setCreativeTab(tabKingdomKeys);
-		VoidKnowledge = new Item().setUnlocalizedName(Strings.VoidKnowledge).setCreativeTab(tabKingdomKeys);
+		VoidKnowledge = new ItemVoidKnowledge().setUnlocalizedName(Strings.VoidKnowledge).setCreativeTab(tabKingdomKeys);
+		ManifestKnowledge = new ItemManifestKnowledge().setUnlocalizedName(Strings.ManifestKnowledge).setCreativeTab(tabKingdomKeys);
+		DarkKnowledge = new ItemDarkKnowledge().setUnlocalizedName(Strings.DarkKnowledge).setCreativeTab(tabKingdomKeys);
+		LostKnowledge = new ItemLostKnowledge().setUnlocalizedName(Strings.LostKnowledge).setCreativeTab(tabKingdomKeys);
+		EclipsedKnowledge = new ItemEclipsedKnowledge().setUnlocalizedName(Strings.EclipsedKnowledge).setCreativeTab(tabKingdomKeys);
+		ForgottenKnowledge = new ItemForgottenKnowledge().setUnlocalizedName(Strings.ForgottenKnowledge).setCreativeTab(tabKingdomKeys);
+		IlludedKnowledge = new ItemIlludedKnowledge().setUnlocalizedName(Strings.IlludedKnowledge).setCreativeTab(tabKingdomKeys);
+		ObscuredKnowledge = new ItemObscuredKnowledge().setUnlocalizedName(Strings.ObscuredKnowledge).setCreativeTab(tabKingdomKeys);
+
 
 		// xemnas
 		Interdiction = new ItemInterdiction(EnumHelper.addToolMaterial("interdiction", 3, -1, 6F, 10, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);

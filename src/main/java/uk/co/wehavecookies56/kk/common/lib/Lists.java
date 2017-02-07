@@ -11,9 +11,20 @@ import net.minecraft.item.Item;
 public class Lists {
 
 	public static List<String> recipes = new ArrayList<String>();
-	public static List<Item> orgWeapons = new ArrayList<Item>();
+
 	public static List<Item> Xemnas = new ArrayList<Item>();
 	public static List<Item> Xigbar = new ArrayList<Item>();
+	public static List<Item> Xaldin = new ArrayList<Item>();
+	public static List<Item> Vexen = new ArrayList<Item>();
+	public static List<Item> Lexaeus = new ArrayList<Item>();
+	public static List<Item> Zexion = new ArrayList<Item>();
+	public static List<Item> Saix = new ArrayList<Item>();
+	public static List<Item> Axel = new ArrayList<Item>();
+	public static List<Item> Demyx = new ArrayList<Item>();
+	public static List<Item> Luxord = new ArrayList<Item>();
+	public static List<Item> Marluxia = new ArrayList<Item>();
+	public static List<Item> Larxene = new ArrayList<Item>();
+
 	public static void init () {
 
 		//Xemnas
@@ -32,66 +43,67 @@ public class Lists {
 		Xigbar.add(Sunrise);
 
 		//Xaldin
-		orgWeapons.add(Crux);
-		orgWeapons.add(Dragonreign);
-		orgWeapons.add(Lindworm);
-		orgWeapons.add(Zephyr);
+		Xaldin.add(Crux);
+		Xaldin.add(Dragonreign);
+		Xaldin.add(Lindworm);
+		Xaldin.add(Zephyr);
 
 		//Vexen
-		orgWeapons.add(FrozenPride);
-		orgWeapons.add(TesterZero);
-		orgWeapons.add(ProductOne);
-		orgWeapons.add(Inquisition);
-		orgWeapons.add(FalseTheory);
+		Vexen.add(FrozenPride);
+		Vexen.add(TesterZero);
+		Vexen.add(ProductOne);
+		Vexen.add(Inquisition);
+		Vexen.add(FalseTheory);
 
 		//Lexaeus
-		orgWeapons.add(Skysplitter);
-		orgWeapons.add(Reticence);
+		Lexaeus.add(Skysplitter);
+		Lexaeus.add(Reticence);
 
 		//Zexion
-		orgWeapons.add(BookofRetribution);
-		orgWeapons.add(BlackPrimer);
-		orgWeapons.add(Whitetime);
+		Zexion.add(BookofRetribution);
+		Zexion.add(BlackPrimer);
+		Zexion.add(Whitetime);
 
 		//Saix
-		orgWeapons.add(Lunatic);
-		orgWeapons.add(Twilight);
+		Saix.add(Lunatic);
+		Saix.add(Twilight);
 
 		//Axel
-		orgWeapons.add(EternalFlames);
-		orgWeapons.add(BlazeofGlory);
-		orgWeapons.add(Prometheus);
-		orgWeapons.add(Ifrit);
-		orgWeapons.add(Prominence);
-		orgWeapons.add(Ashes);
-		orgWeapons.add(Combustion);
-		orgWeapons.add(Burnout);
-		orgWeapons.add(Outbreak);
-		//Demyx
-		orgWeapons.add(Arpeggio);
+		Axel.add(EternalFlames);
+		Axel.add(BlazeofGlory);
+		Axel.add(Prometheus);
+		Axel.add(Ifrit);
+		Axel.add(Prominence);
+		Axel.add(Ashes);
+		Axel.add(Combustion);
+		Axel.add(Burnout);
+		Axel.add(Outbreak);
 
-		//luxord
-		orgWeapons.add(FairGame);
-		orgWeapons.add(TheFool);
+		//Demyx
+		Demyx.add(Arpeggio);
+
+		//Luxord
+		Luxord.add(FairGame);
+		Luxord.add(TheFool);
 
 		//Marluxia
-		orgWeapons.add(GracefulDahlia);
-		orgWeapons.add(FickleErica);
-		orgWeapons.add(PoorMelissa);
-		orgWeapons.add(JiltedAnemone);
-		orgWeapons.add(HallowedLotus);
-		orgWeapons.add(LoftyGerbera);
+		Marluxia.add(GracefulDahlia);
+		Marluxia.add(FickleErica);
+		Marluxia.add(PoorMelissa);
+		Marluxia.add(JiltedAnemone);
+		Marluxia.add(HallowedLotus);
+		Marluxia.add(LoftyGerbera);
 
-		//Laxene
-		orgWeapons.add(Foudre);
-		orgWeapons.add(Calmant);
-		orgWeapons.add(Tranchant);
-		orgWeapons.add(Orage);
-		orgWeapons.add(Irregulier);
-		orgWeapons.add(Eruption);
-		orgWeapons.add(Indigo);
-		orgWeapons.add(Lumineuse);
-		orgWeapons.add(Tourbillon);
+		//Larxene
+		Larxene.add(Foudre);
+		Larxene.add(Calmant);
+		Larxene.add(Tranchant);
+		Larxene.add(Orage);
+		Larxene.add(Irregulier);
+		Larxene.add(Eruption);
+		Larxene.add(Indigo);
+		Larxene.add(Lumineuse);
+		Larxene.add(Tourbillon);
 
 
 		//Keyblades

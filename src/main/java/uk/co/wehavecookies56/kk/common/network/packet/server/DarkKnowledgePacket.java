@@ -16,30 +16,33 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 import java.io.IOException;
 
 /**
- * Created by NStel on 2/3/2017.
+ * Created by NStel on 2/6/2017.
  */
-public class UnknownKnowledgePacket extends AbstractMessage.AbstractServerMessage<UnknownKnowledgePacket>
+// Saix
+public class DarkKnowledgePacket extends AbstractMessage.AbstractServerMessage<DarkKnowledgePacket>
 {
-    public UnknownKnowledgePacket () {}
+public DarkKnowledgePacket () {}
 
-    @Override
-    protected void read (PacketBuffer buffer) throws IOException {
+@Override
+protected void read (PacketBuffer buffer) throws IOException {
 
-    }
+        }
 
-    @Override
-    protected void write (PacketBuffer buffer) throws IOException {
+@Override
+protected void write (PacketBuffer buffer) throws IOException {
 
-    }
+        }
 
-    @Override
-    public void process (EntityPlayer player, Side side) {
+@Override
+public void process (EntityPlayer player, Side side) {
         player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-        int rand = Utils.randomWithRange(0, Lists.Xigbar.size() - 1);
-        player.inventory.addItemStackToInventory(new ItemStack(Lists.Xigbar.get(rand)));
-        TextComponentTranslation manifestMessage = new TextComponentTranslation(Strings.Chat_Manifest, new TextComponentTranslation(Lists.Xigbar.get(rand).getUnlocalizedName() + ".name"));
+        int rand = Utils.randomWithRange(0, Lists.Marluxia.size() - 1);
+        player.inventory.addItemStackToInventory(new ItemStack(Lists.Marluxia.get(rand)));
+        TextComponentTranslation manifestMessage = new TextComponentTranslation(Strings.Chat_Manifest, new TextComponentTranslation(Lists.Marluxia.get(rand).getUnlocalizedName() + ".name"));
         manifestMessage.getStyle().setColor(TextFormatting.YELLOW);
         player.sendMessage(manifestMessage);
         AchievementHelper.addAchievement(player, ModAchievements.getOrgWeapon);
-    }
+        }
+
+
 }
