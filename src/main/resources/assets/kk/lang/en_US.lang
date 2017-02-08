@@ -26,9 +26,7 @@ achievement.getorgweapon=Nobody owned this
 achievement.getorgweapon.desc=Get a weapon form the Organization XIII
 
 achievement.getsynthesistable=Will I be able to make better items?
-achievement.getsynthesistable.desc=Get a Synthesis Table
-
-achievement.getkeyblade=A Keychain? Why would I want it?
+achievement.getsynthesistable.desc=Get a Synthwant it?
 achievement.getkeyblade.desc=Obtain your first Keychain
 achievement.getincompletekiblade=Its still broken
 achievement.getincompletekiblade.desc=Get an Incomplete X-Blade
@@ -312,16 +310,16 @@ item.darkinfusediron.name=Dark-Infused Iron Ingot
 item.lightninginfusedgold.name=Lightning-Infused Gold Ingot
 item.mythrilinfuseddiamond.name=Mythril-Infused Diamond
 
-item.abandonedknowledge.name=Abandoned Knowledge
-item.darkknowledge.name=Dark Knowledge
-item.eclipsedknowledge.name=Eclipsed Knowledge
-item.forgottenknowledge.name=Forgotten Knowledge
-item.illudedknowledge.name=Illuded Knowledge
-item.lostknowledge.name=Lost Knowledge
-item.manifestknowledge.name=Manifest Knowledge
-item.obscuredknowledge.name=Obscured Knowledge
-item.unknownknowledge.name=Unknown Knowledge
-item.voidknowledge.name=Void Knowledge
+item.abandonedknowledge.name=Vexen's Knowledge
+item.darkknowledge.name=Marluxia's Knowledge
+item.eclipsedknowledge.name=Saïx's Knowledge
+item.forgottenknowledge.name=Xaldin's Knowledge
+item.illudedknowledge.name=Zexion's Knowledge
+item.lostknowledge.name=Larxene's Knowledge
+item.manifestknowledge.name=Xemnas' Knowledge
+item.obscuredknowledge.name=Demyx's Knowledge
+item.unknownknowledge.name=Xigbar's Knowledge
+item.voidknowledge.name=Axel's Knowledge
 
 #Music Discs
 disc.duration.desc=Duration
