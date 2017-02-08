@@ -7,20 +7,19 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.server.IlludedKnowledgePacket;
+import uk.co.wehavecookies56.kk.common.network.packet.server.UnknownKnowledgePacket;
 
 /**
- * Created by NStel on 2/7/2017.
+ * Created by NStel on 2/3/2017.
  */
-public class ItemIlludedKnowledge extends Item {
-
-    public ItemIlludedKnowledge () {
+public class ItemUnknownKnowledge extends Item {
+    public ItemUnknownKnowledge() {
         setMaxStackSize(1);
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
-        if (worldIn.isRemote) PacketDispatcher.sendToServer(new IlludedKnowledgePacket());
+        if (worldIn.isRemote) PacketDispatcher.sendToServer(new UnknownKnowledgePacket());
         return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
     }
 }

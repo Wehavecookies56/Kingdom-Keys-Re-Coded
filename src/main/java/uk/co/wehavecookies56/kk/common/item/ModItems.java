@@ -82,8 +82,8 @@ public class ModItems {
 		BrightInfusedGlowStone = new Item().setUnlocalizedName(Strings.BrightInfusedGlowStone).setCreativeTab(tabKingdomKeys);
 		DarkInfusedIron = new Item().setUnlocalizedName(Strings.DarkInfusedIron).setCreativeTab(tabKingdomKeys);
 
-		AbandonedKnowledge = new ItemAbandonedKnowledgePacket().setUnlocalizedName(Strings.AbandonedKnowledge).setCreativeTab(tabKingdomKeys);
-		UnknownKnowledge = new ItemUknownKnowledge().setUnlocalizedName(Strings.UnknownKnowledge).setCreativeTab(tabKingdomKeys);
+		AbandonedKnowledge = new ItemAbandonedKnowledge().setUnlocalizedName(Strings.AbandonedKnowledge).setCreativeTab(tabKingdomKeys);
+		UnknownKnowledge = new ItemUnknownKnowledge().setUnlocalizedName(Strings.UnknownKnowledge).setCreativeTab(tabKingdomKeys);
 		VoidKnowledge = new ItemVoidKnowledge().setUnlocalizedName(Strings.VoidKnowledge).setCreativeTab(tabKingdomKeys);
 		ManifestKnowledge = new ItemManifestKnowledge().setUnlocalizedName(Strings.ManifestKnowledge).setCreativeTab(tabKingdomKeys);
 		DarkKnowledge = new ItemDarkKnowledge().setUnlocalizedName(Strings.DarkKnowledge).setCreativeTab(tabKingdomKeys);

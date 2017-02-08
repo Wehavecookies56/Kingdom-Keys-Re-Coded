@@ -18,9 +18,8 @@ import java.io.IOException;
 /**
  * Created by NStel on 2/7/2017.
  */
-public class EclipseKnowledgePacket extends AbstractMessage.AbstractServerMessage<EclipseKnowledgePacket>
-{
-    public EclipseKnowledgePacket () {}
+public class EclipsedKnowledgePacket extends AbstractMessage.AbstractServerMessage<EclipsedKnowledgePacket> {
+    public EclipsedKnowledgePacket() {}
 
     @Override
     protected void read (PacketBuffer buffer) throws IOException {

@@ -20,8 +20,7 @@ import java.io.IOException;
  */
 
  // Uses the list that contains Axel's weapons
-public class VoidKnowledgePacket extends AbstractMessage.AbstractServerMessage<VoidKnowledgePacket>
-{
+public class VoidKnowledgePacket extends AbstractMessage.AbstractServerMessage<VoidKnowledgePacket> {
     public VoidKnowledgePacket () {}
 
     @Override

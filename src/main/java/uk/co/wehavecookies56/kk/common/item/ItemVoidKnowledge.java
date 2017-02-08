@@ -12,16 +12,13 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.VoidKnowledgePacket
 /**
  * Created by NStel on 2/6/2017.
  */
-public  class ItemVoidKnowledge extends Item
-{
+public  class ItemVoidKnowledge extends Item {
     public ItemVoidKnowledge () {
         setMaxStackSize(1);
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn,
-                                                    EnumHand hand)
-    {
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
         if (worldIn.isRemote) PacketDispatcher.sendToServer(new VoidKnowledgePacket());
         return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
     }

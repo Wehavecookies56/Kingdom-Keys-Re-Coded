@@ -18,8 +18,7 @@ import java.io.IOException;
 /**
  * Created by NStel on 2/6/2017.
  */
-public class AbandonedKnowledgePacket extends AbstractMessage.AbstractServerMessage<AbandonedKnowledgePacket>
-{
+public class AbandonedKnowledgePacket extends AbstractMessage.AbstractServerMessage<AbandonedKnowledgePacket> {
     public AbandonedKnowledgePacket() {}
 
     @Override

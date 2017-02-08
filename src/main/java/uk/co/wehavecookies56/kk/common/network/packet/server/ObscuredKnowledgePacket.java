@@ -18,8 +18,7 @@ import java.io.IOException;
 /**
  * Created by NStel on 2/7/2017.
  */
-public class ObscuredKnowledgePacket extends AbstractMessage.AbstractServerMessage<ObscuredKnowledgePacket>
-{
+public class ObscuredKnowledgePacket extends AbstractMessage.AbstractServerMessage<ObscuredKnowledgePacket> {
     public ObscuredKnowledgePacket () {}
 
     @Override

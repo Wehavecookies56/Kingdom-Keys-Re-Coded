@@ -88,7 +88,7 @@ public class PacketDispatcher {
 		registerMessage(AbandonedKnowledgePacket.class);
 		registerMessage(DarkKnowledgePacket.class);
 		registerMessage(LostKnowledgePacket.class);
-		registerMessage(EclipseKnowledgePacket.class);
+		registerMessage(EclipsedKnowledgePacket.class);
 		registerMessage(ForgottenKnowledgePacket.class);
 		registerMessage(ObscuredKnowledgePacket.class);
 		registerMessage(IlludedKnowledgePacket.class);

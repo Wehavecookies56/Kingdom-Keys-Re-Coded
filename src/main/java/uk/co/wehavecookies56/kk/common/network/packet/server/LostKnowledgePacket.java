@@ -18,8 +18,7 @@ import java.io.IOException;
 /**
  * Created by NStel on 2/6/2017.
  */
-public class LostKnowledgePacket extends AbstractMessage.AbstractServerMessage<LostKnowledgePacket>
-    {
+public class LostKnowledgePacket extends AbstractMessage.AbstractServerMessage<LostKnowledgePacket> {
     public LostKnowledgePacket () {}
 
         @Override

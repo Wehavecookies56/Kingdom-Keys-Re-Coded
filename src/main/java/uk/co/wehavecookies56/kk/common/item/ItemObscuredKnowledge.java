@@ -19,9 +19,7 @@ public class ItemObscuredKnowledge extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn,
-                                                    EnumHand hand)
-    {
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
         if (worldIn.isRemote) PacketDispatcher.sendToServer(new ObscuredKnowledgePacket());
         return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
     }
