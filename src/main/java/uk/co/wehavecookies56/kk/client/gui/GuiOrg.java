@@ -4,9 +4,16 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OrgMemberSelect;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.io.IOException;
+
+import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.ROXAS;
+import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.XEMNAS;
 
 /**
  * Created by Toby on 08/02/2017.
@@ -16,9 +23,7 @@ public class GuiOrg extends GuiScreen {
     GuiButton ok, confirm, cancel, next, prev, select;
     final int OK = 0, CONFIRM = 1, CANCEL = 2, NEXT = 3, PREV = 4, SELECT = 5;
 
-    final int XEMNAS = 0, XIGBAR = 1, XALDIN = 2, VEXEN = 3, LEXAEUS = 4, ZEXION = 5, SAIX = 6, AXEL = 7, DEMYX = 8, LUXORD = 9, MARLUXIA = 10, LARXENE = 11, ROXAS = 12;
-
-    int current = 0;
+    Utils.OrgMember current = Utils.OrgMember.XEMNAS;
     boolean showWelcome = true;
     boolean confirmChoice = false;
 
@@ -151,7 +156,7 @@ public class GuiOrg extends GuiScreen {
                 drawTexturedModalRect((width / 2) - (256 / 2) - 5, (height / 2) - (256 / 2), 0, 0, 256, 256);
                 GlStateManager.popMatrix();
                 GlStateManager.pushMatrix();
-                mc.renderEngine.bindTexture(icons[current]);
+                mc.renderEngine.bindTexture(icons[current.ordinal()]);
                 GlStateManager.enableAlpha();
                 GlStateManager.enableBlend();
                 drawTexturedModalRect((width / 2) - (weapon_w / 2), (height / 2) - (weapon_h / 2), 56, 0, weapon_w, weapon_h);
@@ -189,6 +194,9 @@ public class GuiOrg extends GuiScreen {
                 break;
             case CONFIRM:
                 //Send choice to server
+                PacketDispatcher.sendToServer(new OrgMemberSelect(current));
+                mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setMember(current);
+                mc.displayGuiScreen(null);
                 break;
             case CANCEL:
                 //Go back
@@ -198,7 +206,7 @@ public class GuiOrg extends GuiScreen {
                 if (current == ROXAS) {
                     current = XEMNAS;
                 } else {
-                    current++;
+                    current = Utils.OrgMember.values()[current.ordinal()+1];
                 }
                 //Go to the right
                 break;
@@ -207,7 +215,7 @@ public class GuiOrg extends GuiScreen {
                 if (current == XEMNAS) {
                     current = ROXAS;
                 } else {
-                    current--;
+                    current = Utils.OrgMember.values()[current.ordinal()-1];
                 }
                 break;
             case SELECT:

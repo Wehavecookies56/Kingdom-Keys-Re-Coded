@@ -46,6 +46,7 @@ public class PacketDispatcher {
 		registerMessage(SyncLevelData.class);
 		registerMessage(SyncDriveWithPlayers.class);
 		registerMessage(SyncFreeDevRecipeData.class);
+		registerMessage(SyncOrgXIIIData.class);
 		registerMessage(SpawnLockOnParticle.class);
 		registerMessage(SyncKH1Magic.class);
 		registerMessage(PedestalRotation.class);
@@ -80,6 +81,7 @@ public class PacketDispatcher {
 		registerMessage(GlidePacket.class);
 		registerMessage(MasterFormPacket.class);
 		registerMessage(LevelUpMagic.class);
+		registerMessage(OrgMemberSelect.class);
 
 		//knowledge
 		registerMessage(ManifestKnowledgePacket.class);

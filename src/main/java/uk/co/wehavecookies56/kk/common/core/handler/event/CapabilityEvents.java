@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.common.core.handler.event;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTPrimitive;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -8,17 +9,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import uk.co.wehavecookies56.kk.common.capability.CheatModeCapability;
-import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
-import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
-import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
-import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
-import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
-import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
-import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
-import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
+import uk.co.wehavecookies56.kk.common.capability.*;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+
+import javax.annotation.Nullable;
 
 /**
  * Created by Toby on 19/07/2016.
@@ -26,7 +20,31 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 public class CapabilityEvents {
 
     @SubscribeEvent
-    public void onEntityConstructing (AttachCapabilitiesEvent.Entity event) {
+    public void onEntityConstructing (AttachCapabilitiesEvent<Entity> event) {
+        event.addCapability(new ResourceLocation(Reference.MODID, "IOrganizationXIII"), new ICapabilitySerializable<NBTTagCompound>()
+        {
+            OrganizationXIIICapability.IOrganizationXIII inst = ModCapabilities.ORGANIZATION_XIII.getDefaultInstance();
+
+            @Override
+            public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+                return capability == ModCapabilities.ORGANIZATION_XIII;
+            }
+
+            @Override
+            public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+                return capability == ModCapabilities.ORGANIZATION_XIII ? (T)inst : null;
+            }
+
+            @Override
+            public NBTTagCompound serializeNBT() {
+                return (NBTTagCompound) ModCapabilities.ORGANIZATION_XIII.getStorage().writeNBT(ModCapabilities.ORGANIZATION_XIII, inst, null);
+            }
+
+            @Override
+            public void deserializeNBT(NBTTagCompound nbt) {
+                ModCapabilities.ORGANIZATION_XIII.getStorage().readNBT(ModCapabilities.ORGANIZATION_XIII, inst, null, nbt);
+            }
+        });
         event.addCapability(new ResourceLocation(Reference.MODID, "IMunny"), new ICapabilitySerializable<NBTPrimitive>()
         {
             MunnyCapability.IMunny inst = ModCapabilities.MUNNY.getDefaultInstance();

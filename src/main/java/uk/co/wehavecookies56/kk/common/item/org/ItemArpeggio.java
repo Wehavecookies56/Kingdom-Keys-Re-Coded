@@ -8,8 +8,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
-public class ItemArpeggio extends ItemOrgWeapon {
+public class ItemArpeggio extends ItemOrgWeapon implements IOrgWeapon {
 
 	public ItemArpeggio (ToolMaterial material) {
 		super(material);
@@ -28,4 +29,8 @@ public class ItemArpeggio extends ItemOrgWeapon {
 		dataList.add("IX Demyx");
 	}
 
+	@Override
+	public Utils.OrgMember getMember() {
+		return Utils.OrgMember.DEMYX;
+	}
 }

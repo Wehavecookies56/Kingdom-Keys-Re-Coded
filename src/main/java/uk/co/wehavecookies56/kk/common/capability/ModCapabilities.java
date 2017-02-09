@@ -12,6 +12,7 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerS
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability.ISummonKeyblade;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability.ISynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability.ISynthesisRecipe;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 
 public class ModCapabilities {
 
@@ -33,6 +34,8 @@ public class ModCapabilities {
     public static final Capability<ISynthesisMaterial> SYNTHESIS_MATERIALS = null;
     @CapabilityInject(ICheatMode.class)
     public static final Capability<ICheatMode> CHEAT_MODE = null;
+    @CapabilityInject(IOrganizationXIII.class)
+    public static final Capability<IOrganizationXIII> ORGANIZATION_XIII = null;
 
     public static void registerCapabilities() {
         CapabilityManager.INSTANCE.register(IMunny.class, new MunnyCapability.Storage(), MunnyCapability.Default.class);
@@ -44,6 +47,7 @@ public class ModCapabilities {
         CapabilityManager.INSTANCE.register(ISynthesisRecipe.class, new SynthesisRecipeCapability.Storage(), SynthesisRecipeCapability.Default.class);
         CapabilityManager.INSTANCE.register(ISynthesisMaterial.class, new SynthesisMaterialCapability.Storage(), SynthesisMaterialCapability.Default.class);
         CapabilityManager.INSTANCE.register(ICheatMode.class, new CheatModeCapability.Storage(), CheatModeCapability.Default.class);
+        CapabilityManager.INSTANCE.register(IOrganizationXIII.class, new OrganizationXIIICapability.Storage(), OrganizationXIIICapability.Default.class);
 	}
 	
 }

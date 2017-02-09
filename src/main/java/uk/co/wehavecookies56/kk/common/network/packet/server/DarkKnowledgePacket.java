@@ -19,22 +19,21 @@ import java.io.IOException;
  * Created by NStel on 2/6/2017.
  */
 // Saix
-public class DarkKnowledgePacket extends AbstractMessage.AbstractServerMessage<DarkKnowledgePacket>
-{
-public DarkKnowledgePacket () {}
+public class DarkKnowledgePacket extends AbstractMessage.AbstractServerMessage<DarkKnowledgePacket> {
+    public DarkKnowledgePacket () {}
 
-@Override
-protected void read (PacketBuffer buffer) throws IOException {
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
 
-        }
+    }
 
-@Override
-protected void write (PacketBuffer buffer) throws IOException {
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
 
-        }
+    }
 
-@Override
-public void process (EntityPlayer player, Side side) {
+    @Override
+    public void process (EntityPlayer player, Side side) {
         player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
         int rand = Utils.randomWithRange(0, Lists.Marluxia.size() - 1);
         player.inventory.addItemStackToInventory(new ItemStack(Lists.Marluxia.get(rand)));
@@ -42,7 +41,5 @@ public void process (EntityPlayer player, Side side) {
         manifestMessage.getStyle().setColor(TextFormatting.YELLOW);
         player.sendMessage(manifestMessage);
         AchievementHelper.addAchievement(player, ModAchievements.getOrgWeapon);
-        }
-
-
+    }
 }

@@ -66,4 +66,7 @@ public class Utils {
         TextComponentTranslation translation = new TextComponentTranslation(name);
         return translation.getFormattedText();
     }
+
+    public static enum OrgMember { XEMNAS, XIGBAR, XALDIN, VEXEN, LEXAEUS, ZEXION, SAIX, AXEL, DEMYX, LUXORD, MARLUXIA, LARXENE, ROXAS, NONE}
+
 }
