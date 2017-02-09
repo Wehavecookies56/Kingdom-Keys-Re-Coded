@@ -42,7 +42,10 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 	}
 
 	private void updateButtons () {
-		keychain.enabled = mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned() == false;
+		if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE)
+			keychain.enabled = mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned() == false;
+		else
+			keychain.enabled = false;
 		updateScreen();
 	}
 

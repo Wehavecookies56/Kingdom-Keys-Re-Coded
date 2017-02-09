@@ -1,18 +1,87 @@
 #English (UK) language file for Kingdom Keys Re:Coded
-#Version 0.7.5
+#Version 0.9
 #Created by Wehavecookies56
-#
 
 ############################
 #Achievements
 ############################
-achievement.openMenu=Open the menu
-achievement.openMenu.desc=Press the open menu key to open the menu (default M).
+achievement.openmenu=Open the menu
+achievement.openmenu.desc=Press the '%1$s' key to open the menu.
 
-achievement.getWehavecookies56Skull=Familiar Face!
-achievement.getAbelatoxSkull=Another Familiar Face!
-achievement.getWehavecookies56Skull.desc=Craft Wehavecookies56's head
-achievement.getAbelatoxSkull.desc=Craft Abelatox's head
+achievement.getblox=Is this a bug?
+achievement.getblox.desc=Get a Bug Blox
+achievement.getghostblox=It's a G-G-Ghost!
+achievement.getghostblox.desc=Get a Ghost Blox
+achievement.getprizeblox=Eye on the Prize
+achievement.getprizeblox.desc=Get a Prize Blox
+
+achievement.getrecipe=A recipe?
+achievement.getrecpie.desc=Get a Recipe
+achievement.allrecipes=Master Chef
+achievement.allrecipes.desc=Learn all the recipes
+
+achievement.getorgrobe=Nobody wore this
+achievement.getorgrobe.desc=Wear the Organisation XIII robe
+achievement.getorgweapon=Nobody owned this
+achievement.getorgweapon.desc=Get a weapon form the Organisation XIII
+
+achievement.getsynthesistable=Will I be able to make better items?
+achievement.getsynthesistable.desc=Get a Synthesis Table 
+ 
+achievement.getkeyblade=A Keychain? Why would I want it? 
+achievement.getkeyblade.desc=Obtain your first Keychain
+achievement.getincompletekiblade=Its still broken
+achievement.getincompletekiblade.desc=Get the Incomplete χ-Blade
+achievement.getkiblade=One key to rule them all
+achievement.getkiblade.desc=Get the χ-Blade
+achievement.getnbms=Is this half a dream?
+achievement.getnbms.desc=Get Nightmare's End or Mirage Split
+achievement.getcombined=Is this a dream?
+achievement.getcombined.desc=Get the Combined Keyblade
+achievement.getstick=Why?
+achievement.getstick.desc=Get a Wooden Stick
+achievement.getumbrella=It's always rainy in Minecraft
+achievement.getumbrella.desc=Get an Umbrella
+achievement.getultimaweapon=I hope it was worth it
+achievement.getultimaweapon.desc=Get any of the Ultima Weapon
+achievement.getdreamsword=This looks like a regular sword
+achievement.getdreamsword.desc=Get the Dream Sword
+
+achievement.level50=I'm half way!
+achievement.level50.desc=Reach level 50
+achievement.level100=I'm at the top!
+achievement.level100.desc=Reach level 100
+
+achievement.get1milmunny=Am I rich?
+achievement.get1milmunny.desc=Get 1.000.000 Munny
+
+achievement.getchest=I guess I have the key to this one
+achievement.getchest.desc=Get a KKChest
+
+achievement.getdriveform=Do I need a license?
+achievement.getdriveform.desc=Equip a Drive Form
+achievement.getmagic=Like a Wizard!
+achievement.getmagic.desc=Equip a Magic Spell
+
+achievement.getkeybladearmor=Protecting from Darkness
+achievement.getkeybladearmor.desc=Wear a Keyblade Armour
+
+achievement.freedev=Free, but it still costs
+achievement.freedev.desc=Try out the Free Development
+
+achievement.getsynthesisbag=How much will it hold?
+achievement.getsynthesisbag.desc=Obtain a Synthesis Bag
+
+achievement.playmusicdisc=Symphony of Sorcery
+achievement.playmusicdisc.desc=Play a music disc
+
+achievement.getkingdomhearts=KINGDOM HEARTS!
+achievement.getkingdomhearts.desc=Get Kingdom Hearts
+
+achievement.getwehavecookies56skull=Familiar Face!
+achievement.getabelatoxskull=Another Familiar Face!
+achievement.getwehavecookies56skull.desc=Craft Wehavecookies56's head
+achievement.getabelatoxskull.desc=Craft Abelatox's head
 
 
 ############################
@@ -35,6 +104,8 @@ tile.blastblox.name=Blast Blox
 tile.prizeblox.name=Prize Blox
 tile.rareprizeblox.name=Rare Prize Blox
 tile.ghostblox.name=Ghost Blox
+tile.magnetblox.name=Magnet Blox
+tile.pedestal.name=Pedestal
 
 tile.ghostblox.desc=When powered with redstone the %s turns transparent and has no collision
 tile.dangerblox.desc=The %s deals 1.5 hearts of damage when touching or hitting it
@@ -50,6 +121,7 @@ tile.darkoree.name=Dark Ore
 tile.denseore.name=Dense Ore
 tile.energyore.name=Energy Ore
 tile.frostore.name=Frost Ore
+tile.lightningore.name=Lightning Ore
 tile.lucidore.name=Lucid Ore
 tile.powerore.name=Power Ore
 tile.poweroree.name=Power Ore
@@ -66,6 +138,7 @@ tile.kkchest.desc1=Yes I know, the chest is stuck open right now.
 tile.kkchest.desc2=Will only open with a keyblade in hand
 tile.savepoint.name=Save Point
 tile.savepoint.desc=Sneak while standing on it to set your spawn point
+tile.stationofawakeningdoor.name=Station of Awakening Door
 
 ############################
 #Items
@@ -73,6 +146,10 @@ tile.savepoint.desc=Sneak while standing on it to set your spawn point
 
 #Synthesis Materials
 sm.rank=Rank
+sm.rank.c=C
+sm.rank.b=B
+sm.rank.a=A
+sm.rank.s=S
 
 sm.blazingshard.name=Blazing Shard
 sm.blazingstone.name=Blazing Stone
@@ -156,7 +233,6 @@ sm.twilightstone.name=Twilight Stone
 sm.twilightgem.name=Twilight Gem
 sm.twilightcrystal.name=Twilight Crystal
 
-
 #Armor
 item.organizationrobe_helmet.name=Organisation Hood
 item.organizationrobe_chestplate.name=Organisation Coat
@@ -178,16 +254,26 @@ item.terra_chestplate.name=Terra's Chestplate
 item.terra_leggings.name=Terra's Leggings
 item.terra_boots.name=Terra's Boots
 
-item.ventus_helmet.name=Ventus' Helmet
-item.ventus_chestplate.name=Ventus' Chestplate
-item.ventus_leggings.name=Ventus' Leggings
-item.ventus_boots.name=Ventus' Boots
+item.ventus_helmet.name=Ventus's Helmet
+item.ventus_chestplate.name=Ventus's Chestplate
+item.ventus_leggings.name=Ventus's Leggings
+item.ventus_boots.name=Ventus's Boots
 
 #Misc
 item.emptybottle.name=Empty Bottle
 item.potion.name=Potion
+item.hipotion.name=Hi-Potion
+item.megapotion.name=Mega-Potion
 item.ether.name=Ether
+item.megaether.name=Mega-Ether
 item.elixir.name=Elixir
+item.megalixir.name=Megalixir
+item.driverecovery.name=Drive Recovery
+item.highdriverecovery.name=High Drive Recovery
+item.powerboost.name=Power Boost
+item.magicboost.name=Magic Boost
+item.defenseboost.name=Defense Boost
+item.panacea.name=Panacea
 item.hporb.name=HP Orb
 item.driveorb.name=DP Orb
 item.magicorb.name=MP Orb
@@ -207,11 +293,16 @@ item.levelupmagicblizzard.name=Spell Orb
 item.levelupmagicstop.name=Spell Orb
 item.levelupmagiccure.name=Spell Orb
 item.levelupmagicaero.name=Spell Orb
-item.levelupdrivevalor.name=Drive Form Unlocker
-item.levelupdrivewisdom.name=Drive Form Unlocker
-item.levelupdrivelimit.name=Drive Form Unlocker
-item.levelupdrivemaster.name=Drive Form Unlocker
-item.levelupdrivefinal.name=Drive Form Unlocker
+
+item.levelupdrivevalor.name=Form Orb
+item.levelupdrivewisdom.name=Form Orb
+item.levelupdrivelimit.name=Form Orb
+item.levelupdrivemaster.name=Form Orb
+item.levelupdrivefinal.name=Form Orb
+
+item.synthesisbags.name=Small Synthesis Material Bag
+item.synthesisbagm.name=Medium Synthesis Material Bag
+item.synthesisbagl.name=Large Synthesis Material Bag
 
 item.frostinfusedsnowball.name=Frost-Infused Snowball
 item.blazinginfusedcoal.name=Blazing-Infused Coal
@@ -221,46 +312,46 @@ item.darkinfusediron.name=Dark-Infused Iron Ingot
 item.lightninginfusedgold.name=Lightning-Infused Gold Ingot
 item.mythrilinfuseddiamond.name=Mythril-Infused Diamond
 
-item.abandonedknowledge.name=Abandoned Knowledge
-item.darkknowledge.name=Dark Knowledge
-item.eclipsedknowledge.name=Eclipsed Knowledge
+item.abandonedknowledge.name=Vexen's Knowledge
+item.darkknowledge.name=Marluxia's Knowledge
+item.eclipsedknowledge.name=Saïx's Knowledge
 item.forgottenknowledge.name=Xaldin's Knowledge
-item.illudedknowledge.name=Illuded Knowledge
-item.lostknowledge.name=Lost Knowledge
-item.manifestknowledge.name=Manifest Knowledge
-item.obscuredknowledge.name=Obscured Knowledge
-item.unknownknowledge.name=Unknown Knowledge
-item.voidknowledge.name=Void Knowledge
+item.illudedknowledge.name=Zexion's Knowledge
+item.lostknowledge.name=Larxene's Knowledge
+item.manifestknowledge.name=Xemnas' Knowledge
+item.obscuredknowledge.name=Demyx's Knowledge
+item.unknownknowledge.name=Xigbar's Knowledge
+item.voidknowledge.name=Axel's Knowledge
 
 #Music Discs
 disc.duration.desc=Duration
 disc.durationunits.desc=(mins:secs)
 item.birthbysleep-alinktothefuture-.name=Music Disc
-item.record.Birth by Sleep -A Link to the Future-.desc=Yoko Shimomura - Birth by Sleep -A Link to the Future-
+item.record.birthbysleep-alinktothefuture-.desc=Yoko Shimomura - Birth by Sleep -A Link to the Future-
 item.darknessoftheunknown.name=Music Disc
-item.record.Darkness of the Unknown.desc=Yoko Shimomura - Darkness of the Unknown
+item.record.darknessoftheunknown.desc=Yoko Shimomura - Darkness of the Unknown
 item.dearlybeloved-symphonyversion-.name=Music Disc
-item.record.Dearly Beloved -Symphony Version-.desc=Yoko Shimomura - Dearly Beloved -Symphony Version-
+item.record.dearlybeloved-symphonyversion-.desc=Yoko Shimomura - Dearly Beloved -Symphony Version-
 item.dreamdropdistance-thenextawakening-.name=Music Disc
-item.record.Dream Drop Distance -The Next Awakening-.desc=Yoko Shimomura - Dream Drop Distance -The Next Awakening-
+item.record.dreamdropdistance-thenextawakening-.desc=Yoko Shimomura - Dream Drop Distance -The Next Awakening-
 item.hikari-kingdominstrumentalversion-.name=Music Disc
-item.record.Hikari -KINGDOM Instrumental Version-.desc=Yoko Shimomura - Hikari -KINGDOM Instrumental Version-
+item.record.hikari-kingdominstrumentalversion-.desc=Yoko Shimomura - Hikari -KINGDOM Instrumental Version-
 item.l'oscuritadell'ignoto.name=Music Disc
-item.record.L'Oscurita Dell'Ignoto.desc=Yoko Shimomura - L'Oscurita Dell'Ignoto
+item.record.l'oscuritadell'ignoto.desc=Yoko Shimomura - L'Oscurita Dell'Ignoto
 item.musiquepourlatristessedexion.name=Music Disc
-item.record.Musique pour la tristesse de Xion.desc=Yoko Shimomura - Musique pour la tristesse de Xion
+item.record.musiquepourlatristessedexion.desc=Yoko Shimomura - Musique pour la tristesse de Xion
 item.nomorebugs-bugversion-.name=Music Disc
-item.record.No More Bugs -Bug Version-.desc=Yoko Shimomura - No More Bugs!! -Bug Version-
+item.record.nomorebugs-bugversion-.desc=Yoko Shimomura - No More Bugs!! -Bug Version-
 item.organizationxiii.name=Music Disc
-item.record.Organization XIII.desc=Yoko Shimomura - Organization XIII
+item.record.organizationxiii.desc=Yoko Shimomura - Organization XIII
 item.sanctuary.name=Music Disc
-item.record.Sanctuary.desc=Hikaru Utada - Sanctuary
+item.record.sanctuary.desc=Hikaru Utada - Sanctuary
 item.simpleandcleanplanitbremix.name=Music Disc
-item.record.Simple And Clean PLANITb Remix.desc=Hikaru Utada - Simple And Clean -PLANITb Remix-
+item.record.simpleandcleanplanitbremix.desc=Hikaru Utada - Simple And Clean -PLANITb Remix-
 item.sinistersundown.name=Music Disc
-item.record.Sinister Sundown.desc=Yoko Shimomura - Sinister Sundown
+item.record.sinistersundown.desc=Yoko Shimomura - Sinister Sundown
 item.the13thanthology.name=Music Disc
-item.record.The 13th Anthology.desc=Yoko Shimomura - The 13th Anthology
+item.record.the13thanthology.desc=Yoko Shimomura - The 13th Anthology
 
 #Organization XIII weapons
 item.interdiction.name=Interdiction
@@ -276,14 +367,54 @@ item.arpeggio.name=Arpeggio
 item.fairgame.name=Fair Game
 item.gracefuldahlia.name=Graceful Dahlia
 item.foudre.name=Foudre
-
 item.blazeofglory.name=Blaze of Glory
+item.prometheus.name=Prometheus
+item.ifrit.name=Ifrit
+item.prominence.name=Prominence
+item.fickleerica.name=Fickle Erica
+item.poormelissa.name=Poor Melissa
+item.jiltedanemone.name=Jilted Anemone
+item.zephyr.name=Zephyr
+item.standalone.name=Stand Alone
+item.reticence.name=Reticence
+item.finalweapon.name=Final Weapon
+item.tranchant.name=Trancheuse
+item.malice.name=Malice
+item.infinity.name=Infinity
+item.thefool.name=The Fool
+item.testerzero.name=Tester Zero
+item.calmant.name=Carmin
+item.crux.name=Crux
+item.falsetheory.name=False Theory
+item.precision.name=Precision
+item.outbreak.name=Outbreak
+item.productone.name=Product One
+item.burnout.name=Burnout
+item.dragonreign.name=Dragon Reign
+item.sunrise.name=Sunrise
+item.inquisition.name=Inquisition
+item.ashes.name=Ashes
+item.combustion.name=Combustion
+item.killerbee.name=Killer Bee
+item.orage.name=Orage
+item.eruption.name=Eruption
+item.indigo.name=Indigo
+item.lumineuse.name=Lumineuse
+item.irregulier.name=Irregulier
+item.aggression.name=Aggression
+item.sanction.name=Sanction
+item.twilight.name=Twilight
+item.blackprimer.name=Black Primer
+item.whitetime.name=White Tome
+item.tourbillon.name=Tourbillon
+item.hallowedlotus.name=Hallowed Lotus
+item.loftygerbera.name=Lofty Gerbera
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
 item.abyssaltide.name=Abyssal Tide
 item.allforone.name=All for One
-item.anguisforetellerskeyblade.name=Anguis Foreteller's Keyblade
+item.anguisforetellerskeyblade.name=Foreteller Invi's Keyblade
 item.astralblast.name=Astral Blast
 item.aubade.name=Aubade
 item.bondofflame.name=Bond of Flame
@@ -328,7 +459,7 @@ item.kingdomkeyd.name=Kingdom Key D
 item.knockoutpunch.name=Knockout Punch
 item.ladyluck.name=Lady Luck
 item.leaskeyblade.name=Lea's Keyblade
-item.leopardosforetellerskeyblade.name=Leopardos Foreteller's Keyblade
+item.leopardosforetellerskeyblade.name=Foreteller Gula's Keyblade
 item.leviathan.name=Leviathan
 item.lionheart.name=Lionheart
 item.lostmemory.name=Lost Memory
@@ -339,9 +470,12 @@ item.mastersdefender.name=Master's Defender
 item.maverickflare.name=Maverick Flare
 item.metalchocobo.name=Metal Chocobo
 item.midnightroar.name=Midnight Roar
+item.miragesplit.name=Mirage Split
 item.missingache.name=Missing Ache
 item.monochrome.name=Monochrome
 item.mysteriousabyss.name=Mysterious Abyss
+item.nightmaresend.name=Nightmare's End
+item.nightmaresendandmiragesplit.name=Combined Keyblade
 item.noname.name=No Name
 item.oathkeeper.name=Oathkeeper
 item.oblivion.name=Oblivion
@@ -383,11 +517,11 @@ item.ultimaweaponbbs.name=Ultima Weapon (BBS)
 item.ultimaweaponddd.name=Ultima Weapon (DDD)
 item.umbrella.name=Umbrella
 item.unbound.name=Unbound
-item.unicornisforetellerskeyblade.name=Unicornis Foreteller's Keyblade
-item.ursusforetellerskeyblade.name=Ursus Foreteller's Keyblade
+item.unicornisforetellerskeyblade.name=Foreteller Ira's Keyblade
+item.ursusforetellerskeyblade.name=Foreteller Aced's Keyblade
 item.victoryline.name=Victory Line
 item.voidgear.name=Void Gear
-item.vulpeusforetellerskeyblade.name=Vulpeus Foreteller's Keyblade
+item.vulpeusforetellerskeyblade.name=Foreteller Ava's Keyblade
 item.waytothedawn.name=Way to the Dawn
 item.waywardwind.name=Wayward Wind
 item.winnersproof.name=Winner's Proof
@@ -402,7 +536,7 @@ item.zeroone.name=Zero/One
 item.abaddonplasmachain.name=Abaddon Plasma Chain
 item.abyssaltidechain.name=Abyssal Tide Chain
 item.allforonechain.name=All for One Chain
-item.anguisforetellerskeybladechain.name=Anguis Foreteller's Keyblade Chain
+item.anguisforetellerskeybladechain.name=Foreteller Invi's Keyblade Chain
 item.astralblastchain.name=Astral Blast Chain
 item.aubadechain.name=Aubade Chain
 item.bondofflamechain.name=Bond of Flame Chain
@@ -441,13 +575,13 @@ item.hyperdrivechain.name=Hyperdrive Chain
 item.incompletekibladechain.name=Incomplete χ-blade Chain
 item.junglekingchain.name=Jungle King Chain
 item.keybladeofpeoplesheartschain.name=Keyblade of People's Hearts Chain
-item.kibladechain.name=Ki-blade Chain
+item.kibladechain.name=χ-blade Chain
 item.kingdomkeychain.name=Kingdom Key Chain
 item.kingdomkeydchain.name=Kingdom Key D Chain
 item.knockoutpunchchain.name=Knockout Punch Chain
 item.ladyluckchain.name=Lady Luck Chain
 item.leaskeybladechain.name=Lea's Keyblade Chain
-item.leopardosforetellerskeybladechain.name=Leopardos Foreteller's Keyblade Chain
+item.leopardosforetellerskeybladechain.name=Foreteller Gula's Keyblade Chain
 item.leviathanchain.name=Leviathan Chain
 item.lightseekerchain.name=Light Seeker Chain
 item.lionheartchain.name=Lionheart Chain
@@ -459,9 +593,12 @@ item.mastersdefenderchain.name=Master's Defender Chain
 item.maverickflarechain.name=Maverick Flare Chain
 item.metalchocobochain.name=Metal Chocobo Chain
 item.midnightroarchain.name=Midnight Roar Chain
+item.miragesplitchain.name=Mirage Split Chain
 item.missingachechain.name=Missing Ache Chain
 item.monochromechain.name=Monochrome Chain
 item.mysteriousabysschain.name=Mysterious Abyss Chain
+item.nightmaresendchain.name=Nightmare's End Chain
+item.nightmaresendandmiragesplitchain.name=Combined Keyblade Chain
 item.nonamechain.name=No Name Chain
 item.oathkeeperchain.name=Oathkeeper Chain
 item.oblivionchain.name=Oblivion Chain
@@ -503,11 +640,11 @@ item.ultimaweaponbbschain.name=Ultima Weapon (BBS) Chain
 item.ultimaweapondddchain.name=Ultima Weapon (DDD) Chain
 item.umbrellachain.name=Umbrella Chain
 item.unboundchain.name=Unbound Chain
-item.unicornisforetellerskeybladechain.name=Unicornis Foreteller's Keyblade Chain
-item.ursusforetellerskeybladechain.name=Ursus Foreteller's Keyblade Chain
+item.unicornisforetellerskeybladechain.name=Foreteller Ira's Keyblade Chain
+item.ursusforetellerskeybladechain.name=Foreteller Aced's Keyblade Chain
 item.victorylinechain.name=Victory Line Chain
 item.voidgearchain.name=Void Gear Chain
-item.vulpeusforetellerskeybladechain.name=Vulpeus Foreteller's Keyblade Chain
+item.vulpeusforetellerskeybladechain.name=Foreteller Ava's Keyblade Chain
 item.waytothedawnchain.name=Way to the Dawn Chain
 item.waywardwindchain.name=Wayward Wind Chain
 item.winnersproofchain.name=Winner's Proof Chain
@@ -531,6 +668,7 @@ gui.commandmenu.attack=Attack
 gui.commandmenu.magic=Magic
 gui.commandmenu.items=Items
 gui.commandmenu.drive=Drive
+gui.commandmenu.drive.revert=Revert
 
 #Magic
 gui.commandmenu.magic.title=MAGIC
@@ -585,20 +723,56 @@ gui.menu.main.munny=Munny
 
 #Items
 gui.menu.items.title=Items
+gui.menu.items.keychain=Keychain
+gui.menu.items.synthbag=Synthesis Bag
+gui.menu.items.potions=Potions
+gui.menu.items.spells=Spells
+gui.menu.items.drives=Drive Forms
 gui.menu.items.button.stock=Stock
 gui.menu.items.button.back=Back
 
-#Keychain Container
-container.keychain=Place a keychain here
-container.kkchest.name=Chest
+#Config
+gui.menu.config.title=Config
+gui.menu.config.colour.desc=Change the interface colour by entering a RGB value
+gui.menu.config.hearts=Show hearts on hud
+gui.menu.config.music=Enable custom music
+gui.menu.config.fire=Kingdom Hearts 1 Fire?
 
-#Synthesis#
+#Containers
+container.keychain=Place a keychain here
+container.spellsinventory=Place Spell Orbs here
+container.potionsinventory=Place potions here
+container.driveinventory=Place Form Orbs here
+container.kkchest=Chest
+container.synthbag=Place a Synthesis Bag here
+container.synthesisbagsinventory=Small Synthesis Material Bag
+container.synthesisbagminventory=Medium Synthesis Material Bag
+container.synthesisbaglinventory=Large Synthesis Material Bag
+synthesisbag.desc=By holding the synthesis bag in your inventory synthesis materials will be sent into it
+
+#Synthesis
 gui.synthesis.main.title=Item Synthesis
 gui.synthesis.main.recipes=Recipes
 gui.synthesis.main.freedevelopment=Free Development
 gui.synthesis.main.materials=Materials
 gui.synthesis.main.recipes.requiredmaterials=Required Materials
 gui.synthesis.main.recipes.create=Create
+gui.synthesis.main.materials.deposit=Deposit Materials
+gui.synthesis.main.materials.deposit.inventory=Inventory
+gui.synthesis.main.materials.deposit.bag=Synthesis Bags
+gui.synthesis.main.materials.takeone=Take 1
+gui.synthesis.main.materials.takehalfstack=Take 32
+gui.synthesis.main.materials.takestack=Take 64
+gui.synthesis.main.materials.takeall=Take all
+
+#Shop
+gui.shop.main=Item Shop
+gui.shop.main.title=Shop
+gui.shop.main.buy=Buy
+gui.shop.main.sell=Sell
+gui.shop.buy.cost=Cost
+gui.shop.buy.quantity=Quantity
+gui.shop.sell.price=Sell For
 
 ############################
 #Keybinds
@@ -612,3 +786,86 @@ key.kingdomkeys.scrolldown=Command Menu Scroll Down
 key.kingdomkeys.scrollup=Command Menu Scroll Up
 key.kingdomkeys.openmenu=Open Menu
 key.kingdomkeys.summonkeyblade=Summon Keyblade
+key.kingdomkeys.showgui=Toggle Always Show GUI mode (on/off/on with keyblade)
+
+############################
+#Spells and forms
+############################
+
+spell.fire=Fire
+spell.fira=Fira
+spell.firaga=Firaga
+
+spell.blizzard=Blizzard
+spell.blizzara=Blizzara
+spell.blizzaga=Blizzaga
+
+spell.thunder=Thunder
+spell.thundara=Thundara
+spell.thundaga=Thundaga
+
+spell.cure=Cure
+spell.cura=Cura
+spell.curaga=Curaga
+
+spell.aero=Aero
+spell.aerora=Aerora
+spell.aeroga=Aeroga
+
+spell.stop=Stop
+spell.stopra=Stopra
+spell.stopga=Stopga
+
+spell.gravity=Gravity
+spell.gravira=Gravira
+spell.graviga=Graviga
+
+form.valor=Valor Form
+form.wisdom=Wisdom Form
+form.limit=Limit Form
+form.master=Master Form
+form.final=Final Form
+form.anti=Anti Form
+
+############################
+#Stats
+############################
+
+stats.levelUpStr=Strength Increased!
+stats.levelUpDef=Defense Increased!
+stats.levelUpMag=Magic Increased!
+stats.levelUpHP=Maximum HP Increased!
+
+############################
+#Chat messages
+############################
+chat.recipeLearn=Successfully learnt the recipe for '%1$s'
+chat.recipeRepeat=Recipe for '%1$s' was not learnt because you have already learnt it
+chat.savepoint=Spawn point saved
+chat.chestLockedSuccess=Chest locked with '%1$s'
+chat.chestLocked=Chest is locked with another keyblade
+chat.magic.learn=Successfully learnt '%1$s'!
+chat.magic.levelup=Leveled up '%1$s', it is now '%2$s'!
+chat.magic.error=Can't level up '%1$s', it is already at the max level!
+chat.drive.learn='%1$s' has been learnt!
+chat.drive.error='%1$s' has already been learnt!
+chat.manifest.learn=The knowledge manifested the '%1$s'
+chat.powerboost=Strength increased! Now it's %1$s!
+chat.defenseboost=Defense increased! Now it's %1$s!
+chat.magicboost=Magic increased! Now it's %1$s!
+
+##########################
+#Entities
+##########################
+entity.kk.Shadow.name=Shadow
+entity.kk.GigaShadow.name=Giga Shadow
+entity.kk.RedNocturne.name=Red Nocturne
+entity.kk.BlueRhapsody.name=Blue Rhapsody
+entity.kk.YellowOpera.name=Yellow Opera
+entity.kk.GreenRequiem.name=Green Requiem
+entity.kk.Moogle.name=Moogle
+
+##########################
+#Journal
+##########################
+journal.commandmenuabout=The Command Menu is the menu displayed in the bottom left corner of the HUD. It has 4 options, Attack, Magic, Items and Drive, for info on these options refer to their respective pages.\n\nThe menu can be navigated using the Command Menu keybinds (default: Arrow keys) it can also be navigated by holding the hold keybind (default: Alt) and scrolling the mouse wheel, left click to enter, right click to go back.
