@@ -12,36 +12,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKKRecord;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
-import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemRecipe;
-import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
-import uk.co.wehavecookies56.kk.common.item.org.ItemArpeggio;
-import uk.co.wehavecookies56.kk.common.item.org.ItemAshes;
-import uk.co.wehavecookies56.kk.common.item.org.ItemBlazeofGlory;
-import uk.co.wehavecookies56.kk.common.item.org.ItemBookofRetribution;
-import uk.co.wehavecookies56.kk.common.item.org.ItemEternalFlames;
-import uk.co.wehavecookies56.kk.common.item.org.ItemFairGame;
-import uk.co.wehavecookies56.kk.common.item.org.ItemFoudre;
-import uk.co.wehavecookies56.kk.common.item.org.ItemFrozenPride;
-import uk.co.wehavecookies56.kk.common.item.org.ItemGracefulDahlia;
-import uk.co.wehavecookies56.kk.common.item.org.ItemIfrit;
-import uk.co.wehavecookies56.kk.common.item.org.ItemInterdiction;
-import uk.co.wehavecookies56.kk.common.item.org.ItemLindworm;
-import uk.co.wehavecookies56.kk.common.item.org.ItemLunatic;
-import uk.co.wehavecookies56.kk.common.item.org.ItemPrometheus;
-import uk.co.wehavecookies56.kk.common.item.org.ItemProminence;
-import uk.co.wehavecookies56.kk.common.item.org.ItemSharpshooter;
-import uk.co.wehavecookies56.kk.common.item.org.ItemSkysplitter;
+import uk.co.wehavecookies56.kk.common.item.base.*;
+import uk.co.wehavecookies56.kk.common.item.org.*;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, Whitetime, Tourbillon, Aegis;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, Whitetime, Tourbillon, Aegis, Hyperion;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -126,6 +105,7 @@ public class ModItems {
 		// lexeaus
 		Skysplitter = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 20, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
 		Reticence = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Reticence);
+		Hyperion = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Hyperion);
 
 		// zexion
 		BookofRetribution = new ItemBookofRetribution(EnumHelper.addToolMaterial("bookofretribution", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
@@ -668,13 +648,14 @@ public class ModItems {
 		//Lexaeus
 		GameRegistry.register(Skysplitter, new ResourceLocation(Reference.MODID, Strings.Skysplitter));
 		GameRegistry.register(Reticence, new ResourceLocation(Reference.MODID, Strings.Reticence));
+		GameRegistry.register(Hyperion, new ResourceLocation(Reference.MODID, Strings.Hyperion));
 
 		//Zexion
 		GameRegistry.register(BookofRetribution, new ResourceLocation(Reference.MODID, Strings.BookofRetribution));
 		GameRegistry.register(BlackPrimer, new ResourceLocation(Reference.MODID, Strings.BlackPrimer));
 		GameRegistry.register(Whitetime, new ResourceLocation(Reference.MODID, Strings.Whitetime));
 
-		//saix
+		//Saix
 		GameRegistry.register(Lunatic, new ResourceLocation(Reference.MODID, Strings.Lunatic));
 		GameRegistry.register(Twilight, new ResourceLocation(Reference.MODID, Strings.Twilight));
 

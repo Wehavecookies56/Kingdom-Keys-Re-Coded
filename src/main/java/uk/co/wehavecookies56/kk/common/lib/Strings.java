@@ -489,8 +489,9 @@ public class Strings {
 	Indigo = "indigo",
 	Lumineuse = "lumineuse",
 	Whitetime = "whitetime",
+	Aegis = "aegis",
 	Tourbillon = "tourbillon",
-	Aegis = "aegis"
+	Hyperion = "hyperion"
 	;
 
 	public static final String 
