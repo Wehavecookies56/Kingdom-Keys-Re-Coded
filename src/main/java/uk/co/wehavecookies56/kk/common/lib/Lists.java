@@ -86,7 +86,7 @@ public class Lists {
 		//Zexion
 		Zexion.add(BookofRetribution);
 		Zexion.add(BlackPrimer);
-		Zexion.add(Whitetime);
+		Zexion.add(WhiteTome);
 
 		//Saix
 		Saix.add(Lunatic);
@@ -120,8 +120,8 @@ public class Lists {
 
 		//Larxene
 		Larxene.add(Foudre);
-		Larxene.add(Calmant);
-		Larxene.add(Tranchant);
+		Larxene.add(Carmin);
+		Larxene.add(Trancheuse);
 		Larxene.add(Orage);
 		Larxene.add(Irregulier);
 		Larxene.add(Eruption);
