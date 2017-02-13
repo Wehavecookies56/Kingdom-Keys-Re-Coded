@@ -41,7 +41,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, Whitetime, Tourbillon;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Tranchant, Malice, Infinity, TheFool, TesterZero, Calmant, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, Whitetime, Tourbillon, Aegis;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -121,6 +121,7 @@ public class ModItems {
 		FalseTheory = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FalseTheory);
 		TesterZero = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TesterZero);
 		Inquisition = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inquisition);
+		Aegis = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aegis);
 
 		// lexeaus
 		Skysplitter = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 20, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
@@ -661,6 +662,8 @@ public class ModItems {
 		GameRegistry.register(ProductOne, new ResourceLocation(Reference.MODID, Strings.ProductOne));
 		GameRegistry.register(Inquisition, new ResourceLocation(Reference.MODID, Strings.Inquisition));
 		GameRegistry.register(FalseTheory, new ResourceLocation(Reference.MODID, Strings.FalseTheory));
+		GameRegistry.register(Aegis, new ResourceLocation(Reference.MODID, Strings.Aegis));
+
 
 		//Lexaeus
 		GameRegistry.register(Skysplitter, new ResourceLocation(Reference.MODID, Strings.Skysplitter));

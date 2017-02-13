@@ -489,7 +489,8 @@ public class Strings {
 	Indigo = "indigo",
 	Lumineuse = "lumineuse",
 	Whitetime = "whitetime",
-	Tourbillon = "tourbillon"
+	Tourbillon = "tourbillon",
+	Aegis = "aegis"
 	;
 
 	public static final String 
