@@ -76,10 +76,12 @@ public class Lists {
 		Vexen.add(ProductOne);
 		Vexen.add(Inquisition);
 		Vexen.add(FalseTheory);
+		Vexen.add(Aegis);
 
 		//Lexaeus
 		Lexaeus.add(Skysplitter);
 		Lexaeus.add(Reticence);
+		Lexaeus.add(Hyperion);
 
 		//Zexion
 		Zexion.add(BookofRetribution);
