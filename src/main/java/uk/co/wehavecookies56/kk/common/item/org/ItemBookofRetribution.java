@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.client.gui.GuiOrg;
+import uk.co.wehavecookies56.kk.client.gui.GuiOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 
 public class ItemBookofRetribution extends ItemOrgWeapon {
@@ -36,7 +37,7 @@ public class ItemBookofRetribution extends ItemOrgWeapon {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		if (worldIn.isRemote) {
-			Minecraft.getMinecraft().displayGuiScreen(new GuiOrg());
+			Minecraft.getMinecraft().displayGuiScreen(new GuiOrgWeapon());
 		}
 		return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
 	}

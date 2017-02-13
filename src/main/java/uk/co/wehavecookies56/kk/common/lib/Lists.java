@@ -7,6 +7,7 @@ import java.util.List;
 
 import net.minecraft.client.particle.ParticleSpell;
 import net.minecraft.item.Item;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class Lists {
 
@@ -24,6 +25,27 @@ public class Lists {
 	public static List<Item> Luxord = new ArrayList<Item>();
 	public static List<Item> Marluxia = new ArrayList<Item>();
 	public static List<Item> Larxene = new ArrayList<Item>();
+	public static List<Item> Roxas = new ArrayList<>();
+
+	public static List<Item> getListForMember(Utils.OrgMember member) {
+		switch (member) {
+			case AXEL: return Axel;
+			case DEMYX: return Demyx;
+			case LARXENE: return Larxene;
+			case LEXAEUS: return Lexaeus;
+			case LUXORD: return Luxord;
+			case MARLUXIA: return Marluxia;
+			case ROXAS: return Roxas;
+			case SAIX: return Saix;
+			case VEXEN: return Vexen;
+			case XALDIN: return Xaldin;
+			case XEMNAS: return Xemnas;
+			case XIGBAR: return Xigbar;
+			case ZEXION: return Zexion;
+			case NONE: return null;
+		}
+		return null;
+	}
 
 	public static void init () {
 
@@ -105,6 +127,33 @@ public class Lists {
 		Larxene.add(Lumineuse);
 		Larxene.add(Tourbillon);
 
+		Roxas.add(KingdomKey);
+		Roxas.add(MissingAche);
+		Roxas.add(OminousBlight);
+		Roxas.add(AbaddonPlasma);
+		Roxas.add(PainofSolitude);
+		Roxas.add(SignofInnocence);
+		Roxas.add(CrownofGuilt);
+		Roxas.add(AbyssalTide);
+		Roxas.add(Leviathan);
+		Roxas.add(TrueLightsFlight);
+		Roxas.add(RejectionofFate);
+		Roxas.add(MidnightRoar);
+		Roxas.add(GlimpseofDarkness);
+		Roxas.add(TotalEclipse);
+		Roxas.add(SilentDirge);
+		Roxas.add(LunarEclipse);
+		Roxas.add(DarkerThanDark);
+		Roxas.add(AstralBlast);
+		Roxas.add(MaverickFlare);
+		Roxas.add(TwilightBlaze);
+		Roxas.add(OmegaWeapon);
+		Roxas.add(Oathkeeper);
+		Roxas.add(TwoBecomeOne);
+		Roxas.add(Oblivion);
+		Roxas.add(Umbrella);
+		Roxas.add(Aubade);
+		Roxas.add(WoodenStick);
 
 		//Keyblades
 		recipes.add(AbaddonPlasma.getUnlocalizedName());

@@ -12,29 +12,40 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractCl
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 
 	Utils.OrgMember member;
 	Item weapon;
+	List<Item> weapons;
 
 	public SyncOrgXIIIData() {}
 
 	public SyncOrgXIIIData(OrganizationXIIICapability.IOrganizationXIII organizationXIII) {
 		this.member = organizationXIII.getMember();
 		this.weapon = organizationXIII.currentWeapon();
+		this.weapons = organizationXIII.unlockedWeapons();
 	}
 	
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
 		this.member = Utils.OrgMember.values()[buffer.readInt()];
 		this.weapon = buffer.readItemStack().getItem();
+		weapons = new ArrayList<>();
+		while(buffer.isReadable()) {
+			weapons.add(buffer.readItemStack().getItem());
+		}
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
 		buffer.writeInt(this.member.ordinal());
 		buffer.writeItemStack(new ItemStack(this.weapon));
+		for (int i = 0; i < weapons.size(); i++) {
+			buffer.writeItemStack(new ItemStack(this.weapons.get(i)));
+		}
 	}
 
 	@Override
@@ -42,6 +53,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		final OrganizationXIIICapability.IOrganizationXIII organizationXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
 		organizationXIII.setMember(this.member);
 		organizationXIII.setCurrentWeapon(this.weapon);
+		organizationXIII.setUnlockedWeapons(this.weapons);
 	}
 
 }
