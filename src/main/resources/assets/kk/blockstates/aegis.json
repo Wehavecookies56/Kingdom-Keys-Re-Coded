@@ -2,7 +2,7 @@
 	"forge_marker": 1,
   	"defaults": {
     	"textures": {
-      "aegis": "kk:items/models/aegis"
+      	"aegis": "kk:items/models/aegis"
       },
       "model": "kk:aegis.obj"
   	},
@@ -11,33 +11,33 @@
     	{
       	"transform": {
 					"thirdperson_lefthand": {
-						"rotation": [ { "x": -90 }, { "y": -90 }, { "z": 0 } ],
-						"translation": [ 0.1, -0.13, 0.2 ],
-						"scale": 0.02
+						"rotation": [ { "x": -90 }, { "y": 90 }, { "z": 0 } ],
+						"translation": [ 0.1, -0.1, 0.2 ],
+						"scale": 0.012
 					},
 					"thirdperson_righthand": {
-						"rotation": [ { "x": -90 }, { "y": -90 }, { "z": 0 } ],
-						"translation": [ 0.1, -0.13, 0.2 ],
-						"scale": 0.025
+						"rotation": [ { "x": -90 }, { "y": 90 }, { "z": 0 } ],
+						"translation": [ 0.1, -0.1, 0.2 ],
+						"scale": 0.012
 					},
 					"gui": {
-						"rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
+						"rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
 						"translation": [ 0, 0, 0 ],
-						"scale": 0.015
+						"scale": 0.007
 					},
 					"firstperson_righthand": {
-						"rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+						"rotation": [ { "x": 180 }, { "y": 0 }, { "z": 170 } ],
 						"translation": [ 0, -0.1, 0 ],
-						"scale": 0.02
+						"scale": 0.009
 					},
 					"firstperson_lefthand": {
-						"rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+						"rotation": [ { "x": 180 }, { "y": 0 }, { "z": 170 } ],
 						"translation": [ 0, -0.1, 0 ],
-						"scale": 0.02
+						"scale": 0.009
 					},
 					"ground": {
 						"rotation": [ { "x": 45 }, { "y": 0 }, { "z": 0 } ],
-						"scale": 0.014
+						"scale": 0.01
 					}
         }
       }

@@ -250,6 +250,11 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.Aegis, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Aegis, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Hyperion, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Hyperion, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.BookofRetribution, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BookofRetribution, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.QuietBelladonna, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.QuietBelladonna, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Empiricism, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Empiricism, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Contrivance, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Contrivance, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.DiamondShield, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DiamondShield, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.CryoliteShield, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.CryoliteShield, "inventory"));
 
 		//Blocks
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));

@@ -77,6 +77,8 @@ public class Lists {
 		Vexen.add(Inquisition);
 		Vexen.add(FalseTheory);
 		Vexen.add(Aegis);
+		Vexen.add(Contrivance);
+		Vexen.add(Empiricism);
 
 		//Lexaeus
 		Lexaeus.add(Skysplitter);
@@ -117,6 +119,7 @@ public class Lists {
 		Marluxia.add(JiltedAnemone);
 		Marluxia.add(HallowedLotus);
 		Marluxia.add(LoftyGerbera);
+		Marluxia.add(QuietBelladonna);
 
 		//Larxene
 		Larxene.add(Foudre);

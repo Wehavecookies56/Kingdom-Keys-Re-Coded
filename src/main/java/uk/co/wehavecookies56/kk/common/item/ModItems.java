@@ -20,7 +20,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -101,6 +101,10 @@ public class ModItems {
 		TesterZero = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TesterZero);
 		Inquisition = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inquisition);
 		Aegis = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aegis);
+		Empiricism = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Empiricism);
+		Contrivance = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Contrivance);
+		DiamondDust = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DiamondShield);
+		CryoliteShield = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CryoliteShield);
 
 		// lexeaus
 		Skysplitter = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 20, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
@@ -141,6 +145,7 @@ public class ModItems {
 		JiltedAnemone = new ItemGracefulDahlia(EnumHelper.addToolMaterial("jiltedanemone", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.JiltedAnemone);
 		LoftyGerbera = new ItemGracefulDahlia(EnumHelper.addToolMaterial("loftygerbera", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.LoftyGerbera);
 		HallowedLotus = new ItemGracefulDahlia(EnumHelper.addToolMaterial("hallowedlotus", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.HallowedLotus);
+		QuietBelladonna = new ItemGracefulDahlia(EnumHelper.addToolMaterial("quietbelladonna", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.QuietBelladonna);
 
 		// larxene
 		Foudre = new ItemFoudre(EnumHelper.addToolMaterial("foudre", 3, -1, 6F, 7, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foudre);
@@ -643,6 +648,10 @@ public class ModItems {
 		GameRegistry.register(Inquisition, new ResourceLocation(Reference.MODID, Strings.Inquisition));
 		GameRegistry.register(FalseTheory, new ResourceLocation(Reference.MODID, Strings.FalseTheory));
 		GameRegistry.register(Aegis, new ResourceLocation(Reference.MODID, Strings.Aegis));
+		GameRegistry.register(Empiricism, new ResourceLocation(Reference.MODID, Strings.Empiricism));
+		GameRegistry.register(Contrivance, new ResourceLocation(Reference.MODID, Strings.Contrivance));
+		GameRegistry.register(DiamondShield, new ResourceLocation(Reference.MODID, Strings.DiamondShield));
+		GameRegistry.register(CryoliteShield, new ResourceLocation(Reference.MODID, Strings.CryoliteShield));
 
 
 		//Lexaeus
@@ -684,6 +693,7 @@ public class ModItems {
 		GameRegistry.register(JiltedAnemone, new ResourceLocation(Reference.MODID, Strings.JiltedAnemone));
 		GameRegistry.register(LoftyGerbera, new ResourceLocation(Reference.MODID, Strings.LoftyGerbera));
 		GameRegistry.register(HallowedLotus, new ResourceLocation(Reference.MODID, Strings.HallowedLotus));
+		GameRegistry.register(QuietBelladonna, new ResourceLocation(Reference.MODID, Strings.QuietBelladonna));
 
 		//Larxene
 		GameRegistry.register(Foudre, new ResourceLocation(Reference.MODID, Strings.Foudre));

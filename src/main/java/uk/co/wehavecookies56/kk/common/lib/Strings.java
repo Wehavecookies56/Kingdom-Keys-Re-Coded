@@ -491,7 +491,13 @@ public class Strings {
 	WhiteTome = "whitetome",
 	Aegis = "aegis",
 	Tourbillon = "tourbillon",
-	Hyperion = "hyperion"
+	Hyperion = "hyperion",
+	QuietBelladonna = "quietbelladonna",
+	Contrivance = "contrivance",
+	Empiricism = "empiricism",
+	DiamondShield = "diamondshield",
+	CryoliteShield = "cryoliteshield"
+
 	;
 
 	public static final String 
