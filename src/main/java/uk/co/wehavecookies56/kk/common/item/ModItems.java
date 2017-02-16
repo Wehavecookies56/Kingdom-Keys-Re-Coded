@@ -103,7 +103,7 @@ public class ModItems {
 		Aegis = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aegis);
 		Empiricism = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Empiricism);
 		Contrivance = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Contrivance);
-		DiamondDust = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DiamondShield);
+		DiamondShield = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DiamondShield);
 		CryoliteShield = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CryoliteShield);
 
 		// lexeaus
