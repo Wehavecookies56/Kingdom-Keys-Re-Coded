@@ -496,8 +496,10 @@ public class Strings {
 	Contrivance = "contrivance",
 	Empiricism = "empiricism",
 	DiamondShield = "diamondshield",
-	CryoliteShield = "cryoliteshield"
-
+	CryoliteShield = "cryoliteshield",
+	OmegaTrinity = "omegatrinity",
+	TheMagician ="themagician",
+	Ignition = "ignition"
 	;
 
 	public static final String 

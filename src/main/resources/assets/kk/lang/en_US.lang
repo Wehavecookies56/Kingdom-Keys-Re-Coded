@@ -411,7 +411,14 @@ item.hallowedlotus.name=Hallowed Lotus
 item.loftygerbera.name=Lofty Gerbera
 item.aegis.name=Aegis
 item.hyperion.name=Hyperion
-
+item.ignition.name=Ignition
+item.themagician.name=The Magician
+item.diamondshield.name=Diamond Shield
+item.cryoliteshield.name=Cryolite Shield
+item.omegatrinity.name=Omega Trinity
+item.contrivance.name=Contrivance
+item.empiricism.name=Empricism
+item.quietbelladonna.name=Quiet Belladonna
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
 item.abyssaltide.name=Abyssal Tide

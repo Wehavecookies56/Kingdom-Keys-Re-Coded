@@ -20,7 +20,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician,Ignition;
 
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
 
@@ -87,6 +87,7 @@ public class ModItems {
 		Precision = new ItemSharpshooter(EnumHelper.addToolMaterial("precision", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Precision);
 		Killerbee = new ItemSharpshooter(EnumHelper.addToolMaterial("killerbee", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Killerbee);
 		Standalone = new ItemSharpshooter(EnumHelper.addToolMaterial("sharpshooter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Standalone);
+		Ignition = new ItemSharpshooter(EnumHelper.addToolMaterial("sharpshooter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ignition);
 
 		// xaldin
 		Lindworm = new ItemLindworm(EnumHelper.addToolMaterial("lindworm", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lindworm);
@@ -128,6 +129,7 @@ public class ModItems {
 		BlazeofGlory = new ItemBlazeofGlory(EnumHelper.addToolMaterial("blazeofglory", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
 		Prometheus = new ItemPrometheus(EnumHelper.addToolMaterial("prometheus", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
 		Ifrit = new ItemIfrit(EnumHelper.addToolMaterial("ifrit", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
+		OmegaTrinity = new ItemIfrit(EnumHelper.addToolMaterial("ifrit", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OmegaTrinity);
 		Prominence = new ItemProminence(EnumHelper.addToolMaterial("prominence", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
 		EternalFlames = new ItemEternalFlames(EnumHelper.addToolMaterial("eternalflames", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
 
@@ -137,6 +139,7 @@ public class ModItems {
 		// luxord
 		FairGame = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
 		TheFool = new ItemFairGame(EnumHelper.addToolMaterial("thefool", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
+		TheMagician = new ItemFairGame(EnumHelper.addToolMaterial("themagician", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheMagician);
 
 		// Marluxia
 		GracefulDahlia = new ItemGracefulDahlia(EnumHelper.addToolMaterial("gracefuldahlia", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
@@ -623,16 +626,17 @@ public class ModItems {
 		//Xemnas
 		GameRegistry.register(Interdiction, new ResourceLocation(Reference.MODID, Strings.Interdiction));
 		GameRegistry.register(Malice, new ResourceLocation(Reference.MODID, Strings.Malice));
-		GameRegistry.register(Infinity, new ResourceLocation(Reference.MODID, Strings.Infinity));
 		GameRegistry.register(Aggression, new ResourceLocation(Reference.MODID, Strings.Aggression));
 		GameRegistry.register(Sanction, new ResourceLocation(Reference.MODID, Strings.Sanction));
+		GameRegistry.register(Infinity, new ResourceLocation(Reference.MODID, Strings.Infinity));
 
 		//Xigbar
 		GameRegistry.register(Sharpshooter, new ResourceLocation(Reference.MODID, Strings.Sharpshooter));
+		GameRegistry.register(Standalone, new ResourceLocation(Reference.MODID, Strings.Standalone));
+		GameRegistry.register(Ignition, new ResourceLocation(Reference.MODID, Strings.Ignition));
 		GameRegistry.register(Killerbee, new ResourceLocation(Reference.MODID, Strings.Killerbee));
 		GameRegistry.register(Sunrise, new ResourceLocation(Reference.MODID, Strings.Sunrise));
 		GameRegistry.register(Precision, new ResourceLocation(Reference.MODID, Strings.Precision));
-		GameRegistry.register(Standalone, new ResourceLocation(Reference.MODID, Strings.Standalone));
 		GameRegistry.register(FinalWeapon, new ResourceLocation(Reference.MODID, Strings.FinalWeapon));
 
 		//Xaldin
@@ -677,6 +681,7 @@ public class ModItems {
 		GameRegistry.register(BlazeofGlory, new ResourceLocation(Reference.MODID, Strings.BlazeofGlory));
 		GameRegistry.register(Prometheus, new ResourceLocation(Reference.MODID, Strings.Prometheus));
 		GameRegistry.register(Ifrit, new ResourceLocation(Reference.MODID, Strings.Ifrit));
+		GameRegistry.register(OmegaTrinity, new ResourceLocation(Reference.MODID, Strings.OmegaTrinity));
 		GameRegistry.register(Prominence, new ResourceLocation(Reference.MODID, Strings.Prominence));
 
 		//Demyx
@@ -685,6 +690,7 @@ public class ModItems {
 		//Luxord
 		GameRegistry.register(FairGame, new ResourceLocation(Reference.MODID, Strings.FairGame));
 		GameRegistry.register(TheFool, new ResourceLocation(Reference.MODID, Strings.TheFool));
+		GameRegistry.register(TheMagician, new ResourceLocation(Reference.MODID, Strings.TheMagician));
 
 		//Marluxia
 		GameRegistry.register(GracefulDahlia, new ResourceLocation(Reference.MODID, Strings.GracefulDahlia));
@@ -698,12 +704,12 @@ public class ModItems {
 		//Larxene
 		GameRegistry.register(Foudre, new ResourceLocation(Reference.MODID, Strings.Foudre));
 		GameRegistry.register(Trancheuse, new ResourceLocation(Reference.MODID, Strings.Trancheuse));
-		GameRegistry.register(Orage, new ResourceLocation(Reference.MODID, Strings.Orage));
-		GameRegistry.register(Eruption, new ResourceLocation(Reference.MODID, Strings.Eruption));
-		GameRegistry.register(Irregulier, new ResourceLocation(Reference.MODID, Strings.Irregulier));
 		GameRegistry.register(Carmin, new ResourceLocation(Reference.MODID, Strings.Carmin));
 		GameRegistry.register(Indigo, new ResourceLocation(Reference.MODID, Strings.Indigo));
+		GameRegistry.register(Orage, new ResourceLocation(Reference.MODID, Strings.Orage));
+		GameRegistry.register(Eruption, new ResourceLocation(Reference.MODID, Strings.Eruption));
 		GameRegistry.register(Lumineuse, new ResourceLocation(Reference.MODID, Strings.Lumineuse));
+		GameRegistry.register(Irregulier, new ResourceLocation(Reference.MODID, Strings.Irregulier));
 		GameRegistry.register(Tourbillon, new ResourceLocation(Reference.MODID, Strings.Tourbillon));
 
 
