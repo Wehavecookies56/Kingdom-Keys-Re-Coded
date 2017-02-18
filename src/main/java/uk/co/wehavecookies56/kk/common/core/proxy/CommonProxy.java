@@ -148,7 +148,7 @@ public class CommonProxy {
 		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
 		GameRegistry.registerTileEntity(TileEntityKKChest.class, "kkchest");
 		GameRegistry.registerTileEntity(TileEntityStationOfAwakening.class, "stationofawakening");
-		GameRegistry.registerTileEntity(TileEntityPedestal.class, "pedestal");
+		GameRegistry.registerTileEntity(TileEntityPedestal.class, "kkpedestal");
 		LogHelper.info("Tile entity loaded");
 
 		// Proxy used as Gui handler

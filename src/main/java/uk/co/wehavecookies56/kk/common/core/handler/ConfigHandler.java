@@ -26,7 +26,8 @@ public class ConfigHandler {
 			EnableCustomMusic = true,
 			ForceEnableCustomMusic = false,
 			DisableVanillaTooltip = true,
-			EnableStationOfAwakening = true
+			EnableStationOfAwakening = true,
+			chat = true
 	;
 
 	public static int[] interfaceColour = new int[] { 255, 0, 0 };
@@ -42,9 +43,9 @@ public class ConfigHandler {
 			AlwaysShowGUI = 2
 			;
 	
-	public static double damageMultiplier = 1;
+	public static double damageMultiplier = 1.0;
 	
-	public static boolean chat = true;
+	public static String StationOfAwakeningID = "auto";
 	
 	public static Property interfaceColourProperty, EnableHeartsOnHUDProperty, EnableCustomMusicProperty, AlwaysShowGUIProperty;
 
@@ -69,7 +70,8 @@ public class ConfigHandler {
 		//WORLDGEN
 		EnableWorldGen = configProperty("Enable World Gen", "Toggles all world generation performed by this mod", EnableWorldGen, WORLDGEN);
 		EnableStationOfAwakening = configProperty("Enable Station of Awakening", "Toggles whether the Station of Awakening should be enabled", EnableStationOfAwakening, WORLDGEN);
-		
+		StationOfAwakeningID = configProperty("Station of Awakening ID", "Sets Station of Awakening's ID (default \"auto\")", StationOfAwakeningID, WORLDGEN);
+
 		//SPAWNING
 		shadowRatio = configProperty("Shadow spawning ratio", "Sets Shadow heartless spawning ratio", shadowRatio, SPAWNING);
 		gigaShadowRatio = configProperty("GigaShadow spawning ratio", "Sets Giga Shadow heartless spawning ratio", gigaShadowRatio, SPAWNING);
