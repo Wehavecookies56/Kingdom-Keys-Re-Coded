@@ -322,6 +322,8 @@ item.manifestknowledge.name=Xemnas' Knowledge
 item.obscuredknowledge.name=Demyx's Knowledge
 item.unknownknowledge.name=Xigbar's Knowledge
 item.voidknowledge.name=Axel's Knowledge
+item.tangentknowledge.name=Luxord's Knowledge
+item.absoluteknowledge.name=Lexaeus' Knowledge
 
 #Music Discs
 disc.duration.desc=Duration
@@ -419,6 +421,7 @@ item.omegatrinity.name=Omega Trinity
 item.contrivance.name=Contrivance
 item.empiricism.name=Empricism
 item.quietbelladonna.name=Quiet Belladonna
+
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
 item.abyssaltide.name=Abyssal Tide

@@ -15,7 +15,9 @@ import java.io.IOException;
 /**
  * Created by Toby on 09/02/2017.
  */
-public class OrgMemberSelect extends AbstractMessage.AbstractServerMessage<OrgMemberSelect> {
+public class
+
+OrgMemberSelect extends AbstractMessage.AbstractServerMessage<OrgMemberSelect> {
 
     Utils.OrgMember member;
 

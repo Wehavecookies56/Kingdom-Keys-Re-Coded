@@ -20,9 +20,10 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician,Ignition;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge;
 
-	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge, UnknownKnowledge, VoidKnowledge;
+	// Crafting Martierials & knowledges
+	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, AbsoluteKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge,TangentKnowledge, UnknownKnowledge, VoidKnowledge;
 
 	// Keyblades
 	public static Item AbaddonPlasma, AbyssalTide, AllforOne, AnguisForetellersKeyblade, AstralBlast, Aubade, BondofFlame, Brightcrest, ChaosRipper, CircleofLife, Counterpoint, Crabclaw, CrownofGuilt, DarkerThanDark, Darkgnaw, DecisivePumpkin, DestinysEmbrace, DiamondDust, Divewing, DivineRose, DreamSword, DualDisc, Earthshaker, EndofPain, EndsoftheEarth, FairyHarp, FairyStars, FatalCrest, Fenrir, FerrisGear, FollowtheWind, FrolicFlame, GlimpseofDarkness, GuardianBell, GuardianSoul, GullWing, HerosCrest, HiddenDragon, Hyperdrive, IncompleteKiblade, JungleKing, KeybladeofPeoplesHearts, Kiblade, KingdomKey, KingdomKeyD, KnockoutPunch, LadyLuck, LeasKeyblade, LeopardosForetellersKeyblade, Leviathan, Lionheart, LostMemory, LunarEclipse, MarkofaHero, MasterXehanortsKeyblade, MastersDefender, MaverickFlare, MetalChocobo, MidnightRoar, MirageSplit, MissingAche, Monochrome, MysteriousAbyss, NightmaresEnd, NightmaresEndandMirageSplit, NoName, Oathkeeper, Oblivion, OceansRage, Olympia, OmegaWeapon, OminousBlight, OneWingedAngel, PainofSolitude, PhotonDebugger, PixiePetal, Pumpkinhead, Rainfell, RejectionofFate, RoyalRadiance, RumblingRose, SignofInnocence, SilentDirge, SkullNoise, SleepingLion, SoulEater, Spellbinder, StarSeeker, Starlight, Stormfall, StrokeofMidnight, SweetDreams, SweetMemories, Sweetstack, ThreeWishes, TotalEclipse, TreasureTrove, TrueLightsFlight, TwilightBlaze, TwoBecomeOne, UltimaWeaponKH1, UltimaWeaponKH2, UltimaWeaponBBS, UltimaWeaponDDD, Umbrella, Unbound, UnicornisForetellersKeyblade, UrsusForetellersKeyblade, VictoryLine, VoidGear, VulpeusForetellersKeyblade, WaytotheDawn, WaywardWind, WinnersProof, WishingLamp, WishingStar, WoodenKeyblade, WoodenStick, YoungXehanortsKeyblade, ZeroOne;
@@ -71,7 +72,8 @@ public class ModItems {
 		ForgottenKnowledge = new ItemForgottenKnowledge().setUnlocalizedName(Strings.ForgottenKnowledge).setCreativeTab(tabKingdomKeys);
 		IlludedKnowledge = new ItemIlludedKnowledge().setUnlocalizedName(Strings.IlludedKnowledge).setCreativeTab(tabKingdomKeys);
 		ObscuredKnowledge = new ItemObscuredKnowledge().setUnlocalizedName(Strings.ObscuredKnowledge).setCreativeTab(tabKingdomKeys);
-
+		TangentKnowledge = new ItemTangentKnowledge().setUnlocalizedName(Strings.TangentKnowledge).setCreativeTab(tabKingdomKeys);
+		AbsoluteKnowledge = new ItemAbsoluteKnowledge().setUnlocalizedName(Strings.AbsoluteKnowledge).setCreativeTab(tabKingdomKeys);
 
 		// xemnas
 		Interdiction = new ItemInterdiction(EnumHelper.addToolMaterial("interdiction", 3, -1, 6F, 10, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
@@ -122,16 +124,18 @@ public class ModItems {
 		Twilight = new ItemLunatic(EnumHelper.addToolMaterial("twilight", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Twilight);
 
 		// axel
+		EternalFlames = new ItemEternalFlames(EnumHelper.addToolMaterial("eternalflames", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
 		Burnout = new ItemBlazeofGlory(EnumHelper.addToolMaterial("burnout", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
 		Outbreak = new ItemBlazeofGlory(EnumHelper.addToolMaterial("outbreak", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Outbreak);
+		BlazeofGlory = new ItemBlazeofGlory(EnumHelper.addToolMaterial("blazeofglory", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
 		Ashes = new ItemAshes(EnumHelper.addToolMaterial("ashes", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ashes);
 		Combustion = new ItemAshes(EnumHelper.addToolMaterial("combustion", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Combustion);
-		BlazeofGlory = new ItemBlazeofGlory(EnumHelper.addToolMaterial("blazeofglory", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
 		Prometheus = new ItemPrometheus(EnumHelper.addToolMaterial("prometheus", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
 		Ifrit = new ItemIfrit(EnumHelper.addToolMaterial("ifrit", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
 		OmegaTrinity = new ItemIfrit(EnumHelper.addToolMaterial("ifrit", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OmegaTrinity);
 		Prominence = new ItemProminence(EnumHelper.addToolMaterial("prominence", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
-		EternalFlames = new ItemEternalFlames(EnumHelper.addToolMaterial("eternalflames", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
+		FerrisWheel = new ItemEternalFlames(EnumHelper.addToolMaterial("ferriswheel", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FerrisWheel);
+		MoulinRouge = new ItemEternalFlames(EnumHelper.addToolMaterial("moulinrouge", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MoulinRouge);
 
 		// demyx
 		Arpeggio = new ItemArpeggio(EnumHelper.addToolMaterial("arpeggio", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Arpeggio);
@@ -683,6 +687,8 @@ public class ModItems {
 		GameRegistry.register(Ifrit, new ResourceLocation(Reference.MODID, Strings.Ifrit));
 		GameRegistry.register(OmegaTrinity, new ResourceLocation(Reference.MODID, Strings.OmegaTrinity));
 		GameRegistry.register(Prominence, new ResourceLocation(Reference.MODID, Strings.Prominence));
+		GameRegistry.register(FerrisWheel, new ResourceLocation(Reference.MODID, Strings.FerrisWheel));
+		GameRegistry.register(MoulinRouge, new ResourceLocation(Reference.MODID, Strings.MoulinRouge));
 
 		//Demyx
 		GameRegistry.register(Arpeggio, new ResourceLocation(Reference.MODID, Strings.Arpeggio));
@@ -716,6 +722,7 @@ public class ModItems {
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));
+		GameRegistry.register(AbsoluteKnowledge, new ResourceLocation(Reference.MODID, Strings.AbsoluteKnowledge));
 		GameRegistry.register(DarkKnowledge, new ResourceLocation(Reference.MODID, Strings.DarkKnowledge));
 		GameRegistry.register(EclipsedKnowledge, new ResourceLocation(Reference.MODID, Strings.EclipsedKnowledge));
 		GameRegistry.register(ForgottenKnowledge, new ResourceLocation(Reference.MODID, Strings.ForgottenKnowledge));
@@ -723,6 +730,7 @@ public class ModItems {
 		GameRegistry.register(LostKnowledge, new ResourceLocation(Reference.MODID, Strings.LostKnowledge));
 		GameRegistry.register(ManifestKnowledge, new ResourceLocation(Reference.MODID, Strings.ManifestKnowledge));
 		GameRegistry.register(ObscuredKnowledge, new ResourceLocation(Reference.MODID, Strings.ObscuredKnowledge));
+		GameRegistry.register(TangentKnowledge, new ResourceLocation(Reference.MODID, Strings.TangentKnowledge));
 		GameRegistry.register(UnknownKnowledge, new ResourceLocation(Reference.MODID, Strings.UnknownKnowledge));
 		GameRegistry.register(VoidKnowledge, new ResourceLocation(Reference.MODID, Strings.VoidKnowledge));
 
@@ -1074,6 +1082,7 @@ public class ModItems {
 
 		// Knowledge
 		registerRender(AbandonedKnowledge);
+		registerRender(AbsoluteKnowledge);
 		registerRender(DarkKnowledge);
 		registerRender(EclipsedKnowledge);
 		registerRender(ForgottenKnowledge);
@@ -1081,6 +1090,7 @@ public class ModItems {
 		registerRender(LostKnowledge);
 		registerRender(ManifestKnowledge);
 		registerRender(ObscuredKnowledge);
+		registerRender(TangentKnowledge);
 		registerRender(UnknownKnowledge);
 		registerRender(VoidKnowledge);
 

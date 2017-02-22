@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
+import sun.security.x509.AVA;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.client.*;
 import uk.co.wehavecookies56.kk.common.network.packet.server.*;
@@ -94,6 +95,8 @@ public class PacketDispatcher {
 		registerMessage(ForgottenKnowledgePacket.class);
 		registerMessage(ObscuredKnowledgePacket.class);
 		registerMessage(IlludedKnowledgePacket.class);
+		registerMessage(TangentKnowledgePacket.class);
+		registerMessage(AbsoluteKnowledgePacket.class);
 
 		registerMessage(LevelUpDrive.class);
 		registerMessage(SynthesisMaterialPickup.class);

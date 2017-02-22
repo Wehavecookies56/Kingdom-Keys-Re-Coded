@@ -354,9 +354,9 @@ public class Strings {
 
 	SM_DenseShard = "sm.denseshard", 
 	SM_DenseStone = "sm.densestone",
-	SM_DenseGem = "sm.densegem", 
-	SM_DenseCrystal = "sm.densecrystal",
+	SM_DenseGem = "sm.densegem",
 
+	SM_DenseCrystal = "sm.densecrystal",
 	SM_EnergyShard = "sm.energyshard", 
 	SM_EnergyStone = "sm.energystone",
 	SM_EnergyGem = "sm.energygem", 
@@ -499,11 +499,15 @@ public class Strings {
 	CryoliteShield = "cryoliteshield",
 	OmegaTrinity = "omegatrinity",
 	TheMagician ="themagician",
-	Ignition = "ignition"
+	Ignition = "ignition",
+	FerrisWheel = "ferriswheel",
+	MoulinRouge = "moulinrouge"
 	;
 
+	// Knowledges
 	public static final String 
 	AbandonedKnowledge = "abandonedknowledge",
+	AbsoluteKnowledge = "AbsoluteKnowledge",
 	DarkKnowledge = "darkknowledge", 
 	EclipsedKnowledge = "eclipsedknowledge",
 	ForgottenKnowledge = "forgottenknowledge",
@@ -511,7 +515,8 @@ public class Strings {
 	LostKnowledge = "lostknowledge",
 	ManifestKnowledge = "manifestknowledge",
 	ObscuredKnowledge = "obscuredknowledge",
-	UnknownKnowledge = "unknownknowledge", 
+	TangentKnowledge = "tangentknowledge",
+	UnknownKnowledge = "unknownknowledge",
 	VoidKnowledge = "voidknowledge"
 	;
 
