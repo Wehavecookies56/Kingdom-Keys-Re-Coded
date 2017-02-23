@@ -501,7 +501,9 @@ public class Strings {
 	TheMagician ="themagician",
 	Ignition = "ignition",
 	FerrisWheel = "ferriswheel",
-	MoulinRouge = "moulinrouge"
+	MoulinRouge = "moulinrouge",
+	Inferno = "inferno",
+	Doldrums = "doldrums"
 	;
 
 	// Knowledges
