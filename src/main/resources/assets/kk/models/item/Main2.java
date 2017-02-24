@@ -67,6 +67,51 @@ public class Main2 {
 				    	
 				    }
 				}
+			}else if(file.getName().contains(".obj")){
+				tempFile = new File("temp"+file.getName());
+				
+				try{
+					System.out.println(file.getAbsolutePath());
+				    reader = new BufferedReader(new FileReader(file));
+				    writer = new BufferedWriter(new FileWriter(tempFile));
+				    String text = null;
+				    int times=0;
+				    while ((text = reader.readLine()) != null)
+				    {
+				    	times++;
+				    	
+						if((text.startsWith("s")))
+						{
+							System.out.println(times+": "+text.substring(0, text.indexOf(" "))+" found");
+						}else{
+						    writer.write(text + System.getProperty("line.separator"));
+						    System.out.println(times+": Nothing");
+		
+						}
+				    }
+				} catch (FileNotFoundException e) {
+				    e.printStackTrace();
+				} catch (IOException e) {
+				    e.printStackTrace();
+				} finally {
+					try {
+				        if (reader != null) {
+				        	writer.close(); 
+				        	reader.close();
+				        	//Delete the original file
+				            if (!file.delete()) {
+				              System.out.println("Could not delete file");
+				              return;
+				            }
+		
+				            //Rename the new file to the filename the original file had.
+				            if (!tempFile.renameTo(file))
+				              System.out.println("Could not rename file");
+				        }
+				    } catch (IOException e) {
+				    	
+				    }
+				}
 			}
 		}
 		//Ns, Ke, Ni, illum, map_d
