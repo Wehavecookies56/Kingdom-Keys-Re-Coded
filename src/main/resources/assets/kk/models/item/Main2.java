@@ -1,5 +1,3 @@
-package assets.kk.models.item;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -35,7 +33,7 @@ public class Main2 {
 				    {
 				    	times++;
 				    	
-						if((text.startsWith("Ns")||text.startsWith("Ke")||text.startsWith("Ni")||text.startsWith("illum")||text.startsWith("map_d")))
+						if((text.startsWith("Ns")||text.startsWith("Ks")||text.startsWith("Ke")||text.startsWith("Ni")||text.startsWith("illum")||text.startsWith("map_d")))
 						{
 							System.out.println(times+": "+text.substring(0, text.indexOf(" "))+" found");
 						}else{

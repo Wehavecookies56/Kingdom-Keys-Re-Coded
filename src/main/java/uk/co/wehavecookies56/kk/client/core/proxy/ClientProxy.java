@@ -257,11 +257,11 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.CryoliteShield, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.CryoliteShield, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.OmegaTrinity, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.OmegaTrinity, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.TheMagician, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TheMagician, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Ignition , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Ignition, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.FerrisWheel , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FerrisWheel, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.MoulinRouge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.MoulinRouge, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Doldrums , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Doldrums, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Inferno , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Inferno, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Ignition, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Ignition, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.FerrisWheel, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FerrisWheel, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.MoulinRouge, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.MoulinRouge, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Doldrums, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Doldrums, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Inferno, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Inferno, "inventory"));
 
 		//Blocks
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
