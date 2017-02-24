@@ -503,7 +503,8 @@ public class Strings {
 	FerrisWheel = "ferriswheel",
 	MoulinRouge = "moulinrouge",
 	Inferno = "inferno",
-	Doldrums = "doldrums"
+	Doldrums = "doldrums",
+    FinestFantasy13 = "finestfantasy13"
 	;
 
 	// Knowledges
@@ -593,7 +594,8 @@ public class Strings {
 	Umbrella = "umbrella", 
 	Aubade = "aubade",
 	WoodenStick = "woodenstick", 
-	DreamSword = "dreamsword", 
+	DreamSword = "dreamsword",
+    DreamShield = "dreamshield",
 	ZeroOne = "zeroone",
 	Earthshaker = "earthshaker", 
 	Darkgnaw = "darkgnaw",

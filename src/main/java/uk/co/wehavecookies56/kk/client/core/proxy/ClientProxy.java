@@ -97,6 +97,7 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.Divewing, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Divewing, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.DivineRose, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DivineRose, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.DreamSword, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DreamSword, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.DreamShield, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DreamShield, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.DualDisc, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DualDisc, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Earthshaker, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Earthshaker, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.EndofPain, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.EndofPain, "inventory"));
@@ -262,6 +263,7 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.MoulinRouge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.MoulinRouge, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Doldrums , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Doldrums, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Inferno , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Inferno, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.FinestFantasy13 , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FinestFantasy13, "inventory"));
 
 		//Blocks
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
