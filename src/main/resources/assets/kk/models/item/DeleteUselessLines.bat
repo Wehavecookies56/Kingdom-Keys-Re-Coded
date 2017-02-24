@@ -1,1 +1,2 @@
-java Main
+java Main2
+pause

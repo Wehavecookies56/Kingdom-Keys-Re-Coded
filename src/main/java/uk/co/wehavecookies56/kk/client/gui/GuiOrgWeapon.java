@@ -4,6 +4,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -30,6 +34,7 @@ public class GuiOrgWeapon extends GuiScreen {
     final int OK = 0, CONFIRM = 1, CANCEL = 2, NEXT = 3, PREV = 4, SELECT = 5;
 
     List<Item> weapons;
+    List<Item> unlocked;
     int current = 0;
 
     boolean showWelcome = true;
@@ -38,30 +43,45 @@ public class GuiOrgWeapon extends GuiScreen {
     private final ResourceLocation GLOW = new ResourceLocation(Reference.MODID, "textures/gui/org/glow.png");
 
     public GuiOrgWeapon() {
-        //this.weapons = Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).unlockedWeapons();
-        this.weapons = Lists.Axel;
+        if (Minecraft.getMinecraft().player.hasCapability(ModCapabilities.ORGANIZATION_XIII, null)) {
+            this.weapons = Lists.getListForMember(Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember());
+            this.unlocked = Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).unlockedWeapons();
+        } else {
+            this.weapons = new ArrayList<>();
+        }
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        drawDefaultBackground();
-        String name = "";
-        String weapon = "";
-        int weapon_w = 128;
-        int weapon_h = 128;
-        drawDefaultBackground();
-        GlStateManager.pushMatrix();
-        mc.renderEngine.bindTexture(GLOW);
-        GlStateManager.enableAlpha();
-        GlStateManager.enableBlend();
-        drawTexturedModalRect((width / 2) - (256 / 2) - 5, (height / 2) - (256 / 2), 0, 0, 256, 256);
-        drawString(fontRendererObj, new ItemStack(weapons.get(current)).getDisplayName(), (width / 2) - (256 / 2) - 5, (height / 2) - 110, 0xFFFFFF);
-        GlStateManager.popMatrix();
-        GlStateManager.pushMatrix();
-        GlStateManager.translate((width / 2) - (256 / 2) - 5 + 94, (height / 2) - (256 / 2) + 88, 0);
-        GlStateManager.scale(5, 5, 5);
-        mc.getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(weapons.get(current)), 0, 0);
-        GlStateManager.popMatrix();
+        if (!confirmChoice) {
+            drawDefaultBackground();
+            String name = "";
+            String weapon = "";
+            int weapon_w = 128;
+            int weapon_h = 128;
+            drawDefaultBackground();
+            GlStateManager.pushMatrix();
+            mc.renderEngine.bindTexture(GLOW);
+            GlStateManager.enableAlpha();
+            GlStateManager.enableBlend();
+            drawTexturedModalRect((width / 2) - (256 / 2) - 5, (height / 2) - (256 / 2), 0, 0, 256, 256);
+            drawString(fontRendererObj, new ItemStack(weapons.get(current)).getDisplayName(), (width / 2) - (256 / 2) - 5, (height / 2) - 110, 0xFFFFFF);
+            GlStateManager.popMatrix();
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((width / 2) - (256 / 2) - 5 + 94, (height / 2) - (256 / 2) + 88, 0);
+            GlStateManager.scale(5, 5, 5);
+            if (!unlocked.isEmpty() && !unlocked.contains(weapons.get(current))) {
+                System.out.println(unlocked.get(current));
+            }
+            GlStateManager.enableBlend();
+            GlStateManager.color(0, 0, 0);
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 1.0F, 1.0F);
+            mc.getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(weapons.get(current)), 0, 0);
+            GlStateManager.popMatrix();
+        } else {
+            drawDefaultBackground();
+            drawCenteredString(fontRendererObj, "Equip " + new ItemStack(weapons.get(current)).getDisplayName() + "?", (width / 2), height / 2, 0xFFFFFF);
+        }
         /*mc.renderEngine.bindTexture(icons[current.ordinal()]);
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
