@@ -15,11 +15,13 @@ import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
-public class ItemSharpshooter extends ItemOrgWeapon {
+public class ItemArrowguns extends ItemOrgWeapon implements IOrgWeapon{
 
-	public ItemSharpshooter (ToolMaterial material) {
-		super(material);
+	public ItemArrowguns (double strength, double magic)  {
+		super(strength,magic);
 		setMaxStackSize(1);
 	}
 
@@ -51,5 +53,10 @@ public class ItemSharpshooter extends ItemOrgWeapon {
 	@SideOnly (Side.CLIENT)
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List<String> dataList, boolean bool) {
 		dataList.add("II Xigbar");
+	}
+
+	@Override
+	public OrgMember getMember() {
+		return Utils.OrgMember.XEMNAS;
 	}
 }

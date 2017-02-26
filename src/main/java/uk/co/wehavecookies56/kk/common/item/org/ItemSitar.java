@@ -8,11 +8,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
-public class ItemSkysplitter extends ItemOrgWeapon {
+public class ItemSitar extends ItemOrgWeapon implements IOrgWeapon {
 
-	public ItemSkysplitter (ToolMaterial material) {
-		super(material);
+	public ItemSitar (double strength, double magic)  {
+		super(strength,magic);
 		setMaxStackSize(1);
 	}
 
@@ -25,6 +26,11 @@ public class ItemSkysplitter extends ItemOrgWeapon {
 	@Override
 	@SideOnly (Side.CLIENT)
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add("V Lexaeus");
+		dataList.add("IX Demyx");
+	}
+
+	@Override
+	public Utils.OrgMember getMember() {
+		return Utils.OrgMember.DEMYX;
 	}
 }

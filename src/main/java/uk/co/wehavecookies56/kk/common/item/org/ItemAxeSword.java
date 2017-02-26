@@ -8,13 +8,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
-import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
-public class ItemLunatic extends ItemOrgWeapon {
+public class ItemAxeSword extends ItemOrgWeapon implements IOrgWeapon{
 
-	public ItemLunatic (ToolMaterial material) {
-		super(material);
+	public ItemAxeSword (double strength, double magic)  {
+		super(strength,magic);
 		setMaxStackSize(1);
 	}
 
@@ -27,7 +27,11 @@ public class ItemLunatic extends ItemOrgWeapon {
 	@Override
 	@SideOnly (Side.CLIENT)
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add(Utils.translateToLocal(Strings.LunaticDesc));
+		dataList.add("V Lexaeus");
 	}
 
+	@Override
+	public OrgMember getMember() {
+		return Utils.OrgMember.XEMNAS;
+	}
 }

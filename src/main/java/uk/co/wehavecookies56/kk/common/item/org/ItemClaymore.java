@@ -8,11 +8,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
-public class ItemFoudre extends ItemOrgWeapon {
+public class ItemClaymore extends ItemOrgWeapon implements IOrgWeapon{
 
-	public ItemFoudre (ToolMaterial material) {
-		super(material);
+	public ItemClaymore (double strength, double magic)  {
+		super(strength,magic);
 		setMaxStackSize(1);
 	}
 
@@ -25,6 +28,11 @@ public class ItemFoudre extends ItemOrgWeapon {
 	@Override
 	@SideOnly (Side.CLIENT)
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add("XII Larxene");
+		dataList.add(Utils.translateToLocal(Strings.LunaticDesc));
+	}
+
+	@Override
+	public OrgMember getMember() {
+		return Utils.OrgMember.XEMNAS;
 	}
 }

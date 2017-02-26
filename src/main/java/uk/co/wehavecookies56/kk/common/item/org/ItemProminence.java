@@ -12,8 +12,9 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityProminence;
 
 public class ItemProminence extends ItemChakram {
-	public ItemProminence(ToolMaterial material) {
-		super(material);
+	public ItemProminence (double strength, double magic)  {
+		super(strength,magic);
+		setMaxStackSize(1);
 	}
 
 	@Override

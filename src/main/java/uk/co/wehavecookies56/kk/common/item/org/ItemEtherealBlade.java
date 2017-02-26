@@ -12,11 +12,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
-public class ItemInterdiction extends ItemOrgWeapon {
+public class ItemEtherealBlade extends ItemOrgWeapon implements IOrgWeapon{
 
-	public ItemInterdiction (ToolMaterial material) {
-		super(material);
+	public ItemEtherealBlade (double strength, double magic)  {
+		super(strength,magic);
 		setMaxStackSize(1);
 	}
 
@@ -30,6 +32,11 @@ public class ItemInterdiction extends ItemOrgWeapon {
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
 		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+	}
+
+	@Override
+	public OrgMember getMember() {
+		return Utils.OrgMember.XEMNAS;
 	}
 
 }
