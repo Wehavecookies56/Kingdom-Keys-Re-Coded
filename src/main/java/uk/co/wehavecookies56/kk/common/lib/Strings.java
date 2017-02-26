@@ -511,19 +511,7 @@ public class Strings {
 
 	// Knowledges
 	public static final String 
-	AbandonedKnowledge = "abandonedknowledge",
-	AbsoluteKnowledge = "AbsoluteKnowledge",
-	DarkKnowledge = "darkknowledge", 
-	EclipsedKnowledge = "eclipsedknowledge",
-	ForgottenKnowledge = "forgottenknowledge",
-	IlludedKnowledge = "illudedknowledge", 
-	LostKnowledge = "lostknowledge",
-	ManifestKnowledge = "manifestknowledge",
-	ObscuredKnowledge = "obscuredknowledge",
-	TangentKnowledge = "tangentknowledge",
-	UnknownKnowledge = "unknownknowledge",
-	VoidKnowledge = "voidknowledge"
-	;
+	AbandonedKnowledge = "abandonedknowledge";
 
 	// Keyblades
 	public static final String 

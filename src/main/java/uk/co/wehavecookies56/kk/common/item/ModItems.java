@@ -23,7 +23,7 @@ public class ModItems {
 	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno ,Doldrums, FinestFantasy13, Colossus, Sequoia;
 
 	// Crafting Martierials & knowledges
-	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, AbsoluteKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge,TangentKnowledge, UnknownKnowledge, VoidKnowledge;
+	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge;
 
 	// Keyblades
 	public static Item AbaddonPlasma, AbyssalTide, AllforOne, AnguisForetellersKeyblade, AstralBlast, Aubade, BondofFlame, Brightcrest, ChaosRipper, CircleofLife, Counterpoint, Crabclaw, CrownofGuilt, DarkerThanDark, Darkgnaw, DecisivePumpkin, DestinysEmbrace, DiamondDust, Divewing, DivineRose, DreamSword, DreamShield, DualDisc, Earthshaker, EndofPain, EndsoftheEarth, FairyHarp, FairyStars, FatalCrest, Fenrir, FerrisGear, FollowtheWind, FrolicFlame, GlimpseofDarkness, GuardianBell, GuardianSoul, GullWing, HerosCrest, HiddenDragon, Hyperdrive, IncompleteKiblade, JungleKing, KeybladeofPeoplesHearts, Kiblade, KingdomKey, KingdomKeyD, KnockoutPunch, LadyLuck, LeasKeyblade, LeopardosForetellersKeyblade, Leviathan, Lionheart, LostMemory, LunarEclipse, MarkofaHero, MasterXehanortsKeyblade, MastersDefender, MaverickFlare, MetalChocobo, MidnightRoar, MirageSplit, MissingAche, Monochrome, MysteriousAbyss, NightmaresEnd, NightmaresEndandMirageSplit, NoName, Oathkeeper, Oblivion, OceansRage, Olympia, OmegaWeapon, OminousBlight, OneWingedAngel, PainofSolitude, PhotonDebugger, PixiePetal, Pumpkinhead, Rainfell, RejectionofFate, RoyalRadiance, RumblingRose, SignofInnocence, SilentDirge, SkullNoise, SleepingLion, SoulEater, Spellbinder, StarSeeker, Starlight, Stormfall, StrokeofMidnight, SweetDreams, SweetMemories, Sweetstack, ThreeWishes, TotalEclipse, TreasureTrove, TrueLightsFlight, TwilightBlaze, TwoBecomeOne, UltimaWeaponKH1, UltimaWeaponKH2, UltimaWeaponBBS, UltimaWeaponDDD, Umbrella, Unbound, UnicornisForetellersKeyblade, UrsusForetellersKeyblade, VictoryLine, VoidGear, VulpeusForetellersKeyblade, WaytotheDawn, WaywardWind, WinnersProof, WishingLamp, WishingStar, WoodenKeyblade, WoodenStick, YoungXehanortsKeyblade, ZeroOne;
@@ -63,17 +63,7 @@ public class ModItems {
 		DarkInfusedIron = new Item().setUnlocalizedName(Strings.DarkInfusedIron).setCreativeTab(tabKingdomKeys);
 
 		AbandonedKnowledge = new ItemAbandonedKnowledge().setUnlocalizedName(Strings.AbandonedKnowledge).setCreativeTab(tabKingdomKeys);
-		UnknownKnowledge = new ItemUnknownKnowledge().setUnlocalizedName(Strings.UnknownKnowledge).setCreativeTab(tabKingdomKeys);
-		VoidKnowledge = new ItemVoidKnowledge().setUnlocalizedName(Strings.VoidKnowledge).setCreativeTab(tabKingdomKeys);
-		ManifestKnowledge = new ItemManifestKnowledge().setUnlocalizedName(Strings.ManifestKnowledge).setCreativeTab(tabKingdomKeys);
-		DarkKnowledge = new ItemDarkKnowledge().setUnlocalizedName(Strings.DarkKnowledge).setCreativeTab(tabKingdomKeys);
-		LostKnowledge = new ItemLostKnowledge().setUnlocalizedName(Strings.LostKnowledge).setCreativeTab(tabKingdomKeys);
-		EclipsedKnowledge = new ItemEclipsedKnowledge().setUnlocalizedName(Strings.EclipsedKnowledge).setCreativeTab(tabKingdomKeys);
-		ForgottenKnowledge = new ItemForgottenKnowledge().setUnlocalizedName(Strings.ForgottenKnowledge).setCreativeTab(tabKingdomKeys);
-		IlludedKnowledge = new ItemIlludedKnowledge().setUnlocalizedName(Strings.IlludedKnowledge).setCreativeTab(tabKingdomKeys);
-		ObscuredKnowledge = new ItemObscuredKnowledge().setUnlocalizedName(Strings.ObscuredKnowledge).setCreativeTab(tabKingdomKeys);
-		TangentKnowledge = new ItemTangentKnowledge().setUnlocalizedName(Strings.TangentKnowledge).setCreativeTab(tabKingdomKeys);
-		AbsoluteKnowledge = new ItemAbsoluteKnowledge().setUnlocalizedName(Strings.AbsoluteKnowledge).setCreativeTab(tabKingdomKeys);
+
 
 		// xemnas
 		Interdiction = new ItemInterdiction(EnumHelper.addToolMaterial("interdiction", 3, -1, 6F, 10, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
@@ -734,17 +724,7 @@ public class ModItems {
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));
-		GameRegistry.register(AbsoluteKnowledge, new ResourceLocation(Reference.MODID, Strings.AbsoluteKnowledge));
-		GameRegistry.register(DarkKnowledge, new ResourceLocation(Reference.MODID, Strings.DarkKnowledge));
-		GameRegistry.register(EclipsedKnowledge, new ResourceLocation(Reference.MODID, Strings.EclipsedKnowledge));
-		GameRegistry.register(ForgottenKnowledge, new ResourceLocation(Reference.MODID, Strings.ForgottenKnowledge));
-		GameRegistry.register(IlludedKnowledge, new ResourceLocation(Reference.MODID, Strings.IlludedKnowledge));
-		GameRegistry.register(LostKnowledge, new ResourceLocation(Reference.MODID, Strings.LostKnowledge));
-		GameRegistry.register(ManifestKnowledge, new ResourceLocation(Reference.MODID, Strings.ManifestKnowledge));
-		GameRegistry.register(ObscuredKnowledge, new ResourceLocation(Reference.MODID, Strings.ObscuredKnowledge));
-		GameRegistry.register(TangentKnowledge, new ResourceLocation(Reference.MODID, Strings.TangentKnowledge));
-		GameRegistry.register(UnknownKnowledge, new ResourceLocation(Reference.MODID, Strings.UnknownKnowledge));
-		GameRegistry.register(VoidKnowledge, new ResourceLocation(Reference.MODID, Strings.VoidKnowledge));
+
 
 		// Keyblades
 		GameRegistry.register(AbaddonPlasma, new ResourceLocation(Reference.MODID, Strings.AbaddonPlasma));
@@ -1095,17 +1075,7 @@ public class ModItems {
 
 		// Knowledge
 		registerRender(AbandonedKnowledge);
-		registerRender(AbsoluteKnowledge);
-		registerRender(DarkKnowledge);
-		registerRender(EclipsedKnowledge);
-		registerRender(ForgottenKnowledge);
-		registerRender(IlludedKnowledge);
-		registerRender(LostKnowledge);
-		registerRender(ManifestKnowledge);
-		registerRender(ObscuredKnowledge);
-		registerRender(TangentKnowledge);
-		registerRender(UnknownKnowledge);
-		registerRender(VoidKnowledge);
+
 
 		// Keyblades
 		registerRender(AbaddonPlasma);

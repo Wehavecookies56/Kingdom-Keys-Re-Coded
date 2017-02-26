@@ -161,18 +161,7 @@ public class ModItemsRecipes {
 		ItemStack ManifestIllusion = new ItemStack(ModItems.SynthesisMaterial, 1);
 		ItemStacks.createSynthesisItem(ManifestIllusion, Strings.SM_ManifestIllusion, "S");
 
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.VoidKnowledge), ModItems.DarkLeather, BlazingCrystal, Items.BOOK , LostIllusion));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.AbandonedKnowledge), ModItems.DarkLeather, FrostCrystal, Items.BOOK , LostIllusion));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.DarkKnowledge), ModItems.DarkLeather, DarkCrystal, Items.BOOK , LostIllusion));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.LostKnowledge), ModItems.DarkLeather, LightningCrystal, Items.BOOK , LostIllusion));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.ForgottenKnowledge), ModItems.DarkLeather, StormyCrystal, Items.BOOK , LostIllusion));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.EclipsedKnowledge),ModItems.DarkLeather, TwilightCrystal,DenseCrystal, Items.BOOK , LostIllusion));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.TangentKnowledge),ModItems.DarkLeather, BrightCrystal,DenseCrystal, Items.BOOK , LostIllusion));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.IlludedKnowledge), ModItems.DarkLeather, DenseCrystal, Items.BOOK , LostIllusion));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.ObscuredKnowledge), ModItems.DarkLeather, BrightCrystal, Items.BOOK , LostIllusion));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.UnknownKnowledge), ModItems.DarkLeather,  TwilightCrystal, TwilightCrystal,Items.BOOK , LostIllusion));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.ManifestKnowledge), ModItems.DarkLeather, TwilightCrystal, Items.BOOK , LostIllusion));
-		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.AbsoluteKnowledge), ModItems.DarkLeather, TwilightCrystal, LightningCrystal, Items.BOOK , LostIllusion));
+		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.AbandonedKnowledge), ModItems.DarkLeather, FrostCrystal, BlazingCrystal, LightningCrystal, MythrilCrystal, StormyCrystal, DarkCrystal, Items.BOOK , LostIllusion));
 
 		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.BlazingInfusedCoal), BlazingCrystal, Items.COAL));
 		GameRegistry.addRecipe(new ShapelessNBTRecipe(new ItemStack(ModItems.FrostInfusedSnowBall), FrostCrystal, Items.SNOWBALL));

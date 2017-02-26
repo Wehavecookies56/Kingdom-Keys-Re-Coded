@@ -124,18 +124,7 @@ public class PacketDispatcher {
 		registerMessage(DeSummonOrgWeapon.class);
 
 		//knowledge
-		registerMessage(ManifestKnowledgePacket.class);
-		registerMessage(UnknownKnowledgePacket.class);
-		registerMessage(VoidKnowledgePacket.class);
 		registerMessage(AbandonedKnowledgePacket.class);
-		registerMessage(DarkKnowledgePacket.class);
-		registerMessage(LostKnowledgePacket.class);
-		registerMessage(EclipsedKnowledgePacket.class);
-		registerMessage(ForgottenKnowledgePacket.class);
-		registerMessage(ObscuredKnowledgePacket.class);
-		registerMessage(IlludedKnowledgePacket.class);
-		registerMessage(TangentKnowledgePacket.class);
-		registerMessage(AbsoluteKnowledgePacket.class);
 
 		registerMessage(LevelUpDrive.class);
 		registerMessage(SynthesisMaterialPickup.class);
