@@ -12,8 +12,9 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityIfrit;
 
 public class ItemIfrit extends ItemChakram {
-	public ItemIfrit (ToolMaterial material) {
-		super(material);
+	public ItemIfrit (double strength, double magic)  {
+		super(strength,magic);
+		setMaxStackSize(1);
 	}
 
 	@Override
@@ -33,4 +34,5 @@ public class ItemIfrit extends ItemChakram {
 		}
 		return ActionResult.newResult(EnumActionResult.FAIL, itemStack);
 	}
+	
 }

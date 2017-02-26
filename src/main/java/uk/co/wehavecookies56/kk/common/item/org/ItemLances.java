@@ -9,11 +9,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
-public class ItemArpeggio extends ItemOrgWeapon implements IOrgWeapon {
+public class ItemLances extends ItemOrgWeapon implements IOrgWeapon{
 
-	public ItemArpeggio (ToolMaterial material) {
-		super(material);
+	public ItemLances (double strength, double magic)  {
+		super(strength,magic);
 		setMaxStackSize(1);
 	}
 
@@ -26,11 +27,11 @@ public class ItemArpeggio extends ItemOrgWeapon implements IOrgWeapon {
 	@Override
 	@SideOnly (Side.CLIENT)
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add("IX Demyx");
+		dataList.add("III Xaldin");
 	}
 
 	@Override
-	public Utils.OrgMember getMember() {
-		return Utils.OrgMember.DEMYX;
+	public OrgMember getMember() {
+		return Utils.OrgMember.XEMNAS;
 	}
 }

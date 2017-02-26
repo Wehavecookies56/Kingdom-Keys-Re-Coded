@@ -8,11 +8,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
-public class ItemLindworm extends ItemOrgWeapon {
+public class ItemScythe extends ItemOrgWeapon implements IOrgWeapon{
 
-	public ItemLindworm (ToolMaterial material) {
-		super(material);
+	public ItemScythe (double strength, double magic)  {
+		super(strength,magic);
 		setMaxStackSize(1);
 	}
 
@@ -25,6 +27,11 @@ public class ItemLindworm extends ItemOrgWeapon {
 	@Override
 	@SideOnly (Side.CLIENT)
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add("III Xaldin");
+		dataList.add("XI Marluxia");
+	}
+
+	@Override
+	public OrgMember getMember() {
+		return Utils.OrgMember.XEMNAS;
 	}
 }

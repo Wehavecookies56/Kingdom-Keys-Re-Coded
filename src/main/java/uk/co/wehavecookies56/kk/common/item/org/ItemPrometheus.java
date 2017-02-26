@@ -11,9 +11,10 @@ import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityPrometheus;
 
-public class ItemPrometheus extends ItemChakram {
-	public ItemPrometheus (ToolMaterial material) {
-		super(material);
+public class ItemPrometheus extends ItemChakram implements IOrgWeapon{
+	public ItemPrometheus (double strength, double magic)  {
+		super(strength,magic);
+		setMaxStackSize(1);
 	}
 
 	@Override

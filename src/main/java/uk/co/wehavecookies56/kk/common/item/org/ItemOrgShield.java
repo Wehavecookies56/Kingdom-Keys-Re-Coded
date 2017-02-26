@@ -13,10 +13,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
-public class ItemFrozenPride extends ItemShield {
+public class ItemOrgShield extends ItemShield implements IOrgWeapon{
 
-	public ItemFrozenPride () {
+	public ItemOrgShield () {
 	    super();
 		this.maxStackSize = 1;
 		this.setCreativeTab(ModItems.tabKingdomKeys);
@@ -57,6 +58,12 @@ public class ItemFrozenPride extends ItemShield {
 	@SideOnly (Side.CLIENT)
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
 		dataList.add("IV Vexen");
+	}
+	
+
+	@Override
+	public OrgMember getMember() {
+		return Utils.OrgMember.XEMNAS;
 	}
 
 }

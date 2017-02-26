@@ -12,8 +12,9 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityAshes;
 
 public class ItemAshes extends ItemChakram {
-	public ItemAshes (ToolMaterial material) {
-		super(material);
+	public ItemAshes (double strength, double magic)  {
+		super(strength,magic);
+		setMaxStackSize(1);
 	}
 
 	@Override
