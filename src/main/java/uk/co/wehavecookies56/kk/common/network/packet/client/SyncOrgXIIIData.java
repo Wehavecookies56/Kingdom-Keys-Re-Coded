@@ -20,12 +20,14 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 	Utils.OrgMember member;
 	Item weapon;
 	List<Item> weapons;
+	boolean summoned;
 
 	public SyncOrgXIIIData() {}
 
 	public SyncOrgXIIIData(OrganizationXIIICapability.IOrganizationXIII organizationXIII) {
 		this.member = organizationXIII.getMember();
 		this.weapon = organizationXIII.currentWeapon();
+		this.summoned = organizationXIII.summonedWeapon();
 		this.weapons = organizationXIII.unlockedWeapons();
 	}
 	
@@ -33,6 +35,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 	protected void read(PacketBuffer buffer) throws IOException {
 		this.member = Utils.OrgMember.values()[buffer.readInt()];
 		this.weapon = buffer.readItemStack().getItem();
+		this.summoned = buffer.readBoolean();
 		weapons = new ArrayList<>();
 		while(buffer.isReadable()) {
 			weapons.add(buffer.readItemStack().getItem());
@@ -43,6 +46,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 	protected void write(PacketBuffer buffer) throws IOException {
 		buffer.writeInt(this.member.ordinal());
 		buffer.writeItemStack(new ItemStack(this.weapon));
+		buffer.writeBoolean(this.summoned);
 		for (int i = 0; i < weapons.size(); i++) {
 			buffer.writeItemStack(new ItemStack(this.weapons.get(i)));
 		}
@@ -54,6 +58,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		organizationXIII.setMember(this.member);
 		organizationXIII.setCurrentWeapon(this.weapon);
 		organizationXIII.setUnlockedWeapons(this.weapons);
+		organizationXIII.setWeaponSummoned(this.summoned);
 	}
 
 }

@@ -28,6 +28,7 @@ public class OrganizationXIIICapability {
     public interface IOrganizationXIII {
         Utils.OrgMember getMember();
         Item currentWeapon();
+        boolean summonedWeapon();
 
         List<Item> unlockedWeapons();
 
@@ -36,6 +37,7 @@ public class OrganizationXIIICapability {
         void setUnlockedWeapons(List<Item> list);
         void addUnlockedWeapon(Item item);
         void removeUnlockedWeapon(Item item);
+        void setWeaponSummoned(boolean summoned);
     }
 
     public static class Storage implements Capability.IStorage<IOrganizationXIII> {
@@ -55,6 +57,7 @@ public class OrganizationXIIICapability {
                 }
             }
             properties.setTag("UnlockedWeapons", tagList);
+            properties.setBoolean("Summoned", instance.summonedWeapon());
             return properties;
         }
 
@@ -71,6 +74,7 @@ public class OrganizationXIIICapability {
                     LogHelper.info("Loaded unlocked weapon: " + ItemStack.loadItemStackFromNBT(weapons).getDisplayName());
                 }
             }
+            instance.setWeaponSummoned(properties.getBoolean("Summoned"));
         }
     }
 
@@ -78,6 +82,7 @@ public class OrganizationXIIICapability {
         private Utils.OrgMember member = Utils.OrgMember.NONE;
         private Item weapon = ModItems.KingdomKey;
         private List<Item> weapons = new ArrayList<>();
+        private boolean summoned;
 
         @Override
         public Utils.OrgMember getMember() {
@@ -117,6 +122,16 @@ public class OrganizationXIIICapability {
         @Override
         public void removeUnlockedWeapon(Item item) {
             this.weapons.remove(this.weapons.indexOf(item));
+        }
+
+        @Override
+        public boolean summonedWeapon() {
+            return this.summoned;
+        }
+
+        @Override
+        public void setWeaponSummoned(boolean summoned) {
+            this.summoned = summoned;
         }
     }
 
