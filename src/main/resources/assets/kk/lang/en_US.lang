@@ -312,18 +312,7 @@ item.darkinfusediron.name=Dark-Infused Iron Ingot
 item.lightninginfusedgold.name=Lightning-Infused Gold Ingot
 item.mythrilinfuseddiamond.name=Mythril-Infused Diamond
 
-item.abandonedknowledge.name=Vexen's Knowledge
-item.darkknowledge.name=Marluxia's Knowledge
-item.eclipsedknowledge.name=Saïx's Knowledge
-item.forgottenknowledge.name=Xaldin's Knowledge
-item.illudedknowledge.name=Zexion's Knowledge
-item.lostknowledge.name=Larxene's Knowledge
-item.manifestknowledge.name=Xemnas' Knowledge
-item.obscuredknowledge.name=Demyx's Knowledge
-item.unknownknowledge.name=Xigbar's Knowledge
-item.voidknowledge.name=Axel's Knowledge
-item.tangentknowledge.name=Luxord's Knowledge
-item.absoluteknowledge.name=Lexaeus' Knowledge
+item.abandonedknowledge.name=The Knowledge That Never Was
 
 #Music Discs
 disc.duration.desc=Duration

@@ -55,12 +55,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.*;
 import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -532,6 +527,13 @@ public class ItemEvents {
                     event.getPlayer().getCapability(ModCapabilities.MUNNY, null).addMunny(event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount"));
                 }
             }
+        if (event.getEntityItem().getEntityItem().getItem() == event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null)) {
+            event.getEntityItem().isDead = true;
+            ItemStack itemStack = event.getEntityItem().getEntityItem();
+
+            event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
+            PacketDispatcher.sendTo(new SyncOrgXIIIData(event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) event.getPlayer());
+        }
     }
 
     @SubscribeEvent
