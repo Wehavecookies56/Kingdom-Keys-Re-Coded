@@ -3,7 +3,6 @@ package uk.co.wehavecookies56.kk.client.core.handler;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.Minecraft;
@@ -51,7 +50,7 @@ public class InputHandler {
 	List<String> magicCommands;
 	List<String> itemsCommands;
 	List<String> driveCommands;
-	
+
 	public static EntityLivingBase lockOn = null;
 	
 	private Keybinds getPressedKey () {

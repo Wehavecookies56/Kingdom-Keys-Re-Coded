@@ -33,12 +33,4 @@ public class ItemBookofRetribution extends ItemOrgWeapon {
 	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
 		dataList.add("VI Zexion");
 	}
-
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
-		if (worldIn.isRemote) {
-			Minecraft.getMinecraft().displayGuiScreen(new GuiOrgWeapon());
-		}
-		return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
-	}
 }
