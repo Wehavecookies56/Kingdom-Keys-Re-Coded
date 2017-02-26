@@ -25,6 +25,6 @@ public class ItemCard extends ItemOrgWeapon implements IOrgWeapon{
 
 	@Override
 	public OrgMember getMember() {
-		return Utils.OrgMember.XEMNAS;
+		return Utils.OrgMember.LUXORD;
 	}
 }

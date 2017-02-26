@@ -8,6 +8,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemShield;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -42,13 +43,13 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno ,Doldrums;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia;
 
 	// Crafting Martierials & knowledges
-	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, AbsoluteKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge,TangentKnowledge, UnknownKnowledge, VoidKnowledge;
+	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge;
 
 	// Keyblades
-	public static Item AbaddonPlasma, AbyssalTide, AllforOne, AnguisForetellersKeyblade, AstralBlast, Aubade, BondofFlame, Brightcrest, ChaosRipper, CircleofLife, Counterpoint, Crabclaw, CrownofGuilt, DarkerThanDark, Darkgnaw, DecisivePumpkin, DestinysEmbrace, DiamondDust, Divewing, DivineRose, DreamSword, DualDisc, Earthshaker, EndofPain, EndsoftheEarth, FairyHarp, FairyStars, FatalCrest, Fenrir, FerrisGear, FollowtheWind, FrolicFlame, GlimpseofDarkness, GuardianBell, GuardianSoul, GullWing, HerosCrest, HiddenDragon, Hyperdrive, IncompleteKiblade, JungleKing, KeybladeofPeoplesHearts, Kiblade, KingdomKey, KingdomKeyD, KnockoutPunch, LadyLuck, LeasKeyblade, LeopardosForetellersKeyblade, Leviathan, Lionheart, LostMemory, LunarEclipse, MarkofaHero, MasterXehanortsKeyblade, MastersDefender, MaverickFlare, MetalChocobo, MidnightRoar, MirageSplit, MissingAche, Monochrome, MysteriousAbyss, NightmaresEnd, NightmaresEndandMirageSplit, NoName, Oathkeeper, Oblivion, OceansRage, Olympia, OmegaWeapon, OminousBlight, OneWingedAngel, PainofSolitude, PhotonDebugger, PixiePetal, Pumpkinhead, Rainfell, RejectionofFate, RoyalRadiance, RumblingRose, SignofInnocence, SilentDirge, SkullNoise, SleepingLion, SoulEater, Spellbinder, StarSeeker, Starlight, Stormfall, StrokeofMidnight, SweetDreams, SweetMemories, Sweetstack, ThreeWishes, TotalEclipse, TreasureTrove, TrueLightsFlight, TwilightBlaze, TwoBecomeOne, UltimaWeaponKH1, UltimaWeaponKH2, UltimaWeaponBBS, UltimaWeaponDDD, Umbrella, Unbound, UnicornisForetellersKeyblade, UrsusForetellersKeyblade, VictoryLine, VoidGear, VulpeusForetellersKeyblade, WaytotheDawn, WaywardWind, WinnersProof, WishingLamp, WishingStar, WoodenKeyblade, WoodenStick, YoungXehanortsKeyblade, ZeroOne;
+	public static Item AbaddonPlasma, AbyssalTide, AllforOne, AnguisForetellersKeyblade, AstralBlast, Aubade, BondofFlame, Brightcrest, ChaosRipper, CircleofLife, Counterpoint, Crabclaw, CrownofGuilt, DarkerThanDark, Darkgnaw, DecisivePumpkin, DestinysEmbrace, DiamondDust, Divewing, DivineRose, DreamSword, DreamShield, DualDisc, Earthshaker, EndofPain, EndsoftheEarth, FairyHarp, FairyStars, FatalCrest, Fenrir, FerrisGear, FollowtheWind, FrolicFlame, GlimpseofDarkness, GuardianBell, GuardianSoul, GullWing, HerosCrest, HiddenDragon, Hyperdrive, IncompleteKiblade, JungleKing, KeybladeofPeoplesHearts, Kiblade, KingdomKey, KingdomKeyD, KnockoutPunch, LadyLuck, LeasKeyblade, LeopardosForetellersKeyblade, Leviathan, Lionheart, LostMemory, LunarEclipse, MarkofaHero, MasterXehanortsKeyblade, MastersDefender, MaverickFlare, MetalChocobo, MidnightRoar, MirageSplit, MissingAche, Monochrome, MysteriousAbyss, NightmaresEnd, NightmaresEndandMirageSplit, NoName, Oathkeeper, Oblivion, OceansRage, Olympia, OmegaWeapon, OminousBlight, OneWingedAngel, PainofSolitude, PhotonDebugger, PixiePetal, Pumpkinhead, Rainfell, RejectionofFate, RoyalRadiance, RumblingRose, SignofInnocence, SilentDirge, SkullNoise, SleepingLion, SoulEater, Spellbinder, StarSeeker, Starlight, Stormfall, StrokeofMidnight, SweetDreams, SweetMemories, Sweetstack, ThreeWishes, TotalEclipse, TreasureTrove, TrueLightsFlight, TwilightBlaze, TwoBecomeOne, UltimaWeaponKH1, UltimaWeaponKH2, UltimaWeaponBBS, UltimaWeaponDDD, Umbrella, Unbound, UnicornisForetellersKeyblade, UrsusForetellersKeyblade, VictoryLine, VoidGear, VulpeusForetellersKeyblade, WaytotheDawn, WaywardWind, WinnersProof, WishingLamp, WishingStar, WoodenKeyblade, WoodenStick, YoungXehanortsKeyblade, ZeroOne;
 
 	// Chains
 	public static Item Chain_AbaddonPlasma, Chain_AbyssalTide, Chain_AllforOne, Chain_AnguisForetellersKeyblade, Chain_AstralBlast, Chain_Aubade, Chain_BondofFlame, Chain_Brightcrest, Chain_ChaosRipper, Chain_CircleofLife, Chain_Counterpoint, Chain_Crabclaw, Chain_CrownofGuilt, Chain_DarkerThanDark, Chain_Darkgnaw, Chain_DecisivePumpkin, Chain_DestinysEmbrace, Chain_DiamondDust, Chain_Divewing, Chain_DivineRose, Chain_DreamSword, Chain_DualDisc, Chain_Earthshaker, Chain_EndofPain, Chain_EndsoftheEarth, Chain_FairyHarp, Chain_FairyStars, Chain_FatalCrest, Chain_Fenrir, Chain_FerrisGear, Chain_FollowtheWind, Chain_FrolicFlame, Chain_GlimpseofDarkness, Chain_GuardianBell, Chain_GuardianSoul, Chain_GullWing, Chain_HerosCrest, Chain_HiddenDragon, Chain_Hyperdrive, Chain_IncompleteKiblade, Chain_JungleKing, Chain_KeybladeofPeoplesHearts, Chain_Kiblade, Chain_KingdomKey, Chain_KingdomKeyD, Chain_KnockoutPunch, Chain_LadyLuck, Chain_LeasKeyblade, Chain_LeopardosForetellersKeyblade, Chain_Leviathan, Chain_Lionheart, Chain_LostMemory, Chain_LunarEclipse, Chain_MarkofaHero, Chain_MasterXehanortsKeyblade, Chain_MastersDefender, Chain_MaverickFlare, Chain_MetalChocobo, Chain_MidnightRoar, Chain_MirageSplit, Chain_MissingAche, Chain_Monochrome, Chain_MysteriousAbyss, Chain_NightmaresEnd, Chain_NightmaresEndandMirageSplit, Chain_NoName, Chain_Oathkeeper, Chain_Oblivion, Chain_OceansRage, Chain_Olympia, Chain_OmegaWeapon, Chain_OminousBlight, Chain_OneWingedAngel, Chain_PainofSolitude, Chain_PhotonDebugger, Chain_PixiePetal, Chain_Pumpkinhead, Chain_Rainfell, Chain_RejectionofFate, Chain_RoyalRadiance, Chain_RumblingRose, Chain_SignofInnocence, Chain_SilentDirge, Chain_SkullNoise, Chain_SleepingLion, Chain_SoulEater, Chain_Spellbinder, Chain_StarSeeker, Chain_Starlight, Chain_Stormfall, Chain_StrokeofMidnight, Chain_SweetDreams, Chain_SweetMemories, Chain_Sweetstack, Chain_ThreeWishes, Chain_TotalEclipse, Chain_TreasureTrove, Chain_TrueLightsFlight, Chain_TwilightBlaze, Chain_TwoBecomeOne, Chain_UltimaWeaponKH1, Chain_UltimaWeaponKH2, Chain_UltimaWeaponBBS, Chain_UltimaWeaponDDD, Chain_Umbrella, Chain_Unbound, Chain_UnicornisForetellersKeyblade, Chain_UrsusForetellersKeyblade, Chain_VictoryLine, Chain_VoidGear, Chain_VulpeusForetellersKeyblade, Chain_WaytotheDawn, Chain_WaywardWind, Chain_WinnersProof, Chain_WishingLamp, Chain_WishingStar, Chain_YoungXehanortsKeyblade, Chain_ZeroOne;
@@ -85,17 +86,7 @@ public class ModItems {
 		DarkInfusedIron = new Item().setUnlocalizedName(Strings.DarkInfusedIron).setCreativeTab(tabKingdomKeys);
 
 		AbandonedKnowledge = new ItemAbandonedKnowledge().setUnlocalizedName(Strings.AbandonedKnowledge).setCreativeTab(tabKingdomKeys);
-		UnknownKnowledge = new ItemUnknownKnowledge().setUnlocalizedName(Strings.UnknownKnowledge).setCreativeTab(tabKingdomKeys);
-		VoidKnowledge = new ItemVoidKnowledge().setUnlocalizedName(Strings.VoidKnowledge).setCreativeTab(tabKingdomKeys);
-		ManifestKnowledge = new ItemManifestKnowledge().setUnlocalizedName(Strings.ManifestKnowledge).setCreativeTab(tabKingdomKeys);
-		DarkKnowledge = new ItemDarkKnowledge().setUnlocalizedName(Strings.DarkKnowledge).setCreativeTab(tabKingdomKeys);
-		LostKnowledge = new ItemLostKnowledge().setUnlocalizedName(Strings.LostKnowledge).setCreativeTab(tabKingdomKeys);
-		EclipsedKnowledge = new ItemEclipsedKnowledge().setUnlocalizedName(Strings.EclipsedKnowledge).setCreativeTab(tabKingdomKeys);
-		ForgottenKnowledge = new ItemForgottenKnowledge().setUnlocalizedName(Strings.ForgottenKnowledge).setCreativeTab(tabKingdomKeys);
-		IlludedKnowledge = new ItemIlludedKnowledge().setUnlocalizedName(Strings.IlludedKnowledge).setCreativeTab(tabKingdomKeys);
-		ObscuredKnowledge = new ItemObscuredKnowledge().setUnlocalizedName(Strings.ObscuredKnowledge).setCreativeTab(tabKingdomKeys);
-		TangentKnowledge = new ItemTangentKnowledge().setUnlocalizedName(Strings.TangentKnowledge).setCreativeTab(tabKingdomKeys);
-		AbsoluteKnowledge = new ItemAbsoluteKnowledge().setUnlocalizedName(Strings.AbsoluteKnowledge).setCreativeTab(tabKingdomKeys);
+		
 
 		// xemnas
 		Interdiction = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
@@ -135,6 +126,9 @@ public class ModItems {
 		Skysplitter = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
 		Reticence = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Reticence);
 		Hyperion = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Hyperion);
+		Colossus = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Colossus);
+		Sequoia = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sequoia);
+
 
 		// zexion
 		BookofRetribution = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
@@ -146,26 +140,20 @@ public class ModItems {
 		Twilight = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Twilight);
 
 		// axel
-		EntityEternalFlames eternalFlames;
-		EntityBlazeofGlory blazeOfGlory;
-		EntityIfrit ifrit;
-		EntityPrometheus prometheus;
-		EntityProminence prominence;
-		EntityAshes ashes;
-		EternalFlames = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
-		Burnout = new ItemChakram(5,8,ashes).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
-		Outbreak = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Outbreak);
-		BlazeofGlory = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
-		Ashes = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ashes);
-		Combustion = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Combustion);
-		Prometheus = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
-		Ifrit = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
-		OmegaTrinity = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OmegaTrinity);
-		Prominence = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
-		FerrisWheel = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FerrisWheel);
-		MoulinRouge = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MoulinRouge);
-		Inferno = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inferno);
-		Doldrums = new ItemChakram(5,8,eternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Doldrums);
+		EternalFlames = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
+		Burnout = new ItemChakram(5,8,Strings.Ashes).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
+		Outbreak = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Outbreak);
+		BlazeofGlory = new ItemChakram(5,8,Strings.BlazeofGlory).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
+		Ashes = new ItemChakram(5,8,Strings.Ashes).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ashes);
+		Combustion = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Combustion);
+		Prometheus = new ItemChakram(5,8,Strings.Prometheus).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
+		Ifrit = new ItemChakram(5,8,Strings.Ifrit).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
+		OmegaTrinity = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OmegaTrinity);
+		Prominence = new ItemChakram(5,8,Strings.Prominence).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
+		FerrisWheel = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FerrisWheel);
+		MoulinRouge = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MoulinRouge);
+		Inferno = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inferno);
+		Doldrums = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Doldrums);
 
 		// demyx
 		Arpeggio = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Arpeggio);
@@ -174,6 +162,7 @@ public class ModItems {
 		FairGame = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
 		TheFool = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
 		TheMagician = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheMagician);
+		FinestFantasy13 = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinestFantasy13);
 
 		// Marluxia
 		GracefulDahlia = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
@@ -238,6 +227,8 @@ public class ModItems {
 		DivineRose = new ItemRealKeyblade(8, 0).setUnlocalizedName(Strings.DivineRose);
 		((ItemKeyblade)DivineRose).setDescription("A powerful weapon that is difficult to deflect. Capable of dealing a string of critical blows.");
 		DreamSword = new ItemKeyblade(1, 8).setUnlocalizedName(Strings.DreamSword);
+		((ItemKeyblade)DreamSword).setDescription("A sword whose strength is courage: the will to stand against anything.");
+		DreamShield = new ItemOrgShield().setUnlocalizedName(Strings.DreamShield);
 		((ItemKeyblade)DreamSword).setDescription("A sword whose strength is courage: the will to stand against anything.");
 		DualDisc = new ItemRealKeyblade(5, 3).setUnlocalizedName(Strings.DualDisc);
 		((ItemKeyblade)DualDisc).setDescription("A Keyblade that provides an extra boost in Strength and makes it easier to land critical hits.");
@@ -696,6 +687,8 @@ public class ModItems {
 		GameRegistry.register(Skysplitter, new ResourceLocation(Reference.MODID, Strings.Skysplitter));
 		GameRegistry.register(Reticence, new ResourceLocation(Reference.MODID, Strings.Reticence));
 		GameRegistry.register(Hyperion, new ResourceLocation(Reference.MODID, Strings.Hyperion));
+		GameRegistry.register(Colossus, new ResourceLocation(Reference.MODID, Strings.Colossus));
+		GameRegistry.register(Sequoia, new ResourceLocation(Reference.MODID, Strings.Sequoia));
 
 		//Zexion
 		GameRegistry.register(BookofRetribution, new ResourceLocation(Reference.MODID, Strings.BookofRetribution));
@@ -729,7 +722,8 @@ public class ModItems {
 		GameRegistry.register(FairGame, new ResourceLocation(Reference.MODID, Strings.FairGame));
 		GameRegistry.register(TheFool, new ResourceLocation(Reference.MODID, Strings.TheFool));
 		GameRegistry.register(TheMagician, new ResourceLocation(Reference.MODID, Strings.TheMagician));
-
+		GameRegistry.register(FinestFantasy13, new ResourceLocation(Reference.MODID, Strings.FinestFantasy13));
+		
 		//Marluxia
 		GameRegistry.register(GracefulDahlia, new ResourceLocation(Reference.MODID, Strings.GracefulDahlia));
 		GameRegistry.register(FickleErica, new ResourceLocation(Reference.MODID, Strings.FickleErica));
@@ -754,17 +748,9 @@ public class ModItems {
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));
-		GameRegistry.register(AbsoluteKnowledge, new ResourceLocation(Reference.MODID, Strings.AbsoluteKnowledge));
-		GameRegistry.register(DarkKnowledge, new ResourceLocation(Reference.MODID, Strings.DarkKnowledge));
-		GameRegistry.register(EclipsedKnowledge, new ResourceLocation(Reference.MODID, Strings.EclipsedKnowledge));
-		GameRegistry.register(ForgottenKnowledge, new ResourceLocation(Reference.MODID, Strings.ForgottenKnowledge));
-		GameRegistry.register(IlludedKnowledge, new ResourceLocation(Reference.MODID, Strings.IlludedKnowledge));
-		GameRegistry.register(LostKnowledge, new ResourceLocation(Reference.MODID, Strings.LostKnowledge));
-		GameRegistry.register(ManifestKnowledge, new ResourceLocation(Reference.MODID, Strings.ManifestKnowledge));
-		GameRegistry.register(ObscuredKnowledge, new ResourceLocation(Reference.MODID, Strings.ObscuredKnowledge));
-		GameRegistry.register(TangentKnowledge, new ResourceLocation(Reference.MODID, Strings.TangentKnowledge));
-		GameRegistry.register(UnknownKnowledge, new ResourceLocation(Reference.MODID, Strings.UnknownKnowledge));
-		GameRegistry.register(VoidKnowledge, new ResourceLocation(Reference.MODID, Strings.VoidKnowledge));
+
+		//Shield
+		GameRegistry.register(DreamShield, new ResourceLocation(Reference.MODID, Strings.DreamShield));
 
 		// Keyblades
 		GameRegistry.register(AbaddonPlasma, new ResourceLocation(Reference.MODID, Strings.AbaddonPlasma));
@@ -1114,17 +1100,6 @@ public class ModItems {
 
 		// Knowledge
 		registerRender(AbandonedKnowledge);
-		registerRender(AbsoluteKnowledge);
-		registerRender(DarkKnowledge);
-		registerRender(EclipsedKnowledge);
-		registerRender(ForgottenKnowledge);
-		registerRender(IlludedKnowledge);
-		registerRender(LostKnowledge);
-		registerRender(ManifestKnowledge);
-		registerRender(ObscuredKnowledge);
-		registerRender(TangentKnowledge);
-		registerRender(UnknownKnowledge);
-		registerRender(VoidKnowledge);
 
 		// Keyblades
 		registerRender(AbaddonPlasma);

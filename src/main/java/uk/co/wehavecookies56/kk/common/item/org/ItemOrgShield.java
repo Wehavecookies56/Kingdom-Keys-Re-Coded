@@ -63,7 +63,7 @@ public class ItemOrgShield extends ItemShield implements IOrgWeapon{
 
 	@Override
 	public OrgMember getMember() {
-		return Utils.OrgMember.XEMNAS;
+		return Utils.OrgMember.VEXEN;
 	}
 
 }
