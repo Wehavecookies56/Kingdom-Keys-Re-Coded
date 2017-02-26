@@ -504,7 +504,9 @@ public class Strings {
 	MoulinRouge = "moulinrouge",
 	Inferno = "inferno",
 	Doldrums = "doldrums",
-    FinestFantasy13 = "finestfantasy13"
+    FinestFantasy13 = "finestfantasy13",
+	Colossus = "colossus",
+	Sequoia = "sequoia"
 	;
 
 	// Knowledges

@@ -20,7 +20,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno ,Doldrums, FinestFantasy13;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno ,Doldrums, FinestFantasy13, Colossus, Sequoia;
 
 	// Crafting Martierials & knowledges
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge, AbsoluteKnowledge, DarkKnowledge, EclipsedKnowledge, ForgottenKnowledge, IlludedKnowledge, LostKnowledge, ManifestKnowledge, ObscuredKnowledge,TangentKnowledge, UnknownKnowledge, VoidKnowledge;
@@ -111,8 +111,10 @@ public class ModItems {
 
 		// lexeaus
 		Skysplitter = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 20, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
-		Reticence = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Reticence);
-		Hyperion = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Hyperion);
+		Reticence = new ItemSkysplitter(EnumHelper.addToolMaterial("reticence", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Reticence);
+		Colossus = new ItemSkysplitter(EnumHelper.addToolMaterial("colossus", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Colossus);
+		Hyperion = new ItemSkysplitter(EnumHelper.addToolMaterial("hyperion", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Hyperion);
+		Sequoia = new ItemSkysplitter(EnumHelper.addToolMaterial("sequoia", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sequoia);
 
 		// zexion
 		BookofRetribution = new ItemBookofRetribution(EnumHelper.addToolMaterial("bookofretribution", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
@@ -670,7 +672,9 @@ public class ModItems {
 		//Lexaeus
 		GameRegistry.register(Skysplitter, new ResourceLocation(Reference.MODID, Strings.Skysplitter));
 		GameRegistry.register(Reticence, new ResourceLocation(Reference.MODID, Strings.Reticence));
+		GameRegistry.register(Colossus, new ResourceLocation(Reference.MODID, Strings.Colossus));
 		GameRegistry.register(Hyperion, new ResourceLocation(Reference.MODID, Strings.Hyperion));
+		GameRegistry.register(Sequoia, new ResourceLocation(Reference.MODID, Strings.Sequoia));
 
 		//Zexion
 		GameRegistry.register(BookofRetribution, new ResourceLocation(Reference.MODID, Strings.BookofRetribution));

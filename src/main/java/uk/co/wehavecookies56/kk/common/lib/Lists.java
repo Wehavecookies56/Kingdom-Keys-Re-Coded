@@ -7,6 +7,8 @@ import java.util.List;
 
 import net.minecraft.client.particle.ParticleSpell;
 import net.minecraft.item.Item;
+import scala.collection.Seq;
+import scala.tools.nsc.typechecker.Infer;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class Lists {
@@ -83,7 +85,9 @@ public class Lists {
 		//Lexaeus
 		Lexaeus.add(Skysplitter);
 		Lexaeus.add(Reticence);
+		Lexaeus.add(Colossus);
 		Lexaeus.add(Hyperion);
+		Lexaeus.add(Sequoia);
 
 		//Zexion
 		Zexion.add(BookofRetribution);
@@ -104,6 +108,10 @@ public class Lists {
 		Axel.add(Combustion);
 		Axel.add(Burnout);
 		Axel.add(Outbreak);
+		Axel.add(MoulinRouge);
+		Axel.add(FerrisWheel);
+		Axel.add(Doldrums);
+		Axel.add(Inferno);
 
 		//Demyx
 		Demyx.add(Arpeggio);
