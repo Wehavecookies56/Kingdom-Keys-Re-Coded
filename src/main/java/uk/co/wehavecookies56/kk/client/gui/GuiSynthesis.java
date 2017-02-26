@@ -1,9 +1,6 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.lwjgl.opengl.GL11;
 
@@ -18,6 +15,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import org.lwjgl.util.Dimension;
 import uk.co.wehavecookies56.kk.api.materials.Material;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
@@ -454,7 +452,7 @@ public class GuiSynthesis extends GuiTooltip {
 				if (selected == i) {
 					float scale = 1.0f;
 					if(mc.gameSettings.guiScale == Constants.SCALE_LARGE) {
-						scale = 0.5f;
+						scale = 0.75f;
 					}
 					GL11.glPushMatrix(); {
 						GL11.glTranslatef(posX, 70, 0);
@@ -480,12 +478,12 @@ public class GuiSynthesis extends GuiTooltip {
 							GL11.glColor4f(1, 1, 1, 1);
 							ResourceLocation synthMaterial = pair.getKey().getTexture();
 							if (synthMaterial == null) {
-								GL11.glTranslatef((int) (posX + (materialLength * 1.05f)), 140 + (distY * row), 0);
+								GL11.glTranslatef((int) (posX + (materialLength * 1.05f)) * column, 140 + (distY * row), 0);
 								GL11.glScalef(scale, scale, 0);
 								Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(pair.getKey().getItem(), 0, 0);
 							} else {
 								mc.renderEngine.bindTexture(synthMaterial);
-								GL11.glTranslatef(posX + (materialLength * 1.05f * scale), 140 + (distY * row), 0);
+								GL11.glTranslatef(posX + (materialLength * 1.05f * scale) * column, 140 + (distY * row), 0);
 								GL11.glScalef(0.0625f * scale, 0.0625f * scale, 0);
 								drawTexturedModalRect(0, 0, 0, 0, 256, 256);
 							}
@@ -496,35 +494,30 @@ public class GuiSynthesis extends GuiTooltip {
 						int colour = 0xFFFFFF;
 						SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 						if (MATS.getKnownMaterialsMap().containsKey(pair.getKey().getName())) {
-							info = " - You have " + MATS.getKnownMaterialsMap().get(pair.getKey().getName());
+							info = "" + MATS.getKnownMaterialsMap().get(pair.getKey().getName());
 							if (MATS.getKnownMaterialsMap().get(pair.getKey().getName()) >= pair.getValue())
 								colour = 0x00CF18;
 							else
 								colour = 0xB50000;
 						} else {
-							info = " - You have 0";
+							info = "";
 							colour = 0xB50000;
 						}
-						String material = Utils.translateToLocal(name + ".name") + " x" + pair.getValue();
+						String material = "" + pair.getValue();
 						
 						GL11.glPushMatrix(); {
-							GL11.glTranslatef((int) (posX + 18 + (materialLength * 1.05f * scale)), 144 + (distY * row), 0);
+							GL11.glTranslatef(posX + 20 + ((posX + (materialLength * 1.05f * scale)) * column) * 0.13F, 144 + (distY * row), 0);
 							GL11.glScalef(scale, scale, 0);
 							drawString(fontRendererObj, material, 0, 0, 0xFFFFFF);
 						} GL11.glPopMatrix();
-						GL11.glPushMatrix(); {
-							GL11.glTranslatef((int) (posX + 18 + (fontRendererObj.getStringWidth(material) * scale) + (materialLength * 1.05f * scale)), 144 + (distY * row), 0);
-							GL11.glScalef(scale, scale, 0);
-							drawString(fontRendererObj, info, 0, 0, colour);
-						} GL11.glPopMatrix();
-						
-						if (column == 1) {
+
+						if (column == 3) {
 							row++;
 							column = 0;
 							materialLength = 0;
 						} else {
-							materialLength = (fontRendererObj.getStringWidth(Utils.translateToLocal(ModItems.Chain_IncompleteKiblade.getUnlocalizedName() + ".name") + " - You have XXXX")) + 20;
-							column = 1;
+							materialLength = (int)((fontRendererObj.getStringWidth("XX")) + 20 * scale);
+							column++;
 						}
 
 					}

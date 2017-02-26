@@ -16,6 +16,7 @@ import uk.co.wehavecookies56.kk.common.lib.Lists;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgMemberSelect;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OrgWeaponSelect;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.io.IOException;
@@ -119,7 +120,7 @@ public class GuiOrgWeapon extends GuiScreen {
                 break;
             case CONFIRM:
                 //Send choice to server
-                //PacketDispatcher.sendToServer(new OrgMemberSelect(current));
+                PacketDispatcher.sendToServer(new OrgWeaponSelect(new ItemStack(weapons.get(current))));
                 mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(weapons.get(current));
                 mc.displayGuiScreen(null);
                 break;
@@ -165,6 +166,13 @@ public class GuiOrgWeapon extends GuiScreen {
         select.yPosition = (height / 2) - (select.height / 2) + 90;
         confirm.visible = false;
         cancel.visible = false;
+        if (unlocked.isEmpty() || !unlocked.contains(weapons.get(current))) {
+            System.out.println("Nope");
+            select.enabled = true;
+        } else {
+            System.out.println("Yep");
+            select.enabled = true;
+        }
         if (confirmChoice) {
             confirm.visible = true;
             cancel.visible = true;

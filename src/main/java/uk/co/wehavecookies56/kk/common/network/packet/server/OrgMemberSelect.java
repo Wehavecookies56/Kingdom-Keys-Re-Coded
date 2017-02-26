@@ -5,6 +5,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
@@ -43,5 +44,22 @@ OrgMemberSelect extends AbstractMessage.AbstractServerMessage<OrgMemberSelect> {
     public void process(EntityPlayer player, Side side) {
         player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setMember(member);
         player.sendMessage(new TextComponentString("You have aligned with " + member.name()));
+        switch (member) {
+            case AXEL: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Ashes); break;
+            //TODO change to Basic Model once it is added
+            case DEMYX: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Arpeggio); break;
+            case LARXENE: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Trancheuse); break;
+            case LEXAEUS: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Reticence); break;
+            case LUXORD: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.TheFool); break;
+            case MARLUXIA: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.FickleErica); break;
+            case ROXAS: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.KingdomKey); break;
+            //TODO change to New Moon once it is added
+            case SAIX: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Lunatic); break;
+            case VEXEN: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.TesterZero); break;
+            case XALDIN: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Zephyr); break;
+            case XEMNAS: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Malice); break;
+            case XIGBAR: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Standalone); break;
+            case ZEXION: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.BlackPrimer); break;
+        }
     }
 }

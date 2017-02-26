@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.client.core.handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.Minecraft;
@@ -26,6 +27,7 @@ import uk.co.wehavecookies56.kk.client.gui.GuiCommandMenu;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
@@ -40,11 +42,7 @@ import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.magic.Magic;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.*;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicWisdomShot;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
@@ -378,7 +376,14 @@ public class InputHandler {
 						break;
 					}
 				} else {
-					//SUMMON ORG WEAPON
+					OrganizationXIIICapability.IOrganizationXIII organizationXIII = mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+					if (!organizationXIII.summonedWeapon() && player.getHeldItem(EnumHand.MAIN_HAND) == null) {
+						PacketDispatcher.sendToServer(new SummonOrgWeapon(organizationXIII.currentWeapon()));
+					} else if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == organizationXIII.currentWeapon()) {
+						PacketDispatcher.sendToServer(new DeSummonOrgWeapon(player.inventory.getCurrentItem()));
+					} else {
+						break;
+					}
 				}
 				break;
 			case SCROLL_ACTIVATOR:

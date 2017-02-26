@@ -78,6 +78,12 @@ public class EntityEvents {
         OrganizationXIIICapability.IOrganizationXIII orgAfter = event.getEntityPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null);
         orgAfter.setMember(orgBefore.getMember());
         orgAfter.setCurrentWeapon(orgBefore.currentWeapon());
+        orgAfter.setUnlockedWeapons(orgBefore.unlockedWeapons());
+        orgAfter.setWeaponSummoned(orgBefore.summonedWeapon());
+        if (event.isWasDeath()) {
+            orgAfter.setMember(Utils.OrgMember.NONE);
+            orgAfter.setWeaponSummoned(false);
+        }
         FirstTimeJoinCapability.IFirstTimeJoin ftjBefore = event.getOriginal().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
         FirstTimeJoinCapability.IFirstTimeJoin ftjAfter = event.getEntityPlayer().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
         ftjAfter.setFirstTimeJoin(ftjBefore.getFirstTimeJoin());
@@ -316,13 +322,22 @@ public class EntityEvents {
 
     @SubscribeEvent
     public void onLivingDrops (LivingDropsEvent event) {
-        if (event.getEntity() instanceof EntityPlayer) for (int i = 0; i < event.getDrops().size(); i++)
-            if (event.getDrops().get(i).getEntityItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getEntityItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getEntityItem().getItem() != ModItems.WoodenStick)) {
-                event.getDrops().remove(i);
+        if (event.getEntity() instanceof EntityPlayer) {
+            for (int i = 0; i < event.getDrops().size(); i++) {
+                if (event.getDrops().get(i).getEntityItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getEntityItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getEntityItem().getItem() != ModItems.WoodenStick)) {
+                    event.getDrops().remove(i);
 
-                event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
-                i = 0;
+                    event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
+                    i = 0;
+                }
+                if (event.getDrops().get(i).getEntityItem().getItem() == event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
+                    event.getDrops().remove(i);
+
+                    event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
+                    i = 0;
+                }
             }
+        }
 
 
         if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
