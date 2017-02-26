@@ -8,19 +8,42 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemShield;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
-import uk.co.wehavecookies56.kk.common.item.base.*;
-import uk.co.wehavecookies56.kk.common.item.org.*;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityAshes;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityBlazeofGlory;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityEternalFlames;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityIfrit;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityPrometheus;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityProminence;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKKRecord;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemRecipe;
+import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
+import uk.co.wehavecookies56.kk.common.item.org.ItemArrowguns;
+import uk.co.wehavecookies56.kk.common.item.org.ItemAxeSword;
+import uk.co.wehavecookies56.kk.common.item.org.ItemCard;
+import uk.co.wehavecookies56.kk.common.item.org.ItemChakram;
+import uk.co.wehavecookies56.kk.common.item.org.ItemClaymore;
+import uk.co.wehavecookies56.kk.common.item.org.ItemEtherealBlade;
+import uk.co.wehavecookies56.kk.common.item.org.ItemKnife;
+import uk.co.wehavecookies56.kk.common.item.org.ItemLances;
+import uk.co.wehavecookies56.kk.common.item.org.ItemLexicon;
+import uk.co.wehavecookies56.kk.common.item.org.ItemOrgShield;
+import uk.co.wehavecookies56.kk.common.item.org.ItemScythe;
+import uk.co.wehavecookies56.kk.common.item.org.ItemSitar;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno ,Doldrums, FinestFantasy13, Colossus, Sequoia;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia;
 
 	// Crafting Martierials & knowledges
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge;
@@ -63,102 +86,103 @@ public class ModItems {
 		DarkInfusedIron = new Item().setUnlocalizedName(Strings.DarkInfusedIron).setCreativeTab(tabKingdomKeys);
 
 		AbandonedKnowledge = new ItemAbandonedKnowledge().setUnlocalizedName(Strings.AbandonedKnowledge).setCreativeTab(tabKingdomKeys);
-
+		
 
 		// xemnas
-		Interdiction = new ItemInterdiction(EnumHelper.addToolMaterial("interdiction", 3, -1, 6F, 10, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
-		Aggression = new ItemInterdiction(EnumHelper.addToolMaterial("aggression", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aggression);
-		Sanction = new ItemInterdiction(EnumHelper.addToolMaterial("sanction", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sanction);
-		Infinity = new ItemInterdiction(EnumHelper.addToolMaterial("infinity", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Infinity);
-		Malice = new ItemInterdiction(EnumHelper.addToolMaterial("malice", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Malice);
+		Interdiction = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
+		Aggression = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aggression);
+		Sanction = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sanction);
+		Infinity = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Infinity);
+		Malice = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Malice);
 
 		// xigbar
-		Sharpshooter = new ItemSharpshooter(EnumHelper.addToolMaterial("sharpshooter", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sharpshooter);
-		FinalWeapon = new ItemSharpshooter(EnumHelper.addToolMaterial("finalweapon", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinalWeapon);
-		Sunrise = new ItemSharpshooter(EnumHelper.addToolMaterial("sunrise", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sunrise);
-		Precision = new ItemSharpshooter(EnumHelper.addToolMaterial("precision", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Precision);
-		Killerbee = new ItemSharpshooter(EnumHelper.addToolMaterial("killerbee", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Killerbee);
-		Standalone = new ItemSharpshooter(EnumHelper.addToolMaterial("sharpshooter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Standalone);
-		Ignition = new ItemSharpshooter(EnumHelper.addToolMaterial("sharpshooter", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ignition);
+		Sharpshooter = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sharpshooter);
+		FinalWeapon = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinalWeapon);
+		Sunrise = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sunrise);
+		Precision = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Precision);
+		Killerbee = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Killerbee);
+		Standalone = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Standalone);
+		Ignition = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ignition);
 
 		// xaldin
-		Lindworm = new ItemLindworm(EnumHelper.addToolMaterial("lindworm", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lindworm);
-		Crux = new ItemLindworm(EnumHelper.addToolMaterial("crux", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crux);
-		Dragonreign = new ItemLindworm(EnumHelper.addToolMaterial("dragonreign", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Dragonreign);
-		Zephyr = new ItemLindworm(EnumHelper.addToolMaterial("lindworm", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Zephyr);
+		Lindworm = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lindworm);
+		Crux = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crux);
+		Dragonreign = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Dragonreign);
+		Zephyr = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Zephyr);
 
 		// vexen
-		FrozenPride = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FrozenPride);
-		ProductOne = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ProductOne);
-		FalseTheory = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FalseTheory);
-		TesterZero = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TesterZero);
-		Inquisition = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inquisition);
-		Aegis = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aegis);
-		Empiricism = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Empiricism);
-		Contrivance = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Contrivance);
-		DiamondShield = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DiamondShield);
-		CryoliteShield = new ItemFrozenPride().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CryoliteShield);
+		FrozenPride = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FrozenPride);
+		ProductOne = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ProductOne);
+		FalseTheory = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FalseTheory);
+		TesterZero = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TesterZero);
+		Inquisition = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inquisition);
+		Aegis = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aegis);
+		Empiricism = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Empiricism);
+		Contrivance = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Contrivance);
+		DiamondShield = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DiamondShield);
+		CryoliteShield = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CryoliteShield);
 
 		// lexeaus
-		Skysplitter = new ItemSkysplitter(EnumHelper.addToolMaterial("skysplitter", 3, -1, 6F, 20, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
-		Reticence = new ItemSkysplitter(EnumHelper.addToolMaterial("reticence", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Reticence);
-		Colossus = new ItemSkysplitter(EnumHelper.addToolMaterial("colossus", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Colossus);
-		Hyperion = new ItemSkysplitter(EnumHelper.addToolMaterial("hyperion", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Hyperion);
-		Sequoia = new ItemSkysplitter(EnumHelper.addToolMaterial("sequoia", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sequoia);
+		Skysplitter = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
+		Reticence = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Reticence);
+		Hyperion = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Hyperion);
+		Colossus = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Colossus);
+		Sequoia = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sequoia);
+
 
 		// zexion
-		BookofRetribution = new ItemBookofRetribution(EnumHelper.addToolMaterial("bookofretribution", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
-		BlackPrimer = new ItemBookofRetribution(EnumHelper.addToolMaterial("blackprimer", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlackPrimer);
-		WhiteTome = new ItemBookofRetribution(EnumHelper.addToolMaterial("whitetome", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.WhiteTome);
+		BookofRetribution = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
+		BlackPrimer = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlackPrimer);
+		WhiteTome = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.WhiteTome);
 
 		// saix
-		Lunatic = new ItemLunatic(EnumHelper.addToolMaterial("lunatic", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lunatic);
-		Twilight = new ItemLunatic(EnumHelper.addToolMaterial("twilight", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Twilight);
+		Lunatic = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lunatic);
+		Twilight = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Twilight);
 
 		// axel
-		EternalFlames = new ItemEternalFlames(EnumHelper.addToolMaterial("eternalflames", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
-		Burnout = new ItemBlazeofGlory(EnumHelper.addToolMaterial("burnout", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
-		Outbreak = new ItemBlazeofGlory(EnumHelper.addToolMaterial("outbreak", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Outbreak);
-		BlazeofGlory = new ItemBlazeofGlory(EnumHelper.addToolMaterial("blazeofglory", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
-		Ashes = new ItemAshes(EnumHelper.addToolMaterial("ashes", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ashes);
-		Combustion = new ItemAshes(EnumHelper.addToolMaterial("combustion", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Combustion);
-		Prometheus = new ItemPrometheus(EnumHelper.addToolMaterial("prometheus", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
-		Ifrit = new ItemIfrit(EnumHelper.addToolMaterial("ifrit", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
-		OmegaTrinity = new ItemIfrit(EnumHelper.addToolMaterial("ifrit", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OmegaTrinity);
-		Prominence = new ItemProminence(EnumHelper.addToolMaterial("prominence", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
-		FerrisWheel = new ItemEternalFlames(EnumHelper.addToolMaterial("ferriswheel", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FerrisWheel);
-		MoulinRouge = new ItemEternalFlames(EnumHelper.addToolMaterial("moulinrouge", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MoulinRouge);
-		Inferno = new ItemEternalFlames(EnumHelper.addToolMaterial("inferno", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inferno);
-		Doldrums = new ItemEternalFlames(EnumHelper.addToolMaterial("doldrums", 3, -1, 6F, 5, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Doldrums);
+		EternalFlames = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
+		Burnout = new ItemChakram(5,8,Strings.Ashes).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
+		Outbreak = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Outbreak);
+		BlazeofGlory = new ItemChakram(5,8,Strings.BlazeofGlory).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
+		Ashes = new ItemChakram(5,8,Strings.Ashes).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ashes);
+		Combustion = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Combustion);
+		Prometheus = new ItemChakram(5,8,Strings.Prometheus).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
+		Ifrit = new ItemChakram(5,8,Strings.Ifrit).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
+		OmegaTrinity = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OmegaTrinity);
+		Prominence = new ItemChakram(5,8,Strings.Prominence).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
+		FerrisWheel = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FerrisWheel);
+		MoulinRouge = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MoulinRouge);
+		Inferno = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inferno);
+		Doldrums = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Doldrums);
 
 		// demyx
-		Arpeggio = new ItemArpeggio(EnumHelper.addToolMaterial("arpeggio", 3, -1, 6F, 9, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Arpeggio);
+		Arpeggio = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Arpeggio);
 
 		// luxord
-		FairGame = new ItemFairGame(EnumHelper.addToolMaterial("fairgame", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
-		TheFool = new ItemFairGame(EnumHelper.addToolMaterial("thefool", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
-		TheMagician = new ItemFairGame(EnumHelper.addToolMaterial("themagician", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheMagician);
-		FinestFantasy13 = new ItemFairGame(EnumHelper.addToolMaterial("finestfantasy13", 3, -1, 6F, 8, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinestFantasy13);
+		FairGame = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
+		TheFool = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
+		TheMagician = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheMagician);
+		FinestFantasy13 = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinestFantasy13);
 
 		// Marluxia
-		GracefulDahlia = new ItemGracefulDahlia(EnumHelper.addToolMaterial("gracefuldahlia", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
-		FickleErica = new ItemGracefulDahlia(EnumHelper.addToolMaterial("fickleerica", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FickleErica);
-		PoorMelissa = new ItemGracefulDahlia(EnumHelper.addToolMaterial("poormelissa", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PoorMelissa);
-		JiltedAnemone = new ItemGracefulDahlia(EnumHelper.addToolMaterial("jiltedanemone", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.JiltedAnemone);
-		LoftyGerbera = new ItemGracefulDahlia(EnumHelper.addToolMaterial("loftygerbera", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.LoftyGerbera);
-		HallowedLotus = new ItemGracefulDahlia(EnumHelper.addToolMaterial("hallowedlotus", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.HallowedLotus);
-		QuietBelladonna = new ItemGracefulDahlia(EnumHelper.addToolMaterial("quietbelladonna", 3, -1, 6F, 12, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.QuietBelladonna);
+		GracefulDahlia = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
+		FickleErica = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FickleErica);
+		PoorMelissa = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PoorMelissa);
+		JiltedAnemone = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.JiltedAnemone);
+		LoftyGerbera = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.LoftyGerbera);
+		HallowedLotus = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.HallowedLotus);
+		QuietBelladonna = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.QuietBelladonna);
 
 		// larxene
-		Foudre = new ItemFoudre(EnumHelper.addToolMaterial("foudre", 3, -1, 6F, 7, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foudre);
-		Carmin = new ItemFoudre(EnumHelper.addToolMaterial("calmant", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Carmin);
-		Orage = new ItemFoudre(EnumHelper.addToolMaterial("orage", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Orage);
-		Eruption = new ItemFoudre(EnumHelper.addToolMaterial("eruption", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Eruption);
-		Irregulier = new ItemFoudre(EnumHelper.addToolMaterial("irregulier", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Irregulier);
-		Trancheuse = new ItemFoudre(EnumHelper.addToolMaterial("trancheuse", 3, -1, 6F, 4, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Trancheuse);
-		Indigo = new ItemFoudre(EnumHelper.addToolMaterial("indigo", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Indigo);
-		Lumineuse = new ItemFoudre(EnumHelper.addToolMaterial("lumineuse", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lumineuse);
-		Tourbillon = new ItemFoudre(EnumHelper.addToolMaterial("tourbillon", 3, -1, 6F, 15, 30)).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tourbillon);
+		Foudre = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foudre);
+		Carmin = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Carmin);
+		Orage = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Orage);
+		Eruption = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Eruption);
+		Irregulier = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Irregulier);
+		Trancheuse = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Trancheuse);
+		Indigo = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Indigo);
+		Lumineuse = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lumineuse);
+		Tourbillon = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tourbillon);
 
 
 		//keyblades
@@ -203,6 +227,8 @@ public class ModItems {
 		DivineRose = new ItemRealKeyblade(8, 0).setUnlocalizedName(Strings.DivineRose);
 		((ItemKeyblade)DivineRose).setDescription("A powerful weapon that is difficult to deflect. Capable of dealing a string of critical blows.");
 		DreamSword = new ItemKeyblade(1, 8).setUnlocalizedName(Strings.DreamSword);
+		((ItemKeyblade)DreamSword).setDescription("A sword whose strength is courage: the will to stand against anything.");
+		DreamShield = new ItemOrgShield().setUnlocalizedName(Strings.DreamShield);
 		((ItemKeyblade)DreamSword).setDescription("A sword whose strength is courage: the will to stand against anything.");
 		DualDisc = new ItemRealKeyblade(5, 3).setUnlocalizedName(Strings.DualDisc);
 		((ItemKeyblade)DualDisc).setDescription("A Keyblade that provides an extra boost in Strength and makes it easier to land critical hits.");
@@ -402,8 +428,6 @@ public class ModItems {
         ((ItemKeyblade)YoungXehanortsKeyblade).setDescription("The Keyblade weilded by Young Xehanort.");
 		ZeroOne = new ItemRealKeyblade(10, 4).setUnlocalizedName(Strings.ZeroOne);
         ((ItemKeyblade)ZeroOne).setDescription("A Keyblade newly wrought within the datascape. Its powers render all opponents helpless.");
-		DreamShield = new ItemKeyblade(1, 8).setUnlocalizedName(Strings.DreamShield);
-		((ItemKeyblade)DreamShield).setDescription("A shield whose strength is courage: the will to stand against anything.");
 
 		// CHAINS
 		Chain_AbaddonPlasma = new ItemKeychain((ItemKeyblade) AbaddonPlasma, KEYCHAIN).setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
@@ -662,8 +686,8 @@ public class ModItems {
 		//Lexaeus
 		GameRegistry.register(Skysplitter, new ResourceLocation(Reference.MODID, Strings.Skysplitter));
 		GameRegistry.register(Reticence, new ResourceLocation(Reference.MODID, Strings.Reticence));
-		GameRegistry.register(Colossus, new ResourceLocation(Reference.MODID, Strings.Colossus));
 		GameRegistry.register(Hyperion, new ResourceLocation(Reference.MODID, Strings.Hyperion));
+		GameRegistry.register(Colossus, new ResourceLocation(Reference.MODID, Strings.Colossus));
 		GameRegistry.register(Sequoia, new ResourceLocation(Reference.MODID, Strings.Sequoia));
 
 		//Zexion
@@ -699,7 +723,7 @@ public class ModItems {
 		GameRegistry.register(TheFool, new ResourceLocation(Reference.MODID, Strings.TheFool));
 		GameRegistry.register(TheMagician, new ResourceLocation(Reference.MODID, Strings.TheMagician));
 		GameRegistry.register(FinestFantasy13, new ResourceLocation(Reference.MODID, Strings.FinestFantasy13));
-
+		
 		//Marluxia
 		GameRegistry.register(GracefulDahlia, new ResourceLocation(Reference.MODID, Strings.GracefulDahlia));
 		GameRegistry.register(FickleErica, new ResourceLocation(Reference.MODID, Strings.FickleErica));
@@ -725,6 +749,8 @@ public class ModItems {
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));
 
+		//Shield
+		GameRegistry.register(DreamShield, new ResourceLocation(Reference.MODID, Strings.DreamShield));
 
 		// Keyblades
 		GameRegistry.register(AbaddonPlasma, new ResourceLocation(Reference.MODID, Strings.AbaddonPlasma));
@@ -748,7 +774,6 @@ public class ModItems {
 		GameRegistry.register(Divewing, new ResourceLocation(Reference.MODID, Strings.Divewing));
 		GameRegistry.register(DivineRose, new ResourceLocation(Reference.MODID, Strings.DivineRose));
 		GameRegistry.register(DreamSword, new ResourceLocation(Reference.MODID, Strings.DreamSword));
-		GameRegistry.register(DreamShield, new ResourceLocation(Reference.MODID, Strings.DreamShield));
 		GameRegistry.register(DualDisc, new ResourceLocation(Reference.MODID, Strings.DualDisc));
 		GameRegistry.register(Earthshaker, new ResourceLocation(Reference.MODID, Strings.Earthshaker));
 		GameRegistry.register(EndofPain, new ResourceLocation(Reference.MODID, Strings.EndofPain));
@@ -1075,7 +1100,6 @@ public class ModItems {
 
 		// Knowledge
 		registerRender(AbandonedKnowledge);
-
 
 		// Keyblades
 		registerRender(AbaddonPlasma);

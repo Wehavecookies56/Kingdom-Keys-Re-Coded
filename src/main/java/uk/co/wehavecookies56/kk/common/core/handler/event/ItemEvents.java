@@ -51,6 +51,7 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -61,6 +62,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -448,6 +450,114 @@ public class ItemEvents {
             }
         }
         
+        if (event.getItemStack().getItem() instanceof ItemOrgWeapon) {
+            List<String> tooltip = event.getToolTip();
+            ItemOrgWeapon weapon = (ItemOrgWeapon) event.getItemStack().getItem();
+            (tooltip.subList(1, tooltip.size())).clear();
+            
+            NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
+            double sharpnessDamage = 0;
+            if(nbttaglist != null)
+            {
+            	 for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                     int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+                     int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+
+                    //System.out.println(Enchantment.getEnchantmentByID(id).getName());
+                    if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all"))
+                    {
+                    	switch (lvl)
+                    	{
+                    	case 1:
+                    		sharpnessDamage = 1;
+                    		break;
+                    	case 2:
+                    		sharpnessDamage = 1.5;
+                    		break;
+                    	case 3:
+                    		sharpnessDamage = 2;
+                    		break;
+                    	case 4:
+                    		sharpnessDamage = 2.5;
+                    		break;
+                    	case 5:
+                    		sharpnessDamage = 3;
+                    		break;
+                    	}
+                    }
+            	 }
+            }
+
+            double keyStrength = weapon.getStrength()+sharpnessDamage;
+            
+            String magicSymbol = (weapon.getMagic() > 0) ? "+" : "";
+            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength + " (" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), weapon)+sharpnessDamage) + ")");
+            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + weapon.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,weapon) + ")");
+            if (weapon.getDescription() != null) {
+                if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+                    tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
+                    tooltip.add(weapon.description);
+                    tooltip.add("");
+                } else {
+                    tooltip.add("Hold " +  TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY + " for description");
+                }
+            }
+            if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
+                if (event.getItemStack().hasTagCompound()) {
+                    if (nbttaglist != null) {
+                        tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
+                        for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                            int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+                            int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+
+                            if (Enchantment.getEnchantmentByID(id) != null) {
+                                tooltip.add(Enchantment.getEnchantmentByID(id).getTranslatedName(lvl));
+                            }
+                        }
+                    }
+                }
+                for (EntityEquipmentSlot entityequipmentslot : EntityEquipmentSlot.values()) {
+                    Multimap<String, AttributeModifier> multimap = event.getItemStack().getAttributeModifiers(entityequipmentslot);
+
+                    if (!multimap.isEmpty()) {
+                        tooltip.add("");
+                        for (Map.Entry<String, AttributeModifier> entry : multimap.entries()) {
+                            AttributeModifier attributemodifier = (AttributeModifier) entry.getValue();
+                            double d0 = attributemodifier.getAmount();
+                            boolean flag = false;
+
+                            if (attributemodifier.getID() == UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF")) {
+                                d0 = d0 + event.getEntityPlayer().getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
+                                d0 = d0 + (double) EnchantmentHelper.getModifierForCreature(event.getItemStack(), EnumCreatureAttribute.UNDEFINED);
+                                flag = true;
+                            }
+
+                            double d1;
+
+                            if (attributemodifier.getOperation() != 1 && attributemodifier.getOperation() != 2) {
+                                d1 = d0;
+                            } else {
+                                d1 = d0 * 100.0D;
+                            }
+
+                            if (entry.getKey() == "generic.attackDamage") {
+                                d1 += event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength();
+                            }
+                            if (flag) {
+                                tooltip.add(Utils.translateToLocalFormatted("attribute.modifier.equals." + attributemodifier.getOperation(), new Object[]{ItemStack.DECIMALFORMAT.format(d1), Utils.translateToLocal("attribute.name." + (String) entry.getKey())}));
+                            } else if (d0 > 0.0D) {
+                                tooltip.add(TextFormatting.BLUE + Utils.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier.getOperation(), new Object[]{ItemStack.DECIMALFORMAT.format(d1), Utils.translateToLocal("attribute.name." + (String) entry.getKey())}));
+                            } else if (d0 < 0.0D) {
+                                d1 = d1 * -1.0D;
+                                tooltip.add(TextFormatting.RED + Utils.translateToLocalFormatted("attribute.modifier.take." + attributemodifier.getOperation(), new Object[]{ItemStack.DECIMALFORMAT.format(d1), Utils.translateToLocal("attribute.name." + (String) entry.getKey())}));
+                            }
+                        }
+                    }
+                }
+            } else {
+                tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
+            }
+        }
         
         Item ghostBlox = Item.getItemFromBlock(ModBlocks.GhostBlox);
         if (event.getItemStack().getItem() == ghostBlox) {
@@ -532,6 +642,13 @@ public class ItemEvents {
                     event.getPlayer().getCapability(ModCapabilities.MUNNY, null).addMunny(event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount"));
                 }
             }
+        if (event.getEntityItem().getEntityItem().getItem() == event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null)) {
+            event.getEntityItem().isDead = true;
+            ItemStack itemStack = event.getEntityItem().getEntityItem();
+
+            event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
+            PacketDispatcher.sendTo(new SyncOrgXIIIData(event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) event.getPlayer());
+        }
     }
 
     @SubscribeEvent

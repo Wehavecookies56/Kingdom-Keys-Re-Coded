@@ -652,10 +652,10 @@ public class EntityEvents {
             PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
             DriveStateCapability.IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 
-           // System.out.println(DamageCalculation.getStrengthDamage(player));
+            System.out.println("DMG: "+DamageCalculation.getStrengthDamage(player));
             if(player.getHeldItem(EnumHand.MAIN_HAND) != null)
             {
-	            if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
+	            if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon)
 	            {
 	            	event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
             		System.out.println(event.getAmount());

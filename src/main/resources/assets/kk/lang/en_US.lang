@@ -139,6 +139,7 @@ tile.kkchest.desc2=Will only open with a keyblade in hand
 tile.savepoint.name=Save Point
 tile.savepoint.desc=Sneak while standing on it to set your spawn point
 tile.stationofawakeningdoor.name=Station of Awakening Door
+tile.stationofawakening.name=Station of Awakening floor
 
 ############################
 #Items
@@ -312,18 +313,7 @@ item.darkinfusediron.name=Dark-Infused Iron Ingot
 item.lightninginfusedgold.name=Lightning-Infused Gold Ingot
 item.mythrilinfuseddiamond.name=Mythril-Infused Diamond
 
-item.abandonedknowledge.name=Vexen's Knowledge
-item.darkknowledge.name=Marluxia's Knowledge
-item.eclipsedknowledge.name=Saïx's Knowledge
-item.forgottenknowledge.name=Xaldin's Knowledge
-item.illudedknowledge.name=Zexion's Knowledge
-item.lostknowledge.name=Larxene's Knowledge
-item.manifestknowledge.name=Xemnas' Knowledge
-item.obscuredknowledge.name=Demyx's Knowledge
-item.unknownknowledge.name=Xigbar's Knowledge
-item.voidknowledge.name=Axel's Knowledge
-item.tangentknowledge.name=Luxord's Knowledge
-item.absoluteknowledge.name=Lexaeus' Knowledge
+item.abandonedknowledge.name=The Knowledge That Never Was
 
 #Music Discs
 disc.duration.desc=Duration
@@ -421,6 +411,14 @@ item.omegatrinity.name=Omega Trinity
 item.contrivance.name=Contrivance
 item.empiricism.name=Empricism
 item.quietbelladonna.name=Quiet Belladonna
+item.ferriswheel.name=Ferris Wheels
+item.moulinrouge.name=Moulin Rouge
+item.doldrums.name=Doldrums
+item.inferno.name=Inferno
+item.dreamshield.name=Dream Shield
+item.finestfantasy13.name=Finest Fantasy 13
+item.sequoia.name=Sequoia
+item.colossus.name=Colossus
 
 #Keyblades
 item.abaddonplasma.name=Abaddon Plasma
@@ -799,6 +797,7 @@ key.kingdomkeys.scrollup=Command Menu Scroll Up
 key.kingdomkeys.openmenu=Open Menu
 key.kingdomkeys.summonkeyblade=Summon Keyblade
 key.kingdomkeys.showgui=Toggle Always Show GUI mode (on/off/on with keyblade)
+key.kingdomkeys.lockon=Toggle Lock On
 
 ############################
 #Spells and forms
