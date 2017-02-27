@@ -43,7 +43,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura;
 
 	// Crafting Martierials & knowledges
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge;
@@ -107,6 +107,7 @@ public class ModItems {
 		// xaldin
 		Lindworm = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lindworm);
 		Crux = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crux);
+		Cynosura = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Cynosura);
 		Dragonreign = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Dragonreign);
 		Zephyr = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Zephyr);
 
@@ -667,8 +668,9 @@ public class ModItems {
 		//Xaldin
 		GameRegistry.register(Lindworm, new ResourceLocation(Reference.MODID, Strings.Lindworm));
 		GameRegistry.register(Zephyr, new ResourceLocation(Reference.MODID, Strings.Zephyr));
-		GameRegistry.register(Dragonreign, new ResourceLocation(Reference.MODID, Strings.Dragonreign));
+		GameRegistry.register(Cynosura, new ResourceLocation(Reference.MODID, Strings.Cynosura));
 		GameRegistry.register(Crux, new ResourceLocation(Reference.MODID, Strings.Crux));
+		GameRegistry.register(Dragonreign, new ResourceLocation(Reference.MODID, Strings.Dragonreign));
 
 		//Vexen
 		GameRegistry.register(FrozenPride, new ResourceLocation(Reference.MODID, Strings.FrozenPride));
@@ -743,6 +745,7 @@ public class ModItems {
 		GameRegistry.register(Lumineuse, new ResourceLocation(Reference.MODID, Strings.Lumineuse));
 		GameRegistry.register(Irregulier, new ResourceLocation(Reference.MODID, Strings.Irregulier));
 		GameRegistry.register(Tourbillon, new ResourceLocation(Reference.MODID, Strings.Tourbillon));
+		GameRegistry.register(Rafale, new ResourceLocation(Reference.MODID, Strings.Rafale));
 
 
 

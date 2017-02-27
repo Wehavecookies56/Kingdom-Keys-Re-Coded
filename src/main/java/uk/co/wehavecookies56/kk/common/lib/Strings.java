@@ -508,7 +508,8 @@ public class Strings {
     FinestFantasy13 = "finestfantasy13",
 	Colossus = "colossus",
 	Sequoia = "sequoia",
-	Rafale = "rafale"
+	Rafale = "rafale",
+	Cynosura = "cynosura"
 	;
 
 	// Knowledges
