@@ -86,11 +86,10 @@ public class EntityProminence extends EntityThrowable implements IThrowableEntit
 			}
 			mop.entityHit.setFire(8);
 			float shotDamage;
-			if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() / 2 < 8)
+			if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.8 < 8)
 				shotDamage = 8;
 			else
-				shotDamage = player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() / 2;
-
+				shotDamage = (float) ((player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() * 0.8)-(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
 			mop.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) getThrower()), shotDamage);
 		}
 
