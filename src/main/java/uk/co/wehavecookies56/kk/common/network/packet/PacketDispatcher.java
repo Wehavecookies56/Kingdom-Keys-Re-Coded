@@ -50,6 +50,7 @@ public class PacketDispatcher {
 		registerMessage(SpawnLockOnParticle.class);
 		registerMessage(SyncKH1Magic.class);
 		registerMessage(PedestalRotation.class);
+		registerMessage(SpawnPortalParticles.class);
 
 
 		// Client to Server
@@ -98,6 +99,7 @@ public class PacketDispatcher {
 		registerMessage(GiveBoughtItem.class);
 		registerMessage(TakeSoldItem.class);
 		registerMessage(PedestalItem.class);
+		registerMessage(OrgPortal.class);
 		// Bidirectional
 	}
 
