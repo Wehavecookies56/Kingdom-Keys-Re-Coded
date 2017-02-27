@@ -103,6 +103,7 @@ public class Lists {
 		Axel.add(BlazeofGlory);
 		Axel.add(Prometheus);
 		Axel.add(Ifrit);
+		Axel.add(OmegaTrinity);
 		Axel.add(Prominence);
 		Axel.add(Ashes);
 		Axel.add(Combustion);
@@ -139,6 +140,7 @@ public class Lists {
 		Larxene.add(Indigo);
 		Larxene.add(Lumineuse);
 		Larxene.add(Tourbillon);
+		Larxene.add(Rafale);
 
 		Roxas.add(KingdomKey);
 		Roxas.add(MissingAche);
