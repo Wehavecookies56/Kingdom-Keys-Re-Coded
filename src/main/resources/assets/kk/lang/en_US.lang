@@ -359,6 +359,7 @@ item.arpeggio.name=Arpeggio
 item.fairgame.name=Fair Game
 item.gracefuldahlia.name=Graceful Dahlia
 item.foudre.name=Foudre
+
 item.blazeofglory.name=Blaze of Glory
 item.prometheus.name=Prometheus
 item.ifrit.name=Ifrit
@@ -721,7 +722,8 @@ gui.commandmenu.drive.final=Final Form
 #Menu#
 #Main
 gui.menu.main.title=Menu
-gui.menu.main.time=Time
+gui.menu.main.time=World Time
+gui.menu.main.time.spent=Played Time
 gui.menu.main.button.items=Items
 gui.menu.main.button.abilities=Abilities
 gui.menu.main.button.customize=Customize
@@ -734,6 +736,7 @@ gui.menu.main.munny=Munny
 #Items
 gui.menu.items.title=Items
 gui.menu.items.keychain=Keychain
+gui.menu.items.orgweapon=Org. Weapon
 gui.menu.items.synthbag=Synthesis Bag
 gui.menu.items.potions=Potions
 gui.menu.items.spells=Spells
@@ -796,7 +799,7 @@ key.kingdomkeys.scrolldown=Command Menu Scroll Down
 key.kingdomkeys.scrollup=Command Menu Scroll Up
 key.kingdomkeys.openmenu=Open Menu
 key.kingdomkeys.summonkeyblade=Summon Keyblade
-key.kingdomkeys.showgui=Toggle Always Show GUI mode (on/off/on with keyblade)
+key.kingdomkeys.showgui=Show HUD (on/off/on with keyblade)
 key.kingdomkeys.lockon=Toggle Lock On
 
 ############################

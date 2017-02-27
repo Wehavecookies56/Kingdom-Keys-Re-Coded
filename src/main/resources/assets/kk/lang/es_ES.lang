@@ -139,6 +139,7 @@ tile.kkchest.desc2=Sólo se abre con una llave espada.
 tile.savepoint.name=Punto de Guardado
 tile.savepoint.desc=Agachate cuando estes en él para guardar el spawn.
 tile.stationofawakeningdoor.name=Puerta de la Estación del Despertar
+tile.stationofawakening.name=Suelo de la estación del Despertar
 
 ############################
 #Items
@@ -312,16 +313,7 @@ item.darkinfusediron.name=Lingote de hierro Oscuro
 item.lightninginfusedgold.name=Lingote de oro Luminoso
 item.mythrilinfuseddiamond.name=Diamante mezclado con Mitrilo
 
-item.abandonedknowledge.name=Conocimiento Abandonado
-item.darkknowledge.name=Conocimiento Oscuro
-item.eclipsedknowledge.name=Conocimiento Eclipsado
-item.forgottenknowledge.name=Conocimiento Olvidado
-item.illudedknowledge.name=Conocimiento Ilusionado
-item.lostknowledge.name=Conocimiento Perdido
-item.manifestknowledge.name=Conocimiento Manifestado
-item.obscuredknowledge.name=Conocimiento Oscurecido
-item.unknownknowledge.name=Conocimiento Desconocido
-item.voidknowledge.name=Conocimiento Vacío
+item.abandonedknowledge.name=El conocimiento que nunca fue
 
 #Discos de Música
 disc.duration.desc=Duración
@@ -394,6 +386,40 @@ item.burnout.name=Quemazón
 item.dragonreign.name=Reino del Dragón
 item.sunrise.name=Amanecer
 item.inquisition.name=Inquisición
+item.ashes.name=Ashes
+item.combustion.name=Combustion
+item.killerbee.name=Abeja Asesina
+item.orage.name=Tormenta
+item.eruption.name=Erupción
+item.indigo.name=Índigo
+item.lumineuse.name=Luminosa
+item.irregulier.name=Irregular
+item.aggression.name=Agressión
+item.sanction.name=Sanción
+item.twilight.name=Crepúsculo
+item.blackprimer.name=Cartilla Negra
+item.whitetome.name=Tomo Blanco
+item.tourbillon.name=Torbellino
+item.hallowedlotus.name=Loto Sagrado
+item.loftygerbera.name=Gerbera Elevada
+item.aegis.name=Égida
+item.hyperion.name=Modelo Hyperion
+item.ignition.name=Ignición
+item.themagician.name=El Mago
+item.diamondshield.name=Escudo Diamante
+item.cryoliteshield.name=Escudo Criolita
+item.omegatrinity.name=Trío Omega
+item.contrivance.name=Artimaña
+item.empiricism.name=Empirismo
+item.quietbelladonna.name=Belladona en Paz
+item.ferriswheel.name=Norias
+item.moulinrouge.name=Moulin Rouge
+item.doldrums.name=Estancamiento
+item.inferno.name=Infierno
+item.dreamshield.name=Escudo de Ensueño
+item.finestfantasy13.name=Fabula Totalis 13
+item.sequoia.name=Sequoya
+item.colossus.name=Coloso
 
 #Keyblades
 item.abaddonplasma.name=Plasma de Abadón
@@ -710,6 +736,7 @@ gui.menu.main.munny=Platines
 #Items
 gui.menu.items.title=Objetos
 gui.menu.items.keychain=Llavero
+gui.menu.items.orgweapon=Arma Org.
 gui.menu.items.synthbag=Bolsa de Síntesis
 gui.menu.items.potions=Pociones
 gui.menu.items.spells=Magias
@@ -772,6 +799,8 @@ key.kingdomkeys.scrolldown=Menú de Comandos Abajo
 key.kingdomkeys.scrollup=Menú de Comandos Arriba
 key.kingdomkeys.openmenu=Menú
 key.kingdomkeys.summonkeyblade=Invocar Llave Espada
+key.kingdomkeys.showgui=Mostrar HUD (on/off/on con keyblade)
+key.kingdomkeys.lockon=Activar Fijación
 
 ############################
 #Spells and forms
@@ -849,3 +878,8 @@ entity.kk.BlueRhapsody.name=Rapsodia Azul
 entity.kk.YellowOpera.name=Ópera Amarilla
 entity.kk.GreenRequiem.name=Réquiem Verde
 entity.kk.Moogle.name=Moguri
+
+##########################
+#Journal
+##########################
+journal.commandmenuabout=El menú de comandos es el menú mostrado en la esquina inferior izquierda. Tiene 4 opciones, Atacar, Magia, Objetos y Fusión, para más información visita sus respetcivas páginas.\n\nEl menú puede navegarse usando las teclas del menú (por defecto: flechas) también puede ser navegado manteniendo pulsado (por defecto Alt) y deslizar la rueda del ratón, click izquierdo para acceder, click derecho para retroceder.

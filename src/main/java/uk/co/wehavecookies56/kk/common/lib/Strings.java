@@ -123,6 +123,7 @@ public class Strings {
 	Gui_Menu_Items = Gui_Menu + ".items",
 	Gui_Menu_Items_Title = Gui_Menu_Items + ".title",
 	Gui_Menu_Items_Button_Keychain = Gui_Menu_Items + ".keychain",
+	Gui_Menu_Items_Button_OrgWeapon = Gui_Menu_Items + ".orgweapon",
 	Gui_Menu_Items_Button_Potions = Gui_Menu_Items + ".potions",
 	Gui_Menu_Items_Button_Spells = Gui_Menu_Items + ".spells",
 	Gui_Menu_Items_Button_Drive = Gui_Menu_Items + ".drives",
