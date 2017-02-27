@@ -158,7 +158,6 @@ public class CommonProxy {
 		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 1001, KingdomKeys.instance, 16, 1, false);
 		EntityRegistry.registerModEntity(EntityFire.class, "fire", 1002, KingdomKeys.instance, 16, 1, false);
 		EntityRegistry.registerModEntity(EntityThunder.class, "thunder", 1003, KingdomKeys.instance, 16, 1, false);
-		EntityRegistry.registerModEntity(EntityOrgPortal.class, "orgportal", 1004, KingdomKeys.instance, 16, 1, false);
 
 		// Heartless registry
 		EntityHelper.registerEntity("Shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());

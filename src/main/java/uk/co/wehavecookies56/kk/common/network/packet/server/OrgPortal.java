@@ -39,7 +39,6 @@ public class OrgPortal extends AbstractMessage.AbstractServerMessage<OrgPortal> 
 		PacketDispatcher.sendToAllAround(new SpawnPortalParticles(pos), player, 64.0D);
 		//player.world.setBlockState(pos,Blocks.ICE.getDefaultState());
 		EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos);
-
 		player.world.spawnEntity(portal);
 	}
 }

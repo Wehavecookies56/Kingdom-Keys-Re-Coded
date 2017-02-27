@@ -25,11 +25,6 @@ public class EntityOrgPortal extends Entity{
 		super(world);
 		this.caster = caster;
 		this.remotePos=remotePos;
-
-	}
-
-	public EntityOrgPortal (World world, double x, double y, double z) {
-		super(world);
 	}
 
 	@Override
