@@ -8,19 +8,9 @@ import net.minecraft.client.gui.ScaledResolution;
  * Created by NStel on 1/22/2017.
  */
 public class PageMiscOrganizationWeapons extends Page{
-    String text = "The organization can be obtained by right clicking with a " +
-            "manifest knowledge. The knowledge can obtained by by the other knowledge books. The recipies are as in order from top to bottom as they will be crafting" +
-            "\n  Void Knowledge = book + 8 dark leather surrounding the book" +
-            "\n  Abandoned Knowledge = Void Knowledge + 1 Lost Illusion" +
-            "\n  Dark Knowledge = Void Knowledge + 1 Lost Illusion"+
-            "\n  Eclipsed Knowledge = Dark Knowledge + + 1 Lost Illusion"+
-            "\n  Forgotten Knowledge = Eclipsed Knowledge + + 1 Lost Illusion"+
-            "\n  Illuded Knowledge  = Forgotten Knowledge + 1 Lost Illusion"+
-            "\n  Lost Knowledge = Illuded Knowledge + 1 Lost Illusion"+
-            "\n  Obscured Knowledge = Lost Knowledge + 1 Lost Illusion"+
-            "\n  Unknown Knowledge = Obscured Knowledge + 1 Lost Illusion"+
-            "\n  Manifest Knowledge = Unknown Knowledge + 1 Lost Illusion";
-
+    String text = "The organization weapons can be obtained by wearing the full organization armour once you craft it put it on. \nThen the mod will prompt you to choose the member you want to be." +
+            " \nThen to bring up the gui to obtain a weapon you must craft the knowledge that never was. \nNOTE: You lose your organization status on death." +
+            "\nSHAPELESS CRAFTING RECIPE: \nThe Knowledge That Never Was = DarkLeather, FrostCrystal, BlazingCrystal, LightningCrystal, MythrilCrystal, StormyCrystal, DarkCrystal, Book,  LostIllusion.";
     public PageMiscOrganizationWeapons (int xPos, int yPos) {
         super("Misc_OrganizationWeapons", xPos, yPos);
         setxPos(xPos);
