@@ -153,7 +153,6 @@ public class DamageCalculation {
 		}
 		
 		finalDamage = (float) (damage * ConfigHandler.damageMultiplier);
-		System.out.println("Final Damage: "+finalDamage);
 		return finalDamage;
 	}
 	/**
@@ -167,8 +166,6 @@ public class DamageCalculation {
         }else if(player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon) {
             finalDamage = getStrengthDamage(player, (ItemOrgWeapon) player.getHeldItemMainhand().getItem());
         }
-
-        System.out.println("Strength: "+finalDamage);
         return finalDamage;
     }
 }
