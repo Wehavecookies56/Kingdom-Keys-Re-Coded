@@ -71,7 +71,7 @@ public class EntityEvents {
     public void ChunkLoad (ChunkEvent.Load event) {
     	if(event.getChunk().getTileEntityMap().)
     }*/
-	
+
     @SubscribeEvent
     public void PlayerClone (PlayerEvent.Clone event) {
         OrganizationXIIICapability.IOrganizationXIII orgBefore = event.getOriginal().getCapability(ModCapabilities.ORGANIZATION_XIII, null);
@@ -303,10 +303,10 @@ public class EntityEvents {
             EntityMob mob = (EntityMob) event.getEntity();
 
             player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,(int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2),"normal");
-    		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom))
-    			player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Wisdom);
-    		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Final))
-    			player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Final);
+            if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom))
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Wisdom);
+            if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Final))
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Final);
 
             if(event.getEntity() instanceof EntityDragon)
             {
@@ -479,7 +479,7 @@ public class EntityEvents {
         }
     }
 
-	String chosen = "";
+    String chosen = "";
     @SubscribeEvent
     public void onPlayerTick (TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
@@ -489,60 +489,60 @@ public class EntityEvents {
         */
         if(player.inventory.armorInventory[0] != null && player.inventory.armorInventory[1] != null && player.inventory.armorInventory[2] != null && player.inventory.armorInventory[3] != null)
         {
-        	if(player.inventory.armorInventory[0].getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory[1].getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.OrganizationRobe_Helmet)
-	        	AchievementHelper.addAchievement(player, ModAchievements.getOrgRobe);
-        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Aqua_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Aqua_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Aqua_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Aqua_Helmet)
-	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
-        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Terra_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Terra_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Terra_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Terra_Helmet)
-	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
-        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Ventus_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Ventus_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Ventus_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Ventus_Helmet)
-	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
-        	else if(player.inventory.armorInventory[0].getItem() == ModItems.Eraqus_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Eraqus_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Eraqus_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Eraqus_Helmet)
-	        	AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
+            if(player.inventory.armorInventory[0].getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory[1].getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.OrganizationRobe_Helmet)
+                AchievementHelper.addAchievement(player, ModAchievements.getOrgRobe);
+            else if(player.inventory.armorInventory[0].getItem() == ModItems.Aqua_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Aqua_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Aqua_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Aqua_Helmet)
+                AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
+            else if(player.inventory.armorInventory[0].getItem() == ModItems.Terra_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Terra_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Terra_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Terra_Helmet)
+                AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
+            else if(player.inventory.armorInventory[0].getItem() == ModItems.Ventus_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Ventus_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Ventus_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Ventus_Helmet)
+                AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
+            else if(player.inventory.armorInventory[0].getItem() == ModItems.Eraqus_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Eraqus_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Eraqus_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Eraqus_Helmet)
+                AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
 
         }
-    	if(player.dimension == ModDimensions.diveToTheHeartID)
-    	{
-    		if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
-    		{
-    			if(chosen != Strings.Choice_Shield){
-    				chosen = Strings.Choice_Shield;
-	    			TextComponentTranslation shield = new TextComponentTranslation("Shield");
-	    			shield.getStyle().setColor(TextFormatting.YELLOW);
-	    			player.sendMessage(shield);
-    			}
-    		}
+        if(player.dimension == ModDimensions.diveToTheHeartID)
+        {
+            if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
+            {
+                if(chosen != Strings.Choice_Shield){
+                    chosen = Strings.Choice_Shield;
+                    TextComponentTranslation shield = new TextComponentTranslation("Shield");
+                    shield.getStyle().setColor(TextFormatting.YELLOW);
+                    player.sendMessage(shield);
+                }
+            }
 
-    		else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
-    		{
-    			if(chosen != Strings.Choice_Staff){
-    				chosen = Strings.Choice_Staff;
-	    			TextComponentTranslation staff = new TextComponentTranslation("Staff");
-	    			staff.getStyle().setColor(TextFormatting.YELLOW);
-	    			player.sendMessage(staff);
-    			}
-    		}
+            else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
+            {
+                if(chosen != Strings.Choice_Staff){
+                    chosen = Strings.Choice_Staff;
+                    TextComponentTranslation staff = new TextComponentTranslation("Staff");
+                    staff.getStyle().setColor(TextFormatting.YELLOW);
+                    player.sendMessage(staff);
+                }
+            }
 
-    		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66)
-    		{
-    			if(chosen != Strings.Choice_Sword){
-    				chosen = Strings.Choice_Sword;
-	    			TextComponentTranslation sword = new TextComponentTranslation("Sword");
-	    			sword.getStyle().setColor(TextFormatting.YELLOW);
-	    			player.sendMessage(sword);
-    			}
-    		}
+            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66)
+            {
+                if(chosen != Strings.Choice_Sword){
+                    chosen = Strings.Choice_Sword;
+                    TextComponentTranslation sword = new TextComponentTranslation("Sword");
+                    sword.getStyle().setColor(TextFormatting.YELLOW);
+                    player.sendMessage(sword);
+                }
+            }
 
-    		else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65)
-    		{
-    			if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID)
-    				if (!player.world.isRemote)
-    					new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().worldServerForDimension(0)).teleport(( player), player.world);
-    		}
+            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65)
+            {
+                if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID)
+                    if (!player.world.isRemote)
+                        new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().worldServerForDimension(0)).teleport(( player), player.world);
+            }
 
-    	}
+        }
 
-    	PlayerStatsCapability.IPlayerStats STATS = event.player.getCapability(ModCapabilities.PLAYER_STATS, null);
+        PlayerStatsCapability.IPlayerStats STATS = event.player.getCapability(ModCapabilities.PLAYER_STATS, null);
         DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         if (!DS.getInDrive())
             if (STATS.getMP() <= 0 || STATS.getRecharge()) {
@@ -624,44 +624,44 @@ public class EntityEvents {
         }
         if(event.getEntityLiving() instanceof IKHMob)
         {
-        	EntityPlayer player = null;
-        	IKHMob khMob = (IKHMob) event.getEntityLiving(); 
+            EntityPlayer player = null;
+            IKHMob khMob = (IKHMob) event.getEntityLiving();
             if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
                 player = (EntityPlayer) event.getSource().getSourceOfDamage();
             }
             if(player != null)
             {
-	        	if(khMob.getType() == MobType.HEARTLESS_EMBLEM || khMob.getType() == MobType.HEARTLESS_PUREBLOOD || khMob.getType() == MobType.NOBODY)
-	        	{
-	        		if(player.getHeldItem(EnumHand.MAIN_HAND) == null)
-	                    event.setCanceled(true);
-	        		if(player.getHeldItem(EnumHand.MAIN_HAND) != null)
-	                {
-	    	            if(!(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon))
-	    	            {
-	                        event.setCanceled(true);
-	    	            }
-	                }
-	        	}
+                if(khMob.getType() == MobType.HEARTLESS_EMBLEM || khMob.getType() == MobType.HEARTLESS_PUREBLOOD || khMob.getType() == MobType.NOBODY)
+                {
+                    if(player.getHeldItem(EnumHand.MAIN_HAND) == null)
+                        event.setCanceled(true);
+                    if(player.getHeldItem(EnumHand.MAIN_HAND) != null)
+                    {
+                        if(!(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon))
+                        {
+                            event.setCanceled(true);
+                        }
+                    }
+                }
             }
         }
         if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
-        	if(event.getSource().getDamageType().equals("thorns")) return;
+            if(event.getSource().getDamageType().equals("thorns")) return;
 
             PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
             DriveStateCapability.IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
             if(player.getHeldItem(EnumHand.MAIN_HAND) != null)
             {
-	            if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon)
-	            {
-	            	event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
-	            	if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Valor))
-            			STATS.addExperience(player, 1, Strings.Form_Valor);
-            		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Limit))
-            			STATS.addExperience(player, 1, Strings.Form_Limit);
+                if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon)
+                {
+                    event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
+                    if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Valor))
+                        STATS.addExperience(player, 1, Strings.Form_Valor);
+                    if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Limit))
+                        STATS.addExperience(player, 1, Strings.Form_Limit);
 
-	            }
+                }
             }
         }
     }
