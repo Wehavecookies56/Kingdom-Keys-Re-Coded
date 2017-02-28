@@ -642,7 +642,7 @@ public class ItemEvents {
                     event.getPlayer().getCapability(ModCapabilities.MUNNY, null).addMunny(event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount"));
                 }
             }
-        if (event.getEntityItem().getEntityItem().getItem() == event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null)) {
+        if (event.getEntityItem().getEntityItem().getItem() == event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
             event.getEntityItem().isDead = true;
             ItemStack itemStack = event.getEntityItem().getEntityItem();
 
