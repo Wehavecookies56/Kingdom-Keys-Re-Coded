@@ -35,14 +35,14 @@ public class RenderEntityMoulinRouge extends Render implements IRenderFactory<En
     public void doRender (Entity entity, double x, double y, double z, float yaw, float pitch) {
         GL11.glPushMatrix();
         GL11.glTranslated(x, y, z);
-        GL11.glRotatef(90, 0.0F, 0.0F, 1.0F);
+        GL11.glRotatef(90, 1F, 0.0F, 0.0F);
         float f2 = pitch;
         float f3 = pitch;
 
         float f4 = 0.5F;
         GL11.glScalef(0.02f, 0.02f, 0.02f);
 
-        GL11.glRotatef(yaw * 100, 1, 0, 0);
+        GL11.glRotatef(yaw * 100, 0, 0, 1);
 
         bindEntityTexture(entity);
 
