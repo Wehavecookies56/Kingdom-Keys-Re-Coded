@@ -8,42 +8,19 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemShield;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityAshes;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityBlazeofGlory;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityEternalFlames;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityIfrit;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityPrometheus;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityProminence;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKKRecord;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
-import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemRecipe;
-import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
-import uk.co.wehavecookies56.kk.common.item.org.ItemArrowguns;
-import uk.co.wehavecookies56.kk.common.item.org.ItemAxeSword;
-import uk.co.wehavecookies56.kk.common.item.org.ItemCard;
-import uk.co.wehavecookies56.kk.common.item.org.ItemChakram;
-import uk.co.wehavecookies56.kk.common.item.org.ItemClaymore;
-import uk.co.wehavecookies56.kk.common.item.org.ItemEtherealBlade;
-import uk.co.wehavecookies56.kk.common.item.org.ItemKnife;
-import uk.co.wehavecookies56.kk.common.item.org.ItemLances;
-import uk.co.wehavecookies56.kk.common.item.org.ItemLexicon;
-import uk.co.wehavecookies56.kk.common.item.org.ItemOrgShield;
-import uk.co.wehavecookies56.kk.common.item.org.ItemScythe;
-import uk.co.wehavecookies56.kk.common.item.org.ItemSitar;
+import uk.co.wehavecookies56.kk.common.item.base.*;
+import uk.co.wehavecookies56.kk.common.item.org.*;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura, NewMoon;
 
 	// Crafting Martierials & knowledges
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge;
@@ -138,6 +115,7 @@ public class ModItems {
 
 		// saix
 		Lunatic = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lunatic);
+		NewMoon = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.NewMoon);
 		Twilight = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Twilight);
 
 		// axel
@@ -152,7 +130,7 @@ public class ModItems {
 		OmegaTrinity = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OmegaTrinity);
 		Prominence = new ItemChakram(5,8,Strings.Prominence).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
 		FerrisWheel = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FerrisWheel);
-		MoulinRouge = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MoulinRouge);
+		MoulinRouge = new ItemChakram(5,8,Strings.MoulinRouge).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MoulinRouge);
 		Inferno = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inferno);
 		Doldrums = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Doldrums);
 
@@ -699,6 +677,7 @@ public class ModItems {
 
 		//Saix
 		GameRegistry.register(Lunatic, new ResourceLocation(Reference.MODID, Strings.Lunatic));
+		GameRegistry.register(NewMoon, new ResourceLocation(Reference.MODID, Strings.NewMoon));
 		GameRegistry.register(Twilight, new ResourceLocation(Reference.MODID, Strings.Twilight));
 
 		//Axel

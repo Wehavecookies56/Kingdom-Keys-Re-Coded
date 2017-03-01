@@ -1,9 +1,6 @@
 package uk.co.wehavecookies56.kk.client.core.proxy;
 
-import org.lwjgl.input.Keyboard;
-
 import com.jadarstudios.developercapes.DevCapes;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -25,50 +22,23 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.lwjgl.input.Keyboard;
 import uk.co.wehavecookies56.kk.client.core.handler.ClientEventHandler;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.client.fx.EntityParticleFXTest;
-import uk.co.wehavecookies56.kk.client.gui.GuiCommandMenu;
-import uk.co.wehavecookies56.kk.client.gui.GuiDrive;
-import uk.co.wehavecookies56.kk.client.gui.GuiHP;
-import uk.co.wehavecookies56.kk.client.gui.GuiLockOn;
-import uk.co.wehavecookies56.kk.client.gui.GuiMP;
-import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
-import uk.co.wehavecookies56.kk.client.gui.GuiPlayerPortrait;
+import uk.co.wehavecookies56.kk.client.gui.*;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelMoogle;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelRedNocturne;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelShadow;
-import uk.co.wehavecookies56.kk.client.render.LayerRendererDrive;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityAshes;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityBlazeofGlory;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityEternalFlames;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityIfrit;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityPrometheus;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityProminence;
-import uk.co.wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
-import uk.co.wehavecookies56.kk.client.render.RenderFactorySharpshooterBullet;
-import uk.co.wehavecookies56.kk.client.render.RenderKHMob;
-import uk.co.wehavecookies56.kk.client.render.TESRPedestal;
+import uk.co.wehavecookies56.kk.client.render.*;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
 import uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityAshes;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityBlazeofGlory;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityEternalFlames;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityIfrit;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityPrometheus;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityProminence;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
+import uk.co.wehavecookies56.kk.common.entity.mobs.*;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.*;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -268,6 +238,7 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.Sequoia , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sequoia, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Rafale , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Rafale, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Cynosura , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Cynosura, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.NewMoon , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.NewMoon, "inventory"));
 
 
 		//Blocks
@@ -276,6 +247,7 @@ public class ClientProxy extends CommonProxy
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.Pedestal), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Pedestal, "inventory"));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlastBlox.class, new RenderFactoryBlastBlox());
+		RenderingRegistry.registerEntityRenderingHandler(EntityMoulinRouge.class, (IRenderFactory) new RenderEntityMoulinRouge(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityEternalFlames.class, (IRenderFactory) new RenderEntityEternalFlames(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityIfrit.class, (IRenderFactory) new RenderEntityIfrit(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityProminence.class, (IRenderFactory) new RenderEntityProminence(Minecraft.getMinecraft().getRenderManager()));

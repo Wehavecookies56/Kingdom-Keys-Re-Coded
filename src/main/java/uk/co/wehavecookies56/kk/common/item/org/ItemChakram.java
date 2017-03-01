@@ -17,12 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityAshes;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityBlazeofGlory;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityEternalFlames;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityIfrit;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityPrometheus;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityProminence;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.*;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -75,6 +70,9 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
 				break;
 			case Strings.Prominence:
 				entity = new EntityProminence(world, player);
+				break;
+			case Strings.MoulinRouge:
+				entity = new EntityMoulinRouge(world, player);
 				break;
 			default:
 				entity = new EntityEternalFlames(world, player);

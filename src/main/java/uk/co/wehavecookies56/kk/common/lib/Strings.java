@@ -509,7 +509,8 @@ public class Strings {
 	Colossus = "colossus",
 	Sequoia = "sequoia",
 	Rafale = "rafale",
-	Cynosura = "cynosura"
+	Cynosura = "cynosura",
+	NewMoon = "newmoon"
 	;
 
 	// Knowledges
