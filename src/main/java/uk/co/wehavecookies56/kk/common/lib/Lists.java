@@ -9,6 +9,7 @@ import net.minecraft.client.particle.ParticleSpell;
 import net.minecraft.item.Item;
 import scala.collection.Seq;
 import scala.tools.nsc.typechecker.Infer;
+import sun.util.resources.cldr.xog.LocaleNames_xog;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class Lists {
@@ -100,15 +101,15 @@ public class Lists {
 
 		//Axel
 		Axel.add(EternalFlames);
+		Axel.add(Ashes);
+		Axel.add(Combustion);
 		Axel.add(BlazeofGlory);
+		Axel.add(Burnout);
+		Axel.add(Outbreak);
 		Axel.add(Prometheus);
 		Axel.add(Ifrit);
 		Axel.add(OmegaTrinity);
 		Axel.add(Prominence);
-		Axel.add(Ashes);
-		Axel.add(Combustion);
-		Axel.add(Burnout);
-		Axel.add(Outbreak);
 		Axel.add(MoulinRouge);
 		Axel.add(FerrisWheel);
 		Axel.add(Doldrums);
@@ -120,6 +121,7 @@ public class Lists {
 		//Luxord
 		Luxord.add(FairGame);
 		Luxord.add(TheFool);
+		Luxord.add(FinestFantasy13);
 
 		//Marluxia
 		Marluxia.add(GracefulDahlia);

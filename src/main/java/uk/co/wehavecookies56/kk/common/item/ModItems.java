@@ -120,16 +120,16 @@ public class ModItems {
 
 		// axel
 		EternalFlames = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
-		Burnout = new ItemChakram(5,8,Strings.Ashes).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
+		Burnout = new ItemChakram(5,8,Strings.Burnout).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
 		Outbreak = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Outbreak);
 		BlazeofGlory = new ItemChakram(5,8,Strings.BlazeofGlory).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
 		Ashes = new ItemChakram(5,8,Strings.Ashes).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ashes);
-		Combustion = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Combustion);
+		Combustion = new ItemChakram(5,8,Strings.Combustion).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Combustion);
 		Prometheus = new ItemChakram(5,8,Strings.Prometheus).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
 		Ifrit = new ItemChakram(5,8,Strings.Ifrit).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
-		OmegaTrinity = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OmegaTrinity);
+		OmegaTrinity = new ItemChakram(5,8,Strings.OmegaTrinity).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OmegaTrinity);
 		Prominence = new ItemChakram(5,8,Strings.Prominence).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
-		FerrisWheel = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FerrisWheel);
+		FerrisWheel = new ItemChakram(5,8,Strings.FerrisWheel).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FerrisWheel);
 		MoulinRouge = new ItemChakram(5,8,Strings.MoulinRouge).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MoulinRouge);
 		Inferno = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inferno);
 		Doldrums = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Doldrums);

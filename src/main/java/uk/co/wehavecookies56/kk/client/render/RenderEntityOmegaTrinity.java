@@ -7,27 +7,27 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import org.lwjgl.opengl.GL11;
-import uk.co.wehavecookies56.kk.client.model.ModelMoulinRouge;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityMoulinRouge;
+import uk.co.wehavecookies56.kk.client.model.ModelOmegaTrinity;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityOmegaTrinity;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 /**
- * Created by NStel on 3/1/2017.
+ * Created by NStel on 3/2/2017.
  */
-public class RenderEntityMoulinRouge extends Render implements IRenderFactory<EntityMoulinRouge> {
+public class RenderEntityOmegaTrinity extends Render implements IRenderFactory<EntityOmegaTrinity> {
 
     ModelBase model;
 
-    public RenderEntityMoulinRouge (RenderManager renderManager) {
+    public RenderEntityOmegaTrinity (RenderManager renderManager) {
         super(renderManager);
         shadowSize = 1;
-        this.model = new ModelMoulinRouge();
+        this.model = new ModelOmegaTrinity();
     }
 
     @Override
     protected ResourceLocation getEntityTexture (Entity entity) {
-        return new ResourceLocation(Reference.MODID, "textures/items/models/" + Strings.MoulinRouge + ".png");
+        return new ResourceLocation(Reference.MODID, "textures/items/models/" + Strings.OmegaTrinity + ".png");
     }
 
     @Override
@@ -52,8 +52,8 @@ public class RenderEntityMoulinRouge extends Render implements IRenderFactory<En
     }
 
     @Override
-    public Render<? super EntityMoulinRouge> createRenderFor (RenderManager manager) {
-        return new RenderEntityMoulinRouge(manager);
+    public Render<? super EntityOmegaTrinity> createRenderFor (RenderManager manager) {
+        return new RenderEntityOmegaTrinity(manager);
     }
 
 }

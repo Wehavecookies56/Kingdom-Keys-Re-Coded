@@ -23,6 +23,8 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
+import java.util.List;
+
 public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
 	String weapon;
 	public ItemChakram (double strength, double magic, String weapon)  {
@@ -73,6 +75,18 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
 				break;
 			case Strings.MoulinRouge:
 				entity = new EntityMoulinRouge(world, player);
+				break;
+			case Strings.FerrisWheel:
+				entity = new EntityFerrisWheels(world, player);
+				break;
+			case Strings.Combustion:
+				entity = new EntityCombustion(world, player);
+				break;
+			case Strings.Burnout:
+				entity = new EntityBurnout(world, player);
+				break;
+			case Strings.OmegaTrinity:
+				entity = new EntityOmegaTrinity(world, player);
 				break;
 			default:
 				entity = new EntityEternalFlames(world, player);
