@@ -15,22 +15,21 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import java.util.List;
 
 /**
- * Created by NStel on 3/2/2017.
+ * Created by NStel on 3/5/2017.
  */
-public class EntityBurnout extends EntityThrowable implements IThrowableEntity {
-
+public class EntityInferno extends EntityThrowable implements IThrowableEntity {
     EntityPlayer player;
 
-    public EntityBurnout (World world) {
+    public EntityInferno (World world) {
         super(world);
     }
 
-    public EntityBurnout (World world, EntityLivingBase entity) {
+    public EntityInferno (World world, EntityLivingBase entity) {
         super(world, entity);
         this.player = (EntityPlayer) entity;
     }
 
-    public EntityBurnout (World world, double x, double y, double z) {
+    public EntityInferno (World world, double x, double y, double z) {
         super(world, x, y, z);
     }
 

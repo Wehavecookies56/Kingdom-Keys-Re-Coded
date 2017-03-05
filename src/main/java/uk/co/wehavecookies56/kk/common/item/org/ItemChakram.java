@@ -88,6 +88,15 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
 			case Strings.OmegaTrinity:
 				entity = new EntityOmegaTrinity(world, player);
 				break;
+			case Strings.Doldrums:
+				entity = new EntityDoledrum(world, player);
+				break;
+			case Strings.Outbreak:
+				entity = new EntityOutbreak(world, player);
+				break;
+			case Strings.Inferno:
+				entity = new EntityInferno(world, player);
+				break;
 			default:
 				entity = new EntityEternalFlames(world, player);
 				break;

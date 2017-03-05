@@ -4,7 +4,8 @@
         "textures": {
             "combustion": "kk:items/models/combustion"
         },
-        "model": "kk:combustion.obj"
+        "model": "kk:combustion.obj",
+		"custom": { "flip-v": true }
     },
    	"variants": {
         "inventory": [

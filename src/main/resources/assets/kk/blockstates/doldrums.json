@@ -4,7 +4,8 @@
         "textures": {
         
         },
-        "model": "kk:doldrums.obj"
+        "model": "kk:doldrums.obj",
+		"custom": { "flip-v": true }
 
     },
     "variants": {

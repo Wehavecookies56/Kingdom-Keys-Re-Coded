@@ -4,7 +4,8 @@
     	"textures": {
 
     		},
-        "model": "kk:omegatrinity.obj"
+        "model": "kk:omegatrinity.obj", 
+		"custom": { "flip-v": true }
     },
 	"variants": {
         "inventory": [
