@@ -20,7 +20,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura, NewMoon;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura, NewMoon, Absolute;
 
 	// Crafting Martierials & knowledges
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge;
@@ -71,6 +71,7 @@ public class ModItems {
 		Sanction = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sanction);
 		Infinity = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Infinity);
 		Malice = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Malice);
+		Absolute = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Absolute);
 
 		// xigbar
 		Sharpshooter = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sharpshooter);
@@ -633,6 +634,7 @@ public class ModItems {
 		GameRegistry.register(Aggression, new ResourceLocation(Reference.MODID, Strings.Aggression));
 		GameRegistry.register(Sanction, new ResourceLocation(Reference.MODID, Strings.Sanction));
 		GameRegistry.register(Infinity, new ResourceLocation(Reference.MODID, Strings.Infinity));
+		GameRegistry.register(Absolute, new ResourceLocation(Reference.MODID, Strings.Absolute));
 
 		//Xigbar
 		GameRegistry.register(Sharpshooter, new ResourceLocation(Reference.MODID, Strings.Sharpshooter));

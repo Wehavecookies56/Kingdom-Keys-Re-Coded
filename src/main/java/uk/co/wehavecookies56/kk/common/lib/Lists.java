@@ -8,6 +8,7 @@ import java.util.List;
 import net.minecraft.client.particle.ParticleSpell;
 import net.minecraft.item.Item;
 import scala.collection.Seq;
+import scala.reflect.internal.Trees;
 import scala.tools.nsc.typechecker.Infer;
 import sun.util.resources.cldr.xog.LocaleNames_xog;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -58,6 +59,7 @@ public class Lists {
 		Xemnas.add(Sanction);
 		Xemnas.add(Aggression);
 		Xemnas.add(Malice);
+		Xemnas.add(Absolute);
 
 		//Xigbar
 		Xigbar.add(Sharpshooter);
@@ -98,6 +100,7 @@ public class Lists {
 		//Saix
 		Saix.add(Lunatic);
 		Saix.add(Twilight);
+		Saix.add(NewMoon);
 
 		//Axel
 		Axel.add(EternalFlames);

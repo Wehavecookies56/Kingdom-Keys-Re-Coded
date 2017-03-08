@@ -239,7 +239,7 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.Rafale , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Rafale, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Cynosura , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Cynosura, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.NewMoon , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.NewMoon, "inventory"));
-
+		ModelLoader.setCustomModelResourceLocation(ModItems.Absolute , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Absolute, "inventory"));
 
 		//Blocks
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));

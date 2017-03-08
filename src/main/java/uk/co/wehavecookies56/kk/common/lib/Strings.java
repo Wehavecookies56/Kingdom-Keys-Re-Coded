@@ -510,7 +510,8 @@ public class Strings {
 	Sequoia = "sequoia",
 	Rafale = "rafale",
 	Cynosura = "cynosura",
-	NewMoon = "newmoon"
+	NewMoon = "newmoon",
+	Absolute = "absolute"
 	;
 
 	// Knowledges
