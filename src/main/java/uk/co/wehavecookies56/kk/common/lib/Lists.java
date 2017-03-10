@@ -139,13 +139,15 @@ public class Lists {
 		Larxene.add(Foudre);
 		Larxene.add(Carmin);
 		Larxene.add(Trancheuse);
+		Larxene.add(Indigo);
 		Larxene.add(Orage);
 		Larxene.add(Irregulier);
 		Larxene.add(Eruption);
-		Larxene.add(Indigo);
 		Larxene.add(Lumineuse);
 		Larxene.add(Tourbillon);
 		Larxene.add(Rafale);
+		Larxene.add(Typhon);
+		Larxene.add(Tempete);
 
 		Roxas.add(KingdomKey);
 		Roxas.add(MissingAche);

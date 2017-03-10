@@ -511,7 +511,9 @@ public class Strings {
 	Rafale = "rafale",
 	Cynosura = "cynosura",
 	NewMoon = "newmoon",
-	Absolute = "absolute"
+	Absolute = "absolute",
+	Tempete = "tempete",
+	Typhon = "typhon"
 	;
 
 	// Knowledges
