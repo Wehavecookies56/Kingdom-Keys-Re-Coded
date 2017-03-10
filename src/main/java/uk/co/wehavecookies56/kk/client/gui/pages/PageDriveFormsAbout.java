@@ -9,7 +9,7 @@ import net.minecraft.client.gui.ScaledResolution;
  */
 public class PageDriveFormsAbout extends Page
 {
-    String text = " Drive Forms will give you stat boosts and negate fall damage. you have a change of obtaining the drive forms by destroying " +
+    String text = " Drive Forms will give you stat boosts and negate fall damage. you have a chance of obtaining the drive forms by destroying " +
             "prize blocks.";
 
     public PageDriveFormsAbout (int xPos, int yPos) {

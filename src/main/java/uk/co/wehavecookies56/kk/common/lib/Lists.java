@@ -10,7 +10,6 @@ import net.minecraft.item.Item;
 import scala.collection.Seq;
 import scala.reflect.internal.Trees;
 import scala.tools.nsc.typechecker.Infer;
-import sun.util.resources.cldr.xog.LocaleNames_xog;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class Lists {
