@@ -513,7 +513,12 @@ public class Strings {
 	NewMoon = "newmoon",
 	Absolute = "absolute",
 	Tempete = "tempete",
-	Typhon = "typhon"
+	Typhon = "typhon",
+    Vague = "vague",
+    Etoile = "etoile",
+    Dissonance = "dissonance",
+    CroixDuSud = "croixdusud",
+    Meteore = "meteore"
 	;
 
 	// Knowledges

@@ -147,6 +147,11 @@ public class Lists {
 		Larxene.add(Rafale);
 		Larxene.add(Typhon);
 		Larxene.add(Tempete);
+		Larxene.add(Vague);
+		Larxene.add(Dissonance);
+		Larxene.add(Meteore);
+		Larxene.add(Etoile);
+		Larxene.add(CroixDuSud);
 
 		Roxas.add(KingdomKey);
 		Roxas.add(MissingAche);

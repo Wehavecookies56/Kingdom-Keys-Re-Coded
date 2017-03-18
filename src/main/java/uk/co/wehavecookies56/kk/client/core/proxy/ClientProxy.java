@@ -239,6 +239,11 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.Absolute , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Absolute, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Tempete , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Tempete, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Typhon , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Typhon, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Vague, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Vague, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Meteore , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Meteore, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Dissonance , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Dissonance, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Etoile , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Etoile, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.CroixDuSud , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.CroixDuSud, "inventory"));
 
 		//Blocks
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
