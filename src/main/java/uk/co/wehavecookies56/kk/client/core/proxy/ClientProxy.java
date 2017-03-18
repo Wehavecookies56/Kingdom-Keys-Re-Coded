@@ -175,9 +175,6 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.SignofInnocence, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.SignofInnocence, "inventory"));
 
 
-
-
-
 		//Organization
 		ModelLoader.setCustomModelResourceLocation(ModItems.FinalWeapon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FinalWeapon, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Reticence, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Reticence, "inventory"));
@@ -276,27 +273,26 @@ public class ClientProxy extends CommonProxy
 
 	@Override
 		public void init (FMLInitializationEvent event) {
-		super.init(event);
-		registerRenders();
-		registerKeyBindings();
-		RenderLivingBase renderPlayer = Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default");
-		renderPlayer.addLayer(new LayerRendererDrive(renderPlayer));
-		renderPlayer = Minecraft.getMinecraft().getRenderManager().getSkinMap().get("slim");
-		renderPlayer.addLayer(new LayerRendererDrive(renderPlayer));
-		MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
-		ModAchievements.openMenu.setStatStringFormatter(new IStatStringFormat() {
-		@Override
-		public String formatString(String s) {
-			try {
-				return String.format(s, Keyboard.getKeyName(InputHandler.Keybinds.OPENMENU.getKeybind().getKeyCode()));
-			} catch (Exception e) {
-				return s;
+			super.init(event);
+			registerRenders();
+			registerKeyBindings();
+			RenderLivingBase renderPlayer = Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default");
+			renderPlayer.addLayer(new LayerRendererDrive(renderPlayer));
+			renderPlayer = Minecraft.getMinecraft().getRenderManager().getSkinMap().get("slim");
+			renderPlayer.addLayer(new LayerRendererDrive(renderPlayer));
+			MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+			ModAchievements.openMenu.setStatStringFormatter(new IStatStringFormat() {
+				@Override
+				public String formatString(String s) {
+					try {
+						return String.format(s, Keyboard.getKeyName(InputHandler.Keybinds.OPENMENU.getKeybind().getKeyCode()));
+					} catch (Exception e) {
+						return s;
+					}
+				}
 			}
-		}
-		});
-		 ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPedestal.class, new TESRPedestal());
-		//ModelPlayerAPI.register(Reference.MODID, ModelPlayerDrive.class);
-		//RenderPlayerAPI.register(Reference.MODID, RenderPlayerDrive.class);
+		);
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPedestal.class, new TESRPedestal());
 	}
 
 	@Override

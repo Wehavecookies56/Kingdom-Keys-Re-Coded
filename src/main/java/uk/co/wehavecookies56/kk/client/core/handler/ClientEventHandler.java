@@ -12,7 +12,37 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class ClientEventHandler {
-	Random rand = new Random();
+	@SubscribeEvent
+	public void renderTick(TickEvent.RenderTickEvent event) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        if (InputHandler.lockOn != null && player != null) {
+			if(InputHandler.lockOn.isDead) {
+				InputHandler.lockOn = null;
+				return;
+			}
+            EntityLivingBase target = InputHandler.lockOn;
+
+			double dx = player.posX - target.posX;
+			double dz = player.posZ - target.posZ;
+           // double dy = player.posY - (target.posY - (target.height / 2.0F));
+            double dy = player.posY - (target.posY + (target.height / 2.0F)-player.height);
+			double angle = Math.atan2(dz, dx) * 180 / Math.PI;
+			double pitch = Math.atan2(dy, Math.sqrt(dx * dx + dz * dz)) * 180 / Math.PI;
+			double distance = player.getDistanceToEntity(target);
+			float rYaw = (float) (angle - player.rotationYaw);
+			while (rYaw > 180) {
+				rYaw -= 360;
+			}
+			while (rYaw < -180) {
+				rYaw += 360;
+			}
+			rYaw += 90F;
+			float rPitch = (float) pitch - (float) (10.0F / Math.sqrt(distance)) + (float) (distance * Math.PI / 90);
+            //System.out.println(target.height + (target.height / 2.0F));
+            player.turn(rYaw, -(rPitch - player.rotationPitch));
+		}
+	}
+	/*Random rand = new Random();
 	PositionedSound posSound;
 	PositionedSound vanillaSound;
 	ResourceLocation resLoc = new ResourceLocation(Reference.MODID, "");
@@ -26,7 +56,7 @@ public class ClientEventHandler {
 	int clientTick = 0;
 	float volume = 1.0f;
 
-	/*
+
 	PositionedSoundRecord currMusic = Music.sinisterSundown;
 
 	@SubscribeEvent (priority = EventPriority.HIGHEST)
@@ -424,35 +454,4 @@ public class ClientEventHandler {
 		}
 	}
 	*/
-
-	@SubscribeEvent
-	public void renderTick(TickEvent.RenderTickEvent event) {
-        EntityPlayer player = Minecraft.getMinecraft().player;
-        if (InputHandler.lockOn != null && player != null) {
-			if(InputHandler.lockOn.isDead) {
-				InputHandler.lockOn = null;
-				return;
-			}
-            EntityLivingBase target = InputHandler.lockOn;
-
-			double dx = player.posX - target.posX;
-			double dz = player.posZ - target.posZ;
-           // double dy = player.posY - (target.posY - (target.height / 2.0F));
-            double dy = player.posY - (target.posY + (target.height / 2.0F)-player.height);
-			double angle = Math.atan2(dz, dx) * 180 / Math.PI;
-			double pitch = Math.atan2(dy, Math.sqrt(dx * dx + dz * dz)) * 180 / Math.PI;
-			double distance = player.getDistanceToEntity(target);
-			float rYaw = (float) (angle - player.rotationYaw);
-			while (rYaw > 180) {
-				rYaw -= 360;
-			}
-			while (rYaw < -180) {
-				rYaw += 360;
-			}
-			rYaw += 90F;
-			float rPitch = (float) pitch - (float) (10.0F / Math.sqrt(distance)) + (float) (distance * Math.PI / 90);
-            //System.out.println(target.height + (target.height / 2.0F));
-            player.turn(rYaw, -(rPitch - player.rotationPitch));
-		}
-	}
 }

@@ -18,4 +18,6 @@ public final class GuiIDs {
     public static final int GUI_KEYCHAIN_INV = modGuiIndex++;
     public static final int GUI_SHOP = modGuiIndex++;
     public static final int GUI_PEDESTAL_INV = modGuiIndex++;
+    public static final int GUI_ORG_WEAPONS = modGuiIndex++;
+
 }
