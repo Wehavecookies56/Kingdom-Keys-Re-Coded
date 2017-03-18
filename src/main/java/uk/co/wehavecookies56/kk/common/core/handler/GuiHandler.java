@@ -6,17 +6,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import uk.co.wehavecookies56.kk.client.gui.GuiDriveForms;
-import uk.co.wehavecookies56.kk.client.gui.GuiKKChest;
-import uk.co.wehavecookies56.kk.client.gui.GuiKeychains;
-import uk.co.wehavecookies56.kk.client.gui.GuiPedestal;
-import uk.co.wehavecookies56.kk.client.gui.GuiPotions;
-import uk.co.wehavecookies56.kk.client.gui.GuiShop;
-import uk.co.wehavecookies56.kk.client.gui.GuiSpells;
-import uk.co.wehavecookies56.kk.client.gui.GuiSynthesis;
-import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagL;
-import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagM;
-import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagS;
+import uk.co.wehavecookies56.kk.client.gui.*;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -109,6 +99,10 @@ public class GuiHandler implements IGuiHandler {
                 return new GuiPedestal(player.inventory, (TileEntityPedestal) world.getTileEntity(new BlockPos(x, y, z)));
             else
                 return null;
+        else if (ID == GuiIDs.GUI_ORG_WEAPONS)
+            return new GuiOrgWeapon();
+        else if (ID == GuiIDs.GUI_ORG)
+            return new GuiOrg();
         return null;
 
     }

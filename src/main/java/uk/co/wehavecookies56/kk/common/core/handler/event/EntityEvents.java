@@ -42,6 +42,7 @@ import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.client.gui.GuiOrg;
+import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.capability.*;
 import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
@@ -54,6 +55,7 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
+import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.*;
@@ -601,7 +603,7 @@ public class EntityEvents {
                 if (player.inventory.armorInventory[0] != null && player.inventory.armorInventory[1] != null && player.inventory.armorInventory[2] != null && player.inventory.armorInventory[3] != null) {
                     if (player.inventory.armorInventory[0].getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory[1].getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.OrganizationRobe_Helmet) {
                         if (player.world.isRemote) {
-                            Minecraft.getMinecraft().displayGuiScreen(new GuiOrg());
+                            player.openGui(KingdomKeys.instance, GuiIDs.GUI_ORG, event.getEntity().world, (int)event.getEntity().posX, (int)event.getEntity().posY, (int)event.getEntity().posZ);
                         }
                     }
                 }

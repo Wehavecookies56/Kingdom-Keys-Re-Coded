@@ -51,7 +51,6 @@ public class PacketDispatcher {
 		registerMessage(SyncKH1Magic.class);
 		registerMessage(PedestalRotation.class);
 		registerMessage(SpawnPortalParticles.class);
-		registerMessage(OpenOrgWeaponGui.class);
 
 
 		// Client to Server
