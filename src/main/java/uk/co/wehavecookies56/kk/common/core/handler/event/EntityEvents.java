@@ -603,6 +603,8 @@ public class EntityEvents {
                 if (player.inventory.armorInventory[0] != null && player.inventory.armorInventory[1] != null && player.inventory.armorInventory[2] != null && player.inventory.armorInventory[3] != null) {
                     if (player.inventory.armorInventory[0].getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory[1].getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.OrganizationRobe_Helmet) {
                         if (player.world.isRemote) {
+                            //TODO enabling this allows the first screen to pop up
+                        	//player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setShowWelcome(true);
                             player.openGui(KingdomKeys.instance, GuiIDs.GUI_ORG, event.getEntity().world, (int)event.getEntity().posX, (int)event.getEntity().posY, (int)event.getEntity().posZ);
                         }
                     }
