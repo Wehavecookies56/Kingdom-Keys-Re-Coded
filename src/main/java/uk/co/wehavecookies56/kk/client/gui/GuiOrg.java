@@ -25,9 +25,9 @@ public class GuiOrg extends GuiScreen {
     GuiButton ok, confirm, cancel, next, prev, select;
     final int OK = 0, CONFIRM = 1, CANCEL = 2, NEXT = 3, PREV = 4, SELECT = 5;
 
-    //Utils.OrgMember current = Utils.OrgMember.XEMNAS;
-   // boolean showWelcome = true;
-    //boolean confirmChoice = false;
+    Utils.OrgMember current = Utils.OrgMember.XEMNAS;
+    boolean showWelcome = true;
+    boolean confirmChoice = false;
 
     private final int icon_width = 56;
     private final int icon_height = 56;
@@ -49,7 +49,6 @@ public class GuiOrg extends GuiScreen {
     private final int members = icons.length;
 
     private final ResourceLocation GLOW = new ResourceLocation(Reference.MODID, "textures/gui/org/glow.png");
-    private final ResourceLocation ARROW = new ResourceLocation(Reference.MODID, "textures/gui/org/arrow.png");
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -57,7 +56,7 @@ public class GuiOrg extends GuiScreen {
         String line1 = "By crafting the Organization robe you are now a member of Organization XIII.";
         String line2 = "Choose which member of Organization XIII you align with.";
         String line3 = "Your choice will determine which weapons are available to you.";
-        if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getShowWelcome()) {
+        if (showWelcome) {
             drawCenteredString(fontRendererObj, line1, (width / 2), height / 2 - fontRendererObj.FONT_HEIGHT * 3, 0xFFFFFF);
             drawCenteredString(fontRendererObj, line2, (width / 2), height / 2 - fontRendererObj.FONT_HEIGHT * 2, 0xFFFFFF);
             drawCenteredString(fontRendererObj, line3, (width / 2), height / 2 - fontRendererObj.FONT_HEIGHT, 0xFFFFFF);
@@ -66,7 +65,7 @@ public class GuiOrg extends GuiScreen {
             String weapon = "";
             int weapon_w = 128;
             int weapon_h = 128;
-            switch(mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember()) {
+            switch(current) {
                 case XEMNAS:
                     name = "I: Xemnas";
                     weapon = "Ethereal Blades";
@@ -147,7 +146,7 @@ public class GuiOrg extends GuiScreen {
                     break;
             }
             drawDefaultBackground();
-            if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getConfirmChoice()) {
+            if (confirmChoice) {
                 drawCenteredString(fontRendererObj, "You wish to align with " + name + "?", (width / 2), height / 2 - fontRendererObj.FONT_HEIGHT, 0xFFFFFF);
                 drawCenteredString(fontRendererObj, "It will cost to change this after you have made your choice.", (width / 2), height / 2, 0xFFFFFF);
             } else {
@@ -158,7 +157,7 @@ public class GuiOrg extends GuiScreen {
                 drawTexturedModalRect((width / 2) - (256 / 2) - 5, (height / 2) - (256 / 2), 0, 0, 256, 256);
                 GlStateManager.popMatrix();
                 GlStateManager.pushMatrix();
-                mc.renderEngine.bindTexture(icons[mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember().ordinal()]);
+                mc.renderEngine.bindTexture(icons[current.ordinal()]);
                 GlStateManager.enableAlpha();
                 GlStateManager.enableBlend();
                 drawTexturedModalRect((width / 2) - (weapon_w / 2), (height / 2) - (weapon_h / 2), 56, 0, weapon_w, weapon_h);
@@ -192,37 +191,37 @@ public class GuiOrg extends GuiScreen {
         switch (button.id) {
             case OK:
                 //Dismiss welcome message
-                mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setShowWelcome(false);
+                showWelcome = false;
                 break;
             case NEXT:
-                if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == ROXAS) {
-                	mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setMember(XEMNAS);
+                if (current == ROXAS) {
+                	current = XEMNAS;
                 } else {
-                	mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setMember(Utils.OrgMember.values()[mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember().ordinal()+1]);
+                	current = Utils.OrgMember.values()[current.ordinal()+1];
                 }
                 //Go to the right
                 break;
             case PREV:
                 //Go to the left
-                if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == XEMNAS) {
-                	mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setMember(ROXAS);
+                if (current == XEMNAS) {
+                	current = ROXAS;
                 } else {
-                	mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setMember(Utils.OrgMember.values()[mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember().ordinal()-1]);
+                	current = Utils.OrgMember.values()[current.ordinal()-1];
                 }
                 break;
             case SELECT:
                 //Select the current member
-            	mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setConfirmChoice(true);
+            	confirmChoice = true;
                 break;
             case CONFIRM:
                 //Send choice to server
-            	PacketDispatcher.sendToServer(new OrgMemberSelect(mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember()));
-                mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setMember(mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember());
+            	PacketDispatcher.sendToServer(new OrgMemberSelect(current));
+                mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setMember(current);
                 mc.displayGuiScreen(null);
                 break;
             case CANCEL:
                 //Go back
-            	mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setConfirmChoice(false);
+            	confirmChoice = false;
                 break;
            
             
@@ -232,7 +231,7 @@ public class GuiOrg extends GuiScreen {
     }
 
     public void updateButtons() {
-        if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getShowWelcome()) {
+        if (showWelcome) {
             ok.visible = true;
             confirm.visible = false;
             cancel.visible = false;
@@ -254,7 +253,7 @@ public class GuiOrg extends GuiScreen {
             select.yPosition = (height / 2) - (select.height / 2) + 90;
             confirm.visible = false;
             cancel.visible = false;
-            if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getConfirmChoice()) {
+            if (confirmChoice) {
                 confirm.visible = true;
                 cancel.visible = true;
                 next.visible = false;

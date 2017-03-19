@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -594,6 +593,7 @@ public class EntityEvents {
         }
 
     }
+    boolean open = false;
 
     @SubscribeEvent
     public void onLivingUpdate (LivingEvent.LivingUpdateEvent event) {
@@ -605,9 +605,15 @@ public class EntityEvents {
                         if (player.world.isRemote) {
                             //TODO enabling this allows the first screen to pop up
                         	//player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setShowWelcome(true);
-                            player.openGui(KingdomKeys.instance, GuiIDs.GUI_ORG, event.getEntity().world, (int)event.getEntity().posX, (int)event.getEntity().posY, (int)event.getEntity().posZ);
+                            if (!open) {
+                                player.openGui(KingdomKeys.instance, GuiIDs.GUI_ORG, event.getEntity().world, (int) event.getEntity().posX, (int) event.getEntity().posY, (int) event.getEntity().posZ);
+                                open = true;
+                            }
                         }
                     }
+                } else {
+                    if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE)
+                        open = false;
                 }
             }
         }
