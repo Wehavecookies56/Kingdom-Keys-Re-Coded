@@ -26,16 +26,12 @@ public class OrganizationXIIICapability {
     List<Item> unlockedWeapons = new ArrayList<>();
 
     public interface IOrganizationXIII {
-    	boolean getShowWelcome();
-    	boolean getConfirmChoice();
     	//Utils.OrgMember current();
         Utils.OrgMember getMember();
         Item currentWeapon();
         boolean summonedWeapon();
 
         List<Item> unlockedWeapons();
-        void setShowWelcome(boolean state);
-        void setConfirmChoice(boolean state);
         void setMember(Utils.OrgMember member);
         void setCurrentWeapon(Item weapon);
         void setUnlockedWeapons(List<Item> list);
@@ -50,7 +46,6 @@ public class OrganizationXIIICapability {
             NBTTagCompound properties = new NBTTagCompound();
             properties.setInteger("Member", instance.getMember().ordinal());
             new ItemStack(instance.currentWeapon()).writeToNBT(properties);
-            properties.setBoolean("confirmChoice", instance.getConfirmChoice());
             
             NBTTagList tagList = new NBTTagList();
             for (int i = 0; i < instance.unlockedWeapons().size(); i++) {
@@ -71,7 +66,6 @@ public class OrganizationXIIICapability {
             NBTTagCompound properties = (NBTTagCompound) nbt;
             instance.setMember(Utils.OrgMember.values()[properties.getInteger("Member")]);
             instance.setCurrentWeapon(ItemStack.loadItemStackFromNBT(properties).getItem());
-            instance.setConfirmChoice(properties.getBoolean("confirmChoice"));
             
             NBTTagList tagList = properties.getTagList("UnlockedWeapons", Constants.NBT.TAG_COMPOUND);
             for (int i = 0; i < tagList.tagCount(); i++) {
@@ -141,25 +135,7 @@ public class OrganizationXIIICapability {
             this.summoned = summoned;
         }
 
-		@Override
-		public void setShowWelcome(boolean state) {
-			this.showWelcome = state;
-		}
 
-		@Override
-		public boolean getShowWelcome() {
-			return showWelcome;
-		}
-		
-		@Override
-		public void setConfirmChoice(boolean state) {
-			this.confirmChoice = state;
-		}
-
-		@Override
-		public boolean getConfirmChoice() {
-			return confirmChoice;
-		}
     }
 
 }
