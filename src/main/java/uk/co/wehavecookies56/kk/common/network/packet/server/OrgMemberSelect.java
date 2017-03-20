@@ -1,6 +1,7 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.relauncher.Side;
@@ -61,5 +62,6 @@ OrgMemberSelect extends AbstractMessage.AbstractServerMessage<OrgMemberSelect> {
             case XIGBAR: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Standalone); break;
             case ZEXION: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.BlackPrimer); break;
         }
+		PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
     }
 }

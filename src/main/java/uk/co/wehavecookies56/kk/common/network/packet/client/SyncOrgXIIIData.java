@@ -20,7 +20,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 	Utils.OrgMember member;
 	Item weapon;
 	List<Item> weapons;
-	boolean summoned;
+	boolean summoned, opened;
 
 	public SyncOrgXIIIData() {}
 
@@ -29,6 +29,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		this.weapon = organizationXIII.currentWeapon();
 		this.summoned = organizationXIII.summonedWeapon();
 		this.weapons = organizationXIII.unlockedWeapons();
+		this.opened = organizationXIII.getOpenedGUI();
 	}
 	
 	@Override
@@ -36,6 +37,8 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		this.member = Utils.OrgMember.values()[buffer.readInt()];
 		this.weapon = buffer.readItemStack().getItem();
 		this.summoned = buffer.readBoolean();
+		this.opened = buffer.readBoolean();
+
 		weapons = new ArrayList<>();
 		while(buffer.isReadable()) {
 			weapons.add(buffer.readItemStack().getItem());
@@ -47,6 +50,8 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		buffer.writeInt(this.member.ordinal());
 		buffer.writeItemStack(new ItemStack(this.weapon));
 		buffer.writeBoolean(this.summoned);
+		buffer.writeBoolean(this.opened);
+
 		for (int i = 0; i < weapons.size(); i++) {
 			buffer.writeItemStack(new ItemStack(this.weapons.get(i)));
 		}
@@ -59,6 +64,8 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		organizationXIII.setCurrentWeapon(this.weapon);
 		organizationXIII.setUnlockedWeapons(this.weapons);
 		organizationXIII.setWeaponSummoned(this.summoned);
+		organizationXIII.setOpenedGUI(this.opened);
+
 	}
 
 }

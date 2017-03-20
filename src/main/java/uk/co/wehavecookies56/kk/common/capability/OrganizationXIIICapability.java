@@ -30,6 +30,7 @@ public class OrganizationXIIICapability {
         Utils.OrgMember getMember();
         Item currentWeapon();
         boolean summonedWeapon();
+        boolean getOpenedGUI();
 
         List<Item> unlockedWeapons();
         void setMember(Utils.OrgMember member);
@@ -38,6 +39,7 @@ public class OrganizationXIIICapability {
         void addUnlockedWeapon(Item item);
         void removeUnlockedWeapon(Item item);
         void setWeaponSummoned(boolean summoned);
+        void setOpenedGUI(boolean opened);
     }
 
     public static class Storage implements Capability.IStorage<IOrganizationXIII> {
@@ -58,6 +60,8 @@ public class OrganizationXIIICapability {
             }
             properties.setTag("UnlockedWeapons", tagList);
             properties.setBoolean("Summoned", instance.summonedWeapon());
+            properties.setBoolean("Opened", instance.getOpenedGUI());
+
             return properties;
         }
 
@@ -76,6 +80,7 @@ public class OrganizationXIIICapability {
                 }
             }
             instance.setWeaponSummoned(properties.getBoolean("Summoned"));
+            instance.setOpenedGUI(properties.getBoolean("Opened"));
         }
     }
 
@@ -83,7 +88,7 @@ public class OrganizationXIIICapability {
         private Utils.OrgMember member = Utils.OrgMember.NONE;
         private Item weapon = ModItems.KingdomKey;
         private List<Item> weapons = new ArrayList<>();
-        private boolean summoned, showWelcome=false, confirmChoice=false;
+        private boolean summoned, openedGui=false;
 
         @Override
         public Utils.OrgMember getMember() {
@@ -134,6 +139,16 @@ public class OrganizationXIIICapability {
         public void setWeaponSummoned(boolean summoned) {
             this.summoned = summoned;
         }
+
+		@Override
+		public boolean getOpenedGUI() {
+			return openedGui;
+		}
+
+		@Override
+		public void setOpenedGUI(boolean opened) {
+			this.openedGui=opened;
+		}
 
 
     }

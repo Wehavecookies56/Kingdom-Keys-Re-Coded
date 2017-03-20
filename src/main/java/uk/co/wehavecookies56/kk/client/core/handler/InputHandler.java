@@ -377,6 +377,7 @@ public class InputHandler {
 					}
 				} else {
 					OrganizationXIIICapability.IOrganizationXIII organizationXIII = mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+					player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
 					if (!organizationXIII.summonedWeapon() && player.getHeldItem(EnumHand.MAIN_HAND) == null) {
 						PacketDispatcher.sendToServer(new SummonOrgWeapon(organizationXIII.currentWeapon()));
 						mc.player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(organizationXIII.currentWeapon()));
