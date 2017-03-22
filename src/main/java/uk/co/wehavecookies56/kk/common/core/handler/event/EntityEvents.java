@@ -593,8 +593,6 @@ public class EntityEvents {
         }
 
     }
-    boolean open = false;
-
     @SubscribeEvent
     public void onLivingUpdate (LivingEvent.LivingUpdateEvent event) {
         if (event.getEntity() instanceof EntityPlayer) {
@@ -605,15 +603,17 @@ public class EntityEvents {
                         if (player.world.isRemote) {
                             //TODO enabling this allows the first screen to pop up
                         	//player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setShowWelcome(true);
-                            if (!open) {
+
+                            if (!player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getOpenedGUI()) {
+                            	player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(true);
+
                                 player.openGui(KingdomKeys.instance, GuiIDs.GUI_ORG, event.getEntity().world, (int) event.getEntity().posX, (int) event.getEntity().posY, (int) event.getEntity().posZ);
-                                open = true;
                             }
                         }
                     }
                 } else {
                     if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE)
-                        open = false;
+                    	player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(false);
                 }
             }
         }
