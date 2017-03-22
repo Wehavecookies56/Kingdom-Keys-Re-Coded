@@ -152,6 +152,9 @@ public class Lists {
 		Larxene.add(Meteore);
 		Larxene.add(Etoile);
 		Larxene.add(CroixDuSud);
+		Larxene.add(Extirper);
+		Larxene.add(Deluge);
+
 
 		Roxas.add(KingdomKey);
 		Roxas.add(MissingAche);

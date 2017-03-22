@@ -11,6 +11,7 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import scala.tools.nsc.transform.patmat.PatternExpander;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.item.base.*;
 import uk.co.wehavecookies56.kk.common.item.org.*;
@@ -20,7 +21,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura, NewMoon, Absolute, Tempete, Typhon, Dissonance, Meteore, Vague , CroixDuSud, Etoile;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura, NewMoon, Absolute, Tempete, Typhon, Dissonance, Meteore, Vague , CroixDuSud, Etoile, Extirper, Deluge;
 
 	// Crafting Martierials & knowledges
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge;
@@ -171,7 +172,8 @@ public class ModItems {
 		Meteore = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Meteore);
 		Etoile = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Etoile);
 		CroixDuSud = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CroixDuSud);
-
+		Extirper = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Extirper);
+		Deluge = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Deluge);
 
 		//keyblades
 		AbaddonPlasma = new ItemRealKeyblade(6, 0).setUnlocalizedName(Strings.AbaddonPlasma);
@@ -742,6 +744,8 @@ public class ModItems {
 		GameRegistry.register(Meteore, new ResourceLocation(Reference.MODID, Strings.Meteore));
 		GameRegistry.register(Etoile, new ResourceLocation(Reference.MODID, Strings.Etoile));
 		GameRegistry.register(CroixDuSud, new ResourceLocation(Reference.MODID, Strings.CroixDuSud));
+		GameRegistry.register(Extirper, new ResourceLocation(Reference.MODID, Strings.Extirper));
+		GameRegistry.register(Deluge, new ResourceLocation(Reference.MODID, Strings.Deluge));
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));

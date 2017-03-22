@@ -518,7 +518,9 @@ public class Strings {
     Etoile = "etoile",
     Dissonance = "dissonance",
     CroixDuSud = "croixdusud",
-    Meteore = "meteore"
+    Meteore = "meteore",
+	Extirper = "extirper",
+	Deluge = "deluge"
 	;
 
 	// Knowledges
