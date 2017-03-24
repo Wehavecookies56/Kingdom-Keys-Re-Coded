@@ -25,8 +25,14 @@ public class GuiLockOn extends GuiScreen {
 	int hpGuiHeight = 10;
 	int noborderguiwidth = 171;
 
+	int max = 23;
+	int i=max;
+	int multiplier=4;
+
+
 	@SubscribeEvent
 	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
+
 		if(!Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
 		if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
 			Entity target = InputHandler.lockOn;
@@ -35,8 +41,15 @@ public class GuiLockOn extends GuiScreen {
 			Minecraft mc = Minecraft.getMinecraft();
 			EntityPlayer player = mc.player;
 			float reduction = 4;
-			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/lockon/lockon.png"));
-
+			
+			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/lockon/Lock on frame"+i/multiplier+".png"));
+			
+				i--;
+				
+				if(i <= 0) 
+					i=max*multiplier;
+			
+			
 			int screenWidth = event.getResolution().getScaledWidth();
 			int screenHeight = event.getResolution().getScaledHeight();
 
