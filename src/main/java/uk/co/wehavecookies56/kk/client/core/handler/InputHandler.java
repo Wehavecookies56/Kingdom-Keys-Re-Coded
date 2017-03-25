@@ -35,14 +35,20 @@ import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.magic.Magic;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.server.*;
+import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
+import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.SummonOrgWeapon;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicWisdomShot;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
@@ -370,7 +376,7 @@ public class InputHandler {
 					}
 					if (!SUMMON.getIsKeybladeSummoned() && player.getHeldItem(EnumHand.MAIN_HAND) == null && mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem() instanceof ItemKeychain) {
 						PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem()).getKeyblade()));
-					} else if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade && SUMMON.getIsKeybladeSummoned()) {
+					} else if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRealKeyblade && SUMMON.getIsKeybladeSummoned()) {
 						PacketDispatcher.sendToServer(new DeSummonKeyblade(player.inventory.getCurrentItem()));
 					} else {
 						break;
