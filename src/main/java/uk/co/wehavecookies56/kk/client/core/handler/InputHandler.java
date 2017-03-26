@@ -35,9 +35,11 @@ import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.magic.Magic;
@@ -383,12 +385,11 @@ public class InputHandler {
 					}
 				} else {
 					OrganizationXIIICapability.IOrganizationXIII organizationXIII = mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-					player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
 					if (!organizationXIII.summonedWeapon() && player.getHeldItem(EnumHand.MAIN_HAND) == null) {
 						PacketDispatcher.sendToServer(new SummonOrgWeapon(organizationXIII.currentWeapon()));
 						mc.player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(organizationXIII.currentWeapon()));
 
-					} else if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == organizationXIII.currentWeapon()) {
+					} else if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof IOrgWeapon || (organizationXIII.getMember() == Utils.OrgMember.ROXAS && player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)) {
 						PacketDispatcher.sendToServer(new DeSummonOrgWeapon(player.inventory.getCurrentItem()));
 						player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 
