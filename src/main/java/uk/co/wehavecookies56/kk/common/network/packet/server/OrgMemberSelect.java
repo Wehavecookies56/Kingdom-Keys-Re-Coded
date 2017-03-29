@@ -47,15 +47,14 @@ OrgMemberSelect extends AbstractMessage.AbstractServerMessage<OrgMemberSelect> {
         player.sendMessage(new TextComponentString("You have aligned with " + member.name()));
         switch (member) {
             case AXEL: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Ashes); break;
-            //TODO change to Basic Model once it is added
-            case DEMYX: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Arpeggio); break;
+            case DEMYX: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.BasicModel); break;
             case LARXENE: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Trancheuse); break;
             case LEXAEUS: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Reticence); break;
             case LUXORD: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.TheFool); break;
             case MARLUXIA: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.FickleErica); break;
             case ROXAS: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.KingdomKey); break;
-            //TODO change to New Moon once it is added
-            case SAIX: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Lunatic); break;
+
+            case SAIX: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.NewMoon); break;
             case VEXEN: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.TesterZero); break;
             case XALDIN: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Zephyr); break;
             case XEMNAS: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Malice); break;

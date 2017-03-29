@@ -246,7 +246,11 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.CroixDuSud , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.CroixDuSud, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Extirper , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Extirper, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Deluge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Deluge, "inventory"));
-
+		ModelLoader.setCustomModelResourceLocation(ModItems.SoleilCouchant , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.SoleilCouchant, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.ClairdeLune , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.ClairdeLune, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.SizzlingEdge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.SizzlingEdge, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.DoubleEdge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DoubleEdge, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.BasicModel , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BasicModel, "inventory"));
 		//Blocks
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.StationOfAwakeningDoor), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.StationOfAwakeningDoor, "inventory"));
@@ -267,6 +271,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityDoledrum.class, (IRenderFactory) new RenderEntityDoledrum(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityInferno.class, (IRenderFactory) new RenderEntityInferno(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOutbreak.class, (IRenderFactory) new RenderEntityOutbreak(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySizzlingEdge.class, (IRenderFactory) new RenderEntitySizzlingEdge(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySharpshooterBullet.class, new RenderFactorySharpshooterBullet());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(), 1, "shadow"));

@@ -97,6 +97,9 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
 			case Strings.Inferno:
 				entity = new EntityInferno(world, player);
 				break;
+			case Strings.SizzlingEdge:
+				entity= new EntitySizzlingEdge(world, player);
+				break;
 			default:
 				entity = new EntityEternalFlames(world, player);
 				break;

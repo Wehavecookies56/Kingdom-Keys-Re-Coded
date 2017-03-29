@@ -520,7 +520,12 @@ public class Strings {
     CroixDuSud = "croixdusud",
     Meteore = "meteore",
 	Extirper = "extirper",
-	Deluge = "deluge"
+	Deluge = "deluge",
+	SoleilCouchant = "soleilcouchant",
+	ClairdeLune = "clairdelune",
+	SizzlingEdge = "sizzlingedge",
+	DoubleEdge = "doubleedge",
+	BasicModel = "basicmodel"
 	;
 
 	// Knowledges

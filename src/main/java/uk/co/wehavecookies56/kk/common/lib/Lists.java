@@ -1,16 +1,12 @@
 package uk.co.wehavecookies56.kk.common.lib;
 
-import static uk.co.wehavecookies56.kk.common.item.ModItems.*;
+import net.minecraft.item.Item;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.client.particle.ParticleSpell;
-import net.minecraft.item.Item;
-import scala.collection.Seq;
-import scala.reflect.internal.Trees;
-import scala.tools.nsc.typechecker.Infer;
-import uk.co.wehavecookies56.kk.common.util.Utils;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.*;
 
 public class Lists {
 
@@ -116,9 +112,12 @@ public class Lists {
 		Axel.add(FerrisWheel);
 		Axel.add(Doldrums);
 		Axel.add(Inferno);
+		Axel.add(SizzlingEdge);
+		Axel.add(DoubleEdge);
 
 		//Demyx
 		Demyx.add(Arpeggio);
+		Demyx.add(BasicModel);
 
 		//Luxord
 		Luxord.add(FairGame);
@@ -154,6 +153,8 @@ public class Lists {
 		Larxene.add(CroixDuSud);
 		Larxene.add(Extirper);
 		Larxene.add(Deluge);
+		Larxene.add(SoleilCouchant);
+		Larxene.add(ClairdeLune);
 
 
 		Roxas.add(KingdomKey);

@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.common.item;
 
+import net.minecraft.block.BlockPurpurSlab;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,7 +22,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura, NewMoon, Absolute, Tempete, Typhon, Dissonance, Meteore, Vague , CroixDuSud, Etoile, Extirper, Deluge;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura, NewMoon, Absolute, Tempete, Typhon, Dissonance, Meteore, Vague , CroixDuSud, Etoile, Extirper, Deluge, SoleilCouchant, ClairdeLune, SizzlingEdge, DoubleEdge, BasicModel;
 
 	// Crafting Martierials & knowledges
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge;
@@ -135,9 +136,12 @@ public class ModItems {
 		MoulinRouge = new ItemChakram(5,8,Strings.MoulinRouge).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MoulinRouge);
 		Inferno = new ItemChakram(5,8,Strings.Inferno).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inferno);
 		Doldrums = new ItemChakram(5,8,Strings.Doldrums).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Doldrums);
+		SizzlingEdge = new ItemChakram(5,8,Strings.SizzlingEdge).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.SizzlingEdge);
+		DoubleEdge = new ItemChakram(5,8,Strings.DoubleEdge).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DoubleEdge);
 
 		// demyx
 		Arpeggio = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Arpeggio);
+		BasicModel = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BasicModel);
 
 		// luxord
 		FairGame = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
@@ -174,6 +178,8 @@ public class ModItems {
 		CroixDuSud = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CroixDuSud);
 		Extirper = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Extirper);
 		Deluge = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Deluge);
+		SoleilCouchant = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.SoleilCouchant);
+		ClairdeLune = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ClairdeLune);
 
 		//keyblades
 		AbaddonPlasma = new ItemRealKeyblade(6, 0).setUnlocalizedName(Strings.AbaddonPlasma);
@@ -707,9 +713,12 @@ public class ModItems {
 		GameRegistry.register(MoulinRouge, new ResourceLocation(Reference.MODID, Strings.MoulinRouge));
 		GameRegistry.register(Doldrums, new ResourceLocation(Reference.MODID, Strings.Doldrums));
 		GameRegistry.register(Inferno, new ResourceLocation(Reference.MODID, Strings.Inferno));
+		GameRegistry.register(SizzlingEdge, new ResourceLocation(Reference.MODID, Strings.SizzlingEdge));
+		GameRegistry.register(DoubleEdge, new ResourceLocation(Reference.MODID, Strings.DoubleEdge));
 
 		//Demyx
 		GameRegistry.register(Arpeggio, new ResourceLocation(Reference.MODID, Strings.Arpeggio));
+		GameRegistry.register(BasicModel, new ResourceLocation(Reference.MODID, Strings.BasicModel));
 
 		//Luxord
 		GameRegistry.register(FairGame, new ResourceLocation(Reference.MODID, Strings.FairGame));
@@ -746,6 +755,8 @@ public class ModItems {
 		GameRegistry.register(CroixDuSud, new ResourceLocation(Reference.MODID, Strings.CroixDuSud));
 		GameRegistry.register(Extirper, new ResourceLocation(Reference.MODID, Strings.Extirper));
 		GameRegistry.register(Deluge, new ResourceLocation(Reference.MODID, Strings.Deluge));
+		GameRegistry.register(SoleilCouchant, new ResourceLocation(Reference.MODID, Strings.SoleilCouchant));
+		GameRegistry.register(ClairdeLune, new ResourceLocation(Reference.MODID, Strings.ClairdeLune));
 
 		// Knowledge
 		GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));
