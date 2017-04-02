@@ -17,13 +17,26 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.*;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityAshes;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityBlazeofGlory;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityBurnout;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityCombustion;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityDoledrum;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityDoubleEdge;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityEternalFlames;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityFerrisWheels;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityIfrit;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityInferno;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityMoulinRouge;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityOmegaTrinity;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityOutbreak;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityPrometheus;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityProminence;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySizzlingEdge;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
-
-import java.util.List;
 
 public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
 	String weapon;
@@ -99,6 +112,9 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
 				break;
 			case Strings.SizzlingEdge:
 				entity= new EntitySizzlingEdge(world, player);
+				break;
+			case Strings.DoubleEdge:
+				entity= new EntityDoubleEdge(world, player);
 				break;
 			default:
 				entity = new EntityEternalFlames(world, player);
