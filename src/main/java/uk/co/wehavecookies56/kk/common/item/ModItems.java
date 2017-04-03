@@ -22,7 +22,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura, NewMoon, Absolute, Tempete, Typhon, Dissonance, Meteore, Vague , CroixDuSud, Etoile, Extirper, Deluge, SoleilCouchant, ClairdeLune, SizzlingEdge, DoubleEdge, BasicModel;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura, NewMoon, Absolute, Tempete, Typhon, Dissonance, Meteore, Vague , CroixDuSud, Etoile, Extirper, Deluge, SoleilCouchant, ClairdeLune, SizzlingEdge, DoubleEdge, BasicModel, BalsamicMoon, Crater;
 
 	// Crafting Martierials & knowledges
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge;
@@ -120,6 +120,8 @@ public class ModItems {
 		Lunatic = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lunatic);
 		NewMoon = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.NewMoon);
 		Twilight = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Twilight);
+		BalsamicMoon = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BalsamicMoon);
+		Crater = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crater);
 
 		// axel
 		EternalFlames = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
@@ -697,6 +699,8 @@ public class ModItems {
 		GameRegistry.register(Lunatic, new ResourceLocation(Reference.MODID, Strings.Lunatic));
 		GameRegistry.register(NewMoon, new ResourceLocation(Reference.MODID, Strings.NewMoon));
 		GameRegistry.register(Twilight, new ResourceLocation(Reference.MODID, Strings.Twilight));
+		GameRegistry.register(BalsamicMoon, new ResourceLocation(Reference.MODID, Strings.BalsamicMoon));
+		GameRegistry.register(Crater, new ResourceLocation(Reference.MODID, Strings.Crater));
 
 		//Axel
 		GameRegistry.register(EternalFlames, new ResourceLocation(Reference.MODID, Strings.EternalFlames));

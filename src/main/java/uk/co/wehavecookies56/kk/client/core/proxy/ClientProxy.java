@@ -251,6 +251,8 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.SizzlingEdge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.SizzlingEdge, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.DoubleEdge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DoubleEdge, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.BasicModel , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BasicModel, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.BalsamicMoon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BalsamicMoon, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Crater, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Crater, "inventory"));
 		//Blocks
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.StationOfAwakeningDoor), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.StationOfAwakeningDoor, "inventory"));

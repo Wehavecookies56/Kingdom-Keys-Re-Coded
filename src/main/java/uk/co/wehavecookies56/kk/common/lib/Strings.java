@@ -525,7 +525,9 @@ public class Strings {
 	ClairdeLune = "clairdelune",
 	SizzlingEdge = "sizzlingedge",
 	DoubleEdge = "doubleedge",
-	BasicModel = "basicmodel"
+	BasicModel = "basicmodel",
+	BalsamicMoon ="balsamicmoon",
+	Crater = "crater"
 	;
 
 	// Knowledges

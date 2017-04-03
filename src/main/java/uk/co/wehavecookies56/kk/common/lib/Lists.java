@@ -96,6 +96,8 @@ public class Lists {
 		Saix.add(Lunatic);
 		Saix.add(Twilight);
 		Saix.add(NewMoon);
+		Saix.add(BalsamicMoon);
+		Saix.add(Crater);
 
 		//Axel
 		Axel.add(EternalFlames);
