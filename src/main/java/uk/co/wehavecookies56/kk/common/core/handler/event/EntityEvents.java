@@ -68,10 +68,6 @@ import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
  * Created by Toby on 19/07/2016.
  */
 public class EntityEvents {
-   /* @SubscribeEvent
-    public void ChunkLoad (ChunkEvent.Load event) {
-    	if(event.getChunk().getTileEntityMap().)
-    }*/
 
     @SubscribeEvent
     public void PlayerClone (PlayerEvent.Clone event) {
@@ -309,12 +305,10 @@ public class EntityEvents {
             if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Final))
                 player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Final);
 
-            if(event.getEntity() instanceof EntityDragon)
-            {
+            if(event.getEntity() instanceof EntityDragon) {
                 player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,2000, "normal");
             }
-            if(event.getEntity() instanceof EntityWither)
-            {
+            if(event.getEntity() instanceof EntityWither) {
                 player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,1500, "normal");
             }
             PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
@@ -343,33 +337,26 @@ public class EntityEvents {
 
         if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
-            if (player.getHeldItem(EnumHand.MAIN_HAND) != null)
-            {
-                if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
-                {
+            if (player.getHeldItem(EnumHand.MAIN_HAND) != null) {
+                if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
                     if (event.getEntity() instanceof EntityMob)
                         dropRecipe(event);
                 }
             }
-            if(player.getHeldItem(EnumHand.OFF_HAND) != null)
-            {
-                if(player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade)
-                {
+            if(player.getHeldItem(EnumHand.OFF_HAND) != null) {
+                if(player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
                     if (event.getEntity() instanceof EntityMob)
                         dropRecipe(event);
                 }
             }
 
-            if (player.getHeldItem(EnumHand.MAIN_HAND) != null)
-            {
-                if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRealKeyblade)
-                {
+            if (player.getHeldItem(EnumHand.MAIN_HAND) != null) {
+                if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRealKeyblade) {
                     if (event.getEntity() instanceof EntityAnimal)
                         event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Heart), 2);
                     else if (event.getEntity() instanceof EntityMob) {
                         event.getEntityLiving().entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
-                        if (event.getEntity() instanceof EntityWitch)
-                        {
+                        if (event.getEntity() instanceof EntityWitch) {
                             int rand;
                             rand = Utils.randomWithRange(1, 30);
                             if (rand == 1)
@@ -390,24 +377,20 @@ public class EntityEvents {
                         }
                     } else if (event.getEntity() instanceof EntityAgeable)
                         event.getEntityLiving().entityDropItem(new ItemStack(ModItems.PureHeart), 2);
-                    if (event.getEntity() instanceof EntityDragon || event.getEntity() instanceof EntityWither)
-                    {
+                    if (event.getEntity() instanceof EntityDragon || event.getEntity() instanceof EntityWither) {
                         event.getEntityLiving().entityDropItem(new ItemStack(ModItems.KingdomHearts), 1);
                         event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Recipe), 1);
                     }
                 }
             }
 
-            if(player.getHeldItem(EnumHand.OFF_HAND) != null)
-            {
-                if(player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemRealKeyblade)
-                {
+            if(player.getHeldItem(EnumHand.OFF_HAND) != null) {
+                if(player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemRealKeyblade) {
                     if (event.getEntity() instanceof EntityAnimal)
                         event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Heart), 2);
                     else if (event.getEntity() instanceof EntityMob) {
                         event.getEntityLiving().entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
-                        if (event.getEntity() instanceof EntityWitch)
-                        {
+                        if (event.getEntity() instanceof EntityWitch) {
                             int rand;
                             rand = Utils.randomWithRange(1, 30);
                             if (rand == 1)
@@ -428,8 +411,7 @@ public class EntityEvents {
                         }
                     } else if (event.getEntity() instanceof EntityAgeable)
                         event.getEntityLiving().entityDropItem(new ItemStack(ModItems.PureHeart), 2);
-                    if (event.getEntity() instanceof EntityDragon || event.getEntity() instanceof EntityWither)
-                    {
+                    if (event.getEntity() instanceof EntityDragon || event.getEntity() instanceof EntityWither) {
                         event.getEntityLiving().entityDropItem(new ItemStack(ModItems.KingdomHearts), 1);
                         event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Recipe), 1);
                     }
@@ -484,12 +466,25 @@ public class EntityEvents {
     @SubscribeEvent
     public void onPlayerTick (TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
-      /*  System.out.println("X"+player.getPosition().getX());
-        System.out.println("Y"+player.getPosition().getY());
-        System.out.println("Z"+player.getPosition().getZ());
-        */
-        if(player.inventory.armorInventory[0] != null && player.inventory.armorInventory[1] != null && player.inventory.armorInventory[2] != null && player.inventory.armorInventory[3] != null)
-        {
+        if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
+            if (player.inventory.armorInventory[0] != null && player.inventory.armorInventory[1] != null && player.inventory.armorInventory[2] != null && player.inventory.armorInventory[3] != null) {
+                if (player.inventory.armorInventory[0].getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory[1].getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.OrganizationRobe_Helmet) {
+                    if (!player.world.isRemote) {
+                        //TODO enabling this allows the first screen to pop up
+                        //player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setShowWelcome(true);
+
+                        if (!player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getOpenedGUI()) {
+                            player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(true);
+                            PacketDispatcher.sendTo(new OpenOrgGUI(), (EntityPlayerMP) player);
+                        }
+                    }
+                }
+            } else {
+                if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE)
+                    player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(false);
+            }
+        }
+        if(player.inventory.armorInventory[0] != null && player.inventory.armorInventory[1] != null && player.inventory.armorInventory[2] != null && player.inventory.armorInventory[3] != null) {
             if(player.inventory.armorInventory[0].getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory[1].getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.OrganizationRobe_Helmet)
                 AchievementHelper.addAchievement(player, ModAchievements.getOrgRobe);
             else if(player.inventory.armorInventory[0].getItem() == ModItems.Aqua_Boots && player.inventory.armorInventory[1].getItem() == ModItems.Aqua_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.Aqua_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.Aqua_Helmet)
@@ -502,10 +497,8 @@ public class EntityEvents {
                 AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
 
         }
-        if(player.dimension == ModDimensions.diveToTheHeartID)
-        {
-            if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
-            {
+        if(player.dimension == ModDimensions.diveToTheHeartID) {
+            if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
                 if(chosen != Strings.Choice_Shield){
                     chosen = Strings.Choice_Shield;
                     TextComponentTranslation shield = new TextComponentTranslation("Shield");
@@ -514,8 +507,7 @@ public class EntityEvents {
                 }
             }
 
-            else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66)
-            {
+            else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
                 if(chosen != Strings.Choice_Staff){
                     chosen = Strings.Choice_Staff;
                     TextComponentTranslation staff = new TextComponentTranslation("Staff");
@@ -524,8 +516,7 @@ public class EntityEvents {
                 }
             }
 
-            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66)
-            {
+            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) {
                 if(chosen != Strings.Choice_Sword){
                     chosen = Strings.Choice_Sword;
                     TextComponentTranslation sword = new TextComponentTranslation("Sword");
@@ -534,8 +525,7 @@ public class EntityEvents {
                 }
             }
 
-            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65)
-            {
+            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
                 if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID)
                     if (!player.world.isRemote)
                         new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().worldServerForDimension(0)).teleport(( player), player.world);
@@ -556,8 +546,7 @@ public class EntityEvents {
                 } else {
                     STATS.setMP(STATS.getMaxMP());
                     STATS.setRecharge(false);
-                    if(event.side.isServer())
-                    {
+                    if(event.side.isServer()) {
                         PacketDispatcher.sendTo(new SyncMagicData(event.player.getCapability(ModCapabilities.MAGIC_STATE, null), event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)event.player);
                     }
                 }
@@ -595,28 +584,7 @@ public class EntityEvents {
     }
     @SubscribeEvent
     public void onLivingUpdate (LivingEvent.LivingUpdateEvent event) {
-        if (event.getEntity() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getEntity();
-            if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
-                if (player.inventory.armorInventory[0] != null && player.inventory.armorInventory[1] != null && player.inventory.armorInventory[2] != null && player.inventory.armorInventory[3] != null) {
-                    if (player.inventory.armorInventory[0].getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory[1].getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory[2].getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory[3].getItem() == ModItems.OrganizationRobe_Helmet) {
-                        if (player.world.isRemote) {
-                            //TODO enabling this allows the first screen to pop up
-                        	//player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setShowWelcome(true);
 
-                            if (!player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getOpenedGUI()) {
-                            	player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(true);
-
-                                player.openGui(KingdomKeys.instance, GuiIDs.GUI_ORG, event.getEntity().world, (int) event.getEntity().posX, (int) event.getEntity().posY, (int) event.getEntity().posZ);
-                            }
-                        }
-                    }
-                } else {
-                    if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE)
-                    	player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(false);
-                }
-            }
-        }
     }
 
     @SubscribeEvent
@@ -632,23 +600,18 @@ public class EntityEvents {
                 if (EntityThunder.summonLightning)
                     event.setCanceled(true);
         }
-        if(event.getEntityLiving() instanceof IKHMob)
-        {
+        if(event.getEntityLiving() instanceof IKHMob) {
             EntityPlayer player = null;
             IKHMob khMob = (IKHMob) event.getEntityLiving();
             if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
                 player = (EntityPlayer) event.getSource().getSourceOfDamage();
             }
-            if(player != null)
-            {
-                if(khMob.getType() == MobType.HEARTLESS_EMBLEM || khMob.getType() == MobType.HEARTLESS_PUREBLOOD || khMob.getType() == MobType.NOBODY)
-                {
+            if(player != null) {
+                if(khMob.getType() == MobType.HEARTLESS_EMBLEM || khMob.getType() == MobType.HEARTLESS_PUREBLOOD || khMob.getType() == MobType.NOBODY) {
                     if(player.getHeldItem(EnumHand.MAIN_HAND) == null)
                         event.setCanceled(true);
-                    if(player.getHeldItem(EnumHand.MAIN_HAND) != null)
-                    {
-                        if(!(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon))
-                        {
+                    if(player.getHeldItem(EnumHand.MAIN_HAND) != null) {
+                        if(!(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon)) {
                             event.setCanceled(true);
                         }
                     }
@@ -661,10 +624,8 @@ public class EntityEvents {
 
             PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
             DriveStateCapability.IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-            if(player.getHeldItem(EnumHand.MAIN_HAND) != null)
-            {
-                if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon)
-                {
+            if(player.getHeldItem(EnumHand.MAIN_HAND) != null) {
+                if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon) {
                     event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
                     if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Valor))
                         STATS.addExperience(player, 1, Strings.Form_Valor);
