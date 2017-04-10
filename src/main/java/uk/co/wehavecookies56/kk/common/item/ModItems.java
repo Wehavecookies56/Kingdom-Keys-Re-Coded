@@ -121,7 +121,9 @@ public class ModItems {
 		NewMoon = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.NewMoon);
 		Twilight = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Twilight);
 		BalsamicMoon = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BalsamicMoon);
+		BalsamicMoon = new ItemClaymore(14,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BalsamicMoon+"_b");
 		Crater = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crater);
+		Crater = new ItemClaymore(14,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crater+"_b");
 
 		// axel
 		EternalFlames = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
@@ -700,7 +702,12 @@ public class ModItems {
 		GameRegistry.register(NewMoon, new ResourceLocation(Reference.MODID, Strings.NewMoon));
 		GameRegistry.register(Twilight, new ResourceLocation(Reference.MODID, Strings.Twilight));
 		GameRegistry.register(BalsamicMoon, new ResourceLocation(Reference.MODID, Strings.BalsamicMoon));
+		//GameRegistry.register(BalsamicMoon, new ResourceLocation(Reference.MODID, Strings.BalsamicMoon + "_b"));
 		GameRegistry.register(Crater, new ResourceLocation(Reference.MODID, Strings.Crater));
+		//GameRegistry.register(Crater, new ResourceLocation(Reference.MODID, Strings.Crater + "_b"));
+
+
+
 
 		//Axel
 		GameRegistry.register(EternalFlames, new ResourceLocation(Reference.MODID, Strings.EternalFlames));

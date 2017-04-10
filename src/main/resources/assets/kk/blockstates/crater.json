@@ -22,18 +22,18 @@
                     },
                     "gui": {
                         "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
-                        "translation": [ 0.1, -0.2, 0 ],
+                        "translation": [ 0.1, 0, 0 ],
                         "scale": 0.008
                     },
                     "firstperson_righthand": {
                         "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
                         "translation": [ 0, 0.3, 0 ],
-                        "scale": 0.007
+                        "scale": 0.014
                     },
                     "firstperson_lefthand": {
                         "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
                         "translation": [ 0, 0.3, 0 ],
-                        "scale": 0.007
+                        "scale": 0.014
                     },
                     "ground": {
                         "rotation": [ { "x": 45 }, { "y": 0 }, { "z": 0 } ],
