@@ -1,11 +1,13 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.item.org.ItemClaymore;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class DamageCalculation {
@@ -131,28 +133,33 @@ public class DamageCalculation {
 	/**
 	 * Strength
 	 */
-	public static float getStrengthDamage(EntityPlayer player, ItemOrgWeapon weapon) {
+	public static float getOrgStrengthDamage(EntityPlayer player, ItemStack weapon) {
 		float damage = 0;
 		float finalDamage = 0;
-		
-        damage = (float) (weapon.getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
-				
-		switch (player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName()) {
-		    case Strings.Form_Valor:
-			    damage = (float) (damage * 1.5);
-			    break;
-		    case Strings.Form_Limit:
-			    damage = (float) (damage * 1.2);
-			    break;
-            case Strings.Form_Master:
-			    damage = (float) (damage * 1.5);
-			    break;
-		    case Strings.Form_Final:
-			    damage = (float) (damage * 1.7);
-			    break;
+		if(weapon.getItem() instanceof ItemOrgWeapon){
+	        damage = (float) (((ItemOrgWeapon) weapon.getItem()).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
+					
+			switch (player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName()) {
+			    case Strings.Form_Valor:
+				    damage = (float) (damage * 1.5);
+				    break;
+			    case Strings.Form_Limit:
+				    damage = (float) (damage * 1.2);
+				    break;
+	            case Strings.Form_Master:
+				    damage = (float) (damage * 1.5);
+				    break;
+			    case Strings.Form_Final:
+				    damage = (float) (damage * 1.7);
+				    break;
+			}
+			
+			if(weapon.getItem() instanceof ItemClaymore){
+				if(weapon.getItemDamage() == 1)
+					damage*=1.5F;
+			}
+			finalDamage = (float) (damage * ConfigHandler.damageMultiplier);
 		}
-		
-		finalDamage = (float) (damage * ConfigHandler.damageMultiplier);
 		return finalDamage;
 	}
 	/**
@@ -164,7 +171,7 @@ public class DamageCalculation {
         if(player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
             finalDamage = getStrengthDamage(player, (ItemKeyblade) player.getHeldItemMainhand().getItem());
         }else if(player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon) {
-            finalDamage = getStrengthDamage(player, (ItemOrgWeapon) player.getHeldItemMainhand().getItem());
+            finalDamage = getOrgStrengthDamage(player, player.getHeldItemMainhand());
         }
         return finalDamage;
     }

@@ -101,6 +101,8 @@ public class PacketDispatcher {
 		registerMessage(TakeSoldItem.class);
 		registerMessage(PedestalItem.class);
 		registerMessage(OrgPortal.class);
+		registerMessage(SummonClaymore.class);
+		registerMessage(DesummonClaymore.class);
 		// Bidirectional
 	}
 
