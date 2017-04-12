@@ -4,7 +4,7 @@
     	"textures": {
 
     		},
-        "model": "kk:crater.obj"
+        "model": "kk:twilight_b.obj"
     },
 	"variants": {
         "inventory": [
@@ -12,28 +12,28 @@
                 "transform": {
                     "thirdperson_lefthand": {
                         "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
-                        "translation": [ 0, 0.55, 0 ],
-                        "scale": 0.02
+                        "translation": [ 0, 0.8, 0 ],
+                        "scale": 0.018
                     },
                     "thirdperson_righthand": {
                         "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
-                        "translation": [ 0, 0.55, 0 ],
-                        "scale": 0.02
+                        "translation": [ 0, 0.8, 0 ],
+                        "scale": 0.018
                     },
                     "gui": {
                         "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
                         "translation": [ 0.1, 0, 0 ],
-                        "scale": 0.008
+                        "scale": 0.006
                     },
                     "firstperson_righthand": {
                         "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
-                        "translation": [ 0, 0.3, 0 ],
-                        "scale": 0.014
+                        "translation": [ 0, 0.4, 0 ],
+                        "scale": 0.008
                     },
                     "firstperson_lefthand": {
                         "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
-                        "translation": [ 0, 0.3, 0 ],
-                        "scale": 0.014
+                        "translation": [ 0, 0.4, 0 ],
+                        "scale": 0.008
                     },
                     "ground": {
                         "rotation": [ { "x": 45 }, { "y": 0 }, { "z": 0 } ],
