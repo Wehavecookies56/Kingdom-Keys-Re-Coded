@@ -28,6 +28,7 @@ import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
+import uk.co.wehavecookies56.kk.common.block.tile.TileEntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityStationOfAwakening;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntitySynthesisTable;
@@ -49,7 +50,6 @@ import uk.co.wehavecookies56.kk.common.crafting.ModItemsRecipes;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityFire;
-import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
@@ -150,6 +150,7 @@ public class CommonProxy {
 		GameRegistry.registerTileEntity(TileEntityKKChest.class, "kkchest");
 		GameRegistry.registerTileEntity(TileEntityStationOfAwakening.class, "stationofawakening");
 		GameRegistry.registerTileEntity(TileEntityPedestal.class, "kkpedestal");
+		GameRegistry.registerTileEntity(TileEntityOrgPortal.class, "kkorgportal");
 		LogHelper.info("Tile entity loaded");
 
 		// Proxy used as Gui handler

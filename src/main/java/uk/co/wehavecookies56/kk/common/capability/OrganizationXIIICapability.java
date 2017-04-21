@@ -13,6 +13,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortal;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class OrganizationXIIICapability {
         Item currentWeapon();
         boolean summonedWeapon();
         boolean getOpenedGUI();
+        boolean getPortal();
 
         List<Item> unlockedWeapons();
         void setMember(Utils.OrgMember member);
@@ -40,6 +42,7 @@ public class OrganizationXIIICapability {
         void removeUnlockedWeapon(Item item);
         void setWeaponSummoned(boolean summoned);
         void setOpenedGUI(boolean opened);
+        void setPortal();
     }
 
     public static class Storage implements Capability.IStorage<IOrganizationXIII> {
@@ -61,7 +64,7 @@ public class OrganizationXIIICapability {
             properties.setTag("UnlockedWeapons", tagList);
             properties.setBoolean("Summoned", instance.summonedWeapon());
             properties.setBoolean("Opened", instance.getOpenedGUI());
-
+           // properties.set
             return properties;
         }
 
@@ -148,6 +151,18 @@ public class OrganizationXIIICapability {
 		@Override
 		public void setOpenedGUI(boolean opened) {
 			this.openedGui=opened;
+		}
+
+		@Override
+		public boolean getPortal() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public void setPortal() {
+			// TODO Auto-generated method stub
+			
 		}
 
 

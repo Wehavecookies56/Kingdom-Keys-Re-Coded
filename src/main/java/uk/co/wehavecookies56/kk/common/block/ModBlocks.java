@@ -19,7 +19,7 @@ public class ModBlocks {
 	public static Block NormalBlox, HardBlox, MetalBlox, DangerBlox, BounceBlox, BlastBlox, PrizeBlox,
             RarePrizeBlox, GhostBlox, BlazingOre, BrightOre, DarkOre, DarkOreE, DenseOre, EnergyOre, FrostOre,
             LightningOre, LucidOre, PowerOre, PowerOreE, RemembranceOre, SerenityOre, StormyOre, TranquilOre,
-            TwilightOre, SynthesisTable, KKChest, SavePoint, MagnetBlox;
+            TwilightOre, SynthesisTable, KKChest, SavePoint, MagnetBlox, OrgPortal;
 
 	public static Block StationOfAwakening, StationOfAwakeningDoor, Pedestal;
 
@@ -59,7 +59,7 @@ public class ModBlocks {
 		Pedestal = new BlockPedestal(Material.IRON, "pickaxe", 2, 10f, 60f).setUnlocalizedName(Strings.Pedestal).setCreativeTab(tabKingdomKeysBlocks);
 		StationOfAwakening = new BlockStationOfAwakening(Strings.StationOfAwakening);
 		StationOfAwakeningDoor = new BlockStationOfAwakeningDoor(Strings.StationOfAwakeningDoor);
-
+		OrgPortal = new BlockOrgPortal(Material.IRON, "pickaxe", 0, 1f, 10f).setUnlocalizedName("orgPortal").setCreativeTab(tabKingdomKeysBlocks);
     }
 
 	public static void registerBlock (Block block, String name) {
@@ -100,6 +100,7 @@ public class ModBlocks {
         registerBlock(StationOfAwakening, Strings.StationOfAwakening);
         registerBlock(StationOfAwakeningDoor, Strings.StationOfAwakeningDoor);
         registerBlock(Pedestal, Strings.Pedestal);
+        registerBlock(OrgPortal, "orgPortal");
 
 	}
 
@@ -157,6 +158,7 @@ public class ModBlocks {
 		registerRender(MagnetBlox);
         registerRender(StationOfAwakeningDoor);
         registerRender(Pedestal);
+        registerRender(OrgPortal);
 
 	}
 
