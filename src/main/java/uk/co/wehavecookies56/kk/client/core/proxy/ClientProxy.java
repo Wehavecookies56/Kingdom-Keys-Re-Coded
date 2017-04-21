@@ -251,11 +251,15 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.DoubleEdge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DoubleEdge, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.BasicModel , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BasicModel, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.BalsamicMoon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BalsamicMoon, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.ArcaneCompendium, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.ArcaneCompendium, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.FreakishBestiary, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FreakishBestiary, "inventory"));
+
+		//saix normal and berserk
 		ModelLoader.setCustomModelResourceLocation(ModItems.BalsamicMoon, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.BalsamicMoon + "_b", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Crater, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Crater, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Crater, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.Crater + "_b", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Twilight, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Twilight, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Twilight, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Twilight + "_b", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Twilight, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.Twilight + "_b", "inventory"));
 		//Blocks
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.StationOfAwakeningDoor), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.StationOfAwakeningDoor, "inventory"));

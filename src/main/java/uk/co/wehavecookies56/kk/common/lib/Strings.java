@@ -527,7 +527,9 @@ public class Strings {
 	DoubleEdge = "doubleedge",
 	BasicModel = "basicmodel",
 	BalsamicMoon ="balsamicmoon",
-	Crater = "crater"
+	Crater = "crater",
+	ArcaneCompendium = "arcanecompendium",
+	FreakishBestiary = "freakishbestiary"
 	;
 
 	// Knowledges

@@ -22,7 +22,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class ModItems {
 
 	// Organization
-	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura, NewMoon, Absolute, Tempete, Typhon, Dissonance, Meteore, Vague , CroixDuSud, Etoile, Extirper, Deluge, SoleilCouchant, ClairdeLune, SizzlingEdge, DoubleEdge, BasicModel, BalsamicMoon, Crater;
+	public static Item Interdiction, Aggression, Sharpshooter,  Sunrise, Precision, FinalWeapon, Killerbee, Sanction, Lindworm, FrozenPride, Skysplitter, BookofRetribution, Lunatic, EternalFlames, Arpeggio, FairGame, GracefulDahlia, Foudre, BlazeofGlory, Prometheus, Ifrit, Prominence, FickleErica, PoorMelissa, JiltedAnemone, Standalone, Zephyr, Reticence,  Trancheuse, Malice, Infinity, TheFool, TesterZero, Carmin, ProductOne, Inquisition, Burnout, Outbreak, FalseTheory, Dragonreign , Crux,  Orage, Eruption, Irregulier, Ashes, Combustion, Twilight, LoftyGerbera, HallowedLotus, BlackPrimer, Indigo, Lumineuse, WhiteTome, Tourbillon, Aegis, Hyperion ,QuietBelladonna, Contrivance, Empiricism, CryoliteShield, DiamondShield, OmegaTrinity, TheMagician, Ignition, FerrisWheel, MoulinRouge, Inferno, Doldrums, FinestFantasy13, Colossus, Sequoia, Rafale, Cynosura, NewMoon, Absolute, Tempete, Typhon, Dissonance, Meteore, Vague , CroixDuSud, Etoile, Extirper, Deluge, SoleilCouchant, ClairdeLune, SizzlingEdge, DoubleEdge, BasicModel, BalsamicMoon, Crater, ArcaneCompendium, FreakishBestiary;
 
 	// Crafting Martierials & knowledges
 	public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge;
@@ -115,6 +115,8 @@ public class ModItems {
 		BookofRetribution = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
 		BlackPrimer = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlackPrimer);
 		WhiteTome = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.WhiteTome);
+		ArcaneCompendium = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ArcaneCompendium);
+		FreakishBestiary = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FreakishBestiary);
 
 		// saix
 		Lunatic = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lunatic);
@@ -694,6 +696,8 @@ public class ModItems {
 		GameRegistry.register(BookofRetribution, new ResourceLocation(Reference.MODID, Strings.BookofRetribution));
 		GameRegistry.register(BlackPrimer, new ResourceLocation(Reference.MODID, Strings.BlackPrimer));
 		GameRegistry.register(WhiteTome, new ResourceLocation(Reference.MODID, Strings.WhiteTome));
+		GameRegistry.register(ArcaneCompendium, new ResourceLocation(Reference.MODID, Strings.ArcaneCompendium));
+		GameRegistry.register(FreakishBestiary, new ResourceLocation(Reference.MODID, Strings.FreakishBestiary));
 
 		//Saix
 		GameRegistry.register(Lunatic, new ResourceLocation(Reference.MODID, Strings.Lunatic));
