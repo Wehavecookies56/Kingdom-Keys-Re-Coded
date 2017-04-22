@@ -17,6 +17,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnPortalParticle
 public class EntityOrgPortal extends Entity{
 	public EntityLivingBase caster;
 	BlockPos remotePos;
+	
 	public EntityOrgPortal (World world) {
 		super(world);
 	}
@@ -28,6 +29,11 @@ public class EntityOrgPortal extends Entity{
 	}
 
 	@Override
+	public void onEntityUpdate() {
+		// TODO Auto-generated method stub
+		super.onEntityUpdate();
+	}
+	@Override
 	public void onUpdate () {
 		super.onUpdate();
 		if (caster == null)
@@ -37,7 +43,7 @@ public class EntityOrgPortal extends Entity{
 			if (!world.isRemote)
 				PacketDispatcher.sendToAllAround(new SpawnPortalParticles(this.getPosition()), (EntityPlayer) caster, 64.0D);
 		}
-		if (ticksExisted > 600) setDead();
+		if (ticksExisted > 100) setDead();
 	}
 
 	@Override

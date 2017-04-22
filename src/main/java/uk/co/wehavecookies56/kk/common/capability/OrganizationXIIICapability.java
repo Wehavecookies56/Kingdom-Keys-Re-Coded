@@ -1,23 +1,20 @@
 package uk.co.wehavecookies56.kk.common.capability;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
-import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
-import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
-import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortal;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Toby on 08/02/2017.
@@ -32,7 +29,7 @@ public class OrganizationXIIICapability {
         Item currentWeapon();
         boolean summonedWeapon();
         boolean getOpenedGUI();
-        boolean getPortal();
+        BlockPos getPortal();
 
         List<Item> unlockedWeapons();
         void setMember(Utils.OrgMember member);
@@ -42,7 +39,7 @@ public class OrganizationXIIICapability {
         void removeUnlockedWeapon(Item item);
         void setWeaponSummoned(boolean summoned);
         void setOpenedGUI(boolean opened);
-        void setPortal();
+        void setPortal(BlockPos pos);
     }
 
     public static class Storage implements Capability.IStorage<IOrganizationXIII> {
@@ -92,6 +89,7 @@ public class OrganizationXIIICapability {
         private Item weapon = ModItems.KingdomKey;
         private List<Item> weapons = new ArrayList<>();
         private boolean summoned, openedGui=false;
+        private BlockPos orgPortalPos = new BlockPos(0, 0, 0);
 
         @Override
         public Utils.OrgMember getMember() {
@@ -154,14 +152,14 @@ public class OrganizationXIIICapability {
 		}
 
 		@Override
-		public boolean getPortal() {
+		public BlockPos getPortal() {
 			// TODO Auto-generated method stub
-			return false;
+			return orgPortalPos;
 		}
 
 		@Override
-		public void setPortal() {
-			// TODO Auto-generated method stub
+		public void setPortal(BlockPos pos) {
+			this.orgPortalPos = pos; 
 			
 		}
 

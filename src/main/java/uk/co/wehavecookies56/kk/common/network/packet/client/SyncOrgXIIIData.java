@@ -1,19 +1,19 @@
 package uk.co.wehavecookies56.kk.common.network.packet.client;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractClientMessage;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 
@@ -21,6 +21,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 	Item weapon;
 	List<Item> weapons;
 	boolean summoned, opened;
+	BlockPos orgPortal;
 
 	public SyncOrgXIIIData() {}
 
@@ -30,6 +31,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		this.summoned = organizationXIII.summonedWeapon();
 		this.weapons = organizationXIII.unlockedWeapons();
 		this.opened = organizationXIII.getOpenedGUI();
+		this.orgPortal = organizationXIII.getPortal();
 	}
 	
 	@Override
@@ -38,7 +40,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		this.weapon = buffer.readItemStack().getItem();
 		this.summoned = buffer.readBoolean();
 		this.opened = buffer.readBoolean();
-
+		this.orgPortal = buffer.readBlockPos();
 		weapons = new ArrayList<>();
 		while(buffer.isReadable()) {
 			weapons.add(buffer.readItemStack().getItem());
@@ -51,7 +53,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		buffer.writeItemStack(new ItemStack(this.weapon));
 		buffer.writeBoolean(this.summoned);
 		buffer.writeBoolean(this.opened);
-
+		buffer.writeBlockPos(this.orgPortal);
 		for (int i = 0; i < weapons.size(); i++) {
 			buffer.writeItemStack(new ItemStack(this.weapons.get(i)));
 		}
@@ -65,7 +67,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		organizationXIII.setUnlockedWeapons(this.weapons);
 		organizationXIII.setWeaponSummoned(this.summoned);
 		organizationXIII.setOpenedGUI(this.opened);
-
+		organizationXIII.setPortal(this.orgPortal);
 	}
 
 }

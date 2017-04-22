@@ -6,6 +6,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -14,15 +15,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import uk.co.wehavecookies56.kk.common.KingdomKeys;
-import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
-import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.item.ModItems;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
-import uk.co.wehavecookies56.kk.common.lib.Lists;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class BlockOrgPortal extends Block implements ITileEntityProvider{
@@ -53,6 +49,8 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
 						te.markDirty();
 						
 						player.sendMessage(new TextComponentString(TextFormatting.GREEN + "This is now " + player.getDisplayNameString() + "'s portal"));
+						player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortal(pos);
+						PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
 						return true;
 					
 					}else if(te.getOwner().equals(player.getDisplayNameString())){

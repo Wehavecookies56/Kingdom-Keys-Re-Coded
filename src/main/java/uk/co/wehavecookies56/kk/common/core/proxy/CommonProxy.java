@@ -50,6 +50,7 @@ import uk.co.wehavecookies56.kk.common.crafting.ModItemsRecipes;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityFire;
+import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
@@ -159,6 +160,8 @@ public class CommonProxy {
 		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 1001, KingdomKeys.instance, 16, 1, false);
 		EntityRegistry.registerModEntity(EntityFire.class, "fire", 1002, KingdomKeys.instance, 16, 1, false);
 		EntityRegistry.registerModEntity(EntityThunder.class, "thunder", 1003, KingdomKeys.instance, 16, 1, false);
+		//EntityRegistry.registerModEntity(EntityOrgPortal.class, "kkOrgPortalE", 1004, KingdomKeys.instance, 16, 1, false);
+
 
 		// Heartless registry
 		EntityHelper.registerEntity("Shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());
