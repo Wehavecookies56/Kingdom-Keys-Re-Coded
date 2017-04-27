@@ -1,11 +1,8 @@
 {
 	"forge_marker": 1,
     "defaults": {
-        "textures": {
-            "nightmaresend_1": "kk:items/models/nightmaresend_1",
-            "nightmaresend_2": "kk:items/models/nightmaresend_2"
-        },
-        "model": "kk:nightmaresend.b3d"
+        
+        "model": "kk:nightmarebreak.obj"
     },
 
     "variants": {
