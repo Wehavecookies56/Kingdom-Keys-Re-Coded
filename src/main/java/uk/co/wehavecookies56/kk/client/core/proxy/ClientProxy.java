@@ -52,7 +52,6 @@ public class ClientProxy extends CommonProxy
 		B3DLoader.INSTANCE.addDomain(Reference.MODID);
 		OBJLoader.INSTANCE.addDomain(Reference.MODID);
 		ModelLoader.setCustomModelResourceLocation(ModItems.AllforOne, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.AllforOne, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Arpeggio, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Arpeggio, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.BlazeofGlory, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BlazeofGlory, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.BondofFlame, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BondofFlame, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Brightcrest, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Brightcrest, "inventory"));
@@ -176,66 +175,107 @@ public class ClientProxy extends CommonProxy
 
 
 		//Organization
-		ModelLoader.setCustomModelResourceLocation(ModItems.FinalWeapon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FinalWeapon, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Reticence, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Reticence, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Lunatic, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Lunatic, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.Standalone, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Standalone, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Zephyr, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Zephyr, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Sharpshooter, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sharpshooter, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Trancheuse, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Trancheuse, "inventory"));
+
+		// xemnas
 		ModelLoader.setCustomModelResourceLocation(ModItems.Malice, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Malice, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Infinity, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Infinity, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.TheFool, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TheFool, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.TesterZero, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TesterZero, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Carmin, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Carmin, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Lindworm, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Lindworm, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Inquisition, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Inquisition, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.ProductOne, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.ProductOne, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Burnout, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Burnout, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Outbreak, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Outbreak, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Precision, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Precision, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Sunrise, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sunrise, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.FalseTheory, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FalseTheory, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Dragonreign, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Dragonreign, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Crux, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Crux, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Killerbee, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Killerbee, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Orage, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Orage, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Eruption, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Eruption, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Irregulier, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Irregulier, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Aggression, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Aggression, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Sanction, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sanction, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Ashes, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Ashes, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Combustion, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Combustion, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.LoftyGerbera, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.LoftyGerbera, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.HallowedLotus, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.HallowedLotus, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Interdiction, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Interdiction, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.BlackPrimer, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BlackPrimer, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Indigo, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Indigo, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Lumineuse, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Lumineuse, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.WhiteTome, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.WhiteTome, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Tourbillon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Tourbillon, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Aegis, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Aegis, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Hyperion, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Hyperion, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.BookofRetribution, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BookofRetribution, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.QuietBelladonna, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.QuietBelladonna, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Absolute , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Absolute, "inventory"));
+
+		// xigbar
+		ModelLoader.setCustomModelResourceLocation(ModItems.FinalWeapon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FinalWeapon, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Standalone, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Standalone, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Sharpshooter, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sharpshooter, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Precision, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Precision, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Sunrise, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sunrise, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Killerbee, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Killerbee, "inventory"));
+
+		// xaldin
+		ModelLoader.setCustomModelResourceLocation(ModItems.Zephyr, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Zephyr, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Lindworm, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Lindworm, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Dragonreign, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Dragonreign, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Crux, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Crux, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Cynosura , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Cynosura, "inventory"));
+
+		// vexen
+		ModelLoader.setCustomModelResourceLocation(ModItems.TesterZero, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TesterZero, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Inquisition, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Inquisition, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.ProductOne, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.ProductOne, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.FalseTheory, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FalseTheory, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Empiricism, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Empiricism, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Contrivance, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Contrivance, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.DiamondShield, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DiamondShield, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.CryoliteShield, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.CryoliteShield, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.OmegaTrinity, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.OmegaTrinity, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.TheMagician, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TheMagician, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Aegis, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Aegis, "inventory"));
+
+		// lexeaus
+		ModelLoader.setCustomModelResourceLocation(ModItems.Reticence, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Reticence, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Hyperion, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Hyperion, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Colossus, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Colossus, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Sequoia , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sequoia, "inventory"));
+
+
+		// zexion
+		ModelLoader.setCustomModelResourceLocation(ModItems.BlackPrimer, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BlackPrimer, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.WhiteTome, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.WhiteTome, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.BookofRetribution, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BookofRetribution, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.ArcaneCompendium, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.ArcaneCompendium, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.FreakishBestiary, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FreakishBestiary, "inventory"));
+
+		// saix
+		ModelLoader.setCustomModelResourceLocation(ModItems.Lunatic, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Lunatic, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.NewMoon , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.NewMoon, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Crater, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Crater, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Twilight, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Twilight, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.BalsamicMoon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BalsamicMoon, "inventory"));
+
+
+
+		// saix berserk
+		ModelLoader.setCustomModelResourceLocation(ModItems.BalsamicMoon, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.BalsamicMoon + "_b", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Crater, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.Crater + "_b", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Twilight, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.Twilight + "_b", "inventory"));
+
+		// axel
+		ModelLoader.setCustomModelResourceLocation(ModItems.Burnout, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Burnout, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Outbreak, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Outbreak, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Ashes, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Ashes, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Combustion, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Combustion, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Ignition , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Ignition, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.OmegaTrinity, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.OmegaTrinity, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.FerrisWheel , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FerrisWheel, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.MoulinRouge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.MoulinRouge, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Doldrums , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Doldrums, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Inferno , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Inferno, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.SizzlingEdge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.SizzlingEdge, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.DoubleEdge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DoubleEdge, "inventory"));
+
+		// demyx
+		ModelLoader.setCustomModelResourceLocation(ModItems.BasicModel , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BasicModel, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Arpeggio, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Arpeggio, "inventory"));
+
+		// luxord
+		ModelLoader.setCustomModelResourceLocation(ModItems.TheFool, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TheFool, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.TheMagician, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TheMagician, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.FinestFantasy13 , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FinestFantasy13, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Colossus, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Colossus, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Sequoia , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sequoia, "inventory"));
+
+		// marluxia
+		ModelLoader.setCustomModelResourceLocation(ModItems.LoftyGerbera, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.LoftyGerbera, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.HallowedLotus, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.HallowedLotus, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.QuietBelladonna, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.QuietBelladonna, "inventory"));
+
+		// larxene
+		ModelLoader.setCustomModelResourceLocation(ModItems.Trancheuse, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Trancheuse, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Carmin, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Carmin, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Orage, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Orage, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Eruption, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Eruption, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Irregulier, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Irregulier, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Indigo, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Indigo, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Lumineuse, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Lumineuse, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Tourbillon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Tourbillon, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Rafale , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Rafale, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Cynosura , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Cynosura, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.NewMoon , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.NewMoon, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Absolute , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Absolute, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Tempete , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Tempete, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Typhon , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Typhon, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Vague, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Vague, "inventory"));
@@ -247,19 +287,11 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(ModItems.Deluge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Deluge, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.SoleilCouchant , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.SoleilCouchant, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.ClairdeLune , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.ClairdeLune, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.SizzlingEdge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.SizzlingEdge, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.DoubleEdge , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DoubleEdge, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.BasicModel , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BasicModel, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.BalsamicMoon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BalsamicMoon, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.ArcaneCompendium, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.ArcaneCompendium, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.FreakishBestiary, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FreakishBestiary, "inventory"));
+
+
 
 		//saix normal and berserk
-		ModelLoader.setCustomModelResourceLocation(ModItems.BalsamicMoon, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.BalsamicMoon + "_b", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Crater, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Crater, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Crater, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.Crater + "_b", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Twilight, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Twilight, "inventory"));
-		ModelLoader.setCustomModelResourceLocation(ModItems.Twilight, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.Twilight + "_b", "inventory"));
+
 		//Blocks
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.KKChest), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.KKChest, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.StationOfAwakeningDoor), 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.StationOfAwakeningDoor, "inventory"));
