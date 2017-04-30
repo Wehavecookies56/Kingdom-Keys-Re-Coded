@@ -20,6 +20,7 @@ import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.client.gui.GuiOrgUnlock;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -48,7 +49,7 @@ public class ItemLexicon extends ItemOrgWeapon implements IOrgWeapon{
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
-		Minecraft.getMinecraft().displayGuiScreen(new GuiOrgUnlock());
+		//Minecraft.getMinecraft().displayGuiScreen(new GuiOrgUnlock());
 		if(world.isRemote){
 			RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
 	        if (rtr != null) {
@@ -59,11 +60,11 @@ public class ItemLexicon extends ItemOrgWeapon implements IOrgWeapon{
 		                if (reachSq >= distanceSq) 
 		                {
 	                		BlockPos pos = rtr.getBlockPos();
-	                		
 	                		//player.world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX()+0.5, pos.getY(), pos.getZ()+0.5, 1, 1, 1, 1,2,2);
-	                		EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos);
+	                		EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos.getX(),pos.getY(), pos.getZ());
 	                		player.world.spawnEntity(portal);
-	                		System.out.println(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortal());
+	                		IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+	                		System.out.println(orgXIII.getPortalX()+","+orgXIII.getPortalY()+","+orgXIII.getPortalZ());
 	            			PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos()));
 	            			player.world.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
 	                	}

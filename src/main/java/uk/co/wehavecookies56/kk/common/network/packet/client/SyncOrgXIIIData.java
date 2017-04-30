@@ -21,7 +21,9 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 	Item weapon;
 	List<Item> weapons;
 	boolean summoned, opened;
-	BlockPos orgPortal;
+	double orgPortalX;
+	double orgPortalY;
+	double orgPortalZ;
 
 	public SyncOrgXIIIData() {}
 
@@ -31,7 +33,9 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		this.summoned = organizationXIII.summonedWeapon();
 		this.weapons = organizationXIII.unlockedWeapons();
 		this.opened = organizationXIII.getOpenedGUI();
-		this.orgPortal = organizationXIII.getPortal();
+		this.orgPortalX = organizationXIII.getPortalX();
+		this.orgPortalY = organizationXIII.getPortalY();
+		this.orgPortalZ = organizationXIII.getPortalZ();
 	}
 	
 	@Override
@@ -40,7 +44,10 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		this.weapon = buffer.readItemStack().getItem();
 		this.summoned = buffer.readBoolean();
 		this.opened = buffer.readBoolean();
-		this.orgPortal = buffer.readBlockPos();
+		this.orgPortalX = buffer.readDouble();
+		this.orgPortalY = buffer.readDouble();
+		this.orgPortalZ = buffer.readDouble();
+
 		weapons = new ArrayList<>();
 		while(buffer.isReadable()) {
 			weapons.add(buffer.readItemStack().getItem());
@@ -53,7 +60,10 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		buffer.writeItemStack(new ItemStack(this.weapon));
 		buffer.writeBoolean(this.summoned);
 		buffer.writeBoolean(this.opened);
-		buffer.writeBlockPos(this.orgPortal);
+		buffer.writeDouble(this.orgPortalX);
+		buffer.writeDouble(this.orgPortalY);
+		buffer.writeDouble(this.orgPortalZ);
+		
 		for (int i = 0; i < weapons.size(); i++) {
 			buffer.writeItemStack(new ItemStack(this.weapons.get(i)));
 		}
@@ -67,7 +77,9 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		organizationXIII.setUnlockedWeapons(this.weapons);
 		organizationXIII.setWeaponSummoned(this.summoned);
 		organizationXIII.setOpenedGUI(this.opened);
-		organizationXIII.setPortal(this.orgPortal);
+		organizationXIII.setPortalX(this.orgPortalX);
+		organizationXIII.setPortalY(this.orgPortalY);
+		organizationXIII.setPortalZ(this.orgPortalZ);
 	}
 
 }

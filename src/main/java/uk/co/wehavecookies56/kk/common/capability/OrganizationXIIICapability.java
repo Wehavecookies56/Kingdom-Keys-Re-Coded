@@ -29,7 +29,9 @@ public class OrganizationXIIICapability {
         Item currentWeapon();
         boolean summonedWeapon();
         boolean getOpenedGUI();
-        BlockPos getPortal();
+        double getPortalX();
+        double getPortalY();
+        double getPortalZ();
 
         List<Item> unlockedWeapons();
         void setMember(Utils.OrgMember member);
@@ -39,7 +41,10 @@ public class OrganizationXIIICapability {
         void removeUnlockedWeapon(Item item);
         void setWeaponSummoned(boolean summoned);
         void setOpenedGUI(boolean opened);
-        void setPortal(BlockPos pos);
+        void setPortalX(double x);
+        void setPortalY(double y);
+        void setPortalZ(double z);
+
     }
 
     public static class Storage implements Capability.IStorage<IOrganizationXIII> {
@@ -61,7 +66,9 @@ public class OrganizationXIIICapability {
             properties.setTag("UnlockedWeapons", tagList);
             properties.setBoolean("Summoned", instance.summonedWeapon());
             properties.setBoolean("Opened", instance.getOpenedGUI());
-           // properties.set
+            properties.setDouble("PortalX", instance.getPortalX());
+            properties.setDouble("PortalY", instance.getPortalY());
+            properties.setDouble("PortalZ", instance.getPortalZ());
             return properties;
         }
 
@@ -81,6 +88,9 @@ public class OrganizationXIIICapability {
             }
             instance.setWeaponSummoned(properties.getBoolean("Summoned"));
             instance.setOpenedGUI(properties.getBoolean("Opened"));
+            instance.setPortalX(properties.getDouble("PortalX"));
+            instance.setPortalY(properties.getDouble("PortalY"));
+            instance.setPortalZ(properties.getDouble("PortalZ"));
         }
     }
 
@@ -89,7 +99,9 @@ public class OrganizationXIIICapability {
         private Item weapon = ModItems.KingdomKey;
         private List<Item> weapons = new ArrayList<>();
         private boolean summoned, openedGui=false;
-        private BlockPos orgPortalPos = new BlockPos(0, 0, 0);
+        private double orgPortalX = 0;
+        private double orgPortalY = 0;
+        private double orgPortalZ = 0;
 
         @Override
         public Utils.OrgMember getMember() {
@@ -152,15 +164,36 @@ public class OrganizationXIIICapability {
 		}
 
 		@Override
-		public BlockPos getPortal() {
+		public double getPortalX() {
 			// TODO Auto-generated method stub
-			return orgPortalPos;
+			return orgPortalX;
 		}
 
 		@Override
-		public void setPortal(BlockPos pos) {
-			this.orgPortalPos = pos; 
-			
+		public double getPortalY() {
+			// TODO Auto-generated method stub
+			return orgPortalY;
+		}
+
+		@Override
+		public double getPortalZ() {
+			// TODO Auto-generated method stub
+			return orgPortalZ;
+		}
+
+		@Override
+		public void setPortalX(double x) {
+            this.orgPortalX = x;
+		}
+
+		@Override
+		public void setPortalY(double y) {
+            this.orgPortalY = y;
+		}
+
+		@Override
+		public void setPortalZ(double z) {
+            this.orgPortalZ = z;
 		}
 
 

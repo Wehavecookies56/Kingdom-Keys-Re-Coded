@@ -157,10 +157,11 @@ public class CommonProxy {
 		// Proxy used as Gui handler
 		NetworkRegistry.INSTANCE.registerGuiHandler(KingdomKeys.instance, new GuiHandler());
 
-		EntityRegistry.registerModEntity(EntityBlastBlox.class, "blastblox", 1001, KingdomKeys.instance, 16, 1, false);
-		EntityRegistry.registerModEntity(EntityFire.class, "fire", 1002, KingdomKeys.instance, 16, 1, false);
-		EntityRegistry.registerModEntity(EntityThunder.class, "thunder", 1003, KingdomKeys.instance, 16, 1, false);
+		EntityHelper.registerEntity("blastblox",EntityBlastBlox.class);
+		EntityHelper.registerEntity("fire",EntityFire.class);
+		EntityHelper.registerEntity("thunder",EntityThunder.class);
 		//EntityRegistry.registerModEntity(EntityOrgPortal.class, "kkOrgPortalE", 1004, KingdomKeys.instance, 16, 1, false);
+		EntityHelper.registerEntity("kkOrgPortalE", EntityOrgPortal.class);
 
 
 		// Heartless registry
