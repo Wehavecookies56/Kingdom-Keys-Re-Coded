@@ -72,7 +72,7 @@ public class GuiOrgWeapon extends GuiScreen {
             GlStateManager.translate((width / 2) - (256 / 2) - 5 + 94, (height / 2) - (256 / 2) + 88, 0);
             GlStateManager.scale(5, 5, 5);
             if (!unlocked.isEmpty() && !unlocked.contains(weapons.get(current))) {
-                System.out.println(unlocked.get(current));
+
             }
             GlStateManager.enableBlend();
             GlStateManager.color(0, 0, 0);
@@ -167,10 +167,8 @@ public class GuiOrgWeapon extends GuiScreen {
         confirm.visible = false;
         cancel.visible = false;
         if (unlocked.isEmpty() || !unlocked.contains(weapons.get(current))) {
-            System.out.println("Nope");
-            select.enabled = true;
+            select.enabled = false;
         } else {
-            System.out.println("Yep");
             select.enabled = true;
         }
         if (confirmChoice) {

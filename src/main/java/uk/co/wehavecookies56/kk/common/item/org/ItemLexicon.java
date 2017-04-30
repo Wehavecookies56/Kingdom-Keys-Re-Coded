@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.item.org;
 
 import java.util.List;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.common.discovery.ModCandidate;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
+import uk.co.wehavecookies56.kk.client.gui.GuiOrgUnlock;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
@@ -46,6 +48,7 @@ public class ItemLexicon extends ItemOrgWeapon implements IOrgWeapon{
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
+		Minecraft.getMinecraft().displayGuiScreen(new GuiOrgUnlock());
 		if(world.isRemote){
 			RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
 	        if (rtr != null) {
