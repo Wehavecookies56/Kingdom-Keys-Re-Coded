@@ -51,26 +51,28 @@ public class ItemLexicon extends ItemOrgWeapon implements IOrgWeapon{
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
 		//Minecraft.getMinecraft().displayGuiScreen(new GuiOrgUnlock());
 		if(world.isRemote){
-			RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
-	        if (rtr != null) {
-            	if (rtr.typeOfHit == rtr.typeOfHit.BLOCK){
-		            if (rtr.typeOfHit != null) {
-		                double distanceSq = player.getDistanceSq(rtr.getBlockPos());
-		                double reachSq = 100 * 100;
-		                if (reachSq >= distanceSq) 
-		                {
-	                		BlockPos pos = rtr.getBlockPos();
-	                		//player.world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX()+0.5, pos.getY(), pos.getZ()+0.5, 1, 1, 1, 1,2,2);
-	                		EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos.getX(),pos.getY(), pos.getZ());
-	                		player.world.spawnEntity(portal);
-	                		IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-	                		System.out.println(orgXIII.getPortalX()+","+orgXIII.getPortalY()+","+orgXIII.getPortalZ());
-	            			PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos()));
-	            			player.world.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
-	                	}
-	                }
-	            }
-	        }
+			if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
+				RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
+		        if (rtr != null) {
+	            	if (rtr.typeOfHit == rtr.typeOfHit.BLOCK){
+			            if (rtr.typeOfHit != null) {
+			                double distanceSq = player.getDistanceSq(rtr.getBlockPos());
+			                double reachSq = 100 * 100;
+			                if (reachSq >= distanceSq) 
+			                {
+		                		BlockPos pos = rtr.getBlockPos();
+		                		//player.world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX()+0.5, pos.getY(), pos.getZ()+0.5, 1, 1, 1, 1,2,2);
+		                		EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos.getX(),pos.getY(), pos.getZ());
+		                		player.world.spawnEntity(portal);
+		                		IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+		                		System.out.println(orgXIII.getPortalX()+","+orgXIII.getPortalY()+","+orgXIII.getPortalZ());
+		            			PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos()));
+		            			player.world.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+		                	}
+		                }
+		            }
+		        }
+			}
 		}
 		
 		return super.onItemRightClick(itemStack, world, player, hand);
