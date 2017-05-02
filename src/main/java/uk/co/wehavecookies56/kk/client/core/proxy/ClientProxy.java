@@ -255,6 +255,7 @@ public class ClientProxy extends CommonProxy
 		// demyx
 		ModelLoader.setCustomModelResourceLocation(ModItems.BasicModel , 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.BasicModel, "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModItems.Arpeggio, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Arpeggio, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ModItems.Sanctuary, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Sanctuary, "inventory"));
 
 		// luxord
 		ModelLoader.setCustomModelResourceLocation(ModItems.TheFool, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TheFool, "inventory"));

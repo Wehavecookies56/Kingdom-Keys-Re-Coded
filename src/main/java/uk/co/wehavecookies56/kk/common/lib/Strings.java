@@ -529,7 +529,8 @@ public class Strings {
 	BalsamicMoon ="balsamicmoon",
 	Crater = "crater",
 	ArcaneCompendium = "arcanecompendium",
-	FreakishBestiary = "freakishbestiary"
+	FreakishBestiary = "freakishbestiary",
+	Sanctuary = "sanctuary"
 	;
 
 	// Knowledges

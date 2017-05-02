@@ -1,0 +1,44 @@
+{
+	"forge_marker": 1,
+    "defaults": {
+        
+        "model": "kk:santuary.obj"
+    },
+	"variants": {
+        "inventory": [
+            {
+                "transform": {
+					"thirdperson_lefthand": {
+                        "rotation": [ { "x": 70 }, { "y": -40 }, { "z": 00 } ],
+                        "translation": [ 0.012, -0.25, -0.6 ],
+                        "scale": 0.012
+                    },
+                    "thirdperson_righthand": {
+                        "rotation": [ { "x": 70 }, { "y": -40 }, { "z": 00 } ],
+                        "translation": [ 0.012, -0.25, -0.6 ],
+                        "scale": 0.012
+                    },
+                    "gui": {
+                        "rotation": [ { "x": 45 }, { "y": 10 }, { "z": -45 } ],
+                        "translation": [ -0.3, -0.3, 0 ],
+                        "scale": 0.007
+                    },
+					"firstperson_righthand": {
+                         "rotation": [ { "x": 180 }, { "y": 180 }, { "z": 170 } ],
+                        "translation": [ 0, -0.5, 0 ],
+                        "scale": 0.01
+                    },
+                    "firstperson_lefthand": {
+                         "rotation": [ { "x": 180 }, { "y": 180 }, { "z": 170 } ],
+                        "translation": [ 0, -0.5, 0 ],
+                        "scale": 0.01
+                    },
+                    "ground": {
+                        "rotation": [ { "x": 45 }, { "y": 0 }, { "z": 0 } ],
+                        "scale": 0.01
+                    }
+                }
+            }
+        ]
+    }
+}
