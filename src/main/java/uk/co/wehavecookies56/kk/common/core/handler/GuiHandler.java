@@ -103,6 +103,8 @@ public class GuiHandler implements IGuiHandler {
             return new GuiOrgWeapon();
         else if (ID == GuiIDs.GUI_ORG)
             return new GuiOrg();
+        else if (ID == GuiIDs.GUI_ORG_UNLOCK)
+            return new GuiOrgUnlock();
         return null;
 
     }

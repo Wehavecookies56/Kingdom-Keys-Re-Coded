@@ -7,24 +7,24 @@ import net.minecraft.item.Item;
  */
 public class UnlockNode {
 
-    public UnlockNode parent;
+    public UnlockNode[] parents;
     public int xPos, yPos;
     Item unlock;
     boolean unlocked;
 
-    public UnlockNode(int x, int y, Item unlock, UnlockNode parent) {
+    public UnlockNode(int x, int y, Item unlock, UnlockNode[] parents) {
         xPos = x;
         yPos = y;
         this.unlock = unlock;
-        this.parent = parent;
+        this.parents = parents;
     }
 
-    public UnlockNode getParent() {
-        return parent;
+    public UnlockNode[] getParents() {
+        return parents;
     }
 
-    public void setParent(UnlockNode parent) {
-        this.parent = parent;
+    public void setParents(UnlockNode[] parents) {
+        this.parents = parents;
     }
 
     public int getxPos() {

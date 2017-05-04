@@ -153,7 +153,7 @@ public class Lists {
 		Larxene.add(Meteore);
 		Larxene.add(Etoile);
 		Larxene.add(CroixDuSud);
-		Larxene.add(Extirper);
+		Larxene.add(Extirpeur);
 		Larxene.add(Deluge);
 		Larxene.add(SoleilCouchant);
 		Larxene.add(ClairdeLune);

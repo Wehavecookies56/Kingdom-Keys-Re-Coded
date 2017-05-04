@@ -23,7 +23,7 @@ public class ItemAbandonedKnowledge extends Item
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player, EnumHand hand) {
         if (worldIn.isRemote && player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
-        	player.openGui(KingdomKeys.instance, GuiIDs.GUI_ORG_WEAPONS, worldIn, (int) player.posX, (int) player.posX, (int) player.posZ);
+        	player.openGui(KingdomKeys.instance, GuiIDs.GUI_ORG_UNLOCK, worldIn, (int) player.posX, (int) player.posX, (int) player.posZ);
         }
         return super.onItemRightClick(itemStackIn, worldIn, player, hand);
     }
