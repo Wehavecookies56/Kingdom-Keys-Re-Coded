@@ -77,6 +77,9 @@ public class EntityEvents {
         orgAfter.setCurrentWeapon(orgBefore.currentWeapon());
         orgAfter.setUnlockedWeapons(orgBefore.unlockedWeapons());
         orgAfter.setWeaponSummoned(orgBefore.summonedWeapon());
+        orgAfter.setPortalX(orgBefore.getPortalX());
+        orgAfter.setPortalY(orgBefore.getPortalY());
+        orgAfter.setPortalZ(orgBefore.getPortalZ());
         if (event.isWasDeath()) {
             orgAfter.setMember(Utils.OrgMember.NONE);
             orgAfter.setWeaponSummoned(false);

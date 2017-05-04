@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -24,6 +25,7 @@ import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOr
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortal;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
@@ -58,12 +60,13 @@ public class ItemLexicon extends ItemOrgWeapon implements IOrgWeapon{
 			            if (rtr.typeOfHit != null) {
 			                double distanceSq = player.getDistanceSq(rtr.getBlockPos());
 			                double reachSq = 100 * 100;
-			                if (reachSq >= distanceSq) 
+			                if (reachSq >= distanceSq)
 			                {
 		                		BlockPos pos = rtr.getBlockPos();
 		                		//player.world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX()+0.5, pos.getY(), pos.getZ()+0.5, 1, 1, 1, 1,2,2);
 		                		EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos.getX(),pos.getY(), pos.getZ());
-		                		player.world.spawnEntity(portal);
+		                		portal.setCaster(player);
+		                		world.spawnEntity(portal);
 		                		IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
 		                		System.out.println(orgXIII.getPortalX()+","+orgXIII.getPortalY()+","+orgXIII.getPortalZ());
 		            			PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos()));

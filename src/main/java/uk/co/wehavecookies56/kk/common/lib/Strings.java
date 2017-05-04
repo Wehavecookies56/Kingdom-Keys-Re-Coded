@@ -530,7 +530,7 @@ public class Strings {
 	Crater = "crater",
 	ArcaneCompendium = "arcanecompendium",
 	FreakishBestiary = "freakishbestiary",
-	Sanctuary = "sanctuary"
+	Sanctuary = "sanctuary_"
 	;
 
 	// Knowledges

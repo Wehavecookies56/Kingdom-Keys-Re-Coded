@@ -1,17 +1,22 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnPortalParticles;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortalTP;
 
-public class EntityOrgPortal extends Entity {
+import java.nio.charset.Charset;
+
+public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnData {
 
 	EntityPlayer caster;
 	//BlockPos remotePos;
@@ -26,6 +31,10 @@ public class EntityOrgPortal extends Entity {
 		this.posY = y;
 		this.posZ = z+0.5;
 		this.caster = sender;
+	}
+
+	public void setCaster(EntityPlayer caster) {
+		this.caster = caster;
 	}
 	
 	@Override
@@ -50,28 +59,50 @@ public class EntityOrgPortal extends Entity {
 	
 	@Override
 	public void onCollideWithPlayer(EntityPlayer player) {
-		//System.out.println(player);
+		//THIS IS ON THE CLIENT
+		System.out.println(caster);
 		if(!this.isEntityAlive())
 			return;
 		if(player != null){
-			IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-			player.setPositionAndUpdate(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5);
-			PacketDispatcher.sendToServer(new OrgPortalTP(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5));
-			
+			if (caster != null) {
+				IOrganizationXIII orgXIII = caster.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+				player.setPositionAndUpdate(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5);
+				PacketDispatcher.sendToServer(new OrgPortalTP(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5));
+			}
 		}
 		
 		super.onCollideWithPlayer(player);
 	}
 
 	@Override
-	protected void readEntityFromNBT(NBTTagCompound compound) {
-		// TODO Auto-generated method stub
-		
+	protected void writeEntityToNBT(NBTTagCompound compound) {
+
 	}
 
 	@Override
-	protected void writeEntityToNBT(NBTTagCompound compound) {
-		// TODO Auto-generated method stub
-		
+	protected void readEntityFromNBT(NBTTagCompound compound) {
+
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		System.out.println("TEST READ");
+		super.readFromNBT(compound);
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		System.out.println("TEST WRITE");
+		return super.writeToNBT(compound);
+	}
+
+	@Override
+	public void readSpawnData(ByteBuf additionalData) {
+		caster = world.getPlayerEntityByName(additionalData.toString(Charset.defaultCharset()));
+	}
+
+	@Override
+	public void writeSpawnData(ByteBuf buffer) {
+		buffer.writeBytes(caster.getDisplayNameString().getBytes());
 	}
 }
