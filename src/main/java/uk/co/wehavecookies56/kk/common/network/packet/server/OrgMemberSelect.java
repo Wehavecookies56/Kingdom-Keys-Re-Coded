@@ -6,6 +6,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -43,24 +44,25 @@ OrgMemberSelect extends AbstractMessage.AbstractServerMessage<OrgMemberSelect> {
 
     @Override
     public void process(EntityPlayer player, Side side) {
-        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setMember(member);
+        OrganizationXIIICapability.IOrganizationXIII org = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+        org.setMember(member);
         player.sendMessage(new TextComponentString("You have aligned with " + member.name()));
         switch (member) {
-            case AXEL: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Ashes); break;
-            case DEMYX: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.BasicModel); break;
-            case LARXENE: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Trancheuse); break;
-            case LEXAEUS: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Reticence); break;
-            case LUXORD: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.TheFool); break;
-            case MARLUXIA: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.FickleErica); break;
-            case ROXAS: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.KingdomKey); break;
+            case AXEL: org.setCurrentWeapon(ModItems.Ashes); org.addUnlockedWeapon(ModItems.Ashes); break;
+            case DEMYX: org.setCurrentWeapon(ModItems.BasicModel); org.addUnlockedWeapon(ModItems.BasicModel); break;
+            case LARXENE: org.setCurrentWeapon(ModItems.Trancheuse); org.addUnlockedWeapon(ModItems.Trancheuse); break;
+            case LEXAEUS: org.setCurrentWeapon(ModItems.Reticence); org.addUnlockedWeapon(ModItems.Reticence); break;
+            case LUXORD: org.setCurrentWeapon(ModItems.TheFool); org.addUnlockedWeapon(ModItems.TheFool); break;
+            case MARLUXIA: org.setCurrentWeapon(ModItems.FickleErica); org.addUnlockedWeapon(ModItems.FickleErica); break;
+            case ROXAS: org.setCurrentWeapon(ModItems.KingdomKey); org.addUnlockedWeapon(ModItems.KingdomKey); break;
 
-            case SAIX: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.NewMoon); break;
-            case VEXEN: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.TesterZero); break;
-            case XALDIN: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Zephyr); break;
-            case XEMNAS: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Malice); break;
-            case XIGBAR: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.Standalone); break;
-            case ZEXION: player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setCurrentWeapon(ModItems.BlackPrimer); break;
+            case SAIX: org.setCurrentWeapon(ModItems.NewMoon); org.addUnlockedWeapon(ModItems.NewMoon); break;
+            case VEXEN: org.setCurrentWeapon(ModItems.TesterZero); org.addUnlockedWeapon(ModItems.TesterZero); break;
+            case XALDIN: org.setCurrentWeapon(ModItems.Zephyr); org.addUnlockedWeapon(ModItems.Zephyr); break;
+            case XEMNAS: org.setCurrentWeapon(ModItems.Malice); org.addUnlockedWeapon(ModItems.Malice); break;
+            case XIGBAR: org.setCurrentWeapon(ModItems.Standalone); org.addUnlockedWeapon(ModItems.Standalone); break;
+            case ZEXION: org.setCurrentWeapon(ModItems.BlackPrimer); org.addUnlockedWeapon(ModItems.BlackPrimer); break;
         }
-		PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
+		PacketDispatcher.sendTo(new SyncOrgXIIIData(org), (EntityPlayerMP) player);
     }
 }

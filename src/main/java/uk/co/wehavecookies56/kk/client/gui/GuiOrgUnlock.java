@@ -3,10 +3,12 @@ package uk.co.wehavecookies56.kk.client.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -20,6 +22,7 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Toby on 27/04/2017.
@@ -71,16 +74,16 @@ public class GuiOrgUnlock extends GuiScreen {
                     /*Inferno*/unlocks[11] = new GuiNodeButton(12, 0, 0, new UnlockNode(-1, -8, ModItems.Inferno, new UnlockNode[]{unlocks[8].getNode(), unlocks[9].getNode()}), this);
                     /*Sizzling Edge*/unlocks[12] = new GuiNodeButton(13, 0, 0, new UnlockNode(1, -8, ModItems.SizzlingEdge, new UnlockNode[]{unlocks[9].getNode(), unlocks[10].getNode()}), this);
                     //TIER 5
-                    /*Corona*/unlocks[13] = new GuiNodeButton(14, 0, 0, new UnlockNode(-3, -10, ModItems.Combustion, new UnlockNode[]{unlocks[11].getNode()}), this);
-                    /*Ferris Wheels*/unlocks[14] = new GuiNodeButton(15, 0, 0, new UnlockNode(-1, -10, ModItems.MoulinRouge, new UnlockNode[]{unlocks[11].getNode()}), this);
-                    /*Burnout*/unlocks[15] = new GuiNodeButton(16, 0, 0, new UnlockNode(1, -10, ModItems.BlazeofGlory, new UnlockNode[]{unlocks[12].getNode()}), this);
-                    /*Omega Trinity*/unlocks[16] = new GuiNodeButton(17, 0, 0, new UnlockNode(3, -10, ModItems.Prometheus, new UnlockNode[]{unlocks[12].getNode()}), this);
+                    /*Corona*/unlocks[13] = new GuiNodeButton(14, 0, 0, new UnlockNode(-3, -10, ModItems.Corona, new UnlockNode[]{unlocks[11].getNode()}), this);
+                    /*Ferris Wheels*/unlocks[14] = new GuiNodeButton(15, 0, 0, new UnlockNode(-1, -10, ModItems.FerrisWheel, new UnlockNode[]{unlocks[11].getNode()}), this);
+                    /*Burnout*/unlocks[15] = new GuiNodeButton(16, 0, 0, new UnlockNode(1, -10, ModItems.Burnout, new UnlockNode[]{unlocks[12].getNode()}), this);
+                    /*Omega Trinity*/unlocks[16] = new GuiNodeButton(17, 0, 0, new UnlockNode(3, -10, ModItems.OmegaTrinity, new UnlockNode[]{unlocks[12].getNode()}), this);
                     //TIER 6
                     /*Outbreak*/unlocks[17] = new GuiNodeButton(18, 0, 0, new UnlockNode(-2, -12, ModItems.Outbreak, new UnlockNode[]{unlocks[13].getNode(), unlocks[14].getNode()}), this);
-                    /*Double Edge*/unlocks[18] = new GuiNodeButton(19, 0, 0, new UnlockNode(0, -12, ModItems.FerrisWheel, new UnlockNode[]{unlocks[14].getNode(), unlocks[15].getNode()}), this);
+                    /*Double Edge*/unlocks[18] = new GuiNodeButton(19, 0, 0, new UnlockNode(0, -12, ModItems.DoubleEdge, new UnlockNode[]{unlocks[14].getNode(), unlocks[15].getNode()}), this);
                     /*Wildfire*/unlocks[19] = new GuiNodeButton(20, 0, 0, new UnlockNode(2, -12, ModItems.Wildfire, new UnlockNode[]{unlocks[15].getNode(), unlocks[16].getNode()}), this);
                     //TIER 7
-                    /*Double Edge*/unlocks[20] = new GuiNodeButton(20, 0, 0, new UnlockNode(0, -14, ModItems.Prominence, new UnlockNode[]{unlocks[17].getNode(), unlocks[18].getNode(), unlocks[19].getNode()}), this);
+                    /*Prominence*/unlocks[20] = new GuiNodeButton(20, 0, 0, new UnlockNode(0, -14, ModItems.Prominence, new UnlockNode[]{unlocks[17].getNode(), unlocks[18].getNode(), unlocks[19].getNode()}), this);
                     //TIER 8
                     /*Eternal Flames*/unlocks[21] = new GuiNodeButton(22, 0, 0, new UnlockNode(0, -16, ModItems.EternalFlames, new UnlockNode[]{unlocks[20].getNode()}), this);
                     //TIER 9
@@ -107,20 +110,29 @@ public class GuiOrgUnlock extends GuiScreen {
                     UnlockNode[] parents = n.getNode().getParents();
                     for (UnlockNode p : parents) {
                         if (p != null) {
-                            Dimension pd = convertToGUICoords(p);
+                            List<Item> unlockedWeapons = mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).unlockedWeapons();
                             GlStateManager.pushMatrix();
+                            Dimension pd = convertToGUICoords(p);
                             GlStateManager.disableTexture2D();
                             GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-                            GlStateManager.color(1, 1, 1);
+                            if (unlockedWeapons.contains(p.getUnlock())) {
+                                n.getNode().setUnlocked(true);
+                                GlStateManager.color(1, 1, 1, 1);
+                            } else {
+                                GlStateManager.color(0, 0, 0, 0.2F);
+                            }
                             GL11.glLineWidth(3F);
                             GlStateManager.glBegin(GL11.GL_LINES);
                             GlStateManager.glVertex3f((float) d.getWidth() + dispX, (float) d.getHeight() + dispY, 0);
                             GlStateManager.glVertex3f((float) pd.getWidth() + dispX, (float) pd.getHeight() + dispY, 0);
                             GlStateManager.glEnd();
                             GlStateManager.enableTexture2D();
+                            GlStateManager.color(1, 1, 1);
                             GlStateManager.popMatrix();
                         }
                     }
+                } else {
+                    n.getNode().setUnlocked(true);
                 }
             }
         }
@@ -138,8 +150,12 @@ public class GuiOrgUnlock extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         drawDefaultBackground();
         GL11.glPushMatrix();
+        ScaledResolution sr = new ScaledResolution(mc);
+        System.out.println(sr.getScaleFactor());
+        int sw = 255;
+        int sh = 195;
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
-        GL11.glScissor(((width / 2) - (texWidth / 2)) * 2, ((height / 2) - (texHeight / 2)) * 2, 510, 390);
+        GL11.glScissor(((width / 2) - (texWidth / 2)) * sr.getScaleFactor(), ((height / 2) - (texHeight / 2)) * sr.getScaleFactor(), sw * sr.getScaleFactor(), sh * sr.getScaleFactor());
         drawNodes(mouseX, mouseY, unlocks);
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
         GL11.glPopMatrix();

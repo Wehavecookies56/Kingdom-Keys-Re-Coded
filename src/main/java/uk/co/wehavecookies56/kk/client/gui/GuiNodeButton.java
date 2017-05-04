@@ -53,8 +53,10 @@ public class GuiNodeButton extends GuiButton {
 
     @Override
     public boolean mousePressed(Minecraft mc, int mouseX, int mouseY) {
-        if (mouseX >= xPosition - (width / 2) + parent.dispX && mouseX <= xPosition + width - (width / 2) + parent.dispX && mouseY >= yPosition - (height / 2) + parent.dispY && mouseY <= yPosition + height - (height / 2) + parent.dispY) {
-            parent.selected = node;
+        if (node.unlocked) {
+            if (mouseX >= xPosition - (width / 2) + parent.dispX && mouseX <= xPosition + width - (width / 2) + parent.dispX && mouseY >= yPosition - (height / 2) + parent.dispY && mouseY <= yPosition + height - (height / 2) + parent.dispY) {
+                parent.selected = node;
+            }
         }
         parent.updateButtons();
         return super.mousePressed(mc, mouseX, mouseY);
