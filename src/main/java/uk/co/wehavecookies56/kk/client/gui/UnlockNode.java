@@ -11,6 +11,7 @@ public class UnlockNode {
     public int xPos, yPos;
     Item unlock;
     boolean unlocked;
+    boolean unlockable;
 
     public UnlockNode(int x, int y, Item unlock, UnlockNode[] parents) {
         xPos = x;
@@ -55,7 +56,15 @@ public class UnlockNode {
         return unlocked;
     }
 
+    public boolean isUnlockable() {
+        return unlockable;
+    }
+
     public void setUnlocked(boolean unlocked) {
         this.unlocked = unlocked;
+    }
+
+    public void setUnlockable(boolean unlockable) {
+        this.unlockable = unlockable;
     }
 }

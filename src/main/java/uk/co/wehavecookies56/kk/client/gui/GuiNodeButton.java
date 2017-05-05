@@ -1,8 +1,10 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
@@ -53,10 +55,9 @@ public class GuiNodeButton extends GuiButton {
 
     @Override
     public boolean mousePressed(Minecraft mc, int mouseX, int mouseY) {
-        if (node.unlocked) {
-            if (mouseX >= xPosition - (width / 2) + parent.dispX && mouseX <= xPosition + width - (width / 2) + parent.dispX && mouseY >= yPosition - (height / 2) + parent.dispY && mouseY <= yPosition + height - (height / 2) + parent.dispY) {
-                parent.selected = node;
-            }
+        if (mouseX >= xPosition - (width / 2) + parent.dispX && mouseX <= xPosition + width - (width / 2) + parent.dispX && mouseY >= yPosition - (height / 2) + parent.dispY && mouseY <= yPosition + height - (height / 2) + parent.dispY) {
+            Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+            parent.selected = node;
         }
         parent.updateButtons();
         return super.mousePressed(mc, mouseX, mouseY);
