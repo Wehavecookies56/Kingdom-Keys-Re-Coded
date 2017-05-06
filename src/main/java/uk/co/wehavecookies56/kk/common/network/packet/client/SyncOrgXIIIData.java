@@ -24,6 +24,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 	double orgPortalX;
 	double orgPortalY;
 	double orgPortalZ;
+	int unlockPoints;
 
 	public SyncOrgXIIIData() {}
 
@@ -36,6 +37,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		this.orgPortalX = organizationXIII.getPortalX();
 		this.orgPortalY = organizationXIII.getPortalY();
 		this.orgPortalZ = organizationXIII.getPortalZ();
+		this.unlockPoints = organizationXIII.getUnlockPoints();
 	}
 	
 	@Override
@@ -47,6 +49,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		this.orgPortalX = buffer.readDouble();
 		this.orgPortalY = buffer.readDouble();
 		this.orgPortalZ = buffer.readDouble();
+		this.unlockPoints = buffer.readInt();
 
 		weapons = new ArrayList<>();
 		while(buffer.isReadable()) {
@@ -63,6 +66,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		buffer.writeDouble(this.orgPortalX);
 		buffer.writeDouble(this.orgPortalY);
 		buffer.writeDouble(this.orgPortalZ);
+		buffer.writeInt(this.unlockPoints);
 		
 		for (int i = 0; i < weapons.size(); i++) {
 			buffer.writeItemStack(new ItemStack(this.weapons.get(i)));
@@ -80,6 +84,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 		organizationXIII.setPortalX(this.orgPortalX);
 		organizationXIII.setPortalY(this.orgPortalY);
 		organizationXIII.setPortalZ(this.orgPortalZ);
+		organizationXIII.setUnlockPoints(this.unlockPoints);
 	}
 
 }

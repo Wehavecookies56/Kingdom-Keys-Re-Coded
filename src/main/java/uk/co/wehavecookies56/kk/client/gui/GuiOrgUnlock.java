@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.opengl.GL11;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
@@ -440,12 +441,12 @@ public class GuiOrgUnlock extends GuiScreen {
         GL11.glPushMatrix();
         ScaledResolution sr = new ScaledResolution(mc);
         int sw = 255;
-        int sh = 195;
+        int sh = 190;
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
-        GL11.glScissor(((width / 2) - (texWidth / 2)) * sr.getScaleFactor(), ((height / 2) - (texHeight / 2)) * sr.getScaleFactor(), sw * sr.getScaleFactor(), sh * sr.getScaleFactor());
+        GL11.glScissor(((width / 2) - (texWidth / 2)) * sr.getScaleFactor(), ((height / 2) - (texHeight / 2)) * sr.getScaleFactor() + 10, sw * sr.getScaleFactor(), sh * sr.getScaleFactor());
         Minecraft.getMinecraft().renderEngine.bindTexture(background);
         GL11.glColor4f(0.15F, 0.15F, 0.15F, 1);
-        drawModalRectWithCustomSizedTexture((((width / 2) - (texWidth / 2)) * sr.getScaleFactor() + dispX) - ((-(minWidth - maxWidth) + 500) / 2) * sr.getScaleFactor(), (((height / 2) - (texHeight / 2)) * sr.getScaleFactor() + dispY) - ((-(minHeight - maxHeight) + 500) / 2)  * sr.getScaleFactor(),0, 0, -(minWidth - maxWidth) + 500,-(minHeight - maxHeight) + 500, 32, 32);
+        drawModalRectWithCustomSizedTexture((((width / 2) - (texWidth / 2)) * sr.getScaleFactor() + dispX) - 1000, (((height / 2) - (texHeight / 2)) * sr.getScaleFactor() + dispY) - 1000,0, 0, 2000,2000, 32, 32);
         drawNodes(mouseX, mouseY, unlocks);
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
         GL11.glPopMatrix();
@@ -453,7 +454,8 @@ public class GuiOrgUnlock extends GuiScreen {
         int posX = (width / 2) - (texWidth / 2);
         int posY = (height / 2) - (texHeight / 2);
         drawTexturedModalRect(posX, posY, 0, 0, texWidth, texHeight);
-        fontRendererObj.drawString("Weapon unlocks", posX + 5, posY + 5, 0x2B2B2B);
+        fontRendererObj.drawString("Weapon unlocks for " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember().toString(), posX + 5, posY + 5, 0x2B2B2B);
+        fontRendererObj.drawString("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints(), posX + 256 - fontRendererObj.getStringWidth("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints()) - 5, posY + 5, 0x2B2B2B);
         super.drawScreen(mouseX, mouseY, partialTicks);
         if (selected != null)
             fontRendererObj.drawString(new ItemStack(selected.unlock).getDisplayName() + " selected", (width / 2) - (texWidth / 2) + 5, (height / 2) - (texHeight / 2) + 180, 0x2B2B2B);
@@ -466,6 +468,7 @@ public class GuiOrgUnlock extends GuiScreen {
                 if (selected != null) {
                     OrganizationXIIICapability.IOrganizationXIII weapons = Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
                     weapons.addUnlockedWeapon(selected.getUnlock());
+                    weapons.removePoints(1);
                     PacketDispatcher.sendToServer(new SyncOrgXIIIData(weapons));
                 }
                 break;
@@ -487,6 +490,9 @@ public class GuiOrgUnlock extends GuiScreen {
             if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).unlockedWeapons().contains(selected.getUnlock())) {
                 selected.unlockable = false;
                 selected.unlocked = true;
+            }
+            if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints() < 1) {
+                selected.unlockable = false;
             }
             if (selected.unlockable) {
                 unlock.enabled = true;

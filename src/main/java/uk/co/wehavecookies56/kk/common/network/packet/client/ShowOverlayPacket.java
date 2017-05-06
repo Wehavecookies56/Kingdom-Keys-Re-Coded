@@ -7,7 +7,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 
 public class ShowOverlayPacket extends AbstractMessage.AbstractClientMessage<ShowOverlayPacket> {
 
@@ -51,6 +53,10 @@ public class ShowOverlayPacket extends AbstractMessage.AbstractClientMessage<Sho
 		if (this.type.equals("levelup")) {
 			GuiOverlay.showLevelUp = true;
 			GuiOverlay.timeLevelUp = (int) Minecraft.getSystemTime() / 1000;
+			if (munny % 5 == 0) {
+				player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).addPoints(1);
+				PacketDispatcher.sendToServer(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)));
+			}
 		}
 	}
 

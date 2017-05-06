@@ -1,9 +1,6 @@
 package uk.co.wehavecookies56.kk.common.core.handler.event;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import com.mojang.authlib.GameProfile;
 
@@ -17,6 +14,7 @@ import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
@@ -71,19 +69,6 @@ public class EntityEvents {
 
     @SubscribeEvent
     public void PlayerClone (PlayerEvent.Clone event) {
-        OrganizationXIIICapability.IOrganizationXIII orgBefore = event.getOriginal().getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-        OrganizationXIIICapability.IOrganizationXIII orgAfter = event.getEntityPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-        orgAfter.setMember(orgBefore.getMember());
-        orgAfter.setCurrentWeapon(orgBefore.currentWeapon());
-        orgAfter.setUnlockedWeapons(orgBefore.unlockedWeapons());
-        orgAfter.setWeaponSummoned(orgBefore.summonedWeapon());
-        orgAfter.setPortalX(orgBefore.getPortalX());
-        orgAfter.setPortalY(orgBefore.getPortalY());
-        orgAfter.setPortalZ(orgBefore.getPortalZ());
-        if (event.isWasDeath()) {
-            orgAfter.setMember(Utils.OrgMember.NONE);
-            orgAfter.setWeaponSummoned(false);
-        }
         FirstTimeJoinCapability.IFirstTimeJoin ftjBefore = event.getOriginal().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
         FirstTimeJoinCapability.IFirstTimeJoin ftjAfter = event.getEntityPlayer().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
         ftjAfter.setFirstTimeJoin(ftjBefore.getFirstTimeJoin());
@@ -155,6 +140,20 @@ public class EntityEvents {
         while (it.hasNext()) {
             Map.Entry<String, Integer> pair = (Map.Entry<String, Integer>) it.next();
             materialsAfter.setMaterial(MaterialRegistry.get(pair.getKey().toString()), pair.getValue());
+        }
+        OrganizationXIIICapability.IOrganizationXIII orgBefore = event.getOriginal().getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+        OrganizationXIIICapability.IOrganizationXIII orgAfter = event.getEntityPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+        orgAfter.setMember(orgBefore.getMember());
+        orgAfter.setCurrentWeapon(orgBefore.currentWeapon());
+        orgAfter.setWeaponSummoned(orgBefore.summonedWeapon());
+        orgAfter.setPortalX(orgBefore.getPortalX());
+        orgAfter.setPortalY(orgBefore.getPortalY());
+        orgAfter.setPortalZ(orgBefore.getPortalZ());
+        if (event.isWasDeath()) {
+            orgAfter.setMember(Utils.OrgMember.NONE);
+            orgAfter.setWeaponSummoned(false);
+            orgAfter.setUnlockedWeapons(new ArrayList<Item>());
+            orgAfter.setUnlockPoints((int)(statsAfter.getLevel() / 5));
         }
     }
 

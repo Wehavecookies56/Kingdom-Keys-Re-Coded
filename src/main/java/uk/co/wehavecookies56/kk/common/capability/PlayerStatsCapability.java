@@ -271,7 +271,7 @@ public class PlayerStatsCapability {
 								while (this.getExpNeeded(this.getLevel(), this.experience) <= 0 && this.getLevel() != 100) {
 									this.setLevel(this.getLevel() + 1);
 									this.levelUpStatsAndDisplayMessage(player);
-									PacketDispatcher.sendTo(new ShowOverlayPacket("levelup"),(EntityPlayerMP)player);
+									PacketDispatcher.sendTo(new ShowOverlayPacket("levelup", level),(EntityPlayerMP)player);
 								}
 							}else {
 								this.experience = this.maxExperience;

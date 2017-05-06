@@ -32,6 +32,7 @@ public class OrganizationXIIICapability {
         double getPortalX();
         double getPortalY();
         double getPortalZ();
+        int getUnlockPoints();
 
         List<Item> unlockedWeapons();
         void setMember(Utils.OrgMember member);
@@ -44,6 +45,9 @@ public class OrganizationXIIICapability {
         void setPortalX(double x);
         void setPortalY(double y);
         void setPortalZ(double z);
+        void setUnlockPoints(int points);
+        void removePoints(int points);
+        void addPoints(int points);
 
     }
 
@@ -69,6 +73,7 @@ public class OrganizationXIIICapability {
             properties.setDouble("PortalX", instance.getPortalX());
             properties.setDouble("PortalY", instance.getPortalY());
             properties.setDouble("PortalZ", instance.getPortalZ());
+            properties.setInteger("UnlockPoints", instance.getUnlockPoints());
             return properties;
         }
 
@@ -91,6 +96,7 @@ public class OrganizationXIIICapability {
             instance.setPortalX(properties.getDouble("PortalX"));
             instance.setPortalY(properties.getDouble("PortalY"));
             instance.setPortalZ(properties.getDouble("PortalZ"));
+            instance.setUnlockPoints(properties.getInteger("UnlockPoints"));
         }
     }
 
@@ -102,6 +108,7 @@ public class OrganizationXIIICapability {
         private double orgPortalX = 0;
         private double orgPortalY = 0;
         private double orgPortalZ = 0;
+        private int unlockPoints = 0;
 
         @Override
         public Utils.OrgMember getMember() {
@@ -165,19 +172,16 @@ public class OrganizationXIIICapability {
 
 		@Override
 		public double getPortalX() {
-			// TODO Auto-generated method stub
 			return orgPortalX;
 		}
 
 		@Override
 		public double getPortalY() {
-			// TODO Auto-generated method stub
 			return orgPortalY;
 		}
 
 		@Override
 		public double getPortalZ() {
-			// TODO Auto-generated method stub
 			return orgPortalZ;
 		}
 
@@ -196,7 +200,25 @@ public class OrganizationXIIICapability {
             this.orgPortalZ = z;
 		}
 
+        @Override
+        public int getUnlockPoints() {
+            return unlockPoints;
+        }
 
+        @Override
+        public void setUnlockPoints(int points) {
+            this.unlockPoints = points;
+        }
+
+        @Override
+        public void removePoints(int points) {
+            this.unlockPoints-= points;
+        }
+
+        @Override
+        public void addPoints(int points) {
+            this.unlockPoints+= points;
+        }
     }
 
 }
