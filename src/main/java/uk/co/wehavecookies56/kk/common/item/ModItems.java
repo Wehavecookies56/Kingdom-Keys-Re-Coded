@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.item;
 
-import javafx.scene.control.Tab;
-import net.minecraft.block.BlockPurpurSlab;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,11 +11,25 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import org.omg.CORBA.ORB;
-import scala.tools.nsc.transform.patmat.PatternExpander;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
-import uk.co.wehavecookies56.kk.common.item.base.*;
-import uk.co.wehavecookies56.kk.common.item.org.*;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKKRecord;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemRecipe;
+import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
+import uk.co.wehavecookies56.kk.common.item.org.ItemArrowguns;
+import uk.co.wehavecookies56.kk.common.item.org.ItemAxeSword;
+import uk.co.wehavecookies56.kk.common.item.org.ItemCard;
+import uk.co.wehavecookies56.kk.common.item.org.ItemChakram;
+import uk.co.wehavecookies56.kk.common.item.org.ItemClaymore;
+import uk.co.wehavecookies56.kk.common.item.org.ItemEtherealBlade;
+import uk.co.wehavecookies56.kk.common.item.org.ItemKnife;
+import uk.co.wehavecookies56.kk.common.item.org.ItemLances;
+import uk.co.wehavecookies56.kk.common.item.org.ItemLexicon;
+import uk.co.wehavecookies56.kk.common.item.org.ItemOrgShield;
+import uk.co.wehavecookies56.kk.common.item.org.ItemScythe;
+import uk.co.wehavecookies56.kk.common.item.org.ItemSitar;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 

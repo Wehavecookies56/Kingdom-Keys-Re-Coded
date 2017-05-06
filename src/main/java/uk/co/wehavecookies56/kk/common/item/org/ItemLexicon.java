@@ -68,7 +68,7 @@ public class ItemLexicon extends ItemOrgWeapon implements IOrgWeapon{
 		                		portal.setCaster(player);
 		                		world.spawnEntity(portal);
 		                		IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-		                		System.out.println(orgXIII.getPortalX()+","+orgXIII.getPortalY()+","+orgXIII.getPortalZ());
+		                		//System.out.println(orgXIII.getPortalX()+","+orgXIII.getPortalY()+","+orgXIII.getPortalZ());
 		            			PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos()));
 		            			player.world.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
 		                	}

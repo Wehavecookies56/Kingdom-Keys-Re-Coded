@@ -60,14 +60,16 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
 	@Override
 	public void onCollideWithPlayer(EntityPlayer player) {
 		//THIS IS ON THE CLIENT
-		System.out.println(caster);
+		//System.out.println(caster);
 		if(!this.isEntityAlive())
 			return;
 		if(player != null){
 			if (caster != null) {
 				IOrganizationXIII orgXIII = caster.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-				player.setPositionAndUpdate(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5);
-				PacketDispatcher.sendToServer(new OrgPortalTP(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5));
+				if(orgXIII.getPortalX()!=0 && orgXIII.getPortalY()!=0 && orgXIII.getPortalZ()!=0){
+					player.setPositionAndUpdate(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5);
+					PacketDispatcher.sendToServer(new OrgPortalTP(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5));
+				}
 			}
 		}
 		
