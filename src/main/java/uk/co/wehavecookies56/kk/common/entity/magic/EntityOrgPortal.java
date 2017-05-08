@@ -105,6 +105,7 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
 
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
+		System.out.println(caster.getDisplayNameString());
 		buffer.writeBytes(caster.getDisplayNameString().getBytes());
 	}
 }

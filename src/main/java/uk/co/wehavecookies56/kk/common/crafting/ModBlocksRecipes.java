@@ -34,5 +34,7 @@ public class ModBlocksRecipes {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.KKChest), "HGH", "GCG", "HGH", 'H', ModItems.Heart, 'G', Items.GOLD_INGOT, 'C', Blocks.CHEST));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.Pedestal), " H ", "HBH", "BBB", 'H', ModItems.PureHeart, 'B', ModBlocks.MetalBlox));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.OrgPortal), " D ", "DKD", "OOO", 'D', ModItems.DarkHeart, 'K', ModItems.KingdomHearts, 'O', Blocks.OBSIDIAN));
 	}
 }

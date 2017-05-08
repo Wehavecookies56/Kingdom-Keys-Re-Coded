@@ -211,6 +211,7 @@ public class Strings {
 
 	KKChest = "kkchest",
 	Pedestal = "pedestal",
+	OrgPortal = "orgportal",
 
 	// Ores
 	BlazingOre = "blazingore", 

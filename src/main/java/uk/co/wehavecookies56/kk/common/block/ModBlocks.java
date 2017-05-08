@@ -59,7 +59,7 @@ public class ModBlocks {
 		Pedestal = new BlockPedestal(Material.IRON, "pickaxe", 2, 10f, 60f).setUnlocalizedName(Strings.Pedestal).setCreativeTab(tabKingdomKeysBlocks);
 		StationOfAwakening = new BlockStationOfAwakening(Strings.StationOfAwakening);
 		StationOfAwakeningDoor = new BlockStationOfAwakeningDoor(Strings.StationOfAwakeningDoor);
-		OrgPortal = new BlockOrgPortal(Material.IRON, "pickaxe", 0, 1f, 10f).setUnlocalizedName("orgPortal").setCreativeTab(tabKingdomKeysBlocks);
+		OrgPortal = new BlockOrgPortal(Material.IRON, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.OrgPortal).setCreativeTab(tabKingdomKeysBlocks);
     }
 
 	public static void registerBlock (Block block, String name) {
@@ -100,7 +100,7 @@ public class ModBlocks {
         registerBlock(StationOfAwakening, Strings.StationOfAwakening);
         registerBlock(StationOfAwakeningDoor, Strings.StationOfAwakeningDoor);
         registerBlock(Pedestal, Strings.Pedestal);
-        registerBlock(OrgPortal, "orgPortal");
+        registerBlock(OrgPortal, Strings.OrgPortal);
 
 	}
 
