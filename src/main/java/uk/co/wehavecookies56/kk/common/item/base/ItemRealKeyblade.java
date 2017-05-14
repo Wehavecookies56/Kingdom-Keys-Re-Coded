@@ -12,6 +12,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 
 public class ItemRealKeyblade extends ItemKeyblade {
 
@@ -19,10 +21,11 @@ public class ItemRealKeyblade extends ItemKeyblade {
 		super(strength, magic);
 		setMaxStackSize(1);
 	}
-
+/*
     @Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player, EnumHand hand)
 	{
+    	
 		if (!(player.getHeldItem(EnumHand.OFF_HAND) != null && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade)) 
 		{
 
@@ -57,7 +60,8 @@ public class ItemRealKeyblade extends ItemKeyblade {
 							d = (Math.random() - Math.random()) * 0.01D;
 						((EntityLivingBase) e).knockBack(e, 1, -d, -d1);
 						e.motionY*=1.15;
-						e.attackEntityFrom(DamageSource.causePlayerDamage(player), (float) (((ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()).strength + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
+						e.attackEntityFrom(DamageSource.causePlayerDamage(player), (float) DamageCalculation.getStrengthDamage(player, (ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()));
+						System.out.println(DamageCalculation.getStrengthDamage(player, (ItemKeyblade) player.getHeldItem(EnumHand.MAIN_HAND).getItem()));
 					}
 				}
 			}
@@ -66,4 +70,5 @@ public class ItemRealKeyblade extends ItemKeyblade {
 		return super.onItemRightClick(itemStackIn, worldIn, player, hand);
 			
 	}
+	*/
 }

@@ -43,6 +43,7 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagL;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagM;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagS;
+import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
 import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.item.ItemHpOrb;
@@ -251,19 +252,6 @@ public class ItemEvents {
             if (areItemStacksEqual(stack, event.getItemStack())) {
                 event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack) * event.getItemStack().stackSize);
             }
-            /*if (event.getItemStack().getItem() == stack.getItem()) {
-                if (event.getItemStack().hasTagCompound() && stack.hasTagCompound()) {
-                    if (event.getItemStack().getTagCompound().hasKey("material") && stack.getTagCompound().hasKey("material")) {
-                        if (event.getItemStack().getTagCompound().getString("material").equals(stack.getTagCompound().getString("material"))) {
-                            event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack));
-                        }
-                    } else {
-                        event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack));
-                    }
-                } else {
-                    event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack));
-                }
-            }*/
         }
         //TODO Localize all this
         if (event.getItemStack().getItem() instanceof ItemKeyblade) {
@@ -307,8 +295,8 @@ public class ItemEvents {
             double keyStrength = keyblade.getStrength()+sharpnessDamage;
             
             String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
-            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength + " (" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + ")");
-            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + ")");
+            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * ConfigHandler.damageMultiplier + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + "]");
+            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() * ConfigHandler.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + "]");
             if (keyblade.getDescription() != null) {
                 if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                     tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
@@ -417,8 +405,8 @@ public class ItemEvents {
             
             String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
 
-            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength + " (" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + ")");
-            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + ")");
+            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * ConfigHandler.damageMultiplier  + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + "]");
+            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() * ConfigHandler.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + "]");
             if (keyblade.getDescription() != null) {
                 if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                     tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");

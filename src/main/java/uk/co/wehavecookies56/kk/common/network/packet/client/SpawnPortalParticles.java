@@ -42,12 +42,12 @@ public class SpawnPortalParticles extends AbstractMessage.AbstractClientMessage<
 	public void process (EntityPlayer player, Side side) {
 		double r;
 		r = 1D;
-		for (int a = 1; a <= 360; a += 7) {
+		for (int a = 1; a <= 360; a += 10) {
 			double x = this.x + (r * Math.cos(Math.toRadians(a)));
 			double z = this.z + (r * Math.sin(Math.toRadians(a)));
-			for(double i=0;i<3;i=i+0.2){
+			for(double i=0;i<3;i=i+0.25){
 			player.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, this.y+i, z, 0.0D, 0.0D, 0.0D);
-			player.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, this.y+i, z, 0.0D, 0.0D, 0.0D);
+			//player.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, this.y+i, z, 0.0D, 0.0D, 0.0D);
 			}
 
 		}

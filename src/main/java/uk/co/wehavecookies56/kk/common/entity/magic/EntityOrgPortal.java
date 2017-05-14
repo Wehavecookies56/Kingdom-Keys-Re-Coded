@@ -41,8 +41,10 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
 	public void onUpdate () {
 		super.onUpdate();
 
-		if (caster == null)
+		if (caster == null){
+			this.setDead();
 			return;
+		}
 		if (caster instanceof EntityPlayer)
 		{
 			if (!world.isRemote)
@@ -105,6 +107,8 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
 
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
+		if(caster == null)
+			return;
 		System.out.println(caster.getDisplayNameString());
 		buffer.writeBytes(caster.getDisplayNameString().getBytes());
 	}

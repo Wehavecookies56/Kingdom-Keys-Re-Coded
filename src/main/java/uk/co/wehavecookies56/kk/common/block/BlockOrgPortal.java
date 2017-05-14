@@ -81,7 +81,7 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
 				TileEntityOrgPortal te = (TileEntityOrgPortal) world.getTileEntity(pos);
 				if (te.getOwner() != null) {
 					EntityPlayer player = world.getPlayerEntityByName(te.getOwner());
-					player.sendMessage(new TextComponentString(TextFormatting.RED + "Portal disappeared"));
+					player.sendMessage(new TextComponentString(TextFormatting.RED + "Portal destination disappeared"));
 					player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalX(0);
 					player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalY(0);
 					player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalZ(0);
