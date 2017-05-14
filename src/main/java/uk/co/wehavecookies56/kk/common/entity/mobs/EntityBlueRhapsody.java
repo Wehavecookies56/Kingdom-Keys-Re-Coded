@@ -13,7 +13,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIBlueRhapsody;
 
-public class EntityBlueRhapsody extends EntityMob implements IKHMob
+public class EntityBlueRhapsody extends BaseEntityHeartless implements IKHMob
 {
 
 	public EntityBlueRhapsody(World world) 

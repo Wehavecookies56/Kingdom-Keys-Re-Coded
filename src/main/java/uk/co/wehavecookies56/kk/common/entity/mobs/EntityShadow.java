@@ -14,7 +14,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIShadow;
 
-public class EntityShadow extends EntityMob implements IKHMob
+public class EntityShadow extends BaseEntityHeartless implements IKHMob
 {
 	// ENTITY_STATE : 1 - Invisible
 	

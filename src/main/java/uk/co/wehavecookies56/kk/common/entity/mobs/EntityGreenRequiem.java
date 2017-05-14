@@ -13,7 +13,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIGreenRequiem;
 
-public class EntityGreenRequiem extends EntityMob implements IKHMob
+public class EntityGreenRequiem extends BaseEntityHeartless implements IKHMob
 {
 
 	public EntityGreenRequiem(World world) 

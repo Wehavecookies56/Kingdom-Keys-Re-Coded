@@ -13,7 +13,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIRedNocturne;
 
-public class EntityYellowOpera extends EntityMob implements IKHMob
+public class EntityYellowOpera extends BaseEntityHeartless implements IKHMob
 {
 
 	public EntityYellowOpera(World world) 
