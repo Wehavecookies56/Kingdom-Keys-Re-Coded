@@ -15,26 +15,5 @@ public class BaseEntityHeartless extends EntityMob{
 		super(worldIn);
 		// TODO Auto-generated constructor stub
 	}
-	
-	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount){
-		if (source instanceof EntityDamageSource){
-			EntityDamageSource eds = (EntityDamageSource) source;
-			if (eds.getDamageType().equals("player") && eds.getEntity() instanceof EntityPlayer){
-				EntityPlayer player = (EntityPlayer) eds.getEntity();
-				
-				if(player.getHeldItemMainhand() != null){
-					
-					if(!(player.getHeldItemMainhand().getItem() instanceof ItemRealKeyblade) && !(player.getHeldItemMainhand().getItem() instanceof ItemOrgWeapon)){
-						return false;
-					}else{
-						return super.attackEntityFrom(source, amount);
-					}
-				}
-			}
-			
-		}
-		return super.attackEntityFrom(source, amount);
-	}
 
 }

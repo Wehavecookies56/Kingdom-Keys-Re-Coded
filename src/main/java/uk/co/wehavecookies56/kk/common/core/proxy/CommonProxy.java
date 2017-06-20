@@ -166,13 +166,13 @@ public class CommonProxy {
 
 
 		// Heartless registry
-		EntityHelper.registerEntity("Shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());
-		EntityHelper.registerEntity("GigaShadow", EntityGigaShadow.class, Color.BLACK.getRGB(), Color.GRAY.getRGB());
-		EntityHelper.registerEntity("RedNocturne", EntityRedNocturne.class, Color.RED.getRGB(), Color.PINK.getRGB());
-		EntityHelper.registerEntity("BlueRhapsody", EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());
-		EntityHelper.registerEntity("YellowOpera", EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());
-		EntityHelper.registerEntity("GreenRequiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
-		EntityHelper.registerEntity("Moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
+		EntityHelper.registerEntity("shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());
+		EntityHelper.registerEntity("gigashadow", EntityGigaShadow.class, Color.BLACK.getRGB(), Color.GRAY.getRGB());
+		EntityHelper.registerEntity("rednocturne", EntityRedNocturne.class, Color.RED.getRGB(), Color.PINK.getRGB());
+		EntityHelper.registerEntity("bluerhapsody", EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());
+		EntityHelper.registerEntity("yellowopera", EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());
+		EntityHelper.registerEntity("greenrequiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
+		EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
 
 		
 		EntityRegistry.addSpawn(EntityShadow.class, ConfigHandler.shadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);

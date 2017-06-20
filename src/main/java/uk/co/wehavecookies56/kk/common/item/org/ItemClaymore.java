@@ -45,20 +45,20 @@ public class ItemClaymore extends ItemOrgWeapon implements IOrgWeapon{
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if(player.getActiveItemStack().getItemDamage()==0){
+		if(player.getHeldItemMainhand().getItemDamage()==0){
 			if(world.isRemote){
-				PacketDispatcher.sendToServer(new SummonClaymore((ItemClaymore) player.getActiveItemStack().getItem()));
+				PacketDispatcher.sendToServer(new SummonClaymore((ItemClaymore) player.getHeldItemMainhand().getItem()));
 			}else{
-				player.getActiveItemStack().setItemDamage(1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, player.getActiveItemStack());
+				player.getHeldItemMainhand().setItemDamage(1);
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, player.getHeldItemMainhand());
 				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
 			}
 		}else{
 			if(world.isRemote){
-				PacketDispatcher.sendToServer(new DesummonClaymore((ItemClaymore) player.getActiveItemStack().getItem()));
+				PacketDispatcher.sendToServer(new DesummonClaymore((ItemClaymore) player.getHeldItemMainhand().getItem()));
 			}else{
-				player.getActiveItemStack().setItemDamage(0);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, player.getActiveItemStack());
+				player.getHeldItemMainhand().setItemDamage(0);
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, player.getHeldItemMainhand());
 				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.unsummon, SoundCategory.MASTER, 1.0f, 1.0f);
 			}
 		}

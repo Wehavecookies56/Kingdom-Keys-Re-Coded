@@ -131,9 +131,9 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
 					player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(7);
 				player.swingArm(hand);
 			}
-			return ActionResult.newResult(EnumActionResult.SUCCESS, player.getActiveItemStack());
+			return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItemMainhand());
 		}
-		return ActionResult.newResult(EnumActionResult.FAIL, player.getActiveItemStack());
+		return ActionResult.newResult(EnumActionResult.FAIL, player.getHeldItemMainhand());
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.core.handler;
 import java.io.File;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class ConfigHandler {
@@ -168,6 +170,6 @@ public class ConfigHandler {
 		if (AlwaysShowGUI == 0)
 			return false;
 		Minecraft mc = Minecraft.getMinecraft();
-		return ((AlwaysShowGUI == 2) || ((mc.player.getHeldItemMainhand() != null) && (mc.player.getHeldItemMainhand().getItem() instanceof ItemKeyblade)));
+		return ((AlwaysShowGUI == 2) || ((mc.player.getHeldItemMainhand() != ItemStack.EMPTY) && ((mc.player.getHeldItemMainhand().getItem() instanceof ItemKeyblade) || mc.player.getHeldItemMainhand().getItem() instanceof ItemOrgWeapon)));
 	}
 }

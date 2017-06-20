@@ -42,7 +42,7 @@ public class GuiLockOn extends GuiScreen {
 			EntityPlayer player = mc.player;
 			float reduction = 4;
 			
-			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/lockon/Lock on frame"+i/multiplier+".png"));
+			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/lockon/lock on frame"+i/multiplier+".png"));
 			
 				i--;
 				

@@ -49,14 +49,15 @@ public class GuiShop extends GuiScreen {
 
     public int getPriceFromSelected(int index, boolean selling) {
         if (index != -1 && !(index > GuiBuyList.itemsForSale.size())) {
+            int amount = Integer.parseInt(quantity.getText());
             for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
                 if (!selling) {
                     if (ItemEvents.areItemStacksEqual(stack, GuiBuyList.itemsForSale.get(index))) {
-                        return MunnyRegistry.munnyValues.get(stack);
+                        return MunnyRegistry.munnyValues.get(stack) * amount;
                     }
                 } else {
                     if (ItemEvents.areItemStacksEqual(stack, GuiSellList.sellableItems.get(index))) {
-                        return MunnyRegistry.munnyValues.get(stack);
+                        return MunnyRegistry.munnyValues.get(stack) * amount;
                     }
                 }
 
@@ -87,8 +88,8 @@ public class GuiShop extends GuiScreen {
         EntityPlayer player = Minecraft.getMinecraft().player;
         boolean full = false;
         for (ItemStack element : player.inventory.mainInventory) {
-            if (element != null) full = true;
-            if (element == null) return false;
+            if (element != ItemStack.EMPTY) full = true;
+            if (element == ItemStack.EMPTY) return false;
         }
         if (full) return true;
         return false;
