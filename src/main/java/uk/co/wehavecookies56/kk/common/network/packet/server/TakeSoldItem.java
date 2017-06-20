@@ -42,8 +42,8 @@ public class TakeSoldItem extends AbstractMessage.AbstractServerMessage<TakeSold
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		player.inventory.getStackInSlot(player.inventory.getSlotFor(soldItem)).stackSize -= quantity;
-		if (player.inventory.getStackInSlot(player.inventory.getSlotFor(soldItem)).stackSize < 1)
+		player.inventory.getStackInSlot(player.inventory.getSlotFor(soldItem)).setCount(player.inventory.getStackInSlot(player.inventory.getSlotFor(soldItem)).getCount()-quantity);
+		if (player.inventory.getStackInSlot(player.inventory.getSlotFor(soldItem)).getCount() < 1)
 			player.inventory.removeStackFromSlot(player.inventory.getSlotFor(soldItem));
 		player.getCapability(ModCapabilities.MUNNY, null).addMunny(munnyToGive * quantity);
 		PacketDispatcher.sendTo(new SyncMunnyData(player.getCapability(ModCapabilities.MUNNY, null)), (EntityPlayerMP) player);

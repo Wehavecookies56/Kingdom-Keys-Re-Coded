@@ -12,6 +12,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
@@ -78,8 +80,8 @@ public class PlayerStatsCapability {
 		void setChoice1(String choice);
 		void setChoice2(String choice);
 
-		InventoryPotionsMenu getInventoryPotionsMenu();
-		
+		ItemStackHandler getInventoryPotionsMenu();
+
 		boolean getHudMode();
 		void setHudMode(boolean mode);
 		int getExpNeeded(int level, int experience);
@@ -108,7 +110,8 @@ public class PlayerStatsCapability {
 			
 			properties.setString("Choice1", instance.getChoice1());
 			properties.setString("Choice2", instance.getChoice2());
-			instance.getInventoryPotionsMenu().writeToNBT(properties);
+			properties.setTag("PotionsInvKey", instance.getInventoryPotionsMenu().serializeNBT());
+
 
 			return properties;
 		}
@@ -130,7 +133,7 @@ public class PlayerStatsCapability {
 			
 			instance.setChoice1(properties.getString("Choice1"));
 			instance.setChoice2(properties.getString("Choice2"));
-			instance.getInventoryPotionsMenu().readFromNBT(properties);
+			instance.getInventoryPotionsMenu().deserializeNBT(properties.getCompoundTag("PotionsInvKey"));
 		}
 	}
 	
@@ -165,11 +168,11 @@ public class PlayerStatsCapability {
 		
 		private String choice1="none",choice2="none";
 		
-		private final InventoryPotionsMenu inventoryPotions = new InventoryPotionsMenu();
+		private final ItemStackHandler inventoryPotions = new ItemStackHandler(InventoryPotionsMenu.INV_SIZE);
 
 		@Override public List<String> getMessages() { return this.messages; }
 
-		@Override public InventoryPotionsMenu getInventoryPotionsMenu(){return this.inventoryPotions;}
+		@Override public ItemStackHandler getInventoryPotionsMenu(){return this.inventoryPotions;}
 
         @Override public double getMP() { return this.mp; }
         @Override public double getMaxMP() { return this.maxMP; }

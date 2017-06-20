@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
@@ -38,9 +39,11 @@ public class SummonKeyblade extends AbstractMessage.AbstractServerMessage<Summon
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		ItemStack slot = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0);
-		ItemStack test = slot.copy();
-		test.setItem(stack.getItem());
-		
+		ItemStack test = stack;
+		if (slot.hasTagCompound()) {
+			System.out.println("OK");
+			test.setTagCompound(slot.getTagCompound());
+		}
 		player.inventory.setInventorySlotContents(player.inventory.currentItem, test);
 		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
 		player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(true);

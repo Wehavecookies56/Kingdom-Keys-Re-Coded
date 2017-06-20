@@ -69,9 +69,10 @@ public class ChunkProviderDiveToTheHeart implements IChunkGenerator {
 
     @Nullable
     @Override
-    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position) {
+    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
         return null;
     }
+
 
     @Override
     public void recreateStructures(Chunk chunkIn, int x, int z) {

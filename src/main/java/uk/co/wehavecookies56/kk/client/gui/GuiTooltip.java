@@ -128,10 +128,10 @@ public abstract class GuiTooltip extends GuiScreen {
 			GuiButton button = buttonList.get(i);
 
 			if (GetButtonTooltip(button.id) != null) {
-				boolean flag = mc.fontRendererObj.getUnicodeFlag();
-				mc.fontRendererObj.setUnicodeFlag(true);
-				mc.fontRendererObj.drawString("?", button.xPosition + button.getButtonWidth() - 5, button.yPosition, 0x99FFFFFF);
-				mc.fontRendererObj.setUnicodeFlag(flag);
+				boolean flag = mc.fontRenderer.getUnicodeFlag();
+				mc.fontRenderer.setUnicodeFlag(true);
+				mc.fontRenderer.drawString("?", button.xPosition + button.getButtonWidth() - 5, button.yPosition, 0x99FFFFFF);
+				mc.fontRenderer.setUnicodeFlag(flag);
 			}
 		}
 	}
@@ -143,10 +143,10 @@ public abstract class GuiTooltip extends GuiScreen {
 	 * @param button
 	 */
 	protected void RenderTooltipButtonMouseoverEffect (GuiButton button) {
-		boolean flag = mc.fontRendererObj.getUnicodeFlag();
-		mc.fontRendererObj.setUnicodeFlag(true);
-		mc.fontRendererObj.drawString(FontCodes.AQUA + "?", button.xPosition + button.getButtonWidth() - 5, button.yPosition, 0xFFFFFF);
-		mc.fontRendererObj.setUnicodeFlag(flag);
+		boolean flag = mc.fontRenderer.getUnicodeFlag();
+		mc.fontRenderer.setUnicodeFlag(true);
+		mc.fontRenderer.drawString(FontCodes.AQUA + "?", button.xPosition + button.getButtonWidth() - 5, button.yPosition, 0xFFFFFF);
+		mc.fontRenderer.setUnicodeFlag(flag);
 	}
 
 	/**
@@ -187,7 +187,7 @@ public abstract class GuiTooltip extends GuiScreen {
 		// render the foreground text
 		int lineCount = 0;
 		for (String s : tooltipArray) {
-			mc.fontRendererObj.drawString(s, tooltipX + 2, tooltipY + 2 + lineCount * LINE_HEIGHT, 0xFFFFFF);
+			mc.fontRenderer.drawString(s, tooltipX + 2, tooltipY + 2 + lineCount * LINE_HEIGHT, 0xFFFFFF);
 			lineCount++;
 		}
 	}
@@ -211,7 +211,7 @@ public abstract class GuiTooltip extends GuiScreen {
 			String[] tooltipWords = section.split(" ");
 
 			for (String tooltipWord : tooltipWords) {
-				int lineWidthWithNextWord = mc.fontRendererObj.getStringWidth(tooltip + tooltipWord);
+				int lineWidthWithNextWord = mc.fontRenderer.getStringWidth(tooltip + tooltipWord);
 				if (lineWidthWithNextWord > tooltipMaxWidth) {
 					tooltipArrayList.add(tooltip.trim());
 					tooltip = tooltipWord + " ";
@@ -249,7 +249,7 @@ public abstract class GuiTooltip extends GuiScreen {
 	private int GetTooltipWidth (String[] tooltipArray) {
 		int longestWidth = 0;
 		for (String s : tooltipArray) {
-			int width = mc.fontRendererObj.getStringWidth(s);
+			int width = mc.fontRenderer.getStringWidth(s);
 			if (width > longestWidth) longestWidth = width;
 		}
 		return longestWidth;
@@ -262,7 +262,7 @@ public abstract class GuiTooltip extends GuiScreen {
 	 * @return
 	 */
 	private int GetTooltipHeight (String[] tooltipArray) {
-		int tooltipHeight = mc.fontRendererObj.FONT_HEIGHT - 2;
+		int tooltipHeight = mc.fontRenderer.FONT_HEIGHT - 2;
 		if (tooltipArray.length > 1) tooltipHeight += (tooltipArray.length - 1) * LINE_HEIGHT;
 		return tooltipHeight;
 	}

@@ -38,11 +38,11 @@ public class Page extends GuiScreen {
 	}
 
 	public void drawPageForeground (int width, int height) {
-		drawString(Minecraft.getMinecraft().fontRendererObj, name.substring(name.lastIndexOf("_") + 1) + TextFormatting.UNDERLINE + TextFormatting.BOLD, xPos, yPos, 0xFFFFFF);
+		drawString(Minecraft.getMinecraft().fontRenderer, name.substring(name.lastIndexOf("_") + 1) + TextFormatting.UNDERLINE + TextFormatting.BOLD, xPos, yPos, 0xFFFFFF);
 	}
 
 	public void drawPageBackground (int width, int height) {
-		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
+		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRenderer;
 		drawBG(new ResourceLocation(Reference.MODID, "textures/gui/journal.png"), getxPos() - 5, getyPos() - 5, (new ScaledResolution(Minecraft.getMinecraft())).getScaledWidth() - getxPos() - (fontRendererObj.FONT_HEIGHT * 2) + 5, (new ScaledResolution(Minecraft.getMinecraft())).getScaledHeight() - getyPos() - (fontRendererObj.FONT_HEIGHT * 2) + 5, 1F);
 	}
 

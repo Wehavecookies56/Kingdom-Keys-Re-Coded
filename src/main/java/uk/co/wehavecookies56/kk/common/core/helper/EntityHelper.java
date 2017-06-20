@@ -8,10 +8,12 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class EntityHelper 
 {
@@ -28,11 +30,11 @@ public class EntityHelper
 	public static double percentage(double i, double j) {return i * (j / 100);}
 	
 	public static void registerEntity(String name, Class<? extends Entity> entity) {
-		EntityRegistry.registerModEntity(entity, name, entityID++, KingdomKeys.instance, 64, 3, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, name), entity, name, entityID++, KingdomKeys.instance, 64, 3, true);
 	}
 
 	public static void registerEntity(String name, Class<? extends Entity> entity, int color1, int color2) {
-		EntityRegistry.registerModEntity(entity, name, entityID++, KingdomKeys.instance, 64, 3, true, color1, color2);
+		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, name), entity, name, entityID++, KingdomKeys.instance, 64, 3, true, color1, color2);
 	}
 	
     public static List<EntityLivingBase> getEntitiesNear(Entity e, double radius)

@@ -40,20 +40,20 @@ public class GuiOverlay extends GuiScreen {
 			PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
 			if (showExp) {
 				String reqExp = String.valueOf(STATS.getExpNeeded(STATS.getLevel(), STATS.getExperience()));
-				mc.fontRendererObj.drawString("Next LV", 5, 5, 0xFFFFFF);
-				mc.fontRendererObj.drawString(reqExp, 5, 5 + mc.fontRendererObj.FONT_HEIGHT, 0xFFFFFF);
+				mc.fontRenderer.drawString("Next LV", 5, 5, 0xFFFFFF);
+				mc.fontRenderer.drawString(reqExp, 5, 5 + mc.fontRenderer.FONT_HEIGHT, 0xFFFFFF);
 				if (timeExp + 4 <= (int) Minecraft.getSystemTime() / 1000) showExp = false;
 			}
 			if (showMunny) {
 				if (!showExp) {
 					GL11.glPushMatrix();
 					GL11.glTranslatef(1, 1, 0);
-					mc.fontRendererObj.drawString("Munny Get!", 5, 5, 0xFFFFFF);
-					mc.fontRendererObj.drawString(munnyGet + "", 5, 5 + mc.fontRendererObj.FONT_HEIGHT, 0xFFFFFF);
+					mc.fontRenderer.drawString("Munny Get!", 5, 5, 0xFFFFFF);
+					mc.fontRenderer.drawString(munnyGet + "", 5, 5 + mc.fontRenderer.FONT_HEIGHT, 0xFFFFFF);
 					GL11.glPopMatrix();
 				} else {
-					mc.fontRendererObj.drawString("Munny Get!", 5, 5 + mc.fontRendererObj.FONT_HEIGHT + 10, 0xFFFFFF);
-					mc.fontRendererObj.drawString(munnyGet + "", 5, 5 + (mc.fontRendererObj.FONT_HEIGHT * 2) + 10, 0xFFFFFF);
+					mc.fontRenderer.drawString("Munny Get!", 5, 5 + mc.fontRenderer.FONT_HEIGHT + 10, 0xFFFFFF);
+					mc.fontRenderer.drawString(munnyGet + "", 5, 5 + (mc.fontRenderer.FONT_HEIGHT * 2) + 10, 0xFFFFFF);
 				}
 				if (timeMunny + 4 <= (int) Minecraft.getSystemTime() / 1000) showMunny = false;
 			}
@@ -61,7 +61,7 @@ public class GuiOverlay extends GuiScreen {
 				ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/levelup.png");
 				GL11.glPushMatrix();
 				{
-					int height = (mc.fontRendererObj.FONT_HEIGHT - 3) * STATS.getMessages().size();
+					int height = (mc.fontRenderer.FONT_HEIGHT - 3) * STATS.getMessages().size();
 					GL11.glEnable(GL11.GL_BLEND);
 					GL11.glColor4ub((byte) ConfigHandler.interfaceColour[0], (byte) ConfigHandler.interfaceColour[1], (byte) ConfigHandler.interfaceColour[2], (byte) 255);
 					GL11.glPushMatrix();
@@ -77,32 +77,32 @@ public class GuiOverlay extends GuiScreen {
 						GL11.glPopMatrix();
 						GL11.glPushMatrix();
 						{
-							GL11.glTranslatef(width - ((mc.fontRendererObj.getStringWidth("LEVEL UP!")) * 0.75f) - 115, 4, 0);
+							GL11.glTranslatef(width - ((mc.fontRenderer.getStringWidth("LEVEL UP!")) * 0.75f) - 115, 4, 0);
 							GL11.glScalef(0.75f, 0.75f, 1);
-							drawString(mc.fontRendererObj, "LEVEL UP!" + TextFormatting.ITALIC, 0, 0, Color.decode(String.format("#%02x%02x%02x", (byte) ConfigHandler.interfaceColour[0], (byte) ConfigHandler.interfaceColour[1], (byte) ConfigHandler.interfaceColour[2])).hashCode());
+							drawString(mc.fontRenderer, "LEVEL UP!" + TextFormatting.ITALIC, 0, 0, Color.decode(String.format("#%02x%02x%02x", (byte) ConfigHandler.interfaceColour[0], (byte) ConfigHandler.interfaceColour[1], (byte) ConfigHandler.interfaceColour[2])).hashCode());
 						}
 						GL11.glPopMatrix();
 						GL11.glPushMatrix();
 						{
 							GL11.glPushMatrix();
 							{
-								GL11.glTranslatef(width - ((mc.fontRendererObj.getStringWidth("LV. ")) * 0.75f) - 90, 4, 0);
+								GL11.glTranslatef(width - ((mc.fontRenderer.getStringWidth("LV. ")) * 0.75f) - 90, 4, 0);
 								GL11.glScalef(0.75f, 0.75f, 1);
-								drawString(mc.fontRendererObj, "LV.", 0, 0, 0xE3D000);
+								drawString(mc.fontRenderer, "LV.", 0, 0, 0xE3D000);
 							}
 							GL11.glPopMatrix();
 							GL11.glPushMatrix();
 							{
-								GL11.glTranslatef(width - 256.0f * 0.75f + ((mc.fontRendererObj.getStringWidth("999")) * 0.75f) + 88, 4, 0);
+								GL11.glTranslatef(width - 256.0f * 0.75f + ((mc.fontRenderer.getStringWidth("999")) * 0.75f) + 88, 4, 0);
 								GL11.glScalef(0.75f, 0.75f, 1);
-								drawString(mc.fontRendererObj, "" + STATS.getLevel(), 0, 0, 0xFFFFFF);
+								drawString(mc.fontRenderer, "" + STATS.getLevel(), 0, 0, 0xFFFFFF);
 							}
 							GL11.glPopMatrix();
 							GL11.glPushMatrix();
 							{
-								GL11.glTranslatef(width - ((mc.fontRendererObj.getStringWidth(mc.player.getDisplayNameString())) * 0.75f) - 7, 4, 0);
+								GL11.glTranslatef(width - ((mc.fontRenderer.getStringWidth(mc.player.getDisplayNameString())) * 0.75f) - 7, 4, 0);
 								GL11.glScalef(0.75f, 0.75f, 1);
-								drawString(mc.fontRendererObj, mc.player.getDisplayNameString(), 0, 0, 0xFFFFFF);
+								drawString(mc.fontRenderer, mc.player.getDisplayNameString(), 0, 0, 0xFFFFFF);
 							}
 							GL11.glPopMatrix();
 						}
@@ -148,10 +148,10 @@ public class GuiOverlay extends GuiScreen {
 								message = Strings.Stats_LevelUp_Magic;
 							else if (STATS.getMessages().get(i).toString().equals("hp"))
 								message = Strings.Stats_LevelUp_HP;
-							GL11.glTranslatef((width - 256.0f * 0.8f + (mc.fontRendererObj.getStringWidth("Maximum HP Increased!")) * 0.8f), mc.fontRendererObj.FONT_HEIGHT * 0.8f * i + 23, 0);
+							GL11.glTranslatef((width - 256.0f * 0.8f + (mc.fontRenderer.getStringWidth("Maximum HP Increased!")) * 0.8f), mc.fontRenderer.FONT_HEIGHT * 0.8f * i + 23, 0);
 							GL11.glTranslatef(-35, 0, 0);
 							GL11.glScalef(0.8f, 0.8f, 1);
-							drawString(mc.fontRendererObj, Utils.translateToLocal(message), 0, 0, 0xFFFFFF);
+							drawString(mc.fontRenderer, Utils.translateToLocal(message), 0, 0, 0xFFFFFF);
 
 						}
 						GL11.glPopMatrix();

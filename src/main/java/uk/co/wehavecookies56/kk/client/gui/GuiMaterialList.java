@@ -23,7 +23,7 @@ public class GuiMaterialList extends GuiScrollingList {
 
 	private GuiSynthesis parent;
 
-	FontRenderer f = Minecraft.getMinecraft().fontRendererObj;
+	FontRenderer f = Minecraft.getMinecraft().fontRenderer;
 	RenderItem ir = Minecraft.getMinecraft().getRenderItem();
 	static ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
 	static int width = sr.getScaledWidth();

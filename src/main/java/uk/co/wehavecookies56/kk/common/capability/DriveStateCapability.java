@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
+import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryDriveForms;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -29,7 +30,7 @@ public class DriveStateCapability {
 
 		void learnDriveForm(DriveForm form);
 		
-		InventoryDriveForms getInventoryDriveForms();
+		ItemStackHandler getInventoryDriveForms();
 	}
 
 	public static class Storage implements IStorage<IDriveState> {
@@ -51,8 +52,8 @@ public class DriveStateCapability {
 			properties.setInteger("DriveExpLimit", instance.getDriveExp(Strings.Form_Limit));
 			properties.setInteger("DriveExpMaster", instance.getDriveExp(Strings.Form_Master));
 			properties.setInteger("DriveExpFinal", instance.getDriveExp(Strings.Form_Final));
-			
-			instance.getInventoryDriveForms().writeToNBT(properties);
+
+			properties.setTag("DriveInvKey", instance.getInventoryDriveForms().serializeNBT());
 
 			return properties;
 		}
@@ -75,7 +76,7 @@ public class DriveStateCapability {
 			instance.setDriveExp(Strings.Form_Master, properties.getInteger("DriveExpMaster"));
 			instance.setDriveExp(Strings.Form_Final, properties.getInteger("DriveExpFinal"));
 
-			instance.getInventoryDriveForms().readFromNBT(properties);
+			instance.getInventoryDriveForms().deserializeNBT(properties.getCompoundTag("DriveInvKey"));
 		}
 	}
 	
@@ -83,7 +84,7 @@ public class DriveStateCapability {
         private boolean inDrive = false;
         private String activeDrive = "none";
         int antiPoints = 0;
-		private final InventoryDriveForms inventoryDrive = new InventoryDriveForms();
+		private final ItemStackHandler inventoryDrive = new ItemStackHandler(5);
 		private static List<String> driveForms = new ArrayList<String>();
 
 		int valor, wisdom, limit, master, Final;
@@ -133,7 +134,7 @@ public class DriveStateCapability {
 		public void learnDriveForm(DriveForm form) {
 			driveForms.add(form.getName());
 		}
-		@Override public InventoryDriveForms getInventoryDriveForms(){return this.inventoryDrive;}
+		@Override public ItemStackHandler getInventoryDriveForms(){return this.inventoryDrive;}
 		@Override public int getDriveExp(String drive) {
 			switch(drive) {
 			case Strings.Form_Valor:

@@ -269,6 +269,7 @@ public class CapabilityEvents {
                 ModCapabilities.SYNTHESIS_MATERIALS.getStorage().readNBT(ModCapabilities.SYNTHESIS_MATERIALS, inst, null, nbt);
             }
         });
+
     }
 
 }

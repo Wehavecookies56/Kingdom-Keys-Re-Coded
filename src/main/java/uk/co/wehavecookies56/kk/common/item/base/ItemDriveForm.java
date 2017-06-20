@@ -21,11 +21,11 @@ public abstract class ItemDriveForm extends Item {
 		this.form = form;
 		setMaxStackSize(1);
 	}
-	
+
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer playerIn, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if (world.isRemote) PacketDispatcher.sendToServer(new LevelUpDrive(this.form));
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getActiveItemStack());
 	}
 
 	@Override

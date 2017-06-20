@@ -5,6 +5,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
 
 public class ContainerKKChest extends Container {
@@ -26,15 +29,15 @@ public class ContainerKKChest extends Container {
 
 	public ContainerKKChest (InventoryPlayer invPlayer, TileEntityKKChest tileEntityKKChest) {
 		this.tileEntityKKChest = tileEntityKKChest;
-
-		if (TE_INVENTORY_SLOT_COUNT != tileEntityKKChest.getSizeInventory()) System.err.println("Mismatched slot count in ContainerBasic(" + TE_INVENTORY_SLOT_COUNT + ") and TileInventory (" + tileEntityKKChest.getSizeInventory() + ")");
+		IItemHandler inventory = tileEntityKKChest.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+		if (TE_INVENTORY_SLOT_COUNT != inventory.getSlots()) System.err.println("Mismatched slot count in ContainerBasic(" + TE_INVENTORY_SLOT_COUNT + ") and TileInventory (" + inventory.getSlots() + ")");
 		
 		int i;
 		int j;
 		
 		for (i = 0; i < 4; i++)
 			for (j = 0; j < 9; j++)
-				addSlotToContainer(new Slot(tileEntityKKChest, j + i * 9, 8 + j * 18, 20 + i * 18));
+				addSlotToContainer(new SlotItemHandler(inventory, j + i * 9, 8 + j * 18, 20 + i * 18));
 
 		for (i = 0; i < 3; ++i)
 			for (j = 0; j < 9; ++j)
@@ -46,37 +49,40 @@ public class ContainerKKChest extends Container {
 
 	@Override
 	public boolean canInteractWith (EntityPlayer player) {
-		return tileEntityKKChest.isUsableByPlayer(player);
+		return true;
 	}
 
 	@Override
-	public ItemStack transferStackInSlot (EntityPlayer player, int sourceSlotIndex) {
-		Slot sourceSlot = inventorySlots.get(sourceSlotIndex);
-		if (sourceSlot == null || !sourceSlot.getHasStack()) return null;
-		ItemStack sourceStack = sourceSlot.getStack();
-		ItemStack copyOfSourceStack = sourceStack.copy();
+	public ItemStack transferStackInSlot (EntityPlayer player, int index) {
+		ItemStack itemStack = ItemStack.EMPTY;
+		Slot slot = inventorySlots.get(index);
+		if (slot != null && slot.getHasStack()) {
+			ItemStack itemStack1 = slot.getStack();
+			itemStack = itemStack1.copy();
 
-		if (sourceSlotIndex >= VANILLA_FIRST_SLOT_INDEX && sourceSlotIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-			if (!mergeItemStack(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false)) return null;
-		} else if (sourceSlotIndex >= TE_INVENTORY_FIRST_SLOT_INDEX && sourceSlotIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-			if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) return null;
-		} else {
-			System.err.print("Invalid slotIndex:" + sourceSlotIndex);
-			return null;
+			int containerSlots = inventorySlots.size() - player.inventory.mainInventory.size();
+
+			if (index < containerSlots) {
+				if (!this.mergeItemStack(itemStack1, containerSlots, inventorySlots.size(), true)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (!this.mergeItemStack(itemStack1, 0, containerSlots, false)) {
+				return ItemStack.EMPTY;
+			}
+
+			if (itemStack1.getCount() == 0) {
+				slot.putStack(ItemStack.EMPTY);
+			} else {
+				slot.onSlotChanged();
+			}
+
+			if (itemStack1.getCount() == itemStack.getCount()) {
+				return ItemStack.EMPTY;
+			}
+
+			slot.onTake(player, itemStack1);
 		}
 
-		if (sourceStack.stackSize == 0)
-			sourceSlot.putStack(null);
-		else
-			sourceSlot.onSlotChanged();
-
-		sourceSlot.onPickupFromSlot(player, sourceStack);
-		return copyOfSourceStack;
-	}
-
-	@Override
-	public void onContainerClosed (EntityPlayer playerIn) {
-		super.onContainerClosed(playerIn);
-		this.tileEntityKKChest.closeInventory(playerIn);
+		return itemStack;
 	}
 }

@@ -8,6 +8,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability.ISummonKeyblade;
+import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractClientMessage;
 
 public class SyncKeybladeData extends AbstractClientMessage<SyncKeybladeData> {
@@ -20,7 +21,7 @@ public class SyncKeybladeData extends AbstractClientMessage<SyncKeybladeData> {
 	public SyncKeybladeData(ISummonKeyblade keyblade) {
 		this.summoned = keyblade.getIsKeybladeSummoned();
 		this.data = new NBTTagCompound();
-		keyblade.getInventoryKeychain().writeToNBT(data);
+		data.setTag(InventoryKeychain.SAVE_KEY, keyblade.getInventoryKeychain().serializeNBT());
 	}
 	
 	@Override
@@ -39,7 +40,7 @@ public class SyncKeybladeData extends AbstractClientMessage<SyncKeybladeData> {
 	public void process(EntityPlayer player, Side side) {
 		final ISummonKeyblade keyblade = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
 		keyblade.setIsKeybladeSummoned(this.summoned);
-		keyblade.getInventoryKeychain().readFromNBT(data);
+		keyblade.getInventoryKeychain().deserializeNBT(data.getCompoundTag(InventoryKeychain.SAVE_KEY));
 	}
 
 }

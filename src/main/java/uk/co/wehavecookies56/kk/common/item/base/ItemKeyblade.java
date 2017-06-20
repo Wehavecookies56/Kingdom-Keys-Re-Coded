@@ -105,39 +105,38 @@ public class ItemKeyblade extends ItemSword {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if(player.isSneaking()) {
-			
+
 		} else {
-			if (worldIn.isRemote){
+			if (world.isRemote){
 				RayTraceResult rtr = Minecraft.getMinecraft().objectMouseOver;
-				if (player.getHeldItem(EnumHand.OFF_HAND) != null && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
+				if (player.getHeldItem(EnumHand.OFF_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
 					if(player.swingProgress <= 0)
 						player.swingArm(EnumHand.OFF_HAND);
 					if (rtr.entityHit != null) {
 						PacketDispatcher.sendToServer(new AttackEntity(rtr.entityHit.getEntityId()));
-						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getActiveItemStack());
 					}
-					return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+					return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getActiveItemStack());
 				}
-				
+
 			}
 		}
-		return super.onItemRightClick(itemStackIn, worldIn, player, hand);
+		return super.onItemRightClick(world, player, hand);
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		
-		if (stack.getItem() == ModItems.WoodenKeyblade || stack.getItem() == ModItems.WoodenStick || stack.getItem() == ModItems.DreamSword)
-			return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (player.getActiveItemStack().getItem() == ModItems.WoodenKeyblade || player.getActiveItemStack().getItem() == ModItems.WoodenStick || player.getActiveItemStack().getItem() == ModItems.DreamSword)
+			return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 
 		if (world.getBlockState(pos).getBlock() instanceof BlockDoor) {
 			SoundEvent sound;
 			PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-			if ((!STATS.getRecharge()) || player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) 
+			if ((!STATS.getRecharge()) || player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
 			{
-				if (world.getBlockState(pos).getValue(BlockDoor.HALF) == EnumDoorHalf.UPPER) 
+				if (world.getBlockState(pos).getValue(BlockDoor.HALF) == EnumDoorHalf.UPPER)
 				{
 					world.setBlockState(pos.down(), world.getBlockState(pos.down()).withProperty(BlockDoor.OPEN, !world.getBlockState(pos.down()).getValue(BlockDoor.OPEN)));
 					sound = world.getBlockState(pos.down()).getValue(BlockDoor.OPEN) ? SoundEvents.BLOCK_IRON_DOOR_CLOSE : SoundEvents.BLOCK_IRON_DOOR_OPEN;
@@ -151,7 +150,7 @@ public class ItemKeyblade extends ItemSword {
 				}
 			}
 		}
-		return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+		return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 	}
 	
 }

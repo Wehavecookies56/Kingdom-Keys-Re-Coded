@@ -14,9 +14,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
+
+import javax.annotation.Nullable;
 
 public class BlockBlastBlox extends BlockBlox {
 
@@ -24,13 +27,13 @@ public class BlockBlastBlox extends BlockBlox {
 		super(material, toolClass, level, hardness, resistance);
 	}
 
-	@SuppressWarnings("deprecation")
+	@Nullable
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox (IBlockState worldIn, World pos, BlockPos state) {
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		float f = 0.0625F;
-		return new AxisAlignedBB(state.getX() + f, state.getY(), state.getZ() + f, state.getX() + 1 - f, state.getY() + 1 - f, state.getZ() + 1 - f);
+		return new AxisAlignedBB(pos.getX() + f, pos.getY(), pos.getZ() + f, pos.getX() + 1 - f, pos.getY() + 1 - f, pos.getZ() + 1 - f);
 	}
-	
+
 	@Override
 	public void onEntityCollidedWithBlock (World world, BlockPos pos, IBlockState state, Entity entity) {
 		explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, entity instanceof EntityLivingBase ? (EntityLivingBase) entity : null);
@@ -58,21 +61,21 @@ public class BlockBlastBlox extends BlockBlox {
 			world.spawnEntity(entitytntprimed);
 		}
 	}
-	
+
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND) == new ItemStack(Items.FLINT_AND_STEEL)) {
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND) == new ItemStack(Items.FLINT_AND_STEEL)) {
 			explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, player);
 			world.setBlockToAir(pos);
 			player.getHeldItem(EnumHand.MAIN_HAND).damageItem(1, player);
 			return true;
 		} else
-			return super.onBlockActivated(world, pos, state, player, hand, heldItem, side, hitX, hitY, hitZ);
+			return super.onBlockActivated(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
 	}
 
 	@Override
 	public void onBlockClicked (World world, BlockPos pos, EntityPlayer player) {
-		if (player.getHeldItem(EnumHand.MAIN_HAND) != null) {
+		if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) {
 			if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() == Items.FEATHER)
 				world.destroyBlock(pos, true);
 			else {

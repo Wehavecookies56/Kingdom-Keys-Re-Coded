@@ -108,7 +108,7 @@ public class GuiShop extends GuiScreen {
         //this.buttonList.add(plus = new GuiButton(PLUS, 100, 120, 10, 10, "+"));
         //this.buttonList.add(minus = new GuiButton(MINUS, 110, 120, 10, 10, "-"));
         this.buttonList.add(synthesis = new GuiButton(SYNTHESIS, 5, 90 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Title)));
-        quantity = new GuiNumberTextField(QUANTITY, Minecraft.getMinecraft().fontRendererObj, 222, height - ((height / 8) + 70 / 16) - 45, 20, 15, 64);
+        quantity = new GuiNumberTextField(QUANTITY, Minecraft.getMinecraft().fontRenderer, 222, height - ((height / 8) + 70 / 16) - 45, 20, 15, 64);
         quantity.setText("0");
         updateButtons();
     }
@@ -151,8 +151,8 @@ public class GuiShop extends GuiScreen {
                     if (canAffordSelected()) {
                         ItemStack stack = GuiBuyList.itemsForSale.get(buySelected);
                         if (!quantity.getText().isEmpty())
-                            stack.stackSize = Integer.parseInt(quantity.getText());
-                        PacketDispatcher.sendToServer(new GiveBoughtItem(getPriceFromSelected(buySelected, false), stack.stackSize, stack));
+                            stack.setCount(Integer.parseInt(quantity.getText()));
+                        PacketDispatcher.sendToServer(new GiveBoughtItem(getPriceFromSelected(buySelected, false), stack.getCount(), stack));
                     }
                 }
                 break;
@@ -318,19 +318,19 @@ public class GuiShop extends GuiScreen {
         GL11.glPushMatrix();
         {
             GL11.glScalef(2, 2, 2);
-            drawString(fontRendererObj, title, 5, 5, 0xFFFFFF);
+            drawString(fontRenderer, title, 5, 5, 0xFFFFFF);
         }
         GL11.glPopMatrix();
-        if (submenu == HOME) drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Shop_Main), 15, 30, 0xFFFFFF);
-        if (submenu == BUY) drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Shop_Main_Buy), 15, 30, 0xFFFFFF);
-        if (submenu == SELL) drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Shop_Main_Sell), 15, 30, 0xFFFFFF);
+        if (submenu == HOME) drawString(fontRenderer, Utils.translateToLocal(Strings.Gui_Shop_Main), 15, 30, 0xFFFFFF);
+        if (submenu == BUY) drawString(fontRenderer, Utils.translateToLocal(Strings.Gui_Shop_Main_Buy), 15, 30, 0xFFFFFF);
+        if (submenu == SELL) drawString(fontRenderer, Utils.translateToLocal(Strings.Gui_Shop_Main_Sell), 15, 30, 0xFFFFFF);
         GL11.glPushMatrix();
         {
-            drawString(fontRendererObj, mc.player.world.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
-            drawString(fontRendererObj, mc.player.world.getBiome(mc.player.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.getBiome(mc.player.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
-            drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.world) + ":" + getWorldMinutes(mc.world), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
+            drawString(fontRenderer, mc.player.world.provider.getDimensionType().getName(), screenWidth - fontRenderer.getStringWidth(mc.player.world.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
+            drawString(fontRenderer, mc.player.world.getBiome(mc.player.getPosition()).getBiomeName(), screenWidth - fontRenderer.getStringWidth(mc.player.world.getBiome(mc.player.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
+            drawString(fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.world) + ":" + getWorldMinutes(mc.world), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
             MunnyCapability.IMunny MUNNY = mc.player.getCapability(ModCapabilities.MUNNY, null);
-            drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
+            drawString(fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
         }
         GL11.glPopMatrix();
 

@@ -29,8 +29,11 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
+import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
@@ -50,26 +53,26 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity (World worldIn, int meta) {
+	public TileEntity createNewTileEntity (World world, int meta) {
 		return new TileEntityKKChest();
 	}
-	
+
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (!world.isRemote) {
-			if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
+			if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
 				if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() != ModItems.WoodenKeyblade && player.getHeldItem(EnumHand.MAIN_HAND).getItem() != ModItems.WoodenStick && player.getHeldItem(EnumHand.MAIN_HAND).getItem() != ModItems.DreamSword) {
 					if (world.getTileEntity(pos) instanceof TileEntityKKChest) {
 						TileEntityKKChest te = (TileEntityKKChest) world.getTileEntity(pos);
-						if (te.getKeyblade() == null) {
+						if (te.getKeyblade() == null || te.getKeyblade() == ItemStack.EMPTY) {
 							te.setKeyblade(player.getHeldItemMainhand());
 							te.markDirty();
 
-							player.sendMessage(new TextComponentString(TextFormatting.GREEN + "Set " + heldItem.getDisplayName() + " as the keyblade to unlock the chest"));
+							player.sendMessage(new TextComponentString(TextFormatting.GREEN + "Set " + player.getHeldItemMainhand().getDisplayName() + " as the keyblade to unlock the chest"));
 
 							player.openGui(KingdomKeys.instance, GuiIDs.GUI_KKCHEST_INV, world, pos.getX(), pos.getY(), pos.getZ());
 							return true;
-						} else if (te.getKeyblade().getItem() != null && te.getKeyblade().getItem() == player.getHeldItemMainhand().getItem()) {
+						} else if (te.getKeyblade() != null && te.getKeyblade() != ItemStack.EMPTY && te.getKeyblade().getItem() == player.getHeldItemMainhand().getItem()) {
 							player.openGui(KingdomKeys.instance, GuiIDs.GUI_KKCHEST_INV, world, pos.getX(), pos.getY(), pos.getZ());
 							return true;
 						} else if (hand == EnumHand.MAIN_HAND) {
@@ -153,11 +156,12 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
 	@Override
 	public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {
 
-		IInventory inventory = worldIn.getTileEntity(pos) instanceof IInventory ? (IInventory) worldIn.getTileEntity(pos) : null;
+		TileEntityKKChest te = (TileEntityKKChest) worldIn.getTileEntity(pos);
+		IItemHandler inventory = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
 
 		if (inventory != null) {
-			for (int i = 0; i < inventory.getSizeInventory(); i++)
-				if (inventory.getStackInSlot(i) != null) {
+			for (int i = 0; i < inventory.getSlots(); i++)
+				if (inventory.getStackInSlot(i) != ItemStack.EMPTY) {
 					EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, inventory.getStackInSlot(i));
 
 					float multiplier = 0.1f;
@@ -171,7 +175,6 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
 
 					worldIn.spawnEntity(item);
 				}
-			inventory.clear();
 		}
 		super.breakBlock(worldIn, pos, state);
 	}

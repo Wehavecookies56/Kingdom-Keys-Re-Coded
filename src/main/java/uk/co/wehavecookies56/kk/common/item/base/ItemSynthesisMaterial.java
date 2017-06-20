@@ -8,6 +8,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -26,7 +27,7 @@ public class ItemSynthesisMaterial extends Item {
 	}
 
 	@Override
-	public void getSubItems (Item itemIn, CreativeTabs tab, List subItems) {
+	public void getSubItems (Item itemIn, CreativeTabs tab, NonNullList subItems) {
 		ItemStack BlazingShard = new ItemStack(ModItems.SynthesisMaterial, 1);
 		ItemStack BlazingStone = new ItemStack(ModItems.SynthesisMaterial, 1);
 		ItemStack BlazingGem = new ItemStack(ModItems.SynthesisMaterial, 1);

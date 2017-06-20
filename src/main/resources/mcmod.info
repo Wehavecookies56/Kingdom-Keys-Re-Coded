@@ -11,7 +11,7 @@
   "credits": "Huge thanks to Sr.Gato and Lewis Weekes for supporting the mod on Patreon!\nstel312 and Pokemew12 for the extra 3D models!\nYoko Shimomura and Utada Hikaru for the incredible soundtrack\nSquare Enix and Disney for creating Kingdom Hearts",
   "logoFile": "",
   "screenshots": [],
-  "requiredMods": ["Forge"],
+  "requiredMods": [],
   "dependencies": [],
   "dependants": [],
   "useDependencyInformation": true

@@ -6,6 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagL;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractServerMessage;
@@ -41,13 +43,12 @@ public class SynthesisMaterialPickup extends AbstractServerMessage<SynthesisMate
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		//player.inventory.consumeInventoryItem(toRemove.getItem());
-		toRemove.stackSize--;
+		toRemove.setCount(toRemove.getCount()-1);
 		if (bag.getItem().equals(ModItems.SynthesisBagL)) {
-			InventorySynthesisBagL bagL = new InventorySynthesisBagL(bag);
-			for (int i = 0; i < bagL.getSizeInventory(); i++)
-				if (bagL.getStackInSlot(i) == null) {
-					bagL.setInventorySlotContents(0, toRemove);
-					bagL.markDirty();
+			IItemHandler bagL = bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+			for (int i = 0; i < bagL.getSlots(); i++)
+				if (bagL.getStackInSlot(i) == ItemStack.EMPTY) {
+					bagL.insertItem(0, toRemove, false);
 					break;
 				}
 		}

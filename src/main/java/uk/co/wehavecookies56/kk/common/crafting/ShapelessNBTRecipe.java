@@ -9,6 +9,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.oredict.OreDictionary;
@@ -56,7 +57,7 @@ public class ShapelessNBTRecipe implements IRecipe {
         ArrayList<Object> required = new ArrayList<>(input);
         for(int s = 0; s < inv.getSizeInventory(); s++){
             ItemStack slot = inv.getStackInSlot(s);
-            if(slot != null){
+            if(slot != ItemStack.EMPTY){
                 boolean inRecipe = false;
                 Iterator<Object> req = required.iterator();
                 while (req.hasNext()){
@@ -109,14 +110,17 @@ public class ShapelessNBTRecipe implements IRecipe {
     }
 
     @Override
-    public ItemStack[] getRemainingItems(InventoryCrafting inv) {
-        ItemStack[] stack = new ItemStack[inv.getSizeInventory()];
+    public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
+        NonNullList<ItemStack> stack = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
 
-        for (int i = 0; i < stack.length; i++) {
+        for (int i = 0; i < stack.size(); i++) {
             ItemStack itemStack = inv.getStackInSlot(i);
-            stack[i] = ForgeHooks.getContainerItem(itemStack);
+            stack.set(i,ForgeHooks.getContainerItem(itemStack));
         }
 
         return stack;
     }
+
+
+
 }

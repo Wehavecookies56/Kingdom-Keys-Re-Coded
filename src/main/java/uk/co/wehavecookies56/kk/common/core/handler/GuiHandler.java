@@ -35,13 +35,13 @@ public class GuiHandler implements IGuiHandler {
         TileEntity te = world.getTileEntity(xyz);
 
         if (ID == GuiIDs.GUI_KEYCHAIN_INV)
-            return new ContainerKeychain(player, player.inventory, player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain());
+            return new ContainerKeychain(player, player.inventory);
         else if (ID == GuiIDs.GUI_POTIONS_INV)
-            return new ContainerPotionsMenu(player, player.inventory, player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu());
+            return new ContainerPotionsMenu(player, player.inventory);
         else if (ID == GuiIDs.GUI_SPELLS_INV)
-            return new ContainerSpells(player, player.inventory, player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells());
+            return new ContainerSpells(player, player.inventory);
         else if (ID == GuiIDs.GUI_DRIVE_INV)
-            return new ContainerDriveForms(player, player.inventory, player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms());
+            return new ContainerDriveForms(player, player.inventory);
         else if (ID == GuiIDs.GUI_KKCHEST_INV) {
             if (te instanceof TileEntityKKChest)
                 return new ContainerKKChest(player.inventory, (TileEntityKKChest) world.getTileEntity(new BlockPos(x, y, z)));
@@ -52,11 +52,11 @@ public class GuiHandler implements IGuiHandler {
             return null;
         }
         else if (ID == GuiIDs.GUI_SYNTHESISBAGS_INV)
-            return new ContainerSynthesisBagS(player, player.inventory, new InventorySynthesisBagS(player.getHeldItem(EnumHand.MAIN_HAND)));
+            return new ContainerSynthesisBagS(player, player.inventory);
         else if (ID == GuiIDs.GUI_SYNTHESISBAGM_INV)
-            return new ContainerSynthesisBagM(player, player.inventory, new InventorySynthesisBagM(player.getHeldItem(EnumHand.MAIN_HAND)));
+            return new ContainerSynthesisBagM(player, player.inventory);
         else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV) 
-        	return new ContainerSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem(EnumHand.MAIN_HAND)));
+        	return new ContainerSynthesisBagL(player, player.inventory);
         else if (ID == GuiIDs.GUI_PEDESTAL_INV)
         	if (te instanceof TileEntityPedestal)
             	return new ContainerPedestal(player.inventory, (TileEntityPedestal) world.getTileEntity(new BlockPos(x, y, z)));
@@ -71,13 +71,13 @@ public class GuiHandler implements IGuiHandler {
         TileEntity te = world.getTileEntity(xyz);
 
         if (ID == GuiIDs.GUI_KEYCHAIN_INV)
-            return new GuiKeychains(player, player.inventory, player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain());
+            return new GuiKeychains(player, player.inventory);
         else if (ID == GuiIDs.GUI_POTIONS_INV)
-            return new GuiPotions(player, player.inventory, player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu());
+            return new GuiPotions(player, player.inventory);
         else if (ID == GuiIDs.GUI_SPELLS_INV)
-            return new GuiSpells(player, player.inventory, player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells());
+            return new GuiSpells(player, player.inventory);
         else if (ID == GuiIDs.GUI_DRIVE_INV)
-            return new GuiDriveForms(player, player.inventory, player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms());
+            return new GuiDriveForms(player, player.inventory);
         else if (ID == GuiIDs.GUI_KKCHEST_INV) {
             if (te instanceof TileEntityKKChest)
                 return new GuiKKChest(player.inventory, (TileEntityKKChest) world.getTileEntity(new BlockPos(x, y, z)));
@@ -87,11 +87,11 @@ public class GuiHandler implements IGuiHandler {
         else if (ID == GuiIDs.GUI_SYNTHESISTABLE)
             return new GuiSynthesis(null);
         else if (ID == GuiIDs.GUI_SYNTHESISBAGS_INV)
-            return new GuiSynthesisBagS(player, player.inventory, new InventorySynthesisBagS(player.getHeldItem(EnumHand.MAIN_HAND)));
+            return new GuiSynthesisBagS(player, player.inventory);
         else if (ID == GuiIDs.GUI_SYNTHESISBAGM_INV)
-            return new GuiSynthesisBagM(player, player.inventory, new InventorySynthesisBagM(player.getHeldItem(EnumHand.MAIN_HAND)));
+            return new GuiSynthesisBagM(player, player.inventory);
         else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV) 
-        	return new GuiSynthesisBagL(player, player.inventory, new InventorySynthesisBagL(player.getHeldItem(EnumHand.MAIN_HAND)));
+        	return new GuiSynthesisBagL(player, player.inventory);
         else if (ID == GuiIDs.GUI_SHOP) 
         	return new GuiShop(null);
         else if (ID == GuiIDs.GUI_PEDESTAL_INV)

@@ -98,102 +98,102 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 		switch (selected) {
 			case STATS_PLAYER:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
-				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
-				drawString(fontRendererObj, "Total Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
-				drawString(fontRendererObj, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
-				drawString(fontRendererObj, "HP", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
-				drawString(fontRendererObj, "MP", 125, ((-140 / 16) + 75) + 58, 0xFFFFFF);
-				drawString(fontRendererObj, "AP", 125, ((-140 / 16) + 75) + 70, 0xFFFFFF);
-				drawString(fontRendererObj, "Drive Guage", 125, ((-140 / 16) + 75) + 82, 0xFFFFFF);
-				drawString(fontRendererObj, "Bonus Level", 125, ((-140 / 16) + 75) + 94, 0xFFFFFF);
-				drawString(fontRendererObj, "Strength", 125, ((-140 / 16) + 75) + 106, 0xFFFFFF);
-				drawString(fontRendererObj, "Magic", 125, ((-140 / 16) + 75) + 118, 0xFFFFFF);
-				drawString(fontRendererObj, "Defense", 125, ((-140 / 16) + 75) + 130, 0xFFFFFF);
-				drawString(fontRendererObj, "Fire Resistance", 125, ((-140 / 16) + 75) + 142, 0xFFFFFF);
-				drawString(fontRendererObj, "Blizzard Resistance", 125, ((-140 / 16) + 75) + 154, 0xFFFFFF);
-				drawString(fontRendererObj, "Thunder Resistance", 125, ((-140 / 16) + 75) + 166, 0xFFFFFF);
-				drawString(fontRendererObj, "Dark Resistance", 125, ((-140 / 16) + 75) + 178, 0xFFFFFF);
+				drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRenderer, "Total Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+				drawString(fontRenderer, "HP", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
+				drawString(fontRenderer, "MP", 125, ((-140 / 16) + 75) + 58, 0xFFFFFF);
+				drawString(fontRenderer, "AP", 125, ((-140 / 16) + 75) + 70, 0xFFFFFF);
+				drawString(fontRenderer, "Drive Guage", 125, ((-140 / 16) + 75) + 82, 0xFFFFFF);
+				drawString(fontRenderer, "Bonus Level", 125, ((-140 / 16) + 75) + 94, 0xFFFFFF);
+				drawString(fontRenderer, "Strength", 125, ((-140 / 16) + 75) + 106, 0xFFFFFF);
+				drawString(fontRenderer, "Magic", 125, ((-140 / 16) + 75) + 118, 0xFFFFFF);
+				drawString(fontRenderer, "Defense", 125, ((-140 / 16) + 75) + 130, 0xFFFFFF);
+				drawString(fontRenderer, "Fire Resistance", 125, ((-140 / 16) + 75) + 142, 0xFFFFFF);
+				drawString(fontRenderer, "Blizzard Resistance", 125, ((-140 / 16) + 75) + 154, 0xFFFFFF);
+				drawString(fontRenderer, "Thunder Resistance", 125, ((-140 / 16) + 75) + 166, 0xFFFFFF);
+				drawString(fontRenderer, "Dark Resistance", 125, ((-140 / 16) + 75) + 178, 0xFFFFFF);
 
-				drawString(fontRendererObj, "Fire level", 270, ((-140 / 16) + 75) + 10, 0xFFFFFF);
-				drawString(fontRendererObj, "Blizzard level", 270, ((-140 / 16) + 75) + 22, 0xFFFFFF);
-				drawString(fontRendererObj, "Thunder level", 270, ((-140 / 16) + 75) + 34, 0xFFFFFF);
-				drawString(fontRendererObj, "Cure level", 270, ((-140 / 16) + 75) + 46, 0xFFFFFF);
-				drawString(fontRendererObj, "Gravity level", 270, ((-140 / 16) + 75) + 58, 0xFFFFFF);
-				drawString(fontRendererObj, "Aero level", 270, ((-140 / 16) + 75) + 70, 0xFFFFFF);
-				drawString(fontRendererObj, "Stop level", 270, ((-140 / 16) + 75) + 82, 0xFFFFFF);
+				drawString(fontRenderer, "Fire level", 270, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRenderer, "Blizzard level", 270, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				drawString(fontRenderer, "Thunder level", 270, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+				drawString(fontRenderer, "Cure level", 270, ((-140 / 16) + 75) + 46, 0xFFFFFF);
+				drawString(fontRenderer, "Gravity level", 270, ((-140 / 16) + 75) + 58, 0xFFFFFF);
+				drawString(fontRenderer, "Aero level", 270, ((-140 / 16) + 75) + 70, 0xFFFFFF);
+				drawString(fontRenderer, "Stop level", 270, ((-140 / 16) + 75) + 82, 0xFFFFFF);
 
 				
-				drawString(fontRendererObj, "" + STATS.getLevel(), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-				drawString(fontRendererObj, "" + STATS.getExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
-				drawString(fontRendererObj, "" + (STATS.getExpNeeded(STATS.getLevel(), STATS.getExperience())), 230, ((-140 / 16) + 75) + 34, 0xFFD900);
-				drawString(fontRendererObj, "" + (int) mc.player.getMaxHealth(), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
-				drawString(fontRendererObj, "" + (int) STATS.getMaxMP(), 230, ((-140 / 16) + 75) + 58, 0xFFD900);
-				drawString(fontRendererObj, "N/A", 230, ((-140 / 16) + 75) + 70, 0xFFD900);
-				drawString(fontRendererObj, "9", 230, ((-140 / 16) + 75) + 82, 0xFFD900);
-				drawString(fontRendererObj, "N/A", 230, ((-140 / 16) + 75) + 94, 0xFFD900);
-				drawString(fontRendererObj, "" + STATS.getStrength(), 230, ((-140 / 16) + 75) + 106, 0xFFD900);
-				drawString(fontRendererObj, "" + STATS.getMagic(), 230, ((-140 / 16) + 75) + 118, 0xFFD900);
-				drawString(fontRendererObj, "" + STATS.getDefense(), 230, ((-140 / 16) + 75) + 130, 0xFFD900);
-				drawString(fontRendererObj, "0%", 230, ((-140 / 16) + 75) + 142, 0xFFD900);
-				drawString(fontRendererObj, "0%", 230, ((-140 / 16) + 75) + 154, 0xFFD900);
-				drawString(fontRendererObj, "0%", 230, ((-140 / 16) + 75) + 166, 0xFFD900);
-				drawString(fontRendererObj, "0%", 230, ((-140 / 16) + 75) + 178, 0xFFD900);
+				drawString(fontRenderer, "" + STATS.getLevel(), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRenderer, "" + STATS.getExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+				drawString(fontRenderer, "" + (STATS.getExpNeeded(STATS.getLevel(), STATS.getExperience())), 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+				drawString(fontRenderer, "" + (int) mc.player.getMaxHealth(), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
+				drawString(fontRenderer, "" + (int) STATS.getMaxMP(), 230, ((-140 / 16) + 75) + 58, 0xFFD900);
+				drawString(fontRenderer, "N/A", 230, ((-140 / 16) + 75) + 70, 0xFFD900);
+				drawString(fontRenderer, "9", 230, ((-140 / 16) + 75) + 82, 0xFFD900);
+				drawString(fontRenderer, "N/A", 230, ((-140 / 16) + 75) + 94, 0xFFD900);
+				drawString(fontRenderer, "" + STATS.getStrength(), 230, ((-140 / 16) + 75) + 106, 0xFFD900);
+				drawString(fontRenderer, "" + STATS.getMagic(), 230, ((-140 / 16) + 75) + 118, 0xFFD900);
+				drawString(fontRenderer, "" + STATS.getDefense(), 230, ((-140 / 16) + 75) + 130, 0xFFD900);
+				drawString(fontRenderer, "0%", 230, ((-140 / 16) + 75) + 142, 0xFFD900);
+				drawString(fontRenderer, "0%", 230, ((-140 / 16) + 75) + 154, 0xFFD900);
+				drawString(fontRenderer, "0%", 230, ((-140 / 16) + 75) + 166, 0xFFD900);
+				drawString(fontRenderer, "0%", 230, ((-140 / 16) + 75) + 178, 0xFFD900);
 
-				drawString(fontRendererObj, "" + ms.getMagicLevel(Strings.Spell_Fire), 370, ((-140 / 16) + 75) + 10, 0xFFD900);
-				drawString(fontRendererObj, "" + ms.getMagicLevel(Strings.Spell_Blizzard), 370, ((-140 / 16) + 75) + 22, 0xFFD900);
-				drawString(fontRendererObj, "" + ms.getMagicLevel(Strings.Spell_Thunder), 370, ((-140 / 16) + 75) + 34, 0xFFD900);
-				drawString(fontRendererObj, "" + ms.getMagicLevel(Strings.Spell_Cure), 370, ((-140 / 16) + 75) + 46, 0xFFD900);
-				drawString(fontRendererObj, "" + ms.getMagicLevel(Strings.Spell_Gravity), 370, ((-140 / 16) + 75) + 58, 0xFFD900);
-				drawString(fontRendererObj, "" + ms.getMagicLevel(Strings.Spell_Aero), 370, ((-140 / 16) + 75) + 70, 0xFFD900);
-				drawString(fontRendererObj, "" + ms.getMagicLevel(Strings.Spell_Stop), 370, ((-140 / 16) + 75) + 82, 0xFFD900);
+				drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Fire), 370, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Blizzard), 370, ((-140 / 16) + 75) + 22, 0xFFD900);
+				drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Thunder), 370, ((-140 / 16) + 75) + 34, 0xFFD900);
+				drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Cure), 370, ((-140 / 16) + 75) + 46, 0xFFD900);
+				drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Gravity), 370, ((-140 / 16) + 75) + 58, 0xFFD900);
+				drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Aero), 370, ((-140 / 16) + 75) + 70, 0xFFD900);
+				drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Stop), 370, ((-140 / 16) + 75) + 82, 0xFFD900);
 				
 
 				break;
 			case STATS_VALOR:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
-				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
-				drawString(fontRendererObj, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
-				drawString(fontRendererObj, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+				drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
 
-				drawString(fontRendererObj, "" + ds.getDriveLevel(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-				drawString(fontRendererObj, "" + STATS.getVExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+				drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRenderer, "" + STATS.getVExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 
 				break;
 			case STATS_WISDOM:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
-				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
-				drawString(fontRendererObj, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
-				drawString(fontRendererObj, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+				drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
 
-				drawString(fontRendererObj, "" + ds.getDriveLevel(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-				drawString(fontRendererObj, "" + STATS.getWExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+				drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRenderer, "" + STATS.getWExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 				break;
 			case STATS_LIMIT:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
-				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
-				drawString(fontRendererObj, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
-				drawString(fontRendererObj, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+				drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
 
-				drawString(fontRendererObj, "" + ds.getDriveLevel(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-				drawString(fontRendererObj, "" + STATS.getLExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+				drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRenderer, "" + STATS.getLExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 				break;
 			case STATS_MASTER:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
-				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
-				drawString(fontRendererObj, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
-				drawString(fontRendererObj, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+				drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
 				
-				drawString(fontRendererObj, "" + ds.getDriveLevel(Strings.Form_Master), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-				drawString(fontRendererObj, "" + STATS.getMExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+				drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Master), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRenderer, "" + STATS.getMExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 				break;
 			case STATS_FINAL:
 				drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
-				drawString(fontRendererObj, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
-				drawString(fontRendererObj, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
-				drawString(fontRendererObj, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+				drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
+				drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
+				drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
 
-				drawString(fontRendererObj, "" + ds.getDriveLevel(Strings.Form_Final), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-				drawString(fontRendererObj, "" + STATS.getFExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+				drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Final), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+				drawString(fontRenderer, "" + STATS.getFExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 				break;
 		}
 	}

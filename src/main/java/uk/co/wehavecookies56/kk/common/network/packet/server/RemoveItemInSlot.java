@@ -4,11 +4,13 @@ import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
@@ -21,8 +23,8 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<RemoveItemInSlot> {
 	String inv;
 	int slot;
-	InventoryPotionsMenu potions;
-	InventoryKeychain keychain;
+	ItemStackHandler potions;
+	ItemStackHandler keychain;
 	boolean sound;
 
 	public RemoveItemInSlot () {}
@@ -58,7 +60,7 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
 		switch (inv) {
 			case "keychain":
 				keychain = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
-				keychain.setInventorySlotContents(slot, null);
+				keychain.setStackInSlot(slot, ItemStack.EMPTY);
 				break;
 			case Strings.DefenseBoost:
 				if(!player.capabilities.isCreativeMode)
@@ -88,7 +90,7 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
 				break;
 			case Strings.Potion:
 				potions = player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
-				potions.setInventorySlotContents(slot, null);
+				potions.setStackInSlot(slot, ItemStack.EMPTY);
 				if (sound) player.world.playSound(null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 0.5f, 1);
 				break;
 		}

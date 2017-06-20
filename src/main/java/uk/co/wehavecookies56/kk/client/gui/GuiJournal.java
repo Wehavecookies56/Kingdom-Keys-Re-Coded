@@ -727,7 +727,7 @@ public class GuiJournal extends GuiScreen {
 			GL11.glPopMatrix();
 			button.xPosition = posX + width - 10;
 			button.yPosition = posY + height / 2 - 3;
-			drawCenteredString(fontRendererObj, text, posX + width / 2, posY + height / 2 - 3, 0xFFFFFF);
+			drawCenteredString(fontRenderer, text, posX + width / 2, posY + height / 2 - 3, 0xFFFFFF);
 
 		}
 		GL11.glPopMatrix();
@@ -1327,7 +1327,7 @@ public class GuiJournal extends GuiScreen {
 		int colour;
 
 		public GuiButtonLink (int id, int posX, int posY, int width, int height, String text, int colour) {
-			super(id, posX, posY, Minecraft.getMinecraft().fontRendererObj.getStringWidth(text), 8, text);
+			super(id, posX, posY, Minecraft.getMinecraft().fontRenderer.getStringWidth(text), 8, text);
 			this.colour = colour;
 		}
 
@@ -1348,7 +1348,7 @@ public class GuiJournal extends GuiScreen {
 
 				GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2 - 2, res.getScaledWidth(), listHeight * 2 - 1);
 				GL11.glEnable(GL11.GL_SCISSOR_TEST);
-				drawString(mc.fontRendererObj, this.displayString + TextFormatting.UNDERLINE, 0, 0, this.colour);
+				drawString(mc.fontRenderer, this.displayString + TextFormatting.UNDERLINE, 0, 0, this.colour);
 				GL11.glDisable(GL11.GL_SCISSOR_TEST);
 				GL11.glPopMatrix();
 			}

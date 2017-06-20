@@ -14,19 +14,16 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 /**
  * Created by NStel on 2/6/2017.
  */
-public class ItemAbandonedKnowledge extends Item
-{
+public class ItemAbandonedKnowledge extends Item {
     public ItemAbandonedKnowledge() {
         setMaxStackSize(1);
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player, EnumHand hand) {
-        if (worldIn.isRemote && player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
-        	player.openGui(KingdomKeys.instance, GuiIDs.GUI_ORG_UNLOCK, worldIn, (int) player.posX, (int) player.posX, (int) player.posZ);
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        if (world.isRemote && player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
+            player.openGui(KingdomKeys.instance, GuiIDs.GUI_ORG_UNLOCK, world, (int) player.posX, (int) player.posX, (int) player.posZ);
         }
-        return super.onItemRightClick(itemStackIn, worldIn, player, hand);
+        return super.onItemRightClick(world, player, hand);
     }
-
-
 }

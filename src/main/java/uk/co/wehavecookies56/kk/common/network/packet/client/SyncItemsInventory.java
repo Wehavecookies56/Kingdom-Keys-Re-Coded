@@ -8,6 +8,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
+import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
 public class SyncItemsInventory extends AbstractMessage.AbstractClientMessage<SyncItemsInventory> {
@@ -18,7 +19,7 @@ public class SyncItemsInventory extends AbstractMessage.AbstractClientMessage<Sy
 	
 	public SyncItemsInventory(PlayerStatsCapability.IPlayerStats stats) {
 		data = new NBTTagCompound();
-		stats.getInventoryPotionsMenu().writeToNBT(data);
+		data.setTag(InventoryPotionsMenu.SAVE_KEY, stats.getInventoryPotionsMenu().serializeNBT());
 	}
 	
 	@Override
@@ -33,7 +34,7 @@ public class SyncItemsInventory extends AbstractMessage.AbstractClientMessage<Sy
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().readFromNBT(data);
+		player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().deserializeNBT(data.getCompoundTag(InventoryPotionsMenu.SAVE_KEY));
 	}
 
 

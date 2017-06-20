@@ -9,6 +9,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.IChunkGenerator;
 
@@ -18,7 +19,7 @@ import net.minecraft.world.chunk.IChunkGenerator;
 public class WorldProviderDiveToTheHeart extends WorldProvider {
 
     @Override
-    protected void createBiomeProvider() {
+    protected void init() {
         this.biomeProvider = new BiomeProviderSingle(Biomes.SKY);
         this.hasNoSky = true;
         NBTTagCompound nbttagcompound = this.world.getWorldInfo().getDimensionData(ModDimensions.diveToTheHeart);

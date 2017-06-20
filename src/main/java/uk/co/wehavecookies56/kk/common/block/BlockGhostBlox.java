@@ -53,37 +53,31 @@ public class BlockGhostBlox extends BlockBlox {
 		return true;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block) {
-		
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 		//Detection of neighbor ghost blox
-		if (world.getBlockState(pos.east()).getBlock() == ModBlocks.GhostBlox)
-		{
+		if (world.getBlockState(pos.east()).getBlock() == ModBlocks.GhostBlox) {
 			if (world.getBlockState(pos).getValue(VISIBLE).intValue() == 1)
 				world.setBlockState(pos.east(), world.getBlockState(pos.east()).withProperty(VISIBLE, Integer.valueOf(1)));
 			else
 				world.setBlockState(pos.east(), world.getBlockState(pos.east()).withProperty(VISIBLE, Integer.valueOf(0)));
 			System.out.println("HI neightbour");
 		}
-		if (world.getBlockState(pos.west()).getBlock() == ModBlocks.GhostBlox)
-		{
+		if (world.getBlockState(pos.west()).getBlock() == ModBlocks.GhostBlox) {
 			if (world.getBlockState(pos).getValue(VISIBLE).intValue() == 1)
 				world.setBlockState(pos.west(), world.getBlockState(pos.west()).withProperty(VISIBLE, Integer.valueOf(1)));
 			else
 				world.setBlockState(pos.west(), world.getBlockState(pos.west()).withProperty(VISIBLE, Integer.valueOf(0)));
 			System.out.println("HI neightbour");
 		}
-		if (world.getBlockState(pos.north()).getBlock() == ModBlocks.GhostBlox)
-		{
+		if (world.getBlockState(pos.north()).getBlock() == ModBlocks.GhostBlox) {
 			if (world.getBlockState(pos).getValue(VISIBLE).intValue() == 1)
 				world.setBlockState(pos.north(), world.getBlockState(pos.north()).withProperty(VISIBLE, Integer.valueOf(1)));
 			else
 				world.setBlockState(pos.north(), world.getBlockState(pos.north()).withProperty(VISIBLE, Integer.valueOf(0)));
 			System.out.println("HI neightbour");
 		}
-		if (world.getBlockState(pos.south()).getBlock() == ModBlocks.GhostBlox)
-		{
+		if (world.getBlockState(pos.south()).getBlock() == ModBlocks.GhostBlox) {
 			if (world.getBlockState(pos).getValue(VISIBLE).intValue() == 1)
 				world.setBlockState(pos.south(), world.getBlockState(pos.south()).withProperty(VISIBLE, Integer.valueOf(1)));
 			else

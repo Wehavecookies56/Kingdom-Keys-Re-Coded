@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
@@ -104,14 +105,14 @@ public class GuiCommandMenu extends GuiScreen {
 		this.driveCommands = new ArrayList<String>();
 		
 		this.spells.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != null) this.spells.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSlots(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != ItemStack.EMPTY) this.spells.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
 		this.items.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != null) this.items.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSlots(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i) != ItemStack.EMPTY) this.items.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
 		this.driveCommands.clear();
-		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSizeInventory(); i++)
-			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != null) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
+		for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSlots(); i++)
+			if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != ItemStack.EMPTY) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
 		// Magic:"+magicselected+" Drive:"+driveselected);
 		//System.out.println("Is KH1 Fire?: "+ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getKH1Fire());
 		float scale = 1.05f;
@@ -150,14 +151,14 @@ public class GuiCommandMenu extends GuiScreen {
 				if (DS.getInDrive()) {
 					
 					if (DS.getActiveDriveName().equals(Strings.Form_Anti))
-						drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive_Revert), 6 + textX, 4, 0x888888);
+						drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive_Revert), 6 + textX, 4, 0x888888);
 					else
-						drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive_Revert), 6 + textX, 4, 0xFFFFFF);
+						drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive_Revert), 6 + textX, 4, 0xFFFFFF);
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 				} else if (this.driveCommands.isEmpty() || STATS.getDP() <= 0)
-					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0x888888);
+					drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0x888888);
 				else
-					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0xFFFFFF);
+					drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0xFFFFFF);
 			}
 
 		}
@@ -193,9 +194,9 @@ public class GuiCommandMenu extends GuiScreen {
 			if(this.submenu == 0)
 			{
 				if (this.items.isEmpty())
-					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0x888888);
+					drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0x888888);
 				else
-					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0xFFFFFF);
+					drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Items), 6 + textX, 4, 0xFFFFFF);
 			}
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}
@@ -230,14 +231,14 @@ public class GuiCommandMenu extends GuiScreen {
 			if(this.submenu == 0)
 			{
 				if (spells == null) {
-					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
+					drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
 				} else {
 					//if (!ExtendedPlayer.get(mc.thePlayer).getRecharge() && !spells.isEmpty() && !ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
 					if (!STATS.getRecharge() && (!this.spells.isEmpty() && !DS.getActiveDriveName().equals(Strings.Form_Valor))) 
 	
-						drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0xFFFFFF);
+						drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0xFFFFFF);
 					else
-						drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
+						drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 				}
 			}
@@ -275,7 +276,7 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 			if(this.submenu == 0)
 			{
-			drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Attack), 6 + textX, 4, 0xFFFFFF);
+			drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Attack), 6 + textX, 4, 0xFFFFFF);
 			}
 
 		}
@@ -296,7 +297,7 @@ public class GuiCommandMenu extends GuiScreen {
 				drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
 			if(this.submenu == 0)
 			{
-				drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Command), 6, 4, 0xFFFFFF);
+				drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Command), 6, 4, 0xFFFFFF);
 			}
 		}
 		GL11.glPopMatrix();
@@ -311,7 +312,7 @@ public class GuiCommandMenu extends GuiScreen {
 				GL11.glScalef(scale, scale, scale);
 				if (submenu == SUB_MAGIC) {
 					drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
-					drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic_Title), 6, 4, 0xFFFFFF);
+					drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic_Title), 6, 4, 0xFFFFFF);
 				}
 			}
 			GL11.glPopMatrix();
@@ -340,7 +341,7 @@ public class GuiCommandMenu extends GuiScreen {
 						String magic = spells.get(i);
 						int level = mc.player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic);
 						String magicName = Constants.getMagicName(magic, level);
-						drawString(mc.fontRendererObj, Utils.translateToLocal(magicName), 6, 4, colour);
+						drawString(mc.fontRenderer, Utils.translateToLocal(magicName), 6, 4, colour);
 						GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					}
 				}
@@ -358,7 +359,7 @@ public class GuiCommandMenu extends GuiScreen {
 				GL11.glScalef(scale, scale, scale);
 				if (submenu == SUB_ITEMS) {
 					drawTexturedModalRect(0, 0, 0, 0, TOP_WIDTH, TOP_HEIGHT);
-					drawString(mc.fontRendererObj, Utils.translateToLocal("ITEMS"), 6, 4, 0xFFFFFF);
+					drawString(mc.fontRenderer, Utils.translateToLocal("ITEMS"), 6, 4, 0xFFFFFF);
 				}
 
 			}
@@ -381,7 +382,7 @@ public class GuiCommandMenu extends GuiScreen {
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 15, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
 						else
 							drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
-						drawString(mc.fontRendererObj, Utils.translateToLocal("item." + items.get(i) + ".name"), 6, 4, 0xFFFFFF);
+						drawString(mc.fontRenderer, Utils.translateToLocal("item." + items.get(i) + ".name"), 6, 4, 0xFFFFFF);
 
 						GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					}
@@ -408,7 +409,7 @@ public class GuiCommandMenu extends GuiScreen {
 				GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
 				GL11.glTranslatef(5, (height - MENU_HEIGHT * scale * (driveCommands.size() + 1)), 0);
 				GL11.glScalef(scale, scale, scale);
-				if (submenu == SUB_DRIVE) drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive_Title), 6, 4, 0xFFFFFF);
+				if (submenu == SUB_DRIVE) drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive_Title), 6, 4, 0xFFFFFF);
 			}
 			GL11.glPopMatrix();
 			for (int i = 0; i < driveCommands.size(); i++) {
@@ -443,9 +444,9 @@ public class GuiCommandMenu extends GuiScreen {
 					GL11.glScalef(scale, scale, scale);
 					if (submenu == SUB_DRIVE) {
 						if (STATS.getDP() >= Constants.getCost(driveCommands.get(i)) || mc.player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
-							drawString(mc.fontRendererObj, Utils.translateToLocal(driveCommands.get(i)), 6, 4, 0xFFFFFF);
+							drawString(mc.fontRenderer, Utils.translateToLocal(driveCommands.get(i)), 6, 4, 0xFFFFFF);
 						else
-							drawString(mc.fontRendererObj, Utils.translateToLocal(driveCommands.get(i)), 6, 4, 0x888888);
+							drawString(mc.fontRenderer, Utils.translateToLocal(driveCommands.get(i)), 6, 4, 0x888888);
 					}
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 

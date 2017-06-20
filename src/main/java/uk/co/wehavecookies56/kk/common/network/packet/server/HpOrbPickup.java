@@ -31,6 +31,6 @@ public class HpOrbPickup extends AbstractMessage.AbstractServerMessage<HpOrbPick
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		//player.inventory.consumeInventoryItem(toRemove.getItem());
-		toRemove.stackSize--;
+		toRemove.setCount(toRemove.getCount()-1);
 	}
 }

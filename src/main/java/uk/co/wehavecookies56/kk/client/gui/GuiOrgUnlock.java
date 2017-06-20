@@ -454,11 +454,11 @@ public class GuiOrgUnlock extends GuiScreen {
         int posX = (width / 2) - (texWidth / 2);
         int posY = (height / 2) - (texHeight / 2);
         drawTexturedModalRect(posX, posY, 0, 0, texWidth, texHeight);
-        fontRendererObj.drawString("Weapon unlocks for " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember().toString(), posX + 5, posY + 5, 0x2B2B2B);
-        fontRendererObj.drawString("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints(), posX + 256 - fontRendererObj.getStringWidth("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints()) - 5, posY + 5, 0x2B2B2B);
+        fontRenderer.drawString("Weapon unlocks for " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember().toString(), posX + 5, posY + 5, 0x2B2B2B);
+        fontRenderer.drawString("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints(), posX + 256 - fontRenderer.getStringWidth("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints()) - 5, posY + 5, 0x2B2B2B);
         super.drawScreen(mouseX, mouseY, partialTicks);
         if (selected != null)
-            fontRendererObj.drawString(new ItemStack(selected.unlock).getDisplayName() + " selected", (width / 2) - (texWidth / 2) + 5, (height / 2) - (texHeight / 2) + 180, 0x2B2B2B);
+            fontRenderer.drawString(new ItemStack(selected.unlock).getDisplayName() + " selected", (width / 2) - (texWidth / 2) + 5, (height / 2) - (texHeight / 2) + 180, 0x2B2B2B);
     }
 
     @Override

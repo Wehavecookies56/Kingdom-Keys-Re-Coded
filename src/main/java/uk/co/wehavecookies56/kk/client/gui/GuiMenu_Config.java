@@ -70,12 +70,12 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		int rPosX = 15;
 		int gPosX = rPosX + boxWidth + 15;
 		int bPosX = gPosX + boxWidth + 15;
-		r = new GuiNumberTextField(R, mc.fontRendererObj, rPosX, 100, boxWidth, 10, 255);
-		g = new GuiNumberTextField(G, mc.fontRendererObj, gPosX, 100, boxWidth, 10, 255);
-		b = new GuiNumberTextField(B, mc.fontRendererObj, bPosX, 100, boxWidth, 10, 255);
-		buttonList.add(showHearts = new GuiButton(HEARTS, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Hearts)) + 15, 115, 100, 20, String.valueOf(ConfigHandler.EnableHeartsOnHUD)));
-		buttonList.add(musicToggle = new GuiButton(MUSIC, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Music)) + 15, 135, 100, 20, String.valueOf(ConfigHandler.EnableCustomMusic)));
-	    buttonList.add(fire = new GuiButton(FIRE, mc.fontRendererObj.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Fire)) + 15, 155, 100, 20, String.valueOf(Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire())));
+		r = new GuiNumberTextField(R, mc.fontRenderer, rPosX, 100, boxWidth, 10, 255);
+		g = new GuiNumberTextField(G, mc.fontRenderer, gPosX, 100, boxWidth, 10, 255);
+		b = new GuiNumberTextField(B, mc.fontRenderer, bPosX, 100, boxWidth, 10, 255);
+		buttonList.add(showHearts = new GuiButton(HEARTS, mc.fontRenderer.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Hearts)) + 15, 115, 100, 20, String.valueOf(ConfigHandler.EnableHeartsOnHUD)));
+		buttonList.add(musicToggle = new GuiButton(MUSIC, mc.fontRenderer.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Music)) + 15, 135, 100, 20, String.valueOf(ConfigHandler.EnableCustomMusic)));
+	    buttonList.add(fire = new GuiButton(FIRE, mc.fontRenderer.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Fire)) + 15, 155, 100, 20, String.valueOf(Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire())));
 		buttonList.add(back = new GuiButton(BACK, 5, 175, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
 
 		this.r.setText(String.valueOf(ConfigHandler.interfaceColour[0]));
@@ -117,17 +117,17 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 	@Override
 	public void drawScreen (int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
-		this.drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Config_Hearts), 5, 120, 0xFFFFFF);
-		this.drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Config_Music), 5, 140, 0xFFFFFF);
-		this.drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Config_Fire), 5, 160, 0xFFFFFF);
+		this.drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Config_Hearts), 5, 120, 0xFFFFFF);
+		this.drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Config_Music), 5, 140, 0xFFFFFF);
+		this.drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Config_Fire), 5, 160, 0xFFFFFF);
 
-		this.drawString(mc.fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Config_Colour_Desc), 5, 80, 0xFFFFFF);
+		this.drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Config_Colour_Desc), 5, 80, 0xFFFFFF);
 		this.r.drawTextBox();
-		this.drawString(mc.fontRendererObj, "R:", 5, 101, 0xFFFFFF);
+		this.drawString(mc.fontRenderer, "R:", 5, 101, 0xFFFFFF);
 		this.g.drawTextBox();
-		this.drawString(mc.fontRendererObj, "G:", 50, 101, 0xFFFFFF);
+		this.drawString(mc.fontRenderer, "G:", 50, 101, 0xFFFFFF);
 		this.b.drawTextBox();
-		this.drawString(mc.fontRendererObj, "B:", 95, 101, 0xFFFFFF);
+		this.drawString(mc.fontRenderer, "B:", 95, 101, 0xFFFFFF);
 
 	}
 

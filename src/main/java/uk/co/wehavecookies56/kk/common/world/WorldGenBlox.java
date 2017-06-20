@@ -1,6 +1,9 @@
 package uk.co.wehavecookies56.kk.common.world;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import com.google.common.base.Predicate;
 
@@ -67,9 +70,9 @@ public class WorldGenBlox implements IWorldGenerator {
 			new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 			new WorldGenMinable(ModBlocks.EnergyOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-			Biome[] coldBiomes = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.COLD);
-			for (int i = 0; i < coldBiomes.length; i++){
-				if (biome == coldBiomes[i])
+			List<Biome> coldBiomes = new ArrayList<>(BiomeDictionary.getBiomes(BiomeDictionary.Type.COLD));
+			for (int i = 0; i < coldBiomes.size(); i++){
+				if (biome == coldBiomes.get(i))
 					new WorldGenMinable(ModBlocks.FrostOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 			}
 			new WorldGenMinable(ModBlocks.LightningOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
@@ -82,14 +85,14 @@ public class WorldGenBlox implements IWorldGenerator {
 			if (OreY < 20) {
 				new WorldGenMinable(ModBlocks.DarkOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 				new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-				Biome[] wetBiomes = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.WET);
-				for (int i = 0; i < wetBiomes.length; i++) {
-					if (biome == wetBiomes[i])
+				List<Biome> wetBiomes = new ArrayList<Biome>(BiomeDictionary.getBiomes(BiomeDictionary.Type.WET));
+				for (int i = 0; i < wetBiomes.size(); i++) {
+					if (biome == wetBiomes.get(i))
 						new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 				}
 				new WorldGenMinable(ModBlocks.StormyOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-				for (int i = 0; i < coldBiomes.length; i++){
-					if (biome == coldBiomes[i])
+				for (int i = 0; i < coldBiomes.size(); i++){
+					if (biome == coldBiomes.get(i))
 						new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
 				}
 			}

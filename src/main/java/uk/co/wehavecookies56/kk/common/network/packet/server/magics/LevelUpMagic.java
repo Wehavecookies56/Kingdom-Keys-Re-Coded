@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -46,7 +47,7 @@ public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
 		boolean hasMagicInSlot = false;
 				
 		for (int i = 0; i < InventorySpells.INV_SIZE; i++) {
-			if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != null) {
+			if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != ItemStack.EMPTY) {
 				if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem() == player.getHeldItem(EnumHand.MAIN_HAND).getItem()) {
 					hasMagicInSlot = true;
 				}
@@ -57,15 +58,15 @@ public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
 		}
 
 		if (!hasMagicInSlot) {
-			player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().setInventorySlotContents(firstEmptySlot, player.getHeldItem(EnumHand.MAIN_HAND));
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+			player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().setStackInSlot(firstEmptySlot, player.getHeldItem(EnumHand.MAIN_HAND));
+			player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
 			TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Magic_Learn, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
 			learnMessage.getStyle().setColor(TextFormatting.YELLOW);
 			player.sendMessage(learnMessage);
 		} else {
 			if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) < Constants.MAX_MAGIC_LEVEL) {
 				player.getCapability(ModCapabilities.MAGIC_STATE, null).setMagicLevel(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) + 1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
 				TextComponentTranslation levelupMessage = new TextComponentTranslation(Strings.Chat_Magic_Levelup, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) - 1)), new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
 				levelupMessage.getStyle().setColor(TextFormatting.YELLOW);
 				player.sendMessage(levelupMessage);

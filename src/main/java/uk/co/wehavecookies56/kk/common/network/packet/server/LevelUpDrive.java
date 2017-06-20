@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -58,8 +59,7 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 		buffer.writeInt(levels);
 		buffer.writeString(playername);
 	}
-	public static EntityPlayer getPlayerFromUsername(String username)
-    {
+	public static EntityPlayer getPlayerFromUsername(String username) {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
             return null;
 
@@ -75,14 +75,13 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 		int hasDriveInSlot = -1, nullSlot = -1;
 				
 		PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-		if(isLevelUp)
-		{
+		if(isLevelUp) {
 			player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveLevel(form, levels);
 		}
 		else
 		{
 			for (int i = 0; i < InventoryDriveForms.INV_SIZE; i++) {
-				if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != null) {
+				if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != ItemStack.EMPTY) {
 					if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem() == player.getHeldItem(EnumHand.MAIN_HAND).getItem()) {
 						hasDriveInSlot = i;
 					}
@@ -93,8 +92,8 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 			}
 	
 			if (hasDriveInSlot == -1) {
-				player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().setInventorySlotContents(nullSlot, player.getHeldItem(EnumHand.MAIN_HAND));
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+				player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().setStackInSlot(nullSlot, player.getHeldItem(EnumHand.MAIN_HAND));
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
 
 				TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Drive_Learn, new TextComponentTranslation(this.form));
 				learnMessage.getStyle().setColor(TextFormatting.YELLOW);

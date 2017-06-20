@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
 
+import net.minecraftforge.items.ItemStackHandler;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -29,11 +30,11 @@ public class GuiSpells extends GuiContainer {
 
 	private static final ResourceLocation iconLocation = new ResourceLocation("kk", "textures/gui/spells_inv.png");
 
-	private final InventorySpells inventory;
+	private final ItemStackHandler inventory;
 
-	public GuiSpells (EntityPlayer player, InventoryPlayer inventoryPlayer, InventorySpells inventory) {
-		super(new ContainerSpells(player, inventoryPlayer, inventory));
-		this.inventory = inventory;
+	public GuiSpells (EntityPlayer player, InventoryPlayer inventoryPlayer) {
+		super(new ContainerSpells(player, inventoryPlayer));
+		this.inventory = player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells();
 	}
 
 	@Override
@@ -84,16 +85,16 @@ public class GuiSpells extends GuiContainer {
 		{
 			GL11.glScalef(2, 2, 2);
 			String title = mc.player.getDisplayNameString().toString();
-			drawString(fontRendererObj, title, 5, 5, 0xFFFFFF);
+			drawString(fontRenderer, title, 5, 5, 0xFFFFFF);
 		}
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
 		{
-			drawString(fontRendererObj, mc.player.world.provider.getDimensionType().getName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
-			drawString(fontRendererObj, mc.player.world.getBiome(mc.player.getPosition()).getBiomeName(), screenWidth - fontRendererObj.getStringWidth(mc.player.world.getBiome(mc.player.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
-			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.world) + ":" + getWorldMinutes(mc.world), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
+			drawString(fontRenderer, mc.player.world.provider.getDimensionType().getName(), screenWidth - fontRenderer.getStringWidth(mc.player.world.provider.getDimensionType().getName()) - 5, 5, 0xFFFFFF);
+			drawString(fontRenderer, mc.player.world.getBiome(mc.player.getPosition()).getBiomeName(), screenWidth - fontRenderer.getStringWidth(mc.player.world.getBiome(mc.player.getPosition()).getBiomeName()) - 5, 20, 0xFFFFFF);
+			drawString(fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.world) + ":" + getWorldMinutes(mc.world), 5, screenHeight - ((screenHeight / 8) - 300 / 16), 0xFFFFFF);
 			IMunny MUNNY = mc.player.getCapability(ModCapabilities.MUNNY, null);
-			drawString(fontRendererObj, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
+			drawString(fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
 		}
 		GL11.glPopMatrix();
 
@@ -101,9 +102,9 @@ public class GuiSpells extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY) {
-		String s = inventory.getName();
-		fontRendererObj.drawString(s, xSize / 2 - fontRendererObj.getStringWidth(s) / 2, 12, 4210752);
-		fontRendererObj.drawString(I18n.format("container.inventory"), xSize / 2 - fontRendererObj.getStringWidth(I18n.format("container.inventory")) / 2, ySize - 96, 4210752);
+		String s = InventorySpells.name;
+		fontRenderer.drawString(s, xSize / 2 - fontRenderer.getStringWidth(s) / 2, 12, 4210752);
+		fontRenderer.drawString(I18n.format("container.inventory"), xSize / 2 - fontRenderer.getStringWidth(I18n.format("container.inventory")) / 2, ySize - 96, 4210752);
 	}
 
 	@Override

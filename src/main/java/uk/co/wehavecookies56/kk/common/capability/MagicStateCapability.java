@@ -5,6 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
+import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySpells;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
@@ -16,7 +17,7 @@ public class MagicStateCapability {
 		void setKH1Fire(boolean kh1fire);
 		void setMagicLevel(String magic, int level);
 		
-		InventorySpells getInventorySpells();
+		ItemStackHandler getInventorySpells();
 
 	}
 
@@ -34,9 +35,8 @@ public class MagicStateCapability {
 			properties.setInteger("MagicLevelStop", instance.getMagicLevel(Strings.Spell_Stop));
 			
 			properties.setBoolean("KH1Fire", instance.getKH1Fire());
-			
-			instance.getInventorySpells().writeToNBT(properties);
 
+			properties.setTag(InventorySpells.SAVE_KEY, instance.getInventorySpells().serializeNBT());
 
 			return properties;
 		}
@@ -53,7 +53,7 @@ public class MagicStateCapability {
 			
 			instance.setKH1Fire(properties.getBoolean("KH1Fire"));
 			
-			instance.getInventorySpells().readFromNBT(properties);
+			instance.getInventorySpells().deserializeNBT(properties.getCompoundTag(InventorySpells.SAVE_KEY));
 			
 			
 
@@ -63,7 +63,7 @@ public class MagicStateCapability {
 	public static class Default implements IMagicState {
         private int fireLevel = 1, blizzardLevel = 1, thunderLevel = 1, cureLevel = 1, aeroLevel = 1, stopLevel = 1;
 		private boolean kh1fire = false;
-		private final InventorySpells inventorySpells = new InventorySpells();
+		private final ItemStackHandler inventorySpells = new ItemStackHandler(InventorySpells.INV_SIZE);
 
 
 		@Override
@@ -120,7 +120,7 @@ public class MagicStateCapability {
         	return this.kh1fire;
         }
         
-		@Override public InventorySpells getInventorySpells(){return this.inventorySpells;}
+		@Override public ItemStackHandler getInventorySpells(){return this.inventorySpells;}
 
     }
 }

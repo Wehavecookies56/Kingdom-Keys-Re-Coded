@@ -227,9 +227,9 @@ public class GuiReports extends GuiScreen {
 	private void buildPage (String unlocTitle, String unlocBody, int page, int totalPages, int desiredChapter) {
 		RenderHelper.disableStandardItemLighting();
 		if (chapterIndex == desiredChapter) {
-			drawCenteredString(fontRendererObj, Utils.translateToLocal(unlocTitle), bookXStart + 85, 20, 0x666666);
-			fontRendererObj.setUnicodeFlag(false);
-			fontRendererObj.drawSplitString(Utils.translateToLocal(unlocBody), bookXStart + 20, 60, WIDTH - 40, 0x666666);
+			drawCenteredString(fontRenderer, Utils.translateToLocal(unlocTitle), bookXStart + 85, 20, 0x666666);
+			fontRenderer.setUnicodeFlag(false);
+			fontRenderer.drawSplitString(Utils.translateToLocal(unlocBody), bookXStart + 20, 60, WIDTH - 40, 0x666666);
 		}
 		// drawCenteredString(fontRendererObj, page + " / " + totalPages,
 		// bookXStart + 85, 215, 0x666666);
@@ -307,7 +307,7 @@ public class GuiReports extends GuiScreen {
 
 				drawTexturedModalRect(xPosition, yPosition, u, v, width, height);
 				itemRender.renderItemAndEffectIntoGUI(new ItemStack(ModItems.KingdomKey), xPosition + 2, yPosition + 2);
-				drawString(fontRendererObj, text, xPosition + 160 / 2 - 40, yPosition + 6, 0xFFFFFF);
+				drawString(fontRenderer, text, xPosition + 160 / 2 - 40, yPosition + 6, 0xFFFFFF);
 
 				GL11.glEnable(GL11.GL_LIGHTING);
 				RenderHelper.enableStandardItemLighting();

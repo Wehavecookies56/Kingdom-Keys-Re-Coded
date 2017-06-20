@@ -66,7 +66,7 @@ public class GuiOrgWeapon extends GuiScreen {
             GlStateManager.enableAlpha();
             GlStateManager.enableBlend();
             drawTexturedModalRect((width / 2) - (256 / 2) - 5, (height / 2) - (256 / 2), 0, 0, 256, 256);
-            drawString(fontRendererObj, new ItemStack(weapons.get(current)).getDisplayName(), (width / 2) - (256 / 2) - 5, (height / 2) - 110, 0xFFFFFF);
+            drawString(fontRenderer, new ItemStack(weapons.get(current)).getDisplayName(), (width / 2) - (256 / 2) - 5, (height / 2) - 110, 0xFFFFFF);
             GlStateManager.popMatrix();
             GlStateManager.pushMatrix();
             GlStateManager.translate((width / 2) - (256 / 2) - 5 + 94, (height / 2) - (256 / 2) + 88, 0);
@@ -81,7 +81,7 @@ public class GuiOrgWeapon extends GuiScreen {
             GlStateManager.popMatrix();
         } else {
             drawDefaultBackground();
-            drawCenteredString(fontRendererObj, "Equip " + new ItemStack(weapons.get(current)).getDisplayName() + "?", (width / 2), height / 2, 0xFFFFFF);
+            drawCenteredString(fontRenderer, "Equip " + new ItemStack(weapons.get(current)).getDisplayName() + "?", (width / 2), height / 2, 0xFFFFFF);
         }
         /*mc.renderEngine.bindTexture(icons[current.ordinal()]);
         GlStateManager.enableAlpha();

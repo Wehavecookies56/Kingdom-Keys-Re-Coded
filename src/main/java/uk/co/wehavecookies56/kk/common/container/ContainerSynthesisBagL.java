@@ -7,32 +7,35 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagL;
 import uk.co.wehavecookies56.kk.common.container.slot.SlotSynthesisBag;
 
 public class ContainerSynthesisBagL extends Container {
 
-	private final InventorySynthesisBagL inventory;
+	private IItemHandler inventory;
 
 	private static final int INV_START = InventorySynthesisBagL.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;
 
-	public ContainerSynthesisBagL (EntityPlayer player, InventoryPlayer invPlayer, InventorySynthesisBagL invBag) {
-		inventory = invBag;
+	public ContainerSynthesisBagL (EntityPlayer player, InventoryPlayer invPlayer) {
+		if (invPlayer.getCurrentItem().hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)) {
+			inventory = invPlayer.getCurrentItem().getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+			int i;
+			int j;
 
-		int i;
-		int j;
+			// Bag Inventory
+			for (i = 0; i < 8; i++)
+				for (j = 0; j < 7; j++)
+					addSlotToContainer(new SlotSynthesisBag(inventory, j + i * 7, 26 + j * 18, 18 + i * 18));
 
-		// Bag Inventory
-		for (i = 0; i < 8; i++)
-			for (j = 0; j < 7; j++)
-				addSlotToContainer(new SlotSynthesisBag(invBag, j + i * 7, 26 + j * 18, 18 + i * 18));
+			for (i = 0; i < 3; ++i)
+				for (j = 0; j < 9; ++j)
+					addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 166 + i * 18));
 
-		for (i = 0; i < 3; ++i)
-			for (j = 0; j < 9; ++j)
-				addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 166 + i * 18));
-
-		for (i = 0; i < 9; ++i)
-			addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 224));
+			for (i = 0; i < 9; ++i)
+				addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 224));
+		}
 	}
 
 	@Override
@@ -41,31 +44,42 @@ public class ContainerSynthesisBagL extends Container {
 	}
 
 	@Override
-	public ItemStack transferStackInSlot (EntityPlayer playerIn, int index) {
-		int numRows = 56 / 7;
-		ItemStack itemstack = null;
-		Slot slot = this.inventorySlots.get(index);
-
+	public ItemStack transferStackInSlot (EntityPlayer player, int index) {
+		ItemStack itemStack = ItemStack.EMPTY;
+		Slot slot = inventorySlots.get(index);
 		if (slot != null && slot.getHasStack()) {
-			ItemStack itemstack1 = slot.getStack();
-			itemstack = itemstack1.copy();
+			ItemStack itemStack1 = slot.getStack();
+			itemStack = itemStack1.copy();
 
-			if (index < numRows * 7) {
-				if (!mergeItemStack(itemstack1, numRows * 7, this.inventorySlots.size(), true)) return null;
-			} else if (!mergeItemStack(itemstack1, 0, numRows * 7, false)) return null;
+			int containerSlots = inventorySlots.size() - player.inventory.mainInventory.size();
 
-			if (itemstack1.stackSize == 0)
-				slot.putStack((ItemStack) null);
-			else
+			if (index < containerSlots) {
+				if (!this.mergeItemStack(itemStack1, containerSlots, inventorySlots.size(), true)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (!this.mergeItemStack(itemStack1, 0, containerSlots, false)) {
+				return ItemStack.EMPTY;
+			}
+
+			if (itemStack1.getCount() == 0) {
+				slot.putStack(ItemStack.EMPTY);
+			} else {
 				slot.onSlotChanged();
+			}
+
+			if (itemStack1.getCount() == itemStack.getCount()) {
+				return ItemStack.EMPTY;
+			}
+
+			slot.onTake(player, itemStack1);
 		}
 
-		return itemstack;
+		return itemStack;
 	}
 
 	@Override
 	public ItemStack slotClick(int slot, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-		if (slot >= 0 && getSlot(slot) != null && getSlot(slot).getStack() == player.getHeldItem(EnumHand.MAIN_HAND)) return null;
+		if (slot >= 0 && getSlot(slot).getStack() == player.getHeldItem(EnumHand.MAIN_HAND)) return ItemStack.EMPTY;
 		return super.slotClick(slot, dragType, clickTypeIn, player);
 	}
 
@@ -76,7 +90,7 @@ public class ContainerSynthesisBagL extends Container {
 		Slot slot;
 		ItemStack itemstack1;
 
-		if (stack.isStackable()) while (stack.stackSize > 0 && (!backwards && k < end || backwards && k >= start)) {
+		if (stack.isStackable()) while (stack.getCount() > 0 && (!backwards && k < end || backwards && k >= start)) {
 			slot = inventorySlots.get(k);
 			itemstack1 = slot.getStack();
 
@@ -85,18 +99,16 @@ public class ContainerSynthesisBagL extends Container {
 				continue;
 			}
 
-			if (itemstack1 != null && itemstack1.getItem() == stack.getItem() && (!stack.getHasSubtypes() || stack.getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, itemstack1)) {
-				int l = itemstack1.stackSize + stack.stackSize;
+			if (itemstack1 != ItemStack.EMPTY && itemstack1.getItem() == stack.getItem() && (!stack.getHasSubtypes() || stack.getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, itemstack1)) {
+				int l = itemstack1.getCount() + stack.getCount();
 
 				if (l <= stack.getMaxStackSize() && l <= slot.getSlotStackLimit()) {
-					stack.stackSize = 0;
-					itemstack1.stackSize = l;
-					inventory.markDirty();
+					stack.setCount(0);
+					itemstack1.setCount(1);
 					flag1 = true;
-				} else if (itemstack1.stackSize < stack.getMaxStackSize() && l < slot.getSlotStackLimit()) {
-					stack.stackSize -= stack.getMaxStackSize() - itemstack1.stackSize;
-					itemstack1.stackSize = stack.getMaxStackSize();
-					inventory.markDirty();
+				} else if (itemstack1.getCount() < stack.getMaxStackSize() && l < slot.getSlotStackLimit()) {
+					stack.setCount(stack.getCount() - (stack.getMaxStackSize() - itemstack1.getCount()));
+					itemstack1.setCount(stack.getMaxStackSize());
 					flag1 = true;
 				}
 			}
@@ -104,7 +116,7 @@ public class ContainerSynthesisBagL extends Container {
 			k += (backwards ? -1 : 1);
 		}
 
-		if (stack.stackSize > 0) {
+		if (stack.getCount() > 0) {
 			k = (backwards ? end - 1 : start);
 
 			while (!backwards && k < end || backwards && k >= start) {
@@ -116,19 +128,17 @@ public class ContainerSynthesisBagL extends Container {
 					continue;
 				}
 
-				if (itemstack1 == null) {
-					int l = stack.stackSize;
+				if (itemstack1 == ItemStack.EMPTY) {
+					int l = stack.getCount();
 
 					if (l <= slot.getSlotStackLimit()) {
 						slot.putStack(stack.copy());
-						stack.stackSize = 0;
-						inventory.markDirty();
+						stack.setCount(0);
 						flag1 = true;
 						break;
 					} else {
 						putStackInSlot(k, new ItemStack(stack.getItem(), slot.getSlotStackLimit(), stack.getItemDamage()));
-						stack.stackSize -= slot.getSlotStackLimit();
-						inventory.markDirty();
+						stack.setCount(stack.getCount() - slot.getSlotStackLimit());
 						flag1 = true;
 					}
 				}

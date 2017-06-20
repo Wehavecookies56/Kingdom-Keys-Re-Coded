@@ -33,7 +33,7 @@ public class MunnyPickup extends AbstractServerMessage<MunnyPickup> {
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		//player.inventory.consumeInventoryItem(toRemove.getItem());
-		toRemove.stackSize--;
+		toRemove.setCount(toRemove.getCount()-1);
 		IMunny munny = player.getCapability(ModCapabilities.MUNNY, null);
 		munny.addMunny(toRemove.getTagCompound().getInteger("amount"));
 	}

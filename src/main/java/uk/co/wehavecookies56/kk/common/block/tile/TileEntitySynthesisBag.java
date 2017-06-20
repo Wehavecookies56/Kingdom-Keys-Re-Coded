@@ -17,12 +17,15 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 	final int NUMBER_OF_SLOTS = 63;
 	private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];
 
-	/* The following are some IInventory methods you are required to override */
-
 	// Gets the number of slots in the inventory
 	@Override
 	public int getSizeInventory () {
 		return itemStacks.length;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return false;
 	}
 
 	// Gets the stack in the given slot
@@ -47,12 +50,12 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 		if (itemStackInSlot == null) return null;
 
 		ItemStack itemStackRemoved;
-		if (itemStackInSlot.stackSize <= count) {
+		if (itemStackInSlot.getCount() <= count) {
 			itemStackRemoved = itemStackInSlot;
-			setInventorySlotContents(slotIndex, null);
+			setInventorySlotContents(slotIndex, ItemStack.EMPTY);
 		} else {
 			itemStackRemoved = itemStackInSlot.splitStack(count);
-			if (itemStackInSlot.stackSize == 0) setInventorySlotContents(slotIndex, null);
+			if (itemStackInSlot.getCount() == 0) setInventorySlotContents(slotIndex, ItemStack.EMPTY);
 		}
 		markDirty();
 		return itemStackRemoved;
@@ -62,7 +65,7 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 	@Override
 	public void setInventorySlotContents (int slotIndex, ItemStack itemstack) {
 		itemStacks[slotIndex] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) itemstack.stackSize = getInventoryStackLimit();
+		if (itemstack != ItemStack.EMPTY && itemstack.getCount() > getInventoryStackLimit()) itemstack.setCount(getInventoryStackLimit());
 		markDirty();
 	}
 
@@ -143,7 +146,7 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 			NBTTagCompound dataForOneSlot = dataForAllSlots.getCompoundTagAt(i);
 			int slotIndex = dataForOneSlot.getByte("Slot") & 255;
 
-			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) this.itemStacks[slotIndex] = ItemStack.loadItemStackFromNBT(dataForOneSlot);
+			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) this.itemStacks[slotIndex] = new ItemStack(dataForOneSlot);
 		}
 	}
 
@@ -206,4 +209,6 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
 	public String getName () {
 		return "container.kk.synthesisbag";
 	}
+
+
 }

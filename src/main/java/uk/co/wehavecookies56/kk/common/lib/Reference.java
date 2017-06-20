@@ -4,7 +4,7 @@ public class Reference {
 
 	public static final String MODID = "kk";
 	public static final String MODNAME = "Kingdom Keys Re:Coded";
-	public static final String MODVER = "0.9.0";
+	public static final String MODVER = "0.9.0 Beta";
 	public static final String MCVER = "1.10.2";
 	public static final String MODCHANNEL = MODID;
 	public static final String CLIENTPROXY = "uk.co.wehavecookies56.kk.client.core.proxy.ClientProxy";

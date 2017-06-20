@@ -246,7 +246,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                             player.addStat(AchievementList.OVERKILL);
                         }
 
-                        player.setLastAttacker(targetEntity);
+                        player.setLastAttackedEntity(targetEntity);
 
                         if (targetEntity instanceof EntityLivingBase)
                         {
@@ -259,7 +259,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
 
                         if (targetEntity instanceof EntityDragonPart)
                         {
-                            IEntityMultiPart ientitymultipart = ((EntityDragonPart)targetEntity).entityDragonObj;
+                            IEntityMultiPart ientitymultipart = ((EntityDragonPart)targetEntity).parent;
 
                             if (ientitymultipart instanceof EntityLivingBase)
                             {
@@ -267,13 +267,13 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                             }
                         }
 
-                        if (itemstack1 != null && entity instanceof EntityLivingBase)
+                        if (itemstack1 != ItemStack.EMPTY && entity instanceof EntityLivingBase)
                         {
                             itemstack1.hitEntity((EntityLivingBase)entity, player);
 
-                            if (itemstack1.stackSize <= 0)
+                            if (itemstack1.getCount() <= 0)
                             {
-                                player.setHeldItem(EnumHand.OFF_HAND, (ItemStack)null);
+                                player.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
                             }
                         }
 

@@ -5,6 +5,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.SlotItemHandler;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryDriveForms;
 import uk.co.wehavecookies56.kk.common.container.slot.SlotCustom;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
@@ -12,10 +15,11 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 public class ContainerDriveForms extends Container {
 	private static final int INV_START = InventoryDriveForms.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;
 
-	public ContainerDriveForms (EntityPlayer player, InventoryPlayer inventoryPlayer, InventoryDriveForms inventoryDrive) {
+	public ContainerDriveForms (EntityPlayer player, InventoryPlayer inventoryPlayer) {
+		ItemStackHandler inventory = player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms();
 		int i;
 		for (i = 0; i < INV_START; i++)
-			addSlotToContainer(new SlotCustom(inventoryDrive, i, 44 + (18 * i), 30, 5));
+			addSlotToContainer(new SlotCustom(inventory, i, 44 + (18 * i), 30, 5));
 		for (i = 0; i < 3; ++i)
 			for (int j = 0; j < 9; ++j)
 				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
@@ -29,31 +33,36 @@ public class ContainerDriveForms extends Container {
 	}
 
 	@Override
-	public ItemStack transferStackInSlot (EntityPlayer player, int par2) {
-		ItemStack itemstack = null;
-		Slot slot = this.inventorySlots.get(par2);
-
+	public ItemStack transferStackInSlot (EntityPlayer player, int index) {
+		ItemStack itemStack = ItemStack.EMPTY;
+		Slot slot = inventorySlots.get(index);
 		if (slot != null && slot.getHasStack()) {
-			ItemStack itemstack1 = slot.getStack();
-			itemstack = itemstack1.copy();
+			ItemStack itemStack1 = slot.getStack();
+			itemStack = itemStack1.copy();
 
-			if (par2 < INV_START) {
-				if (!mergeItemStack(itemstack1, INV_START, HOTBAR_END + 1, true)) return null;
-				slot.onSlotChange(itemstack1, itemstack);
-			} else if (itemstack1.getItem() instanceof ItemDriveForm) {
-				if (!mergeItemStack(itemstack1, 0, InventoryDriveForms.INV_SIZE, false)) return null;
-			} else if (par2 >= INV_START && par2 < HOTBAR_START) {
-				if (!mergeItemStack(itemstack1, HOTBAR_START, HOTBAR_START + 1, false)) return null;
-			} else if (par2 >= HOTBAR_START && par2 < HOTBAR_END + 1) if (!mergeItemStack(itemstack1, INV_START, INV_END + 1, false)) return null;
-			if (itemstack1.stackSize == 0)
-				slot.putStack((ItemStack) null);
-			else
+			int containerSlots = inventorySlots.size() - player.inventory.mainInventory.size();
+
+			if (index < containerSlots) {
+				if (!this.mergeItemStack(itemStack1, containerSlots, inventorySlots.size(), true)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (!this.mergeItemStack(itemStack1, 0, containerSlots, false)) {
+				return ItemStack.EMPTY;
+			}
+
+			if (itemStack1.getCount() == 0) {
+				slot.putStack(ItemStack.EMPTY);
+			} else {
 				slot.onSlotChanged();
+			}
 
-			if (itemstack1.stackSize == itemstack.stackSize) return null;
+			if (itemStack1.getCount() == itemStack.getCount()) {
+				return ItemStack.EMPTY;
+			}
 
-			slot.onPickupFromSlot(player, itemstack1);
+			slot.onTake(player, itemStack1);
 		}
-		return itemstack;
+
+		return itemStack;
 	}
 }

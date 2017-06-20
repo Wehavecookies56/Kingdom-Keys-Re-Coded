@@ -36,6 +36,6 @@ public class GuiKKChest extends GuiContainer {
 	protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY) {
 		final int LABEL_XPOS = 5;
 		final int LABEL_YPOS = 5;
-		fontRendererObj.drawString(tileEntityKKChest.getName(), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
+		fontRenderer.drawString(tileEntityKKChest.getDisplayName().getUnformattedText(), LABEL_XPOS, LABEL_YPOS, Color.darkGray.getRGB());
 	}
 }

@@ -20,14 +20,13 @@ public class ItemDefenseBoost extends Item {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer playerIn, EnumHand hand) {
-		itemStackIn.stackSize--;
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+		player.getActiveItemStack().setCount(player.getActiveItemStack().getCount()-1);
 		if (world.isRemote) {
-			PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.DefenseBoost, playerIn.inventory.currentItem));
+			PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.DefenseBoost, player.inventory.currentItem));
 		}
-		playerIn.world.playSound(playerIn, playerIn.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
-
-		return super.onItemRightClick(itemStackIn, world, playerIn, hand);
+		player.world.playSound(player, player.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
+		return super.onItemRightClick(world, player, hand);
 	}
 
 	@Override

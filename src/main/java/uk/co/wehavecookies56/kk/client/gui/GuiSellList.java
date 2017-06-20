@@ -21,7 +21,7 @@ public class GuiSellList extends GuiScrollingList {
 
 	private GuiShop parent;
 
-	FontRenderer f = Minecraft.getMinecraft().fontRendererObj;
+	FontRenderer f = Minecraft.getMinecraft().fontRenderer;
 	RenderItem ir = Minecraft.getMinecraft().getRenderItem();
 	static ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
 	static int width = sr.getScaledWidth();
@@ -46,7 +46,7 @@ public class GuiSellList extends GuiScrollingList {
 			for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
 				if (ItemEvents.areItemStacksEqual(stack, invStack)) {
 					sellableItems.add(invStack);
-					stackSizes.add(invStack.stackSize);
+					stackSizes.add(invStack.getCount());
 				}
 			}
 		}
@@ -85,10 +85,10 @@ public class GuiSellList extends GuiScrollingList {
 					name = Utils.translateToLocal(sellableItems.get(slotIdx).getTagCompound().getString("material") + ".name") + " x" + stackSizes.get(slotIdx);
 				}
 			}
-			Minecraft.getMinecraft().fontRendererObj.drawString(name, this.left + 3, slotTop, 0xFFFFFF);
+			Minecraft.getMinecraft().fontRenderer.drawString(name, this.left + 3, slotTop, 0xFFFFFF);
 			for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
 				if (ItemEvents.areItemStacksEqual(stack, sellableItems.get(slotIdx))) {
-					Minecraft.getMinecraft().fontRendererObj.drawString((MunnyRegistry.munnyValues.get(stack) / 2) + "", this.left + 3, slotTop + 12, 0xFFFF55);
+					Minecraft.getMinecraft().fontRenderer.drawString((MunnyRegistry.munnyValues.get(stack) / 2) + "", this.left + 3, slotTop + 12, 0xFFFF55);
 				}
 			}
 		}
@@ -103,15 +103,15 @@ public class GuiSellList extends GuiScrollingList {
 		GL11.glPushMatrix(); {
 			GL11.glTranslatef(posX, 70, 0);
 			GL11.glScalef(2, 2, 2);
-			parent.drawString(Minecraft.getMinecraft().fontRendererObj, sellableItems.get(parent.sellSelected).getDisplayName() + " x" + stackSizes.get(parent.sellSelected), 0, 0, 0xFFFFFF);
+			parent.drawString(Minecraft.getMinecraft().fontRenderer, sellableItems.get(parent.sellSelected).getDisplayName() + " x" + stackSizes.get(parent.sellSelected), 0, 0, 0xFFFFFF);
 		}
 		GL11.glPopMatrix();
-		parent.drawString(Minecraft.getMinecraft().fontRendererObj, Utils.translateToLocal(Strings.Gui_Shop_Buy_Quantity), 220, parent.height - ((parent.height / 8) + 70 / 16) - 60, 0xFFFFFF);
+		parent.drawString(Minecraft.getMinecraft().fontRenderer, Utils.translateToLocal(Strings.Gui_Shop_Buy_Quantity), 220, parent.height - ((parent.height / 8) + 70 / 16) - 60, 0xFFFFFF);
 		GL11.glPushMatrix(); {
 			GL11.glTranslatef(posX, 90, 0);
 			for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
 				if (ItemEvents.areItemStacksEqual(stack, sellableItems.get(parent.sellSelected))) {
-					Minecraft.getMinecraft().fontRendererObj.drawString(Utils.translateToLocal(Strings.Gui_Shop_Sell_Price) + ": " + (MunnyRegistry.munnyValues.get(stack) / 2), 0, 0, 0xFFFF55);
+					Minecraft.getMinecraft().fontRenderer.drawString(Utils.translateToLocal(Strings.Gui_Shop_Sell_Price) + ": " + (MunnyRegistry.munnyValues.get(stack) / 2), 0, 0, 0xFFFF55);
 				}
 			}
 		}

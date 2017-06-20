@@ -81,7 +81,7 @@ public class GuiLockOn extends GuiScreen {
 
 			if(target != null)//TODO && player has scan ability
 			{
-				this.drawString(mc.fontRendererObj, target.getName(), screenWidth-mc.fontRendererObj.getStringWidth(target.getName()), 15, 0xFFFFFF);
+				this.drawString(mc.fontRenderer, target.getName(), screenWidth-mc.fontRenderer.getStringWidth(target.getName()), 15, 0xFFFFFF);
 				drawHPBar(event, (EntityLivingBase)target);
 			}
 				

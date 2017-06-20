@@ -81,14 +81,14 @@ public class OrganizationXIIICapability {
         public void readNBT(Capability<IOrganizationXIII> capability, IOrganizationXIII instance, EnumFacing side, NBTBase nbt) {
             NBTTagCompound properties = (NBTTagCompound) nbt;
             instance.setMember(Utils.OrgMember.values()[properties.getInteger("Member")]);
-            instance.setCurrentWeapon(ItemStack.loadItemStackFromNBT(properties).getItem());
+            instance.setCurrentWeapon(new ItemStack(properties).getItem());
             
             NBTTagList tagList = properties.getTagList("UnlockedWeapons", Constants.NBT.TAG_COMPOUND);
             for (int i = 0; i < tagList.tagCount(); i++) {
                 NBTTagCompound weapons = tagList.getCompoundTagAt(i);
-                if (!instance.unlockedWeapons().contains(ItemStack.loadItemStackFromNBT(weapons).getItem())) {
-                    instance.addUnlockedWeapon(ItemStack.loadItemStackFromNBT(weapons).getItem());
-                    LogHelper.info("Loaded unlocked weapon: " + ItemStack.loadItemStackFromNBT(weapons).getDisplayName());
+                if (!instance.unlockedWeapons().contains(new ItemStack(weapons).getItem())) {
+                    instance.addUnlockedWeapon(new ItemStack(weapons).getItem());
+                    LogHelper.info("Loaded unlocked weapon: " + new ItemStack(weapons).getDisplayName());
                 }
             }
             instance.setWeaponSummoned(properties.getBoolean("Summoned"));

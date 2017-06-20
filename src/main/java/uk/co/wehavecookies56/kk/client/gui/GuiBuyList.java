@@ -23,7 +23,7 @@ public class GuiBuyList extends GuiScrollingList {
 
 	private GuiShop parent;
 
-	FontRenderer f = Minecraft.getMinecraft().fontRendererObj;
+	FontRenderer f = Minecraft.getMinecraft().fontRenderer;
 	RenderItem ir = Minecraft.getMinecraft().getRenderItem();
 	static ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
 	static int width = sr.getScaledWidth();
@@ -480,10 +480,10 @@ public class GuiBuyList extends GuiScrollingList {
 				name = Utils.translateToLocal(itemsForSale.get(slotIdx).getTagCompound().getString("material") + ".name");
 			}
 		}
-		Minecraft.getMinecraft().fontRendererObj.drawString(name, this.left + 3, slotTop, 0xFFFFFF);
+		Minecraft.getMinecraft().fontRenderer.drawString(name, this.left + 3, slotTop, 0xFFFFFF);
 		for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
 			if (ItemEvents.areItemStacksEqual(stack, itemsForSale.get(slotIdx))) {
-				Minecraft.getMinecraft().fontRendererObj.drawString(MunnyRegistry.munnyValues.get(stack)+"", this.left + 3, slotTop + 12, 0xFFFF55);
+				Minecraft.getMinecraft().fontRenderer.drawString(MunnyRegistry.munnyValues.get(stack)+"", this.left + 3, slotTop + 12, 0xFFFF55);
 			}
 		}
 	}
@@ -497,15 +497,15 @@ public class GuiBuyList extends GuiScrollingList {
 		GL11.glPushMatrix(); {
 			GL11.glTranslatef(posX, 70, 0);
 			GL11.glScalef(2, 2, 2);
-			parent.drawString(Minecraft.getMinecraft().fontRendererObj, itemsForSale.get(parent.buySelected).getDisplayName(), 0, 0, 0xFFFFFF);
+			parent.drawString(Minecraft.getMinecraft().fontRenderer, itemsForSale.get(parent.buySelected).getDisplayName(), 0, 0, 0xFFFFFF);
 		}
 		GL11.glPopMatrix();
-		parent.drawString(Minecraft.getMinecraft().fontRendererObj, Utils.translateToLocal(Strings.Gui_Shop_Buy_Quantity), 220, parent.height - ((parent.height / 8) + 70 / 16) - 60, 0xFFFFFF);
+		parent.drawString(Minecraft.getMinecraft().fontRenderer, Utils.translateToLocal(Strings.Gui_Shop_Buy_Quantity), 220, parent.height - ((parent.height / 8) + 70 / 16) - 60, 0xFFFFFF);
 		GL11.glPushMatrix(); {
 			GL11.glTranslatef(posX, 90, 0);
 			for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
 				if (ItemEvents.areItemStacksEqual(stack, itemsForSale.get(parent.buySelected))) {
-					Minecraft.getMinecraft().fontRendererObj.drawString(Utils.translateToLocal(Strings.Gui_Shop_Buy_Cost) + ": " + MunnyRegistry.munnyValues.get(stack), 0, 0, 0xFFFF55);
+					Minecraft.getMinecraft().fontRenderer.drawString(Utils.translateToLocal(Strings.Gui_Shop_Buy_Cost) + ": " + MunnyRegistry.munnyValues.get(stack), 0, 0, 0xFFFF55);
 				}
 			}
 		}

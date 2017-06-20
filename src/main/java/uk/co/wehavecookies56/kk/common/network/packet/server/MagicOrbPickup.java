@@ -32,7 +32,7 @@ public class MagicOrbPickup extends AbstractServerMessage<MagicOrbPickup> {
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		//player.inventory.consumeInventoryItem(toRemove.getItem());
-		toRemove.stackSize--;
+		toRemove.setCount(toRemove.getCount()-1);
 		player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(toRemove.getTagCompound().getInteger("amount"));
 	}
 

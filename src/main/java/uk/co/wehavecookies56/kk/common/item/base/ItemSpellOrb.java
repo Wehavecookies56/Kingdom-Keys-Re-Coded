@@ -24,13 +24,13 @@ public abstract class ItemSpellOrb extends Item {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if (world.isRemote) {
 			PacketDispatcher.sendToServer(new LevelUpMagic(this.magic));
 		}
-		return super.onItemRightClick(itemStackIn, world, player, hand);
+		return super.onItemRightClick(world, player, hand);
 	}
-	
+
 	public String getMagicLevelName(EntityPlayer player, String magic){
 		String magicName;
 		int magicLevel = player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic);

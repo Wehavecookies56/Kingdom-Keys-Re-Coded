@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -21,11 +23,13 @@ public class GuiSynthesisBagS extends GuiContainer {
 	private int ySize = 140;
 
 	private static final ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/SynthesisBagS.png");
-	private InventorySynthesisBagS inventory;
+	private IItemHandler inventory;
 
-	public GuiSynthesisBagS (EntityPlayer player, InventoryPlayer inv1, InventorySynthesisBagS inv2) {
-		super(new ContainerSynthesisBagS(player, inv1, inv2));
-		this.inventory = inv2;
+	public GuiSynthesisBagS (EntityPlayer player, InventoryPlayer inv1) {
+		super(new ContainerSynthesisBagS(player, inv1));
+		if (inv1.getCurrentItem().hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)) {
+			this.inventory = inv1.getCurrentItem().getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+		}
 	}
 
 	@Override
@@ -44,11 +48,11 @@ public class GuiSynthesisBagS extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY) {
-		String s = inventory.getName();
+		String s = InventorySynthesisBagS.name;
 		GL11.glPushMatrix();
 		{
 			GL11.glScalef(0.9f, 0.9f, 1);
-			fontRendererObj.drawString(s, xSize / 2 - fontRendererObj.getStringWidth(s) / 2 + 10, 6, 4210752);
+			fontRenderer.drawString(s, xSize / 2 - fontRenderer.getStringWidth(s) / 2 + 10, 6, 4210752);
 		}
 		GL11.glPopMatrix();
 		// fontRendererObj.drawString(I18n.format("container.inventory"),

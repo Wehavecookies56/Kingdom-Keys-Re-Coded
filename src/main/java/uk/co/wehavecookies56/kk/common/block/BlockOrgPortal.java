@@ -37,9 +37,9 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
 	public TileEntity createNewTileEntity (World worldIn, int meta) {
 		return new TileEntityOrgPortal();
 	}
-	
+
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (!world.isRemote) {
 			if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
 				if (world.getTileEntity(pos) instanceof TileEntityOrgPortal) {
@@ -50,7 +50,7 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
 					if (te.getOwner() == null) {
 						te.setOwner(player);
 						te.markDirty();
-						
+
 						player.sendMessage(new TextComponentString(TextFormatting.GREEN + "This is now " + player.getDisplayNameString() + "'s portal"));
 						player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalX(pos.getX());
 						player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalY(pos.getY());
@@ -58,7 +58,7 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
 						//System.out.println(pos.getX()+","+pos.getY()+","+pos.getZ());
 						PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
 						return true;
-					
+
 					}else if(te.getOwner().equals(player.getDisplayNameString())){
 						player.sendMessage(new TextComponentString(TextFormatting.YELLOW + "This is your portal"));
 					}else {

@@ -5,12 +5,15 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.container.slot.SlotCustom;
 
 public class ContainerPedestal extends Container {
-
-	private TileEntityPedestal tileEntityPedestal;
 
 	private final int HOTBAR_SLOT_COUNT = 9;
 	private final int PLAYER_INVENTORY_ROW_COUNT = 3;
@@ -23,16 +26,18 @@ public class ContainerPedestal extends Container {
 
 	private final int TE_INVENTORY_SLOT_COUNT = 1;
 
-	public ContainerPedestal (InventoryPlayer invPlayer, TileEntityPedestal tileEntityPedestal) {
-		this.tileEntityPedestal = tileEntityPedestal;
+	public ContainerPedestal (InventoryPlayer invPlayer, TileEntityPedestal pedestal) {
 
-		if (TE_INVENTORY_SLOT_COUNT != tileEntityPedestal.getSizeInventory()) System.err.println("Mismatched slot count in ContainerBasic(" + TE_INVENTORY_SLOT_COUNT + ") and TileInventory (" + tileEntityPedestal.getSizeInventory() + ")");
-		
+		IItemHandler inventory = pedestal.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
 		int i;
 		int j;
 		
-		addSlotToContainer(new SlotCustom(tileEntityPedestal, 0, 80, 56, 6));
-
+		addSlotToContainer(new SlotCustom(inventory, 0, 80, 56, 6) {
+			@Override
+			public void onSlotChanged() {
+				pedestal.markDirty();
+			}
+		});
 
 		for (i = 0; i < 3; ++i)
 			for (j = 0; j < 9; ++j)
@@ -44,37 +49,41 @@ public class ContainerPedestal extends Container {
 
 	@Override
 	public boolean canInteractWith (EntityPlayer player) {
-		return tileEntityPedestal.isUsableByPlayer(player);
+		return true;
 	}
 
 	@Override
-	public ItemStack transferStackInSlot (EntityPlayer player, int sourceSlotIndex) {
-		Slot sourceSlot = inventorySlots.get(sourceSlotIndex);
-		if (sourceSlot == null || !sourceSlot.getHasStack()) return null;
-		ItemStack sourceStack = sourceSlot.getStack();
-		ItemStack copyOfSourceStack = sourceStack.copy();
+	public ItemStack transferStackInSlot (EntityPlayer player, int index) {
+		ItemStack itemStack = ItemStack.EMPTY;
+		Slot slot = inventorySlots.get(index);
+		if (slot != null && slot.getHasStack()) {
+			ItemStack itemStack1 = slot.getStack();
+			itemStack = itemStack1.copy();
 
-		if (sourceSlotIndex >= VANILLA_FIRST_SLOT_INDEX && sourceSlotIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-			if (!mergeItemStack(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false)) return null;
-		} else if (sourceSlotIndex >= TE_INVENTORY_FIRST_SLOT_INDEX && sourceSlotIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-			if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) return null;
-		} else {
-			System.err.print("Invalid slotIndex: " + sourceSlotIndex);
-			return null;
+			int containerSlots = inventorySlots.size() - player.inventory.mainInventory.size();
+
+			if (index < containerSlots) {
+				if (!this.mergeItemStack(itemStack1, containerSlots, inventorySlots.size(), true)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (!this.mergeItemStack(itemStack1, 0, containerSlots, false)) {
+				return ItemStack.EMPTY;
+			}
+
+			if (itemStack1.getCount() == 0) {
+				slot.putStack(ItemStack.EMPTY);
+			} else {
+				slot.onSlotChanged();
+			}
+
+			if (itemStack1.getCount() == itemStack.getCount()) {
+				return ItemStack.EMPTY;
+			}
+
+			slot.onTake(player, itemStack1);
 		}
 
-		if (sourceStack.stackSize == 0)
-			sourceSlot.putStack(null);
-		else
-			sourceSlot.onSlotChanged();
-
-		sourceSlot.onPickupFromSlot(player, sourceStack);
-		return copyOfSourceStack;
+		return itemStack;
 	}
 
-	@Override
-	public void onContainerClosed (EntityPlayer playerIn) {
-		super.onContainerClosed(playerIn);
-		this.tileEntityPedestal.closeInventory(playerIn);
-	}
 }

@@ -6,6 +6,9 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Multimap;
@@ -79,31 +82,31 @@ public class ItemEvents {
         if (event.getItem().getEntityItem().getItem() instanceof ItemMunny) {
             final MunnyCapability.IMunny munny = event.getEntityPlayer().getCapability(ModCapabilities.MUNNY, null);
             MunnyPickup packet = new MunnyPickup(event.getItem().getEntityItem());
-            event.getItem().getEntityItem().stackSize--;
+            event.getItem().getEntityItem().setCount(event.getItem().getEntityItem().getCount()-1);;
             munny.addMunny(event.getItem().getEntityItem().getTagCompound().getInteger("amount"));
             PacketDispatcher.sendTo(new SyncMunnyData(munny), (EntityPlayerMP) event.getEntityPlayer());
             PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getItem().getEntityItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getEntityPlayer());
 
         } else if (event.getItem().getEntityItem().getItem() instanceof ItemHpOrb) {
-            if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND) != null) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
+            if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
             PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
             HpOrbPickup packet = new HpOrbPickup(event.getItem().getEntityItem());
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
                 if (event.getEntityPlayer().getHealth() >= STATS.getHP()) {
-                    event.getItem().getEntityItem().stackSize--;
+                    event.getItem().getEntityItem().setCount(event.getItem().getEntityItem().getCount()-1);;
                     return;
                 }
                 if (event.getEntityPlayer().getHealth() < STATS.getHP() - 1)
                     event.getEntityPlayer().heal(2);
                 else
                     event.getEntityPlayer().heal(1);
-                event.getItem().getEntityItem().stackSize--;
+                event.getItem().getEntityItem().setCount(event.getItem().getEntityItem().getCount()-1);;
             }
         } else if (event.getItem().getEntityItem().getItem() == ModItems.DriveOrb) {
             final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
             {
                 if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-                    event.getItem().getEntityItem().stackSize--;
+                    event.getItem().getEntityItem().setCount(event.getItem().getEntityItem().getCount()-1);;
                     STATS.addDP(event.getItem().getEntityItem().getTagCompound().getInteger("amount"));
                     EntityPlayer player = event.getEntityPlayer();
             		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Master))
@@ -116,9 +119,9 @@ public class ItemEvents {
         } else if (event.getItem().getEntityItem().getItem() == ModItems.MagicOrb) {
             final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
             double mp = STATS.getMP();
-            if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND) != null) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
+            if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-                event.getItem().getEntityItem().stackSize--;
+                event.getItem().getEntityItem().setCount(event.getItem().getEntityItem().getCount()-1);;
                 STATS.addMP(event.getItem().getEntityItem().getTagCompound().getInteger("amount"));
                 PacketDispatcher.sendTo(new SyncMagicData(event.getEntityPlayer().getCapability(ModCapabilities.MAGIC_STATE, null), STATS), (EntityPlayerMP) event.getEntityPlayer());
             }
@@ -135,25 +138,25 @@ public class ItemEvents {
             
         } else if (event.getItem().getEntityItem().getItem() instanceof ItemSynthesisMaterial) {
             for(int i = 0; i < event.getEntityPlayer().inventory.getSizeInventory(); i++) {
-                if (event.getEntityPlayer().inventory.getStackInSlot(i) != null) {
+                if (event.getEntityPlayer().inventory.getStackInSlot(i) != ItemStack.EMPTY) {
                     if (event.getEntityPlayer().inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagL) {
-                        InventorySynthesisBagL inv = new InventorySynthesisBagL(event.getEntityPlayer().inventory.getStackInSlot(i));
-                        for (int j = 0; j < inv.getSizeInventory(); j++) {
+                        IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+                        for (int j = 0; j < inv.getSlots(); j++) {
                             ItemStack bagItem = inv.getStackInSlot(j);
                             ItemStack pickUp = event.getItem().getEntityItem();
-                            if (bagItem != null) {
+                            if (bagItem != ItemStack.EMPTY) {
                                 if (bagItem.getItem().equals(pickUp.getItem())) {
                                     if (bagItem.hasTagCompound() && pickUp.hasTagCompound()){
                                         if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
                                             if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) {
-                                                if (bagItem.stackSize < 64) {
-                                                    if (bagItem.stackSize + pickUp.stackSize <= 64) {
-                                                        ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.stackSize + bagItem.stackSize);
+                                                if (bagItem.getCount() < 64) {
+                                                    if (bagItem.getCount() + pickUp.getCount() <= 64) {
+                                                        ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.getCount() + bagItem.getCount());
                                                         stack.setTagCompound(new NBTTagCompound());
                                                         stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
                                                         stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
-                                                        inv.setInventorySlotContents(j, stack);
-                                                        pickUp.stackSize = 0;
+                                                        inv.insertItem(j, stack, false);
+                                                        pickUp.setCount(0);
                                                         return;
                                                     }
                                                 }
@@ -161,30 +164,30 @@ public class ItemEvents {
                                         }
                                     }
                                 }
-                            } else if (bagItem == null) {
-                                inv.setInventorySlotContents(j, pickUp);
-                                pickUp.stackSize = 0;
+                            } else if (bagItem == ItemStack.EMPTY) {
+                                inv.insertItem(j, pickUp, false);
+                                pickUp.setCount(0);
                                 return;
                             }
                         }
                     } else if (event.getEntityPlayer().inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagM) {
-                        InventorySynthesisBagM inv = new InventorySynthesisBagM(event.getEntityPlayer().inventory.getStackInSlot(i));
-                        for (int j = 0; j < inv.getSizeInventory(); j++) {
+                        IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+                        for (int j = 0; j < inv.getSlots(); j++) {
                             ItemStack bagItem = inv.getStackInSlot(j);
                             ItemStack pickUp = event.getItem().getEntityItem();
-                            if (bagItem != null) {
+                            if (bagItem != ItemStack.EMPTY) {
                                 if (bagItem.getItem().equals(pickUp.getItem())) {
                                     if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) {
                                         if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
                                             if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) {
-                                                if (bagItem.stackSize < 64) {
-                                                    if (bagItem.stackSize + pickUp.stackSize <= 64) {
-                                                        ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.stackSize + bagItem.stackSize);
+                                                if (bagItem.getCount() < 64) {
+                                                    if (bagItem.getCount() + pickUp.getCount() <= 64) {
+                                                        ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.getCount() + bagItem.getCount());
                                                         stack.setTagCompound(new NBTTagCompound());
                                                         stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
                                                         stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
-                                                        inv.setInventorySlotContents(j, stack);
-                                                        pickUp.stackSize = 0;
+                                                        inv.insertItem(j, stack, false);
+                                                        pickUp.setCount(0);
                                                         return;
                                                     }
                                                 }
@@ -192,30 +195,30 @@ public class ItemEvents {
                                         }
                                     }
                                 }
-                            } else if (bagItem == null) {
-                                inv.setInventorySlotContents(j, pickUp);
-                                pickUp.stackSize = 0;
+                            } else if (bagItem == ItemStack.EMPTY) {
+                                inv.insertItem(j, pickUp, false);
+                                pickUp.setCount(0);
                                 return;
                             }
                         }
                     } if (event.getEntityPlayer().inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagS) {
-                        InventorySynthesisBagS inv = new InventorySynthesisBagS(event.getEntityPlayer().inventory.getStackInSlot(i));
-                        for (int j = 0; j < inv.getSizeInventory(); j++) {
+                        IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+                        for (int j = 0; j < inv.getSlots(); j++) {
                             ItemStack bagItem = inv.getStackInSlot(j);
                             ItemStack pickUp = event.getItem().getEntityItem();
-                            if (bagItem != null) {
+                            if (bagItem != ItemStack.EMPTY) {
                                 if (bagItem.getItem().equals(pickUp.getItem())) {
                                     if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) {
                                         if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
                                             if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) {
-                                                if (bagItem.stackSize < 64) {
-                                                    if (bagItem.stackSize + pickUp.stackSize <= 64) {
-                                                        ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.stackSize + bagItem.stackSize);
+                                                if (bagItem.getCount() < 64) {
+                                                    if (bagItem.getCount() + pickUp.getCount() <= 64) {
+                                                        ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.getCount() + bagItem.getCount());
                                                         stack.setTagCompound(new NBTTagCompound());
                                                         stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
                                                         stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
-                                                        inv.setInventorySlotContents(j, stack);
-                                                        pickUp.stackSize = 0;
+                                                        inv.insertItem(j, stack, false);
+                                                        pickUp.setCount(0);
                                                         return;
                                                     }
                                                 }
@@ -223,9 +226,9 @@ public class ItemEvents {
                                         }
                                     }
                                 }
-                            } else if (bagItem == null) {
-                                inv.setInventorySlotContents(j, pickUp);
-                                pickUp.stackSize = 0;
+                            } else if (bagItem == ItemStack.EMPTY) {
+                                inv.insertItem(j, pickUp, false);
+                                pickUp.setCount(0);
                                 return;
                             }
                         }
@@ -243,14 +246,14 @@ public class ItemEvents {
     }
 
     public static boolean areItemStacksEqual(@Nullable ItemStack stackA, @Nullable ItemStack stackB) {
-        return stackA == null && stackB == null ? true : (stackA != null && stackB != null ? isItemStackEqualExcludingStackSize(stackA, stackB) : false);
+        return stackA == ItemStack.EMPTY && stackB == ItemStack.EMPTY || ((stackA != ItemStack.EMPTY && stackB != ItemStack.EMPTY) && isItemStackEqualExcludingStackSize(stackA, stackB));
     }
 
     @SubscribeEvent
     public void addTooltip (ItemTooltipEvent event) {
         for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
             if (areItemStacksEqual(stack, event.getItemStack())) {
-                event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack) * event.getItemStack().stackSize);
+                event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack) * event.getItemStack().getCount());
             }
         }
         //TODO Localize all this

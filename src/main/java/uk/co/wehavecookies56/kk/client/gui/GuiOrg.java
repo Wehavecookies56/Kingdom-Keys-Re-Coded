@@ -57,9 +57,9 @@ public class GuiOrg extends GuiScreen {
         String line2 = "Choose which member of Organization XIII you align with.";
         String line3 = "Your choice will determine which weapons are available to you.";
         if (showWelcome) {
-            drawCenteredString(fontRendererObj, line1, (width / 2), height / 2 - fontRendererObj.FONT_HEIGHT * 3, 0xFFFFFF);
-            drawCenteredString(fontRendererObj, line2, (width / 2), height / 2 - fontRendererObj.FONT_HEIGHT * 2, 0xFFFFFF);
-            drawCenteredString(fontRendererObj, line3, (width / 2), height / 2 - fontRendererObj.FONT_HEIGHT, 0xFFFFFF);
+            drawCenteredString(fontRenderer, line1, (width / 2), height / 2 - fontRenderer.FONT_HEIGHT * 3, 0xFFFFFF);
+            drawCenteredString(fontRenderer, line2, (width / 2), height / 2 - fontRenderer.FONT_HEIGHT * 2, 0xFFFFFF);
+            drawCenteredString(fontRenderer, line3, (width / 2), height / 2 - fontRenderer.FONT_HEIGHT, 0xFFFFFF);
         } else {
             String name = "";
             String weapon = "";
@@ -147,8 +147,8 @@ public class GuiOrg extends GuiScreen {
             }
             drawDefaultBackground();
             if (confirmChoice) {
-                drawCenteredString(fontRendererObj, "You wish to align with " + name + "?", (width / 2), height / 2 - fontRendererObj.FONT_HEIGHT, 0xFFFFFF);
-                drawCenteredString(fontRendererObj, "It will cost to change this after you have made your choice.", (width / 2), height / 2, 0xFFFFFF);
+                drawCenteredString(fontRenderer, "You wish to align with " + name + "?", (width / 2), height / 2 - fontRenderer.FONT_HEIGHT, 0xFFFFFF);
+                drawCenteredString(fontRenderer, "It will cost to change this after you have made your choice.", (width / 2), height / 2, 0xFFFFFF);
             } else {
                 GlStateManager.pushMatrix();
                 mc.renderEngine.bindTexture(GLOW);
@@ -165,8 +165,8 @@ public class GuiOrg extends GuiScreen {
                 GlStateManager.scale(0.5F, 0.5F, 0.5F);
                 drawTexturedModalRect(0, 0, 0, 0, icon_width, icon_height);
                 GlStateManager.popMatrix();
-                drawString(fontRendererObj, name, ((width / 2) - (8) - 64) + 2 + icon_width / 2, (height / 2) - 110, 0xFFFFFF);
-                drawString(fontRendererObj, weapon, ((width / 2) - (8) - 64) + 2 + icon_width / 2, (height / 2) - 110 + fontRendererObj.FONT_HEIGHT * 2, 0xFFFFFF);
+                drawString(fontRenderer, name, ((width / 2) - (8) - 64) + 2 + icon_width / 2, (height / 2) - 110, 0xFFFFFF);
+                drawString(fontRenderer, weapon, ((width / 2) - (8) - 64) + 2 + icon_width / 2, (height / 2) - 110 + fontRenderer.FONT_HEIGHT * 2, 0xFFFFFF);
             }
         }
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -239,7 +239,7 @@ public class GuiOrg extends GuiScreen {
             prev.visible = false;
             select.visible = false;
             ok.xPosition = (width / 2) - (ok.width / 2);
-            ok.yPosition = (height / 2) - (ok.height / 2) + fontRendererObj.FONT_HEIGHT + 2;
+            ok.yPosition = (height / 2) - (ok.height / 2) + fontRenderer.FONT_HEIGHT + 2;
         } else {
             ok.visible = false;
             next.visible = true;

@@ -3,6 +3,9 @@ package uk.co.wehavecookies56.kk.common.container.slot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagL;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagM;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagS;
@@ -12,10 +15,10 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 
-public class SlotCustom extends Slot {
+public class SlotCustom extends SlotItemHandler {
 	int window;
 
-	public SlotCustom (IInventory inventory, int index, int x, int y, int window) {
+	public SlotCustom (IItemHandler inventory, int index, int x, int y, int window) {
 		super(inventory, index, x, y);
 		this.window = window;
 	}

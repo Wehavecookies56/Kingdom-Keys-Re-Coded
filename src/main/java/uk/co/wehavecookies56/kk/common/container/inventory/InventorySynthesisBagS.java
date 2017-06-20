@@ -2,71 +2,52 @@ package uk.co.wehavecookies56.kk.common.container.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.INBTSerializable;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagS;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
-public class InventorySynthesisBagS extends AbstractInventory {
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-	private String name = Utils.translateToLocal(Strings.SynthesisBagSInventory);
+public class InventorySynthesisBagS implements ICapabilityProvider, INBTSerializable<NBTBase> {
+
+	public static String name = Utils.translateToLocal(Strings.SynthesisBagSInventory);
 
 	private static final String SAVE_KEY = "SynthesisBagSInventory";
 
 	public static final int INV_SIZE = 14;
 
-	private final ItemStack invStack;
+	ItemStackHandler inventory = new ItemStackHandler(INV_SIZE);
 
-	public InventorySynthesisBagS (ItemStack stack) {
-		inventory = new ItemStack[INV_SIZE];
-		this.invStack = stack;
-		if (!invStack.hasTagCompound()) invStack.setTagCompound(new NBTTagCompound());
-		readFromNBT(invStack.getTagCompound());
+	@Override
+	public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
+	}
+
+	@Nullable
+	@Override
+	public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)inventory : null;
 	}
 
 	@Override
-	public int getInventoryStackLimit () {
-		return 64;
+	public NBTBase serializeNBT() {
+		return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inventory, null);
 	}
 
 	@Override
-	public boolean hasCustomName () {
-		return name.length() > 0;
+	public void deserializeNBT(NBTBase nbt) {
+		CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inventory, null, nbt);
 	}
-
-	@Override
-	public void markDirty () {
-		for (int i = 0; i < getSizeInventory(); i++)
-			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0) inventory[i] = null;
-		writeToNBT(invStack.getTagCompound());
-	}
-
-	@Override
-	public boolean isUsableByPlayer (EntityPlayer player) {
-		return player.getHeldItem(EnumHand.MAIN_HAND) == invStack;
-	}
-
-	@Override
-	public boolean isItemValidForSlot (int index, ItemStack stack) {
-		return !(stack.getItem() instanceof ItemSynthesisBagS);
-	}
-
-	@Override
-	protected String getNbtKey () {
-		return SAVE_KEY;
-	}
-
-	@Override
-	public String getName () {
-		return name;
-	}
-
-	@Override
-	public ITextComponent getDisplayName () {
-		return new TextComponentString(name);
-	}
-
 }

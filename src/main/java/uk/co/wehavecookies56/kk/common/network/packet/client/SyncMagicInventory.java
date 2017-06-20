@@ -8,6 +8,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability.IMagicState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.container.inventory.InventorySpells;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractClientMessage;
 
 public class SyncMagicInventory extends AbstractClientMessage<SyncMagicInventory> {
@@ -18,7 +19,7 @@ public class SyncMagicInventory extends AbstractClientMessage<SyncMagicInventory
 	
 	public SyncMagicInventory(IMagicState stats) {
 		data = new NBTTagCompound();
-		stats.getInventorySpells().writeToNBT(data);
+		data.setTag(InventorySpells.SAVE_KEY, stats.getInventorySpells().serializeNBT());
 	}
 	
 	@Override
@@ -33,7 +34,7 @@ public class SyncMagicInventory extends AbstractClientMessage<SyncMagicInventory
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().readFromNBT(data);
+		player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().deserializeNBT(data.getCompoundTag(InventorySpells.SAVE_KEY));
 	}
 
 

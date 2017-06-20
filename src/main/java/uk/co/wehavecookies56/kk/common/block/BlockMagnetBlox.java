@@ -107,7 +107,7 @@ public class BlockMagnetBlox extends BlockBlox {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void neighborChanged (IBlockState state, World world, BlockPos pos, Block blockIn) {
+	public void neighborChanged (IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 		
 		if (world.isBlockPowered(pos)) {
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYON, true));

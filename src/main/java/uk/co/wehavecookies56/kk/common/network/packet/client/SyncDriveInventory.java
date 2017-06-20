@@ -8,6 +8,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.container.inventory.InventoryDriveForms;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractClientMessage;
 
 public class SyncDriveInventory extends AbstractClientMessage<SyncDriveInventory> {
@@ -18,7 +19,7 @@ public class SyncDriveInventory extends AbstractClientMessage<SyncDriveInventory
 	
 	public SyncDriveInventory(IDriveState stats) {
 		data = new NBTTagCompound();
-		stats.getInventoryDriveForms().writeToNBT(data);
+		data.setTag(InventoryDriveForms.SAVE_KEY, stats.getInventoryDriveForms().serializeNBT());
 	}
 	
 	@Override
@@ -33,7 +34,7 @@ public class SyncDriveInventory extends AbstractClientMessage<SyncDriveInventory
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
-		player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().readFromNBT(data);
+		player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().deserializeNBT(data.getCompoundTag(InventoryDriveForms.SAVE_KEY));
 	}
 
 
