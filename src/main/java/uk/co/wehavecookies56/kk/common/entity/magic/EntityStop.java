@@ -9,7 +9,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.play.server.SPacketEntityVelocity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -19,7 +18,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnStopParticles;
 public class EntityStop extends Entity {
 
 	EntityPlayer player;
-
+	static final int TICKS = 50;
 	public EntityStop (World world) {
 		super(world);
 	}
@@ -34,7 +33,8 @@ public class EntityStop extends Entity {
 
 	@Override
 	public void onUpdate () {
-		if (player == null) return;
+		if (player == null) 
+			return;
 		int rotation = 0;
 		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnStopParticles(this, 1), player, 64.0D);
 		double r = 1.5D;
@@ -47,7 +47,8 @@ public class EntityStop extends Entity {
 		}
 
 		this.rotationYaw = (rotation + 1) % 360;
-		if (ticksExisted > 50) setDead();
+		if (ticksExisted > TICKS)
+			setDead();
 
 		if (ticksExisted < 10)
 			player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0D);
@@ -55,25 +56,32 @@ public class EntityStop extends Entity {
 			player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10000000149011612D);
 
 		double distance = 3.0D;
-		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
+		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(distance, distance, distance);
 		List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
-		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
-			Entity e = (Entity) list.get(i);
-			if (e instanceof EntityLiving) {
-				if (ticksExisted < 50) {
-					((EntityLivingBase) e).motionX = 0;
-					((EntityLivingBase) e).motionY = 0;
-					((EntityLivingBase) e).motionZ = 0;
-				}
-			}
-			if (!world.isRemote) {
-				if (ticksExisted < 50) {
-					((EntityPlayerMP) player).connection.sendPacket(new SPacketEntityVelocity(e.getEntityId(), 0, 0, 0));
-				}
-			}
+		if (!list.isEmpty()){
 			
+			for (int i = 0; i < list.size(); i++) {
+				Entity e = (Entity) list.get(i);
+				
+				if (e instanceof EntityLiving) {
+					if (ticksExisted < TICKS) {
+						((EntityLivingBase) e).motionX = 0;
+						((EntityLivingBase) e).motionY = 0;
+						((EntityLivingBase) e).motionZ = 0;
+					}
+				}
+				if(e instanceof EntityPlayerMP){
+					((EntityPlayerMP)e).getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0D);
+
+				}
+				/*if (!world.isRemote) {
+					if (ticksExisted < 50) {
+						((EntityPlayerMP) player).connection.sendPacket(new SPacketEntityVelocity(e.getEntityId(), 0, 0, 0));
+					}
+				}*/
+			}
 		}
-		aabb.expand(-2, -2, -2);
+		aabb.expand(-distance, -distance, -distance);
 
 		super.onUpdate();
 	}
