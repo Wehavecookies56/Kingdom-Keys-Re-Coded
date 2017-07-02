@@ -59,7 +59,7 @@ public class ItemRecipe extends Item {
 				shuffleRecipes(player.getHeldItemMainhand(), player);
 			}
 			if (consume)
-				player.getActiveItemStack().setCount(player.getActiveItemStack().getCount()-1);
+				player.getHeldItemMainhand().setCount(player.getHeldItemMainhand().getCount()-1);
 
 		}
 		return super.onItemRightClick(world, player, hand);

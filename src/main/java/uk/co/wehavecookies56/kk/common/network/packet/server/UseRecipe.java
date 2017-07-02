@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.network.packet.server;
 import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
@@ -100,7 +101,7 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
 
 		if (consume) 
 			if(!player.capabilities.isCreativeMode)
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
 		if(RECIPES.getKnownRecipes().size() == 120)
 		{
             AchievementHelper.addAchievement(player, ModAchievements.allRecipes);
