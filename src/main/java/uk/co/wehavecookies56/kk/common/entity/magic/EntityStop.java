@@ -19,6 +19,8 @@ public class EntityStop extends Entity {
 
 	EntityPlayer player;
 	static final int TICKS = 50;
+	static final double DISTANCE = 3.0D;
+
 	public EntityStop (World world) {
 		super(world);
 	}
@@ -55,8 +57,7 @@ public class EntityStop extends Entity {
 		else
 			player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10000000149011612D);
 
-		double distance = 3.0D;
-		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(distance, distance, distance);
+		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(DISTANCE, DISTANCE, DISTANCE);
 		List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
 		if (!list.isEmpty()){
 			
@@ -81,7 +82,7 @@ public class EntityStop extends Entity {
 				}*/
 			}
 		}
-		aabb.expand(-distance, -distance, -distance);
+		aabb.expand(-DISTANCE, -DISTANCE, -DISTANCE);
 
 		super.onUpdate();
 	}
