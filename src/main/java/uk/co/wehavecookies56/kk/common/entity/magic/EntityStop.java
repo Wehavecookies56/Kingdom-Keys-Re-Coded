@@ -19,7 +19,7 @@ public class EntityStop extends Entity {
 
 	EntityPlayer player;
 	static final int TICKS = 50;
-	static final double DISTANCE = 3.0D;
+	static final double DISTANCE = 2.0D;
 
 	public EntityStop (World world) {
 		super(world);
@@ -39,14 +39,6 @@ public class EntityStop extends Entity {
 			return;
 		int rotation = 0;
 		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnStopParticles(this, 1), player, 64.0D);
-		double r = 1.5D;
-
-		for (int a = 1; a <= 360; a += 15) {
-			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
-			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
-
-			this.world.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.posY, z, 0.0D, 1D, 0.0D);
-		}
 
 		this.rotationYaw = (rotation + 1) % 360;
 		if (ticksExisted > TICKS)
@@ -69,6 +61,7 @@ public class EntityStop extends Entity {
 						((EntityLivingBase) e).motionX = 0;
 						((EntityLivingBase) e).motionY = 0;
 						((EntityLivingBase) e).motionZ = 0;
+						
 					}
 				}
 				if(e instanceof EntityPlayerMP){

@@ -41,35 +41,28 @@ public class SpawnStopParticles extends AbstractMessage.AbstractClientMessage<Sp
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		double r = 1.5D;
+		double r=0;
 		switch (this.lvl) {
 			case 1:
-				r = 1.5D;
-				for (int a = 1; a <= 360; a += 15) {
-					double x = this.x + (r * Math.cos(Math.toRadians(a)));
-					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-		            player.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, x, y+1, z, 0,0.2,0);
-				}
+				r = 2D;
 				break;
 			case 2:
-				r = 1.5D;
-				for (int a = 1; a <= 360; a += 15) {
-					double x = this.x + (r * Math.cos(Math.toRadians(a)));
-					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-					player.world.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.y + 2, z, 0.0D, 0.5D, 0.0D);
-				}
+				r = 3D;
 				break;
 			case 3:
-				r = 1.5D;
-				for (int a = 1; a <= 360; a += 15) {
-					double x = this.x + (r * Math.cos(Math.toRadians(a)));
-					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-					player.world.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.y + 2, z, 0.0D, 0.5D, 0.0D);
-				}
+				r = 4D;
 				break;
-			// player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL,
-			// x,
-			// player.posY, z, 0.0D, 1.0D, 0.0D);
+		}
+		
+		for (int a = 1; a <= 360; a += 15) {
+			double x = this.x + (r * Math.cos(Math.toRadians(a)));
+			double z = this.z + (r * Math.sin(Math.toRadians(a)));
+            player.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, x, y+1, z, 0,0.2,0);
+            if(this.lvl > 1)
+            	player.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, x, y+2.5, z, 0,0.2,0);
+            if(this.lvl > 2)
+                player.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, x, y+4, z, 0,0.2,0);
+
 		}
 	}
 

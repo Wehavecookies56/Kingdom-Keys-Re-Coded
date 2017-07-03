@@ -19,7 +19,7 @@ public class EntityStopra extends Entity {
 
 	EntityPlayer player;
 	static final int TICKS = 120;
-	static final double DISTANCE = 4.0D;
+	static final double DISTANCE = 3.0D;
 
 	public EntityStopra (World world) {
 		super(world);
@@ -38,16 +38,8 @@ public class EntityStopra extends Entity {
 		if (player == null) 
 			return;
 		int rotation = 0;
-		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnStopParticles(this, 1), player, 64.0D);
-		double r = 1.5D;
-
-		for (int a = 1; a <= 360; a += 15) {
-			double x = this.posX + (r * Math.cos(Math.toRadians(a)));
-			double z = this.posZ + (r * Math.sin(Math.toRadians(a)));
-
-			this.world.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, x, this.posY, z, 0.0D, 1D, 0.0D);
-		}
-
+		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnStopParticles(this, 2), player, 64.0D);
+		
 		this.rotationYaw = (rotation + 1) % 360;
 		if (ticksExisted > TICKS)
 			setDead();

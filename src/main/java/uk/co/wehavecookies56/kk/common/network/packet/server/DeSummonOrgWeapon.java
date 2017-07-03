@@ -37,7 +37,7 @@ public class DeSummonOrgWeapon extends AbstractServerMessage<DeSummonOrgWeapon> 
 
 	@Override
 	public void process (EntityPlayer player, Side side) {
-		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+		player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
 		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.unsummon, SoundCategory.MASTER, 1.0f, 1.0f);
 		player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
 		PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
