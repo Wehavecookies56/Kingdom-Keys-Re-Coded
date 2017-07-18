@@ -10,7 +10,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -21,7 +21,7 @@ public class GuiPlayerPortrait extends GuiScreen {
 
 	@SubscribeEvent
 	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
-		if (!ConfigHandler.displayGUI())
+		if (!MainConfig.displayGUI())
 			return;
 		Minecraft mc = Minecraft.getMinecraft();
 		if(!mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;

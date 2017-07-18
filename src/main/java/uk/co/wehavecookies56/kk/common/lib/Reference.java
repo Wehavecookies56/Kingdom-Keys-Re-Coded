@@ -9,6 +9,5 @@ public class Reference {
 	public static final String MODCHANNEL = MODID;
 	public static final String CLIENTPROXY = "uk.co.wehavecookies56.kk.client.core.proxy.ClientProxy";
 	public static final String COMMONPROXY = "uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy";
-	public static final String GUIFACTORY = "uk.co.wehavecookies56.kk.client.gui.GuiFactoryKingdomKeys";
 
 }

@@ -19,7 +19,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 
 public class WorldGenBlox implements IWorldGenerator {
 
@@ -29,10 +29,10 @@ public class WorldGenBlox implements IWorldGenerator {
 		case -1:
 			break;
 		case 0:
-			if (ConfigHandler.EnableWorldGen) generateSurface(world, random, chunkX * 16, chunkZ * 16);
+			if (MainConfig.worldgen.EnableWorldGen) generateSurface(world, random, chunkX * 16, chunkZ * 16);
 			break;
 		case 1:
-			if (ConfigHandler.EnableWorldGen) generateEnd(world, random, chunkX * 16, chunkZ * 16);
+			if (MainConfig.worldgen.EnableWorldGen) generateEnd(world, random, chunkX * 16, chunkZ * 16);
 			break;
 		}
 	}

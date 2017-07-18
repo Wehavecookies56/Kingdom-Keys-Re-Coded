@@ -15,7 +15,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -63,7 +64,7 @@ public class GuiOverlay extends GuiScreen {
 				{
 					int height = (mc.fontRenderer.FONT_HEIGHT - 3) * STATS.getMessages().size();
 					GL11.glEnable(GL11.GL_BLEND);
-					GL11.glColor4ub((byte) ConfigHandler.interfaceColour[0], (byte) ConfigHandler.interfaceColour[1], (byte) ConfigHandler.interfaceColour[2], (byte) 255);
+					GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
 					GL11.glPushMatrix();
 					{
 						mc.renderEngine.bindTexture(texture);
@@ -79,7 +80,7 @@ public class GuiOverlay extends GuiScreen {
 						{
 							GL11.glTranslatef(width - ((mc.fontRenderer.getStringWidth("LEVEL UP!")) * 0.75f) - 115, 4, 0);
 							GL11.glScalef(0.75f, 0.75f, 1);
-							drawString(mc.fontRenderer, "LEVEL UP!" + TextFormatting.ITALIC, 0, 0, Color.decode(String.format("#%02x%02x%02x", (byte) ConfigHandler.interfaceColour[0], (byte) ConfigHandler.interfaceColour[1], (byte) ConfigHandler.interfaceColour[2])).hashCode());
+							drawString(mc.fontRenderer, "LEVEL UP!" + TextFormatting.ITALIC, 0, 0, Color.decode(String.format("#%02x%02x%02x", (byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2])).hashCode());
 						}
 						GL11.glPopMatrix();
 						GL11.glPushMatrix();
@@ -109,7 +110,7 @@ public class GuiOverlay extends GuiScreen {
 						GL11.glPopMatrix();
 					}
 					GL11.glPopMatrix();
-					GL11.glColor4ub((byte) ConfigHandler.interfaceColour[0], (byte) ConfigHandler.interfaceColour[1], (byte) ConfigHandler.interfaceColour[2], (byte) 255);
+					GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
 					GL11.glPushMatrix();
 					{
 						mc.renderEngine.bindTexture(texture);
@@ -119,7 +120,7 @@ public class GuiOverlay extends GuiScreen {
 						drawTexturedModalRect(0, 0, 0, 36, 256, 1);
 					}
 					GL11.glPopMatrix();
-					GL11.glColor4ub((byte) ConfigHandler.interfaceColour[0], (byte) ConfigHandler.interfaceColour[1], (byte) ConfigHandler.interfaceColour[2], (byte) 255);
+					GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
 					GL11.glPushMatrix();
 					{
 						mc.renderEngine.bindTexture(texture);
@@ -129,7 +130,7 @@ public class GuiOverlay extends GuiScreen {
 						drawTexturedModalRect(0, 0, 0, 37, 256, 14);
 					}
 					GL11.glPopMatrix();
-					GL11.glColor4ub((byte) ConfigHandler.interfaceColour[0], (byte) ConfigHandler.interfaceColour[1], (byte) ConfigHandler.interfaceColour[2], (byte) 255);
+					GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
 					String message = "";
 					String strMessage = "Strength Increased!";
 					String defMessage = "Defense Increased!";

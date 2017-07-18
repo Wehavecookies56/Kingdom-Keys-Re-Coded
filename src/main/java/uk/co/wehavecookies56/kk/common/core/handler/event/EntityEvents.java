@@ -44,7 +44,7 @@ import uk.co.wehavecookies56.kk.client.gui.GuiOrg;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.capability.*;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
@@ -246,7 +246,7 @@ public class EntityEvents {
                 FTJ.setPosX(((EntityPlayer) event.getEntity()).getPosition().getX());
                 FTJ.setPosY(((EntityPlayer) event.getEntity()).getPosition().getY());
                 FTJ.setPosZ(((EntityPlayer) event.getEntity()).getPosition().getZ());
-                if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID && ConfigHandler.EnableStationOfAwakening)
+                if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID && MainConfig.worldgen.EnableStationOfAwakening)
                     if (!event.getWorld().isRemote)
                         new TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().worldServerForDimension(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer) event.getEntity()), event.getWorld());
             }

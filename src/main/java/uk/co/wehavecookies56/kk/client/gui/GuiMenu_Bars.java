@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -71,7 +71,7 @@ public class GuiMenu_Bars extends GuiScreen {
 		Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
 		GL11.glPushMatrix();
 		{
-			GL11.glColor4ub((byte) ConfigHandler.interfaceColour[0], (byte) ConfigHandler.interfaceColour[1], (byte) ConfigHandler.interfaceColour[2], (byte) 255);
+			GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
 			// GL11.glColor4f(0.3F, 0.3F, 0.3F, 1.0F);
 			// GL11.glScalef(2f, 2f, 2f);
 			drawDefaultBackground();

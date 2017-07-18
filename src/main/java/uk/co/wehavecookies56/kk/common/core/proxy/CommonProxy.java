@@ -34,10 +34,7 @@ import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityStationOfAwakening;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntitySynthesisTable;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
-import uk.co.wehavecookies56.kk.common.core.handler.FuelHandler;
-import uk.co.wehavecookies56.kk.common.core.handler.GuiHandler;
-import uk.co.wehavecookies56.kk.common.core.handler.UsernameHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.*;
 import uk.co.wehavecookies56.kk.common.core.handler.event.BlockEvents;
 import uk.co.wehavecookies56.kk.common.core.handler.event.CapabilityEvents;
 import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;
@@ -78,10 +75,7 @@ public class CommonProxy {
 		// Display mod info in console
 		LogHelper.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft " + Reference.MCVER);
 
-		// ConfigHandler
-		ConfigHandler.init(new File(event.getModConfigurationDirectory().getPath() + File.separator + Reference.MODID + File.separator + "MainConfig.cfg"));
-		LogHelper.info("Configuration loaded");
-		if(ConfigHandler.chat)
+		if(MainConfig.client.hud.chat)
 		{
 			try {
 				UsernameHandler.init(event);
@@ -175,12 +169,12 @@ public class CommonProxy {
 		EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
 
 		
-		EntityRegistry.addSpawn(EntityShadow.class, ConfigHandler.shadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-		EntityRegistry.addSpawn(EntityGigaShadow.class, ConfigHandler.gigaShadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-		EntityRegistry.addSpawn(EntityRedNocturne.class, ConfigHandler.redNocturneRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-		EntityRegistry.addSpawn(EntityBlueRhapsody.class, ConfigHandler.blueRhapsodyRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-		EntityRegistry.addSpawn(EntityYellowOpera.class, ConfigHandler.yellowOperaRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-		EntityRegistry.addSpawn(EntityGreenRequiem.class, ConfigHandler.greenRequiemRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.addSpawn(EntityRedNocturne.class, MainConfig.entities.redNocturneRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.addSpawn(EntityBlueRhapsody.class, MainConfig.entities.blueRhapsodyRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.addSpawn(EntityYellowOpera.class, MainConfig.entities.yellowOperaRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+		EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
 			
 		EntityRegistry.addSpawn(EntityMoogle.class, 5, 1, 1, EnumCreatureType.CREATURE, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
 

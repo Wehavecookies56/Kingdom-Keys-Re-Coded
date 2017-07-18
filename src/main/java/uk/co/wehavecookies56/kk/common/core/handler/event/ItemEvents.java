@@ -46,7 +46,7 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagL;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagM;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagS;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.item.ItemHpOrb;
@@ -298,8 +298,8 @@ public class ItemEvents {
             double keyStrength = keyblade.getStrength()+sharpnessDamage;
             
             String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
-            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * ConfigHandler.damageMultiplier + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + "]");
-            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() * ConfigHandler.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + "]");
+            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * MainConfig.items.damageMultiplier + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + "]");
+            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() * MainConfig.items.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + "]");
             if (keyblade.getDescription() != null) {
                 if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                     tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
@@ -408,8 +408,8 @@ public class ItemEvents {
             
             String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
 
-            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * ConfigHandler.damageMultiplier  + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + "]");
-            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() * ConfigHandler.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + "]");
+            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * MainConfig.items.damageMultiplier  + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + "]");
+            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() * MainConfig.items.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + "]");
             if (keyblade.getDescription() != null) {
                 if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                     tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");

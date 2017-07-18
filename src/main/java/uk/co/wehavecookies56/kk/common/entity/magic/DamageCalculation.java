@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.org.ItemClaymore;
@@ -49,7 +49,7 @@ public class DamageCalculation {
 		}
 		//System.out.println("Magic: "+finalDamage);
 		
-		return (float) (finalDamage * ConfigHandler.damageMultiplier);
+		return (float) (finalDamage * MainConfig.items.damageMultiplier);
 	}
 	/**
 	 * Magic
@@ -85,7 +85,7 @@ public class DamageCalculation {
 		}
 		//System.out.println("Magic: "+finalDamage);
 		
-		return (float) (finalDamage * ConfigHandler.damageMultiplier);
+		return (float) (finalDamage * MainConfig.items.damageMultiplier);
 	}
 	/**
 	 * Magic
@@ -93,12 +93,12 @@ public class DamageCalculation {
 	public static float getMagicDamage(EntityPlayer player, int level) {
 		float finalDamage = 0;
 
-		if(player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
+		if(player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
 			finalDamage = getMagicDamage(player, level, (ItemKeyblade) player.getHeldItemMainhand().getItem());
 		} else {
 			finalDamage = player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic();
 		}
-		return (float) (finalDamage * ConfigHandler.damageMultiplier);
+		return (float) (finalDamage * MainConfig.items.damageMultiplier);
 	}
 	
 	
@@ -126,7 +126,7 @@ public class DamageCalculation {
 			    break;
 		}
 		
-		finalDamage = (float) (damage * ConfigHandler.damageMultiplier);
+		finalDamage = (float) (damage * MainConfig.items.damageMultiplier);
 		//System.out.println("Strength: "+finalDamage);
 		return finalDamage;
 	}
@@ -158,7 +158,7 @@ public class DamageCalculation {
 				if(weapon.getItemDamage() == 1)
 					damage*=1.5F;
 			}
-			finalDamage = (float) (damage * ConfigHandler.damageMultiplier);
+			finalDamage = (float) (damage * MainConfig.items.damageMultiplier);
 		}
 		return finalDamage;
 	}
@@ -168,9 +168,9 @@ public class DamageCalculation {
     public static float getStrengthDamage(EntityPlayer player) {
         float finalDamage = 0;
 
-        if(player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
+        if(player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
             finalDamage = getStrengthDamage(player, (ItemKeyblade) player.getHeldItemMainhand().getItem());
-        }else if(player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon) {
+        } else if(player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon) {
             finalDamage = getOrgStrengthDamage(player, player.getHeldItemMainhand());
         }
         return finalDamage;

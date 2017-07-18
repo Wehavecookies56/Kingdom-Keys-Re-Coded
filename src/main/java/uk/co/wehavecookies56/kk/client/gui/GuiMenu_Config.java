@@ -2,11 +2,18 @@ package uk.co.wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
 
+import com.google.common.eventbus.Subscribe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.SetKH1Fire;
@@ -32,16 +39,12 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 				GuiHelper.openMenu();
 				break;
 			case HEARTS:
-				ConfigHandler.EnableHeartsOnHUD = ConfigHandler.EnableHeartsOnHUD ? false : true ;
-				ConfigHandler.EnableHeartsOnHUDProperty.set(ConfigHandler.EnableHeartsOnHUD);
-				ConfigHandler.config.save();
-				showHearts.displayString = String.valueOf(ConfigHandler.EnableHeartsOnHUD);
+				MainConfig.client.hud.EnableHeartsOnHUD = !MainConfig.client.hud.EnableHeartsOnHUD;
+				showHearts.displayString = String.valueOf(MainConfig.client.hud.EnableHeartsOnHUD);
 				break;
 			case MUSIC:
-				ConfigHandler.EnableCustomMusic = ConfigHandler.EnableCustomMusic ? false : true ;
-				ConfigHandler.EnableCustomMusicProperty.set(ConfigHandler.EnableCustomMusic);
-				ConfigHandler.config.save();
-				musicToggle.displayString = String.valueOf(ConfigHandler.EnableCustomMusic);
+				MainConfig.client.sound.EnableCustomMusic = !MainConfig.client.sound.EnableCustomMusic;
+				musicToggle.displayString = String.valueOf(MainConfig.client.sound.EnableCustomMusic);
 				break;
 			case FIRE:
 				if(kh1Fire){
@@ -73,14 +76,14 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		r = new GuiNumberTextField(R, mc.fontRenderer, rPosX, 100, boxWidth, 10, 255);
 		g = new GuiNumberTextField(G, mc.fontRenderer, gPosX, 100, boxWidth, 10, 255);
 		b = new GuiNumberTextField(B, mc.fontRenderer, bPosX, 100, boxWidth, 10, 255);
-		buttonList.add(showHearts = new GuiButton(HEARTS, mc.fontRenderer.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Hearts)) + 15, 115, 100, 20, String.valueOf(ConfigHandler.EnableHeartsOnHUD)));
-		buttonList.add(musicToggle = new GuiButton(MUSIC, mc.fontRenderer.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Music)) + 15, 135, 100, 20, String.valueOf(ConfigHandler.EnableCustomMusic)));
+		buttonList.add(showHearts = new GuiButton(HEARTS, mc.fontRenderer.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Hearts)) + 15, 115, 100, 20, String.valueOf(MainConfig.client.hud.EnableHeartsOnHUD)));
+		buttonList.add(musicToggle = new GuiButton(MUSIC, mc.fontRenderer.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Music)) + 15, 135, 100, 20, String.valueOf(MainConfig.client.sound.EnableCustomMusic)));
 	    buttonList.add(fire = new GuiButton(FIRE, mc.fontRenderer.getStringWidth(Utils.translateToLocal(Strings.Gui_Menu_Config_Fire)) + 15, 155, 100, 20, String.valueOf(Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getKH1Fire())));
 		buttonList.add(back = new GuiButton(BACK, 5, 175, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
 
-		this.r.setText(String.valueOf(ConfigHandler.interfaceColour[0]));
-		this.g.setText(String.valueOf(ConfigHandler.interfaceColour[1]));
-		this.b.setText(String.valueOf(ConfigHandler.interfaceColour[2]));
+		this.r.setText(String.valueOf(MainConfig.client.hud.interfaceColour[0]));
+		this.g.setText(String.valueOf(MainConfig.client.hud.interfaceColour[1]));
+		this.b.setText(String.valueOf(MainConfig.client.hud.interfaceColour[2]));
 		updateButtons();
 	}
 
@@ -91,9 +94,8 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 		this.b.textboxKeyTyped(typedChar, keyCode);
 		try {
 			int[] colour = { Integer.parseInt(this.r.getText()), Integer.parseInt(this.g.getText()), Integer.parseInt(this.b.getText()) };
-			ConfigHandler.interfaceColour = colour;
-			ConfigHandler.interfaceColourProperty.set(ConfigHandler.interfaceColour);
-			ConfigHandler.config.save();
+			MainConfig.client.hud.interfaceColour = colour;
+			ConfigManager.sync(Reference.MODID, Config.Type.INSTANCE);
 		} catch (NumberFormatException e) {
 
 		}
@@ -102,8 +104,8 @@ public class GuiMenu_Config extends GuiMenu_Bars {
 
 	@Override
 	public void onGuiClosed () {
-		ConfigHandler.config.save();
 		super.onGuiClosed();
+		ConfigManager.sync(Reference.MODID, Config.Type.INSTANCE);
 	}
 
 	@Override

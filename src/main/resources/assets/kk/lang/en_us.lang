@@ -1,5 +1,5 @@
 #English (US) language file for Kingdom Keys Re:Coded
-#Version 0.8.2
+#Version 0.9.0
 #Created by Wehavecookies56
 
 ############################
@@ -1122,3 +1122,11 @@ entity.kk.Moogle.name=Moogle
 #Journal
 ##########################
 journal.commandmenuabout=The Command Menu is the menu displayed in the bottom left corner of the HUD. It has 4 options, Attack, Magic, Items and Drive, for info on these options refer to their respective pages.\n\nThe menu can be navigated using the Command Menu keybinds (default: Arrow keys) it can also be navigated by holding the hold keybind (default: Alt) and scrolling the mouse wheel, left click to enter, right click to go back.
+
+##########################
+#Config
+##########################
+kk.mainconfig.title=Main Configuration
+kk.balance.title=Balance Configuration
+
+kk.balance.keyblades=Keyblades

@@ -30,7 +30,7 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
@@ -342,31 +342,31 @@ public class InputHandler {
 				break;
 				
 			case SHOW_GUI:
-				ConfigHandler.toggleShowGUI();
+				MainConfig.toggleShowGUI();
 				break;
 				
 			case SCROLL_UP:
-				if (!ConfigHandler.displayGUI())
+				if (!MainConfig.displayGUI())
 					break;
 				commandUp();
 				world.playSound(player, player.getPosition(), ModSounds.move, SoundCategory.MASTER, 1.0f, 1.0f);
 				break;
 
 			case SCROLL_DOWN:
-				if (!ConfigHandler.displayGUI())
+				if (!MainConfig.displayGUI())
 					break;
 				commandDown();
 				world.playSound(player, player.getPosition(), ModSounds.move, SoundCategory.MASTER, 1.0f, 1.0f);
 				break;
 
 			case ENTER:
-				if (!ConfigHandler.displayGUI())
+				if (!MainConfig.displayGUI())
 					break;
 				commandEnter();
 				break;
 
 			case BACK:
-				if (!ConfigHandler.displayGUI())
+				if (!MainConfig.displayGUI())
 					break;
 				commandBack();
 				break;

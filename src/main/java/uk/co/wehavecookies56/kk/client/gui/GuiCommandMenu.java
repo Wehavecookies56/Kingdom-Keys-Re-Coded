@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
@@ -69,7 +69,7 @@ public class GuiCommandMenu extends GuiScreen {
 	public void onRenderOverlayPost (RenderGameOverlayEvent event) {
 		if(mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode())
 		{
-			if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT && !mc.ingameGUI.getChatGUI().getChatOpen() && ConfigHandler.displayGUI()) {
+			if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT && !mc.ingameGUI.getChatGUI().getChatOpen() && MainConfig.displayGUI()) {
 				GL11.glPushMatrix();
 				{
 					drawCommandMenu(event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());
