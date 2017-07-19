@@ -90,13 +90,11 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
-		System.out.println("TEST READ");
 		super.readFromNBT(compound);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		System.out.println("TEST WRITE");
 		return super.writeToNBT(compound);
 	}
 
@@ -109,7 +107,6 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
 	public void writeSpawnData(ByteBuf buffer) {
 		if(caster == null)
 			return;
-		System.out.println(caster.getDisplayNameString());
 		buffer.writeBytes(caster.getDisplayNameString().getBytes());
 	}
 }

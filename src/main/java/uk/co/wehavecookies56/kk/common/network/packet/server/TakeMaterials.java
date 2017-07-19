@@ -53,12 +53,12 @@ public class TakeMaterials extends AbstractServerMessage<TakeMaterials> {
 			material.setTagCompound(new NBTTagCompound());
 			material.getTagCompound().setString("material", materialName);
 			if (materialName.endsWith("shard"))
-				material.getTagCompound().setString("rank", "C");
+				material.getTagCompound().setString("rank", "sm.rank.c");
 			else if (materialName.endsWith("stone"))
-				material.getTagCompound().setString("rank", "B");
+				material.getTagCompound().setString("rank", "sm.rank.b");
 			else if (materialName.endsWith("gem") || materialName.equals(Strings.SM_ManifestIllusion) || materialName.equals(Strings.SM_Orichalcum))
-				material.getTagCompound().setString("rank", "A");
-			else if (materialName.endsWith("crystal") || materialName.equals(Strings.SM_LostIllusion) || materialName.equals(Strings.SM_OrichalcumPlus)) material.getTagCompound().setString("rank", "S");
+				material.getTagCompound().setString("rank", "sm.rank.a");
+			else if (materialName.endsWith("crystal") || materialName.equals(Strings.SM_LostIllusion) || materialName.equals(Strings.SM_OrichalcumPlus)) material.getTagCompound().setString("rank", "sm.rank.s");
 
 			player.inventory.addItemStackToInventory(material);
 			player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).removeMaterial(MaterialRegistry.get(materialName), amount);

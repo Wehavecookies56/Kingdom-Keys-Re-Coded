@@ -33,7 +33,6 @@ public class EntityAIRedNocturne extends EntityAITarget
 	    		double d1 = this.taskOwner.getAttackTarget().posX - this.taskOwner.posX;
 	    		double d2 = this.taskOwner.getAttackTarget().getEntityBoundingBox().minY + (double)(this.taskOwner.getAttackTarget().height / 2.0F) - (this.taskOwner.posY + (double)(this.taskOwner.height / 2.0F));
 	    		double d3 = this.taskOwner.getAttackTarget().posZ - this.taskOwner.posZ;
-	    		System.out.println(d2);
 	    		EntityKH1Fire esfb = new EntityKH1Fire(this.taskOwner.world, this.taskOwner);
                 this.taskOwner.world.playSound(null, this.taskOwner.posX, this.taskOwner.posY, this.taskOwner.posZ, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.HOSTILE, 1.0F, 1.0F);
                 esfb.setThrowableHeading(d1, d2, d3, 1, 0);

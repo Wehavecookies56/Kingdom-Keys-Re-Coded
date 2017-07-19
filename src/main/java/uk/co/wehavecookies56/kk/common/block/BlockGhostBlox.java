@@ -61,28 +61,24 @@ public class BlockGhostBlox extends BlockBlox {
 				world.setBlockState(pos.east(), world.getBlockState(pos.east()).withProperty(VISIBLE, Integer.valueOf(1)));
 			else
 				world.setBlockState(pos.east(), world.getBlockState(pos.east()).withProperty(VISIBLE, Integer.valueOf(0)));
-			System.out.println("HI neightbour");
 		}
 		if (world.getBlockState(pos.west()).getBlock() == ModBlocks.GhostBlox) {
 			if (world.getBlockState(pos).getValue(VISIBLE).intValue() == 1)
 				world.setBlockState(pos.west(), world.getBlockState(pos.west()).withProperty(VISIBLE, Integer.valueOf(1)));
 			else
 				world.setBlockState(pos.west(), world.getBlockState(pos.west()).withProperty(VISIBLE, Integer.valueOf(0)));
-			System.out.println("HI neightbour");
 		}
 		if (world.getBlockState(pos.north()).getBlock() == ModBlocks.GhostBlox) {
 			if (world.getBlockState(pos).getValue(VISIBLE).intValue() == 1)
 				world.setBlockState(pos.north(), world.getBlockState(pos.north()).withProperty(VISIBLE, Integer.valueOf(1)));
 			else
 				world.setBlockState(pos.north(), world.getBlockState(pos.north()).withProperty(VISIBLE, Integer.valueOf(0)));
-			System.out.println("HI neightbour");
 		}
 		if (world.getBlockState(pos.south()).getBlock() == ModBlocks.GhostBlox) {
 			if (world.getBlockState(pos).getValue(VISIBLE).intValue() == 1)
 				world.setBlockState(pos.south(), world.getBlockState(pos.south()).withProperty(VISIBLE, Integer.valueOf(1)));
 			else
 				world.setBlockState(pos.south(), world.getBlockState(pos.south()).withProperty(VISIBLE, Integer.valueOf(0)));
-			System.out.println("HI neightbour");
 		}
 		if (world.isBlockPowered(pos)){
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(VISIBLE, Integer.valueOf(1)));

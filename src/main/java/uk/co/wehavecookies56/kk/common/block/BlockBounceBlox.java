@@ -21,7 +21,6 @@ public class BlockBounceBlox extends BlockBlox {
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		if (!entityIn.isSneaking()) {
-			System.out.print("o");
 			entityIn.playSound(SoundEvents.ENTITY_SLIME_JUMP, 1, 1);
 			double d0 = 0.4D + Math.abs(entityIn.motionY) * 0.2D;
 			entityIn.motionX *= d0;

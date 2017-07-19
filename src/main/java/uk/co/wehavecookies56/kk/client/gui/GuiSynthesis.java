@@ -144,7 +144,6 @@ public class GuiSynthesis extends GuiTooltip {
 
 				freeSlots = getFreeSlots();
 				foundMaterial = getInventoryMaterial(materials.get(materialSelected));
-                System.out.println(freeSlots);
                 if (foundMaterial || freeSlots >= 1){
                     if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) > 1){
 						PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));
