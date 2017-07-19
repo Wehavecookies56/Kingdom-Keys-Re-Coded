@@ -212,12 +212,16 @@ public class OrganizationXIIICapability {
 
         @Override
         public void removePoints(int points) {
-            this.unlockPoints-= points;
+            if (unlockPoints - points < 0) {
+                unlockPoints = 0;
+            } else {
+                this.unlockPoints -= points;
+            }
         }
 
         @Override
         public void addPoints(int points) {
-            this.unlockPoints+= points;
+            this.unlockPoints += points;
         }
     }
 

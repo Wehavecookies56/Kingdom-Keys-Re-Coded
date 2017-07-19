@@ -19,6 +19,7 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OrgWeaponUnlock;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.awt.*;
@@ -467,9 +468,8 @@ public class GuiOrgUnlock extends GuiScreen {
             case UNLOCK:
                 if (selected != null) {
                     OrganizationXIIICapability.IOrganizationXIII weapons = Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-                    weapons.addUnlockedWeapon(selected.getUnlock());
-                    weapons.removePoints(1);
-                    PacketDispatcher.sendToServer(new SyncOrgXIIIData(weapons));
+                    PacketDispatcher.sendToServer(new OrgWeaponUnlock(selected.getUnlock(), 1));
+                    selected = null;
                 }
                 break;
         }

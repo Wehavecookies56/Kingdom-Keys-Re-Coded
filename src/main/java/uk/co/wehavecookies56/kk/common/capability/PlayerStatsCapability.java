@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.capability;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -22,6 +23,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 
 public class PlayerStatsCapability {
 
@@ -715,6 +717,8 @@ public class PlayerStatsCapability {
 			if(this.level%5 == 0) {
 				player.setHealth(getHP());
 				player.getFoodStats().addStats(20,0);
+				player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).addPoints(1);
+				PacketDispatcher.sendToServer(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)));
 			}
 			if(this.level == 50)
 	            AchievementHelper.addAchievement(player, ModAchievements.level50);

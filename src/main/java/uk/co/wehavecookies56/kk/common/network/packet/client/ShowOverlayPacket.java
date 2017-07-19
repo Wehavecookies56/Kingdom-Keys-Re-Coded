@@ -53,10 +53,6 @@ public class ShowOverlayPacket extends AbstractMessage.AbstractClientMessage<Sho
 		if (this.type.equals("levelup")) {
 			GuiOverlay.showLevelUp = true;
 			GuiOverlay.timeLevelUp = (int) Minecraft.getSystemTime() / 1000;
-			if (munny % 5 == 0) {
-				player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).addPoints(1);
-				PacketDispatcher.sendToServer(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)));
-			}
 		}
 	}
 
