@@ -61,6 +61,10 @@ public class MainConfig {
 
     public static class Entities {
 
+        @Config.Name("Disable mob drops")
+        @Config.Comment("Disables all the items dropped from mobs added by KK (This includes: hearts, munny, hp, mp, dp, recipes}")
+        public boolean disableDrops = false;
+
         @Config.RequiresMcRestart
         @Config.Name("Shadow spawning ratio")
         @Config.Comment("Sets Shadow heartless spawning ratio")

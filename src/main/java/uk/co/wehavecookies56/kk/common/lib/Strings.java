@@ -12,9 +12,9 @@ public class Strings {
 
     // Choice
     public static final String
-    Choice_Sword="sword",
-    Choice_Staff="staff",
-    Choice_Shield="shield";
+    Choice_Sword = "sword",
+    Choice_Staff = "staff",
+    Choice_Shield = "shield";
 
     // Achievements
     public static final String

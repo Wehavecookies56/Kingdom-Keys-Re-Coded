@@ -161,7 +161,7 @@ public class EntityEvents {
     }
 
     public void dropRecipe(LivingDropsEvent event) {
-        int    recipeRand = Utils.randomWithRange(1, 100);
+        int recipeRand = Utils.randomWithRange(1, 100);
         if(event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
             ItemStack itemstack = player.inventory.getCurrentItem();
@@ -322,147 +322,147 @@ public class EntityEvents {
 
     @SubscribeEvent
     public void onLivingDrops (LivingDropsEvent event) {
-        if (event.getEntity() instanceof EntityPlayer) {
-            for (int i = 0; i < event.getDrops().size(); i++) {
-                if (event.getDrops().get(i).getEntityItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getEntityItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getEntityItem().getItem() != ModItems.WoodenStick)) {
-                    event.getDrops().remove(i);
+        if (!MainConfig.entities.disableDrops) {
+            if (event.getEntity() instanceof EntityPlayer) {
+                for (int i = 0; i < event.getDrops().size(); i++) {
+                    if (event.getDrops().get(i).getEntityItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getEntityItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getEntityItem().getItem() != ModItems.WoodenStick)) {
+                        event.getDrops().remove(i);
 
-                    event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
-                    i = 0;
-                }
-                if (event.getDrops().get(i).getEntityItem().getItem() == event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
-                    event.getDrops().remove(i);
-
-                    event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
-                    i = 0;
-                }
-            }
-        }
-
-
-        if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
-            if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) {
-                if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
-                    if (event.getEntity() instanceof EntityMob)
-                        dropRecipe(event);
-                }
-            }
-            if(player.getHeldItem(EnumHand.OFF_HAND) != ItemStack.EMPTY) {
-                if(player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
-                    if (event.getEntity() instanceof EntityMob)
-                        dropRecipe(event);
-                }
-            }
-
-            if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) {
-                if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRealKeyblade) {
-                    if (event.getEntity() instanceof EntityAnimal)
-                        event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Heart), 2);
-                    else if (event.getEntity() instanceof EntityMob) {
-                        event.getEntityLiving().entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
-                        if (event.getEntity() instanceof EntityWitch) {
-                            int rand;
-                            rand = Utils.randomWithRange(1, 30);
-                            if (rand == 1)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicFire), 1);
-                            else if (rand == 5)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicBlizzard), 1);
-                            else if (rand == 9)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicThunder), 1);
-                            else if (rand == 13)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicCure), 1);
-                            else if (rand == 17) {
-                                // event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicGravity), 1);
-                            }
-                            else if (rand == 21)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicAero), 1);
-                            else if (rand == 25)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicStop), 1);
-                        }
-                    } else if (event.getEntity() instanceof EntityAgeable)
-                        event.getEntityLiving().entityDropItem(new ItemStack(ModItems.PureHeart), 2);
-                    if (event.getEntity() instanceof EntityDragon || event.getEntity() instanceof EntityWither) {
-                        event.getEntityLiving().entityDropItem(new ItemStack(ModItems.KingdomHearts), 1);
-                        event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Recipe), 1);
+                        event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
+                        i = 0;
                     }
-                }
-            }
+                    if (event.getDrops().get(i).getEntityItem().getItem() == event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
+                        event.getDrops().remove(i);
 
-            if(player.getHeldItem(EnumHand.OFF_HAND) != ItemStack.EMPTY) {
-                if(player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemRealKeyblade) {
-                    if (event.getEntity() instanceof EntityAnimal)
-                        event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Heart), 2);
-                    else if (event.getEntity() instanceof EntityMob) {
-                        event.getEntityLiving().entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
-                        if (event.getEntity() instanceof EntityWitch) {
-                            int rand;
-                            rand = Utils.randomWithRange(1, 30);
-                            if (rand == 1)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicFire), 1);
-                            else if (rand == 5)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicBlizzard), 1);
-                            else if (rand == 9)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicThunder), 1);
-                            else if (rand == 13)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicCure), 1);
-                            else if (rand == 17) {
-                                // event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicGravity), 1);
-                            }
-                            else if (rand == 21)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicAero), 1);
-                            else if (rand == 25)
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicStop), 1);
-                        }
-                    } else if (event.getEntity() instanceof EntityAgeable)
-                        event.getEntityLiving().entityDropItem(new ItemStack(ModItems.PureHeart), 2);
-                    if (event.getEntity() instanceof EntityDragon || event.getEntity() instanceof EntityWither) {
-                        event.getEntityLiving().entityDropItem(new ItemStack(ModItems.KingdomHearts), 1);
-                        event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Recipe), 1);
+                        event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
+                        i = 0;
                     }
                 }
             }
 
 
-            ItemStack munny = new ItemStack(ModItems.Munny, 1);
-            munny.setTagCompound(new NBTTagCompound());
-            ItemStack driveOrb = new ItemStack(ModItems.DriveOrb, 1);
-            driveOrb.setTagCompound(new NBTTagCompound());
-            ItemStack magicOrb = new ItemStack(ModItems.MagicOrb, 1);
-            magicOrb.setTagCompound(new NBTTagCompound());
-            ItemStack HPOrb = new ItemStack(ModItems.HpOrb, 1);
+            if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
+                if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) {
+                    if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
+                        if (event.getEntity() instanceof EntityMob)
+                            dropRecipe(event);
+                    }
+                }
+                if (player.getHeldItem(EnumHand.OFF_HAND) != ItemStack.EMPTY) {
+                    if (player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
+                        if (event.getEntity() instanceof EntityMob)
+                            dropRecipe(event);
+                    }
+                }
 
-            if (event.getEntity() instanceof EntityAnimal) {
-                munny.getTagCompound().setInteger("amount", Utils.randomWithRange(1, 20));
-                event.getEntityLiving().entityDropItem(munny, 1);
-                driveOrb.getTagCompound().setInteger("amount", 1);
-                event.getEntityLiving().entityDropItem(driveOrb, 1);
-                magicOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(2, 8));
-                event.getEntityLiving().entityDropItem(magicOrb, 1);
-                event.getEntityLiving().entityDropItem(HPOrb, 1);
-            } else if (event.getEntity() instanceof EntityMob) {
-                munny.getTagCompound().setInteger("amount", Utils.randomWithRange(5, 50));
-                event.getEntityLiving().entityDropItem(munny, 1);
-                driveOrb.getTagCompound().setInteger("amount", 5);
-                event.getEntityLiving().entityDropItem(driveOrb, 1);
-                magicOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(5, 15));
-                event.getEntityLiving().entityDropItem(magicOrb, 1);
-                event.getEntityLiving().entityDropItem(HPOrb, 1);
+                if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) {
+                    if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRealKeyblade) {
+                        if (event.getEntity() instanceof EntityAnimal)
+                            event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Heart), 2);
+                        else if (event.getEntity() instanceof EntityMob) {
+                            event.getEntityLiving().entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
+                            if (event.getEntity() instanceof EntityWitch) {
+                                int rand;
+                                rand = Utils.randomWithRange(1, 30);
+                                if (rand == 1)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicFire), 1);
+                                else if (rand == 5)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicBlizzard), 1);
+                                else if (rand == 9)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicThunder), 1);
+                                else if (rand == 13)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicCure), 1);
+                                else if (rand == 17) {
+                                    // event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicGravity), 1);
+                                } else if (rand == 21)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicAero), 1);
+                                else if (rand == 25)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicStop), 1);
+                            }
+                        } else if (event.getEntity() instanceof EntityAgeable)
+                            event.getEntityLiving().entityDropItem(new ItemStack(ModItems.PureHeart), 2);
+                        if (event.getEntity() instanceof EntityDragon || event.getEntity() instanceof EntityWither) {
+                            event.getEntityLiving().entityDropItem(new ItemStack(ModItems.KingdomHearts), 1);
+                            event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Recipe), 1);
+                        }
+                    }
+                }
 
-            } else if (event.getEntity() instanceof EntityAgeable) {
-                munny.getTagCompound().setInteger("amount", Utils.randomWithRange(50, 100));
-                event.getEntityLiving().entityDropItem(munny, 1);
-                driveOrb.getTagCompound().setInteger("amount", 5);
-                event.getEntityLiving().entityDropItem(driveOrb, 1);
-                magicOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(10, 25));
-                event.getEntityLiving().entityDropItem(magicOrb, 1);
-            } else if (event.getEntity() instanceof EntityDragon || event.getEntity() instanceof EntityWither) {
-                munny.getTagCompound().setInteger("amount", Utils.randomWithRange(500, 1000));
-                event.getEntityLiving().entityDropItem(munny, 1);
-                driveOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(200, 250));
-                event.getEntityLiving().entityDropItem(driveOrb, 1);
-                magicOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(100, 140));
-                event.getEntityLiving().entityDropItem(magicOrb, 1);
+                if (player.getHeldItem(EnumHand.OFF_HAND) != ItemStack.EMPTY) {
+                    if (player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemRealKeyblade) {
+                        if (event.getEntity() instanceof EntityAnimal)
+                            event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Heart), 2);
+                        else if (event.getEntity() instanceof EntityMob) {
+                            event.getEntityLiving().entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
+                            if (event.getEntity() instanceof EntityWitch) {
+                                int rand;
+                                rand = Utils.randomWithRange(1, 30);
+                                if (rand == 1)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicFire), 1);
+                                else if (rand == 5)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicBlizzard), 1);
+                                else if (rand == 9)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicThunder), 1);
+                                else if (rand == 13)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicCure), 1);
+                                else if (rand == 17) {
+                                    // event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicGravity), 1);
+                                } else if (rand == 21)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicAero), 1);
+                                else if (rand == 25)
+                                    event.getEntityLiving().entityDropItem(new ItemStack(ModItems.LevelUpMagicStop), 1);
+                            }
+                        } else if (event.getEntity() instanceof EntityAgeable)
+                            event.getEntityLiving().entityDropItem(new ItemStack(ModItems.PureHeart), 2);
+                        if (event.getEntity() instanceof EntityDragon || event.getEntity() instanceof EntityWither) {
+                            event.getEntityLiving().entityDropItem(new ItemStack(ModItems.KingdomHearts), 1);
+                            event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Recipe), 1);
+                        }
+                    }
+                }
+
+
+                ItemStack munny = new ItemStack(ModItems.Munny, 1);
+                munny.setTagCompound(new NBTTagCompound());
+                ItemStack driveOrb = new ItemStack(ModItems.DriveOrb, 1);
+                driveOrb.setTagCompound(new NBTTagCompound());
+                ItemStack magicOrb = new ItemStack(ModItems.MagicOrb, 1);
+                magicOrb.setTagCompound(new NBTTagCompound());
+                ItemStack HPOrb = new ItemStack(ModItems.HpOrb, 1);
+
+                if (event.getEntity() instanceof EntityAnimal) {
+                    munny.getTagCompound().setInteger("amount", Utils.randomWithRange(1, 20));
+                    event.getEntityLiving().entityDropItem(munny, 1);
+                    driveOrb.getTagCompound().setInteger("amount", 1);
+                    event.getEntityLiving().entityDropItem(driveOrb, 1);
+                    magicOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(2, 8));
+                    event.getEntityLiving().entityDropItem(magicOrb, 1);
+                    event.getEntityLiving().entityDropItem(HPOrb, 1);
+                } else if (event.getEntity() instanceof EntityMob) {
+                    munny.getTagCompound().setInteger("amount", Utils.randomWithRange(5, 50));
+                    event.getEntityLiving().entityDropItem(munny, 1);
+                    driveOrb.getTagCompound().setInteger("amount", 5);
+                    event.getEntityLiving().entityDropItem(driveOrb, 1);
+                    magicOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(5, 15));
+                    event.getEntityLiving().entityDropItem(magicOrb, 1);
+                    event.getEntityLiving().entityDropItem(HPOrb, 1);
+
+                } else if (event.getEntity() instanceof EntityAgeable) {
+                    munny.getTagCompound().setInteger("amount", Utils.randomWithRange(50, 100));
+                    event.getEntityLiving().entityDropItem(munny, 1);
+                    driveOrb.getTagCompound().setInteger("amount", 5);
+                    event.getEntityLiving().entityDropItem(driveOrb, 1);
+                    magicOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(10, 25));
+                    event.getEntityLiving().entityDropItem(magicOrb, 1);
+                } else if (event.getEntity() instanceof EntityDragon || event.getEntity() instanceof EntityWither) {
+                    munny.getTagCompound().setInteger("amount", Utils.randomWithRange(500, 1000));
+                    event.getEntityLiving().entityDropItem(munny, 1);
+                    driveOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(200, 250));
+                    event.getEntityLiving().entityDropItem(driveOrb, 1);
+                    magicOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(100, 140));
+                    event.getEntityLiving().entityDropItem(magicOrb, 1);
+                }
             }
         }
     }
