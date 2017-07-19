@@ -722,7 +722,7 @@ public class PlayerStatsCapability {
 	            AchievementHelper.addAchievement(player, ModAchievements.level50);
 			if(this.level == 100)
 	            AchievementHelper.addAchievement(player, ModAchievements.level100);
-			player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 1.0f, 1.0f);
+            player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 0.5f, 1.0f);
 			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());
 			PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 		}

@@ -43,7 +43,7 @@ public class GiveBoughtItem extends AbstractMessage.AbstractServerMessage<GiveBo
 	@Override
 	public void process (EntityPlayer player, Side side) {
 		player.inventory.addItemStackToInventory(this.boughtItem);
-		player.getCapability(ModCapabilities.MUNNY, null).remMunny(spentMunny * quantity);
+		player.getCapability(ModCapabilities.MUNNY, null).remMunny(spentMunny);
 		PacketDispatcher.sendTo(new SyncMunnyData(player.getCapability(ModCapabilities.MUNNY, null)), (EntityPlayerMP) player);
 	}
 

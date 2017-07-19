@@ -47,9 +47,8 @@ public class GuiShop extends GuiScreen {
         this.parent = parent;
     }
 
-    public int getPriceFromSelected(int index, boolean selling) {
+    public int getPriceFromSelected(int index, boolean selling, int amount) {
         if (index != -1 && !(index > GuiBuyList.itemsForSale.size())) {
-            int amount = Integer.parseInt(quantity.getText());
             for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
                 if (!selling) {
                     if (ItemEvents.areItemStacksEqual(stack, GuiBuyList.itemsForSale.get(index))) {
@@ -75,7 +74,7 @@ public class GuiShop extends GuiScreen {
 
     public boolean canAffordSelected() {
        if (buySelected != -1) {
-            if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.MUNNY, null).getMunny() >= getPriceFromSelected(buySelected, false)) {
+            if (Minecraft.getMinecraft().player.getCapability(ModCapabilities.MUNNY, null).getMunny() >= getPriceFromSelected(buySelected, false, Integer.parseInt(quantity.getText()))) {
                 return true;
             } else {
                 return false;
@@ -153,7 +152,9 @@ public class GuiShop extends GuiScreen {
                         ItemStack stack = GuiBuyList.itemsForSale.get(buySelected);
                         if (!quantity.getText().isEmpty())
                             stack.setCount(Integer.parseInt(quantity.getText()));
-                        PacketDispatcher.sendToServer(new GiveBoughtItem(getPriceFromSelected(buySelected, false), stack.getCount(), stack));
+                        PacketDispatcher.sendToServer(new GiveBoughtItem(getPriceFromSelected(buySelected, false, Integer.parseInt(quantity.getText())), stack.getCount(), stack));
+                        buySelected = -1;
+                        quantity.setText("0");
                     }
                 }
                 break;
@@ -162,7 +163,7 @@ public class GuiShop extends GuiScreen {
                     int amount = 0;
                     if (!quantity.getText().isEmpty())
                         amount = Integer.parseInt(quantity.getText());
-                    PacketDispatcher.sendToServer(new TakeSoldItem(getPriceFromSelected(sellSelected, true) / 2, amount, GuiSellList.sellableItems.get(sellSelected)));
+                    PacketDispatcher.sendToServer(new TakeSoldItem(getPriceFromSelected(sellSelected, true, Integer.parseInt(quantity.getText())) / 2, amount, GuiSellList.sellableItems.get(sellSelected)));
                     sellSelected = -1;
                     quantity.setText("0");
                 }
@@ -215,7 +216,17 @@ public class GuiShop extends GuiScreen {
             synthesis.enabled = true;
             quantity.setVisible(false);
         } else if (submenu == BUY) {
-            quantity.setMaxValue(64);
+            int munny = Minecraft.getMinecraft().player.getCapability(ModCapabilities.MUNNY, null).getMunny();
+            if (getPriceFromSelected(buySelected, false, 1) == 0) {
+                quantity.setMaxValue(64);
+            } else {
+                int numberAffordable = munny / getPriceFromSelected(buySelected, false, 1);
+                if (numberAffordable > 64) {
+                    quantity.setMaxValue(64);
+                } else {
+                    quantity.setMaxValue(numberAffordable);
+                }
+            }
             back.enabled = true;
             back.visible = true;
             buy.visible = false;
