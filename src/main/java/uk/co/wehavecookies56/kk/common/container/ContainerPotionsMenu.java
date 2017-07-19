@@ -13,6 +13,8 @@ import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.container.slot.SlotCustom;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 
+import javax.annotation.Nonnull;
+
 public class ContainerPotionsMenu extends Container {
 	private static final int INV_START = InventoryPotionsMenu.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;
 
@@ -20,7 +22,12 @@ public class ContainerPotionsMenu extends Container {
 		ItemStackHandler inventory = player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
 		int i;
 		for (i = 0; i < INV_START; i++)
-			addSlotToContainer(new SlotCustom(inventory, i, 44 + (18 * i), 30, 3));
+			addSlotToContainer(new SlotCustom(inventory, i, 44 + (18 * i), 30, 3) {
+				@Override
+				public void onSlotChange(@Nonnull ItemStack p_75220_1_, @Nonnull ItemStack p_75220_2_) {
+					inventory.markDirty();
+				}
+			});
 		for (i = 0; i < 3; ++i)
 			for (int j = 0; j < 9; ++j)
 				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));

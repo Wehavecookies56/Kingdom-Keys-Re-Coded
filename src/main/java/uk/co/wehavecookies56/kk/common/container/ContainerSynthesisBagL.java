@@ -27,7 +27,12 @@ public class ContainerSynthesisBagL extends Container {
 			// Bag Inventory
 			for (i = 0; i < 8; i++)
 				for (j = 0; j < 7; j++)
-					addSlotToContainer(new SlotSynthesisBag(inventory, j + i * 7, 26 + j * 18, 18 + i * 18));
+					addSlotToContainer(new SlotSynthesisBag(inventory, j + i * 7, 26 + j * 18, 18 + i * 18) {
+                        @Override
+                        public void onSlotChanged() {
+                            inventory.markDirty();
+                        }
+                    });
 
 			for (i = 0; i < 3; ++i)
 				for (j = 0; j < 9; ++j)

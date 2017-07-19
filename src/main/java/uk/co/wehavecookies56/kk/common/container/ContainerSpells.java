@@ -12,6 +12,8 @@ import uk.co.wehavecookies56.kk.common.container.inventory.InventorySpells;
 import uk.co.wehavecookies56.kk.common.container.slot.SlotCustom;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 
+import javax.annotation.Nonnull;
+
 public class ContainerSpells extends Container {
 	private static final int INV_START = InventorySpells.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;
 
@@ -19,7 +21,12 @@ public class ContainerSpells extends Container {
 		ItemStackHandler inventory = player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells();
 		int i;
 		for (i = 0; i < INV_START; i++)
-			addSlotToContainer(new SlotCustom(inventory, i, 26 + (18 * i), 30, 4));
+			addSlotToContainer(new SlotCustom(inventory, i, 26 + (18 * i), 30, 4) {
+                @Override
+                public void onSlotChange(@Nonnull ItemStack p_75220_1_, @Nonnull ItemStack p_75220_2_) {
+                    inventory.markDirty();
+                }
+            });
 		for (i = 0; i < 3; ++i)
 			for (int j = 0; j < 9; ++j)
 				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));

@@ -13,6 +13,8 @@ import net.minecraftforge.items.SlotItemHandler;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagS;
 import uk.co.wehavecookies56.kk.common.container.slot.SlotSynthesisBag;
 
+import javax.annotation.Nonnull;
+
 public class ContainerSynthesisBagS extends Container {
 
 	private IItemHandler inventory;
@@ -28,7 +30,12 @@ public class ContainerSynthesisBagS extends Container {
 			// Bag Inventory
 			for (i = 0; i < 2; i++)
 				for (j = 0; j < 7; j++)
-					addSlotToContainer(new SlotSynthesisBag(inventory, j + i * 7, 26 + j * 18, 18 + i * 18));
+					addSlotToContainer(new SlotSynthesisBag(inventory, j + i * 7, 26 + j * 18, 18 + i * 18) {
+						@Override
+						public void onSlotChange(@Nonnull ItemStack p_75220_1_, @Nonnull ItemStack p_75220_2_) {
+							inventory.markDirty();
+						}
+					});
 
 			for (i = 0; i < 3; ++i)
 				for (j = 0; j < 9; ++j)

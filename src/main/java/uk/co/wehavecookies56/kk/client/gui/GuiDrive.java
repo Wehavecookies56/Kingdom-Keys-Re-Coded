@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
+import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;

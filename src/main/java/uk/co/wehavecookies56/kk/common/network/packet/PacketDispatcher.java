@@ -92,7 +92,6 @@ public class PacketDispatcher {
 		registerMessage(SpawnPortalParticles.class);
 		registerMessage(OpenOrgGUI.class);
 
-
 		// Client to Server
 		registerMessage(MunnyPickup.class);
 		registerMessage(HpOrbPickup.class);

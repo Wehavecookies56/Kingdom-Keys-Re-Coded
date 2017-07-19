@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Multimap;
@@ -43,9 +42,6 @@ import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
-import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagL;
-import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagM;
-import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagS;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
@@ -60,13 +56,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.*;
 import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -75,7 +65,6 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
  * Created by Toby on 19/07/2016.
  */
 public class ItemEvents {
-
 
     @SubscribeEvent
     public void onEntityItemPickUp (EntityItemPickupEvent event) {
@@ -141,99 +130,47 @@ public class ItemEvents {
                 if (event.getEntityPlayer().inventory.getStackInSlot(i) != ItemStack.EMPTY) {
                     if (event.getEntityPlayer().inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagL) {
                         IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-                        for (int j = 0; j < inv.getSlots(); j++) {
-                            ItemStack bagItem = inv.getStackInSlot(j);
-                            ItemStack pickUp = event.getItem().getEntityItem();
-                            if (bagItem != ItemStack.EMPTY) {
-                                if (bagItem.getItem().equals(pickUp.getItem())) {
-                                    if (bagItem.hasTagCompound() && pickUp.hasTagCompound()){
-                                        if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
-                                            if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) {
-                                                if (bagItem.getCount() < 64) {
-                                                    if (bagItem.getCount() + pickUp.getCount() <= 64) {
-                                                        ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.getCount() + bagItem.getCount());
-                                                        stack.setTagCompound(new NBTTagCompound());
-                                                        stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
-                                                        stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
-                                                        inv.insertItem(j, stack, false);
-                                                        pickUp.setCount(0);
-                                                        return;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            } else if (bagItem == ItemStack.EMPTY) {
-                                inv.insertItem(j, pickUp, false);
-                                pickUp.setCount(0);
-                                return;
-                            }
-                        }
+                        addSynthesisMaterialToBag(inv, event);
                     } else if (event.getEntityPlayer().inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagM) {
                         IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-                        for (int j = 0; j < inv.getSlots(); j++) {
-                            ItemStack bagItem = inv.getStackInSlot(j);
-                            ItemStack pickUp = event.getItem().getEntityItem();
-                            if (bagItem != ItemStack.EMPTY) {
-                                if (bagItem.getItem().equals(pickUp.getItem())) {
-                                    if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) {
-                                        if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
-                                            if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) {
-                                                if (bagItem.getCount() < 64) {
-                                                    if (bagItem.getCount() + pickUp.getCount() <= 64) {
-                                                        ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.getCount() + bagItem.getCount());
-                                                        stack.setTagCompound(new NBTTagCompound());
-                                                        stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
-                                                        stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
-                                                        inv.insertItem(j, stack, false);
-                                                        pickUp.setCount(0);
-                                                        return;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            } else if (bagItem == ItemStack.EMPTY) {
-                                inv.insertItem(j, pickUp, false);
-                                pickUp.setCount(0);
-                                return;
-                            }
-                        }
+                        addSynthesisMaterialToBag(inv, event);
                     } if (event.getEntityPlayer().inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagS) {
                         IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-                        for (int j = 0; j < inv.getSlots(); j++) {
-                            ItemStack bagItem = inv.getStackInSlot(j);
-                            ItemStack pickUp = event.getItem().getEntityItem();
-                            if (bagItem != ItemStack.EMPTY) {
-                                if (bagItem.getItem().equals(pickUp.getItem())) {
-                                    if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) {
-                                        if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
-                                            if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) {
-                                                if (bagItem.getCount() < 64) {
-                                                    if (bagItem.getCount() + pickUp.getCount() <= 64) {
-                                                        ItemStack stack = new ItemStack(pickUp.getItem(), pickUp.getCount() + bagItem.getCount());
-                                                        stack.setTagCompound(new NBTTagCompound());
-                                                        stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
-                                                        stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
-                                                        inv.insertItem(j, stack, false);
-                                                        pickUp.setCount(0);
-                                                        return;
-                                                    }
-                                                }
-                                            }
-                                        }
+                        addSynthesisMaterialToBag(inv, event);
+                    }
+                }
+            }
+        }
+    }
+
+    public void addSynthesisMaterialToBag(IItemHandler inv, EntityItemPickupEvent event) {
+        for (int j = 0; j < inv.getSlots(); j++) {
+            ItemStack bagItem = inv.getStackInSlot(j);
+            ItemStack pickUp = event.getItem().getEntityItem();
+            if (bagItem != ItemStack.EMPTY) {
+                if (bagItem.getItem().equals(pickUp.getItem())) {
+                    if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) {
+                        if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
+                            if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) {
+                                if (bagItem.getCount() < 64) {
+                                    if (bagItem.getCount() + pickUp.getCount() <= 64) {
+                                        ItemStack stack = new ItemStack(pickUp.copy().getItem(), pickUp.copy().getCount());
+                                        stack.setTagCompound(new NBTTagCompound());
+                                        stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
+                                        stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+                                        inv.insertItem(j, stack, false);
+                                        pickUp.setCount(0);
+                                        return;
                                     }
                                 }
-                            } else if (bagItem == ItemStack.EMPTY) {
-                                inv.insertItem(j, pickUp, false);
-                                pickUp.setCount(0);
-                                return;
                             }
                         }
                     }
                 }
+            } else if (bagItem == ItemStack.EMPTY) {
+                inv.insertItem(j, pickUp.copy(), false);
+                pickUp.setCount(0);
+                return;
             }
         }
     }

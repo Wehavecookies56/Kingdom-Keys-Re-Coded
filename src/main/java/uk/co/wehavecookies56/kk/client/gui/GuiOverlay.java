@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.client.gui;
 
 import java.awt.Color;
 
+import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;

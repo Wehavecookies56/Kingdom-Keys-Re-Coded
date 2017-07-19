@@ -12,13 +12,20 @@ import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.container.slot.SlotCustom;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 
+import javax.annotation.Nonnull;
+
 public class ContainerKeychain extends Container {
 	private static final int INV_START = InventoryKeychain.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;
 
 	public ContainerKeychain (EntityPlayer player, InventoryPlayer inventoryPlayer) {
 		ItemStackHandler inventory = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
 		int i;
-		addSlotToContainer(new SlotCustom(inventory, 0, 80, 30, 1));
+		addSlotToContainer(new SlotCustom(inventory, 0, 80, 30, 1) {
+            @Override
+            public void onSlotChange(@Nonnull ItemStack p_75220_1_, @Nonnull ItemStack p_75220_2_) {
+                inventory.markDirty();
+            }
+        });
 		for (i = 0; i < 3; ++i)
 			for (int j = 0; j < 9; ++j)
 				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));

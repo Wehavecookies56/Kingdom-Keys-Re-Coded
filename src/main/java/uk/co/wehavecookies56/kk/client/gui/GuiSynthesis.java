@@ -43,7 +43,7 @@ public class GuiSynthesis extends GuiTooltip {
 
 	public int selected = -1;
 	public int freeDevSelected = -1;
-	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3, CREATE = 4, TAKE1 = 5, TAKESTACK = 6, TAKEHALFSTACK = 7, TAKEALL = 8, DEPOSIT = 9, DEPOSITBAG=10;
+	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3, CREATE = 4, TAKE1 = 5, TAKESTACK = 6, TAKEHALFSTACK = 7, TAKEALL = 8, DEPOSIT = 9, DEPOSITBAG = 10;
 	public int submenu;
 	private final GuiScreen parentScreen;
 	protected String title = Utils.translateToLocal(Strings.Gui_Synthesis_Main_Title);
@@ -93,14 +93,14 @@ public class GuiSynthesis extends GuiTooltip {
 	protected int getFreeSlots () {
 		int emptySlots = 0;
 		for (ItemStack element : mc.player.inventory.mainInventory)
-			if (element == null) emptySlots++;
+			if (element == ItemStack.EMPTY) emptySlots++;
 		return emptySlots;
 	}
 
 	protected boolean getInventoryMaterial (String material) {
 
 		for (ItemStack element : mc.player.inventory.mainInventory)
-			if (element != null) if (element.getUnlocalizedName() == material) return true;
+			if (element != ItemStack.EMPTY) if (element.getUnlocalizedName().equals(material)) return true;
 		return false;
 	}
 
@@ -144,8 +144,9 @@ public class GuiSynthesis extends GuiTooltip {
 
 				freeSlots = getFreeSlots();
 				foundMaterial = getInventoryMaterial(materials.get(materialSelected));
-				if (foundMaterial || freeSlots >= 1){
-					if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) > 1){ 
+                System.out.println(freeSlots);
+                if (foundMaterial || freeSlots >= 1){
+                    if (MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) > 1){
 						PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));
 					}else{
 						PacketDispatcher.sendToServer(new TakeMaterials(1, materials.get(materialSelected)));

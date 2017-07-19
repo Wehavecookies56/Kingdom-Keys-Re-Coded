@@ -37,7 +37,12 @@ public class ContainerKKChest extends Container {
 		
 		for (i = 0; i < 4; i++)
 			for (j = 0; j < 9; j++)
-				addSlotToContainer(new SlotItemHandler(inventory, j + i * 9, 8 + j * 18, 20 + i * 18));
+				addSlotToContainer(new SlotItemHandler(inventory, j + i * 9, 8 + j * 18, 20 + i * 18) {
+					@Override
+					public void onSlotChanged() {
+						inventory.markDirty();
+					}
+				});
 
 		for (i = 0; i < 3; ++i)
 			for (j = 0; j < 9; ++j)

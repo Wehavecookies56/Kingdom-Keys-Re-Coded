@@ -60,6 +60,7 @@ public class TakeMaterials extends AbstractServerMessage<TakeMaterials> {
 				material.getTagCompound().setString("rank", "A");
 			else if (materialName.endsWith("crystal") || materialName.equals(Strings.SM_LostIllusion) || materialName.equals(Strings.SM_OrichalcumPlus)) material.getTagCompound().setString("rank", "S");
 
+			System.out.println(material);
 			player.inventory.addItemStackToInventory(material);
 			player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).removeMaterial(MaterialRegistry.get(materialName), amount);
 

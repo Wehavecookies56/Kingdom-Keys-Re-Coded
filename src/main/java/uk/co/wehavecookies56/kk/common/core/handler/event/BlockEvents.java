@@ -3,12 +3,15 @@ package uk.co.wehavecookies56.kk.common.core.handler.event;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.item.ItemStacks;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
@@ -26,7 +29,7 @@ public class BlockEvents {
         		event.setCanceled(true);
         }
 	}
-	
+
 	@SubscribeEvent
 	public void onBlockPlace(BlockEvent.PlaceEvent event)
 	{
@@ -35,7 +38,7 @@ public class BlockEvents {
         		event.setCanceled(true);
         }
 	}
-	
+
     @SubscribeEvent
     public void onBlockDestroyed (BlockEvent.HarvestDropsEvent event) {
         int fortune;
@@ -51,7 +54,7 @@ public class BlockEvents {
         ItemStacks.createSynthesisItem(BlazingGem, Strings.SM_BlazingGem, "A");
         ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, Utils.randomWithRange(1, 3));
         ItemStacks.createSynthesisItem(BlazingCrystal, Strings.SM_BlazingCrystal, "S");
-        
+
         ItemStack BrightShard = new ItemStack(ModItems.SynthesisMaterial, Utils.randomWithRange(1, 3));
         ItemStacks.createSynthesisItem(BrightShard, Strings.SM_BrightShard, "C");
         ItemStack BrightStone = new ItemStack(ModItems.SynthesisMaterial, Utils.randomWithRange(1, 3));
@@ -178,7 +181,7 @@ public class BlockEvents {
         ItemStacks.createSynthesisItem(LostIllusion, Strings.SM_LostIllusion, "S");
         ItemStack ManifestIllusion = new ItemStack(ModItems.SynthesisMaterial, Utils.randomWithRange(1, 3));
         ItemStacks.createSynthesisItem(ManifestIllusion, Strings.SM_ManifestIllusion, "A");
-        
+
         int numberOfDrops = Utils.randomWithRange(1, 3);
      //   System.out.println("NOD: "+numberOfDrops);
 
@@ -511,7 +514,7 @@ public class BlockEvents {
         	for(int i = 0; i<numberOfDrops; i++)
         	{
         		int dropAmount = Utils.randomWithRange(1, 29);
-        		
+
         		ItemStack munny = new ItemStack(ModItems.Munny, 1);
 
 	            switch (dropAmount) {

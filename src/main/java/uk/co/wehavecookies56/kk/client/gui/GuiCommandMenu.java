@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
