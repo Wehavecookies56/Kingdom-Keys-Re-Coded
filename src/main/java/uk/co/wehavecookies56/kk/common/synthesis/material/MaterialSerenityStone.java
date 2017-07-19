@@ -10,27 +10,27 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class MaterialSerenityStone extends Material {
 
-	String name;
+    String name;
 
-	public MaterialSerenityStone (String name) {
-		this.name = name;
-	}
+    public MaterialSerenityStone (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getItem () {
-		ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-		ItemStacks.createSynthesisItem(stack, Strings.SM_SerenityStone, "B");
-		return stack;
-	}
+    @Override
+    public ItemStack getItem () {
+        ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
+        ItemStacks.createSynthesisItem(stack, Strings.SM_SerenityStone, "B");
+        return stack;
+    }
 
-	@Override
-	public ResourceLocation getTexture () {
-		return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/serenitystone.png");
-	}
+    @Override
+    public ResourceLocation getTexture () {
+        return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/serenitystone.png");
+    }
 
 }

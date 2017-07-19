@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeCircleofLife extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeCircleofLife (String name) {
-		this.name = name;
-	}
+    public RecipeCircleofLife (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_CircleofLife);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_CircleofLife);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_EnergyShard), 3);
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_EnergyShard), 3);
 
-		return reqs;
-	}
+        return reqs;
+    }
 
 }

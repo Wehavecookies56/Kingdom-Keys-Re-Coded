@@ -17,30 +17,30 @@ import java.io.IOException;
 
 public class DeSummonOrgWeapon extends AbstractServerMessage<DeSummonOrgWeapon> {
 
-	public DeSummonOrgWeapon() {}
+    public DeSummonOrgWeapon() {}
 
-	ItemStack toRemove;
+    ItemStack toRemove;
 
-	public DeSummonOrgWeapon(ItemStack toRemove) {
-		this.toRemove = toRemove;
-	}
+    public DeSummonOrgWeapon(ItemStack toRemove) {
+        this.toRemove = toRemove;
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStack();
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        toRemove = buffer.readItemStack();
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStack(toRemove);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeItemStack(toRemove);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.unsummon, SoundCategory.MASTER, 1.0f, 1.0f);
-		player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
-		PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+        player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.unsummon, SoundCategory.MASTER, 1.0f, 1.0f);
+        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
+        PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
+    }
 
 }

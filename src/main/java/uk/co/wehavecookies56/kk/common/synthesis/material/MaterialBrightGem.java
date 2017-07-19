@@ -10,27 +10,27 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class MaterialBrightGem extends Material {
 
-	String name;
+    String name;
 
-	public MaterialBrightGem (String name) {
-		this.name = name;
-	}
+    public MaterialBrightGem (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getItem () {
-		ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-		ItemStacks.createSynthesisItem(stack, Strings.SM_BrightGem, "A");
-		return stack;
-	}
+    @Override
+    public ItemStack getItem () {
+        ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
+        ItemStacks.createSynthesisItem(stack, Strings.SM_BrightGem, "A");
+        return stack;
+    }
 
-	@Override
-	public ResourceLocation getTexture () {
-		return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/brightgem.png");
-	}
+    @Override
+    public ResourceLocation getTexture () {
+        return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/brightgem.png");
+    }
 
 }

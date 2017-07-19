@@ -26,30 +26,30 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.OpenSynthesis;
 
 public class BlockSynthesisTable extends Block implements ITileEntityProvider {
 
-	protected BlockSynthesisTable (Material material, String toolClass, int level, float hardness, float resistance) {
-		super(material);
-		this.setHarvestLevel(toolClass, level);
-		setHardness(hardness);
-		setResistance(resistance);
-	}
+    protected BlockSynthesisTable (Material material, String toolClass, int level, float hardness, float resistance) {
+        super(material);
+        this.setHarvestLevel(toolClass, level);
+        setHardness(hardness);
+        setResistance(resistance);
+    }
 
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, ModSounds.kupo, SoundCategory.BLOCKS, 0.5F, 1.0F);
-		if(world.isRemote)
-			PacketDispatcher.sendToServer(new OpenSynthesis());
-		player.openGui(KingdomKeys.instance, GuiIDs.GUI_SYNTHESISTABLE, world, pos.getX(), pos.getY(), pos.getZ());
-		if (!world.isRemote){
-			PacketDispatcher.sendTo(new SyncRecipeData(player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null)), (EntityPlayerMP) player);
-			PacketDispatcher.sendTo(new SyncFreeDevRecipeData(player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null)), (EntityPlayerMP) player);
-			PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);
-		}
-		return true;
-	}
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, ModSounds.kupo, SoundCategory.BLOCKS, 0.5F, 1.0F);
+        if(world.isRemote)
+            PacketDispatcher.sendToServer(new OpenSynthesis());
+        player.openGui(KingdomKeys.instance, GuiIDs.GUI_SYNTHESISTABLE, world, pos.getX(), pos.getY(), pos.getZ());
+        if (!world.isRemote){
+            PacketDispatcher.sendTo(new SyncRecipeData(player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null)), (EntityPlayerMP) player);
+            PacketDispatcher.sendTo(new SyncFreeDevRecipeData(player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null)), (EntityPlayerMP) player);
+            PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);
+        }
+        return true;
+    }
 
-	@Override
-	public TileEntity createNewTileEntity (World worldIn, int meta) {
-		return new TileEntitySynthesisTable();
-	}
+    @Override
+    public TileEntity createNewTileEntity (World worldIn, int meta) {
+        return new TileEntitySynthesisTable();
+    }
 
 }

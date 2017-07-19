@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeDestinysEmbrace extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeDestinysEmbrace (String name) {
-		this.name = name;
-	}
+    public RecipeDestinysEmbrace (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_DestinysEmbrace);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_DestinysEmbrace);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_LightningStone), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_LightningStone), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
+        return reqs;
+    }
 
 }

@@ -12,21 +12,21 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockKKOre extends Block {
 
-	public BlockKKOre (Material material, String toolClass, int level, float hardness, float resistance) {
-		super(material);
-		this.setHarvestLevel(toolClass, level);
-		setHardness(hardness);
-		setResistance(resistance);
-	}
-	private Random rand = new Random();
-	
-	@Override
-	public Item getItemDropped (IBlockState state, Random r, int fortune) {
-		return null;
-	}
-	
-	@Override
-	public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
-			return MathHelper.getInt(rand, 2, 4);
-	}
+    public BlockKKOre (Material material, String toolClass, int level, float hardness, float resistance) {
+        super(material);
+        this.setHarvestLevel(toolClass, level);
+        setHardness(hardness);
+        setResistance(resistance);
+    }
+    private Random rand = new Random();
+
+    @Override
+    public Item getItemDropped (IBlockState state, Random r, int fortune) {
+        return null;
+    }
+
+    @Override
+    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
+            return MathHelper.getInt(rand, 2, 4);
+    }
 }

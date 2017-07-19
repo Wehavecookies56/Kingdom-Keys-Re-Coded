@@ -10,27 +10,27 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class MaterialMythrilShard extends Material {
 
-	String name;
+    String name;
 
-	public MaterialMythrilShard (String name) {
-		this.name = name;
-	}
+    public MaterialMythrilShard (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getItem () {
-		ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-		ItemStacks.createSynthesisItem(stack, Strings.SM_MythrilShard, "C");
-		return stack;
-	}
+    @Override
+    public ItemStack getItem () {
+        ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
+        ItemStacks.createSynthesisItem(stack, Strings.SM_MythrilShard, "C");
+        return stack;
+    }
 
-	@Override
-	public ResourceLocation getTexture () {
-		return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/mythrilshard.png");
-	}
+    @Override
+    public ResourceLocation getTexture () {
+        return new ResourceLocation(Reference.MODID, "textures/gui/synthesis/mythrilshard.png");
+    }
 
 }

@@ -14,35 +14,35 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 public class RenderKHMob extends RenderLiving<EntityLiving> implements IRenderFactory<EntityMob>
 {
 
-	private float scale;
-	private ModelBase model;
-	private String texturesSprite;
-	private ResourceLocation texture;
-	
-	public RenderKHMob(RenderManager mg, ModelBase model, float scale, String staticTexture)
-	{
-		super(mg, model, scale/2);
-		this.model = model;
-		this.scale = scale;
-		this.texturesSprite = staticTexture;
-		this.texture = new ResourceLocation("kk:textures/mobs/" + staticTexture + ".png");
-	}   
-	@Override
+    private float scale;
+    private ModelBase model;
+    private String texturesSprite;
+    private ResourceLocation texture;
+
+    public RenderKHMob(RenderManager mg, ModelBase model, float scale, String staticTexture)
+    {
+        super(mg, model, scale/2);
+        this.model = model;
+        this.scale = scale;
+        this.texturesSprite = staticTexture;
+        this.texture = new ResourceLocation("kk:textures/mobs/" + staticTexture + ".png");
+    }
+    @Override
     protected void preRenderCallback(EntityLiving  entity, float i)
     {
-		if(entity instanceof EntityMob)
-			
-    	GL11.glScalef(this.scale, this.scale, this.scale);
+        if(entity instanceof EntityMob)
+
+        GL11.glScalef(this.scale, this.scale, this.scale);
     }
 
-	protected ResourceLocation getEntityTexture(EntityLiving entity)
-	{
-		return this.texture;
-	}
+    protected ResourceLocation getEntityTexture(EntityLiving entity)
+    {
+        return this.texture;
+    }
 
-	public Render<? super EntityMob> createRenderFor(RenderManager manager)
-	{
-		return new RenderKHMob(manager, model, scale, texturesSprite);
-	}
+    public Render<? super EntityMob> createRenderFor(RenderManager manager)
+    {
+        return new RenderKHMob(manager, model, scale, texturesSprite);
+    }
 
 }

@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeOlympia extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeOlympia (String name) {
-		this.name = name;
-	}
+    public RecipeOlympia (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_Olympia);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_Olympia);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_LightningCrystal), 1);
-		reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightShard), 2);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_LightningCrystal), 1);
+        reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightShard), 2);
+        return reqs;
+    }
 
 }

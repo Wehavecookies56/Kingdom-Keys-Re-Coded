@@ -12,29 +12,29 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeWaywardWind extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeWaywardWind (String name) {
-		this.name = name;
-	}
+    public RecipeWaywardWind (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_WaywardWind);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_WaywardWind);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerShard), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_StormyShard), 1);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerShard), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_StormyShard), 1);
+        return reqs;
+    }
 
 }

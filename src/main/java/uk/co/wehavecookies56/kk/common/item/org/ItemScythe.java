@@ -13,25 +13,25 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemScythe extends ItemOrgWeapon implements IOrgWeapon{
 
-	public ItemScythe (double strength, double magic)  {
-		super(strength,magic);
-		setMaxStackSize(1);
-	}
+    public ItemScythe (double strength, double magic)  {
+        super(strength,magic);
+        setMaxStackSize(1);
+    }
 
-	@Override
-	@SideOnly (Side.CLIENT)
-	public EnumRarity getRarity (ItemStack par1ItemStack) {
-		return EnumRarity.UNCOMMON;
-	}
+    @Override
+    @SideOnly (Side.CLIENT)
+    public EnumRarity getRarity (ItemStack par1ItemStack) {
+        return EnumRarity.UNCOMMON;
+    }
 
-	@Override
-	@SideOnly (Side.CLIENT)
-	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add("XI Marluxia");
-	}
+    @Override
+    @SideOnly (Side.CLIENT)
+    public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
+        dataList.add("XI Marluxia");
+    }
 
-	@Override
-	public OrgMember getMember() {
-		return Utils.OrgMember.MARLUXIA;
-	}
+    @Override
+    public OrgMember getMember() {
+        return Utils.OrgMember.MARLUXIA;
+    }
 }

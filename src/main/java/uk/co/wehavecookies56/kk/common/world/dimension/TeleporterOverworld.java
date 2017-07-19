@@ -40,7 +40,7 @@ public class TeleporterOverworld extends Teleporter {
         double spawnY = originalPos.getPosY();
         double spawnZ = originalPos.getPosZ();
 
-    	playerMP.setPosition(spawnX, spawnY, spawnZ);
+        playerMP.setPosition(spawnX, spawnY, spawnZ);
 
         playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, this);
 

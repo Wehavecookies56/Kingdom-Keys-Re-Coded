@@ -88,53 +88,53 @@ public class UsernameHandler {
         if (event.getPlayer() != null)
         {
             if (this.usernamePropsRegistry.containsKey(event.getUsername()))
-	        {
-	            EntityPlayer player = event.getPlayer();
-	            event.setCanceled(true);
-	            WorldServer worlds[] = DimensionManager.getWorlds();
-	            
-	            List players = null;
-	            for(int p=0; p<worlds.length;p++)
-	            {
-	            	players = worlds[p].playerEntities;
-	            
-		            String nameFormat = null;
-		            String chatFormat = null;
-		            String prefixFormat = null;
-		            String prefix = null;
-		
-		            for (int i = 0; i < players.size(); i++)
-		            {
-	                    if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("nameformat")){
-	                        nameFormat = this.usernamePropsRegistry.get(event.getUsername()).get("nameformat");
-	                    }
-	                    else nameFormat = "\u00A7f";
-	                   
-	                    if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("chatformat")){
-	                        chatFormat = this.usernamePropsRegistry.get(event.getUsername()).get("chatformat");
-	                    }
-		                else chatFormat = "\u00A7f";
-	                   
-		                if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefixformat")){
-	                        prefixFormat = this.usernamePropsRegistry.get(event.getUsername()).get("prefixformat");
-		                }
-	                    else prefixFormat = "\u00A7f";
-	                    
-	                    if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefix")){
-	                        prefix = this.usernamePropsRegistry.get(event.getUsername()).get("prefix");
-		                }
-	                    else prefix = "";
-	                
-		                EntityPlayer target = (EntityPlayer) players.get(i);
-		                String prefixWithFormat = "";
-		                if (!prefix.isEmpty()) prefixWithFormat =  "[" + prefixFormat + prefix + TextFormatting.WHITE + "] ";
-		                String nameWithFormat = TextFormatting.WHITE + "<" + nameFormat + player.getDisplayNameString() + TextFormatting.WHITE + "> ";
+            {
+                EntityPlayer player = event.getPlayer();
+                event.setCanceled(true);
+                WorldServer worlds[] = DimensionManager.getWorlds();
+
+                List players = null;
+                for(int p=0; p<worlds.length;p++)
+                {
+                    players = worlds[p].playerEntities;
+
+                    String nameFormat = null;
+                    String chatFormat = null;
+                    String prefixFormat = null;
+                    String prefix = null;
+
+                    for (int i = 0; i < players.size(); i++)
+                    {
+                        if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("nameformat")){
+                            nameFormat = this.usernamePropsRegistry.get(event.getUsername()).get("nameformat");
+                        }
+                        else nameFormat = "\u00A7f";
+
+                        if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("chatformat")){
+                            chatFormat = this.usernamePropsRegistry.get(event.getUsername()).get("chatformat");
+                        }
+                        else chatFormat = "\u00A7f";
+
+                        if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefixformat")){
+                            prefixFormat = this.usernamePropsRegistry.get(event.getUsername()).get("prefixformat");
+                        }
+                        else prefixFormat = "\u00A7f";
+
+                        if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefix")){
+                            prefix = this.usernamePropsRegistry.get(event.getUsername()).get("prefix");
+                        }
+                        else prefix = "";
+
+                        EntityPlayer target = (EntityPlayer) players.get(i);
+                        String prefixWithFormat = "";
+                        if (!prefix.isEmpty()) prefixWithFormat =  "[" + prefixFormat + prefix + TextFormatting.WHITE + "] ";
+                        String nameWithFormat = TextFormatting.WHITE + "<" + nameFormat + player.getDisplayNameString() + TextFormatting.WHITE + "> ";
                         TextComponentTranslation message = new TextComponentTranslation(prefixWithFormat + nameWithFormat + chatFormat + event.getMessage());
-		                target.sendMessage(message);
+                        target.sendMessage(message);
                         LogManager.getLogger().info(message.getUnformattedText());
-		  	        }
-	            }
-	        }
+                      }
+                }
+            }
         }
     }
 }

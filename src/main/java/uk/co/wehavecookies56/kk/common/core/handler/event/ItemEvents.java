@@ -98,8 +98,8 @@ public class ItemEvents {
                     event.getItem().getEntityItem().setCount(event.getItem().getEntityItem().getCount()-1);;
                     STATS.addDP(event.getItem().getEntityItem().getTagCompound().getInteger("amount"));
                     EntityPlayer player = event.getEntityPlayer();
-            		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Master))
-            			player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Master);
+                    if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Master))
+                        player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Master);
 
                     PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
                     PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntityPlayer());
@@ -203,33 +203,33 @@ public class ItemEvents {
             double sharpnessDamage = 0;
             if(nbttaglist != null)
             {
-            	 for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                 for (int i = 0; i < nbttaglist.tagCount(); i++) {
                      int id = nbttaglist.getCompoundTagAt(i).getShort("id");
                      int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
 
                     //System.out.println(Enchantment.getEnchantmentByID(id).getName());
                     if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all"))
                     {
-                    	switch (lvl)
-                    	{
-                    	case 1:
-                    		sharpnessDamage = 1;
-                    		break;
-                    	case 2:
-                    		sharpnessDamage = 1.5;
-                    		break;
-                    	case 3:
-                    		sharpnessDamage = 2;
-                    		break;
-                    	case 4:
-                    		sharpnessDamage = 2.5;
-                    		break;
-                    	case 5:
-                    		sharpnessDamage = 3;
-                    		break;
-                    	}
+                        switch (lvl)
+                        {
+                        case 1:
+                            sharpnessDamage = 1;
+                            break;
+                        case 2:
+                            sharpnessDamage = 1.5;
+                            break;
+                        case 3:
+                            sharpnessDamage = 2;
+                            break;
+                        case 4:
+                            sharpnessDamage = 2.5;
+                            break;
+                        case 5:
+                            sharpnessDamage = 3;
+                            break;
+                        }
                     }
-            	 }
+                 }
             }
 
             double keyStrength = keyblade.getStrength()+sharpnessDamage;
@@ -312,33 +312,33 @@ public class ItemEvents {
             double sharpnessDamage = 0;
             if(nbttaglist != null)
             {
-            	 for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                 for (int i = 0; i < nbttaglist.tagCount(); i++) {
                      int id = nbttaglist.getCompoundTagAt(i).getShort("id");
                      int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
 
                     //System.out.println(Enchantment.getEnchantmentByID(id).getName());
                     if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all"))
                     {
-                    	switch (lvl)
-                    	{
-                    	case 1:
-                    		sharpnessDamage = 1;
-                    		break;
-                    	case 2:
-                    		sharpnessDamage = 1.5;
-                    		break;
-                    	case 3:
-                    		sharpnessDamage = 2;
-                    		break;
-                    	case 4:
-                    		sharpnessDamage = 2.5;
-                    		break;
-                    	case 5:
-                    		sharpnessDamage = 3;
-                    		break;
-                    	}
+                        switch (lvl)
+                        {
+                        case 1:
+                            sharpnessDamage = 1;
+                            break;
+                        case 2:
+                            sharpnessDamage = 1.5;
+                            break;
+                        case 3:
+                            sharpnessDamage = 2;
+                            break;
+                        case 4:
+                            sharpnessDamage = 2.5;
+                            break;
+                        case 5:
+                            sharpnessDamage = 3;
+                            break;
+                        }
                     }
-            	 }
+                 }
             }
 
             double keyStrength = keyblade.getStrength()+sharpnessDamage;
@@ -373,7 +373,7 @@ public class ItemEvents {
                 }
                 
             } else {
-            	if(!(event.getItemStack().getEnchantmentTagList() == null))
+                if(!(event.getItemStack().getEnchantmentTagList() == null))
                 tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
             }
         }
@@ -387,33 +387,33 @@ public class ItemEvents {
             double sharpnessDamage = 0;
             if(nbttaglist != null)
             {
-            	 for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                 for (int i = 0; i < nbttaglist.tagCount(); i++) {
                      int id = nbttaglist.getCompoundTagAt(i).getShort("id");
                      int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
 
                     //System.out.println(Enchantment.getEnchantmentByID(id).getName());
                     if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all"))
                     {
-                    	switch (lvl)
-                    	{
-                    	case 1:
-                    		sharpnessDamage = 1;
-                    		break;
-                    	case 2:
-                    		sharpnessDamage = 1.5;
-                    		break;
-                    	case 3:
-                    		sharpnessDamage = 2;
-                    		break;
-                    	case 4:
-                    		sharpnessDamage = 2.5;
-                    		break;
-                    	case 5:
-                    		sharpnessDamage = 3;
-                    		break;
-                    	}
+                        switch (lvl)
+                        {
+                        case 1:
+                            sharpnessDamage = 1;
+                            break;
+                        case 2:
+                            sharpnessDamage = 1.5;
+                            break;
+                        case 3:
+                            sharpnessDamage = 2;
+                            break;
+                        case 4:
+                            sharpnessDamage = 2.5;
+                            break;
+                        case 5:
+                            sharpnessDamage = 3;
+                            break;
+                        }
                     }
-            	 }
+                 }
             }
 
             double keyStrength = weapon.getStrength()+sharpnessDamage;
@@ -590,15 +590,15 @@ public class ItemEvents {
         AAskull.getTagCompound().setTag("SkullOwner", new NBTTagString("Abelatox"));
 
         if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.SynthesisTable)) 
-        	AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisTable);
+            AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisTable);
         else if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.KKChest))
-        	AchievementHelper.addAchievement(event.player, ModAchievements.getChest);
+            AchievementHelper.addAchievement(event.player, ModAchievements.getChest);
         else if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.GhostBlox))
-        	AchievementHelper.addAchievement(event.player, ModAchievements.getGhostBlox);
+            AchievementHelper.addAchievement(event.player, ModAchievements.getGhostBlox);
         else if (event.crafting.getItem() == ModItems.SynthesisBagS)
-        	AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisBag);
+            AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisBag);
         else if (event.crafting.getItem() == ModItems.KingdomHearts)
-        	AchievementHelper.addAchievement(event.player, ModAchievements.getKingdomHearts);
+            AchievementHelper.addAchievement(event.player, ModAchievements.getKingdomHearts);
         else if (event.crafting.getItem() == Items.SKULL)
             if (event.crafting.hasTagCompound())
                 if (event.crafting.getTagCompound().getString("SkullOwner").equals("Wehavecookies56"))

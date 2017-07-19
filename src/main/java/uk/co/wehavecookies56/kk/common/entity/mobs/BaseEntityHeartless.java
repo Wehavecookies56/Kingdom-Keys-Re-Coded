@@ -12,8 +12,8 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 
 public class BaseEntityHeartless extends EntityMob{
 
-	public BaseEntityHeartless(World worldIn) {
-		super(worldIn);
-	}
+    public BaseEntityHeartless(World worldIn) {
+        super(worldIn);
+    }
 
 }

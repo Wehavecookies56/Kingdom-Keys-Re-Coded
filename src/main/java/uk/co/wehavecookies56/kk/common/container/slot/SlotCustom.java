@@ -16,38 +16,38 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 
 public class SlotCustom extends SlotItemHandler {
-	int window;
+    int window;
 
-	public SlotCustom (IItemHandler inventory, int index, int x, int y, int window) {
-		super(inventory, index, x, y);
-		this.window = window;
-	}
+    public SlotCustom (IItemHandler inventory, int index, int x, int y, int window) {
+        super(inventory, index, x, y);
+        this.window = window;
+    }
 
-	@Override
-	public boolean isItemValid (ItemStack stack) {
-		/*
-		 * 1-KeyChain 2-SynthBag 3-Potion 4-Spells 5-DriveForms 6-Pedestal
-		 */
-		switch (window) {
-			case 1:
-				if (stack.getItem() instanceof ItemKeychain) return true;
-				break;
-			case 2:
-				if (stack.getItem() instanceof ItemSynthesisBagS || stack.getItem() instanceof ItemSynthesisBagM || stack.getItem() instanceof ItemSynthesisBagL) return true;
-				break;
-			case 3:
-				if (stack.getItem() instanceof ItemKKPotion) return true;
-				break;
-			case 4:
-				if (stack.getItem() instanceof ItemSpellOrb) return true;
-				break;
-			case 5:
-				if (stack.getItem() instanceof ItemDriveForm) return true;
-				break;
-			case 6:
-				if (stack.getItem() instanceof ItemKeyblade || stack.getItem() instanceof ItemKeychain) return true;
-				break;
-		}
-		return false;
-	}
+    @Override
+    public boolean isItemValid (ItemStack stack) {
+        /*
+         * 1-KeyChain 2-SynthBag 3-Potion 4-Spells 5-DriveForms 6-Pedestal
+         */
+        switch (window) {
+            case 1:
+                if (stack.getItem() instanceof ItemKeychain) return true;
+                break;
+            case 2:
+                if (stack.getItem() instanceof ItemSynthesisBagS || stack.getItem() instanceof ItemSynthesisBagM || stack.getItem() instanceof ItemSynthesisBagL) return true;
+                break;
+            case 3:
+                if (stack.getItem() instanceof ItemKKPotion) return true;
+                break;
+            case 4:
+                if (stack.getItem() instanceof ItemSpellOrb) return true;
+                break;
+            case 5:
+                if (stack.getItem() instanceof ItemDriveForm) return true;
+                break;
+            case 6:
+                if (stack.getItem() instanceof ItemKeyblade || stack.getItem() instanceof ItemKeychain) return true;
+                break;
+        }
+        return false;
+    }
 }

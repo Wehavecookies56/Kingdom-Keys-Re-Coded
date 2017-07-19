@@ -12,29 +12,29 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeThreeWishes extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeThreeWishes (String name) {
-		this.name = name;
-	}
+    public RecipeThreeWishes (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_ThreeWishes);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_ThreeWishes);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_EnergyStone), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_LucidGem), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 5);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_EnergyStone), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_LucidGem), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 5);
+        return reqs;
+    }
 
 }

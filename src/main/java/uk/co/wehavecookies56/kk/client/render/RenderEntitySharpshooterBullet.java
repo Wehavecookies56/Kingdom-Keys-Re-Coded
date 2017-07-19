@@ -28,71 +28,71 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RenderEntitySharpshooterBullet extends Render<EntitySharpshooterBullet> {
 
-	public ModelResourceLocation model = new ModelResourceLocation(Reference.MODID + ":models/item/" + Strings.EternalFlames + ".b3d", "inventory");
-	public ResourceLocation texture = new ResourceLocation(Reference.MODID + ":textures/items/models/" + Strings.EternalFlames + ".png");
+    public ModelResourceLocation model = new ModelResourceLocation(Reference.MODID + ":models/item/" + Strings.EternalFlames + ".b3d", "inventory");
+    public ResourceLocation texture = new ResourceLocation(Reference.MODID + ":textures/items/models/" + Strings.EternalFlames + ".png");
 
-	public RenderEntitySharpshooterBullet (RenderManager renderManager) {
-		super(renderManager);
-	}
+    public RenderEntitySharpshooterBullet (RenderManager renderManager) {
+        super(renderManager);
+    }
 
-	Function<ResourceLocation, TextureAtlasSprite> textureGetter = new Function<ResourceLocation, TextureAtlasSprite>() {
-		@Override
-		public TextureAtlasSprite apply (ResourceLocation location) {
-			return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-		}
-	};
+    Function<ResourceLocation, TextureAtlasSprite> textureGetter = new Function<ResourceLocation, TextureAtlasSprite>() {
+        @Override
+        public TextureAtlasSprite apply (ResourceLocation location) {
+            return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
+        }
+    };
 
-	@Override
-	protected ResourceLocation getEntityTexture (EntitySharpshooterBullet entity) {
-		return texture;
-	}
+    @Override
+    protected ResourceLocation getEntityTexture (EntitySharpshooterBullet entity) {
+        return texture;
+    }
 
-	@Override
-	public void doRender (EntitySharpshooterBullet entity, double x, double y, double z, float entityYaw, float partialTicks) {
-		Tessellator tessellator = Tessellator.getInstance();
-		VertexBuffer worldRenderer = tessellator.getBuffer();
-		if (entity.ticksExisted < 1) return;
+    @Override
+    public void doRender (EntitySharpshooterBullet entity, double x, double y, double z, float entityYaw, float partialTicks) {
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer worldRenderer = tessellator.getBuffer();
+        if (entity.ticksExisted < 1) return;
 
-		textureGetter.apply(texture);
-		bindEntityTexture(entity);
+        textureGetter.apply(texture);
+        bindEntityTexture(entity);
 
-		GL11.glPushMatrix();
-		{
-			GL11.glTranslatef((float) x, (float) y, (float) z);
-			// GL11.glRotatef(entityYaw, 0.0F, 1.0F, -1.0F);
-			GL11.glScalef(0.02f, 0.02f, 0.02f);
-			// GL11.glRotatef(90F - entity.prevRotationPitch -
-			// (entity.rotationPitch - entity.prevRotationPitch) * partialTicks,
-			// 1.0F, 0.0F, 0.0F);
-			IModel model = null;
+        GL11.glPushMatrix();
+        {
+            GL11.glTranslatef((float) x, (float) y, (float) z);
+            // GL11.glRotatef(entityYaw, 0.0F, 1.0F, -1.0F);
+            GL11.glScalef(0.02f, 0.02f, 0.02f);
+            // GL11.glRotatef(90F - entity.prevRotationPitch -
+            // (entity.rotationPitch - entity.prevRotationPitch) * partialTicks,
+            // 1.0F, 0.0F, 0.0F);
+            IModel model = null;
 
-			try {
-				model = B3DLoader.INSTANCE.loadModel(this.model);
-			} catch (Exception e) {
-				model = ModelLoaderRegistry.getMissingModel();
-			}
+            try {
+                model = B3DLoader.INSTANCE.loadModel(this.model);
+            } catch (Exception e) {
+                model = ModelLoaderRegistry.getMissingModel();
+            }
 
-			IBakedModel bakedModel = model.bake((TRSRTransformation.identity()), Attributes.DEFAULT_BAKED_FORMAT, textureGetter);
-			worldRenderer.begin(7, Attributes.DEFAULT_BAKED_FORMAT);
+            IBakedModel bakedModel = model.bake((TRSRTransformation.identity()), Attributes.DEFAULT_BAKED_FORMAT, textureGetter);
+            worldRenderer.begin(7, Attributes.DEFAULT_BAKED_FORMAT);
 
-			// Get Quads
-			List<BakedQuad> generalQuads = bakedModel.getQuads(null, null, 1);
+            // Get Quads
+            List<BakedQuad> generalQuads = bakedModel.getQuads(null, null, 1);
 
-			for (BakedQuad q : generalQuads) {
-				int[] vd = q.getVertexData();
-				worldRenderer.addVertexData(vd);
-			}
+            for (BakedQuad q : generalQuads) {
+                int[] vd = q.getVertexData();
+                worldRenderer.addVertexData(vd);
+            }
 
-			for (EnumFacing face : EnumFacing.values()) {
-				List<BakedQuad> faceQuads = bakedModel.getQuads(null, null, 1);
-				for (BakedQuad q : faceQuads) {
-					int[] vd = q.getVertexData();
-					worldRenderer.addVertexData(vd);
-				}
-			}
-			tessellator.draw();
-		}
-		GL11.glPopMatrix();
-	}
+            for (EnumFacing face : EnumFacing.values()) {
+                List<BakedQuad> faceQuads = bakedModel.getQuads(null, null, 1);
+                for (BakedQuad q : faceQuads) {
+                    int[] vd = q.getVertexData();
+                    worldRenderer.addVertexData(vd);
+                }
+            }
+            tessellator.draw();
+        }
+        GL11.glPopMatrix();
+    }
 
 }

@@ -16,38 +16,38 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public abstract class ItemSpellOrb extends Item {
 
-	String magic;
+    String magic;
 
-	public ItemSpellOrb (String magic) {
-		this.magic = magic;
-		setMaxStackSize(1);
-	}
+    public ItemSpellOrb (String magic) {
+        this.magic = magic;
+        setMaxStackSize(1);
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if (world.isRemote) {
-			PacketDispatcher.sendToServer(new LevelUpMagic(this.magic));
-		}
-		return super.onItemRightClick(world, player, hand);
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        if (world.isRemote) {
+            PacketDispatcher.sendToServer(new LevelUpMagic(this.magic));
+        }
+        return super.onItemRightClick(world, player, hand);
+    }
 
-	public String getMagicLevelName(EntityPlayer player, String magic){
-		String magicName;
-		int magicLevel = player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic);
-		return magic;
-	}
+    public String getMagicLevelName(EntityPlayer player, String magic){
+        String magicName;
+        int magicLevel = player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic);
+        return magic;
+    }
 
-	@Override
-	public void addInformation (ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
-		tooltip.add(Utils.translateToLocal(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
-		super.addInformation(stack, player, tooltip, advanced);
-	}
+    @Override
+    public void addInformation (ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+        tooltip.add(Utils.translateToLocal(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
+        super.addInformation(stack, player, tooltip, advanced);
+    }
 
-	public String getMagicName () {
-		return magic;
-	}
+    public String getMagicName () {
+        return magic;
+    }
 
-	public void setMagicName (String magic) {
-		this.magic = magic;
-	}
+    public void setMagicName (String magic) {
+        this.magic = magic;
+    }
 }

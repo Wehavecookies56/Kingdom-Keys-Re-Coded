@@ -11,63 +11,63 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
 public class SpawnAeroParticles extends AbstractMessage.AbstractClientMessage<SpawnAeroParticles> {
 
-	double x, y, z;
-	int lvl;
+    double x, y, z;
+    int lvl;
 
-	public SpawnAeroParticles () {}
+    public SpawnAeroParticles () {}
 
-	public SpawnAeroParticles (Entity entity, int level) {
-		x = entity.posX;
-		y = entity.posY;
-		z = entity.posZ;
-		lvl = level;
-	}
+    public SpawnAeroParticles (Entity entity, int level) {
+        x = entity.posX;
+        y = entity.posY;
+        z = entity.posZ;
+        lvl = level;
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		x = buffer.readDouble();
-		y = buffer.readDouble();
-		z = buffer.readDouble();
-		lvl = buffer.readInt();
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        x = buffer.readDouble();
+        y = buffer.readDouble();
+        z = buffer.readDouble();
+        lvl = buffer.readInt();
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeDouble(x);
-		buffer.writeDouble(y);
-		buffer.writeDouble(z);
-		buffer.writeInt(lvl);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeDouble(x);
+        buffer.writeDouble(y);
+        buffer.writeDouble(z);
+        buffer.writeInt(lvl);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		double r;
-		switch (this.lvl) {
-			case 1:
-				r = 1.5D;
-				for (int a = 1; a <= 360; a += 15) {
-					double x = this.x + (r * Math.cos(Math.toRadians(a)));
-					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-					player.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
-				}
-				break;
-			case 2:
-				r = 2.3D;
-				for (int a = 1; a <= 360; a += 15) {
-					double x = this.x + (r * Math.cos(Math.toRadians(a)));
-					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-					player.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
-				}
-				break;
-			case 3:
-				r = 4.0D;
-				for (int a = 1; a <= 360; a += 15) {
-					double x = this.x + (r * Math.cos(Math.toRadians(a)));
-					double z = this.z + (r * Math.sin(Math.toRadians(a)));
-					player.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
-				}
-				break;
-		}
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        double r;
+        switch (this.lvl) {
+            case 1:
+                r = 1.5D;
+                for (int a = 1; a <= 360; a += 15) {
+                    double x = this.x + (r * Math.cos(Math.toRadians(a)));
+                    double z = this.z + (r * Math.sin(Math.toRadians(a)));
+                    player.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
+                }
+                break;
+            case 2:
+                r = 2.3D;
+                for (int a = 1; a <= 360; a += 15) {
+                    double x = this.x + (r * Math.cos(Math.toRadians(a)));
+                    double z = this.z + (r * Math.sin(Math.toRadians(a)));
+                    player.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
+                }
+                break;
+            case 3:
+                r = 4.0D;
+                for (int a = 1; a <= 360; a += 15) {
+                    double x = this.x + (r * Math.cos(Math.toRadians(a)));
+                    double z = this.z + (r * Math.sin(Math.toRadians(a)));
+                    player.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, x, this.y, z, 0.0D, 0.5D, 0.0D);
+                }
+                break;
+        }
+    }
 
 }

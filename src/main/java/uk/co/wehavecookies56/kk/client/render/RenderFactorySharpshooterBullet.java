@@ -7,9 +7,9 @@ import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBull
 
 public class RenderFactorySharpshooterBullet implements IRenderFactory<EntitySharpshooterBullet> {
 
-	@Override
-	public Render<? super EntitySharpshooterBullet> createRenderFor (RenderManager manager) {
-		return new RenderEntitySharpshooterBullet(manager);
-	}
+    @Override
+    public Render<? super EntitySharpshooterBullet> createRenderFor (RenderManager manager) {
+        return new RenderEntitySharpshooterBullet(manager);
+    }
 
 }

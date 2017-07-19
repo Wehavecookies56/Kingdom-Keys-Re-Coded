@@ -10,23 +10,23 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class ItemPotion extends ItemKKPotion {
 
-	String potionType;
+    String potionType;
 
-	public ItemPotion (int food, boolean wolf, String type) {
-		super(food, wolf, type, Strings.Potion);
-		setAlwaysEdible();
-		this.potionType = type;
-	}
+    public ItemPotion (int food, boolean wolf, String type) {
+        super(food, wolf, type, Strings.Potion);
+        setAlwaysEdible();
+        this.potionType = type;
+    }
 
-	@Override
-	public void potionEffect (EntityPlayer player) {
-		player.heal(player.getMaxHealth() / 3);
-	}
+    @Override
+    public void potionEffect (EntityPlayer player) {
+        player.heal(player.getMaxHealth() / 3);
+    }
 
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		tooltip.add(TextFormatting.GREEN + "Restores a third of your max HP (" + (int)(playerIn.getMaxHealth() / 3) + ")");
-		super.addInformation(stack, playerIn, tooltip, advanced);
-	}
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        tooltip.add(TextFormatting.GREEN + "Restores a third of your max HP (" + (int)(playerIn.getMaxHealth() / 3) + ")");
+        super.addInformation(stack, playerIn, tooltip, advanced);
+    }
 
 }

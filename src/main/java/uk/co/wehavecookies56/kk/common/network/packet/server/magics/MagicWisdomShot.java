@@ -13,24 +13,24 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnWisdomShotPart
 
 public class MagicWisdomShot extends AbstractMessage.AbstractServerMessage<MagicWisdomShot> {
 
-	public MagicWisdomShot () {}
+    public MagicWisdomShot () {}
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
 
-	}
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
 
-	}
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		World world = player.world;
-		EntityWisdomShot wisdomshot = new EntityWisdomShot(world, player);
-		world.spawnEntity(wisdomshot);
-		wisdomshot.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 3, 0);
-		PacketDispatcher.sendToAllAround(new SpawnWisdomShotParticles(new EntityWisdomShot(world)), player, 64.0D);	
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        World world = player.world;
+        EntityWisdomShot wisdomshot = new EntityWisdomShot(world, player);
+        world.spawnEntity(wisdomshot);
+        wisdomshot.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 3, 0);
+        PacketDispatcher.sendToAllAround(new SpawnWisdomShotParticles(new EntityWisdomShot(world)), player, 64.0D);
+    }
 }

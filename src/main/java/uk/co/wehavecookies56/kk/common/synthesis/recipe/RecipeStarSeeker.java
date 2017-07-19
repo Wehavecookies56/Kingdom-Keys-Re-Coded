@@ -12,29 +12,29 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeStarSeeker extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeStarSeeker (String name) {
-		this.name = name;
-	}
+    public RecipeStarSeeker (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_StarSeeker);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_StarSeeker);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_TwilightStone), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerShard), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_DenseShard), 3);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_TwilightStone), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerShard), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_DenseShard), 3);
+        return reqs;
+    }
 
 }

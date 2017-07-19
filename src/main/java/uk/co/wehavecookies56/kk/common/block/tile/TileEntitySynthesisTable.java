@@ -4,6 +4,6 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntitySynthesisTable extends TileEntity {
 
-	public TileEntitySynthesisTable () {}
+    public TileEntitySynthesisTable () {}
 
 }

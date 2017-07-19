@@ -71,167 +71,167 @@ import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 
 public class CommonProxy {
 
-	public void preInit (FMLPreInitializationEvent event) {
-		// Display mod info in console
-		LogHelper.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft " + Reference.MCVER);
+    public void preInit (FMLPreInitializationEvent event) {
+        // Display mod info in console
+        LogHelper.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft " + Reference.MCVER);
 
-		if(MainConfig.client.hud.chat)
-		{
-			try {
-				UsernameHandler.init(event);
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-		}
+        if(MainConfig.client.hud.chat)
+        {
+            try {
+                UsernameHandler.init(event);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
 
-		// World generation
-		GameRegistry.registerWorldGenerator(new WorldGenBlox(), 2);
-		LogHelper.info("World generation loaded");
+        // World generation
+        GameRegistry.registerWorldGenerator(new WorldGenBlox(), 2);
+        LogHelper.info("World generation loaded");
 
-		// Packets
-		PacketDispatcher.registerPackets();
-		LogHelper.info("Packets loaded");
+        // Packets
+        PacketDispatcher.registerPackets();
+        LogHelper.info("Packets loaded");
 
-		// Items
-		ModItems.init();
-		ModItems.register();
-		LogHelper.info("Items loaded");
+        // Items
+        ModItems.init();
+        ModItems.register();
+        LogHelper.info("Items loaded");
 
-		// Blocks
-		ModBlocks.init();
-		ModBlocks.register();
-		LogHelper.info("Blocks loaded");
+        // Blocks
+        ModBlocks.init();
+        ModBlocks.register();
+        LogHelper.info("Blocks loaded");
 
-		ModDimensions.init();
+        ModDimensions.init();
 
-		ModCapabilities.registerCapabilities();
-	}
-	
-	public static Map<String, Integer> stringtoIDMapping = new HashMap<String, Integer>();
-	static int startEntityId = 600;
-	
-	@SuppressWarnings("unchecked")
-	private static void registerEntityWithEgg(Class<? extends Entity> entity, String name, int modid, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int primaryColor, int secondaryColor) {
-		int id = 1;
-		stringtoIDMapping.put(name, id);
-		EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, name), entity, name, modid, new KingdomKeys(), trackingRange, updateFrequency, sendsVelocityUpdates, primaryColor, secondaryColor);
-	}
+        ModCapabilities.registerCapabilities();
+    }
 
-	public void init (FMLInitializationEvent event) {
-		// Instance
-		MinecraftForge.EVENT_BUS.register(KingdomKeys.instance);
+    public static Map<String, Integer> stringtoIDMapping = new HashMap<String, Integer>();
+    static int startEntityId = 600;
 
-		//	ModSounds.init();
-		//LogHelper.info("Sounds loaded");
+    @SuppressWarnings("unchecked")
+    private static void registerEntityWithEgg(Class<? extends Entity> entity, String name, int modid, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int primaryColor, int secondaryColor) {
+        int id = 1;
+        stringtoIDMapping.put(name, id);
+        EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, name), entity, name, modid, new KingdomKeys(), trackingRange, updateFrequency, sendsVelocityUpdates, primaryColor, secondaryColor);
+    }
 
-		// Update checker
-		LogHelper.info("Update checker loaded");
+    public void init (FMLInitializationEvent event) {
+        // Instance
+        MinecraftForge.EVENT_BUS.register(KingdomKeys.instance);
 
-		// Crafting recipe
-		ModItemsRecipes.init();
-		ModBlocksRecipes.init();
-		LogHelper.info("Crafting recipe loaded");
+        //    ModSounds.init();
+        //LogHelper.info("Sounds loaded");
 
-		// Fuel Handler
-		GameRegistry.registerFuelHandler(new FuelHandler());
-		LogHelper.info("Fuel handler loaded");
-		registerAchievements();
+        // Update checker
+        LogHelper.info("Update checker loaded");
 
-		// Register renders
+        // Crafting recipe
+        ModItemsRecipes.init();
+        ModBlocksRecipes.init();
+        LogHelper.info("Crafting recipe loaded");
 
-		LogHelper.info("Renders loaded");
+        // Fuel Handler
+        GameRegistry.registerFuelHandler(new FuelHandler());
+        LogHelper.info("Fuel handler loaded");
+        registerAchievements();
 
-		// Tile entity registry
-		GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
-		GameRegistry.registerTileEntity(TileEntityKKChest.class, "kkchest");
-		GameRegistry.registerTileEntity(TileEntityStationOfAwakening.class, "stationofawakening");
-		GameRegistry.registerTileEntity(TileEntityPedestal.class, "kkpedestal");
-		GameRegistry.registerTileEntity(TileEntityOrgPortal.class, "kkorgportal");
-		LogHelper.info("Tile entity loaded");
+        // Register renders
 
-		// Proxy used as Gui handler
-		NetworkRegistry.INSTANCE.registerGuiHandler(KingdomKeys.instance, new GuiHandler());
+        LogHelper.info("Renders loaded");
 
-		EntityHelper.registerEntity("blastblox",EntityBlastBlox.class);
-		EntityHelper.registerEntity("fire",EntityFire.class);
-		EntityHelper.registerEntity("thunder",EntityThunder.class);
-		//EntityRegistry.registerModEntity(EntityOrgPortal.class, "kkOrgPortalE", 1004, KingdomKeys.instance, 16, 1, false);
-		EntityHelper.registerEntity("kkOrgPortalE", EntityOrgPortal.class);
+        // Tile entity registry
+        GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
+        GameRegistry.registerTileEntity(TileEntityKKChest.class, "kkchest");
+        GameRegistry.registerTileEntity(TileEntityStationOfAwakening.class, "stationofawakening");
+        GameRegistry.registerTileEntity(TileEntityPedestal.class, "kkpedestal");
+        GameRegistry.registerTileEntity(TileEntityOrgPortal.class, "kkorgportal");
+        LogHelper.info("Tile entity loaded");
+
+        // Proxy used as Gui handler
+        NetworkRegistry.INSTANCE.registerGuiHandler(KingdomKeys.instance, new GuiHandler());
+
+        EntityHelper.registerEntity("blastblox",EntityBlastBlox.class);
+        EntityHelper.registerEntity("fire",EntityFire.class);
+        EntityHelper.registerEntity("thunder",EntityThunder.class);
+        //EntityRegistry.registerModEntity(EntityOrgPortal.class, "kkOrgPortalE", 1004, KingdomKeys.instance, 16, 1, false);
+        EntityHelper.registerEntity("kkOrgPortalE", EntityOrgPortal.class);
 
 
-		// Heartless registry
-		EntityHelper.registerEntity("shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());
-		EntityHelper.registerEntity("gigashadow", EntityGigaShadow.class, Color.BLACK.getRGB(), Color.GRAY.getRGB());
-		EntityHelper.registerEntity("rednocturne", EntityRedNocturne.class, Color.RED.getRGB(), Color.PINK.getRGB());
-		EntityHelper.registerEntity("bluerhapsody", EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());
-		EntityHelper.registerEntity("yellowopera", EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());
-		EntityHelper.registerEntity("greenrequiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
-		EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
+        // Heartless registry
+        EntityHelper.registerEntity("shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());
+        EntityHelper.registerEntity("gigashadow", EntityGigaShadow.class, Color.BLACK.getRGB(), Color.GRAY.getRGB());
+        EntityHelper.registerEntity("rednocturne", EntityRedNocturne.class, Color.RED.getRGB(), Color.PINK.getRGB());
+        EntityHelper.registerEntity("bluerhapsody", EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());
+        EntityHelper.registerEntity("yellowopera", EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());
+        EntityHelper.registerEntity("greenrequiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
+        EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
 
-		
-		EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-		EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-		EntityRegistry.addSpawn(EntityRedNocturne.class, MainConfig.entities.redNocturneRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-		EntityRegistry.addSpawn(EntityBlueRhapsody.class, MainConfig.entities.blueRhapsodyRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-		EntityRegistry.addSpawn(EntityYellowOpera.class, MainConfig.entities.yellowOperaRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-		EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-			
-		EntityRegistry.addSpawn(EntityMoogle.class, 5, 1, 1, EnumCreatureType.CREATURE, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
 
-		Lists.init();
+        EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+        EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+        EntityRegistry.addSpawn(EntityRedNocturne.class, MainConfig.entities.redNocturneRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+        EntityRegistry.addSpawn(EntityBlueRhapsody.class, MainConfig.entities.blueRhapsodyRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+        EntityRegistry.addSpawn(EntityYellowOpera.class, MainConfig.entities.yellowOperaRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+        EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
 
-		// Drive forms init
-		ModDriveForms.init();
-		LogHelper.info(DriveFormRegistry.getDriveFormMap().size() + " Drive form(s) loaded");
+        EntityRegistry.addSpawn(EntityMoogle.class, 5, 1, 1, EnumCreatureType.CREATURE, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
 
-		// Synthesis Recipes init
-		ModSynthesisRecipes.init();
-		LogHelper.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipe(s) loaded");
+        Lists.init();
 
-		ModSynthesisFreeDevRecipes.init();
-		LogHelper.info(FreeDevRecipeRegistry.getFreeDevRecipeMap().size() + " Free Development recipe(s) loaded");
+        // Drive forms init
+        ModDriveForms.init();
+        LogHelper.info(DriveFormRegistry.getDriveFormMap().size() + " Drive form(s) loaded");
 
-		ModSynthesisMaterials.init();
-		LogHelper.info(MaterialRegistry.getMaterialMap().size() + " Material(s) loaded");
+        // Synthesis Recipes init
+        ModSynthesisRecipes.init();
+        LogHelper.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipe(s) loaded");
 
-		Constants.registerCosts();
-		Constants.registerMagicLevels();
+        ModSynthesisFreeDevRecipes.init();
+        LogHelper.info(FreeDevRecipeRegistry.getFreeDevRecipeMap().size() + " Free Development recipe(s) loaded");
 
-		// Chest loot init
-		MinecraftForge.EVENT_BUS.register(new ChestGen());
-		LogHelper.info("Chest loot loaded");
-	}
+        ModSynthesisMaterials.init();
+        LogHelper.info(MaterialRegistry.getMaterialMap().size() + " Material(s) loaded");
 
-	public void postInit (FMLPostInitializationEvent event) {
+        Constants.registerCosts();
+        Constants.registerMagicLevels();
 
-		// Event handler
-		MinecraftForge.EVENT_BUS.register(new BlockEvents());
-		MinecraftForge.EVENT_BUS.register(new CapabilityEvents());
-		MinecraftForge.EVENT_BUS.register(new EntityEvents());
-		MinecraftForge.EVENT_BUS.register(new ItemEvents());
-		MinecraftForge.EVENT_BUS.register(new RenderingEvents());
-		LogHelper.info("Events loaded");
+        // Chest loot init
+        MinecraftForge.EVENT_BUS.register(new ChestGen());
+        LogHelper.info("Chest loot loaded");
+    }
 
-		//Ore Dictionary registry
-		KKOreDictionary.registerOres();
-		LogHelper.info("Registered Ores");
-	}
+    public void postInit (FMLPostInitializationEvent event) {
 
-	public EntityPlayer getPlayerEntity (MessageContext ctx) {
-		return ctx.getServerHandler().player;
-	}
+        // Event handler
+        MinecraftForge.EVENT_BUS.register(new BlockEvents());
+        MinecraftForge.EVENT_BUS.register(new CapabilityEvents());
+        MinecraftForge.EVENT_BUS.register(new EntityEvents());
+        MinecraftForge.EVENT_BUS.register(new ItemEvents());
+        MinecraftForge.EVENT_BUS.register(new RenderingEvents());
+        LogHelper.info("Events loaded");
 
-	public IThreadListener getThreadFromContext (MessageContext ctx) {
-		return ctx.getServerHandler().player.getServer();
-	}
+        //Ore Dictionary registry
+        KKOreDictionary.registerOres();
+        LogHelper.info("Registered Ores");
+    }
 
-	public void spawnTestParticle(World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, float alpha) {}
+    public EntityPlayer getPlayerEntity (MessageContext ctx) {
+        return ctx.getServerHandler().player;
+    }
 
-	public void registerAchievements () {
-		// Achievements
-		ModAchievements.init();
-		ModAchievements.register();
-		LogHelper.info("Achievements loaded");
-	}
+    public IThreadListener getThreadFromContext (MessageContext ctx) {
+        return ctx.getServerHandler().player.getServer();
+    }
+
+    public void spawnTestParticle(World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, float alpha) {}
+
+    public void registerAchievements () {
+        // Achievements
+        ModAchievements.init();
+        ModAchievements.register();
+        LogHelper.info("Achievements loaded");
+    }
 
 }

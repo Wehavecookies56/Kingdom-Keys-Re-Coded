@@ -18,34 +18,34 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
 
 public class SummonKeyblade extends AbstractMessage.AbstractServerMessage<SummonKeyblade> {
 
-	ItemStack stack;
+    ItemStack stack;
 
-	public SummonKeyblade () {}
+    public SummonKeyblade () {}
 
-	public SummonKeyblade (ItemKeyblade itemKeyblade) {
-		this.stack = new ItemStack(itemKeyblade);
-	}
+    public SummonKeyblade (ItemKeyblade itemKeyblade) {
+        this.stack = new ItemStack(itemKeyblade);
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		stack = buffer.readItemStack();
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        stack = buffer.readItemStack();
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStack(stack);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeItemStack(stack);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		ItemStack slot = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0);
-		ItemStack test = stack;
-		if (slot.hasTagCompound()) {
-			test.setTagCompound(slot.getTagCompound());
-		}
-		player.inventory.setInventorySlotContents(player.inventory.currentItem, test);
-		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
-		player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(true);
-		PacketDispatcher.sendTo(new SyncKeybladeData(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) player);
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        ItemStack slot = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0);
+        ItemStack test = stack;
+        if (slot.hasTagCompound()) {
+            test.setTagCompound(slot.getTagCompound());
+        }
+        player.inventory.setInventorySlotContents(player.inventory.currentItem, test);
+        player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
+        player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(true);
+        PacketDispatcher.sendTo(new SyncKeybladeData(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) player);
+    }
 }

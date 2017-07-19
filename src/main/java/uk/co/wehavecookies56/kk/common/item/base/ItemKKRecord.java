@@ -27,43 +27,43 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class ItemKKRecord extends ItemRecord {
 
-	float length;
+    float length;
 
-	public ItemKKRecord (SoundEvent sound, String name, CreativeTabs tab, float length) {
-		super(name, sound);
-		setUnlocalizedName(name);
-		setCreativeTab(tab);
-		this.length = length;
-	}
+    public ItemKKRecord (SoundEvent sound, String name, CreativeTabs tab, float length) {
+        super(name, sound);
+        setUnlocalizedName(name);
+        setCreativeTab(tab);
+        this.length = length;
+    }
 
-	@Override
-	public ResourceLocation getRecordResource (String name) {
-		return new ResourceLocation(Reference.MODID, name);
-	}
+    @Override
+    public ResourceLocation getRecordResource (String name) {
+        return new ResourceLocation(Reference.MODID, name);
+    }
 
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		IBlockState iblockstate = world.getBlockState(pos);
-		if (iblockstate.getBlock() == Blocks.JUKEBOX && !((Boolean)iblockstate.getValue(BlockJukebox.HAS_RECORD)).booleanValue()) {
-			if (!world.isRemote) {
-				((BlockJukebox)Blocks.JUKEBOX).insertRecord(world, pos, iblockstate, player.getActiveItemStack());
-				world.playEvent((EntityPlayer)null, 1010, pos, Item.getIdFromItem(this));
-				player.getActiveItemStack().setCount(player.getActiveItemStack().getCount()-1);
-				player.addStat(StatList.RECORD_PLAYED);
-				AchievementHelper.addAchievement(player, ModAchievements.playMusicDisc);
-			}
-			return EnumActionResult.SUCCESS;
-		}
-		else
-			return EnumActionResult.PASS;
-	}
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        IBlockState iblockstate = world.getBlockState(pos);
+        if (iblockstate.getBlock() == Blocks.JUKEBOX && !((Boolean)iblockstate.getValue(BlockJukebox.HAS_RECORD)).booleanValue()) {
+            if (!world.isRemote) {
+                ((BlockJukebox)Blocks.JUKEBOX).insertRecord(world, pos, iblockstate, player.getActiveItemStack());
+                world.playEvent((EntityPlayer)null, 1010, pos, Item.getIdFromItem(this));
+                player.getActiveItemStack().setCount(player.getActiveItemStack().getCount()-1);
+                player.addStat(StatList.RECORD_PLAYED);
+                AchievementHelper.addAchievement(player, ModAchievements.playMusicDisc);
+            }
+            return EnumActionResult.SUCCESS;
+        }
+        else
+            return EnumActionResult.PASS;
+    }
 
-	@Override
-	public void addInformation (ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		super.addInformation(stack, playerIn, tooltip, advanced);
-		DecimalFormat df = new DecimalFormat();
-		df.setMaximumFractionDigits(2);
-		String length = String.format("%.02f", this.length).replace("f", "").replace("F", "").replace(".", ":");
-		tooltip.add(Utils.translateToLocal(Strings.Disc_Duration_Desc) + ": " + length + " " + Utils.translateToLocal(Strings.Disc_DurationUnits_Desc));
-	}
+    @Override
+    public void addInformation (ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        super.addInformation(stack, playerIn, tooltip, advanced);
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        String length = String.format("%.02f", this.length).replace("f", "").replace("F", "").replace(".", ":");
+        tooltip.add(Utils.translateToLocal(Strings.Disc_Duration_Desc) + ": " + length + " " + Utils.translateToLocal(Strings.Disc_DurationUnits_Desc));
+    }
 }

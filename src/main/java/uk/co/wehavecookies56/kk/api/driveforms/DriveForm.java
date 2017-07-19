@@ -5,16 +5,16 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class DriveForm {
 
-	public abstract String getName ();
+    public abstract String getName ();
 
-	public abstract ResourceLocation getTexture ();
+    public abstract ResourceLocation getTexture ();
 
-	public abstract double getCost ();
+    public abstract double getCost ();
 
-	public abstract void initDrive (EntityPlayer player);
+    public abstract void initDrive (EntityPlayer player);
 
-	public abstract void update (EntityPlayer player);
+    public abstract void update (EntityPlayer player);
 
-	public abstract void endDrive (EntityPlayer player);
+    public abstract void endDrive (EntityPlayer player);
 
 }

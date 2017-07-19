@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeHiddenDragon extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeHiddenDragon (String name) {
-		this.name = name;
-	}
+    public RecipeHiddenDragon (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_HiddenDragon);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_HiddenDragon);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 4);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_MythrilCrystal), 4);
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingStone), 1);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 4);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_MythrilCrystal), 4);
+        reqs.put(MaterialRegistry.get(Strings.SM_BlazingStone), 1);
+        return reqs;
+    }
 
 }

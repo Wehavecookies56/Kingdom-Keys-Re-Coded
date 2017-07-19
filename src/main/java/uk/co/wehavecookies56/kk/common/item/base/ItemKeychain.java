@@ -9,39 +9,39 @@ import net.minecraft.world.World;
 
 public class ItemKeychain extends ItemSword {
 
-	public ItemKeychain(ItemKeyblade blade, ToolMaterial material) {
-		super(material);
-		this.blade = blade;
-		setMaxStackSize(1);	
-	}
-	ItemKeyblade blade;
-	
-	public void setKeyblade (ItemKeyblade blade) {
-		this.blade = blade;
-	}
+    public ItemKeychain(ItemKeyblade blade, ToolMaterial material) {
+        super(material);
+        this.blade = blade;
+        setMaxStackSize(1);
+    }
+    ItemKeyblade blade;
 
-	public ItemKeyblade getKeyblade () {
-		return this.blade;
-	}
-	@Override
+    public void setKeyblade (ItemKeyblade blade) {
+        this.blade = blade;
+    }
+
+    public ItemKeyblade getKeyblade () {
+        return this.blade;
+    }
+    @Override
     public boolean isBookEnchantable(ItemStack stack, ItemStack book){
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public int getItemEnchantability() {
-		return 30;
-	}
+    @Override
+    public int getItemEnchantability() {
+        return 30;
+    }
 
-	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
-		stack.damageItem(0, target);
-		return true;
-	}
+    @Override
+    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
+        stack.damageItem(0, target);
+        return true;
+    }
 
-	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
-		stack.damageItem(0, entityLiving);
-		return true;
-	}
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
+        stack.damageItem(0, entityLiving);
+        return true;
+    }
 }

@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeSoulEater extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeSoulEater (String name) {
-		this.name = name;
-	}
+    public RecipeSoulEater (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_SoulEater);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_SoulEater);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkCrystal), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 5);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkCrystal), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 5);
+        return reqs;
+    }
 
 }

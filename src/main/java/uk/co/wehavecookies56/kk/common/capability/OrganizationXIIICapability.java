@@ -24,7 +24,7 @@ public class OrganizationXIIICapability {
     List<Item> unlockedWeapons = new ArrayList<>();
 
     public interface IOrganizationXIII {
-    	//Utils.OrgMember current();
+        //Utils.OrgMember current();
         Utils.OrgMember getMember();
         Item currentWeapon();
         boolean summonedWeapon();
@@ -160,45 +160,45 @@ public class OrganizationXIIICapability {
             this.summoned = summoned;
         }
 
-		@Override
-		public boolean getOpenedGUI() {
-			return openedGui;
-		}
+        @Override
+        public boolean getOpenedGUI() {
+            return openedGui;
+        }
 
-		@Override
-		public void setOpenedGUI(boolean opened) {
-			this.openedGui=opened;
-		}
+        @Override
+        public void setOpenedGUI(boolean opened) {
+            this.openedGui=opened;
+        }
 
-		@Override
-		public double getPortalX() {
-			return orgPortalX;
-		}
+        @Override
+        public double getPortalX() {
+            return orgPortalX;
+        }
 
-		@Override
-		public double getPortalY() {
-			return orgPortalY;
-		}
+        @Override
+        public double getPortalY() {
+            return orgPortalY;
+        }
 
-		@Override
-		public double getPortalZ() {
-			return orgPortalZ;
-		}
+        @Override
+        public double getPortalZ() {
+            return orgPortalZ;
+        }
 
-		@Override
-		public void setPortalX(double x) {
+        @Override
+        public void setPortalX(double x) {
             this.orgPortalX = x;
-		}
+        }
 
-		@Override
-		public void setPortalY(double y) {
+        @Override
+        public void setPortalY(double y) {
             this.orgPortalY = y;
-		}
+        }
 
-		@Override
-		public void setPortalZ(double z) {
+        @Override
+        public void setPortalZ(double z) {
             this.orgPortalZ = z;
-		}
+        }
 
         @Override
         public int getUnlockPoints() {

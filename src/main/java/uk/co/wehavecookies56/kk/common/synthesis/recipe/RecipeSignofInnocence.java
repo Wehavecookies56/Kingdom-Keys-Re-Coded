@@ -12,29 +12,29 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeSignofInnocence extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeSignofInnocence (String name) {
-		this.name = name;
-	}
+    public RecipeSignofInnocence (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_SignofInnocence);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_SignofInnocence);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_TwilightGem), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_TwilightCrystal), 1);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_TwilightGem), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_TwilightCrystal), 1);
+        return reqs;
+    }
 
 }

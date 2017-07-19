@@ -10,18 +10,18 @@ import net.minecraft.util.NonNullList;
 
 public class ItemMunny extends Item {
 
-	public ItemMunny () {
-		setMaxStackSize(1);
-	}
+    public ItemMunny () {
+        setMaxStackSize(1);
+    }
 
-	@Override
-	public void addInformation (ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		if (stack.hasTagCompound()) {
-			int amount = stack.getTagCompound().getInteger("amount");
-			tooltip.add("" + amount);
-		}
-	}
+    @Override
+    public void addInformation (ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        if (stack.hasTagCompound()) {
+            int amount = stack.getTagCompound().getInteger("amount");
+            tooltip.add("" + amount);
+        }
+    }
 
-	@Override
-	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {}
+    @Override
+    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {}
 }

@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeOblivion extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeOblivion (String name) {
-		this.name = name;
-	}
+    public RecipeOblivion (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_Oblivion);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_Oblivion);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkCrystal), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 4);
-		reqs.put(MaterialRegistry.get(Strings.SM_DenseGem), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 5);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkCrystal), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 4);
+        reqs.put(MaterialRegistry.get(Strings.SM_DenseGem), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 5);
+        return reqs;
+    }
 
 }

@@ -12,31 +12,31 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeDivewing extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeDivewing (String name) {
-		this.name = name;
-	}
+    public RecipeDivewing (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_Divewing);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_Divewing);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingGem), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_TwilightCrystal), 3);
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_BlazingGem), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_TwilightCrystal), 3);
 
-		return reqs;
-	}
+        return reqs;
+    }
 
 }

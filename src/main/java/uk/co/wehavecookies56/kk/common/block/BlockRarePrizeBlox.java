@@ -9,13 +9,13 @@ import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
 
 public class BlockRarePrizeBlox extends BlockBlox {
 
-	protected BlockRarePrizeBlox (Material material, String toolClass, int level, float hardness, float resistance) {
-		super(material, toolClass, level, hardness, resistance);
-	}
+    protected BlockRarePrizeBlox (Material material, String toolClass, int level, float hardness, float resistance) {
+        super(material, toolClass, level, hardness, resistance);
+    }
 
-	@Override
-	public Item getItemDropped (IBlockState state, Random r, int fortune) {
-		return null;
-	}
+    @Override
+    public Item getItemDropped (IBlockState state, Random r, int fortune) {
+        return null;
+    }
 
 }

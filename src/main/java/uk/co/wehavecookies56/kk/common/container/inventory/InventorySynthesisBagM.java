@@ -22,33 +22,33 @@ import javax.annotation.Nullable;
 
 public class InventorySynthesisBagM implements ICapabilityProvider, INBTSerializable<NBTBase> {
 
-	public static String name = Utils.translateToLocal(Strings.SynthesisBagMInventory);
+    public static String name = Utils.translateToLocal(Strings.SynthesisBagMInventory);
 
-	private static final String SAVE_KEY = "SynthesisBagMInventory";
+    private static final String SAVE_KEY = "SynthesisBagMInventory";
 
-	public static final int INV_SIZE = 28;
+    public static final int INV_SIZE = 28;
 
-	ItemStackHandler inventory = new ItemStackHandler(INV_SIZE);
+    ItemStackHandler inventory = new ItemStackHandler(INV_SIZE);
 
-	@Override
-	public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
-	}
+    @Override
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
+    }
 
-	@Nullable
-	@Override
-	public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)inventory : null;
-	}
+    @Nullable
+    @Override
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)inventory : null;
+    }
 
-	@Override
-	public NBTBase serializeNBT() {
-		return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inventory, null);
-	}
+    @Override
+    public NBTBase serializeNBT() {
+        return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inventory, null);
+    }
 
-	@Override
-	public void deserializeNBT(NBTBase nbt) {
-		CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inventory, null, nbt);
-	}
+    @Override
+    public void deserializeNBT(NBTBase nbt) {
+        CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inventory, null, nbt);
+    }
 
 }

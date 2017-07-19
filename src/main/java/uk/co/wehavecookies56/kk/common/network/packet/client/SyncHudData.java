@@ -11,26 +11,26 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractCl
 
 public class SyncHudData extends AbstractClientMessage<SyncHudData> {
 
-	boolean hudMode;
-	
-	public SyncHudData() {}
-	
-	public SyncHudData(PlayerStatsCapability.IPlayerStats stats) {
-		this.hudMode = stats.getHudMode();
-	}
-	
-	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
-		this.hudMode = buffer.readBoolean();
-	}
+    boolean hudMode;
 
-	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeBoolean(this.hudMode);
-	}
+    public SyncHudData() {}
 
-	@Override
-	public void process(EntityPlayer player, Side side) {
-		player.getCapability(ModCapabilities.PLAYER_STATS, null).setHudMode(this.hudMode);
-	}
+    public SyncHudData(PlayerStatsCapability.IPlayerStats stats) {
+        this.hudMode = stats.getHudMode();
+    }
+
+    @Override
+    protected void read(PacketBuffer buffer) throws IOException {
+        this.hudMode = buffer.readBoolean();
+    }
+
+    @Override
+    protected void write(PacketBuffer buffer) throws IOException {
+        buffer.writeBoolean(this.hudMode);
+    }
+
+    @Override
+    public void process(EntityPlayer player, Side side) {
+        player.getCapability(ModCapabilities.PLAYER_STATS, null).setHudMode(this.hudMode);
+    }
 }

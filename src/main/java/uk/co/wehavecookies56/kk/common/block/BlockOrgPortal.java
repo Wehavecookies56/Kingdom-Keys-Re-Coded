@@ -24,80 +24,80 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class BlockOrgPortal extends Block implements ITileEntityProvider{
 
-	protected BlockOrgPortal (Material material, String toolClass, int level, float hardness, float resistance) {
-		super(material);
-		this.setHarvestLevel(toolClass, level);
-		//this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		setHardness(hardness);
-		setResistance(resistance);
-		setSoundType(SoundType.STONE);
-	}
-	
-	@Override
-	public TileEntity createNewTileEntity (World worldIn, int meta) {
-		return new TileEntityOrgPortal();
-	}
+    protected BlockOrgPortal (Material material, String toolClass, int level, float hardness, float resistance) {
+        super(material);
+        this.setHarvestLevel(toolClass, level);
+        //this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        setHardness(hardness);
+        setResistance(resistance);
+        setSoundType(SoundType.STONE);
+    }
 
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!world.isRemote) {
-			if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
-				if (world.getTileEntity(pos) instanceof TileEntityOrgPortal) {
-					//System.out.println("hi");
+    @Override
+    public TileEntity createNewTileEntity (World worldIn, int meta) {
+        return new TileEntityOrgPortal();
+    }
 
-					TileEntityOrgPortal te = (TileEntityOrgPortal) world.getTileEntity(pos);
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (!world.isRemote) {
+            if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
+                if (world.getTileEntity(pos) instanceof TileEntityOrgPortal) {
+                    //System.out.println("hi");
 
-					if (te.getOwner() == null) {
-						te.setOwner(player);
-						te.markDirty();
+                    TileEntityOrgPortal te = (TileEntityOrgPortal) world.getTileEntity(pos);
 
-						player.sendMessage(new TextComponentString(TextFormatting.GREEN + "This is now " + player.getDisplayNameString() + "'s portal"));
-						player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalX(pos.getX());
-						player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalY(pos.getY());
-						player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalZ(pos.getZ());
-						//System.out.println(pos.getX()+","+pos.getY()+","+pos.getZ());
-						PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
-						return true;
+                    if (te.getOwner() == null) {
+                        te.setOwner(player);
+                        te.markDirty();
 
-					}else if(te.getOwner().equals(player.getDisplayNameString())){
-						player.sendMessage(new TextComponentString(TextFormatting.YELLOW + "This is your portal"));
-					}else {
-						player.sendMessage(new TextComponentString(TextFormatting.RED + "This portal belongs to "+player.getDisplayNameString()));
-						return false;
-					}
+                        player.sendMessage(new TextComponentString(TextFormatting.GREEN + "This is now " + player.getDisplayNameString() + "'s portal"));
+                        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalX(pos.getX());
+                        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalY(pos.getY());
+                        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalZ(pos.getZ());
+                        //System.out.println(pos.getX()+","+pos.getY()+","+pos.getZ());
+                        PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
+                        return true;
 
-				}
-			}
-		}
-		return false;
-	}
-	
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state) {
-		if (!world.isRemote) {
-			//System.out.println(world.getTileEntity(pos));
+                    }else if(te.getOwner().equals(player.getDisplayNameString())){
+                        player.sendMessage(new TextComponentString(TextFormatting.YELLOW + "This is your portal"));
+                    }else {
+                        player.sendMessage(new TextComponentString(TextFormatting.RED + "This portal belongs to "+player.getDisplayNameString()));
+                        return false;
+                    }
 
-			if (world.getTileEntity(pos) instanceof TileEntityOrgPortal) {
-				TileEntityOrgPortal te = (TileEntityOrgPortal) world.getTileEntity(pos);
-				if (te.getOwner() != null) {
-					EntityPlayer player = world.getPlayerEntityByName(te.getOwner());
-					player.sendMessage(new TextComponentString(TextFormatting.RED + "Portal destination disappeared"));
-					player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalX(0);
-					player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalY(0);
-					player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalZ(0);
-					PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
-					//System.out.println(player);
-				}
-			}
-		}
-		super.breakBlock(world, pos, state);
-	}
-	
-	@Override
-	public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state) {
-		
-		
-		
-		super.onBlockDestroyedByPlayer(world, pos, state);
-	}
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state) {
+        if (!world.isRemote) {
+            //System.out.println(world.getTileEntity(pos));
+
+            if (world.getTileEntity(pos) instanceof TileEntityOrgPortal) {
+                TileEntityOrgPortal te = (TileEntityOrgPortal) world.getTileEntity(pos);
+                if (te.getOwner() != null) {
+                    EntityPlayer player = world.getPlayerEntityByName(te.getOwner());
+                    player.sendMessage(new TextComponentString(TextFormatting.RED + "Portal destination disappeared"));
+                    player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalX(0);
+                    player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalY(0);
+                    player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalZ(0);
+                    PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
+                    //System.out.println(player);
+                }
+            }
+        }
+        super.breakBlock(world, pos, state);
+    }
+
+    @Override
+    public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state) {
+
+
+
+        super.onBlockDestroyedByPlayer(world, pos, state);
+    }
 }

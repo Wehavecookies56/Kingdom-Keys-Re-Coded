@@ -12,31 +12,31 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeNightmaresEnd extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeNightmaresEnd (String name) {
-		this.name = name;
-	}
+    public RecipeNightmaresEnd (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_NightmaresEnd);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_NightmaresEnd);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightShard), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightStone), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 6);
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 4);
-		reqs.put(MaterialRegistry.get(Strings.SM_Orichalcum), 1);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightShard), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightStone), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 6);
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 4);
+        reqs.put(MaterialRegistry.get(Strings.SM_Orichalcum), 1);
+        return reqs;
+    }
 
 }

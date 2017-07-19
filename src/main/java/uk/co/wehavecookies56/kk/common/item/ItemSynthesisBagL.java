@@ -27,29 +27,29 @@ import javax.annotation.Nullable;
 
 public class ItemSynthesisBagL extends Item {
 
-	public ItemSynthesisBagL () {
-		setMaxStackSize(1);
-	}
+    public ItemSynthesisBagL () {
+        setMaxStackSize(1);
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if (world.isRemote) PacketDispatcher.sendToServer(new OpenGui(GuiIDs.GUI_SYNTHESISBAGL_INV));
-		return super.onItemRightClick(world, player, hand);
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        if (world.isRemote) PacketDispatcher.sendToServer(new OpenGui(GuiIDs.GUI_SYNTHESISBAGL_INV));
+        return super.onItemRightClick(world, player, hand);
+    }
 
-	@Override
-	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-		int x = 30;
-		String s = Utils.translateToLocal(Strings.SynthesisBagDesc);
-		s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
-		String[] splitS = s.split("\n");
-		for (String element : splitS)
-			tooltip.add(element);
-	}
+    @Override
+    public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
+        int x = 30;
+        String s = Utils.translateToLocal(Strings.SynthesisBagDesc);
+        s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
+        String[] splitS = s.split("\n");
+        for (String element : splitS)
+            tooltip.add(element);
+    }
 
-	@Nullable
-	@Override
-	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
-		return new InventorySynthesisBagL();
-	}
+    @Nullable
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
+        return new InventorySynthesisBagL();
+    }
 }

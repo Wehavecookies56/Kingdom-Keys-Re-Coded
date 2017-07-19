@@ -2,7 +2,7 @@
 	"forge_marker": 1,
     "defaults": {
         
-        "model": "kk:nightmarebreak.obj"
+        "model": "kk:nightmaresend.obj"
     },
 
     "variants": {

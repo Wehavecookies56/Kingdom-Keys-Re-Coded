@@ -195,33 +195,33 @@ public class GuiOrg extends GuiScreen {
                 break;
             case NEXT:
                 if (current == ROXAS) {
-                	current = XEMNAS;
+                    current = XEMNAS;
                 } else {
-                	current = Utils.OrgMember.values()[current.ordinal()+1];
+                    current = Utils.OrgMember.values()[current.ordinal()+1];
                 }
                 //Go to the right
                 break;
             case PREV:
                 //Go to the left
                 if (current == XEMNAS) {
-                	current = ROXAS;
+                    current = ROXAS;
                 } else {
-                	current = Utils.OrgMember.values()[current.ordinal()-1];
+                    current = Utils.OrgMember.values()[current.ordinal()-1];
                 }
                 break;
             case SELECT:
                 //Select the current member
-            	confirmChoice = true;
+                confirmChoice = true;
                 break;
             case CONFIRM:
                 //Send choice to server
-            	PacketDispatcher.sendToServer(new OrgMemberSelect(current));
+                PacketDispatcher.sendToServer(new OrgMemberSelect(current));
                 mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setMember(current);
                 mc.displayGuiScreen(null);
                 break;
             case CANCEL:
                 //Go back
-            	confirmChoice = false;
+                confirmChoice = false;
                 break;
            
             

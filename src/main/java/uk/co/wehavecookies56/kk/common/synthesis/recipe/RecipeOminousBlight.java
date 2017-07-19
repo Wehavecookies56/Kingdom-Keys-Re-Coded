@@ -12,29 +12,29 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeOminousBlight extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeOminousBlight (String name) {
-		this.name = name;
-	}
+    public RecipeOminousBlight (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_OminousBlight);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_OminousBlight);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightStone), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkStone), 2);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightStone), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkStone), 2);
+        return reqs;
+    }
 
 }

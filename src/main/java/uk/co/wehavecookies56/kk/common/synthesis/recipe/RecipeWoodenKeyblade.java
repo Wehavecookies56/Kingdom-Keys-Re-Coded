@@ -12,27 +12,27 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 
 public class RecipeWoodenKeyblade extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeWoodenKeyblade (String name) {
-		this.name = name;
-	}
+    public RecipeWoodenKeyblade (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.WoodenKeyblade);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.WoodenKeyblade);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Items.WOODEN_SWORD.getUnlocalizedName()), 1);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Items.WOODEN_SWORD.getUnlocalizedName()), 1);
+        return reqs;
+    }
 
 }

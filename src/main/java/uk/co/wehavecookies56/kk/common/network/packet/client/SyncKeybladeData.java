@@ -13,34 +13,34 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractCl
 
 public class SyncKeybladeData extends AbstractClientMessage<SyncKeybladeData> {
 
-	boolean summoned;
-	NBTTagCompound data;
-	
-	public SyncKeybladeData() {}
-	
-	public SyncKeybladeData(ISummonKeyblade keyblade) {
-		this.summoned = keyblade.getIsKeybladeSummoned();
-		this.data = new NBTTagCompound();
-		data.setTag(InventoryKeychain.SAVE_KEY, keyblade.getInventoryKeychain().serializeNBT());
-	}
-	
-	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
-		this.summoned = buffer.readBoolean();
-		this.data = buffer.readCompoundTag();
-	}
+    boolean summoned;
+    NBTTagCompound data;
 
-	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeBoolean(this.summoned);
-		buffer.writeCompoundTag(data);
-	}
+    public SyncKeybladeData() {}
 
-	@Override
-	public void process(EntityPlayer player, Side side) {
-		final ISummonKeyblade keyblade = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
-		keyblade.setIsKeybladeSummoned(this.summoned);
-		keyblade.getInventoryKeychain().deserializeNBT(data.getCompoundTag(InventoryKeychain.SAVE_KEY));
-	}
+    public SyncKeybladeData(ISummonKeyblade keyblade) {
+        this.summoned = keyblade.getIsKeybladeSummoned();
+        this.data = new NBTTagCompound();
+        data.setTag(InventoryKeychain.SAVE_KEY, keyblade.getInventoryKeychain().serializeNBT());
+    }
+
+    @Override
+    protected void read(PacketBuffer buffer) throws IOException {
+        this.summoned = buffer.readBoolean();
+        this.data = buffer.readCompoundTag();
+    }
+
+    @Override
+    protected void write(PacketBuffer buffer) throws IOException {
+        buffer.writeBoolean(this.summoned);
+        buffer.writeCompoundTag(data);
+    }
+
+    @Override
+    public void process(EntityPlayer player, Side side) {
+        final ISummonKeyblade keyblade = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
+        keyblade.setIsKeybladeSummoned(this.summoned);
+        keyblade.getInventoryKeychain().deserializeNBT(data.getCompoundTag(InventoryKeychain.SAVE_KEY));
+    }
 
 }

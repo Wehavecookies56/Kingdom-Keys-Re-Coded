@@ -17,25 +17,25 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemEtherealBlade extends ItemOrgWeapon implements IOrgWeapon{
 
-	public ItemEtherealBlade (double strength, double magic)  {
-		super(strength,magic);
-		setMaxStackSize(1);
-	}
+    public ItemEtherealBlade (double strength, double magic)  {
+        super(strength,magic);
+        setMaxStackSize(1);
+    }
 
-	@Override
-	@SideOnly (Side.CLIENT)
-	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add("I Xemnas");
-	}
+    @Override
+    @SideOnly (Side.CLIENT)
+    public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
+        dataList.add("I Xemnas");
+    }
 
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-	}
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+    }
 
-	@Override
-	public OrgMember getMember() {
-		return Utils.OrgMember.XEMNAS;
-	}
+    @Override
+    public OrgMember getMember() {
+        return Utils.OrgMember.XEMNAS;
+    }
 
 }

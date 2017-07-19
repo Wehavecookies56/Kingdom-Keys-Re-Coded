@@ -15,31 +15,31 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public abstract class ItemDriveForm extends Item {
 
-	String form;
+    String form;
 
-	public ItemDriveForm (String form) {
-		this.form = form;
-		setMaxStackSize(1);
-	}
+    public ItemDriveForm (String form) {
+        this.form = form;
+        setMaxStackSize(1);
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if (world.isRemote) PacketDispatcher.sendToServer(new LevelUpDrive(this.form));
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getActiveItemStack());
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        if (world.isRemote) PacketDispatcher.sendToServer(new LevelUpDrive(this.form));
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getActiveItemStack());
+    }
 
-	@Override
-	public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-		tooltip.add(Utils.translateToLocal(this.form));
-		super.addInformation(stack, playerIn, tooltip, advanced);
-	}
+    @Override
+    public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
+        tooltip.add(Utils.translateToLocal(this.form));
+        super.addInformation(stack, playerIn, tooltip, advanced);
+    }
 
-	public String getDriveFormName () {
-		return form;
-	}
+    public String getDriveFormName () {
+        return form;
+    }
 
-	public void setDriveFormName (String form) {
-		this.form = form;
-	}
+    public void setDriveFormName (String form) {
+        this.form = form;
+    }
 
 }

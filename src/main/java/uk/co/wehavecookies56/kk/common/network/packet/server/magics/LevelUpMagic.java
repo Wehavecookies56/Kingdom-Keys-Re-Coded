@@ -21,63 +21,63 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 
 public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
 
-	String magic;
+    String magic;
 
-	public LevelUpMagic () {}
+    public LevelUpMagic () {}
 
-	public LevelUpMagic (String magic) {
-		this.magic = magic;
-	}
+    public LevelUpMagic (String magic) {
+        this.magic = magic;
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		magic = buffer.readString(40);
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        magic = buffer.readString(40);
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeString(magic);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeString(magic);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
+    @Override
+    public void process (EntityPlayer player, Side side) {
 
-		int firstEmptySlot = -1;
+        int firstEmptySlot = -1;
 
-		boolean hasMagicInSlot = false;
-				
-		for (int i = 0; i < InventorySpells.INV_SIZE; i++) {
-			if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != ItemStack.EMPTY) {
-				if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem() == player.getHeldItem(EnumHand.MAIN_HAND).getItem()) {
-					hasMagicInSlot = true;
-				}
-			} else {
-				firstEmptySlot = i;
-				break;
-			}
-		}
+        boolean hasMagicInSlot = false;
 
-		if (!hasMagicInSlot) {
-			player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().setStackInSlot(firstEmptySlot, player.getHeldItem(EnumHand.MAIN_HAND));
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-			TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Magic_Learn, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
-			learnMessage.getStyle().setColor(TextFormatting.YELLOW);
-			player.sendMessage(learnMessage);
-		} else {
-			if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) < Constants.MAX_MAGIC_LEVEL) {
-				player.getCapability(ModCapabilities.MAGIC_STATE, null).setMagicLevel(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) + 1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-				TextComponentTranslation levelupMessage = new TextComponentTranslation(Strings.Chat_Magic_Levelup, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) - 1)), new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
-				levelupMessage.getStyle().setColor(TextFormatting.YELLOW);
-				player.sendMessage(levelupMessage);
+        for (int i = 0; i < InventorySpells.INV_SIZE; i++) {
+            if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != ItemStack.EMPTY) {
+                if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem() == player.getHeldItem(EnumHand.MAIN_HAND).getItem()) {
+                    hasMagicInSlot = true;
+                }
+            } else {
+                firstEmptySlot = i;
+                break;
+            }
+        }
 
-			} else {
-				TextComponentTranslation errorMessage = new TextComponentTranslation(Strings.Chat_Magic_Error, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
-				errorMessage.getStyle().setColor(TextFormatting.YELLOW);
-				player.sendMessage(errorMessage);
-			}
-		}
-		PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-		PacketDispatcher.sendTo(new SyncMagicInventory(player.getCapability(ModCapabilities.MAGIC_STATE, null)), (EntityPlayerMP) player);
-	}
+        if (!hasMagicInSlot) {
+            player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().setStackInSlot(firstEmptySlot, player.getHeldItem(EnumHand.MAIN_HAND));
+            player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+            TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Magic_Learn, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
+            learnMessage.getStyle().setColor(TextFormatting.YELLOW);
+            player.sendMessage(learnMessage);
+        } else {
+            if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) < Constants.MAX_MAGIC_LEVEL) {
+                player.getCapability(ModCapabilities.MAGIC_STATE, null).setMagicLevel(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) + 1);
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                TextComponentTranslation levelupMessage = new TextComponentTranslation(Strings.Chat_Magic_Levelup, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) - 1)), new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
+                levelupMessage.getStyle().setColor(TextFormatting.YELLOW);
+                player.sendMessage(levelupMessage);
+
+            } else {
+                TextComponentTranslation errorMessage = new TextComponentTranslation(Strings.Chat_Magic_Error, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
+                errorMessage.getStyle().setColor(TextFormatting.YELLOW);
+                player.sendMessage(errorMessage);
+            }
+        }
+        PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        PacketDispatcher.sendTo(new SyncMagicInventory(player.getCapability(ModCapabilities.MAGIC_STATE, null)), (EntityPlayerMP) player);
+    }
 }

@@ -20,92 +20,92 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> {
 
-	String recipe1, recipe2, recipe3;
+    String recipe1, recipe2, recipe3;
 
-	public UseRecipe () {}
+    public UseRecipe () {}
 
-	public UseRecipe (String recipe1) {
-		this.recipe1 = recipe1;
-	}
+    public UseRecipe (String recipe1) {
+        this.recipe1 = recipe1;
+    }
 
-	public UseRecipe (String recipe1, String recipe2, String recipe3) {
-		this.recipe1 = recipe1;
-		this.recipe2 = recipe2;
-		this.recipe3 = recipe3;
-	}
+    public UseRecipe (String recipe1, String recipe2, String recipe3) {
+        this.recipe1 = recipe1;
+        this.recipe2 = recipe2;
+        this.recipe3 = recipe3;
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		recipe1 = buffer.readString(40);
-		recipe2 = buffer.readString(40);
-		recipe3 = buffer.readString(40);
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        recipe1 = buffer.readString(40);
+        recipe2 = buffer.readString(40);
+        recipe3 = buffer.readString(40);
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeString(recipe1);
-		buffer.writeString(recipe2);
-		buffer.writeString(recipe3);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeString(recipe1);
+        buffer.writeString(recipe2);
+        buffer.writeString(recipe3);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		boolean consume = false;
-		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
-		if (RecipeRegistry.get(recipe1) == null) {
-			String message = "ERROR: Recipe for " + Utils.translateToLocal(recipe1 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
-			TextHelper.sendFormattedChatMessage(message, TextFormatting.RED, player);
-		} else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1)) {
-			TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe1+".name"));
-			repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
-			player.sendMessage(repeatMessage);
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        boolean consume = false;
+        SynthesisRecipeCapability.ISynthesisRecipe RECIPES = player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+        if (RecipeRegistry.get(recipe1) == null) {
+            String message = "ERROR: Recipe for " + Utils.translateToLocal(recipe1 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
+            TextHelper.sendFormattedChatMessage(message, TextFormatting.RED, player);
+        } else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1)) {
+            TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe1+".name"));
+            repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
+            player.sendMessage(repeatMessage);
 
-			//TextHelper.sendFormattedChatMessage(message, TextFormatting.YELLOW, player);
-		} else {
-			RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe1);
-			TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe1+".name"));
-			learnMessage.getStyle().setColor(TextFormatting.GREEN);
-			player.sendMessage(learnMessage);
-			consume = true;
-		}
-		if (RecipeRegistry.get(recipe2) == null) {
-			String message = "ERROR: Recipe for " + Utils.translateToLocal(recipe2 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
-			TextHelper.sendFormattedChatMessage(message, TextFormatting.RED, player);
-		} else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2)) {
-			TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe2+".name"));
-			repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
-			player.sendMessage(repeatMessage);
+            //TextHelper.sendFormattedChatMessage(message, TextFormatting.YELLOW, player);
+        } else {
+            RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe1);
+            TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe1+".name"));
+            learnMessage.getStyle().setColor(TextFormatting.GREEN);
+            player.sendMessage(learnMessage);
+            consume = true;
+        }
+        if (RecipeRegistry.get(recipe2) == null) {
+            String message = "ERROR: Recipe for " + Utils.translateToLocal(recipe2 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
+            TextHelper.sendFormattedChatMessage(message, TextFormatting.RED, player);
+        } else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2)) {
+            TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe2+".name"));
+            repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
+            player.sendMessage(repeatMessage);
 
-		} else {
-			RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe2);
-			TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe2+".name"));
-			learnMessage.getStyle().setColor(TextFormatting.GREEN);
-			player.sendMessage(learnMessage);
-			consume = true;
-		}
-		if (RecipeRegistry.get(recipe3) == null) {
-			String message = "ERROR: Recipe for " + Utils.translateToLocal(recipe3 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
-			TextHelper.sendFormattedChatMessage(message, TextFormatting.RED, player);
-		} else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3)) {
-			TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe3+".name"));
-			repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
-			player.sendMessage(repeatMessage);
+        } else {
+            RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe2);
+            TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe2+".name"));
+            learnMessage.getStyle().setColor(TextFormatting.GREEN);
+            player.sendMessage(learnMessage);
+            consume = true;
+        }
+        if (RecipeRegistry.get(recipe3) == null) {
+            String message = "ERROR: Recipe for " + Utils.translateToLocal(recipe3 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
+            TextHelper.sendFormattedChatMessage(message, TextFormatting.RED, player);
+        } else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3)) {
+            TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe3+".name"));
+            repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
+            player.sendMessage(repeatMessage);
 
-		} else {
-			RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe3);
-			TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe3+".name"));
-			learnMessage.getStyle().setColor(TextFormatting.GREEN);
-			player.sendMessage(learnMessage);
-			consume = true;
-		}
+        } else {
+            RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe3);
+            TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe3+".name"));
+            learnMessage.getStyle().setColor(TextFormatting.GREEN);
+            player.sendMessage(learnMessage);
+            consume = true;
+        }
 
-		if (consume) 
-			if(!player.capabilities.isCreativeMode)
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-		if(RECIPES.getKnownRecipes().size() == 120)
-		{
+        if (consume)
+            if(!player.capabilities.isCreativeMode)
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+        if(RECIPES.getKnownRecipes().size() == 120)
+        {
             AchievementHelper.addAchievement(player, ModAchievements.allRecipes);
-		}
-	}
+        }
+    }
 
 }

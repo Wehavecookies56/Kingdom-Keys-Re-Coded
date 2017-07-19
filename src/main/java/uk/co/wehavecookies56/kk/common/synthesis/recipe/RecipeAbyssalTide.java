@@ -12,29 +12,29 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeAbyssalTide extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeAbyssalTide (String name) {
-		this.name = name;
-	}
+    public RecipeAbyssalTide (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_AbyssalTide);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_AbyssalTide);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_FrostShard), 3);
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_FrostShard), 3);
 
-		return reqs;
-	}
+        return reqs;
+    }
 
 }

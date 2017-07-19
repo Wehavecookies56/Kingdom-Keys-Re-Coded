@@ -161,7 +161,7 @@ public class EntityEvents {
     }
 
     public void dropRecipe(LivingDropsEvent event) {
-        int	recipeRand = Utils.randomWithRange(1, 100);
+        int    recipeRand = Utils.randomWithRange(1, 100);
         if(event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
             ItemStack itemstack = player.inventory.getCurrentItem();
@@ -591,12 +591,12 @@ public class EntityEvents {
     public void onLivingUpdate (LivingEvent.LivingUpdateEvent event) {
         /*if (event.getEntityLiving() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-	
-	    	if(player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue() == 0 && player.isAirBorne){
-	    		player.motionX=0;
-	    		player.motionY=0;
-	    		player.motionZ=0;
-	        }
+
+            if(player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue() == 0 && player.isAirBorne){
+                player.motionX=0;
+                player.motionY=0;
+                player.motionZ=0;
+            }
         }*/
     }
 
@@ -656,10 +656,10 @@ public class EntityEvents {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
             DriveStateCapability.IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
             if (DS.getInDrive())
-            	event.setDistance(0);
+                event.setDistance(0);
             
 //            if(player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue() == 0){
-//            	player.motionY=-0.001;
+//                player.motionY=-0.001;
 //            }
         }
     }
@@ -669,7 +669,7 @@ public class EntityEvents {
         if (event.getEntityLiving() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
             if(player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue() == 0){
-            	player.motionY=-0.0001;
+                player.motionY=-0.0001;
             }
         }
     }

@@ -23,34 +23,34 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 @Mod (name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER, modLanguage = "java", updateJSON = "https://raw.githubusercontent.com/Wehavecookies56/Kingdom-Keys-Re-Coded/master/update.json")
 public class KingdomKeys {
 
-	@SidedProxy (clientSide = Reference.CLIENTPROXY, serverSide = Reference.COMMONPROXY)
-	public static CommonProxy proxy;
+    @SidedProxy (clientSide = Reference.CLIENTPROXY, serverSide = Reference.COMMONPROXY)
+    public static CommonProxy proxy;
 
-	@Mod.Instance (Reference.MODID)
-	public static KingdomKeys instance;
+    @Mod.Instance (Reference.MODID)
+    public static KingdomKeys instance;
 
-	@EventHandler
-	public void preInit (FMLPreInitializationEvent e) { proxy.preInit(e);  }
+    @EventHandler
+    public void preInit (FMLPreInitializationEvent e) { proxy.preInit(e);  }
 
-	@EventHandler
-	public void init (FMLInitializationEvent e) { proxy.init(e); }
+    @EventHandler
+    public void init (FMLInitializationEvent e) { proxy.init(e); }
 
-	@EventHandler
-	public void postInit (FMLPostInitializationEvent e) { proxy.postInit(e); }
+    @EventHandler
+    public void postInit (FMLPostInitializationEvent e) { proxy.postInit(e); }
 
-	@EventHandler
-	public void serverStart (FMLServerStartingEvent e) {
-		e.registerServerCommand(new CommandLearnRecipe());
-		e.registerServerCommand(new CommandGiveMunny());
-		e.registerServerCommand(new CommandCheatMode());
-		e.registerServerCommand(new CommandRemoveKeychain());
-		e.registerServerCommand(new CommandResetLevel());
-		e.registerServerCommand(new CommandLevelUp());
-		e.registerServerCommand(new CommandDriveLevel());
-		e.registerServerCommand(new CommandShowHud());
-		e.registerServerCommand(new CommandDimension());
+    @EventHandler
+    public void serverStart (FMLServerStartingEvent e) {
+        e.registerServerCommand(new CommandLearnRecipe());
+        e.registerServerCommand(new CommandGiveMunny());
+        e.registerServerCommand(new CommandCheatMode());
+        e.registerServerCommand(new CommandRemoveKeychain());
+        e.registerServerCommand(new CommandResetLevel());
+        e.registerServerCommand(new CommandLevelUp());
+        e.registerServerCommand(new CommandDriveLevel());
+        e.registerServerCommand(new CommandShowHud());
+        e.registerServerCommand(new CommandDimension());
 
-		LogHelper.info("Commands loaded");
-	}
+        LogHelper.info("Commands loaded");
+    }
 
 }

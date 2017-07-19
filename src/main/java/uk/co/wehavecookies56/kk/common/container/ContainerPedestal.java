@@ -15,75 +15,75 @@ import uk.co.wehavecookies56.kk.common.container.slot.SlotCustom;
 
 public class ContainerPedestal extends Container {
 
-	private final int HOTBAR_SLOT_COUNT = 9;
-	private final int PLAYER_INVENTORY_ROW_COUNT = 3;
-	private final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-	private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-	private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
-	private final int VANILLA_FIRST_SLOT_INDEX = 0;
-	
-	private final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
+    private final int HOTBAR_SLOT_COUNT = 9;
+    private final int PLAYER_INVENTORY_ROW_COUNT = 3;
+    private final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
+    private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
+    private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
+    private final int VANILLA_FIRST_SLOT_INDEX = 0;
 
-	private final int TE_INVENTORY_SLOT_COUNT = 1;
+    private final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
-	public ContainerPedestal (InventoryPlayer invPlayer, TileEntityPedestal pedestal) {
+    private final int TE_INVENTORY_SLOT_COUNT = 1;
 
-		IItemHandler inventory = pedestal.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
-		int i;
-		int j;
-		
-		addSlotToContainer(new SlotCustom(inventory, 0, 80, 56, 6) {
-			@Override
-			public void onSlotChanged() {
-				pedestal.markDirty();
-			}
-		});
+    public ContainerPedestal (InventoryPlayer invPlayer, TileEntityPedestal pedestal) {
 
-		for (i = 0; i < 3; ++i)
-			for (j = 0; j < 9; ++j)
-				addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 105 + i * 18));
+        IItemHandler inventory = pedestal.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
+        int i;
+        int j;
 
-		for (i = 0; i < 9; ++i)
-			addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 163));
-	}
+        addSlotToContainer(new SlotCustom(inventory, 0, 80, 56, 6) {
+            @Override
+            public void onSlotChanged() {
+                pedestal.markDirty();
+            }
+        });
 
-	@Override
-	public boolean canInteractWith (EntityPlayer player) {
-		return true;
-	}
+        for (i = 0; i < 3; ++i)
+            for (j = 0; j < 9; ++j)
+                addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 105 + i * 18));
 
-	@Override
-	public ItemStack transferStackInSlot (EntityPlayer player, int index) {
-		ItemStack itemStack = ItemStack.EMPTY;
-		Slot slot = inventorySlots.get(index);
-		if (slot != null && slot.getHasStack()) {
-			ItemStack itemStack1 = slot.getStack();
-			itemStack = itemStack1.copy();
+        for (i = 0; i < 9; ++i)
+            addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 163));
+    }
 
-			int containerSlots = inventorySlots.size() - player.inventory.mainInventory.size();
+    @Override
+    public boolean canInteractWith (EntityPlayer player) {
+        return true;
+    }
 
-			if (index < containerSlots) {
-				if (!this.mergeItemStack(itemStack1, containerSlots, inventorySlots.size(), true)) {
-					return ItemStack.EMPTY;
-				}
-			} else if (!this.mergeItemStack(itemStack1, 0, containerSlots, false)) {
-				return ItemStack.EMPTY;
-			}
+    @Override
+    public ItemStack transferStackInSlot (EntityPlayer player, int index) {
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot = inventorySlots.get(index);
+        if (slot != null && slot.getHasStack()) {
+            ItemStack itemStack1 = slot.getStack();
+            itemStack = itemStack1.copy();
 
-			if (itemStack1.getCount() == 0) {
-				slot.putStack(ItemStack.EMPTY);
-			} else {
-				slot.onSlotChanged();
-			}
+            int containerSlots = inventorySlots.size() - player.inventory.mainInventory.size();
 
-			if (itemStack1.getCount() == itemStack.getCount()) {
-				return ItemStack.EMPTY;
-			}
+            if (index < containerSlots) {
+                if (!this.mergeItemStack(itemStack1, containerSlots, inventorySlots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.mergeItemStack(itemStack1, 0, containerSlots, false)) {
+                return ItemStack.EMPTY;
+            }
 
-			slot.onTake(player, itemStack1);
-		}
+            if (itemStack1.getCount() == 0) {
+                slot.putStack(ItemStack.EMPTY);
+            } else {
+                slot.onSlotChanged();
+            }
 
-		return itemStack;
-	}
+            if (itemStack1.getCount() == itemStack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(player, itemStack1);
+        }
+
+        return itemStack;
+    }
 
 }

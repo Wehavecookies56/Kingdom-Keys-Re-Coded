@@ -12,31 +12,31 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeUltimaWeaponKH1 extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeUltimaWeaponKH1 (String name) {
-		this.name = name;
-	}
+    public RecipeUltimaWeaponKH1 (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_UltimaWeaponKH1);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_UltimaWeaponKH1);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_SerenityStone), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_SerenityCrystal), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_StormyStone), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_LostIllusion), 1);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_SerenityStone), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_SerenityCrystal), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_StormyStone), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_LostIllusion), 1);
+        return reqs;
+    }
 
 }

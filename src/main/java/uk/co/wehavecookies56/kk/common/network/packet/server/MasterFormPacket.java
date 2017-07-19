@@ -10,21 +10,21 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractSe
 
 public class MasterFormPacket extends AbstractServerMessage<MasterFormPacket> {
 
-	public MasterFormPacket () {}
+    public MasterFormPacket () {}
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
 
-	}
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
 
-	}
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		if (player != null && player.motionY < 0) player.motionY += Constants.PLAYER_JUMP;
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        if (player != null && player.motionY < 0) player.motionY += Constants.PLAYER_JUMP;
+    }
 
 }

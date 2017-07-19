@@ -9,11 +9,11 @@ import net.minecraft.client.gui.ScaledResolution;
  */
 public class PageDriveFormsForms extends Page {
     String text = "There are 5 available forms:"
-    		+ "\nValor- Cost: 300 Can jump higher and boosts phisical attacks."
-    		+ "\nWisdom- Cost: 300 Allows you to shoot bullets through your keyblade."
-    		+ "\nLimit- Cost: 400 Does hmmm... nothing for now :/"
-    		+ "\nMaster- Cost: 400 Allows you to double jump."
-    		+ "\nFinal- Cost: 500 Can glide for a while";
+            + "\nValor- Cost: 300 Can jump higher and boosts phisical attacks."
+            + "\nWisdom- Cost: 300 Allows you to shoot bullets through your keyblade."
+            + "\nLimit- Cost: 400 Does hmmm... nothing for now :/"
+            + "\nMaster- Cost: 400 Allows you to double jump."
+            + "\nFinal- Cost: 500 Can glide for a while";
 
     public PageDriveFormsForms(int xPos, int yPos) {
         super("DriveForms_Forms", xPos, yPos);

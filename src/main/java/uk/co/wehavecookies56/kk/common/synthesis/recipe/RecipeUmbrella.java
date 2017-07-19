@@ -12,28 +12,28 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeUmbrella extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeUmbrella (String name) {
-		this.name = name;
-	}
+    public RecipeUmbrella (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_Umbrella);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_Umbrella);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_TwilightShard), 1);
-		reqs.put(MaterialRegistry.get(Strings.SM_MythrilShard), 10);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_TwilightShard), 1);
+        reqs.put(MaterialRegistry.get(Strings.SM_MythrilShard), 10);
+        return reqs;
+    }
 
 }

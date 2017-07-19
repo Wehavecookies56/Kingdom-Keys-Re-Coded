@@ -21,82 +21,82 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
 
 public class CommandShowHud implements ICommand {
 
-	private List<String> aliases;
+    private List<String> aliases;
 
-	public CommandShowHud () {
-		this.aliases = new ArrayList<String>();
-		this.aliases.add("kkshowhud");
-	}
+    public CommandShowHud () {
+        this.aliases = new ArrayList<String>();
+        this.aliases.add("kkshowhud");
+    }
 
-	@Override
-	public int compareTo (ICommand arg0) {
-		return 0;
-	}
+    @Override
+    public int compareTo (ICommand arg0) {
+        return 0;
+    }
 
-	@Override
-	public String getName () {
-		return "showhud";
-	}
-	
-	public int getRequiredPermissionLevel()
+    @Override
+    public String getName () {
+        return "showhud";
+    }
+
+    public int getRequiredPermissionLevel()
     {
         return 1;
     }
 
-	@Override
-	public String getUsage (ICommandSender sender) {
-		return "/showhud";
-	}
+    @Override
+    public String getUsage (ICommandSender sender) {
+        return "/showhud";
+    }
 
-	@Override
-	public List<String> getAliases () {
-		return this.aliases;
-	}
+    @Override
+    public List<String> getAliases () {
+        return this.aliases;
+    }
 
-	public static boolean isInteger (String s) {
-		try {
-			Integer.parseInt(s);
-		} catch (NumberFormatException e) {
-			return false;
-		} catch (NullPointerException e) {
-			return false;
-		}
-		return true;
-	}
+    public static boolean isInteger (String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+        return true;
+    }
 
-	@Override
-	public void execute (MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-		if (sender.getCommandSenderEntity() instanceof EntityPlayer) if (args.length == 0) {
-			if (sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) {
-				sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null).setHudMode(false);
-			} else {
-				sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null).setHudMode(true);
-			}
-		} else if (args.length == 1) {
-			TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
-		}
-		PacketDispatcher.sendTo(new SyncHudData(sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) sender.getCommandSenderEntity());
-	}
-	
-	@Override
-	public boolean isUsernameIndex (String[] args, int index) {
-		return false;
-	}
+    @Override
+    public void execute (MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+        if (sender.getCommandSenderEntity() instanceof EntityPlayer) if (args.length == 0) {
+            if (sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) {
+                sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null).setHudMode(false);
+            } else {
+                sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null).setHudMode(true);
+            }
+        } else if (args.length == 1) {
+            TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+        }
+        PacketDispatcher.sendTo(new SyncHudData(sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) sender.getCommandSenderEntity());
+    }
 
-	public static EntityPlayerMP getCommandSenderAsPlayer (ICommandSender sender) throws PlayerNotFoundException {
-		if (sender instanceof EntityPlayerMP)
-			return (EntityPlayerMP) sender;
-		else
-			throw new PlayerNotFoundException("You must specify which player you wish to perform this action on.", new Object[0]);
-	}
+    @Override
+    public boolean isUsernameIndex (String[] args, int index) {
+        return false;
+    }
 
-	@Override
-	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		return true;
-	}
+    public static EntityPlayerMP getCommandSenderAsPlayer (ICommandSender sender) throws PlayerNotFoundException {
+        if (sender instanceof EntityPlayerMP)
+            return (EntityPlayerMP) sender;
+        else
+            throw new PlayerNotFoundException("You must specify which player you wish to perform this action on.", new Object[0]);
+    }
 
-	@Override
-	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
-		return null;
-	}
+    @Override
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+        return true;
+    }
+
+    @Override
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
+        return null;
+    }
 }

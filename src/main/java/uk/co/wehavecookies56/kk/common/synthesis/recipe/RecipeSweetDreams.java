@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeSweetDreams extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeSweetDreams (String name) {
-		this.name = name;
-	}
+    public RecipeSweetDreams (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_SweetDreams);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_SweetDreams);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_TwilightShard), 4);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_DenseShard), 2);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_TwilightShard), 4);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_DenseShard), 2);
+        return reqs;
+    }
 
 }

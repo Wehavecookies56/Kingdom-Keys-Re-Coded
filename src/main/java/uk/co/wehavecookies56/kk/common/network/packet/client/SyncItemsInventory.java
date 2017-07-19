@@ -13,29 +13,29 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
 public class SyncItemsInventory extends AbstractMessage.AbstractClientMessage<SyncItemsInventory> {
 
-	private NBTTagCompound data;
-	
-	public SyncItemsInventory() {}
-	
-	public SyncItemsInventory(PlayerStatsCapability.IPlayerStats stats) {
-		data = new NBTTagCompound();
-		data.setTag(InventoryPotionsMenu.SAVE_KEY, stats.getInventoryPotionsMenu().serializeNBT());
-	}
-	
-	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
-		data = buffer.readCompoundTag();
-	}
+    private NBTTagCompound data;
 
-	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeCompoundTag(data);
-	}
+    public SyncItemsInventory() {}
 
-	@Override
-	public void process(EntityPlayer player, Side side) {
-		player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().deserializeNBT(data.getCompoundTag(InventoryPotionsMenu.SAVE_KEY));
-	}
+    public SyncItemsInventory(PlayerStatsCapability.IPlayerStats stats) {
+        data = new NBTTagCompound();
+        data.setTag(InventoryPotionsMenu.SAVE_KEY, stats.getInventoryPotionsMenu().serializeNBT());
+    }
+
+    @Override
+    protected void read(PacketBuffer buffer) throws IOException {
+        data = buffer.readCompoundTag();
+    }
+
+    @Override
+    protected void write(PacketBuffer buffer) throws IOException {
+        buffer.writeCompoundTag(data);
+    }
+
+    @Override
+    public void process(EntityPlayer player, Side side) {
+        player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().deserializeNBT(data.getCompoundTag(InventoryPotionsMenu.SAVE_KEY));
+    }
 
 
 }

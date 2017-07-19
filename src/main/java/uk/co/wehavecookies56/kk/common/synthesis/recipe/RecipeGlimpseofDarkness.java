@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeGlimpseofDarkness extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeGlimpseofDarkness (String name) {
-		this.name = name;
-	}
+    public RecipeGlimpseofDarkness (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_GlimpseofDarkness);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_GlimpseofDarkness);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_DenseCrystal), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkStone), 3);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_DenseCrystal), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkStone), 3);
+        return reqs;
+    }
 
 }

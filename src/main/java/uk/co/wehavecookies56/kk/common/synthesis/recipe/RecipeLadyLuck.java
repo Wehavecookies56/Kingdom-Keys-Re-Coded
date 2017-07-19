@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeLadyLuck extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeLadyLuck (String name) {
-		this.name = name;
-	}
+    public RecipeLadyLuck (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_LadyLuck);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_LadyLuck);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 4);
-		reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_SerenityShard), 1);
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingGem), 2);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 4);
+        reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_SerenityShard), 1);
+        reqs.put(MaterialRegistry.get(Strings.SM_BlazingGem), 2);
+        return reqs;
+    }
 
 }

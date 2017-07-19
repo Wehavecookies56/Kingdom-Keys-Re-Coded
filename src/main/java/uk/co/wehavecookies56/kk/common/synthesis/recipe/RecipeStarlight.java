@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeStarlight extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeStarlight (String name) {
-		this.name = name;
-	}
+    public RecipeStarlight (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_Starlight);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_Starlight);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_MythrilShard), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_MythrilStone), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_MythrilGem), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_MythrilCrystal), 3);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_MythrilShard), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_MythrilStone), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_MythrilGem), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_MythrilCrystal), 3);
+        return reqs;
+    }
 
 }

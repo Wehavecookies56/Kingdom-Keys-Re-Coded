@@ -14,10 +14,10 @@ public class ModDimensions {
 
     public static void init() {
     //Not really working
-    	//	if(ConfigHandler.StationOfAwakeningID.equals("auto"))
-    	diveToTheHeartID = DimensionManager.getNextFreeDimId();
-    	//else
-    	//diveToTheHeartID = Integer.parseInt(ConfigHandler.StationOfAwakeningID);
+        //    if(ConfigHandler.StationOfAwakeningID.equals("auto"))
+        diveToTheHeartID = DimensionManager.getNextFreeDimId();
+        //else
+        //diveToTheHeartID = Integer.parseInt(ConfigHandler.StationOfAwakeningID);
         diveToTheHeart = DimensionType.register("Dive to the Heart", "", diveToTheHeartID, WorldProviderDiveToTheHeart.class, false);
         DimensionManager.registerDimension(diveToTheHeartID, diveToTheHeart);
     }

@@ -11,31 +11,31 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractCl
 
 public class PedestalRotation extends AbstractClientMessage<PedestalRotation> {
 
-	int rotation;
-	BlockPos pos;
-	
-	public PedestalRotation() {}
-	
-	public PedestalRotation(TileEntityPedestal te) {
-		this.rotation = te.getRotation();
-		this.pos = te.getPos();
-	}
-	
-	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
-		this.rotation = buffer.readInt();
-		this.pos = buffer.readBlockPos();
-	}
+    int rotation;
+    BlockPos pos;
 
-	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeInt(this.rotation);
-		buffer.writeBlockPos(this.pos);
-	}
+    public PedestalRotation() {}
 
-	@Override
-	public void process(EntityPlayer player, Side side) {
-		TileEntityPedestal pedestal = (TileEntityPedestal) player.world.getTileEntity(pos);
-		pedestal.rotation = rotation;
-	}
+    public PedestalRotation(TileEntityPedestal te) {
+        this.rotation = te.getRotation();
+        this.pos = te.getPos();
+    }
+
+    @Override
+    protected void read(PacketBuffer buffer) throws IOException {
+        this.rotation = buffer.readInt();
+        this.pos = buffer.readBlockPos();
+    }
+
+    @Override
+    protected void write(PacketBuffer buffer) throws IOException {
+        buffer.writeInt(this.rotation);
+        buffer.writeBlockPos(this.pos);
+    }
+
+    @Override
+    public void process(EntityPlayer player, Side side) {
+        TileEntityPedestal pedestal = (TileEntityPedestal) player.world.getTileEntity(pos);
+        pedestal.rotation = rotation;
+    }
 }

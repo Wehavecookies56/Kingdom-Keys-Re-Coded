@@ -15,23 +15,23 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlot;
 
 public class ItemPowerBoost extends Item {
-	public ItemPowerBoost() {
-		super();
-	}
+    public ItemPowerBoost() {
+        super();
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		player.getActiveItemStack().setCount(player.getActiveItemStack().getCount()-1);
-		if (world.isRemote) {
-			PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.PowerBoost, player.inventory.currentItem));
-		}
-		player.world.playSound(player, player.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
-		return super.onItemRightClick(world, player, hand);
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        player.getActiveItemStack().setCount(player.getActiveItemStack().getCount()-1);
+        if (world.isRemote) {
+            PacketDispatcher.sendToServer(new RemoveItemInSlot(Strings.PowerBoost, player.inventory.currentItem));
+        }
+        player.world.playSound(player, player.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
+        return super.onItemRightClick(world, player, hand);
+    }
 
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		tooltip.add("Permanently increases Strength by 1");
-		super.addInformation(stack, playerIn, tooltip, advanced);
-	}
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        tooltip.add("Permanently increases Strength by 1");
+        super.addInformation(stack, playerIn, tooltip, advanced);
+    }
 }

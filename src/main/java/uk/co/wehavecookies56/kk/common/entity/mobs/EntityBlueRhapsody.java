@@ -21,34 +21,34 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIBlueRhapsody;
 
 public class EntityBlueRhapsody extends BaseEntityHeartless implements IKHMob {
 
-	public EntityBlueRhapsody(World world) {
-		super(world);
-		this.isImmuneToFire = false;
-		this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
-		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+    public EntityBlueRhapsody(World world) {
+        super(world);
+        this.isImmuneToFire = false;
+        this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
+        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityAgeable.class, true));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityAnimal.class, true));
         this.targetTasks.addTask(4, new EntityAIBlueRhapsody(this));
-	}
+    }
 
     @Override
-	public void applyEntityAttributes() {
-		super.applyEntityAttributes(); 
-		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.22D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(60.0D);
-	}
+    public void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.22D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(60.0D);
+    }
 
     @Override
-	protected void entityInit() {
-		super.entityInit();
-		this.dataManager.register(EntityHelper.STATE, 0);
-		this.dataManager.register(EntityHelper.ANIMATION, 0);
-	}
+    protected void entityInit() {
+        super.entityInit();
+        this.dataManager.register(EntityHelper.STATE, 0);
+        this.dataManager.register(EntityHelper.ANIMATION, 0);
+    }
 
     @Override
     protected boolean isValidLightLevel() {
@@ -56,9 +56,9 @@ public class EntityBlueRhapsody extends BaseEntityHeartless implements IKHMob {
     }
 
     @Override
-	protected boolean canDespawn() {
-	    return true;
-	}
+    protected boolean canDespawn() {
+        return true;
+    }
 
     @Override
     public boolean isAIDisabled() {
@@ -66,13 +66,13 @@ public class EntityBlueRhapsody extends BaseEntityHeartless implements IKHMob {
     }
 
     @Override
-	public boolean getCanSpawnHere() {
-	    return true;
-	}
+    public boolean getCanSpawnHere() {
+        return true;
+    }
 
     @Override
-	public MobType getType() {
-		return MobType.HEARTLESS_EMBLEM;
-	}
+    public MobType getType() {
+        return MobType.HEARTLESS_EMBLEM;
+    }
 
 }

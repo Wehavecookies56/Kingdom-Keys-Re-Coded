@@ -12,28 +12,28 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeTwilightBlaze extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeTwilightBlaze (String name) {
-		this.name = name;
-	}
+    public RecipeTwilightBlaze (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_TwilightBlaze);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_TwilightBlaze);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_TwilightCrystal), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingCrystal), 3);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_TwilightCrystal), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_BlazingCrystal), 3);
+        return reqs;
+    }
 
 }

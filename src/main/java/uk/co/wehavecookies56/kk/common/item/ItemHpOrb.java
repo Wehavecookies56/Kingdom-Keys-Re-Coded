@@ -9,17 +9,17 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class ItemHpOrb extends Item {
-	public ItemHpOrb () {
-		setMaxStackSize(64);
-	}
+    public ItemHpOrb () {
+        setMaxStackSize(64);
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if (!(player.getHealth() == 20)) {
-			player.heal(2);
-			player.inventory.decrStackSize(player.inventory.currentItem, 1);
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getActiveItemStack());
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        if (!(player.getHealth() == 20)) {
+            player.heal(2);
+            player.inventory.decrStackSize(player.inventory.currentItem, 1);
+        }
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getActiveItemStack());
+    }
 
 }

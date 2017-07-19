@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeMysteriousAbyss extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeMysteriousAbyss (String name) {
-		this.name = name;
-	}
+    public RecipeMysteriousAbyss (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_MysteriousAbyss);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_MysteriousAbyss);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_FrostShard), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_FrostStone), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_FrostCrystal), 1);
-		reqs.put(MaterialRegistry.get(Strings.SM_FrostGem), 2);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_FrostShard), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_FrostStone), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_FrostCrystal), 1);
+        reqs.put(MaterialRegistry.get(Strings.SM_FrostGem), 2);
+        return reqs;
+    }
 
 }

@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeFrolicFlame extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeFrolicFlame (String name) {
-		this.name = name;
-	}
+    public RecipeFrolicFlame (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_FrolicFlame);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_FrolicFlame);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingGem), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_BlazingCrystal), 1);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 1);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_BlazingShard), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_BlazingGem), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_BlazingCrystal), 1);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 1);
+        return reqs;
+    }
 
 }

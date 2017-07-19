@@ -53,6 +53,6 @@ OrgWeaponUnlock extends AbstractMessage.AbstractServerMessage<OrgWeaponUnlock> {
         OrganizationXIIICapability.IOrganizationXIII org = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
         org.addUnlockedWeapon(unlock);
         org.removePoints(points);
-		PacketDispatcher.sendTo(new SyncOrgXIIIData(org), (EntityPlayerMP) player);
+        PacketDispatcher.sendTo(new SyncOrgXIIIData(org), (EntityPlayerMP) player);
     }
 }

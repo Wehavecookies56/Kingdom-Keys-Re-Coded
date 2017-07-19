@@ -14,45 +14,45 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractSe
 
 public class SynthesisMaterialPickup extends AbstractServerMessage<SynthesisMaterialPickup> {
 
-	public SynthesisMaterialPickup () {}
+    public SynthesisMaterialPickup () {}
 
-	ItemStack toRemove;
-	ItemStack bag;
-	int slot;
+    ItemStack toRemove;
+    ItemStack bag;
+    int slot;
 
-	public SynthesisMaterialPickup (ItemStack toRemove, ItemStack bag, int slot) {
-		this.toRemove = toRemove;
-		this.bag = bag;
-		this.slot = slot;
-	}
+    public SynthesisMaterialPickup (ItemStack toRemove, ItemStack bag, int slot) {
+        this.toRemove = toRemove;
+        this.bag = bag;
+        this.slot = slot;
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStack();
-		bag = buffer.readItemStack();
-		slot = buffer.readInt();
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        toRemove = buffer.readItemStack();
+        bag = buffer.readItemStack();
+        slot = buffer.readInt();
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStack(toRemove);
-		buffer.writeItemStack(bag);
-		buffer.writeInt(slot);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeItemStack(toRemove);
+        buffer.writeItemStack(bag);
+        buffer.writeInt(slot);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		//player.inventory.consumeInventoryItem(toRemove.getItem());
-		toRemove.setCount(toRemove.getCount()-1);
-		if (bag.getItem().equals(ModItems.SynthesisBagL)) {
-			IItemHandler bagL = bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-			for (int i = 0; i < bagL.getSlots(); i++)
-				if (bagL.getStackInSlot(i) == ItemStack.EMPTY) {
-					bagL.insertItem(0, toRemove, false);
-					break;
-				}
-		}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        //player.inventory.consumeInventoryItem(toRemove.getItem());
+        toRemove.setCount(toRemove.getCount()-1);
+        if (bag.getItem().equals(ModItems.SynthesisBagL)) {
+            IItemHandler bagL = bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+            for (int i = 0; i < bagL.getSlots(); i++)
+                if (bagL.getStackInSlot(i) == ItemStack.EMPTY) {
+                    bagL.insertItem(0, toRemove, false);
+                    break;
+                }
+        }
 
-	}
+    }
 
 }

@@ -21,31 +21,31 @@ import java.io.IOException;
 
 public class SummonOrgWeapon extends AbstractMessage.AbstractServerMessage<SummonOrgWeapon> {
 
-	ItemStack stack;
+    ItemStack stack;
 
-	public SummonOrgWeapon() {}
+    public SummonOrgWeapon() {}
 
-	public SummonOrgWeapon(Item weapon) {
-		this.stack = new ItemStack(weapon);
-	}
+    public SummonOrgWeapon(Item weapon) {
+        this.stack = new ItemStack(weapon);
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		stack = buffer.readItemStack();
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        stack = buffer.readItemStack();
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStack(stack);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeItemStack(stack);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		ItemStack slot = stack;
-		
-		player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
-		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
-		player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(true);
-		PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        ItemStack slot = stack;
+
+        player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
+        player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
+        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(true);
+        PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
+    }
 }

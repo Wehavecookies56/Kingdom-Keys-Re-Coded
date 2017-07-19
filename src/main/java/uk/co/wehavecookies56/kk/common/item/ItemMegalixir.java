@@ -11,25 +11,25 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class ItemMegalixir extends ItemKKPotion {
 
-	String potionType;
+    String potionType;
 
-	public ItemMegalixir(int food, boolean wolf, String type) {
-		super(food, wolf, type, Strings.Megalixir);
-		setAlwaysEdible();
-		this.potionType = type;
-	}
+    public ItemMegalixir(int food, boolean wolf, String type) {
+        super(food, wolf, type, Strings.Megalixir);
+        setAlwaysEdible();
+        this.potionType = type;
+    }
 
-	@Override
-	public void potionEffect (EntityPlayer player) {
-		player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxMP() / 2);
-		player.heal(player.getMaxHealth() / 2);
-	}
+    @Override
+    public void potionEffect (EntityPlayer player) {
+        player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxMP() / 2);
+        player.heal(player.getMaxHealth() / 2);
+    }
 
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		tooltip.add(TextFormatting.BLUE + "Restores half of your max MP (" + playerIn.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxMP() / 2 + ")");
-		tooltip.add(TextFormatting.GREEN + "Restores half of your max HP (" + playerIn.getMaxHealth() / 2 + ")");
-		super.addInformation(stack, playerIn, tooltip, advanced);
-	}
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        tooltip.add(TextFormatting.BLUE + "Restores half of your max MP (" + playerIn.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxMP() / 2 + ")");
+        tooltip.add(TextFormatting.GREEN + "Restores half of your max HP (" + playerIn.getMaxHealth() / 2 + ")");
+        super.addInformation(stack, playerIn, tooltip, advanced);
+    }
 
 }

@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeStrokeofMidnight extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeStrokeofMidnight (String name) {
-		this.name = name;
-	}
+    public RecipeStrokeofMidnight (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_StrokeofMidnight);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_StrokeofMidnight);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_FrostShard), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_DenseShard), 1);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_FrostShard), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_DenseShard), 1);
+        return reqs;
+    }
 
 }

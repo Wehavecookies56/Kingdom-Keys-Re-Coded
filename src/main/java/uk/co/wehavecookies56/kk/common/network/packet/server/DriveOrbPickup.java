@@ -14,29 +14,29 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 
 public class DriveOrbPickup extends AbstractMessage.AbstractServerMessage<DriveOrbPickup> {
 
-	public DriveOrbPickup () {}
+    public DriveOrbPickup () {}
 
-	ItemStack toRemove;
+    ItemStack toRemove;
 
-	public DriveOrbPickup (ItemStack toRemove) {
-		this.toRemove = toRemove;
-	}
+    public DriveOrbPickup (ItemStack toRemove) {
+        this.toRemove = toRemove;
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStack();
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        toRemove = buffer.readItemStack();
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStack(toRemove);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeItemStack(toRemove);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		toRemove.setCount(toRemove.getCount()-1);
-		player.getCapability(ModCapabilities.PLAYER_STATS, null).addDP(toRemove.getTagCompound().getInteger("amount"));
-		PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        toRemove.setCount(toRemove.getCount()-1);
+        player.getCapability(ModCapabilities.PLAYER_STATS, null).addDP(toRemove.getTagCompound().getInteger("amount"));
+        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+    }
 
 }

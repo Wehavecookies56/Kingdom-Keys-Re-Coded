@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeCrabclaw extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeCrabclaw (String name) {
-		this.name = name;
-	}
+    public RecipeCrabclaw (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_Crabclaw);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_Crabclaw);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_LucidShard), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_SerenityStone), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_EnergyStone), 1);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_LucidShard), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_SerenityStone), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_EnergyStone), 1);
+        return reqs;
+    }
 
 }

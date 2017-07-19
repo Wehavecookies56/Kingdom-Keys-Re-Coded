@@ -11,23 +11,23 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class ItemDriveRecovery extends ItemKKPotion {
 
-	String potionType;
+    String potionType;
 
-	public ItemDriveRecovery(int food, boolean wolf, String type) {
-		super(food, wolf, type, Strings.DriveRecovery);
-		setAlwaysEdible();
-		this.potionType = type;
-	}
+    public ItemDriveRecovery(int food, boolean wolf, String type) {
+        super(food, wolf, type, Strings.DriveRecovery);
+        setAlwaysEdible();
+        this.potionType = type;
+    }
 
-	@Override
-	public void potionEffect (EntityPlayer player) {
-		player.getCapability(ModCapabilities.PLAYER_STATS, null).addDP(300);
-	}
+    @Override
+    public void potionEffect (EntityPlayer player) {
+        player.getCapability(ModCapabilities.PLAYER_STATS, null).addDP(300);
+    }
 
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		tooltip.add(TextFormatting.GOLD + "Restores 3 Drive Gauges");
-		super.addInformation(stack, playerIn, tooltip, advanced);
-	}
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        tooltip.add(TextFormatting.GOLD + "Restores 3 Drive Gauges");
+        super.addInformation(stack, playerIn, tooltip, advanced);
+    }
 
 }

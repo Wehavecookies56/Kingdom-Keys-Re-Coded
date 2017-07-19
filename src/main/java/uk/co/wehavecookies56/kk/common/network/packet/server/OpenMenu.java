@@ -18,24 +18,24 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
 
 public class OpenMenu extends AbstractMessage.AbstractServerMessage<OpenMenu> {
 
-	public OpenMenu () {}
+    public OpenMenu () {}
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
 
-	}
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
 
-	}
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		AchievementHelper.addAchievement(player, ModAchievements.openMenu);
-		PacketDispatcher.sendTo(new SyncMunnyData(player.getCapability(ModCapabilities.MUNNY, null)), (EntityPlayerMP) player);
-		PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-		PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-		PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        AchievementHelper.addAchievement(player, ModAchievements.openMenu);
+        PacketDispatcher.sendTo(new SyncMunnyData(player.getCapability(ModCapabilities.MUNNY, null)), (EntityPlayerMP) player);
+        PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+    }
 }

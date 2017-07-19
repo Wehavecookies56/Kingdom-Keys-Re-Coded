@@ -26,53 +26,53 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemClaymore extends ItemOrgWeapon implements IOrgWeapon{
 
-	public ItemClaymore (double strength, double magic)  {
-		super(strength,magic);
-		setMaxStackSize(1);
-	}
+    public ItemClaymore (double strength, double magic)  {
+        super(strength,magic);
+        setMaxStackSize(1);
+    }
 
-	@Override
-	@SideOnly (Side.CLIENT)
-	public EnumRarity getRarity (ItemStack par1ItemStack) {
-		return EnumRarity.UNCOMMON;
-	}
+    @Override
+    @SideOnly (Side.CLIENT)
+    public EnumRarity getRarity (ItemStack par1ItemStack) {
+        return EnumRarity.UNCOMMON;
+    }
 
-	@Override
-	@SideOnly (Side.CLIENT)
-	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add(Utils.translateToLocal(Strings.LunaticDesc));
-	}
+    @Override
+    @SideOnly (Side.CLIENT)
+    public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
+        dataList.add(Utils.translateToLocal(Strings.LunaticDesc));
+    }
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if(player.getHeldItemMainhand().getItemDamage()==0){
-			if(world.isRemote){
-				PacketDispatcher.sendToServer(new SummonClaymore((ItemClaymore) player.getHeldItemMainhand().getItem()));
-			}else{
-				player.getHeldItemMainhand().setItemDamage(1);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, player.getHeldItemMainhand());
-				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
-			}
-		}else{
-			if(world.isRemote){
-				PacketDispatcher.sendToServer(new DesummonClaymore((ItemClaymore) player.getHeldItemMainhand().getItem()));
-			}else{
-				player.getHeldItemMainhand().setItemDamage(0);
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, player.getHeldItemMainhand());
-				player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.unsummon, SoundCategory.MASTER, 1.0f, 1.0f);
-			}
-		}
-		return super.onItemRightClick(world, player, hand);
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        if(player.getHeldItemMainhand().getItemDamage()==0){
+            if(world.isRemote){
+                PacketDispatcher.sendToServer(new SummonClaymore((ItemClaymore) player.getHeldItemMainhand().getItem()));
+            }else{
+                player.getHeldItemMainhand().setItemDamage(1);
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, player.getHeldItemMainhand());
+                player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
+            }
+        }else{
+            if(world.isRemote){
+                PacketDispatcher.sendToServer(new DesummonClaymore((ItemClaymore) player.getHeldItemMainhand().getItem()));
+            }else{
+                player.getHeldItemMainhand().setItemDamage(0);
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, player.getHeldItemMainhand());
+                player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.unsummon, SoundCategory.MASTER, 1.0f, 1.0f);
+            }
+        }
+        return super.onItemRightClick(world, player, hand);
+    }
 
-	@Override
-	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-		super.getSubItems(itemIn, tab, subItems);
-		subItems.add(new ItemStack(itemIn, 1, 1));
-	}
+    @Override
+    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
+        super.getSubItems(itemIn, tab, subItems);
+        subItems.add(new ItemStack(itemIn, 1, 1));
+    }
 
-	@Override
-	public OrgMember getMember() {
-		return Utils.OrgMember.SAIX;
-	}
+    @Override
+    public OrgMember getMember() {
+        return Utils.OrgMember.SAIX;
+    }
 }

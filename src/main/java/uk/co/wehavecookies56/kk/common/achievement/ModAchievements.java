@@ -12,26 +12,26 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class ModAchievements {
 
-	public static ArrayList kkAchievements = new ArrayList<Achievement>();
-	public static AchievementPage kkPage;
+    public static ArrayList kkAchievements = new ArrayList<Achievement>();
+    public static AchievementPage kkPage;
 
-	public static Achievement openMenu, getKeyblade, getWehavecookies56Skull, getAbelatoxSkull, getSynthesisTable,
-			getBlox, getRecipe, allRecipes, getChest, getKeybladeArmor, getOrgWeapon, getOrgRobe, getKiblade,
-			getNBMS, getCombined, getIncompleteKiblade, get1milMunny, getKingdomHearts, getMagic,
-			getDriveForm, level100, level50, freeDev, getSynthesisBag, getPrizeBlox, playMusicDisc, getUltimaWeapon,
-			getStick, getUmbrella, getDreamSword, getGhostBlox;
+    public static Achievement openMenu, getKeyblade, getWehavecookies56Skull, getAbelatoxSkull, getSynthesisTable,
+            getBlox, getRecipe, allRecipes, getChest, getKeybladeArmor, getOrgWeapon, getOrgRobe, getKiblade,
+            getNBMS, getCombined, getIncompleteKiblade, get1milMunny, getKingdomHearts, getMagic,
+            getDriveForm, level100, level50, freeDev, getSynthesisBag, getPrizeBlox, playMusicDisc, getUltimaWeapon,
+            getStick, getUmbrella, getDreamSword, getGhostBlox;
 
-	public static void init () {
+    public static void init () {
 
-		openMenu = new Achievement(Strings.Achievement_OpenMenu, "openmenu", 0, 0, Items.BOOK, (Achievement) null);
+        openMenu = new Achievement(Strings.Achievement_OpenMenu, "openmenu", 0, 0, Items.BOOK, (Achievement) null);
 
-		getBlox = new Achievement(Strings.Achievement_GetBlox, "getblox", 2, -2, ModBlocks.NormalBlox, openMenu);
+        getBlox = new Achievement(Strings.Achievement_GetBlox, "getblox", 2, -2, ModBlocks.NormalBlox, openMenu);
         getGhostBlox = new Achievement(Strings.Achievement_GetGhostBlox, "getghostblox", 0, -4, ModBlocks.GhostBlox, getBlox);
         getPrizeBlox = new Achievement(Strings.Achievement_GetPrizeBlox, "getprizeblox", 3, -5, ModBlocks.PrizeBlox, getBlox);
 
-		getSynthesisTable = new Achievement(Strings.Achievement_GetSynthesisTable, "getsynthesistable", 6, 0, ModBlocks.SynthesisTable, getBlox);
-		getKeyblade = new Achievement(Strings.Achievement_GetKeyblade, "getkeyblade", 8, 2, ModItems.KingdomKey, getSynthesisTable).setSpecial();
-		getIncompleteKiblade = new Achievement(Strings.Achievement_GetIncomepleteKiblade, "getincompletekiblade", 10, 2, ModItems.IncompleteKiblade, getKeyblade);
+        getSynthesisTable = new Achievement(Strings.Achievement_GetSynthesisTable, "getsynthesistable", 6, 0, ModBlocks.SynthesisTable, getBlox);
+        getKeyblade = new Achievement(Strings.Achievement_GetKeyblade, "getkeyblade", 8, 2, ModItems.KingdomKey, getSynthesisTable).setSpecial();
+        getIncompleteKiblade = new Achievement(Strings.Achievement_GetIncomepleteKiblade, "getincompletekiblade", 10, 2, ModItems.IncompleteKiblade, getKeyblade);
         getKiblade = new Achievement(Strings.Achievement_GetKiblade, "getkiblade", 12, 2, ModItems.Kiblade, getIncompleteKiblade).setSpecial();
         getNBMS = new Achievement(Strings.Achievement_GetNBMS, "getnbms", 10, 6, ModItems.NightmaresEnd, getKeyblade);
         getCombined = new Achievement(Strings.Achievement_GetCombined, "getcombined", 12, 6, ModItems.NightmaresEndandMirageSplit, getNBMS).setSpecial();
@@ -51,22 +51,22 @@ public class ModAchievements {
         playMusicDisc = new Achievement(Strings.Achievement_PlayMusicDisc, "playmusicdisc", -7, 7, ModItems.Disc_Organization_XIII, (Achievement) null);
         getKingdomHearts = new Achievement(Strings.Achievement_GetKingdomHearts, "getkingdomhearts", 8, 5, ModItems.KingdomHearts, getKeyblade);
 
-		getWehavecookies56Skull = new Achievement(Strings.Achievement_GetWehavecookies56Skull, "getwehavecookies56skull", 5, 3, Items.COOKIE, (Achievement) null).setSpecial();
-		getAbelatoxSkull = new Achievement(Strings.Achievement_GetAbelatoxSkull, "getabelatoxskull", 5, 5, ModItems.EternalFlames, (Achievement) null).setSpecial();
+        getWehavecookies56Skull = new Achievement(Strings.Achievement_GetWehavecookies56Skull, "getwehavecookies56skull", 5, 3, Items.COOKIE, (Achievement) null).setSpecial();
+        getAbelatoxSkull = new Achievement(Strings.Achievement_GetAbelatoxSkull, "getabelatoxskull", 5, 5, ModItems.EternalFlames, (Achievement) null).setSpecial();
 
-		getRecipe = new Achievement(Strings.Achievement_GetRecipe, "getrecipe", -1, 3, ModItems.Recipe, getSynthesisTable);
+        getRecipe = new Achievement(Strings.Achievement_GetRecipe, "getrecipe", -1, 3, ModItems.Recipe, getSynthesisTable);
         allRecipes = new Achievement(Strings.Achievement_AllRecipes, "allrecipes", 0, 6, ModItems.Recipe, getRecipe);
 
         getOrgRobe = new Achievement(Strings.Achievement_GetOrgRobe, "getorgrobe", -7, -5, ModItems.OrganizationRobe_Helmet, (Achievement) null);
         getOrgWeapon = new Achievement(Strings.Achievement_GetOrgWeapon, "getorgweapon", -7, -1, ModItems.BookofRetribution, (Achievement) null);
 
-		kkAchievements.add(openMenu);
-		kkAchievements.add(getWehavecookies56Skull);
-		kkAchievements.add(getAbelatoxSkull);
-		kkAchievements.add(getBlox);
-		kkAchievements.add(getSynthesisTable);
-		kkAchievements.add(getKeyblade);
-		kkAchievements.add(getRecipe);
+        kkAchievements.add(openMenu);
+        kkAchievements.add(getWehavecookies56Skull);
+        kkAchievements.add(getAbelatoxSkull);
+        kkAchievements.add(getBlox);
+        kkAchievements.add(getSynthesisTable);
+        kkAchievements.add(getKeyblade);
+        kkAchievements.add(getRecipe);
         kkAchievements.add(get1milMunny);
         kkAchievements.add(getChest);
         kkAchievements.add(getCombined);
@@ -92,18 +92,18 @@ public class ModAchievements {
         kkAchievements.add(level50);
         kkAchievements.add(level100);
 
-		Achievement[] pageAchievements = new Achievement[kkAchievements.size()];
-		AchievementPage.registerAchievementPage(kkPage = new AchievementPage(Reference.MODNAME, (Achievement[]) kkAchievements.toArray(pageAchievements)));
-	}
+        Achievement[] pageAchievements = new Achievement[kkAchievements.size()];
+        AchievementPage.registerAchievementPage(kkPage = new AchievementPage(Reference.MODNAME, (Achievement[]) kkAchievements.toArray(pageAchievements)));
+    }
 
-	public static void register () {
-		openMenu.registerStat();
-		getWehavecookies56Skull.registerStat();
-		getAbelatoxSkull.registerStat();
-		getBlox.registerStat();
-		getSynthesisTable.registerStat();
-		getKeyblade.registerStat();
-		getRecipe.registerStat();
+    public static void register () {
+        openMenu.registerStat();
+        getWehavecookies56Skull.registerStat();
+        getAbelatoxSkull.registerStat();
+        getBlox.registerStat();
+        getSynthesisTable.registerStat();
+        getKeyblade.registerStat();
+        getRecipe.registerStat();
         freeDev.registerStat();
         level100.registerStat();
         level50.registerStat();
@@ -129,6 +129,6 @@ public class ModAchievements {
         getChest.registerStat();
         getKiblade.registerStat();
 
-	}
+    }
 
 }

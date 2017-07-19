@@ -7,9 +7,9 @@ import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 
 public class RenderFactoryBlastBlox implements IRenderFactory<EntityBlastBlox> {
 
-	@Override
-	public Render<? super EntityBlastBlox> createRenderFor (RenderManager manager) {
-		return new RenderBlastBlox(manager);
-	}
+    @Override
+    public Render<? super EntityBlastBlox> createRenderFor (RenderManager manager) {
+        return new RenderBlastBlox(manager);
+    }
 
 }

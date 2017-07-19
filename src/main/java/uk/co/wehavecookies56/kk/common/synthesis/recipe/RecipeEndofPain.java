@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeEndofPain extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeEndofPain (String name) {
-		this.name = name;
-	}
+    public RecipeEndofPain (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_EndofPain);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_EndofPain);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 2);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 2);
+        return reqs;
+    }
 
 }

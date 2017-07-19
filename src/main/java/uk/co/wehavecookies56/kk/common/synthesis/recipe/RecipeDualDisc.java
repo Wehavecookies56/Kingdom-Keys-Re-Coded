@@ -12,29 +12,29 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeDualDisc extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeDualDisc (String name) {
-		this.name = name;
-	}
+    public RecipeDualDisc (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_DualDisc);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_DualDisc);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 4);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightCrystal), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 4);
+        return reqs;
+    }
 
 }

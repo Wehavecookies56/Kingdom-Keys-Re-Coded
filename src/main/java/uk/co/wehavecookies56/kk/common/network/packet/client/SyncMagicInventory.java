@@ -13,29 +13,29 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractCl
 
 public class SyncMagicInventory extends AbstractClientMessage<SyncMagicInventory> {
 
-	private NBTTagCompound data;
-	
-	public SyncMagicInventory() {}
-	
-	public SyncMagicInventory(IMagicState stats) {
-		data = new NBTTagCompound();
-		data.setTag(InventorySpells.SAVE_KEY, stats.getInventorySpells().serializeNBT());
-	}
-	
-	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
-		data = buffer.readCompoundTag();
-	}
+    private NBTTagCompound data;
 
-	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeCompoundTag(data);
-	}
+    public SyncMagicInventory() {}
 
-	@Override
-	public void process(EntityPlayer player, Side side) {
-		player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().deserializeNBT(data.getCompoundTag(InventorySpells.SAVE_KEY));
-	}
+    public SyncMagicInventory(IMagicState stats) {
+        data = new NBTTagCompound();
+        data.setTag(InventorySpells.SAVE_KEY, stats.getInventorySpells().serializeNBT());
+    }
+
+    @Override
+    protected void read(PacketBuffer buffer) throws IOException {
+        data = buffer.readCompoundTag();
+    }
+
+    @Override
+    protected void write(PacketBuffer buffer) throws IOException {
+        buffer.writeCompoundTag(data);
+    }
+
+    @Override
+    public void process(EntityPlayer player, Side side) {
+        player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().deserializeNBT(data.getCompoundTag(InventorySpells.SAVE_KEY));
+    }
 
 
 }

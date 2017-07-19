@@ -7,26 +7,26 @@ import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 
 public class MaterialHardBlox extends Material {
 
-	String name;
+    String name;
 
-	public MaterialHardBlox (String name) {
-		this.name = name;
-	}
+    public MaterialHardBlox (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getItem () {
-		ItemStack stack = new ItemStack(ModBlocks.HardBlox);
-		return stack;
-	}
+    @Override
+    public ItemStack getItem () {
+        ItemStack stack = new ItemStack(ModBlocks.HardBlox);
+        return stack;
+    }
 
-	@Override
-	public ResourceLocation getTexture () {
-		return null;
-	}
+    @Override
+    public ResourceLocation getTexture () {
+        return null;
+    }
 
 }

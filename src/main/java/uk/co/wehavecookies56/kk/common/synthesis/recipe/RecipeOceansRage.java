@@ -12,28 +12,28 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeOceansRage extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeOceansRage (String name) {
-		this.name = name;
-	}
+    public RecipeOceansRage (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_OceansRage);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_OceansRage);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_LightningStone), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_FrostShard), 5);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_LightningStone), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_FrostShard), 5);
+        return reqs;
+    }
 
 }

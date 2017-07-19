@@ -14,59 +14,59 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnDriveFormParti
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 
 public class DriveFormAnti extends DriveForm {
-	double cost;
+    double cost;
 
-	public DriveFormAnti (double cost) {
-		this.cost = cost;
-	}
+    public DriveFormAnti (double cost) {
+        this.cost = cost;
+    }
 
-	@Override
-	public String getName () {
-		return Strings.Form_Anti;
-	}
+    @Override
+    public String getName () {
+        return Strings.Form_Anti;
+    }
 
-	@Override
-	public ResourceLocation getTexture () {
-		return new ResourceLocation(Reference.MODID, "textures/driveform/anti.png");
-	}
+    @Override
+    public ResourceLocation getTexture () {
+        return new ResourceLocation(Reference.MODID, "textures/driveform/anti.png");
+    }
 
-	@Override
-	public double getCost () {
-		return cost;
-	}
+    @Override
+    public double getCost () {
+        return cost;
+    }
 
-	@Override
-	public void initDrive (EntityPlayer player) {
-		player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName(getName());
-		player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(true);
-		PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-		PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(player), player, 64.0D);
-		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.antidrive, SoundCategory.MASTER, 1.0f, 1.0f);
-	}
+    @Override
+    public void initDrive (EntityPlayer player) {
+        player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName(getName());
+        player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(true);
+        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(player), player, 64.0D);
+        player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.antidrive, SoundCategory.MASTER, 1.0f, 1.0f);
+    }
 
-	@Override
-	public void update (EntityPlayer player) {
-		if (player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode() == false){
-			if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getDP() > 0) 
-			{
-				player.getCapability(ModCapabilities.PLAYER_STATS, null).remDP(0.1);
-				if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getDP() < 0) 
-				{
-					player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
-				}
-			}else{
-				endDrive(player);
-			}
-		}
-	}
+    @Override
+    public void update (EntityPlayer player) {
+        if (player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode() == false){
+            if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getDP() > 0)
+            {
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).remDP(0.1);
+                if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getDP() < 0)
+                {
+                    player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
+                }
+            }else{
+                endDrive(player);
+            }
+        }
+    }
 
-	@Override
-	public void endDrive (EntityPlayer player) {
-		player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
-		player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(false);
-		player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName("none");
-		if (!player.world.isRemote)
-			PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-	}
+    @Override
+    public void endDrive (EntityPlayer player) {
+        player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
+        player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(false);
+        player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName("none");
+        if (!player.world.isRemote)
+            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+    }
 
 }

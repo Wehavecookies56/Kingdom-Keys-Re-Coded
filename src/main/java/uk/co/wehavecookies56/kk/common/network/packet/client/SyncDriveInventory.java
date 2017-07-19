@@ -13,29 +13,29 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractCl
 
 public class SyncDriveInventory extends AbstractClientMessage<SyncDriveInventory> {
 
-	private NBTTagCompound data;
-	
-	public SyncDriveInventory() {}
-	
-	public SyncDriveInventory(IDriveState stats) {
-		data = new NBTTagCompound();
-		data.setTag(InventoryDriveForms.SAVE_KEY, stats.getInventoryDriveForms().serializeNBT());
-	}
-	
-	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
-		data = buffer.readCompoundTag();
-	}
+    private NBTTagCompound data;
 
-	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeCompoundTag(data);
-	}
+    public SyncDriveInventory() {}
 
-	@Override
-	public void process(EntityPlayer player, Side side) {
-		player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().deserializeNBT(data.getCompoundTag(InventoryDriveForms.SAVE_KEY));
-	}
+    public SyncDriveInventory(IDriveState stats) {
+        data = new NBTTagCompound();
+        data.setTag(InventoryDriveForms.SAVE_KEY, stats.getInventoryDriveForms().serializeNBT());
+    }
+
+    @Override
+    protected void read(PacketBuffer buffer) throws IOException {
+        data = buffer.readCompoundTag();
+    }
+
+    @Override
+    protected void write(PacketBuffer buffer) throws IOException {
+        buffer.writeCompoundTag(data);
+    }
+
+    @Override
+    public void process(EntityPlayer player, Side side) {
+        player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().deserializeNBT(data.getCompoundTag(InventoryDriveForms.SAVE_KEY));
+    }
 
 
 }

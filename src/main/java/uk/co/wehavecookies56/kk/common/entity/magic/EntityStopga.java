@@ -18,83 +18,83 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnStopParticles;
 public class EntityStopga extends Entity {
 
 
-	EntityPlayer player;
-	static final int TICKS = 200;
-	static final double DISTANCE = 4.0D;
+    EntityPlayer player;
+    static final int TICKS = 200;
+    static final double DISTANCE = 4.0D;
 
-	public EntityStopga (World world) {
-		super(world);
-	}
+    public EntityStopga (World world) {
+        super(world);
+    }
 
-	public EntityStopga (World world, EntityPlayer sender, double x, double y, double z) {
-		super(world);
-		this.posX = x;
-		this.posY = y;
-		this.posZ = z;
-		this.player = sender;
-	}
+    public EntityStopga (World world, EntityPlayer sender, double x, double y, double z) {
+        super(world);
+        this.posX = x;
+        this.posY = y;
+        this.posZ = z;
+        this.player = sender;
+    }
 
-	@Override
-	public void onUpdate () {
-		if (player == null) 
-			return;
-		int rotation = 0;
-		if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnStopParticles(this, 3), player, 64.0D);
-		
-		this.rotationYaw = (rotation + 1) % 360;
-		if (ticksExisted > TICKS)
-			setDead();
+    @Override
+    public void onUpdate () {
+        if (player == null)
+            return;
+        int rotation = 0;
+        if (!world.isRemote) PacketDispatcher.sendToAllAround(new SpawnStopParticles(this, 3), player, 64.0D);
 
-		if (ticksExisted < 10)
-			player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0D);
-		else
-			player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10000000149011612D);
+        this.rotationYaw = (rotation + 1) % 360;
+        if (ticksExisted > TICKS)
+            setDead();
 
-		AxisAlignedBB aabb = player.getEntityBoundingBox().expand(DISTANCE, DISTANCE, DISTANCE);
-		List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
-		if (!list.isEmpty()){
-			
-			for (int i = 0; i < list.size(); i++) {
-				Entity e = (Entity) list.get(i);
-				
-				if (e instanceof EntityLiving) {
-					if (ticksExisted < TICKS) {
-						((EntityLivingBase) e).motionX = 0;
-						((EntityLivingBase) e).motionY = 0;
-						((EntityLivingBase) e).motionZ = 0;
-					}
-				}
-				if(e instanceof EntityPlayerMP){
-					((EntityPlayerMP)e).getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0D);
+        if (ticksExisted < 10)
+            player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0D);
+        else
+            player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10000000149011612D);
 
-				}
-			}
-		}
-		aabb.expand(-DISTANCE, -DISTANCE, -DISTANCE);
+        AxisAlignedBB aabb = player.getEntityBoundingBox().expand(DISTANCE, DISTANCE, DISTANCE);
+        List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
+        if (!list.isEmpty()){
 
-		super.onUpdate();
-	}
+            for (int i = 0; i < list.size(); i++) {
+                Entity e = (Entity) list.get(i);
 
-	@Override
-	protected void entityInit () {
+                if (e instanceof EntityLiving) {
+                    if (ticksExisted < TICKS) {
+                        ((EntityLivingBase) e).motionX = 0;
+                        ((EntityLivingBase) e).motionY = 0;
+                        ((EntityLivingBase) e).motionZ = 0;
+                    }
+                }
+                if(e instanceof EntityPlayerMP){
+                    ((EntityPlayerMP)e).getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0D);
 
-	}
+                }
+            }
+        }
+        aabb.expand(-DISTANCE, -DISTANCE, -DISTANCE);
 
-	@Override
-	protected void readEntityFromNBT (NBTTagCompound tagCompund) {
+        super.onUpdate();
+    }
 
-	}
+    @Override
+    protected void entityInit () {
 
-	@Override
-	protected void writeEntityToNBT (NBTTagCompound tagCompound) {
+    }
 
-	}
+    @Override
+    protected void readEntityFromNBT (NBTTagCompound tagCompund) {
 
-	@Override
-	public AxisAlignedBB getEntityBoundingBox () {
+    }
 
-		return new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
-	}
+    @Override
+    protected void writeEntityToNBT (NBTTagCompound tagCompound) {
+
+    }
+
+    @Override
+    public AxisAlignedBB getEntityBoundingBox () {
+
+        return new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
+    }
 
 }
 

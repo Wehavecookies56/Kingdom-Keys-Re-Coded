@@ -93,8 +93,8 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         stats.setMExperience(mExp);
         stats.setFExperience(fExp);
 
-    	player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(stats.getHP());
-    	stats.getMessages().clear();
+        player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(stats.getHP());
+        stats.getMessages().clear();
         for (int i = 0; i < this.messages.size(); i++) {
             stats.getMessages().add(this.messages.get(i));
         }

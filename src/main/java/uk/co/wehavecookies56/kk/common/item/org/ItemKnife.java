@@ -13,25 +13,25 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemKnife extends ItemOrgWeapon implements IOrgWeapon{
 
-	public ItemKnife (double strength, double magic)  {
-		super(strength,magic);
-		setMaxStackSize(1);
-	}
+    public ItemKnife (double strength, double magic)  {
+        super(strength,magic);
+        setMaxStackSize(1);
+    }
 
-	@Override
-	@SideOnly (Side.CLIENT)
-	public EnumRarity getRarity (ItemStack par1ItemStack) {
-		return EnumRarity.UNCOMMON;
-	}
+    @Override
+    @SideOnly (Side.CLIENT)
+    public EnumRarity getRarity (ItemStack par1ItemStack) {
+        return EnumRarity.UNCOMMON;
+    }
 
-	@Override
-	@SideOnly (Side.CLIENT)
-	public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		dataList.add("XII Larxene");
-	}
+    @Override
+    @SideOnly (Side.CLIENT)
+    public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
+        dataList.add("XII Larxene");
+    }
 
-	@Override
-	public OrgMember getMember() {
-		return Utils.OrgMember.LARXENE;
-	}
+    @Override
+    public OrgMember getMember() {
+        return Utils.OrgMember.LARXENE;
+    }
 }

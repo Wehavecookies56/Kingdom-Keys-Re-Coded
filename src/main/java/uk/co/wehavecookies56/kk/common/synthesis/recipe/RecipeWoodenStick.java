@@ -12,27 +12,27 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 
 public class RecipeWoodenStick extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeWoodenStick (String name) {
-		this.name = name;
-	}
+    public RecipeWoodenStick (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.WoodenStick);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.WoodenStick);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Items.STICK.getUnlocalizedName()), 3);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Items.STICK.getUnlocalizedName()), 3);
+        return reqs;
+    }
 
 }

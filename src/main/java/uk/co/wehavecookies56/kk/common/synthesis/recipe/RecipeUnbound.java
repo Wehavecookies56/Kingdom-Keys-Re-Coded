@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeUnbound extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeUnbound (String name) {
-		this.name = name;
-	}
+    public RecipeUnbound (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_Unbound);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_Unbound);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_MythrilCrystal), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_TwilightGem), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_DenseGem), 5);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_MythrilCrystal), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_TwilightGem), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_DenseGem), 5);
+        return reqs;
+    }
 
 }

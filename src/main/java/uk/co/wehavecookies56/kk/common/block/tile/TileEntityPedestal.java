@@ -24,86 +24,86 @@ import javax.annotation.Nullable;
  * Created by Toby on 06/11/2016.
  */
 public class TileEntityPedestal extends TileEntity {
-	final int NUMBER_OF_SLOTS = 1;
-	private ItemStackHandler itemStacks = new ItemStackHandler(NUMBER_OF_SLOTS);
-	public int rotation=0;
-	public ItemStack keyblade;
+    final int NUMBER_OF_SLOTS = 1;
+    private ItemStackHandler itemStacks = new ItemStackHandler(NUMBER_OF_SLOTS);
+    public int rotation=0;
+    public ItemStack keyblade;
 
-	public void setRotation(char option){
-		if(option == '-')
-			if(rotation<=0)
-				rotation=3;
-			else
-				rotation--;
-		else if(option=='+')
-			if(rotation>=3)
-				rotation=0;
-			else
-				rotation++;
-		markDirty();
-	}
-	
-	public int getRotation(){
-		return this.rotation;
-	}
-	
-	
-	public void setKeyblade(ItemStack keyblade){
-		this.keyblade = keyblade;
-		markDirty();
-	}
+    public void setRotation(char option){
+        if(option == '-')
+            if(rotation<=0)
+                rotation=3;
+            else
+                rotation--;
+        else if(option=='+')
+            if(rotation>=3)
+                rotation=0;
+            else
+                rotation++;
+        markDirty();
+    }
 
-	public ItemStack getKeyblade() {
-		return this.keyblade;
-	}
+    public int getRotation(){
+        return this.rotation;
+    }
 
-	@Override
-	public NBTTagCompound writeToNBT (NBTTagCompound parentNBTTagCompound) {
-		parentNBTTagCompound.setTag("inventory", itemStacks.serializeNBT());
-		parentNBTTagCompound.setInteger("Rotation", rotation);
-		NBTTagCompound keybladeCompound = new NBTTagCompound();
-		if (keyblade != null)
-			keyblade.writeToNBT(keybladeCompound);
-		parentNBTTagCompound.setTag("Keyblade", keybladeCompound);
-		return super.writeToNBT(parentNBTTagCompound);
-	}
 
-	@Override
-	public void readFromNBT (NBTTagCompound parentNBTTagCompound) {
-		itemStacks.deserializeNBT(parentNBTTagCompound.getCompoundTag("inventory"));
-		rotation = parentNBTTagCompound.getInteger("Rotation");
-		NBTTagCompound keybladeCompound = parentNBTTagCompound.getCompoundTag("Keyblade");
-		keyblade = new ItemStack(keybladeCompound);
-		super.readFromNBT(parentNBTTagCompound);
-	}
+    public void setKeyblade(ItemStack keyblade){
+        this.keyblade = keyblade;
+        markDirty();
+    }
 
-	@Override
-	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ||  super.hasCapability(capability, facing);
-	}
+    public ItemStack getKeyblade() {
+        return this.keyblade;
+    }
 
-	@Nullable
-	@Override
-	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)itemStacks : super.getCapability(capability, facing);
-	}
+    @Override
+    public NBTTagCompound writeToNBT (NBTTagCompound parentNBTTagCompound) {
+        parentNBTTagCompound.setTag("inventory", itemStacks.serializeNBT());
+        parentNBTTagCompound.setInteger("Rotation", rotation);
+        NBTTagCompound keybladeCompound = new NBTTagCompound();
+        if (keyblade != null)
+            keyblade.writeToNBT(keybladeCompound);
+        parentNBTTagCompound.setTag("Keyblade", keybladeCompound);
+        return super.writeToNBT(parentNBTTagCompound);
+    }
 
-	@Override
-	public ITextComponent getDisplayName () {
-		if (getKeyblade() != null) {
-			return new TextComponentTranslation(getName(), "");
-		}else
-			return null;
-	}
+    @Override
+    public void readFromNBT (NBTTagCompound parentNBTTagCompound) {
+        itemStacks.deserializeNBT(parentNBTTagCompound.getCompoundTag("inventory"));
+        rotation = parentNBTTagCompound.getInteger("Rotation");
+        NBTTagCompound keybladeCompound = parentNBTTagCompound.getCompoundTag("Keyblade");
+        keyblade = new ItemStack(keybladeCompound);
+        super.readFromNBT(parentNBTTagCompound);
+    }
 
-	//TODO COPY IINVENTORY RENDER CODE
-	public String getName() {
-		if (getKeyblade() != null) {
-			if(getKeyblade().getItem() instanceof ItemKeychain)
-				return Utils.translateToLocal(((ItemKeychain) getKeyblade().getItem()).getKeyblade().getUnlocalizedName()+".name");
-			else
-				return Utils.translateToLocal(getKeyblade().getDisplayName());
-		}
-		return ""; //TODO Translate this
-	}
+    @Override
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ||  super.hasCapability(capability, facing);
+    }
+
+    @Nullable
+    @Override
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)itemStacks : super.getCapability(capability, facing);
+    }
+
+    @Override
+    public ITextComponent getDisplayName () {
+        if (getKeyblade() != null) {
+            return new TextComponentTranslation(getName(), "");
+        }else
+            return null;
+    }
+
+    //TODO COPY IINVENTORY RENDER CODE
+    public String getName() {
+        if (getKeyblade() != null) {
+            if(getKeyblade().getItem() instanceof ItemKeychain)
+                return Utils.translateToLocal(((ItemKeychain) getKeyblade().getItem()).getKeyblade().getUnlocalizedName()+".name");
+            else
+                return Utils.translateToLocal(getKeyblade().getDisplayName());
+        }
+        return ""; //TODO Translate this
+    }
 }

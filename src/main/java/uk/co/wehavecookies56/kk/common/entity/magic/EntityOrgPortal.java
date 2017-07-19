@@ -18,95 +18,95 @@ import java.nio.charset.Charset;
 
 public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnData {
 
-	EntityPlayer caster;
-	//BlockPos remotePos;
+    EntityPlayer caster;
+    //BlockPos remotePos;
 
-	public EntityOrgPortal (World world) {
-		super(world);
-	}
-	
-	public EntityOrgPortal (World world, EntityPlayer sender, double x, double y, double z) {
-		super(world);
-		this.posX = x+0.5;
-		this.posY = y;
-		this.posZ = z+0.5;
-		this.caster = sender;
-	}
+    public EntityOrgPortal (World world) {
+        super(world);
+    }
 
-	public void setCaster(EntityPlayer caster) {
-		this.caster = caster;
-	}
-	
-	@Override
-	public void onUpdate () {
-		super.onUpdate();
+    public EntityOrgPortal (World world, EntityPlayer sender, double x, double y, double z) {
+        super(world);
+        this.posX = x+0.5;
+        this.posY = y;
+        this.posZ = z+0.5;
+        this.caster = sender;
+    }
 
-		if (caster == null){
-			this.setDead();
-			return;
-		}
-		if (caster instanceof EntityPlayer)
-		{
-			if (!world.isRemote)
-				PacketDispatcher.sendToAllAround(new SpawnPortalParticles(this.getPosition()), (EntityPlayer) caster, 64.0D);
-		}
-		if (ticksExisted > 100) setDead();
-	}
+    public void setCaster(EntityPlayer caster) {
+        this.caster = caster;
+    }
 
-	@Override
-	protected void entityInit() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void onCollideWithPlayer(EntityPlayer player) {
-		//THIS IS ON THE CLIENT
-		//System.out.println(caster);
-		if(!this.isEntityAlive())
-			return;
-		if(player != null){
-			if (caster != null) {
-				IOrganizationXIII orgXIII = caster.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-				if(orgXIII.getPortalX()!=0 && orgXIII.getPortalY()!=0 && orgXIII.getPortalZ()!=0){
-					player.setPositionAndUpdate(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5);
-					PacketDispatcher.sendToServer(new OrgPortalTP(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5));
-				}
-			}
-		}
-		
-		super.onCollideWithPlayer(player);
-	}
+    @Override
+    public void onUpdate () {
+        super.onUpdate();
 
-	@Override
-	protected void writeEntityToNBT(NBTTagCompound compound) {
+        if (caster == null){
+            this.setDead();
+            return;
+        }
+        if (caster instanceof EntityPlayer)
+        {
+            if (!world.isRemote)
+                PacketDispatcher.sendToAllAround(new SpawnPortalParticles(this.getPosition()), (EntityPlayer) caster, 64.0D);
+        }
+        if (ticksExisted > 100) setDead();
+    }
 
-	}
+    @Override
+    protected void entityInit() {
+        // TODO Auto-generated method stub
 
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound compound) {
+    }
 
-	}
+    @Override
+    public void onCollideWithPlayer(EntityPlayer player) {
+        //THIS IS ON THE CLIENT
+        //System.out.println(caster);
+        if(!this.isEntityAlive())
+            return;
+        if(player != null){
+            if (caster != null) {
+                IOrganizationXIII orgXIII = caster.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+                if(orgXIII.getPortalX()!=0 && orgXIII.getPortalY()!=0 && orgXIII.getPortalZ()!=0){
+                    player.setPositionAndUpdate(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5);
+                    PacketDispatcher.sendToServer(new OrgPortalTP(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5));
+                }
+            }
+        }
 
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		super.readFromNBT(compound);
-	}
+        super.onCollideWithPlayer(player);
+    }
 
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		return super.writeToNBT(compound);
-	}
+    @Override
+    protected void writeEntityToNBT(NBTTagCompound compound) {
 
-	@Override
-	public void readSpawnData(ByteBuf additionalData) {
-		caster = world.getPlayerEntityByName(additionalData.toString(Charset.defaultCharset()));
-	}
+    }
 
-	@Override
-	public void writeSpawnData(ByteBuf buffer) {
-		if(caster == null)
-			return;
-		buffer.writeBytes(caster.getDisplayNameString().getBytes());
-	}
+    @Override
+    protected void readEntityFromNBT(NBTTagCompound compound) {
+
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        return super.writeToNBT(compound);
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf additionalData) {
+        caster = world.getPlayerEntityByName(additionalData.toString(Charset.defaultCharset()));
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        if(caster == null)
+            return;
+        buffer.writeBytes(caster.getDisplayNameString().getBytes());
+    }
 }

@@ -14,26 +14,26 @@ import javax.annotation.Nullable;
 
 public class BlockBounceBlox extends BlockBlox {
 
-	protected BlockBounceBlox (Material material, String toolClass, int level, float hardness, float resistance) {
-		super(material, toolClass, level, hardness, resistance);
-	}
+    protected BlockBounceBlox (Material material, String toolClass, int level, float hardness, float resistance) {
+        super(material, toolClass, level, hardness, resistance);
+    }
 
-	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-		if (!entityIn.isSneaking()) {
-			entityIn.playSound(SoundEvents.ENTITY_SLIME_JUMP, 1, 1);
-			double d0 = 0.4D + Math.abs(entityIn.motionY) * 0.2D;
-			entityIn.motionX *= d0;
-			entityIn.motionZ *= d0;
-			entityIn.motionY++;
-			entityIn.fallDistance = 0;
-			super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
-		}
-	}
+    @Override
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        if (!entityIn.isSneaking()) {
+            entityIn.playSound(SoundEvents.ENTITY_SLIME_JUMP, 1, 1);
+            double d0 = 0.4D + Math.abs(entityIn.motionY) * 0.2D;
+            entityIn.motionX *= d0;
+            entityIn.motionZ *= d0;
+            entityIn.motionY++;
+            entityIn.fallDistance = 0;
+            super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+        }
+    }
 
-	@Nullable
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-		return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D);
-	}
+    @Nullable
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D);
+    }
 }

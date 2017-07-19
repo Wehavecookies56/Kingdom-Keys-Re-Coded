@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeEndsoftheEarth extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeEndsoftheEarth (String name) {
-		this.name = name;
-	}
+    public RecipeEndsoftheEarth (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_EndsoftheEarth);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_EndsoftheEarth);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 1);
-		reqs.put(MaterialRegistry.get(Strings.SM_LucidGem), 2);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerStone), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkGem), 1);
+        reqs.put(MaterialRegistry.get(Strings.SM_LucidGem), 2);
+        return reqs;
+    }
 
 }

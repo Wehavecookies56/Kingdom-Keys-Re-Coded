@@ -21,37 +21,37 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMaterialData;
 
 public class DepositMaterialsFromBag extends AbstractMessage.AbstractServerMessage<DepositMaterialsFromBag> {
 
-	public DepositMaterialsFromBag () {}
+    public DepositMaterialsFromBag () {}
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
 
-	}
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
 
-	}
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		for (int i = 0; i < 36; i++) {
-			if (player.inventory.mainInventory.get(i) != ItemStack.EMPTY) {
-				if (player.inventory.mainInventory.get(i).getItem() == ModItems.SynthesisBagS) {
-					IItemHandler bag = player.inventory.mainInventory.get(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        for (int i = 0; i < 36; i++) {
+            if (player.inventory.mainInventory.get(i) != ItemStack.EMPTY) {
+                if (player.inventory.mainInventory.get(i).getItem() == ModItems.SynthesisBagS) {
+                    IItemHandler bag = player.inventory.mainInventory.get(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
                     removeMaterial(bag, player, i);
-				} else if (player.inventory.mainInventory.get(i).getItem() == ModItems.SynthesisBagM) {
-					IItemHandler bag = player.inventory.mainInventory.get(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-					removeMaterial(bag, player, i);
-				} else if (player.inventory.mainInventory.get(i).getItem() == ModItems.SynthesisBagL) {
-					IItemHandler bag = player.inventory.mainInventory.get(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+                } else if (player.inventory.mainInventory.get(i).getItem() == ModItems.SynthesisBagM) {
+                    IItemHandler bag = player.inventory.mainInventory.get(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+                    removeMaterial(bag, player, i);
+                } else if (player.inventory.mainInventory.get(i).getItem() == ModItems.SynthesisBagL) {
+                    IItemHandler bag = player.inventory.mainInventory.get(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
                     removeMaterial(bag, player, i);
                 }
-			}
-		}
-	}
+            }
+        }
+    }
 
-	public void removeMaterial(IItemHandler bag, EntityPlayer player, int i) {
+    public void removeMaterial(IItemHandler bag, EntityPlayer player, int i) {
         for (int j = 0; j < bag.getSlots(); j++) {
             ItemStack bagItem = bag.getStackInSlot(j);
             if (bagItem != ItemStack.EMPTY) {

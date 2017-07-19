@@ -12,29 +12,29 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeHyperdrive extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeHyperdrive (String name) {
-		this.name = name;
-	}
+    public RecipeHyperdrive (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_Hyperdrive);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_Hyperdrive);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 4);
-		reqs.put(MaterialRegistry.get(Strings.SM_FrostStone), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_LucidGem), 2);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_EnergyCrystal), 4);
+        reqs.put(MaterialRegistry.get(Strings.SM_FrostStone), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_LucidGem), 2);
+        return reqs;
+    }
 
 }

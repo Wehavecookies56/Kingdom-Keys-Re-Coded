@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractSe
 
 public class MunnyPickup extends AbstractServerMessage<MunnyPickup> {
 
-	public MunnyPickup () {}
+    public MunnyPickup () {}
 
-	ItemStack toRemove;
+    ItemStack toRemove;
 
-	public MunnyPickup (ItemStack toRemove) {
-		this.toRemove = toRemove;
-	}
+    public MunnyPickup (ItemStack toRemove) {
+        this.toRemove = toRemove;
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStack();
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        toRemove = buffer.readItemStack();
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStack(toRemove);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeItemStack(toRemove);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		//player.inventory.consumeInventoryItem(toRemove.getItem());
-		toRemove.setCount(toRemove.getCount()-1);
-		IMunny munny = player.getCapability(ModCapabilities.MUNNY, null);
-		munny.addMunny(toRemove.getTagCompound().getInteger("amount"));
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        //player.inventory.consumeInventoryItem(toRemove.getItem());
+        toRemove.setCount(toRemove.getCount()-1);
+        IMunny munny = player.getCapability(ModCapabilities.MUNNY, null);
+        munny.addMunny(toRemove.getTagCompound().getInteger("amount"));
+    }
 
 }

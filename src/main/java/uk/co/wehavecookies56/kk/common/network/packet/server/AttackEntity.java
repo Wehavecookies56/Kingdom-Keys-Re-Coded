@@ -34,42 +34,42 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractSe
 
 public class AttackEntity extends AbstractServerMessage<AttackEntity> {
 
-	private int entityId;
-	
-	public AttackEntity() {}
-	
-	public AttackEntity(int entityId) {
-		this.entityId = entityId;
-	}
-	
-	@Override
-	protected void read(PacketBuffer buffer) throws IOException {
-		entityId = buffer.readInt();
-	}
+    private int entityId;
 
-	@Override
-	protected void write(PacketBuffer buffer) throws IOException {
-		buffer.writeInt(entityId);
-	}
+    public AttackEntity() {}
 
-	@Override
-	public void process(EntityPlayer player, Side side) {
-		Entity entity = player.world.getEntityByID(entityId);
-		if (entity != null)
-			this.attackTargetEntityWithCurrentItem(player, entity);
-	}
-	
-	
-	/**
-	 * Slightly modified {@link EntityPlayer#attackTargetEntityWithCurrentItem(Entity)} for off hand
-	 * @param player The player
-	 * @param targetEntity The entity to attack
-	 */
-	public void attackTargetEntityWithCurrentItem(EntityPlayer player, Entity targetEntity) {
+    public AttackEntity(int entityId) {
+        this.entityId = entityId;
+    }
+
+    @Override
+    protected void read(PacketBuffer buffer) throws IOException {
+        entityId = buffer.readInt();
+    }
+
+    @Override
+    protected void write(PacketBuffer buffer) throws IOException {
+        buffer.writeInt(entityId);
+    }
+
+    @Override
+    public void process(EntityPlayer player, Side side) {
+        Entity entity = player.world.getEntityByID(entityId);
+        if (entity != null)
+            this.attackTargetEntityWithCurrentItem(player, entity);
+    }
+
+
+    /**
+     * Slightly modified {@link EntityPlayer#attackTargetEntityWithCurrentItem(Entity)} for off hand
+     * @param player The player
+     * @param targetEntity The entity to attack
+     */
+    public void attackTargetEntityWithCurrentItem(EntityPlayer player, Entity targetEntity) {
         if (!net.minecraftforge.common.ForgeHooks.onPlayerAttackTarget(player, targetEntity)) return;
         if (targetEntity.canBeAttackedWithItem())
         {
-        	Random rand = new Random();
+            Random rand = new Random();
             if (!targetEntity.hitByEntity(player))
             {
                 float attackDamage = (float)player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();

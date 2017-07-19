@@ -11,29 +11,29 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractSe
 
 public class MagicOrbPickup extends AbstractServerMessage<MagicOrbPickup> {
 
-	public MagicOrbPickup () {}
+    public MagicOrbPickup () {}
 
-	ItemStack toRemove;
+    ItemStack toRemove;
 
-	public MagicOrbPickup (ItemStack toRemove) {
-		this.toRemove = toRemove;
-	}
+    public MagicOrbPickup (ItemStack toRemove) {
+        this.toRemove = toRemove;
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		toRemove = buffer.readItemStack();
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        toRemove = buffer.readItemStack();
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStack(toRemove);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeItemStack(toRemove);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		//player.inventory.consumeInventoryItem(toRemove.getItem());
-		toRemove.setCount(toRemove.getCount()-1);
-		player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(toRemove.getTagCompound().getInteger("amount"));
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        //player.inventory.consumeInventoryItem(toRemove.getItem());
+        toRemove.setCount(toRemove.getCount()-1);
+        player.getCapability(ModCapabilities.PLAYER_STATS, null).addMP(toRemove.getTagCompound().getInteger("amount"));
+    }
 
 }

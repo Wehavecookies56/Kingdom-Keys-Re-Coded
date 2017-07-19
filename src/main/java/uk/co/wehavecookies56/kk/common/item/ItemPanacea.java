@@ -10,23 +10,23 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class ItemPanacea extends ItemKKPotion {
 
-	String potionType;
+    String potionType;
 
-	public ItemPanacea(int food, boolean wolf, String type) {
-		super(food, wolf, type, Strings.Panacea);
-		setAlwaysEdible();
-		this.potionType = type;
-	}
+    public ItemPanacea(int food, boolean wolf, String type) {
+        super(food, wolf, type, Strings.Panacea);
+        setAlwaysEdible();
+        this.potionType = type;
+    }
 
-	@Override
-	public void potionEffect (EntityPlayer player) {
-		player.clearActivePotions();
-	}
+    @Override
+    public void potionEffect (EntityPlayer player) {
+        player.clearActivePotions();
+    }
 
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		tooltip.add(TextFormatting.WHITE + "Removes all potion effects");
-		super.addInformation(stack, playerIn, tooltip, advanced);
-	}
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        tooltip.add(TextFormatting.WHITE + "Removes all potion effects");
+        super.addInformation(stack, playerIn, tooltip, advanced);
+    }
 
 }

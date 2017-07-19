@@ -9,53 +9,53 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 
 public class ItemOrgWeapon extends ItemSword{
-	double magic, strength;
-	public String description;
-	double speed = 1.0;
-	
-	public ItemOrgWeapon (double strength, double magic) {
-		super(EnumHelper.addToolMaterial("ORGWEAPON", -4, -1, 0, 0, 20));
-		this.magic = magic;
-		this.strength = strength;
-		setMaxStackSize(1);
-		setCreativeTab(ModItems.tabKingdomKeys);
-	}
-	public double getStrength() {
-		return this.strength;
-	}
-	
-	public double getMagic() {
-		return this.magic;
-	}
+    double magic, strength;
+    public String description;
+    double speed = 1.0;
 
-	public void setStrength(int strength) {
-		this.strength = strength;
-	}
+    public ItemOrgWeapon (double strength, double magic) {
+        super(EnumHelper.addToolMaterial("ORGWEAPON", -4, -1, 0, 0, 20));
+        this.magic = magic;
+        this.strength = strength;
+        setMaxStackSize(1);
+        setCreativeTab(ModItems.tabKingdomKeys);
+    }
+    public double getStrength() {
+        return this.strength;
+    }
 
-	public void setMagic(int magic) {
-		this.magic = magic;
-	}
+    public double getMagic() {
+        return this.magic;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setMagic(int magic) {
+        this.magic = magic;
+    }
 
-	public double getSpeed() {
-		return speed;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setSpeed(double speed) {
-		this.speed = speed;
-	}
-	
-	@Override
-	@SideOnly (Side.CLIENT)
-	public EnumRarity getRarity (ItemStack par1ItemStack) {
-		return EnumRarity.UNCOMMON;
-	}
-	
+    public String getDescription() {
+        return description;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    @Override
+    @SideOnly (Side.CLIENT)
+    public EnumRarity getRarity (ItemStack par1ItemStack) {
+        return EnumRarity.UNCOMMON;
+    }
+
 }

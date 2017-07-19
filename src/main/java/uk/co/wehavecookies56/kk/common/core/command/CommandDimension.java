@@ -23,107 +23,107 @@ import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
 
 public class CommandDimension implements ICommand {
 
-	private List<String> aliases;
+    private List<String> aliases;
 
-	public CommandDimension () {
-		this.aliases = new ArrayList<String>();
-		this.aliases.add("kkdimension");
-	}
+    public CommandDimension () {
+        this.aliases = new ArrayList<String>();
+        this.aliases.add("kkdimension");
+    }
 
-	@Override
-	public int compareTo (ICommand arg0) {
-		return 0;
-	}
+    @Override
+    public int compareTo (ICommand arg0) {
+        return 0;
+    }
 
-	@Override
-	public String getName () {
-		return "dimension";
-	}
-	
-	public int getRequiredPermissionLevel()
+    @Override
+    public String getName () {
+        return "dimension";
+    }
+
+    public int getRequiredPermissionLevel()
     {
         return 2;
     }
 
-	@Override
-	public String getUsage (ICommandSender sender) {
-		return "/dimension";
-	}
+    @Override
+    public String getUsage (ICommandSender sender) {
+        return "/dimension";
+    }
 
-	@Override
-	public List<String> getAliases () {
-		return this.aliases;
-	}
+    @Override
+    public List<String> getAliases () {
+        return this.aliases;
+    }
 
-	public static boolean isInteger (String s) {
-		try {
-			Integer.parseInt(s);
-		} catch (NumberFormatException e) {
-			return false;
-		} catch (NullPointerException e) {
-			return false;
-		}
-		return true;
-	}
-	
-	public static EntityPlayer getPlayerFromUsername(String username)
+    public static boolean isInteger (String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static EntityPlayer getPlayerFromUsername(String username)
     {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
             return null;
 
         return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(username);
     }
-	
-	
-	@Override
-	public void execute (MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-		if (sender.getCommandSenderEntity() instanceof EntityPlayer) 
-		{
-			EntityPlayer player = null;
-			if (args.length == 0) {
-				player = getCommandSenderAsPlayer(sender);
-			} else if (args.length == 1) {
-				player = getPlayerFromUsername(args[0]);
-			} else if (args.length > 1) {
-				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-				return;
-			}
-			if(player != null)
-			{
-				if (!player.world.isRemote)
-				{
-					if (player.dimension == ModDimensions.diveToTheHeartID)
-					{
-    					new TeleporterOverworld(player.world.getMinecraftServer().getServer().worldServerForDimension(0)).teleport((player), player.world);
-					}
-					else if(player.dimension == 0)
-					{
-						new TeleporterDiveToTheHeart(player.world.getMinecraftServer().getServer().worldServerForDimension(ModDimensions.diveToTheHeartID)).teleport(player, player.world);
-					}
-				}
-			}
-		}
-	}
-	
-	@Override
-	public boolean isUsernameIndex (String[] args, int index) {
-		return false;
-	}
 
-	public static EntityPlayerMP getCommandSenderAsPlayer (ICommandSender sender) throws PlayerNotFoundException {
-		if (sender instanceof EntityPlayerMP)
-			return (EntityPlayerMP) sender;
-		else
-			throw new PlayerNotFoundException("You must specify which player you wish to perform this action on.", new Object[0]);
-	}
 
-	@Override
-	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		return true;
-	}
+    @Override
+    public void execute (MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+        if (sender.getCommandSenderEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer player = null;
+            if (args.length == 0) {
+                player = getCommandSenderAsPlayer(sender);
+            } else if (args.length == 1) {
+                player = getPlayerFromUsername(args[0]);
+            } else if (args.length > 1) {
+                TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+                return;
+            }
+            if(player != null)
+            {
+                if (!player.world.isRemote)
+                {
+                    if (player.dimension == ModDimensions.diveToTheHeartID)
+                    {
+                        new TeleporterOverworld(player.world.getMinecraftServer().getServer().worldServerForDimension(0)).teleport((player), player.world);
+                    }
+                    else if(player.dimension == 0)
+                    {
+                        new TeleporterDiveToTheHeart(player.world.getMinecraftServer().getServer().worldServerForDimension(ModDimensions.diveToTheHeartID)).teleport(player, player.world);
+                    }
+                }
+            }
+        }
+    }
 
-	@Override
-	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
-		return null;
-	}
+    @Override
+    public boolean isUsernameIndex (String[] args, int index) {
+        return false;
+    }
+
+    public static EntityPlayerMP getCommandSenderAsPlayer (ICommandSender sender) throws PlayerNotFoundException {
+        if (sender instanceof EntityPlayerMP)
+            return (EntityPlayerMP) sender;
+        else
+            throw new PlayerNotFoundException("You must specify which player you wish to perform this action on.", new Object[0]);
+    }
+
+    @Override
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+        return true;
+    }
+
+    @Override
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
+        return null;
+    }
 }

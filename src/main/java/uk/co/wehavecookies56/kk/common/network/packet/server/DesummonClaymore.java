@@ -17,28 +17,28 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
 
 public class DesummonClaymore extends AbstractMessage.AbstractServerMessage<DesummonClaymore> {
 
-	ItemStack stack;
+    ItemStack stack;
 
-	public DesummonClaymore () {}
+    public DesummonClaymore () {}
 
-	public DesummonClaymore (ItemClaymore claymore) {
-		this.stack = new ItemStack(claymore);
-	}
+    public DesummonClaymore (ItemClaymore claymore) {
+        this.stack = new ItemStack(claymore);
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		stack = buffer.readItemStack();
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        stack = buffer.readItemStack();
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeItemStack(stack);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeItemStack(stack);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		stack.setItemDamage(0);
-		player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
-		player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        stack.setItemDamage(0);
+        player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
+        player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
+    }
 }

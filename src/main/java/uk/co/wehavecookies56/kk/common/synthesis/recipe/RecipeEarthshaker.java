@@ -12,29 +12,29 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeEarthshaker extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeEarthshaker (String name) {
-		this.name = name;
-	}
+    public RecipeEarthshaker (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_Earthshaker);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_Earthshaker);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 5);
-		reqs.put(MaterialRegistry.get(Strings.SM_DenseStone), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_EnergyShard), 3);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_DarkShard), 5);
+        reqs.put(MaterialRegistry.get(Strings.SM_DenseStone), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_EnergyShard), 3);
+        return reqs;
+    }
 
 }

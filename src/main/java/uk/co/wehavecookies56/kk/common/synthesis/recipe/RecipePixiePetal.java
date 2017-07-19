@@ -12,29 +12,29 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipePixiePetal extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipePixiePetal (String name) {
-		this.name = name;
-	}
+    public RecipePixiePetal (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_PixiePetal);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_PixiePetal);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightShard), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_LucidStone), 2);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightShard), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_LucidStone), 2);
+        return reqs;
+    }
 
 }

@@ -13,37 +13,37 @@ import java.io.IOException;
 
 public class PedestalItem extends AbstractMessage.AbstractServerMessage<PedestalItem> {
 
-	public PedestalItem () {}
-	BlockPos pedestalPos;
-	//ItemStack item;
-	char rotation;
+    public PedestalItem () {}
+    BlockPos pedestalPos;
+    //ItemStack item;
+    char rotation;
 
-	public PedestalItem (BlockPos pedestalPos, char rotation) {
-		//this.item = item;
-		this.rotation = rotation;
-		this.pedestalPos = pedestalPos;
-	}
+    public PedestalItem (BlockPos pedestalPos, char rotation) {
+        //this.item = item;
+        this.rotation = rotation;
+        this.pedestalPos = pedestalPos;
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		//item = buffer.readItemStackFromBuffer();
-		rotation = buffer.readChar();
-		pedestalPos = buffer.readBlockPos();
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        //item = buffer.readItemStackFromBuffer();
+        rotation = buffer.readChar();
+        pedestalPos = buffer.readBlockPos();
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeChar(rotation);
-		//buffer.writeItemStackToBuffer(item);
-		buffer.writeBlockPos(pedestalPos);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeChar(rotation);
+        //buffer.writeItemStackToBuffer(item);
+        buffer.writeBlockPos(pedestalPos);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		TileEntityPedestal pedestal = (TileEntityPedestal) player.world.getTileEntity(pedestalPos);
-		pedestal.setRotation(rotation);
-		PacketDispatcher.sendToAll(new PedestalRotation(pedestal));
-	}
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        TileEntityPedestal pedestal = (TileEntityPedestal) player.world.getTileEntity(pedestalPos);
+        pedestal.setRotation(rotation);
+        PacketDispatcher.sendToAll(new PedestalRotation(pedestal));
+    }
 
 
 }

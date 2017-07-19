@@ -23,56 +23,56 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 
 public class BlockPedestal extends Block implements ITileEntityProvider{
 
-	protected BlockPedestal (Material material, String toolClass, int level, float hardness, float resistance) {
-		super(material);
-		this.setHarvestLevel(toolClass, level);
-		setHardness(hardness);
-		setResistance(resistance);
-	}
-	
-	public TileEntity createNewTileEntity (World worldIn, int meta) {
-		return new TileEntityPedestal();
-	}
+    protected BlockPedestal (Material material, String toolClass, int level, float hardness, float resistance) {
+        super(material);
+        this.setHarvestLevel(toolClass, level);
+        setHardness(hardness);
+        setResistance(resistance);
+    }
 
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!world.isRemote) {
-			TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(pos);
-			player.openGui(KingdomKeys.instance, GuiIDs.GUI_PEDESTAL_INV, world, pos.getX(), pos.getY(), pos.getZ());
-			PacketDispatcher.sendToAll(new PedestalRotation(te));
-			return true;
-		}
-		return false;
-	}
+    public TileEntity createNewTileEntity (World worldIn, int meta) {
+        return new TileEntityPedestal();
+    }
 
-	@Override
-	public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (!world.isRemote) {
+            TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(pos);
+            player.openGui(KingdomKeys.instance, GuiIDs.GUI_PEDESTAL_INV, world, pos.getX(), pos.getY(), pos.getZ());
+            PacketDispatcher.sendToAll(new PedestalRotation(te));
+            return true;
+        }
+        return false;
+    }
 
-		TileEntityPedestal te = (TileEntityPedestal) worldIn.getTileEntity(pos);
-		IItemHandler inventory = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
+    @Override
+    public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {
 
-		if (inventory != null) {
-			for (int i = 0; i < inventory.getSlots(); i++)
-				if (inventory.getStackInSlot(i) != ItemStack.EMPTY) {
-					EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, inventory.getStackInSlot(i));
+        TileEntityPedestal te = (TileEntityPedestal) worldIn.getTileEntity(pos);
+        IItemHandler inventory = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
 
-					float multiplier = 0.1f;
-					float motionX = worldIn.rand.nextFloat() - 0.5f;
-					float motionY = worldIn.rand.nextFloat() - 0.5f;
-					float motionZ = worldIn.rand.nextFloat() - 0.5f;
+        if (inventory != null) {
+            for (int i = 0; i < inventory.getSlots(); i++)
+                if (inventory.getStackInSlot(i) != ItemStack.EMPTY) {
+                    EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, inventory.getStackInSlot(i));
 
-					item.motionX = motionX * multiplier;
-					item.motionY = motionY * multiplier;
-					item.motionZ = motionZ * multiplier;
+                    float multiplier = 0.1f;
+                    float motionX = worldIn.rand.nextFloat() - 0.5f;
+                    float motionY = worldIn.rand.nextFloat() - 0.5f;
+                    float motionZ = worldIn.rand.nextFloat() - 0.5f;
 
-					worldIn.spawnEntity(item);
-				}
-		}
-		super.breakBlock(worldIn, pos, state);
-	}
+                    item.motionX = motionX * multiplier;
+                    item.motionY = motionY * multiplier;
+                    item.motionZ = motionZ * multiplier;
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return true;
-	}
+                    worldIn.spawnEntity(item);
+                }
+        }
+        super.breakBlock(worldIn, pos, state);
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return true;
+    }
 }

@@ -56,10 +56,10 @@ public class GuiHandler implements IGuiHandler {
         else if (ID == GuiIDs.GUI_SYNTHESISBAGM_INV)
             return new ContainerSynthesisBagM(player, player.inventory);
         else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV) 
-        	return new ContainerSynthesisBagL(player, player.inventory);
+            return new ContainerSynthesisBagL(player, player.inventory);
         else if (ID == GuiIDs.GUI_PEDESTAL_INV)
-        	if (te instanceof TileEntityPedestal)
-            	return new ContainerPedestal(player.inventory, (TileEntityPedestal) world.getTileEntity(new BlockPos(x, y, z)));
+            if (te instanceof TileEntityPedestal)
+                return new ContainerPedestal(player.inventory, (TileEntityPedestal) world.getTileEntity(new BlockPos(x, y, z)));
             else
                 return null;
         return null;
@@ -91,11 +91,11 @@ public class GuiHandler implements IGuiHandler {
         else if (ID == GuiIDs.GUI_SYNTHESISBAGM_INV)
             return new GuiSynthesisBagM(player, player.inventory);
         else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV) 
-        	return new GuiSynthesisBagL(player, player.inventory);
+            return new GuiSynthesisBagL(player, player.inventory);
         else if (ID == GuiIDs.GUI_SHOP) 
-        	return new GuiShop(null);
+            return new GuiShop(null);
         else if (ID == GuiIDs.GUI_PEDESTAL_INV)
-        	if (te instanceof TileEntityPedestal)
+            if (te instanceof TileEntityPedestal)
                 return new GuiPedestal(player.inventory, (TileEntityPedestal) world.getTileEntity(new BlockPos(x, y, z)));
             else
                 return null;

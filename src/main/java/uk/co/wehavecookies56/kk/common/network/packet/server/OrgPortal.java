@@ -19,34 +19,34 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 
 public class OrgPortal extends AbstractMessage.AbstractServerMessage<OrgPortal> {
 
-	public OrgPortal () {}
+    public OrgPortal () {}
 
-	BlockPos pos;
+    BlockPos pos;
 
-	public OrgPortal (BlockPos pos) {
-		this.pos = pos;
-	}
+    public OrgPortal (BlockPos pos) {
+        this.pos = pos;
+    }
 
-	@Override
-	protected void read (PacketBuffer buffer) throws IOException {
-		pos = buffer.readBlockPos();
-	}
+    @Override
+    protected void read (PacketBuffer buffer) throws IOException {
+        pos = buffer.readBlockPos();
+    }
 
-	@Override
-	protected void write (PacketBuffer buffer) throws IOException {
-		buffer.writeBlockPos(pos);
-	}
+    @Override
+    protected void write (PacketBuffer buffer) throws IOException {
+        buffer.writeBlockPos(pos);
+    }
 
-	@Override
-	public void process (EntityPlayer player, Side side) {
-		if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) 
-			player.getCapability(ModCapabilities.PLAYER_STATS, null).setMP(0);
+    @Override
+    public void process (EntityPlayer player, Side side) {
+        if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
+            player.getCapability(ModCapabilities.PLAYER_STATS, null).setMP(0);
 
-		PacketDispatcher.sendToAllAround(new SpawnPortalParticles(pos), player, 64.0D);
-		EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos.getX(),pos.getY(), pos.getZ());
-		player.world.spawnEntity(portal);
-		
-		PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        PacketDispatcher.sendToAllAround(new SpawnPortalParticles(pos), player, 64.0D);
+        EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos.getX(),pos.getY(), pos.getZ());
+        player.world.spawnEntity(portal);
 
-	}
+        PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+
+    }
 }

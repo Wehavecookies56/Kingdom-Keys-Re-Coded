@@ -12,30 +12,30 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeMastersDefender extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeMastersDefender (String name) {
-		this.name = name;
-	}
+    public RecipeMastersDefender (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_MastersDefender);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_MastersDefender);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_TwilightCrystal), 7);
-		reqs.put(MaterialRegistry.get(Strings.SM_TwilightGem), 10);
-		reqs.put(MaterialRegistry.get(Strings.SM_MythrilCrystal), 4);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 5);
-		return reqs;
-	}
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_TwilightCrystal), 7);
+        reqs.put(MaterialRegistry.get(Strings.SM_TwilightGem), 10);
+        reqs.put(MaterialRegistry.get(Strings.SM_MythrilCrystal), 4);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerGem), 5);
+        return reqs;
+    }
 
 }

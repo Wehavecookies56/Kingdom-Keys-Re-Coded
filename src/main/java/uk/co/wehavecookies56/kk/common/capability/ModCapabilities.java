@@ -48,6 +48,6 @@ public class ModCapabilities {
         CapabilityManager.INSTANCE.register(ISynthesisMaterial.class, new SynthesisMaterialCapability.Storage(), SynthesisMaterialCapability.Default.class);
         CapabilityManager.INSTANCE.register(ICheatMode.class, new CheatModeCapability.Storage(), CheatModeCapability.Default.class);
         CapabilityManager.INSTANCE.register(IOrganizationXIII.class, new OrganizationXIIICapability.Storage(), OrganizationXIIICapability.Default.class);
-	}
-	
+    }
+
 }

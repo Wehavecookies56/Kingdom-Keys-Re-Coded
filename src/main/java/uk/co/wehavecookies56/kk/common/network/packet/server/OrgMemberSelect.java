@@ -63,6 +63,6 @@ OrgMemberSelect extends AbstractMessage.AbstractServerMessage<OrgMemberSelect> {
             case XIGBAR: org.setCurrentWeapon(ModItems.Standalone); org.addUnlockedWeapon(ModItems.Standalone); break;
             case ZEXION: org.setCurrentWeapon(ModItems.BlackPrimer); org.addUnlockedWeapon(ModItems.BlackPrimer); break;
         }
-		PacketDispatcher.sendTo(new SyncOrgXIIIData(org), (EntityPlayerMP) player);
+        PacketDispatcher.sendTo(new SyncOrgXIIIData(org), (EntityPlayerMP) player);
     }
 }

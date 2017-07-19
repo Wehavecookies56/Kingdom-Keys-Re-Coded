@@ -15,36 +15,36 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class TileEntityOrgPortal extends TileEntity{
-	String ownerName;
-	final int NUMBER_OF_SLOTS = 36;
-	private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];
+    String ownerName;
+    final int NUMBER_OF_SLOTS = 36;
+    private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];
 
-	@Override
-	public NBTTagCompound writeToNBT (NBTTagCompound parentNBTTagCompound) {
-		super.writeToNBT(parentNBTTagCompound);
-		if (ownerName != null)
-			parentNBTTagCompound.setString("owner", ownerName);
-		return parentNBTTagCompound;
-	}
+    @Override
+    public NBTTagCompound writeToNBT (NBTTagCompound parentNBTTagCompound) {
+        super.writeToNBT(parentNBTTagCompound);
+        if (ownerName != null)
+            parentNBTTagCompound.setString("owner", ownerName);
+        return parentNBTTagCompound;
+    }
 
-	@Override
-	public void readFromNBT (NBTTagCompound parentNBTTagCompound) {
-		super.readFromNBT(parentNBTTagCompound);
-		final byte NBT_TYPE_COMPOUND = 10;
-		
-		ownerName = parentNBTTagCompound.getString("owner");
-	}
+    @Override
+    public void readFromNBT (NBTTagCompound parentNBTTagCompound) {
+        super.readFromNBT(parentNBTTagCompound);
+        final byte NBT_TYPE_COMPOUND = 10;
 
-	@Override
-	public ITextComponent getDisplayName () {
-		return new TextComponentTranslation(ownerName+"'s Portal", new Object[0]);
-	}
+        ownerName = parentNBTTagCompound.getString("owner");
+    }
 
-	public String getOwner() {
-		return ownerName;
-	}
+    @Override
+    public ITextComponent getDisplayName () {
+        return new TextComponentTranslation(ownerName+"'s Portal", new Object[0]);
+    }
 
-	public void setOwner(EntityPlayer player) {
-		this.ownerName = player.getDisplayNameString();
-	}
+    public String getOwner() {
+        return ownerName;
+    }
+
+    public void setOwner(EntityPlayer player) {
+        this.ownerName = player.getDisplayNameString();
+    }
 }

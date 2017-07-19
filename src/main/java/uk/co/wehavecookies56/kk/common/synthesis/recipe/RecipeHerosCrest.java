@@ -12,31 +12,31 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RecipeHerosCrest extends Recipe {
 
-	public String name;
+    public String name;
 
-	public RecipeHerosCrest (String name) {
-		this.name = name;
-	}
+    public RecipeHerosCrest (String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getName () {
-		return name;
-	}
+    @Override
+    public String getName () {
+        return name;
+    }
 
-	@Override
-	public ItemStack getResult () {
-		return new ItemStack(ModItems.Chain_HerosCrest);
-	}
+    @Override
+    public ItemStack getResult () {
+        return new ItemStack(ModItems.Chain_HerosCrest);
+    }
 
-	@Override
-	public Map<Material, Integer> getRequirements () {
-		Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-		reqs.put(MaterialRegistry.get(Strings.SM_LightningCrystal), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 2);
-		reqs.put(MaterialRegistry.get(Strings.SM_PowerShard), 3);
-		reqs.put(MaterialRegistry.get(Strings.SM_BrightStone), 2);
+    @Override
+    public Map<Material, Integer> getRequirements () {
+        Map<Material, Integer> reqs = new HashMap<Material, Integer>();
+        reqs.put(MaterialRegistry.get(Strings.SM_LightningCrystal), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_LightningGem), 2);
+        reqs.put(MaterialRegistry.get(Strings.SM_PowerShard), 3);
+        reqs.put(MaterialRegistry.get(Strings.SM_BrightStone), 2);
 
-		return reqs;
-	}
+        return reqs;
+    }
 
 }

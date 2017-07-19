@@ -16,193 +16,193 @@ import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
 
 public class BlockMagnetBlox extends BlockBlox {
 
-	protected BlockMagnetBlox (Material material, String toolClass, int level, float hardness, float resistance) {
-		super(material, toolClass, level, hardness, resistance);
-	}
+    protected BlockMagnetBlox (Material material, String toolClass, int level, float hardness, float resistance) {
+        super(material, toolClass, level, hardness, resistance);
+    }
 
-	public static final PropertyDirection PROPERTYFACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-	public static final PropertyBool PROPERTYON = PropertyBool.create("on");
-	public static final PropertyBool PROPERTYMAGNET = PropertyBool.create("magnet");
+    public static final PropertyDirection PROPERTYFACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    public static final PropertyBool PROPERTYON = PropertyBool.create("on");
+    public static final PropertyBool PROPERTYMAGNET = PropertyBool.create("magnet");
 
-	@Override
-	public int getMetaFromState (IBlockState state) {
-		EnumFacing facing = state.getValue(PROPERTYFACING);
-		boolean on = state.getValue(PROPERTYON);
-		boolean magnet = state.getValue(PROPERTYMAGNET);
-		
-		int facingbits = facing.getHorizontalIndex();
+    @Override
+    public int getMetaFromState (IBlockState state) {
+        EnumFacing facing = state.getValue(PROPERTYFACING);
+        boolean on = state.getValue(PROPERTYON);
+        boolean magnet = state.getValue(PROPERTYMAGNET);
 
-		if (on) facingbits += 4;
-		if (magnet) facingbits += 8;
-		return facingbits;
-	}
+        int facingbits = facing.getHorizontalIndex();
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public IBlockState getActualState (IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		return state;
-	}
+        if (on) facingbits += 4;
+        if (magnet) facingbits += 8;
+        return facingbits;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public IBlockState getActualState (IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return state;
+    }
 /*
-	@Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entityIn) {
-		if (!world.isRemote) updateState(world, pos);
-		super.onEntityCollidedWithBlock(world, pos, state, entityIn);
-	}
+    @Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entityIn) {
+        if (!world.isRemote) updateState(world, pos);
+        super.onEntityCollidedWithBlock(world, pos, state, entityIn);
+    }
 
-	@Override
-	public void updateTick (World world, BlockPos pos, IBlockState state, Random rand) {
-		if (!world.isRemote) updateState(world, pos);
-		super.updateTick(world, pos, state, rand);
-	}
-	*/
-	@Override
-	public BlockRenderLayer getBlockLayer () {
-		return BlockRenderLayer.TRANSLUCENT;
-	}
+    @Override
+    public void updateTick (World world, BlockPos pos, IBlockState state, Random rand) {
+        if (!world.isRemote) updateState(world, pos);
+        super.updateTick(world, pos, state, rand);
+    }
+    */
+    @Override
+    public BlockRenderLayer getBlockLayer () {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public boolean isOpaqueCube (IBlockState state) {
-		return false;
-	}
-	
-	/*private void updateState (World world, BlockPos pos) {
-		List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, getCollisionBoundingBox(world.getBlockState(pos), world, pos));
-		if (list.isEmpty()) return;
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean isOpaqueCube (IBlockState state) {
+        return false;
+    }
 
-		for (int i = 0; i < list.size(); i++) {
-			Entity e = (Entity) list.get(i);
+    /*private void updateState (World world, BlockPos pos) {
+        List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, getCollisionBoundingBox(world.getBlockState(pos), world, pos));
+        if (list.isEmpty()) return;
 
-			if (e instanceof EntityLivingBase) {
+        for (int i = 0; i < list.size(); i++) {
+            Entity e = (Entity) list.get(i);
 
-				if (e instanceof EntityPlayer) {
-					((EntityPlayer) e).jump();
-				}
-			}
-		}
-		world.scheduleUpdate(pos, this, tickRate(world));
-	}
-	*/
+            if (e instanceof EntityLivingBase) {
 
-//	@Override
-//	public void setBlockBoundsBasedOnState (IBlockAccess world, BlockPos pos) {
-//		IBlockState state = world.getBlockState(pos);
-//		EnumFacing facing = state.getValue(PROPERTYFACING);
-//		boolean isOn = state.getValue(PROPERTYON);
-//		if(state.getValue(PROPERTYMAGNET)){
-//			state.getBlock().setBlockBounds(0, 0, 0, 1, 1, 1);
-//		}
-//		if (isOn) {
-//			if (facing == EnumFacing.NORTH)
-//				state.getBlock().setBlockBounds(0, 0, 0, 1, 1, 10);
-//			else if (facing == EnumFacing.SOUTH)
-//				state.getBlock().setBlockBounds(0, 0, 0, 1, 1, -10);
-//			else if (facing == EnumFacing.EAST)
-//				state.getBlock().setBlockBounds(0, 0, 0, -10, 1, 1);
-//			else if (facing == EnumFacing.WEST) state.getBlock().setBlockBounds(0, 0, 0, 10, 1, 1);
-//		} else
-//			state.getBlock().setBlockBounds(0, 0, 0, 1, 1, 1);
-//		super.setBlockBoundsBasedOnState(world, pos);
-//	}
+                if (e instanceof EntityPlayer) {
+                    ((EntityPlayer) e).jump();
+                }
+            }
+        }
+        world.scheduleUpdate(pos, this, tickRate(world));
+    }
+    */
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public void neighborChanged (IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
-		
-		if (world.isBlockPowered(pos)) {
-			world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYON, true));
-			/*
-			EnumFacing facing = world.getBlockState(pos).getValue(PROPERTYFACING);
-			for (int i = 1; i < 10; i++) {
-				if(facing == EnumFacing.NORTH) {
-					if(world.getBlockState(pos.offset(facing, i)).getBlock() == Blocks.air){
-						world.setBlockState(pos.offset(facing, i), ModBlocks.MagnetBlox.getDefaultState().withProperty(PROPERTYFACING, facing.getOpposite()).withProperty(PROPERTYMAGNET, true).withProperty(PROPERTYON, false));
-					}else {
-						break;
-					}
-				}
-				if(facing == EnumFacing.SOUTH) {
-					if(world.getBlockState(pos.south()) == Blocks.air){
-						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
-					}else {
-						break;
-					}
-				}
-				if(facing == EnumFacing.EAST) {
-					if(world.getBlockState(pos.east()) == Blocks.air){
-						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
-					}else {
-						break;
-					}
-				}
-				if(facing == EnumFacing.WEST) {
-					if(world.getBlockState(pos.west()) == Blocks.air){
-						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
-					}else {
-						break;
-					}
-				}
-			}
-			*/
-		} else {
-			world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYON, false));
-			/*
-			EnumFacing facing = world.getBlockState(pos).getValue(PROPERTYFACING);
-			for (int i = 1; i < 10; i++) {
-				if(facing == EnumFacing.NORTH) {
-					if(world.getBlockState(pos.offset(facing, i)).getBlock() == ModBlocks.MagnetBlox){
-						world.setBlockState(pos.offset(facing, i), Blocks.air.getDefaultState());
-					}else {
-						break;
-					}
-				}
-				if(facing == EnumFacing.SOUTH) {
-					if(world.getBlockState(pos.south()) == Blocks.air){
-						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
-					}else {
-						break;
-					}
-				}
-				if(facing == EnumFacing.EAST) {
-					if(world.getBlockState(pos.east()) == Blocks.air){
-						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
-					}else {
-						break;
-					}
-				}
-				if(facing == EnumFacing.WEST) {
-					if(world.getBlockState(pos.west()) == Blocks.air){
-						world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
-					}else {
-						break;
-					}
-				}
-			}
-			*/
-		}
-	}
+//    @Override
+//    public void setBlockBoundsBasedOnState (IBlockAccess world, BlockPos pos) {
+//        IBlockState state = world.getBlockState(pos);
+//        EnumFacing facing = state.getValue(PROPERTYFACING);
+//        boolean isOn = state.getValue(PROPERTYON);
+//        if(state.getValue(PROPERTYMAGNET)){
+//            state.getBlock().setBlockBounds(0, 0, 0, 1, 1, 1);
+//        }
+//        if (isOn) {
+//            if (facing == EnumFacing.NORTH)
+//                state.getBlock().setBlockBounds(0, 0, 0, 1, 1, 10);
+//            else if (facing == EnumFacing.SOUTH)
+//                state.getBlock().setBlockBounds(0, 0, 0, 1, 1, -10);
+//            else if (facing == EnumFacing.EAST)
+//                state.getBlock().setBlockBounds(0, 0, 0, -10, 1, 1);
+//            else if (facing == EnumFacing.WEST) state.getBlock().setBlockBounds(0, 0, 0, 10, 1, 1);
+//        } else
+//            state.getBlock().setBlockBounds(0, 0, 0, 1, 1, 1);
+//        super.setBlockBoundsBasedOnState(world, pos);
+//    }
 
-	/*@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
-		EnumFacing facing = state.getValue(PROPERTYFACING);
-		if(state.getValue(PROPERTYMAGNET)){
-			return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(0, 0, 0));
-		}
-		if (world.isBlockPowered(pos)) {
-			if (facing == EnumFacing.NORTH)
-				return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 10));
-			else if (facing == EnumFacing.SOUTH)
-				return new AxisAlignedBB(pos.add(0, 0, -10), pos.add(1, 1, 10));
-			else if (facing == EnumFacing.EAST)
-				return new AxisAlignedBB(pos.add(-10, 0, 0), pos.add(10, 1, 1));
-			else if (facing == EnumFacing.WEST) return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(10, 1, 1));
-		} else
-			return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1));
-		return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1));
-	}*/
+    @SuppressWarnings("deprecation")
+    @Override
+    public void neighborChanged (IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 
-	@Override
-	protected BlockStateContainer createBlockState () {
-		return new BlockStateContainer(this, new IProperty[] { PROPERTYFACING, PROPERTYON, PROPERTYMAGNET });
-	}
+        if (world.isBlockPowered(pos)) {
+            world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYON, true));
+            /*
+            EnumFacing facing = world.getBlockState(pos).getValue(PROPERTYFACING);
+            for (int i = 1; i < 10; i++) {
+                if(facing == EnumFacing.NORTH) {
+                    if(world.getBlockState(pos.offset(facing, i)).getBlock() == Blocks.air){
+                        world.setBlockState(pos.offset(facing, i), ModBlocks.MagnetBlox.getDefaultState().withProperty(PROPERTYFACING, facing.getOpposite()).withProperty(PROPERTYMAGNET, true).withProperty(PROPERTYON, false));
+                    }else {
+                        break;
+                    }
+                }
+                if(facing == EnumFacing.SOUTH) {
+                    if(world.getBlockState(pos.south()) == Blocks.air){
+                        world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+                    }else {
+                        break;
+                    }
+                }
+                if(facing == EnumFacing.EAST) {
+                    if(world.getBlockState(pos.east()) == Blocks.air){
+                        world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+                    }else {
+                        break;
+                    }
+                }
+                if(facing == EnumFacing.WEST) {
+                    if(world.getBlockState(pos.west()) == Blocks.air){
+                        world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+                    }else {
+                        break;
+                    }
+                }
+            }
+            */
+        } else {
+            world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYON, false));
+            /*
+            EnumFacing facing = world.getBlockState(pos).getValue(PROPERTYFACING);
+            for (int i = 1; i < 10; i++) {
+                if(facing == EnumFacing.NORTH) {
+                    if(world.getBlockState(pos.offset(facing, i)).getBlock() == ModBlocks.MagnetBlox){
+                        world.setBlockState(pos.offset(facing, i), Blocks.air.getDefaultState());
+                    }else {
+                        break;
+                    }
+                }
+                if(facing == EnumFacing.SOUTH) {
+                    if(world.getBlockState(pos.south()) == Blocks.air){
+                        world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+                    }else {
+                        break;
+                    }
+                }
+                if(facing == EnumFacing.EAST) {
+                    if(world.getBlockState(pos.east()) == Blocks.air){
+                        world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+                    }else {
+                        break;
+                    }
+                }
+                if(facing == EnumFacing.WEST) {
+                    if(world.getBlockState(pos.west()) == Blocks.air){
+                        world.setBlockState(pos, world.getBlockState(pos).withProperty(PROPERTYFACING, facing));
+                    }else {
+                        break;
+                    }
+                }
+            }
+            */
+        }
+    }
+
+    /*@Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
+        EnumFacing facing = state.getValue(PROPERTYFACING);
+        if(state.getValue(PROPERTYMAGNET)){
+            return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(0, 0, 0));
+        }
+        if (world.isBlockPowered(pos)) {
+            if (facing == EnumFacing.NORTH)
+                return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 10));
+            else if (facing == EnumFacing.SOUTH)
+                return new AxisAlignedBB(pos.add(0, 0, -10), pos.add(1, 1, 10));
+            else if (facing == EnumFacing.EAST)
+                return new AxisAlignedBB(pos.add(-10, 0, 0), pos.add(10, 1, 1));
+            else if (facing == EnumFacing.WEST) return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(10, 1, 1));
+        } else
+            return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1));
+        return new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1));
+    }*/
+
+    @Override
+    protected BlockStateContainer createBlockState () {
+        return new BlockStateContainer(this, new IProperty[] { PROPERTYFACING, PROPERTYON, PROPERTYMAGNET });
+    }
 }

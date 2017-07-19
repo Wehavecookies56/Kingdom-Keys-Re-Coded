@@ -28,98 +28,98 @@ import javax.annotation.Nullable;
 
 public class BlockSavePoint extends Block {
 
-	protected BlockSavePoint (Material material, String toolClass, int level, float hardness, float resistance) {
-		super(material);
-		//setBlockBounds(0, 0, 0, 1, 0.1F, 1);
-		setTickRandomly(true);
-		//setSoundType(SoundType.STONE);
-	}
+    protected BlockSavePoint (Material material, String toolClass, int level, float hardness, float resistance) {
+        super(material);
+        //setBlockBounds(0, 0, 0, 1, 0.1F, 1);
+        setTickRandomly(true);
+        //setSoundType(SoundType.STONE);
+    }
 
-	@Override
-	public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
-		world.scheduleUpdate(pos, this, tickRate(world));
-		super.onBlockAdded(world, pos, state);
-	}
-
-	@Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entityIn) {
-		if (!world.isRemote) updateState(world, pos);
-	}
-
-	@Override
-	public void randomTick (World worldIn, BlockPos pos, IBlockState state, Random random) {}
-
-	@Override
-	public void updateTick (World world, BlockPos pos, IBlockState state, Random rand) {
-		if (!world.isRemote) updateState(world, pos);
-	}
-
-	private void updateState (World world, BlockPos pos) {
-		List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1)));
-		if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
-			Entity e = (Entity) list.get(i);
-			if (e instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) e;
-
-				if (player.isSneaking() && player.getBedLocation() != pos) {
-					player.setSpawnChunk(pos, true, 0);
-					player.setSpawnPoint(pos, true);
-					TextHelper.sendFormattedChatMessage("Spawn point saved!", TextFormatting.GREEN, player);
-					world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savespawn, SoundCategory.BLOCKS, 1.0f, 1.0f);
-				}
-					
-				if(player.getHealth() != player.getMaxHealth())
-				{
-					player.heal(4);
-					player.getCapability(ModCapabilities.PLAYER_STATS, null).setMP(100);
-					if (player.getFoodStats().getFoodLevel() < 20) player.getFoodStats().addStats(4, 0);
-					world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savepoint, SoundCategory.BLOCKS, 1.0f, 1.0f);
-					PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos, true), player, 64.0D);
-				}
-			}
-		}
-		world.scheduleUpdate(new BlockPos(pos), this, this.tickRate(world));
-	}
-
-	@Override
-	public int tickRate (World worldIn) {
-		return 15;
-	}
-
-	@Override
-	@SideOnly (Side.CLIENT)
-	public BlockRenderLayer getBlockLayer () {
-		return BlockRenderLayer.TRANSLUCENT;
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos) {
-		return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(1, 0.1, 1));
-	}
-
-    @SuppressWarnings("deprecation")
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos) {
-		return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(1, 0.1, 1));
-	}
-
-	@SuppressWarnings("deprecation")
     @Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
+        world.scheduleUpdate(pos, this, tickRate(world));
+        super.onBlockAdded(world, pos, state);
+    }
+
+    @Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entityIn) {
+        if (!world.isRemote) updateState(world, pos);
+    }
+
+    @Override
+    public void randomTick (World worldIn, BlockPos pos, IBlockState state, Random random) {}
+
+    @Override
+    public void updateTick (World world, BlockPos pos, IBlockState state, Random rand) {
+        if (!world.isRemote) updateState(world, pos);
+    }
+
+    private void updateState (World world, BlockPos pos) {
+        List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1)));
+        if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
+            Entity e = (Entity) list.get(i);
+            if (e instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) e;
+
+                if (player.isSneaking() && player.getBedLocation() != pos) {
+                    player.setSpawnChunk(pos, true, 0);
+                    player.setSpawnPoint(pos, true);
+                    TextHelper.sendFormattedChatMessage("Spawn point saved!", TextFormatting.GREEN, player);
+                    world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savespawn, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                }
+
+                if(player.getHealth() != player.getMaxHealth())
+                {
+                    player.heal(4);
+                    player.getCapability(ModCapabilities.PLAYER_STATS, null).setMP(100);
+                    if (player.getFoodStats().getFoodLevel() < 20) player.getFoodStats().addStats(4, 0);
+                    world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savepoint, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                    PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos, true), player, 64.0D);
+                }
+            }
+        }
+        world.scheduleUpdate(new BlockPos(pos), this, this.tickRate(world));
+    }
+
+    @Override
+    public int tickRate (World worldIn) {
+        return 15;
+    }
+
+    @Override
+    @SideOnly (Side.CLIENT)
+    public BlockRenderLayer getBlockLayer () {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
 
     @SuppressWarnings("deprecation")
     @Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
-	
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos) {
+        return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(1, 0.1, 1));
+    }
 
-	@Override
-	public Item getItemDropped (IBlockState state, Random r, int fortune) {
-		return Item.getItemFromBlock(this);
-	}
+    @SuppressWarnings("deprecation")
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos) {
+        return new AxisAlignedBB(new BlockPos(0, 0, 0), new BlockPos(1, 0.1, 1));
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+
+    @Override
+    public Item getItemDropped (IBlockState state, Random r, int fortune) {
+        return Item.getItemFromBlock(this);
+    }
 
 }

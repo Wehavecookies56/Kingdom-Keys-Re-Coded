@@ -21,23 +21,23 @@ import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
  */
 public class BlockEvents {
 
-	@SubscribeEvent
-	public void onBlockBreak(BlockEvent.BreakEvent event)
-	{
+    @SubscribeEvent
+    public void onBlockBreak(BlockEvent.BreakEvent event)
+    {
         if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID) {
-        	if(!event.getPlayer().capabilities.isCreativeMode)
-        		event.setCanceled(true);
+            if(!event.getPlayer().capabilities.isCreativeMode)
+                event.setCanceled(true);
         }
-	}
+    }
 
-	@SubscribeEvent
-	public void onBlockPlace(BlockEvent.PlaceEvent event)
-	{
+    @SubscribeEvent
+    public void onBlockPlace(BlockEvent.PlaceEvent event)
+    {
         if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID) {
-        	if(!event.getPlayer().capabilities.isCreativeMode)
-        		event.setCanceled(true);
+            if(!event.getPlayer().capabilities.isCreativeMode)
+                event.setCanceled(true);
         }
-	}
+    }
 
     @SubscribeEvent
     public void onBlockDestroyed (BlockEvent.HarvestDropsEvent event) {
@@ -190,7 +190,7 @@ public class BlockEvents {
  //       System.out.println("NOD+F: "+numberOfDrops);
 
         if (event.getState().getBlock() == ModBlocks.BlazingOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -210,7 +210,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.BrightOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -230,7 +230,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.DarkOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -250,7 +250,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.DarkOreE) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -270,7 +270,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.DenseOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -290,7 +290,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.EnergyOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -310,7 +310,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.FrostOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -330,7 +330,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.LightningOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -350,7 +350,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.LucidOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -370,7 +370,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.PowerOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -390,7 +390,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.PowerOreE) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -410,7 +410,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.RemembranceOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -430,7 +430,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.SerenityOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -450,7 +450,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.TranquilOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -470,7 +470,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.TwilightOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -490,7 +490,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.StormyOre) {
-        	for(int i = 0; i<numberOfDrops; i++)
+            for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
                 switch (dropAmount)
@@ -511,243 +511,243 @@ public class BlockEvents {
             }
         } else if (event.getState().getBlock() == ModBlocks.PrizeBlox) {
             AchievementHelper.addAchievement(event.getHarvester(), ModAchievements.getPrizeBlox);
-        	for(int i = 0; i<numberOfDrops; i++)
-        	{
-        		int dropAmount = Utils.randomWithRange(1, 29);
+            for(int i = 0; i<numberOfDrops; i++)
+            {
+                int dropAmount = Utils.randomWithRange(1, 29);
 
-        		ItemStack munny = new ItemStack(ModItems.Munny, 1);
+                ItemStack munny = new ItemStack(ModItems.Munny, 1);
 
-	            switch (dropAmount) {
-	                case 1:
-	                    munny.setTagCompound(new NBTTagCompound());
-	                    munny.getTagCompound().setInteger("amount", 50);
-	                    event.getDrops().add(munny);
-	                    break;
-	                case 2:
-	                    munny.setTagCompound(new NBTTagCompound());
-	                    munny.getTagCompound().setInteger("amount", 100);
-	                    event.getDrops().add(munny);
-	                    break;
-	                case 3:
-	                    munny.setTagCompound(new NBTTagCompound());
-	                    munny.getTagCompound().setInteger("amount", 500);
-	                    event.getDrops().add(munny);
-	                    break;
-	                case 4:
-	                    munny.setTagCompound(new NBTTagCompound());
-	                    munny.getTagCompound().setInteger("amount", 700);
-	                    event.getDrops().add(munny);
-	                    break;
-	                case 5:
-	                    event.getDrops().add(BlazingGem);
-	                    break;
-	                case 6:
-	                    event.getDrops().add(BrightGem);
-	                    break;
-	                case 7:
-	                    event.getDrops().add(DarkGem);
-	                    break;
-	                case 8:
-	                    event.getDrops().add(DenseGem);
-	                    break;
-	                case 9:
-	                    event.getDrops().add(EnergyGem);
-	                    break;
-	                case 10:
-	                    event.getDrops().add(FrostGem);
-	                    break;
-	                case 11:
-	                    event.getDrops().add(LucidGem);
-	                    break;
-	                case 12:
-	                    event.getDrops().add(PowerGem);
-	                    break;
-	                case 13:
-	                	event.getDrops().add(RemembranceGem);
-	                    break;
-	                case 14:
-	                	event.getDrops().add(SerenityGem);
-	                    break;
-	                case 15:
-	                    event.getDrops().add(TranquilGem);
-	                    break;
-	                case 16:
-	                    event.getDrops().add(TwilightGem);
-	                    break;
-	                case 17:
-	                    event.getDrops().add(BlazingStone);
-	                    break;
-	                case 18:
-	                    event.getDrops().add(BrightStone);
-	                    break;
-	                case 19:
-	                    event.getDrops().add(DarkStone);
-	                    break;
-	                case 20:
-	                    event.getDrops().add(DenseStone);
-	                    break;
-	                case 21:
-	                    event.getDrops().add(EnergyStone);
-	                    break;
-	                case 22:
-	                    event.getDrops().add(FrostStone);
-	                    break;
-	                case 23:
-	                    event.getDrops().add(LucidStone);
-	                    break;
-	                case 24:
-	                    event.getDrops().add(PowerStone);
-	                    break;
-	                case 25:
-	                    event.getDrops().add(RemembranceStone);
-	                    break;
-	                case 26:
-	                    event.getDrops().add(SerenityStone);
-	                    break;
-	                case 27:
-	                    event.getDrops().add(TranquilStone);
-	                    break;
-	                case 28:
-	                    event.getDrops().add(TwilightStone);
-	                    break;
-	                case 29:
-	                    event.getDrops().add(Orichalcum);
-	                    break;
-	            }
+                switch (dropAmount) {
+                    case 1:
+                        munny.setTagCompound(new NBTTagCompound());
+                        munny.getTagCompound().setInteger("amount", 50);
+                        event.getDrops().add(munny);
+                        break;
+                    case 2:
+                        munny.setTagCompound(new NBTTagCompound());
+                        munny.getTagCompound().setInteger("amount", 100);
+                        event.getDrops().add(munny);
+                        break;
+                    case 3:
+                        munny.setTagCompound(new NBTTagCompound());
+                        munny.getTagCompound().setInteger("amount", 500);
+                        event.getDrops().add(munny);
+                        break;
+                    case 4:
+                        munny.setTagCompound(new NBTTagCompound());
+                        munny.getTagCompound().setInteger("amount", 700);
+                        event.getDrops().add(munny);
+                        break;
+                    case 5:
+                        event.getDrops().add(BlazingGem);
+                        break;
+                    case 6:
+                        event.getDrops().add(BrightGem);
+                        break;
+                    case 7:
+                        event.getDrops().add(DarkGem);
+                        break;
+                    case 8:
+                        event.getDrops().add(DenseGem);
+                        break;
+                    case 9:
+                        event.getDrops().add(EnergyGem);
+                        break;
+                    case 10:
+                        event.getDrops().add(FrostGem);
+                        break;
+                    case 11:
+                        event.getDrops().add(LucidGem);
+                        break;
+                    case 12:
+                        event.getDrops().add(PowerGem);
+                        break;
+                    case 13:
+                        event.getDrops().add(RemembranceGem);
+                        break;
+                    case 14:
+                        event.getDrops().add(SerenityGem);
+                        break;
+                    case 15:
+                        event.getDrops().add(TranquilGem);
+                        break;
+                    case 16:
+                        event.getDrops().add(TwilightGem);
+                        break;
+                    case 17:
+                        event.getDrops().add(BlazingStone);
+                        break;
+                    case 18:
+                        event.getDrops().add(BrightStone);
+                        break;
+                    case 19:
+                        event.getDrops().add(DarkStone);
+                        break;
+                    case 20:
+                        event.getDrops().add(DenseStone);
+                        break;
+                    case 21:
+                        event.getDrops().add(EnergyStone);
+                        break;
+                    case 22:
+                        event.getDrops().add(FrostStone);
+                        break;
+                    case 23:
+                        event.getDrops().add(LucidStone);
+                        break;
+                    case 24:
+                        event.getDrops().add(PowerStone);
+                        break;
+                    case 25:
+                        event.getDrops().add(RemembranceStone);
+                        break;
+                    case 26:
+                        event.getDrops().add(SerenityStone);
+                        break;
+                    case 27:
+                        event.getDrops().add(TranquilStone);
+                        break;
+                    case 28:
+                        event.getDrops().add(TwilightStone);
+                        break;
+                    case 29:
+                        event.getDrops().add(Orichalcum);
+                        break;
+                }
             }
         } else if (event.getState().getBlock() == ModBlocks.RarePrizeBlox) {
-        	AchievementHelper.addAchievement(event.getHarvester(), ModAchievements.getPrizeBlox);
-        	for(int i = 0; i<numberOfDrops; i++)
-        	{
-	        	int dropAmount = Utils.randomWithRange(1, 38);
-	            ItemStack munny = new ItemStack(ModItems.Munny, 1);
-	            switch (dropAmount) {
-	                case 1:
-	                    munny.setTagCompound(new NBTTagCompound());
-	                    munny.getTagCompound().setInteger("amount", 1000);
-	                    event.getDrops().add(munny);
-	                    break;
-	                case 2:
-	                    munny.setTagCompound(new NBTTagCompound());
-	                    munny.getTagCompound().setInteger("amount", 1500);
-	                    event.getDrops().add(munny);
-	                    break;
-	                case 3:
-	                    munny.setTagCompound(new NBTTagCompound());
-	                    munny.getTagCompound().setInteger("amount", 2000);
-	                    event.getDrops().add(munny);
-	                    break;
-	                case 4:
-	                    munny.setTagCompound(new NBTTagCompound());
-	                    munny.getTagCompound().setInteger("amount", 3000);
-	                    event.getDrops().add(munny);
-	                    break;
-	                case 5:
-	                    event.getDrops().add(BlazingGem);
-	                    break;
-	                case 6:
-	                    event.getDrops().add(BrightGem);
-	                    break;
-	                case 7:
-	                    event.getDrops().add(DarkGem);
-	                    break;
-	                case 8:
-	                    event.getDrops().add(DenseGem);
-	                    break;
-	                case 9:
-	                    event.getDrops().add(EnergyGem);
-	                    break;
-	                case 10:
-	                    event.getDrops().add(FrostGem);
-	                    break;
-	                case 11:
-	                    event.getDrops().add(LucidGem);
-	                    break;
-	                case 12:
-	                    event.getDrops().add(PowerGem);
-	                    break;
-	                case 13:
-	                    event.getDrops().add(RemembranceGem);
-	                    break;
-	                case 14:
-	                    event.getDrops().add(SerenityGem);
-	                    break;
-	                case 15:
-	                    event.getDrops().add(TranquilGem);
-	                    break;
-	                case 16:
-	                    event.getDrops().add(TwilightGem);
-	                    break;
-	                case 17:
-	                    event.getDrops().add(BlazingCrystal);
-	                    break;
-	                case 18:
-	                    event.getDrops().add(BrightCrystal);
-	                    break;
-	                case 19:
-	                    event.getDrops().add(DarkCrystal);
-	                    break;
-	                case 20:
-	                    event.getDrops().add(DenseCrystal);
-	                    break;
-	                case 21:
-	                    event.getDrops().add(EnergyCrystal);
-	                    break;
-	                case 22:
-	                    event.getDrops().add(FrostCrystal);
-	                    break;
-	                case 23:
-	                    event.getDrops().add(LucidCrystal);
-	                    break;
-	                case 24:
-	                    event.getDrops().add(PowerCrystal);
-	                    break;
-	                case 25:
-	                    event.getDrops().add(RemembranceCrystal);
-	                    break;
-	                case 26:
-	                    event.getDrops().add(SerenityCrystal);
-	                    break;
-	                case 27:
-	                    event.getDrops().add(TranquilCrystal);
-	                    break;
-	                case 28:
-	                    event.getDrops().add(TwilightCrystal);
-	                    break;
-	                case 29:
-	                    event.getDrops().add(Orichalcum);
-	                    break;
-	                case 30:
-	                    event.getDrops().add(OrichalcumPlus);
-	                    break;
-	                case 32:
-	                    event.getDrops().add(LostIllusion);
-	                    break;
-	                case 33:
-	                    event.getDrops().add(ManifestIllusion);
-	                    break;
-	                case 34:
-	                    ItemStack valorForm = new ItemStack(ModItems.LevelUpValor, 1);
-	                    event.getDrops().add(valorForm);
-	                    break;
-	                case 35:
-	                    ItemStack wisdomForm = new ItemStack(ModItems.LevelUpWisdom, 1);
-	                    event.getDrops().add(wisdomForm);
-	                    break;
-	                case 36:
-	                    ItemStack limitForm = new ItemStack(ModItems.LevelUpLimit, 1);
-	                    event.getDrops().add(limitForm);
-	                    break;
-	                case 37:
-	                    ItemStack masterForm = new ItemStack(ModItems.LevelUpMaster, 1);
-	                    event.getDrops().add(masterForm);
-	                    break;
-	                case 38:
-	                    ItemStack finalForm = new ItemStack(ModItems.LevelUpFinal, 1);
-	                    event.getDrops().add(finalForm);
-	                    break;
-	            }
-        	}
+            AchievementHelper.addAchievement(event.getHarvester(), ModAchievements.getPrizeBlox);
+            for(int i = 0; i<numberOfDrops; i++)
+            {
+                int dropAmount = Utils.randomWithRange(1, 38);
+                ItemStack munny = new ItemStack(ModItems.Munny, 1);
+                switch (dropAmount) {
+                    case 1:
+                        munny.setTagCompound(new NBTTagCompound());
+                        munny.getTagCompound().setInteger("amount", 1000);
+                        event.getDrops().add(munny);
+                        break;
+                    case 2:
+                        munny.setTagCompound(new NBTTagCompound());
+                        munny.getTagCompound().setInteger("amount", 1500);
+                        event.getDrops().add(munny);
+                        break;
+                    case 3:
+                        munny.setTagCompound(new NBTTagCompound());
+                        munny.getTagCompound().setInteger("amount", 2000);
+                        event.getDrops().add(munny);
+                        break;
+                    case 4:
+                        munny.setTagCompound(new NBTTagCompound());
+                        munny.getTagCompound().setInteger("amount", 3000);
+                        event.getDrops().add(munny);
+                        break;
+                    case 5:
+                        event.getDrops().add(BlazingGem);
+                        break;
+                    case 6:
+                        event.getDrops().add(BrightGem);
+                        break;
+                    case 7:
+                        event.getDrops().add(DarkGem);
+                        break;
+                    case 8:
+                        event.getDrops().add(DenseGem);
+                        break;
+                    case 9:
+                        event.getDrops().add(EnergyGem);
+                        break;
+                    case 10:
+                        event.getDrops().add(FrostGem);
+                        break;
+                    case 11:
+                        event.getDrops().add(LucidGem);
+                        break;
+                    case 12:
+                        event.getDrops().add(PowerGem);
+                        break;
+                    case 13:
+                        event.getDrops().add(RemembranceGem);
+                        break;
+                    case 14:
+                        event.getDrops().add(SerenityGem);
+                        break;
+                    case 15:
+                        event.getDrops().add(TranquilGem);
+                        break;
+                    case 16:
+                        event.getDrops().add(TwilightGem);
+                        break;
+                    case 17:
+                        event.getDrops().add(BlazingCrystal);
+                        break;
+                    case 18:
+                        event.getDrops().add(BrightCrystal);
+                        break;
+                    case 19:
+                        event.getDrops().add(DarkCrystal);
+                        break;
+                    case 20:
+                        event.getDrops().add(DenseCrystal);
+                        break;
+                    case 21:
+                        event.getDrops().add(EnergyCrystal);
+                        break;
+                    case 22:
+                        event.getDrops().add(FrostCrystal);
+                        break;
+                    case 23:
+                        event.getDrops().add(LucidCrystal);
+                        break;
+                    case 24:
+                        event.getDrops().add(PowerCrystal);
+                        break;
+                    case 25:
+                        event.getDrops().add(RemembranceCrystal);
+                        break;
+                    case 26:
+                        event.getDrops().add(SerenityCrystal);
+                        break;
+                    case 27:
+                        event.getDrops().add(TranquilCrystal);
+                        break;
+                    case 28:
+                        event.getDrops().add(TwilightCrystal);
+                        break;
+                    case 29:
+                        event.getDrops().add(Orichalcum);
+                        break;
+                    case 30:
+                        event.getDrops().add(OrichalcumPlus);
+                        break;
+                    case 32:
+                        event.getDrops().add(LostIllusion);
+                        break;
+                    case 33:
+                        event.getDrops().add(ManifestIllusion);
+                        break;
+                    case 34:
+                        ItemStack valorForm = new ItemStack(ModItems.LevelUpValor, 1);
+                        event.getDrops().add(valorForm);
+                        break;
+                    case 35:
+                        ItemStack wisdomForm = new ItemStack(ModItems.LevelUpWisdom, 1);
+                        event.getDrops().add(wisdomForm);
+                        break;
+                    case 36:
+                        ItemStack limitForm = new ItemStack(ModItems.LevelUpLimit, 1);
+                        event.getDrops().add(limitForm);
+                        break;
+                    case 37:
+                        ItemStack masterForm = new ItemStack(ModItems.LevelUpMaster, 1);
+                        event.getDrops().add(masterForm);
+                        break;
+                    case 38:
+                        ItemStack finalForm = new ItemStack(ModItems.LevelUpFinal, 1);
+                        event.getDrops().add(finalForm);
+                        break;
+                }
+            }
         }
     }
 }
