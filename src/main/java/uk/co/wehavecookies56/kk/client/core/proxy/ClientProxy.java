@@ -321,8 +321,8 @@ public class ClientProxy extends CommonProxy
 
         // saix
         ModelLoader.setCustomModelResourceLocation(ModItems.NewMoon, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.NewMoon, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.Werewolf, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.NewMoon, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.Artemis, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.NewMoon, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ModItems.Werewolf, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Werewolf, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ModItems.Artemis, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Artemis, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.Luminary, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Luminary, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.Selene, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Selene, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.Moonrise, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Moonrise, "inventory"));
@@ -347,8 +347,8 @@ public class ClientProxy extends CommonProxy
 
         // saix berserk
         ModelLoader.setCustomModelResourceLocation(ModItems.NewMoon, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.NewMoon + "_b", "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.Werewolf, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.NewMoon + "_b", "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.Artemis, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.NewMoon + "_b", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ModItems.Werewolf, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.Werewolf + "_b", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ModItems.Artemis, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.Artemis + "_b", "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.Luminary, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.Luminary + "_b", "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.Selene, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.Selene + "_b", "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.Moonrise, 1, new ModelResourceLocation(Reference.MODID + ":" + Strings.Moonrise + "_b", "inventory"));

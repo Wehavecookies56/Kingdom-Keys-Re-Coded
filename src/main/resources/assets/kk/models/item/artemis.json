@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "kk:items/bleepboopbop"
+		"layer0": "kk:items/artemis"
 	}
 }

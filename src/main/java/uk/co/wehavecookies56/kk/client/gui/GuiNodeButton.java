@@ -21,8 +21,8 @@ public class GuiNodeButton extends GuiButton {
     UnlockNode node;
     GuiOrgUnlock parent;
 
-    public GuiNodeButton(int buttonId, int x, int y, UnlockNode node, GuiOrgUnlock parent) {
-        super(buttonId, x, y, "NODE");
+    public GuiNodeButton(int buttonId, UnlockNode node, GuiOrgUnlock parent) {
+        super(buttonId, 0, 0, "NODE");
         width = 26;
         height = 26;
         this.node = node;
