@@ -243,7 +243,7 @@ public class Lists {
         Axel.add(Prometheus);
         Axel.add(Ifrit);
         Axel.add(MagmaOcean);
-        Axel.add(Volcanis);
+        Axel.add(Volcanics);
         Axel.add(Inferno);
         Axel.add(SizzlingEdge);
         Axel.add(Corona);

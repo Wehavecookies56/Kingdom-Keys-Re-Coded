@@ -255,7 +255,7 @@ public class GuiOrgUnlock extends GuiScreen {
                     unlocks[7]  = new GuiNodeButton(8,  new UnlockNode(3,  -4,  ModItems.Prometheus, new UnlockNode[]{unlocks[3].getNode()}), this);
                     unlocks[8]  = new GuiNodeButton(9,  new UnlockNode(-2, -6,  ModItems.Ifrit, new UnlockNode[]{unlocks[4].getNode(), unlocks[5].getNode()}), this);
                     unlocks[9]  = new GuiNodeButton(10, new UnlockNode(0,  -6,  ModItems.MagmaOcean, new UnlockNode[]{unlocks[5].getNode(), unlocks[6].getNode()}), this);
-                    unlocks[10] = new GuiNodeButton(11, new UnlockNode(2,  -6,  ModItems.Volcanis, new UnlockNode[]{unlocks[6].getNode(), unlocks[7].getNode()}), this);
+                    unlocks[10] = new GuiNodeButton(11, new UnlockNode(2,  -6,  ModItems.Volcanics, new UnlockNode[]{unlocks[6].getNode(), unlocks[7].getNode()}), this);
                     unlocks[11] = new GuiNodeButton(12, new UnlockNode(-1, -8,  ModItems.Inferno, new UnlockNode[]{unlocks[8].getNode(), unlocks[9].getNode()}), this);
                     unlocks[12] = new GuiNodeButton(13, new UnlockNode(1,  -8,  ModItems.SizzlingEdge, new UnlockNode[]{unlocks[9].getNode(), unlocks[10].getNode()}), this);
                     unlocks[13] = new GuiNodeButton(14, new UnlockNode(-3, -10, ModItems.Corona, new UnlockNode[]{unlocks[11].getNode()}), this);

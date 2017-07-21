@@ -637,7 +637,7 @@ public class Strings {
     Prometheus = "prometheus",
     Ifrit = "ifrit",
     MagmaOcean = "magmaocean",
-    Volcanis = "volcanis",
+    Volcanics = "volcanics",
     Inferno = "inferno",
     SizzlingEdge = "sizzlingedge",
     Corona = "corona",

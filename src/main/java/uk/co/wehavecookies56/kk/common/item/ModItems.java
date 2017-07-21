@@ -53,7 +53,7 @@ public class ModItems {
     //Saix
     public static Item NewMoon, Werewolf, Artemis, Luminary, Selene, Moonrise, Astrologia, Crater, LunarPhase, Crescent, Gibbous, Berserker, Twilight, QueenOfTheNight, BalsamicMoon, Orbit, LightYear, KingOfTheNight, Moonset, Horoscope, Dichotomy, Lunatic, JustDesserts, Bunnymoon;
     //Axel
-    public static Item Ashes, Doldrums, DelayedAction, DiveBombers, Combustion, MoulinRouge, BlazeofGlory, Prometheus, Ifrit, MagmaOcean, Volcanis, Inferno, SizzlingEdge, Corona, FerrisWheel, Burnout, OmegaTrinity, Outbreak, DoubleEdge, Wildfire, Prominence, EternalFlames, PizzaCut, Conformers;
+    public static Item Ashes, Doldrums, DelayedAction, DiveBombers, Combustion, MoulinRouge, BlazeofGlory, Prometheus, Ifrit, MagmaOcean, Volcanics, Inferno, SizzlingEdge, Corona, FerrisWheel, Burnout, OmegaTrinity, Outbreak, DoubleEdge, Wildfire, Prominence, EternalFlames, PizzaCut, Conformers;
     //Demyx
     public static Item BasicModel, TuneUp, Quartet, Quintet, Overture, OldHand, DaCapo, PowerChord, Fermata, Interlude, Serenade, Songbird, RiseToFame, RockStar, EightFinger, Concerto, Harmonics, MillionBucks, Fortissimo, UpToEleven, Sanctuary, Arpeggio, PrinceOfAwesome, AfterSchool;
     //Luxord
@@ -299,7 +299,7 @@ public class ModItems {
         Prometheus = new ItemChakram(5,8,Strings.Prometheus).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
         Ifrit = new ItemChakram(5,8,Strings.Ifrit).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
         MagmaOcean = new ItemChakram(5,8,Strings.Ifrit).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MagmaOcean);
-        Volcanis = new ItemChakram(5,8,Strings.Ifrit).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Volcanis);
+        Volcanics = new ItemChakram(5,8,Strings.Ifrit).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Volcanics);
         Inferno = new ItemChakram(5,8,Strings.Inferno).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inferno);
         SizzlingEdge = new ItemChakram(5,8,Strings.SizzlingEdge).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.SizzlingEdge);
         Corona = new ItemChakram(5,8,Strings.Inferno).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Corona);
@@ -1074,7 +1074,7 @@ public class ModItems {
         GameRegistry.register(Prometheus, new ResourceLocation(Reference.MODID, Strings.Prometheus));
         GameRegistry.register(Ifrit, new ResourceLocation(Reference.MODID, Strings.Ifrit));
         GameRegistry.register(MagmaOcean, new ResourceLocation(Reference.MODID, Strings.MagmaOcean));
-        GameRegistry.register(Volcanis, new ResourceLocation(Reference.MODID, Strings.Volcanis));
+        GameRegistry.register(Volcanics, new ResourceLocation(Reference.MODID, Strings.Volcanics));
         GameRegistry.register(Inferno, new ResourceLocation(Reference.MODID, Strings.Inferno));
         GameRegistry.register(SizzlingEdge, new ResourceLocation(Reference.MODID, Strings.SizzlingEdge));
         GameRegistry.register(Corona, new ResourceLocation(Reference.MODID, Strings.Corona));
