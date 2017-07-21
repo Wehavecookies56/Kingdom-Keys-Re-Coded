@@ -15,7 +15,6 @@ import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
-@Mod.EventBusSubscriber(modid = Reference.MODID)
 public class GuiHP extends GuiScreen {
 
     int guiWidth = 173;

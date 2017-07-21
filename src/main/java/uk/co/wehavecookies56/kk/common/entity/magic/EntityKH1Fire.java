@@ -39,12 +39,10 @@ public class EntityKH1Fire extends EntityThrowable {
     @Override
     public void onUpdate () {
         if (shootingEntity == null) return;
-        if (shootingEntity instanceof EntityPlayer)
-        {
+        if (shootingEntity instanceof EntityPlayer) {
             if (!world.isRemote)
                 PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), (EntityPlayer)shootingEntity, 64.0D);
-            if(LockOn.target != null)
-            {
+            if(LockOn.target != null) {
                 EntityLiving target = (EntityLiving) LockOn.target;
                 setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);
             }
@@ -60,14 +58,12 @@ public class EntityKH1Fire extends EntityThrowable {
     protected void onImpact (RayTraceResult movingObject) {
         if (!this.world.isRemote) {
             if (movingObject.entityHit != null) {
-                if (movingObject.entityHit != null) {
-                    applyEnchantments(this.shootingEntity, movingObject.entityHit);
-                    if (!movingObject.entityHit.isImmuneToFire()) movingObject.entityHit.setFire(5);
-                    if (shootingEntity instanceof EntityPlayer)
-                        movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) shootingEntity), DamageCalculation.getMagicDamage((EntityPlayer) shootingEntity, 1)*DamageCalculation.fireMultiplier);
-                    else
-                        movingObject.entityHit.attackEntityFrom(DamageSource.causeMobDamage(shootingEntity), 5);
-                }
+                applyEnchantments(this.shootingEntity, movingObject.entityHit);
+                if (!movingObject.entityHit.isImmuneToFire()) movingObject.entityHit.setFire(5);
+                if (shootingEntity instanceof EntityPlayer)
+                    movingObject.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) shootingEntity), DamageCalculation.getMagicDamage((EntityPlayer) shootingEntity, 1)*DamageCalculation.fireMultiplier);
+                else
+                    movingObject.entityHit.attackEntityFrom(DamageSource.causeMobDamage(shootingEntity), 5);
             } else {
                 if (this.shootingEntity != null)
                 if (this.world.getGameRules().getBoolean("mobGriefing")) {

@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
+import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardParticles;
 
@@ -44,7 +45,7 @@ public class EntityBlizzara extends EntityThrowable {
         int rotation = 0;
         if (!world.isRemote)
             PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this, 2), (EntityPlayer) shootingEntity, 64.0D);
-        if(InputHandler.lockOn != null) {
+        if(LockOn.target != null) {
             EntityLiving target = (EntityLiving)InputHandler.lockOn;
             setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);
         }

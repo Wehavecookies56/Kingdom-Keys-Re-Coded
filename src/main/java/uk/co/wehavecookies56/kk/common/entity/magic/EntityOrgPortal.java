@@ -45,11 +45,8 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
             this.setDead();
             return;
         }
-        if (caster instanceof EntityPlayer)
-        {
-            if (!world.isRemote)
-                PacketDispatcher.sendToAllAround(new SpawnPortalParticles(this.getPosition()), (EntityPlayer) caster, 64.0D);
-        }
+        if (!world.isRemote)
+            PacketDispatcher.sendToAllAround(new SpawnPortalParticles(this.getPosition()), caster, 64.0D);
         if (ticksExisted > 100) setDead();
     }
 

@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
+import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticles;
@@ -43,15 +44,11 @@ public class EntityKH1Fira extends EntityThrowable {
     public void onUpdate () {
         if (shootingEntity == null) return;
         int rotation = 0;
-        if (shootingEntity instanceof EntityPlayer)
-        {
-            if (!world.isRemote)
-                PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), shootingEntity, 64.0D);
-            if(InputHandler.lockOn != null)
-            {
-                EntityLiving target = (EntityLiving)InputHandler.lockOn;
-                setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);
-            }
+        if (!world.isRemote)
+            PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), shootingEntity, 64.0D);
+        if(LockOn.target != null) {
+            EntityLiving target = (EntityLiving)InputHandler.lockOn;
+            setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);
         }
         this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
         this.rotationYaw = (rotation + 1) % 360;
