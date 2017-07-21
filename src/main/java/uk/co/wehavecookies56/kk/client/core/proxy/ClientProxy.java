@@ -245,6 +245,7 @@ public class ClientProxy extends CommonProxy
         // vexen
         ModelLoader.setCustomModelResourceLocation(ModItems.TesterZero, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TesterZero, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.ProductOne, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.ProductOne, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ModItems.DeepFreeze, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.DeepFreeze, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.CryoliteShield, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.CryoliteShield, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.FalseTheory, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FalseTheory, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.Glacier, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.Glacier, "inventory"));
@@ -456,7 +457,7 @@ public class ClientProxy extends CommonProxy
         ModelLoader.setCustomModelResourceLocation(ModItems.MadSafflower, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.MadSafflower, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.PoorMelissa, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.PoorMelissa, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.TragicAllium, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.TragicAllium, "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.MournfalCineria, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.MournfalCineria, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ModItems.MournfulCineria, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.MournfulCineria, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.PseudoSilene, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.PseudoSilene, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.FaithlessDigitalis, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.FaithlessDigitalis, "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.GrimMuscari, 0, new ModelResourceLocation(Reference.MODID + ":" + Strings.GrimMuscari, "inventory"));

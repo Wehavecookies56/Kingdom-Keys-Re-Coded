@@ -329,7 +329,7 @@ public class GuiOrgUnlock extends GuiScreen {
                     unlocks[3]  = new GuiNodeButton(4,  new UnlockNode( 2, -2,  ModItems.MadSafflower, new UnlockNode[]{unlocks[0].getNode()}), this);
                     unlocks[4]  = new GuiNodeButton(5,  new UnlockNode(-3, -4,  ModItems.PoorMelissa, new UnlockNode[]{unlocks[1].getNode()}), this);
                     unlocks[5]  = new GuiNodeButton(6,  new UnlockNode(-1, -4,  ModItems.TragicAllium, new UnlockNode[]{unlocks[1].getNode(), unlocks[2].getNode()}), this);
-                    unlocks[6]  = new GuiNodeButton(7,  new UnlockNode( 1, -4,  ModItems.MournfalCineria, new UnlockNode[]{unlocks[2].getNode(), unlocks[3].getNode()}), this);
+                    unlocks[6]  = new GuiNodeButton(7,  new UnlockNode( 1, -4,  ModItems.MournfulCineria, new UnlockNode[]{unlocks[2].getNode(), unlocks[3].getNode()}), this);
                     unlocks[7]  = new GuiNodeButton(8,  new UnlockNode( 3, -4,  ModItems.PseudoSilene, new UnlockNode[]{unlocks[3].getNode()}), this);
                     unlocks[8]  = new GuiNodeButton(9,  new UnlockNode(-2, -6,  ModItems.FaithlessDigitalis, new UnlockNode[]{unlocks[4].getNode(), unlocks[5].getNode()}), this);
                     unlocks[9]  = new GuiNodeButton(10, new UnlockNode( 0, -6,  ModItems.GrimMuscari, new UnlockNode[]{unlocks[5].getNode(), unlocks[6].getNode()}), this);

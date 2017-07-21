@@ -59,7 +59,7 @@ public class ModItems {
     //Luxord
     public static Item TheFool, TheMagician, TheStar, TheMoon, Justice, TheHierophant, TheWorld, Temperance, TheHighPriestess, TheTower, TheHangedMan, Death, TheHermit, Strength, TheLovers, TheChariot, TheSun, TheDevil, TheEmpress, TheEmperor, TheJoker, FairGame, FinestFantasy13, HighRollersSecret;
     //Marluxia
-    public static Item FickleErica, JiltedAnemone, ProudAmaryllis, MadSafflower, PoorMelissa, TragicAllium, MournfalCineria, PseudoSilene, FaithlessDigitalis, GrimMuscari, DocileVallota, QuietBelladonna, PartingIpheion, LoftyGerbera, GallantAchillea, NoblePeony, FearsomeAnise, VindictiveThistle, FairHelianthus, SolemnMagnolia, HallowedLotus, GracefulDahlia, StirringLadle, DaintyBellflowers;
+    public static Item FickleErica, JiltedAnemone, ProudAmaryllis, MadSafflower, PoorMelissa, TragicAllium, MournfulCineria, PseudoSilene, FaithlessDigitalis, GrimMuscari, DocileVallota, QuietBelladonna, PartingIpheion, LoftyGerbera, GallantAchillea, NoblePeony, FearsomeAnise, VindictiveThistle, FairHelianthus, SolemnMagnolia, HallowedLotus, GracefulDahlia, StirringLadle, DaintyBellflowers;
     //Larxene
     public static Item Trancheuse, Orage, Tourbillon, Tempete, Carmin, Meteore, Etoile, Irregulier, Dissonance, Eruption, SoleilCouchant, Indigo, Vague, Deluge, Rafale, Typhon, Extirpeur, CroixDuSud, Lumineuse, ClairdeLune, VoldeNuit, Foudre, Demoiselle, Ampoule;
 
@@ -373,7 +373,7 @@ public class ModItems {
         MadSafflower = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MadSafflower);
         PoorMelissa = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PoorMelissa);
         TragicAllium = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TragicAllium);
-        MournfalCineria = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MournfalCineria);
+        MournfulCineria = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MournfulCineria);
         PseudoSilene = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PseudoSilene);
         FaithlessDigitalis = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FaithlessDigitalis);
         GrimMuscari = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GrimMuscari);
@@ -1148,7 +1148,7 @@ public class ModItems {
         GameRegistry.register(MadSafflower, new ResourceLocation(Reference.MODID, Strings.MadSafflower));
         GameRegistry.register(PoorMelissa, new ResourceLocation(Reference.MODID, Strings.PoorMelissa));
         GameRegistry.register(TragicAllium, new ResourceLocation(Reference.MODID, Strings.TragicAllium));
-        GameRegistry.register(MournfalCineria, new ResourceLocation(Reference.MODID, Strings.MournfalCineria));
+        GameRegistry.register(MournfulCineria, new ResourceLocation(Reference.MODID, Strings.MournfulCineria));
         GameRegistry.register(PseudoSilene, new ResourceLocation(Reference.MODID, Strings.PseudoSilene));
         GameRegistry.register(FaithlessDigitalis, new ResourceLocation(Reference.MODID, Strings.FaithlessDigitalis));
         GameRegistry.register(GrimMuscari, new ResourceLocation(Reference.MODID, Strings.GrimMuscari));

@@ -317,7 +317,7 @@ public class Lists {
         Marluxia.add(MadSafflower);
         Marluxia.add(PoorMelissa);
         Marluxia.add(TragicAllium);
-        Marluxia.add(MournfalCineria);
+        Marluxia.add(MournfulCineria);
         Marluxia.add(PseudoSilene);
         Marluxia.add(FaithlessDigitalis);
         Marluxia.add(GrimMuscari);

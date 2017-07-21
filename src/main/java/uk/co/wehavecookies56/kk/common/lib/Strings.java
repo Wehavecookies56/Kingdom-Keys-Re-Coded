@@ -714,7 +714,7 @@ public class Strings {
     MadSafflower = "madsafflower",
     PoorMelissa = "poormelissa",
     TragicAllium = "tragicallium",
-    MournfalCineria = "mournfalcineria",
+    MournfulCineria = "mournfulcineria",
     PseudoSilene = "pseudosilene",
     FaithlessDigitalis = "faithlessdigitalis",
     GrimMuscari = "grimmuscari",
