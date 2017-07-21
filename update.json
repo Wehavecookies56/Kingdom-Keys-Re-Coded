@@ -1,8 +1,8 @@
 {
   "homepage": "http://minecraft.curseforge.com/projects/kingdom-keys-re-coded/files",
   "promos": {
-    "1.11.2-latest": "0.9.0",
-    "1.10.2-latest": "0.9.0 Beta",
+    "1.11.2-latest": "0.9.1",
+    "1.10.2-latest": "0.9.0",
     "1.9-latest": "0.8.0 Beta",
     "1.8.9-latest": "0.7.6",
     "1.8-latest": "0.7.5.3",
@@ -14,10 +14,11 @@
   },
 
   "1.11.2": {
-    "0.9.0": "The organization update is finally here in 1.11.2"
+    "0.9.1": "The organization update is finally here in 1.11.2"
   },
 
   "1.10.2": {
+    "0.9.0": "The Organization update is finally here",
     "0.9.0 Beta": "The Organization update is finally here (beta)",
     "0.8.2.1": "A bunch of bugs fixed from 0.8.2 and some new 3D models added",
     "0.8.2": "The first final KK release in a long time a lot has changed",
