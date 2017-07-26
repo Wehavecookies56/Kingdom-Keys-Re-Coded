@@ -3,7 +3,6 @@ package uk.co.wehavecookies56.kk.common.block.base;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
-import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class BlockBlox extends Block {
 

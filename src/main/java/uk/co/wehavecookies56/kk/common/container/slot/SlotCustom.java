@@ -1,9 +1,6 @@
 package uk.co.wehavecookies56.kk.common.container.slot;
 
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagL;

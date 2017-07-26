@@ -3,7 +3,6 @@ package uk.co.wehavecookies56.kk.common.network.packet.server;
 import java.io.IOException;
 import java.util.Random;
 
-import net.minecraft.advancements.AdvancementList;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

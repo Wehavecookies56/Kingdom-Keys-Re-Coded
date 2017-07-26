@@ -2,6 +2,8 @@ package uk.co.wehavecookies56.kk.common.item;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -10,8 +12,6 @@ import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
-
-import javax.annotation.Nullable;
 
 public class ItemDriveRecovery extends ItemKKPotion {
 

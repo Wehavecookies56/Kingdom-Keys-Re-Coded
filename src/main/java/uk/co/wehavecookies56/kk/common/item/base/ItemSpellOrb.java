@@ -2,10 +2,11 @@ package uk.co.wehavecookies56.kk.common.item.base;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
@@ -17,8 +18,6 @@ import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.LevelUpMagic;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import javax.annotation.Nullable;
 
 public abstract class ItemSpellOrb extends ItemKKBase {
 

@@ -2,6 +2,8 @@ package uk.co.wehavecookies56.kk.common.item.org;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -38,8 +40,6 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
-
-import javax.annotation.Nullable;
 
 public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
     String weapon;

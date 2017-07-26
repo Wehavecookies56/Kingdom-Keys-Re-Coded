@@ -376,7 +376,8 @@ public class InputHandler {
                         world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
                         break;
                     }
-                    if (!SUMMON.getIsKeybladeSummoned() && player.getHeldItem(EnumHand.MAIN_HAND) == ItemStack.EMPTY && mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem() instanceof ItemKeychain) {
+                    
+                    if (!SUMMON.getIsKeybladeSummoned() && ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem() instanceof ItemKeychain) {
                         PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem()).getKeyblade()));
                     } else if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRealKeyblade && SUMMON.getIsKeybladeSummoned()) {
                         PacketDispatcher.sendToServer(new DeSummonKeyblade(player.inventory.getCurrentItem()));

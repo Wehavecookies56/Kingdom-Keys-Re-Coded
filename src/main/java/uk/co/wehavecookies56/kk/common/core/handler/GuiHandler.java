@@ -2,14 +2,25 @@ package uk.co.wehavecookies56.kk.common.core.handler;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import uk.co.wehavecookies56.kk.client.gui.*;
+import uk.co.wehavecookies56.kk.client.gui.GuiDriveForms;
+import uk.co.wehavecookies56.kk.client.gui.GuiKKChest;
+import uk.co.wehavecookies56.kk.client.gui.GuiKeychains;
+import uk.co.wehavecookies56.kk.client.gui.GuiOrg;
+import uk.co.wehavecookies56.kk.client.gui.GuiOrgUnlock;
+import uk.co.wehavecookies56.kk.client.gui.GuiOrgWeapon;
+import uk.co.wehavecookies56.kk.client.gui.GuiPedestal;
+import uk.co.wehavecookies56.kk.client.gui.GuiPotions;
+import uk.co.wehavecookies56.kk.client.gui.GuiShop;
+import uk.co.wehavecookies56.kk.client.gui.GuiSpells;
+import uk.co.wehavecookies56.kk.client.gui.GuiSynthesis;
+import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagL;
+import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagM;
+import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagS;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
-import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.ContainerDriveForms;
 import uk.co.wehavecookies56.kk.common.container.ContainerKKChest;
 import uk.co.wehavecookies56.kk.common.container.ContainerKeychain;
@@ -19,9 +30,6 @@ import uk.co.wehavecookies56.kk.common.container.ContainerSpells;
 import uk.co.wehavecookies56.kk.common.container.ContainerSynthesisBagL;
 import uk.co.wehavecookies56.kk.common.container.ContainerSynthesisBagM;
 import uk.co.wehavecookies56.kk.common.container.ContainerSynthesisBagS;
-import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagL;
-import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagM;
-import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagS;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 
 /**

@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.block;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -11,8 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
-
-import javax.annotation.Nullable;
 
 public class BlockDangerBlox extends BlockBlox {
 

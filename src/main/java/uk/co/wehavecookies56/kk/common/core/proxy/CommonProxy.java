@@ -2,7 +2,11 @@ package uk.co.wehavecookies56.kk.common.core.proxy;
 
 import java.awt.Color;
 import java.net.MalformedURLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
@@ -30,7 +34,9 @@ import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityStationOfAwakening;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntitySynthesisTable;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.core.handler.*;
+import uk.co.wehavecookies56.kk.common.core.handler.GuiHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
+import uk.co.wehavecookies56.kk.common.core.handler.UsernameHandler;
 import uk.co.wehavecookies56.kk.common.core.handler.event.BlockEvents;
 import uk.co.wehavecookies56.kk.common.core.handler.event.CapabilityEvents;
 import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;

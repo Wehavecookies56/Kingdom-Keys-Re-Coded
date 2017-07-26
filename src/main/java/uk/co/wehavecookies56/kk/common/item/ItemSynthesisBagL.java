@@ -2,21 +2,16 @@ package uk.co.wehavecookies56.kk.common.item;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.items.IItemHandler;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagL;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
@@ -24,8 +19,6 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenGui;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import javax.annotation.Nullable;
 
 public class ItemSynthesisBagL extends ItemKKBase {
 

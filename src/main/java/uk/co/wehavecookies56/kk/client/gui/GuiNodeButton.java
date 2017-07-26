@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
+import java.awt.Dimension;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
@@ -8,8 +10,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
-
-import java.awt.*;
 
 /**
  * Created by Toby on 29/04/2017.

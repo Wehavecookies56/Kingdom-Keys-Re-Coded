@@ -1,23 +1,25 @@
 package uk.co.wehavecookies56.kk.common.item;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import scala.collection.script.End;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.core.handler.BalanceConfig;
-import uk.co.wehavecookies56.kk.common.item.base.*;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKKRecord;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemRecipe;
+import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.item.org.ItemArrowguns;
 import uk.co.wehavecookies56.kk.common.item.org.ItemAxeSword;
 import uk.co.wehavecookies56.kk.common.item.org.ItemCard;
@@ -32,9 +34,6 @@ import uk.co.wehavecookies56.kk.common.item.org.ItemScythe;
 import uk.co.wehavecookies56.kk.common.item.org.ItemSitar;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
-
-import javax.annotation.Nonnull;
-import java.security.Key;
 
 public class ModItems {
 

@@ -4,7 +4,6 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAITarget;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityBlizzard;
 

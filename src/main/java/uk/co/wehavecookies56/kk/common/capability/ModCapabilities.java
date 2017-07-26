@@ -8,11 +8,11 @@ import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveSta
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability.IFirstTimeJoin;
 import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability.IMagicState;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability.ISummonKeyblade;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability.ISynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability.ISynthesisRecipe;
-import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 
 public class ModCapabilities {
 

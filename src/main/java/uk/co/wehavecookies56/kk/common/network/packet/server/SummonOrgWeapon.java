@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server;
 
+import java.io.IOException;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -9,15 +11,9 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
-import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
-
-import java.io.IOException;
 
 public class SummonOrgWeapon extends AbstractMessage.AbstractServerMessage<SummonOrgWeapon> {
 

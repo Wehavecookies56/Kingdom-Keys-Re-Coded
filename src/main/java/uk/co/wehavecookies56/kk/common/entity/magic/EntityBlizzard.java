@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -10,9 +12,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardParticles;
-
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 public class EntityBlizzard extends EntityThrowable {
     public EntityLivingBase shootingEntity;

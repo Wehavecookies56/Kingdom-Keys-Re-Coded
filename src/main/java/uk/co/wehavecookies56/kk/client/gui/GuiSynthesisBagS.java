@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -10,6 +8,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import uk.co.wehavecookies56.kk.common.container.ContainerSynthesisBagS;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagS;
 import uk.co.wehavecookies56.kk.common.lib.Reference;

@@ -1,24 +1,17 @@
 package uk.co.wehavecookies56.kk.common.block.tile;
 
-import java.util.Arrays;
+import javax.annotation.Nullable;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
-import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import javax.annotation.Nullable;
 
 public class TileEntityKKChest extends TileEntity {
     ItemStack keyblade;

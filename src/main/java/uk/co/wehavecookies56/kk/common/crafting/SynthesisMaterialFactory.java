@@ -1,16 +1,16 @@
 package uk.co.wehavecookies56.kk.common.crafting;
 
+import javax.annotation.Nonnull;
+
 import com.google.gson.JsonObject;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.JsonUtils;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IIngredientFactory;
 import net.minecraftforge.common.crafting.JsonContext;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
-
-import javax.annotation.Nonnull;
 
 public class SynthesisMaterialFactory implements IIngredientFactory {
 

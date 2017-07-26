@@ -3,7 +3,6 @@ package uk.co.wehavecookies56.kk.client.gui.pages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
-import uk.co.wehavecookies56.kk.client.gui.pages.Page;
 
 /**
  * Created by NStel on 1/21/2017.

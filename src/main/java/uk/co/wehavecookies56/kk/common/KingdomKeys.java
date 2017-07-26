@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common;
 
+import org.apache.logging.log4j.Logger;
+
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -7,7 +9,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import org.apache.logging.log4j.Logger;
 import uk.co.wehavecookies56.kk.common.core.command.CommandCheatMode;
 import uk.co.wehavecookies56.kk.common.core.command.CommandDimension;
 import uk.co.wehavecookies56.kk.common.core.command.CommandDriveLevel;

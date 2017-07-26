@@ -10,7 +10,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
-import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class BlockKKOre extends Block {
 

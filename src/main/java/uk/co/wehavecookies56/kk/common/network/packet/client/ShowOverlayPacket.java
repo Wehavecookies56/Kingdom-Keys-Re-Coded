@@ -7,9 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
-import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
-import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 
 public class ShowOverlayPacket extends AbstractMessage.AbstractClientMessage<ShowOverlayPacket> {
 

@@ -11,9 +11,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKeybladeParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
 
 public class SummonKeyblade extends AbstractMessage.AbstractServerMessage<SummonKeyblade> {
@@ -46,6 +46,9 @@ public class SummonKeyblade extends AbstractMessage.AbstractServerMessage<Summon
         player.inventory.setInventorySlotContents(player.inventory.currentItem, test);
         player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
         player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(true);
+        
+        PacketDispatcher.sendToAllAround(new SpawnKeybladeParticles(player), player, 64.0D);
+
         PacketDispatcher.sendTo(new SyncKeybladeData(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) player);
     }
 }

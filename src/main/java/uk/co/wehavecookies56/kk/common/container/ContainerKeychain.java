@@ -1,18 +1,16 @@
 package uk.co.wehavecookies56.kk.common.container;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.SlotItemHandler;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.container.slot.SlotCustom;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
-
-import javax.annotation.Nonnull;
 
 public class ContainerKeychain extends Container {
     private static final int INV_START = InventoryKeychain.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;

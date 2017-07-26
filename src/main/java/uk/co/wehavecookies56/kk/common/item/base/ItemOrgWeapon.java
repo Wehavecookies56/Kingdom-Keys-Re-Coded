@@ -7,7 +7,6 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
-import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class ItemOrgWeapon extends ItemSword{
     double magic, strength;

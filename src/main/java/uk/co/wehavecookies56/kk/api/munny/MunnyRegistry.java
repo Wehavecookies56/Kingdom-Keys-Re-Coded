@@ -370,6 +370,8 @@ public class MunnyRegistry {
         addMunnyValue(new ItemStack(ModItems.Potion), 400);
         addMunnyValue(new ItemStack(ModItems.Ether), 400);
 
+        addMunnyValue(new ItemStack(ModItems.WinnerStick), 10000);
+        
         addMunnyValue(new ItemStack(Blocks.DIRT), 1);
         
         addMunnyValue(BlazingShard, 800);
