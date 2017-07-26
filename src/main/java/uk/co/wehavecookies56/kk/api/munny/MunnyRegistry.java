@@ -451,12 +451,12 @@ public class MunnyRegistry {
         addMunnyValue(OrichalcumPlus, 15000);
         addMunnyValue(LostIllusion, 25000);
         addMunnyValue(ManifestIllusion, 20000);
+        apiLogger.info(munnyValues.size() + " munny value(s) loaded");
     }
 
     public static boolean addMunnyValue(ItemStack item, int value) {
         if (!munnyValues.containsKey(item)) {
             munnyValues.put(item, value);
-            apiLogger.log(Level.INFO, "Registered %s munny value.", item.getDisplayName());
             return true;
         } else {
             apiLogger.log(Level.WARN, "Item %s has already had a munny value registered.", item.getDisplayName());
@@ -472,7 +472,6 @@ public class MunnyRegistry {
             for (int i = 0; i < oreStacks.size(); i++) {
                 if (!munnyValues.containsKey(oreStacks.get(i))) {
                     munnyValues.put(oreStacks.get(i), value);
-                    apiLogger.log(Level.INFO, "Registered %s munny value.", oreStacks.get(i).getDisplayName());
                 } else {
                     apiLogger.log(Level.WARN, "Item %s has already had a munny value registered.", oreStacks.get(i).getDisplayName());
                     return false;

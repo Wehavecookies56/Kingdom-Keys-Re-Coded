@@ -13,7 +13,7 @@ import net.minecraftforge.common.util.Constants;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.Recipe;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
-import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
+import uk.co.wehavecookies56.kk.common.KingdomKeys;
 
 public class SynthesisRecipeCapability {
 
@@ -68,7 +68,7 @@ public class SynthesisRecipeCapability {
                 NBTTagCompound recipes = tagList.getCompoundTagAt(i);
                 if (!RecipeRegistry.isRecipeKnown(instance.getKnownRecipes(), recipes.getString("Recipes" + i))) {
                     instance.getKnownRecipes().add(i, recipes.getString("Recipes" + i));
-                    LogHelper.info("Loaded known recipe: " + recipes.getString("Recipes" + i) + " " + i);
+                    KingdomKeys.logger.info("Loaded known recipe: " + recipes.getString("Recipes" + i) + " " + i);
                 }
 
             }
@@ -78,7 +78,7 @@ public class SynthesisRecipeCapability {
                 NBTTagCompound FDrecipes = tagListFD.getCompoundTagAt(i);
                 if (!FreeDevRecipeRegistry.isFreeDevRecipeKnown(instance.getFreeDevRecipes(), FDrecipes.getString("FDRecipes" + i))) {
                     instance.getFreeDevRecipes().add(i, FDrecipes.getString("FDRecipes" + i));
-                    LogHelper.info("Loaded known FD recipe: " + FDrecipes.getString("FDRecipes" + i) + " " + i);
+                    KingdomKeys.logger.info("Loaded known FD recipe: " + FDrecipes.getString("FDRecipes" + i) + " " + i);
                 }
 
             }

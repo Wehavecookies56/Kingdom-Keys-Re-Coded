@@ -5,14 +5,13 @@ import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
+import uk.co.wehavecookies56.kk.common.KingdomKeys;
 
 public class TabKingdomKeys extends CreativeTabs {
 
@@ -44,7 +43,7 @@ public class TabKingdomKeys extends CreativeTabs {
         try {
             getSkulls(list);
         } catch (IOException e) {
-            LogHelper.info("Unable to get player skulls");
+            KingdomKeys.logger.info("Unable to get player skulls");
         }
     }
 

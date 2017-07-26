@@ -9,10 +9,9 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
-import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
+import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
@@ -88,7 +87,7 @@ public class OrganizationXIIICapability {
                 NBTTagCompound weapons = tagList.getCompoundTagAt(i);
                 if (!instance.unlockedWeapons().contains(new ItemStack(weapons).getItem())) {
                     instance.addUnlockedWeapon(new ItemStack(weapons).getItem());
-                    LogHelper.info("Loaded unlocked weapon: " + new ItemStack(weapons).getDisplayName());
+                    KingdomKeys.logger.info("Loaded unlocked weapon: " + new ItemStack(weapons).getDisplayName());
                 }
             }
             instance.setWeaponSummoned(properties.getBoolean("Summoned"));

@@ -1,19 +1,16 @@
 package uk.co.wehavecookies56.kk.common.core.proxy;
 
 import java.awt.Color;
-import java.io.File;
 import java.net.MalformedURLException;
 import java.util.*;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Biomes;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -27,7 +24,6 @@ import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
-import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
@@ -41,7 +37,6 @@ import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;
 import uk.co.wehavecookies56.kk.common.core.handler.event.ItemEvents;
 import uk.co.wehavecookies56.kk.common.core.handler.event.RenderingEvents;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
-import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
 import uk.co.wehavecookies56.kk.common.crafting.KKOreDictionary;
 import uk.co.wehavecookies56.kk.common.crafting.ModItemsRecipes;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
@@ -72,7 +67,7 @@ public class CommonProxy {
 
     public void preInit (FMLPreInitializationEvent event) {
         // Display mod info in console
-        LogHelper.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft " + Reference.MCVER);
+        KingdomKeys.logger.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft " + Reference.MCVER);
 
         if(MainConfig.client.hud.chat)
         {
@@ -85,11 +80,11 @@ public class CommonProxy {
 
         // World generation
         GameRegistry.registerWorldGenerator(new WorldGenBlox(), 2);
-        LogHelper.info("World generation loaded");
+        KingdomKeys.logger.info("World generation loaded");
 
         // Packets
         PacketDispatcher.registerPackets();
-        LogHelper.info("Packets loaded");
+        KingdomKeys.logger.info("Packets loaded");
 
         ModDimensions.init();
 
@@ -118,7 +113,7 @@ public class CommonProxy {
 
         // Register renders
 
-        LogHelper.info("Renders loaded");
+        KingdomKeys.logger.info("Renders loaded");
 
         // Tile entity registry
         GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
@@ -126,7 +121,7 @@ public class CommonProxy {
         GameRegistry.registerTileEntity(TileEntityStationOfAwakening.class, "stationofawakening");
         GameRegistry.registerTileEntity(TileEntityPedestal.class, "kkpedestal");
         GameRegistry.registerTileEntity(TileEntityOrgPortal.class, "kkorgportal");
-        LogHelper.info("Tile entity loaded");
+        KingdomKeys.logger.info("Tile entity loaded");
 
         // Proxy used as Gui handler
         NetworkRegistry.INSTANCE.registerGuiHandler(KingdomKeys.instance, new GuiHandler());
@@ -153,6 +148,12 @@ public class CommonProxy {
             Biome biome = biomeRegistry.next();
             biomes.add(biome);
         }
+        for (String b : MainConfig.entities.mobBiomeExclusion) {
+            if (Biome.REGISTRY.containsKey(new ResourceLocation(b))) {
+                KingdomKeys.logger.info("Removed mob spawns for biome " + b);
+                biomes.remove(Biome.REGISTRY.getObject(new ResourceLocation(b)));
+            }
+        }
         Biome[] biomesArray = biomes.toArray(new Biome[biomes.size()]);
 
         EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 1, 3, EnumCreatureType.MONSTER, biomesArray);
@@ -170,24 +171,24 @@ public class CommonProxy {
 
         // Drive forms init
         ModDriveForms.init();
-        LogHelper.info(DriveFormRegistry.getDriveFormMap().size() + " Drive form(s) loaded");
+        KingdomKeys.logger.info(DriveFormRegistry.getDriveFormMap().size() + " Drive form(s) loaded");
 
         // Synthesis Recipes init
         ModSynthesisRecipes.init();
-        LogHelper.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipe(s) loaded");
+        KingdomKeys.logger.info(RecipeRegistry.getRecipeMap().size() + " Synthesis recipe(s) loaded");
 
         ModSynthesisFreeDevRecipes.init();
-        LogHelper.info(FreeDevRecipeRegistry.getFreeDevRecipeMap().size() + " Free Development recipe(s) loaded");
+        KingdomKeys.logger.info(FreeDevRecipeRegistry.getFreeDevRecipeMap().size() + " Free Development recipe(s) loaded");
 
         ModSynthesisMaterials.init();
-        LogHelper.info(MaterialRegistry.getMaterialMap().size() + " Material(s) loaded");
+        KingdomKeys.logger.info(MaterialRegistry.getMaterialMap().size() + " Material(s) loaded");
 
         Constants.registerCosts();
         Constants.registerMagicLevels();
 
         // Chest loot init
         MinecraftForge.EVENT_BUS.register(new ChestGen());
-        LogHelper.info("Chest loot loaded");
+        KingdomKeys.logger.info("Chest loot loaded");
     }
 
     public void postInit (FMLPostInitializationEvent event) {
@@ -198,11 +199,11 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.register(new EntityEvents());
         MinecraftForge.EVENT_BUS.register(new ItemEvents());
         MinecraftForge.EVENT_BUS.register(new RenderingEvents());
-        LogHelper.info("Events loaded");
+        KingdomKeys.logger.info("Events loaded");
 
         //Ore Dictionary registry
         KKOreDictionary.registerOres();
-        LogHelper.info("Registered Ores");
+        KingdomKeys.logger.info("Registered Ores");
     }
 
     public EntityPlayer getPlayerEntity (MessageContext ctx) {

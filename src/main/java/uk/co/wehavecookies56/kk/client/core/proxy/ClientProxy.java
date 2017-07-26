@@ -1,7 +1,6 @@
 package uk.co.wehavecookies56.kk.client.core.proxy;
 
 import com.jadarstudios.developercapes.DevCapes;
-import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -14,7 +13,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.b3d.B3DLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,8 +34,8 @@ import uk.co.wehavecookies56.kk.client.model.mobs.ModelMoogle;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelRedNocturne;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelShadow;
 import uk.co.wehavecookies56.kk.client.render.*;
+import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
-import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
 import uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.mobs.*;
@@ -45,11 +43,10 @@ import uk.co.wehavecookies56.kk.common.entity.projectiles.*;
 import static uk.co.wehavecookies56.kk.common.item.ModItems.*;
 import static uk.co.wehavecookies56.kk.common.block.ModBlocks.*;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
-import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = Reference.MODID)
 public class ClientProxy extends CommonProxy {
-    
+
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
         B3DLoader.INSTANCE.addDomain(Reference.MODID);
@@ -853,7 +850,7 @@ public class ClientProxy extends CommonProxy {
     public void postInit (FMLPostInitializationEvent e) {
         super.postInit(e);
         MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
-        LogHelper.info("Events loaded");
+        KingdomKeys.logger.info("Events loaded");
     }
 
     private void registerRenders () {

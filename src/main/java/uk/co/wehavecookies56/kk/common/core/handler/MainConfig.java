@@ -100,6 +100,11 @@ public class MainConfig {
         @Config.Comment("Moogle spawning ratio")
         public int moogleRatio = 5;
 
+        @Config.RequiresMcRestart
+        @Config.Name("Kingdom Keys Mob spawn biome exclusion list")
+        @Config.Comment("Any biome in this list heartless will not spawn in with support for mod biomes")
+        public String[] mobBiomeExclusion = { "minecraft:hell", "minecraft:sky", "minecraft:void" };
+
     }
 
     public static Client client = new Client();
