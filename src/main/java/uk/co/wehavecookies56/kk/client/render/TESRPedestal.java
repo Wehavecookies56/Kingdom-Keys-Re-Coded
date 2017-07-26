@@ -27,7 +27,7 @@ public class TESRPedestal extends TileEntitySpecialRenderer<TileEntityPedestal> 
     private RenderItem renderItem;
 
     @Override
-    public void renderTileEntityAt(TileEntityPedestal te, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(TileEntityPedestal te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         if(te != null && te instanceof TileEntityPedestal) {
             if (te.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH)) {
                 IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
@@ -60,6 +60,6 @@ public class TESRPedestal extends TileEntitySpecialRenderer<TileEntityPedestal> 
             }
         }
 
-        super.renderTileEntityAt(te, x, y, z, partialTicks, destroyStage);
+        super.render(te, x, y, z, partialTicks, destroyStage, alpha);
     }
 }

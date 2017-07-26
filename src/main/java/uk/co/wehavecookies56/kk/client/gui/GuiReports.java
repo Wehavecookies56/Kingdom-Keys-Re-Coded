@@ -246,9 +246,9 @@ public class GuiReports extends GuiScreen {
         }
 
         @Override
-        public void drawButton (Minecraft mc, int mouseX, int mouseY) {
+        public void drawButton (Minecraft mc, int mouseX, int mouseY, float partialTicks) {
             if (visible) {
-                boolean mouseOver = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+                boolean mouseOver = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
                 glColor4f(1, 1, 1, 1);
                 mc.renderEngine.bindTexture(gui);
                 int u = 175;
@@ -264,7 +264,7 @@ public class GuiReports extends GuiScreen {
                 RenderHelper.disableStandardItemLighting();
                 GL11.glColor4f(1, 1, 1, 1);
 
-                drawTexturedModalRect(xPosition, yPosition, u, v, width, height);
+                drawTexturedModalRect(x, y, u, v, width, height);
 
                 GL11.glEnable(GL11.GL_LIGHTING);
                 RenderHelper.enableStandardItemLighting();
@@ -285,9 +285,9 @@ public class GuiReports extends GuiScreen {
         }
 
         @Override
-        public void drawButton (Minecraft mc, int mouseX, int mouseY) {
+        public void drawButton (Minecraft mc, int mouseX, int mouseY, float partialTicks) {
             if (visible) {
-                boolean mouseOver = mouseX > xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+                boolean mouseOver = mouseX > x && mouseY >= y && mouseX < x + width && mouseY < y + height;
                 glColor4f(1, 1, 1, 1);
                 mc.renderEngine.bindTexture(chapterbutton);
                 int u = 0;
@@ -305,9 +305,9 @@ public class GuiReports extends GuiScreen {
                 RenderHelper.disableStandardItemLighting();
                 GL11.glColor4f(1, 1, 1, 1);
 
-                drawTexturedModalRect(xPosition, yPosition, u, v, width, height);
-                itemRender.renderItemAndEffectIntoGUI(new ItemStack(ModItems.KingdomKey), xPosition + 2, yPosition + 2);
-                drawString(fontRenderer, text, xPosition + 160 / 2 - 40, yPosition + 6, 0xFFFFFF);
+                drawTexturedModalRect(x, y, u, v, width, height);
+                itemRender.renderItemAndEffectIntoGUI(new ItemStack(ModItems.KingdomKey), x + 2, y + 2);
+                drawString(fontRenderer, text, x + 160 / 2 - 40, y + 6, 0xFFFFFF);
 
                 GL11.glEnable(GL11.GL_LIGHTING);
                 RenderHelper.enableStandardItemLighting();

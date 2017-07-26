@@ -90,20 +90,19 @@ public class TileEntityPedestal extends TileEntity {
 
     @Override
     public ITextComponent getDisplayName () {
-        if (getKeyblade() != null) {
+        if (getKeyblade() != null && getKeyblade() != ItemStack.EMPTY) {
             return new TextComponentTranslation(getName(), "");
         }else
             return null;
     }
 
-    //TODO COPY IINVENTORY RENDER CODE
     public String getName() {
-        if (getKeyblade() != null) {
+        if (getKeyblade() != null && getKeyblade() != ItemStack.EMPTY) {
             if(getKeyblade().getItem() instanceof ItemKeychain)
                 return Utils.translateToLocal(((ItemKeychain) getKeyblade().getItem()).getKeyblade().getUnlocalizedName()+".name");
             else
                 return Utils.translateToLocal(getKeyblade().getDisplayName());
         }
-        return ""; //TODO Translate this
+        return null;
     }
 }

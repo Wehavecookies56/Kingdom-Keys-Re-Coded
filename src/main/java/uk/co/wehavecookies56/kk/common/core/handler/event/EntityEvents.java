@@ -28,24 +28,17 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.items.CapabilityItemHandler;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
-import uk.co.wehavecookies56.kk.client.gui.GuiOrg;
-import uk.co.wehavecookies56.kk.common.KingdomKeys;
-import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.capability.*;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
-import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
@@ -54,8 +47,6 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
-import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
-import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.*;
@@ -162,8 +153,8 @@ public class EntityEvents {
 
     public void dropRecipe(LivingDropsEvent event) {
         int recipeRand = Utils.randomWithRange(1, 100);
-        if(event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
+        if(event.getSource().getTrueSource() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
             ItemStack itemstack = player.inventory.getCurrentItem();
             if (player.getHeldItemMainhand() == ItemStack.EMPTY) {
                 if (player.getHeldItemOffhand() != ItemStack.EMPTY) {
@@ -191,11 +182,9 @@ public class EntityEvents {
 
 
     public int getEnchantment(ItemStack stack, int id) {
-        if (stack.getEnchantmentTagList() != null) {
-            for (int i = 0; i < stack.getEnchantmentTagList().tagCount(); i++) {
-                if (stack.getEnchantmentTagList().getCompoundTagAt(i).getShort("id") == id) {
-                    return stack.getEnchantmentTagList().getCompoundTagAt(i).getShort("lvl");
-                }
+        for (int i = 0; i < stack.getEnchantmentTagList().tagCount(); i++) {
+            if (stack.getEnchantmentTagList().getCompoundTagAt(i).getShort("id") == id) {
+                return stack.getEnchantmentTagList().getCompoundTagAt(i).getShort("lvl");
             }
         }
         return 0;
@@ -249,7 +238,7 @@ public class EntityEvents {
                 FTJ.setPosZ(((EntityPlayer) event.getEntity()).getPosition().getZ());
                 if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID && MainConfig.worldgen.EnableStationOfAwakening)
                     if (!event.getWorld().isRemote)
-                        new TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().worldServerForDimension(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer) event.getEntity()), event.getWorld());
+                        new TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().getWorld(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer) event.getEntity()), event.getWorld());
             }
 
             ((EntityPlayer) event.getEntity()).getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getHP());
@@ -299,8 +288,8 @@ public class EntityEvents {
             }
         }
 
-        if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityMob) if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
+        if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityMob) if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 
             EntityMob mob = (EntityMob) event.getEntity();
 
@@ -325,13 +314,13 @@ public class EntityEvents {
         if (!MainConfig.entities.disableDrops) {
             if (event.getEntity() instanceof EntityPlayer) {
                 for (int i = 0; i < event.getDrops().size(); i++) {
-                    if (event.getDrops().get(i).getEntityItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getEntityItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getEntityItem().getItem() != ModItems.WoodenStick)) {
+                    if (event.getDrops().get(i).getItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getItem().getItem() != ModItems.WoodenStick)) {
                         event.getDrops().remove(i);
 
                         event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
                         i = 0;
                     }
-                    if (event.getDrops().get(i).getEntityItem().getItem() == event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
+                    if (event.getDrops().get(i).getItem().getItem() == event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
                         event.getDrops().remove(i);
 
                         event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
@@ -341,8 +330,8 @@ public class EntityEvents {
             }
 
 
-            if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
+            if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
                 if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) {
                     if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
                         if (event.getEntity() instanceof EntityMob)
@@ -489,19 +478,7 @@ public class EntityEvents {
                     player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(false);
             }
         }
-        if(player.inventory.armorInventory.get(0) != ItemStack.EMPTY && player.inventory.armorInventory.get(1) != ItemStack.EMPTY && player.inventory.armorInventory.get(2) != ItemStack.EMPTY && player.inventory.armorInventory.get(3) != ItemStack.EMPTY) {
-            if(player.inventory.armorInventory.get(0).getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory.get(1).getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.OrganizationRobe_Helmet)
-                AchievementHelper.addAchievement(player, ModAchievements.getOrgRobe);
-            else if(player.inventory.armorInventory.get(0).getItem() == ModItems.Aqua_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.Aqua_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.Aqua_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.Aqua_Helmet)
-                AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
-            else if(player.inventory.armorInventory.get(0).getItem() == ModItems.Terra_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.Terra_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.Terra_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.Terra_Helmet)
-                AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
-            else if(player.inventory.armorInventory.get(0).getItem() == ModItems.Ventus_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.Ventus_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.Ventus_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.Ventus_Helmet)
-                AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
-            else if(player.inventory.armorInventory.get(0).getItem() == ModItems.Eraqus_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.Eraqus_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.Eraqus_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.Eraqus_Helmet)
-                AchievementHelper.addAchievement(player, ModAchievements.getKeybladeArmor);
 
-        }
         if(player.dimension == ModDimensions.diveToTheHeartID) {
             if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
                 if(chosen.equals(Strings.Choice_Shield)){
@@ -533,7 +510,7 @@ public class EntityEvents {
             else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
                 if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID)
                     if (!player.world.isRemote)
-                        new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().worldServerForDimension(0)).teleport(( player), player.world);
+                        new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport(( player), player.world);
             }
 
         }
@@ -616,8 +593,8 @@ public class EntityEvents {
         if(event.getEntityLiving() instanceof IKHMob) {
             EntityPlayer player = null;
             IKHMob khMob = (IKHMob) event.getEntityLiving();
-            if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
-                player = (EntityPlayer) event.getSource().getSourceOfDamage();
+            if (event.getSource().getImmediateSource() instanceof EntityPlayer) {
+                player = (EntityPlayer) event.getSource().getImmediateSource();
             }
             if(player != null) {
                 if(khMob.getType() == MobType.HEARTLESS_EMBLEM || khMob.getType() == MobType.HEARTLESS_PUREBLOOD || khMob.getType() == MobType.NOBODY) {
@@ -631,8 +608,8 @@ public class EntityEvents {
                 }
             }
         }
-        if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) event.getSource().getSourceOfDamage();
+        if (event.getSource().getImmediateSource() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) event.getSource().getImmediateSource();
             if(event.getSource().getDamageType().equals("thorns")) return;
 
             PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);

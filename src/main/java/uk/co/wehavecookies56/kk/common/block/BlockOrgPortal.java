@@ -18,19 +18,22 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class BlockOrgPortal extends Block implements ITileEntityProvider{
 
-    protected BlockOrgPortal (Material material, String toolClass, int level, float hardness, float resistance) {
+    protected BlockOrgPortal (Material material, String toolClass, int level, float hardness, float resistance, String name) {
         super(material);
         this.setHarvestLevel(toolClass, level);
-        //this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         setHardness(hardness);
         setResistance(resistance);
         setSoundType(SoundType.STONE);
+        setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
+        setRegistryName(name);
+        setUnlocalizedName(name);
     }
 
     @Override

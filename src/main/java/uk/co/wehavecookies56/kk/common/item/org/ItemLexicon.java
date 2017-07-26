@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.item.org;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -27,10 +28,12 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortal;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
+import javax.annotation.Nullable;
+
 public class ItemLexicon extends ItemOrgWeapon implements IOrgWeapon{
 
-    public ItemLexicon (double strength, double magic)  {
-        super(strength,magic);
+    public ItemLexicon (String name, double strength, double magic)  {
+        super(name, strength, magic);
         setMaxStackSize(1);
     }
 
@@ -41,9 +44,8 @@ public class ItemLexicon extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    @SideOnly (Side.CLIENT)
-    public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-        dataList.add("VI Zexion");
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add("VI Zexion");
     }
 
     @Override

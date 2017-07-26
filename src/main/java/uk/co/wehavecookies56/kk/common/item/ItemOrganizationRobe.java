@@ -11,7 +11,9 @@ public class ItemOrganizationRobe extends ItemArmor /*implements ISpecialArmor*/
 
     public ItemOrganizationRobe (ArmorMaterial material, int renderIndex, EntityEquipmentSlot slot, int armorType, String name) {
         super(material, renderIndex, slot);
+        setRegistryName(name);
         setUnlocalizedName(name);
+        setCreativeTab(ModItems.tabKingdomKeys);
     }
 
     /*

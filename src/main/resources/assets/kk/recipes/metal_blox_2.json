@@ -1,0 +1,19 @@
+{
+	"type": "forge:ore_shaped",
+	"pattern": [
+		"IH",
+		"HI"
+	],
+	"key": {
+		"H": {
+			"item": "kk:hardblox"
+		},
+		"I": {
+			"type": "forge:ore_dict",
+			"ore": "ingotIron"
+		}
+	},
+	"result": {
+		"item": "kk:metalblox"
+	}
+}

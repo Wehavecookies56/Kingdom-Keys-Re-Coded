@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"NNN",
+		"NSN",
+		"NNN"
+	],
+	"key": {
+		"N": {
+			"item": "kk:normalblox"
+		},
+		"S": {
+			"item": "minecraft:slime"
+		}
+	},
+	"result": {
+		"item": "kk:bounceblox"
+	}
+}

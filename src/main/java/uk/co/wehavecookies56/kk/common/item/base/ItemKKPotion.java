@@ -11,6 +11,7 @@ import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.GiveItemInSlot;
@@ -19,12 +20,15 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlot;
 
 public abstract class ItemKKPotion extends ItemFood {
 
-    String potionType, unlocalizedName;
+    String potionType, name;
 
-    public ItemKKPotion (int food, boolean wolf, String type, String unlocalizedName) {
+    public ItemKKPotion (int food, boolean wolf, String type, String name) {
         super(food, wolf);
-        setUnlocalizedName(unlocalizedName);
+        setRegistryName(name);
+        setUnlocalizedName(name);
+        setCreativeTab(ModItems.tabKingdomKeys);
         setAlwaysEdible();
+        setMaxStackSize(1);
         this.potionType = type;
     }
 
@@ -34,11 +38,11 @@ public abstract class ItemKKPotion extends ItemFood {
     }
 
     public String getItemName () {
-        return unlocalizedName;
+        return name;
     }
 
     public void setItemName (String unlocalizedName) {
-        this.unlocalizedName = unlocalizedName;
+        this.name = name;
     }
 
     public static void getItem (EntityPlayer player, World world, String item, int slot) {

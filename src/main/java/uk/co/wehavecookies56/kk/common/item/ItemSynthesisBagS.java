@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.item;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,6 +14,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagS;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -21,9 +23,10 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import javax.annotation.Nullable;
 
-public class ItemSynthesisBagS extends Item {
+public class ItemSynthesisBagS extends ItemKKBase {
 
-    public ItemSynthesisBagS () {
+    public ItemSynthesisBagS(String name) {
+        super(name);
         setMaxStackSize(1);
     }
 
@@ -34,15 +37,10 @@ public class ItemSynthesisBagS extends Item {
     }
 
     @Override
-    public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-        int x = 30;
-        String s = Utils.translateToLocal(Strings.SynthesisBagDesc);
-        s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
-        String[] splitS = s.split("\n");
-        for (String element : splitS)
-            tooltip.add(element);
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(Utils.translateToLocal(Strings.SynthesisBagDesc));
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
-
 
     @Nullable
     @Override

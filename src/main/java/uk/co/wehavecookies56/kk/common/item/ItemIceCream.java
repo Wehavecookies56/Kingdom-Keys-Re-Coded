@@ -5,7 +5,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.GiveItemInSlot;
@@ -15,10 +17,13 @@ public class ItemIceCream extends ItemFood {
 
     int win;
 
-    public ItemIceCream (int food, boolean wolf) {
+    public ItemIceCream (String name, int food, boolean wolf) {
         super(food, wolf);
-        setUnlocalizedName(Strings.Potion);
+        setRegistryName(name);
+        setUnlocalizedName(name);
+        setCreativeTab(ModItems.tabKingdomKeys);
         setAlwaysEdible();
+
     }
 
     @Override

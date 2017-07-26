@@ -37,7 +37,7 @@ public class RenderBlastBlox extends Render<EntityBlastBlox> {
         f2 = (1.0F - (entity.fuse - p_76986_9_ + 1.0F) / 100.0F) * 0.8F;
         bindEntityTexture(entity);
         GlStateManager.translate(-0.5F, -0.5F, 0.5F);
-        blockrendererdispatcher.renderBlockBrightness(ModBlocks.BlastBlox.getDefaultState(), entity.getBrightness(p_76986_9_));
+        blockrendererdispatcher.renderBlockBrightness(ModBlocks.BlastBlox.getDefaultState(), entity.getBrightness());
         GlStateManager.translate(0.0F, 0.0F, 1.0F);
 
         if (entity.fuse / 5 % 2 == 0) {

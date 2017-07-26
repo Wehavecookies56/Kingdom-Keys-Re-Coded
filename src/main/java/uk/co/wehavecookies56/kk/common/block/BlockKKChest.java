@@ -37,19 +37,23 @@ import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class BlockKKChest extends Block implements ITileEntityProvider {
     protected Random rand = new Random();
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    public BlockKKChest (Material material, String toolClass, int level, float hardness, float resistance) {
+    public BlockKKChest (Material material, String toolClass, int level, float hardness, float resistance, String name) {
         super(material);
         this.setHarvestLevel(toolClass, level);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         setHardness(hardness);
         setResistance(resistance);
         setSoundType(SoundType.STONE);
+        setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
+        setRegistryName(name);
+        setUnlocalizedName(name);
     }
 
     @Override

@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"NLN",
+		"NTN",
+		"NNN"
+	],
+	"key": {
+		"N": {
+			"item": "kk:normalblox"
+		},
+		"L": {
+			"item": "minecraft:lava_bucket"
+		},
+		"T": {
+			"item": "minecraft:tnt"
+		}
+	},
+	"result": {
+		"item": "kk:blastblox"
+	}
+}

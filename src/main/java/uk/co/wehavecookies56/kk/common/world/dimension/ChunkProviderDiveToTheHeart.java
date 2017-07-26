@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 
 /**
  * Created by Toby on 01/08/2016.
@@ -32,7 +32,7 @@ public class ChunkProviderDiveToTheHeart implements IChunkGenerator {
     }
 
     @Override
-    public Chunk provideChunk(int x, int z) {
+    public Chunk generateChunk(int x, int z) {
         this.chunkX = x; this.chunkZ = z;
         this.rand.setSeed((long)x * 341873128712L + (long)z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
@@ -67,12 +67,16 @@ public class ChunkProviderDiveToTheHeart implements IChunkGenerator {
         return new ArrayList<Biome.SpawnListEntry>();
     }
 
-    @Nullable
     @Override
-    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
-        return null;
+    public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
+        return false;
     }
 
+    @Nullable
+    @Override
+    public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
+        return null;
+    }
 
     @Override
     public void recreateStructures(Chunk chunkIn, int x, int z) {

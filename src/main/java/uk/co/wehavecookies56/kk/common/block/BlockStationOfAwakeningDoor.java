@@ -22,6 +22,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 /**
  * Created by Toby on 09/08/2016.
@@ -33,8 +34,9 @@ public class BlockStationOfAwakeningDoor extends Block {
     public BlockStationOfAwakeningDoor(String name) {
         super(Material.IRON);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        setUnlocalizedName(name);
         setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
+        setRegistryName(name);
+        setUnlocalizedName(name);
     }
 
     @Nullable

@@ -18,6 +18,7 @@ import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntitySynthesisTable;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncFreeDevRecipeData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMaterialData;
@@ -26,11 +27,14 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.OpenSynthesis;
 
 public class BlockSynthesisTable extends Block implements ITileEntityProvider {
 
-    protected BlockSynthesisTable (Material material, String toolClass, int level, float hardness, float resistance) {
+    protected BlockSynthesisTable (Material material, String toolClass, int level, float hardness, float resistance, String name) {
         super(material);
         this.setHarvestLevel(toolClass, level);
         setHardness(hardness);
         setResistance(resistance);
+        setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
+        setRegistryName(name);
+        setUnlocalizedName(name);
     }
 
     @Override

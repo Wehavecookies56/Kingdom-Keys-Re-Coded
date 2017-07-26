@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"S S",
+		"FCF",
+		"SSS"
+	],
+	"key": {
+		"S": {
+			"item": "kk:brightinfusedglowstone"
+		},
+		"C": {
+			"item": "minecraft:diamond_chestplate"
+		},
+		"F": {
+			"item": "kk:mythrilinfuseddiamond"
+		}
+	},
+	"result": {
+		"item": "kk:eraqus_chestplate"
+	}
+}

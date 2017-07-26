@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.item.base;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -9,16 +10,21 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
-public class ItemSynthesisMaterial extends Item {
+import javax.annotation.Nullable;
 
-    public ItemSynthesisMaterial () {}
+public class ItemSynthesisMaterial extends ItemKKBase {
+
+    public ItemSynthesisMaterial (String name) {
+        super(name);
+    }
 
     @Override
-    public void addInformation (ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         if (stack.hasTagCompound()) {
             String material = stack.getTagCompound().getString("material");
             String rank = stack.getTagCompound().getString("rank");
@@ -27,167 +33,169 @@ public class ItemSynthesisMaterial extends Item {
     }
 
     @Override
-    public void getSubItems (Item itemIn, CreativeTabs tab, NonNullList subItems) {
-        ItemStack BlazingShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack BlazingStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack BlazingGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
+        if (isInCreativeTab(tab)) {
+            ItemStack BlazingShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack BlazingStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack BlazingGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack BlazingCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack FrostShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack FrostStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack FrostGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack FrostCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack FrostShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack FrostStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack FrostGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack FrostCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack LightningShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack LightningStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack LightningGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack LightningCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack LightningShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack LightningStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack LightningGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack LightningCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack LucidShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack LucidStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack LucidGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack LucidCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack LucidShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack LucidStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack LucidGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack LucidCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack PowerShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack PowerStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack PowerGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack PowerCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack PowerShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack PowerStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack PowerGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack PowerCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack DarkShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack DarkStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack DarkGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack DarkCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack DarkShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack DarkStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack DarkGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack DarkCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack DenseShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack DenseStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack DenseGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack DenseCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack DenseShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack DenseStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack DenseGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack DenseCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack TwilightShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack TwilightStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack TwilightGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack TwilightCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack TwilightShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack TwilightStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack TwilightGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack TwilightCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack MythrilShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack MythrilStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack MythrilGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack MythrilCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack MythrilShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack MythrilStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack MythrilGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack MythrilCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack BrightShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack BrightStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack BrightGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack BrightCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack BrightShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack BrightStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack BrightGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack BrightCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack EnergyShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack EnergyStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack EnergyGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack EnergyCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack EnergyShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack EnergyStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack EnergyGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack EnergyCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack SerenityShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack SerenityStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack SerenityGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack SerenityCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack SerenityShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack SerenityStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack SerenityGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack SerenityCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack Orichalcum = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack OrichalcumPlus = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack Orichalcum = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack OrichalcumPlus = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack RemembranceShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack RemembranceStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack RemembranceGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack RemembranceCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack RemembranceShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack RemembranceStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack RemembranceGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack RemembranceCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack TranquilShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack TranquilStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack TranquilGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack TranquilCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack TranquilShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack TranquilStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack TranquilGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack TranquilCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack ManifestIllusion = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack LostIllusion = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack ManifestIllusion = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack LostIllusion = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        ItemStack StormyShard = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack StormyStone = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack StormyGem = new ItemStack(ModItems.SynthesisMaterial, 1);
-        ItemStack StormyCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack StormyShard = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack StormyStone = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack StormyGem = new ItemStack(ModItems.SynthesisMaterial, 1);
+            ItemStack StormyCrystal = new ItemStack(ModItems.SynthesisMaterial, 1);
 
-        createSynthesisItem(BlazingShard, Strings.SM_BlazingShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(BlazingStone, Strings.SM_BlazingStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(BlazingGem, Strings.SM_BlazingGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(BlazingCrystal, Strings.SM_BlazingCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(BlazingShard, Strings.SM_BlazingShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(BlazingStone, Strings.SM_BlazingStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(BlazingGem, Strings.SM_BlazingGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(BlazingCrystal, Strings.SM_BlazingCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(FrostShard, Strings.SM_FrostShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(FrostStone, Strings.SM_FrostStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(FrostGem, Strings.SM_FrostGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(FrostCrystal, Strings.SM_FrostCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(FrostShard, Strings.SM_FrostShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(FrostStone, Strings.SM_FrostStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(FrostGem, Strings.SM_FrostGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(FrostCrystal, Strings.SM_FrostCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(LightningShard, Strings.SM_LightningShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(LightningStone, Strings.SM_LightningStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(LightningGem, Strings.SM_LightningGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(LightningCrystal, Strings.SM_LightningCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(LightningShard, Strings.SM_LightningShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(LightningStone, Strings.SM_LightningStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(LightningGem, Strings.SM_LightningGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(LightningCrystal, Strings.SM_LightningCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(LucidShard, Strings.SM_LucidShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(LucidStone, Strings.SM_LucidStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(LucidGem, Strings.SM_LucidGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(LucidCrystal, Strings.SM_LucidCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(LucidShard, Strings.SM_LucidShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(LucidStone, Strings.SM_LucidStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(LucidGem, Strings.SM_LucidGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(LucidCrystal, Strings.SM_LucidCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(PowerShard, Strings.SM_PowerShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(PowerStone, Strings.SM_PowerStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(PowerGem, Strings.SM_PowerGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(PowerCrystal, Strings.SM_PowerCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(PowerShard, Strings.SM_PowerShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(PowerStone, Strings.SM_PowerStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(PowerGem, Strings.SM_PowerGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(PowerCrystal, Strings.SM_PowerCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(DarkShard, Strings.SM_DarkShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(DarkStone, Strings.SM_DarkStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(DarkGem, Strings.SM_DarkGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(DarkCrystal, Strings.SM_DarkCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(DarkShard, Strings.SM_DarkShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(DarkStone, Strings.SM_DarkStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(DarkGem, Strings.SM_DarkGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(DarkCrystal, Strings.SM_DarkCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(DenseShard, Strings.SM_DenseShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(DenseStone, Strings.SM_DenseStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(DenseGem, Strings.SM_DenseGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(DenseCrystal, Strings.SM_DenseCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(DenseShard, Strings.SM_DenseShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(DenseStone, Strings.SM_DenseStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(DenseGem, Strings.SM_DenseGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(DenseCrystal, Strings.SM_DenseCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(TwilightShard, Strings.SM_TwilightShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(TwilightStone, Strings.SM_TwilightStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(TwilightGem, Strings.SM_TwilightGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(TwilightCrystal, Strings.SM_TwilightCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(TwilightShard, Strings.SM_TwilightShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(TwilightStone, Strings.SM_TwilightStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(TwilightGem, Strings.SM_TwilightGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(TwilightCrystal, Strings.SM_TwilightCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(MythrilShard, Strings.SM_MythrilShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(MythrilStone, Strings.SM_MythrilStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(MythrilGem, Strings.SM_MythrilGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(MythrilCrystal, Strings.SM_MythrilCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(MythrilShard, Strings.SM_MythrilShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(MythrilStone, Strings.SM_MythrilStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(MythrilGem, Strings.SM_MythrilGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(MythrilCrystal, Strings.SM_MythrilCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(BrightShard, Strings.SM_BrightShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(BrightStone, Strings.SM_BrightStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(BrightGem, Strings.SM_BrightGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(BrightCrystal, Strings.SM_BrightCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(BrightShard, Strings.SM_BrightShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(BrightStone, Strings.SM_BrightStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(BrightGem, Strings.SM_BrightGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(BrightCrystal, Strings.SM_BrightCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(EnergyShard, Strings.SM_EnergyShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(EnergyStone, Strings.SM_EnergyStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(EnergyGem, Strings.SM_EnergyGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(EnergyCrystal, Strings.SM_EnergyCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(EnergyShard, Strings.SM_EnergyShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(EnergyStone, Strings.SM_EnergyStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(EnergyGem, Strings.SM_EnergyGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(EnergyCrystal, Strings.SM_EnergyCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(SerenityShard, Strings.SM_SerenityShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(SerenityStone, Strings.SM_SerenityStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(SerenityGem, Strings.SM_SerenityGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(SerenityCrystal, Strings.SM_SerenityCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(SerenityShard, Strings.SM_SerenityShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(SerenityStone, Strings.SM_SerenityStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(SerenityGem, Strings.SM_SerenityGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(SerenityCrystal, Strings.SM_SerenityCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(RemembranceShard, Strings.SM_RemembranceShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(RemembranceStone, Strings.SM_RemembranceStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(RemembranceGem, Strings.SM_RemembranceGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(RemembranceCrystal, Strings.SM_RemembranceCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(RemembranceShard, Strings.SM_RemembranceShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(RemembranceStone, Strings.SM_RemembranceStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(RemembranceGem, Strings.SM_RemembranceGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(RemembranceCrystal, Strings.SM_RemembranceCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(TranquilShard, Strings.SM_TranquilShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(TranquilStone, Strings.SM_TranquilStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(TranquilGem, Strings.SM_TranquilGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(TranquilCrystal, Strings.SM_TranquilCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(TranquilShard, Strings.SM_TranquilShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(TranquilStone, Strings.SM_TranquilStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(TranquilGem, Strings.SM_TranquilGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(TranquilCrystal, Strings.SM_TranquilCrystal, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(Orichalcum, Strings.SM_Orichalcum, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(OrichalcumPlus, Strings.SM_OrichalcumPlus, Strings.SM_Rank_S, subItems);
-        createSynthesisItem(ManifestIllusion, Strings.SM_ManifestIllusion, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(LostIllusion, Strings.SM_LostIllusion, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(Orichalcum, Strings.SM_Orichalcum, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(OrichalcumPlus, Strings.SM_OrichalcumPlus, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(ManifestIllusion, Strings.SM_ManifestIllusion, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(LostIllusion, Strings.SM_LostIllusion, Strings.SM_Rank_S, subItems);
 
-        createSynthesisItem(StormyShard, Strings.SM_StormyShard, Strings.SM_Rank_C, subItems);
-        createSynthesisItem(StormyStone, Strings.SM_StormyStone, Strings.SM_Rank_B, subItems);
-        createSynthesisItem(StormyGem, Strings.SM_StormyGem, Strings.SM_Rank_A, subItems);
-        createSynthesisItem(StormyCrystal, Strings.SM_StormyCrystal, Strings.SM_Rank_S, subItems);
+            createSynthesisItem(StormyShard, Strings.SM_StormyShard, Strings.SM_Rank_C, subItems);
+            createSynthesisItem(StormyStone, Strings.SM_StormyStone, Strings.SM_Rank_B, subItems);
+            createSynthesisItem(StormyGem, Strings.SM_StormyGem, Strings.SM_Rank_A, subItems);
+            createSynthesisItem(StormyCrystal, Strings.SM_StormyCrystal, Strings.SM_Rank_S, subItems);
+        }
     }
 
     public void createSynthesisItem (ItemStack stack, String material, String rank, List list) {

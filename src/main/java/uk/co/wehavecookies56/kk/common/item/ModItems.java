@@ -1,6 +1,5 @@
 package uk.co.wehavecookies56.kk.common.item;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.SoundEvents;
@@ -9,16 +8,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import scala.collection.script.End;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.core.handler.BalanceConfig;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKKRecord;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
-import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemRecipe;
-import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
+import uk.co.wehavecookies56.kk.common.item.base.*;
 import uk.co.wehavecookies56.kk.common.item.org.ItemArrowguns;
 import uk.co.wehavecookies56.kk.common.item.org.ItemAxeSword;
 import uk.co.wehavecookies56.kk.common.item.org.ItemCard;
@@ -34,52 +33,1858 @@ import uk.co.wehavecookies56.kk.common.item.org.ItemSitar;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
+import javax.annotation.Nonnull;
+import java.security.Key;
+
 public class ModItems {
 
     // Organization
 
     //Xemnas
-    public static Item Malice, Sanction, Overlord, Veneration, Autocracy, Conquest, Terminus, Judgement, Discipline, Aristocracy, Superiority, Aggression, Fury, Despair, Triumph, Ruination, Domination, Annihilation, Tyrant, Magnificence, Infinity, Interdiction, RoundFan, Absolute;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Malice)
+    public static Item Malice;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Sanction)
+    public static Item Sanction;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Overlord)
+    public static Item Overlord;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Veneration)
+    public static Item Veneration;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Autocracy)
+    public static Item Autocracy;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Conquest)
+    public static Item Conquest;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Terminus)
+    public static Item Terminus;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Judgement)
+    public static Item Judgement;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Discipline)
+    public static Item Discipline;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Aristocracy)
+    public static Item Aristocracy;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Superiority)
+    public static Item Superiority;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Aggression)
+    public static Item Aggression;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Fury)
+    public static Item Fury;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Despair)
+    public static Item Despair;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Triumph)
+    public static Item Triumph;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Ruination)
+    public static Item Ruination;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Domination)
+    public static Item Domination;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Annihilation)
+    public static Item Annihilation;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Tyrant)
+    public static Item Tyrant;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Magnificence)
+    public static Item Magnificence;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Infinity)
+    public static Item Infinity;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Interdiction)
+    public static Item Interdiction;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.RoundFan)
+    public static Item RoundFan;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Absolute)
+    public static Item Absolute;
+
     //Xigbar
-    public static Item Standalone, Killerbee, Stingray, Counterweight, Precision, DualHead, Bahamut, Gullwing, BlueFrame, StarShell, Sunrise, Ignition, Armstrong, HardBoiledHeat, DiabloEye, DoubleTap, Stardust, EnergyMuzzle, CrimeAndPunishment, CupidsArrow, FinalWeapon, Sharpshooter, Dryer, Trumpet;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Standalone)
+    public static Item Standalone;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Killerbee)
+    public static Item Killerbee;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Stingray)
+    public static Item Stingray;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Counterweight)
+    public static Item Counterweight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Precision)
+    public static Item Precision;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DualHead)
+    public static Item DualHead;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Bahamut)
+    public static Item Bahamut;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Gullwing)
+    public static Item Gullwing;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BlueFrame)
+    public static Item BlueFrame;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.StarShell)
+    public static Item StarShell;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Sunrise)
+    public static Item Sunrise;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Ignition)
+    public static Item Ignition;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Armstrong)
+    public static Item Armstrong;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.HardBoiledHeat)
+    public static Item HardBoiledHeat;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DiabloEye)
+    public static Item DiabloEye;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DoubleTap)
+    public static Item DoubleTap;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Stardust)
+    public static Item Stardust;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.EnergyMuzzle)
+    public static Item EnergyMuzzle;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.CrimeAndPunishment)
+    public static Item CrimeAndPunishment;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.CupidsArrow)
+    public static Item CupidsArrow;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FinalWeapon)
+    public static Item FinalWeapon;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Sharpshooter)
+    public static Item Sharpshooter;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Dryer)
+    public static Item Dryer;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Trumpet)
+    public static Item Trumpet;
+
     //Xaldin
-    public static Item Zephyr, Moonglade, Aer, Nescience, Brume, Asura, Crux, Paladin, Fellking, Nightcloud, Shimmer, Vortex, Scission, Heavenfall, Aether, Mazzaroth, Hegemon, Foxfire, Yaksha, Cynosura, Dragonreign, Lindworm, Broom, Wyvern;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Zephyr)
+    public static Item Zephyr;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Moonglade)
+    public static Item Moonglade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Aer)
+    public static Item Aer;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Nescience)
+    public static Item Nescience;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Brume)
+    public static Item Brume;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Asura)
+    public static Item Asura;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Crux)
+    public static Item Crux;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Paladin)
+    public static Item Paladin;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Fellking)
+    public static Item Fellking;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Nightcloud)
+    public static Item Nightcloud;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Shimmer)
+    public static Item Shimmer;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Vortex)
+    public static Item Vortex;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Scission)
+    public static Item Scission;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Heavenfall)
+    public static Item Heavenfall;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Aether)
+    public static Item Aether;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Mazzaroth)
+    public static Item Mazzaroth;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Hegemon)
+    public static Item Hegemon;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Foxfire)
+    public static Item Foxfire;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Yaksha)
+    public static Item Yaksha;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Cynosura)
+    public static Item Cynosura;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Dragonreign)
+    public static Item Dragonreign;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Lindworm)
+    public static Item Lindworm;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Broom)
+    public static Item Broom;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Wyvern)
+    public static Item Wyvern;
+
     //Vexen
-    public static Item TesterZero, ProductOne, DeepFreeze, CryoliteShield, FalseTheory, Glacier, AbsoluteZero, Gunz, Mindel, Snowslide, Iceberg, Inquisition, Scrutiny, Empiricism, Edification, Contrivance, Wurm, Subzero, ColdBlood, DiamondShield, Aegis, FrozenPride, PotLid, Snowman;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TesterZero)
+    public static Item TesterZero;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.ProductOne)
+    public static Item ProductOne;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DeepFreeze)
+    public static Item DeepFreeze;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.CryoliteShield)
+    public static Item CryoliteShield;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FalseTheory)
+    public static Item FalseTheory;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Glacier)
+    public static Item Glacier;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.AbsoluteZero)
+    public static Item AbsoluteZero;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Gunz)
+    public static Item Gunz;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Mindel)
+    public static Item Mindel;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Snowslide)
+    public static Item Snowslide;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Iceberg)
+    public static Item Iceberg;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Inquisition)
+    public static Item Inquisition;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Scrutiny)
+    public static Item Scrutiny;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Empiricism)
+    public static Item Empiricism;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Edification)
+    public static Item Edification;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Contrivance)
+    public static Item Contrivance;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Wurm)
+    public static Item Wurm;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Subzero)
+    public static Item Subzero;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.ColdBlood)
+    public static Item ColdBlood;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DiamondShield)
+    public static Item DiamondShield;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Aegis)
+    public static Item Aegis;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FrozenPride)
+    public static Item FrozenPride;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PotLid)
+    public static Item PotLid;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Snowman)
+    public static Item Snowman;
+
     //Lexaeus
-    public static Item Reticence, Goliath, CopperRed, Daybreak, Colossus, UrsaMajor, Megacosm, Terrene, Fuligin, HardWinter, Firefly, Harbinger, Redwood, Sequoia, IronBlack, Earthshine, Octiron, Hyperion, Clarity, OneThousandAndOneNights, CardinalVirtue, Skysplitter, BleepBloopBop, Monolith;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Reticence)
+    public static Item Reticence;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Goliath)
+    public static Item Goliath;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.CopperRed)
+    public static Item CopperRed;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Daybreak)
+    public static Item Daybreak;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Colossus)
+    public static Item Colossus;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.UrsaMajor)
+    public static Item UrsaMajor;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Megacosm)
+    public static Item Megacosm;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Terrene)
+    public static Item Terrene;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Fuligin)
+    public static Item Fuligin;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.HardWinter)
+    public static Item HardWinter;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Firefly)
+    public static Item Firefly;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Harbinger)
+    public static Item Harbinger;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Redwood)
+    public static Item Redwood;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Sequoia)
+    public static Item Sequoia;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.IronBlack)
+    public static Item IronBlack;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Earthshine)
+    public static Item Earthshine;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Octiron)
+    public static Item Octiron;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Hyperion)
+    public static Item Hyperion;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Clarity)
+    public static Item Clarity;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OneThousandAndOneNights)
+    public static Item OneThousandAndOneNights;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.CardinalVirtue)
+    public static Item CardinalVirtue;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Skysplitter)
+    public static Item Skysplitter;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BleepBloopBop)
+    public static Item BleepBloopBop;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Monolith)
+    public static Item Monolith;
+
     //Zexion
-    public static Item BlackPrimer, WhiteTome, IllicitResearch, BuriedSecrets, ArcaneCompendium, DissentersNotes, NefariousCodex, MysticAlbum, CursedManual, TabooText, EldritchEsoterica, FreakishBestiary, MadmansVita, UntitledWritings, AbandonedDogma, AtlasOfOmens, RevoltingScrapbook, LostHeterodoxy, OtherworldlyTales, IndescribableLore, RadicalTreatise, BookofRetribution, MidnightSnack, DearDiary;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BlackPrimer)
+    public static Item BlackPrimer;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.WhiteTome)
+    public static Item WhiteTome;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.IllicitResearch)
+    public static Item IllicitResearch;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BuriedSecrets)
+    public static Item BuriedSecrets;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.ArcaneCompendium)
+    public static Item ArcaneCompendium;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DissentersNotes)
+    public static Item DissentersNotes;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.NefariousCodex)
+    public static Item NefariousCodex;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MysticAlbum)
+    public static Item MysticAlbum;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.CursedManual)
+    public static Item CursedManual;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TabooText)
+    public static Item TabooText;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.EldritchEsoterica)
+    public static Item EldritchEsoterica;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FreakishBestiary)
+    public static Item FreakishBestiary;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MadmansVita)
+    public static Item MadmansVita;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.UntitledWritings)
+    public static Item UntitledWritings;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.AbandonedDogma)
+    public static Item AbandonedDogma;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.AtlasOfOmens)
+    public static Item AtlasOfOmens;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.RevoltingScrapbook)
+    public static Item RevoltingScrapbook;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LostHeterodoxy)
+    public static Item LostHeterodoxy;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OtherworldlyTales)
+    public static Item OtherworldlyTales;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.IndescribableLore)
+    public static Item IndescribableLore;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.RadicalTreatise)
+    public static Item RadicalTreatise;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BookofRetribution)
+    public static Item BookofRetribution;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MidnightSnack)
+    public static Item MidnightSnack;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DearDiary)
+    public static Item DearDiary;
+
     //Saix
-    public static Item NewMoon, Werewolf, Artemis, Luminary, Selene, Moonrise, Astrologia, Crater, LunarPhase, Crescent, Gibbous, Berserker, Twilight, QueenOfTheNight, BalsamicMoon, Orbit, LightYear, KingOfTheNight, Moonset, Horoscope, Dichotomy, Lunatic, JustDesserts, Bunnymoon;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.NewMoon)
+    public static Item NewMoon;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Werewolf)
+    public static Item Werewolf;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Artemis)
+    public static Item Artemis;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Luminary)
+    public static Item Luminary;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Selene)
+    public static Item Selene;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Moonrise)
+    public static Item Moonrise;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Astrologia)
+    public static Item Astrologia;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Crater)
+    public static Item Crater;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LunarPhase)
+    public static Item LunarPhase;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Crescent)
+    public static Item Crescent;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Gibbous)
+    public static Item Gibbous;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Berserker)
+    public static Item Berserker;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Twilight)
+    public static Item Twilight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.QueenOfTheNight)
+    public static Item QueenOfTheNight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BalsamicMoon)
+    public static Item BalsamicMoon;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Orbit)
+    public static Item Orbit;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LightYear)
+    public static Item LightYear;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.KingOfTheNight)
+    public static Item KingOfTheNight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Moonset)
+    public static Item Moonset;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Horoscope)
+    public static Item Horoscope;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Dichotomy)
+    public static Item Dichotomy;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Lunatic)
+    public static Item Lunatic;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.JustDesserts)
+    public static Item JustDesserts;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Bunnymoon)
+    public static Item Bunnymoon;
+
     //Axel
-    public static Item Ashes, Doldrums, DelayedAction, DiveBombers, Combustion, MoulinRouge, BlazeofGlory, Prometheus, Ifrit, MagmaOcean, Volcanics, Inferno, SizzlingEdge, Corona, FerrisWheel, Burnout, OmegaTrinity, Outbreak, DoubleEdge, Wildfire, Prominence, EternalFlames, PizzaCut, Conformers;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Ashes)
+    public static Item Ashes;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Doldrums)
+    public static Item Doldrums;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DelayedAction)
+    public static Item DelayedAction;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DiveBombers)
+    public static Item DiveBombers;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Combustion)
+    public static Item Combustion;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MoulinRouge)
+    public static Item MoulinRouge;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BlazeofGlory)
+    public static Item BlazeofGlory;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Prometheus)
+    public static Item Prometheus;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Ifrit)
+    public static Item Ifrit;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MagmaOcean)
+    public static Item MagmaOcean;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Volcanics)
+    public static Item Volcanics;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Inferno)
+    public static Item Inferno;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SizzlingEdge)
+    public static Item SizzlingEdge;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Corona)
+    public static Item Corona;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FerrisWheel)
+    public static Item FerrisWheel;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Burnout)
+    public static Item Burnout;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OmegaTrinity)
+    public static Item OmegaTrinity;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Outbreak)
+    public static Item Outbreak;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DoubleEdge)
+    public static Item DoubleEdge;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Wildfire)
+    public static Item Wildfire;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Prominence)
+    public static Item Prominence;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.EternalFlames)
+    public static Item EternalFlames;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PizzaCut)
+    public static Item PizzaCut;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Conformers)
+    public static Item Conformers;
+
     //Demyx
-    public static Item BasicModel, TuneUp, Quartet, Quintet, Overture, OldHand, DaCapo, PowerChord, Fermata, Interlude, Serenade, Songbird, RiseToFame, RockStar, EightFinger, Concerto, Harmonics, MillionBucks, Fortissimo, UpToEleven, Sanctuary, Arpeggio, PrinceOfAwesome, AfterSchool;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BasicModel)
+    public static Item BasicModel;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TuneUp)
+    public static Item TuneUp;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Quartet)
+    public static Item Quartet;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Quintet)
+    public static Item Quintet;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Overture)
+    public static Item Overture;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OldHand)
+    public static Item OldHand;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DaCapo)
+    public static Item DaCapo;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PowerChord)
+    public static Item PowerChord;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Fermata)
+    public static Item Fermata;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Interlude)
+    public static Item Interlude;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Serenade)
+    public static Item Serenade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Songbird)
+    public static Item Songbird;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.RiseToFame)
+    public static Item RiseToFame;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.RockStar)
+    public static Item RockStar;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.EightFinger)
+    public static Item EightFinger;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Concerto)
+    public static Item Concerto;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Harmonics)
+    public static Item Harmonics;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MillionBucks)
+    public static Item MillionBucks;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Fortissimo)
+    public static Item Fortissimo;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.UpToEleven)
+    public static Item UpToEleven;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Sanctuary)
+    public static Item Sanctuary;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Arpeggio)
+    public static Item Arpeggio;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PrinceOfAwesome)
+    public static Item PrinceOfAwesome;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.AfterSchool)
+    public static Item AfterSchool;
+
     //Luxord
-    public static Item TheFool, TheMagician, TheStar, TheMoon, Justice, TheHierophant, TheWorld, Temperance, TheHighPriestess, TheTower, TheHangedMan, Death, TheHermit, Strength, TheLovers, TheChariot, TheSun, TheDevil, TheEmpress, TheEmperor, TheJoker, FairGame, FinestFantasy13, HighRollersSecret;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheFool)
+    public static Item TheFool;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheMagician)
+    public static Item TheMagician;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheStar)
+    public static Item TheStar;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheMoon)
+    public static Item TheMoon;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Justice)
+    public static Item Justice;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheHierophant)
+    public static Item TheHierophant;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheWorld)
+    public static Item TheWorld;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Temperance)
+    public static Item Temperance;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheHighPriestess)
+    public static Item TheHighPriestess;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheTower)
+    public static Item TheTower;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheHangedMan)
+    public static Item TheHangedMan;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Death)
+    public static Item Death;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheHermit)
+    public static Item TheHermit;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Strength)
+    public static Item Strength;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheLovers)
+    public static Item TheLovers;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheChariot)
+    public static Item TheChariot;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheSun)
+    public static Item TheSun;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheDevil)
+    public static Item TheDevil;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheEmpress)
+    public static Item TheEmpress;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheEmperor)
+    public static Item TheEmperor;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TheJoker)
+    public static Item TheJoker;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FairGame)
+    public static Item FairGame;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FinestFantasy13)
+    public static Item FinestFantasy13;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.HighRollersSecret)
+    public static Item HighRollersSecret;
+
     //Marluxia
-    public static Item FickleErica, JiltedAnemone, ProudAmaryllis, MadSafflower, PoorMelissa, TragicAllium, MournfulCineria, PseudoSilene, FaithlessDigitalis, GrimMuscari, DocileVallota, QuietBelladonna, PartingIpheion, LoftyGerbera, GallantAchillea, NoblePeony, FearsomeAnise, VindictiveThistle, FairHelianthus, SolemnMagnolia, HallowedLotus, GracefulDahlia, StirringLadle, DaintyBellflowers;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FickleErica)
+    public static Item FickleErica;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.JiltedAnemone)
+    public static Item JiltedAnemone;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.ProudAmaryllis)
+    public static Item ProudAmaryllis;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MadSafflower)
+    public static Item MadSafflower;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PoorMelissa)
+    public static Item PoorMelissa;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TragicAllium)
+    public static Item TragicAllium;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MournfulCineria)
+    public static Item MournfulCineria;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PseudoSilene)
+    public static Item PseudoSilene;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FaithlessDigitalis)
+    public static Item FaithlessDigitalis;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.GrimMuscari)
+    public static Item GrimMuscari;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DocileVallota)
+    public static Item DocileVallota;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.QuietBelladonna)
+    public static Item QuietBelladonna;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PartingIpheion)
+    public static Item PartingIpheion;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LoftyGerbera)
+    public static Item LoftyGerbera;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.GallantAchillea)
+    public static Item GallantAchillea;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.NoblePeony)
+    public static Item NoblePeony;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FearsomeAnise)
+    public static Item FearsomeAnise;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.VindictiveThistle)
+    public static Item VindictiveThistle;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FairHelianthus)
+    public static Item FairHelianthus;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SolemnMagnolia)
+    public static Item SolemnMagnolia;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.HallowedLotus)
+    public static Item HallowedLotus;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.GracefulDahlia)
+    public static Item GracefulDahlia;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.StirringLadle)
+    public static Item StirringLadle;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DaintyBellflowers)
+    public static Item DaintyBellflowers;
+
     //Larxene
-    public static Item Trancheuse, Orage, Tourbillon, Tempete, Carmin, Meteore, Etoile, Irregulier, Dissonance, Eruption, SoleilCouchant, Indigo, Vague, Deluge, Rafale, Typhon, Extirpeur, CroixDuSud, Lumineuse, ClairdeLune, VoldeNuit, Foudre, Demoiselle, Ampoule;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Trancheuse)
+    public static Item Trancheuse;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Orage)
+    public static Item Orage;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Tourbillon)
+    public static Item Tourbillon;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Tempete)
+    public static Item Tempete;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Carmin)
+    public static Item Carmin;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Meteore)
+    public static Item Meteore;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Etoile)
+    public static Item Etoile;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Irregulier)
+    public static Item Irregulier;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Dissonance)
+    public static Item Dissonance;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Eruption)
+    public static Item Eruption;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SoleilCouchant)
+    public static Item SoleilCouchant;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Indigo)
+    public static Item Indigo;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Vague)
+    public static Item Vague;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Deluge)
+    public static Item Deluge;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Rafale)
+    public static Item Rafale;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Typhon)
+    public static Item Typhon;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Extirpeur)
+    public static Item Extirpeur;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.CroixDuSud)
+    public static Item CroixDuSud;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Lumineuse)
+    public static Item Lumineuse;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.ClairdeLune)
+    public static Item ClairdeLune;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.VoldeNuit)
+    public static Item VoldeNuit;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Foudre)
+    public static Item Foudre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Demoiselle)
+    public static Item Demoiselle;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Ampoule)
+    public static Item Ampoule;
 
     // Crafting Martierials & knowledges
-    public static Item BlazingInfusedCoal, FrostInfusedSnowBall, StormyInfusedIron, MythrilInfusedDiamond, LightningInfusedGold, BrightInfusedGlowStone, DarkInfusedIron, AbandonedKnowledge;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BlazingInfusedCoal)
+    public static Item BlazingInfusedCoal;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FrostInfusedSnowBall)
+    public static Item FrostInfusedSnowBall;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.StormyInfusedIron)
+    public static Item StormyInfusedIron;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MythrilInfusedDiamond)
+    public static Item MythrilInfusedDiamond;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LightningInfusedGold)
+    public static Item LightningInfusedGold;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BrightInfusedGlowStone)
+    public static Item BrightInfusedGlowStone;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DarkInfusedIron)
+    public static Item DarkInfusedIron;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.AbandonedKnowledge)
+    public static Item AbandonedKnowledge;
+
+    //Other weapons
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DreamShield)
+    public static Item DreamShield;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DreamSword)
+    public static Item DreamSword;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_DreamSword)
+    public static Item Chain_DreamSword;
 
     // Keyblades
-    public static Item AbaddonPlasma, AbyssalTide, AllforOne, AnguisForetellersKeyblade, AstralBlast, Aubade, BondofFlame, Brightcrest, ChaosRipper, CircleofLife, Counterpoint, Crabclaw, CrownofGuilt, DarkerThanDark, Darkgnaw, DecisivePumpkin, DestinysEmbrace, DiamondDust, Divewing, DivineRose, DreamSword, DreamShield, DualDisc, Earthshaker, EndofPain, EndsoftheEarth, FairyHarp, FairyStars, FatalCrest, Fenrir, FerrisGear, FollowtheWind, FrolicFlame, GlimpseofDarkness, GuardianBell, GuardianSoul, GullWing, HerosCrest, HiddenDragon, Hyperdrive, IncompleteKiblade, JungleKing, KeybladeofPeoplesHearts, Kiblade, KingdomKey, KingdomKeyD, KnockoutPunch, LadyLuck, LeasKeyblade, LeopardosForetellersKeyblade, Leviathan, Lionheart, LostMemory, LunarEclipse, MarkofaHero, MasterXehanortsKeyblade, MastersDefender, MaverickFlare, MetalChocobo, MidnightRoar, MirageSplit, MissingAche, Monochrome, MysteriousAbyss, NightmaresEnd, NightmaresEndandMirageSplit, NoName, Oathkeeper, Oblivion, OceansRage, Olympia, OmegaWeapon, OminousBlight, OneWingedAngel, PainofSolitude, PhotonDebugger, PixiePetal, Pumpkinhead, Rainfell, RejectionofFate, RoyalRadiance, RumblingRose, SignofInnocence, SilentDirge, SkullNoise, SleepingLion, SoulEater, Spellbinder, StarSeeker, Starlight, Stormfall, StrokeofMidnight, SweetDreams, SweetMemories, Sweetstack, ThreeWishes, TotalEclipse, TreasureTrove, TrueLightsFlight, TwilightBlaze, TwoBecomeOne, UltimaWeaponKH1, UltimaWeaponKH2, UltimaWeaponBBS, UltimaWeaponDDD, Umbrella, Unbound, UnicornisForetellersKeyblade, UrsusForetellersKeyblade, VictoryLine, VoidGear, VulpeusForetellersKeyblade, WaytotheDawn, WaywardWind, WinnersProof, WishingLamp, WishingStar, WoodenKeyblade, WoodenStick, YoungXehanortsKeyblade, ZeroOne;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.AbaddonPlasma)
+    public static Item AbaddonPlasma;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.AbyssalTide)
+    public static Item AbyssalTide;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.AllforOne)
+    public static Item AllforOne;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.AnguisForetellersKeyblade)
+    public static Item AnguisForetellersKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.AstralBlast)
+    public static Item AstralBlast;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Aubade)
+    public static Item Aubade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BondofFlame)
+    public static Item BondofFlame;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Brightcrest)
+    public static Item Brightcrest;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.ChaosRipper)
+    public static Item ChaosRipper;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.CircleofLife)
+    public static Item CircleofLife;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Counterpoint)
+    public static Item Counterpoint;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Crabclaw)
+    public static Item Crabclaw;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.CrownofGuilt)
+    public static Item CrownofGuilt;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DarkerThanDark)
+    public static Item DarkerThanDark;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Darkgnaw)
+    public static Item Darkgnaw;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DecisivePumpkin)
+    public static Item DecisivePumpkin;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DestinysEmbrace)
+    public static Item DestinysEmbrace;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DiamondDust)
+    public static Item DiamondDust;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Divewing)
+    public static Item Divewing;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DivineRose)
+    public static Item DivineRose;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DualDisc)
+    public static Item DualDisc;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Earthshaker)
+    public static Item Earthshaker;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.EndofPain)
+    public static Item EndofPain;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.EndsoftheEarth)
+    public static Item EndsoftheEarth;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FairyHarp)
+    public static Item FairyHarp;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FairyStars)
+    public static Item FairyStars;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FatalCrest)
+    public static Item FatalCrest;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Fenrir)
+    public static Item Fenrir;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FerrisGear)
+    public static Item FerrisGear;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FollowtheWind)
+    public static Item FollowtheWind;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FrolicFlame)
+    public static Item FrolicFlame;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.GlimpseofDarkness)
+    public static Item GlimpseofDarkness;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.GuardianBell)
+    public static Item GuardianBell;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.GuardianSoul)
+    public static Item GuardianSoul;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.GullWing)
+    public static Item GullWing;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.HerosCrest)
+    public static Item HerosCrest;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.HiddenDragon)
+    public static Item HiddenDragon;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Hyperdrive)
+    public static Item Hyperdrive;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.IncompleteKiblade)
+    public static Item IncompleteKiblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.JungleKing)
+    public static Item JungleKing;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.KeybladeofPeoplesHearts)
+    public static Item KeybladeofPeoplesHearts;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Kiblade)
+    public static Item Kiblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.KingdomKey)
+    public static Item KingdomKey;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.KingdomKeyD)
+    public static Item KingdomKeyD;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.KnockoutPunch)
+    public static Item KnockoutPunch;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LadyLuck)
+    public static Item LadyLuck;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LeasKeyblade)
+    public static Item LeasKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LeopardosForetellersKeyblade)
+    public static Item LeopardosForetellersKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Leviathan)
+    public static Item Leviathan;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Lionheart)
+    public static Item Lionheart;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LostMemory)
+    public static Item LostMemory;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LunarEclipse)
+    public static Item LunarEclipse;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MarkofaHero)
+    public static Item MarkofaHero;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MasterXehanortsKeyblade)
+    public static Item MasterXehanortsKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MastersDefender)
+    public static Item MastersDefender;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MaverickFlare)
+    public static Item MaverickFlare;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MetalChocobo)
+    public static Item MetalChocobo;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MidnightRoar)
+    public static Item MidnightRoar;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MirageSplit)
+    public static Item MirageSplit;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MissingAche)
+    public static Item MissingAche;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Monochrome)
+    public static Item Monochrome;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MysteriousAbyss)
+    public static Item MysteriousAbyss;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.NightmaresEnd)
+    public static Item NightmaresEnd;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.NightmaresEndandMirageSplit)
+    public static Item NightmaresEndandMirageSplit;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.NoName)
+    public static Item NoName;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Oathkeeper)
+    public static Item Oathkeeper;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Oblivion)
+    public static Item Oblivion;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OceansRage)
+    public static Item OceansRage;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Olympia)
+    public static Item Olympia;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OmegaWeapon)
+    public static Item OmegaWeapon;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OminousBlight)
+    public static Item OminousBlight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OneWingedAngel)
+    public static Item OneWingedAngel;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PainofSolitude)
+    public static Item PainofSolitude;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PhotonDebugger)
+    public static Item PhotonDebugger;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PixiePetal)
+    public static Item PixiePetal;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Pumpkinhead)
+    public static Item Pumpkinhead;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Rainfell)
+    public static Item Rainfell;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.RejectionofFate)
+    public static Item RejectionofFate;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.RoyalRadiance)
+    public static Item RoyalRadiance;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.RumblingRose)
+    public static Item RumblingRose;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SignofInnocence)
+    public static Item SignofInnocence;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SilentDirge)
+    public static Item SilentDirge;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SkullNoise)
+    public static Item SkullNoise;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SleepingLion)
+    public static Item SleepingLion;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SoulEater)
+    public static Item SoulEater;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Spellbinder)
+    public static Item Spellbinder;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.StarSeeker)
+    public static Item StarSeeker;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Starlight)
+    public static Item Starlight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Stormfall)
+    public static Item Stormfall;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.StrokeofMidnight)
+    public static Item StrokeofMidnight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SweetDreams)
+    public static Item SweetDreams;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SweetMemories)
+    public static Item SweetMemories;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Sweetstack)
+    public static Item Sweetstack;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.ThreeWishes)
+    public static Item ThreeWishes;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TotalEclipse)
+    public static Item TotalEclipse;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TreasureTrove)
+    public static Item TreasureTrove;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TrueLightsFlight)
+    public static Item TrueLightsFlight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TwilightBlaze)
+    public static Item TwilightBlaze;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TwoBecomeOne)
+    public static Item TwoBecomeOne;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.UltimaWeaponKH1)
+    public static Item UltimaWeaponKH1;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.UltimaWeaponKH2)
+    public static Item UltimaWeaponKH2;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.UltimaWeaponBBS)
+    public static Item UltimaWeaponBBS;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.UltimaWeaponDDD)
+    public static Item UltimaWeaponDDD;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Umbrella)
+    public static Item Umbrella;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Unbound)
+    public static Item Unbound;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.UnicornisForetellersKeyblade)
+    public static Item UnicornisForetellersKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.UrsusForetellersKeyblade)
+    public static Item UrsusForetellersKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.VictoryLine)
+    public static Item VictoryLine;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.VoidGear)
+    public static Item VoidGear;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.VulpeusForetellersKeyblade)
+    public static Item VulpeusForetellersKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.WaytotheDawn)
+    public static Item WaytotheDawn;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.WaywardWind)
+    public static Item WaywardWind;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.WinnersProof)
+    public static Item WinnersProof;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.WishingLamp)
+    public static Item WishingLamp;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.WishingStar)
+    public static Item WishingStar;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.WoodenKeyblade)
+    public static Item WoodenKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.WoodenStick)
+    public static Item WoodenStick;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.YoungXehanortsKeyblade)
+    public static Item YoungXehanortsKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.ZeroOne)
+    public static Item ZeroOne;
 
     // Chains
-    public static Item Chain_AbaddonPlasma, Chain_AbyssalTide, Chain_AllforOne, Chain_AnguisForetellersKeyblade, Chain_AstralBlast, Chain_Aubade, Chain_BondofFlame, Chain_Brightcrest, Chain_ChaosRipper, Chain_CircleofLife, Chain_Counterpoint, Chain_Crabclaw, Chain_CrownofGuilt, Chain_DarkerThanDark, Chain_Darkgnaw, Chain_DecisivePumpkin, Chain_DestinysEmbrace, Chain_DiamondDust, Chain_Divewing, Chain_DivineRose, Chain_DreamSword, Chain_DualDisc, Chain_Earthshaker, Chain_EndofPain, Chain_EndsoftheEarth, Chain_FairyHarp, Chain_FairyStars, Chain_FatalCrest, Chain_Fenrir, Chain_FerrisGear, Chain_FollowtheWind, Chain_FrolicFlame, Chain_GlimpseofDarkness, Chain_GuardianBell, Chain_GuardianSoul, Chain_GullWing, Chain_HerosCrest, Chain_HiddenDragon, Chain_Hyperdrive, Chain_IncompleteKiblade, Chain_JungleKing, Chain_KeybladeofPeoplesHearts, Chain_Kiblade, Chain_KingdomKey, Chain_KingdomKeyD, Chain_KnockoutPunch, Chain_LadyLuck, Chain_LeasKeyblade, Chain_LeopardosForetellersKeyblade, Chain_Leviathan, Chain_Lionheart, Chain_LostMemory, Chain_LunarEclipse, Chain_MarkofaHero, Chain_MasterXehanortsKeyblade, Chain_MastersDefender, Chain_MaverickFlare, Chain_MetalChocobo, Chain_MidnightRoar, Chain_MirageSplit, Chain_MissingAche, Chain_Monochrome, Chain_MysteriousAbyss, Chain_NightmaresEnd, Chain_NightmaresEndandMirageSplit, Chain_NoName, Chain_Oathkeeper, Chain_Oblivion, Chain_OceansRage, Chain_Olympia, Chain_OmegaWeapon, Chain_OminousBlight, Chain_OneWingedAngel, Chain_PainofSolitude, Chain_PhotonDebugger, Chain_PixiePetal, Chain_Pumpkinhead, Chain_Rainfell, Chain_RejectionofFate, Chain_RoyalRadiance, Chain_RumblingRose, Chain_SignofInnocence, Chain_SilentDirge, Chain_SkullNoise, Chain_SleepingLion, Chain_SoulEater, Chain_Spellbinder, Chain_StarSeeker, Chain_Starlight, Chain_Stormfall, Chain_StrokeofMidnight, Chain_SweetDreams, Chain_SweetMemories, Chain_Sweetstack, Chain_ThreeWishes, Chain_TotalEclipse, Chain_TreasureTrove, Chain_TrueLightsFlight, Chain_TwilightBlaze, Chain_TwoBecomeOne, Chain_UltimaWeaponKH1, Chain_UltimaWeaponKH2, Chain_UltimaWeaponBBS, Chain_UltimaWeaponDDD, Chain_Umbrella, Chain_Unbound, Chain_UnicornisForetellersKeyblade, Chain_UrsusForetellersKeyblade, Chain_VictoryLine, Chain_VoidGear, Chain_VulpeusForetellersKeyblade, Chain_WaytotheDawn, Chain_WaywardWind, Chain_WinnersProof, Chain_WishingLamp, Chain_WishingStar, Chain_YoungXehanortsKeyblade, Chain_ZeroOne;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_AbaddonPlasma)
+    public static Item Chain_AbaddonPlasma;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_AbyssalTide)
+    public static Item Chain_AbyssalTide;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_AllforOne)
+    public static Item Chain_AllforOne;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_AnguisForetellersKeyblade)
+    public static Item Chain_AnguisForetellersKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_AstralBlast)
+    public static Item Chain_AstralBlast;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Aubade)
+    public static Item Chain_Aubade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_BondofFlame)
+    public static Item Chain_BondofFlame;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Brightcrest)
+    public static Item Chain_Brightcrest;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_ChaosRipper)
+    public static Item Chain_ChaosRipper;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_CircleofLife)
+    public static Item Chain_CircleofLife;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Counterpoint)
+    public static Item Chain_Counterpoint;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Crabclaw)
+    public static Item Chain_Crabclaw;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_CrownofGuilt)
+    public static Item Chain_CrownofGuilt;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_DarkerThanDark)
+    public static Item Chain_DarkerThanDark;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Darkgnaw)
+    public static Item Chain_Darkgnaw;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_DecisivePumpkin)
+    public static Item Chain_DecisivePumpkin;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_DestinysEmbrace)
+    public static Item Chain_DestinysEmbrace;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_DiamondDust)
+    public static Item Chain_DiamondDust;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Divewing)
+    public static Item Chain_Divewing;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_DivineRose)
+    public static Item Chain_DivineRose;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_DualDisc)
+    public static Item Chain_DualDisc;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Earthshaker)
+    public static Item Chain_Earthshaker;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_EndofPain)
+    public static Item Chain_EndofPain;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_EndsoftheEarth)
+    public static Item Chain_EndsoftheEarth;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_FairyHarp)
+    public static Item Chain_FairyHarp;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_FairyStars)
+    public static Item Chain_FairyStars;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_FatalCrest)
+    public static Item Chain_FatalCrest;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Fenrir)
+    public static Item Chain_Fenrir;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_FerrisGear)
+    public static Item Chain_FerrisGear;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_FollowtheWind)
+    public static Item Chain_FollowtheWind;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_FrolicFlame)
+    public static Item Chain_FrolicFlame;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_GlimpseofDarkness)
+    public static Item Chain_GlimpseofDarkness;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_GuardianBell)
+    public static Item Chain_GuardianBell;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_GuardianSoul)
+    public static Item Chain_GuardianSoul;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_GullWing)
+    public static Item Chain_GullWing;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_HerosCrest)
+    public static Item Chain_HerosCrest;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_HiddenDragon)
+    public static Item Chain_HiddenDragon;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Hyperdrive)
+    public static Item Chain_Hyperdrive;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_IncompleteKiblade)
+    public static Item Chain_IncompleteKiblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_JungleKing)
+    public static Item Chain_JungleKing;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_KeybladeofPeoplesHearts)
+    public static Item Chain_KeybladeofPeoplesHearts;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Kiblade)
+    public static Item Chain_Kiblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_KingdomKey)
+    public static Item Chain_KingdomKey;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_KingdomKeyD)
+    public static Item Chain_KingdomKeyD;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_KnockoutPunch)
+    public static Item Chain_KnockoutPunch;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_LadyLuck)
+    public static Item Chain_LadyLuck;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_LeasKeyblade)
+    public static Item Chain_LeasKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_LeopardosForetellersKeyblade)
+    public static Item Chain_LeopardosForetellersKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Leviathan)
+    public static Item Chain_Leviathan;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Lionheart)
+    public static Item Chain_Lionheart;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_LostMemory)
+    public static Item Chain_LostMemory;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_LunarEclipse)
+    public static Item Chain_LunarEclipse;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_MarkofaHero)
+    public static Item Chain_MarkofaHero;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_MasterXehanortsKeyblade)
+    public static Item Chain_MasterXehanortsKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_MastersDefender)
+    public static Item Chain_MastersDefender;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_MaverickFlare)
+    public static Item Chain_MaverickFlare;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_MetalChocobo)
+    public static Item Chain_MetalChocobo;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_MidnightRoar)
+    public static Item Chain_MidnightRoar;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_MirageSplit)
+    public static Item Chain_MirageSplit;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_MissingAche)
+    public static Item Chain_MissingAche;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Monochrome)
+    public static Item Chain_Monochrome;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_MysteriousAbyss)
+    public static Item Chain_MysteriousAbyss;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_NightmaresEnd)
+    public static Item Chain_NightmaresEnd;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_NightmaresEndandMirageSplit)
+    public static Item Chain_NightmaresEndandMirageSplit;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_NoName)
+    public static Item Chain_NoName;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Oathkeeper)
+    public static Item Chain_Oathkeeper;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Oblivion)
+    public static Item Chain_Oblivion;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_OceansRage)
+    public static Item Chain_OceansRage;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Olympia)
+    public static Item Chain_Olympia;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_OmegaWeapon)
+    public static Item Chain_OmegaWeapon;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_OminousBlight)
+    public static Item Chain_OminousBlight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_OneWingedAngel)
+    public static Item Chain_OneWingedAngel;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_PainofSolitude)
+    public static Item Chain_PainofSolitude;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_PhotonDebugger)
+    public static Item Chain_PhotonDebugger;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_PixiePetal)
+    public static Item Chain_PixiePetal;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Pumpkinhead)
+    public static Item Chain_Pumpkinhead;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Rainfell)
+    public static Item Chain_Rainfell;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_RejectionofFate)
+    public static Item Chain_RejectionofFate;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_RoyalRadiance)
+    public static Item Chain_RoyalRadiance;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_RumblingRose)
+    public static Item Chain_RumblingRose;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_SignofInnocence)
+    public static Item Chain_SignofInnocence;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_SilentDirge)
+    public static Item Chain_SilentDirge;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_SkullNoise)
+    public static Item Chain_SkullNoise;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_SleepingLion)
+    public static Item Chain_SleepingLion;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_SoulEater)
+    public static Item Chain_SoulEater;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Spellbinder)
+    public static Item Chain_Spellbinder;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_StarSeeker)
+    public static Item Chain_StarSeeker;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Starlight)
+    public static Item Chain_Starlight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Stormfall)
+    public static Item Chain_Stormfall;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_StrokeofMidnight)
+    public static Item Chain_StrokeofMidnight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_SweetDreams)
+    public static Item Chain_SweetDreams;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_SweetMemories)
+    public static Item Chain_SweetMemories;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Sweetstack)
+    public static Item Chain_Sweetstack;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_ThreeWishes)
+    public static Item Chain_ThreeWishes;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_TotalEclipse)
+    public static Item Chain_TotalEclipse;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_TreasureTrove)
+    public static Item Chain_TreasureTrove;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_TrueLightsFlight)
+    public static Item Chain_TrueLightsFlight;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_TwilightBlaze)
+    public static Item Chain_TwilightBlaze;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_TwoBecomeOne)
+    public static Item Chain_TwoBecomeOne;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_UltimaWeaponKH1)
+    public static Item Chain_UltimaWeaponKH1;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_UltimaWeaponKH2)
+    public static Item Chain_UltimaWeaponKH2;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_UltimaWeaponBBS)
+    public static Item Chain_UltimaWeaponBBS;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_UltimaWeaponDDD)
+    public static Item Chain_UltimaWeaponDDD;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Umbrella)
+    public static Item Chain_Umbrella;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_Unbound)
+    public static Item Chain_Unbound;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_UnicornisForetellersKeyblade)
+    public static Item Chain_UnicornisForetellersKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_UrsusForetellersKeyblade)
+    public static Item Chain_UrsusForetellersKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_VictoryLine)
+    public static Item Chain_VictoryLine;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_VoidGear)
+    public static Item Chain_VoidGear;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_VulpeusForetellersKeyblade)
+    public static Item Chain_VulpeusForetellersKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_WaytotheDawn)
+    public static Item Chain_WaytotheDawn;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_WaywardWind)
+    public static Item Chain_WaywardWind;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_WinnersProof)
+    public static Item Chain_WinnersProof;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_WishingLamp)
+    public static Item Chain_WishingLamp;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_WishingStar)
+    public static Item Chain_WishingStar;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_YoungXehanortsKeyblade)
+    public static Item Chain_YoungXehanortsKeyblade;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_ZeroOne)
+    public static Item Chain_ZeroOne;
 
     // Misc
-    public static Item Panacaea, DefenseBoost, MagicBoost, PowerBoost, DriveRecovery, HighDriveRecovery, Munny, EmptyBottle, Potion, HiPotion, MegaPotion, Ether, MegaEther, Elixir, Megalixir, HpOrb, DriveOrb, MagicOrb, Heart, DarkHeart, PureHeart, KingdomHearts, DarkLeather, SynthesisMaterial, Recipe, IceCream, WinnerStick, LevelUpMagicFire, LevelUpMagicBlizzard, LevelUpMagicThunder, LevelUpMagicCure, LevelUpMagicAero, LevelUpMagicStop, LevelUpValor, LevelUpWisdom, LevelUpLimit, LevelUpMaster, LevelUpFinal, SynthesisBagS, SynthesisBagM, SynthesisBagL;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Panacea)
+    public static Item Panacaea;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DefenseBoost)
+    public static Item DefenseBoost;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MagicBoost)
+    public static Item MagicBoost;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PowerBoost)
+    public static Item PowerBoost;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DriveRecovery)
+    public static Item DriveRecovery;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.HighDriveRecovery)
+    public static Item HighDriveRecovery;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Munny)
+    public static Item Munny;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.EmptyBottle)
+    public static Item EmptyBottle;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Potion)
+    public static Item Potion;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.HiPotion)
+    public static Item HiPotion;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MegaPotion)
+    public static Item MegaPotion;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Ether)
+    public static Item Ether;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MegaEther)
+    public static Item MegaEther;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Elixir)
+    public static Item Elixir;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Megalixir)
+    public static Item Megalixir;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.HpOrb)
+    public static Item HpOrb;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DriveOrb)
+    public static Item DriveOrb;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MagicOrb)
+    public static Item MagicOrb;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Heart)
+    public static Item Heart;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DarkHeart)
+    public static Item DarkHeart;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PureHeart)
+    public static Item PureHeart;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.KingdomHearts)
+    public static Item KingdomHearts;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DarkLeather)
+    public static Item DarkLeather;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SynthesisMaterial)
+    public static Item SynthesisMaterial;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Recipe)
+    public static Item Recipe;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.IceCream)
+    public static Item IceCream;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.WinnerStick)
+    public static Item WinnerStick;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LevelUpMagicFire)
+    public static Item LevelUpMagicFire;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LevelUpMagicBlizzard)
+    public static Item LevelUpMagicBlizzard;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LevelUpMagicThunder)
+    public static Item LevelUpMagicThunder;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LevelUpMagicCure)
+    public static Item LevelUpMagicCure;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LevelUpMagicAero)
+    public static Item LevelUpMagicAero;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LevelUpMagicStop)
+    public static Item LevelUpMagicStop;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LevelUpValor)
+    public static Item LevelUpValor;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LevelUpWisdom)
+    public static Item LevelUpWisdom;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LevelUpLimit)
+    public static Item LevelUpLimit;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LevelUpMaster)
+    public static Item LevelUpMaster;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LevelUpFinal)
+    public static Item LevelUpFinal;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SynthesisBagS)
+    public static Item SynthesisBagS;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SynthesisBagM)
+    public static Item SynthesisBagM;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SynthesisBagL)
+    public static Item SynthesisBagL;
 
     // Music Discs
-    public static Item Disc_Birth_by_Sleep_A_Link_to_the_Future, Disc_Darkness_of_the_Unknown, Disc_Dearly_Beloved_Symphony_Version, Disc_Dream_Drop_Distance_The_Next_Awakening, Disc_Hikari_KINGDOM_Instrumental_Version, Disc_L_Oscurita_Dell_Ignoto, Disc_Musique_pour_la_tristesse_de_Xion, Disc_No_More_Bugs_Bug_Version, Disc_Organization_XIII, Disc_Sanctuary, Disc_Simple_And_Clean_PLANITb_Remix, Disc_Sinister_Sundown, Disc_The_13th_Anthology;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future)
+    public static Item Disc_Birth_by_Sleep_A_Link_to_the_Future;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_Darkness_of_the_Unknown)
+    public static Item Disc_Darkness_of_the_Unknown;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_Dearly_Beloved_Symphony_Version)
+    public static Item Disc_Dearly_Beloved_Symphony_Version;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_Dream_Drop_Distance_The_Next_Awakening)
+    public static Item Disc_Dream_Drop_Distance_The_Next_Awakening;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_Hikari_KINGDOM_Instrumental_Version)
+    public static Item Disc_Hikari_KINGDOM_Instrumental_Version;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_L_Oscurita_Dell_Ignoto)
+    public static Item Disc_L_Oscurita_Dell_Ignoto;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_Musique_pour_la_tristesse_de_Xion)
+    public static Item Disc_Musique_pour_la_tristesse_de_Xion;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_No_More_Bugs_Bug_Version)
+    public static Item Disc_No_More_Bugs_Bug_Version;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_Organization_XIII)
+    public static Item Disc_Organization_XIII;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_Sanctuary)
+    public static Item Disc_Sanctuary;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_Simple_And_Clean_PLANITb_Remix)
+    public static Item Disc_Simple_And_Clean_PLANITb_Remix;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_Sinister_Sundown)
+    public static Item Disc_Sinister_Sundown;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Disc_The_13th_Anthology)
+    public static Item Disc_The_13th_Anthology;
 
     // Armour
-    public static Item OrganizationRobe_Helmet, OrganizationRobe_Chestplate, OrganizationRobe_Leggings, OrganizationRobe_Boots, Terra_Helmet, Terra_Chestplate, Terra_Leggings, Terra_Boots, Aqua_Helmet, Aqua_Chestplate, Aqua_Leggings, Aqua_Boots, Ventus_Helmet, Ventus_Chestplate, Ventus_Leggings, Ventus_Boots, Eraqus_Helmet, Eraqus_Chestplate, Eraqus_Leggings, Eraqus_Boots;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OrganizationRobe_Helmet)
+    public static Item OrganizationRobe_Helmet;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OrganizationRobe_Chestplate)
+    public static Item OrganizationRobe_Chestplate;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OrganizationRobe_Leggings)
+    public static Item OrganizationRobe_Leggings;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OrganizationRobe_Boots)
+    public static Item OrganizationRobe_Boots;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Terra_Helmet)
+    public static Item Terra_Helmet;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Terra_Chestplate)
+    public static Item Terra_Chestplate;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Terra_Leggings)
+    public static Item Terra_Leggings;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Terra_Boots)
+    public static Item Terra_Boots;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Aqua_Helmet)
+    public static Item Aqua_Helmet;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Aqua_Chestplate)
+    public static Item Aqua_Chestplate;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Aqua_Leggings)
+    public static Item Aqua_Leggings;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Aqua_Boots)
+    public static Item Aqua_Boots;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Ventus_Helmet)
+    public static Item Ventus_Helmet;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Ventus_Chestplate)
+    public static Item Ventus_Chestplate;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Ventus_Leggings)
+    public static Item Ventus_Leggings;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Ventus_Boots)
+    public static Item Ventus_Boots;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Eraqus_Helmet)
+    public static Item Eraqus_Helmet;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Eraqus_Chestplate)
+    public static Item Eraqus_Chestplate;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Eraqus_Leggings)
+    public static Item Eraqus_Leggings;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Eraqus_Boots)
+    public static Item Eraqus_Boots;
 
     // Armour material
     private static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", -1, new int[] { 2, 3, 3, 1 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 5);
@@ -88,1677 +1893,910 @@ public class ModItems {
     private static ArmorMaterial VENTUS = EnumHelper.addArmorMaterial("VENTUS", Reference.MODID + ":ventus", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3);
     private static ArmorMaterial ERAQUS = EnumHelper.addArmorMaterial("ERAQUS", Reference.MODID + ":eraqus", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 5);
 
-    private static ToolMaterial KEYCHAIN = EnumHelper.addToolMaterial("KEYCHAIN", 0, 1, 0, -4, 30);
+    public static ToolMaterial KEYCHAIN = EnumHelper.addToolMaterial("KEYCHAIN", 0, 1, 0, -4, 30);
 
-    public static CreativeTabs tabKingdomKeys;
+    public static CreativeTabs tabKingdomKeys = new TabKingdomKeys(CreativeTabs.getNextID(), Strings.tabKingdomKeys);
 
-    public static void init () {
-        tabKingdomKeys = new TabKingdomKeys(CreativeTabs.getNextID(), Strings.tabKingdomKeys);
-
-        BlazingInfusedCoal = new Item().setUnlocalizedName(Strings.BlazingInfusedCoal).setCreativeTab(tabKingdomKeys);
-        FrostInfusedSnowBall = new Item().setUnlocalizedName(Strings.FrostInfusedSnowBall).setCreativeTab(tabKingdomKeys);
-        StormyInfusedIron = new Item().setUnlocalizedName(Strings.StormyInfusedIron).setCreativeTab(tabKingdomKeys);
-        MythrilInfusedDiamond = new Item().setUnlocalizedName(Strings.MythrilInfusedDiamond).setCreativeTab(tabKingdomKeys);
-        LightningInfusedGold = new Item().setUnlocalizedName(Strings.LightningInfusedGold).setCreativeTab(tabKingdomKeys);
-        BrightInfusedGlowStone = new Item().setUnlocalizedName(Strings.BrightInfusedGlowStone).setCreativeTab(tabKingdomKeys);
-        DarkInfusedIron = new Item().setUnlocalizedName(Strings.DarkInfusedIron).setCreativeTab(tabKingdomKeys);
-
-        AbandonedKnowledge = new ItemAbandonedKnowledge().setUnlocalizedName(Strings.AbandonedKnowledge).setCreativeTab(tabKingdomKeys);
-
-
-        // Xemnas
-        Malice = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Malice);
-        Sanction = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sanction);
-        Overlord = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Overlord);
-        Veneration = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Veneration);
-        Autocracy = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Autocracy);
-        Conquest = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Conquest);
-        Terminus = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Terminus);
-        Judgement = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Judgement);
-        Discipline = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Discipline);
-        Aristocracy = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aristocracy);
-        Superiority = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Superiority);
-        Aggression = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aggression);
-        Fury = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Fury);
-        Despair = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Despair);
-        Triumph = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Triumph);
-        Ruination = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ruination);
-        Domination = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Domination);
-        Annihilation = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Annihilation);
-        Tyrant = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tyrant);
-        Magnificence = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Magnificence);
-        Infinity = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Infinity);
-        Interdiction = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interdiction);
-        RoundFan = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.RoundFan);
-        Absolute = new ItemEtherealBlade(6,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Absolute);
-
-        // Xigbar
-        Standalone = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Standalone);
-        Killerbee = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Killerbee);
-        Stingray = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Stingray);
-        Counterweight = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Counterweight);
-        Precision = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Precision);
-        DualHead = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DualHead);
-        Bahamut = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Bahamut);
-        Gullwing = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Gullwing);
-        BlueFrame = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlueFrame);
-        StarShell = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.StarShell);
-        Sunrise = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sunrise);
-        Ignition = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ignition);
-        Armstrong = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Armstrong);
-        HardBoiledHeat = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.HardBoiledHeat);
-        DiabloEye = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DiabloEye);
-        DoubleTap = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DoubleTap);
-        Stardust = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Stardust);
-        EnergyMuzzle = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EnergyMuzzle);
-        CrimeAndPunishment = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CrimeAndPunishment);
-        CupidsArrow = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CupidsArrow);
-        FinalWeapon = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinalWeapon);
-        Sharpshooter = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sharpshooter);
-        Dryer = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Dryer);
-        Trumpet = new ItemArrowguns(4,9).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Trumpet);
-
-        // Xaldin
-        Zephyr = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Zephyr);
-        Moonglade = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Moonglade);
-        Aer = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aer);
-        Nescience = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Nescience);
-        Brume = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Brume);
-        Asura = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Asura);
-        Crux = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crux);
-        Paladin = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Paladin);
-        Fellking = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Fellking);
-        Nightcloud = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Nightcloud);
-        Shimmer = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Shimmer);
-        Vortex = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Vortex);
-        Scission = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Scission);
-        Heavenfall = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Heavenfall);
-        Aether = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aether);
-        Mazzaroth = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Mazzaroth);
-        Hegemon = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Hegemon);
-        Foxfire = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foxfire);
-        Yaksha = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Yaksha);
-        Cynosura = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Cynosura);
-        Dragonreign = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Dragonreign);
-        Lindworm = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lindworm);
-        Broom = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Broom);
-        Wyvern = new ItemLances(9,4).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Wyvern);
-
-        // Vexen
-        TesterZero = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TesterZero);
-        ProductOne = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ProductOne);
-        DeepFreeze = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DeepFreeze);
-        CryoliteShield = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CryoliteShield);
-        FalseTheory = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FalseTheory);
-        Glacier = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Glacier);
-        AbsoluteZero = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbsoluteZero);
-        Gunz = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Gunz);
-        Mindel = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Mindel);
-        Snowslide = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Snowslide);
-        Iceberg = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Iceberg);
-        Inquisition = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inquisition);
-        Scrutiny = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Scrutiny);
-        Empiricism = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Empiricism);
-        Edification = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Edification);
-        Contrivance = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Contrivance);
-        Wurm = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Wurm);
-        Subzero = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Subzero);
-        ColdBlood = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ColdBlood);
-        DiamondShield = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DiamondShield);
-        Aegis = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Aegis);
-        FrozenPride = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FrozenPride);
-        PotLid = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PotLid);
-        Snowman = new ItemOrgShield().setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Snowman);
-
-        // Lexaeus
-        Reticence = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Reticence);
-        Goliath = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Goliath);
-        CopperRed = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CopperRed);
-        Daybreak = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Daybreak);
-        Colossus = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Colossus);
-        UrsaMajor = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.UrsaMajor);
-        Megacosm = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Megacosm);
-        Terrene = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Terrene);
-        Fuligin = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Fuligin);
-        HardWinter = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.HardWinter);
-        Firefly = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Firefly);
-        Harbinger = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Harbinger);
-        Redwood = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Redwood);
-        Sequoia = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sequoia);
-        IronBlack = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.IronBlack);
-        Earthshine = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Earthshine);
-        Octiron = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Octiron);
-        Hyperion = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Hyperion);
-        Clarity = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Clarity);
-        OneThousandAndOneNights = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OneThousandAndOneNights);
-        CardinalVirtue = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CardinalVirtue);
-        Skysplitter = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Skysplitter);
-        BleepBloopBop = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BleepBloopBop);
-        Monolith = new ItemAxeSword(15,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Monolith);
-
-        // Zexion
-        BlackPrimer = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlackPrimer);
-        WhiteTome = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.WhiteTome);
-        IllicitResearch = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.IllicitResearch);
-        BuriedSecrets = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BuriedSecrets);
-        ArcaneCompendium = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ArcaneCompendium);
-        DissentersNotes = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DissentersNotes);
-        NefariousCodex = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.NefariousCodex);
-        MysticAlbum = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MysticAlbum);
-        CursedManual = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CursedManual);
-        TabooText = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TabooText);
-        EldritchEsoterica = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EldritchEsoterica);
-        FreakishBestiary = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FreakishBestiary);
-        MadmansVita = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MadmansVita);
-        UntitledWritings = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.UntitledWritings);
-        AbandonedDogma = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AbandonedDogma);
-        AtlasOfOmens = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AtlasOfOmens);
-        RevoltingScrapbook = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.RevoltingScrapbook);
-        LostHeterodoxy = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.LostHeterodoxy);
-        OtherworldlyTales = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OtherworldlyTales);
-        IndescribableLore = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.IndescribableLore);
-        RadicalTreatise = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.RadicalTreatise);
-        BookofRetribution = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BookofRetribution);
-        MidnightSnack = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MidnightSnack);
-        DearDiary = new ItemLexicon(5,10).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DearDiary);
-
-        // Saix
-        NewMoon = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.NewMoon);
-        Werewolf = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Werewolf);
-        Artemis = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Artemis);
-        Luminary = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Luminary);
-        Selene = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Selene);
-        Moonrise = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Moonrise);
-        Astrologia = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Astrologia);
-        Crater = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crater);
-        LunarPhase = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.LunarPhase);
-        Crescent = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Crescent);
-        Gibbous = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Gibbous);
-        Berserker = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Berserker);
-        Twilight = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Twilight);
-        QueenOfTheNight = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.QueenOfTheNight);
-        BalsamicMoon = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BalsamicMoon);
-        Orbit = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Orbit);
-        LightYear = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.LightYear);
-        KingOfTheNight = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.KingOfTheNight);
-        Moonset = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Moonset);
-        Horoscope = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Horoscope);
-        Dichotomy = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Dichotomy);
-        Lunatic = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lunatic);
-        JustDesserts = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.JustDesserts);
-        Bunnymoon = new ItemClaymore(7,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Bunnymoon);
-
-        // Axel
-        Ashes = new ItemChakram(5,8,Strings.Ashes).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ashes);
-        Doldrums = new ItemChakram(5,8,Strings.Doldrums).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Doldrums);
-        DelayedAction = new ItemChakram(5,8,Strings.Doldrums).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DelayedAction);
-        DiveBombers = new ItemChakram(5,8,Strings.Doldrums).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DiveBombers);
-        Combustion = new ItemChakram(5,8,Strings.Combustion).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Combustion);
-        MoulinRouge = new ItemChakram(5,8,Strings.MoulinRouge).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MoulinRouge);
-        BlazeofGlory = new ItemChakram(5,8,Strings.BlazeofGlory).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BlazeofGlory);
-        Prometheus = new ItemChakram(5,8,Strings.Prometheus).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prometheus);
-        Ifrit = new ItemChakram(5,8,Strings.Ifrit).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ifrit);
-        MagmaOcean = new ItemChakram(5,8,Strings.Ifrit).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MagmaOcean);
-        Volcanics = new ItemChakram(5,8,Strings.Ifrit).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Volcanics);
-        Inferno = new ItemChakram(5,8,Strings.Inferno).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Inferno);
-        SizzlingEdge = new ItemChakram(5,8,Strings.SizzlingEdge).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.SizzlingEdge);
-        Corona = new ItemChakram(5,8,Strings.Inferno).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Corona);
-        FerrisWheel = new ItemChakram(5,8,Strings.FerrisWheel).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FerrisWheel);
-        Burnout = new ItemChakram(5,8,Strings.Burnout).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Burnout);
-        OmegaTrinity = new ItemChakram(5,8,Strings.OmegaTrinity).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OmegaTrinity);
-        Outbreak = new ItemChakram(5,8,Strings.Outbreak).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Outbreak);
-        DoubleEdge = new ItemChakram(5,8,Strings.DoubleEdge).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DoubleEdge);
-        Wildfire = new ItemChakram(5,8,Strings.Inferno).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Wildfire);
-        Prominence = new ItemChakram(5,8,Strings.Prominence).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Prominence);
-        EternalFlames = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EternalFlames);
-        PizzaCut = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PizzaCut);
-        Conformers = new ItemChakram(5,8,Strings.EternalFlames).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Conformers);
-
-        // Demyx
-        BasicModel = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.BasicModel);
-        TuneUp = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TuneUp);
-        Quartet = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Quartet);
-        Quintet = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Quintet);
-        Overture = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Overture);
-        OldHand = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.OldHand);
-        DaCapo = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DaCapo);
-        PowerChord = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PowerChord);
-        Fermata = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Fermata);
-        Interlude = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Interlude);
-        Serenade = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Serenade);
-        Songbird = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Songbird);
-        RiseToFame = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.RiseToFame);
-        RockStar = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.RockStar);
-        EightFinger = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.EightFinger);
-        Concerto = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Concerto);
-        Harmonics = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Harmonics);
-        MillionBucks = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MillionBucks);
-        Fortissimo = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Fortissimo);
-        UpToEleven = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.UpToEleven);
-        Sanctuary = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Sanctuary);
-        Arpeggio = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Arpeggio);
-        PrinceOfAwesome = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PrinceOfAwesome);
-        AfterSchool = new ItemSitar(5,8).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.AfterSchool);
-
-        // Luxord
-        TheFool = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheFool);
-        TheMagician = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheMagician);
-        TheStar = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheStar);
-        TheMoon = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheMoon);
-        Justice = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Justice);
-        TheHierophant = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheHierophant);
-        TheWorld = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheWorld);
-        Temperance = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Temperance);
-        TheHighPriestess = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheHighPriestess);
-        TheTower = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheTower);
-        TheHangedMan = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheHangedMan);
-        Death = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Death);
-        TheHermit = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheHermit);
-        Strength = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Strength);
-        TheLovers = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheLovers);
-        TheChariot = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheChariot);
-        TheSun = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheSun);
-        TheDevil = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheDevil);
-        TheEmpress = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheEmpress);
-        TheEmperor = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheEmperor);
-        TheJoker = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TheJoker);
-        FairGame = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairGame);
-        FinestFantasy13 = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FinestFantasy13);
-        HighRollersSecret = new ItemCard(6,7).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.HighRollersSecret);
-
-        // Marluxia
-        FickleErica = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FickleErica);
-        JiltedAnemone = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.JiltedAnemone);
-        ProudAmaryllis = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ProudAmaryllis);
-        MadSafflower = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MadSafflower);
-        PoorMelissa = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PoorMelissa);
-        TragicAllium = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.TragicAllium);
-        MournfulCineria = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.MournfulCineria);
-        PseudoSilene = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PseudoSilene);
-        FaithlessDigitalis = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FaithlessDigitalis);
-        GrimMuscari = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GrimMuscari);
-        DocileVallota = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DocileVallota);
-        QuietBelladonna = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.QuietBelladonna);
-        PartingIpheion = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.PartingIpheion);
-        LoftyGerbera = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.LoftyGerbera);
-        GallantAchillea = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GallantAchillea);
-        NoblePeony = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.NoblePeony);
-        FearsomeAnise = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FearsomeAnise);
-        VindictiveThistle = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.VindictiveThistle);
-        FairHelianthus = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.FairHelianthus);
-        SolemnMagnolia = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.SolemnMagnolia);
-        HallowedLotus = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.HallowedLotus);
-        GracefulDahlia = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.GracefulDahlia);
-        StirringLadle = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.StirringLadle);
-        DaintyBellflowers = new ItemScythe(8,5).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.DaintyBellflowers);
-
-        // Larxene
-        Trancheuse = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Trancheuse);
-        Orage = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Orage);
-        Tourbillon = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tourbillon);
-        Tempete = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Tempete);
-        Carmin = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Carmin);
-        Meteore = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Meteore);
-        Etoile = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Etoile);
-        Irregulier = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Irregulier);
-        Dissonance = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Dissonance);
-        Eruption = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Eruption);
-        SoleilCouchant = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.SoleilCouchant);
-        Indigo = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Indigo);
-        Vague = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Vague);
-        Deluge = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Deluge);
-        Rafale = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Rafale);
-        Typhon = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Typhon);
-        Extirpeur = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Extirpeur);
-        CroixDuSud = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.CroixDuSud);
-        Lumineuse = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Lumineuse);
-        ClairdeLune = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.ClairdeLune);
-        VoldeNuit = new ItemKnife(8, 6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.VoldeNuit);
-        Foudre = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Foudre);
-        Demoiselle = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Demoiselle);
-        Ampoule = new ItemKnife(8,6).setCreativeTab(tabKingdomKeys).setUnlocalizedName(Strings.Ampoule);
-
-        //keyblades
-        AbaddonPlasma = new ItemRealKeyblade(BalanceConfig.keyblades.abaddonPlasma[0], BalanceConfig.keyblades.abaddonPlasma[1]).setUnlocalizedName(Strings.AbaddonPlasma);
+    public static void init() {
         ((ItemKeyblade)AbaddonPlasma).setDescription("A weapon that lets you string together faster, incredibly long ground combos.");
-        AbyssalTide = new ItemRealKeyblade(BalanceConfig.keyblades.abyssalTide[0], BalanceConfig.keyblades.abyssalTide[1]).setUnlocalizedName(Strings.AbyssalTide);
         ((ItemKeyblade)AbyssalTide).setDescription("A weapon that performs very well in midair. Excellent for taking on fliers.");
-        AllforOne = new ItemRealKeyblade(BalanceConfig.keyblades.allForOne[0], BalanceConfig.keyblades.allForOne[1]).setUnlocalizedName(Strings.AllforOne);
         ((ItemKeyblade)AllforOne).setDescription("A Keyblade that triggers fewer Reality Shifts, but compensates with a boost in Magic and more frequent critical hits.");
-        AnguisForetellersKeyblade = new ItemRealKeyblade(BalanceConfig.keyblades.anguisForetellersKeyblade[0], BalanceConfig.keyblades.anguisForetellersKeyblade[1]).setUnlocalizedName(Strings.AnguisForetellersKeyblade);
         ((ItemKeyblade)AnguisForetellersKeyblade).setDescription("The Keyblade owned by Anguis' Foreteller.");
-        AstralBlast = new ItemRealKeyblade(BalanceConfig.keyblades.astralBlast[0], BalanceConfig.keyblades.astralBlast[1]).setUnlocalizedName(Strings.AstralBlast);
         ((ItemKeyblade)AstralBlast).setDescription("A weapon that lets you string together longer ground and aerial combos.");
-        Aubade = new ItemRealKeyblade(BalanceConfig.keyblades.aubade[0], BalanceConfig.keyblades.aubade[1]).setUnlocalizedName(Strings.Aubade);
         ((ItemKeyblade)Aubade).setDescription("A weapon that draws forth its wielder's personality.");
-        BondofFlame = new ItemRealKeyblade(BalanceConfig.keyblades.bondofFlame[0], BalanceConfig.keyblades.bondofFlame[1]).setUnlocalizedName(Strings.BondofFlame);
         ((ItemKeyblade)BondofFlame).setDescription("Enhances magic to increase damage dealt by fire-based attacks.");
-        Brightcrest = new ItemRealKeyblade(BalanceConfig.keyblades.brightcrest[0], BalanceConfig.keyblades.brightcrest[1]).setUnlocalizedName(Strings.Brightcrest);
         ((ItemKeyblade)Brightcrest).setDescription("A Keyblade with long reach that provides an outstanding boost in Magic. It also makes it easier to land critical hits, and deals higher damage when you do.");
-        ChaosRipper = new ItemRealKeyblade(BalanceConfig.keyblades.chaosRipper[0], BalanceConfig.keyblades.chaosRipper[1]).setUnlocalizedName(Strings.ChaosRipper);
         ((ItemKeyblade)ChaosRipper).setDescription("A Keyblade with long reach that does little for your Magic, but provides an outstanding boost in Strength.");
-        CircleofLife = new ItemRealKeyblade(BalanceConfig.keyblades.circleofLife[0], BalanceConfig.keyblades.circleofLife[1]).setUnlocalizedName(Strings.CircleofLife);
         ((ItemKeyblade)CircleofLife).setDescription("Has great strength, increasing MP restoration speed after MP is consumed.");
-        Counterpoint = new ItemRealKeyblade(BalanceConfig.keyblades.counterpoint[0], BalanceConfig.keyblades.counterpoint[1]).setUnlocalizedName(Strings.Counterpoint);
         ((ItemKeyblade)Counterpoint).setDescription("A Keyblade with long reach that provides an exra boost in Magic and mkes it easier to trigger Reality Shifts.");
-        Crabclaw = new ItemRealKeyblade(BalanceConfig.keyblades.crabclaw[0], BalanceConfig.keyblades.crabclaw[1]).setUnlocalizedName(Strings.Crabclaw);
         ((ItemKeyblade)Crabclaw).setDescription("Raises max MP by 1, and enhances magic and summon power. Also deals good physical damage.");
-        CrownofGuilt = new ItemRealKeyblade(BalanceConfig.keyblades.crownofGuilt[0], BalanceConfig.keyblades.crownofGuilt[1]).setUnlocalizedName(Strings.CrownofGuilt);
         ((ItemKeyblade)CrownofGuilt).setDescription("A weapon that boosts your Magic to give it incredible power.");
-        DarkerThanDark = new ItemRealKeyblade(BalanceConfig.keyblades.darkerthanDark[0], BalanceConfig.keyblades.darkerthanDark[1]).setUnlocalizedName(Strings.DarkerThanDark);
         ((ItemKeyblade)DarkerThanDark).setDescription("A weapon that offers high Magic and combo reach.");
-        Darkgnaw = new ItemRealKeyblade(BalanceConfig.keyblades.darkgnaw[0], BalanceConfig.keyblades.darkgnaw[1]).setUnlocalizedName(Strings.Darkgnaw);
         ((ItemKeyblade)Darkgnaw).setDescription("A Keyblade that makes up for its poor reach and low critical hit ratio by providing an extra boost in Strength.");
-        DecisivePumpkin = new ItemRealKeyblade(BalanceConfig.keyblades.decisivePumpkin[0], BalanceConfig.keyblades.decisivePumpkin[1]).setUnlocalizedName(Strings.DecisivePumpkin);
         ((ItemKeyblade)DecisivePumpkin).setDescription("The greater number of combos landed, the more damage is dealt, leading to a strong finishing move!");
-        DestinysEmbrace = new ItemRealKeyblade(BalanceConfig.keyblades.destinysEmbrace[0], BalanceConfig.keyblades.destinysEmbrace[1]).setUnlocalizedName(Strings.DestinysEmbrace);
         ((ItemKeyblade)DestinysEmbrace).setDescription("A Keyblade that makes it easier to land critical hits.");
-        DiamondDust = new ItemRealKeyblade(BalanceConfig.keyblades.diamondDust[0], BalanceConfig.keyblades.diamondDust[1]).setUnlocalizedName(Strings.DiamondDust);
         ((ItemKeyblade)DiamondDust).setDescription("Greatly enhances magic and summon power. Raises max MP by 3.");
-        Divewing = new ItemRealKeyblade(BalanceConfig.keyblades.divewing[0], BalanceConfig.keyblades.divewing[1]).setUnlocalizedName(Strings.Divewing);
         ((ItemKeyblade)Divewing).setDescription("A Keyblade that provides an extra boost in Magic and makes it easier to land critical hits.");
-        DivineRose = new ItemRealKeyblade(BalanceConfig.keyblades.divineRose[0], BalanceConfig.keyblades.divineRose[1]).setUnlocalizedName(Strings.DivineRose);
         ((ItemKeyblade)DivineRose).setDescription("A powerful weapon that is difficult to deflect. Capable of dealing a string of critical blows.");
-        DreamSword = new ItemKeyblade(BalanceConfig.keyblades.dreamSword[0], BalanceConfig.keyblades.dreamSword[1]).setUnlocalizedName(Strings.DreamSword);
         ((ItemKeyblade)DreamSword).setDescription("A sword whose strength is courage: the will to stand against anything.");
-        DreamShield = new ItemOrgShield().setUnlocalizedName(Strings.DreamShield);
-        ((ItemKeyblade)DreamSword).setDescription("A sword whose strength is courage: the will to stand against anything.");
-        DualDisc = new ItemRealKeyblade(BalanceConfig.keyblades.dualDisc[0], BalanceConfig.keyblades.dualDisc[1]).setUnlocalizedName(Strings.DualDisc);
         ((ItemKeyblade)DualDisc).setDescription("A Keyblade that provides an extra boost in Strength and makes it easier to land critical hits.");
-        Earthshaker = new ItemRealKeyblade(BalanceConfig.keyblades.earthshaker[0], BalanceConfig.keyblades.earthshaker[1]).setUnlocalizedName(Strings.Earthshaker);
         ((ItemKeyblade)Earthshaker).setDescription("The Keyblade Terra started out with. What it lacks in reach it makes up for with a slight boost in Strength.");
-        EndofPain = new ItemRealKeyblade(BalanceConfig.keyblades.endofPain[0], BalanceConfig.keyblades.endofPain[1]).setUnlocalizedName(Strings.EndofPain);
         ((ItemKeyblade)EndofPain).setDescription("A Keyblade with high magical power and critical hit rate, but reduces the occurrence of Reality Shift.");
-        EndsoftheEarth = new ItemRealKeyblade(BalanceConfig.keyblades.endsoftheEarth[0], BalanceConfig.keyblades.endsoftheEarth[1]).setUnlocalizedName(Strings.EndsoftheEarth);
         ((ItemKeyblade)EndsoftheEarth).setDescription("A well-balanced Keyblade that provides an extra boost to all your stats.");
-        FairyHarp = new ItemRealKeyblade(BalanceConfig.keyblades.fairyHarp[0], BalanceConfig.keyblades.fairyHarp[1]).setUnlocalizedName(Strings.FairyHarp);
         ((ItemKeyblade)FairyHarp).setDescription("Raises max MP by 1, and enhances magic and summon power. Sometimes deals powerful critical blows.");
-        FairyStars = new ItemRealKeyblade(BalanceConfig.keyblades.fairyStars[0], BalanceConfig.keyblades.fairyStars[1]).setUnlocalizedName(Strings.FairyStars);
         ((ItemKeyblade)FairyStars).setDescription("A Keyblade that provides a balanced boost in Strength and Magic.");
-        FatalCrest = new ItemRealKeyblade(BalanceConfig.keyblades.fatalCrest[0], BalanceConfig.keyblades.fatalCrest[1]).setUnlocalizedName(Strings.FatalCrest);
         ((ItemKeyblade)FatalCrest).setDescription("Increases strength during MP Charge and allows unlimited chaining of combos.");
-        Fenrir = new ItemRealKeyblade(BalanceConfig.keyblades.fenrir[0], BalanceConfig.keyblades.fenrir[1]).setUnlocalizedName(Strings.Fenrir);
         ((ItemKeyblade)Fenrir).setDescription("Has great range and strength, but maximum ground and midair combos are decreased by 1.");
-        FerrisGear = new ItemRealKeyblade(BalanceConfig.keyblades.ferrisGear[0], BalanceConfig.keyblades.ferrisGear[1]).setUnlocalizedName(Strings.FerrisGear);
         ((ItemKeyblade)FerrisGear).setDescription("A Keyblade that triggers fewer Reality Shifts, but compensates with an extra boost in Strength and Magic.");
-        FollowtheWind = new ItemRealKeyblade(BalanceConfig.keyblades.followtheWind[0], BalanceConfig.keyblades.followtheWind[1]).setUnlocalizedName(Strings.FollowtheWind);
         ((ItemKeyblade)FollowtheWind).setDescription("Draws in nearby orbs.");
-        FrolicFlame = new ItemRealKeyblade(BalanceConfig.keyblades.frolicFlame[0], BalanceConfig.keyblades.frolicFlame[1]).setUnlocalizedName(Strings.FrolicFlame);
         ((ItemKeyblade)FrolicFlame).setDescription("A well-balanced Keyblade that provides an extra boost to all of your stats.");
-        GlimpseofDarkness = new ItemRealKeyblade(BalanceConfig.keyblades.glimpseofDarkness[0], BalanceConfig.keyblades.glimpseofDarkness[1]).setUnlocalizedName(Strings.GlimpseofDarkness);
         ((ItemKeyblade)GlimpseofDarkness).setDescription("A weapon that possesses very high Strength. Effective against tough enemies.");
-        GuardianBell = new ItemRealKeyblade(BalanceConfig.keyblades.guardianBell[0], BalanceConfig.keyblades.guardianBell[1]).setUnlocalizedName(Strings.GuardianBell);
         ((ItemKeyblade)GuardianBell).setDescription("A Keyblade with long reach that provides an extra boost in Magic.");
-        GuardianSoul = new ItemRealKeyblade(BalanceConfig.keyblades.guardianSoul[0], BalanceConfig.keyblades.guardianSoul[1]).setUnlocalizedName(Strings.GuardianSoul);
         ((ItemKeyblade)GuardianSoul).setDescription("Has great strength, increasing the amount of damage dealt from Reaction Commands.");
-        GullWing = new ItemRealKeyblade(BalanceConfig.keyblades.gullWing[0], BalanceConfig.keyblades.gullWing[1]).setUnlocalizedName(Strings.GullWing);
         ((ItemKeyblade)GullWing).setDescription("Greatly increases the amount of experience gained when defeating an enemy at a critical moment.");
-        HerosCrest = new ItemRealKeyblade(BalanceConfig.keyblades.herosCrest[0], BalanceConfig.keyblades.herosCrest[1]).setUnlocalizedName(Strings.HerosCrest);
         ((ItemKeyblade)HerosCrest).setDescription("Increases the damage of the finishing move in the air relative to the number of hits in the combo.");
-        HiddenDragon = new ItemRealKeyblade(BalanceConfig.keyblades.hiddenDragon[0], BalanceConfig.keyblades.hiddenDragon[1]).setUnlocalizedName(Strings.HiddenDragon);
         ((ItemKeyblade)HiddenDragon).setDescription("Restores MP relative to the amount of damage taken.");
-        Hyperdrive = new ItemRealKeyblade(BalanceConfig.keyblades.hyperdrive[0], BalanceConfig.keyblades.hyperdrive[1]).setUnlocalizedName(Strings.Hyperdrive);
         ((ItemKeyblade)Hyperdrive).setDescription("A Keyblade with above-average reach that provides a balanced boost in Strength and Magic.");
-        IncompleteKiblade = new ItemRealKeyblade(BalanceConfig.keyblades.incompletexblade[0], BalanceConfig.keyblades.incompletexblade[1]).setUnlocalizedName(Strings.IncompleteKiblade);
         ((ItemKeyblade)IncompleteKiblade).setDescription("An incomplete form of the legendary Keyblade, the χ-blade.");
-        JungleKing = new ItemRealKeyblade(BalanceConfig.keyblades.jungleKing[0], BalanceConfig.keyblades.jungleKing[1]).setUnlocalizedName(Strings.JungleKing);
         ((ItemKeyblade)JungleKing).setDescription("Has a long reach, but seldom deals critical blows.");
-        KeybladeofPeoplesHearts = new ItemRealKeyblade(BalanceConfig.keyblades.keybladeofPeoplesHearts[0], BalanceConfig.keyblades.keybladeofPeoplesHearts[1]).setUnlocalizedName(Strings.KeybladeofPeoplesHearts);
         ((ItemKeyblade)KeybladeofPeoplesHearts).setDescription("A keyblade with the ability to unlock a person's heart, releasing the darkness within.");
-        Kiblade = new ItemRealKeyblade(BalanceConfig.keyblades.xblade[0], BalanceConfig.keyblades.xblade[1]).setUnlocalizedName(Strings.Kiblade);
         ((ItemKeyblade)Kiblade).setDescription("A legendary weapon, the original Keyblade which all other are imperfectly modeled after. ");
-        KingdomKey = new ItemRealKeyblade(BalanceConfig.keyblades.kingdomKey[0], BalanceConfig.keyblades.kingdomKey[1]).setUnlocalizedName(Strings.KingdomKey);
         ((ItemKeyblade)KingdomKey).setDescription("The key chain attached draws out the Keyblade's true form and power.");
-        KingdomKeyD = new ItemRealKeyblade(BalanceConfig.keyblades.kingdomKeyD[0], BalanceConfig.keyblades.kingdomKeyD[1]).setUnlocalizedName(Strings.KingdomKeyD);
         ((ItemKeyblade)KingdomKeyD).setDescription("A Keyblade which mirrors the Kingdom Key from the Realm of Darkness.");
-        KnockoutPunch = new ItemRealKeyblade(BalanceConfig.keyblades.knockoutPunch[0], BalanceConfig.keyblades.knockoutPunch[1]).setUnlocalizedName(Strings.KnockoutPunch);
         ((ItemKeyblade)KnockoutPunch).setDescription("A Keyblade that lands fewer critical hits, but compensates with a Strength boost and more frequent Reality Shifts.");
-        LadyLuck = new ItemRealKeyblade(BalanceConfig.keyblades.ladyLuck[0], BalanceConfig.keyblades.ladyLuck[1]).setUnlocalizedName(Strings.LadyLuck);
         ((ItemKeyblade)LadyLuck).setDescription("Raises max MP by 2, and significantly enhances magic and summon power. Also inflicts good physical damage.");
-        LeasKeyblade = new ItemRealKeyblade(BalanceConfig.keyblades.leasKeyblade[0], BalanceConfig.keyblades.leasKeyblade[1]).setUnlocalizedName(Strings.LeasKeyblade);
         ((ItemKeyblade)LeasKeyblade).setDescription("The Keyblade wielded by Lea.");
-        LeopardosForetellersKeyblade = new ItemRealKeyblade(BalanceConfig.keyblades.leopardosForetellersKeyblade[0], BalanceConfig.keyblades.leopardosForetellersKeyblade[1]).setUnlocalizedName(Strings.LeopardosForetellersKeyblade);
         ((ItemKeyblade)LeopardosForetellersKeyblade).setDescription("The Keyblade owned by Leopardos' Foreteller.");
-        Leviathan = new ItemRealKeyblade(BalanceConfig.keyblades.leviathan[0], BalanceConfig.keyblades.leviathan[1]).setUnlocalizedName(Strings.Leviathan);
         ((ItemKeyblade)Leviathan).setDescription("A weapon that performs extremely well in midair. Outstanding for taking on fliers.");
-        Lionheart = new ItemRealKeyblade(BalanceConfig.keyblades.lionheart[0], BalanceConfig.keyblades.lionheart[1]).setUnlocalizedName(Strings.Lionheart);
         ((ItemKeyblade)Lionheart).setDescription("Raises max MP by 1, and enhances magic and summon power. Also deals great physical damage.");
-        LostMemory = new ItemRealKeyblade(BalanceConfig.keyblades.lostMemory[0], BalanceConfig.keyblades.lostMemory[1]).setUnlocalizedName(Strings.LostMemory);
         ((ItemKeyblade)LostMemory).setDescription("A Keyblade with long reach that makes it easier to land critical hits, and deals higher damage when you do.");
-        LunarEclipse = new ItemRealKeyblade(BalanceConfig.keyblades.lunarEclipse[0], BalanceConfig.keyblades.lunarEclipse[1]).setUnlocalizedName(Strings.LunarEclipse);
         ((ItemKeyblade)LunarEclipse).setDescription("A weapon that boosts versatility by greatly boosting both Strength and Magic.");
-        MarkofaHero = new ItemRealKeyblade(BalanceConfig.keyblades.markofaHero[0], BalanceConfig.keyblades.markofaHero[1]).setUnlocalizedName(Strings.MarkofaHero);
         ((ItemKeyblade)MarkofaHero).setDescription("A Keyblade that provides an extra boost in Strength and deals higher damage when you land a critical hit.");
-        MasterXehanortsKeyblade = new ItemRealKeyblade(BalanceConfig.keyblades.masterXehanortsKeyblade[0], BalanceConfig.keyblades.masterXehanortsKeyblade[1]).setUnlocalizedName(Strings.MasterXehanortsKeyblade);
         ((ItemKeyblade)MasterXehanortsKeyblade).setDescription("The Keyblade weilded by Master Xehanort.");
-        MastersDefender = new ItemRealKeyblade(BalanceConfig.keyblades.mastersDefender[0], BalanceConfig.keyblades.mastersDefender[1]).setUnlocalizedName(Strings.MastersDefender);
         ((ItemKeyblade)MastersDefender).setDescription("Master Eraqus's Keyblade. All of its stats are high.");
-        MaverickFlare = new ItemRealKeyblade(BalanceConfig.keyblades.maverickFlare[0], BalanceConfig.keyblades.maverickFlare[1]).setUnlocalizedName(Strings.MaverickFlare);
         ((ItemKeyblade)MaverickFlare).setDescription("A weapon that offers high Strength and ground combo speed.");
-        MetalChocobo = new ItemRealKeyblade(BalanceConfig.keyblades.metalChocobo[0], BalanceConfig.keyblades.metalChocobo[1]).setUnlocalizedName(Strings.MetalChocobo);
         ((ItemKeyblade)MetalChocobo).setDescription("Possesses incredible power and reach, but reduces max MP by 1. Rarely deals critical blows.");
-        MidnightRoar = new ItemRealKeyblade(BalanceConfig.keyblades.midnightRoar[0], BalanceConfig.keyblades.midnightRoar[1]).setUnlocalizedName(Strings.MidnightRoar);
         ((ItemKeyblade)MidnightRoar).setDescription("A weapon that possesses high Strength. Useful against tough enemies.");
-        MirageSplit = new ItemRealKeyblade(BalanceConfig.keyblades.mirageSplit[0], BalanceConfig.keyblades.mirageSplit[1]).setUnlocalizedName(Strings.MirageSplit);
         ((ItemKeyblade)MirageSplit).setDescription("A Keyblade formed from a Reality Shift in The World That Never Was.");
-        MissingAche = new ItemRealKeyblade(BalanceConfig.keyblades.missingAche[0], BalanceConfig.keyblades.missingAche[1]).setUnlocalizedName(Strings.MissingAche);
         ((ItemKeyblade)MissingAche).setDescription("A weapon that lets you string together faster, longer ground combos.");
-        Monochrome = new ItemRealKeyblade(BalanceConfig.keyblades.monochrome[0], BalanceConfig.keyblades.monochrome[1]).setUnlocalizedName(Strings.Monochrome);
         ((ItemKeyblade)Monochrome).setDescription("Increases the effect of restoration items used on the field.");
-        MysteriousAbyss = new ItemRealKeyblade(BalanceConfig.keyblades.mysteriousAbyss[0], BalanceConfig.keyblades.mysteriousAbyss[1]).setUnlocalizedName(Strings.MysteriousAbyss);
         ((ItemKeyblade)MysteriousAbyss).setDescription("Enhances magic to increase damage dealt by blizzard-based attacks.");
-        NightmaresEnd = new ItemRealKeyblade(BalanceConfig.keyblades.nightmaresEnd[0], BalanceConfig.keyblades.nightmaresEnd[1]).setUnlocalizedName(Strings.NightmaresEnd);
         ((ItemKeyblade)NightmaresEnd).setDescription("A Keyblade formed from a Reality Shift in The World That Never Was.");
-        NightmaresEndandMirageSplit = new ItemRealKeyblade(BalanceConfig.keyblades.combinedKeyblade[0], BalanceConfig.keyblades.combinedKeyblade[1]).setUnlocalizedName(Strings.NightmaresEndandMirageSplit);
         ((ItemKeyblade)NightmaresEndandMirageSplit).setDescription("A Keyblade formed by combining both the Mirage Split and Nightmare's End.");
-        NoName = new ItemRealKeyblade(BalanceConfig.keyblades.noName[0], BalanceConfig.keyblades.noName[1]).setUnlocalizedName(Strings.NoName);
         ((ItemKeyblade)NoName).setDescription("A Keyblade with long reach that provides an outstanding boost in Magic and makes it easier to land critical hits.");
-        Oathkeeper = new ItemRealKeyblade(BalanceConfig.keyblades.oathkeeper[0], BalanceConfig.keyblades.oathkeeper[1]).setUnlocalizedName(Strings.Oathkeeper);
         ((ItemKeyblade)Oathkeeper).setDescription("Enhances magic and increases the duration of a Drive Form.");
-        Oblivion = new ItemRealKeyblade(BalanceConfig.keyblades.oblivion[0], BalanceConfig.keyblades.oblivion[1]).setUnlocalizedName(Strings.Oblivion);
         ((ItemKeyblade)Oblivion).setDescription("Has great strength, and allows the Drive Gauge to restore quickly during MP Charge.");
-        OceansRage = new ItemRealKeyblade(BalanceConfig.keyblades.oceansRage[0], BalanceConfig.keyblades.oceansRage[1]).setUnlocalizedName(Strings.OceansRage);
         ((ItemKeyblade)OceansRage).setDescription("A Keyblade that lands fewer critical hits, but compensates with a boost in Magic and more frequent Reality Shifts.");
-        Olympia = new ItemRealKeyblade(BalanceConfig.keyblades.olympia[0], BalanceConfig.keyblades.olympia[1]).setUnlocalizedName(Strings.Olympia);
         ((ItemKeyblade)Olympia).setDescription("A powerful weapon that is difficult to deflect. Capable of inflicting mighty critical blows.");
-        OmegaWeapon = new ItemRealKeyblade(BalanceConfig.keyblades.omegaWeapon[0], BalanceConfig.keyblades.omegaWeapon[1]).setUnlocalizedName(Strings.OmegaWeapon);
         ((ItemKeyblade)OmegaWeapon).setDescription("A formidable weapon with exceptional capabilities.");
-        OminousBlight = new ItemRealKeyblade(BalanceConfig.keyblades.ominousBlight[0], BalanceConfig.keyblades.ominousBlight[1]).setUnlocalizedName(Strings.OminousBlight);
         ((ItemKeyblade)OminousBlight).setDescription("A weapon that lets you string together faster, much longer ground combos.");
-        OneWingedAngel = new ItemRealKeyblade(BalanceConfig.keyblades.oneWingedAngel[0], BalanceConfig.keyblades.oneWingedAngel[1]).setUnlocalizedName(Strings.OneWingedAngel);
         ((ItemKeyblade)OneWingedAngel).setDescription("Has little power, but sometimes deals extremely powerful critical blows. Reduces max MP by 2.");
-        PainofSolitude = new ItemRealKeyblade(BalanceConfig.keyblades.painofSolitude[0], BalanceConfig.keyblades.painofSolitude[1]).setUnlocalizedName(Strings.PainofSolitude);
         ((ItemKeyblade)PainofSolitude).setDescription("A weapon that boosts your Magic to give it more power.");
-        PhotonDebugger = new ItemRealKeyblade(BalanceConfig.keyblades.photonDebugger[0], BalanceConfig.keyblades.photonDebugger[1]).setUnlocalizedName(Strings.PhotonDebugger);
         ((ItemKeyblade)PhotonDebugger).setDescription("Increases damage done by thunder-based attacks.");
-        PixiePetal = new ItemRealKeyblade(BalanceConfig.keyblades.pixiePetal[0], BalanceConfig.keyblades.pixiePetal[1]).setUnlocalizedName(Strings.PixiePetal);
         ((ItemKeyblade)PixiePetal).setDescription("A Keyblade that makes up for its poor reach with an extra boost in Magic. It also makes it easier to land critical hits, and deals higher damage when you do.");
-        Pumpkinhead = new ItemRealKeyblade(BalanceConfig.keyblades.pumpkinhead[0], BalanceConfig.keyblades.pumpkinhead[1]).setUnlocalizedName(Strings.Pumpkinhead);
         ((ItemKeyblade)Pumpkinhead).setDescription("Has a long reach and the ability to deal a string of critical blows.");
-        Rainfell = new ItemRealKeyblade(BalanceConfig.keyblades.rainfell[0], BalanceConfig.keyblades.rainfell[1]).setUnlocalizedName(Strings.Rainfell);
         ((ItemKeyblade)Rainfell).setDescription("The Keyblade Aqua started out with. What it lacks in reach it makes up for with a balanced boost to Strength and Magic.");
-        RejectionofFate = new ItemRealKeyblade(BalanceConfig.keyblades.rejectionofFate[0], BalanceConfig.keyblades.rejectionofFate[1]).setUnlocalizedName(Strings.RejectionofFate);
         ((ItemKeyblade)RejectionofFate).setDescription("A weapon that enables your attacks to reach a wide area and deal immense damage.");
-        RoyalRadiance = new ItemRealKeyblade(BalanceConfig.keyblades.royalRadiance[0], BalanceConfig.keyblades.royalRadiance[1]).setUnlocalizedName(Strings.RoyalRadiance);
         ((ItemKeyblade)RoyalRadiance).setDescription("A very powerful Keyblade. Hastens the Command Gauge when equipped.");
-        RumblingRose = new ItemRealKeyblade(BalanceConfig.keyblades.rumblingRose[0], BalanceConfig.keyblades.rumblingRose[1]).setUnlocalizedName(Strings.RumblingRose);
         ((ItemKeyblade)RumblingRose).setDescription("Has great strength, allowing finishing combo moves to be unleashed successively.");
-        SignofInnocence = new ItemRealKeyblade(BalanceConfig.keyblades.signofInnocence[0], BalanceConfig.keyblades.signofInnocence[1]).setUnlocalizedName(Strings.SignofInnocence);
         ((ItemKeyblade)SignofInnocence).setDescription("A weapon that boosts your Magic to give it a lot more power.");
-        SilentDirge = new ItemRealKeyblade(BalanceConfig.keyblades.silentDirge[0], BalanceConfig.keyblades.silentDirge[1]).setUnlocalizedName(Strings.SilentDirge);
         ((ItemKeyblade)SilentDirge).setDescription("A weapon that provides versatility by boosting both Strength and Magic.");
-        SkullNoise = new ItemRealKeyblade(BalanceConfig.keyblades.skullNoise[0], BalanceConfig.keyblades.skullNoise[1]).setUnlocalizedName(Strings.SkullNoise);
         ((ItemKeyblade)SkullNoise).setDescription("A Keyblade that provides a balanced boost in Strength and Magic.");
-        SleepingLion = new ItemRealKeyblade(BalanceConfig.keyblades.sleepingLion[0], BalanceConfig.keyblades.sleepingLion[1]).setUnlocalizedName(Strings.SleepingLion);
         ((ItemKeyblade)SleepingLion).setDescription("Well-balanced with strength and magic, increasing maximum ground-based combos by 1.");
-        SoulEater = new ItemRealKeyblade(BalanceConfig.keyblades.soulEater[0], BalanceConfig.keyblades.soulEater[1]).setUnlocalizedName(Strings.SoulEater);
         ((ItemKeyblade)SoulEater).setDescription("A sword that swims with darkness. Possesses high Strength.");
-        Spellbinder = new ItemRealKeyblade(BalanceConfig.keyblades.spellbinder[0], BalanceConfig.keyblades.spellbinder[1]).setUnlocalizedName(Strings.Spellbinder);
         ((ItemKeyblade)Spellbinder).setDescription("Raises max MP by 2, and significantly enhances magic and summon power.");
-        Starlight = new ItemRealKeyblade(BalanceConfig.keyblades.starlight[0], BalanceConfig.keyblades.starlight[1]).setUnlocalizedName(Strings.Starlight);
         ((ItemKeyblade)Starlight).setDescription("A basic Keyblade which is associated with the force of Light.");
-        StarSeeker = new ItemRealKeyblade(BalanceConfig.keyblades.starSeeker[0], BalanceConfig.keyblades.starSeeker[1]).setUnlocalizedName(Strings.StarSeeker);
         ((ItemKeyblade)StarSeeker).setDescription("Increases maximum combo by 1 when in midair.");
-        Stormfall = new ItemRealKeyblade(BalanceConfig.keyblades.stormfall[0], BalanceConfig.keyblades.stormfall[1]).setUnlocalizedName(Strings.Stormfall);
         ((ItemKeyblade)Stormfall).setDescription("A well-balanced Keyblade that provides an extra boost to all your stats.");
-        StrokeofMidnight = new ItemRealKeyblade(BalanceConfig.keyblades.strokeofMidnight[0], BalanceConfig.keyblades.strokeofMidnight[1]).setUnlocalizedName(Strings.StrokeofMidnight);
         ((ItemKeyblade)StrokeofMidnight).setDescription("A Keyblade that makes it easier to land critical hits.");
-        SweetDreams = new ItemRealKeyblade(BalanceConfig.keyblades.sweetDreams[0], BalanceConfig.keyblades.sweetDreams[1]).setUnlocalizedName(Strings.SweetDreams);
         ((ItemKeyblade)SweetDreams).setDescription("A Keyblade with long reach that provides an extra boost in Strength and makes it easier to land critical hits.");
-        SweetMemories = new ItemRealKeyblade(BalanceConfig.keyblades.sweetMemories[0], BalanceConfig.keyblades.sweetMemories[1]).setUnlocalizedName(Strings.SweetMemories);
         ((ItemKeyblade)SweetMemories).setDescription("Although it does not enhance attack strength, it increases the drop rate of items.");
-        Sweetstack = new ItemRealKeyblade(BalanceConfig.keyblades.sweetstack[0], BalanceConfig.keyblades.sweetstack[1]).setUnlocalizedName(Strings.Sweetstack);
         ((ItemKeyblade)Sweetstack).setDescription("A Keyblade that provides an extra boost in Strength and ensures every strike is a critical hit.");
-        ThreeWishes = new ItemRealKeyblade(BalanceConfig.keyblades.threeWishes[0], BalanceConfig.keyblades.threeWishes[1]).setUnlocalizedName(Strings.ThreeWishes);
         ((ItemKeyblade)ThreeWishes).setDescription("A powerful weapon that is difficult to deflect.");
-        TotalEclipse = new ItemRealKeyblade(BalanceConfig.keyblades.totalEclipse[0], BalanceConfig.keyblades.totalEclipse[1]).setUnlocalizedName(Strings.TotalEclipse);
         ((ItemKeyblade)TotalEclipse).setDescription("A weapon that possesses extreme Strength. Devastates tough enemies.");
-        TreasureTrove = new ItemRealKeyblade(BalanceConfig.keyblades.treasureTrove[0], BalanceConfig.keyblades.treasureTrove[1] ).setUnlocalizedName(Strings.TreasureTrove);
         ((ItemKeyblade)TreasureTrove).setDescription("A Keyblade that makes up for its poor reach with a balanced boost in Strength and Magic.");
-        TrueLightsFlight = new ItemRealKeyblade(BalanceConfig.keyblades.trueLightsFlight[0], BalanceConfig.keyblades.trueLightsFlight[1]).setUnlocalizedName(Strings.TrueLightsFlight);
         ((ItemKeyblade)TrueLightsFlight).setDescription("A weapon that enables your attacks to reach a wide area and deal heavy damage.");
-        TwilightBlaze = new ItemRealKeyblade(BalanceConfig.keyblades.twilightBlaze[0], BalanceConfig.keyblades.twilightBlaze[1]).setUnlocalizedName(Strings.TwilightBlaze);
         ((ItemKeyblade)TwilightBlaze).setDescription("A weapon that boasts superior Strength and ground combo speed.");
-        TwoBecomeOne = new ItemRealKeyblade(BalanceConfig.keyblades.twoBecomeOne[0], BalanceConfig.keyblades.twoBecomeOne[1]).setUnlocalizedName(Strings.TwoBecomeOne);
         ((ItemKeyblade)TwoBecomeOne).setDescription("A weapon of great strength and magic that has a special effect.");
-        UltimaWeaponKH1 = new ItemRealKeyblade(BalanceConfig.keyblades.ultimaWeaponKH1[0], BalanceConfig.keyblades.ultimaWeaponKH1[1]).setUnlocalizedName(Strings.UltimaWeaponKH1);
         ((ItemKeyblade)UltimaWeaponKH1).setDescription("The ultimate Keyblade. Raises max MP by 2, and possesses maximum power and attributes.");
-        UltimaWeaponKH2 = new ItemRealKeyblade(BalanceConfig.keyblades.ultimaWeaponKH2[0], BalanceConfig.keyblades.ultimaWeaponKH2[1]).setUnlocalizedName(Strings.UltimaWeaponKH2);
         ((ItemKeyblade)UltimaWeaponKH2).setDescription("The Keyblade above all others, holding all power and will increase MP restoration rate, once all MP has been consumed.");
-        UltimaWeaponBBS = new ItemRealKeyblade(BalanceConfig.keyblades.ultimaWeaponBBS[0], BalanceConfig.keyblades.ultimaWeaponBBS[1]).setUnlocalizedName(Strings.UltimaWeaponBBS);
         ((ItemKeyblade)UltimaWeaponBBS).setDescription("The most powerful of Keyblades.");
-        UltimaWeaponDDD = new ItemRealKeyblade(BalanceConfig.keyblades.ultimaWeaponDDD[0], BalanceConfig.keyblades.ultimaWeaponDDD[1]).setUnlocalizedName(Strings.UltimaWeaponDDD);
         ((ItemKeyblade)UltimaWeaponDDD).setDescription("An outstanding Keyblade that boosts all stats, and makes it easy to both land critical hits and trigger Reality Shifts.");
-        Umbrella = new ItemKeyblade(BalanceConfig.keyblades.umbrella[0], BalanceConfig.keyblades.umbrella[1]).setUnlocalizedName(Strings.Umbrella);
         ((ItemKeyblade)Umbrella).setDescription("This looks awfully familiar...");
-        Unbound = new ItemRealKeyblade(BalanceConfig.keyblades.unbound[0], BalanceConfig.keyblades.unbound[1]).setUnlocalizedName(Strings.Unbound);
         ((ItemKeyblade)Unbound).setDescription("Keyblade perfection. It boosts all stats, while making it easy to land critical hits and even easier to trigger Reality Shifts.");
-        UnicornisForetellersKeyblade = new ItemRealKeyblade(BalanceConfig.keyblades.unicornisForetellersKeyblade[0], BalanceConfig.keyblades.unicornisForetellersKeyblade[1]).setUnlocalizedName(Strings.UnicornisForetellersKeyblade);
         ((ItemKeyblade)UnicornisForetellersKeyblade).setDescription("The Keyblade owned by Unicornis' Foreteller.");
-        UrsusForetellersKeyblade = new ItemRealKeyblade(BalanceConfig.keyblades.ursusForetellersKeyblade[0], BalanceConfig.keyblades.ursusForetellersKeyblade[1]).setUnlocalizedName(Strings.UrsusForetellersKeyblade);
         ((ItemKeyblade)UrsusForetellersKeyblade).setDescription("The Keyblade owned by Ursus' Foreteller.");
-        VictoryLine = new ItemRealKeyblade(BalanceConfig.keyblades.victoryLine[0], BalanceConfig.keyblades.victoryLine[1]).setUnlocalizedName(Strings.VictoryLine);
         ((ItemKeyblade)VictoryLine).setDescription("A Keyblade with above-average reach that makes it easier to land critical hits.");
-        VoidGear = new ItemRealKeyblade(BalanceConfig.keyblades.voidGear[0], BalanceConfig.keyblades.voidGear[1]).setUnlocalizedName(Strings.VoidGear);
         ((ItemKeyblade)VoidGear).setDescription("A Keyblade with long reach that provides an outstanding boost in Strength and deals higher damage when you land a critical hit.");
-        VulpeusForetellersKeyblade = new ItemRealKeyblade(BalanceConfig.keyblades.vulpeusForetellersKeyblade[0], BalanceConfig.keyblades.vulpeusForetellersKeyblade[1]).setUnlocalizedName(Strings.VulpeusForetellersKeyblade);
         ((ItemKeyblade)VulpeusForetellersKeyblade).setDescription("The Keyblade owned by Vulpeus' Foreteller.");
-        WaytotheDawn = new ItemRealKeyblade(BalanceConfig.keyblades.waytotheDawn[0], BalanceConfig.keyblades.waytotheDawn[1]).setUnlocalizedName(Strings.WaytotheDawn);
         ((ItemKeyblade)WaytotheDawn).setDescription("Deals various attacks.");
-        WaywardWind = new ItemRealKeyblade(BalanceConfig.keyblades.waywardWind[0], BalanceConfig.keyblades.waywardWind[1]).setUnlocalizedName(Strings.WaywardWind);
         ((ItemKeyblade)WaywardWind).setDescription("The Keyblade Ventus started out with. What it lacks in reach it makes up for with a slight boost in Strength.");
-        WinnersProof = new ItemRealKeyblade(BalanceConfig.keyblades.winnersProof[0], BalanceConfig.keyblades.winnersProof[1]).setUnlocalizedName(Strings.WinnersProof);
         ((ItemKeyblade)WinnersProof).setDescription("Has high strength and hold's an excellent magic power. When the enemies are defeated, experience points are not gained.");
-        WishingLamp = new ItemRealKeyblade(BalanceConfig.keyblades.wishingLamp[0], BalanceConfig.keyblades.wishingLamp[1]).setUnlocalizedName(Strings.WishingLamp);
         ((ItemKeyblade)WishingLamp).setDescription("Wishes come true by increasing the drop rate of munny, HP and MP orbs.");
-        WishingStar = new ItemRealKeyblade(BalanceConfig.keyblades.wishingStar[0], BalanceConfig.keyblades.wishingStar[1]).setUnlocalizedName(Strings.WishingStar);
         ((ItemKeyblade)WishingStar).setDescription("Has a short reach, but always finishes up a combo attack with a powerful critical blow.");
-        WoodenKeyblade = new ItemKeyblade(BalanceConfig.keyblades.woodenKeyblade[0], BalanceConfig.keyblades.woodenKeyblade[1]).setUnlocalizedName(Strings.WoodenKeyblade);
         ((ItemKeyblade)WoodenKeyblade).setDescription("A toy Keyblade that originally belonged to Terra, which was later bestowed upon Ventus.");
-        WoodenStick = new ItemKeyblade(BalanceConfig.keyblades.woodenStick[0], BalanceConfig.keyblades.woodenStick[1]).setUnlocalizedName(Strings.WoodenStick);
         ((ItemKeyblade)WoodenKeyblade).setDescription("A stick.");
-        YoungXehanortsKeyblade = new ItemRealKeyblade(BalanceConfig.keyblades.youngXehanortsKeyblade[0], BalanceConfig.keyblades.youngXehanortsKeyblade[1]).setUnlocalizedName(Strings.YoungXehanortsKeyblade);
         ((ItemKeyblade)YoungXehanortsKeyblade).setDescription("The Keyblade weilded by Young Xehanort.");
-        ZeroOne = new ItemRealKeyblade(BalanceConfig.keyblades.zeroOne[0], BalanceConfig.keyblades.zeroOne[1]).setUnlocalizedName(Strings.ZeroOne);
         ((ItemKeyblade)ZeroOne).setDescription("A Keyblade newly wrought within the datascape. Its powers render all opponents helpless.");
 
-        // CHAINS
-        Chain_AbaddonPlasma = new ItemKeychain((ItemKeyblade) AbaddonPlasma, KEYCHAIN).setUnlocalizedName(Strings.Chain_AbaddonPlasma).setCreativeTab(tabKingdomKeys);
-        Chain_AbyssalTide = new ItemKeychain((ItemKeyblade) AbyssalTide, KEYCHAIN).setUnlocalizedName(Strings.Chain_AbyssalTide).setCreativeTab(tabKingdomKeys);
-        Chain_AllforOne = new ItemKeychain((ItemKeyblade) AllforOne, KEYCHAIN).setUnlocalizedName(Strings.Chain_AllforOne).setCreativeTab(tabKingdomKeys);
-        Chain_AnguisForetellersKeyblade = new ItemKeychain((ItemKeyblade) AnguisForetellersKeyblade, KEYCHAIN).setUnlocalizedName(Strings.Chain_AnguisForetellersKeyblade).setCreativeTab(tabKingdomKeys);
-        Chain_AstralBlast = new ItemKeychain((ItemKeyblade) AstralBlast, KEYCHAIN).setUnlocalizedName(Strings.Chain_AstralBlast).setCreativeTab(tabKingdomKeys);
-        Chain_Aubade = new ItemKeychain((ItemKeyblade) Aubade, KEYCHAIN).setUnlocalizedName(Strings.Chain_Aubade).setCreativeTab(tabKingdomKeys);
-        Chain_BondofFlame = new ItemKeychain((ItemKeyblade) BondofFlame, KEYCHAIN).setUnlocalizedName(Strings.Chain_BondofFlame).setCreativeTab(tabKingdomKeys);
-        Chain_Brightcrest = new ItemKeychain((ItemKeyblade) Brightcrest, KEYCHAIN).setUnlocalizedName(Strings.Chain_Brightcrest).setCreativeTab(tabKingdomKeys);
-        Chain_ChaosRipper = new ItemKeychain((ItemKeyblade) ChaosRipper, KEYCHAIN).setUnlocalizedName(Strings.Chain_ChaosRipper).setCreativeTab(tabKingdomKeys);
-        Chain_CircleofLife = new ItemKeychain((ItemKeyblade) CircleofLife, KEYCHAIN).setUnlocalizedName(Strings.Chain_CircleofLife).setCreativeTab(tabKingdomKeys);
-        Chain_Counterpoint = new ItemKeychain((ItemKeyblade) Counterpoint, KEYCHAIN).setUnlocalizedName(Strings.Chain_Counterpoint).setCreativeTab(tabKingdomKeys);
-        Chain_Crabclaw = new ItemKeychain((ItemKeyblade) Crabclaw, KEYCHAIN).setUnlocalizedName(Strings.Chain_Crabclaw).setCreativeTab(tabKingdomKeys);
-        Chain_CrownofGuilt = new ItemKeychain((ItemKeyblade) CrownofGuilt, KEYCHAIN).setUnlocalizedName(Strings.Chain_CrownofGuilt).setCreativeTab(tabKingdomKeys);
-        Chain_DarkerThanDark = new ItemKeychain((ItemKeyblade) DarkerThanDark, KEYCHAIN).setUnlocalizedName(Strings.Chain_DarkerThanDark).setCreativeTab(tabKingdomKeys);
-        Chain_Darkgnaw = new ItemKeychain((ItemKeyblade) Darkgnaw, KEYCHAIN).setUnlocalizedName(Strings.Chain_Darkgnaw).setCreativeTab(tabKingdomKeys);
-        Chain_DecisivePumpkin = new ItemKeychain((ItemKeyblade) DecisivePumpkin, KEYCHAIN).setUnlocalizedName(Strings.Chain_DecisivePumpkin).setCreativeTab(tabKingdomKeys);
-        Chain_DestinysEmbrace = new ItemKeychain((ItemKeyblade) DestinysEmbrace, KEYCHAIN).setUnlocalizedName(Strings.Chain_DestinysEmbrace).setCreativeTab(tabKingdomKeys);
-        Chain_DiamondDust = new ItemKeychain((ItemKeyblade) DiamondDust, KEYCHAIN).setUnlocalizedName(Strings.Chain_DiamondDust).setCreativeTab(tabKingdomKeys);
-        Chain_Divewing = new ItemKeychain((ItemKeyblade) Divewing, KEYCHAIN).setUnlocalizedName(Strings.Chain_Divewing).setCreativeTab(tabKingdomKeys);
-        Chain_DivineRose = new ItemKeychain((ItemKeyblade) DivineRose, KEYCHAIN).setUnlocalizedName(Strings.Chain_DivineRose).setCreativeTab(tabKingdomKeys);
-        Chain_DreamSword = new ItemKeychain((ItemKeyblade) DreamSword, KEYCHAIN).setUnlocalizedName(Strings.Chain_DreamSword).setCreativeTab(tabKingdomKeys);
-        Chain_DualDisc = new ItemKeychain((ItemKeyblade) DualDisc, KEYCHAIN).setUnlocalizedName(Strings.Chain_DualDisc).setCreativeTab(tabKingdomKeys);
-        Chain_Earthshaker = new ItemKeychain((ItemKeyblade) Earthshaker, KEYCHAIN).setUnlocalizedName(Strings.Chain_Earthshaker).setCreativeTab(tabKingdomKeys);
-        Chain_EndofPain = new ItemKeychain((ItemKeyblade) EndofPain, KEYCHAIN).setUnlocalizedName(Strings.Chain_EndofPain).setCreativeTab(tabKingdomKeys);
-        Chain_EndsoftheEarth = new ItemKeychain((ItemKeyblade) EndsoftheEarth, KEYCHAIN).setUnlocalizedName(Strings.Chain_EndsoftheEarth).setCreativeTab(tabKingdomKeys);
-        Chain_FairyHarp = new ItemKeychain((ItemKeyblade) FairyHarp, KEYCHAIN).setUnlocalizedName(Strings.Chain_FairyHarp).setCreativeTab(tabKingdomKeys);
-        Chain_FairyStars = new ItemKeychain((ItemKeyblade) FairyStars, KEYCHAIN).setUnlocalizedName(Strings.Chain_FairyStars).setCreativeTab(tabKingdomKeys);
-        Chain_FatalCrest = new ItemKeychain((ItemKeyblade) FatalCrest, KEYCHAIN).setUnlocalizedName(Strings.Chain_FatalCrest).setCreativeTab(tabKingdomKeys);
-        Chain_Fenrir = new ItemKeychain((ItemKeyblade) Fenrir, KEYCHAIN).setUnlocalizedName(Strings.Chain_Fenrir).setCreativeTab(tabKingdomKeys);
-        Chain_FerrisGear = new ItemKeychain((ItemKeyblade) FerrisGear, KEYCHAIN).setUnlocalizedName(Strings.Chain_FerrisGear).setCreativeTab(tabKingdomKeys);
-        Chain_FollowtheWind = new ItemKeychain((ItemKeyblade) FollowtheWind, KEYCHAIN).setUnlocalizedName(Strings.Chain_FollowtheWind).setCreativeTab(tabKingdomKeys);
-        Chain_FrolicFlame = new ItemKeychain((ItemKeyblade) FrolicFlame, KEYCHAIN).setUnlocalizedName(Strings.Chain_FrolicFlame).setCreativeTab(tabKingdomKeys);
-        Chain_GlimpseofDarkness = new ItemKeychain((ItemKeyblade) GlimpseofDarkness, KEYCHAIN).setUnlocalizedName(Strings.Chain_GlimpseofDarkness).setCreativeTab(tabKingdomKeys);
-        Chain_GuardianBell = new ItemKeychain((ItemKeyblade) GuardianBell, KEYCHAIN).setUnlocalizedName(Strings.Chain_GuardianBell).setCreativeTab(tabKingdomKeys);
-        Chain_GuardianSoul = new ItemKeychain((ItemKeyblade) GuardianSoul, KEYCHAIN).setUnlocalizedName(Strings.Chain_GuardianSoul).setCreativeTab(tabKingdomKeys);
-        Chain_GullWing = new ItemKeychain((ItemKeyblade) GullWing, KEYCHAIN).setUnlocalizedName(Strings.Chain_GullWing).setCreativeTab(tabKingdomKeys);
-        Chain_HerosCrest = new ItemKeychain((ItemKeyblade) HerosCrest, KEYCHAIN).setUnlocalizedName(Strings.Chain_HerosCrest).setCreativeTab(tabKingdomKeys);
-        Chain_HiddenDragon = new ItemKeychain((ItemKeyblade) HiddenDragon, KEYCHAIN).setUnlocalizedName(Strings.Chain_HiddenDragon).setCreativeTab(tabKingdomKeys);
-        Chain_Hyperdrive = new ItemKeychain((ItemKeyblade) Hyperdrive, KEYCHAIN).setUnlocalizedName(Strings.Chain_Hyperdrive).setCreativeTab(tabKingdomKeys);
-        Chain_IncompleteKiblade = new ItemKeychain((ItemKeyblade) IncompleteKiblade, KEYCHAIN).setUnlocalizedName(Strings.Chain_IncompleteKiblade).setCreativeTab(tabKingdomKeys);
-        Chain_JungleKing = new ItemKeychain((ItemKeyblade) JungleKing, KEYCHAIN).setUnlocalizedName(Strings.Chain_JungleKing).setCreativeTab(tabKingdomKeys);
-        Chain_KeybladeofPeoplesHearts = new ItemKeychain((ItemKeyblade) KeybladeofPeoplesHearts, KEYCHAIN).setUnlocalizedName(Strings.Chain_KeybladeofPeoplesHearts).setCreativeTab(tabKingdomKeys);
-        Chain_Kiblade = new ItemKeychain((ItemKeyblade) Kiblade, KEYCHAIN).setUnlocalizedName(Strings.Chain_Kiblade).setCreativeTab(tabKingdomKeys);
-        Chain_KingdomKey = new ItemKeychain((ItemKeyblade) KingdomKey, KEYCHAIN).setUnlocalizedName(Strings.Chain_KingdomKey).setCreativeTab(tabKingdomKeys);
-        Chain_KingdomKeyD = new ItemKeychain((ItemKeyblade) KingdomKeyD, KEYCHAIN).setUnlocalizedName(Strings.Chain_KingdomKeyD).setCreativeTab(tabKingdomKeys);
-        Chain_KnockoutPunch = new ItemKeychain((ItemKeyblade) KnockoutPunch, KEYCHAIN).setUnlocalizedName(Strings.Chain_KnockoutPunch).setCreativeTab(tabKingdomKeys);
-        Chain_LadyLuck = new ItemKeychain((ItemKeyblade) LadyLuck, KEYCHAIN).setUnlocalizedName(Strings.Chain_LadyLuck).setCreativeTab(tabKingdomKeys);
-        Chain_LeasKeyblade = new ItemKeychain((ItemKeyblade) LeasKeyblade, KEYCHAIN).setUnlocalizedName(Strings.Chain_LeasKeyblade).setCreativeTab(tabKingdomKeys);
-        Chain_LeopardosForetellersKeyblade = new ItemKeychain((ItemKeyblade) LeopardosForetellersKeyblade, KEYCHAIN).setUnlocalizedName(Strings.Chain_LeopardosForetellersKeyblade).setCreativeTab(tabKingdomKeys);
-        Chain_Leviathan = new ItemKeychain((ItemKeyblade) Leviathan, KEYCHAIN).setUnlocalizedName(Strings.Chain_Leviathan).setCreativeTab(tabKingdomKeys);
-        Chain_Lionheart = new ItemKeychain((ItemKeyblade) Lionheart, KEYCHAIN).setUnlocalizedName(Strings.Chain_Lionheart).setCreativeTab(tabKingdomKeys);
-        Chain_LostMemory = new ItemKeychain((ItemKeyblade) LostMemory, KEYCHAIN).setUnlocalizedName(Strings.Chain_LostMemory).setCreativeTab(tabKingdomKeys);
-        Chain_LunarEclipse = new ItemKeychain((ItemKeyblade) LunarEclipse, KEYCHAIN).setUnlocalizedName(Strings.Chain_LunarEclipse).setCreativeTab(tabKingdomKeys);
-        Chain_MarkofaHero = new ItemKeychain((ItemKeyblade) MarkofaHero, KEYCHAIN).setUnlocalizedName(Strings.Chain_MarkofaHero).setCreativeTab(tabKingdomKeys);
-        Chain_MasterXehanortsKeyblade = new ItemKeychain((ItemKeyblade) MasterXehanortsKeyblade, KEYCHAIN).setUnlocalizedName(Strings.Chain_MasterXehanortsKeyblade).setCreativeTab(tabKingdomKeys);
-        Chain_MastersDefender = new ItemKeychain((ItemKeyblade) MastersDefender, KEYCHAIN).setUnlocalizedName(Strings.Chain_MastersDefender).setCreativeTab(tabKingdomKeys);
-        Chain_MaverickFlare = new ItemKeychain((ItemKeyblade) MaverickFlare, KEYCHAIN).setUnlocalizedName(Strings.Chain_MaverickFlare).setCreativeTab(tabKingdomKeys);
-        Chain_MetalChocobo = new ItemKeychain((ItemKeyblade) MetalChocobo, KEYCHAIN).setUnlocalizedName(Strings.Chain_MetalChocobo).setCreativeTab(tabKingdomKeys);
-        Chain_MidnightRoar = new ItemKeychain((ItemKeyblade) MidnightRoar, KEYCHAIN).setUnlocalizedName(Strings.Chain_MidnightRoar).setCreativeTab(tabKingdomKeys);
-        Chain_MirageSplit = new ItemKeychain((ItemKeyblade) MirageSplit, KEYCHAIN).setUnlocalizedName(Strings.Chain_MirageSplit).setCreativeTab(tabKingdomKeys);
-        Chain_MissingAche = new ItemKeychain((ItemKeyblade) MissingAche, KEYCHAIN).setUnlocalizedName(Strings.Chain_MissingAche).setCreativeTab(tabKingdomKeys);
-        Chain_Monochrome = new ItemKeychain((ItemKeyblade) Monochrome, KEYCHAIN).setUnlocalizedName(Strings.Chain_Monochrome).setCreativeTab(tabKingdomKeys);
-        Chain_MysteriousAbyss = new ItemKeychain((ItemKeyblade) MysteriousAbyss, KEYCHAIN).setUnlocalizedName(Strings.Chain_MysteriousAbyss).setCreativeTab(tabKingdomKeys);
-        Chain_NightmaresEnd = new ItemKeychain((ItemKeyblade) NightmaresEnd, KEYCHAIN).setUnlocalizedName(Strings.Chain_NightmaresEnd).setCreativeTab(tabKingdomKeys);
-        Chain_NightmaresEndandMirageSplit = new ItemKeychain((ItemKeyblade) NightmaresEndandMirageSplit, KEYCHAIN).setUnlocalizedName(Strings.Chain_NightmaresEndandMirageSplit).setCreativeTab(tabKingdomKeys);
-        Chain_NoName = new ItemKeychain((ItemKeyblade) NoName, KEYCHAIN).setUnlocalizedName(Strings.Chain_NoName).setCreativeTab(tabKingdomKeys);
-        Chain_Oathkeeper = new ItemKeychain((ItemKeyblade) Oathkeeper, KEYCHAIN).setUnlocalizedName(Strings.Chain_Oathkeeper).setCreativeTab(tabKingdomKeys);
-        Chain_Oblivion = new ItemKeychain((ItemKeyblade) Oblivion, KEYCHAIN).setUnlocalizedName(Strings.Chain_Oblivion).setCreativeTab(tabKingdomKeys);
-        Chain_OceansRage = new ItemKeychain((ItemKeyblade) OceansRage, KEYCHAIN).setUnlocalizedName(Strings.Chain_OceansRage).setCreativeTab(tabKingdomKeys);
-        Chain_Olympia = new ItemKeychain((ItemKeyblade) Olympia, KEYCHAIN).setUnlocalizedName(Strings.Chain_Olympia).setCreativeTab(tabKingdomKeys);
-        Chain_OmegaWeapon = new ItemKeychain((ItemKeyblade) OmegaWeapon, KEYCHAIN).setUnlocalizedName(Strings.Chain_OmegaWeapon).setCreativeTab(tabKingdomKeys);
-        Chain_OminousBlight = new ItemKeychain((ItemKeyblade) OminousBlight, KEYCHAIN).setUnlocalizedName(Strings.Chain_OminousBlight).setCreativeTab(tabKingdomKeys);
-        Chain_OneWingedAngel = new ItemKeychain((ItemKeyblade) OneWingedAngel, KEYCHAIN).setUnlocalizedName(Strings.Chain_OneWingedAngel).setCreativeTab(tabKingdomKeys);
-        Chain_PainofSolitude = new ItemKeychain((ItemKeyblade) PainofSolitude, KEYCHAIN).setUnlocalizedName(Strings.Chain_PainofSolitude).setCreativeTab(tabKingdomKeys);
-        Chain_PhotonDebugger = new ItemKeychain((ItemKeyblade) PhotonDebugger, KEYCHAIN).setUnlocalizedName(Strings.Chain_PhotonDebugger).setCreativeTab(tabKingdomKeys);
-        Chain_PixiePetal = new ItemKeychain((ItemKeyblade) PixiePetal, KEYCHAIN).setUnlocalizedName(Strings.Chain_PixiePetal).setCreativeTab(tabKingdomKeys);
-        Chain_Pumpkinhead = new ItemKeychain((ItemKeyblade) Pumpkinhead, KEYCHAIN).setUnlocalizedName(Strings.Chain_Pumpkinhead).setCreativeTab(tabKingdomKeys);
-        Chain_Rainfell = new ItemKeychain((ItemKeyblade) Rainfell, KEYCHAIN).setUnlocalizedName(Strings.Chain_Rainfell).setCreativeTab(tabKingdomKeys);
-        Chain_RejectionofFate = new ItemKeychain((ItemKeyblade) RejectionofFate, KEYCHAIN).setUnlocalizedName(Strings.Chain_RejectionofFate).setCreativeTab(tabKingdomKeys);
-        Chain_RoyalRadiance = new ItemKeychain((ItemKeyblade) RoyalRadiance, KEYCHAIN).setUnlocalizedName(Strings.Chain_RoyalRadiance).setCreativeTab(tabKingdomKeys);
-        Chain_RumblingRose = new ItemKeychain((ItemKeyblade) RumblingRose, KEYCHAIN).setUnlocalizedName(Strings.Chain_RumblingRose).setCreativeTab(tabKingdomKeys);
-        Chain_SignofInnocence = new ItemKeychain((ItemKeyblade) SignofInnocence, KEYCHAIN).setUnlocalizedName(Strings.Chain_SignofInnocence).setCreativeTab(tabKingdomKeys);
-        Chain_SilentDirge = new ItemKeychain((ItemKeyblade) SilentDirge, KEYCHAIN).setUnlocalizedName(Strings.Chain_SilentDirge).setCreativeTab(tabKingdomKeys);
-        Chain_SkullNoise = new ItemKeychain((ItemKeyblade) SkullNoise, KEYCHAIN).setUnlocalizedName(Strings.Chain_SkullNoise).setCreativeTab(tabKingdomKeys);
-        Chain_SleepingLion = new ItemKeychain((ItemKeyblade) SleepingLion, KEYCHAIN).setUnlocalizedName(Strings.Chain_SleepingLion).setCreativeTab(tabKingdomKeys);
-        Chain_SoulEater = new ItemKeychain((ItemKeyblade) SoulEater, KEYCHAIN).setUnlocalizedName(Strings.Chain_SoulEater).setCreativeTab(tabKingdomKeys);
-        Chain_Spellbinder = new ItemKeychain((ItemKeyblade) Spellbinder, KEYCHAIN).setUnlocalizedName(Strings.Chain_Spellbinder).setCreativeTab(tabKingdomKeys);
-        Chain_StarSeeker = new ItemKeychain((ItemKeyblade) StarSeeker, KEYCHAIN).setUnlocalizedName(Strings.Chain_StarSeeker).setCreativeTab(tabKingdomKeys);
-        Chain_Starlight = new ItemKeychain((ItemKeyblade) Starlight, KEYCHAIN).setUnlocalizedName(Strings.Chain_Starlight).setCreativeTab(tabKingdomKeys);
-        Chain_Stormfall = new ItemKeychain((ItemKeyblade) Stormfall, KEYCHAIN).setUnlocalizedName(Strings.Chain_Stormfall).setCreativeTab(tabKingdomKeys);
-        Chain_StrokeofMidnight = new ItemKeychain((ItemKeyblade) StrokeofMidnight, KEYCHAIN).setUnlocalizedName(Strings.Chain_StrokeofMidnight).setCreativeTab(tabKingdomKeys);
-        Chain_SweetDreams = new ItemKeychain((ItemKeyblade) SweetDreams, KEYCHAIN).setUnlocalizedName(Strings.Chain_SweetDreams).setCreativeTab(tabKingdomKeys);
-        Chain_SweetMemories = new ItemKeychain((ItemKeyblade) SweetMemories, KEYCHAIN).setUnlocalizedName(Strings.Chain_SweetMemories).setCreativeTab(tabKingdomKeys);
-        Chain_Sweetstack = new ItemKeychain((ItemKeyblade) Sweetstack, KEYCHAIN).setUnlocalizedName(Strings.Chain_Sweetstack).setCreativeTab(tabKingdomKeys);
-        Chain_ThreeWishes = new ItemKeychain((ItemKeyblade) ThreeWishes, KEYCHAIN).setUnlocalizedName(Strings.Chain_ThreeWishes).setCreativeTab(tabKingdomKeys);
-        Chain_TotalEclipse = new ItemKeychain((ItemKeyblade) TotalEclipse, KEYCHAIN).setUnlocalizedName(Strings.Chain_TotalEclipse).setCreativeTab(tabKingdomKeys);
-        Chain_TreasureTrove = new ItemKeychain((ItemKeyblade) TreasureTrove, KEYCHAIN).setUnlocalizedName(Strings.Chain_TreasureTrove).setCreativeTab(tabKingdomKeys);
-        Chain_TrueLightsFlight = new ItemKeychain((ItemKeyblade) TrueLightsFlight, KEYCHAIN).setUnlocalizedName(Strings.Chain_TrueLightsFlight).setCreativeTab(tabKingdomKeys);
-        Chain_TwilightBlaze = new ItemKeychain((ItemKeyblade) TwilightBlaze, KEYCHAIN).setUnlocalizedName(Strings.Chain_TwilightBlaze).setCreativeTab(tabKingdomKeys);
-        Chain_TwoBecomeOne = new ItemKeychain((ItemKeyblade) TwoBecomeOne, KEYCHAIN).setUnlocalizedName(Strings.Chain_TwoBecomeOne).setCreativeTab(tabKingdomKeys);
-        Chain_UltimaWeaponKH1 = new ItemKeychain((ItemKeyblade) UltimaWeaponKH1, KEYCHAIN).setUnlocalizedName(Strings.Chain_UltimaWeaponKH1).setCreativeTab(tabKingdomKeys);
-        Chain_UltimaWeaponKH2 = new ItemKeychain((ItemKeyblade) UltimaWeaponKH2, KEYCHAIN).setUnlocalizedName(Strings.Chain_UltimaWeaponKH2).setCreativeTab(tabKingdomKeys);
-        Chain_UltimaWeaponBBS = new ItemKeychain((ItemKeyblade) UltimaWeaponBBS, KEYCHAIN).setUnlocalizedName(Strings.Chain_UltimaWeaponBBS).setCreativeTab(tabKingdomKeys);
-        Chain_UltimaWeaponDDD = new ItemKeychain((ItemKeyblade) UltimaWeaponDDD, KEYCHAIN).setUnlocalizedName(Strings.Chain_UltimaWeaponDDD).setCreativeTab(tabKingdomKeys);
-        Chain_Umbrella = new ItemKeychain((ItemKeyblade) Umbrella, KEYCHAIN).setUnlocalizedName(Strings.Chain_Umbrella).setCreativeTab(tabKingdomKeys);
-        Chain_Unbound = new ItemKeychain((ItemKeyblade) Unbound, KEYCHAIN).setUnlocalizedName(Strings.Chain_Unbound).setCreativeTab(tabKingdomKeys);
-        Chain_UnicornisForetellersKeyblade = new ItemKeychain((ItemKeyblade) UnicornisForetellersKeyblade, KEYCHAIN).setUnlocalizedName(Strings.Chain_UnicornisForetellersKeyblade).setCreativeTab(tabKingdomKeys);
-        Chain_UrsusForetellersKeyblade = new ItemKeychain((ItemKeyblade) UrsusForetellersKeyblade, KEYCHAIN).setUnlocalizedName(Strings.Chain_UrsusForetellersKeyblade).setCreativeTab(tabKingdomKeys);
-        Chain_VictoryLine = new ItemKeychain((ItemKeyblade) VictoryLine, KEYCHAIN).setUnlocalizedName(Strings.Chain_VictoryLine).setCreativeTab(tabKingdomKeys);
-        Chain_VoidGear = new ItemKeychain((ItemKeyblade) VoidGear, KEYCHAIN).setUnlocalizedName(Strings.Chain_VoidGear).setCreativeTab(tabKingdomKeys);
-        Chain_VulpeusForetellersKeyblade = new ItemKeychain((ItemKeyblade) VulpeusForetellersKeyblade, KEYCHAIN).setUnlocalizedName(Strings.Chain_VulpeusForetellersKeyblade).setCreativeTab(tabKingdomKeys);
-        Chain_WaytotheDawn = new ItemKeychain((ItemKeyblade) WaytotheDawn, KEYCHAIN).setUnlocalizedName(Strings.Chain_WaytotheDawn).setCreativeTab(tabKingdomKeys);
-        Chain_WaywardWind = new ItemKeychain((ItemKeyblade) WaywardWind, KEYCHAIN).setUnlocalizedName(Strings.Chain_WaywardWind).setCreativeTab(tabKingdomKeys);
-        Chain_WinnersProof = new ItemKeychain((ItemKeyblade) WinnersProof, KEYCHAIN).setUnlocalizedName(Strings.Chain_WinnersProof).setCreativeTab(tabKingdomKeys);
-        Chain_WishingLamp = new ItemKeychain((ItemKeyblade) WishingLamp, KEYCHAIN).setUnlocalizedName(Strings.Chain_WishingLamp).setCreativeTab(tabKingdomKeys);
-        Chain_WishingStar = new ItemKeychain((ItemKeyblade) WishingStar, KEYCHAIN).setUnlocalizedName(Strings.Chain_WishingStar).setCreativeTab(tabKingdomKeys);
-        Chain_YoungXehanortsKeyblade = new ItemKeychain((ItemKeyblade) YoungXehanortsKeyblade, KEYCHAIN).setUnlocalizedName(Strings.Chain_YoungXehanortsKeyblade).setCreativeTab(tabKingdomKeys);
-        Chain_ZeroOne = new ItemKeychain((ItemKeyblade) ZeroOne, KEYCHAIN).setUnlocalizedName(Strings.Chain_ZeroOne).setCreativeTab(tabKingdomKeys);
-
-        Munny = new ItemMunny().setUnlocalizedName(Strings.Munny).setCreativeTab(tabKingdomKeys);
-        EmptyBottle = new Item().setUnlocalizedName(Strings.EmptyBottle).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        Potion = new ItemPotion(0, true, "hp").setUnlocalizedName(Strings.Potion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        HiPotion = new ItemHiPotion(0, true, "hp").setUnlocalizedName(Strings.HiPotion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        MegaPotion = new ItemMegaPotion(0, true, "hp").setUnlocalizedName(Strings.MegaPotion).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        Ether = new ItemEther(0, true, "mp").setUnlocalizedName(Strings.Ether).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        MegaEther = new ItemMegaEther(0, true, "mp").setUnlocalizedName(Strings.MegaEther).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        Elixir = new ItemElixir(0, true, "elixir").setUnlocalizedName(Strings.Elixir).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        Megalixir = new ItemMegalixir(0, true, "elixir").setUnlocalizedName(Strings.Megalixir).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        DriveRecovery = new ItemDriveRecovery(0, true, "dp").setUnlocalizedName(Strings.DriveRecovery).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        HighDriveRecovery = new ItemHighDriveRecovery(0, true, "dp").setUnlocalizedName(Strings.HighDriveRecovery).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        DefenseBoost = new ItemDefenseBoost().setUnlocalizedName(Strings.DefenseBoost).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        MagicBoost = new ItemMagicBoost().setUnlocalizedName(Strings.MagicBoost).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        PowerBoost = new ItemPowerBoost().setUnlocalizedName(Strings.PowerBoost).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        Panacaea = new ItemPanacea(0, true, "panacea").setUnlocalizedName(Strings.Panacea).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-
-        HpOrb = new ItemHpOrb().setUnlocalizedName(Strings.HpOrb).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        DriveOrb = new ItemDriveOrb().setUnlocalizedName(Strings.DriveOrb).setCreativeTab(tabKingdomKeys);
-        MagicOrb = new ItemMagicOrb().setUnlocalizedName(Strings.MagicOrb).setCreativeTab(tabKingdomKeys);
-        Heart = new Item().setUnlocalizedName(Strings.Heart).setCreativeTab(tabKingdomKeys);
-        DarkHeart = new Item().setUnlocalizedName(Strings.DarkHeart).setCreativeTab(tabKingdomKeys);
-        PureHeart = new Item().setUnlocalizedName(Strings.PureHeart).setCreativeTab(tabKingdomKeys);
-        KingdomHearts = new Item().setUnlocalizedName(Strings.KingdomHearts).setCreativeTab(tabKingdomKeys);
-        DarkLeather = new Item().setUnlocalizedName(Strings.DarkLeather).setCreativeTab(tabKingdomKeys);
-        SynthesisMaterial = new ItemSynthesisMaterial().setUnlocalizedName(Strings.SynthesisMaterial).setCreativeTab(tabKingdomKeys);
-        IceCream = new ItemIceCream(5, true).setUnlocalizedName(Strings.IceCream).setCreativeTab(tabKingdomKeys);
-        WinnerStick = new Item().setUnlocalizedName(Strings.WinnerStick).setCreativeTab(tabKingdomKeys);
-
-        LevelUpMagicFire = new ItemUpgradeFire(Strings.Spell_Fire).setUnlocalizedName(Strings.LevelUpMagicFire).setCreativeTab(tabKingdomKeys);
-        LevelUpMagicBlizzard = new ItemUpgradeBlizzard(Strings.Spell_Blizzard).setUnlocalizedName(Strings.LevelUpMagicBlizzard).setCreativeTab(tabKingdomKeys);
-        LevelUpMagicThunder = new ItemUpgradeThunder(Strings.Spell_Thunder).setUnlocalizedName(Strings.LevelUpMagicThunder).setCreativeTab(tabKingdomKeys);
-        LevelUpMagicCure = new ItemUpgradeCure(Strings.Spell_Cure).setUnlocalizedName(Strings.LevelUpMagicCure).setCreativeTab(tabKingdomKeys);
-        LevelUpMagicAero = new ItemUpgradeAero(Strings.Spell_Aero).setUnlocalizedName(Strings.LevelUpMagicAero).setCreativeTab(tabKingdomKeys);
-        LevelUpMagicStop = new ItemUpgradeStop(Strings.Spell_Stop).setUnlocalizedName(Strings.LevelUpMagicStop).setCreativeTab(tabKingdomKeys);
-
-        LevelUpValor = new ItemUpgradeValor(Strings.Form_Valor).setUnlocalizedName(Strings.LevelUpValor).setCreativeTab(tabKingdomKeys);
-        LevelUpWisdom = new ItemUpgradeWisdom(Strings.Form_Wisdom).setUnlocalizedName(Strings.LevelUpWisdom).setCreativeTab(tabKingdomKeys);
-        LevelUpLimit = new ItemUpgradeLimit(Strings.Form_Limit).setUnlocalizedName(Strings.LevelUpLimit).setCreativeTab(tabKingdomKeys);
-        LevelUpMaster = new ItemUpgradeMaster(Strings.Form_Master).setUnlocalizedName(Strings.LevelUpMaster).setCreativeTab(tabKingdomKeys);
-        LevelUpFinal = new ItemUpgradeFinal(Strings.Form_Final).setUnlocalizedName(Strings.LevelUpFinal).setCreativeTab(tabKingdomKeys);
-
-        SynthesisBagS = new ItemSynthesisBagS().setUnlocalizedName(Strings.SynthesisBagS).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        SynthesisBagM = new ItemSynthesisBagM().setUnlocalizedName(Strings.SynthesisBagM).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-        SynthesisBagL = new ItemSynthesisBagL().setUnlocalizedName(Strings.SynthesisBagL).setCreativeTab(tabKingdomKeys).setMaxStackSize(1);
-
-        Disc_Birth_by_Sleep_A_Link_to_the_Future = new ItemKKRecord(ModSounds.Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, tabKingdomKeys, 7.29F);
-        Disc_Darkness_of_the_Unknown = new ItemKKRecord(ModSounds.Darkness_of_the_Unknown, Strings.Disc_Darkness_of_the_Unknown, tabKingdomKeys, 7.50F);
-        Disc_Dearly_Beloved_Symphony_Version = new ItemKKRecord(ModSounds.Dearly_Beloved_Symphony_Version, Strings.Disc_Dearly_Beloved_Symphony_Version, tabKingdomKeys, 2.33F);
-        Disc_Dream_Drop_Distance_The_Next_Awakening = new ItemKKRecord(ModSounds.Dream_Drop_Distance_The_Next_Awakening, Strings.Disc_Dream_Drop_Distance_The_Next_Awakening, tabKingdomKeys, 8.56F);
-        Disc_Hikari_KINGDOM_Instrumental_Version = new ItemKKRecord(ModSounds.Hikari_KINGDOM_Instrumental_Version, Strings.Disc_Hikari_KINGDOM_Instrumental_Version, tabKingdomKeys, 3.42F);
-        Disc_L_Oscurita_Dell_Ignoto = new ItemKKRecord(ModSounds.L_Oscurita_Dell_Ignoto, Strings.Disc_L_Oscurita_Dell_Ignoto, tabKingdomKeys, 4.33F);
-        Disc_Musique_pour_la_tristesse_de_Xion = new ItemKKRecord(ModSounds.Musique_pour_la_tristesse_de_Xion, Strings.Disc_Musique_pour_la_tristesse_de_Xion, tabKingdomKeys, 3.57F);
-        Disc_No_More_Bugs_Bug_Version = new ItemKKRecord(ModSounds.No_More_Bugs_Bug_Version, Strings.Disc_No_More_Bugs_Bug_Version, tabKingdomKeys, 3.17F);
-        Disc_Organization_XIII = new ItemKKRecord(ModSounds.Organization_XIII, Strings.Disc_Organization_XIII, tabKingdomKeys, 2.32F);
-        Disc_Sanctuary = new ItemKKRecord(ModSounds.Sanctuary, Strings.Disc_Sanctuary, tabKingdomKeys, 4.25F);
-        Disc_Simple_And_Clean_PLANITb_Remix = new ItemKKRecord(ModSounds.Simple_And_Clean_PLANITb_Remix, Strings.Disc_Simple_And_Clean_PLANITb_Remix, tabKingdomKeys, 2.37F);
-        Disc_Sinister_Sundown = new ItemKKRecord(ModSounds.Sinister_Sundown, Strings.Disc_Sinister_Sundown, tabKingdomKeys, 2.13F);
-        Disc_The_13th_Anthology = new ItemKKRecord(ModSounds.The_13th_Anthology, Strings.Disc_The_13th_Anthology, tabKingdomKeys, 6.38F);
-
-        Recipe = new ItemRecipe().setUnlocalizedName(Strings.Recipe).setCreativeTab(tabKingdomKeys);
-    }
-
-    public static void register () {
-        // Materials
-        GameRegistry.register(BlazingInfusedCoal, new ResourceLocation(Reference.MODID, Strings.BlazingInfusedCoal));
-        GameRegistry.register(FrostInfusedSnowBall, new ResourceLocation(Reference.MODID, Strings.FrostInfusedSnowBall));
-        GameRegistry.register(StormyInfusedIron, new ResourceLocation(Reference.MODID, Strings.StormyInfusedIron));
-        GameRegistry.register(MythrilInfusedDiamond, new ResourceLocation(Reference.MODID, Strings.MythrilInfusedDiamond));
-        GameRegistry.register(LightningInfusedGold, new ResourceLocation(Reference.MODID, Strings.LightningInfusedGold));
-        GameRegistry.register(BrightInfusedGlowStone, new ResourceLocation(Reference.MODID, Strings.BrightInfusedGlowStone));
-        GameRegistry.register(DarkInfusedIron, new ResourceLocation(Reference.MODID, Strings.DarkInfusedIron));
-
-        // Armour
-        GameRegistry.register(OrganizationRobe_Helmet = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, EntityEquipmentSlot.HEAD, 0, Strings.OrganizationRobe_Helmet), new ResourceLocation(Reference.MODID, Strings.OrganizationRobe_Helmet));
-        GameRegistry.register(OrganizationRobe_Chestplate = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, EntityEquipmentSlot.CHEST, 1, Strings.OrganizationRobe_Chestplate), new ResourceLocation(Reference.MODID, Strings.OrganizationRobe_Chestplate));
-        GameRegistry.register(OrganizationRobe_Leggings = new ItemOrganizationRobe(ORGANIZATIONROBE, 2, EntityEquipmentSlot.LEGS, 2, Strings.OrganizationRobe_Leggings), new ResourceLocation(Reference.MODID, Strings.OrganizationRobe_Leggings));
-        GameRegistry.register(OrganizationRobe_Boots = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, EntityEquipmentSlot.FEET, 3, Strings.OrganizationRobe_Boots), new ResourceLocation(Reference.MODID, Strings.OrganizationRobe_Boots));
-
-        GameRegistry.register(Terra_Helmet = new ItemTerraArmor(TERRA, 1, EntityEquipmentSlot.HEAD, 0, Strings.Terra_Helmet), new ResourceLocation(Reference.MODID, Strings.Terra_Helmet));
-        GameRegistry.register(Terra_Chestplate = new ItemTerraArmor(TERRA, 1, EntityEquipmentSlot.CHEST, 1, Strings.Terra_Chestplate), new ResourceLocation(Reference.MODID, Strings.Terra_Chestplate));
-        GameRegistry.register(Terra_Leggings = new ItemTerraArmor(TERRA, 2, EntityEquipmentSlot.LEGS, 2, Strings.Terra_Leggings), new ResourceLocation(Reference.MODID, Strings.Terra_Leggings));
-        GameRegistry.register(Terra_Boots = new ItemTerraArmor(TERRA, 1, EntityEquipmentSlot.FEET, 3,Strings.Terra_Boots), new ResourceLocation(Reference.MODID, Strings.Terra_Boots));
-
-        GameRegistry.register(Aqua_Helmet = new ItemAquaArmor(AQUA, 1, EntityEquipmentSlot.HEAD, 0, Strings.Aqua_Helmet), new ResourceLocation(Reference.MODID, Strings.Aqua_Helmet));
-        GameRegistry.register(Aqua_Chestplate = new ItemAquaArmor(AQUA, 1, EntityEquipmentSlot.CHEST, 1, Strings.Aqua_Chestplate), new ResourceLocation(Reference.MODID, Strings.Aqua_Chestplate));
-        GameRegistry.register(Aqua_Leggings = new ItemAquaArmor(AQUA, 2, EntityEquipmentSlot.LEGS, 2, Strings.Aqua_Leggings), new ResourceLocation(Reference.MODID, Strings.Aqua_Leggings));
-        GameRegistry.register(Aqua_Boots = new ItemAquaArmor(AQUA, 1, EntityEquipmentSlot.FEET, 3, Strings.Aqua_Boots), new ResourceLocation(Reference.MODID, Strings.Aqua_Boots));
-
-        GameRegistry.register(Ventus_Helmet = new ItemVentusArmor(VENTUS, 1, EntityEquipmentSlot.HEAD, 0, Strings.Ventus_Helmet), new ResourceLocation(Reference.MODID, Strings.Ventus_Helmet));
-        GameRegistry.register(Ventus_Chestplate = new ItemVentusArmor(VENTUS, 1, EntityEquipmentSlot.CHEST, 1, Strings.Ventus_Chestplate), new ResourceLocation(Reference.MODID, Strings.Ventus_Chestplate));
-        GameRegistry.register(Ventus_Leggings = new ItemVentusArmor(VENTUS, 2, EntityEquipmentSlot.LEGS, 2, Strings.Ventus_Leggings), new ResourceLocation(Reference.MODID, Strings.Ventus_Leggings));
-        GameRegistry.register(Ventus_Boots = new ItemVentusArmor(VENTUS, 1, EntityEquipmentSlot.FEET, 3, Strings.Ventus_Boots), new ResourceLocation(Reference.MODID, Strings.Ventus_Boots));
-
-        GameRegistry.register(Eraqus_Helmet = new ItemEraqusArmor(ERAQUS, 1, EntityEquipmentSlot.HEAD, 0, Strings.Eraqus_Helmet), new ResourceLocation(Reference.MODID, Strings.Eraqus_Helmet));
-        GameRegistry.register(Eraqus_Chestplate = new ItemEraqusArmor(ERAQUS, 1, EntityEquipmentSlot.CHEST, 1, Strings.Eraqus_Chestplate), new ResourceLocation(Reference.MODID, Strings.Eraqus_Chestplate));
-        GameRegistry.register(Eraqus_Leggings = new ItemEraqusArmor(ERAQUS, 2, EntityEquipmentSlot.LEGS, 2, Strings.Eraqus_Leggings), new ResourceLocation(Reference.MODID, Strings.Eraqus_Leggings));
-        GameRegistry.register(Eraqus_Boots = new ItemEraqusArmor(ERAQUS, 1, EntityEquipmentSlot.FEET, 3, Strings.Eraqus_Boots), new ResourceLocation(Reference.MODID, Strings.Eraqus_Boots));
-
-        // Organization
-        //Xemnas
-        GameRegistry.register(Malice, new ResourceLocation(Reference.MODID, Strings.Malice));
-        GameRegistry.register(Sanction, new ResourceLocation(Reference.MODID, Strings.Sanction));
-        GameRegistry.register(Overlord, new ResourceLocation(Reference.MODID, Strings.Overlord));
-        GameRegistry.register(Veneration, new ResourceLocation(Reference.MODID, Strings.Veneration));
-        GameRegistry.register(Autocracy, new ResourceLocation(Reference.MODID, Strings.Autocracy));
-        GameRegistry.register(Conquest, new ResourceLocation(Reference.MODID, Strings.Conquest));
-        GameRegistry.register(Terminus, new ResourceLocation(Reference.MODID, Strings.Terminus));
-        GameRegistry.register(Judgement, new ResourceLocation(Reference.MODID, Strings.Judgement));
-        GameRegistry.register(Discipline, new ResourceLocation(Reference.MODID, Strings.Discipline));
-        GameRegistry.register(Aristocracy, new ResourceLocation(Reference.MODID, Strings.Aristocracy));
-        GameRegistry.register(Superiority, new ResourceLocation(Reference.MODID, Strings.Superiority));
-        GameRegistry.register(Aggression, new ResourceLocation(Reference.MODID, Strings.Aggression));
-        GameRegistry.register(Fury, new ResourceLocation(Reference.MODID, Strings.Fury));
-        GameRegistry.register(Despair, new ResourceLocation(Reference.MODID, Strings.Despair));
-        GameRegistry.register(Triumph, new ResourceLocation(Reference.MODID, Strings.Triumph));
-        GameRegistry.register(Ruination, new ResourceLocation(Reference.MODID, Strings.Ruination));
-        GameRegistry.register(Domination, new ResourceLocation(Reference.MODID, Strings.Domination));
-        GameRegistry.register(Annihilation, new ResourceLocation(Reference.MODID, Strings.Annihilation));
-        GameRegistry.register(Tyrant, new ResourceLocation(Reference.MODID, Strings.Tyrant));
-        GameRegistry.register(Magnificence, new ResourceLocation(Reference.MODID, Strings.Magnificence));
-        GameRegistry.register(Infinity, new ResourceLocation(Reference.MODID, Strings.Infinity));
-        GameRegistry.register(Interdiction, new ResourceLocation(Reference.MODID, Strings.Interdiction));
-        GameRegistry.register(RoundFan, new ResourceLocation(Reference.MODID, Strings.RoundFan));
-        GameRegistry.register(Absolute, new ResourceLocation(Reference.MODID, Strings.Absolute));
-
-        //Xigbar
-        GameRegistry.register(Standalone, new ResourceLocation(Reference.MODID, Strings.Standalone));
-        GameRegistry.register(Killerbee, new ResourceLocation(Reference.MODID, Strings.Killerbee));
-        GameRegistry.register(Stingray, new ResourceLocation(Reference.MODID, Strings.Stingray));
-        GameRegistry.register(Counterweight, new ResourceLocation(Reference.MODID, Strings.Counterweight));
-        GameRegistry.register(Precision, new ResourceLocation(Reference.MODID, Strings.Precision));
-        GameRegistry.register(DualHead, new ResourceLocation(Reference.MODID, Strings.DualHead));
-        GameRegistry.register(Bahamut, new ResourceLocation(Reference.MODID, Strings.Bahamut));
-        GameRegistry.register(Gullwing, new ResourceLocation(Reference.MODID, Strings.Gullwing));
-        GameRegistry.register(BlueFrame, new ResourceLocation(Reference.MODID, Strings.BlueFrame));
-        GameRegistry.register(StarShell, new ResourceLocation(Reference.MODID, Strings.StarShell));
-        GameRegistry.register(Sunrise, new ResourceLocation(Reference.MODID, Strings.Sunrise));
-        GameRegistry.register(Ignition, new ResourceLocation(Reference.MODID, Strings.Ignition));
-        GameRegistry.register(Armstrong, new ResourceLocation(Reference.MODID, Strings.Armstrong));
-        GameRegistry.register(HardBoiledHeat, new ResourceLocation(Reference.MODID, Strings.HardBoiledHeat));
-        GameRegistry.register(DiabloEye, new ResourceLocation(Reference.MODID, Strings.DiabloEye));
-        GameRegistry.register(DoubleTap, new ResourceLocation(Reference.MODID, Strings.DoubleTap));
-        GameRegistry.register(Stardust, new ResourceLocation(Reference.MODID, Strings.Stardust));
-        GameRegistry.register(EnergyMuzzle, new ResourceLocation(Reference.MODID, Strings.EnergyMuzzle));
-        GameRegistry.register(CrimeAndPunishment, new ResourceLocation(Reference.MODID, Strings.CrimeAndPunishment));
-        GameRegistry.register(CupidsArrow, new ResourceLocation(Reference.MODID, Strings.CupidsArrow));
-        GameRegistry.register(FinalWeapon, new ResourceLocation(Reference.MODID, Strings.FinalWeapon));
-        GameRegistry.register(Sharpshooter, new ResourceLocation(Reference.MODID, Strings.Sharpshooter));
-        GameRegistry.register(Dryer, new ResourceLocation(Reference.MODID, Strings.Dryer));
-        GameRegistry.register(Trumpet, new ResourceLocation(Reference.MODID, Strings.Trumpet));
-
-        //Xaldin
-        GameRegistry.register(Zephyr, new ResourceLocation(Reference.MODID, Strings.Zephyr));
-        GameRegistry.register(Moonglade, new ResourceLocation(Reference.MODID, Strings.Moonglade));
-        GameRegistry.register(Aer, new ResourceLocation(Reference.MODID, Strings.Aer));
-        GameRegistry.register(Nescience, new ResourceLocation(Reference.MODID, Strings.Nescience));
-        GameRegistry.register(Brume, new ResourceLocation(Reference.MODID, Strings.Brume));
-        GameRegistry.register(Asura, new ResourceLocation(Reference.MODID, Strings.Asura));
-        GameRegistry.register(Crux, new ResourceLocation(Reference.MODID, Strings.Crux));
-        GameRegistry.register(Paladin, new ResourceLocation(Reference.MODID, Strings.Paladin));
-        GameRegistry.register(Fellking, new ResourceLocation(Reference.MODID, Strings.Fellking));
-        GameRegistry.register(Nightcloud, new ResourceLocation(Reference.MODID, Strings.Nightcloud));
-        GameRegistry.register(Shimmer, new ResourceLocation(Reference.MODID, Strings.Shimmer));
-        GameRegistry.register(Vortex, new ResourceLocation(Reference.MODID, Strings.Vortex));
-        GameRegistry.register(Scission, new ResourceLocation(Reference.MODID, Strings.Scission));
-        GameRegistry.register(Heavenfall, new ResourceLocation(Reference.MODID, Strings.Heavenfall));
-        GameRegistry.register(Aether, new ResourceLocation(Reference.MODID, Strings.Aether));
-        GameRegistry.register(Mazzaroth, new ResourceLocation(Reference.MODID, Strings.Mazzaroth));
-        GameRegistry.register(Hegemon, new ResourceLocation(Reference.MODID, Strings.Hegemon));
-        GameRegistry.register(Foxfire, new ResourceLocation(Reference.MODID, Strings.Foxfire));
-        GameRegistry.register(Yaksha, new ResourceLocation(Reference.MODID, Strings.Yaksha));
-        GameRegistry.register(Cynosura, new ResourceLocation(Reference.MODID, Strings.Cynosura));
-        GameRegistry.register(Dragonreign, new ResourceLocation(Reference.MODID, Strings.Dragonreign));
-        GameRegistry.register(Lindworm, new ResourceLocation(Reference.MODID, Strings.Lindworm));
-        GameRegistry.register(Broom, new ResourceLocation(Reference.MODID, Strings.Broom));
-        GameRegistry.register(Wyvern, new ResourceLocation(Reference.MODID, Strings.Wyvern));
-
-        //Vexen
-        GameRegistry.register(TesterZero, new ResourceLocation(Reference.MODID, Strings.TesterZero));
-        GameRegistry.register(ProductOne, new ResourceLocation(Reference.MODID, Strings.ProductOne));
-        GameRegistry.register(DeepFreeze, new ResourceLocation(Reference.MODID, Strings.DeepFreeze));
-        GameRegistry.register(CryoliteShield, new ResourceLocation(Reference.MODID, Strings.CryoliteShield));
-        GameRegistry.register(FalseTheory, new ResourceLocation(Reference.MODID, Strings.FalseTheory));
-        GameRegistry.register(Glacier, new ResourceLocation(Reference.MODID, Strings.Glacier));
-        GameRegistry.register(AbsoluteZero, new ResourceLocation(Reference.MODID, Strings.AbsoluteZero));
-        GameRegistry.register(Gunz, new ResourceLocation(Reference.MODID, Strings.Gunz));
-        GameRegistry.register(Mindel, new ResourceLocation(Reference.MODID, Strings.Mindel));
-        GameRegistry.register(Snowslide, new ResourceLocation(Reference.MODID, Strings.Snowslide));
-        GameRegistry.register(Iceberg, new ResourceLocation(Reference.MODID, Strings.Iceberg));
-        GameRegistry.register(Inquisition, new ResourceLocation(Reference.MODID, Strings.Inquisition));
-        GameRegistry.register(Scrutiny, new ResourceLocation(Reference.MODID, Strings.Scrutiny));
-        GameRegistry.register(Empiricism, new ResourceLocation(Reference.MODID, Strings.Empiricism));
-        GameRegistry.register(Edification, new ResourceLocation(Reference.MODID, Strings.Edification));
-        GameRegistry.register(Contrivance, new ResourceLocation(Reference.MODID, Strings.Contrivance));
-        GameRegistry.register(Wurm, new ResourceLocation(Reference.MODID, Strings.Wurm));
-        GameRegistry.register(Subzero, new ResourceLocation(Reference.MODID, Strings.Subzero));
-        GameRegistry.register(ColdBlood, new ResourceLocation(Reference.MODID, Strings.ColdBlood));
-        GameRegistry.register(DiamondShield, new ResourceLocation(Reference.MODID, Strings.DiamondShield));
-        GameRegistry.register(Aegis, new ResourceLocation(Reference.MODID, Strings.Aegis));
-        GameRegistry.register(FrozenPride, new ResourceLocation(Reference.MODID, Strings.FrozenPride));
-        GameRegistry.register(PotLid, new ResourceLocation(Reference.MODID, Strings.PotLid));
-        GameRegistry.register(Snowman, new ResourceLocation(Reference.MODID, Strings.Snowman));
-
-        //Lexaeus
-        GameRegistry.register(Reticence, new ResourceLocation(Reference.MODID, Strings.Reticence));
-        GameRegistry.register(Goliath, new ResourceLocation(Reference.MODID, Strings.Goliath));
-        GameRegistry.register(CopperRed, new ResourceLocation(Reference.MODID, Strings.CopperRed));
-        GameRegistry.register(Daybreak, new ResourceLocation(Reference.MODID, Strings.Daybreak));
-        GameRegistry.register(Colossus, new ResourceLocation(Reference.MODID, Strings.Colossus));
-        GameRegistry.register(UrsaMajor, new ResourceLocation(Reference.MODID, Strings.UrsaMajor));
-        GameRegistry.register(Megacosm, new ResourceLocation(Reference.MODID, Strings.Megacosm));
-        GameRegistry.register(Terrene, new ResourceLocation(Reference.MODID, Strings.Terrene));
-        GameRegistry.register(Fuligin, new ResourceLocation(Reference.MODID, Strings.Fuligin));
-        GameRegistry.register(HardWinter, new ResourceLocation(Reference.MODID, Strings.HardWinter));
-        GameRegistry.register(Firefly, new ResourceLocation(Reference.MODID, Strings.Firefly));
-        GameRegistry.register(Harbinger, new ResourceLocation(Reference.MODID, Strings.Harbinger));
-        GameRegistry.register(Redwood, new ResourceLocation(Reference.MODID, Strings.Redwood));
-        GameRegistry.register(Sequoia, new ResourceLocation(Reference.MODID, Strings.Sequoia));
-        GameRegistry.register(IronBlack, new ResourceLocation(Reference.MODID, Strings.IronBlack));
-        GameRegistry.register(Earthshine, new ResourceLocation(Reference.MODID, Strings.Earthshine));
-        GameRegistry.register(Octiron, new ResourceLocation(Reference.MODID, Strings.Octiron));
-        GameRegistry.register(Hyperion, new ResourceLocation(Reference.MODID, Strings.Hyperion));
-        GameRegistry.register(Clarity, new ResourceLocation(Reference.MODID, Strings.Clarity));
-        GameRegistry.register(OneThousandAndOneNights, new ResourceLocation(Reference.MODID, Strings.OneThousandAndOneNights));
-        GameRegistry.register(CardinalVirtue, new ResourceLocation(Reference.MODID, Strings.CardinalVirtue));
-        GameRegistry.register(Skysplitter, new ResourceLocation(Reference.MODID, Strings.Skysplitter));
-        GameRegistry.register(BleepBloopBop, new ResourceLocation(Reference.MODID, Strings.BleepBloopBop));
-        GameRegistry.register(Monolith, new ResourceLocation(Reference.MODID, Strings.Monolith));
-
-        //Zexion
-        GameRegistry.register(BlackPrimer, new ResourceLocation(Reference.MODID, Strings.BlackPrimer));
-        GameRegistry.register(WhiteTome, new ResourceLocation(Reference.MODID, Strings.WhiteTome));
-        GameRegistry.register(IllicitResearch, new ResourceLocation(Reference.MODID, Strings.IllicitResearch));
-        GameRegistry.register(BuriedSecrets, new ResourceLocation(Reference.MODID, Strings.BuriedSecrets));
-        GameRegistry.register(ArcaneCompendium, new ResourceLocation(Reference.MODID, Strings.ArcaneCompendium));
-        GameRegistry.register(DissentersNotes, new ResourceLocation(Reference.MODID, Strings.DissentersNotes));
-        GameRegistry.register(NefariousCodex, new ResourceLocation(Reference.MODID, Strings.NefariousCodex));
-        GameRegistry.register(MysticAlbum, new ResourceLocation(Reference.MODID, Strings.MysticAlbum));
-        GameRegistry.register(CursedManual, new ResourceLocation(Reference.MODID, Strings.CursedManual));
-        GameRegistry.register(TabooText, new ResourceLocation(Reference.MODID, Strings.TabooText));
-        GameRegistry.register(EldritchEsoterica, new ResourceLocation(Reference.MODID, Strings.EldritchEsoterica));
-        GameRegistry.register(FreakishBestiary, new ResourceLocation(Reference.MODID, Strings.FreakishBestiary));
-        GameRegistry.register(MadmansVita, new ResourceLocation(Reference.MODID, Strings.MadmansVita));
-        GameRegistry.register(UntitledWritings, new ResourceLocation(Reference.MODID, Strings.UntitledWritings));
-        GameRegistry.register(AbandonedDogma, new ResourceLocation(Reference.MODID, Strings.AbandonedDogma));
-        GameRegistry.register(AtlasOfOmens, new ResourceLocation(Reference.MODID, Strings.AtlasOfOmens));
-        GameRegistry.register(RevoltingScrapbook, new ResourceLocation(Reference.MODID, Strings.RevoltingScrapbook));
-        GameRegistry.register(LostHeterodoxy, new ResourceLocation(Reference.MODID, Strings.LostHeterodoxy));
-        GameRegistry.register(OtherworldlyTales, new ResourceLocation(Reference.MODID, Strings.OtherworldlyTales));
-        GameRegistry.register(IndescribableLore, new ResourceLocation(Reference.MODID, Strings.IndescribableLore));
-        GameRegistry.register(RadicalTreatise, new ResourceLocation(Reference.MODID, Strings.RadicalTreatise));
-        GameRegistry.register(BookofRetribution, new ResourceLocation(Reference.MODID, Strings.BookofRetribution));
-        GameRegistry.register(MidnightSnack, new ResourceLocation(Reference.MODID, Strings.MidnightSnack));
-        GameRegistry.register(DearDiary, new ResourceLocation(Reference.MODID, Strings.DearDiary));
-
-        //Saix
-        GameRegistry.register(NewMoon, new ResourceLocation(Reference.MODID, Strings.NewMoon));
-        GameRegistry.register(Werewolf, new ResourceLocation(Reference.MODID, Strings.Werewolf));
-        GameRegistry.register(Artemis, new ResourceLocation(Reference.MODID, Strings.Artemis));
-        GameRegistry.register(Luminary, new ResourceLocation(Reference.MODID, Strings.Luminary));
-        GameRegistry.register(Selene, new ResourceLocation(Reference.MODID, Strings.Selene));
-        GameRegistry.register(Moonrise, new ResourceLocation(Reference.MODID, Strings.Moonrise));
-        GameRegistry.register(Astrologia, new ResourceLocation(Reference.MODID, Strings.Astrologia));
-        GameRegistry.register(Crater, new ResourceLocation(Reference.MODID, Strings.Crater));
-        GameRegistry.register(LunarPhase, new ResourceLocation(Reference.MODID, Strings.LunarPhase));
-        GameRegistry.register(Crescent, new ResourceLocation(Reference.MODID, Strings.Crescent));
-        GameRegistry.register(Gibbous, new ResourceLocation(Reference.MODID, Strings.Gibbous));
-        GameRegistry.register(Berserker, new ResourceLocation(Reference.MODID, Strings.Berserker));
-        GameRegistry.register(Twilight, new ResourceLocation(Reference.MODID, Strings.Twilight));
-        GameRegistry.register(QueenOfTheNight, new ResourceLocation(Reference.MODID, Strings.QueenOfTheNight));
-        GameRegistry.register(BalsamicMoon, new ResourceLocation(Reference.MODID, Strings.BalsamicMoon));
-        GameRegistry.register(Orbit, new ResourceLocation(Reference.MODID, Strings.Orbit));
-        GameRegistry.register(LightYear, new ResourceLocation(Reference.MODID, Strings.LightYear));
-        GameRegistry.register(KingOfTheNight, new ResourceLocation(Reference.MODID, Strings.KingOfTheNight));
-        GameRegistry.register(Moonset, new ResourceLocation(Reference.MODID, Strings.Moonset));
-        GameRegistry.register(Horoscope, new ResourceLocation(Reference.MODID, Strings.Horoscope));
-        GameRegistry.register(Dichotomy, new ResourceLocation(Reference.MODID, Strings.Dichotomy));
-        GameRegistry.register(Lunatic, new ResourceLocation(Reference.MODID, Strings.Lunatic));
-        GameRegistry.register(JustDesserts, new ResourceLocation(Reference.MODID, Strings.JustDesserts));
-        GameRegistry.register(Bunnymoon, new ResourceLocation(Reference.MODID, Strings.Bunnymoon));
-
-        //Axel
-        GameRegistry.register(Ashes, new ResourceLocation(Reference.MODID, Strings.Ashes));
-        GameRegistry.register(Doldrums, new ResourceLocation(Reference.MODID, Strings.Doldrums));
-        GameRegistry.register(DelayedAction, new ResourceLocation(Reference.MODID, Strings.DelayedAction));
-        GameRegistry.register(DiveBombers, new ResourceLocation(Reference.MODID, Strings.DiveBombers));
-        GameRegistry.register(Combustion, new ResourceLocation(Reference.MODID, Strings.Combustion));
-        GameRegistry.register(MoulinRouge, new ResourceLocation(Reference.MODID, Strings.MoulinRouge));
-        GameRegistry.register(BlazeofGlory, new ResourceLocation(Reference.MODID, Strings.BlazeofGlory));
-        GameRegistry.register(Prometheus, new ResourceLocation(Reference.MODID, Strings.Prometheus));
-        GameRegistry.register(Ifrit, new ResourceLocation(Reference.MODID, Strings.Ifrit));
-        GameRegistry.register(MagmaOcean, new ResourceLocation(Reference.MODID, Strings.MagmaOcean));
-        GameRegistry.register(Volcanics, new ResourceLocation(Reference.MODID, Strings.Volcanics));
-        GameRegistry.register(Inferno, new ResourceLocation(Reference.MODID, Strings.Inferno));
-        GameRegistry.register(SizzlingEdge, new ResourceLocation(Reference.MODID, Strings.SizzlingEdge));
-        GameRegistry.register(Corona, new ResourceLocation(Reference.MODID, Strings.Corona));
-        GameRegistry.register(FerrisWheel, new ResourceLocation(Reference.MODID, Strings.FerrisWheel));
-        GameRegistry.register(Burnout, new ResourceLocation(Reference.MODID, Strings.Burnout));
-        GameRegistry.register(OmegaTrinity, new ResourceLocation(Reference.MODID, Strings.OmegaTrinity));
-        GameRegistry.register(Outbreak, new ResourceLocation(Reference.MODID, Strings.Outbreak));
-        GameRegistry.register(DoubleEdge, new ResourceLocation(Reference.MODID, Strings.DoubleEdge));
-        GameRegistry.register(Wildfire, new ResourceLocation(Reference.MODID, Strings.Wildfire));
-        GameRegistry.register(Prominence, new ResourceLocation(Reference.MODID, Strings.Prominence));
-        GameRegistry.register(EternalFlames, new ResourceLocation(Reference.MODID, Strings.EternalFlames));
-        GameRegistry.register(PizzaCut, new ResourceLocation(Reference.MODID, Strings.PizzaCut));
-        GameRegistry.register(Conformers, new ResourceLocation(Reference.MODID, Strings.Conformers));
-
-        //Demyx
-        GameRegistry.register(BasicModel, new ResourceLocation(Reference.MODID, Strings.BasicModel));
-        GameRegistry.register(TuneUp, new ResourceLocation(Reference.MODID, Strings.TuneUp));
-        GameRegistry.register(Quartet, new ResourceLocation(Reference.MODID, Strings.Quartet));
-        GameRegistry.register(Quintet, new ResourceLocation(Reference.MODID, Strings.Quintet));
-        GameRegistry.register(Overture, new ResourceLocation(Reference.MODID, Strings.Overture));
-        GameRegistry.register(OldHand, new ResourceLocation(Reference.MODID, Strings.OldHand));
-        GameRegistry.register(DaCapo, new ResourceLocation(Reference.MODID, Strings.DaCapo));
-        GameRegistry.register(PowerChord, new ResourceLocation(Reference.MODID, Strings.PowerChord));
-        GameRegistry.register(Fermata, new ResourceLocation(Reference.MODID, Strings.Fermata));
-        GameRegistry.register(Interlude, new ResourceLocation(Reference.MODID, Strings.Interlude));
-        GameRegistry.register(Serenade, new ResourceLocation(Reference.MODID, Strings.Serenade));
-        GameRegistry.register(Songbird, new ResourceLocation(Reference.MODID, Strings.Songbird));
-        GameRegistry.register(RiseToFame, new ResourceLocation(Reference.MODID, Strings.RiseToFame));
-        GameRegistry.register(RockStar, new ResourceLocation(Reference.MODID, Strings.RockStar));
-        GameRegistry.register(EightFinger, new ResourceLocation(Reference.MODID, Strings.EightFinger));
-        GameRegistry.register(Concerto, new ResourceLocation(Reference.MODID, Strings.Concerto));
-        GameRegistry.register(Harmonics, new ResourceLocation(Reference.MODID, Strings.Harmonics));
-        GameRegistry.register(MillionBucks, new ResourceLocation(Reference.MODID, Strings.MillionBucks));
-        GameRegistry.register(Fortissimo, new ResourceLocation(Reference.MODID, Strings.Fortissimo));
-        GameRegistry.register(UpToEleven, new ResourceLocation(Reference.MODID, Strings.UpToEleven));
-        GameRegistry.register(Sanctuary, new ResourceLocation(Reference.MODID, Strings.Sanctuary));
-        GameRegistry.register(Arpeggio, new ResourceLocation(Reference.MODID, Strings.Arpeggio));
-        GameRegistry.register(PrinceOfAwesome, new ResourceLocation(Reference.MODID, Strings.PrinceOfAwesome));
-        GameRegistry.register(AfterSchool, new ResourceLocation(Reference.MODID, Strings.AfterSchool));
-
-        //Luxord
-        GameRegistry.register(TheFool, new ResourceLocation(Reference.MODID, Strings.TheFool));
-        GameRegistry.register(TheMagician, new ResourceLocation(Reference.MODID, Strings.TheMagician));
-        GameRegistry.register(TheStar, new ResourceLocation(Reference.MODID, Strings.TheStar));
-        GameRegistry.register(TheMoon, new ResourceLocation(Reference.MODID, Strings.TheMoon));
-        GameRegistry.register(Justice, new ResourceLocation(Reference.MODID, Strings.Justice));
-        GameRegistry.register(TheHierophant, new ResourceLocation(Reference.MODID, Strings.TheHierophant));
-        GameRegistry.register(TheWorld, new ResourceLocation(Reference.MODID, Strings.TheWorld));
-        GameRegistry.register(Temperance, new ResourceLocation(Reference.MODID, Strings.Temperance));
-        GameRegistry.register(TheHighPriestess, new ResourceLocation(Reference.MODID, Strings.TheHighPriestess));
-        GameRegistry.register(TheTower, new ResourceLocation(Reference.MODID, Strings.TheTower));
-        GameRegistry.register(TheHangedMan, new ResourceLocation(Reference.MODID, Strings.TheHangedMan));
-        GameRegistry.register(Death, new ResourceLocation(Reference.MODID, Strings.Death));
-        GameRegistry.register(TheHermit, new ResourceLocation(Reference.MODID, Strings.TheHermit));
-        GameRegistry.register(Strength, new ResourceLocation(Reference.MODID, Strings.Strength));
-        GameRegistry.register(TheLovers, new ResourceLocation(Reference.MODID, Strings.TheLovers));
-        GameRegistry.register(TheChariot, new ResourceLocation(Reference.MODID, Strings.TheChariot));
-        GameRegistry.register(TheSun, new ResourceLocation(Reference.MODID, Strings.TheSun));
-        GameRegistry.register(TheDevil, new ResourceLocation(Reference.MODID, Strings.TheDevil));
-        GameRegistry.register(TheEmpress, new ResourceLocation(Reference.MODID, Strings.TheEmpress));
-        GameRegistry.register(TheEmperor, new ResourceLocation(Reference.MODID, Strings.TheEmperor));
-        GameRegistry.register(TheJoker, new ResourceLocation(Reference.MODID, Strings.TheJoker));
-        GameRegistry.register(FairGame, new ResourceLocation(Reference.MODID, Strings.FairGame));
-        GameRegistry.register(FinestFantasy13, new ResourceLocation(Reference.MODID, Strings.FinestFantasy13));
-        GameRegistry.register(HighRollersSecret, new ResourceLocation(Reference.MODID, Strings.HighRollersSecret));
-
-        //Marluxia
-        GameRegistry.register(FickleErica, new ResourceLocation(Reference.MODID, Strings.FickleErica));
-        GameRegistry.register(JiltedAnemone, new ResourceLocation(Reference.MODID, Strings.JiltedAnemone));
-        GameRegistry.register(ProudAmaryllis, new ResourceLocation(Reference.MODID, Strings.ProudAmaryllis));
-        GameRegistry.register(MadSafflower, new ResourceLocation(Reference.MODID, Strings.MadSafflower));
-        GameRegistry.register(PoorMelissa, new ResourceLocation(Reference.MODID, Strings.PoorMelissa));
-        GameRegistry.register(TragicAllium, new ResourceLocation(Reference.MODID, Strings.TragicAllium));
-        GameRegistry.register(MournfulCineria, new ResourceLocation(Reference.MODID, Strings.MournfulCineria));
-        GameRegistry.register(PseudoSilene, new ResourceLocation(Reference.MODID, Strings.PseudoSilene));
-        GameRegistry.register(FaithlessDigitalis, new ResourceLocation(Reference.MODID, Strings.FaithlessDigitalis));
-        GameRegistry.register(GrimMuscari, new ResourceLocation(Reference.MODID, Strings.GrimMuscari));
-        GameRegistry.register(DocileVallota, new ResourceLocation(Reference.MODID, Strings.DocileVallota));
-        GameRegistry.register(QuietBelladonna, new ResourceLocation(Reference.MODID, Strings.QuietBelladonna));
-        GameRegistry.register(PartingIpheion, new ResourceLocation(Reference.MODID, Strings.PartingIpheion));
-        GameRegistry.register(LoftyGerbera, new ResourceLocation(Reference.MODID, Strings.LoftyGerbera));
-        GameRegistry.register(GallantAchillea, new ResourceLocation(Reference.MODID, Strings.GallantAchillea));
-        GameRegistry.register(NoblePeony, new ResourceLocation(Reference.MODID, Strings.NoblePeony));
-        GameRegistry.register(FearsomeAnise, new ResourceLocation(Reference.MODID, Strings.FearsomeAnise));
-        GameRegistry.register(VindictiveThistle, new ResourceLocation(Reference.MODID, Strings.VindictiveThistle));
-        GameRegistry.register(FairHelianthus, new ResourceLocation(Reference.MODID, Strings.FairHelianthus));
-        GameRegistry.register(SolemnMagnolia, new ResourceLocation(Reference.MODID, Strings.SolemnMagnolia));
-        GameRegistry.register(HallowedLotus, new ResourceLocation(Reference.MODID, Strings.HallowedLotus));
-        GameRegistry.register(GracefulDahlia, new ResourceLocation(Reference.MODID, Strings.GracefulDahlia));
-        GameRegistry.register(StirringLadle, new ResourceLocation(Reference.MODID, Strings.StirringLadle));
-        GameRegistry.register(DaintyBellflowers, new ResourceLocation(Reference.MODID, Strings.DaintyBellflowers));
-
-        //Larxene
-        GameRegistry.register(Trancheuse, new ResourceLocation(Reference.MODID, Strings.Trancheuse));
-        GameRegistry.register(Orage, new ResourceLocation(Reference.MODID, Strings.Orage));
-        GameRegistry.register(Tourbillon, new ResourceLocation(Reference.MODID, Strings.Tourbillon));
-        GameRegistry.register(Tempete, new ResourceLocation(Reference.MODID, Strings.Tempete));
-        GameRegistry.register(Carmin, new ResourceLocation(Reference.MODID, Strings.Carmin));
-        GameRegistry.register(Meteore, new ResourceLocation(Reference.MODID, Strings.Meteore));
-        GameRegistry.register(Etoile, new ResourceLocation(Reference.MODID, Strings.Etoile));
-        GameRegistry.register(Irregulier, new ResourceLocation(Reference.MODID, Strings.Irregulier));
-        GameRegistry.register(Dissonance, new ResourceLocation(Reference.MODID, Strings.Dissonance));
-        GameRegistry.register(Eruption, new ResourceLocation(Reference.MODID, Strings.Eruption));
-        GameRegistry.register(SoleilCouchant, new ResourceLocation(Reference.MODID, Strings.SoleilCouchant));
-        GameRegistry.register(Indigo, new ResourceLocation(Reference.MODID, Strings.Indigo));
-        GameRegistry.register(Vague, new ResourceLocation(Reference.MODID, Strings.Vague));
-        GameRegistry.register(Deluge, new ResourceLocation(Reference.MODID, Strings.Deluge));
-        GameRegistry.register(Rafale, new ResourceLocation(Reference.MODID, Strings.Rafale));
-        GameRegistry.register(Typhon, new ResourceLocation(Reference.MODID, Strings.Typhon));
-        GameRegistry.register(Extirpeur, new ResourceLocation(Reference.MODID, Strings.Extirpeur));
-        GameRegistry.register(CroixDuSud, new ResourceLocation(Reference.MODID, Strings.CroixDuSud));
-        GameRegistry.register(Lumineuse, new ResourceLocation(Reference.MODID, Strings.Lumineuse));
-        GameRegistry.register(ClairdeLune, new ResourceLocation(Reference.MODID, Strings.ClairdeLune));
-        GameRegistry.register(VoldeNuit, new ResourceLocation(Reference.MODID, Strings.VoldeNuit));
-        GameRegistry.register(Foudre, new ResourceLocation(Reference.MODID, Strings.Foudre));
-        GameRegistry.register(Demoiselle, new ResourceLocation(Reference.MODID, Strings.Demoiselle));
-        GameRegistry.register(Ampoule, new ResourceLocation(Reference.MODID, Strings.Ampoule));
-
-        // Knowledge
-        GameRegistry.register(AbandonedKnowledge, new ResourceLocation(Reference.MODID, Strings.AbandonedKnowledge));
-
-        //Shield
-        GameRegistry.register(DreamShield, new ResourceLocation(Reference.MODID, Strings.DreamShield));
-
-        // Keyblades
-        GameRegistry.register(AbaddonPlasma, new ResourceLocation(Reference.MODID, Strings.AbaddonPlasma));
-        GameRegistry.register(AbyssalTide, new ResourceLocation(Reference.MODID, Strings.AbyssalTide));
-        GameRegistry.register(AllforOne, new ResourceLocation(Reference.MODID, Strings.AllforOne));
-        GameRegistry.register(AnguisForetellersKeyblade, new ResourceLocation(Reference.MODID, Strings.AnguisForetellersKeyblade));
-        GameRegistry.register(AstralBlast, new ResourceLocation(Reference.MODID, Strings.AstralBlast));
-        GameRegistry.register(Aubade, new ResourceLocation(Reference.MODID, Strings.Aubade));
-        GameRegistry.register(BondofFlame, new ResourceLocation(Reference.MODID, Strings.BondofFlame));
-        GameRegistry.register(Brightcrest, new ResourceLocation(Reference.MODID, Strings.Brightcrest));
-        GameRegistry.register(ChaosRipper, new ResourceLocation(Reference.MODID, Strings.ChaosRipper));
-        GameRegistry.register(CircleofLife, new ResourceLocation(Reference.MODID, Strings.CircleofLife));
-        GameRegistry.register(Counterpoint, new ResourceLocation(Reference.MODID, Strings.Counterpoint));
-        GameRegistry.register(Crabclaw, new ResourceLocation(Reference.MODID, Strings.Crabclaw));
-        GameRegistry.register(CrownofGuilt, new ResourceLocation(Reference.MODID, Strings.CrownofGuilt));
-        GameRegistry.register(DarkerThanDark, new ResourceLocation(Reference.MODID, Strings.DarkerThanDark));
-        GameRegistry.register(Darkgnaw, new ResourceLocation(Reference.MODID, Strings.Darkgnaw));
-        GameRegistry.register(DecisivePumpkin, new ResourceLocation(Reference.MODID, Strings.DecisivePumpkin));
-        GameRegistry.register(DestinysEmbrace, new ResourceLocation(Reference.MODID, Strings.DestinysEmbrace));
-        GameRegistry.register(DiamondDust, new ResourceLocation(Reference.MODID, Strings.DiamondDust));
-        GameRegistry.register(Divewing, new ResourceLocation(Reference.MODID, Strings.Divewing));
-        GameRegistry.register(DivineRose, new ResourceLocation(Reference.MODID, Strings.DivineRose));
-        GameRegistry.register(DreamSword, new ResourceLocation(Reference.MODID, Strings.DreamSword));
-        GameRegistry.register(DualDisc, new ResourceLocation(Reference.MODID, Strings.DualDisc));
-        GameRegistry.register(Earthshaker, new ResourceLocation(Reference.MODID, Strings.Earthshaker));
-        GameRegistry.register(EndofPain, new ResourceLocation(Reference.MODID, Strings.EndofPain));
-        GameRegistry.register(EndsoftheEarth, new ResourceLocation(Reference.MODID, Strings.EndsoftheEarth));
-        GameRegistry.register(FairyHarp, new ResourceLocation(Reference.MODID, Strings.FairyHarp));
-        GameRegistry.register(FairyStars, new ResourceLocation(Reference.MODID, Strings.FairyStars));
-        GameRegistry.register(FatalCrest, new ResourceLocation(Reference.MODID, Strings.FatalCrest));
-        GameRegistry.register(Fenrir, new ResourceLocation(Reference.MODID, Strings.Fenrir));
-        GameRegistry.register(FerrisGear, new ResourceLocation(Reference.MODID, Strings.FerrisGear));
-        GameRegistry.register(FollowtheWind, new ResourceLocation(Reference.MODID, Strings.FollowtheWind));
-        GameRegistry.register(FrolicFlame, new ResourceLocation(Reference.MODID, Strings.FrolicFlame));
-        GameRegistry.register(GlimpseofDarkness, new ResourceLocation(Reference.MODID, Strings.GlimpseofDarkness));
-        GameRegistry.register(GuardianBell, new ResourceLocation(Reference.MODID, Strings.GuardianBell));
-        GameRegistry.register(GuardianSoul, new ResourceLocation(Reference.MODID, Strings.GuardianSoul));
-        GameRegistry.register(GullWing, new ResourceLocation(Reference.MODID, Strings.GullWing));
-        GameRegistry.register(HerosCrest, new ResourceLocation(Reference.MODID, Strings.HerosCrest));
-        GameRegistry.register(HiddenDragon, new ResourceLocation(Reference.MODID, Strings.HiddenDragon));
-        GameRegistry.register(Hyperdrive, new ResourceLocation(Reference.MODID, Strings.Hyperdrive));
-        GameRegistry.register(IncompleteKiblade, new ResourceLocation(Reference.MODID, Strings.IncompleteKiblade));
-        GameRegistry.register(JungleKing, new ResourceLocation(Reference.MODID, Strings.JungleKing));
-        GameRegistry.register(KeybladeofPeoplesHearts, new ResourceLocation(Reference.MODID, Strings.KeybladeofPeoplesHearts));
-        GameRegistry.register(Kiblade, new ResourceLocation(Reference.MODID, Strings.Kiblade));
-        GameRegistry.register(KingdomKey, new ResourceLocation(Reference.MODID, Strings.KingdomKey));
-        GameRegistry.register(KingdomKeyD, new ResourceLocation(Reference.MODID, Strings.KingdomKeyD));
-        GameRegistry.register(KnockoutPunch, new ResourceLocation(Reference.MODID, Strings.KnockoutPunch));
-        GameRegistry.register(LadyLuck, new ResourceLocation(Reference.MODID, Strings.LadyLuck));
-        GameRegistry.register(LeasKeyblade, new ResourceLocation(Reference.MODID, Strings.LeasKeyblade));
-        GameRegistry.register(LeopardosForetellersKeyblade, new ResourceLocation(Reference.MODID, Strings.LeopardosForetellersKeyblade));
-        GameRegistry.register(Leviathan, new ResourceLocation(Reference.MODID, Strings.Leviathan));
-        GameRegistry.register(Lionheart, new ResourceLocation(Reference.MODID, Strings.Lionheart));
-        GameRegistry.register(LostMemory, new ResourceLocation(Reference.MODID, Strings.LostMemory));
-        GameRegistry.register(LunarEclipse, new ResourceLocation(Reference.MODID, Strings.LunarEclipse));
-        GameRegistry.register(MarkofaHero, new ResourceLocation(Reference.MODID, Strings.MarkofaHero));
-        GameRegistry.register(MasterXehanortsKeyblade, new ResourceLocation(Reference.MODID, Strings.MasterXehanortsKeyblade));
-        GameRegistry.register(MastersDefender, new ResourceLocation(Reference.MODID, Strings.MastersDefender));
-        GameRegistry.register(MaverickFlare, new ResourceLocation(Reference.MODID, Strings.MaverickFlare));
-        GameRegistry.register(MetalChocobo, new ResourceLocation(Reference.MODID, Strings.MetalChocobo));
-        GameRegistry.register(MidnightRoar, new ResourceLocation(Reference.MODID, Strings.MidnightRoar));
-        GameRegistry.register(MirageSplit, new ResourceLocation(Reference.MODID, Strings.MirageSplit));
-        GameRegistry.register(MissingAche, new ResourceLocation(Reference.MODID, Strings.MissingAche));
-        GameRegistry.register(Monochrome, new ResourceLocation(Reference.MODID, Strings.Monochrome));
-        GameRegistry.register(MysteriousAbyss, new ResourceLocation(Reference.MODID, Strings.MysteriousAbyss));
-        GameRegistry.register(NightmaresEnd, new ResourceLocation(Reference.MODID, Strings.NightmaresEnd));
-        GameRegistry.register(NightmaresEndandMirageSplit, new ResourceLocation(Reference.MODID, Strings.NightmaresEndandMirageSplit));
-        GameRegistry.register(NoName, new ResourceLocation(Reference.MODID, Strings.NoName));
-        GameRegistry.register(Oathkeeper, new ResourceLocation(Reference.MODID, Strings.Oathkeeper));
-        GameRegistry.register(Oblivion, new ResourceLocation(Reference.MODID, Strings.Oblivion));
-        GameRegistry.register(OceansRage, new ResourceLocation(Reference.MODID, Strings.OceansRage));
-        GameRegistry.register(Olympia, new ResourceLocation(Reference.MODID, Strings.Olympia));
-        GameRegistry.register(OmegaWeapon, new ResourceLocation(Reference.MODID, Strings.OmegaWeapon));
-        GameRegistry.register(OminousBlight, new ResourceLocation(Reference.MODID, Strings.OminousBlight));
-        GameRegistry.register(OneWingedAngel, new ResourceLocation(Reference.MODID, Strings.OneWingedAngel));
-        GameRegistry.register(PainofSolitude, new ResourceLocation(Reference.MODID, Strings.PainofSolitude));
-        GameRegistry.register(PhotonDebugger, new ResourceLocation(Reference.MODID, Strings.PhotonDebugger));
-        GameRegistry.register(PixiePetal, new ResourceLocation(Reference.MODID, Strings.PixiePetal));
-        GameRegistry.register(Pumpkinhead, new ResourceLocation(Reference.MODID, Strings.Pumpkinhead));
-        GameRegistry.register(Rainfell, new ResourceLocation(Reference.MODID, Strings.Rainfell));
-        GameRegistry.register(RejectionofFate, new ResourceLocation(Reference.MODID, Strings.RejectionofFate));
-        GameRegistry.register(RoyalRadiance, new ResourceLocation(Reference.MODID, Strings.RoyalRadiance));
-        GameRegistry.register(RumblingRose, new ResourceLocation(Reference.MODID, Strings.RumblingRose));
-        GameRegistry.register(SignofInnocence, new ResourceLocation(Reference.MODID, Strings.SignofInnocence));
-        GameRegistry.register(SilentDirge, new ResourceLocation(Reference.MODID, Strings.SilentDirge));
-        GameRegistry.register(SkullNoise, new ResourceLocation(Reference.MODID, Strings.SkullNoise));
-        GameRegistry.register(SleepingLion, new ResourceLocation(Reference.MODID, Strings.SleepingLion));
-        GameRegistry.register(SoulEater, new ResourceLocation(Reference.MODID, Strings.SoulEater));
-        GameRegistry.register(Spellbinder, new ResourceLocation(Reference.MODID, Strings.Spellbinder));
-        GameRegistry.register(StarSeeker, new ResourceLocation(Reference.MODID, Strings.StarSeeker));
-        GameRegistry.register(Starlight, new ResourceLocation(Reference.MODID, Strings.Starlight));
-        GameRegistry.register(Stormfall, new ResourceLocation(Reference.MODID, Strings.Stormfall));
-        GameRegistry.register(StrokeofMidnight, new ResourceLocation(Reference.MODID, Strings.StrokeofMidnight));
-        GameRegistry.register(SweetDreams, new ResourceLocation(Reference.MODID, Strings.SweetDreams));
-        GameRegistry.register(SweetMemories, new ResourceLocation(Reference.MODID, Strings.SweetMemories));
-        GameRegistry.register(Sweetstack, new ResourceLocation(Reference.MODID, Strings.Sweetstack));
-        GameRegistry.register(ThreeWishes, new ResourceLocation(Reference.MODID, Strings.ThreeWishes));
-        GameRegistry.register(TotalEclipse, new ResourceLocation(Reference.MODID, Strings.TotalEclipse));
-        GameRegistry.register(TreasureTrove, new ResourceLocation(Reference.MODID, Strings.TreasureTrove));
-        GameRegistry.register(TrueLightsFlight, new ResourceLocation(Reference.MODID, Strings.TrueLightsFlight));
-        GameRegistry.register(TwilightBlaze, new ResourceLocation(Reference.MODID, Strings.TwilightBlaze));
-        GameRegistry.register(TwoBecomeOne, new ResourceLocation(Reference.MODID, Strings.TwoBecomeOne));
-        GameRegistry.register(UltimaWeaponKH1, new ResourceLocation(Reference.MODID, Strings.UltimaWeaponKH1));
-        GameRegistry.register(UltimaWeaponKH2, new ResourceLocation(Reference.MODID, Strings.UltimaWeaponKH2));
-        GameRegistry.register(UltimaWeaponBBS, new ResourceLocation(Reference.MODID, Strings.UltimaWeaponBBS));
-        GameRegistry.register(UltimaWeaponDDD, new ResourceLocation(Reference.MODID, Strings.UltimaWeaponDDD));
-        GameRegistry.register(Umbrella, new ResourceLocation(Reference.MODID, Strings.Umbrella));
-        GameRegistry.register(Unbound, new ResourceLocation(Reference.MODID, Strings.Unbound));
-        GameRegistry.register(UnicornisForetellersKeyblade, new ResourceLocation(Reference.MODID, Strings.UnicornisForetellersKeyblade));
-        GameRegistry.register(UrsusForetellersKeyblade, new ResourceLocation(Reference.MODID, Strings.UrsusForetellersKeyblade));
-        GameRegistry.register(VictoryLine, new ResourceLocation(Reference.MODID, Strings.VictoryLine));
-        GameRegistry.register(VoidGear, new ResourceLocation(Reference.MODID, Strings.VoidGear));
-        GameRegistry.register(VulpeusForetellersKeyblade, new ResourceLocation(Reference.MODID, Strings.VulpeusForetellersKeyblade));
-        GameRegistry.register(WaytotheDawn, new ResourceLocation(Reference.MODID, Strings.WaytotheDawn));
-        GameRegistry.register(WaywardWind, new ResourceLocation(Reference.MODID, Strings.WaywardWind));
-        GameRegistry.register(WinnersProof, new ResourceLocation(Reference.MODID, Strings.WinnersProof));
-        GameRegistry.register(WishingLamp, new ResourceLocation(Reference.MODID, Strings.WishingLamp));
-        GameRegistry.register(WishingStar, new ResourceLocation(Reference.MODID, Strings.WishingStar));
-        GameRegistry.register(WoodenKeyblade, new ResourceLocation(Reference.MODID, Strings.WoodenKeyblade));
-        GameRegistry.register(WoodenStick, new ResourceLocation(Reference.MODID, Strings.WoodenStick));
-        GameRegistry.register(YoungXehanortsKeyblade, new ResourceLocation(Reference.MODID, Strings.YoungXehanortsKeyblade));
-        GameRegistry.register(ZeroOne, new ResourceLocation(Reference.MODID, Strings.ZeroOne));
-
-        // CHAINS
-        GameRegistry.register(Chain_AbaddonPlasma, new ResourceLocation(Reference.MODID, Strings.Chain_AbaddonPlasma));
-        GameRegistry.register(Chain_AbyssalTide, new ResourceLocation(Reference.MODID, Strings.Chain_AbyssalTide));
-        GameRegistry.register(Chain_AllforOne, new ResourceLocation(Reference.MODID, Strings.Chain_AllforOne));
-        GameRegistry.register(Chain_AnguisForetellersKeyblade, new ResourceLocation(Reference.MODID, Strings.Chain_AnguisForetellersKeyblade));
-        GameRegistry.register(Chain_AstralBlast, new ResourceLocation(Reference.MODID, Strings.Chain_AstralBlast));
-        GameRegistry.register(Chain_Aubade, new ResourceLocation(Reference.MODID, Strings.Chain_Aubade));
-        GameRegistry.register(Chain_BondofFlame, new ResourceLocation(Reference.MODID, Strings.Chain_BondofFlame));
-        GameRegistry.register(Chain_Brightcrest, new ResourceLocation(Reference.MODID, Strings.Chain_Brightcrest));
-        GameRegistry.register(Chain_ChaosRipper, new ResourceLocation(Reference.MODID, Strings.Chain_ChaosRipper));
-        GameRegistry.register(Chain_CircleofLife, new ResourceLocation(Reference.MODID, Strings.Chain_CircleofLife));
-        GameRegistry.register(Chain_Counterpoint, new ResourceLocation(Reference.MODID, Strings.Chain_Counterpoint));
-        GameRegistry.register(Chain_Crabclaw, new ResourceLocation(Reference.MODID, Strings.Chain_Crabclaw));
-        GameRegistry.register(Chain_CrownofGuilt, new ResourceLocation(Reference.MODID, Strings.Chain_CrownofGuilt));
-        GameRegistry.register(Chain_DarkerThanDark, new ResourceLocation(Reference.MODID, Strings.Chain_DarkerThanDark));
-        GameRegistry.register(Chain_Darkgnaw, new ResourceLocation(Reference.MODID, Strings.Chain_Darkgnaw));
-        GameRegistry.register(Chain_DecisivePumpkin, new ResourceLocation(Reference.MODID, Strings.Chain_DecisivePumpkin));
-        GameRegistry.register(Chain_DestinysEmbrace, new ResourceLocation(Reference.MODID, Strings.Chain_DestinysEmbrace));
-        GameRegistry.register(Chain_DiamondDust, new ResourceLocation(Reference.MODID, Strings.Chain_DiamondDust));
-        GameRegistry.register(Chain_Divewing, new ResourceLocation(Reference.MODID, Strings.Chain_Divewing));
-        GameRegistry.register(Chain_DivineRose, new ResourceLocation(Reference.MODID, Strings.Chain_DivineRose));
-        GameRegistry.register(Chain_DreamSword, new ResourceLocation(Reference.MODID, Strings.Chain_DreamSword));
-        GameRegistry.register(Chain_DualDisc, new ResourceLocation(Reference.MODID, Strings.Chain_DualDisc));
-        GameRegistry.register(Chain_Earthshaker, new ResourceLocation(Reference.MODID, Strings.Chain_Earthshaker));
-        GameRegistry.register(Chain_EndofPain, new ResourceLocation(Reference.MODID, Strings.Chain_EndofPain));
-        GameRegistry.register(Chain_EndsoftheEarth, new ResourceLocation(Reference.MODID, Strings.Chain_EndsoftheEarth));
-        GameRegistry.register(Chain_FairyHarp, new ResourceLocation(Reference.MODID, Strings.Chain_FairyHarp));
-        GameRegistry.register(Chain_FairyStars, new ResourceLocation(Reference.MODID, Strings.Chain_FairyStars));
-        GameRegistry.register(Chain_FatalCrest, new ResourceLocation(Reference.MODID, Strings.Chain_FatalCrest));
-        GameRegistry.register(Chain_Fenrir, new ResourceLocation(Reference.MODID, Strings.Chain_Fenrir));
-        GameRegistry.register(Chain_FerrisGear, new ResourceLocation(Reference.MODID, Strings.Chain_FerrisGear));
-        GameRegistry.register(Chain_FollowtheWind, new ResourceLocation(Reference.MODID, Strings.Chain_FollowtheWind));
-        GameRegistry.register(Chain_FrolicFlame, new ResourceLocation(Reference.MODID, Strings.Chain_FrolicFlame));
-        GameRegistry.register(Chain_GlimpseofDarkness, new ResourceLocation(Reference.MODID, Strings.Chain_GlimpseofDarkness));
-        GameRegistry.register(Chain_GuardianBell, new ResourceLocation(Reference.MODID, Strings.Chain_GuardianBell));
-        GameRegistry.register(Chain_GuardianSoul, new ResourceLocation(Reference.MODID, Strings.Chain_GuardianSoul));
-        GameRegistry.register(Chain_GullWing, new ResourceLocation(Reference.MODID, Strings.Chain_GullWing));
-        GameRegistry.register(Chain_HerosCrest, new ResourceLocation(Reference.MODID, Strings.Chain_HerosCrest));
-        GameRegistry.register(Chain_HiddenDragon, new ResourceLocation(Reference.MODID, Strings.Chain_HiddenDragon));
-        GameRegistry.register(Chain_Hyperdrive, new ResourceLocation(Reference.MODID, Strings.Chain_Hyperdrive));
-        GameRegistry.register(Chain_IncompleteKiblade, new ResourceLocation(Reference.MODID, Strings.Chain_IncompleteKiblade));
-        GameRegistry.register(Chain_JungleKing, new ResourceLocation(Reference.MODID, Strings.Chain_JungleKing));
-        GameRegistry.register(Chain_KeybladeofPeoplesHearts, new ResourceLocation(Reference.MODID, Strings.Chain_KeybladeofPeoplesHearts));
-        GameRegistry.register(Chain_Kiblade, new ResourceLocation(Reference.MODID, Strings.Chain_Kiblade));
-        GameRegistry.register(Chain_KingdomKey, new ResourceLocation(Reference.MODID, Strings.Chain_KingdomKey));
-        GameRegistry.register(Chain_KingdomKeyD, new ResourceLocation(Reference.MODID, Strings.Chain_KingdomKeyD));
-        GameRegistry.register(Chain_KnockoutPunch, new ResourceLocation(Reference.MODID, Strings.Chain_KnockoutPunch));
-        GameRegistry.register(Chain_LadyLuck, new ResourceLocation(Reference.MODID, Strings.Chain_LadyLuck));
-        GameRegistry.register(Chain_LeasKeyblade, new ResourceLocation(Reference.MODID, Strings.Chain_LeasKeyblade));
-        GameRegistry.register(Chain_LeopardosForetellersKeyblade, new ResourceLocation(Reference.MODID, Strings.Chain_LeopardosForetellersKeyblade));
-        GameRegistry.register(Chain_Leviathan, new ResourceLocation(Reference.MODID, Strings.Chain_Leviathan));
-        GameRegistry.register(Chain_Lionheart, new ResourceLocation(Reference.MODID, Strings.Chain_Lionheart));
-        GameRegistry.register(Chain_LostMemory, new ResourceLocation(Reference.MODID, Strings.Chain_LostMemory));
-        GameRegistry.register(Chain_LunarEclipse, new ResourceLocation(Reference.MODID, Strings.Chain_LunarEclipse));
-        GameRegistry.register(Chain_MarkofaHero, new ResourceLocation(Reference.MODID, Strings.Chain_MarkofaHero));
-        GameRegistry.register(Chain_MasterXehanortsKeyblade, new ResourceLocation(Reference.MODID, Strings.Chain_MasterXehanortsKeyblade));
-        GameRegistry.register(Chain_MastersDefender, new ResourceLocation(Reference.MODID, Strings.Chain_MastersDefender));
-        GameRegistry.register(Chain_MaverickFlare, new ResourceLocation(Reference.MODID, Strings.Chain_MaverickFlare));
-        GameRegistry.register(Chain_MetalChocobo, new ResourceLocation(Reference.MODID, Strings.Chain_MetalChocobo));
-        GameRegistry.register(Chain_MidnightRoar, new ResourceLocation(Reference.MODID, Strings.Chain_MidnightRoar));
-        GameRegistry.register(Chain_MirageSplit, new ResourceLocation(Reference.MODID, Strings.Chain_MirageSplit));
-        GameRegistry.register(Chain_MissingAche, new ResourceLocation(Reference.MODID, Strings.Chain_MissingAche));
-        GameRegistry.register(Chain_Monochrome, new ResourceLocation(Reference.MODID, Strings.Chain_Monochrome));
-        GameRegistry.register(Chain_MysteriousAbyss, new ResourceLocation(Reference.MODID, Strings.Chain_MysteriousAbyss));
-        GameRegistry.register(Chain_NightmaresEnd, new ResourceLocation(Reference.MODID, Strings.Chain_NightmaresEnd));
-        GameRegistry.register(Chain_NightmaresEndandMirageSplit, new ResourceLocation(Reference.MODID, Strings.Chain_NightmaresEndandMirageSplit));
-        GameRegistry.register(Chain_NoName, new ResourceLocation(Reference.MODID, Strings.Chain_NoName));
-        GameRegistry.register(Chain_Oathkeeper, new ResourceLocation(Reference.MODID, Strings.Chain_Oathkeeper));
-        GameRegistry.register(Chain_Oblivion, new ResourceLocation(Reference.MODID, Strings.Chain_Oblivion));
-        GameRegistry.register(Chain_OceansRage, new ResourceLocation(Reference.MODID, Strings.Chain_OceansRage));
-        GameRegistry.register(Chain_Olympia, new ResourceLocation(Reference.MODID, Strings.Chain_Olympia));
-        GameRegistry.register(Chain_OmegaWeapon, new ResourceLocation(Reference.MODID, Strings.Chain_OmegaWeapon));
-        GameRegistry.register(Chain_OminousBlight, new ResourceLocation(Reference.MODID, Strings.Chain_OminousBlight));
-        GameRegistry.register(Chain_OneWingedAngel, new ResourceLocation(Reference.MODID, Strings.Chain_OneWingedAngel));
-        GameRegistry.register(Chain_PainofSolitude, new ResourceLocation(Reference.MODID, Strings.Chain_PainofSolitude));
-        GameRegistry.register(Chain_PhotonDebugger, new ResourceLocation(Reference.MODID, Strings.Chain_PhotonDebugger));
-        GameRegistry.register(Chain_PixiePetal, new ResourceLocation(Reference.MODID, Strings.Chain_PixiePetal));
-        GameRegistry.register(Chain_Pumpkinhead, new ResourceLocation(Reference.MODID, Strings.Chain_Pumpkinhead));
-        GameRegistry.register(Chain_Rainfell, new ResourceLocation(Reference.MODID, Strings.Chain_Rainfell));
-        GameRegistry.register(Chain_RejectionofFate, new ResourceLocation(Reference.MODID, Strings.Chain_RejectionofFate));
-        GameRegistry.register(Chain_RoyalRadiance, new ResourceLocation(Reference.MODID, Strings.Chain_RoyalRadiance));
-        GameRegistry.register(Chain_RumblingRose, new ResourceLocation(Reference.MODID, Strings.Chain_RumblingRose));
-        GameRegistry.register(Chain_SignofInnocence, new ResourceLocation(Reference.MODID, Strings.Chain_SignofInnocence));
-        GameRegistry.register(Chain_SilentDirge, new ResourceLocation(Reference.MODID, Strings.Chain_SilentDirge));
-        GameRegistry.register(Chain_SkullNoise, new ResourceLocation(Reference.MODID, Strings.Chain_SkullNoise));
-        GameRegistry.register(Chain_SleepingLion, new ResourceLocation(Reference.MODID, Strings.Chain_SleepingLion));
-        GameRegistry.register(Chain_SoulEater, new ResourceLocation(Reference.MODID, Strings.Chain_SoulEater));
-        GameRegistry.register(Chain_Spellbinder, new ResourceLocation(Reference.MODID, Strings.Chain_Spellbinder));
-        GameRegistry.register(Chain_StarSeeker, new ResourceLocation(Reference.MODID, Strings.Chain_StarSeeker));
-        GameRegistry.register(Chain_Starlight, new ResourceLocation(Reference.MODID, Strings.Chain_Starlight));
-        GameRegistry.register(Chain_Stormfall, new ResourceLocation(Reference.MODID, Strings.Chain_Stormfall));
-        GameRegistry.register(Chain_StrokeofMidnight, new ResourceLocation(Reference.MODID, Strings.Chain_StrokeofMidnight));
-        GameRegistry.register(Chain_SweetDreams, new ResourceLocation(Reference.MODID, Strings.Chain_SweetDreams));
-        GameRegistry.register(Chain_SweetMemories, new ResourceLocation(Reference.MODID, Strings.Chain_SweetMemories));
-        GameRegistry.register(Chain_Sweetstack, new ResourceLocation(Reference.MODID, Strings.Chain_Sweetstack));
-        GameRegistry.register(Chain_ThreeWishes, new ResourceLocation(Reference.MODID, Strings.Chain_ThreeWishes));
-        GameRegistry.register(Chain_TotalEclipse, new ResourceLocation(Reference.MODID, Strings.Chain_TotalEclipse));
-        GameRegistry.register(Chain_TreasureTrove, new ResourceLocation(Reference.MODID, Strings.Chain_TreasureTrove));
-        GameRegistry.register(Chain_TrueLightsFlight, new ResourceLocation(Reference.MODID, Strings.Chain_TrueLightsFlight));
-        GameRegistry.register(Chain_TwilightBlaze, new ResourceLocation(Reference.MODID, Strings.Chain_TwilightBlaze));
-        GameRegistry.register(Chain_TwoBecomeOne, new ResourceLocation(Reference.MODID, Strings.Chain_TwoBecomeOne));
-        GameRegistry.register(Chain_UltimaWeaponKH1, new ResourceLocation(Reference.MODID, Strings.Chain_UltimaWeaponKH1));
-        GameRegistry.register(Chain_UltimaWeaponKH2, new ResourceLocation(Reference.MODID, Strings.Chain_UltimaWeaponKH2));
-        GameRegistry.register(Chain_UltimaWeaponBBS, new ResourceLocation(Reference.MODID, Strings.Chain_UltimaWeaponBBS));
-        GameRegistry.register(Chain_UltimaWeaponDDD, new ResourceLocation(Reference.MODID, Strings.Chain_UltimaWeaponDDD));
-        GameRegistry.register(Chain_Umbrella, new ResourceLocation(Reference.MODID, Strings.Chain_Umbrella));
-        GameRegistry.register(Chain_Unbound, new ResourceLocation(Reference.MODID, Strings.Chain_Unbound));
-        GameRegistry.register(Chain_UnicornisForetellersKeyblade, new ResourceLocation(Reference.MODID, Strings.Chain_UnicornisForetellersKeyblade));
-        GameRegistry.register(Chain_UrsusForetellersKeyblade, new ResourceLocation(Reference.MODID, Strings.Chain_UrsusForetellersKeyblade));
-        GameRegistry.register(Chain_VictoryLine, new ResourceLocation(Reference.MODID, Strings.Chain_VictoryLine));
-        GameRegistry.register(Chain_VoidGear, new ResourceLocation(Reference.MODID, Strings.Chain_VoidGear));
-        GameRegistry.register(Chain_VulpeusForetellersKeyblade, new ResourceLocation(Reference.MODID, Strings.Chain_VulpeusForetellersKeyblade));
-        GameRegistry.register(Chain_WaytotheDawn, new ResourceLocation(Reference.MODID, Strings.Chain_WaytotheDawn));
-        GameRegistry.register(Chain_WaywardWind, new ResourceLocation(Reference.MODID, Strings.Chain_WaywardWind));
-        GameRegistry.register(Chain_WinnersProof, new ResourceLocation(Reference.MODID, Strings.Chain_WinnersProof));
-        GameRegistry.register(Chain_WishingLamp, new ResourceLocation(Reference.MODID, Strings.Chain_WishingLamp));
-        GameRegistry.register(Chain_WishingStar, new ResourceLocation(Reference.MODID, Strings.Chain_WishingStar));
-        GameRegistry.register(Chain_YoungXehanortsKeyblade, new ResourceLocation(Reference.MODID, Strings.Chain_YoungXehanortsKeyblade));
-        GameRegistry.register(Chain_ZeroOne, new ResourceLocation(Reference.MODID, Strings.Chain_ZeroOne));
-
-        // ITEMS
-        GameRegistry.register(Munny, new ResourceLocation(Reference.MODID, Strings.Munny));
-        GameRegistry.register(EmptyBottle, new ResourceLocation(Reference.MODID, Strings.EmptyBottle));
-        GameRegistry.register(Potion, new ResourceLocation(Reference.MODID, Strings.Potion));
-        GameRegistry.register(HiPotion, new ResourceLocation(Reference.MODID, Strings.HiPotion));
-        GameRegistry.register(MegaPotion, new ResourceLocation(Reference.MODID, Strings.MegaPotion));
-        GameRegistry.register(Ether, new ResourceLocation(Reference.MODID, Strings.Ether));
-        GameRegistry.register(MegaEther, new ResourceLocation(Reference.MODID, Strings.MegaEther));
-        GameRegistry.register(Elixir, new ResourceLocation(Reference.MODID, Strings.Elixir));
-        GameRegistry.register(Megalixir, new ResourceLocation(Reference.MODID, Strings.Megalixir));
-        GameRegistry.register(DriveRecovery, new ResourceLocation(Reference.MODID, Strings.DriveRecovery));
-        GameRegistry.register(HighDriveRecovery, new ResourceLocation(Reference.MODID, Strings.HighDriveRecovery));
-        GameRegistry.register(Panacaea, new ResourceLocation(Reference.MODID, Strings.Panacea));
-        GameRegistry.register(DefenseBoost, new ResourceLocation(Reference.MODID, Strings.DefenseBoost));
-        GameRegistry.register(PowerBoost, new ResourceLocation(Reference.MODID, Strings.PowerBoost));
-        GameRegistry.register(MagicBoost, new ResourceLocation(Reference.MODID, Strings.MagicBoost));
-        GameRegistry.register(HpOrb, new ResourceLocation(Reference.MODID, Strings.HpOrb));
-        GameRegistry.register(DriveOrb, new ResourceLocation(Reference.MODID, Strings.DriveOrb));
-        GameRegistry.register(MagicOrb, new ResourceLocation(Reference.MODID, Strings.MagicOrb));
-        GameRegistry.register(Heart, new ResourceLocation(Reference.MODID, Strings.Heart));
-        GameRegistry.register(DarkHeart, new ResourceLocation(Reference.MODID, Strings.DarkHeart));
-        GameRegistry.register(PureHeart, new ResourceLocation(Reference.MODID, Strings.PureHeart));
-        GameRegistry.register(KingdomHearts, new ResourceLocation(Reference.MODID, Strings.KingdomHearts));
-        GameRegistry.register(DarkLeather, new ResourceLocation(Reference.MODID, Strings.DarkLeather));
-        GameRegistry.register(SynthesisMaterial, new ResourceLocation(Reference.MODID, Strings.SynthesisMaterial));
-        GameRegistry.register(Recipe, new ResourceLocation(Reference.MODID, Strings.Recipe));
-        GameRegistry.register(IceCream, new ResourceLocation(Reference.MODID, Strings.IceCream));
-        GameRegistry.register(WinnerStick, new ResourceLocation(Reference.MODID, Strings.WinnerStick));
-        GameRegistry.register(LevelUpMagicFire, new ResourceLocation(Reference.MODID, Strings.LevelUpMagicFire));
-        GameRegistry.register(LevelUpMagicBlizzard, new ResourceLocation(Reference.MODID, Strings.LevelUpMagicBlizzard));
-        GameRegistry.register(LevelUpMagicThunder, new ResourceLocation(Reference.MODID, Strings.LevelUpMagicThunder));
-        GameRegistry.register(LevelUpMagicCure, new ResourceLocation(Reference.MODID, Strings.LevelUpMagicCure));
-        GameRegistry.register(LevelUpMagicAero, new ResourceLocation(Reference.MODID, Strings.LevelUpMagicAero));
-        GameRegistry.register(LevelUpMagicStop, new ResourceLocation(Reference.MODID, Strings.LevelUpMagicStop));
-        GameRegistry.register(LevelUpValor, new ResourceLocation(Reference.MODID, Strings.LevelUpValor));
-        GameRegistry.register(LevelUpWisdom, new ResourceLocation(Reference.MODID, Strings.LevelUpWisdom));
-        GameRegistry.register(LevelUpLimit, new ResourceLocation(Reference.MODID, Strings.LevelUpLimit));
-        GameRegistry.register(LevelUpMaster, new ResourceLocation(Reference.MODID, Strings.LevelUpMaster));
-        GameRegistry.register(LevelUpFinal, new ResourceLocation(Reference.MODID, Strings.LevelUpFinal));
-        GameRegistry.register(SynthesisBagS, new ResourceLocation(Reference.MODID, Strings.SynthesisBagS));
-        GameRegistry.register(SynthesisBagM, new ResourceLocation(Reference.MODID, Strings.SynthesisBagM));
-        GameRegistry.register(SynthesisBagL, new ResourceLocation(Reference.MODID, Strings.SynthesisBagL));
-
-        // DISCS
-        GameRegistry.register(Disc_Birth_by_Sleep_A_Link_to_the_Future, new ResourceLocation(Reference.MODID, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future));
-        GameRegistry.register(Disc_Darkness_of_the_Unknown, new ResourceLocation(Reference.MODID, Strings.Disc_Darkness_of_the_Unknown));
-        GameRegistry.register(Disc_Dearly_Beloved_Symphony_Version, new ResourceLocation(Reference.MODID, Strings.Disc_Dearly_Beloved_Symphony_Version));
-        GameRegistry.register(Disc_Dream_Drop_Distance_The_Next_Awakening, new ResourceLocation(Reference.MODID, Strings.Disc_Dream_Drop_Distance_The_Next_Awakening));
-        GameRegistry.register(Disc_Hikari_KINGDOM_Instrumental_Version, new ResourceLocation(Reference.MODID, Strings.Disc_Hikari_KINGDOM_Instrumental_Version));
-        GameRegistry.register(Disc_L_Oscurita_Dell_Ignoto, new ResourceLocation(Reference.MODID, Strings.Disc_L_Oscurita_Dell_Ignoto));
-        GameRegistry.register(Disc_Musique_pour_la_tristesse_de_Xion, new ResourceLocation(Reference.MODID, Strings.Disc_Musique_pour_la_tristesse_de_Xion));
-        GameRegistry.register(Disc_No_More_Bugs_Bug_Version, new ResourceLocation(Reference.MODID, Strings.Disc_No_More_Bugs_Bug_Version));
-        GameRegistry.register(Disc_Organization_XIII, new ResourceLocation(Reference.MODID, Strings.Disc_Organization_XIII));
-        GameRegistry.register(Disc_Sanctuary, new ResourceLocation(Reference.MODID, Strings.Disc_Sanctuary));
-        GameRegistry.register(Disc_Simple_And_Clean_PLANITb_Remix, new ResourceLocation(Reference.MODID, Strings.Disc_Simple_And_Clean_PLANITb_Remix));
-        GameRegistry.register(Disc_Sinister_Sundown, new ResourceLocation(Reference.MODID, Strings.Disc_Sinister_Sundown));
-        GameRegistry.register(Disc_The_13th_Anthology, new ResourceLocation(Reference.MODID, Strings.Disc_The_13th_Anthology));
-    }
-
-    public static void registerRenders () {
-        // Materials
-        registerRender(BlazingInfusedCoal);
-        registerRender(FrostInfusedSnowBall);
-        registerRender(StormyInfusedIron);
-        registerRender(MythrilInfusedDiamond);
-        registerRender(LightningInfusedGold);
-        registerRender(BrightInfusedGlowStone);
-        registerRender(DarkInfusedIron);
-
-        // Armour
-        registerRender(OrganizationRobe_Helmet);
-        registerRender(OrganizationRobe_Chestplate);
-        registerRender(OrganizationRobe_Leggings);
-        registerRender(OrganizationRobe_Boots);
-
-        registerRender(Terra_Helmet);
-        registerRender(Terra_Chestplate);
-        registerRender(Terra_Leggings);
-        registerRender(Terra_Boots);
-
-        registerRender(Aqua_Helmet);
-        registerRender(Aqua_Chestplate);
-        registerRender(Aqua_Leggings);
-        registerRender(Aqua_Boots);
-
-        registerRender(Ventus_Helmet);
-        registerRender(Ventus_Chestplate);
-        registerRender(Ventus_Leggings);
-        registerRender(Ventus_Boots);
-
-        registerRender(Eraqus_Helmet);
-        registerRender(Eraqus_Chestplate);
-        registerRender(Eraqus_Leggings);
-        registerRender(Eraqus_Boots);
-
-        // Organization
-        registerRender(Interdiction);
-        registerRender(Sharpshooter);
-        registerRender(Lindworm);
-        registerRender(Skysplitter);
-        registerRender(BookofRetribution);
-        registerRender(Lunatic);
-        registerRender(FairGame);
-
-        // Knowledge
-        registerRender(AbandonedKnowledge);
-
-        // Keyblades
-        registerRender(AbaddonPlasma);
-        registerRender(AbyssalTide);
-        registerRender(AnguisForetellersKeyblade);
-        registerRender(AstralBlast);
-        registerRender(Aubade);
-        registerRender(CrownofGuilt);
-        registerRender(DarkerThanDark);
-        registerRender(GlimpseofDarkness);
-        registerRender(LeopardosForetellersKeyblade);
-        registerRender(Leviathan);
-        registerRender(LunarEclipse);
-        registerRender(MaverickFlare);
-        registerRender(MidnightRoar);
-        registerRender(OmegaWeapon);
-        registerRender(OminousBlight);
-        registerRender(PixiePetal);
-        registerRender(RejectionofFate);
-        registerRender(SignofInnocence);
-        registerRender(SilentDirge);
-        registerRender(Starlight);
-        registerRender(TotalEclipse);
-        registerRender(TwilightBlaze);
-        registerRender(Umbrella);
-        registerRender(UnicornisForetellersKeyblade);
-        registerRender(UrsusForetellersKeyblade);
-        registerRender(VulpeusForetellersKeyblade);
-        registerRender(ZeroOne);
-
-        // CHAINS
-        registerRender(Chain_AbaddonPlasma);
-        registerRender(Chain_AbyssalTide);
-        registerRender(Chain_AllforOne);
-        registerRender(Chain_AnguisForetellersKeyblade);
-        registerRender(Chain_AstralBlast);
-        registerRender(Chain_Aubade);
-        registerRender(Chain_BondofFlame);
-        registerRender(Chain_Brightcrest);
-        registerRender(Chain_ChaosRipper);
-        registerRender(Chain_CircleofLife);
-        registerRender(Chain_Counterpoint);
-        registerRender(Chain_Counterpoint);
-        registerRender(Chain_Crabclaw);
-        registerRender(Chain_CrownofGuilt);
-        registerRender(Chain_DarkerThanDark);
-        registerRender(Chain_Darkgnaw);
-        registerRender(Chain_DecisivePumpkin);
-        registerRender(Chain_DestinysEmbrace);
-        registerRender(Chain_DiamondDust);
-        registerRender(Chain_Divewing);
-        registerRender(Chain_DivineRose);
-        registerRender(Chain_DreamSword);
-        registerRender(Chain_DualDisc);
-        registerRender(Chain_Earthshaker);
-        registerRender(Chain_EndofPain);
-        registerRender(Chain_EndsoftheEarth);
-        registerRender(Chain_FairyHarp);
-        registerRender(Chain_FairyStars);
-        registerRender(Chain_FatalCrest);
-        registerRender(Chain_Fenrir);
-        registerRender(Chain_FerrisGear);
-        registerRender(Chain_FollowtheWind);
-        registerRender(Chain_FrolicFlame);
-        registerRender(Chain_GlimpseofDarkness);
-        registerRender(Chain_GuardianBell);
-        registerRender(Chain_GuardianSoul);
-        registerRender(Chain_GullWing);
-        registerRender(Chain_HerosCrest);
-        registerRender(Chain_HiddenDragon);
-        registerRender(Chain_Hyperdrive);
-        registerRender(Chain_IncompleteKiblade);
-        registerRender(Chain_JungleKing);
-        registerRender(Chain_KeybladeofPeoplesHearts);
-        registerRender(Chain_Kiblade);
-        registerRender(Chain_KingdomKey);
-        registerRender(Chain_KingdomKeyD);
-        registerRender(Chain_KnockoutPunch);
-        registerRender(Chain_LadyLuck);
-        registerRender(Chain_LeasKeyblade);
-        registerRender(Chain_LeopardosForetellersKeyblade);
-        registerRender(Chain_Leviathan);
-        registerRender(Chain_Lionheart);
-        registerRender(Chain_LostMemory);
-        registerRender(Chain_LunarEclipse);
-        registerRender(Chain_MarkofaHero);
-        registerRender(Chain_MasterXehanortsKeyblade);
-        registerRender(Chain_MastersDefender);
-        registerRender(Chain_MaverickFlare);
-        registerRender(Chain_MetalChocobo);
-        registerRender(Chain_MidnightRoar);
-        registerRender(Chain_MirageSplit);
-        registerRender(Chain_MissingAche);
-        registerRender(Chain_Monochrome);
-        registerRender(Chain_MysteriousAbyss);
-        registerRender(Chain_NightmaresEnd);
-        registerRender(Chain_NightmaresEndandMirageSplit);
-        registerRender(Chain_NoName);
-        registerRender(Chain_Oathkeeper);
-        registerRender(Chain_Oblivion);
-        registerRender(Chain_OceansRage);
-        registerRender(Chain_Olympia);
-        registerRender(Chain_OmegaWeapon);
-        registerRender(Chain_OminousBlight);
-        registerRender(Chain_OneWingedAngel);
-        registerRender(Chain_PainofSolitude);
-        registerRender(Chain_PhotonDebugger);
-        registerRender(Chain_PixiePetal);
-        registerRender(Chain_Pumpkinhead);
-        registerRender(Chain_Rainfell);
-        registerRender(Chain_RejectionofFate);
-        registerRender(Chain_RoyalRadiance);
-        registerRender(Chain_RumblingRose);
-        registerRender(Chain_SignofInnocence);
-        registerRender(Chain_SilentDirge);
-        registerRender(Chain_SkullNoise);
-        registerRender(Chain_SleepingLion);
-        registerRender(Chain_SoulEater);
-        registerRender(Chain_Spellbinder);
-        registerRender(Chain_StarSeeker);
-        registerRender(Chain_Starlight);
-        registerRender(Chain_Stormfall);
-        registerRender(Chain_StrokeofMidnight);
-        registerRender(Chain_SweetDreams);
-        registerRender(Chain_SweetMemories);
-        registerRender(Chain_Sweetstack);
-        registerRender(Chain_ThreeWishes);
-        registerRender(Chain_TotalEclipse);
-        registerRender(Chain_TreasureTrove);
-        registerRender(Chain_TrueLightsFlight);
-        registerRender(Chain_TwilightBlaze);
-        registerRender(Chain_TwoBecomeOne);
-        registerRender(Chain_UltimaWeaponKH1);
-        registerRender(Chain_UltimaWeaponKH2);
-        registerRender(Chain_UltimaWeaponBBS);
-        registerRender(Chain_UltimaWeaponDDD);
-        registerRender(Chain_Umbrella);
-        registerRender(Chain_Unbound);
-        registerRender(Chain_UnicornisForetellersKeyblade);
-        registerRender(Chain_UrsusForetellersKeyblade);
-        registerRender(Chain_VictoryLine);
-        registerRender(Chain_VoidGear);
-        registerRender(Chain_VulpeusForetellersKeyblade);
-        registerRender(Chain_WaytotheDawn);
-        registerRender(Chain_WaywardWind);
-        registerRender(Chain_WinnersProof);
-        registerRender(Chain_WishingLamp);
-        registerRender(Chain_WishingStar);
-        registerRender(Chain_YoungXehanortsKeyblade);
-        registerRender(Chain_ZeroOne);
-
-        // Other items
-        registerRender(Munny);
-        registerRender(EmptyBottle);
-        registerRender(Potion);
-        registerRender(HiPotion);
-        registerRender(MegaPotion);
-        registerRender(Ether);
-        registerRender(MegaEther);
-        registerRender(Elixir);
-        registerRender(Megalixir);
-        registerRender(DriveRecovery);
-        registerRender(HighDriveRecovery);
-        registerRender(Panacaea);
-        registerRender(DefenseBoost);
-        registerRender(MagicBoost);
-        registerRender(PowerBoost);
-        registerRender(HpOrb);
-        registerRender(DriveOrb);
-        registerRender(MagicOrb);
-        registerRender(Heart);
-        registerRender(DarkHeart);
-        registerRender(PureHeart);
-        registerRender(KingdomHearts);
-        registerRender(DarkLeather);
-        registerRender(SynthesisMaterial);
-        registerRender(Recipe);
-        registerRender(IceCream);
-        registerRender(WinnerStick);
-        registerRender(LevelUpMagicFire);
-        registerRender(LevelUpMagicBlizzard);
-        registerRender(LevelUpMagicThunder);
-        registerRender(LevelUpMagicCure);
-        registerRender(LevelUpMagicAero);
-        registerRender(LevelUpMagicStop);
-        registerRender(LevelUpValor);
-        registerRender(LevelUpWisdom);
-        registerRender(LevelUpLimit);
-        registerRender(LevelUpMaster);
-        registerRender(LevelUpFinal);
-        registerRender(SynthesisBagS);
-        registerRender(SynthesisBagM);
-        registerRender(SynthesisBagL);
-
-        // Discs
-        registerRender(Disc_Birth_by_Sleep_A_Link_to_the_Future);
-        registerRender(Disc_Darkness_of_the_Unknown);
-        registerRender(Disc_Dearly_Beloved_Symphony_Version);
-        registerRender(Disc_Dream_Drop_Distance_The_Next_Awakening);
-        registerRender(Disc_Hikari_KINGDOM_Instrumental_Version);
-        registerRender(Disc_L_Oscurita_Dell_Ignoto);
-        registerRender(Disc_Musique_pour_la_tristesse_de_Xion);
-        registerRender(Disc_No_More_Bugs_Bug_Version);
-        registerRender(Disc_Organization_XIII);
-        registerRender(Disc_Sanctuary);
-        registerRender(Disc_Simple_And_Clean_PLANITb_Remix);
-        registerRender(Disc_Sinister_Sundown);
-        registerRender(Disc_The_13th_Anthology);
+        ((ItemKeychain)Chain_AbaddonPlasma).setKeyblade((ItemKeyblade) AbaddonPlasma);
+        ((ItemKeychain)Chain_AbyssalTide).setKeyblade((ItemKeyblade) AbyssalTide);
+        ((ItemKeychain)Chain_AllforOne).setKeyblade((ItemKeyblade) AllforOne);
+        ((ItemKeychain)Chain_AnguisForetellersKeyblade).setKeyblade((ItemKeyblade) AnguisForetellersKeyblade);
+        ((ItemKeychain)Chain_AstralBlast).setKeyblade((ItemKeyblade) AstralBlast);
+        ((ItemKeychain)Chain_Aubade).setKeyblade((ItemKeyblade) Aubade);
+        ((ItemKeychain)Chain_BondofFlame).setKeyblade((ItemKeyblade) BondofFlame);
+        ((ItemKeychain)Chain_Brightcrest).setKeyblade((ItemKeyblade) Brightcrest);
+        ((ItemKeychain)Chain_ChaosRipper).setKeyblade((ItemKeyblade) ChaosRipper);
+        ((ItemKeychain)Chain_CircleofLife).setKeyblade((ItemKeyblade) CircleofLife);
+        ((ItemKeychain)Chain_Counterpoint).setKeyblade((ItemKeyblade) Counterpoint);
+        ((ItemKeychain)Chain_Crabclaw).setKeyblade((ItemKeyblade) Crabclaw);
+        ((ItemKeychain)Chain_CrownofGuilt).setKeyblade((ItemKeyblade) CrownofGuilt);
+        ((ItemKeychain)Chain_DarkerThanDark).setKeyblade((ItemKeyblade) DarkerThanDark);
+        ((ItemKeychain)Chain_Darkgnaw).setKeyblade((ItemKeyblade) Darkgnaw);
+        ((ItemKeychain)Chain_DecisivePumpkin).setKeyblade((ItemKeyblade) DecisivePumpkin);
+        ((ItemKeychain)Chain_DestinysEmbrace).setKeyblade((ItemKeyblade) DestinysEmbrace);
+        ((ItemKeychain)Chain_DiamondDust).setKeyblade((ItemKeyblade) DiamondDust);
+        ((ItemKeychain)Chain_Divewing).setKeyblade((ItemKeyblade) Divewing);
+        ((ItemKeychain)Chain_DivineRose).setKeyblade((ItemKeyblade) DivineRose);
+        ((ItemKeychain)Chain_DreamSword).setKeyblade((ItemKeyblade) DreamSword);
+        ((ItemKeychain)Chain_DualDisc).setKeyblade((ItemKeyblade) DualDisc);
+        ((ItemKeychain)Chain_Earthshaker).setKeyblade((ItemKeyblade) Earthshaker);
+        ((ItemKeychain)Chain_EndofPain).setKeyblade((ItemKeyblade) EndofPain);
+        ((ItemKeychain)Chain_EndsoftheEarth).setKeyblade((ItemKeyblade) EndsoftheEarth);
+        ((ItemKeychain)Chain_FairyHarp).setKeyblade((ItemKeyblade) FairyHarp);
+        ((ItemKeychain)Chain_FairyStars).setKeyblade((ItemKeyblade) FairyStars);
+        ((ItemKeychain)Chain_FatalCrest).setKeyblade((ItemKeyblade) FatalCrest);
+        ((ItemKeychain)Chain_Fenrir).setKeyblade((ItemKeyblade) Fenrir);
+        ((ItemKeychain)Chain_FerrisGear).setKeyblade((ItemKeyblade) FerrisGear);
+        ((ItemKeychain)Chain_FollowtheWind).setKeyblade((ItemKeyblade) FollowtheWind);
+        ((ItemKeychain)Chain_FrolicFlame).setKeyblade((ItemKeyblade) FrolicFlame);
+        ((ItemKeychain)Chain_GlimpseofDarkness).setKeyblade((ItemKeyblade) GlimpseofDarkness);
+        ((ItemKeychain)Chain_GuardianBell).setKeyblade((ItemKeyblade) GuardianBell);
+        ((ItemKeychain)Chain_GuardianSoul).setKeyblade((ItemKeyblade) GuardianSoul);
+        ((ItemKeychain)Chain_GullWing).setKeyblade((ItemKeyblade) GullWing);
+        ((ItemKeychain)Chain_HerosCrest).setKeyblade((ItemKeyblade) HerosCrest);
+        ((ItemKeychain)Chain_HiddenDragon).setKeyblade((ItemKeyblade) HiddenDragon);
+        ((ItemKeychain)Chain_Hyperdrive).setKeyblade((ItemKeyblade) Hyperdrive);
+        ((ItemKeychain)Chain_IncompleteKiblade).setKeyblade((ItemKeyblade) IncompleteKiblade);
+        ((ItemKeychain)Chain_JungleKing).setKeyblade((ItemKeyblade) JungleKing);
+        ((ItemKeychain)Chain_KeybladeofPeoplesHearts).setKeyblade((ItemKeyblade) KeybladeofPeoplesHearts);
+        ((ItemKeychain)Chain_Kiblade).setKeyblade((ItemKeyblade) Kiblade);
+        ((ItemKeychain)Chain_KingdomKey).setKeyblade((ItemKeyblade) KingdomKey);
+        ((ItemKeychain)Chain_KingdomKeyD).setKeyblade((ItemKeyblade) KingdomKeyD);
+        ((ItemKeychain)Chain_KnockoutPunch).setKeyblade((ItemKeyblade) KnockoutPunch);
+        ((ItemKeychain)Chain_LadyLuck).setKeyblade((ItemKeyblade) LadyLuck);
+        ((ItemKeychain)Chain_LeasKeyblade).setKeyblade((ItemKeyblade) LeasKeyblade);
+        ((ItemKeychain)Chain_LeopardosForetellersKeyblade).setKeyblade((ItemKeyblade) LeopardosForetellersKeyblade);
+        ((ItemKeychain)Chain_Leviathan).setKeyblade((ItemKeyblade) Leviathan);
+        ((ItemKeychain)Chain_Lionheart).setKeyblade((ItemKeyblade) Lionheart);
+        ((ItemKeychain)Chain_LostMemory).setKeyblade((ItemKeyblade) LostMemory);
+        ((ItemKeychain)Chain_LunarEclipse).setKeyblade((ItemKeyblade) LunarEclipse);
+        ((ItemKeychain)Chain_MarkofaHero).setKeyblade((ItemKeyblade) MarkofaHero);
+        ((ItemKeychain)Chain_MasterXehanortsKeyblade).setKeyblade((ItemKeyblade) MasterXehanortsKeyblade);
+        ((ItemKeychain)Chain_MastersDefender).setKeyblade((ItemKeyblade) MastersDefender);
+        ((ItemKeychain)Chain_MaverickFlare).setKeyblade((ItemKeyblade) MaverickFlare);
+        ((ItemKeychain)Chain_MetalChocobo).setKeyblade((ItemKeyblade) MetalChocobo);
+        ((ItemKeychain)Chain_MidnightRoar).setKeyblade((ItemKeyblade) MidnightRoar);
+        ((ItemKeychain)Chain_MissingAche).setKeyblade((ItemKeyblade) MissingAche);
+        ((ItemKeychain)Chain_Monochrome).setKeyblade((ItemKeyblade) Monochrome);
+        ((ItemKeychain)Chain_MysteriousAbyss).setKeyblade((ItemKeyblade) MysteriousAbyss);
+        ((ItemKeychain)Chain_NightmaresEnd).setKeyblade((ItemKeyblade) NightmaresEnd);
+        ((ItemKeychain)Chain_NightmaresEndandMirageSplit).setKeyblade((ItemKeyblade) NightmaresEndandMirageSplit);
+        ((ItemKeychain)Chain_NoName).setKeyblade((ItemKeyblade) NoName);
+        ((ItemKeychain)Chain_Oathkeeper).setKeyblade((ItemKeyblade) Oathkeeper);
+        ((ItemKeychain)Chain_Oblivion).setKeyblade((ItemKeyblade) Oblivion);
+        ((ItemKeychain)Chain_OceansRage).setKeyblade((ItemKeyblade) OceansRage);
+        ((ItemKeychain)Chain_Olympia).setKeyblade((ItemKeyblade) Olympia);
+        ((ItemKeychain)Chain_OmegaWeapon).setKeyblade((ItemKeyblade) OmegaWeapon);
+        ((ItemKeychain)Chain_OminousBlight).setKeyblade((ItemKeyblade) OminousBlight);
+        ((ItemKeychain)Chain_OneWingedAngel).setKeyblade((ItemKeyblade) OneWingedAngel);
+        ((ItemKeychain)Chain_PainofSolitude).setKeyblade((ItemKeyblade) PainofSolitude);
+        ((ItemKeychain)Chain_PhotonDebugger).setKeyblade((ItemKeyblade) PhotonDebugger);
+        ((ItemKeychain)Chain_PixiePetal).setKeyblade((ItemKeyblade) PixiePetal);
+        ((ItemKeychain)Chain_Pumpkinhead).setKeyblade((ItemKeyblade) Pumpkinhead);
+        ((ItemKeychain)Chain_Rainfell).setKeyblade((ItemKeyblade) Rainfell);
+        ((ItemKeychain)Chain_RejectionofFate).setKeyblade((ItemKeyblade) RejectionofFate);
+        ((ItemKeychain)Chain_RoyalRadiance).setKeyblade((ItemKeyblade) RoyalRadiance);
+        ((ItemKeychain)Chain_RumblingRose).setKeyblade((ItemKeyblade) RumblingRose);
+        ((ItemKeychain)Chain_SignofInnocence).setKeyblade((ItemKeyblade) SignofInnocence);
+        ((ItemKeychain)Chain_SilentDirge).setKeyblade((ItemKeyblade) SilentDirge);
+        ((ItemKeychain)Chain_SkullNoise).setKeyblade((ItemKeyblade) SkullNoise);
+        ((ItemKeychain)Chain_SleepingLion).setKeyblade((ItemKeyblade) SleepingLion);
+        ((ItemKeychain)Chain_SoulEater).setKeyblade((ItemKeyblade) SoulEater);
+        ((ItemKeychain)Chain_Spellbinder).setKeyblade((ItemKeyblade) Spellbinder);
+        ((ItemKeychain)Chain_StarSeeker).setKeyblade((ItemKeyblade) StarSeeker);
+        ((ItemKeychain)Chain_Starlight).setKeyblade((ItemKeyblade) Starlight);
+        ((ItemKeychain)Chain_Stormfall).setKeyblade((ItemKeyblade) Stormfall);
+        ((ItemKeychain)Chain_StrokeofMidnight).setKeyblade((ItemKeyblade) StrokeofMidnight);
+        ((ItemKeychain)Chain_SweetDreams).setKeyblade((ItemKeyblade) SweetDreams);
+        ((ItemKeychain)Chain_SweetMemories).setKeyblade((ItemKeyblade) SweetMemories);
+        ((ItemKeychain)Chain_Sweetstack).setKeyblade((ItemKeyblade) Sweetstack);
+        ((ItemKeychain)Chain_ThreeWishes).setKeyblade((ItemKeyblade) ThreeWishes);
+        ((ItemKeychain)Chain_TotalEclipse).setKeyblade((ItemKeyblade) TotalEclipse);
+        ((ItemKeychain)Chain_TreasureTrove).setKeyblade((ItemKeyblade) TreasureTrove);
+        ((ItemKeychain)Chain_TrueLightsFlight).setKeyblade((ItemKeyblade) TrueLightsFlight);
+        ((ItemKeychain)Chain_TwilightBlaze).setKeyblade((ItemKeyblade) TwilightBlaze);
+        ((ItemKeychain)Chain_TwoBecomeOne).setKeyblade((ItemKeyblade) TwoBecomeOne);
+        ((ItemKeychain)Chain_UltimaWeaponKH1).setKeyblade((ItemKeyblade) UltimaWeaponKH1);
+        ((ItemKeychain)Chain_UltimaWeaponKH2).setKeyblade((ItemKeyblade) UltimaWeaponKH2);
+        ((ItemKeychain)Chain_UltimaWeaponBBS).setKeyblade((ItemKeyblade) UltimaWeaponBBS);
+        ((ItemKeychain)Chain_UltimaWeaponDDD).setKeyblade((ItemKeyblade) UltimaWeaponDDD);
+        ((ItemKeychain)Chain_Umbrella).setKeyblade((ItemKeyblade) Umbrella);
+        ((ItemKeychain)Chain_Unbound).setKeyblade((ItemKeyblade) Unbound);
+        ((ItemKeychain)Chain_UnicornisForetellersKeyblade).setKeyblade((ItemKeyblade) UnicornisForetellersKeyblade);
+        ((ItemKeychain)Chain_UrsusForetellersKeyblade).setKeyblade((ItemKeyblade) UrsusForetellersKeyblade);
+        ((ItemKeychain)Chain_VictoryLine).setKeyblade((ItemKeyblade) VictoryLine);
+        ((ItemKeychain)Chain_VoidGear).setKeyblade((ItemKeyblade) VoidGear);
+        ((ItemKeychain)Chain_VulpeusForetellersKeyblade).setKeyblade((ItemKeyblade) VulpeusForetellersKeyblade);
+        ((ItemKeychain)Chain_WaytotheDawn).setKeyblade((ItemKeyblade) WaytotheDawn);
+        ((ItemKeychain)Chain_WaywardWind).setKeyblade((ItemKeyblade) WaywardWind);
+        ((ItemKeychain)Chain_WinnersProof).setKeyblade((ItemKeyblade) WinnersProof);
+        ((ItemKeychain)Chain_WishingLamp).setKeyblade((ItemKeyblade) WishingLamp);
+        ((ItemKeychain)Chain_WishingStar).setKeyblade((ItemKeyblade) WishingStar);
+        ((ItemKeychain)Chain_YoungXehanortsKeyblade).setKeyblade((ItemKeyblade) YoungXehanortsKeyblade);
+        ((ItemKeychain)Chain_ZeroOne).setKeyblade((ItemKeyblade) ZeroOne);
 
     }
 
-    public static void registerRender (Item item) {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+    @Mod.EventBusSubscriber(modid = Reference.MODID)
+    public static class register {
+
+        @SubscribeEvent
+        public static void registerItems(RegistryEvent.Register<Item> event) {
+            // Xemnas
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Malice,6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Sanction,6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Overlord,6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Veneration, 6,4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Autocracy, 6,4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Conquest, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Terminus, 6,4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Judgement, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Discipline, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Aristocracy, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Superiority, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Aggression, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Fury, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Despair, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Triumph, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Ruination, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Domination, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Annihilation, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Tyrant, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Magnificence, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Infinity, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Interdiction, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.RoundFan, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Absolute, 6, 4));
+
+            // Xigbar
+            event.getRegistry().register(new ItemArrowguns(Strings.Standalone, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Killerbee, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Stingray, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Counterweight, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Precision, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.DualHead, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Bahamut, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Gullwing, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.BlueFrame, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.StarShell, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Sunrise, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Ignition, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Armstrong, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.HardBoiledHeat, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.DiabloEye, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.DoubleTap, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Stardust, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.EnergyMuzzle, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.CrimeAndPunishment, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.CupidsArrow, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.FinalWeapon, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Sharpshooter, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Dryer, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Trumpet, 4, 9));
+
+            // Xaldin
+            event.getRegistry().register(new ItemLances(Strings.Zephyr, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Moonglade, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Aer, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Nescience, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Brume, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Asura, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Crux, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Paladin, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Fellking, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Nightcloud, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Shimmer, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Vortex, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Scission, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Heavenfall, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Aether, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Mazzaroth, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Hegemon, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Foxfire, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Yaksha, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Cynosura, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Dragonreign, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Lindworm, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Broom, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Wyvern, 9, 4));
+
+            // Vexen
+            event.getRegistry().register(new ItemOrgShield(Strings.TesterZero));
+            event.getRegistry().register(new ItemOrgShield(Strings.ProductOne));
+            event.getRegistry().register(new ItemOrgShield(Strings.DeepFreeze));
+            event.getRegistry().register(new ItemOrgShield(Strings.CryoliteShield));
+            event.getRegistry().register(new ItemOrgShield(Strings.FalseTheory));
+            event.getRegistry().register(new ItemOrgShield(Strings.Glacier));
+            event.getRegistry().register(new ItemOrgShield(Strings.AbsoluteZero));
+            event.getRegistry().register(new ItemOrgShield(Strings.Gunz));
+            event.getRegistry().register(new ItemOrgShield(Strings.Mindel));
+            event.getRegistry().register(new ItemOrgShield(Strings.Snowslide));
+            event.getRegistry().register(new ItemOrgShield(Strings.Iceberg));
+            event.getRegistry().register(new ItemOrgShield(Strings.Inquisition));
+            event.getRegistry().register(new ItemOrgShield(Strings.Scrutiny));
+            event.getRegistry().register(new ItemOrgShield(Strings.Empiricism));
+            event.getRegistry().register(new ItemOrgShield(Strings.Edification));
+            event.getRegistry().register(new ItemOrgShield(Strings.Contrivance));
+            event.getRegistry().register(new ItemOrgShield(Strings.Wurm));
+            event.getRegistry().register(new ItemOrgShield(Strings.Subzero));
+            event.getRegistry().register(new ItemOrgShield(Strings.ColdBlood));
+            event.getRegistry().register(new ItemOrgShield(Strings.DiamondShield));
+            event.getRegistry().register(new ItemOrgShield(Strings.Aegis));
+            event.getRegistry().register(new ItemOrgShield(Strings.FrozenPride));
+            event.getRegistry().register(new ItemOrgShield(Strings.PotLid));
+            event.getRegistry().register(new ItemOrgShield(Strings.Snowman));
+
+            // Lexaeus
+            event.getRegistry().register(new ItemAxeSword(Strings.Reticence, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Goliath, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.CopperRed, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Daybreak, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Colossus, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.UrsaMajor, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Megacosm, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Terrene, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Fuligin, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.HardWinter, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Firefly, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Harbinger, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Redwood, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Sequoia, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.IronBlack, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Earthshine, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Octiron, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Hyperion, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Clarity, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.OneThousandAndOneNights, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.CardinalVirtue, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Skysplitter, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.BleepBloopBop, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Monolith, 15, 7));
+
+            // Zexion
+            event.getRegistry().register(new ItemLexicon(Strings.BlackPrimer, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.WhiteTome, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.IllicitResearch, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.BuriedSecrets, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.ArcaneCompendium, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.DissentersNotes, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.NefariousCodex, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.MysticAlbum, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.CursedManual, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.TabooText, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.EldritchEsoterica, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.FreakishBestiary, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.MadmansVita, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.UntitledWritings, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.AbandonedDogma, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.AtlasOfOmens, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.RevoltingScrapbook, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.LostHeterodoxy, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.OtherworldlyTales, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.IndescribableLore, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.RadicalTreatise, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.BookofRetribution, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.MidnightSnack, 5, 10));
+            event.getRegistry().register(new ItemLexicon(Strings.DearDiary, 5, 10));
+
+            // Saix
+            event.getRegistry().register(new ItemClaymore(Strings.NewMoon, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Werewolf, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Artemis, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Luminary, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Selene, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Moonrise, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Astrologia, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Crater, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.LunarPhase, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Crescent, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Gibbous, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Berserker, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Twilight, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.QueenOfTheNight, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.BalsamicMoon, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Orbit, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.LightYear, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.KingOfTheNight, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Moonset, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Horoscope, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Dichotomy, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Lunatic, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.JustDesserts, 7, 6));
+            event.getRegistry().register(new ItemClaymore(Strings.Bunnymoon, 7, 6));
+
+            // Axel
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Ashes));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Doldrums));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.DelayedAction));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.DiveBombers));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Combustion));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.MoulinRouge));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.BlazeofGlory));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Prometheus));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Ifrit));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.MagmaOcean));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Volcanics));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Inferno));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.SizzlingEdge));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Corona));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.FerrisWheel));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Burnout));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.OmegaTrinity));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Outbreak));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.DoubleEdge));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Wildfire));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Prominence));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.EternalFlames));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.PizzaCut));
+            event.getRegistry().register(new ItemChakram(5, 8, Strings.Conformers));
+
+            // Demyx
+            event.getRegistry().register(new ItemSitar(Strings.BasicModel, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.TuneUp, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Quartet, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Quintet, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Overture, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.OldHand, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.DaCapo, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.PowerChord, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Fermata, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Interlude, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Serenade, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Songbird, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.RiseToFame, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.RockStar, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.EightFinger, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Concerto, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Harmonics, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.MillionBucks, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Fortissimo, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.UpToEleven, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Sanctuary, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.Arpeggio, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.PrinceOfAwesome, 5, 8));
+            event.getRegistry().register(new ItemSitar(Strings.AfterSchool, 5, 8));
+
+            // Luxord
+            event.getRegistry().register(new ItemCard(Strings.TheFool, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheMagician, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheStar, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheMoon, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.Justice, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheHierophant, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheWorld, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.Temperance, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheHighPriestess, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheTower, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheHangedMan, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.Death, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheHermit, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.Strength, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheLovers, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheChariot, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheSun, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheDevil, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheEmpress, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheEmperor, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.TheJoker, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.FairGame, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.FinestFantasy13, 6, 7));
+            event.getRegistry().register(new ItemCard(Strings.HighRollersSecret, 6, 7));
+
+            // Marluxia
+            event.getRegistry().register(new ItemScythe(Strings.FickleErica, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.JiltedAnemone, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.ProudAmaryllis, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.MadSafflower, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.PoorMelissa, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.TragicAllium, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.MournfulCineria, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.PseudoSilene, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.FaithlessDigitalis, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.GrimMuscari, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.DocileVallota, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.QuietBelladonna, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.PartingIpheion, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.LoftyGerbera, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.GallantAchillea, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.NoblePeony, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.FearsomeAnise, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.VindictiveThistle, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.FairHelianthus, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.SolemnMagnolia, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.HallowedLotus, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.GracefulDahlia, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.StirringLadle, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.DaintyBellflowers, 8, 5));
+
+            // Larxene
+            event.getRegistry().register(new ItemKnife(Strings.Trancheuse, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Orage, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Tourbillon, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Tempete, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Carmin, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Meteore, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Etoile, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Irregulier, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Dissonance, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Eruption, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.SoleilCouchant, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Indigo, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Vague, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Deluge, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Rafale, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Typhon, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Extirpeur, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.CroixDuSud, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Lumineuse, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.ClairdeLune, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.VoldeNuit, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Foudre, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Demoiselle, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Ampoule, 8, 6));
+
+            event.getRegistry().register(new ItemOrgShield(Strings.DreamShield));
+
+            //keyblades
+            event.getRegistry().register(new ItemRealKeyblade(Strings.AbaddonPlasma, BalanceConfig.keyblades.abaddonPlasma[0], BalanceConfig.keyblades.abaddonPlasma[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.AbyssalTide, BalanceConfig.keyblades.abyssalTide[0], BalanceConfig.keyblades.abyssalTide[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.AllforOne, BalanceConfig.keyblades.allForOne[0], BalanceConfig.keyblades.allForOne[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.AnguisForetellersKeyblade, BalanceConfig.keyblades.anguisForetellersKeyblade[0], BalanceConfig.keyblades.anguisForetellersKeyblade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.AstralBlast, BalanceConfig.keyblades.astralBlast[0], BalanceConfig.keyblades.astralBlast[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Aubade, BalanceConfig.keyblades.aubade[0], BalanceConfig.keyblades.aubade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.BondofFlame, BalanceConfig.keyblades.bondofFlame[0], BalanceConfig.keyblades.bondofFlame[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Brightcrest, BalanceConfig.keyblades.brightcrest[0], BalanceConfig.keyblades.brightcrest[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.ChaosRipper, BalanceConfig.keyblades.chaosRipper[0], BalanceConfig.keyblades.chaosRipper[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.CircleofLife, BalanceConfig.keyblades.circleofLife[0], BalanceConfig.keyblades.circleofLife[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Counterpoint, BalanceConfig.keyblades.counterpoint[0], BalanceConfig.keyblades.counterpoint[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Crabclaw, BalanceConfig.keyblades.crabclaw[0], BalanceConfig.keyblades.crabclaw[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.CrownofGuilt, BalanceConfig.keyblades.crownofGuilt[0], BalanceConfig.keyblades.crownofGuilt[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.DarkerThanDark, BalanceConfig.keyblades.darkerthanDark[0], BalanceConfig.keyblades.darkerthanDark[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Darkgnaw, BalanceConfig.keyblades.darkgnaw[0], BalanceConfig.keyblades.darkgnaw[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.DecisivePumpkin, BalanceConfig.keyblades.decisivePumpkin[0], BalanceConfig.keyblades.decisivePumpkin[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.DestinysEmbrace, BalanceConfig.keyblades.destinysEmbrace[0], BalanceConfig.keyblades.destinysEmbrace[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.DiamondDust, BalanceConfig.keyblades.diamondDust[0], BalanceConfig.keyblades.diamondDust[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Divewing, BalanceConfig.keyblades.divewing[0], BalanceConfig.keyblades.divewing[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.DivineRose, BalanceConfig.keyblades.divineRose[0], BalanceConfig.keyblades.divineRose[1]));
+            event.getRegistry().register(new ItemKeyblade(Strings.DreamSword, BalanceConfig.keyblades.dreamSword[0], BalanceConfig.keyblades.dreamSword[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.DualDisc, BalanceConfig.keyblades.dualDisc[0], BalanceConfig.keyblades.dualDisc[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Earthshaker, BalanceConfig.keyblades.earthshaker[0], BalanceConfig.keyblades.earthshaker[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.EndofPain, BalanceConfig.keyblades.endofPain[0], BalanceConfig.keyblades.endofPain[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.EndsoftheEarth, BalanceConfig.keyblades.endsoftheEarth[0], BalanceConfig.keyblades.endsoftheEarth[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.FairyHarp, BalanceConfig.keyblades.fairyHarp[0], BalanceConfig.keyblades.fairyHarp[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.FairyStars, BalanceConfig.keyblades.fairyStars[0], BalanceConfig.keyblades.fairyStars[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.FatalCrest, BalanceConfig.keyblades.fatalCrest[0], BalanceConfig.keyblades.fatalCrest[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Fenrir, BalanceConfig.keyblades.fenrir[0], BalanceConfig.keyblades.fenrir[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.FerrisGear, BalanceConfig.keyblades.ferrisGear[0], BalanceConfig.keyblades.ferrisGear[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.FollowtheWind, BalanceConfig.keyblades.followtheWind[0], BalanceConfig.keyblades.followtheWind[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.FrolicFlame, BalanceConfig.keyblades.frolicFlame[0], BalanceConfig.keyblades.frolicFlame[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.GlimpseofDarkness, BalanceConfig.keyblades.glimpseofDarkness[0], BalanceConfig.keyblades.glimpseofDarkness[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.GuardianBell, BalanceConfig.keyblades.guardianBell[0], BalanceConfig.keyblades.guardianBell[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.GuardianSoul, BalanceConfig.keyblades.guardianSoul[0], BalanceConfig.keyblades.guardianSoul[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.GullWing, BalanceConfig.keyblades.gullWing[0], BalanceConfig.keyblades.gullWing[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.HerosCrest, BalanceConfig.keyblades.herosCrest[0], BalanceConfig.keyblades.herosCrest[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.HiddenDragon, BalanceConfig.keyblades.hiddenDragon[0], BalanceConfig.keyblades.hiddenDragon[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Hyperdrive, BalanceConfig.keyblades.hyperdrive[0], BalanceConfig.keyblades.hyperdrive[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.IncompleteKiblade, BalanceConfig.keyblades.incompletexblade[0], BalanceConfig.keyblades.incompletexblade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.JungleKing, BalanceConfig.keyblades.jungleKing[0], BalanceConfig.keyblades.jungleKing[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.KeybladeofPeoplesHearts, BalanceConfig.keyblades.keybladeofPeoplesHearts[0], BalanceConfig.keyblades.keybladeofPeoplesHearts[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Kiblade, BalanceConfig.keyblades.xblade[0], BalanceConfig.keyblades.xblade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.KingdomKey, BalanceConfig.keyblades.kingdomKey[0], BalanceConfig.keyblades.kingdomKey[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.KingdomKeyD, BalanceConfig.keyblades.kingdomKeyD[0], BalanceConfig.keyblades.kingdomKeyD[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.KnockoutPunch, BalanceConfig.keyblades.knockoutPunch[0], BalanceConfig.keyblades.knockoutPunch[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.LadyLuck, BalanceConfig.keyblades.ladyLuck[0], BalanceConfig.keyblades.ladyLuck[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.LeasKeyblade, BalanceConfig.keyblades.leasKeyblade[0], BalanceConfig.keyblades.leasKeyblade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.LeopardosForetellersKeyblade, BalanceConfig.keyblades.leopardosForetellersKeyblade[0], BalanceConfig.keyblades.leopardosForetellersKeyblade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Leviathan, BalanceConfig.keyblades.leviathan[0], BalanceConfig.keyblades.leviathan[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Lionheart, BalanceConfig.keyblades.lionheart[0], BalanceConfig.keyblades.lionheart[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.LostMemory, BalanceConfig.keyblades.lostMemory[0], BalanceConfig.keyblades.lostMemory[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.LunarEclipse, BalanceConfig.keyblades.lunarEclipse[0], BalanceConfig.keyblades.lunarEclipse[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.MarkofaHero, BalanceConfig.keyblades.markofaHero[0], BalanceConfig.keyblades.markofaHero[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.MasterXehanortsKeyblade, BalanceConfig.keyblades.masterXehanortsKeyblade[0], BalanceConfig.keyblades.masterXehanortsKeyblade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.MastersDefender, BalanceConfig.keyblades.mastersDefender[0], BalanceConfig.keyblades.mastersDefender[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.MaverickFlare, BalanceConfig.keyblades.maverickFlare[0], BalanceConfig.keyblades.maverickFlare[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.MetalChocobo, BalanceConfig.keyblades.metalChocobo[0], BalanceConfig.keyblades.metalChocobo[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.MidnightRoar, BalanceConfig.keyblades.midnightRoar[0], BalanceConfig.keyblades.midnightRoar[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.MirageSplit, BalanceConfig.keyblades.mirageSplit[0], BalanceConfig.keyblades.mirageSplit[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.MissingAche, BalanceConfig.keyblades.missingAche[0], BalanceConfig.keyblades.missingAche[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Monochrome, BalanceConfig.keyblades.monochrome[0], BalanceConfig.keyblades.monochrome[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.MysteriousAbyss, BalanceConfig.keyblades.mysteriousAbyss[0], BalanceConfig.keyblades.mysteriousAbyss[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.NightmaresEnd, BalanceConfig.keyblades.nightmaresEnd[0], BalanceConfig.keyblades.nightmaresEnd[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.NightmaresEndandMirageSplit, BalanceConfig.keyblades.combinedKeyblade[0], BalanceConfig.keyblades.combinedKeyblade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.NoName, BalanceConfig.keyblades.noName[0], BalanceConfig.keyblades.noName[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Oathkeeper, BalanceConfig.keyblades.oathkeeper[0], BalanceConfig.keyblades.oathkeeper[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Oblivion, BalanceConfig.keyblades.oblivion[0], BalanceConfig.keyblades.oblivion[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.OceansRage, BalanceConfig.keyblades.oceansRage[0], BalanceConfig.keyblades.oceansRage[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Olympia, BalanceConfig.keyblades.olympia[0], BalanceConfig.keyblades.olympia[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.OmegaWeapon, BalanceConfig.keyblades.omegaWeapon[0], BalanceConfig.keyblades.omegaWeapon[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.OminousBlight, BalanceConfig.keyblades.ominousBlight[0], BalanceConfig.keyblades.ominousBlight[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.OneWingedAngel, BalanceConfig.keyblades.oneWingedAngel[0], BalanceConfig.keyblades.oneWingedAngel[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.PainofSolitude, BalanceConfig.keyblades.painofSolitude[0], BalanceConfig.keyblades.painofSolitude[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.PhotonDebugger, BalanceConfig.keyblades.photonDebugger[0], BalanceConfig.keyblades.photonDebugger[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.PixiePetal, BalanceConfig.keyblades.pixiePetal[0], BalanceConfig.keyblades.pixiePetal[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Pumpkinhead, BalanceConfig.keyblades.pumpkinhead[0], BalanceConfig.keyblades.pumpkinhead[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Rainfell, BalanceConfig.keyblades.rainfell[0], BalanceConfig.keyblades.rainfell[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.RejectionofFate, BalanceConfig.keyblades.rejectionofFate[0], BalanceConfig.keyblades.rejectionofFate[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.RoyalRadiance, BalanceConfig.keyblades.royalRadiance[0], BalanceConfig.keyblades.royalRadiance[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.RumblingRose, BalanceConfig.keyblades.rumblingRose[0], BalanceConfig.keyblades.rumblingRose[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.SignofInnocence, BalanceConfig.keyblades.signofInnocence[0], BalanceConfig.keyblades.signofInnocence[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.SilentDirge, BalanceConfig.keyblades.silentDirge[0], BalanceConfig.keyblades.silentDirge[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.SkullNoise, BalanceConfig.keyblades.skullNoise[0], BalanceConfig.keyblades.skullNoise[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.SleepingLion, BalanceConfig.keyblades.sleepingLion[0], BalanceConfig.keyblades.sleepingLion[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.SoulEater, BalanceConfig.keyblades.soulEater[0], BalanceConfig.keyblades.soulEater[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Spellbinder, BalanceConfig.keyblades.spellbinder[0], BalanceConfig.keyblades.spellbinder[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Starlight, BalanceConfig.keyblades.starlight[0], BalanceConfig.keyblades.starlight[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.StarSeeker, BalanceConfig.keyblades.starSeeker[0], BalanceConfig.keyblades.starSeeker[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Stormfall, BalanceConfig.keyblades.stormfall[0], BalanceConfig.keyblades.stormfall[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.StrokeofMidnight, BalanceConfig.keyblades.strokeofMidnight[0], BalanceConfig.keyblades.strokeofMidnight[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.SweetDreams, BalanceConfig.keyblades.sweetDreams[0], BalanceConfig.keyblades.sweetDreams[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.SweetMemories, BalanceConfig.keyblades.sweetMemories[0], BalanceConfig.keyblades.sweetMemories[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Sweetstack, BalanceConfig.keyblades.sweetstack[0], BalanceConfig.keyblades.sweetstack[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.ThreeWishes, BalanceConfig.keyblades.threeWishes[0], BalanceConfig.keyblades.threeWishes[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.TotalEclipse, BalanceConfig.keyblades.totalEclipse[0], BalanceConfig.keyblades.totalEclipse[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.TreasureTrove, BalanceConfig.keyblades.treasureTrove[0], BalanceConfig.keyblades.treasureTrove[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.TrueLightsFlight, BalanceConfig.keyblades.trueLightsFlight[0], BalanceConfig.keyblades.trueLightsFlight[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.TwilightBlaze, BalanceConfig.keyblades.twilightBlaze[0], BalanceConfig.keyblades.twilightBlaze[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.TwoBecomeOne, BalanceConfig.keyblades.twoBecomeOne[0], BalanceConfig.keyblades.twoBecomeOne[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.UltimaWeaponKH1, BalanceConfig.keyblades.ultimaWeaponKH1[0], BalanceConfig.keyblades.ultimaWeaponKH1[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.UltimaWeaponKH2, BalanceConfig.keyblades.ultimaWeaponKH2[0], BalanceConfig.keyblades.ultimaWeaponKH2[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.UltimaWeaponBBS, BalanceConfig.keyblades.ultimaWeaponBBS[0], BalanceConfig.keyblades.ultimaWeaponBBS[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.UltimaWeaponDDD, BalanceConfig.keyblades.ultimaWeaponDDD[0], BalanceConfig.keyblades.ultimaWeaponDDD[1]));
+            event.getRegistry().register(new ItemKeyblade(Strings.Umbrella, BalanceConfig.keyblades.umbrella[0], BalanceConfig.keyblades.umbrella[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.Unbound, BalanceConfig.keyblades.unbound[0], BalanceConfig.keyblades.unbound[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.UnicornisForetellersKeyblade, BalanceConfig.keyblades.unicornisForetellersKeyblade[0], BalanceConfig.keyblades.unicornisForetellersKeyblade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.UrsusForetellersKeyblade, BalanceConfig.keyblades.ursusForetellersKeyblade[0], BalanceConfig.keyblades.ursusForetellersKeyblade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.VictoryLine, BalanceConfig.keyblades.victoryLine[0], BalanceConfig.keyblades.victoryLine[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.VoidGear, BalanceConfig.keyblades.voidGear[0], BalanceConfig.keyblades.voidGear[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.VulpeusForetellersKeyblade, BalanceConfig.keyblades.vulpeusForetellersKeyblade[0], BalanceConfig.keyblades.vulpeusForetellersKeyblade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.WaytotheDawn, BalanceConfig.keyblades.waytotheDawn[0], BalanceConfig.keyblades.waytotheDawn[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.WaywardWind, BalanceConfig.keyblades.waywardWind[0], BalanceConfig.keyblades.waywardWind[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.WinnersProof, BalanceConfig.keyblades.winnersProof[0], BalanceConfig.keyblades.winnersProof[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.WishingLamp, BalanceConfig.keyblades.wishingLamp[0], BalanceConfig.keyblades.wishingLamp[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.WishingStar, BalanceConfig.keyblades.wishingStar[0], BalanceConfig.keyblades.wishingStar[1]));
+            event.getRegistry().register(new ItemKeyblade(Strings.WoodenKeyblade, BalanceConfig.keyblades.woodenKeyblade[0], BalanceConfig.keyblades.woodenKeyblade[1]));
+            event.getRegistry().register(new ItemKeyblade(Strings.WoodenStick, BalanceConfig.keyblades.woodenStick[0], BalanceConfig.keyblades.woodenStick[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.YoungXehanortsKeyblade, BalanceConfig.keyblades.youngXehanortsKeyblade[0], BalanceConfig.keyblades.youngXehanortsKeyblade[1]));
+            event.getRegistry().register(new ItemRealKeyblade(Strings.ZeroOne, BalanceConfig.keyblades.zeroOne[0], BalanceConfig.keyblades.zeroOne[1]));
+
+            // CHAINS
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_AbaddonPlasma));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_AbyssalTide));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_AllforOne));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_AnguisForetellersKeyblade));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_AstralBlast));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Aubade));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_BondofFlame));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Brightcrest));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_ChaosRipper));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_CircleofLife));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Counterpoint));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Crabclaw));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_CrownofGuilt));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_DarkerThanDark));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Darkgnaw));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_DecisivePumpkin));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_DestinysEmbrace));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_DiamondDust));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Divewing));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_DivineRose));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_DreamSword));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_DualDisc));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Earthshaker));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_EndofPain));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_EndsoftheEarth));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_FairyHarp));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_FairyStars));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_FatalCrest));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Fenrir));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_FerrisGear));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_FollowtheWind));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_FrolicFlame));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_GlimpseofDarkness));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_GuardianBell));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_GuardianSoul));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_GullWing));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_HerosCrest));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_HiddenDragon));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Hyperdrive));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_IncompleteKiblade));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_JungleKing));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_KeybladeofPeoplesHearts));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Kiblade));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_KingdomKey));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_KingdomKeyD));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_KnockoutPunch));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_LadyLuck));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_LeasKeyblade));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_LeopardosForetellersKeyblade));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Leviathan));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Lionheart));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_LostMemory));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_LunarEclipse));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_MarkofaHero));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_MasterXehanortsKeyblade));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_MastersDefender));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_MaverickFlare));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_MetalChocobo));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_MidnightRoar));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_MirageSplit));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_MissingAche));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Monochrome));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_MysteriousAbyss));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_NightmaresEnd));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_NightmaresEndandMirageSplit));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_NoName));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Oathkeeper));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Oblivion));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_OceansRage));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Olympia));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_OmegaWeapon));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_OminousBlight));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_OneWingedAngel));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_PainofSolitude));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_PhotonDebugger));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_PixiePetal));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Pumpkinhead));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Rainfell));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_RejectionofFate));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_RoyalRadiance));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_RumblingRose));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_SignofInnocence));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_SilentDirge));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_SkullNoise));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_SleepingLion));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_SoulEater));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Spellbinder));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_StarSeeker));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Starlight));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Stormfall));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_StrokeofMidnight));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_SweetDreams));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_SweetMemories));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Sweetstack));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_ThreeWishes));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_TotalEclipse));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_TreasureTrove));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_TrueLightsFlight));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_TwilightBlaze));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_TwoBecomeOne));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_UltimaWeaponKH1));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_UltimaWeaponKH2));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_UltimaWeaponBBS));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_UltimaWeaponDDD));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Umbrella));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_Unbound));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_UnicornisForetellersKeyblade));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_UrsusForetellersKeyblade));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_VictoryLine));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_VoidGear));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_VulpeusForetellersKeyblade));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_WaytotheDawn));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_WaywardWind));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_WinnersProof));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_WishingLamp));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_WishingStar));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_YoungXehanortsKeyblade));
+            event.getRegistry().register(new ItemKeychain(Strings.Chain_ZeroOne));
+
+            // Materials
+            event.getRegistry().register(new ItemBlazingInfusedCoal(Strings.BlazingInfusedCoal));
+            event.getRegistry().register(new ItemKKBase(Strings.FrostInfusedSnowBall));
+            event.getRegistry().register(new ItemKKBase(Strings.StormyInfusedIron));
+            event.getRegistry().register(new ItemKKBase(Strings.MythrilInfusedDiamond));
+            event.getRegistry().register(new ItemKKBase(Strings.LightningInfusedGold));
+            event.getRegistry().register(new ItemKKBase(Strings.BrightInfusedGlowStone));
+            event.getRegistry().register(new ItemKKBase(Strings.DarkInfusedIron));
+
+            event.getRegistry().register(new ItemAbandonedKnowledge(Strings.AbandonedKnowledge));
+
+            // Armour
+            event.getRegistry().register(new ItemOrganizationRobe(ORGANIZATIONROBE, 1, EntityEquipmentSlot.HEAD, 0, Strings.OrganizationRobe_Helmet));
+            event.getRegistry().register(new ItemOrganizationRobe(ORGANIZATIONROBE, 1, EntityEquipmentSlot.CHEST, 1, Strings.OrganizationRobe_Chestplate));
+            event.getRegistry().register(new ItemOrganizationRobe(ORGANIZATIONROBE, 2, EntityEquipmentSlot.LEGS, 2, Strings.OrganizationRobe_Leggings));
+            event.getRegistry().register(new ItemOrganizationRobe(ORGANIZATIONROBE, 1, EntityEquipmentSlot.FEET, 3, Strings.OrganizationRobe_Boots));
+
+            event.getRegistry().register(new ItemTerraArmor(TERRA, 1, EntityEquipmentSlot.HEAD, 0, Strings.Terra_Helmet));
+            event.getRegistry().register(new ItemTerraArmor(TERRA, 1, EntityEquipmentSlot.CHEST, 1, Strings.Terra_Chestplate));
+            event.getRegistry().register(new ItemTerraArmor(TERRA, 2, EntityEquipmentSlot.LEGS, 2, Strings.Terra_Leggings));
+            event.getRegistry().register(new ItemTerraArmor(TERRA, 1, EntityEquipmentSlot.FEET, 3,Strings.Terra_Boots));
+
+            event.getRegistry().register(new ItemAquaArmor(AQUA, 1, EntityEquipmentSlot.HEAD, 0, Strings.Aqua_Helmet));
+            event.getRegistry().register(new ItemAquaArmor(AQUA, 1, EntityEquipmentSlot.CHEST, 1, Strings.Aqua_Chestplate));
+            event.getRegistry().register(new ItemAquaArmor(AQUA, 2, EntityEquipmentSlot.LEGS, 2, Strings.Aqua_Leggings));
+            event.getRegistry().register(new ItemAquaArmor(AQUA, 1, EntityEquipmentSlot.FEET, 3, Strings.Aqua_Boots));
+
+            event.getRegistry().register(new ItemVentusArmor(VENTUS, 1, EntityEquipmentSlot.HEAD, 0, Strings.Ventus_Helmet));
+            event.getRegistry().register(new ItemVentusArmor(VENTUS, 1, EntityEquipmentSlot.CHEST, 1, Strings.Ventus_Chestplate));
+            event.getRegistry().register(new ItemVentusArmor(VENTUS, 2, EntityEquipmentSlot.LEGS, 2, Strings.Ventus_Leggings));
+            event.getRegistry().register(new ItemVentusArmor(VENTUS, 1, EntityEquipmentSlot.FEET, 3, Strings.Ventus_Boots));
+
+            event.getRegistry().register(new ItemEraqusArmor(ERAQUS, 1, EntityEquipmentSlot.HEAD, 0, Strings.Eraqus_Helmet));
+            event.getRegistry().register(new ItemEraqusArmor(ERAQUS, 1, EntityEquipmentSlot.CHEST, 1, Strings.Eraqus_Chestplate));
+            event.getRegistry().register(new ItemEraqusArmor(ERAQUS, 2, EntityEquipmentSlot.LEGS, 2, Strings.Eraqus_Leggings));
+            event.getRegistry().register(new ItemEraqusArmor(ERAQUS, 1, EntityEquipmentSlot.FEET, 3, Strings.Eraqus_Boots));
+
+            event.getRegistry().register(new ItemMunny(Strings.Munny));
+            event.getRegistry().register(new ItemKKBase(Strings.EmptyBottle).setMaxStackSize(1));
+            event.getRegistry().register(new ItemPotion(0, true, "hp"));
+            event.getRegistry().register(new ItemHiPotion(0, true, "hp"));
+            event.getRegistry().register(new ItemMegaPotion(0, true, "hp"));
+            event.getRegistry().register(new ItemEther(0, true, "mp"));
+            event.getRegistry().register(new ItemMegaEther(0, true, "mp"));
+            event.getRegistry().register(new ItemElixir(0, true, "elixir"));
+            event.getRegistry().register(new ItemMegalixir(0, true, "elixir"));
+            event.getRegistry().register(new ItemDriveRecovery(0, true, "dp"));
+            event.getRegistry().register(new ItemHighDriveRecovery(0, true, "dp"));
+            event.getRegistry().register(new ItemDefenseBoost(Strings.DefenseBoost));
+            event.getRegistry().register(new ItemMagicBoost(Strings.MagicBoost));
+            event.getRegistry().register(new ItemPowerBoost(Strings.PowerBoost));
+            event.getRegistry().register(new ItemPanacea(0, true, "panacea"));
+
+            event.getRegistry().register(new ItemHpOrb(Strings.HpOrb));
+            event.getRegistry().register(new ItemDriveOrb(Strings.DriveOrb));
+            event.getRegistry().register(new ItemMagicOrb(Strings.MagicOrb));
+            event.getRegistry().register(new ItemKKBase(Strings.Heart));
+            event.getRegistry().register(new ItemKKBase(Strings.DarkHeart));
+            event.getRegistry().register(new ItemKKBase(Strings.PureHeart));
+            event.getRegistry().register(new ItemKKBase(Strings.KingdomHearts));
+            event.getRegistry().register(new ItemKKBase(Strings.DarkLeather));
+            event.getRegistry().register(new ItemSynthesisMaterial(Strings.SynthesisMaterial));
+            event.getRegistry().register(new ItemIceCream(Strings.IceCream, 5, true));
+            event.getRegistry().register(new ItemKKBase(Strings.WinnerStick));
+
+            event.getRegistry().register(new ItemUpgradeFire(Strings.LevelUpMagicFire, Strings.Spell_Fire));
+            event.getRegistry().register(new ItemUpgradeBlizzard(Strings.LevelUpMagicBlizzard, Strings.Spell_Blizzard));
+            event.getRegistry().register(new ItemUpgradeThunder(Strings.LevelUpMagicThunder, Strings.Spell_Thunder));
+            event.getRegistry().register(new ItemUpgradeCure(Strings.LevelUpMagicCure, Strings.Spell_Cure));
+            event.getRegistry().register(new ItemUpgradeAero(Strings.LevelUpMagicAero, Strings.Spell_Aero));
+            event.getRegistry().register(new ItemUpgradeStop(Strings.LevelUpMagicStop, Strings.Spell_Stop));
+
+            event.getRegistry().register(new ItemUpgradeValor(Strings.LevelUpValor, Strings.Form_Valor));
+            event.getRegistry().register(new ItemUpgradeWisdom(Strings.LevelUpWisdom, Strings.Form_Wisdom));
+            event.getRegistry().register(new ItemUpgradeLimit(Strings.LevelUpLimit, Strings.Form_Limit));
+            event.getRegistry().register(new ItemUpgradeMaster(Strings.LevelUpMaster, Strings.Form_Master));
+            event.getRegistry().register(new ItemUpgradeFinal(Strings.LevelUpFinal, Strings.Form_Final));
+
+            event.getRegistry().register(new ItemSynthesisBagS(Strings.SynthesisBagS));
+            event.getRegistry().register(new ItemSynthesisBagM(Strings.SynthesisBagM));
+            event.getRegistry().register(new ItemSynthesisBagL(Strings.SynthesisBagL));
+
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, 7.29F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Darkness_of_the_Unknown, Strings.Disc_Darkness_of_the_Unknown, 7.50F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Dearly_Beloved_Symphony_Version, Strings.Disc_Dearly_Beloved_Symphony_Version, 2.33F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Dream_Drop_Distance_The_Next_Awakening, Strings.Disc_Dream_Drop_Distance_The_Next_Awakening, 8.56F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Hikari_KINGDOM_Instrumental_Version, Strings.Disc_Hikari_KINGDOM_Instrumental_Version, 3.42F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.L_Oscurita_Dell_Ignoto, Strings.Disc_L_Oscurita_Dell_Ignoto, 4.33F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Musique_pour_la_tristesse_de_Xion, Strings.Disc_Musique_pour_la_tristesse_de_Xion, 3.57F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.No_More_Bugs_Bug_Version, Strings.Disc_No_More_Bugs_Bug_Version, 3.17F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Organization_XIII, Strings.Disc_Organization_XIII, 2.32F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Sanctuary, Strings.Disc_Sanctuary, 4.25F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Simple_And_Clean_PLANITb_Remix, Strings.Disc_Simple_And_Clean_PLANITb_Remix, 2.37F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Sinister_Sundown, Strings.Disc_Sinister_Sundown, 2.13F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.The_13th_Anthology, Strings.Disc_The_13th_Anthology, 6.38F));
+
+            event.getRegistry().register(new ItemRecipe(Strings.Recipe));
+        }
     }
 }

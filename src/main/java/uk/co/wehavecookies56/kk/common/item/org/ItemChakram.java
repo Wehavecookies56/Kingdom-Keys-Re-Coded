@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.item.org;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,11 +39,13 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
+import javax.annotation.Nullable;
+
 public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
     String weapon;
-    public ItemChakram (double strength, double magic, String weapon)  {
-        super(strength,magic);
-        this.weapon=weapon;
+    public ItemChakram (double strength, double magic, String weapon) {
+        super(weapon, strength, magic);
+        this.weapon = weapon;
         setMaxStackSize(1);
     }
 
@@ -59,9 +62,8 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    @SideOnly (Side.CLIENT)
-    public void addInformation (ItemStack itemStack, EntityPlayer player, List<String> dataList, boolean bool) {
-        dataList.add("VIII Axel");
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add("VIII Axel");
     }
 
     @Override
@@ -121,8 +123,7 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
                 break;
         }
 
-        if(!player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge())
-        {
+        if(!player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge()) {
             if (!player.isSneaking()) {
                 world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F), false);
                 world.spawnEntity(entity);

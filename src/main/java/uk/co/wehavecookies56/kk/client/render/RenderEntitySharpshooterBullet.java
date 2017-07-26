@@ -2,13 +2,14 @@ package uk.co.wehavecookies56.kk.client.render;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.vertex.VertexBuffer;
 import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Function;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -50,7 +51,7 @@ public class RenderEntitySharpshooterBullet extends Render<EntitySharpshooterBul
     @Override
     public void doRender (EntitySharpshooterBullet entity, double x, double y, double z, float entityYaw, float partialTicks) {
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer worldRenderer = tessellator.getBuffer();
+        BufferBuilder worldRenderer = tessellator.getBuffer();
         if (entity.ticksExisted < 1) return;
 
         textureGetter.apply(texture);

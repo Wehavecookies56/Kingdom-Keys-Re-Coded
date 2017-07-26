@@ -1,12 +1,12 @@
 package uk.co.wehavecookies56.kk.client.fx;
 
+import net.minecraft.client.renderer.BufferBuilder;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -28,7 +28,7 @@ public class EntityParticleFXTest extends Particle {
     }
 
     @Override
-    public void renderParticle (VertexBuffer worldRenderer, Entity entityIn, float partialTicks, float par3, float par4, float par5, float par6, float par7) {
+    public void renderParticle (BufferBuilder worldRenderer, Entity entityIn, float partialTicks, float par3, float par4, float par5, float par6, float par7) {
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);
         Tessellator tess = Tessellator.getInstance();
         GL11.glDepthMask(false);

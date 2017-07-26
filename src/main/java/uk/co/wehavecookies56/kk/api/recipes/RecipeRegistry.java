@@ -7,9 +7,7 @@ import java.util.Map;
 import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.entity.player.EntityPlayer;
-import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 
 public class RecipeRegistry {
 
@@ -41,7 +39,6 @@ public class RecipeRegistry {
         if (!isRecipeKnown(list, recipeName)) {
             Recipe recipe = recipeMap.get(recipeName);
             player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).learnRecipe(recipe);
-            AchievementHelper.addAchievement(player, ModAchievements.getRecipe);
             return true;
         }
         return false;

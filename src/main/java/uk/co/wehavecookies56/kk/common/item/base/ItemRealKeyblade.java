@@ -1,24 +1,9 @@
 package uk.co.wehavecookies56.kk.common.item.base;
 
-import java.util.List;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.world.World;
-import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.core.handler.ConfigHandler;
-import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
-
 public class ItemRealKeyblade extends ItemKeyblade {
 
-    public ItemRealKeyblade (double strength, double magic) {
-        super(strength, magic);
+    public ItemRealKeyblade (String name, double strength, double magic) {
+        super(name, strength, magic);
         setMaxStackSize(1);
     }
 /*

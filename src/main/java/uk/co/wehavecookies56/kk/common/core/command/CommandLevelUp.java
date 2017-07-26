@@ -78,8 +78,7 @@ public class CommandLevelUp implements ICommand {
         else
             throw new PlayerNotFoundException("You must specify which player you wish to perform this action on.", new Object[0]);
     }
-    public static EntityPlayer getPlayerFromUsername(String username)
-    {
+    public static EntityPlayer getPlayerFromUsername(String username) {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
             return null;
 

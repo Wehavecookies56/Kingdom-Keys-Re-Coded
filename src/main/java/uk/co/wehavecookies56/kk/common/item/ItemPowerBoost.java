@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.item;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,13 +11,17 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlot;
 
-public class ItemPowerBoost extends Item {
-    public ItemPowerBoost() {
-        super();
+import javax.annotation.Nullable;
+
+public class ItemPowerBoost extends ItemKKBase {
+    public ItemPowerBoost(String name) {
+        super(name);
+        setMaxStackSize(1);
     }
 
     @Override
@@ -30,8 +35,8 @@ public class ItemPowerBoost extends Item {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         tooltip.add("Permanently increases Strength by 1");
-        super.addInformation(stack, playerIn, tooltip, advanced);
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 }

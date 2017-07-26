@@ -23,9 +23,8 @@ public class BlockSoAStructureBlock extends BlockContainer {
     public BlockSoAStructureBlock(String name) {
         super(Material.GLASS);
         setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
+        setRegistryName(name);
         setUnlocalizedName(name);
-        ModBlocks.registerBlock(this, name);
-
     }
 
     @Override

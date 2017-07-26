@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
 
+import net.minecraft.init.Items;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -87,8 +88,8 @@ public class GuiShop extends GuiScreen {
         EntityPlayer player = Minecraft.getMinecraft().player;
         boolean full = false;
         for (ItemStack element : player.inventory.mainInventory) {
-            if (element != ItemStack.EMPTY) full = true;
-            if (element == ItemStack.EMPTY) return false;
+            if (element != ItemStack.EMPTY && element.getItem() != Items.AIR) full = true;
+            if (element == ItemStack.EMPTY || element.getItem() == Items.AIR) return false;
         }
         if (full) return true;
         return false;

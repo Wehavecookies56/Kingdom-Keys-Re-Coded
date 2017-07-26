@@ -1,0 +1,12 @@
+{
+	"type": "forge:ore_shapeless",
+	"ingredients": [ 
+		{ "type": "forge:ore_dict", "ore": "stickWood" }, 
+		{ "item": "minecraft:sugar" }, 
+		{ "item": "minecraft:water_bucket" },
+		{ "item": "minecraft:packed_ice" }
+	],
+	"result": {
+		"item": "kk:icecream"
+	}
+}

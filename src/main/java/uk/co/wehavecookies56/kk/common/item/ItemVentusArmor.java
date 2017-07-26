@@ -11,7 +11,9 @@ public class ItemVentusArmor extends ItemArmor /*implements ISpecialArmor*/ {
 
     public ItemVentusArmor (ArmorMaterial material, int renderIndex, EntityEquipmentSlot slot, int armorType, String name) {
         super(material, renderIndex, slot);
+        setRegistryName(name);
         setUnlocalizedName(name);
+        setCreativeTab(ModItems.tabKingdomKeys);
     }
 
     /*

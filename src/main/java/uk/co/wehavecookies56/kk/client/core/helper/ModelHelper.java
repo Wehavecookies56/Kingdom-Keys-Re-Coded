@@ -2,13 +2,13 @@ package uk.co.wehavecookies56.kk.client.core.helper;
 
 import java.util.HashMap;
 
+import net.minecraft.client.renderer.BufferBuilder;
 import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -113,7 +113,7 @@ public class ModelHelper {
     public static void renderBakedModel (IBakedModel bakedModel) {
         Tessellator tessellator = Tessellator.getInstance();
 
-        VertexBuffer worldrenderer = tessellator.getBuffer();
+        BufferBuilder worldrenderer = tessellator.getBuffer();
         worldrenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.ITEM);
         for (BakedQuad bakedQuad : bakedModel.getQuads(null, null, 1))
             worldrenderer.addVertexData(bakedQuad.getVertexData());

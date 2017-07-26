@@ -7,9 +7,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
 
-public class ItemHpOrb extends Item {
-    public ItemHpOrb () {
+public class ItemHpOrb extends ItemKKBase {
+    public ItemHpOrb (String name) {
+        super(name);
         setMaxStackSize(64);
     }
 

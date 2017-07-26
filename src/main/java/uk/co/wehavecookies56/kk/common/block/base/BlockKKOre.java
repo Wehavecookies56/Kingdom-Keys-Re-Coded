@@ -9,14 +9,19 @@ import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
+import uk.co.wehavecookies56.kk.common.block.ModBlocks;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class BlockKKOre extends Block {
 
-    public BlockKKOre (Material material, String toolClass, int level, float hardness, float resistance) {
+    public BlockKKOre (Material material, String toolClass, int level, float hardness, float resistance, String name) {
         super(material);
         this.setHarvestLevel(toolClass, level);
         setHardness(hardness);
         setResistance(resistance);
+        setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
+        setRegistryName(name);
+        setUnlocalizedName(name);
     }
     private Random rand = new Random();
 

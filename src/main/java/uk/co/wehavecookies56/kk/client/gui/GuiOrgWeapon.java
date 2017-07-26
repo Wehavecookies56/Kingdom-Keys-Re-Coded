@@ -5,9 +5,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -15,16 +12,12 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OrgMemberSelect;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgWeaponSelect;
-import uk.co.wehavecookies56.kk.common.util.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.ROXAS;
-import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.XEMNAS;
 
 /**
  * Created by Toby on 08/02/2017.
@@ -156,31 +149,27 @@ public class GuiOrgWeapon extends GuiScreen {
     public void updateButtons() {
         ok.visible = false;
         next.visible = true;
-        next.xPosition = (width / 2) - (next.width / 2) + 128;
-        next.yPosition = (height / 2) - (next.height / 2);
+        next.x = (width / 2) - (next.width / 2) + 128;
+        next.y = (height / 2) - (next.height / 2);
         prev.visible = true;
-        prev.xPosition = (width / 2) - (prev.width / 2) - 128;
-        prev.yPosition = (height / 2) - (prev.height / 2);
+        prev.x = (width / 2) - (prev.width / 2) - 128;
+        prev.y = (height / 2) - (prev.height / 2);
         select.visible = true;
-        select.xPosition = (width / 2) - (select.width / 2);
-        select.yPosition = (height / 2) - (select.height / 2) + 90;
+        select.x = (width / 2) - (select.width / 2);
+        select.y = (height / 2) - (select.height / 2) + 90;
         confirm.visible = false;
         cancel.visible = false;
-        if (unlocked.isEmpty() || !unlocked.contains(weapons.get(current))) {
-            select.enabled = false;
-        } else {
-            select.enabled = true;
-        }
+        select.enabled = (unlocked.isEmpty() || !unlocked.contains(weapons.get(current)));
         if (confirmChoice) {
             confirm.visible = true;
             cancel.visible = true;
             next.visible = false;
             prev.visible = false;
             select.visible = false;
-            confirm.xPosition = (width / 2) - (confirm.width / 2);
-            confirm.yPosition = (height / 2) - (confirm.height / 2) + 30;
-            cancel.xPosition = (width / 2) - (cancel.width / 2);
-            cancel.yPosition = (height / 2) - (cancel.height / 2) + 32 + confirm.height;
+            confirm.x = (width / 2) - (confirm.width / 2);
+            confirm.y = (height / 2) - (confirm.height / 2) + 30;
+            cancel.x = (width / 2) - (cancel.width / 2);
+            cancel.y = (height / 2) - (cancel.height / 2) + 32 + confirm.height;
         }
     }
 }

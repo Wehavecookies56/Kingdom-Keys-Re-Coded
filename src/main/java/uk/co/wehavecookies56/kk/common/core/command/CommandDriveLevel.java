@@ -127,8 +127,7 @@ public class CommandDriveLevel implements ICommand {
                         TextHelper.sendFormattedChatMessage("Unknown form "+args[0], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 
             } else if (args.length == 3) {
-                    if(FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(args[2]) != null)
-                    {
+                    if(FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(args[2]) != null) {
                         int level = 1;
                         try {
                             if (Integer.parseInt(args[1]) < 1 || Integer.parseInt(args[1]) > 3) {
@@ -177,8 +176,7 @@ public class CommandDriveLevel implements ICommand {
         }
     }
 
-    public static EntityPlayer getPlayerFromUsername(String username)
-    {
+    public static EntityPlayer getPlayerFromUsername(String username) {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
             return null;
 

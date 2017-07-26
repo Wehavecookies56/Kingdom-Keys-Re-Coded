@@ -17,6 +17,7 @@ import net.minecraftforge.oredict.OreDictionary;
 /**
  * Created by Toby on 14/04/2016.
  */
+/*
 public class ShapelessNBTRecipe implements IRecipe {
 
     private ItemStack output;
@@ -121,6 +122,5 @@ public class ShapelessNBTRecipe implements IRecipe {
         return stack;
     }
 
-
-
 }
+*/

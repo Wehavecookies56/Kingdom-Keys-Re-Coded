@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.item.org;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -24,10 +25,12 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.SummonClaymore;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
+import javax.annotation.Nullable;
+
 public class ItemClaymore extends ItemOrgWeapon implements IOrgWeapon{
 
-    public ItemClaymore (double strength, double magic)  {
-        super(strength,magic);
+    public ItemClaymore (String name, double strength, double magic)  {
+        super(name, strength, magic);
         setMaxStackSize(1);
     }
 
@@ -38,9 +41,8 @@ public class ItemClaymore extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    @SideOnly (Side.CLIENT)
-    public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-        dataList.add(Utils.translateToLocal(Strings.LunaticDesc));
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(Utils.translateToLocal(Strings.LunaticDesc));
     }
 
     @Override
@@ -66,9 +68,11 @@ public class ItemClaymore extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-        super.getSubItems(itemIn, tab, subItems);
-        subItems.add(new ItemStack(itemIn, 1, 1));
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+        super.getSubItems(tab, items);
+        if (isInCreativeTab(tab)) {
+            items.add(new ItemStack(this, 1, 1));
+        }
     }
 
     @Override

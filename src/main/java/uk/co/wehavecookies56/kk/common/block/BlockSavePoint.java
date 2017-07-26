@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnCureParticles;
 
@@ -28,8 +29,14 @@ import javax.annotation.Nullable;
 
 public class BlockSavePoint extends Block {
 
-    protected BlockSavePoint (Material material, String toolClass, int level, float hardness, float resistance) {
+    protected BlockSavePoint (Material material, String toolClass, int level, float hardness, float resistance, String name) {
         super(material);
+        setHarvestLevel(toolClass, level);
+        setHardness(hardness);
+        setResistance(resistance);
+        setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
+        setRegistryName(name);
+        setUnlocalizedName(name);
         //setBlockBounds(0, 0, 0, 1, 0.1F, 1);
         setTickRandomly(true);
         //setSoundType(SoundType.STONE);

@@ -16,8 +16,8 @@ import javax.annotation.Nullable;
 
 public class BlockDangerBlox extends BlockBlox {
 
-    protected BlockDangerBlox (Material material, String toolClass, int level, float hardness, float resistance) {
-        super(material, toolClass, level, hardness, resistance);
+    protected BlockDangerBlox (Material material, String toolClass, int level, float hardness, float resistance, String name) {
+        super(material, toolClass, level, hardness, resistance, name);
     }
 
     @Override

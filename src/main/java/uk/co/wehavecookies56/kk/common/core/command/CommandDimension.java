@@ -66,8 +66,7 @@ public class CommandDimension implements ICommand {
         return true;
     }
 
-    public static EntityPlayer getPlayerFromUsername(String username)
-    {
+    public static EntityPlayer getPlayerFromUsername(String username) {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
             return null;
 
@@ -77,8 +76,7 @@ public class CommandDimension implements ICommand {
 
     @Override
     public void execute (MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-        if (sender.getCommandSenderEntity() instanceof EntityPlayer)
-        {
+        if (sender.getCommandSenderEntity() instanceof EntityPlayer) {
             EntityPlayer player = null;
             if (args.length == 0) {
                 player = getCommandSenderAsPlayer(sender);
@@ -88,17 +86,13 @@ public class CommandDimension implements ICommand {
                 TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
                 return;
             }
-            if(player != null)
-            {
-                if (!player.world.isRemote)
-                {
-                    if (player.dimension == ModDimensions.diveToTheHeartID)
-                    {
-                        new TeleporterOverworld(player.world.getMinecraftServer().getServer().worldServerForDimension(0)).teleport((player), player.world);
+            if(player != null) {
+                if (!player.world.isRemote) {
+                    if (player.dimension == ModDimensions.diveToTheHeartID) {
+                        new TeleporterOverworld(player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
                     }
-                    else if(player.dimension == 0)
-                    {
-                        new TeleporterDiveToTheHeart(player.world.getMinecraftServer().getServer().worldServerForDimension(ModDimensions.diveToTheHeartID)).teleport(player, player.world);
+                    else if(player.dimension == 0) {
+                        new TeleporterDiveToTheHeart(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.diveToTheHeartID)).teleport(player, player.world);
                     }
                 }
             }

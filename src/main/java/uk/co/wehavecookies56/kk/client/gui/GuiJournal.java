@@ -393,17 +393,17 @@ public class GuiJournal extends GuiScreen {
             topic_commandmenu_items.visible = true;
             topic_commandmenu_drive.visible = true;
 
-            topic_commandmenu_about.xPosition = xPos_coll_commandMenu + 10;
-            topic_commandmenu_attack.xPosition = xPos_coll_commandMenu + 10;
-            topic_commandmenu_magic.xPosition = xPos_coll_commandMenu + 10;
-            topic_commandmenu_items.xPosition = xPos_coll_commandMenu + 10;
-            topic_commandmenu_drive.xPosition = xPos_coll_commandMenu + 10;
+            topic_commandmenu_about.x = xPos_coll_commandMenu + 10;
+            topic_commandmenu_attack.x = xPos_coll_commandMenu + 10;
+            topic_commandmenu_magic.x = xPos_coll_commandMenu + 10;
+            topic_commandmenu_items.x = xPos_coll_commandMenu + 10;
+            topic_commandmenu_drive.x = xPos_coll_commandMenu + 10;
 
-            topic_commandmenu_about.yPosition = yPos_coll_commandMenu + 17 + (int) offset;
-            topic_commandmenu_attack.yPosition = yPos_coll_commandMenu + 27 + (int) offset;
-            topic_commandmenu_magic.yPosition = yPos_coll_commandMenu + 37 + (int) offset;
-            topic_commandmenu_items.yPosition = yPos_coll_commandMenu + 47 + (int) offset;
-            topic_commandmenu_drive.yPosition = yPos_coll_commandMenu + 57 + (int) offset;
+            topic_commandmenu_about.y = yPos_coll_commandMenu + 17 + (int) offset;
+            topic_commandmenu_attack.y = yPos_coll_commandMenu + 27 + (int) offset;
+            topic_commandmenu_magic.y = yPos_coll_commandMenu + 37 + (int) offset;
+            topic_commandmenu_items.y = yPos_coll_commandMenu + 47 + (int) offset;
+            topic_commandmenu_drive.y = yPos_coll_commandMenu + 57 + (int) offset;
         } else {
             topic_commandmenu_about.visible = false;
             topic_commandmenu_attack.visible = false;
@@ -422,15 +422,15 @@ public class GuiJournal extends GuiScreen {
             topic_keyblades_summoning.visible = true;
             topic_keyblades_creation.visible = true;
 
-            topic_keyblades_about.xPosition = xPos_coll_keyblades + 10;
-            topic_keyblades_list.xPosition = xPos_coll_keyblades + 10;
-            topic_keyblades_summoning.xPosition = xPos_coll_keyblades + 10;
-            topic_keyblades_creation.xPosition = xPos_coll_keyblades + 10;
+            topic_keyblades_about.x = xPos_coll_keyblades + 10;
+            topic_keyblades_list.x = xPos_coll_keyblades + 10;
+            topic_keyblades_summoning.x = xPos_coll_keyblades + 10;
+            topic_keyblades_creation.x = xPos_coll_keyblades + 10;
 
-            topic_keyblades_about.yPosition = yPos_coll_keyblades + 17 + (int) offset;
-            topic_keyblades_list.yPosition = yPos_coll_keyblades + 27 + (int) offset;
-            topic_keyblades_summoning.yPosition = yPos_coll_keyblades + 37 + (int) offset;
-            topic_keyblades_creation.yPosition = yPos_coll_keyblades + 47 + (int) offset;
+            topic_keyblades_about.y = yPos_coll_keyblades + 17 + (int) offset;
+            topic_keyblades_list.y = yPos_coll_keyblades + 27 + (int) offset;
+            topic_keyblades_summoning.y = yPos_coll_keyblades + 37 + (int) offset;
+            topic_keyblades_creation.y = yPos_coll_keyblades + 47 + (int) offset;
 
         } else {
             topic_keyblades_about.visible = false;
@@ -447,13 +447,13 @@ public class GuiJournal extends GuiScreen {
             topic_bugblox_standardblox.visible = true;
             topic_bugblox_specialblox.visible = true;
 
-            topic_bugblox_about.xPosition = xPos_coll_bugblox + 10;
-            topic_bugblox_standardblox.xPosition = xPos_coll_bugblox + 10;
-            topic_bugblox_specialblox.xPosition = xPos_coll_bugblox + 10;
+            topic_bugblox_about.x = xPos_coll_bugblox + 10;
+            topic_bugblox_standardblox.x = xPos_coll_bugblox + 10;
+            topic_bugblox_specialblox.x = xPos_coll_bugblox + 10;
 
-            topic_bugblox_about.yPosition = yPos_coll_bugblox + 17 + (int) offset;
-            topic_bugblox_standardblox.yPosition = yPos_coll_bugblox + 27 + (int) offset;
-            topic_bugblox_specialblox.yPosition = yPos_coll_bugblox + 37 + (int) offset;
+            topic_bugblox_about.y = yPos_coll_bugblox + 17 + (int) offset;
+            topic_bugblox_standardblox.y = yPos_coll_bugblox + 27 + (int) offset;
+            topic_bugblox_specialblox.y = yPos_coll_bugblox + 37 + (int) offset;
         } else {
             topic_bugblox_about.visible = false;
             topic_bugblox_standardblox.visible = false;
@@ -469,13 +469,13 @@ public class GuiJournal extends GuiScreen {
             topic_synthesis_materials.visible = true;
             topic_synthesis_recipes.visible = true;
 
-            topic_synthesis_about.xPosition = xPos_coll_synthesis + 10;
-            topic_synthesis_materials.xPosition = xPos_coll_synthesis + 10;
-            topic_synthesis_recipes.xPosition = xPos_coll_synthesis + 10;
+            topic_synthesis_about.x = xPos_coll_synthesis + 10;
+            topic_synthesis_materials.x = xPos_coll_synthesis + 10;
+            topic_synthesis_recipes.x = xPos_coll_synthesis + 10;
 
-            topic_synthesis_about.yPosition = yPos_coll_synthesis + 17 + (int) offset;
-            topic_synthesis_materials.yPosition = yPos_coll_synthesis + 27 + (int) offset;
-            topic_synthesis_recipes.yPosition = yPos_coll_synthesis + 37 + (int) offset;
+            topic_synthesis_about.y = yPos_coll_synthesis + 17 + (int) offset;
+            topic_synthesis_materials.y = yPos_coll_synthesis + 27 + (int) offset;
+            topic_synthesis_recipes.y = yPos_coll_synthesis + 37 + (int) offset;
         } else {
             topic_synthesis_about.visible = false;
             topic_synthesis_materials.visible = false;
@@ -490,11 +490,11 @@ public class GuiJournal extends GuiScreen {
             topic_armour_keyblade.visible = true;
             topic_armour_organization.visible = true;
 
-            topic_armour_keyblade.xPosition = xPos_coll_armour + 10;
-            topic_armour_organization.xPosition = xPos_coll_armour + 10;
+            topic_armour_keyblade.x = xPos_coll_armour + 10;
+            topic_armour_organization.x = xPos_coll_armour + 10;
 
-            topic_armour_keyblade.yPosition = yPos_coll_armour + 17 + (int) offset;
-            topic_armour_organization.yPosition = yPos_coll_armour + 27 + (int) offset;
+            topic_armour_keyblade.y = yPos_coll_armour + 17 + (int) offset;
+            topic_armour_organization.y = yPos_coll_armour + 27 + (int) offset;
         } else {
             topic_armour_keyblade.visible = false;
             topic_armour_organization.visible = false;
@@ -509,13 +509,13 @@ public class GuiJournal extends GuiScreen {
             topic_magic_mp.visible = true;
             topic_magic_magics.visible = true;
 
-            topic_magic_about.xPosition = xPos_coll_magic + 10;
-            topic_magic_mp.xPosition = xPos_coll_magic + 10;
-            topic_magic_magics.xPosition = xPos_coll_magic + 10;
+            topic_magic_about.x = xPos_coll_magic + 10;
+            topic_magic_mp.x = xPos_coll_magic + 10;
+            topic_magic_magics.x = xPos_coll_magic + 10;
 
-            topic_magic_about.yPosition = yPos_coll_magic + 17 + (int) offset;
-            topic_magic_mp.yPosition = yPos_coll_magic + 27 + (int) offset;
-            topic_magic_magics.yPosition = yPos_coll_magic + 37 + (int) offset;
+            topic_magic_about.y = yPos_coll_magic + 17 + (int) offset;
+            topic_magic_mp.y = yPos_coll_magic + 27 + (int) offset;
+            topic_magic_magics.y = yPos_coll_magic + 37 + (int) offset;
         } else {
             topic_magic_about.visible = false;
             topic_magic_mp.visible = false;
@@ -531,13 +531,13 @@ public class GuiJournal extends GuiScreen {
             topic_driveforms_dp.visible = true;
             topic_driveforms_forms.visible = true;
 
-            topic_driveforms_about.xPosition = xPos_coll_driveforms + 10;
-            topic_driveforms_dp.xPosition = xPos_coll_driveforms + 10;
-            topic_driveforms_forms.xPosition = xPos_coll_driveforms + 10;
+            topic_driveforms_about.x = xPos_coll_driveforms + 10;
+            topic_driveforms_dp.x = xPos_coll_driveforms + 10;
+            topic_driveforms_forms.x = xPos_coll_driveforms + 10;
 
-            topic_driveforms_about.yPosition = yPos_coll_driveforms + 17 + (int) offset;
-            topic_driveforms_dp.yPosition = yPos_coll_driveforms + 27 + (int) offset;
-            topic_driveforms_forms.yPosition = yPos_coll_driveforms + 37 + (int) offset;
+            topic_driveforms_about.y = yPos_coll_driveforms + 17 + (int) offset;
+            topic_driveforms_dp.y = yPos_coll_driveforms + 27 + (int) offset;
+            topic_driveforms_forms.y = yPos_coll_driveforms + 37 + (int) offset;
         } else {
             topic_driveforms_about.visible = false;
             topic_driveforms_dp.visible = false;
@@ -557,21 +557,21 @@ public class GuiJournal extends GuiScreen {
             topic_misc_musicdiscs.visible = true;
             topic_misc_commands.visible = true;
 
-            topic_misc_hearts.xPosition = xPos_coll_misc + 10;
-            topic_misc_munny.xPosition = xPos_coll_misc + 10;
-            topic_misc_menu.xPosition = xPos_coll_misc + 10;
-            topic_misc_craftingmaterials.xPosition = xPos_coll_misc + 10;
-            topic_misc_organizationweapons.xPosition = xPos_coll_misc + 10;
-            topic_misc_musicdiscs.xPosition = xPos_coll_misc + 10;
-            topic_misc_commands.xPosition = xPos_coll_misc + 10;
+            topic_misc_hearts.x = xPos_coll_misc + 10;
+            topic_misc_munny.x = xPos_coll_misc + 10;
+            topic_misc_menu.x = xPos_coll_misc + 10;
+            topic_misc_craftingmaterials.x = xPos_coll_misc + 10;
+            topic_misc_organizationweapons.x = xPos_coll_misc + 10;
+            topic_misc_musicdiscs.x = xPos_coll_misc + 10;
+            topic_misc_commands.x = xPos_coll_misc + 10;
 
-            topic_misc_hearts.yPosition = yPos_coll_misc + 17 + (int) offset;
-            topic_misc_munny.yPosition = yPos_coll_misc + 27 + (int) offset;
-            topic_misc_menu.yPosition = yPos_coll_misc + 37 + (int) offset;
-            topic_misc_craftingmaterials.yPosition = yPos_coll_misc + 47 + (int) offset;
-            topic_misc_organizationweapons.yPosition = yPos_coll_misc + 57 + (int) offset;
-            topic_misc_musicdiscs.yPosition = yPos_coll_misc + 67 + (int) offset;
-            topic_misc_commands.yPosition = yPos_coll_misc + 77 + (int) offset;
+            topic_misc_hearts.y = yPos_coll_misc + 17 + (int) offset;
+            topic_misc_munny.y = yPos_coll_misc + 27 + (int) offset;
+            topic_misc_menu.y = yPos_coll_misc + 37 + (int) offset;
+            topic_misc_craftingmaterials.y = yPos_coll_misc + 47 + (int) offset;
+            topic_misc_organizationweapons.y = yPos_coll_misc + 57 + (int) offset;
+            topic_misc_musicdiscs.y = yPos_coll_misc + 67 + (int) offset;
+            topic_misc_commands.y = yPos_coll_misc + 77 + (int) offset;
         } else {
             topic_misc_hearts.visible = false;
             topic_misc_munny.visible = false;
@@ -725,8 +725,8 @@ public class GuiJournal extends GuiScreen {
                 drawTexturedModalRect(0, 0, 2, 0, 1, 1);
             }
             GL11.glPopMatrix();
-            button.xPosition = posX + width - 10;
-            button.yPosition = posY + height / 2 - 3;
+            button.x = posX + width - 10;
+            button.y = posY + height / 2 - 3;
             drawCenteredString(fontRenderer, text, posX + width / 2, posY + height / 2 - 3, 0xFFFFFF);
 
         }
@@ -847,8 +847,8 @@ public class GuiJournal extends GuiScreen {
 
         scroll_collapse.width = (int) (7 * 1.5f);
         scroll_collapse.height = (int) (7 * 1.5f);
-        scroll_collapse.xPosition = xPos_coll_commandMenu + 102;
-        scroll_collapse.yPosition = yPos_coll_commandMenu;
+        scroll_collapse.x = xPos_coll_commandMenu + 102;
+        scroll_collapse.y = yPos_coll_commandMenu;
 
         scroll_page.width = (int) (7 * 1.5f);
         scroll_page.height = (int) (7 * 1.5f);
@@ -974,13 +974,13 @@ public class GuiJournal extends GuiScreen {
         if (x <= xPos_coll_commandMenu + 100 + (scroll_collapse.width) && x >= xPos_coll_commandMenu) if (clickedMouseButton == 0) {
             offset = (-scrollPos);
             if (y <= scrollGuiPosMin) {
-                scroll_collapse.yPosition = scrollGuiPosMin;
+                scroll_collapse.y = scrollGuiPosMin;
                 scrollPos = 0;
             } else if (y >= scrollGuiPosMax) {
-                scroll_collapse.yPosition = scrollGuiPosMax;
+                scroll_collapse.y = scrollGuiPosMax;
                 scrollPos = scrollPosMax;
             } else {
-                scroll_collapse.yPosition = y;
+                scroll_collapse.y = y;
                 scrollPos = (y - (float) scrollGuiPosMin) * step;
             }
 
@@ -1265,7 +1265,7 @@ public class GuiJournal extends GuiScreen {
         }
 
         @Override
-        public void drawButton (Minecraft mc, int mouseX, int mouseY) {
+        public void drawButton (Minecraft mc, int mouseX, int mouseY, float partialTicks) {
             if (visible) {
                 int u = 3;
                 int v = 0;
@@ -1291,7 +1291,7 @@ public class GuiJournal extends GuiScreen {
 
                 GL11.glScissor(xPos_coll_commandMenu, (distToBottomFromMisc) * 2 - 2, res.getScaledWidth(), listHeight * 2 - 1);
                 GL11.glEnable(GL11.GL_SCISSOR_TEST);
-                GL11.glTranslatef(this.xPosition, this.yPosition, 0);
+                GL11.glTranslatef(this.x, this.y, 0);
                 GL11.glScalef(1.1f, 1.1f, 0);
                 drawTexturedModalRect(0, 0, u, v, w, h);
                 GL11.glDisable(GL11.GL_SCISSOR_TEST);
@@ -1308,14 +1308,14 @@ public class GuiJournal extends GuiScreen {
 
         @Override
         protected void mouseDragged (Minecraft mc, int mouseX, int mouseY) {
-            yPosition = mouseY;
+            y = mouseY;
         }
 
         @Override
-        public void drawButton (Minecraft mc, int mouseX, int mouseY) {
+        public void drawButton (Minecraft mc, int mouseX, int mouseY, float partialTicks) {
             mc.renderEngine.bindTexture(texture);
             GL11.glPushMatrix();
-            GL11.glTranslatef(xPosition, yPosition, 0);
+            GL11.glTranslatef(x, y, 0);
             GL11.glScalef(1.5f, 1.5f, 0);
             drawTexturedModalRect(0, 0, 8, 0, 7, 7);
             GL11.glPopMatrix();
@@ -1333,14 +1333,14 @@ public class GuiJournal extends GuiScreen {
 
         @Override
         protected void mouseDragged (Minecraft mc, int mouseX, int mouseY) {
-            yPosition = mouseY;
+            y = mouseY;
         }
 
         @Override
-        public void drawButton (Minecraft mc, int mouseX, int mouseY) {
+        public void drawButton (Minecraft mc, int mouseX, int mouseY, float partialTicks) {
             if (visible) {
                 GL11.glPushMatrix();
-                GL11.glTranslatef(this.xPosition, this.yPosition + 2, 0);
+                GL11.glTranslatef(this.x, this.y + 2, 0);
                 GL11.glScalef(0.75f, 0.75f, 0);
                 res = new ScaledResolution(mc);
                 int distToBottomFromMisc = (res.getScaledHeight() / 4) - 7;

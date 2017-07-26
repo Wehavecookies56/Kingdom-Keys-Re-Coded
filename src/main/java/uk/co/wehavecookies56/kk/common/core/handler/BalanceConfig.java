@@ -1,7 +1,11 @@
 package uk.co.wehavecookies56.kk.common.core.handler;
 
 import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 /**
@@ -139,6 +143,18 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
                 youngXehanortsKeyblade = new int[] { 13, 8 },
                 zeroOne = new int[] { 10, 4 }
                 ;
+    }
+
+    @Mod.EventBusSubscriber(modid = Reference.MODID)
+    private static class Events {
+
+        @SubscribeEvent
+        public static void onConfigChanged(ConfigChangedEvent event) {
+            if (event.getModID().equals(Reference.MODID)) {
+                ConfigManager.sync(Reference.MODID, Config.Type.INSTANCE);
+            }
+        }
+
     }
 
 }

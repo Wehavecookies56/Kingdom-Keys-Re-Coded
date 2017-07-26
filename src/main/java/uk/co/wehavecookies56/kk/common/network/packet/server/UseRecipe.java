@@ -9,10 +9,8 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
-import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
-import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
@@ -102,10 +100,7 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
         if (consume)
             if(!player.capabilities.isCreativeMode)
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-        if(RECIPES.getKnownRecipes().size() == 120)
-        {
-            AchievementHelper.addAchievement(player, ModAchievements.allRecipes);
-        }
+        if(RECIPES.getKnownRecipes().size() == 120) { }
     }
 
 }

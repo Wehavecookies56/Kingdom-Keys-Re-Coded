@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"DHD",
+		"I I"
+	],
+	"key": {
+		"D": {
+			"item": "kk:darkleather"
+		},
+		"H": {
+			"item": "minecraft:leather_helmet"
+		},
+		"I": {
+			"item": "kk:darkinfusediron"
+		}
+	},
+	"result": {
+		"item": "kk:organizationrobe_helmet"
+	}
+}

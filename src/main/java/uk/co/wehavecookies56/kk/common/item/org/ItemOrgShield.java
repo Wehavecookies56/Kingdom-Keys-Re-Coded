@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.item.org;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,15 +13,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
+import javax.annotation.Nullable;
+
 public class ItemOrgShield extends ItemShield implements IOrgWeapon{
 
-    public ItemOrgShield () {
+    public ItemOrgShield (String name) {
         super();
+        setRegistryName(name);
+        setUnlocalizedName(name);
+        setCreativeTab(ModItems.tabKingdomKeys);
         this.maxStackSize = 1;
-        this.setCreativeTab(ModItems.tabKingdomKeys);
         /*this.addPropertyOverride(new ResourceLocation(Reference.MODID, "models/item/blocking"), new IItemPropertyGetter()
         {
             @SideOnly(Side.CLIENT)
@@ -55,11 +61,9 @@ public class ItemOrgShield extends ItemShield implements IOrgWeapon{
     }
 
     @Override
-    @SideOnly (Side.CLIENT)
-    public void addInformation (ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-        dataList.add("IV Vexen");
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add("IV Vexen");
     }
-
 
     @Override
     public OrgMember getMember() {

@@ -5,20 +5,15 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.opengl.GL11;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgWeaponUnlock;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
@@ -414,7 +409,7 @@ public class GuiOrgUnlock extends GuiScreen {
         return new Dimension((int)zeroX + (node.getxPos()*scale),(int)zeroY + (node.getyPos()*scale));
     }
 
-    public void drawNodes(int mouseX, int mouseY, GuiNodeButton[] nodes) {
+    public void drawNodes(int mouseX, int mouseY, GuiNodeButton[] nodes, float partialTicks) {
         GlStateManager.color(1, 1, 1, 1);
         for(GuiNodeButton n : nodes) {
             if (n != null) {
@@ -455,9 +450,9 @@ public class GuiOrgUnlock extends GuiScreen {
         for(GuiNodeButton n : nodes) {
             if (n != null) {
                 Dimension d = convertToGUICoords(n.getNode());
-                n.xPosition = (int) d.getWidth();
-                n.yPosition = (int) d.getHeight();
-                n.drawButton(Minecraft.getMinecraft(), mouseX, mouseY);
+                n.x = (int) d.getWidth();
+                n.y = (int) d.getHeight();
+                n.drawButton(Minecraft.getMinecraft(), mouseX, mouseY, partialTicks);
             }
         }
     }
@@ -474,7 +469,7 @@ public class GuiOrgUnlock extends GuiScreen {
         Minecraft.getMinecraft().renderEngine.bindTexture(background);
         GL11.glColor4f(0.15F, 0.15F, 0.15F, 1);
         drawModalRectWithCustomSizedTexture((((width / 2) - (texWidth / 2)) * sr.getScaleFactor() + dispX) - 1000, (((height / 2) - (texHeight / 2)) * sr.getScaleFactor() + dispY) - 1000,0, 0, 2000,2000, 32, 32);
-        drawNodes(mouseX, mouseY, unlocks);
+        drawNodes(mouseX, mouseY, unlocks, partialTicks);
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
         GL11.glPopMatrix();
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);

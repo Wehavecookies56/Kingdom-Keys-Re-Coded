@@ -3,13 +3,14 @@ package uk.co.wehavecookies56.kk.common.network.packet.server;
 import java.io.IOException;
 import java.util.Random;
 
+import net.minecraft.advancements.AdvancementList;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityMultiPart;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.boss.EntityDragonPart;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -20,7 +21,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SPacketEntityVelocity;
-import net.minecraft.stats.AchievementList;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
@@ -241,11 +241,6 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                             }
                         }
 
-                        if (attackDamage >= 18.0F)
-                        {
-                            player.addStat(AchievementList.OVERKILL);
-                        }
-
                         player.setLastAttackedEntity(targetEntity);
 
                         if (targetEntity instanceof EntityLivingBase)
@@ -257,9 +252,9 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                         ItemStack itemstack1 = player.getHeldItemOffhand();
                         Entity entity = targetEntity;
 
-                        if (targetEntity instanceof EntityDragonPart)
+                        if (targetEntity instanceof EntityDragon)
                         {
-                            IEntityMultiPart ientitymultipart = ((EntityDragonPart)targetEntity).parent;
+                            IEntityMultiPart ientitymultipart = ((EntityDragon)targetEntity);
 
                             if (ientitymultipart instanceof EntityLivingBase)
                             {

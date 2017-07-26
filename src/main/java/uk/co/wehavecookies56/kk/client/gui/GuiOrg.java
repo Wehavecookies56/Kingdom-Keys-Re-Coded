@@ -238,19 +238,19 @@ public class GuiOrg extends GuiScreen {
             next.visible = false;
             prev.visible = false;
             select.visible = false;
-            ok.xPosition = (width / 2) - (ok.width / 2);
-            ok.yPosition = (height / 2) - (ok.height / 2) + fontRenderer.FONT_HEIGHT + 2;
+            ok.x = (width / 2) - (ok.width / 2);
+            ok.y = (height / 2) - (ok.height / 2) + fontRenderer.FONT_HEIGHT + 2;
         } else {
             ok.visible = false;
             next.visible = true;
-            next.xPosition = (width / 2) - (next.width / 2) + 128;
-            next.yPosition = (height / 2) - (next.height / 2);
+            next.x = (width / 2) - (next.width / 2) + 128;
+            next.y = (height / 2) - (next.height / 2);
             prev.visible = true;
-            prev.xPosition = (width / 2) - (prev.width / 2) - 128;
-            prev.yPosition = (height / 2) - (prev.height / 2);
+            prev.x = (width / 2) - (prev.width / 2) - 128;
+            prev.y = (height / 2) - (prev.height / 2);
             select.visible = true;
-            select.xPosition = (width / 2) - (select.width / 2);
-            select.yPosition = (height / 2) - (select.height / 2) + 90;
+            select.x = (width / 2) - (select.width / 2);
+            select.y= (height / 2) - (select.height / 2) + 90;
             confirm.visible = false;
             cancel.visible = false;
             if (confirmChoice) {
@@ -259,10 +259,10 @@ public class GuiOrg extends GuiScreen {
                 next.visible = false;
                 prev.visible = false;
                 select.visible = false;
-                confirm.xPosition = (width / 2) - (confirm.width / 2);
-                confirm.yPosition = (height / 2) - (confirm.height / 2) + 30;
-                cancel.xPosition = (width / 2) - (cancel.width / 2);
-                cancel.yPosition = (height / 2) - (cancel.height / 2) + 32 + confirm.height;
+                confirm.x = (width / 2) - (confirm.width / 2);
+                confirm.y = (height / 2) - (confirm.height / 2) + 30;
+                cancel.x = (width / 2) - (cancel.width / 2);
+                cancel.y = (height / 2) - (cancel.height / 2) + 32 + confirm.height;
             }
         }
     }

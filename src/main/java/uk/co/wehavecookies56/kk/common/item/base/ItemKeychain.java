@@ -6,13 +6,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class ItemKeychain extends ItemSword {
 
-    public ItemKeychain(ItemKeyblade blade, ToolMaterial material) {
-        super(material);
-        this.blade = blade;
+    public ItemKeychain(String name) {
+        super(ModItems.KEYCHAIN);
         setMaxStackSize(1);
+        setRegistryName(name);
+        setUnlocalizedName(name);
+        setCreativeTab(ModItems.tabKingdomKeys);
     }
     ItemKeyblade blade;
 

@@ -8,7 +8,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import scala.tools.nsc.interpreter.Power;
 import uk.co.wehavecookies56.kk.common.block.base.BlockKKOre;
 import uk.co.wehavecookies56.kk.common.block.base.BlockStationOfAwakening;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
@@ -16,159 +20,183 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class ModBlocks {
 
-    public static Block NormalBlox, HardBlox, MetalBlox, DangerBlox, BounceBlox, BlastBlox, PrizeBlox,
-            RarePrizeBlox, GhostBlox, BlazingOre, BrightOre, DarkOre, DarkOreE, DenseOre, EnergyOre, FrostOre,
-            LightningOre, LucidOre, PowerOre, PowerOreE, RemembranceOre, SerenityOre, StormyOre, TranquilOre,
-            TwilightOre, SynthesisTable, KKChest, SavePoint, MagnetBlox, OrgPortal;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.NormalBlox)
+    public static Block NormalBlox;
 
-    public static Block StationOfAwakening, StationOfAwakeningDoor, Pedestal;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.HardBlox)
+    public static Block HardBlox;
 
-    public static CreativeTabs tabKingdomKeysBlocks;
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MetalBlox)
+    public static Block MetalBlox;
 
-    public static void init () {
-        tabKingdomKeysBlocks = new TabKingdomKeysBlocks(CreativeTabs.getNextID(), Strings.tabKingdomKeysBlocks);
-        NormalBlox = new BlockNormalBlox(Material.IRON, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.NormalBlox).setCreativeTab(tabKingdomKeysBlocks);
-        HardBlox = new BlockHardBlox(Material.IRON, "pickaxe", 1, 5f, 20f).setUnlocalizedName(Strings.HardBlox).setCreativeTab(tabKingdomKeysBlocks);
-        MetalBlox = new BlockMetalBlox(Material.IRON, "pickaxe", 2, 10f, 60f).setUnlocalizedName(Strings.MetalBlox).setCreativeTab(tabKingdomKeysBlocks);
-        DangerBlox = new BlockDangerBlox(Material.IRON, "pickaxe", 1, 1f, 1f).setUnlocalizedName(Strings.DangerBlox).setCreativeTab(tabKingdomKeysBlocks);
-        BounceBlox = new BlockBounceBlox(Material.IRON, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BounceBlox).setCreativeTab(tabKingdomKeysBlocks);
-        BlastBlox = new BlockBlastBlox(Material.IRON, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.BlastBlox).setCreativeTab(tabKingdomKeysBlocks);
-        PrizeBlox = new BlockPrizeBlox(Material.IRON, "pickaxe", 0, 1f, 1f).setUnlocalizedName(Strings.PrizeBlox).setCreativeTab(tabKingdomKeysBlocks);
-        RarePrizeBlox = new BlockRarePrizeBlox(Material.IRON, "pickaxe", 1, 1f, 1f).setUnlocalizedName(Strings.RarePrizeBlox).setCreativeTab(tabKingdomKeysBlocks);
-        GhostBlox = new BlockGhostBlox(Material.CIRCUITS, "pickaxe", 1, 1f, 1f).setUnlocalizedName(Strings.GhostBlox).setCreativeTab(tabKingdomKeysBlocks);
-        BlazingOre = new BlockKKOre(Material.IRON, "pickaxe", 1, 2f, 1f).setUnlocalizedName(Strings.BlazingOre).setCreativeTab(tabKingdomKeysBlocks);
-        BrightOre = new BlockKKOre(Material.IRON, "pickaxe", 1, 2f, 1f).setUnlocalizedName(Strings.BrightOre).setCreativeTab(tabKingdomKeysBlocks);
-        DarkOre = new BlockKKOre(Material.IRON, "pickaxe", 2, 2f, 1f).setUnlocalizedName(Strings.DarkOre).setCreativeTab(tabKingdomKeysBlocks);
-        DarkOreE = new BlockKKOre(Material.IRON, "pickaxe", 2, 2f, 1f).setUnlocalizedName(Strings.DarkOreE).setCreativeTab(tabKingdomKeysBlocks);
-        DenseOre = new BlockKKOre(Material.IRON, "pickaxe", 2, 2f, 1f).setUnlocalizedName(Strings.DenseOre).setCreativeTab(tabKingdomKeysBlocks);
-        EnergyOre = new BlockKKOre(Material.IRON, "pickaxe", 1, 2f, 1f).setUnlocalizedName(Strings.EnergyOre).setCreativeTab(tabKingdomKeysBlocks);
-        FrostOre = new BlockKKOre(Material.IRON, "pickaxe", 1, 2f, 1f).setUnlocalizedName(Strings.FrostOre).setCreativeTab(tabKingdomKeysBlocks);
-        LightningOre = new BlockKKOre(Material.IRON, "pickaxe", 1, 2f, 1f).setUnlocalizedName(Strings.LightningOre).setCreativeTab(tabKingdomKeysBlocks);
-        LucidOre = new BlockKKOre(Material.IRON, "pickaxe", 1, 2f, 1f).setUnlocalizedName(Strings.LucidOre).setCreativeTab(tabKingdomKeysBlocks);
-        PowerOre = new BlockKKOre(Material.IRON, "pickaxe", 2, 2f, 1f).setUnlocalizedName(Strings.PowerOre).setCreativeTab(tabKingdomKeysBlocks);
-        PowerOreE = new BlockKKOre(Material.IRON, "pickaxe", 2, 2f, 1f).setUnlocalizedName(Strings.PowerOreE).setCreativeTab(tabKingdomKeysBlocks);
-        RemembranceOre = new BlockKKOre(Material.IRON, "pickaxe", 1, 2f, 1f).setUnlocalizedName(Strings.RemembranceOre).setCreativeTab(tabKingdomKeysBlocks);
-        SerenityOre = new BlockKKOre(Material.IRON, "pickaxe", 1, 2f, 1f).setUnlocalizedName(Strings.SerenityOre).setCreativeTab(tabKingdomKeysBlocks);
-        TranquilOre = new BlockKKOre(Material.IRON, "pickaxe", 1, 2f, 1f).setUnlocalizedName(Strings.TranquilOre).setCreativeTab(tabKingdomKeysBlocks);
-        StormyOre = new BlockKKOre(Material.IRON, "pickaxe", 2, 2f, 1f).setUnlocalizedName(Strings.StormyOre).setCreativeTab(tabKingdomKeysBlocks);
-        TwilightOre = new BlockKKOre(Material.IRON, "pickaxe", 2, 2f, 1f).setUnlocalizedName(Strings.TwilightOre).setCreativeTab(tabKingdomKeysBlocks);
-        SynthesisTable = new BlockSynthesisTable(Material.WOOD, "axe", 0, 1, 1).setUnlocalizedName(Strings.SynthesisTable).setCreativeTab(tabKingdomKeysBlocks);
-        KKChest = new BlockKKChest(Material.ROCK, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.KKChest).setCreativeTab(tabKingdomKeysBlocks);
-        SavePoint = new BlockSavePoint(Material.CIRCUITS, "pickaxe", 3, 20f, 5f).setUnlocalizedName(Strings.SavePoint).setCreativeTab(tabKingdomKeysBlocks);
-        MagnetBlox = new BlockMagnetBlox(Material.IRON, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.MagnetBlox).setCreativeTab(tabKingdomKeysBlocks);
-        Pedestal = new BlockPedestal(Material.IRON, "pickaxe", 2, 10f, 60f).setUnlocalizedName(Strings.Pedestal).setCreativeTab(tabKingdomKeysBlocks);
-        StationOfAwakening = new BlockStationOfAwakening(Strings.StationOfAwakening);
-        StationOfAwakeningDoor = new BlockStationOfAwakeningDoor(Strings.StationOfAwakeningDoor);
-        OrgPortal = new BlockOrgPortal(Material.IRON, "pickaxe", 0, 1f, 10f).setUnlocalizedName(Strings.OrgPortal).setCreativeTab(tabKingdomKeysBlocks);
-    }
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DangerBlox)
+    public static Block DangerBlox;
 
-    public static void registerBlock (Block block, String name) {
-        GameRegistry.register(block, new ResourceLocation(Reference.MODID, name));
-        GameRegistry.register(new ItemBlock(block), new ResourceLocation(Reference.MODID, name));
-    }
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BounceBlox)
+    public static Block BounceBlox;
 
-    public static void register () {
-        registerBlock(NormalBlox, Strings.NormalBlox);
-        registerBlock(HardBlox, Strings.HardBlox);
-        registerBlock(MetalBlox, Strings.MetalBlox);
-        registerBlock(DangerBlox, Strings.DangerBlox);
-        registerBlock(BounceBlox, Strings.BounceBlox);
-        registerBlock(BlastBlox, Strings.BlastBlox);
-        registerBlock(PrizeBlox, Strings.PrizeBlox);
-        registerBlock(RarePrizeBlox, Strings.RarePrizeBlox);
-        registerBlock(GhostBlox, Strings.GhostBlox);
-        registerBlock(BlazingOre, Strings.BlazingOre);
-        registerBlock(BrightOre, Strings.BrightOre);
-        registerBlock(DarkOre, Strings.DarkOre);
-        registerBlock(DarkOreE, Strings.DarkOreE);
-        registerBlock(DenseOre, Strings.DenseOre);
-        registerBlock(EnergyOre, Strings.EnergyOre);
-        registerBlock(FrostOre, Strings.FrostOre);
-        registerBlock(LightningOre, Strings.LightningOre);
-        registerBlock(LucidOre, Strings.LucidOre);
-        registerBlock(PowerOre, Strings.PowerOre);
-        registerBlock(PowerOreE, Strings.PowerOreE);
-        registerBlock(RemembranceOre, Strings.RemembranceOre);
-        registerBlock(SerenityOre, Strings.SerenityOre);
-        registerBlock(StormyOre, Strings.StormyOre);
-        registerBlock(TranquilOre, Strings.TranquilOre);
-        registerBlock(TwilightOre, Strings.TwilightOre);
-        registerBlock(SynthesisTable, Strings.SynthesisTable);
-        registerBlock(KKChest, Strings.KKChest);
-        registerBlock(SavePoint, Strings.SavePoint);
-        registerBlock(MagnetBlox, Strings.MagnetBlox);
-        registerBlock(StationOfAwakening, Strings.StationOfAwakening);
-        registerBlock(StationOfAwakeningDoor, Strings.StationOfAwakeningDoor);
-        registerBlock(Pedestal, Strings.Pedestal);
-        registerBlock(OrgPortal, Strings.OrgPortal);
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BlastBlox)
+    public static Block BlastBlox;
 
-    }
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PrizeBlox)
+    public static Block PrizeBlox;
 
-    public static void registerRenders () {
-        Item item = Item.getItemFromBlock(GhostBlox);
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "visible=0"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 1, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "visible=1"));
-        item = Item.getItemFromBlock(StationOfAwakening);
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=0"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 1, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=1"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 2, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=2"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 3, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=3"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 4, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=4"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 5, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=5"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 6, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=6"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 7, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=7"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 8, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=8"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 9, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=9"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 10, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=10"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 11, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=11"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 12, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=12"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 13, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=13"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 14, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=14"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 15, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=15"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 16, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "variant=16"));
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.RarePrizeBlox)
+    public static Block RarePrizeBlox;
 
-        registerRender(NormalBlox);
-        registerRender(HardBlox);
-        registerRender(MetalBlox);
-        registerRender(DangerBlox);
-        registerRender(BounceBlox);
-        registerRender(BlastBlox);
-        registerRender(PrizeBlox);
-        registerRender(RarePrizeBlox);
-        registerRender(GhostBlox);
-        registerRender(BlazingOre);
-        registerRender(BrightOre);
-        registerRender(DarkOre);
-        registerRender(DarkOreE);
-        registerRender(DenseOre);
-        registerRender(EnergyOre);
-        registerRender(FrostOre);
-        registerRender(LightningOre);
-        registerRender(LucidOre);
-        registerRender(PowerOre);
-        registerRender(PowerOreE);
-        registerRender(RemembranceOre);
-        registerRender(SerenityOre);
-        registerRender(StormyOre);
-        registerRender(TranquilOre);
-        registerRender(TwilightOre);
-        registerRender(SynthesisTable);
-        registerRender(KKChest);
-        registerRender(SavePoint);
-        registerRender(MagnetBlox);
-        registerRender(StationOfAwakeningDoor);
-        registerRender(Pedestal);
-        registerRender(OrgPortal);
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.GhostBlox)
+    public static Block GhostBlox;
 
-    }
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BlazingOre)
+    public static Block BlazingOre;
 
-    public static void registerRender (Block block) {
-        Item item = Item.getItemFromBlock(block);
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
-    }
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BrightOre)
+    public static Block BrightOre;
 
-    public static void registerRender (Block block, int meta, String file) {
-        Item item = Item.getItemFromBlock(block);
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(Reference.MODID + ":" + file, "inventory"));
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DarkOre)
+    public static Block DarkOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DarkOreE)
+    public static Block DarkOreE;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DenseOre)
+    public static Block DenseOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.EnergyOre)
+    public static Block EnergyOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FrostOre)
+    public static Block FrostOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LightningOre)
+    public static Block LightningOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.LucidOre)
+    public static Block LucidOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PowerOre)
+    public static Block PowerOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PowerOreE)
+    public static Block PowerOreE;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.RemembranceOre)
+    public static Block RemembranceOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SerenityOre)
+    public static Block SerenityOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.StormyOre)
+    public static Block StormyOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TranquilOre)
+    public static Block TranquilOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TwilightOre)
+    public static Block TwilightOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SynthesisTable)
+    public static Block SynthesisTable;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.KKChest)
+    public static Block KKChest;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SavePoint)
+    public static Block SavePoint;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.MagnetBlox)
+    public static Block MagnetBlox;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OrgPortal)
+    public static Block OrgPortal;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.StationOfAwakening)
+    public static Block StationOfAwakening;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.StationOfAwakeningDoor)
+    public static Block StationOfAwakeningDoor;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Pedestal)
+    public static Block Pedestal;
+
+    public static CreativeTabs tabKingdomKeysBlocks = new TabKingdomKeysBlocks(CreativeTabs.getNextID(), Strings.tabKingdomKeysBlocks);
+
+    @Mod.EventBusSubscriber(modid = Reference.MODID)
+    public static class register {
+
+        @SubscribeEvent
+        public static void registerBlock(RegistryEvent.Register<Block> event) {
+            event.getRegistry().register(new BlockNormalBlox(Material.IRON, "pickaxe", 0, 1f, 10f, Strings.NormalBlox));
+            event.getRegistry().register(new BlockHardBlox(Material.IRON, "pickaxe", 1, 5f, 20f, Strings.HardBlox));
+            event.getRegistry().register(new BlockMetalBlox(Material.IRON, "pickaxe", 2, 10f, 60f, Strings.MetalBlox));
+            event.getRegistry().register(new BlockDangerBlox(Material.IRON, "pickaxe", 1, 1f, 1f, Strings.DangerBlox));
+            event.getRegistry().register(new BlockBounceBlox(Material.IRON, "pickaxe", 0, 1f, 1f, Strings.BounceBlox));
+            event.getRegistry().register(new BlockBlastBlox(Material.IRON, "pickaxe", 0, 1f, 1f, Strings.BlastBlox));
+            event.getRegistry().register(new BlockPrizeBlox(Material.IRON, "pickaxe", 0, 1f, 1f, Strings.PrizeBlox));
+            event.getRegistry().register(new BlockRarePrizeBlox(Material.IRON, "pickaxe", 1, 1f, 1f, Strings.RarePrizeBlox));
+            event.getRegistry().register(new BlockGhostBlox(Material.CIRCUITS, "pickaxe", 1, 1f, 1f, Strings.GhostBlox));
+            event.getRegistry().register(new BlockBlazingOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.BlazingOre));
+            event.getRegistry().register(new BlockBrightOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.BrightOre));
+            event.getRegistry().register(new BlockDarkOre(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.DarkOre));
+            event.getRegistry().register(new BlockDarkOreE(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.DarkOreE));
+            event.getRegistry().register(new BlockDenseOre(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.DenseOre));
+            event.getRegistry().register(new BlockEnergyOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.EnergyOre));
+            event.getRegistry().register(new BlockFrostOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.FrostOre));
+            event.getRegistry().register(new BlockLightningOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.LightningOre));
+            event.getRegistry().register(new BlockLucidOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.LucidOre));
+            event.getRegistry().register(new BlockPowerOre(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.PowerOre));
+            event.getRegistry().register(new BlockPowerOreE(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.PowerOreE));
+            event.getRegistry().register(new BlockRemembranceOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.RemembranceOre));
+            event.getRegistry().register(new BlockSerenityOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.SerenityOre));
+            event.getRegistry().register(new BlockTranquilOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.TranquilOre));
+            event.getRegistry().register(new BlockStormyOre(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.StormyOre));
+            event.getRegistry().register(new BlockTwilightOre(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.TwilightOre));
+            event.getRegistry().register(new BlockSynthesisTable(Material.WOOD, "axe", 0, 1, 1, Strings.SynthesisTable));
+            event.getRegistry().register(new BlockKKChest(Material.ROCK, "pickaxe", 3, 20f, 5f, Strings.KKChest));
+            event.getRegistry().register(new BlockSavePoint(Material.CIRCUITS, "pickaxe", 3, 20f, 5f, Strings.SavePoint));
+            event.getRegistry().register(new BlockMagnetBlox(Material.IRON, "pickaxe", 0, 1f, 10f, Strings.MagnetBlox));
+            event.getRegistry().register(new BlockPedestal(Material.IRON, "pickaxe", 2, 10f, 60f, Strings.Pedestal));
+            event.getRegistry().register(new BlockStationOfAwakening(Strings.StationOfAwakening));
+            event.getRegistry().register(new BlockStationOfAwakeningDoor(Strings.StationOfAwakeningDoor));
+            event.getRegistry().register(new BlockOrgPortal(Material.IRON, "pickaxe", 0, 1f, 10f, Strings.OrgPortal));
+        }
+
+        @SubscribeEvent
+        public static void registerItem(RegistryEvent.Register<Item> event) {
+            event.getRegistry().register(new ItemBlock(NormalBlox).setRegistryName(NormalBlox.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(HardBlox).setRegistryName(HardBlox.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(MetalBlox).setRegistryName(MetalBlox.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(DangerBlox).setRegistryName(DangerBlox.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(BounceBlox).setRegistryName(BounceBlox.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(BlastBlox).setRegistryName(BlastBlox.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(PrizeBlox).setRegistryName(PrizeBlox.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(RarePrizeBlox).setRegistryName(RarePrizeBlox.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(GhostBlox).setRegistryName(GhostBlox.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(BlazingOre).setRegistryName(BlazingOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(BrightOre).setRegistryName(BrightOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(DarkOre).setRegistryName(DarkOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(DarkOreE).setRegistryName(DarkOreE.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(DenseOre).setRegistryName(DenseOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(EnergyOre).setRegistryName(EnergyOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(FrostOre).setRegistryName(FrostOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(LightningOre).setRegistryName(LightningOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(LucidOre).setRegistryName(LucidOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(PowerOre).setRegistryName(PowerOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(PowerOreE).setRegistryName(PowerOreE.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(RemembranceOre).setRegistryName(RemembranceOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(SerenityOre).setRegistryName(SerenityOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(TranquilOre).setRegistryName(TranquilOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(StormyOre).setRegistryName(StormyOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(TwilightOre).setRegistryName(TwilightOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(SynthesisTable).setRegistryName(SynthesisTable.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(KKChest).setRegistryName(KKChest.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(SavePoint).setRegistryName(SavePoint.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(MagnetBlox).setRegistryName(MagnetBlox.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(Pedestal).setRegistryName(Pedestal.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(StationOfAwakening).setRegistryName(StationOfAwakening.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(StationOfAwakeningDoor).setRegistryName(StationOfAwakeningDoor.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(OrgPortal).setRegistryName(OrgPortal.getRegistryName()));
+        }
+
     }
 }

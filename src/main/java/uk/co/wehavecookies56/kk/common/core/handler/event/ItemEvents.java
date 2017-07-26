@@ -37,13 +37,11 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.api.munny.MunnyRegistry;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
-import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
-import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.item.ItemHpOrb;
 import uk.co.wehavecookies56.kk.common.item.ItemMunny;
@@ -68,35 +66,34 @@ public class ItemEvents {
 
     @SubscribeEvent
     public void onEntityItemPickUp (EntityItemPickupEvent event) {
-        if (event.getItem().getEntityItem().getItem() instanceof ItemMunny) {
+        if (event.getItem().getItem().getItem() instanceof ItemMunny) {
             final MunnyCapability.IMunny munny = event.getEntityPlayer().getCapability(ModCapabilities.MUNNY, null);
-            MunnyPickup packet = new MunnyPickup(event.getItem().getEntityItem());
-            event.getItem().getEntityItem().setCount(event.getItem().getEntityItem().getCount()-1);;
-            munny.addMunny(event.getItem().getEntityItem().getTagCompound().getInteger("amount"));
+            MunnyPickup packet = new MunnyPickup(event.getItem().getItem());
+            event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
+            munny.addMunny(event.getItem().getItem().getTagCompound().getInteger("amount"));
             PacketDispatcher.sendTo(new SyncMunnyData(munny), (EntityPlayerMP) event.getEntityPlayer());
-            PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getItem().getEntityItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getEntityPlayer());
+            PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getItem().getItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getEntityPlayer());
 
-        } else if (event.getItem().getEntityItem().getItem() instanceof ItemHpOrb) {
+        } else if (event.getItem().getItem().getItem() instanceof ItemHpOrb) {
             if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
             PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
-            HpOrbPickup packet = new HpOrbPickup(event.getItem().getEntityItem());
+            HpOrbPickup packet = new HpOrbPickup(event.getItem().getItem());
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
                 if (event.getEntityPlayer().getHealth() >= STATS.getHP()) {
-                    event.getItem().getEntityItem().setCount(event.getItem().getEntityItem().getCount()-1);;
+                    event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
                     return;
                 }
                 if (event.getEntityPlayer().getHealth() < STATS.getHP() - 1)
                     event.getEntityPlayer().heal(2);
                 else
                     event.getEntityPlayer().heal(1);
-                event.getItem().getEntityItem().setCount(event.getItem().getEntityItem().getCount()-1);;
+                event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
             }
-        } else if (event.getItem().getEntityItem().getItem() == ModItems.DriveOrb) {
-            final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
-            {
+        } else if (event.getItem().getItem().getItem() == ModItems.DriveOrb) {
+            final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);{
                 if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-                    event.getItem().getEntityItem().setCount(event.getItem().getEntityItem().getCount()-1);;
-                    STATS.addDP(event.getItem().getEntityItem().getTagCompound().getInteger("amount"));
+                    event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
+                    STATS.addDP(event.getItem().getItem().getTagCompound().getInteger("amount"));
                     EntityPlayer player = event.getEntityPlayer();
                     if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Master))
                         player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Master);
@@ -105,27 +102,16 @@ public class ItemEvents {
                     PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntityPlayer());
                 }
             }
-        } else if (event.getItem().getEntityItem().getItem() == ModItems.MagicOrb) {
+        } else if (event.getItem().getItem().getItem() == ModItems.MagicOrb) {
             final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
             double mp = STATS.getMP();
             if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-                event.getItem().getEntityItem().setCount(event.getItem().getEntityItem().getCount()-1);;
-                STATS.addMP(event.getItem().getEntityItem().getTagCompound().getInteger("amount"));
+                event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
+                STATS.addMP(event.getItem().getItem().getTagCompound().getInteger("amount"));
                 PacketDispatcher.sendTo(new SyncMagicData(event.getEntityPlayer().getCapability(ModCapabilities.MAGIC_STATE, null), STATS), (EntityPlayerMP) event.getEntityPlayer());
             }
-        } else if (event.getItem().getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.NormalBlox) || event.getItem().getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.HardBlox) || event.getItem().getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.MetalBlox)) {
-            AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getBlox);
-        } else if (event.getItem().getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.GhostBlox)){
-            AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getGhostBlox);
-        } else if (event.getItem().getEntityItem().getItem() == Item.getItemFromBlock(ModBlocks.SynthesisTable)){
-            AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getSynthesisTable);
-        } else if (event.getItem().getEntityItem().getItem() instanceof ItemSpellOrb){
-            AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getMagic);
-        } else if (event.getItem().getEntityItem().getItem() instanceof ItemDriveForm){
-            AchievementHelper.addAchievement(event.getEntityPlayer(), ModAchievements.getDriveForm);
-            
-        } else if (event.getItem().getEntityItem().getItem() instanceof ItemSynthesisMaterial) {
+        } else if (event.getItem().getItem().getItem() instanceof ItemSynthesisMaterial) {
             for(int i = 0; i < event.getEntityPlayer().inventory.getSizeInventory(); i++) {
                 if (event.getEntityPlayer().inventory.getStackInSlot(i) != ItemStack.EMPTY) {
                     if (event.getEntityPlayer().inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagL) {
@@ -146,7 +132,7 @@ public class ItemEvents {
     public void addSynthesisMaterialToBag(IItemHandler inv, EntityItemPickupEvent event) {
         for (int j = 0; j < inv.getSlots(); j++) {
             ItemStack bagItem = inv.getStackInSlot(j);
-            ItemStack pickUp = event.getItem().getEntityItem();
+            ItemStack pickUp = event.getItem().getItem();
             if (bagItem != ItemStack.EMPTY) {
                 if (bagItem.getItem().equals(pickUp.getItem())) {
                     if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) {
@@ -194,46 +180,41 @@ public class ItemEvents {
             }
         }
         //TODO Localize all this
-        if (event.getItemStack().getItem() instanceof ItemKeyblade) {
+        if (event.getItemStack().getItem() instanceof ItemKeyblade && event.getEntityPlayer() != null) {
             List<String> tooltip = event.getToolTip();
             ItemKeyblade keyblade = (ItemKeyblade) event.getItemStack().getItem();
             (tooltip.subList(1, tooltip.size())).clear();
-            
+
             NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
             double sharpnessDamage = 0;
-            if(nbttaglist != null)
-            {
-                 for (int i = 0; i < nbttaglist.tagCount(); i++) {
-                     int id = nbttaglist.getCompoundTagAt(i).getShort("id");
-                     int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+            for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+                int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
 
-                    //System.out.println(Enchantment.getEnchantmentByID(id).getName());
-                    if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all"))
-                    {
-                        switch (lvl)
-                        {
-                        case 1:
-                            sharpnessDamage = 1;
-                            break;
-                        case 2:
-                            sharpnessDamage = 1.5;
-                            break;
-                        case 3:
-                            sharpnessDamage = 2;
-                            break;
-                        case 4:
-                            sharpnessDamage = 2.5;
-                            break;
-                        case 5:
-                            sharpnessDamage = 3;
-                            break;
-                        }
+                //System.out.println(Enchantment.getEnchantmentByID(id).getName());
+                if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all")) {
+                    switch (lvl) {
+                    case 1:
+                        sharpnessDamage = 1;
+                        break;
+                    case 2:
+                        sharpnessDamage = 1.5;
+                        break;
+                    case 3:
+                        sharpnessDamage = 2;
+                        break;
+                    case 4:
+                        sharpnessDamage = 2.5;
+                        break;
+                    case 5:
+                        sharpnessDamage = 3;
+                        break;
                     }
-                 }
+                }
             }
 
             double keyStrength = keyblade.getStrength()+sharpnessDamage;
-            
+
             String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
             tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * MainConfig.items.damageMultiplier + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + "]");
             tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() * MainConfig.items.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + "]");
@@ -248,15 +229,13 @@ public class ItemEvents {
             }
             if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
                 if (event.getItemStack().hasTagCompound()) {
-                    if (nbttaglist != null) {
-                        tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
-                        for (int i = 0; i < nbttaglist.tagCount(); i++) {
-                            int id = nbttaglist.getCompoundTagAt(i).getShort("id");
-                            int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+                    tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
+                    for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                        int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+                        int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
 
-                            if (Enchantment.getEnchantmentByID(id) != null) {
-                                tooltip.add(Enchantment.getEnchantmentByID(id).getTranslatedName(lvl));
-                            }
+                        if (Enchantment.getEnchantmentByID(id) != null) {
+                            tooltip.add(Enchantment.getEnchantmentByID(id).getTranslatedName(lvl));
                         }
                     }
                 }
@@ -302,64 +281,56 @@ public class ItemEvents {
                 tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
             }
         }
-        
-        if (event.getItemStack().getItem() instanceof ItemKeychain) {
+
+        if (event.getItemStack().getItem() instanceof ItemKeychain && event.getEntityPlayer() != null) {
             List<String> tooltip = event.getToolTip();
             ItemKeyblade keyblade = ((ItemKeychain) event.getItemStack().getItem()).getKeyblade();
-            (tooltip.subList(1, tooltip.size())).clear();
-           
-            NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
-            double sharpnessDamage = 0;
-            if(nbttaglist != null)
-            {
-                 for (int i = 0; i < nbttaglist.tagCount(); i++) {
-                     int id = nbttaglist.getCompoundTagAt(i).getShort("id");
-                     int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+            if (keyblade != null) {
+                (tooltip.subList(1, tooltip.size())).clear();
 
-                    //System.out.println(Enchantment.getEnchantmentByID(id).getName());
-                    if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all"))
-                    {
-                        switch (lvl)
-                        {
-                        case 1:
-                            sharpnessDamage = 1;
-                            break;
-                        case 2:
-                            sharpnessDamage = 1.5;
-                            break;
-                        case 3:
-                            sharpnessDamage = 2;
-                            break;
-                        case 4:
-                            sharpnessDamage = 2.5;
-                            break;
-                        case 5:
-                            sharpnessDamage = 3;
-                            break;
+                NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
+                double sharpnessDamage = 0;
+                for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                    int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+                    int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+                    if (Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all")) {
+                        switch (lvl) {
+                            case 1:
+                                sharpnessDamage = 1;
+                                break;
+                            case 2:
+                                sharpnessDamage = 1.5;
+                                break;
+                            case 3:
+                                sharpnessDamage = 2;
+                                break;
+                            case 4:
+                                sharpnessDamage = 2.5;
+                                break;
+                            case 5:
+                                sharpnessDamage = 3;
+                                break;
                         }
                     }
-                 }
-            }
-
-            double keyStrength = keyblade.getStrength()+sharpnessDamage;
-            
-            String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
-
-            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * MainConfig.items.damageMultiplier  + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + "]");
-            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() * MainConfig.items.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + "]");
-            if (keyblade.getDescription() != null) {
-                if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
-                    tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
-                    tooltip.add(keyblade.description);
-                    tooltip.add("");
-                } else {
-                    tooltip.add("Hold " +  TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY + " for description");
                 }
-            }
-            if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
-                if (event.getItemStack().hasTagCompound()) {
 
-                    if (nbttaglist != null) {
+                double keyStrength = keyblade.getStrength() + sharpnessDamage;
+
+                String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
+
+                tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * MainConfig.items.damageMultiplier + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade) + sharpnessDamage) + "]");
+                tooltip.add(TextFormatting.BLUE + "Magic: " + magicSymbol + keyblade.getMagic() * MainConfig.items.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(), 1, keyblade) + "]");
+                if (keyblade.getDescription() != null) {
+                    if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+                        tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
+                        tooltip.add(keyblade.description);
+                        tooltip.add("");
+                    } else {
+                        tooltip.add("Hold " + TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY + " for description");
+                    }
+                }
+                if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
+                    if (event.getItemStack().hasTagCompound()) {
                         tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
                         for (int i = 0; i < nbttaglist.tagCount(); i++) {
                             int id = nbttaglist.getCompoundTagAt(i).getShort("id");
@@ -370,32 +341,27 @@ public class ItemEvents {
                             }
                         }
                     }
+
+                } else {
+                    tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
                 }
-                
-            } else {
-                if(!(event.getItemStack().getEnchantmentTagList() == null))
-                tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
             }
         }
-        
+
         if (event.getItemStack().getItem() instanceof ItemOrgWeapon) {
             List<String> tooltip = event.getToolTip();
             ItemOrgWeapon weapon = (ItemOrgWeapon) event.getItemStack().getItem();
             (tooltip.subList(1, tooltip.size())).clear();
-            
+
             NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
             double sharpnessDamage = 0;
-            if(nbttaglist != null)
-            {
                  for (int i = 0; i < nbttaglist.tagCount(); i++) {
                      int id = nbttaglist.getCompoundTagAt(i).getShort("id");
                      int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
 
                     //System.out.println(Enchantment.getEnchantmentByID(id).getName());
-                    if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all"))
-                    {
-                        switch (lvl)
-                        {
+                    if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all")) {
+                        switch (lvl) {
                         case 1:
                             sharpnessDamage = 1;
                             break;
@@ -412,15 +378,15 @@ public class ItemEvents {
                             sharpnessDamage = 3;
                             break;
                         }
-                    }
                  }
             }
 
             double keyStrength = weapon.getStrength()+sharpnessDamage;
-            
+
             String magicSymbol = (weapon.getMagic() > 0) ? "+" : "";
-            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength + " (" + (DamageCalculation.getOrgStrengthDamage(event.getEntityPlayer(), event.getItemStack())+sharpnessDamage) + ")");
-            tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + weapon.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,weapon) + ")");
+
+            tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength + " (" + (DamageCalculation.getOrgStrengthDamage(event.getEntityPlayer(), event.getItemStack()) + sharpnessDamage) + ")");
+            tooltip.add(TextFormatting.BLUE + "Magic: " + magicSymbol + weapon.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(), 1, weapon) + ")");
             if (weapon.getDescription() != null) {
                 if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                     tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
@@ -432,21 +398,18 @@ public class ItemEvents {
             }
             if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
                 if (event.getItemStack().hasTagCompound()) {
-                    if (nbttaglist != null) {
-                        tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
-                        for (int i = 0; i < nbttaglist.tagCount(); i++) {
-                            int id = nbttaglist.getCompoundTagAt(i).getShort("id");
-                            int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+                    tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
+                    for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                        int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+                        int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
 
-                            if (Enchantment.getEnchantmentByID(id) != null) {
-                                tooltip.add(Enchantment.getEnchantmentByID(id).getTranslatedName(lvl));
-                            }
+                        if (Enchantment.getEnchantmentByID(id) != null) {
+                            tooltip.add(Enchantment.getEnchantmentByID(id).getTranslatedName(lvl));
                         }
                     }
                 }
                 for (EntityEquipmentSlot entityequipmentslot : EntityEquipmentSlot.values()) {
                     Multimap<String, AttributeModifier> multimap = event.getItemStack().getAttributeModifiers(entityequipmentslot);
-
                     if (!multimap.isEmpty()) {
                         tooltip.add("");
                         for (Map.Entry<String, AttributeModifier> entry : multimap.entries()) {
@@ -486,7 +449,7 @@ public class ItemEvents {
                 tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
             }
         }
-        
+
         Item ghostBlox = Item.getItemFromBlock(ModBlocks.GhostBlox);
         if (event.getItemStack().getItem() == ghostBlox) {
             if (!KeyboardHelper.isShiftDown()) {
@@ -555,25 +518,21 @@ public class ItemEvents {
     @SubscribeEvent
     public void onItemTossEvent (ItemTossEvent event) {
         if (!event.getPlayer().world.isRemote)
-            if (event.getEntityItem().getEntityItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getEntityItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getEntityItem().getItem() != ModItems.WoodenStick)) {
+            if (event.getEntityItem().getItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getItem().getItem() != ModItems.WoodenStick)) {
                 event.getEntityItem().isDead = true;
-                ItemStack itemStack = event.getEntityItem().getEntityItem();
-
                 event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
                 PacketDispatcher.sendTo(new SyncKeybladeData(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) event.getPlayer());
 
-            } else if (event.getEntityItem().getEntityItem().getItem() instanceof ItemMunny) {
+            } else if (event.getEntityItem().getItem().getItem() instanceof ItemMunny) {
                 event.setCanceled(true);
                 if (!event.getPlayer().world.isRemote) {
-                    PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getPlayer());
+                    PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getEntityItem().getItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getPlayer());
 
-                    event.getPlayer().getCapability(ModCapabilities.MUNNY, null).addMunny(event.getEntityItem().getEntityItem().getTagCompound().getInteger("amount"));
+                    event.getPlayer().getCapability(ModCapabilities.MUNNY, null).addMunny(event.getEntityItem().getItem().getTagCompound().getInteger("amount"));
                 }
             }
-        if (event.getEntityItem().getEntityItem().getItem() == event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
+        if (event.getEntityItem().getItem().getItem() == event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
             event.getEntityItem().isDead = true;
-            ItemStack itemStack = event.getEntityItem().getEntityItem();
-
             event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
             PacketDispatcher.sendTo(new SyncOrgXIIIData(event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) event.getPlayer());
         }
@@ -581,30 +540,7 @@ public class ItemEvents {
 
     @SubscribeEvent
     public void onItemCrafted (PlayerEvent.ItemCraftedEvent event) {
-        ItemStack WHC56skull = new ItemStack(Items.SKULL, 1, 3);
-        WHC56skull.setTagCompound(new NBTTagCompound());
-        WHC56skull.getTagCompound().setTag("SkullOwner", new NBTTagString("Wehavecookies56"));
 
-        ItemStack AAskull = new ItemStack(Items.SKULL, 1, 3);
-        AAskull.setTagCompound(new NBTTagCompound());
-        AAskull.getTagCompound().setTag("SkullOwner", new NBTTagString("Abelatox"));
-
-        if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.SynthesisTable)) 
-            AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisTable);
-        else if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.KKChest))
-            AchievementHelper.addAchievement(event.player, ModAchievements.getChest);
-        else if (event.crafting.getItem() == Item.getItemFromBlock(ModBlocks.GhostBlox))
-            AchievementHelper.addAchievement(event.player, ModAchievements.getGhostBlox);
-        else if (event.crafting.getItem() == ModItems.SynthesisBagS)
-            AchievementHelper.addAchievement(event.player, ModAchievements.getSynthesisBag);
-        else if (event.crafting.getItem() == ModItems.KingdomHearts)
-            AchievementHelper.addAchievement(event.player, ModAchievements.getKingdomHearts);
-        else if (event.crafting.getItem() == Items.SKULL)
-            if (event.crafting.hasTagCompound())
-                if (event.crafting.getTagCompound().getString("SkullOwner").equals("Wehavecookies56"))
-                    AchievementHelper.addAchievement(event.player, ModAchievements.getWehavecookies56Skull);
-                else if (event.crafting.getTagCompound().getString("SkullOwner").equals("Abelatox"))
-                    AchievementHelper.addAchievement(event.player, ModAchievements.getAbelatoxSkull);
     }
 
 }

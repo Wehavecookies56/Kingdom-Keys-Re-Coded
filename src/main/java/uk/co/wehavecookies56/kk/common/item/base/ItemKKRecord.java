@@ -5,7 +5,7 @@ import java.util.List;
 
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -15,30 +15,26 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
-import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
+import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+
+import javax.annotation.Nullable;
 
 public class ItemKKRecord extends ItemRecord {
 
     float length;
 
-    public ItemKKRecord (SoundEvent sound, String name, CreativeTabs tab, float length) {
+    public ItemKKRecord (SoundEvent sound, String name, float length) {
         super(name, sound);
+        setRegistryName(name);
         setUnlocalizedName(name);
-        setCreativeTab(tab);
+        setCreativeTab(ModItems.tabKingdomKeys);
         this.length = length;
-    }
-
-    @Override
-    public ResourceLocation getRecordResource (String name) {
-        return new ResourceLocation(Reference.MODID, name);
     }
 
     @Override
@@ -50,7 +46,6 @@ public class ItemKKRecord extends ItemRecord {
                 world.playEvent((EntityPlayer)null, 1010, pos, Item.getIdFromItem(this));
                 player.getActiveItemStack().setCount(player.getActiveItemStack().getCount()-1);
                 player.addStat(StatList.RECORD_PLAYED);
-                AchievementHelper.addAchievement(player, ModAchievements.playMusicDisc);
             }
             return EnumActionResult.SUCCESS;
         }
@@ -59,8 +54,8 @@ public class ItemKKRecord extends ItemRecord {
     }
 
     @Override
-    public void addInformation (ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        super.addInformation(stack, playerIn, tooltip, advanced);
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
         String length = String.format("%.02f", this.length).replace("f", "").replace("F", "").replace(".", ":");

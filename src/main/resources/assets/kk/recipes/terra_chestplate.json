@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"S S",
+		"FCF",
+		"SSS"
+	],
+	"key": {
+		"S": {
+			"item": "kk:darkinfusediron"
+		},
+		"C": {
+			"item": "minecraft:diamond_chestplate"
+		},
+		"F": {
+			"item": "kk:blazinginfusedcoal"
+		}
+	},
+	"result": {
+		"item": "kk:terra_chestplate"
+	}
+}

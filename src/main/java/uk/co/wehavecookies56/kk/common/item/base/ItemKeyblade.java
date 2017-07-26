@@ -30,6 +30,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
 
@@ -40,12 +41,14 @@ public class ItemKeyblade extends ItemSword {
 
     //TODO Set attack speed
 
-    public ItemKeyblade (double strength, double magic) {
+    public ItemKeyblade (String name, double strength, double magic) {
         super(EnumHelper.addToolMaterial("KEYBLADE", -4, -1, 0, 0, 20));
+        setRegistryName(name);
+        setUnlocalizedName(name);
+        setCreativeTab(ModItems.tabKingdomKeys);
         this.magic = magic;
         this.strength = strength;
         setMaxStackSize(1);
-        setCreativeTab(ModItems.tabKingdomKeys);
     }
     public double getStrength() {
         return this.strength;

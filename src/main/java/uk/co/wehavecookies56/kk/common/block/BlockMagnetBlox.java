@@ -16,8 +16,8 @@ import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
 
 public class BlockMagnetBlox extends BlockBlox {
 
-    protected BlockMagnetBlox (Material material, String toolClass, int level, float hardness, float resistance) {
-        super(material, toolClass, level, hardness, resistance);
+    protected BlockMagnetBlox (Material material, String toolClass, int level, float hardness, float resistance, String name) {
+        super(material, toolClass, level, hardness, resistance, name);
     }
 
     public static final PropertyDirection PROPERTYFACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);

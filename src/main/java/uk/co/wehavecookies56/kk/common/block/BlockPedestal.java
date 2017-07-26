@@ -17,17 +17,21 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.client.PedestalRotation;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 
 public class BlockPedestal extends Block implements ITileEntityProvider{
 
-    protected BlockPedestal (Material material, String toolClass, int level, float hardness, float resistance) {
+    protected BlockPedestal (Material material, String toolClass, int level, float hardness, float resistance, String name) {
         super(material);
         this.setHarvestLevel(toolClass, level);
         setHardness(hardness);
         setResistance(resistance);
+        setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
+        setRegistryName(name);
+        setUnlocalizedName(name);
     }
 
     public TileEntity createNewTileEntity (World worldIn, int meta) {

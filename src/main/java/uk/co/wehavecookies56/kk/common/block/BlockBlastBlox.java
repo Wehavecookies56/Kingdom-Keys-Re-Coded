@@ -23,8 +23,8 @@ import javax.annotation.Nullable;
 
 public class BlockBlastBlox extends BlockBlox {
 
-    protected BlockBlastBlox (Material material, String toolClass, int level, float hardness, float resistance) {
-        super(material, toolClass, level, hardness, resistance);
+    protected BlockBlastBlox (Material material, String toolClass, int level, float hardness, float resistance, String name) {
+        super(material, toolClass, level, hardness, resistance, name);
     }
 
     @Nullable

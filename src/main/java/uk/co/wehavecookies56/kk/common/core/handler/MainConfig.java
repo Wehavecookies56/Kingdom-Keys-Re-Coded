@@ -68,7 +68,7 @@ public class MainConfig {
         @Config.RequiresMcRestart
         @Config.Name("Shadow spawning ratio")
         @Config.Comment("Sets Shadow heartless spawning ratio")
-        public int shadowRatio = 15;
+        public int shadowRatio = 10;
 
         @Config.RequiresMcRestart
         @Config.Name("Giga Shadow spawning ratio")
@@ -78,22 +78,27 @@ public class MainConfig {
         @Config.RequiresMcRestart
         @Config.Name("Red Nocturne spawning ratio")
         @Config.Comment("Sets Red Nocturne heartless spawning ratio")
-        public int redNocturneRatio = 10;
+        public int redNocturneRatio = 5;
 
         @Config.RequiresMcRestart
         @Config.Name("Blue Rhapsody spawning ratio")
         @Config.Comment("Sets Blue Rhapsody heartless spawning ratio")
-        public int blueRhapsodyRatio = 10;
+        public int blueRhapsodyRatio = 5;
 
         @Config.RequiresMcRestart
         @Config.Name("Yellow Opera spawning ratio")
         @Config.Comment("Sets Yellow Opera heartless spawning ratio")
-        public int yellowOperaRatio = 10;
+        public int yellowOperaRatio = 5;
 
         @Config.RequiresMcRestart
         @Config.Name("Green Requiem spawning ratio")
         @Config.Comment("Sets Green Requiem heartless spawning ratio")
-        public int greenRequiemRatio = 10;
+        public int greenRequiemRatio = 5;
+
+        @Config.RequiresMcRestart
+        @Config.Name("Moogle spawning ratio")
+        @Config.Comment("Moogle spawning ratio")
+        public int moogleRatio = 5;
 
     }
 

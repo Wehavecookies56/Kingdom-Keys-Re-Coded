@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"DDD",
+		"DLD",
+		"DDD"
+	],
+	"key": {
+		"D": {
+			"item": "kk:darkheart"
+		},
+		"L": {
+			"item": "minecraft:leather"
+		}
+	},
+	"result": {
+		"item": "kk:darkleather"
+	}
+}

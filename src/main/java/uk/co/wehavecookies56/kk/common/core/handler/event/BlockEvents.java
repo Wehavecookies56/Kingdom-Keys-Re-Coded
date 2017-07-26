@@ -3,15 +3,10 @@ package uk.co.wehavecookies56.kk.common.core.handler.event;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
-import uk.co.wehavecookies56.kk.common.core.helper.AchievementHelper;
 import uk.co.wehavecookies56.kk.common.item.ItemStacks;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
-import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
@@ -510,9 +505,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.PrizeBlox) {
-            AchievementHelper.addAchievement(event.getHarvester(), ModAchievements.getPrizeBlox);
-            for(int i = 0; i<numberOfDrops; i++)
-            {
+            for(int i = 0; i<numberOfDrops; i++) {
                 int dropAmount = Utils.randomWithRange(1, 29);
 
                 ItemStack munny = new ItemStack(ModItems.Munny, 1);
@@ -616,9 +609,7 @@ public class BlockEvents {
                 }
             }
         } else if (event.getState().getBlock() == ModBlocks.RarePrizeBlox) {
-            AchievementHelper.addAchievement(event.getHarvester(), ModAchievements.getPrizeBlox);
-            for(int i = 0; i<numberOfDrops; i++)
-            {
+            for(int i = 0; i<numberOfDrops; i++) {
                 int dropAmount = Utils.randomWithRange(1, 38);
                 ItemStack munny = new ItemStack(ModItems.Munny, 1);
                 switch (dropAmount) {

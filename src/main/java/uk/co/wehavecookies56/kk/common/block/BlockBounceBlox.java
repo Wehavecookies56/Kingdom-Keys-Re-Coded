@@ -14,8 +14,8 @@ import javax.annotation.Nullable;
 
 public class BlockBounceBlox extends BlockBlox {
 
-    protected BlockBounceBlox (Material material, String toolClass, int level, float hardness, float resistance) {
-        super(material, toolClass, level, hardness, resistance);
+    protected BlockBounceBlox (Material material, String toolClass, int level, float hardness, float resistance, String name) {
+        super(material, toolClass, level, hardness, resistance, name);
     }
 
     @Override

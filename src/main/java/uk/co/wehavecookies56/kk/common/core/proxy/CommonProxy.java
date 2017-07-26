@@ -3,8 +3,7 @@ package uk.co.wehavecookies56.kk.common.core.proxy;
 import java.awt.Color;
 import java.io.File;
 import java.net.MalformedURLException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
@@ -13,6 +12,8 @@ import net.minecraft.init.Biomes;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -26,7 +27,6 @@ import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
-import uk.co.wehavecookies56.kk.common.achievement.ModAchievements;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityOrgPortal;
@@ -43,7 +43,6 @@ import uk.co.wehavecookies56.kk.common.core.handler.event.RenderingEvents;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.LogHelper;
 import uk.co.wehavecookies56.kk.common.crafting.KKOreDictionary;
-import uk.co.wehavecookies56.kk.common.crafting.ModBlocksRecipes;
 import uk.co.wehavecookies56.kk.common.crafting.ModItemsRecipes;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
@@ -92,16 +91,6 @@ public class CommonProxy {
         PacketDispatcher.registerPackets();
         LogHelper.info("Packets loaded");
 
-        // Items
-        ModItems.init();
-        ModItems.register();
-        LogHelper.info("Items loaded");
-
-        // Blocks
-        ModBlocks.init();
-        ModBlocks.register();
-        LogHelper.info("Blocks loaded");
-
         ModDimensions.init();
 
         ModCapabilities.registerCapabilities();
@@ -125,17 +114,7 @@ public class CommonProxy {
         //LogHelper.info("Sounds loaded");
 
         // Update checker
-        LogHelper.info("Update checker loaded");
-
-        // Crafting recipe
-        ModItemsRecipes.init();
-        ModBlocksRecipes.init();
-        LogHelper.info("Crafting recipe loaded");
-
-        // Fuel Handler
-        GameRegistry.registerFuelHandler(new FuelHandler());
-        LogHelper.info("Fuel handler loaded");
-        registerAchievements();
+        ModItems.init();
 
         // Register renders
 
@@ -168,17 +147,26 @@ public class CommonProxy {
         EntityHelper.registerEntity("greenrequiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
         EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
 
+        Iterator<Biome> biomeRegistry = Biome.REGISTRY.iterator();
+        List<Biome> biomes = new ArrayList<>();
+        while(biomeRegistry.hasNext()) {
+            Biome biome = biomeRegistry.next();
+            biomes.add(biome);
+        }
+        Biome[] biomesArray = biomes.toArray(new Biome[biomes.size()]);
 
-        EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-        EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-        EntityRegistry.addSpawn(EntityRedNocturne.class, MainConfig.entities.redNocturneRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-        EntityRegistry.addSpawn(EntityBlueRhapsody.class, MainConfig.entities.blueRhapsodyRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-        EntityRegistry.addSpawn(EntityYellowOpera.class, MainConfig.entities.yellowOperaRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
-        EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 3, 10, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+        EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 1, 3, EnumCreatureType.MONSTER, biomesArray);
+        EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
+        EntityRegistry.addSpawn(EntityRedNocturne.class, MainConfig.entities.redNocturneRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
+        EntityRegistry.addSpawn(EntityBlueRhapsody.class, MainConfig.entities.blueRhapsodyRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
+        EntityRegistry.addSpawn(EntityYellowOpera.class, MainConfig.entities.yellowOperaRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
+        EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
 
-        EntityRegistry.addSpawn(EntityMoogle.class, 5, 1, 1, EnumCreatureType.CREATURE, Biomes.PLAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.ROOFED_FOREST, Biomes.TAIGA, Biomes.TAIGA_HILLS);
+        EntityRegistry.addSpawn(EntityMoogle.class, MainConfig.entities.moogleRatio, 1, 1, EnumCreatureType.CREATURE, biomesArray);
 
         Lists.init();
+
+        ModItemsRecipes.init();
 
         // Drive forms init
         ModDriveForms.init();
@@ -226,12 +214,5 @@ public class CommonProxy {
     }
 
     public void spawnTestParticle(World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, float alpha) {}
-
-    public void registerAchievements () {
-        // Achievements
-        ModAchievements.init();
-        ModAchievements.register();
-        LogHelper.info("Achievements loaded");
-    }
 
 }
