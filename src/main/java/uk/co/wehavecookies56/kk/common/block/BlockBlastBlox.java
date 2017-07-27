@@ -64,7 +64,7 @@ public class BlockBlastBlox extends BlockBlox {
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND) == new ItemStack(Items.FLINT_AND_STEEL)) {
+        if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND) == new ItemStack(Items.FLINT_AND_STEEL)) {
             explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, player);
             world.setBlockToAir(pos);
             player.getHeldItem(EnumHand.MAIN_HAND).damageItem(1, player);
@@ -75,7 +75,7 @@ public class BlockBlastBlox extends BlockBlox {
 
     @Override
     public void onBlockClicked (World world, BlockPos pos, EntityPlayer player) {
-        if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) {
+        if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
             if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() == Items.FEATHER)
                 world.destroyBlock(pos, true);
             else {

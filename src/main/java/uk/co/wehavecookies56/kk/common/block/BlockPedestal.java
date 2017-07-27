@@ -55,7 +55,7 @@ public class BlockPedestal extends Block implements ITileEntityProvider{
 
         if (inventory != null) {
             for (int i = 0; i < inventory.getSlots(); i++)
-                if (inventory.getStackInSlot(i) != ItemStack.EMPTY) {
+                if (ItemStack.areItemStacksEqual(inventory.getStackInSlot(i), ItemStack.EMPTY)) {
                     EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, inventory.getStackInSlot(i));
 
                     float multiplier = 0.1f;

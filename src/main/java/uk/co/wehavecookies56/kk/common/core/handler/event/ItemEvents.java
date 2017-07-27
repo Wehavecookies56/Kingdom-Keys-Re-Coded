@@ -77,7 +77,7 @@ public class ItemEvents {
             PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getItem().getItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getEntityPlayer());
 
         } else if (event.getItem().getItem().getItem() instanceof ItemHpOrb) {
-            if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
+            if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
             PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
             HpOrbPickup packet = new HpOrbPickup(event.getItem().getItem());
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
@@ -107,7 +107,7 @@ public class ItemEvents {
         } else if (event.getItem().getItem().getItem() == ModItems.MagicOrb) {
             final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
             double mp = STATS.getMP();
-            if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
+            if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
                 event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
                 STATS.addMP(event.getItem().getItem().getTagCompound().getInteger("amount"));
@@ -115,7 +115,7 @@ public class ItemEvents {
             }
         } else if (event.getItem().getItem().getItem() instanceof ItemSynthesisMaterial) {
             for(int i = 0; i < event.getEntityPlayer().inventory.getSizeInventory(); i++) {
-                if (event.getEntityPlayer().inventory.getStackInSlot(i) != ItemStack.EMPTY) {
+                if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().inventory.getStackInSlot(i),ItemStack.EMPTY)) {
                     if (event.getEntityPlayer().inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagL) {
                         IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
                         addSynthesisMaterialToBag(inv, event);
@@ -135,7 +135,7 @@ public class ItemEvents {
         for (int j = 0; j < inv.getSlots(); j++) {
             ItemStack bagItem = inv.getStackInSlot(j);
             ItemStack pickUp = event.getItem().getItem();
-            if (bagItem != ItemStack.EMPTY) {
+            if (!ItemStack.areItemStacksEqual(bagItem, ItemStack.EMPTY)) {
                 if (bagItem.getItem().equals(pickUp.getItem())) {
                     if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) {
                         if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
@@ -155,7 +155,7 @@ public class ItemEvents {
                         }
                     }
                 }
-            } else if (bagItem == ItemStack.EMPTY) {
+            } else if (ItemStack.areItemStacksEqual(bagItem, ItemStack.EMPTY)) {
                 inv.insertItem(j, pickUp.copy(), false);
                 pickUp.setCount(0);
                 return;
@@ -171,7 +171,7 @@ public class ItemEvents {
     }
 
     public static boolean areItemStacksEqual(@Nullable ItemStack stackA, @Nullable ItemStack stackB) {
-        return stackA == ItemStack.EMPTY && stackB == ItemStack.EMPTY || ((stackA != ItemStack.EMPTY && stackB != ItemStack.EMPTY) && isItemStackEqualExcludingStackSize(stackA, stackB));
+        return ItemStack.areItemStacksEqual(stackA, ItemStack.EMPTY) && ItemStack.areItemStacksEqual(stackB, ItemStack.EMPTY) || ((!ItemStack.areItemStacksEqual(stackA, ItemStack.EMPTY) && !ItemStack.areItemStacksEqual(stackB, ItemStack.EMPTY)) && isItemStackEqualExcludingStackSize(stackA, stackB));
     }
 
     @SubscribeEvent

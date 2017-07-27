@@ -46,7 +46,7 @@ public class SynthesisMaterialPickup extends AbstractServerMessage<SynthesisMate
         if (bag.getItem().equals(ModItems.SynthesisBagL)) {
             IItemHandler bagL = bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
             for (int i = 0; i < bagL.getSlots(); i++)
-                if (bagL.getStackInSlot(i) == ItemStack.EMPTY) {
+                if (ItemStack.areItemStacksEqual(bagL.getStackInSlot(i), ItemStack.EMPTY)) {
                     bagL.insertItem(0, toRemove, false);
                     break;
                 }

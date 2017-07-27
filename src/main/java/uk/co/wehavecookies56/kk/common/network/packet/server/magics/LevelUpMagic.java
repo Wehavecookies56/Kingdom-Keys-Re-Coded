@@ -47,7 +47,7 @@ public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
         boolean hasMagicInSlot = false;
 
         for (int i = 0; i < InventorySpells.INV_SIZE; i++) {
-            if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i) != ItemStack.EMPTY) {
+            if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i), ItemStack.EMPTY)) {
                 if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem() == player.getHeldItem(EnumHand.MAIN_HAND).getItem()) {
                     hasMagicInSlot = true;
                 }

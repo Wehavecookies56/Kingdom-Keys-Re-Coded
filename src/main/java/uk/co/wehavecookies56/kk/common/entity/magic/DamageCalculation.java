@@ -102,7 +102,7 @@ public class DamageCalculation {
         if (player != null) {
             float finalDamage = 0;
 
-            if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
+            if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
                 finalDamage = getMagicDamage(player, level, (ItemKeyblade) player.getHeldItemMainhand().getItem());
             } else {
                 finalDamage = player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic();
@@ -189,9 +189,9 @@ public class DamageCalculation {
         if (player != null) {
             float finalDamage = 0;
 
-            if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
+            if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
                 finalDamage = getStrengthDamage(player, (ItemKeyblade) player.getHeldItemMainhand().getItem());
-            } else if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon) {
+            } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon) {
                 finalDamage = getOrgStrengthDamage(player, player.getHeldItemMainhand());
             }
             return finalDamage;

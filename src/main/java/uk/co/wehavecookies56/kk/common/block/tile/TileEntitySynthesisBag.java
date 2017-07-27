@@ -65,7 +65,7 @@ public class TileEntitySynthesisBag extends TileEntity implements IInventory {
     @Override
     public void setInventorySlotContents (int slotIndex, ItemStack itemstack) {
         itemStacks[slotIndex] = itemstack;
-        if (itemstack != ItemStack.EMPTY && itemstack.getCount() > getInventoryStackLimit()) itemstack.setCount(getInventoryStackLimit());
+        if (ItemStack.areItemStacksEqual(itemstack, ItemStack.EMPTY) && itemstack.getCount() > getInventoryStackLimit()) itemstack.setCount(getInventoryStackLimit());
         markDirty();
     }
 

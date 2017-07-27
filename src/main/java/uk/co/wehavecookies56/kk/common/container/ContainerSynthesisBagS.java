@@ -106,7 +106,7 @@ public class ContainerSynthesisBagS extends Container {
                 continue;
             }
 
-            if (itemstack1 != ItemStack.EMPTY && itemstack1.getItem() == stack.getItem() && (!stack.getHasSubtypes() || stack.getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, itemstack1)) {
+            if (!ItemStack.areItemStacksEqual(itemstack1, ItemStack.EMPTY) && itemstack1.getItem() == stack.getItem() && (!stack.getHasSubtypes() || stack.getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(stack, itemstack1)) {
                 int l = itemstack1.getCount() + stack.getCount();
 
                 if (l <= stack.getMaxStackSize() && l <= slot.getSlotStackLimit()) {
@@ -135,7 +135,7 @@ public class ContainerSynthesisBagS extends Container {
                     continue;
                 }
 
-                if (itemstack1 == ItemStack.EMPTY) {
+                if (ItemStack.areItemStacksEqual(itemstack1, ItemStack.EMPTY)) {
                     int l = stack.getCount();
 
                     if (l <= slot.getSlotStackLimit()) {

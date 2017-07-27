@@ -32,7 +32,7 @@ public class OpenMaterials extends AbstractMessage.AbstractServerMessage<OpenMat
     public void process (EntityPlayer player, Side side) {
         for (int i = 0; i < 36; i++)
         {
-            if (player.inventory.mainInventory.get(i) != ItemStack.EMPTY)
+            if (!ItemStack.areItemStacksEqual(player.inventory.mainInventory.get(i), ItemStack.EMPTY))
             {
                 if (player.inventory.mainInventory.get(i).getItem() instanceof ItemSynthesisMaterial)
                 {

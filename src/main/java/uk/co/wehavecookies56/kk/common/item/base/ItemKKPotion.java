@@ -44,7 +44,7 @@ public abstract class ItemKKPotion extends ItemFood {
     }
 
     public static void getItem (EntityPlayer player, World world, String item, int slot) {
-        while (player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(slot) == ItemStack.EMPTY) {
+        while (ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(slot), ItemStack.EMPTY)) {
             slot++;
         }
         switch (item) {
@@ -164,7 +164,7 @@ public abstract class ItemKKPotion extends ItemFood {
 
     public void usePotion (EntityPlayer player, int slot) {
         ItemStackHandler inventory = player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
-        if (inventory.getStackInSlot(slot) != ItemStack.EMPTY) if (inventory.getStackInSlot(slot).getItem() instanceof ItemKKPotion) {
+        if (!ItemStack.areItemStacksEqual(inventory.getStackInSlot(slot), ItemStack.EMPTY)) if (inventory.getStackInSlot(slot).getItem() instanceof ItemKKPotion) {
             inventory.setStackInSlot(slot, ItemStack.EMPTY);
             player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 1.0f, 1.0f);
             PacketDispatcher.sendToServer(new RemoveItemInSlot("potion", slot, true));

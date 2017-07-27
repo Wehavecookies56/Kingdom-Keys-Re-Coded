@@ -261,7 +261,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                             }
                         }
 
-                        if (itemstack1 != ItemStack.EMPTY && entity instanceof EntityLivingBase)
+                        if (!ItemStack.areItemStacksEqual(itemstack1, ItemStack.EMPTY) && entity instanceof EntityLivingBase)
                         {
                             itemstack1.hitEntity((EntityLivingBase)entity, player);
 

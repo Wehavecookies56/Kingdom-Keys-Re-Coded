@@ -113,7 +113,7 @@ public class ItemKeyblade extends ItemSword {
         } else {
             if (world.isRemote){
                 RayTraceResult rtr = Minecraft.getMinecraft().objectMouseOver;
-                if (player.getHeldItem(EnumHand.OFF_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
+                if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.OFF_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
                     if(player.swingProgress <= 0)
                         player.swingArm(EnumHand.OFF_HAND);
                     if (rtr.entityHit != null) {

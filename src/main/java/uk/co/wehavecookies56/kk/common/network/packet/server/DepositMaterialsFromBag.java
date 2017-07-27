@@ -33,7 +33,7 @@ public class DepositMaterialsFromBag extends AbstractMessage.AbstractServerMessa
     @Override
     public void process (EntityPlayer player, Side side) {
         for (int i = 0; i < 36; i++) {
-            if (player.inventory.mainInventory.get(i) != ItemStack.EMPTY) {
+            if (!ItemStack.areItemStacksEqual(player.inventory.mainInventory.get(i), ItemStack.EMPTY)) {
                 if (player.inventory.mainInventory.get(i).getItem() == ModItems.SynthesisBagS) {
                     IItemHandler bag = player.inventory.mainInventory.get(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
                     removeMaterial(bag, player, i);
@@ -51,7 +51,7 @@ public class DepositMaterialsFromBag extends AbstractMessage.AbstractServerMessa
     public void removeMaterial(IItemHandler bag, EntityPlayer player, int i) {
         for (int j = 0; j < bag.getSlots(); j++) {
             ItemStack bagItem = bag.getStackInSlot(j);
-            if (bagItem != ItemStack.EMPTY) {
+            if (!ItemStack.areItemStacksEqual(bagItem, ItemStack.EMPTY)) {
                 if (bagItem.hasTagCompound()) {
                     String s = bagItem.getTagCompound().getString("material");
                     if (MaterialRegistry.isMaterialRegistered(s)) {

@@ -96,14 +96,14 @@ public class GuiSynthesis extends GuiTooltip {
     protected int getFreeSlots () {
         int emptySlots = 0;
         for (ItemStack element : mc.player.inventory.mainInventory)
-            if (element == ItemStack.EMPTY) emptySlots++;
+            if (ItemStack.areItemStacksEqual(element, ItemStack.EMPTY)) emptySlots++;
         return emptySlots;
     }
 
     protected boolean getInventoryMaterial (String material) {
 
         for (ItemStack element : mc.player.inventory.mainInventory)
-            if (element != ItemStack.EMPTY) if (element.getUnlocalizedName().equals(material)) return true;
+            if (!ItemStack.areItemStacksEqual(element, ItemStack.EMPTY)) if (element.getUnlocalizedName().equals(material)) return true;
         return false;
     }
 

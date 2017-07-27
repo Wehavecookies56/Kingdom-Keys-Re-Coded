@@ -81,7 +81,7 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
         else
         {
             for (int i = 0; i < InventoryDriveForms.INV_SIZE; i++) {
-                if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i) != ItemStack.EMPTY) {
+                if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), ItemStack.EMPTY)) {
                     if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem() == player.getHeldItem(EnumHand.MAIN_HAND).getItem()) {
                         hasDriveInSlot = i;
                     }

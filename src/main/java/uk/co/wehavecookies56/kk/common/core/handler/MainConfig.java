@@ -65,6 +65,10 @@ public class MainConfig {
         @Config.Comment("Disables all the items dropped from mobs added by KK (This includes: hearts, munny, hp, mp, dp, recipes}")
         public boolean disableDrops = false;
 
+        @Config.Name("List of enabled mob drops")
+        @Config.Comment("Remove an item from this list to disable it from dropping")
+        public String[] dropsList = { "recipe", "darkheart", "heart", "pureheart", "kingdomhearts", "munny", "spellorb", "dporb", "hporb", "mporb" };
+
         @Config.RequiresMcRestart
         @Config.Name("Shadow spawning ratio")
         @Config.Comment("Sets Shadow heartless spawning ratio")
@@ -163,7 +167,7 @@ public class MainConfig {
         if (client.hud.AlwaysShowGUI == 0)
             return false;
         Minecraft mc = Minecraft.getMinecraft();
-        return ((client.hud.AlwaysShowGUI == 2) || ((mc.player.getHeldItemMainhand() != ItemStack.EMPTY) && ((mc.player.getHeldItemMainhand().getItem() instanceof ItemKeyblade) || mc.player.getHeldItemMainhand().getItem() instanceof ItemOrgWeapon)));
+        return ((client.hud.AlwaysShowGUI == 2) || ((!ItemStack.areItemStacksEqual(mc.player.getHeldItemMainhand(), ItemStack.EMPTY)) && ((mc.player.getHeldItemMainhand().getItem() instanceof ItemKeyblade) || mc.player.getHeldItemMainhand().getItem() instanceof ItemOrgWeapon)));
     }
 
     @Mod.EventBusSubscriber(modid = Reference.MODID)

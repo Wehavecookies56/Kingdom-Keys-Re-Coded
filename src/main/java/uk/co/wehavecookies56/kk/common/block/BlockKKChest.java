@@ -61,11 +61,11 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
-            if (player.getHeldItem(EnumHand.MAIN_HAND) != ItemStack.EMPTY && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
+            if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
                 if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() != ModItems.WoodenKeyblade && player.getHeldItem(EnumHand.MAIN_HAND).getItem() != ModItems.WoodenStick && player.getHeldItem(EnumHand.MAIN_HAND).getItem() != ModItems.DreamSword) {
                     if (world.getTileEntity(pos) instanceof TileEntityKKChest) {
                         TileEntityKKChest te = (TileEntityKKChest) world.getTileEntity(pos);
-                        if (te.getKeyblade() == null || te.getKeyblade() == ItemStack.EMPTY) {
+                        if (te.getKeyblade() == null || ItemStack.areItemStacksEqual(te.getKeyblade(), ItemStack.EMPTY)) {
                             te.setKeyblade(player.getHeldItemMainhand());
                             te.markDirty();
 
@@ -73,7 +73,7 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
 
                             player.openGui(KingdomKeys.instance, GuiIDs.GUI_KKCHEST_INV, world, pos.getX(), pos.getY(), pos.getZ());
                             return true;
-                        } else if (te.getKeyblade() != null && te.getKeyblade() != ItemStack.EMPTY && te.getKeyblade().getItem() == player.getHeldItemMainhand().getItem()) {
+                        } else if (te.getKeyblade() != null && !ItemStack.areItemStacksEqual(te.getKeyblade(), ItemStack.EMPTY) && te.getKeyblade().getItem() == player.getHeldItemMainhand().getItem()) {
                             player.openGui(KingdomKeys.instance, GuiIDs.GUI_KKCHEST_INV, world, pos.getX(), pos.getY(), pos.getZ());
                             return true;
                         } else if (hand == EnumHand.MAIN_HAND) {
@@ -162,7 +162,7 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
 
         if (inventory != null) {
             for (int i = 0; i < inventory.getSlots(); i++)
-                if (inventory.getStackInSlot(i) != ItemStack.EMPTY) {
+                if (!ItemStack.areItemStacksEqual(inventory.getStackInSlot(i), ItemStack.EMPTY)) {
                     EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, inventory.getStackInSlot(i));
 
                     float multiplier = 0.1f;
