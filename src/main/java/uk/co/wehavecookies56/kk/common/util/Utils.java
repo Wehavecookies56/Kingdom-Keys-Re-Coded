@@ -29,8 +29,10 @@ public class Utils {
      * @return a random double
      */
     public static double randomWithRange (double min, double max) {
-        double range = Math.abs(max - min) + 1;
-        return (Math.random() * range) + (min <= max ? min : max);
+        double range = Math.abs(max - min);
+        double res = (Math.random() * range) + (min <= max ? min : max);
+        System.out.println(res);
+        return res;
     }
 
     /**
