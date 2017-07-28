@@ -24,7 +24,7 @@ public class MaterialDarkShard extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_DarkShard, "C");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_DarkShard, Strings.SM_Rank_C);
         return stack;
     }
 

@@ -24,7 +24,7 @@ public class MaterialTwilightGem extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_TwilightGem, "A");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_TwilightGem, Strings.SM_Rank_A);
         return stack;
     }
 

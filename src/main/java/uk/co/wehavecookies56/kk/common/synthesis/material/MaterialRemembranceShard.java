@@ -24,7 +24,7 @@ public class MaterialRemembranceShard extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_RemembranceShard, "C");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_RemembranceShard, Strings.SM_Rank_C);
         return stack;
     }
 

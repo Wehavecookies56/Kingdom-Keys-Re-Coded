@@ -24,7 +24,7 @@ public class MaterialStormyStone extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_StormyStone, "B");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_StormyStone, Strings.SM_Rank_B);
         return stack;
     }
 

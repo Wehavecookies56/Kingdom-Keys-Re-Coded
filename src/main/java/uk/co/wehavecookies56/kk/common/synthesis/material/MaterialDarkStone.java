@@ -24,7 +24,7 @@ public class MaterialDarkStone extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_DarkStone, "B");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_DarkStone, Strings.SM_Rank_B);
         return stack;
     }
 

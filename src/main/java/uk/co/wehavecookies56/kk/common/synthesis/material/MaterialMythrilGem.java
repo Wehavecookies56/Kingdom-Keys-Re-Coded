@@ -24,7 +24,7 @@ public class MaterialMythrilGem extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_MythrilGem, "A");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_MythrilGem, Strings.SM_Rank_A);
         return stack;
     }
 

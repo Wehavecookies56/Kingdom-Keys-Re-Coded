@@ -24,7 +24,7 @@ public class MaterialFrostGem extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_FrostGem, "A");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_FrostGem, Strings.SM_Rank_A);
         return stack;
     }
 

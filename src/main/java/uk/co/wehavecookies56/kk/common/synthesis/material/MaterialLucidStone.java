@@ -24,7 +24,7 @@ public class MaterialLucidStone extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_LucidStone, "B");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_LucidStone, Strings.SM_Rank_B);
         return stack;
     }
 

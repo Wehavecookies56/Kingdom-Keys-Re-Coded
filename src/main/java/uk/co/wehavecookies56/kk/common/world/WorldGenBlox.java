@@ -145,6 +145,13 @@ public class WorldGenBlox implements IWorldGenerator {
             new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockMatcher.forBlock(Blocks.END_STONE)).generate(world, rand, OrePos);
             new WorldGenMinable(ModBlocks.RarePrizeBlox.getDefaultState(), 2, BlockMatcher.forBlock(Blocks.END_STONE)).generate(world, rand, OrePos);
 
+        }
+        for (int k = 0; k < 30; k++) {
+            int firstBlockXCoord = chunkX + rand.nextInt(16);
+            int firstBlockZCoord = chunkZ + rand.nextInt(16);
+            int OreY = rand.nextInt(200);
+            BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
+
             new WorldGenMinable(ModBlocks.DarkOreE.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.END_STONE)).generate(world, rand, OrePos);
             new WorldGenMinable(ModBlocks.PowerOreE.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.END_STONE)).generate(world, rand, OrePos);
         }

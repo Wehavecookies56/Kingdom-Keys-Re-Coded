@@ -24,7 +24,7 @@ public class MaterialSerenityCrystal extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_SerenityCrystal, "S");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_SerenityCrystal, Strings.SM_Rank_S);
         return stack;
     }
 

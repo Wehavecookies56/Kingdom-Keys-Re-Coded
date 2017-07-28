@@ -24,7 +24,7 @@ public class MaterialPowerGem extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_PowerGem, "A");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_PowerGem, Strings.SM_Rank_A);
         return stack;
     }
 

@@ -24,7 +24,7 @@ public class MaterialTwilightCrystal extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_TwilightCrystal, "S");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_TwilightCrystal, Strings.SM_Rank_S);
         return stack;
     }
 

@@ -24,7 +24,7 @@ public class MaterialBlazingGem extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_BlazingGem, "A");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_BlazingGem, Strings.SM_Rank_A);
         return stack;
     }
 

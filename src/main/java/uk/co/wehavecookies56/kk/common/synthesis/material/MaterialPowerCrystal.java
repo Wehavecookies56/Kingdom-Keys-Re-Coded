@@ -24,7 +24,7 @@ public class MaterialPowerCrystal extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_PowerCrystal, "S");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_PowerCrystal, Strings.SM_Rank_S);
         return stack;
     }
 

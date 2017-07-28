@@ -24,7 +24,7 @@ public class MaterialTwilightShard extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_TwilightShard, "C");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_TwilightShard, Strings.SM_Rank_C);
         return stack;
     }
 

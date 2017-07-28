@@ -24,7 +24,7 @@ public class MaterialPowerShard extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_PowerShard, "C");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_PowerShard, Strings.SM_Rank_C);
         return stack;
     }
 

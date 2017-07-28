@@ -24,7 +24,7 @@ public class MaterialSerenityGem extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_SerenityGem, "A");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_SerenityGem, Strings.SM_Rank_A);
         return stack;
     }
 

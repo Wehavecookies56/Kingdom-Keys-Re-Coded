@@ -24,7 +24,7 @@ public class MaterialTranquilShard extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_TranquilShard, "C");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_TranquilShard, Strings.SM_Rank_C);
         return stack;
     }
 

@@ -24,7 +24,7 @@ public class MaterialSerenityShard extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_SerenityShard, "C");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_SerenityShard, Strings.SM_Rank_C);
         return stack;
     }
 

@@ -24,7 +24,7 @@ public class MaterialBrightGem extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_BrightGem, "A");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_BrightGem, Strings.SM_Rank_A);
         return stack;
     }
 

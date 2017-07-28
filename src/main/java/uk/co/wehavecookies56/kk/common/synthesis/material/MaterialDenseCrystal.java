@@ -24,7 +24,7 @@ public class MaterialDenseCrystal extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_DenseCrystal, "S");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_DenseCrystal, Strings.SM_Rank_S);
         return stack;
     }
 

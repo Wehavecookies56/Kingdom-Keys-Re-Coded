@@ -24,7 +24,7 @@ public class MaterialTranquilCrystal extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_TranquilCrystal, "S");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_TranquilCrystal, Strings.SM_Rank_S);
         return stack;
     }
 

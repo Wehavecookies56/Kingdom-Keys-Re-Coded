@@ -24,7 +24,7 @@ public class MaterialRemembranceStone extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_RemembranceStone, "B");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_RemembranceStone, Strings.SM_Rank_B);
         return stack;
     }
 

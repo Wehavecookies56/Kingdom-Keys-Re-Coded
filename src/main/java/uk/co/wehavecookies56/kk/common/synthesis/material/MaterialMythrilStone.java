@@ -24,7 +24,7 @@ public class MaterialMythrilStone extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_MythrilStone, "B");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_MythrilStone, Strings.SM_Rank_B);
         return stack;
     }
 

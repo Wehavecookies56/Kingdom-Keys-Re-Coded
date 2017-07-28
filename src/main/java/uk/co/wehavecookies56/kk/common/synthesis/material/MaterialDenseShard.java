@@ -24,7 +24,7 @@ public class MaterialDenseShard extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_DenseShard, "C");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_DenseShard, Strings.SM_Rank_C);
         return stack;
     }
 

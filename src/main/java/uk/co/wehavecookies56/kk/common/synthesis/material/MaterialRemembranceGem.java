@@ -24,7 +24,7 @@ public class MaterialRemembranceGem extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_RemembranceGem, "A");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_RemembranceGem, Strings.SM_Rank_A);
         return stack;
     }
 

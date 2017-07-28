@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Multimap;
@@ -174,6 +175,7 @@ public class ItemEvents {
         return ItemStack.areItemStacksEqual(stackA, ItemStack.EMPTY) && ItemStack.areItemStacksEqual(stackB, ItemStack.EMPTY) || ((!ItemStack.areItemStacksEqual(stackA, ItemStack.EMPTY) && !ItemStack.areItemStacksEqual(stackB, ItemStack.EMPTY)) && isItemStackEqualExcludingStackSize(stackA, stackB));
     }
 
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void addTooltip (ItemTooltipEvent event) {
         for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {

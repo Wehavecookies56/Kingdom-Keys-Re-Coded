@@ -24,7 +24,7 @@ public class MaterialLucidGem extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_LucidGem, "A");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_LucidGem, Strings.SM_Rank_A);
         return stack;
     }
 

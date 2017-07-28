@@ -24,7 +24,7 @@ public class MaterialLightningGem extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_LightningGem, "A");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_LightningGem, Strings.SM_Rank_A);
         return stack;
     }
 

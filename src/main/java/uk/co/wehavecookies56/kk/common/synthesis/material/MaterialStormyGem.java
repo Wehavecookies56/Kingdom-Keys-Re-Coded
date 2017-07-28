@@ -24,7 +24,7 @@ public class MaterialStormyGem extends Material {
     @Override
     public ItemStack getItem () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
-        ItemStacks.createSynthesisItem(stack, Strings.SM_StormyGem, "A");
+        ItemStacks.createSynthesisItem(stack, Strings.SM_StormyGem, Strings.SM_Rank_A);
         return stack;
     }
 
