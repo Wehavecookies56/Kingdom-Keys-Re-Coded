@@ -1,9 +1,8 @@
 package uk.co.wehavecookies56.kk.common.world.dimension;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.init.Biomes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -11,24 +10,26 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.world.WorldLoader;
+
+import javax.annotation.Nullable;
 
 /**
  * Created by Toby on 01/08/2016.
  */
-public class WorldProviderDiveToTheHeart extends WorldProvider {
+public class WorldProviderTraverseTown extends WorldProvider {
 
     @Override
     protected void init() {
         this.biomeProvider = new BiomeProviderSingle(Biomes.SKY);
         this.hasSkyLight = true;
-        NBTTagCompound nbttagcompound = this.world.getWorldInfo().getDimensionData(ModDimensions.diveToTheHeart);
+        NBTTagCompound nbttagcompound = this.world.getWorldInfo().getDimensionData(ModDimensions.traverseTownID);
     }
-
-
 
     @Override
     public IChunkGenerator createChunkGenerator() {
-        return new ChunkProviderDiveToTheHeart(this.world, this.world.getWorldInfo().isMapFeaturesEnabled(), this.world.getSeed());
+        return new ChunkProviderTraverseTown(this.world, this.world.getWorldInfo().isMapFeaturesEnabled(), this.world.getSeed());
     }
 
     @Override
@@ -62,7 +63,7 @@ public class WorldProviderDiveToTheHeart extends WorldProvider {
 
     @Override
     public boolean canRespawnHere() {
-        return false;
+        return true;
     }
 
     @Override
@@ -97,7 +98,7 @@ public class WorldProviderDiveToTheHeart extends WorldProvider {
 
     @Override
     public DimensionType getDimensionType() {
-        return ModDimensions.diveToTheHeart;
+        return ModDimensions.traverseTown;
     }
 
     @Override

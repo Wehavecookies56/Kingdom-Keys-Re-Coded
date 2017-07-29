@@ -8,12 +8,16 @@ import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.base.BlockStationOfAwakening;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.world.WorldLoader;
 
 /**
  * Created by Toby on 01/08/2016.
@@ -54,10 +58,8 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         int radius = 15;
         int barrierRadius = 16;
         int barrierHeight = 5;
-        for(int i = 0; i<barrierHeight; i++)
-        {
-            for(float j = 0; j < 2 * Math.PI * barrierRadius; j += 0.5)
-            {
+        for(int i = 0; i<barrierHeight; i++) {
+            for(float j = 0; j < 2 * Math.PI * barrierRadius; j += 0.5) {
                 playerMP.world.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * barrierRadius), dy +i, (int)Math.floor(dz + Math.cos(j) * barrierRadius)), Blocks.BARRIER.getDefaultState());
             }
         }
@@ -95,7 +97,7 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         playerMP.world.setBlockState(new BlockPos(dx, dy+1, dz-12), ModBlocks.Pedestal.getDefaultState());  //Sword
         
         playerMP.world.setBlockState(new BlockPos(dx, dy+1, dz+12), ModBlocks.StationOfAwakeningDoor.getDefaultState());
-        
+
     }
 
     @Override
@@ -128,32 +130,26 @@ public class TeleporterDiveToTheHeart extends Teleporter {
      * WorldServer.getTotalWorldTime() value.
      */
     @Override
-    public void removeStalePortalLocations(long worldTime)
-    {
-        if (worldTime % 100L == 0L)
-        {
+    public void removeStalePortalLocations(long worldTime) {
+        if (worldTime % 100L == 0L) {
             long i = worldTime - 300L;
             ObjectIterator<Teleporter.PortalPosition> objectiterator = this.destinationCoordinateCache.values().iterator();
 
-            while (objectiterator.hasNext())
-            {
+            while (objectiterator.hasNext()) {
                 Teleporter.PortalPosition teleporter$portalposition = (Teleporter.PortalPosition)objectiterator.next();
 
-                if (teleporter$portalposition == null || teleporter$portalposition.lastUpdateTime < i)
-                {
+                if (teleporter$portalposition == null || teleporter$portalposition.lastUpdateTime < i) {
                     objectiterator.remove();
                 }
             }
         }
     }
 
-    public class PortalPosition extends BlockPos
-    {
+    public class PortalPosition extends BlockPos {
         /** The worldtime at which this PortalPosition was last verified */
         public long lastUpdateTime;
 
-        public PortalPosition(BlockPos pos, long lastUpdate)
-        {
+        public PortalPosition(BlockPos pos, long lastUpdate) {
             super(pos.getX(), pos.getY(), pos.getZ());
             this.lastUpdateTime = lastUpdate;
         }

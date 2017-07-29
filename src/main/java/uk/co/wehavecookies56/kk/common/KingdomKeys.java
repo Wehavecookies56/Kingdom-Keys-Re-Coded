@@ -36,14 +36,19 @@ public class KingdomKeys {
     @EventHandler
     public void preInit (FMLPreInitializationEvent e) {
         logger = e.getModLog();
+
         proxy.preInit(e);
     }
 
     @EventHandler
-    public void init (FMLInitializationEvent e) { proxy.init(e); }
+    public void init (FMLInitializationEvent e) {
+        proxy.init(e);
+    }
 
     @EventHandler
-    public void postInit (FMLPostInitializationEvent e) { proxy.postInit(e); }
+    public void postInit (FMLPostInitializationEvent e) {
+        proxy.postInit(e);
+    }
 
     @EventHandler
     public void serverStart (FMLServerStartingEvent e) {
