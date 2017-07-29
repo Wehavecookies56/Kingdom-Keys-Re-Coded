@@ -63,17 +63,26 @@ public class BlockSavePoint extends Block {
 
     private void updateState (World world, BlockPos pos) {
         List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1)));
-        if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
+        if (!list.isEmpty())
+        	for (int i = 0; i < list.size(); i++) {
             Entity e = (Entity) list.get(i);
             if (e instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) e;
                 IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-                if (player.isSneaking() && player.getBedLocation() != pos) {
+              //  System.out.println("X: "+player.getBedLocation().getX()+"::"+pos.getX()+" "+(player.getBedLocation().getX() == pos.getX()));
+              //  System.out.println("Y: "+player.getBedLocation().getY()+"::"+pos.getY()+" "+(player.getBedLocation().getY() == pos.getY()));
+               // System.out.println("Z: "+player.getBedLocation().getZ()+"::"+pos.getZ()+" "+(player.getBedLocation().getZ() == pos.getZ()));
+                boolean samePos = player.getBedLocation().getX() == pos.getX() && player.getBedLocation().getY() == pos.getY() && player.getBedLocation().getZ() == pos.getZ();
+                System.out.println(samePos);
+               // BlockPos bedPos = new BlockPos(pos.getX(),pos.getY()-1,pos.getZ());
+
+                if (player.isSneaking() && !samePos) {
                     player.setSpawnChunk(pos, true, 0);
                     player.setSpawnPoint(pos, true);
                     TextHelper.sendFormattedChatMessage("Spawn point saved!", TextFormatting.GREEN, player);
                     world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savespawn, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 }
+                
                 if(player.getHealth() < player.getMaxHealth() || STATS.getMP() < STATS.getMaxMP())
                 {
                     player.heal(1);
