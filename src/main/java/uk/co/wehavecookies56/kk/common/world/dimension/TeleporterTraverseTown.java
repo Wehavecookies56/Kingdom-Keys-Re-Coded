@@ -43,7 +43,7 @@ public class TeleporterTraverseTown extends Teleporter {
 
         //KingdomKeysWorld taverseTown = new KingdomKeysWorld(new ResourceLocation(Reference.MODID, "worlds/traversetown.world"), playerMP.world);
 
-        BlockPos spawn = new BlockPos(174, 68, 162);
+        BlockPos spawn = new BlockPos(192, 5, 161);
 
         entity.setPosition(spawn.getX(), spawn.getY()+1, spawn.getZ());
 
@@ -60,7 +60,7 @@ public class TeleporterTraverseTown extends Teleporter {
             entity.sendMessage(new TextComponentTranslation("This only happens the first time you visit the world"));
             //taverseTown.generate();
             WorldLoader loader = new WorldLoader();
-            loader.processAndGenerateSchematic(new ResourceLocation(Reference.MODID, "worlds/traversetown.world"), playerMP.world, 0, 60, 0);
+            loader.processAndGenerateStructureFile(new ResourceLocation(Reference.MODID, "worlds/traversetown.world"), playerMP.world.getMinecraftServer().getServer().getWorld(ModDimensions.traverseTownID), 0, 60, 0);
             entity.sendMessage(new TextComponentTranslation("World generated completed, please wait while chunks load..."));
             entity.sendMessage(new TextComponentTranslation("Expect a large performance drop while this happens"));
             data.setGenerated(true);

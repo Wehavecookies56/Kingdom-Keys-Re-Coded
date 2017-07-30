@@ -30,11 +30,11 @@ public class KingdomKeysWorld {
     }
 
     public void generate() {
-        loader.processAndGenerateSchematic(worldFile, world, xOffset, yOffset, zOffset);
+
     }
 
     public BlockPos getSpawn() {
-        return loader.getSpawnLocation(worldFile, world, xOffset, yOffset, zOffset);
+        return null;
     }
 
 }
