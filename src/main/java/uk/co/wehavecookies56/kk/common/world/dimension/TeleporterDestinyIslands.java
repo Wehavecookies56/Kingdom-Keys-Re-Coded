@@ -5,18 +5,13 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import uk.co.wehavecookies56.kk.common.KingdomKeys;
-import uk.co.wehavecookies56.kk.common.block.ModBlocks;
-import uk.co.wehavecookies56.kk.common.block.base.BlockStationOfAwakening;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
-import uk.co.wehavecookies56.kk.common.world.KingdomKeysWorld;
 import uk.co.wehavecookies56.kk.common.world.WorldLoader;
 import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
 
@@ -25,14 +20,14 @@ import java.util.Random;
 /**
  * Created by Toby on 01/08/2016.
  */
-public class TeleporterTraverseTown extends Teleporter {
+public class TeleporterDestinyIslands extends Teleporter {
 
     private final WorldServer worldServerInstance;
     /** A private Random() function in Teleporter */
     private final Random random;
     private final Long2ObjectMap<Teleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
 
-    public TeleporterTraverseTown(WorldServer worldIn) {
+    public TeleporterDestinyIslands(WorldServer worldIn) {
         super(worldIn);
         this.worldServerInstance = worldIn;
         this.random = new Random(worldIn.getSeed());
@@ -43,15 +38,15 @@ public class TeleporterTraverseTown extends Teleporter {
 
         //KingdomKeysWorld taverseTown = new KingdomKeysWorld(new ResourceLocation(Reference.MODID, "worlds/traversetown.world"), playerMP.world);
 
-        BlockPos spawn = new BlockPos(192, 5, 161);
+        BlockPos spawn = new BlockPos(145, 27+60, 200);
 
         entity.setPosition(spawn.getX(), spawn.getY()+1, spawn.getZ());
 
         entity.motionX = entity.motionY = entity.motionZ = 0.0D;
         entity.setPosition(spawn.getX(), spawn.getY()+1, spawn.getZ());
 
-        if (playerMP.dimension != ModDimensions.traverseTownID)
-            playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, ModDimensions.traverseTownID, this);
+        if (playerMP.dimension != ModDimensions.destinyIslandsID)
+            playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, ModDimensions.destinyIslandsID, this);
 
         WorldSavedDataKingdomKeys data = WorldSavedDataKingdomKeys.get(playerMP.world);
 
@@ -60,7 +55,7 @@ public class TeleporterTraverseTown extends Teleporter {
             entity.sendMessage(new TextComponentTranslation("This only happens the first time you visit the world"));
             //taverseTown.generate();
             WorldLoader loader = new WorldLoader();
-            loader.processAndGenerateStructureFile(new ResourceLocation(Reference.MODID, "worlds/traversetown.world"), playerMP.world.getMinecraftServer().getServer().getWorld(ModDimensions.traverseTownID), 0, 0, 0);
+            loader.processAndGenerateStructureFile(new ResourceLocation(Reference.MODID, "worlds/destinyislands.world"), playerMP.world.getMinecraftServer().getServer().getWorld(ModDimensions.destinyIslandsID), 0, 60, 0);
             entity.sendMessage(new TextComponentTranslation("World generated completed, please wait while chunks load..."));
             entity.sendMessage(new TextComponentTranslation("Expect a large performance drop while this happens"));
             data.setGenerated(true);
@@ -79,7 +74,7 @@ public class TeleporterTraverseTown extends Teleporter {
     @Override
     public void placeInPortal(Entity entityIn, float rotationYaw) {
 
-        if (worldServerInstance.provider.getDimension() == ModDimensions.traverseTownID) {
+        if (worldServerInstance.provider.getDimension() == ModDimensions.destinyIslandsID) {
 
             entityIn.setLocationAndAngles(entityIn.posX, entityIn.posY, entityIn.posZ, entityIn.rotationYaw, 0.0F);
 

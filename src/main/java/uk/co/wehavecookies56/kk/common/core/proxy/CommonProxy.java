@@ -15,6 +15,7 @@ import net.minecraft.util.IThreadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -67,6 +68,7 @@ import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisMaterials;
 import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisRecipes;
 import uk.co.wehavecookies56.kk.common.world.ChestGen;
 import uk.co.wehavecookies56.kk.common.world.WorldGenBlox;
+import uk.co.wehavecookies56.kk.common.world.biome.ModBiomes;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 
 public class CommonProxy {
@@ -91,7 +93,7 @@ public class CommonProxy {
         // Packets
         PacketDispatcher.registerPackets();
         KingdomKeys.logger.info("Packets loaded");
-
+        MinecraftForge.EVENT_BUS.register(new ModBiomes());
         ModDimensions.init();
 
         ModCapabilities.registerCapabilities();
@@ -111,6 +113,7 @@ public class CommonProxy {
         // Instance
         MinecraftForge.EVENT_BUS.register(KingdomKeys.instance);
 
+        ModBiomes.init();
         //    ModSounds.init();
         //LogHelper.info("Sounds loaded");
 

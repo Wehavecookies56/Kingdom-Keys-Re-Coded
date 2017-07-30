@@ -12,6 +12,7 @@ import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.world.WorldLoader;
+import uk.co.wehavecookies56.kk.common.world.biome.ModBiomes;
 
 import javax.annotation.Nullable;
 
@@ -22,8 +23,8 @@ public class WorldProviderTraverseTown extends WorldProvider {
 
     @Override
     protected void init() {
-        this.biomeProvider = new BiomeProviderSingle(Biomes.SKY);
-        this.hasSkyLight = true;
+        this.biomeProvider = new BiomeProviderSingle(ModBiomes.TraverseTownBiome);
+        this.hasSkyLight = false;
         NBTTagCompound nbttagcompound = this.world.getWorldInfo().getDimensionData(ModDimensions.traverseTownID);
     }
 

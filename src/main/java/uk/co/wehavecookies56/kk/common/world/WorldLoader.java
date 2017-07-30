@@ -51,6 +51,11 @@ public class WorldLoader {
 
             List<IBlockState> blockStates = new ArrayList<>();
 
+            System.out.println("Generating World with " + blocks.tagCount() + " blocks");
+            NBTTagCompound firstBlock = blocks.getCompoundTagAt(0);
+            BlockPos firstPos = new BlockPos(firstBlock.getTagList("pos", 3).getIntAt(0), firstBlock.getTagList("pos", 3).getIntAt(1), firstBlock.getTagList("pos", 3).getIntAt(2));
+            System.out.println("Starting with position " + firstPos.getX()+xOffset + " " + firstPos.getY()+yOffset + " " + firstPos.getZ()+zOffset);
+
             for (int i = 0; i < palette.tagCount(); i++) {
                 NBTTagCompound block = palette.getCompoundTagAt(i);
                 blockStates.add(NBTUtil.readBlockState(block));
@@ -58,7 +63,7 @@ public class WorldLoader {
 
             for (int i = 0; i < blocks.tagCount(); i++) {
                 NBTTagCompound block = blocks.getCompoundTagAt(i);
-                BlockPos blockpos = new BlockPos(block.getTagList("pos", 3).getIntAt(0), block.getTagList("pos", 3).getIntAt(1), block.getTagList("pos", 3).getIntAt(2));
+                BlockPos blockpos = new BlockPos(block.getTagList("pos", 3).getIntAt(0)+xOffset, block.getTagList("pos", 3).getIntAt(1)+yOffset, block.getTagList("pos", 3).getIntAt(2)+zOffset);
                 IBlockState state = blockStates.get(block.getInteger("state"));
                 if (block.hasKey("nbt")) {
                     NBTTagCompound nbtData = block.getCompoundTag("nbt");
@@ -86,6 +91,7 @@ public class WorldLoader {
                     world.setBlockState(blockpos, ModBlocks.KKChest.getDefaultState().withProperty(BlockKKChest.FACING, state.getValue(BlockChest.FACING)));
                 else
                     world.setBlockState(blockpos, state, 2);
+                //System.out.println(i + ":" + state.getBlock() + " " + blockpos.getY());
             }
         } catch (IOException e){
             e.printStackTrace();
