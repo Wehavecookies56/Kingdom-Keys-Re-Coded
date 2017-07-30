@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.SoundCategory;
@@ -20,9 +21,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnCureParticles;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 
 public class BlockSavePoint extends Block {
 
@@ -60,25 +63,34 @@ public class BlockSavePoint extends Block {
 
     private void updateState (World world, BlockPos pos) {
         List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1)));
-        if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
+        if (!list.isEmpty())
+        	for (int i = 0; i < list.size(); i++) {
             Entity e = (Entity) list.get(i);
             if (e instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) e;
+                IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+              //  System.out.println("X: "+player.getBedLocation().getX()+"::"+pos.getX()+" "+(player.getBedLocation().getX() == pos.getX()));
+              //  System.out.println("Y: "+player.getBedLocation().getY()+"::"+pos.getY()+" "+(player.getBedLocation().getY() == pos.getY()));
+               // System.out.println("Z: "+player.getBedLocation().getZ()+"::"+pos.getZ()+" "+(player.getBedLocation().getZ() == pos.getZ()));
+                boolean samePos = player.getBedLocation().getX() == pos.getX() && player.getBedLocation().getY() == pos.getY() && player.getBedLocation().getZ() == pos.getZ();
+                System.out.println(samePos);
+               // BlockPos bedPos = new BlockPos(pos.getX(),pos.getY()-1,pos.getZ());
 
-                if (player.isSneaking() && player.getBedLocation() != pos) {
+                if (player.isSneaking() && !samePos) {
                     player.setSpawnChunk(pos, true, 0);
                     player.setSpawnPoint(pos, true);
                     TextHelper.sendFormattedChatMessage("Spawn point saved!", TextFormatting.GREEN, player);
                     world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savespawn, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 }
-
-                if(player.getHealth() != player.getMaxHealth())
+                
+                if(player.getHealth() < player.getMaxHealth() || STATS.getMP() < STATS.getMaxMP())
                 {
-                    player.heal(4);
-                    player.getCapability(ModCapabilities.PLAYER_STATS, null).setMP(100);
+                    player.heal(1);
+                    STATS.addMP(2);
                     if (player.getFoodStats().getFoodLevel() < 20) player.getFoodStats().addStats(4, 0);
                     world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savepoint, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos, true), player, 64.0D);
+                    PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null),STATS), (EntityPlayerMP)player);
                 }
             }
         }
