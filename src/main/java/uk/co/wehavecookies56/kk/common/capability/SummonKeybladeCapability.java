@@ -13,6 +13,7 @@ public class SummonKeybladeCapability {
     public interface ISummonKeyblade {
         boolean getIsKeybladeSummoned();
         void setIsKeybladeSummoned(boolean summoned);
+        void setInventory(ItemStackHandler handler);
 
         ItemStackHandler getInventoryKeychain();
     }
@@ -40,7 +41,12 @@ public class SummonKeybladeCapability {
     public static class Default implements ISummonKeyblade {
         private boolean keybladeSummoned = false;
 
-        private final ItemStackHandler inventoryKeychain = new ItemStackHandler(InventoryKeychain.INV_SIZE);
+        private ItemStackHandler inventoryKeychain = new ItemStackHandler(InventoryKeychain.INV_SIZE);
+
+        @Override
+        public void setInventory(ItemStackHandler handler) {
+            inventoryKeychain = handler;
+        }
 
         @Override public boolean getIsKeybladeSummoned() {return this.keybladeSummoned;}
         @Override public void setIsKeybladeSummoned(boolean summoned) {this.keybladeSummoned = summoned;}

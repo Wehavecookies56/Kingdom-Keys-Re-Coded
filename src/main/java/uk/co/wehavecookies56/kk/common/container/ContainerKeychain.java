@@ -18,7 +18,25 @@ public class ContainerKeychain extends Container {
     public ContainerKeychain (EntityPlayer player, InventoryPlayer inventoryPlayer) {
         ItemStackHandler inventory = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
         int i;
-        addSlotToContainer(new SlotCustom(inventory, 0, 80, 30, 1) {
+        addSlotToContainer(new SlotCustom(inventory, 0, 8, 6, 1) {
+            @Override
+            public void onSlotChange(@Nonnull ItemStack p_75220_1_, @Nonnull ItemStack p_75220_2_) {
+                inventory.markDirty();
+            }
+        });
+        addSlotToContainer(new SlotCustom(inventory, 1, 8, 25, 1) {
+            @Override
+            public void onSlotChange(@Nonnull ItemStack p_75220_1_, @Nonnull ItemStack p_75220_2_) {
+                inventory.markDirty();
+            }
+        });
+        addSlotToContainer(new SlotCustom(inventory, 2, 8, 45, 1) {
+            @Override
+            public void onSlotChange(@Nonnull ItemStack p_75220_1_, @Nonnull ItemStack p_75220_2_) {
+                inventory.markDirty();
+            }
+        });
+        addSlotToContainer(new SlotCustom(inventory, 3, 8, 64, 1) {
             @Override
             public void onSlotChange(@Nonnull ItemStack p_75220_1_, @Nonnull ItemStack p_75220_2_) {
                 inventory.markDirty();

@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +18,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -51,13 +53,7 @@ import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityFire;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
+import uk.co.wehavecookies56.kk.common.entity.mobs.*;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
@@ -165,14 +161,21 @@ public class CommonProxy {
         }
         Biome[] biomesArray = biomes.toArray(new Biome[biomes.size()]);
 
-        EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 1, 3, EnumCreatureType.MONSTER, biomesArray);
-        EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
-        EntityRegistry.addSpawn(EntityRedNocturne.class, MainConfig.entities.redNocturneRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
-        EntityRegistry.addSpawn(EntityBlueRhapsody.class, MainConfig.entities.blueRhapsodyRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
-        EntityRegistry.addSpawn(EntityYellowOpera.class, MainConfig.entities.yellowOperaRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
-        EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
+        if (MainConfig.entities.shadowRatio != 0)
+            EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 3, 5, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.gigaShadowRatio != 0)
+            EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.redNocturneRatio != 0)
+            EntityRegistry.addSpawn(EntityRedNocturne.class, MainConfig.entities.redNocturneRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.blueRhapsodyRatio != 0)
+            EntityRegistry.addSpawn(EntityBlueRhapsody.class, MainConfig.entities.blueRhapsodyRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.yellowOperaRatio != 0)
+            EntityRegistry.addSpawn(EntityYellowOpera.class, MainConfig.entities.yellowOperaRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.greenRequiemRatio != 0)
+            EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
 
-        EntityRegistry.addSpawn(EntityMoogle.class, MainConfig.entities.moogleRatio, 1, 1, EnumCreatureType.CREATURE, biomesArray);
+        if (MainConfig.entities.moogleRatio != 0)
+            EntityRegistry.addSpawn(EntityMoogle.class, MainConfig.entities.moogleRatio, 1, 1, EnumCreatureType.CREATURE, biomesArray);
 
         Lists.init();
 

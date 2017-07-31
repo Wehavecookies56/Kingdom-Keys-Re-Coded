@@ -113,14 +113,14 @@ public class ItemKeyblade extends ItemSword {
         } else {
             if (world.isRemote){
                 RayTraceResult rtr = Minecraft.getMinecraft().objectMouseOver;
-                if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.OFF_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
-                    if(player.swingProgress <= 0)
-                        player.swingArm(EnumHand.OFF_HAND);
+                if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.OFF_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade && hand == EnumHand.OFF_HAND) {
+                    player.swingArm(EnumHand.OFF_HAND);
+                    System.out.println("TEST");
                     if (rtr.entityHit != null) {
                         PacketDispatcher.sendToServer(new AttackEntity(rtr.entityHit.getEntityId()));
-                        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getActiveItemStack());
+                        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
                     }
-                    return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getActiveItemStack());
+                    return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
                 }
 
             }
@@ -130,8 +130,8 @@ public class ItemKeyblade extends ItemSword {
 
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (player.getActiveItemStack().getItem() == ModItems.WoodenKeyblade || player.getActiveItemStack().getItem() == ModItems.WoodenStick || player.getActiveItemStack().getItem() == ModItems.DreamSword)
-            return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
+        if (player.getHeldItemMainhand().getItem() == ModItems.WoodenKeyblade || player.getHeldItemMainhand().getItem() == ModItems.WoodenStick || player.getHeldItemMainhand().getItem() == ModItems.DreamSword)
+            return EnumActionResult.PASS;
 
         if (world.getBlockState(pos).getBlock() instanceof BlockDoor) {
             SoundEvent sound;

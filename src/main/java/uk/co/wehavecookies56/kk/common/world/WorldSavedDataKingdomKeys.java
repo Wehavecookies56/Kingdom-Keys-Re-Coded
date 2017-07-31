@@ -10,7 +10,7 @@ public class WorldSavedDataKingdomKeys extends WorldSavedData {
 
     private static final String DATA_NAME = Reference.MODID + "_WorldData";
 
-    public boolean generated;
+    public boolean generated, spawnHeartless;
 
     public WorldSavedDataKingdomKeys() {
         super(DATA_NAME);
@@ -25,6 +25,15 @@ public class WorldSavedDataKingdomKeys extends WorldSavedData {
         markDirty();
     }
 
+    public boolean isSpawnHeartless() {
+        return spawnHeartless;
+    }
+
+    public void setSpawnHeartless(boolean spawnHeartless) {
+        this.spawnHeartless = spawnHeartless;
+        markDirty();
+    }
+
     public WorldSavedDataKingdomKeys(String name) {
         super(name);
     }
@@ -32,11 +41,13 @@ public class WorldSavedDataKingdomKeys extends WorldSavedData {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         generated = nbt.getBoolean("generated");
+        spawnHeartless = nbt.getBoolean("spawnheartless");
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         compound.setBoolean("generated", generated);
+        compound.setBoolean("spawnheartless", spawnHeartless);
         return compound;
     }
 

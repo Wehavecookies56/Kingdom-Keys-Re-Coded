@@ -30,9 +30,24 @@ public class EntityAIShadow extends EntityAITarget {
                     outsideShadowMaxTicks--;
                     if(outsideShadowMaxTicks <= 0) {
                         EntityHelper.setState(this.taskOwner, 1);
-                        this.taskOwner.setEntityInvulnerable(true);
                         outsideShadowMaxTicks = TIME_OUTSIDE_THE_SHADOW;
+                        canUseNextAttack = false;
                     }
+                } else {
+                    this.taskOwner.setInvisible(false);
+                }
+            }
+
+            if (isInShadow()){
+                this.taskOwner.setEntityInvulnerable(true);
+                this.taskOwner.setInvisible(true);
+                canUseNextAttack = false;
+                outsideShadowMaxTicks++;
+                if (outsideShadowMaxTicks >= TIME_OUTSIDE_THE_SHADOW) {
+                    EntityHelper.setState(this.taskOwner, 0);
+                    this.taskOwner.setEntityInvulnerable(false);
+                    this.taskOwner.setInvisible(false);
+                    canUseNextAttack = true;
                 }
             }
 

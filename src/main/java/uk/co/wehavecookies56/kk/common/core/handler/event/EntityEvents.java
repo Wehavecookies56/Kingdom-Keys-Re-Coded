@@ -6,6 +6,7 @@ import com.mojang.authlib.GameProfile;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -20,7 +21,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.DimensionType;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -28,15 +34,18 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
+import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
 import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
@@ -47,10 +56,12 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
+import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
+import uk.co.wehavecookies56.kk.common.entity.mobs.BaseEntityHeartless;
 import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
@@ -70,9 +81,11 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDiveToTheHeart;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
+import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterTraverseTown;
 
 /**
  * Created by Toby on 19/07/2016.
@@ -169,6 +182,13 @@ public class EntityEvents {
         }
     }
 
+    @SubscribeEvent
+    public void playerRespawn(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent event) {
+        if (event.isEndConquered()) {
+            new TeleporterTraverseTown(event.player.world.getMinecraftServer().getServer().getWorld(ModDimensions.traverseTownID)).teleport(event.player, event.player.world);
+        }
+    }
+
     public void dropRecipe(LivingDropsEvent event) {
         int recipeRand = Utils.randomWithRange(1, 100);
         if(event.getSource().getTrueSource() instanceof EntityPlayer) {
@@ -213,6 +233,13 @@ public class EntityEvents {
     public static boolean isHostiles = false;
 
     @SubscribeEvent
+    public void potentialSpawns(WorldEvent.PotentialSpawns event) {
+        if (event.getType() == KingdomKeys.HEARTLESS) {
+            event.setCanceled(!WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).spawnHeartless);
+        }
+    }
+
+    @SubscribeEvent
     public void OnEntityJoinWorld (EntityJoinWorldEvent event) {
         if (event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
             if (event.getEntity().dimension == ModDimensions.diveToTheHeartID) {
@@ -237,6 +264,15 @@ public class EntityEvents {
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_MythrilStone);
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_MythrilGem);
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_MythrilCrystal);
+
+            if (event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getSlots() != InventoryKeychain.INV_SIZE) {
+                ItemStackHandler oldInv = event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
+                event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setInventory(new ItemStackHandler(InventoryKeychain.INV_SIZE));
+                ItemStackHandler newInv = event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
+                for (int i = 0; i < oldInv.getSlots(); i++) {
+                    newInv.setStackInSlot(i, oldInv.getStackInSlot(i));
+                }
+            }
 
             PacketDispatcher.sendTo(new SyncHudData(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncMagicInventory(event.getEntity().getCapability(ModCapabilities.MAGIC_STATE, null)), (EntityPlayerMP) event.getEntity());
@@ -306,6 +342,10 @@ public class EntityEvents {
             }
         }
 
+        if (event.getEntity() instanceof EntityDragon) {
+            WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).setSpawnHeartless(true);
+        }
+
         if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityMob) if (event.getSource().getTrueSource() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 
@@ -329,25 +369,23 @@ public class EntityEvents {
 
     @SubscribeEvent
     public void onLivingDrops (LivingDropsEvent event) {
-        if (!MainConfig.entities.disableDrops) {
-            if (event.getEntity() instanceof EntityPlayer) {
-                for (int i = 0; i < event.getDrops().size(); i++) {
-                    if (event.getDrops().get(i).getItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getItem().getItem() != ModItems.WoodenStick)) {
-                        event.getDrops().remove(i);
+        if (event.getEntity() instanceof EntityPlayer) {
+            for (int i = 0; i < event.getDrops().size(); i++) {
+                if (event.getDrops().get(i).getItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getItem().getItem() != ModItems.WoodenStick)) {
+                    event.getDrops().remove(i);
 
-                        event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
-                        i = 0;
-                    }
-                    if (event.getDrops().get(i).getItem().getItem() == event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
-                        event.getDrops().remove(i);
+                    event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
+                    i = 0;
+                }
+                if (event.getDrops().get(i).getItem().getItem() == event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
+                    event.getDrops().remove(i);
 
-                        event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
-                        i = 0;
-                    }
+                    event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
+                    i = 0;
                 }
             }
-
-
+        }
+        if (!MainConfig.entities.disableDrops) {
             if (event.getSource().getTrueSource() instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
                 if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
@@ -367,11 +405,11 @@ public class EntityEvents {
 
                 if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
                     if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRealKeyblade) {
-                        if (event.getEntity() instanceof EntityAnimal)
+                        if (event.getEntity() instanceof EntityAnimal) {
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("heart"))
                                 event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Heart), 2);
-                        else if (event.getEntity() instanceof EntityMob) {
-                            if (Arrays.asList(MainConfig.entities.dropsList).contains("darkheart"))
+                        } else if (event.getEntity() instanceof EntityMob) {
+                                if (Arrays.asList(MainConfig.entities.dropsList).contains("darkheart"))
                                 event.getEntityLiving().entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("spellorb") && event.getEntity() instanceof EntityWitch) {
                                 int rand;

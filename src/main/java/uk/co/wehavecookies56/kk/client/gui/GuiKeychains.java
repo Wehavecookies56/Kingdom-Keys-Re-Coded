@@ -80,7 +80,7 @@ public class GuiKeychains extends GuiContainer {
         GL11.glPushMatrix();
         {
             GL11.glColor3ub((byte) 24, (byte) 36, (byte) 214);
-            // drawDefaultBackground();
+            drawDefaultBackground();
             drawModalRectWithCustomSizedTexture(0, -140 / 16, 0, 0, screenWidth, 70, 32, 32);
             drawModalRectWithCustomSizedTexture(0, screenHeight - ((screenHeight / 8) + 70 / 16), 0, 0, screenWidth, 70, 32, 32);
         }
