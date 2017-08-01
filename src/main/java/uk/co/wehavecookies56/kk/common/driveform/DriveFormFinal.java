@@ -115,32 +115,40 @@ public class DriveFormFinal extends DriveForm {
             if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
                 jumpHeld = true;
                 switch(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Final)) {
-                    case 0:
+                    case 1:
+                    case 2:
                         player.motionY *= Constants.FINAL_GLIDE_1;
                         break;
-                    case 1:
+                    case 3:
+                    case 4:
                         player.motionY *= Constants.FINAL_GLIDE_2;
                         break;
-                    case 2:
+                    case 5:
                         player.motionY *= Constants.FINAL_GLIDE_3;
                         break;
+                    case 7:
+                        player.motionY *= Constants.FINAL_GLIDE_4;
+                        break;
                 }
-                PacketDispatcher.sendToServer(new GlidePacket(jumpHeld));
             } else {
                 jumpHeld = false;
-                PacketDispatcher.sendToServer(new GlidePacket(jumpHeld));
             }
+            PacketDispatcher.sendToServer(new GlidePacket(jumpHeld));
+
         } else if (jumpHeld) {
             switch(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Final)) {
-                case 0:
-                    player.motionY *= Constants.FINAL_GLIDE_1;
-                    break;
-                case 1:
-                    player.motionY *= Constants.FINAL_GLIDE_2;
-                    break;
-                case 2:
-                    player.motionY *= Constants.FINAL_GLIDE_3;
-                    break;
+	            case 1:
+	                player.motionY *= Constants.FINAL_GLIDE_1;
+	                break;
+	            case 3:
+	                player.motionY *= Constants.FINAL_GLIDE_2;
+	                break;
+	            case 5:
+	                player.motionY *= Constants.FINAL_GLIDE_3;
+	                break;
+	            case 7:
+	                player.motionY *= Constants.FINAL_GLIDE_4;
+	                break;
             }
         }
     }

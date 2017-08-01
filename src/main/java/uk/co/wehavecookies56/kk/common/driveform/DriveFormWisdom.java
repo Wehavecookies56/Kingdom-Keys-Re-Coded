@@ -13,6 +13,7 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
+import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -93,30 +94,35 @@ public class DriveFormWisdom extends DriveForm {
         float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
 		float motionZ = MathHelper.cos(yaw / 180.0f * (float) Math.PI);
 		//float motionY = -MathHelper.sin(pitch / 180.0f * (float) Math.PI);
-		//float power = 1 * MathHelper.sqrt(motionX * motionX + 0 + motionZ * motionZ);
-		float power = 0.25f;
+		//float power = 1 * MathHelper.sqrt(motionX * motionX + motionZ * motionZ);
+		
+		double power=0;
+		
+		switch(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Valor)) {
+	        case 1:
+	        	power = Constants.WISDOM_QR_1;
+	            break;
+	        case 3:
+	        	power = Constants.WISDOM_QR_2;
+	            break;
+	        case 5:
+	        	power = Constants.WISDOM_QR_3;
+	            break;
+	        case 7:
+	        	power = Constants.WISDOM_QR_4;
+	            break;
+        }
+	
 		boolean j = false;
         if(player.world.isRemote) {
             j = Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown();
         }
 
         if (j) {
-    	//	System.out.println(motionX+" "+motionY+" "+motionZ);
-
         	if(player.motionY > 0){
         		player.addVelocity(motionX * power, 0 * power, motionZ * power);
         	}
         }
-
-		
-       /* int ticks = 0;
-        if(player.motionY > 0) {
-        	ticks++;
-        	if(ticks < 2)
-        		player.motionX = 1.5;
-        }else {
-        	ticks=0;
-        }*/
     }
 
     @Override

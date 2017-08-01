@@ -106,7 +106,8 @@ public class DriveFormMaster extends DriveForm {
         }
         if (player.onGround)
             jumps = 0;
-        else if (player.world.isRemote) if (player.motionY < 0 && Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) if (this.jumps < 1) {
+        else if (player.world.isRemote)
+        	if (player.motionY < 0 && Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) if (this.jumps < 1) {
             this.jumps++;
             player.jump();
             PacketDispatcher.sendToServer(new MasterFormPacket());
