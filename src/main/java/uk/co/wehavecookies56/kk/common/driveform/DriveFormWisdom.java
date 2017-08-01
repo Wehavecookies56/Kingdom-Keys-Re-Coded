@@ -1,8 +1,10 @@
 package uk.co.wehavecookies56.kk.common.driveform;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -10,13 +12,11 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 
 @Mod.EventBusSubscriber(modid = Reference.MODID)
 public class DriveFormWisdom extends DriveForm {
@@ -88,6 +88,35 @@ public class DriveFormWisdom extends DriveForm {
     @Override
     public void update (EntityPlayer player) {
         super.update(player);
+        float yaw = player.rotationYaw;
+       // float pitch = player.rotationPitch;
+        float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
+		float motionZ = MathHelper.cos(yaw / 180.0f * (float) Math.PI);
+		//float motionY = -MathHelper.sin(pitch / 180.0f * (float) Math.PI);
+		//float power = 1 * MathHelper.sqrt(motionX * motionX + 0 + motionZ * motionZ);
+		float power = 0.25f;
+		boolean j = false;
+        if(player.world.isRemote) {
+            j = Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown();
+        }
+
+        if (j) {
+    	//	System.out.println(motionX+" "+motionY+" "+motionZ);
+
+        	if(player.motionY > 0){
+        		player.addVelocity(motionX * power, 0 * power, motionZ * power);
+        	}
+        }
+
+		
+       /* int ticks = 0;
+        if(player.motionY > 0) {
+        	ticks++;
+        	if(ticks < 2)
+        		player.motionX = 1.5;
+        }else {
+        	ticks=0;
+        }*/
     }
 
     @Override

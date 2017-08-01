@@ -108,15 +108,18 @@ public class DriveFormValor extends DriveForm {
 
         if (j) {
             if(player.motionY > 0) {
-                switch(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Final)) {
-                case 0:
+                switch(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Valor)) {
+                case 1:
                     player.motionY += Constants.VALOR_JUMP_1;
                     break;
-                case 1:
+                case 3:
                     player.motionY += Constants.VALOR_JUMP_2;
                     break;
-                case 2:
+                case 5:
                     player.motionY += Constants.VALOR_JUMP_3;
+                    break;
+                case 7:
+                    player.motionY += Constants.VALOR_JUMP_4;
                     break;
                 }
             }
