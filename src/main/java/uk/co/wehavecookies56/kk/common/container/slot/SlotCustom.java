@@ -1,8 +1,11 @@
 package uk.co.wehavecookies56.kk.common.container.slot;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagL;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagM;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagS;
@@ -18,6 +21,18 @@ public class SlotCustom extends SlotItemHandler {
     public SlotCustom (IItemHandler inventory, int index, int x, int y, int window) {
         super(inventory, index, x, y);
         this.window = window;
+    }
+
+    @Override
+    public boolean canTakeStack(EntityPlayer playerIn) {
+        switch (window) {
+            case 1:
+                if (playerIn.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned(EnumHand.MAIN_HAND)) {
+                    return false;
+                }
+                break;
+        }
+        return super.canTakeStack(playerIn);
     }
 
     @Override

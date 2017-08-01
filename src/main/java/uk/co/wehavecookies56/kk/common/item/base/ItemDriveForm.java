@@ -28,7 +28,7 @@ public abstract class ItemDriveForm extends ItemKKBase {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         if (world.isRemote) PacketDispatcher.sendToServer(new LevelUpDrive(this.form));
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getActiveItemStack());
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     }
 
     @Override

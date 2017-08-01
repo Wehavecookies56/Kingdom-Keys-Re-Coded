@@ -21,9 +21,9 @@ public class DriveFormPacket extends AbstractMessage.AbstractServerMessage<Drive
     String form;
     DriveForm df;
 
-    public DriveFormPacket (Boolean revert) {
+    public DriveFormPacket (String driveform, Boolean revert) {
         this.revert = revert;
-        this.form = "";
+        this.form = driveform;
     }
 
     public DriveFormPacket (String driveform) {
@@ -46,10 +46,7 @@ public class DriveFormPacket extends AbstractMessage.AbstractServerMessage<Drive
     @Override
     public void process (EntityPlayer player, Side side) {
         if (this.revert) {
-            player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(false);
-            player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName("none");
-            if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
-            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+            if (DriveFormRegistry.isDriveFormRegistered(form)) DriveFormRegistry.get(form).endDrive(player);
         }
         if (DriveFormRegistry.isDriveFormRegistered(form)) DriveFormRegistry.get(form).initDrive(player);
     }

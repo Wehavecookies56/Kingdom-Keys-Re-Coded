@@ -19,6 +19,7 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
 import uk.co.wehavecookies56.kk.common.container.ContainerKeychain;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -53,6 +54,7 @@ public class GuiKeychains extends GuiContainer {
         ySize_lo = mouseY;
         drawBackground(width, height);
         super.drawScreen(mouseX, mouseY, f);
+        renderHoveredToolTip(mouseX, mouseY);
     }
 
     public static final ResourceLocation optionsBackground = new ResourceLocation(Reference.MODID, "textures/gui/menubg.png");
@@ -79,7 +81,7 @@ public class GuiKeychains extends GuiContainer {
         Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
         GL11.glPushMatrix();
         {
-            GL11.glColor3ub((byte) 24, (byte) 36, (byte) 214);
+            GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
             drawDefaultBackground();
             drawModalRectWithCustomSizedTexture(0, -140 / 16, 0, 0, screenWidth, 70, 32, 32);
             drawModalRectWithCustomSizedTexture(0, screenHeight - ((screenHeight / 8) + 70 / 16), 0, 0, screenWidth, 70, 32, 32);
@@ -101,7 +103,6 @@ public class GuiKeychains extends GuiContainer {
             drawString(fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
         }
         GL11.glPopMatrix();
-
     }
 
     @Override

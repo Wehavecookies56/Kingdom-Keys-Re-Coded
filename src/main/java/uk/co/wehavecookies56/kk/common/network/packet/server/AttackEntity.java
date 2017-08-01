@@ -24,6 +24,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractServerMessage;
 
@@ -65,7 +66,8 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
         if (targetEntity.canBeAttackedWithItem()) {
             if (!targetEntity.hitByEntity(player)) {
                 float f = (float)player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
-                f += (float)(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + ((ItemKeyblade)player.getHeldItemOffhand().getItem()).getStrength());
+                f += DamageCalculation.getStrengthDamage(player, (ItemKeyblade)player.getHeldItemOffhand().getItem());
+                //f += (float)(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + ((ItemKeyblade)player.getHeldItemOffhand().getItem()).getStrength());
                 float f1;
 
                 if (targetEntity instanceof EntityLivingBase) {
@@ -74,7 +76,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                     f1 = EnchantmentHelper.getModifierForCreature(player.getHeldItemOffhand(), EnumCreatureAttribute.UNDEFINED);
                 }
 
-                float f2 = player.getCooledAttackStrength(0.5F);
+                float f2 = 1;//player.getCooledAttackStrength(0.5F);
                 f = f * (0.2F + f2 * f2 * 0.8F);
                 f1 = f1 * f2;
                 player.resetCooldown();
@@ -105,7 +107,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                     if (flag && !flag2 && !flag1 && player.onGround && d0 < (double)player.getAIMoveSpeed()) {
                         ItemStack itemstack = player.getHeldItem(EnumHand.OFF_HAND);
 
-                        if (itemstack.getItem() instanceof ItemSword) {
+                        if (itemstack.getItem() instanceof ItemKeyblade) {
                             flag3 = true;
                         }
                     }
@@ -205,8 +207,7 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
 
                             if (itemstack1.isEmpty()) {
                                 net.minecraftforge.event.ForgeEventFactory.onPlayerDestroyItem(player, beforeHitCopy, EnumHand.OFF_HAND);
-                                System.out.println("TEST");
-                                //player.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
+                                player.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
                             }
                         }
 

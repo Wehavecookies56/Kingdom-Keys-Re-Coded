@@ -175,7 +175,7 @@ public class CommonProxy {
             EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
 
         if (MainConfig.entities.moogleRatio != 0)
-            EntityRegistry.addSpawn(EntityMoogle.class, MainConfig.entities.moogleRatio, 1, 1, EnumCreatureType.CREATURE, biomesArray);
+            EntityRegistry.addSpawn(EntityMoogle.class, MainConfig.entities.moogleRatio, 1, 1, KingdomKeys.MOOGLE, biomesArray);
 
         Lists.init();
 

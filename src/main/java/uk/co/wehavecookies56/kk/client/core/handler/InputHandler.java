@@ -255,7 +255,7 @@ public class InputHandler {
                             GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
                             world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
                         } else {
-                            PacketDispatcher.sendToServer(new DriveFormPacket(true));
+                            PacketDispatcher.sendToServer(new DriveFormPacket(DS.getActiveDriveName(), true));
                             GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
                             GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
                             world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
@@ -371,33 +371,8 @@ public class InputHandler {
                 commandBack();
                 break;
             case SUMMON_KEYBLADE:
-                if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
-                    if (ItemStack.areItemStacksEqual(mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY)) {
-                        world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
-                        break;
-                    }
-                    
-                    if (!SUMMON.getIsKeybladeSummoned() && ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem() instanceof ItemKeychain) {
-                        PacketDispatcher.sendToServer(new SummonKeyblade(((ItemKeychain) mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem()).getKeyblade()));
-                    } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRealKeyblade && SUMMON.getIsKeybladeSummoned()) {
-                        PacketDispatcher.sendToServer(new DeSummonKeyblade(player.inventory.getCurrentItem()));
-                    } else {
-                        break;
-                    }
-                } else {
-                    OrganizationXIIICapability.IOrganizationXIII organizationXIII = mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-                    if (!organizationXIII.summonedWeapon() && ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
-                        PacketDispatcher.sendToServer(new SummonOrgWeapon(organizationXIII.currentWeapon()));
-                        mc.player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(organizationXIII.currentWeapon()));
-
-                    } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof IOrgWeapon || (organizationXIII.getMember() == Utils.OrgMember.ROXAS && !ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)) {
-                        PacketDispatcher.sendToServer(new DeSummonOrgWeapon(player.inventory.getCurrentItem()));
-                        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-
-                    } else {
-                        break;
-                    }
-                }
+                if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive())
+                    Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
                 break;
             case SCROLL_ACTIVATOR:
                 break;

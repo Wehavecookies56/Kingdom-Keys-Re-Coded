@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
@@ -19,7 +20,9 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
     Utils.OrgMember member;
     Item weapon;
     List<Item> weapons;
-    boolean summoned, opened;
+    boolean summonedMainHand;
+    boolean summonedOffHand;
+    boolean opened;
     double orgPortalX;
     double orgPortalY;
     double orgPortalZ;
@@ -30,7 +33,8 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
     public SyncOrgXIIIData(OrganizationXIIICapability.IOrganizationXIII organizationXIII) {
         this.member = organizationXIII.getMember();
         this.weapon = organizationXIII.currentWeapon();
-        this.summoned = organizationXIII.summonedWeapon();
+        this.summonedMainHand = organizationXIII.summonedWeapon(EnumHand.MAIN_HAND);
+        this.summonedOffHand = organizationXIII.summonedWeapon(EnumHand.OFF_HAND);
         this.weapons = organizationXIII.unlockedWeapons();
         this.opened = organizationXIII.getOpenedGUI();
         this.orgPortalX = organizationXIII.getPortalX();
@@ -43,7 +47,8 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
     protected void read(PacketBuffer buffer) throws IOException {
         this.member = Utils.OrgMember.values()[buffer.readInt()];
         this.weapon = buffer.readItemStack().getItem();
-        this.summoned = buffer.readBoolean();
+        this.summonedMainHand = buffer.readBoolean();
+        this.summonedOffHand = buffer.readBoolean();
         this.opened = buffer.readBoolean();
         this.orgPortalX = buffer.readDouble();
         this.orgPortalY = buffer.readDouble();
@@ -60,7 +65,8 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
     protected void write(PacketBuffer buffer) throws IOException {
         buffer.writeInt(this.member.ordinal());
         buffer.writeItemStack(new ItemStack(this.weapon));
-        buffer.writeBoolean(this.summoned);
+        buffer.writeBoolean(this.summonedMainHand);
+        buffer.writeBoolean(this.summonedOffHand);
         buffer.writeBoolean(this.opened);
         buffer.writeDouble(this.orgPortalX);
         buffer.writeDouble(this.orgPortalY);
@@ -78,7 +84,8 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         organizationXIII.setMember(this.member);
         organizationXIII.setCurrentWeapon(this.weapon);
         organizationXIII.setUnlockedWeapons(this.weapons);
-        organizationXIII.setWeaponSummoned(this.summoned);
+        organizationXIII.setWeaponSummoned(EnumHand.MAIN_HAND, this.summonedMainHand);
+        organizationXIII.setWeaponSummoned(EnumHand.OFF_HAND, this.summonedOffHand);
         organizationXIII.setOpenedGUI(this.opened);
         organizationXIII.setPortalX(this.orgPortalX);
         organizationXIII.setPortalY(this.orgPortalY);

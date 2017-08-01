@@ -22,6 +22,7 @@ import uk.co.wehavecookies56.kk.common.core.command.CommandRemoveKeychain;
 import uk.co.wehavecookies56.kk.common.core.command.CommandResetLevel;
 import uk.co.wehavecookies56.kk.common.core.command.CommandShowHud;
 import uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
 import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
@@ -38,6 +39,7 @@ public class KingdomKeys {
     public static Logger logger;
 
     public static EnumCreatureType HEARTLESS = EnumHelper.addCreatureType(Reference.MODID + ":heartless", IKHMob.class, 30, Material.AIR, false, false);
+    public static EnumCreatureType MOOGLE = EnumHelper.addCreatureType(Reference.MODID + ":moogles", EntityMoogle.class, 10, Material.AIR, true, false);
 
     @EventHandler
     public void preInit (FMLPreInitializationEvent e) {

@@ -11,7 +11,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -19,6 +22,9 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Toby on 19/08/2016.
@@ -45,7 +51,7 @@ public class EntityMoogle extends EntityCreature implements IKHMob {
 
     @Override
     protected boolean canDespawn() {
-        return false;
+        return true;
     }
 
     @Override
@@ -69,6 +75,11 @@ public class EntityMoogle extends EntityCreature implements IKHMob {
     }
 
     @Override
+    public int getMaxSpawnedInChunk() {
+        return 1;
+    }
+
+    @Override
     public EntityHelper.MobType getType() {
         return EntityHelper.MobType.NPC;
     }
@@ -77,5 +88,20 @@ public class EntityMoogle extends EntityCreature implements IKHMob {
     public SoundEvent getAmbientSound()
     {
         return ModSounds.kupoliving;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        int chunkX = 16;
+        int chunkY = 16;
+        int chunkRadius = 4;
+        Chunk currentChunk = world.getChunkFromChunkCoords(chunkCoordX, chunkCoordZ);
+        List<EntityMoogle> moogleInChunk = new ArrayList<>();
+        currentChunk.getEntitiesOfTypeWithinAABB(EntityMoogle.class, new AxisAlignedBB(0, 0, 0, chunkX*chunkRadius, 256, chunkY*chunkRadius), moogleInChunk, null);
+        if (moogleInChunk.size() >= 1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

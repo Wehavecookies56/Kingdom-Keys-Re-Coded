@@ -1,6 +1,23 @@
 package uk.co.wehavecookies56.kk.common.util;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
+import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
+import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
+import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.SummonOrgWeapon;
 
 /**
  * Created by Toby on 19/07/2016.
@@ -65,6 +82,39 @@ public class Utils {
     public static String translateToLocal(String name) {
         TextComponentTranslation translation = new TextComponentTranslation(name);
         return translation.getFormattedText();
+    }
+
+    public static boolean summonWeapon(EntityPlayer player, EnumHand hand, int keychainSlot) {
+        SummonKeybladeCapability.ISummonKeyblade summonCap = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
+        OrganizationXIIICapability.IOrganizationXIII organizationXIIICap = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+
+        if (organizationXIIICap.getMember() == Utils.OrgMember.NONE) {
+            if (ItemStack.areItemStacksEqual(summonCap.getInventoryKeychain().getStackInSlot(keychainSlot), ItemStack.EMPTY)) {
+                return false;
+            }
+            if (!summonCap.getIsKeybladeSummoned(hand) && ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && summonCap.getInventoryKeychain().getStackInSlot(0).getItem() instanceof ItemKeychain) {
+                summonCap.setActiveSlot(player.inventory.currentItem);
+                PacketDispatcher.sendToServer(new SummonKeyblade(hand, keychainSlot));
+                return true;
+            } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof ItemRealKeyblade && summonCap.getIsKeybladeSummoned(hand)) {
+                PacketDispatcher.sendToServer(new DeSummonKeyblade(hand));
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            if (!organizationXIIICap.summonedWeapon(hand) && ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY)) {
+                PacketDispatcher.sendToServer(new SummonOrgWeapon(hand, organizationXIIICap.currentWeapon()));
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(organizationXIIICap.currentWeapon()));
+                return true;
+            } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof IOrgWeapon || (organizationXIIICap.getMember() == Utils.OrgMember.ROXAS && !ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof ItemKeyblade)) {
+                PacketDispatcher.sendToServer(new DeSummonOrgWeapon(hand));
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     public static enum OrgMember { XEMNAS, XIGBAR, XALDIN, VEXEN, LEXAEUS, ZEXION, SAIX, AXEL, DEMYX, LUXORD, MARLUXIA, LARXENE, ROXAS, NONE}

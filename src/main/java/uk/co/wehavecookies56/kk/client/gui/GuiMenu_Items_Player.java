@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.util.EnumHand;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
@@ -46,11 +47,11 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
 
     private void updateButtons () {
         if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE){
-            if(mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE,null).getIsKeybladeSummoned()){
+            if(mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE,null).getIsKeybladeSummoned(EnumHand.MAIN_HAND) || mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE,null).getIsKeybladeSummoned(EnumHand.OFF_HAND)){
                 keychain.enabled = false;
             }
         }else{
-            if(mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII,null).summonedWeapon()){
+            if(mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII,null).summonedWeapon(EnumHand.MAIN_HAND)){
                 keychain.enabled = false;
             }
         }

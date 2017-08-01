@@ -70,7 +70,7 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
         if(playername.equals("test"))
             playername = player.getName();
         EntityPlayer entityplayer = getPlayerFromUsername(playername);
-        player = entityplayer;
+        //player = entityplayer;
 
         int hasDriveInSlot = -1, nullSlot = -1;
 
@@ -78,11 +78,10 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
         if(isLevelUp) {
             player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveLevel(form, levels);
         }
-        else
-        {
+        else {
             for (int i = 0; i < InventoryDriveForms.INV_SIZE; i++) {
                 if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), ItemStack.EMPTY)) {
-                    if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem() == player.getHeldItem(EnumHand.MAIN_HAND).getItem()) {
+                    if (ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), player.getHeldItem(EnumHand.MAIN_HAND))) {
                         hasDriveInSlot = i;
                     }
                 } else {
@@ -93,8 +92,8 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 
             if (hasDriveInSlot == -1) {
                 player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().setStackInSlot(nullSlot, player.getHeldItem(EnumHand.MAIN_HAND));
+                System.out.println(player.getHeldItemMainhand());
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-
                 TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Drive_Learn, new TextComponentTranslation(this.form));
                 learnMessage.getStyle().setColor(TextFormatting.YELLOW);
                 player.sendMessage(learnMessage);

@@ -135,7 +135,9 @@ public class EntityEvents {
         }
         SummonKeybladeCapability.ISummonKeyblade skBefore = event.getOriginal().getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
         SummonKeybladeCapability.ISummonKeyblade skAfter = event.getEntityPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
-        skAfter.setIsKeybladeSummoned(skBefore.getIsKeybladeSummoned());
+        skAfter.setIsKeybladeSummoned(EnumHand.MAIN_HAND, skBefore.getIsKeybladeSummoned(EnumHand.MAIN_HAND));
+        skAfter.setIsKeybladeSummoned(EnumHand.OFF_HAND, skBefore.getIsKeybladeSummoned(EnumHand.OFF_HAND));
+        skAfter.setActiveSlot(skBefore.activeSlot());
         for (int i = 0; i < skBefore.getInventoryKeychain().getSlots(); i++) {
             skAfter.getInventoryKeychain().setStackInSlot(i, skBefore.getInventoryKeychain().getStackInSlot(i));
         }
@@ -170,15 +172,20 @@ public class EntityEvents {
         OrganizationXIIICapability.IOrganizationXIII orgAfter = event.getEntityPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null);
         orgAfter.setMember(orgBefore.getMember());
         orgAfter.setCurrentWeapon(orgBefore.currentWeapon());
-        orgAfter.setWeaponSummoned(orgBefore.summonedWeapon());
+        orgAfter.setWeaponSummoned(EnumHand.MAIN_HAND, orgBefore.summonedWeapon(EnumHand.MAIN_HAND));
+        orgAfter.setWeaponSummoned(EnumHand.OFF_HAND, orgBefore.summonedWeapon(EnumHand.OFF_HAND));
         orgAfter.setPortalX(orgBefore.getPortalX());
         orgAfter.setPortalY(orgBefore.getPortalY());
         orgAfter.setPortalZ(orgBefore.getPortalZ());
         if (event.isWasDeath()) {
             orgAfter.setMember(Utils.OrgMember.NONE);
-            orgAfter.setWeaponSummoned(false);
+            orgAfter.setWeaponSummoned(EnumHand.MAIN_HAND, false);
+            orgAfter.setWeaponSummoned(EnumHand.OFF_HAND, false);
             orgAfter.setUnlockedWeapons(new ArrayList<Item>());
             orgAfter.setUnlockPoints((int)(statsAfter.getLevel() / 5));
+            dsAfter.setActiveDriveName("none");
+            dsAfter.setInDrive(false);
+            statsAfter.setDP(0);
         }
     }
 
@@ -323,12 +330,12 @@ public class EntityEvents {
         if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntity();
             SummonKeybladeCapability.ISummonKeyblade SUMMON = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
-            if (SUMMON.getIsKeybladeSummoned()) {
+            if (SUMMON.getIsKeybladeSummoned(EnumHand.MAIN_HAND)) {
                 if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-                    PacketDispatcher.sendToServer(new DeSummonKeyblade(player.inventory.getCurrentItem()));
+                    PacketDispatcher.sendToServer(new DeSummonKeyblade());
                     PacketDispatcher.sendTo(new SyncKeybladeData(SUMMON), (EntityPlayerMP) player);
                 }else{
-                    SUMMON.setIsKeybladeSummoned(false);
+                    SUMMON.setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);
                     if (event.getEntity().world.getGameRules().getBoolean("keepInventory")) {
                         for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
                             if (!ItemStack.areItemStacksEqual(player.inventory.getStackInSlot(i), ItemStack.EMPTY)) {
@@ -374,13 +381,13 @@ public class EntityEvents {
                 if (event.getDrops().get(i).getItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getItem().getItem() != ModItems.WoodenStick)) {
                     event.getDrops().remove(i);
 
-                    event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
+                    event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);
                     i = 0;
                 }
                 if (event.getDrops().get(i).getItem().getItem() == event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
                     event.getDrops().remove(i);
 
-                    event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
+                    event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(((EntityPlayer) event.getEntity()).getActiveHand(), false);
                     i = 0;
                 }
             }
@@ -388,28 +395,28 @@ public class EntityEvents {
         if (!MainConfig.entities.disableDrops) {
             if (event.getSource().getTrueSource() instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
-                if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
-                    if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
+                if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+                    if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade) {
                         if (event.getEntity() instanceof EntityMob)
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("recipe"))
                                 dropRecipe(event);
                     }
                 }
                 if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.OFF_HAND), ItemStack.EMPTY)) {
-                    if (player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
+                    if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade) {
                         if (event.getEntity() instanceof EntityMob)
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("recipe"))
                                 dropRecipe(event);
                     }
                 }
 
-                if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
-                    if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRealKeyblade) {
+                if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+                    if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemRealKeyblade) {
                         if (event.getEntity() instanceof EntityAnimal) {
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("heart"))
                                 event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Heart), 2);
                         } else if (event.getEntity() instanceof EntityMob) {
-                                if (Arrays.asList(MainConfig.entities.dropsList).contains("darkheart"))
+                            if (Arrays.asList(MainConfig.entities.dropsList).contains("darkheart"))
                                 event.getEntityLiving().entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("spellorb") && event.getEntity() instanceof EntityWitch) {
                                 int rand;
@@ -684,10 +691,10 @@ public class EntityEvents {
             }
             if(player != null) {
                 if(khMob.getType() == MobType.HEARTLESS_EMBLEM || khMob.getType() == MobType.HEARTLESS_PUREBLOOD || khMob.getType() == MobType.NOBODY) {
-                    if(ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY))
+                    if(ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY))
                         event.setCanceled(true);
-                    if(!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
-                        if(!(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon)) {
+                    if(!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+                        if(!(player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemOrgWeapon)) {
                             event.setCanceled(true);
                         }
                     }
@@ -700,8 +707,8 @@ public class EntityEvents {
 
             PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
             DriveStateCapability.IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-            if(!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
-                if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon) {
+            if(!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+                if(player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemOrgWeapon) {
                     event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
                     if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Valor))
                         STATS.addExperience(player, 1, Strings.Form_Valor);
