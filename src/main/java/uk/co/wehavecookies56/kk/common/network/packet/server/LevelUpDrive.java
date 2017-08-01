@@ -77,8 +77,7 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
         PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
         if(isLevelUp) {
             player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveLevel(form, levels);
-        }
-        else {
+        }else{
             for (int i = 0; i < InventoryDriveForms.INV_SIZE; i++) {
                 if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), ItemStack.EMPTY)) {
                     if (ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), player.getHeldItem(EnumHand.MAIN_HAND))) {

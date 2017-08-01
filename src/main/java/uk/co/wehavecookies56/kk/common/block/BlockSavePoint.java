@@ -69,9 +69,6 @@ public class BlockSavePoint extends Block {
             if (e instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) e;
                 IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-              //  System.out.println("X: "+player.getBedLocation().getX()+"::"+pos.getX()+" "+(player.getBedLocation().getX() == pos.getX()));
-              //  System.out.println("Y: "+player.getBedLocation().getY()+"::"+pos.getY()+" "+(player.getBedLocation().getY() == pos.getY()));
-               // System.out.println("Z: "+player.getBedLocation().getZ()+"::"+pos.getZ()+" "+(player.getBedLocation().getZ() == pos.getZ()));
                 boolean samePos = player.getBedLocation().getX() == pos.getX() && player.getBedLocation().getY() == pos.getY() && player.getBedLocation().getZ() == pos.getZ();
                 System.out.println(samePos);
                // BlockPos bedPos = new BlockPos(pos.getX(),pos.getY()-1,pos.getZ());

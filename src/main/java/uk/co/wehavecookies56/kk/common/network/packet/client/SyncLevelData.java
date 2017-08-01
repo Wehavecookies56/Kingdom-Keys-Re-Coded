@@ -31,12 +31,6 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         this.magic = stats.getMagic();
         this.hp = stats.getHP();
         this.messages = stats.getMessages();
-        this.vExp = stats.getVExperience();
-        this.wExp = stats.getWExperience();
-        this.lExp = stats.getLExperience();
-        this.mExp = stats.getMExperience();
-        this.fExp = stats.getFExperience();
-
     }
 
     @Override
@@ -87,11 +81,6 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         stats.setStrength(this.strength);
         stats.setMagic(this.magic);
         stats.setHP(this.hp);
-        stats.setVExperience(vExp);
-        stats.setWExperience(wExp);
-        stats.setLExperience(lExp);
-        stats.setMExperience(mExp);
-        stats.setFExperience(fExp);
 
         player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(stats.getHP());
         stats.getMessages().clear();

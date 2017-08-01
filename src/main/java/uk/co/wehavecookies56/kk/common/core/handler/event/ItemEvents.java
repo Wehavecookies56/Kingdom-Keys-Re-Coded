@@ -98,8 +98,6 @@ public class ItemEvents {
                     event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
                     STATS.addDP(event.getItem().getItem().getTagCompound().getInteger("amount"));
                     EntityPlayer player = event.getEntityPlayer();
-                    if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Master))
-                        player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Master);
 
                     PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
                     PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntityPlayer());

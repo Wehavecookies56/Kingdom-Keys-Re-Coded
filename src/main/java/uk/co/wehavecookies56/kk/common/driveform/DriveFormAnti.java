@@ -61,4 +61,10 @@ public class DriveFormAnti extends DriveForm {
         super.endDrive(player);
     }
 
+	@Override
+	public int[] getExpCosts() {
+		// TODO Auto-generated method stub
+		return new int[] {};
+	}
+
 }

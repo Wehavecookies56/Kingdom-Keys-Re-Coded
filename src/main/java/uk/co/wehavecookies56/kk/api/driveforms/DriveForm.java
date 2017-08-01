@@ -25,6 +25,8 @@ public abstract class DriveForm {
     public abstract boolean hasOffHand ();
 
     public abstract int getKeychainSlot ();
+    
+    public abstract int[] getExpCosts();
 
     public boolean summonKeyblades(EntityPlayer player) {
         if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY) && !ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(1), ItemStack.EMPTY)) {

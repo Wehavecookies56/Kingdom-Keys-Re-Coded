@@ -358,17 +358,13 @@ public class EntityEvents {
 
             EntityMob mob = (EntityMob) event.getEntity();
 
-            player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,(int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2),"normal");
-            if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom))
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Wisdom);
-            if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Final))
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Final);
+            player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,(int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2));
 
             if(event.getEntity() instanceof EntityDragon) {
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,2000, "normal");
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,2000);
             }
             if(event.getEntity() instanceof EntityWither) {
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,1500, "normal");
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,1500);
             }
             PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
         }
@@ -557,8 +553,6 @@ public class EntityEvents {
             if (!ItemStack.areItemStacksEqual(player.inventory.armorInventory.get(0), ItemStack.EMPTY) && player.inventory.armorInventory.get(1) != ItemStack.EMPTY && player.inventory.armorInventory.get(2) != ItemStack.EMPTY && player.inventory.armorInventory.get(3) != ItemStack.EMPTY) {
                 if (player.inventory.armorInventory.get(0).getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.OrganizationRobe_Helmet) {
                     if (!player.world.isRemote) {
-                        //TODO enabling this allows the first screen to pop up
-                        //player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setShowWelcome(true);
 
                         if (!player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getOpenedGUI()) {
                             player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(true);
@@ -705,16 +699,9 @@ public class EntityEvents {
             EntityPlayer player = (EntityPlayer) event.getSource().getImmediateSource();
             if(event.getSource().getDamageType().equals("thorns")) return;
 
-            PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-            DriveStateCapability.IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
             if(!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
                 if(player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemOrgWeapon) {
                     event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
-                    if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Valor))
-                        STATS.addExperience(player, 1, Strings.Form_Valor);
-                    if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Limit))
-                        STATS.addExperience(player, 1, Strings.Form_Limit);
-
                 }
             }
         }

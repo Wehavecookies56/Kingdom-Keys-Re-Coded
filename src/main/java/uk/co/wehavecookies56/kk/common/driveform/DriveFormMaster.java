@@ -4,20 +4,51 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
-import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnDriveFormParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MasterFormPacket;
 
+@Mod.EventBusSubscriber(modid = Reference.MODID)
 public class DriveFormMaster extends DriveForm {
 
+	@SubscribeEvent
+	public static void getXP(EntityItemPickupEvent event) {
+
+		EntityPlayer player = event.getEntityPlayer();
+        DriveStateCapability.IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+
+        if(DRIVE.getActiveDriveName().equals(Strings.Form_Master)) {
+        	if(event.getItem().getItem().getItem() == ModItems.DriveOrb) {
+	        	DRIVE.setDriveExp(DRIVE.getActiveDriveName(), DRIVE.getDriveExp(DRIVE.getActiveDriveName())+(event.getItem().getItem().getTagCompound().getInteger("amount")/5));
+	        	
+	        	int[] costs = DriveFormRegistry.get(DRIVE.getActiveDriveName()).getExpCosts();
+	            int actualLevel = DRIVE.getDriveLevel(DRIVE.getActiveDriveName());
+	            int actualExp = DRIVE.getDriveExp(DRIVE.getActiveDriveName());
+	            System.out.println(actualLevel+":"+actualExp);
+	           
+	            if(costs.length == 7 && actualLevel < 7) {
+	            	System.out.println(actualExp+"::"+costs[actualLevel]);
+	            	if (actualExp >= costs[actualLevel]){
+	            		System.out.println("LEVEL UP");
+	            		DRIVE.setDriveLevel(DRIVE.getActiveDriveName(),actualLevel+1); 
+	            	}
+	            }
+	            PacketDispatcher.sendTo(new SyncDriveData(DRIVE, player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        	}
+        }
+	}
+	
     double cost;
 
     public DriveFormMaster (double cost) {
@@ -85,5 +116,10 @@ public class DriveFormMaster extends DriveForm {
     public void endDrive (EntityPlayer player) {
        super.endDrive(player);
     }
+    
+    @Override
+	public int[] getExpCosts() {
+		return new int[]{0,60,240,456,726,1050,1500};
+	}
 
 }

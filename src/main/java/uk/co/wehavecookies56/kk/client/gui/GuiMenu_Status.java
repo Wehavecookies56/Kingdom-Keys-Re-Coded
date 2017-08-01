@@ -92,6 +92,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
     public void drawScreen (int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
         final PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
+
         IMagicState ms = mc.player.getCapability(ModCapabilities.MAGIC_STATE, null);
         IDriveState ds = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         //System.out.println(ds.getDriveLevel(Strings.Form_Valor)+" "+ds.getDriveLevel(Strings.Form_Wisdom)+" "+ds.getDriveLevel(Strings.Form_Limit)+" "+ds.getDriveLevel(Strings.Form_Master)+" "+ds.getDriveLevel(Strings.Form_Final));
@@ -156,7 +157,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
 
                 drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-                drawString(fontRenderer, "" + STATS.getVExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + ds.getDriveExp(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
 
                 break;
             case STATS_WISDOM:
@@ -166,7 +167,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
 
                 drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-                drawString(fontRenderer, "" + STATS.getWExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + ds.getDriveExp(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
                 break;
             case STATS_LIMIT:
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
@@ -175,7 +176,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
 
                 drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-                drawString(fontRenderer, "" + STATS.getLExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + ds.getDriveExp(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
                 break;
             case STATS_MASTER:
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
@@ -184,7 +185,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
 
                 drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Master), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-                drawString(fontRenderer, "" + STATS.getMExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + ds.getDriveExp(Strings.Form_Master), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
                 break;
             case STATS_FINAL:
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
@@ -193,7 +194,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
 
                 drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Final), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-                drawString(fontRenderer, "" + STATS.getFExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + ds.getDriveExp(Strings.Form_Final), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
                 break;
         }
     }

@@ -28,11 +28,6 @@ public class PlayerStatsCapability {
     public interface IPlayerStats {
         List<String> getMessages();
         int getExperience();
-        int getVExperience();
-        int getWExperience();
-        int getLExperience();
-        int getMExperience();
-        int getFExperience();
 
         int getLevel();
         int getMaxLevel();
@@ -52,12 +47,7 @@ public class PlayerStatsCapability {
 
         boolean setLevel(int level);
         boolean setExperience(int experience);
-        boolean setVExperience(int vexperience);
-        boolean setWExperience(int wexperience);
-        boolean setLExperience(int lexperience);
-        boolean setMExperience(int mexperience);
-        boolean setFExperience(int fexperience);
-        void addExperience(EntityPlayer player, int amount, String type);
+        void addExperience(EntityPlayer player, int amount);
         void setStrength(int strength);
         void addStrength(int strength);
         void setDefense(int defense);
@@ -94,7 +84,6 @@ public class PlayerStatsCapability {
             NBTTagCompound properties = new NBTTagCompound();
             properties.setInteger("Level", instance.getLevel());
             properties.setInteger("Experience", instance.getExperience());
-            properties.setInteger("VExperience", instance.getVExperience());
             properties.setInteger("Strength", instance.getStrength());
             properties.setInteger("Defense", instance.getDefense());
             properties.setInteger("Magic", instance.getMagic());
@@ -139,11 +128,6 @@ public class PlayerStatsCapability {
         private int level = 1;
         private int maxLevel = 100;
         private int experience = 0;
-        private int valorExperience = 0;
-        private int wisdomExperience = 0;
-        private int limitExperience = 0;
-        private int masterExperience = 0;
-        private int finalExperience = 0;
         private int maxExperience = Integer.MAX_VALUE;
         private int valorMaxExperience = Integer.MAX_VALUE;
         private int wisdomMaxExperience = Integer.MAX_VALUE;
@@ -179,22 +163,7 @@ public class PlayerStatsCapability {
         @Override public int getExperience() {
             return this.experience;
         }
-        @Override public int getVExperience() {
-            return this.valorExperience;
-        }
-
-        @Override public int getWExperience() {
-            return this.wisdomExperience;
-        }
-        @Override public int getLExperience() {
-            return this.limitExperience;
-        }
-        @Override public int getMExperience() {
-            return this.masterExperience;
-        }
-        @Override public int getFExperience() {
-            return this.finalExperience;
-        }
+      
         @Override public int getMaxExperience() { return this.maxExperience; }
         @Override public int getStrength() { return this.strength; }
         @Override public int getDefense() { return this.defense; }
@@ -226,90 +195,25 @@ public class PlayerStatsCapability {
             } return false;
         }
 
-        @Override public boolean setVExperience(int experience) {
-            if (valorExperience <= this.valorMaxExperience) {
-                this.valorExperience = experience;
-                return true;
-            } return false;
-        }
-        @Override public boolean setWExperience(int experience) {
-            if (wisdomExperience <= this.wisdomMaxExperience) {
-                this.wisdomExperience = experience;
-                return true;
-            } return false;
-        }
-        @Override public boolean setLExperience(int experience) {
-            if (limitExperience <= this.limitMaxExperience) {
-                this.limitExperience = experience;
-                return true;
-            } return false;
-        }
-        @Override public boolean setMExperience(int experience) {
-            if (masterExperience <= this.masterMaxExperience) {
-                this.masterExperience = experience;
-                return true;
-            } return false;
-        }
-        @Override public boolean setFExperience(int experience) {
-            if (finalExperience <= this.finalMaxExperience) {
-                this.finalExperience = experience;
-                return true;
-            } return false;
-        }
-
-
         @Override
-        public void addExperience(EntityPlayer player, int amount, String type)
+        public void addExperience(EntityPlayer player, int amount)
         {
             if(player != null)
             {
                 IPlayerStats stats = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-                switch(type)
-                {
-                    case "normal":
-                            if (this.experience + amount <= this.maxExperience){
-                                this.experience += amount;
-                                while (this.getExpNeeded(this.getLevel(), this.experience) <= 0 && this.getLevel() != 100) {
-                                    this.setLevel(this.getLevel() + 1);
-                                    this.levelUpStatsAndDisplayMessage(player);
-                                    PacketDispatcher.sendTo(new ShowOverlayPacket("levelup", level),(EntityPlayerMP)player);
-                                }
-                            }else {
-                                this.experience = this.maxExperience;
-                            }
-                            PacketDispatcher.sendTo(new ShowOverlayPacket("exp"),(EntityPlayerMP)player);
-                        break;
-                    case Strings.Form_Valor:
-                        if (this.valorExperience + amount <= this.valorMaxExperience)
-                            this.valorExperience += amount;
-                        else
-                            this.valorExperience = this.valorMaxExperience;
-                        break;
-                    case Strings.Form_Wisdom:
-                        if (this.wisdomExperience + amount <= this.wisdomMaxExperience)
-                            this.wisdomExperience += amount;
-                        else
-                            this.wisdomExperience = this.wisdomMaxExperience;
-                        break;
-                    case Strings.Form_Limit:
-                        if (this.limitExperience + amount <= this.limitMaxExperience)
-                            this.limitExperience += amount;
-                        else
-                            this.limitExperience = this.limitMaxExperience;
-                        break;
-                    case Strings.Form_Master:
-                        if (this.masterExperience + amount <= this.masterMaxExperience)
-                            this.masterExperience += amount;
-                        else
-                            this.masterExperience = this.masterMaxExperience;
-                        break;
-                    case Strings.Form_Final:
-                        if (this.finalExperience + amount <= this.finalMaxExperience)
-                            this.finalExperience += amount;
-                        else
-                            this.finalExperience = this.finalMaxExperience;
-                        break;
+                if (this.experience + amount <= this.maxExperience){
+                    this.experience += amount;
+                    while (this.getExpNeeded(this.getLevel(), this.experience) <= 0 && this.getLevel() != 100) {
+                        this.setLevel(this.getLevel() + 1);
+                        this.levelUpStatsAndDisplayMessage(player);
+                        PacketDispatcher.sendTo(new ShowOverlayPacket("levelup", level),(EntityPlayerMP)player);
+                    }
+                }else {
+                    this.experience = this.maxExperience;
                 }
+                PacketDispatcher.sendTo(new ShowOverlayPacket("exp"),(EntityPlayerMP)player);
+                
+                
             }
         }
         @Override public void setStrength(int strength) { this.strength = strength; }
