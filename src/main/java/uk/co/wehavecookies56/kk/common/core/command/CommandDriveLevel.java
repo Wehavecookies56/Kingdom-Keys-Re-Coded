@@ -88,13 +88,13 @@ public class CommandDriveLevel implements ICommand {
             else if (args.length == 2) {
                     int level = 1;
                     try {
-                        if (Integer.parseInt(args[1]) < 1 || Integer.parseInt(args[1]) > 3) {
-                            TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 3", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+                        if (Integer.parseInt(args[1]) < 1 || Integer.parseInt(args[1]) > 7) {
+                            TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 7", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
                             return;
                         } else
                             level = Integer.parseInt(args[1]);
                     } catch (Exception e) {
-                        TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 3", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+                        TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 7", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
                         return;
                     }
                     String form = null;

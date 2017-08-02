@@ -90,6 +90,8 @@ public class DriveFormMaster extends DriveForm {
     @Override
     public void update (EntityPlayer player) {
         super.update(player);
+    	int actualLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Master);
+
         if (player.onGround && !player.isInWater()) {
             player.motionX *= 1.18D;
             player.motionZ *= 1.18D;
@@ -101,7 +103,7 @@ public class DriveFormMaster extends DriveForm {
 
         if (j) {
             if(player.motionY > 0) {
-                player.motionY += Constants.MASTER_JUMP_1;
+                player.motionY += Constants.MASTER_JUMP[actualLevel];
             }
         }
         if (player.onGround)

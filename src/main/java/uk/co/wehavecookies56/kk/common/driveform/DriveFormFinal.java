@@ -97,6 +97,8 @@ public class DriveFormFinal extends DriveForm {
     @Override
     public void update (EntityPlayer player) {
         super.update(player);
+    	int actualLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Final);
+
         boolean j = false;
         if(player.world.isRemote) {
             j = Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown();
@@ -104,52 +106,24 @@ public class DriveFormFinal extends DriveForm {
 
         if (j) {
             if(player.motionY > 0) {
-                player.motionY += Constants.FINAL_JUMP;
+                player.motionY += Constants.FINAL_JUMP[actualLevel];
             }
         }
 
         if (player.onGround && !player.isInWater()) {
-            player.motionX *= 1.2D;
-            player.motionZ *= 1.2D;
+            player.motionX *= Constants.FINAL_SPEED[actualLevel];
+            player.motionZ *= Constants.FINAL_SPEED[actualLevel];
         } else if (player.motionY < 0) if (player.world.isRemote) {
             if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
                 jumpHeld = true;
-                switch(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Final)) {
-                    case 1:
-                    case 2:
-                        player.motionY *= Constants.FINAL_GLIDE_1;
-                        break;
-                    case 3:
-                    case 4:
-                        player.motionY *= Constants.FINAL_GLIDE_2;
-                        break;
-                    case 5:
-                        player.motionY *= Constants.FINAL_GLIDE_3;
-                        break;
-                    case 7:
-                        player.motionY *= Constants.FINAL_GLIDE_4;
-                        break;
-                }
+                player.motionY *= Constants.FINAL_GLIDE[actualLevel];
             } else {
                 jumpHeld = false;
             }
             PacketDispatcher.sendToServer(new GlidePacket(jumpHeld));
 
         } else if (jumpHeld) {
-            switch(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Final)) {
-	            case 1:
-	                player.motionY *= Constants.FINAL_GLIDE_1;
-	                break;
-	            case 3:
-	                player.motionY *= Constants.FINAL_GLIDE_2;
-	                break;
-	            case 5:
-	                player.motionY *= Constants.FINAL_GLIDE_3;
-	                break;
-	            case 7:
-	                player.motionY *= Constants.FINAL_GLIDE_4;
-	                break;
-            }
+            player.motionY *= Constants.FINAL_GLIDE[actualLevel];
         }
     }
 

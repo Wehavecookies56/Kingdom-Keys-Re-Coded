@@ -89,6 +89,8 @@ public class DriveFormWisdom extends DriveForm {
     @Override
     public void update (EntityPlayer player) {
         super.update(player);
+    	int actualLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Wisdom);
+
         float yaw = player.rotationYaw;
        // float pitch = player.rotationPitch;
         float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
@@ -96,23 +98,8 @@ public class DriveFormWisdom extends DriveForm {
 		//float motionY = -MathHelper.sin(pitch / 180.0f * (float) Math.PI);
 		//float power = 1 * MathHelper.sqrt(motionX * motionX + motionZ * motionZ);
 		
-		double power=0;
-		
-		switch(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Valor)) {
-	        case 1:
-	        	power = Constants.WISDOM_QR_1;
-	            break;
-	        case 3:
-	        	power = Constants.WISDOM_QR_2;
-	            break;
-	        case 5:
-	        	power = Constants.WISDOM_QR_3;
-	            break;
-	        case 7:
-	        	power = Constants.WISDOM_QR_4;
-	            break;
-        }
-	
+		double power = Constants.WISDOM_QR[actualLevel];
+	    
 		boolean j = false;
         if(player.world.isRemote) {
             j = Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown();

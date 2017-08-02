@@ -97,9 +97,11 @@ public class DriveFormValor extends DriveForm {
     @Override
     public void update (EntityPlayer player) {
         super.update(player);
+    	int actualLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Valor);
+
         if (player.onGround && !player.isInWater()) {
-            player.motionX *= Constants.VALOR_SPEED;
-            player.motionZ *= Constants.VALOR_SPEED;
+            player.motionX *= Constants.VALOR_SPEED[actualLevel];
+            player.motionZ *= Constants.VALOR_SPEED[actualLevel];
         }
         boolean j = false;
         if(player.world.isRemote) {
@@ -107,21 +109,8 @@ public class DriveFormValor extends DriveForm {
         }
 
         if (j) {
-            if(player.motionY > 0) {
-                switch(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Valor)) {
-                case 1:
-                    player.motionY += Constants.VALOR_JUMP_1;
-                    break;
-                case 3:
-                    player.motionY += Constants.VALOR_JUMP_2;
-                    break;
-                case 5:
-                    player.motionY += Constants.VALOR_JUMP_3;
-                    break;
-                case 7:
-                    player.motionY += Constants.VALOR_JUMP_4;
-                    break;
-                }
+            if(player.motionY > 0) {                	
+            	player.motionY += Constants.VALOR_JUMP[actualLevel];
             }
         }
     }
