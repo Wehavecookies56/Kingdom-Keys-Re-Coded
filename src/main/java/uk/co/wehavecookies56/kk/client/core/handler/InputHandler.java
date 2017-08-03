@@ -76,11 +76,11 @@ public class InputHandler {
         int ap = player.getCapability(ModCapabilities.DRIVE_STATE, null).getAntiPoints();
         int prob = 0;
         if (ap > 0 && ap <= 4)
-            prob = 10;
+            prob = 0;
         else if (ap > 4 && ap <= 9)
-            prob = 25;
+            prob = 10;
         else if (ap >= 10)
-            prob = 40;
+            prob = 25;
 
         /*System.out.println("AP: "+ap);
         System.out.println("Prob: "+prob+"%");*/
@@ -89,7 +89,7 @@ public class InputHandler {
             PacketDispatcher.sendToServer(new DriveFormPacket(Strings.Form_Anti));
             GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
             GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-            PacketDispatcher.sendToServer(new AntiPoints(4, "-"));
+            PacketDispatcher.sendToServer(new AntiPoints(-4));
             world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
             return true;
         } else
