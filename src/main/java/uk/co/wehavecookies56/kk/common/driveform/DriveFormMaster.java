@@ -30,8 +30,9 @@ public class DriveFormMaster extends DriveForm {
 
         if(DRIVE.getActiveDriveName().equals(Strings.Form_Master)) {
         	if(event.getItem().getItem().getItem() == ModItems.DriveOrb) {
-	        	DRIVE.setDriveExp(DRIVE.getActiveDriveName(), DRIVE.getDriveExp(DRIVE.getActiveDriveName())+(event.getItem().getItem().getTagCompound().getInteger("amount")/5));
-	        	
+        		int amount = (event.getItem().getItem().getTagCompound().getInteger("amount")/5) > 0 ? event.getItem().getItem().getTagCompound().getInteger("amount")/5 : 1;
+	        	DRIVE.setDriveExp(DRIVE.getActiveDriveName(), DRIVE.getDriveExp(DRIVE.getActiveDriveName())+amount);
+	        	System.out.println(DRIVE.getDriveExp(DRIVE.getActiveDriveName())+(event.getItem().getItem().getTagCompound().getInteger("amount")/5));
 	        	int[] costs = DriveFormRegistry.get(DRIVE.getActiveDriveName()).getExpCosts();
 	            int actualLevel = DRIVE.getDriveLevel(DRIVE.getActiveDriveName());
 	            int actualExp = DRIVE.getDriveExp(DRIVE.getActiveDriveName());

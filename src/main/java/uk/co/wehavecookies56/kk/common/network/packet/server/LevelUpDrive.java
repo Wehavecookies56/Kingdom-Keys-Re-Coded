@@ -11,8 +11,10 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryDriveForms;
+import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -59,12 +61,14 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
         buffer.writeInt(levels);
         buffer.writeString(playername);
     }
+    
     public static EntityPlayer getPlayerFromUsername(String username) {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
             return null;
 
         return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(username);
     }
+    
     @Override
     public void process (EntityPlayer player, Side side) {
         if(playername.equals("test"))
@@ -92,7 +96,15 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
             if (hasDriveInSlot == -1) {
                 player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().setStackInSlot(nullSlot, player.getHeldItem(EnumHand.MAIN_HAND));
                 System.out.println(player.getHeldItemMainhand());
+                if(player.getHeldItemMainhand().getItem() instanceof ItemDriveForm) {
+	                String form = ((ItemDriveForm) player.getHeldItemMainhand().getItem()).getDriveFormName(); 
+	                //System.out.println(form+"\n"+player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(form));
+	                if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(form) == 0) {
+	                	player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveLevel(form, 1);
+	                }
+                }
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+
                 TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Drive_Learn, new TextComponentTranslation(this.form));
                 learnMessage.getStyle().setColor(TextFormatting.YELLOW);
                 player.sendMessage(learnMessage);

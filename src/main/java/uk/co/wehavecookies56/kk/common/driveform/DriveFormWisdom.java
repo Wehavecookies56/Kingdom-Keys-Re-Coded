@@ -107,6 +107,7 @@ public class DriveFormWisdom extends DriveForm {
 
         if (j) {
         	if(player.motionY > 0){
+        		//player.motionY=0;
         		player.addVelocity(motionX * power, 0 * power, motionZ * power);
         	}
         }
