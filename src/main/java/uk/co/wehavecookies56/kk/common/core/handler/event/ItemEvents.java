@@ -520,6 +520,11 @@ public class ItemEvents {
     @SubscribeEvent
     public void onItemTossEvent (ItemTossEvent event) {
         if (!event.getPlayer().world.isRemote)
+        	if(event.getPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
+        		event.setCanceled(true);
+        		return;
+        	}
+        
             if (event.getEntityItem().getItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getItem().getItem() != ModItems.WoodenStick)) {
                 event.getEntityItem().isDead = true;
                 event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);

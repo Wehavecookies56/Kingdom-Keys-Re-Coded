@@ -15,8 +15,22 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class DriveStateCapability {
 
     public interface IDriveState {
+    	/**
+    	 * Returns if the player is in a drive form
+    	 * @return True if player is in a drive form 
+    	 */
         boolean getInDrive();
+        
+        /**
+         * Returns the unlocalized name for the actual drive form
+         * @return Drive form name
+         */
         String getActiveDriveName();
+        
+        /**
+         * Get the amount of antipoints the player has
+         * @return Amount of antipoints
+         */
         int getAntiPoints();
         int getDriveLevel(String drive);
         int getDriveExp(String drive);

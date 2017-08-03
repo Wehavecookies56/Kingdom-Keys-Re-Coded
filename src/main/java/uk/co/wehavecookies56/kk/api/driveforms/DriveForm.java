@@ -61,6 +61,7 @@ public abstract class DriveForm {
         }
         if (player.inventory.currentItem != player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).activeSlot())
             player.inventory.currentItem = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).activeSlot();
+      
         if (ItemStack.areItemStacksEqual(player.inventory.getItemStack(), new ItemStack(((ItemKeychain)player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem()).getKeyblade()))) {
             player.inventory.setItemStack(ItemStack.EMPTY);
             player.inventory.setInventorySlotContents(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).activeSlot(), new ItemStack(((ItemKeychain)player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0).getItem()).getKeyblade()));
@@ -80,6 +81,7 @@ public abstract class DriveForm {
                 player.getCapability(ModCapabilities.PLAYER_STATS, null).remDP(0.1);
                 if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getDP() < 0) {
                     player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
+                    endDrive(player);
                 }
             }else{
                 endDrive(player);
