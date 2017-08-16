@@ -21,7 +21,8 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
     int limitLevel, limitExp;
     int masterLevel, masterExp;
     int finalLevel, finalExp;
-    double dp;
+    int driveGaugeLevel;
+    double dp, fp;
 
     public SyncDriveData() {}
 
@@ -40,8 +41,10 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
         this.limitExp = state.getDriveExp(Strings.Form_Limit);
         this.masterExp = state.getDriveExp(Strings.Form_Master);
         this.finalExp = state.getDriveExp(Strings.Form_Final);
+        this.driveGaugeLevel = state.getDriveGaugeLevel();
 
         this.dp = stats.getDP();
+        this.fp = stats.getFP();
     }
 
     @Override
@@ -60,8 +63,10 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
         this.limitExp = buffer.readInt();
         this.masterExp = buffer.readInt();
         this.finalExp = buffer.readInt();
+        this.driveGaugeLevel = buffer.readInt();
 
         this.dp = buffer.readDouble();
+        this.fp = buffer.readDouble();
     }
 
     @Override
@@ -80,8 +85,10 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
         buffer.writeInt(this.limitExp);
         buffer.writeInt(this.masterExp);
         buffer.writeInt(this.finalExp);
+        buffer.writeInt(this.driveGaugeLevel);
 
         buffer.writeDouble(this.dp);
+        buffer.writeDouble(this.fp);
     }
 
     @Override
@@ -102,8 +109,10 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
         state.setDriveExp(Strings.Form_Limit, limitExp);
         state.setDriveExp(Strings.Form_Master, masterExp);
         state.setDriveExp(Strings.Form_Final, finalExp);
+        state.setDriveGaugeLevel(driveGaugeLevel);
 
         stats.setDP(dp);
+        stats.setFP(fp);
     }
 
 }

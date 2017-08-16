@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.client.core.handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.util.text.TextComponentTranslation;
 import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.Minecraft;
@@ -21,6 +22,7 @@ import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.client.gui.GuiCommandMenu;
@@ -254,8 +256,10 @@ public class InputHandler {
                         if (DS.getActiveDriveName().equals(Strings.Form_Anti) && !player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
                             GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
                             world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
+                            player.sendMessage(new TextComponentTranslation("Cannot revert while in Anti form"));
                         } else {
                             PacketDispatcher.sendToServer(new DriveFormPacket(DS.getActiveDriveName(), true));
+                            if (DriveFormRegistry.isDriveFormRegistered(DS.getActiveDriveName())) DriveFormRegistry.get(DS.getActiveDriveName()).endDrive(player);
                             GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
                             GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
                             world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
@@ -332,6 +336,10 @@ public class InputHandler {
         EntityPlayer player = mc.player;
         World world = mc.world;
         SummonKeybladeCapability.ISummonKeyblade SUMMON = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
+
+        if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+            Minecraft.getMinecraft().gameSettings.keyBindSwapHands.isPressed();
+        }
 
         Keybinds key = getPressedKey();
         if (key != null)

@@ -19,6 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
@@ -33,9 +34,12 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -117,6 +121,7 @@ public class EntityEvents {
         dsAfter.setDriveLevel(Strings.Form_Limit, dsBefore.getDriveLevel(Strings.Form_Limit));
         dsAfter.setDriveLevel(Strings.Form_Master, dsBefore.getDriveLevel(Strings.Form_Master));
         dsAfter.setDriveLevel(Strings.Form_Final, dsBefore.getDriveLevel(Strings.Form_Final));
+        dsAfter.setDriveGaugeLevel(dsBefore.getDriveGaugeLevel());
         dsAfter.setInDrive(dsBefore.getInDrive());
         for (int i = 0; i < dsBefore.getInventoryDriveForms().getSlots(); i++) {
             dsAfter.getInventoryDriveForms().setStackInSlot(i, dsBefore.getInventoryDriveForms().getStackInSlot(i));
@@ -145,6 +150,7 @@ public class EntityEvents {
         PlayerStatsCapability.IPlayerStats statsAfter = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
         statsAfter.setDefense(statsBefore.getDefense());
         statsAfter.setDP(statsBefore.getDP());
+        statsAfter.setFP(statsBefore.getFP());
         statsAfter.setExperience(statsBefore.getExperience());
         statsAfter.setHP(statsBefore.getHP());
         statsAfter.setLevel(statsBefore.getLevel());
@@ -186,6 +192,7 @@ public class EntityEvents {
             dsAfter.setActiveDriveName("none");
             dsAfter.setInDrive(false);
             statsAfter.setDP(0);
+            statsAfter.setFP(0);
         }
     }
 
@@ -677,6 +684,11 @@ public class EntityEvents {
                 if (EntityThunder.summonLightning)
                     event.setCanceled(true);
         }
+        if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
+            player.getCapability(ModCapabilities.PLAYER_STATS, null).addDP(1);
+            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        }
         if(event.getEntityLiving() instanceof IKHMob) {
             EntityPlayer player = null;
             IKHMob khMob = (IKHMob) event.getEntityLiving();
@@ -720,7 +732,28 @@ public class EntityEvents {
 //            }
         }
     }
-    
+
+    @SubscribeEvent
+    public void container(PlayerContainerEvent.Open event) {
+        if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+            event.getEntityPlayer().closeScreen();
+        }
+    }
+
+    @SubscribeEvent
+    public void interactWithEntity(PlayerInteractEvent.EntityInteract event) {
+        if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public void interactWithBlock(PlayerInteractEvent.RightClickBlock event) {
+        if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+            event.setCanceled(true);
+        }
+    }
+
     @SubscribeEvent
     public void onJump (LivingJumpEvent event) {
         if (event.getEntityLiving() instanceof EntityPlayer) {

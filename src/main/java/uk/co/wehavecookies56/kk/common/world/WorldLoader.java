@@ -14,6 +14,8 @@ import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityStructure;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -87,10 +89,23 @@ public class WorldLoader {
                 if (state.getBlock() == Blocks.TORCH && state.getValue(BlockTorch.FACING) == EnumFacing.UP)
                     if (world.getBlockState(blockpos.down()).getBlock() == Blocks.AIR)
                         world.setBlockState(blockpos.down(), Blocks.DIRT.getDefaultState(), 2);
-                if (state.getBlock() == Blocks.CHEST)
-                    world.setBlockState(blockpos, ModBlocks.KKChest.getDefaultState().withProperty(BlockKKChest.FACING, state.getValue(BlockChest.FACING)));
-                else
+                if (state.getBlock() == Blocks.CHEST) {
+                    if (block.hasKey("nbt")) {
+                        System.out.println("Chest NBT");
+                        NBTTagCompound nbtData = block.getCompoundTag("nbt");
+                        world.setBlockState(blockpos, state, 2);
+                        TileEntityChest te = (TileEntityChest) TileEntityChest.create(world, nbtData);
+                        world.setTileEntity(blockpos, te);
+                        System.out.println(world.getTileEntity(blockpos));
+                        if (nbtData.getString("id").equals("minecraft:chest")) {
+
+                        }
+                    }
+                }
+                else {
                     world.setBlockState(blockpos, state, 2);
+                }
+                //world.setBlockState(blockpos, ModBlocks.KKChest.getDefaultState().withProperty(BlockKKChest.FACING, state.getValue(BlockChest.FACING)));
                 //System.out.println(i + ":" + state.getBlock() + " " + blockpos.getY());
             }
         } catch (IOException e){
