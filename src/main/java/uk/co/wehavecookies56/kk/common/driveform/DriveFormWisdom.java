@@ -5,6 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -84,6 +86,8 @@ public class DriveFormWisdom extends DriveForm {
     @Override
     public void initDrive (EntityPlayer player) {
         super.initDrive(player);
+        if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(getName()))
+            player.sendMessage(new TextComponentTranslation(TextFormatting.BLUE + "Wisdom form activated"));
     }
 
     @Override

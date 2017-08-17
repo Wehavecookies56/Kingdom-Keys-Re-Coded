@@ -94,7 +94,8 @@ public class DriveFormValor extends DriveForm {
     @Override
     public void initDrive (EntityPlayer player) {
         super.initDrive(player);
-        player.sendMessage(new TextComponentTranslation(TextFormatting.RED + "Valor form activated"));
+        if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(getName()))
+            player.sendMessage(new TextComponentTranslation(TextFormatting.DARK_RED + "Valor form activated"));
     }
 
     @Override

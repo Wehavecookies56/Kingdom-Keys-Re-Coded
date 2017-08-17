@@ -4,6 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -87,6 +89,8 @@ public class DriveFormMaster extends DriveForm {
     @Override
     public void initDrive (EntityPlayer player) {
         super.initDrive(player);
+        if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(getName()))
+            player.sendMessage(new TextComponentTranslation(TextFormatting.GOLD + "Master form activated"));
     }
 
     @Override

@@ -5,6 +5,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -49,6 +51,8 @@ public class DriveFormAnti extends DriveForm {
     @Override
     public void initDrive (EntityPlayer player) {
         super.initDrive(player);
+        if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(getName()))
+            player.sendMessage(new TextComponentTranslation(TextFormatting.BLACK + "Anti form activated"));
     }
 
     @Override

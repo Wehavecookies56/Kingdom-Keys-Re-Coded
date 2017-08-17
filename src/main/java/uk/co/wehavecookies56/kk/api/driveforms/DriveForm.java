@@ -18,6 +18,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnDriveFormParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public abstract class DriveForm {
@@ -116,6 +117,9 @@ public abstract class DriveForm {
                 if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getFP() < 0) {
                     player.getCapability(ModCapabilities.PLAYER_STATS, null).setFP(0);
                     endDrive(player);
+                    if (player.world.isRemote) {
+                        PacketDispatcher.sendToServer(new DriveFormPacket(getName(), true));
+                    }
                 }
             }else{
                 endDrive(player);
@@ -144,6 +148,7 @@ public abstract class DriveForm {
         player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setActiveSlot(-1);
         if (!player.world.isRemote)
             PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+
     }
 
 }

@@ -5,7 +5,9 @@ import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -15,7 +17,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Bars;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
+import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
 
 @SideOnly(Side.CLIENT)
 public class ClientEventHandler {
@@ -26,13 +33,57 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public void debugInfo(RenderGameOverlayEvent.Text event) {
+        String modName = "[" + TextFormatting.GOLD + Reference.MODNAME + TextFormatting.RESET + "] ";
         if (Minecraft.getMinecraft().gameSettings.showDebugInfo) {
             if (musicHandler.isPlaying()) {
-                event.getLeft().add("Current music: " + musicHandler.getCurrentlyPlaying());
+                event.getLeft().add(modName + "Current music: " + musicHandler.getCurrentlyPlaying());
             }
             if (musicHandler.getCurrentlyPlaying() == null) {
                 String time = String.format("%.02f", (float) musicHandler.getTimeUntilNextMusic() / 20F);
-                event.getLeft().add("Next music in: " + time + "s");
+                event.getLeft().add(modName + "Next music in: " + time + "s");
+            }
+            boolean combat = EntityEvents.isHostiles || EntityEvents.isBoss;
+            boolean cheatMode = (mc.player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode());
+            boolean spawnHeartless = WorldSavedDataKingdomKeys.get(mc.world).spawnHeartless;
+
+            TextFormatting colour = TextFormatting.RED;
+            if (combat)
+                colour = TextFormatting.GREEN;
+            event.getLeft().add(modName + "In combat: " + colour + combat);
+            colour = TextFormatting.RED;
+            if (cheatMode)
+                colour = TextFormatting.GREEN;
+            event.getLeft().add(modName + "Cheatmode?: " + colour + cheatMode);
+            colour = TextFormatting.RED;
+            if (spawnHeartless)
+                colour = TextFormatting.GREEN;
+            event.getLeft().add(modName + "Spawn heartless?: " + colour + spawnHeartless);
+            if (!mc.player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+                event.getLeft().add(modName + "Drive form: " + mc.player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName());
+            }
+            if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
+                event.getLeft().add(modName + "Org member: " + mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember());
+                boolean orgWeaponSummonedMainHand = mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).summonedWeapon(EnumHand.MAIN_HAND);
+                colour = TextFormatting.RED;
+                if (orgWeaponSummonedMainHand)
+                    colour = TextFormatting.GREEN;
+                event.getLeft().add(modName + "Main hand weapon summoned?: " + colour + orgWeaponSummonedMainHand);
+                boolean orgWeaponSummonedOffHand = mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).summonedWeapon(EnumHand.OFF_HAND);
+                colour = TextFormatting.RED;
+                if (orgWeaponSummonedOffHand)
+                    colour = TextFormatting.GREEN;
+                event.getLeft().add(modName + "Off hand weapon summoned?: " + colour + orgWeaponSummonedOffHand);
+            } else {
+                colour = TextFormatting.RED;
+                boolean mainHandKeybladeSummoned = mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned(EnumHand.MAIN_HAND);
+                if (mainHandKeybladeSummoned)
+                    colour = TextFormatting.GREEN;
+                event.getLeft().add(modName + "Main hand keyblade summoned?: " + colour + mainHandKeybladeSummoned);
+                boolean offHandKeybladeSummoned = mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned(EnumHand.OFF_HAND);
+                colour = TextFormatting.RED;
+                if (offHandKeybladeSummoned)
+                    colour = TextFormatting.GREEN;
+                event.getLeft().add(modName + "Off hand keyblade summoned?: " + colour + offHandKeybladeSummoned);
             }
         }
     }
