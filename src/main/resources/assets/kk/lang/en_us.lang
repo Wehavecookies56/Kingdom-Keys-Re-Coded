@@ -115,11 +115,14 @@ holdforinfo.desc=Hold shift for more info
 
 #Synthesis Ore
 tile.blazingore.name=Blazing Ore
+tile.blazingoren.name=Blazing Ore
 tile.brightore.name=Bright Ore
 tile.darkore.name=Dark Ore
 tile.darkoree.name=Dark Ore
+tile.darkoren.name=Dark Ore
 tile.denseore.name=Dense Ore
 tile.energyore.name=Energy Ore
+tile.energyoren.name=Energy Ore
 tile.frostore.name=Frost Ore
 tile.lightningore.name=Lightning Ore
 tile.lucidore.name=Lucid Ore
@@ -130,6 +133,7 @@ tile.serenityore.name=Serenity Ore
 tile.stormyore.name=Stormy Ore
 tile.tranquilore.name=Tranquil Ore
 tile.twilightore.name=Twilight Ore
+tile.twilightoren.name=Twilight Ore
 
 #Other
 tile.synthesistable.name=Synthesis Table

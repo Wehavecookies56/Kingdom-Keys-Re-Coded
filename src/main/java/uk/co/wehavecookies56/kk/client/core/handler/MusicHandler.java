@@ -5,6 +5,7 @@ import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.Sound;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -13,6 +14,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.lib.Music;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 
 import java.util.ArrayList;
@@ -36,14 +38,40 @@ public class MusicHandler implements ITickable {
 
     public static SoundEvent[] soaMusic = {ModSounds.Music_Dive_Into_The_Heart_Destati};
 
+    public static SoundEvent[] destinyIslandsMusic = {ModSounds.Music_Destiny_Islands};
+
+    public static SoundEvent[] traverseTownMusic = {ModSounds.Music_Traverse_Town, ModSounds.Music_Traverse_In_Trance};
+
     public MusicHandler(Minecraft mc) {
         this.mc = mc;
     }
     SoundEvent music;
 
-    @Override
-    public void update() {
+    public boolean dimensionMusic(int dim, MusicType type, EntityPlayer player) {
+        if (mc.world != null && mc.player != null) {
+            if (player.dimension == dim) {
+                stopAllMusicExcept(type);
+                music = getRandomTrack(type);
+                if (currentlyPlaying != null) {
+                    if (!mc.getSoundHandler().isSoundPlaying(currentlyPlaying)) {
+                        currentlyPlaying = null;
+                        timeUntilNextMusic = Math.min(timeUntilNextMusic, type.delay);
+                    }
+                }
+                timeUntilNextMusic = Math.min(timeUntilNextMusic, type.delay);
+
+                if (currentlyPlaying == null && timeUntilNextMusic-- <= 0) {
+                    playMusic(music, type);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean menuMusic() {
         if (mc.world == null && mc.player == null) {
+            stopAllMusicExcept(MusicType.MENU);
             music = getRandomTrack(MusicType.MENU);
             if (currentlyPlaying != null) {
                 if (!mc.getSoundHandler().isSoundPlaying(currentlyPlaying)) {
@@ -53,84 +81,33 @@ public class MusicHandler implements ITickable {
             }
             timeUntilNextMusic = Math.min(timeUntilNextMusic, MusicType.MENU.delay);
 
-            if (currentlyPlaying == null && timeUntilNextMusic-- <= 0 ) {
+            if (currentlyPlaying == null && timeUntilNextMusic-- <= 0) {
                 playMusic(music, MusicType.MENU);
             }
-        } else {
-            stopMusicType(MusicType.MENU);
+            return true;
         }
-        if (mc.world != null && mc.player != null) {
-            if (mc.player.dimension == DimensionType.OVERWORLD.getId()) {
-                stopMusicType(MusicType.SOA);
-                stopMusicType(MusicType.NETHER);
-                stopMusicType(MusicType.END);
-                music = getRandomTrack(MusicType.OVERWORLD);
-                if (currentlyPlaying != null) {
-                    if (!mc.getSoundHandler().isSoundPlaying(currentlyPlaying)) {
-                        currentlyPlaying = null;
-                        timeUntilNextMusic = Math.min(timeUntilNextMusic, MusicType.OVERWORLD.delay);
-                    }
-                }
-                timeUntilNextMusic = Math.min(timeUntilNextMusic, MusicType.OVERWORLD.delay);
+        stopMusicType(MusicType.MENU);
+        return false;
+    }
 
-                if (currentlyPlaying == null && timeUntilNextMusic-- <= 0) {
-                    playMusic(music, MusicType.OVERWORLD);
-                }
-            } else if (mc.player.dimension == ModDimensions.diveToTheHeartID) {
-                stopMusicType(MusicType.OVERWORLD);
-                stopMusicType(MusicType.NETHER);
-                stopMusicType(MusicType.END);
-                music = getRandomTrack(MusicType.SOA);
-                if (currentlyPlaying != null) {
-                    if (!mc.getSoundHandler().isSoundPlaying(currentlyPlaying)) {
-                        currentlyPlaying = null;
-                        timeUntilNextMusic = Math.min(timeUntilNextMusic, MusicType.SOA.delay);
-                    }
-                }
-                timeUntilNextMusic = Math.min(timeUntilNextMusic, MusicType.SOA.delay);
-
-                if (currentlyPlaying == null && timeUntilNextMusic-- <= 0) {
-                    playMusic(music, MusicType.SOA);
-                }
-            } else if (mc.player.dimension == DimensionType.NETHER.getId()) {
-                stopMusicType(MusicType.OVERWORLD);
-                stopMusicType(MusicType.SOA);
-                stopMusicType(MusicType.END);
-                music = getRandomTrack(MusicType.NETHER);
-                if (currentlyPlaying != null) {
-                    if (!mc.getSoundHandler().isSoundPlaying(currentlyPlaying)) {
-                        currentlyPlaying = null;
-                        timeUntilNextMusic = Math.min(timeUntilNextMusic, MusicType.NETHER.delay);
-                    }
-                }
-                timeUntilNextMusic = Math.min(timeUntilNextMusic, MusicType.NETHER.delay);
-
-                if (currentlyPlaying == null && timeUntilNextMusic-- <= 0) {
-                    playMusic(music, MusicType.NETHER);
-                }
-            } else if (mc.player.dimension == DimensionType.THE_END.getId()) {
-                stopMusicType(MusicType.OVERWORLD);
-                stopMusicType(MusicType.SOA);
-                stopMusicType(MusicType.NETHER);
-                music = getRandomTrack(MusicType.END);
-                if (currentlyPlaying != null) {
-                    if (!mc.getSoundHandler().isSoundPlaying(currentlyPlaying)) {
-                        currentlyPlaying = null;
-                        timeUntilNextMusic = Math.min(timeUntilNextMusic, MusicType.END.delay);
-                    }
-                }
-                timeUntilNextMusic = Math.min(timeUntilNextMusic, MusicType.END.delay);
-
-                if (currentlyPlaying == null && timeUntilNextMusic-- <= 0) {
-                    playMusic(music, MusicType.END);
-                }
+    public void stopAllMusicExcept(MusicType type) {
+        for (int i = 0; i < MusicType.values().length; i++) {
+            if (MusicType.values()[i] != type) {
+                stopMusicType(MusicType.values()[i]);
             }
-        } else {
-            stopMusicType(MusicType.SOA);
-            stopMusicType(MusicType.OVERWORLD);
-            stopMusicType(MusicType.NETHER);
-            stopMusicType(MusicType.END);
         }
+    }
+
+    @Override
+    public void update() {
+        if (menuMusic());
+        else if (dimensionMusic(DimensionType.OVERWORLD.getId(), MusicType.OVERWORLD, mc.player));
+        else if (dimensionMusic(DimensionType.NETHER.getId(), MusicType.NETHER, mc.player));
+        else if (dimensionMusic(DimensionType.THE_END.getId(), MusicType.END, mc.player));
+        else if (dimensionMusic(ModDimensions.diveToTheHeartID, MusicType.SOA, mc.player));
+        else if (dimensionMusic(ModDimensions.destinyIslandsID, MusicType.DESTINYISLANDS, mc.player));
+        else if (dimensionMusic(ModDimensions.traverseTownID, MusicType.TRAVERSETOWN, mc.player));
+        else stopMusic();
     }
 
     public boolean isPlaying() {
@@ -201,7 +178,9 @@ public class MusicHandler implements ITickable {
         OVERWORLD(overworldMusic, 1000),
         NETHER(netherMusic, 1000),
         END(endMusic, 1000),
-        SOA(soaMusic, 30);
+        SOA(soaMusic, 30),
+        DESTINYISLANDS(destinyIslandsMusic, 30),
+        TRAVERSETOWN(traverseTownMusic, 30);
 
         public SoundEvent[] music;
         int delay;

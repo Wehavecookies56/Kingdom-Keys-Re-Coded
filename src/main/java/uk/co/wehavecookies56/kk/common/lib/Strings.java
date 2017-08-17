@@ -215,11 +215,14 @@ public class Strings {
 
     // Ores
     BlazingOre = "blazingore",
+    BlazingOreN = "blazingoren",
     BrightOre = "brightore",
     DarkOre = "darkore",
     DarkOreE = "darkoree",
+    DarkOreN = "darkoren",
     DenseOre = "denseore",
     EnergyOre = "energyore",
+    EnergyOreN = "energyoren",
     FrostOre = "frostore",
     LucidOre = "lucidore",
     LightningOre = "lightningore",
@@ -230,7 +233,7 @@ public class Strings {
     StormyOre = "stormyore",
     TranquilOre = "tranquilore",
     TwilightOre = "twilightore",
-
+    TwilightOreN = "twilightoren",
     // Others
     SynthesisTable = "synthesistable",
     SavePoint = "savepoint",

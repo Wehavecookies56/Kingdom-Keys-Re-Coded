@@ -26,6 +26,7 @@ public class WorldGenBlox implements IWorldGenerator {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         switch (world.provider.getDimension()) {
             case -1:
+                if (MainConfig.worldgen.EnableWorldGen) generateNether(world, random, chunkX * 16, chunkZ * 16);
                 break;
             case 0:
                 if (MainConfig.worldgen.EnableWorldGen) generateSurface(world, random, chunkX * 16, chunkZ * 16);
@@ -51,19 +52,7 @@ public class WorldGenBlox implements IWorldGenerator {
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int quisqueY = rand.nextInt(world.getHeight() - 40) + 40;
             int OreY = rand.nextInt(100);
-            BlockPos quisquePos = new BlockPos(firstBlockXCoord, quisqueY, firstBlockZCoord);
             BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
-
-            Predicate<IBlockState> predicate = new Predicate<IBlockState>() {
-
-                @Override
-                public boolean apply(IBlockState input) {
-                    if (input == Blocks.STONE.getDefaultState()){
-                        return true;
-                    }
-                    return false;
-                }
-            };
 
             new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
             new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
@@ -101,9 +90,7 @@ public class WorldGenBlox implements IWorldGenerator {
             int firstBlockXCoord = chunkX + rand.nextInt(16);
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int quisqueY = rand.nextInt(world.getHeight() - 40) + 40;
-            int OreY = rand.nextInt(100);
             BlockPos quisquePos = new BlockPos(firstBlockXCoord, quisqueY, firstBlockZCoord);
-            BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
 
             new WorldGenMinable(ModBlocks.NormalBlox.getDefaultState(), 10, BlockMatcher.forBlock(Blocks.GRASS)).generate(world, rand, quisquePos);
             new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockMatcher.forBlock(Blocks.GRASS)).generate(world, rand, quisquePos);
@@ -121,6 +108,21 @@ public class WorldGenBlox implements IWorldGenerator {
             new WorldGenMinable(ModBlocks.HardBlox.getDefaultState(), 10, BlockMatcher.forBlock(Blocks.DIRT)).generate(world, rand, quisquePos);
             new WorldGenMinable(ModBlocks.MetalBlox.getDefaultState(), 10, BlockMatcher.forBlock(Blocks.DIRT)).generate(world, rand, quisquePos);
             new WorldGenMinable(ModBlocks.DangerBlox.getDefaultState(), 10, BlockMatcher.forBlock(Blocks.DIRT)).generate(world, rand, quisquePos);
+        }
+    }
+
+    private void generateNether (World world, Random rand, int chunkX, int chunkZ) {
+        for (int k = 0; k < 85; k++) {
+            int firstBlockXCoord = chunkX + rand.nextInt(16);
+            int firstBlockZCoord = chunkZ + rand.nextInt(16);
+            int OreY = rand.nextInt(100);
+            BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
+
+            new WorldGenMinable(ModBlocks.BlazingOreN.getDefaultState(), 5, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+            new WorldGenMinable(ModBlocks.DarkOreN.getDefaultState(), 5, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+            new WorldGenMinable(ModBlocks.EnergyOreN.getDefaultState(), 5, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+            new WorldGenMinable(ModBlocks.TwilightOreN.getDefaultState(), 5, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+
         }
     }
 

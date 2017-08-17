@@ -10,15 +10,21 @@ public class KeyboardHelper {
     // same format.
 
     public static boolean isShiftDown () {
-        return Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
+        if (Keyboard.isCreated())
+            return Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
+        else return false;
     }
 
     public static boolean isControlDown () {
-        return Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL);
+        if (Keyboard.isCreated())
+            return Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL);
+        else return false;
     }
 
     public static boolean isScrollActivatorDown () {
-        return Keyboard.isKeyDown(InputHandler.Keybinds.SCROLL_ACTIVATOR.getKeybind().getKeyCode());
+        if (Keyboard.isCreated())
+            return Keyboard.isKeyDown(InputHandler.Keybinds.SCROLL_ACTIVATOR.getKeybind().getKeyCode());
+        else return false;
     }
 
 }
