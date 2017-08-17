@@ -295,10 +295,13 @@ public class InputHandler {
 
         if (GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE) {
             if (this.driveCommands.isEmpty()) {} else if ((STATS.getDP() >= Constants.getCost((String) this.driveCommands.get(GuiCommandMenu.driveselected)))) {
-
-                if(!antiFormCheck()){
-                    ModDriveForms.getDriveForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
-                }
+            	if(this.driveCommands.get(GuiCommandMenu.driveselected).equals(Strings.Form_Final)) {
+        			ModDriveForms.getDriveForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
+            	}else {
+            		if(!antiFormCheck()){
+            			ModDriveForms.getDriveForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
+            		}
+            	}
                 GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
                 GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
                 world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
