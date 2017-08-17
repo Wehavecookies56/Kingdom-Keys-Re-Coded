@@ -1,12 +1,82 @@
 package uk.co.wehavecookies56.kk.client.core.handler;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.ISound;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.SoundCategory;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.sound.PlaySoundEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Bars;
+import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 
+@SideOnly(Side.CLIENT)
 public class ClientEventHandler {
+
+    private Minecraft mc = Minecraft.getMinecraft();
+    private MusicHandler musicHandler = new MusicHandler(mc);
+    int ticks = 0;
+
+    @SubscribeEvent
+    public void debugInfo(RenderGameOverlayEvent.Text event) {
+        if (Minecraft.getMinecraft().gameSettings.showDebugInfo) {
+            if (musicHandler.isPlaying()) {
+                event.getLeft().add("Current music: " + musicHandler.getCurrentlyPlaying());
+            }
+            if (musicHandler.getCurrentlyPlaying() == null) {
+                String time = String.format("%.02f", (float) musicHandler.getTimeUntilNextMusic() / 20F);
+                event.getLeft().add("Next music in: " + time + "s");
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onClientTick(TickEvent.ClientTickEvent event) {
+        TickEvent.Phase phase = event.phase;
+        TickEvent.Type type = event.type;
+        if (phase == TickEvent.Phase.END) {
+            if (type.equals(TickEvent.Type.CLIENT)) {
+                if (!mc.isGamePaused() && MainConfig.client.sound.EnableCustomMusic) {
+                    musicHandler.update();
+                    if (mc.currentScreen instanceof GuiMenu_Bars) {
+                        mc.getSoundHandler().setSoundLevel(SoundCategory.MASTER, 0.2F);
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void musicControl(PlaySoundEvent event) {
+        ISound sound = event.getSound();
+        SoundCategory category = sound.getCategory();
+        if (category == SoundCategory.MUSIC) {
+            if (!sound.getSoundLocation().toString().contains("kk") && MainConfig.client.sound.EnableCustomMusic) {
+                event.setResultSound(null);
+                return;
+            }
+            if (!sound.getSoundLocation().toString().contains("kk") && this.musicHandler.isPlaying() && MainConfig.client.sound.EnableCustomMusic) {
+                event.setResultSound(null);
+                return;
+            } else {
+                if (MainConfig.client.sound.EnableCustomMusic) {
+                    musicHandler.stopSound(sound);
+                }
+            }
+        } else if (category == SoundCategory.RECORDS) {
+            this.musicHandler.stopMusic();
+            this.mc.getSoundHandler().stopSounds();
+            return;
+        }
+    }
+
     @SubscribeEvent
     public void renderTick(TickEvent.RenderTickEvent event) {
         EntityPlayer player = Minecraft.getMinecraft().player;

@@ -101,23 +101,23 @@ public class CommandDriveLevel implements ICommand {
                     switch(args[0])
                     {
                     case "valor":
-                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Valor, true, Integer.parseInt(args[1].toString()),player.getName()));
+                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Valor, Integer.parseInt(args[1].toString())));
                         form = Utils.translateToLocal(Strings.Form_Valor);
                         break;
                     case "wisdom":
-                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Wisdom, true, Integer.parseInt(args[1].toString()),player.getName()));
+                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Wisdom, Integer.parseInt(args[1].toString())));
                         form = Utils.translateToLocal(Strings.Form_Wisdom);
                         break;
                     case "limit":
-                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Limit, true, Integer.parseInt(args[1].toString()),player.getName()));
+                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Limit, Integer.parseInt(args[1].toString())));
                         form = Utils.translateToLocal(Strings.Form_Limit);
                         break;
                     case "master":
-                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Master, true, Integer.parseInt(args[1].toString()),player.getName()));
+                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Master, Integer.parseInt(args[1].toString())));
                         form = Utils.translateToLocal(Strings.Form_Master);
                         break;
                     case "final":
-                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Final, true, Integer.parseInt(args[1].toString()),player.getName()));
+                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Final, Integer.parseInt(args[1].toString())));
                         form = Utils.translateToLocal(Strings.Form_Final);
                         break;
                     }
@@ -143,23 +143,23 @@ public class CommandDriveLevel implements ICommand {
                         switch(args[0])
                         {
                         case "valor":
-                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Valor, true, Integer.parseInt(args[1].toString()),args[2]));
+                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Valor, Integer.parseInt(args[1].toString())));
                             form = Utils.translateToLocal(Strings.Form_Valor);
                             break;
                         case "wisdom":
-                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Wisdom, true, Integer.parseInt(args[1].toString()),args[2]));
+                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Wisdom, Integer.parseInt(args[1].toString())));
                             form = Utils.translateToLocal(Strings.Form_Wisdom);
                             break;
                         case "limit":
-                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Limit, true, Integer.parseInt(args[1].toString()),args[2]));
+                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Limit, Integer.parseInt(args[1].toString())));
                             form = Utils.translateToLocal(Strings.Form_Limit);
                             break;
                         case "master":
-                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Master, true, Integer.parseInt(args[1].toString()),args[2]));
+                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Master, Integer.parseInt(args[1].toString())));
                             form = Utils.translateToLocal(Strings.Form_Master);
                             break;
                         case "final":
-                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Final, true, Integer.parseInt(args[1].toString()),args[2]));
+                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Final, Integer.parseInt(args[1].toString())));
                             form = Utils.translateToLocal(Strings.Form_Final);
                             break;
                         }

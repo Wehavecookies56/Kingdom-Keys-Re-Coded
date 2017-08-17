@@ -1,10 +1,12 @@
 package uk.co.wehavecookies56.kk.common.util;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
@@ -90,25 +92,32 @@ public class Utils {
 
         if (organizationXIIICap.getMember() == Utils.OrgMember.NONE) {
             if (ItemStack.areItemStacksEqual(summonCap.getInventoryKeychain().getStackInSlot(keychainSlot), ItemStack.EMPTY)) {
+                player.sendMessage(new TextComponentTranslation(TextFormatting.RED + "Missing keychain to summon"));
                 return false;
             }
             if (!summonCap.getIsKeybladeSummoned(hand) && ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && summonCap.getInventoryKeychain().getStackInSlot(0).getItem() instanceof ItemKeychain) {
                 summonCap.setActiveSlot(player.inventory.currentItem);
-                PacketDispatcher.sendToServer(new SummonKeyblade(hand, keychainSlot));
+                if (player.world.isRemote)
+                    PacketDispatcher.sendToServer(new SummonKeyblade(hand, keychainSlot));
                 return true;
             } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof ItemRealKeyblade && summonCap.getIsKeybladeSummoned(hand)) {
-                PacketDispatcher.sendToServer(new DeSummonKeyblade(hand));
+                if (player.world.isRemote)
+                    PacketDispatcher.sendToServer(new DeSummonKeyblade(hand));
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                player.inventory.offHandInventory.set(0, ItemStack.EMPTY);
                 return true;
             } else {
                 return false;
             }
         } else {
             if (!organizationXIIICap.summonedWeapon(hand) && ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY)) {
-                PacketDispatcher.sendToServer(new SummonOrgWeapon(hand, organizationXIIICap.currentWeapon()));
+                if (player.world.isRemote)
+                    PacketDispatcher.sendToServer(new SummonOrgWeapon(hand, organizationXIIICap.currentWeapon()));
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(organizationXIIICap.currentWeapon()));
                 return true;
             } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof IOrgWeapon || (organizationXIIICap.getMember() == Utils.OrgMember.ROXAS && !ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof ItemKeyblade)) {
-                PacketDispatcher.sendToServer(new DeSummonOrgWeapon(hand));
+                if (player.world.isRemote)
+                    PacketDispatcher.sendToServer(new DeSummonOrgWeapon(hand));
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
                 return true;
             } else {

@@ -1,11 +1,17 @@
 package uk.co.wehavecookies56.kk.api.driveforms;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.advancements.GuiScreenAdvancements;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextComponentTranslation;
+import uk.co.wehavecookies56.kk.client.gui.GuiMenu;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
@@ -29,18 +35,38 @@ public abstract class DriveForm {
     public abstract int[] getExpCosts();
 
     public boolean summonKeyblades(EntityPlayer player) {
-        if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY) && !ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(1), ItemStack.EMPTY)) {
-            if (ItemStack.areItemStacksEqual(player.getHeldItemMainhand(), ItemStack.EMPTY) && ItemStack.areItemStacksEqual(player.getHeldItemOffhand(), ItemStack.EMPTY)) {
-                Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
-                if (hasOffHand())
+        if (hasOffHand()) {
+            if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY) && !ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(1), ItemStack.EMPTY)) {
+                if (ItemStack.areItemStacksEqual(player.getHeldItemMainhand(), ItemStack.EMPTY) && ItemStack.areItemStacksEqual(player.getHeldItemOffhand(), ItemStack.EMPTY)) {
+                    Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
                     Utils.summonWeapon(player, EnumHand.OFF_HAND, getKeychainSlot());
-                if (player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).activeSlot() == -1) {
-                    player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setActiveSlot(player.inventory.currentItem);
+                    if (player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).activeSlot() == -1) {
+                        player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setActiveSlot(player.inventory.currentItem);
+                    }
+                    return true;
+                } else {
+                    player.sendMessage(new TextComponentTranslation("Main hand and off hand slot must both be empty to activate form"));
                 }
-                return true;
+            } else {
+                player.sendMessage(new TextComponentTranslation("Required keychains are missing"));
             }
+            return false;
+        } else {
+            if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY)) {
+                if (ItemStack.areItemStacksEqual(player.getHeldItemMainhand(), ItemStack.EMPTY) && ItemStack.areItemStacksEqual(player.getHeldItemOffhand(), ItemStack.EMPTY)) {
+                    Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
+                    if (player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).activeSlot() == -1) {
+                        player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setActiveSlot(player.inventory.currentItem);
+                    }
+                    return true;
+                } else {
+                    player.sendMessage(new TextComponentTranslation("Main hand and off hand slot must both be empty to activate form"));
+                }
+            } else {
+                player.sendMessage(new TextComponentTranslation("Required keychains are missing"));
+            }
+            return false;
         }
-        return false;
     }
 
     public void initDrive (EntityPlayer player) {
@@ -50,6 +76,7 @@ public abstract class DriveForm {
         }
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName(getName());
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(true);
+        player.getCapability(ModCapabilities.PLAYER_STATS, null).setFP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getFormGaugeLevel(getName()) * 100);
         PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
         PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(player), player, 64.0D);
         player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.drive, SoundCategory.MASTER, 1.0f, 1.0f);
@@ -58,6 +85,13 @@ public abstract class DriveForm {
     public void update (EntityPlayer player) {
         if (player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).activeSlot() == -1) {
             player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setActiveSlot(player.inventory.currentItem);
+        }
+        if (player.world.isRemote) {
+            GuiScreen currScreen = Minecraft.getMinecraft().currentScreen;
+            if (currScreen instanceof GuiContainer) {
+                Minecraft.getMinecraft().displayGuiScreen(null);
+                player.sendMessage(new TextComponentTranslation("Cannot open containers while drive form is active"));
+            }
         }
         if (player.inventory.currentItem != player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).activeSlot())
             player.inventory.currentItem = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).activeSlot();
@@ -77,25 +111,36 @@ public abstract class DriveForm {
             player.inventory.offHandInventory.set(0, new ItemStack(((ItemKeychain)player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(1).getItem()).getKeyblade()));
         }
         if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()){
-            if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getDP() > 0) {
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).remDP(0.1);
-                if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getDP() < 0) {
-                    player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
+            if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getFP() > 0) {
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).remFP(0.1);
+                if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getFP() < 0) {
+                    player.getCapability(ModCapabilities.PLAYER_STATS, null).setFP(0);
                     endDrive(player);
                 }
             }else{
                 endDrive(player);
+                Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
+                if(hasOffHand())
+                    Utils.summonWeapon(player, EnumHand.OFF_HAND, getKeychainSlot());
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                player.inventory.offHandInventory.set(0, ItemStack.EMPTY);
             }
         }
     }
 
     public void endDrive (EntityPlayer player) {
-        player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
+        player.getCapability(ModCapabilities.PLAYER_STATS, null).setFP(0);
+        player.getCapability(ModCapabilities.PLAYER_STATS, null).remDP(getCost());
+        if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getDP() < 0) {
+            player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
+        }
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(false);
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName("none");
         Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
         if (hasOffHand())
             Utils.summonWeapon(player, EnumHand.OFF_HAND, getKeychainSlot());
+        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+        player.inventory.offHandInventory.set(0, ItemStack.EMPTY);
         player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setActiveSlot(-1);
         if (!player.world.isRemote)
             PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);

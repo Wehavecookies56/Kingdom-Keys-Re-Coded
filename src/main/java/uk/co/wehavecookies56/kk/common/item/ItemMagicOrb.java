@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
@@ -27,6 +28,13 @@ public class ItemMagicOrb extends ItemKKBase {
     }
 
     @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {}
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+        if (isInCreativeTab(tab)) {
+            ItemStack magicOrb = new ItemStack(ModItems.MagicOrb, 1);
+            magicOrb.setTagCompound(new NBTTagCompound());
+            magicOrb.getTagCompound().setInteger("amount", 100);
+            items.add(magicOrb);
+        }
+    }
 
 }

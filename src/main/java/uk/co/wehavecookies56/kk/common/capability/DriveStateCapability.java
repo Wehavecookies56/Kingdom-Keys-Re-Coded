@@ -34,7 +34,9 @@ public class DriveStateCapability {
         int getAntiPoints();
         int getDriveLevel(String drive);
         int getDriveExp(String drive);
-
+        int getDriveGaugeLevel();
+        int getFormGaugeLevel(String drive);
+        void setDriveGaugeLevel(int level);
         void setInDrive(boolean drive);
         void setActiveDriveName(String drive);
         void setAntiPoints(int points);
@@ -65,6 +67,7 @@ public class DriveStateCapability {
             properties.setInteger("DriveExpLimit", instance.getDriveExp(Strings.Form_Limit));
             properties.setInteger("DriveExpMaster", instance.getDriveExp(Strings.Form_Master));
             properties.setInteger("DriveExpFinal", instance.getDriveExp(Strings.Form_Final));
+            properties.setInteger("DriveGaugeLevel", instance.getDriveGaugeLevel());
 
             properties.setTag("DriveInvKey", instance.getInventoryDriveForms().serializeNBT());
 
@@ -88,6 +91,7 @@ public class DriveStateCapability {
             instance.setDriveExp(Strings.Form_Limit, properties.getInteger("DriveExpLimit"));
             instance.setDriveExp(Strings.Form_Master, properties.getInteger("DriveExpMaster"));
             instance.setDriveExp(Strings.Form_Final, properties.getInteger("DriveExpFinal"));
+            instance.setDriveGaugeLevel(properties.getInteger("DriveGaugeLevel"));
 
             instance.getInventoryDriveForms().deserializeNBT(properties.getCompoundTag("DriveInvKey"));
         }
@@ -99,7 +103,7 @@ public class DriveStateCapability {
         int antiPoints = 0;
         private final ItemStackHandler inventoryDrive = new ItemStackHandler(5);
         private static List<String> driveForms = new ArrayList<String>();
-
+        private int driveGaugeLevel = 3;
         int valor, wisdom, limit, master, Final;
         int valorExp, wisdomExp, limitExp, masterExp, FinalExp;
         @Override public boolean getInDrive() { return inDrive; }
@@ -119,6 +123,11 @@ public class DriveStateCapability {
                     return Final;
             }
             return 0;
+        }
+
+        @Override
+        public int getFormGaugeLevel(String drive) {
+            return (3 + getDriveLevel(drive)) - 1;
         }
 
         @Override public void setInDrive(boolean drive) { this.inDrive = drive; }
@@ -183,6 +192,15 @@ public class DriveStateCapability {
             }
         }
 
+        @Override
+        public int getDriveGaugeLevel() {
+            return driveGaugeLevel;
+        }
+
+        @Override
+        public void setDriveGaugeLevel(int level) {
+            this.driveGaugeLevel = level;
+        }
     }
 }
 

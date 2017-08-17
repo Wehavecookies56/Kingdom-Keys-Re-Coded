@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -56,6 +58,7 @@ public class SummonKeyblade extends AbstractMessage.AbstractServerMessage<Summon
         }
         player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
         player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(hand, true);
+        player.sendMessage(new TextComponentTranslation(TextFormatting.DARK_GREEN + "Summoned " + player.getHeldItem(hand).getDisplayName()));
 
         PacketDispatcher.sendToAllAround(new SpawnKeybladeParticles(player), player, 64.0D);
 

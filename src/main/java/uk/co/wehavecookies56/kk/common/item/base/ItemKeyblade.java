@@ -9,6 +9,7 @@ import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockDoor.EnumDoorHalf;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
@@ -117,9 +118,9 @@ public class ItemKeyblade extends ItemSword {
                     player.swingArm(EnumHand.OFF_HAND);
                     if (rtr.entityHit != null) {
                         PacketDispatcher.sendToServer(new AttackEntity(rtr.entityHit.getEntityId()));
-                        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+                        return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(hand));
                     }
-                    return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+                    return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(hand));
                 }
 
             }

@@ -2077,6 +2077,7 @@ public class ModItems {
         ((ItemKeychain)Chain_MaverickFlare).setKeyblade((ItemKeyblade) MaverickFlare);
         ((ItemKeychain)Chain_MetalChocobo).setKeyblade((ItemKeyblade) MetalChocobo);
         ((ItemKeychain)Chain_MidnightRoar).setKeyblade((ItemKeyblade) MidnightRoar);
+        ((ItemKeychain)Chain_MirageSplit).setKeyblade((ItemKeyblade) MirageSplit);
         ((ItemKeychain)Chain_MissingAche).setKeyblade((ItemKeyblade) MissingAche);
         ((ItemKeychain)Chain_Monochrome).setKeyblade((ItemKeyblade) Monochrome);
         ((ItemKeychain)Chain_MysteriousAbyss).setKeyblade((ItemKeyblade) MysteriousAbyss);
@@ -2781,19 +2782,19 @@ public class ModItems {
             event.getRegistry().register(new ItemSynthesisBagM(Strings.SynthesisBagM));
             event.getRegistry().register(new ItemSynthesisBagL(Strings.SynthesisBagL));
 
-            event.getRegistry().register(new ItemKKRecord(ModSounds.Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, 7.29F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.Darkness_of_the_Unknown, Strings.Disc_Darkness_of_the_Unknown, 7.50F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.Dearly_Beloved_Symphony_Version, Strings.Disc_Dearly_Beloved_Symphony_Version, 2.33F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.Dream_Drop_Distance_The_Next_Awakening, Strings.Disc_Dream_Drop_Distance_The_Next_Awakening, 8.56F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.Hikari_KINGDOM_Instrumental_Version, Strings.Disc_Hikari_KINGDOM_Instrumental_Version, 3.42F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.L_Oscurita_Dell_Ignoto, Strings.Disc_L_Oscurita_Dell_Ignoto, 4.33F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.Musique_pour_la_tristesse_de_Xion, Strings.Disc_Musique_pour_la_tristesse_de_Xion, 3.57F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.No_More_Bugs_Bug_Version, Strings.Disc_No_More_Bugs_Bug_Version, 3.17F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.Organization_XIII, Strings.Disc_Organization_XIII, 2.32F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.Sanctuary, Strings.Disc_Sanctuary, 4.25F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.Simple_And_Clean_PLANITb_Remix, Strings.Disc_Simple_And_Clean_PLANITb_Remix, 2.37F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.Sinister_Sundown, Strings.Disc_Sinister_Sundown, 2.13F));
-            event.getRegistry().register(new ItemKKRecord(ModSounds.The_13th_Anthology, Strings.Disc_The_13th_Anthology, 6.38F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_Birth_by_Sleep_A_Link_to_the_Future, Strings.Disc_Birth_by_Sleep_A_Link_to_the_Future, 7.29F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_Darkness_of_the_Unknown, Strings.Disc_Darkness_of_the_Unknown, 7.50F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_Dearly_Beloved_Symphony_Version, Strings.Disc_Dearly_Beloved_Symphony_Version, 2.33F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_Dream_Drop_Distance_The_Next_Awakening, Strings.Disc_Dream_Drop_Distance_The_Next_Awakening, 8.56F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_Hikari_KINGDOM_Instrumental_Version, Strings.Disc_Hikari_KINGDOM_Instrumental_Version, 3.42F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_L_Oscurita_Dell_Ignoto, Strings.Disc_L_Oscurita_Dell_Ignoto, 4.33F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_Musique_pour_la_tristesse_de_Xion, Strings.Disc_Musique_pour_la_tristesse_de_Xion, 3.57F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_No_More_Bugs_Bug_Version, Strings.Disc_No_More_Bugs_Bug_Version, 3.17F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_Organization_XIII, Strings.Disc_Organization_XIII, 2.32F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_Sanctuary, Strings.Disc_Sanctuary, 4.25F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_Simple_And_Clean_PLANITb_Remix, Strings.Disc_Simple_And_Clean_PLANITb_Remix, 2.37F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_Sinister_Sundown, Strings.Disc_Sinister_Sundown, 2.13F));
+            event.getRegistry().register(new ItemKKRecord(ModSounds.Record_The_13th_Anthology, Strings.Disc_The_13th_Anthology, 6.38F));
 
             event.getRegistry().register(new ItemRecipe(Strings.Recipe));
         }

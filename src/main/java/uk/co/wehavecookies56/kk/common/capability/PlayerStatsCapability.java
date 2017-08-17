@@ -38,6 +38,8 @@ public class PlayerStatsCapability {
         int getHP();
         double getDP();
         double getMaxDP();
+        double getFP();
+        double getMaxFP();
         double getMP();
         double getMaxMP();
         boolean getRecharge();
@@ -59,6 +61,9 @@ public class PlayerStatsCapability {
         boolean setDP(double dp);
         void addDP(double dp);
         void remDP(double dp);
+        void setFP(double fp);
+        void addFP(double fp);
+        void remFP(double fp);
         boolean setMP(double mp);
         void addMP(double mp);
         void remMP(double mp);
@@ -92,13 +97,13 @@ public class PlayerStatsCapability {
             properties.setDouble("MP", instance.getMP());
             properties.setDouble("Max MP", instance.getMaxMP());
             properties.setBoolean("Recharge", instance.getRecharge());
+            properties.setDouble("FP", instance.getFP());
 
             properties.setBoolean("HUD", instance.getHudMode());
 
             properties.setString("Choice1", instance.getChoice1());
             properties.setString("Choice2", instance.getChoice2());
             properties.setTag("PotionsInvKey", instance.getInventoryPotionsMenu().serializeNBT());
-
 
             return properties;
         }
@@ -117,6 +122,7 @@ public class PlayerStatsCapability {
             instance.setMaxMP(properties.getDouble("Max MP"));
             instance.setRecharge(properties.getBoolean("Recharge"));
             instance.setHudMode(properties.getBoolean("HUD"));
+            instance.setFP(properties.getDouble("FP"));
 
             instance.setChoice1(properties.getString("Choice1"));
             instance.setChoice2(properties.getString("Choice2"));
@@ -125,6 +131,31 @@ public class PlayerStatsCapability {
     }
 
     public static class Default implements IPlayerStats {
+        @Override
+        public double getFP() {
+            return fp;
+        }
+
+        @Override
+        public double getMaxFP() {
+            return maxFP;
+        }
+
+        @Override
+        public void setFP(double fp) {
+            this.fp = fp;
+        }
+
+        @Override
+        public void addFP(double fp) {
+            this.fp += fp;
+        }
+
+        @Override
+        public void remFP(double fp) {
+            this.fp -= fp;
+        }
+
         private int level = 1;
         private int maxLevel = 100;
         private int experience = 0;
@@ -141,7 +172,9 @@ public class PlayerStatsCapability {
         private double mp = 100;
         private double maxMP = 100;
         private double dp = 0;
-        private double maxDP = 1000;
+        private double fp = 0;
+        private double maxFP = 300;
+        private double maxDP = 300;
         private boolean recharge = false;
         private boolean cheatMode = false;
         private boolean hudmode = true;
@@ -152,32 +185,84 @@ public class PlayerStatsCapability {
 
         private final ItemStackHandler inventoryPotions = new ItemStackHandler(InventoryPotionsMenu.INV_SIZE);
 
-        @Override public List<String> getMessages() { return this.messages; }
+        @Override
+        public List<String> getMessages() {
+            return this.messages;
+        }
 
-        @Override public ItemStackHandler getInventoryPotionsMenu(){return this.inventoryPotions;}
+        @Override
+        public ItemStackHandler getInventoryPotionsMenu(){
+            return this.inventoryPotions;
+        }
 
-        @Override public double getMP() { return this.mp; }
-        @Override public double getMaxMP() { return this.maxMP; }
-        @Override public int getLevel() { return this.level; }
-        @Override public int getMaxLevel() { return this.maxLevel; }
-        @Override public int getExperience() {
+        @Override
+        public double getMP() {
+            return this.mp;
+        }
+        @Override
+        public double getMaxMP() {
+            return this.maxMP;
+        }
+        @Override
+        public int getLevel() {
+            return this.level;
+        }
+        @Override
+        public int getMaxLevel() {
+            return this.maxLevel;
+        }
+        @Override
+        public int getExperience() {
             return this.experience;
         }
-      
-        @Override public int getMaxExperience() { return this.maxExperience; }
-        @Override public int getStrength() { return this.strength; }
-        @Override public int getDefense() { return this.defense; }
-        @Override public int getMagic() { return this.magic; }
-        @Override public int getHP() { return this.hp; }
-        @Override public double getDP() { return this.dp; }
-        @Override public double getMaxDP() { return this.maxDP; }
-        @Override public boolean getRecharge() { return this.recharge; }
-        @Override public boolean getHudMode() {return this.hudmode;}
+        @Override
+        public int getMaxExperience() {
+            return this.maxExperience;
+        }
+        @Override
+        public int getStrength() {
+            return this.strength;
+        }
+        @Override
+        public int getDefense() {
+            return this.defense;
+        }
+        @Override
+        public int getMagic() {
+            return this.magic;
+        }
+        @Override
+        public int getHP() {
+            return this.hp;
+        }
+        @Override
+        public double getDP() {
+            return this.dp;
+        }
+        @Override
+        public double getMaxDP() {
+            return this.maxDP;
+        }
+        @Override
+        public boolean getRecharge() {
+            return this.recharge;
+        }
+        @Override
+        public boolean getHudMode() {
+            return this.hudmode;
+        }
 
-        @Override public String getChoice1(){return this.choice1;}
-        @Override public String getChoice2(){return this.choice2;}
+        @Override
+        public String getChoice1() {
+            return this.choice1;
+        }
+        @Override
+        public String getChoice2() {
+            return this.choice2;
+        }
 
-        @Override public boolean setLevel(int level) {
+        @Override
+        public boolean setLevel(int level) {
             if (level <= this.maxLevel) {
                 this.level = level;
                 return true;
@@ -185,10 +270,12 @@ public class PlayerStatsCapability {
             return false;
         }
 
-        @Override public void clearMessages() {
+        @Override
+        public void clearMessages() {
             this.getMessages().clear();
         }
-        @Override public boolean setExperience(int experience) {
+        @Override
+        public boolean setExperience(int experience) {
             if (experience <= this.maxExperience) {
                 this.experience = experience;
                 return true;
@@ -196,10 +283,8 @@ public class PlayerStatsCapability {
         }
 
         @Override
-        public void addExperience(EntityPlayer player, int amount)
-        {
-            if(player != null)
-            {
+        public void addExperience(EntityPlayer player, int amount) {
+            if(player != null) {
                 IPlayerStats stats = player.getCapability(ModCapabilities.PLAYER_STATS, null);
                 if (this.experience + amount <= this.maxExperience){
                     this.experience += amount;
@@ -216,42 +301,113 @@ public class PlayerStatsCapability {
                 
             }
         }
-        @Override public void setStrength(int strength) { this.strength = strength; }
-        @Override public void addStrength(int strength) {
+        @Override
+        public void setStrength(int strength) {
+            this.strength = strength;
+        }
+        @Override
+        public void addStrength(int strength) {
             this.strength += strength;
             messages.add("str");
         }
-        @Override public void setDefense(int defense) { this.defense = defense; }
-        @Override public void addDefense(int defense) {
+        @Override
+        public void setDefense(int defense) {
+            this.defense = defense;
+        }
+        @Override
+        public void addDefense(int defense) {
             this.defense += defense;
             messages.add("def");
         }
-        @Override public void setMagic(int magic) { this.magic = magic; }
-        @Override public void addMagic(int magic) {
+        @Override
+        public void setMagic(int magic) {
+            this.magic = magic;
+        }
+        @Override
+        public void addMagic(int magic) {
             this.magic += magic;
             messages.add("mag");
         }
-        @Override public int setHP(int hp) {
+        @Override
+        public int setHP(int hp) {
             this.hp = hp;
             return this.hp;
         }
-        @Override public int addHP(int hp) {
+        @Override
+        public int addHP(int hp) {
             this.hp += hp;
             messages.add("hp");
             return this.hp;
         }
-        @Override public boolean setDP(double dp) { if (dp <= this.maxDP) {this.dp = dp; return true; } return false; }
-        @Override public void addDP(double dp) { if (dp + this.dp > this.maxDP) this.dp = this.maxDP; else this.dp += dp; }
-        @Override public void remDP(double dp) {if(cheatMode) return; if (dp + this.dp < 0) this.dp = 0; else this.dp -= dp; }
-        @Override public boolean setMP(double mp) { if (mp <= this.maxMP) {this.mp = mp; return true; } return false; }
-        @Override public void addMP(double mp) { if (mp + this.mp > this.maxMP) this.mp = this.maxMP; else this.mp += mp; }
-        @Override public void remMP(double mp) {if(cheatMode) return; if (this.mp - mp < 0) this.mp = 0;    else this.mp -= mp; }
-        @Override public void setMaxMP(double maxMP) { this.maxMP = maxMP;}
-        @Override public void setRecharge(boolean recharge) { this.recharge = recharge; }
-        @Override public void setHudMode(boolean hud) { this.hudmode = hud; }
+        @Override
+        public boolean setDP(double dp) {
+            if (dp <= this.maxDP) {
+                this.dp = dp;
+                return true;
+            }
+            return false;
+        }
+        @Override
+        public void addDP(double dp) {
+            if (dp + this.dp > this.maxDP)
+                this.dp = this.maxDP;
+            else
+                this.dp += dp;
+        }
+        @Override
+        public void remDP(double dp) {
+            if(cheatMode)
+                return;
+            if (dp + this.dp < 0)
+                this.dp = 0;
+            else
+                this.dp -= dp;
+        }
+        @Override
+        public boolean setMP(double mp) {
+            if (mp <= this.maxMP) {
+                this.mp = mp;
+                return true;
+            }
+            return false;
+        }
+        @Override
+        public void addMP(double mp) {
+            if (mp + this.mp > this.maxMP)
+                this.mp = this.maxMP;
+            else
+                this.mp += mp;
+        }
+        @Override
+        public void remMP(double mp) {
+            if(cheatMode)
+                return;
+            if (this.mp - mp < 0)
+                this.mp = 0;
+            else
+                this.mp -= mp;
+        }
+        @Override
+        public void setMaxMP(double maxMP) {
+            this.maxMP = maxMP;
+        }
+        @Override
+        public void setRecharge(boolean recharge) {
+            this.recharge = recharge;
+        }
+        @Override
+        public void setHudMode(boolean hud) {
+            this.hudmode = hud;
+        }
 
-        @Override public void setChoice1(String choice){this.choice1=choice;}
-        @Override public void setChoice2(String choice){this.choice2=choice;}
+        @Override
+        public void setChoice1(String choice) {
+            this.choice1 = choice;
+        }
+        @Override
+        public void setChoice2(String choice) {
+            this.choice2 = choice;
+        }
 
         @Override
         public int getExpNeeded(int level, int currentExp) {

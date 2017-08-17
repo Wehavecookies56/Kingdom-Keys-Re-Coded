@@ -47,7 +47,8 @@ public class DriveFormPacket extends AbstractMessage.AbstractServerMessage<Drive
     public void process (EntityPlayer player, Side side) {
         if (this.revert) {
             if (DriveFormRegistry.isDriveFormRegistered(form)) DriveFormRegistry.get(form).endDrive(player);
+        } else {
+            if (DriveFormRegistry.isDriveFormRegistered(form)) DriveFormRegistry.get(form).initDrive(player);
         }
-        if (DriveFormRegistry.isDriveFormRegistered(form)) DriveFormRegistry.get(form).initDrive(player);
     }
 }

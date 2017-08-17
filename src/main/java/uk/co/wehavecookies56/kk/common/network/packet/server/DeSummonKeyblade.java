@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -37,6 +39,7 @@ public class DeSummonKeyblade extends AbstractServerMessage<DeSummonKeyblade> {
 
     @Override
     public void process (EntityPlayer player, Side side) {
+        player.sendMessage(new TextComponentTranslation(TextFormatting.DARK_GREEN + "Desummoned " + player.getHeldItem(hand).getDisplayName()));
         if (hand == EnumHand.MAIN_HAND)
             player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
         else
