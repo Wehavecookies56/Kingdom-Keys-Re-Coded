@@ -16,6 +16,7 @@ import net.minecraft.util.IThreadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
@@ -26,6 +27,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
@@ -63,6 +65,7 @@ import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisFreeDevRecipes;
 import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisMaterials;
 import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisRecipes;
 import uk.co.wehavecookies56.kk.common.world.ChestGen;
+import uk.co.wehavecookies56.kk.common.world.MoogleHouse;
 import uk.co.wehavecookies56.kk.common.world.WorldGenBlox;
 import uk.co.wehavecookies56.kk.common.world.biome.ModBiomes;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
@@ -197,6 +200,11 @@ public class CommonProxy {
 
         Constants.registerCosts();
         Constants.registerMagicLevels();
+
+        if (MainConfig.worldgen.EnableWorldGen) {
+            VillagerRegistry.instance().registerVillageCreationHandler(new MoogleHouse.VillageManager());
+            MapGenStructureIO.registerStructureComponent(MoogleHouse.class, Reference.MODID + ":moogle_house");
+        }
 
         // Chest loot init
         MinecraftForge.EVENT_BUS.register(new ChestGen());

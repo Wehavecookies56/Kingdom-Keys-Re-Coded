@@ -31,8 +31,20 @@ import java.util.List;
  */
 public class EntityMoogle extends EntityCreature implements IKHMob {
 
+    boolean canDespawn;
+
     public EntityMoogle(World worldIn) {
         super(worldIn);
+        canDespawn = true;
+        this.tasks.addTask(1, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 1.0F));
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(8, new EntityAILookIdle(this));
+    }
+
+    public EntityMoogle(World worldIn, boolean canDespawn) {
+        super(worldIn);
+        this.canDespawn = canDespawn;
         this.tasks.addTask(1, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 1.0F));
         this.tasks.addTask(1, new EntityAISwimming(this));
@@ -51,7 +63,7 @@ public class EntityMoogle extends EntityCreature implements IKHMob {
 
     @Override
     protected boolean canDespawn() {
-        return true;
+        return canDespawn;
     }
 
     @Override
