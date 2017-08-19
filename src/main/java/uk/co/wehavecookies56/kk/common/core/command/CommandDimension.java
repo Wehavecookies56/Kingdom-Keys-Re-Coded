@@ -18,8 +18,10 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
+import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDestinyIslands;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDiveToTheHeart;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
+import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterTraverseTown;
 
 public class CommandDimension implements ICommand {
 
@@ -47,7 +49,7 @@ public class CommandDimension implements ICommand {
 
     @Override
     public String getUsage (ICommandSender sender) {
-        return "/dimension";
+        return "/kkdimension <dimension> [player] (soa, traversetown, destinyislands, overworld)";
     }
 
     @Override
@@ -78,23 +80,36 @@ public class CommandDimension implements ICommand {
     public void execute (MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (sender.getCommandSenderEntity() instanceof EntityPlayer) {
             EntityPlayer player = null;
-            if (args.length == 0) {
+            if (args.length == 1) {
                 player = getCommandSenderAsPlayer(sender);
-            } else if (args.length == 1) {
-                player = getPlayerFromUsername(args[0]);
-            } else if (args.length > 1) {
+            } else if (args.length == 2) {
+                player = getPlayerFromUsername(args[1]);
+            } else if (args.length > 2 || args.length < 1) {
                 TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
                 return;
             }
             if(player != null) {
                 if (!player.world.isRemote) {
-                    if (player.dimension == ModDimensions.diveToTheHeartID) {
-                        new TeleporterOverworld(player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
-                    }
-                    else if(player.dimension == 0) {
+                	switch(args[0]) {
+                	case "soa":
                         new TeleporterDiveToTheHeart(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.diveToTheHeartID)).teleport(player, player.world);
-                    }
+                		break;
+                	case "overworld":
+                        new TeleporterOverworld(player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
+                        break;
+                	case "traversetown":
+                		new TeleporterTraverseTown(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.destinyIslandsID)).teleport(((EntityPlayer) player), player.world);
+                		break;
+                	case "destinyislands":
+                        new TeleporterDestinyIslands(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.destinyIslandsID)).teleport(((EntityPlayer) player), player.world);
+                		break;
+                	default:
+                        TextHelper.sendFormattedChatMessage("Invalid dimension, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+                	}
                 }
+            }else{
+                TextHelper.sendFormattedChatMessage("Invalid player, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+
             }
         }
     }
