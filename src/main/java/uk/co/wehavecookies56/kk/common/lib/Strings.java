@@ -840,6 +840,7 @@ public class Strings {
     Aubade = "aubade",
     WoodenStick = "woodenstick",
     DreamSword = "dreamsword",
+    DreamStaff = "dreamstaff",
     DreamShield = "dreamshield",
     ZeroOne = "zeroone",
     Earthshaker = "earthshaker",

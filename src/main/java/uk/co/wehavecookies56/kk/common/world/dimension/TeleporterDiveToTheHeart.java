@@ -99,7 +99,13 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         shieldPedestal.rotation = 3;
         playerMP.world.setBlockState(new BlockPos(dx-12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Shield
         playerMP.world.setTileEntity(new BlockPos(dx-12, dy+1, dz), shieldPedestal);
+        
+        TileEntityPedestal staffPedestal = new TileEntityPedestal();
+        staffPedestal.setKeyblade(new ItemStack(ModItems.DreamStaff));
+        staffPedestal.itemStacks.setStackInSlot(0, new ItemStack(ModItems.DreamStaff));
+        staffPedestal.rotation=1;
         playerMP.world.setBlockState(new BlockPos(dx+12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Staff
+        playerMP.world.setTileEntity(new BlockPos(dx+12, dy+1, dz), staffPedestal);
 
         TileEntityPedestal swordPedestal = new TileEntityPedestal();
         swordPedestal.setKeyblade(new ItemStack(ModItems.DreamSword));

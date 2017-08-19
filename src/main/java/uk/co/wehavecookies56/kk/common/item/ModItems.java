@@ -943,12 +943,12 @@ public class ModItems {
     //Other weapons
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DreamShield)
     public static Item DreamShield;
+    
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DreamStaff)
+    public static Item DreamStaff;
 
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DreamSword)
     public static Item DreamSword;
-
-    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Chain_DreamSword)
-    public static Item Chain_DreamSword;
 
     // Keyblades
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.AbaddonPlasma)
@@ -2038,7 +2038,6 @@ public class ModItems {
         ((ItemKeychain)Chain_DiamondDust).setKeyblade((ItemKeyblade) DiamondDust);
         ((ItemKeychain)Chain_Divewing).setKeyblade((ItemKeyblade) Divewing);
         ((ItemKeychain)Chain_DivineRose).setKeyblade((ItemKeyblade) DivineRose);
-        ((ItemKeychain)Chain_DreamSword).setKeyblade((ItemKeyblade) DreamSword);
         ((ItemKeychain)Chain_DualDisc).setKeyblade((ItemKeyblade) DualDisc);
         ((ItemKeychain)Chain_Earthshaker).setKeyblade((ItemKeyblade) Earthshaker);
         ((ItemKeychain)Chain_EndofPain).setKeyblade((ItemKeyblade) EndofPain);
@@ -2479,6 +2478,7 @@ public class ModItems {
             event.getRegistry().register(new ItemRealKeyblade(Strings.DiamondDust, BalanceConfig.keyblades.diamondDust[0], BalanceConfig.keyblades.diamondDust[1]));
             event.getRegistry().register(new ItemRealKeyblade(Strings.Divewing, BalanceConfig.keyblades.divewing[0], BalanceConfig.keyblades.divewing[1]));
             event.getRegistry().register(new ItemRealKeyblade(Strings.DivineRose, BalanceConfig.keyblades.divineRose[0], BalanceConfig.keyblades.divineRose[1]));
+            event.getRegistry().register(new ItemKeyblade(Strings.DreamStaff, BalanceConfig.keyblades.dreamStaff[0], BalanceConfig.keyblades.dreamStaff[1]));
             event.getRegistry().register(new ItemKeyblade(Strings.DreamSword, BalanceConfig.keyblades.dreamSword[0], BalanceConfig.keyblades.dreamSword[1]));
             event.getRegistry().register(new ItemRealKeyblade(Strings.DualDisc, BalanceConfig.keyblades.dualDisc[0], BalanceConfig.keyblades.dualDisc[1]));
             event.getRegistry().register(new ItemRealKeyblade(Strings.Earthshaker, BalanceConfig.keyblades.earthshaker[0], BalanceConfig.keyblades.earthshaker[1]));

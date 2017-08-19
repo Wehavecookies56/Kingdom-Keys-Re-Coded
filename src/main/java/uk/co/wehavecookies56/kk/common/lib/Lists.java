@@ -409,6 +409,8 @@ public class Lists {
         recipes.add(DiamondDust.getUnlocalizedName());
         recipes.add(Divewing.getUnlocalizedName());
         recipes.add(DivineRose.getUnlocalizedName());
+        recipes.add(DreamShield.getUnlocalizedName());
+        recipes.add(DreamStaff.getUnlocalizedName());
         recipes.add(DreamSword.getUnlocalizedName());
         recipes.add(DualDisc.getUnlocalizedName());
         recipes.add(Earthshaker.getUnlocalizedName());

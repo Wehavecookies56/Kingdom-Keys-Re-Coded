@@ -41,6 +41,7 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
                 diamondDust = new int[] { 3, 10 },
                 divewing = new int[] { 8, 8 },
                 divineRose = new int[] { 11, 0 },
+                dreamStaff = new int[] { 0, 1 },
                 dreamSword = new int[] { 1, 0 },
                 dualDisc = new int[] { 5, 3 },
                 earthshaker = new int[] { 4, 0 },

@@ -115,11 +115,14 @@ holdforinfo.desc=Mantén shift para más información
 
 #Synthesis Ore
 tile.blazingore.name=Mena Ígnea
+tile.blazingoren.name=Mena Ígnea
 tile.brightore.name=Mena Clara
 tile.darkore.name=Mena Oscura
 tile.darkoree.name=Mena Oscura
+tile.darkoren.name=Mena Oscura
 tile.denseore.name=Mena Densa
 tile.energyore.name=Mena Vital
+tile.energyoren.name=Mena Vital
 tile.frostore.name=Mena Fría
 tile.lightningore.name=Mena de Rayo
 tile.lucidore.name=Mena de Ocaso
@@ -130,6 +133,7 @@ tile.serenityore.name=Mena Serena
 tile.stormyore.name=Mena Tormentosa
 tile.tranquilore.name=Mena Sosegada
 tile.twilightore.name=Mena Crepuscular
+tile.twilightoren.name=Mena Crepuscular
 
 #Otros
 tile.synthesistable.name=Mesa de Síntesis
@@ -681,6 +685,8 @@ item.destinysembrace.name=Abrazo del Destino
 item.diamonddust.name=Polvo de Diamante
 item.divewing.name=Ala de Inmersión
 item.divinerose.name=Rosa Divina
+item.dreamshield.name=Escudo de Ensueño
+item.dreamstaff.name=Bastón de Ensueño
 item.dreamsword.name=Espada de Ensueño
 item.dualdisc.name=Disco Doble
 item.earthshaker.name=Teluria
@@ -803,7 +809,6 @@ item.destinysembracechain.name=Llavero de Abrazo del Destino
 item.diamonddustchain.name=Llavero de Polvo de Diamante
 item.divewingchain.name=Llavero de Ala de Inmersión
 item.divinerosechain.name=Llavero de Rosa Divina
-item.dreamswordchain.name=Llavero de Espada de Ensueño
 item.dualdiscchain.name=Llavero de Disco Doble
 item.earthshakerchain.name=Llavero de Teluria
 item.endofpainchain.name=Llavero de Fin del Dolor
@@ -1122,3 +1127,11 @@ entity.kk.Moogle.name=Moguri
 #Journal
 ##########################
 journal.commandmenuabout=El menú de comandos es el menú mostrado en la esquina inferior izquierda. Tiene 4 opciones, Atacar, Magia, Objetos y Fusión, para más información visita sus respetcivas páginas.\n\nEl menú puede navegarse usando las teclas del menú (por defecto: flechas) también puede ser navegado manteniendo pulsado (por defecto Alt) y deslizar la rueda del ratón, click izquierdo para acceder, click derecho para retroceder.
+
+##########################
+#Config
+##########################
+kk.mainconfig.title=Configuration Principal
+kk.balance.title=Configuration de balanceo
+
+kk.balance.keyblades=Llaves Espada

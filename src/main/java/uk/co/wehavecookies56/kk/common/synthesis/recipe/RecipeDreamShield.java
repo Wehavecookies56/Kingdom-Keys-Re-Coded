@@ -10,11 +10,11 @@ import uk.co.wehavecookies56.kk.api.recipes.Recipe;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
-public class RecipeDreamSword extends Recipe {
+public class RecipeDreamShield extends Recipe {
 
     public String name;
 
-    public RecipeDreamSword (String name) {
+    public RecipeDreamShield (String name) {
         this.name = name;
     }
 
@@ -25,7 +25,7 @@ public class RecipeDreamSword extends Recipe {
 
     @Override
     public ItemStack getResult () {
-        return new ItemStack(ModItems.DreamSword);
+        return new ItemStack(ModItems.DreamShield);
     }
 
     @Override

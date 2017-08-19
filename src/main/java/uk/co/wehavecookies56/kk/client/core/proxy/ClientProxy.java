@@ -102,8 +102,6 @@ public class ClientProxy extends CommonProxy {
         B3DLoader.INSTANCE.addDomain(Reference.MODID);
         OBJLoader.INSTANCE.addDomain(Reference.MODID);
 
-        registerModel(DreamShield);
-
         //Keyblades
         registerModel(AbaddonPlasma);
         registerModel(AbyssalTide);
@@ -125,6 +123,8 @@ public class ClientProxy extends CommonProxy {
         registerModel(DiamondDust);
         registerModel(Divewing);
         registerModel(DivineRose);
+        registerModel(DreamShield);
+        registerModel(DreamStaff);
         registerModel(DreamSword);
         registerModel(DualDisc);
         registerModel(Earthshaker);
@@ -247,7 +247,6 @@ public class ClientProxy extends CommonProxy {
         registerModel(Chain_DiamondDust);
         registerModel(Chain_Divewing);
         registerModel(Chain_DivineRose);
-        registerModel(Chain_DreamSword);
         registerModel(Chain_DualDisc);
         registerModel(Chain_Earthshaker);
         registerModel(Chain_EndofPain);
