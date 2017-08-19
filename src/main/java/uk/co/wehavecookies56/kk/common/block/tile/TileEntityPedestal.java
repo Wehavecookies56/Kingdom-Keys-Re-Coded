@@ -23,7 +23,7 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
  */
 public class TileEntityPedestal extends TileEntity {
     final int NUMBER_OF_SLOTS = 1;
-    private ItemStackHandler itemStacks = new ItemStackHandler(NUMBER_OF_SLOTS);
+    public ItemStackHandler itemStacks = new ItemStackHandler(NUMBER_OF_SLOTS);
     public int rotation=0;
     public ItemStack keyblade;
 

@@ -37,6 +37,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.Event;
@@ -575,7 +576,7 @@ public class EntityEvents {
 
         if(player.dimension == ModDimensions.diveToTheHeartID) {
             if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
-                if(chosen.equals(Strings.Choice_Shield)){
+                if(!chosen.equals(Strings.Choice_Shield)){
                     chosen = Strings.Choice_Shield;
                     TextComponentTranslation shield = new TextComponentTranslation("Shield");
                     shield.getStyle().setColor(TextFormatting.YELLOW);
@@ -584,7 +585,7 @@ public class EntityEvents {
             }
 
             else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
-                if(chosen.equals(Strings.Choice_Staff)){
+                if(!chosen.equals(Strings.Choice_Staff)){
                     chosen = Strings.Choice_Staff;
                     TextComponentTranslation staff = new TextComponentTranslation("Staff");
                     staff.getStyle().setColor(TextFormatting.YELLOW);
@@ -593,7 +594,7 @@ public class EntityEvents {
             }
 
             else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) {
-                if(chosen.equals(Strings.Choice_Sword)){
+                if(!chosen.equals(Strings.Choice_Sword)){
                     chosen = Strings.Choice_Sword;
                     TextComponentTranslation sword = new TextComponentTranslation("Sword");
                     sword.getStyle().setColor(TextFormatting.YELLOW);
@@ -749,7 +750,7 @@ public class EntityEvents {
 
     @SubscribeEvent
     public void interactWithBlock(PlayerInteractEvent.RightClickBlock event) {
-        if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+        if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none") /*|| event.getEntityPlayer().dimension == ModDimensions.diveToTheHeartID*/) {
             event.setCanceled(true);
         }
     }

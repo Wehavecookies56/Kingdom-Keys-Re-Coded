@@ -8,6 +8,7 @@ import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter;
@@ -16,6 +17,8 @@ import net.minecraft.world.WorldServer;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.base.BlockStationOfAwakening;
+import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
+import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.world.WorldLoader;
 
@@ -89,13 +92,20 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         playerMP.world.setBlockState(new BlockPos(dx+(-4), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 13));
         playerMP.world.setBlockState(new BlockPos(dx+(4), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 14));
         playerMP.world.setBlockState(new BlockPos(dx+(12), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 15));
-        
+
+        TileEntityPedestal shieldPedestal = new TileEntityPedestal();
+        shieldPedestal.setKeyblade(new ItemStack(ModItems.DreamShield));
+        shieldPedestal.itemStacks.setStackInSlot(0, new ItemStack(ModItems.DreamShield));
         playerMP.world.setBlockState(new BlockPos(dx-12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Shield
-        
+        playerMP.world.setTileEntity(new BlockPos(dx-12, dy+1, dz), shieldPedestal);
         playerMP.world.setBlockState(new BlockPos(dx+12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Staff
-        
+
+        TileEntityPedestal swordPedestal = new TileEntityPedestal();
+        swordPedestal.setKeyblade(new ItemStack(ModItems.DreamSword));
+        swordPedestal.itemStacks.setStackInSlot(0, new ItemStack(ModItems.DreamSword));
         playerMP.world.setBlockState(new BlockPos(dx, dy+1, dz-12), ModBlocks.Pedestal.getDefaultState());  //Sword
-        
+        playerMP.world.setTileEntity(new BlockPos(dx, dy+1, dz-12), swordPedestal);
+
         playerMP.world.setBlockState(new BlockPos(dx, dy+1, dz+12), ModBlocks.StationOfAwakeningDoor.getDefaultState());
 
     }

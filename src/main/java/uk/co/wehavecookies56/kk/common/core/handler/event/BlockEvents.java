@@ -17,8 +17,7 @@ import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 public class BlockEvents {
 
     @SubscribeEvent
-    public void onBlockBreak(BlockEvent.BreakEvent event)
-    {
+    public void onBlockBreak(BlockEvent.BreakEvent event) {
         if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID) {
             if(!event.getPlayer().capabilities.isCreativeMode)
                 event.setCanceled(true);
@@ -26,8 +25,7 @@ public class BlockEvents {
     }
 
     @SubscribeEvent
-    public void onBlockPlace(BlockEvent.PlaceEvent event)
-    {
+    public void onBlockPlace(BlockEvent.PlaceEvent event) {
         if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID) {
             if(!event.getPlayer().capabilities.isCreativeMode)
                 event.setCanceled(true);
