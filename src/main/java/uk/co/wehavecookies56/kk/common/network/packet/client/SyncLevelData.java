@@ -18,7 +18,6 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLevelData> {
 
     int experience, level, strength, magic, defense, hp;
-    int vExp, wExp, lExp, mExp, fExp;
     List<String> messages;
 
     public SyncLevelData() {}
@@ -41,12 +40,7 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         this.strength = buffer.readInt();
         this.magic = buffer.readInt();
         this.hp = buffer.readInt();
-        this.vExp = buffer.readInt();
-        this.wExp = buffer.readInt();
-        this.lExp = buffer.readInt();
-        this.mExp = buffer.readInt();
-        this.fExp = buffer.readInt();
-
+       
         this.messages = new ArrayList<String>();
         while(buffer.isReadable()) {
             this.messages.add(buffer.readString(100));
@@ -61,11 +55,6 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         buffer.writeInt(this.strength);
         buffer.writeInt(this.magic);
         buffer.writeInt(this.hp);
-        buffer.writeInt(this.vExp);
-        buffer.writeInt(this.wExp);
-        buffer.writeInt(this.lExp);
-        buffer.writeInt(this.mExp);
-        buffer.writeInt(this.fExp);
 
         for (int i = 0; i < this.messages.size(); i++) {
             buffer.writeString(this.messages.get(i));

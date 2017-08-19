@@ -58,6 +58,7 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
@@ -603,9 +604,34 @@ public class EntityEvents {
             }
 
             else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
-                if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID)
-                    if (!player.world.isRemote)
-                        new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport(( player), player.world);
+                if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID) {
+                	if(!chosen.equals("") && !chosen.equals("door")) {
+                		IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+                		if (!player.world.isRemote) {
+                			switch (chosen) {
+                			case Strings.Choice_Shield:
+                				STATS.addDefense(2);
+                				break;
+                			case Strings.Choice_Staff:
+                				STATS.addMagic(2);
+                				break;
+                			case Strings.Choice_Sword:
+                				STATS.addStrength(2);
+                				break;
+                			}
+                			PacketDispatcher.sendTo(new SyncLevelData(STATS),(EntityPlayerMP) player);
+                			new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport(( player), player.world);
+                		}
+                	} else {
+                		if(!chosen.equals("door")) {
+	                        TextComponentTranslation needChoice = new TextComponentTranslation("You must make a choice");
+	                        needChoice.getStyle().setColor(TextFormatting.RED);
+	                        player.sendMessage(needChoice);
+	                        chosen = "door";
+                		}
+                	}
+                	System.out.println(chosen);
+                }
             }
 
         }
