@@ -47,6 +47,7 @@ public class GuiDrive extends GuiScreen {
         return bar;
     }
 
+    byte counter = 0;
     @SubscribeEvent
     public void onRenderOverlayPost (RenderGameOverlayEvent event) {
         if (!MainConfig.displayGUI())
@@ -129,7 +130,9 @@ public class GuiDrive extends GuiScreen {
             GL11.glPopMatrix();
             if (STATS.getDP() >= getMaxBars(STATE.getDriveGaugeLevel()) && !STATE.getInDrive()) {
                 GL11.glPushMatrix();
-                switch (Utils.randomWithRange(1, 4)) {
+                counter++;
+                /*
+                switch (counter) {
                     case 1:
                         GL11.glColor3ub((byte) 255, (byte) 50, (byte) 40);
                         break;
@@ -139,7 +142,17 @@ public class GuiDrive extends GuiScreen {
                     case 3:
                         GL11.glColor3ub((byte) 35, (byte) 50, (byte) 255);
                         break;
-                }
+                }*/
+                if(counter > 0 && counter < 50)
+                    GL11.glColor3ub((byte) 255, (byte) 50, (byte) 40);
+                else if(counter >= 50 && counter < 100)
+                    GL11.glColor3ub((byte) 35, (byte) 255, (byte) 50);
+                else if(counter >= 100 && counter < 150)
+                    GL11.glColor3ub((byte) 35, (byte) 50, (byte) 255);
+                else if(counter >= 150 && counter < 200)     
+                	GL11.glColor3ub((byte) 255, (byte) 255, (byte) 255);
+                else if(counter >= 200)
+                     	counter = 0;
                 GL11.glTranslatef(((screenWidth - guiWidth * scale) + (10 * scale)), ((screenHeight - guiHeight * scale) - (12 * scale)), 0);
                 GL11.glScalef(scale, scale, scale);
                 this.drawTexturedModalRect(0, 0, 0, 57, 30, guiHeight);
