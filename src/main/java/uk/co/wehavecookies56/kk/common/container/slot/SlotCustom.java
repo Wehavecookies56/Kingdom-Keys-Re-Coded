@@ -1,6 +1,7 @@
 package uk.co.wehavecookies56.kk.common.container.slot;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.items.IItemHandler;
@@ -14,6 +15,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
+import uk.co.wehavecookies56.kk.common.item.org.ItemOrgShield;
 
 public class SlotCustom extends SlotItemHandler {
     int window;
@@ -57,7 +59,7 @@ public class SlotCustom extends SlotItemHandler {
                 if (stack.getItem() instanceof ItemDriveForm) return true;
                 break;
             case 6:
-                if (stack.getItem() instanceof ItemKeyblade || stack.getItem() instanceof ItemKeychain) return true;
+                if (stack.getItem() instanceof ItemKeyblade || stack.getItem() instanceof ItemKeychain || stack.getItem() instanceof ItemOrgShield) return true;
                 break;
         }
         return false;

@@ -26,11 +26,6 @@ public class ItemCard extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("X Luxord");
-    }
-
-    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         if (!worldIn.isRemote)
             if (playerIn.dimension != ModDimensions.destinyIslandsID)

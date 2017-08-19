@@ -750,7 +750,7 @@ public class EntityEvents {
 
     @SubscribeEvent
     public void interactWithBlock(PlayerInteractEvent.RightClickBlock event) {
-        if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none") /*|| event.getEntityPlayer().dimension == ModDimensions.diveToTheHeartID*/) {
+        if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none") || (event.getEntityPlayer().dimension == ModDimensions.diveToTheHeartID && !event.getEntityPlayer().capabilities.isCreativeMode)) {
             event.setCanceled(true);
         }
     }

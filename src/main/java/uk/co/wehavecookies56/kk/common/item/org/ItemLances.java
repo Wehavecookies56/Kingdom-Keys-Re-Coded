@@ -28,11 +28,6 @@ public class ItemLances extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("III Xaldin");
-    }
-
-    @Override
     public OrgMember getMember() {
         return Utils.OrgMember.XALDIN;
     }

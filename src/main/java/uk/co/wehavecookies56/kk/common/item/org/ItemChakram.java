@@ -62,11 +62,6 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("VIII Axel");
-    }
-
-    @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         Entity entity;
         switch(weapon){

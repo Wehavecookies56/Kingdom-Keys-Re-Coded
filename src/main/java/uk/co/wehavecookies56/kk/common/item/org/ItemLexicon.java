@@ -43,11 +43,6 @@ public class ItemLexicon extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("VI Zexion");
-    }
-
-    @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         //Minecraft.getMinecraft().displayGuiScreen(new GuiOrgUnlock());
         if(world.isRemote){

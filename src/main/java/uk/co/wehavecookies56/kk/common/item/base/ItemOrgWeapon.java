@@ -7,6 +7,8 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
+import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemOrgWeapon extends ItemSword{
     double magic, strength;
@@ -53,7 +55,7 @@ public class ItemOrgWeapon extends ItemSword{
     public void setSpeed(double speed) {
         this.speed = speed;
     }
-
+    
     @Override
     @SideOnly (Side.CLIENT)
     public EnumRarity getRarity (ItemStack par1ItemStack) {

@@ -33,11 +33,6 @@ public class ItemSitar extends ItemOrgWeapon implements IOrgWeapon {
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("IX Demyx");
-    }
-
-    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         if (!worldIn.isRemote)
             if (playerIn.dimension != ModDimensions.traverseTownID)

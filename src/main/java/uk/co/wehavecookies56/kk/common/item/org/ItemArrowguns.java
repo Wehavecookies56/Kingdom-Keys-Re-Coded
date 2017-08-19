@@ -53,11 +53,6 @@ public class ItemArrowguns extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("II Xigbar");
-    }
-
-    @Override
     public OrgMember getMember() {
         return Utils.OrgMember.XIGBAR;
     }

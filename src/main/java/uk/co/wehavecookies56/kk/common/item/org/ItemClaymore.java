@@ -39,11 +39,6 @@ public class ItemClaymore extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(Utils.translateToLocal(Strings.LunaticDesc));
-    }
-
-    @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         if(player.getHeldItemMainhand().getItemDamage()==0){
             if(world.isRemote){

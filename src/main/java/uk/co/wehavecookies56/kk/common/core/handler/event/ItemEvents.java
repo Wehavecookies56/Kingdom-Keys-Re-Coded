@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Multimap;
@@ -32,6 +31,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import uk.co.wehavecookies56.kk.api.munny.MunnyRegistry;
@@ -49,6 +49,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
@@ -176,6 +177,8 @@ public class ItemEvents {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void addTooltip (ItemTooltipEvent event) {
+        List<String> tooltip = event.getToolTip();
+
         for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
             if (areItemStacksEqual(stack, event.getItemStack())) {
                 event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack) * event.getItemStack().getCount());
@@ -183,7 +186,7 @@ public class ItemEvents {
         }
         //TODO Localize all this
         if (event.getItemStack().getItem() instanceof ItemKeyblade && event.getEntityPlayer() != null) {
-            List<String> tooltip = event.getToolTip();
+           // List<String> tooltip = event.getToolTip();
             ItemKeyblade keyblade = (ItemKeyblade) event.getItemStack().getItem();
             (tooltip.subList(1, tooltip.size())).clear();
 
@@ -195,23 +198,7 @@ public class ItemEvents {
 
                 //System.out.println(Enchantment.getEnchantmentByID(id).getName());
                 if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all")) {
-                    switch (lvl) {
-                    case 1:
-                        sharpnessDamage = 1;
-                        break;
-                    case 2:
-                        sharpnessDamage = 1.5;
-                        break;
-                    case 3:
-                        sharpnessDamage = 2;
-                        break;
-                    case 4:
-                        sharpnessDamage = 2.5;
-                        break;
-                    case 5:
-                        sharpnessDamage = 3;
-                        break;
-                    }
+                    sharpnessDamage = getSharpnessDamage(lvl);
                 }
             }
 
@@ -285,7 +272,7 @@ public class ItemEvents {
         }
 
         if (event.getItemStack().getItem() instanceof ItemKeychain && event.getEntityPlayer() != null) {
-            List<String> tooltip = event.getToolTip();
+           // List<String> tooltip = event.getToolTip();
             ItemKeyblade keyblade = ((ItemKeychain) event.getItemStack().getItem()).getKeyblade();
             if (keyblade != null) {
                 (tooltip.subList(1, tooltip.size())).clear();
@@ -296,23 +283,7 @@ public class ItemEvents {
                     int id = nbttaglist.getCompoundTagAt(i).getShort("id");
                     int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
                     if (Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all")) {
-                        switch (lvl) {
-                            case 1:
-                                sharpnessDamage = 1;
-                                break;
-                            case 2:
-                                sharpnessDamage = 1.5;
-                                break;
-                            case 3:
-                                sharpnessDamage = 2;
-                                break;
-                            case 4:
-                                sharpnessDamage = 2.5;
-                                break;
-                            case 5:
-                                sharpnessDamage = 3;
-                                break;
-                        }
+                        sharpnessDamage = getSharpnessDamage(lvl);
                     }
                 }
 
@@ -349,38 +320,22 @@ public class ItemEvents {
                 }
             }
         }
+        //List<String> tooltip = event.getToolTip();
 
         if (event.getItemStack().getItem() instanceof ItemOrgWeapon) {
-            List<String> tooltip = event.getToolTip();
             ItemOrgWeapon weapon = (ItemOrgWeapon) event.getItemStack().getItem();
             (tooltip.subList(1, tooltip.size())).clear();
 
             NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
             double sharpnessDamage = 0;
-                 for (int i = 0; i < nbttaglist.tagCount(); i++) {
-                     int id = nbttaglist.getCompoundTagAt(i).getShort("id");
-                     int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+             for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                 int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+                 int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
 
-                    //System.out.println(Enchantment.getEnchantmentByID(id).getName());
-                    if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all")) {
-                        switch (lvl) {
-                        case 1:
-                            sharpnessDamage = 1;
-                            break;
-                        case 2:
-                            sharpnessDamage = 1.5;
-                            break;
-                        case 3:
-                            sharpnessDamage = 2;
-                            break;
-                        case 4:
-                            sharpnessDamage = 2.5;
-                            break;
-                        case 5:
-                            sharpnessDamage = 3;
-                            break;
-                        }
-                 }
+                //System.out.println(Enchantment.getEnchantmentByID(id).getName());
+                if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all")) {
+                    sharpnessDamage = getSharpnessDamage(lvl);
+                }
             }
 
             double keyStrength = weapon.getStrength()+sharpnessDamage;
@@ -398,6 +353,8 @@ public class ItemEvents {
                     tooltip.add("Hold " +  TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY + " for description");
                 }
             }
+            
+            
             if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
                 if (event.getItemStack().hasTagCompound()) {
                     tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
@@ -450,6 +407,11 @@ public class ItemEvents {
             } else {
                 tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
             }
+        }
+        
+        if(event.getItemStack().getItem() instanceof IOrgWeapon && event.getItemStack().getItem() != ModItems.DreamShield) {
+        	String member = ((IOrgWeapon) event.getItemStack().getItem()).getMember().toString();
+        	tooltip.add(member.substring(0, 1)+member.substring(1, member.length()).toLowerCase());
         }
 
         Item ghostBlox = Item.getItemFromBlock(ModBlocks.GhostBlox);
@@ -517,7 +479,23 @@ public class ItemEvents {
 
     }
 
-    @SubscribeEvent
+    private double getSharpnessDamage(int lvl) {
+    	/* switch (lvl) {
+         case 1:
+        	 return 1;
+         case 2:
+        	 return 1.5;
+         case 3:
+        	 return 2;
+         case 4:
+        	 return 2.5;
+         case 5:
+        	 return 3;
+         }*/
+		return lvl / 2 + 0.5;
+	}
+
+	@SubscribeEvent
     public void onItemTossEvent (ItemTossEvent event) {
         if (!event.getPlayer().world.isRemote)
         	if(event.getPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {

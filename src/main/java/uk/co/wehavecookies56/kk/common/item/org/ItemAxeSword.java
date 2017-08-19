@@ -28,11 +28,6 @@ public class ItemAxeSword extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("V Lexaeus");
-    }
-
-    @Override
     public OrgMember getMember() {
         return Utils.OrgMember.LEXAEUS;
     }

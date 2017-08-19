@@ -16,6 +16,7 @@ import net.minecraftforge.items.IItemHandler;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.item.org.ItemOrgShield;
 
 /**
  * Created by Toby on 06/11/2016.
@@ -48,6 +49,9 @@ public class TESRPedestal extends TileEntitySpecialRenderer<TileEntityPedestal> 
                     renderItem.renderItem(new ItemStack(itemToRender), ItemCameraTransforms.TransformType.NONE);
                 else if (itemToRender instanceof ItemKeychain)
                     renderItem.renderItem(new ItemStack(((ItemKeychain) itemToRender).getKeyblade()), ItemCameraTransforms.TransformType.NONE);
+                else if (itemToRender instanceof ItemOrgShield)
+                    renderItem.renderItem(new ItemStack((itemToRender)), ItemCameraTransforms.TransformType.NONE);
+
                 GL11.glPopAttrib();
 
             }

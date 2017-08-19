@@ -49,7 +49,7 @@ public class ItemOrgShield extends ItemShield implements IOrgWeapon{
 
     @Override
     public void onUpdate (ItemStack item, World world, Entity entity, int p_77663_4_, boolean p_77663_5_) {
-        EntityPlayer player = (EntityPlayer) entity;
+       // EntityPlayer player = (EntityPlayer) entity;
         super.onUpdate(item, world, entity, p_77663_4_, p_77663_5_);
     }
 
@@ -57,11 +57,6 @@ public class ItemOrgShield extends ItemShield implements IOrgWeapon{
     @SideOnly (Side.CLIENT)
     public EnumRarity getRarity (ItemStack par1ItemStack) {
         return EnumRarity.UNCOMMON;
-    }
-
-    @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("IV Vexen");
     }
 
     @Override

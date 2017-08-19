@@ -28,11 +28,6 @@ public class ItemKnife extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("XII Larxene");
-    }
-
-    @Override
     public OrgMember getMember() {
         return Utils.OrgMember.LARXENE;
     }
