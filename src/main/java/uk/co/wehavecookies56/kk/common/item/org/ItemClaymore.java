@@ -1,10 +1,5 @@
 package uk.co.wehavecookies56.kk.common.item.org;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -18,7 +13,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
-import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DesummonClaymore;
 import uk.co.wehavecookies56.kk.common.network.packet.server.SummonClaymore;
