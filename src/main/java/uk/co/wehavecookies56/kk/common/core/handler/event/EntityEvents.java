@@ -637,9 +637,10 @@ public class EntityEvents {
                 	System.out.println(STATS.getChoice1());
                 }
             }
-
         }
+        //PacketDispatcher.sendTo(new SyncLevelData(event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)event.player);
 
+        
         DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         if (!DS.getInDrive())
             if (STATS.getMP() <= 0 || STATS.getRecharge()) {
