@@ -51,7 +51,7 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
                 keychain.enabled = false;
             }
         }else{
-            if(mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII,null).summonedWeapon(EnumHand.MAIN_HAND)){
+            if(mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII,null).summonedWeapon(EnumHand.MAIN_HAND) || mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII,null).summonedWeapon(EnumHand.OFF_HAND)){
                 keychain.enabled = false;
             }
         }

@@ -27,12 +27,12 @@ public class DeSummonOrgWeapon extends AbstractServerMessage<DeSummonOrgWeapon> 
 
     @Override
     protected void read (PacketBuffer buffer) throws IOException {
-
+        this.hand = EnumHand.values()[buffer.readInt()];
     }
 
     @Override
     protected void write (PacketBuffer buffer) throws IOException {
-
+        buffer.writeInt(hand.ordinal());
     }
 
     @Override

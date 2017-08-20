@@ -42,9 +42,9 @@ public class WorldLoader {
 
     }
 
-    public void processAndGenerateStructureFile(ResourceLocation file, WorldServer world, int xOffset, int yOffset, int zOffset) {
+    public void processAndGenerateStructureFile(String file, WorldServer world, int xOffset, int yOffset, int zOffset) {
         try {
-            InputStream inputStream = Minecraft.getMinecraft().getResourceManager().getResource(file).getInputStream();
+            InputStream inputStream = getClass().getResourceAsStream("/assets/kk/worlds/" + file + ".world");
             NBTTagCompound main = CompressedStreamTools.readCompressed(inputStream);
 
             NBTTagList palette = main.getTagList("palette", Constants.NBT.TAG_COMPOUND);

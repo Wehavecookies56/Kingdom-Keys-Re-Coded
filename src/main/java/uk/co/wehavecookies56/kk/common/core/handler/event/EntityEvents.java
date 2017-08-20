@@ -313,6 +313,10 @@ public class EntityEvents {
 
             ((EntityPlayer) event.getEntity()).getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getHP());
 
+            if (((EntityPlayer) event.getEntity()).getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel() < 3) {
+                ((EntityPlayer) event.getEntity()).getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(3);
+            }
+
             try {
                 if (event.getEntity() instanceof EntityPlayerMP){
                     EntityPlayerMP player = (EntityPlayerMP) event.getEntity();

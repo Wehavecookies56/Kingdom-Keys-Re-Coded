@@ -55,7 +55,7 @@ public class TeleporterDestinyIslands extends Teleporter {
             entity.sendMessage(new TextComponentTranslation("This only happens the first time you visit the world"));
             //taverseTown.generate();
             WorldLoader loader = new WorldLoader();
-            loader.processAndGenerateStructureFile(new ResourceLocation(Reference.MODID, "worlds/destinyislands.world"), playerMP.world.getMinecraftServer().getServer().getWorld(ModDimensions.destinyIslandsID), 0, 60, 0);
+            loader.processAndGenerateStructureFile("destinyislands", playerMP.world.getMinecraftServer().getServer().getWorld(ModDimensions.destinyIslandsID), 0, 60, 0);
             entity.sendMessage(new TextComponentTranslation("World generated completed, please wait while chunks load..."));
             entity.sendMessage(new TextComponentTranslation("Expect a large performance drop while this happens"));
             data.setGenerated(true);

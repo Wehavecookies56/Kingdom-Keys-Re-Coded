@@ -108,17 +108,13 @@ public class OrganizationXIIICapability {
         private Utils.OrgMember member = Utils.OrgMember.NONE;
         private Item weapon = ModItems.KingdomKey;
         private List<Item> weapons = new ArrayList<>();
-        private Map<EnumHand, Boolean> summoned = new HashMap<>();
+        private boolean mainHandSummoned = false;
+        private boolean offHandSummoned = false;
         private boolean openedGui = false;
         private double orgPortalX = 0;
         private double orgPortalY = 0;
         private double orgPortalZ = 0;
         private int unlockPoints = 0;
-
-        public Default() {
-            summoned.put(EnumHand.MAIN_HAND, false);
-            summoned.put(EnumHand.OFF_HAND, false);
-        }
 
         @Override
         public Utils.OrgMember getMember() {
@@ -162,12 +158,15 @@ public class OrganizationXIIICapability {
 
         @Override
         public boolean summonedWeapon(EnumHand hand) {
-            return this.summoned.get(hand);
+            return hand == EnumHand.MAIN_HAND ? mainHandSummoned : offHandSummoned;
         }
 
         @Override
         public void setWeaponSummoned(EnumHand hand, boolean summoned) {
-            this.summoned.replace(hand, summonedWeapon(hand), summoned);
+            if (hand == EnumHand.MAIN_HAND)
+                this.mainHandSummoned = summoned;
+            else
+                this.offHandSummoned = summoned;
         }
 
         @Override

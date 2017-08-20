@@ -7,6 +7,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import org.lwjgl.Sys;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
@@ -113,12 +114,21 @@ public class Utils {
             if (!organizationXIIICap.summonedWeapon(hand) && ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY)) {
                 if (player.world.isRemote)
                     PacketDispatcher.sendToServer(new SummonOrgWeapon(hand, organizationXIIICap.currentWeapon()));
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(organizationXIIICap.currentWeapon()));
+                if (hand == EnumHand.MAIN_HAND)
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(organizationXIIICap.currentWeapon()));
+                else
+                    player.inventory.offHandInventory.set(0, new ItemStack(organizationXIIICap.currentWeapon()));
+                organizationXIIICap.setWeaponSummoned(hand, true);
                 return true;
             } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof IOrgWeapon || (organizationXIIICap.getMember() == Utils.OrgMember.ROXAS && !ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof ItemKeyblade)) {
-                if (player.world.isRemote)
+                if (player.world.isRemote) {
                     PacketDispatcher.sendToServer(new DeSummonOrgWeapon(hand));
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                }
+                organizationXIIICap.setWeaponSummoned(hand, false);
+                if (hand == EnumHand.MAIN_HAND)
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                else
+                    player.inventory.offHandInventory.set(0, ItemStack.EMPTY);
                 return true;
             } else {
                 return false;
