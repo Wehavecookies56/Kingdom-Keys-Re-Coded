@@ -23,6 +23,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
     boolean summonedMainHand;
     boolean summonedOffHand;
     boolean opened;
+    int dim;
     double orgPortalX;
     double orgPortalY;
     double orgPortalZ;
@@ -37,6 +38,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         this.summonedOffHand = organizationXIII.summonedWeapon(EnumHand.OFF_HAND);
         this.weapons = organizationXIII.unlockedWeapons();
         this.opened = organizationXIII.getOpenedGUI();
+        this.dim = organizationXIII.getPortalDimension();
         this.orgPortalX = organizationXIII.getPortalX();
         this.orgPortalY = organizationXIII.getPortalY();
         this.orgPortalZ = organizationXIII.getPortalZ();
@@ -50,6 +52,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         this.summonedMainHand = buffer.readBoolean();
         this.summonedOffHand = buffer.readBoolean();
         this.opened = buffer.readBoolean();
+        this.dim = buffer.readInt();
         this.orgPortalX = buffer.readDouble();
         this.orgPortalY = buffer.readDouble();
         this.orgPortalZ = buffer.readDouble();
@@ -68,6 +71,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         buffer.writeBoolean(this.summonedMainHand);
         buffer.writeBoolean(this.summonedOffHand);
         buffer.writeBoolean(this.opened);
+        buffer.writeInt(this.dim);
         buffer.writeDouble(this.orgPortalX);
         buffer.writeDouble(this.orgPortalY);
         buffer.writeDouble(this.orgPortalZ);
@@ -87,6 +91,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         organizationXIII.setWeaponSummoned(EnumHand.MAIN_HAND, this.summonedMainHand);
         organizationXIII.setWeaponSummoned(EnumHand.OFF_HAND, this.summonedOffHand);
         organizationXIII.setOpenedGUI(this.opened);
+        organizationXIII.setPortalDimension(this.dim);
         organizationXIII.setPortalX(this.orgPortalX);
         organizationXIII.setPortalY(this.orgPortalY);
         organizationXIII.setPortalZ(this.orgPortalZ);

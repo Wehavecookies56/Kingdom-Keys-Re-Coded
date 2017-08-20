@@ -6,13 +6,16 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnPortalParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortalTP;
+import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOrgPortal;
 
 public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnData {
 
@@ -34,7 +37,7 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
     public void setCaster(EntityPlayer caster) {
         this.caster = caster;
     }
-
+    
     @Override
     public void onUpdate () {
         super.onUpdate();
@@ -64,8 +67,7 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
             if (caster != null) {
                 IOrganizationXIII orgXIII = caster.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
                 if(orgXIII.getPortalX()!=0 && orgXIII.getPortalY()!=0 && orgXIII.getPortalZ()!=0){
-                    player.setPositionAndUpdate(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5);
-                    PacketDispatcher.sendToServer(new OrgPortalTP(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5));
+                    PacketDispatcher.sendToServer(new OrgPortalTP(orgXIII.getPortalDimension(),orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5));
                 }
             }
         }

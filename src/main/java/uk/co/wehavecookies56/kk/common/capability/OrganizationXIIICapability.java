@@ -31,6 +31,7 @@ public class OrganizationXIIICapability {
         Item currentWeapon();
         boolean summonedWeapon(EnumHand hand);
         boolean getOpenedGUI();
+        int getPortalDimension();
         double getPortalX();
         double getPortalY();
         double getPortalZ();
@@ -44,6 +45,7 @@ public class OrganizationXIIICapability {
         void removeUnlockedWeapon(Item item);
         void setWeaponSummoned(EnumHand hand, boolean summoned);
         void setOpenedGUI(boolean opened);
+        void setPortalDimension(int dimension);
         void setPortalX(double x);
         void setPortalY(double y);
         void setPortalZ(double z);
@@ -111,6 +113,7 @@ public class OrganizationXIIICapability {
         private boolean mainHandSummoned = false;
         private boolean offHandSummoned = false;
         private boolean openedGui = false;
+        private int dim = 0;
         private double orgPortalX = 0;
         private double orgPortalY = 0;
         private double orgPortalZ = 0;
@@ -178,6 +181,11 @@ public class OrganizationXIIICapability {
         public void setOpenedGUI(boolean opened) {
             this.openedGui=opened;
         }
+        
+        @Override
+		public int getPortalDimension() {
+			return dim;
+		}
 
         @Override
         public double getPortalX() {
@@ -193,6 +201,11 @@ public class OrganizationXIIICapability {
         public double getPortalZ() {
             return orgPortalZ;
         }
+
+        @Override
+		public void setPortalDimension(int dimension) {
+			this.dim = dimension;
+		}
 
         @Override
         public void setPortalX(double x) {
@@ -232,6 +245,8 @@ public class OrganizationXIIICapability {
         public void addPoints(int points) {
             this.unlockPoints += points;
         }
+
+		
     }
 
 }
