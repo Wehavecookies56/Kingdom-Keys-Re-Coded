@@ -558,7 +558,6 @@ public class EntityEvents {
         }
     }
 
-    String chosen = "";
     @SubscribeEvent
     public void onPlayerTick (TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
@@ -578,11 +577,13 @@ public class EntityEvents {
                     player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(false);
             }
         }
-
+        
+        //Choices
+        IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
         if(player.dimension == ModDimensions.diveToTheHeartID) {
             if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
-                if(!chosen.equals(Strings.Choice_Shield)){
-                    chosen = Strings.Choice_Shield;
+                if(!STATS.getChoice1().equals(Strings.Choice_Shield)){
+                	STATS.setChoice1(Strings.Choice_Shield);
                     TextComponentTranslation shield = new TextComponentTranslation("Shield");
                     shield.getStyle().setColor(TextFormatting.YELLOW);
                     player.sendMessage(shield);
@@ -590,8 +591,8 @@ public class EntityEvents {
             }
 
             else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
-                if(!chosen.equals(Strings.Choice_Staff)){
-                    chosen = Strings.Choice_Staff;
+                if(!STATS.getChoice1().equals(Strings.Choice_Staff)){
+                	STATS.setChoice1(Strings.Choice_Staff);
                     TextComponentTranslation staff = new TextComponentTranslation("Staff");
                     staff.getStyle().setColor(TextFormatting.YELLOW);
                     player.sendMessage(staff);
@@ -599,8 +600,8 @@ public class EntityEvents {
             }
 
             else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) {
-                if(!chosen.equals(Strings.Choice_Sword)){
-                    chosen = Strings.Choice_Sword;
+                if(!STATS.getChoice1().equals(Strings.Choice_Sword)){
+                	STATS.setChoice1(Strings.Choice_Sword);
                     TextComponentTranslation sword = new TextComponentTranslation("Sword");
                     sword.getStyle().setColor(TextFormatting.YELLOW);
                     player.sendMessage(sword);
@@ -609,10 +610,9 @@ public class EntityEvents {
 
             else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
                 if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID) {
-                	if(!chosen.equals("") && !chosen.equals("door")) {
-                		IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+                	if(!STATS.getChoice1().equals("") && !STATS.getChoice1().equals("door")) {
                 		if (!player.world.isRemote) {
-                			switch (chosen) {
+                			switch (STATS.getChoice1()) {
                 			case Strings.Choice_Shield:
                 				STATS.addDefense(2);
                 				break;
@@ -627,20 +627,19 @@ public class EntityEvents {
                 			new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport(( player), player.world);
                 		}
                 	} else {
-                		if(!chosen.equals("door")) {
+                		if(!STATS.getChoice1().equals("door")) {
 	                        TextComponentTranslation needChoice = new TextComponentTranslation("You must make a choice");
 	                        needChoice.getStyle().setColor(TextFormatting.RED);
 	                        player.sendMessage(needChoice);
-	                        chosen = "door";
+	                    	STATS.setChoice1("door");
                 		}
                 	}
-                	System.out.println(chosen);
+                	System.out.println(STATS.getChoice1());
                 }
             }
 
         }
 
-        PlayerStatsCapability.IPlayerStats STATS = event.player.getCapability(ModCapabilities.PLAYER_STATS, null);
         DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         if (!DS.getInDrive())
             if (STATS.getMP() <= 0 || STATS.getRecharge()) {
