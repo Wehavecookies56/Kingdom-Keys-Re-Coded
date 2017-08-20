@@ -1018,7 +1018,7 @@ public class Strings {
 
     public static final String
     KKChestInventory = "container.kkchest",
-    KeychainInventory = "container.keychain",
+    MainKeychain = "mainkeychain",
     SynthesisBagSInventory = "container.synthesisbagsinventory",
     SynthesisBagMInventory = "container.synthesisbagminventory",
     SynthesisBagLInventory = "container.synthesisbaglinventory",

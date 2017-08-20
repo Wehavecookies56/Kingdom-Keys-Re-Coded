@@ -26,16 +26,6 @@ public class ItemCard extends ItemOrgWeapon implements IOrgWeapon{
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        if (!worldIn.isRemote)
-            if (playerIn.dimension != ModDimensions.destinyIslandsID)
-                new TeleporterDestinyIslands(worldIn.getMinecraftServer().getServer().getWorld(ModDimensions.destinyIslandsID)).teleport(((EntityPlayer) playerIn), worldIn);
-            else
-                new TeleporterDiveToTheHeart(worldIn.getMinecraftServer().getServer().getWorld(ModDimensions.diveToTheHeartID)).teleport(playerIn, worldIn);
-        return super.onItemRightClick(worldIn, playerIn, handIn);
-    }
-
-    @Override
     public OrgMember getMember() {
         return Utils.OrgMember.LUXORD;
     }

@@ -107,10 +107,11 @@ public class GuiKeychains extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY) {
-        String s = InventoryKeychain.name;
-        fontRenderer.drawString(s, xSize / 2 - fontRenderer.getStringWidth(s) / 2, 12, 4210752);
-        fontRenderer.drawString(I18n.format("container.inventory"), xSize / 2 - fontRenderer.getStringWidth(I18n.format("container.inventory")) / 2, ySize - 96, 4210752);
-
+        String s = Strings.Form_Valor;
+        fontRenderer.drawString(Utils.translateToLocal(Strings.MainKeychain), 30, 11, 4210752);
+        fontRenderer.drawString(Utils.translateToLocal(Strings.Form_Valor), 30, 30, 4210752);
+        fontRenderer.drawString(Utils.translateToLocal(Strings.Form_Master), 30, 49, 4210752);
+        fontRenderer.drawString(Utils.translateToLocal(Strings.Form_Final), 30, 68, 4210752);
     }
 
     @Override

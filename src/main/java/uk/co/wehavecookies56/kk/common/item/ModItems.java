@@ -1661,6 +1661,9 @@ public class ModItems {
     public static Item Chain_ZeroOne;
 
     // Misc
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + "gummiship")
+    public static Item GummiShip;
+    
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Panacea)
     public static Item Panacaea;
 
@@ -2763,7 +2766,8 @@ public class ModItems {
             event.getRegistry().register(new ItemKKBase(Strings.DarkLeather));
             event.getRegistry().register(new ItemSynthesisMaterial(Strings.SynthesisMaterial));
             event.getRegistry().register(new ItemIceCream(Strings.IceCream, 5, true));
-            event.getRegistry().register(new ItemKKBase(Strings.WinnerStick));
+            event.getRegistry().register(new ItemKKBase(Strings.WinnerStick));            
+            event.getRegistry().register(new ItemHandHeldGummiShip("gummiship"));
 
             event.getRegistry().register(new ItemUpgradeFire(Strings.LevelUpMagicFire, Strings.Spell_Fire));
             event.getRegistry().register(new ItemUpgradeBlizzard(Strings.LevelUpMagicBlizzard, Strings.Spell_Blizzard));

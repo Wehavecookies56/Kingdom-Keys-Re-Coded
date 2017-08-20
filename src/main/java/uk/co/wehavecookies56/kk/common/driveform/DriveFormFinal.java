@@ -43,10 +43,8 @@ public class DriveFormFinal extends DriveForm {
 		            int[] costs = DriveFormRegistry.get(DRIVE.getActiveDriveName()).getExpCosts();
 		            int actualLevel = DRIVE.getDriveLevel(DRIVE.getActiveDriveName());
 		            int actualExp = DRIVE.getDriveExp(DRIVE.getActiveDriveName());
-		            System.out.println(actualLevel+":"+actualExp);
 		           
 		            if(costs.length == 7 && actualLevel < 7) {
-		            	System.out.println(actualExp+"::"+costs[actualLevel]);
 		            	if (actualExp >= costs[actualLevel]){
 		            		System.out.println("LEVEL UP");
 		            		DRIVE.setDriveLevel(DRIVE.getActiveDriveName(),actualLevel+1); 

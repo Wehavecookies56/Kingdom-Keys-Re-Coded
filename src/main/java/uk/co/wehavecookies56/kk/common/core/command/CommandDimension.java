@@ -98,7 +98,7 @@ public class CommandDimension implements ICommand {
                         new TeleporterOverworld(player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
                         break;
                 	case "traversetown":
-                		new TeleporterTraverseTown(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.destinyIslandsID)).teleport(((EntityPlayer) player), player.world);
+                		new TeleporterTraverseTown(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.traverseTownID)).teleport(((EntityPlayer) player), player.world);
                 		break;
                 	case "destinyislands":
                         new TeleporterDestinyIslands(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.destinyIslandsID)).teleport(((EntityPlayer) player), player.world);

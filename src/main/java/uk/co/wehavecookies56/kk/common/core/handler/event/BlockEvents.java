@@ -18,7 +18,7 @@ public class BlockEvents {
 
     @SubscribeEvent
     public void onBlockBreak(BlockEvent.BreakEvent event) {
-        if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID) {
+        if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID || event.getWorld().provider.getDimension() == ModDimensions.destinyIslandsID || event.getWorld().provider.getDimension() == ModDimensions.traverseTownID) {
             if(!event.getPlayer().capabilities.isCreativeMode)
                 event.setCanceled(true);
         }
@@ -26,9 +26,10 @@ public class BlockEvents {
 
     @SubscribeEvent
     public void onBlockPlace(BlockEvent.PlaceEvent event) {
-        if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID) {
-            if(!event.getPlayer().capabilities.isCreativeMode)
+        if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID || event.getWorld().provider.getDimension() == ModDimensions.destinyIslandsID || event.getWorld().provider.getDimension() == ModDimensions.traverseTownID) {
+            if(!event.getPlayer().capabilities.isCreativeMode) {
                 event.setCanceled(true);
+            }
         }
     }
 

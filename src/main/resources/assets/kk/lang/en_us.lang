@@ -996,7 +996,7 @@ gui.menu.config.music=Enable custom music
 gui.menu.config.fire=Kingdom Hearts 1 Fire?
 
 #Containers
-container.keychain=Place a keychain here
+mainkeychain=Main
 container.spellsinventory=Place Spell Orbs here
 container.potionsinventory=Place potions here
 container.driveinventory=Place Form Orbs here

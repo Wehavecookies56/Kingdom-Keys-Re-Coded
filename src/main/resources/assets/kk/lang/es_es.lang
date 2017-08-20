@@ -996,7 +996,7 @@ gui.menu.config.music=Activar música personalizada
 gui.menu.config.fire=¿Fuego de Kingdom Hearts 1?
 
 #Containers
-container.keychain=Pon un llavero aquí
+mainkeychain=Principal
 container.spellsinventory=Pon las magias aquí
 container.potionsinventory=Pon las pociones aquí
 container.driveinventory=Pon las fusiones aquí
