@@ -1,11 +1,7 @@
 package uk.co.wehavecookies56.kk.common.driveform;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
@@ -16,15 +12,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
-import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
-import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.GlidePacket;
 
 @Mod.EventBusSubscriber(modid = Reference.MODID)

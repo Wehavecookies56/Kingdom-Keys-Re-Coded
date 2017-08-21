@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server.magics;
 
-import java.io.IOException;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
@@ -10,6 +8,8 @@ import uk.co.wehavecookies56.kk.common.entity.magic.EntityWisdomShot;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnWisdomShotParticles;
+
+import java.io.IOException;
 
 public class MagicWisdomShot extends AbstractMessage.AbstractServerMessage<MagicWisdomShot> {
 

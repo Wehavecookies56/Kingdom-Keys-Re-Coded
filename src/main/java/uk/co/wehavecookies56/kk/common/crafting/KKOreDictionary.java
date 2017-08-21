@@ -1,10 +1,10 @@
 package uk.co.wehavecookies56.kk.common.crafting;
 
-import static net.minecraftforge.oredict.OreDictionary.registerOre;
-
 import net.minecraftforge.oredict.OreDictionary;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+
+import static net.minecraftforge.oredict.OreDictionary.registerOre;
 
 public class KKOreDictionary {
 

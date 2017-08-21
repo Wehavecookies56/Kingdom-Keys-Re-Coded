@@ -1,14 +1,14 @@
 package uk.co.wehavecookies56.kk.common.synthesis.recipe;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.item.ItemStack;
 import uk.co.wehavecookies56.kk.api.materials.Material;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.Recipe;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RecipeDestinysEmbrace extends Recipe {
 

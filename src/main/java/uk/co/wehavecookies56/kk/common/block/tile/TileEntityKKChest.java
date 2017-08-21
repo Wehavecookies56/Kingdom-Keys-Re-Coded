@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.block.tile;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -12,6 +10,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+
+import javax.annotation.Nullable;
 
 public class TileEntityKKChest extends TileEntity {
     ItemStack keyblade;

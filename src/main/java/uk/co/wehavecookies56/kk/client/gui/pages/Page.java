@@ -1,13 +1,12 @@
 package uk.co.wehavecookies56.kk.client.gui.pages;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import org.lwjgl.opengl.GL11;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class Page extends GuiScreen {

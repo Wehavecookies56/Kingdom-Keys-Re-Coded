@@ -1,9 +1,8 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiTextField;
+import org.lwjgl.input.Keyboard;
 
 /**
  * Created by Toby on 19/07/2016.

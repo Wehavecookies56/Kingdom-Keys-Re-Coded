@@ -1,10 +1,5 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -13,11 +8,15 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.GuiScrollingList;
+import org.lwjgl.opengl.GL11;
 import uk.co.wehavecookies56.kk.api.materials.Material;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability.ISynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiMaterialList extends GuiScrollingList {
 

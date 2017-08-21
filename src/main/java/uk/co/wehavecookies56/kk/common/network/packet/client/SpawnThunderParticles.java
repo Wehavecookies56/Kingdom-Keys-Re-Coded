@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.network.packet.client;
 
-import java.io.IOException;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,6 +7,8 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractClientMessage;
+
+import java.io.IOException;
 
 public class SpawnThunderParticles extends AbstractClientMessage<SpawnThunderParticles> {
 

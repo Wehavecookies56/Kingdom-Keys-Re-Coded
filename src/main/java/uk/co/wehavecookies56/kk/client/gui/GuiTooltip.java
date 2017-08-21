@@ -1,10 +1,10 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public abstract class GuiTooltip extends GuiScreen {
     /**

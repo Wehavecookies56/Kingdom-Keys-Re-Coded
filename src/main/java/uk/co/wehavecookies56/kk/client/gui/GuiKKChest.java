@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import java.awt.Color;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,6 +10,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
 import uk.co.wehavecookies56.kk.common.container.ContainerKKChest;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+
+import java.awt.Color;
 
 public class GuiKKChest extends GuiContainer {
     @SideOnly (Side.CLIENT)

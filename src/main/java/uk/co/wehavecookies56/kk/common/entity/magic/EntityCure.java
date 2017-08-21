@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
-import javax.annotation.Nonnull;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +8,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnCureParticles;
+
+import javax.annotation.Nonnull;
 
 public class EntityCure extends Entity {
 

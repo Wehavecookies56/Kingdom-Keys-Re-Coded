@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server.magics;
 
-import java.io.IOException;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
@@ -15,6 +13,8 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
+
+import java.io.IOException;
 
 public class MagicCure extends AbstractMessage.AbstractServerMessage<MagicCure> {
 

@@ -3,22 +3,14 @@ package uk.co.wehavecookies56.kk.client.core.handler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.audio.Sound;
-import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DimensionType;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.Mod;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
-import uk.co.wehavecookies56.kk.common.lib.Music;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class MusicHandler implements ITickable {

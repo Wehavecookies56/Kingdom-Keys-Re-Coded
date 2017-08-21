@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server;
 
-import java.io.IOException;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -15,6 +13,8 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMaterialData;
+
+import java.io.IOException;
 
 public class DepositMaterialsFromBag extends AbstractMessage.AbstractServerMessage<DepositMaterialsFromBag> {
 

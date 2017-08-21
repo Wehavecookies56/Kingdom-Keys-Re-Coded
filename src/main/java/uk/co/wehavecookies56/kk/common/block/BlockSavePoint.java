@@ -1,8 +1,5 @@
 package uk.co.wehavecookies56.kk.common.block;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,6 +23,9 @@ import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnCureParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockSavePoint extends Block {
 

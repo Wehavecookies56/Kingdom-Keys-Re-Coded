@@ -1,10 +1,5 @@
 package uk.co.wehavecookies56.kk.common.core.command;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -17,11 +12,11 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
-import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDestinyIslands;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDiveToTheHeart;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterTraverseTown;
+import uk.co.wehavecookies56.kk.common.world.dimension.*;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandDimension implements ICommand {
 

@@ -1,9 +1,5 @@
 package uk.co.wehavecookies56.kk.common.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -11,6 +7,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemMunny extends ItemKKBase {
 

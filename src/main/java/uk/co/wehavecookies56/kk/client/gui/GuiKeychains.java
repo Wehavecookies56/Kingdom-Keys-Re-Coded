@@ -1,28 +1,25 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import java.io.IOException;
-
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
+import org.lwjgl.opengl.GL11;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
 import uk.co.wehavecookies56.kk.common.container.ContainerKeychain;
-import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+
+import java.io.IOException;
 
 public class GuiKeychains extends GuiContainer {
 

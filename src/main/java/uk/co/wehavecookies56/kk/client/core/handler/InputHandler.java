@@ -1,11 +1,5 @@
 package uk.co.wehavecookies56.kk.client.core.handler;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.util.text.TextComponentTranslation;
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
@@ -17,11 +11,13 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import org.lwjgl.input.Keyboard;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
@@ -29,7 +25,6 @@ import uk.co.wehavecookies56.kk.client.gui.GuiCommandMenu;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
@@ -37,24 +32,19 @@ import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
-import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
-import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.magic.Magic;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SummonOrgWeapon;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicWisdomShot;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InputHandler {
 

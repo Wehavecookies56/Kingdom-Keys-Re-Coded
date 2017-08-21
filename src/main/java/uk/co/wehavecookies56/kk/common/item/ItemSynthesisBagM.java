@@ -1,9 +1,5 @@
 package uk.co.wehavecookies56.kk.common.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,6 +15,9 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenGui;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemSynthesisBagM extends ItemKKBase {
 

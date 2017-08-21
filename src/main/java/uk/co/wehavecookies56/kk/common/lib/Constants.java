@@ -1,9 +1,9 @@
 package uk.co.wehavecookies56.kk.common.lib;
 
+import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 
 public class Constants {
 

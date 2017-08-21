@@ -1,25 +1,13 @@
 package uk.co.wehavecookies56.kk.common.core.proxy;
 
-import java.awt.Color;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -33,20 +21,12 @@ import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
-import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
-import uk.co.wehavecookies56.kk.common.block.tile.TileEntityOrgPortal;
-import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
-import uk.co.wehavecookies56.kk.common.block.tile.TileEntityStationOfAwakening;
-import uk.co.wehavecookies56.kk.common.block.tile.TileEntitySynthesisTable;
+import uk.co.wehavecookies56.kk.common.block.tile.*;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.GuiHandler;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.handler.UsernameHandler;
-import uk.co.wehavecookies56.kk.common.core.handler.event.BlockEvents;
-import uk.co.wehavecookies56.kk.common.core.handler.event.CapabilityEvents;
-import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;
-import uk.co.wehavecookies56.kk.common.core.handler.event.ItemEvents;
-import uk.co.wehavecookies56.kk.common.core.handler.event.RenderingEvents;
+import uk.co.wehavecookies56.kk.common.core.handler.event.*;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.crafting.KKOreDictionary;
 import uk.co.wehavecookies56.kk.common.crafting.ModItemsRecipes;
@@ -69,6 +49,10 @@ import uk.co.wehavecookies56.kk.common.world.MoogleHouse;
 import uk.co.wehavecookies56.kk.common.world.WorldGenBlox;
 import uk.co.wehavecookies56.kk.common.world.biome.ModBiomes;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
+
+import java.awt.Color;
+import java.net.MalformedURLException;
+import java.util.*;
 
 public class CommonProxy {
 

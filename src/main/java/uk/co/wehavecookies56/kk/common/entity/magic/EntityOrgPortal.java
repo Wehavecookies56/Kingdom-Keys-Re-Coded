@@ -1,21 +1,18 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
-import java.nio.charset.Charset;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnPortalParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortalTP;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOrgPortal;
+
+import java.nio.charset.Charset;
 
 public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnData {
 

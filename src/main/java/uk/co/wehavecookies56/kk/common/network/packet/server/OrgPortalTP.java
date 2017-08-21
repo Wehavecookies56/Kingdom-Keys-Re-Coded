@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server;
 
-import java.io.IOException;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
@@ -9,6 +7,8 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOrgPortal;
+
+import java.io.IOException;
 
 public class OrgPortalTP extends AbstractMessage.AbstractServerMessage<OrgPortalTP> {
 

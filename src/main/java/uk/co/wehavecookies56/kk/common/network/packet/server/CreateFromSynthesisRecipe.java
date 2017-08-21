@@ -1,9 +1,5 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server;
 
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
@@ -18,6 +14,10 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMaterialData;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 
 public class CreateFromSynthesisRecipe extends AbstractMessage.AbstractServerMessage<CreateFromSynthesisRecipe> {
 

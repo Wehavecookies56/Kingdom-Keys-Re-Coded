@@ -1,10 +1,6 @@
 package uk.co.wehavecookies56.kk.client.core.proxy;
 
-import static uk.co.wehavecookies56.kk.common.block.ModBlocks.*;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.*;
-
 import com.jadarstudios.developercapes.DevCapes;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -33,66 +29,21 @@ import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.core.handler.ClientEventHandler;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.client.fx.EntityParticleFXTest;
-import uk.co.wehavecookies56.kk.client.gui.GuiCommandMenu;
-import uk.co.wehavecookies56.kk.client.gui.GuiDrive;
-import uk.co.wehavecookies56.kk.client.gui.GuiHP;
-import uk.co.wehavecookies56.kk.client.gui.GuiLockOn;
-import uk.co.wehavecookies56.kk.client.gui.GuiMP;
-import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
-import uk.co.wehavecookies56.kk.client.gui.GuiPlayerPortrait;
+import uk.co.wehavecookies56.kk.client.gui.*;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelMoogle;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelRedNocturne;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelShadow;
-import uk.co.wehavecookies56.kk.client.render.LayerRendererDrive;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityAshes;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityBlazeofGlory;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityBurnout;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityCombustion;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityDoledrum;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityDoubleEdge;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityEternalFlames;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityFerrisWheel;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityIfrit;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityInferno;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityMoulinRouge;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityOmegaTrinity;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityOutbreak;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityPrometheus;
-import uk.co.wehavecookies56.kk.client.render.RenderEntityProminence;
-import uk.co.wehavecookies56.kk.client.render.RenderEntitySizzlingEdge;
-import uk.co.wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
-import uk.co.wehavecookies56.kk.client.render.RenderFactorySharpshooterBullet;
-import uk.co.wehavecookies56.kk.client.render.RenderKHMob;
-import uk.co.wehavecookies56.kk.client.render.TESRPedestal;
+import uk.co.wehavecookies56.kk.client.render.*;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityAshes;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityBlazeofGlory;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityBurnout;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityCombustion;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityDoledrum;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityDoubleEdge;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityEternalFlames;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityFerrisWheels;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityIfrit;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityInferno;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityMoulinRouge;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityOmegaTrinity;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityOutbreak;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityPrometheus;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityProminence;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySizzlingEdge;
+import uk.co.wehavecookies56.kk.common.entity.mobs.*;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.*;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+
+import static uk.co.wehavecookies56.kk.common.block.ModBlocks.*;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.*;
 
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = Reference.MODID)
 public class ClientProxy extends CommonProxy {

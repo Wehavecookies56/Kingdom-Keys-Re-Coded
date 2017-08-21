@@ -1,12 +1,11 @@
 package uk.co.wehavecookies56.kk.api.materials;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.common.collect.ImmutableMap;
-
 import net.minecraft.entity.player.EntityPlayer;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MaterialRegistry {
 

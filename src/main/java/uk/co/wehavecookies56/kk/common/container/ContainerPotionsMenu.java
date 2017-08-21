@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.common.container;
 
-import javax.annotation.Nonnull;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -11,6 +9,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.container.slot.SlotCustom;
+
+import javax.annotation.Nonnull;
 
 public class ContainerPotionsMenu extends Container {
     private static final int INV_START = InventoryPotionsMenu.INV_SIZE, INV_END = INV_START + 26, HOTBAR_START = INV_END + 1, HOTBAR_END = HOTBAR_START + 8;

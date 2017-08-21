@@ -1,13 +1,7 @@
 package uk.co.wehavecookies56.kk.common.item.org;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;

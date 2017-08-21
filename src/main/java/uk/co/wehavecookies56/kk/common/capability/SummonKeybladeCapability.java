@@ -1,6 +1,5 @@
 package uk.co.wehavecookies56.kk.common.capability;
 
-import com.google.common.collect.Maps;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;

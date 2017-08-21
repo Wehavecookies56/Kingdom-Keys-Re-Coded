@@ -1,10 +1,5 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -13,11 +8,15 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.client.GuiScrollingList;
+import org.lwjgl.opengl.GL11;
 import uk.co.wehavecookies56.kk.api.munny.MunnyRegistry;
 import uk.co.wehavecookies56.kk.common.core.handler.event.ItemEvents;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiBuyList extends GuiScrollingList {
 

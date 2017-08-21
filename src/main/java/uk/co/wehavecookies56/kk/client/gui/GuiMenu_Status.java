@@ -1,9 +1,6 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import java.io.IOException;
-
 import net.minecraft.client.gui.GuiButton;
-import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
@@ -11,6 +8,8 @@ import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability.IMagicSta
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+
+import java.io.IOException;
 
 public class GuiMenu_Status extends GuiMenu_Bars {
 

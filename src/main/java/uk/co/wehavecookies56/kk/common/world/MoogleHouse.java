@@ -1,10 +1,11 @@
 package uk.co.wehavecookies56.kk.common.world;
 
-import net.minecraft.block.*;
+import net.minecraft.block.BlockDoor;
+import net.minecraft.block.BlockOldLog;
+import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.BlockWallSign;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;

@@ -1,8 +1,6 @@
 package uk.co.wehavecookies56.kk.common.world.dimension;
 
-import net.minecraft.init.Biomes;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -10,8 +8,6 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
-import uk.co.wehavecookies56.kk.common.lib.Reference;
-import uk.co.wehavecookies56.kk.common.world.WorldLoader;
 import uk.co.wehavecookies56.kk.common.world.biome.ModBiomes;
 
 import javax.annotation.Nullable;

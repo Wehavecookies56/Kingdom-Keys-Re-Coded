@@ -1,32 +1,23 @@
 package uk.co.wehavecookies56.kk.common.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
-import uk.co.wehavecookies56.kk.common.lib.Constants;
-import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.LevelUpMagic;
-import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDestinyIslands;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDiveToTheHeart;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterTraverseTown;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemHandHeldGummiShip extends ItemKKBase {
 

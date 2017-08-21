@@ -1,7 +1,5 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import java.io.IOException;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraftforge.common.config.Config;
@@ -14,6 +12,8 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.SetKH1Fire;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+
+import java.io.IOException;
 
 public class GuiMenu_Config extends GuiMenu_Bars {
 

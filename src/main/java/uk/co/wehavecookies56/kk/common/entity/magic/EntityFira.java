@@ -1,9 +1,5 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +9,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnFireParticles;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class EntityFira extends Entity {
 

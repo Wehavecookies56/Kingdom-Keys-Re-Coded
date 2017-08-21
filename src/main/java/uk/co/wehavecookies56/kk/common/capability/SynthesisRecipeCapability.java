@@ -1,8 +1,5 @@
 package uk.co.wehavecookies56.kk.common.capability;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -14,6 +11,9 @@ import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.Recipe;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SynthesisRecipeCapability {
 

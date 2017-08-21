@@ -1,9 +1,5 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -15,6 +11,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnAeroParticles;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class EntityAeroga extends Entity {
 

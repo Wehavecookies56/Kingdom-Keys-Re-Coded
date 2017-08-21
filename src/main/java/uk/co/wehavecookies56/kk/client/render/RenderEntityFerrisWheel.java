@@ -1,13 +1,12 @@
 package uk.co.wehavecookies56.kk.client.render;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+import org.lwjgl.opengl.GL11;
 import uk.co.wehavecookies56.kk.client.model.ModelFerrisWheel;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityFerrisWheels;
 import uk.co.wehavecookies56.kk.common.lib.Reference;

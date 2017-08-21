@@ -6,12 +6,12 @@
  */
 package com.jadarstudios.developercapes;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
 import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 /**
  * This class is an implementation of {@link IImageBuffer} that allows capes to

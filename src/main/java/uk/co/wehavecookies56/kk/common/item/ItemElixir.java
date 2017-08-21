@@ -1,9 +1,5 @@
 package uk.co.wehavecookies56.kk.common.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +11,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemElixir extends ItemKKPotion {
 

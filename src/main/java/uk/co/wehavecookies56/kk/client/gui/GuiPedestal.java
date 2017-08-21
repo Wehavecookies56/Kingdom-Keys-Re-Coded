@@ -1,8 +1,5 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import java.awt.Color;
-import java.io.IOException;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -17,6 +14,9 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.PedestalItem;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+
+import java.awt.Color;
+import java.io.IOException;
 
 public class GuiPedestal extends GuiContainer {
     @SideOnly (Side.CLIENT)
