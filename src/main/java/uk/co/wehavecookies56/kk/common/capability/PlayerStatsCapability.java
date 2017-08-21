@@ -180,7 +180,7 @@ public class PlayerStatsCapability {
         private int remainingExp = 0;
         private List<String> messages = new ArrayList<String>();
 
-        private String choice1="none",choice2="none";
+        private String choice1="",choice2="";
 
         private final ItemStackHandler inventoryPotions = new ItemStackHandler(InventoryPotionsMenu.INV_SIZE);
 

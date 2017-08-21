@@ -548,113 +548,115 @@ public class EntityEvents {
         }
         
         //Choices
-        IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-        if(player.dimension == ModDimensions.diveToTheHeartID) {
-            if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
-                if(!STATS.getChoice1().equals(Strings.Choice_Shield)){
-                	STATS.setChoice1(Strings.Choice_Shield);
-                    TextComponentTranslation shield = new TextComponentTranslation("Shield");
-                    shield.getStyle().setColor(TextFormatting.YELLOW);
-                    player.sendMessage(shield);
-                }
-            }
-
-            else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
-                if(!STATS.getChoice1().equals(Strings.Choice_Staff)){
-                	STATS.setChoice1(Strings.Choice_Staff);
-                    TextComponentTranslation staff = new TextComponentTranslation("Staff");
-                    staff.getStyle().setColor(TextFormatting.YELLOW);
-                    player.sendMessage(staff);
-                }
-            }
-
-            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) {
-                if(!STATS.getChoice1().equals(Strings.Choice_Sword)){
-                	STATS.setChoice1(Strings.Choice_Sword);
-                    TextComponentTranslation sword = new TextComponentTranslation("Sword");
-                    sword.getStyle().setColor(TextFormatting.YELLOW);
-                    player.sendMessage(sword);
-                }
-            }
-
-            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
-                if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID) {
-                	if(!STATS.getChoice1().equals("") && !STATS.getChoice1().equals("door")) {
-                		if (!player.world.isRemote) {
-                			switch (STATS.getChoice1()) {
-                			case Strings.Choice_Shield:
-                				STATS.addDefense(2);
-                				break;
-                			case Strings.Choice_Staff:
-                				STATS.addMagic(2);
-                				break;
-                			case Strings.Choice_Sword:
-                				STATS.addStrength(2);
-                				break;
-                			}
-                			PacketDispatcher.sendTo(new SyncLevelData(STATS),(EntityPlayerMP) player);
-                			new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport(( player), player.world);
-                		}
-                	} else {
-                		if(!STATS.getChoice1().equals("door")) {
-	                        TextComponentTranslation needChoice = new TextComponentTranslation("You must make a choice");
-	                        needChoice.getStyle().setColor(TextFormatting.RED);
-	                        player.sendMessage(needChoice);
-	                    	STATS.setChoice1("door");
-                		}
-                	}
-                	System.out.println(STATS.getChoice1());
-                }
-            }
-        }
-        //PacketDispatcher.sendTo(new SyncLevelData(event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)event.player);
-
-        
-        DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
-        if (!DS.getInDrive())
-            if (STATS.getMP() <= 0 || STATS.getRecharge()) {
-                STATS.setRecharge(true);
-                if (STATS.getMP() != STATS.getMaxMP()) {
-                    STATS.addMP(0.1);
-                    if (STATS.getMP() > STATS.getMaxMP())
-                        STATS.setMP(STATS.getMaxMP());
-
-                } else {
-                    STATS.setMP(STATS.getMaxMP());
-                    STATS.setRecharge(false);
-                    if(event.side.isServer()) {
-                        PacketDispatcher.sendTo(new SyncMagicData(event.player.getCapability(ModCapabilities.MAGIC_STATE, null), event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)event.player);
-                    }
-                }
-            }
-        if (!DS.getActiveDriveName().equals("none") && DriveFormRegistry.isDriveFormRegistered(DS.getActiveDriveName())) {
-            DriveFormRegistry.get(DS.getActiveDriveName()).update(event.player);
-        }
-        List<Entity> entities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(16.0D, 10.0D, 16.0D));
-        List<Entity> bossEntities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(150.0D, 100.0D, 150.0D));
-        if (!bossEntities.isEmpty()) {
-            for (int i = 0; i < bossEntities.size(); i++) {
-                if (bossEntities.get(i) instanceof EntityDragon || bossEntities.get(i) instanceof EntityWither) {
-                    isBoss = true;
-                    break;
-                } else {
-                    isBoss = false;
-                }
-            }
-        } else {
-            isBoss = false;
-        }
-        if (!entities.isEmpty()) {
-            for (int i = 0; i < entities.size(); i++) {
-                if (entities.get(i) instanceof EntityMob) {
-                    isHostiles = true;
-                    break;
-                } else {
-                    isHostiles = false;
-                }
-            }
-        } else {
-            isHostiles = false;
+        if(!event.player.world.isRemote) {
+	        IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+	        if(player.dimension == ModDimensions.diveToTheHeartID) {
+	            if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
+	                if(!STATS.getChoice1().equals(Strings.Choice_Shield)){
+	                	STATS.setChoice1(Strings.Choice_Shield);
+	                    TextComponentTranslation shield = new TextComponentTranslation("Shield");
+	                    shield.getStyle().setColor(TextFormatting.YELLOW);
+	                    player.sendMessage(shield);
+	                }
+	            }
+	
+	            else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
+	                if(!STATS.getChoice1().equals(Strings.Choice_Staff)){
+	                	STATS.setChoice1(Strings.Choice_Staff);
+	                    TextComponentTranslation staff = new TextComponentTranslation("Staff");
+	                    staff.getStyle().setColor(TextFormatting.YELLOW);
+	                    player.sendMessage(staff);
+	                }
+	            }
+	
+	            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) {
+	                if(!STATS.getChoice1().equals(Strings.Choice_Sword)){
+	                	STATS.setChoice1(Strings.Choice_Sword);
+	                    TextComponentTranslation sword = new TextComponentTranslation("Sword");
+	                    sword.getStyle().setColor(TextFormatting.YELLOW);
+	                    player.sendMessage(sword);
+	                }
+	            }
+	
+	            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
+	                if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID) {
+	                	if(!STATS.getChoice1().equals("") && !STATS.getChoice1().equals("door")) {
+	                		//if (!player.world.isRemote) {
+	                			switch (STATS.getChoice1()) {
+	                			case Strings.Choice_Shield:
+	                				STATS.addDefense(2);
+	                				break;
+	                			case Strings.Choice_Staff:
+	                				STATS.addMagic(2);
+	                				break;
+	                			case Strings.Choice_Sword:
+	                				STATS.addStrength(2);
+	                				break;
+	                			}
+	                			PacketDispatcher.sendTo(new SyncLevelData(STATS),(EntityPlayerMP) player);
+	                			new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport(( player), player.world);
+	                		//}
+	                	} else {
+	                		if(!STATS.getChoice1().equals("door")) {
+		                        TextComponentTranslation needChoice = new TextComponentTranslation("You must make a choice");
+		                        needChoice.getStyle().setColor(TextFormatting.RED);
+		                        player.sendMessage(needChoice);
+		                    	STATS.setChoice1("door");
+	                		}
+	                	}
+	                	System.out.println(STATS.getChoice1());
+	                }
+	            }
+	        }
+	        //PacketDispatcher.sendTo(new SyncLevelData(event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)event.player);
+	
+	        
+	        DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
+	        if (!DS.getInDrive())
+	            if (STATS.getMP() <= 0 || STATS.getRecharge()) {
+	                STATS.setRecharge(true);
+	                if (STATS.getMP() != STATS.getMaxMP()) {
+	                    STATS.addMP(0.1);
+	                    if (STATS.getMP() > STATS.getMaxMP())
+	                        STATS.setMP(STATS.getMaxMP());
+	
+	                } else {
+	                    STATS.setMP(STATS.getMaxMP());
+	                    STATS.setRecharge(false);
+	                    if(event.side.isServer()) {
+	                        PacketDispatcher.sendTo(new SyncMagicData(event.player.getCapability(ModCapabilities.MAGIC_STATE, null), event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)event.player);
+	                    }
+	                }
+	            }
+	        if (!DS.getActiveDriveName().equals("none") && DriveFormRegistry.isDriveFormRegistered(DS.getActiveDriveName())) {
+	            DriveFormRegistry.get(DS.getActiveDriveName()).update(event.player);
+	        }
+	        List<Entity> entities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(16.0D, 10.0D, 16.0D));
+	        List<Entity> bossEntities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(150.0D, 100.0D, 150.0D));
+	        if (!bossEntities.isEmpty()) {
+	            for (int i = 0; i < bossEntities.size(); i++) {
+	                if (bossEntities.get(i) instanceof EntityDragon || bossEntities.get(i) instanceof EntityWither) {
+	                    isBoss = true;
+	                    break;
+	                } else {
+	                    isBoss = false;
+	                }
+	            }
+	        } else {
+	            isBoss = false;
+	        }
+	        if (!entities.isEmpty()) {
+	            for (int i = 0; i < entities.size(); i++) {
+	                if (entities.get(i) instanceof EntityMob) {
+	                    isHostiles = true;
+	                    break;
+	                } else {
+	                    isHostiles = false;
+	                }
+	            }
+	        } else {
+	            isHostiles = false;
+	        }
         }
 
     }
