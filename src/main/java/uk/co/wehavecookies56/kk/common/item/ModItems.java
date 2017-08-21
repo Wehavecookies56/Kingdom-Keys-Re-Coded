@@ -2587,7 +2587,6 @@ public class ModItems {
             event.getRegistry().register(new ItemKeychain(Strings.Chain_DiamondDust));
             event.getRegistry().register(new ItemKeychain(Strings.Chain_Divewing));
             event.getRegistry().register(new ItemKeychain(Strings.Chain_DivineRose));
-            event.getRegistry().register(new ItemKeychain(Strings.Chain_DreamSword));
             event.getRegistry().register(new ItemKeychain(Strings.Chain_DualDisc));
             event.getRegistry().register(new ItemKeychain(Strings.Chain_Earthshaker));
             event.getRegistry().register(new ItemKeychain(Strings.Chain_EndofPain));
