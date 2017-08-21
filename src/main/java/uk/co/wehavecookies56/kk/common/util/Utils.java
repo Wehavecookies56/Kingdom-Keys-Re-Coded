@@ -94,8 +94,19 @@ public class Utils {
             }
             if (!summonCap.getIsKeybladeSummoned(hand) && ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && summonCap.getInventoryKeychain().getStackInSlot(0).getItem() instanceof ItemKeychain) {
                 summonCap.setActiveSlot(player.inventory.currentItem);
+                
+                ItemStack keychain = summonCap.getInventoryKeychain().getStackInSlot(keychainSlot);
+                ItemStack keyblade = new ItemStack(((ItemKeychain)(keychain.getItem())).getKeyblade());
+
+                if (hand == EnumHand.MAIN_HAND) {
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, keyblade);
+                } else {
+                    player.inventory.offHandInventory.set(0, keyblade);
+                }
+                
                 if (player.world.isRemote)
                     PacketDispatcher.sendToServer(new SummonKeyblade(hand, keychainSlot));
+                
                 return true;
             } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof ItemRealKeyblade && summonCap.getIsKeybladeSummoned(hand)) {
                 if (player.world.isRemote)
