@@ -1,20 +1,29 @@
 package uk.co.wehavecookies56.kk.common.capability;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
+import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
-
-import java.util.ArrayList;
-import java.util.List;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 
 public class DriveStateCapability {
 
     public interface IDriveState {
+        List<String> getMessages();
+
     	/**
     	 * Returns if the player is in a drive form
     	 * @return True if player is in a drive form 
@@ -46,6 +55,9 @@ public class DriveStateCapability {
         void learnDriveForm(DriveForm form);
 
         ItemStackHandler getInventoryDriveForms();
+        
+        void displayLevelUpMessage(EntityPlayer player, String driveForm);
+        void clearMessages();
     }
 
     public static class Storage implements IStorage<IDriveState> {
@@ -98,6 +110,9 @@ public class DriveStateCapability {
     }
 
     public static class Default implements IDriveState {
+    	
+        private List<String> messages = new ArrayList<String>();
+
         private boolean inDrive = false;
         private String activeDrive = "none";
         int antiPoints = 0;
@@ -123,6 +138,16 @@ public class DriveStateCapability {
                     return Final;
             }
             return 0;
+        }
+        
+        @Override
+        public List<String> getMessages() {
+            return this.messages;
+        }
+
+        @Override
+        public void clearMessages() {
+            this.getMessages().clear();
         }
 
         @Override
@@ -201,6 +226,123 @@ public class DriveStateCapability {
         public void setDriveGaugeLevel(int level) {
             this.driveGaugeLevel = level;
         }
+        @Override
+        public void displayLevelUpMessage (EntityPlayer player, String driveForm) {
+            this.getMessages().clear();
+            switch (driveForm) {
+            
+            case Strings.Form_Valor:
+                messages.add(Strings.Stats_LevelUp_FormGauge);
+            	switch (this.getDriveLevel(driveForm)) {
+            	case 2:
+                    break;
+                case 3:
+                    messages.add(Strings.Stats_LevelUp_HighJump+" 2");
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    messages.add(Strings.Stats_LevelUp_HighJump+" 3");
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    messages.add(Strings.Stats_LevelUp_HighJump+" MAX");
+                    break;
+            	}
+            	break;
+            	
+            case Strings.Form_Wisdom:
+            	messages.add(Strings.Stats_LevelUp_FormGauge);
+            	switch (this.getDriveLevel(driveForm)) {
+            	case 2:
+                    break;
+                case 3:
+                    messages.add(Strings.Stats_LevelUp_QuickRun+" 2");
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    messages.add(Strings.Stats_LevelUp_QuickRun+" 3");
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    messages.add(Strings.Stats_LevelUp_QuickRun+" MAX");
+                    break;
+            	}
+            	break;
+            	
+            case Strings.Form_Limit:
+            	messages.add(Strings.Stats_LevelUp_FormGauge);
+            	switch (this.getDriveLevel(driveForm)) {
+            	case 2:
+                    break;
+                case 3:
+                    messages.add(Strings.Stats_LevelUp_DodgeRoll+" 2");
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    messages.add(Strings.Stats_LevelUp_DodgeRoll+" 3");
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    messages.add(Strings.Stats_LevelUp_DodgeRoll+" MAX");
+                    break;
+            	}
+            	break;
+            	
+            case Strings.Form_Master:
+            	messages.add(Strings.Stats_LevelUp_FormGauge);
+            	switch (this.getDriveLevel(driveForm)) {
+            	case 2:
+                    break;
+                case 3:
+                    messages.add(Strings.Stats_LevelUp_AerialDodge+" 2");
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    messages.add(Strings.Stats_LevelUp_AerialDodge+" 3");
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    messages.add(Strings.Stats_LevelUp_AerialDodge+" MAX");
+                    break;
+            	}
+            	break;
+            	
+            case Strings.Form_Final:
+            	messages.add(Strings.Stats_LevelUp_FormGauge);
+            	switch (this.getDriveLevel(driveForm)) {
+            	case 2:
+                    break;
+                case 3:
+                    messages.add(Strings.Stats_LevelUp_Glide+" 2");
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    messages.add(Strings.Stats_LevelUp_Glide+" 3");
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    messages.add(Strings.Stats_LevelUp_Glide+" MAX");
+                    break;
+            	}
+            	break;
+            	
+            }
+            
+            player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 0.5f, 1.0f);
+            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+            PacketDispatcher.sendTo(new ShowOverlayPacket("drivelevelup"),(EntityPlayerMP)player);
+        }
+ 
     }
 }
 

@@ -12,6 +12,7 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
@@ -290,14 +291,12 @@ public class PlayerStatsCapability {
                     while (this.getExpNeeded(this.getLevel(), this.experience) <= 0 && this.getLevel() != 100) {
                         this.setLevel(this.getLevel() + 1);
                         this.levelUpStatsAndDisplayMessage(player);
-                        PacketDispatcher.sendTo(new ShowOverlayPacket("levelup", level),(EntityPlayerMP)player);
+                        PacketDispatcher.sendTo(new ShowOverlayPacket("levelup"),(EntityPlayerMP)player);
                     }
                 }else {
                     this.experience = this.maxExperience;
                 }
                 PacketDispatcher.sendTo(new ShowOverlayPacket("exp"),(EntityPlayerMP)player);
-                
-                
             }
         }
         @Override
@@ -307,7 +306,7 @@ public class PlayerStatsCapability {
         @Override
         public void addStrength(int strength) {
             this.strength += strength;
-            messages.add("str");
+            messages.add(Strings.Stats_LevelUp_Str);
         }
         @Override
         public void setDefense(int defense) {
@@ -316,7 +315,7 @@ public class PlayerStatsCapability {
         @Override
         public void addDefense(int defense) {
             this.defense += defense;
-            messages.add("def");
+            messages.add(Strings.Stats_LevelUp_Def);
         }
         @Override
         public void setMagic(int magic) {
@@ -325,7 +324,7 @@ public class PlayerStatsCapability {
         @Override
         public void addMagic(int magic) {
             this.magic += magic;
-            messages.add("mag");
+            messages.add(Strings.Stats_LevelUp_Magic);
         }
         @Override
         public int setHP(int hp) {
@@ -335,7 +334,7 @@ public class PlayerStatsCapability {
         @Override
         public int addHP(int hp) {
             this.hp += hp;
-            messages.add("hp");
+            messages.add(Strings.Stats_LevelUp_HP);
             return this.hp;
         }
         @Override

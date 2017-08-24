@@ -191,7 +191,13 @@ public class Strings {
     Stats_LevelUp_Str = "stats.levelUpStr",
     Stats_LevelUp_Def = "stats.levelUpDef",
     Stats_LevelUp_Magic = "stats.levelUpMag",
-    Stats_LevelUp_HP = "stats.levelUpHP"
+    Stats_LevelUp_HP = "stats.levelUpHP",
+    Stats_LevelUp_FormGauge = "stats.levelUpFG",
+	Stats_LevelUp_HighJump = "stats.levelUpHighJump",
+	Stats_LevelUp_QuickRun = "stats.levelUpQuickRun",
+	Stats_LevelUp_DodgeRoll = "stats.levelUpDodgeRoll",
+	Stats_LevelUp_AerialDodge = "stats.levelUpAerialDodge",
+	Stats_LevelUp_Glide = "stats.levelUpGlide"
     ;
 
     // Blocks

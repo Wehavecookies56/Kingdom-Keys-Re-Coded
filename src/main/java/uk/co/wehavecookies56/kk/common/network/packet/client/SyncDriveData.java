@@ -10,6 +10,8 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDriveData> {
 
@@ -23,6 +25,8 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
     int finalLevel, finalExp;
     int driveGaugeLevel;
     double dp, fp;
+    List<String> messages;
+
 
     public SyncDriveData() {}
 
@@ -45,6 +49,8 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 
         this.dp = stats.getDP();
         this.fp = stats.getFP();
+        
+        this.messages = state.getMessages();
     }
 
     @Override
@@ -67,6 +73,11 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 
         this.dp = buffer.readDouble();
         this.fp = buffer.readDouble();
+        
+        this.messages = new ArrayList<String>();
+        while(buffer.isReadable()) {
+            this.messages.add(buffer.readString(100));
+        }
     }
 
     @Override
@@ -89,6 +100,10 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 
         buffer.writeDouble(this.dp);
         buffer.writeDouble(this.fp);
+        
+        for (int i = 0; i < this.messages.size(); i++) {
+            buffer.writeString(this.messages.get(i));
+        }
     }
 
     @Override
@@ -113,6 +128,11 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 
         stats.setDP(dp);
         stats.setFP(fp);
+        
+        stats.getMessages().clear();
+        for (int i = 0; i < this.messages.size(); i++) {
+            stats.getMessages().add(this.messages.get(i));
+        }
     }
 
 }

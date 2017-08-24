@@ -82,7 +82,14 @@ public class Utils {
         TextComponentTranslation translation = new TextComponentTranslation(name);
         return translation.getFormattedText();
     }
-
+    
+    /**
+     * Summon a weapon in a player's hand
+     * @param player
+     * @param hand
+     * @param keychainSlot
+     * @return
+     */
     public static boolean summonWeapon(EntityPlayer player, EnumHand hand, int keychainSlot) {
         SummonKeybladeCapability.ISummonKeyblade summonCap = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
         OrganizationXIIICapability.IOrganizationXIII organizationXIIICap = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);

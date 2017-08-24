@@ -52,6 +52,10 @@ public class ShowOverlayPacket extends AbstractMessage.AbstractClientMessage<Sho
             GuiOverlay.showLevelUp = true;
             GuiOverlay.timeLevelUp = (int) Minecraft.getSystemTime() / 1000;
         }
+        if (this.type.equals("drivelevelup")) {
+            GuiOverlay.showDriveLevelUp = true;
+            GuiOverlay.timeDriveLevelUp = (int) Minecraft.getSystemTime() / 1000;
+        }
     }
 
 }

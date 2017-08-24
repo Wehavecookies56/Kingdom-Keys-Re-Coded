@@ -41,6 +41,8 @@ public class DriveFormFinal extends DriveForm {
 		            if(costs.length == 7 && actualLevel < 7) {
 		            	if (actualExp >= costs[actualLevel]){
 		            		System.out.println("LEVEL UP");
+		                    DRIVE.displayLevelUpMessage(player, DRIVE.getActiveDriveName());
+
 		            		DRIVE.setDriveLevel(DRIVE.getActiveDriveName(),actualLevel+1); 
 		            	}
 		            }
