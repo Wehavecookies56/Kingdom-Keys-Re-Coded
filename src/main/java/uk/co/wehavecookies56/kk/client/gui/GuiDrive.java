@@ -93,7 +93,7 @@ public class GuiDrive extends GuiScreen {
             }
             float posX = 52 * scale;
             float posY = 20 * scale;
-
+//System.out.println(STATS.getMaxDP());
             GL11.glPushMatrix();
             GL11.glTranslatef((screenWidth - guiWidth * scale) - posX, (screenHeight - guiHeight * scale) - posY, 0);
             GL11.glScalef(scale, scale, scale);
@@ -141,6 +141,7 @@ public class GuiDrive extends GuiScreen {
                         GL11.glColor3ub((byte) 35, (byte) 50, (byte) 255);
                         break;
                 }*/
+                
                 if(counter > 0 && counter < 50)
                     GL11.glColor3ub((byte) 255, (byte) 50, (byte) 40);
                 else if(counter >= 50 && counter < 100)

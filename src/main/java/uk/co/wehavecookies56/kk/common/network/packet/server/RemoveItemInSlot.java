@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server;
 
+import java.io.IOException;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -14,9 +16,8 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
-
-import java.io.IOException;
 
 public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<RemoveItemInSlot> {
     String inv;
@@ -75,7 +76,6 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
                 TextComponentTranslation magMessage = new TextComponentTranslation(Strings.Chat_MagicBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic()));
                 magMessage.getStyle().setColor(TextFormatting.GREEN);
                 player.sendMessage(magMessage);
-
                 break;
             case Strings.PowerBoost:
                 if(!player.capabilities.isCreativeMode)
@@ -84,13 +84,22 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
                 TextComponentTranslation powMessage = new TextComponentTranslation(Strings.Chat_PowerBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
                 powMessage.getStyle().setColor(TextFormatting.GREEN);
                 player.sendMessage(powMessage);
-
                 break;
             case Strings.Potion:
                 potions = player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
                 potions.setStackInSlot(slot, ItemStack.EMPTY);
                 if (sound) player.world.playSound(null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 0.5f, 1);
                 break;
+            case Strings.DriveBoost:
+            	if(!player.capabilities.isCreativeMode)
+                    player.inventory.removeStackFromSlot(player.inventory.currentItem);
+                player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()+1);
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).setMaxDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()*100);
+                TextComponentTranslation driMessage = new TextComponentTranslation(Strings.Chat_DriveBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
+                driMessage.getStyle().setColor(TextFormatting.GREEN);
+                player.sendMessage(driMessage);
+                PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null),player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)player);
+            	break;
         }
         PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)player);
     }

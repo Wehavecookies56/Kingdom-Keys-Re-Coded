@@ -1659,6 +1659,9 @@ public class ModItems {
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.PowerBoost)
     public static Item PowerBoost;
 
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DriveBoost)
+    public static Item DriveBoost;
+
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DriveRecovery)
     public static Item DriveRecovery;
 
@@ -2736,6 +2739,7 @@ public class ModItems {
             event.getRegistry().register(new ItemDefenseBoost(Strings.DefenseBoost));
             event.getRegistry().register(new ItemMagicBoost(Strings.MagicBoost));
             event.getRegistry().register(new ItemPowerBoost(Strings.PowerBoost));
+            event.getRegistry().register(new ItemDriveBoost(Strings.DriveBoost));
             event.getRegistry().register(new ItemPanacea(0, true, "panacea"));
 
             event.getRegistry().register(new ItemHpOrb(Strings.HpOrb));

@@ -94,11 +94,8 @@ public class DriveFormWisdom extends DriveForm {
     	int actualLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Wisdom);
 
         float yaw = player.rotationYaw;
-       // float pitch = player.rotationPitch;
         float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
 		float motionZ = MathHelper.cos(yaw / 180.0f * (float) Math.PI);
-		//float motionY = -MathHelper.sin(pitch / 180.0f * (float) Math.PI);
-		//float power = 1 * MathHelper.sqrt(motionX * motionX + motionZ * motionZ);
 		
 		double power = Constants.WISDOM_QR[actualLevel];
 	    

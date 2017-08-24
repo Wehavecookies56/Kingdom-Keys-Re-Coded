@@ -58,6 +58,7 @@ public class PlayerStatsCapability {
         void addMagic(int magic);
         int setHP(int hp);
         int addHP(int hp);
+        boolean setMaxDP(double dp);
         boolean setDP(double dp);
         void addDP(double dp);
         void remDP(double dp);
@@ -94,6 +95,7 @@ public class PlayerStatsCapability {
             properties.setInteger("Magic", instance.getMagic());
             properties.setInteger("HP", instance.getHP());
             properties.setDouble("DP", instance.getDP());
+            properties.setDouble("MaxDP", instance.getMaxDP());
             properties.setDouble("MP", instance.getMP());
             properties.setDouble("Max MP", instance.getMaxMP());
             properties.setBoolean("Recharge", instance.getRecharge());
@@ -118,6 +120,7 @@ public class PlayerStatsCapability {
             instance.setMagic(properties.getInteger("Magic"));
             instance.setHP(properties.getInteger("HP"));
             instance.setDP(properties.getDouble("DP"));
+            instance.setMaxDP(properties.getDouble("MaxDP"));
             instance.setMP(properties.getDouble("MP"));
             instance.setMaxMP(properties.getDouble("Max MP"));
             instance.setRecharge(properties.getBoolean("Recharge"));
@@ -336,6 +339,14 @@ public class PlayerStatsCapability {
             this.hp += hp;
             messages.add(Strings.Stats_LevelUp_HP);
             return this.hp;
+        }
+        @Override
+        public boolean setMaxDP(double dp) {
+        	if (dp <= 1000) {
+        		this.maxDP = dp;
+        		return true;
+        	}
+        	return false;
         }
         @Override
         public boolean setDP(double dp) {

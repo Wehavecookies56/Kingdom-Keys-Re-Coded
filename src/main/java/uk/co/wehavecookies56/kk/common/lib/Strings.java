@@ -183,7 +183,8 @@ public class Strings {
     Chat_Manifest = "chat.manifest.learn",
     Chat_PowerBoost = "chat.powerboost",
     Chat_DefenseBoost = "chat.defenseboost",
-    Chat_MagicBoost = "chat.magicboost"
+    Chat_MagicBoost = "chat.magicboost",
+    Chat_DriveBoost = "chat.driveboost";
     ;
 
     //Stats
@@ -275,6 +276,7 @@ public class Strings {
     DefenseBoost = "defenseboost",
     MagicBoost = "magicboost",
     PowerBoost = "powerboost",
+    DriveBoost = "driveboost",
     Panacea = "panacea",
     HpOrb = "hporb",
     DriveOrb = "driveorb",

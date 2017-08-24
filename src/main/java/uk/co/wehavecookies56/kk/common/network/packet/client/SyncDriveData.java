@@ -24,7 +24,7 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
     int masterLevel, masterExp;
     int finalLevel, finalExp;
     int driveGaugeLevel;
-    double dp, fp;
+    double dp, fp, maxDP;
     List<String> messages;
 
 
@@ -49,6 +49,7 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 
         this.dp = stats.getDP();
         this.fp = stats.getFP();
+        this.maxDP = stats.getMaxDP();
         
         this.messages = state.getMessages();
     }
@@ -73,6 +74,7 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 
         this.dp = buffer.readDouble();
         this.fp = buffer.readDouble();
+        this.maxDP = buffer.readDouble();
         
         this.messages = new ArrayList<String>();
         while(buffer.isReadable()) {
@@ -100,6 +102,7 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 
         buffer.writeDouble(this.dp);
         buffer.writeDouble(this.fp);
+        buffer.writeDouble(this.maxDP);
         
         for (int i = 0; i < this.messages.size(); i++) {
             buffer.writeString(this.messages.get(i));
@@ -128,6 +131,7 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 
         stats.setDP(dp);
         stats.setFP(fp);
+        stats.setMaxDP(maxDP);
         
         stats.getMessages().clear();
         for (int i = 0; i < this.messages.size(); i++) {
