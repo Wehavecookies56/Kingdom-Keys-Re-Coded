@@ -107,7 +107,7 @@ public class ModSounds {
     public static class register {
 
         @SubscribeEvent
-        public void registerSounds(RegistryEvent.Register<SoundEvent> event) {
+        public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
             event.getRegistry().registerAll(
                     kupo,
                     kupoliving,

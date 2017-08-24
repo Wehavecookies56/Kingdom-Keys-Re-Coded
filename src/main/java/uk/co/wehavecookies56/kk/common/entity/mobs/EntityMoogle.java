@@ -96,8 +96,7 @@ public class EntityMoogle extends EntityCreature implements IKHMob {
     }
     
     @Override
-    public SoundEvent getAmbientSound()
-    {
+    public SoundEvent getAmbientSound() {
         return ModSounds.kupoliving;
     }
 
