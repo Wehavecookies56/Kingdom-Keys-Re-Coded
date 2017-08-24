@@ -104,7 +104,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
         int[] limitCosts = DriveFormRegistry.get(Strings.Form_Limit).getExpCosts();
         int[] masterCosts = DriveFormRegistry.get(Strings.Form_Master).getExpCosts();
         int[] finalCosts = DriveFormRegistry.get(Strings.Form_Final).getExpCosts();
-
+        int remainingExp;
         switch (selected) {
             case STATS_PLAYER:
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
@@ -160,6 +160,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 
                 break;
             case STATS_VALOR:
+            	remainingExp = DRIVE.getDriveLevel(Strings.Form_Valor) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Valor)]-DRIVE.getDriveExp(Strings.Form_Valor);
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
@@ -168,10 +169,11 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 
                 drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
-                drawString(fontRenderer, "" + (valorCosts[DRIVE.getDriveLevel(Strings.Form_Valor)]-DRIVE.getDriveExp(Strings.Form_Valor)), 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+                drawString(fontRenderer, "" + remainingExp, 230, ((-140 / 16) + 75) + 34, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getFormGaugeLevel(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
                 break;
             case STATS_WISDOM:
+            	remainingExp = DRIVE.getDriveLevel(Strings.Form_Wisdom) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Wisdom)]-DRIVE.getDriveExp(Strings.Form_Wisdom);
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
@@ -180,10 +182,11 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 
                 drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
-                drawString(fontRenderer, "" + (wisdomCosts[DRIVE.getDriveLevel(Strings.Form_Wisdom)]-DRIVE.getDriveExp(Strings.Form_Wisdom)), 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+                drawString(fontRenderer, "" + remainingExp, 230, ((-140 / 16) + 75) + 34, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getFormGaugeLevel(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
                 break;
             case STATS_LIMIT:
+            	remainingExp = DRIVE.getDriveLevel(Strings.Form_Limit) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Limit)]-DRIVE.getDriveExp(Strings.Form_Limit);
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
@@ -192,10 +195,11 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 
                 drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
-                drawString(fontRenderer, "" + (limitCosts[DRIVE.getDriveLevel(Strings.Form_Limit)]-DRIVE.getDriveExp(Strings.Form_Limit)), 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+                drawString(fontRenderer, "" + remainingExp, 230, ((-140 / 16) + 75) + 34, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getFormGaugeLevel(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
                 break;
             case STATS_MASTER:
+            	remainingExp = DRIVE.getDriveLevel(Strings.Form_Master) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Master)]-DRIVE.getDriveExp(Strings.Form_Master);
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
@@ -204,10 +208,11 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 
                 drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Master), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Master), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
-                drawString(fontRenderer, "" + (masterCosts[DRIVE.getDriveLevel(Strings.Form_Master)]-DRIVE.getDriveExp(Strings.Form_Master)), 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+                drawString(fontRenderer, "" + remainingExp, 230, ((-140 / 16) + 75) + 34, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getFormGaugeLevel(Strings.Form_Master), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
                 break;
             case STATS_FINAL:
+            	remainingExp = DRIVE.getDriveLevel(Strings.Form_Final) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Final)]-DRIVE.getDriveExp(Strings.Form_Final);
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
@@ -216,7 +221,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 
                 drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Final), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Final), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
-                drawString(fontRenderer, "" + (finalCosts[DRIVE.getDriveLevel(Strings.Form_Final)]-DRIVE.getDriveExp(Strings.Form_Final)), 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+                drawString(fontRenderer, "" + remainingExp, 230, ((-140 / 16) + 75) + 34, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getFormGaugeLevel(Strings.Form_Final), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
                 break;
         }

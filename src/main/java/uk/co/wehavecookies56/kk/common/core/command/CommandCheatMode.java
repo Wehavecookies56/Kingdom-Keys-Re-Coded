@@ -66,27 +66,29 @@ public class CommandCheatMode implements ICommand {
 
     @Override
     public void execute (MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-        if (sender.getCommandSenderEntity() instanceof EntityPlayer) if (args.length == 0) {
-            if (sender.getCommandSenderEntity().getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
-                sender.getCommandSenderEntity().getCapability(ModCapabilities.CHEAT_MODE, null).setCheatMode(false);
-                TextHelper.sendFormattedChatMessage("You are no longer in Cheat Mode", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-            } else {
-                sender.getCommandSenderEntity().getCapability(ModCapabilities.CHEAT_MODE, null).setCheatMode(true);
-                TextHelper.sendFormattedChatMessage("You are now in Cheat Mode", TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
-            }
-        } else if (args.length == 1) {
-            EntityPlayerMP entityplayermp = args.length == 1 ? server.getPlayerList().getPlayerByUUID(UUID.fromString(args[0])) : getCommandSenderAsPlayer(sender);
-            if (entityplayermp.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
-                entityplayermp.getCapability(ModCapabilities.CHEAT_MODE, null).setCheatMode(false);
-                TextHelper.sendFormattedChatMessage(args[1] + " is no longer in Cheat Mode", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-            } else {
-                entityplayermp.getCapability(ModCapabilities.CHEAT_MODE, null).setCheatMode(true);
-                TextHelper.sendFormattedChatMessage(args[1] + " is now in Cheat Mode", TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
-            }
-        } else{
-            TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
-        }
+        if (sender.getCommandSenderEntity() instanceof EntityPlayer) {
+        	if (args.length == 0) {
+	            if (sender.getCommandSenderEntity().getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
+	                sender.getCommandSenderEntity().getCapability(ModCapabilities.CHEAT_MODE, null).setCheatMode(false);
+	                TextHelper.sendFormattedChatMessage("You are no longer in Cheat Mode", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+	            } else {
+	                sender.getCommandSenderEntity().getCapability(ModCapabilities.CHEAT_MODE, null).setCheatMode(true);
+	                TextHelper.sendFormattedChatMessage("You are now in Cheat Mode", TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+	            }
+	        } else if (args.length == 1) {
+	            EntityPlayerMP entityplayermp = args.length == 1 ? server.getPlayerList().getPlayerByUUID(UUID.fromString(args[0])) : getCommandSenderAsPlayer(sender);
+	            if (entityplayermp.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
+	                entityplayermp.getCapability(ModCapabilities.CHEAT_MODE, null).setCheatMode(false);
+	                TextHelper.sendFormattedChatMessage(args[1] + " is no longer in Cheat Mode", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+	            } else {
+	                entityplayermp.getCapability(ModCapabilities.CHEAT_MODE, null).setCheatMode(true);
+	                TextHelper.sendFormattedChatMessage(args[1] + " is now in Cheat Mode", TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+	            }
+	        } else{
+	            TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+	        }
         PacketDispatcher.sendTo(new SyncCheatModeData(sender.getCommandSenderEntity().getCapability(ModCapabilities.CHEAT_MODE, null), sender.getCommandSenderEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) sender.getCommandSenderEntity());
+        }
     }
 
     @Override
