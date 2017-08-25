@@ -1093,6 +1093,12 @@ stats.levelUpStr=Strength Increased!
 stats.levelUpDef=Defense Increased!
 stats.levelUpMag=Magic Increased!
 stats.levelUpHP=Maximum HP Increased!
+stats.levelUpFG=Form Gauge Powered Up!
+stats.levelUpHighJump=High Jump LV %1$s!
+stats.levelUpQuickRun=Quick Run LV %1$s!
+stats.levelUpDodgeRoll=Dodge Roll LV %1$s!
+stats.levelUpAerialDodge=Aerial Dodge LV %1$s!
+stats.levelUpGlide=Glide LV %1$s!
 
 ############################
 #Chat messages

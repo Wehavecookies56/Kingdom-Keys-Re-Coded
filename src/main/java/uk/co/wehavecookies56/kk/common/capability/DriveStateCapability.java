@@ -19,6 +19,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class DriveStateCapability {
 
@@ -262,106 +263,107 @@ public class DriveStateCapability {
             switch (driveForm) {
             
             case Strings.Form_Valor:
-                messages.add(Strings.Stats_LevelUp_FormGauge);
-            	switch (this.getDriveLevel(driveForm)) {
+                messages.add(Utils.translateToLocal(Strings.Stats_LevelUp_FormGauge));
+                //System.out.println(this.getDriveLevel(driveForm));
+            	switch (this.getDriveLevel(driveForm)+1) {
             	case 2:
                     break;
                 case 3:
-                    messages.add(Strings.Stats_LevelUp_HighJump+" 2");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_HighJump, "2"));
                     break;
                 case 4:
                     break;
                 case 5:
-                    messages.add(Strings.Stats_LevelUp_HighJump+" 3");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_HighJump, "3"));
                     break;
                 case 6:
                     break;
                 case 7:
-                    messages.add(Strings.Stats_LevelUp_HighJump+" MAX");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_HighJump, "MAX"));
                     break;
             	}
             	break;
             	
             case Strings.Form_Wisdom:
             	messages.add(Strings.Stats_LevelUp_FormGauge);
-            	switch (this.getDriveLevel(driveForm)) {
+            	switch (this.getDriveLevel(driveForm)+1) {
             	case 2:
                     break;
                 case 3:
-                    messages.add(Strings.Stats_LevelUp_QuickRun+" 2");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_QuickRun, "2"));
                     break;
                 case 4:
                     break;
                 case 5:
-                    messages.add(Strings.Stats_LevelUp_QuickRun+" 3");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_QuickRun, "3"));
                     break;
                 case 6:
                     break;
                 case 7:
-                    messages.add(Strings.Stats_LevelUp_QuickRun+" MAX");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_QuickRun, "MAX"));
                     break;
             	}
             	break;
             	
             case Strings.Form_Limit:
             	messages.add(Strings.Stats_LevelUp_FormGauge);
-            	switch (this.getDriveLevel(driveForm)) {
+            	switch (this.getDriveLevel(driveForm)+1) {
             	case 2:
                     break;
                 case 3:
-                    messages.add(Strings.Stats_LevelUp_DodgeRoll+" 2");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_DodgeRoll, "2"));
                     break;
                 case 4:
                     break;
                 case 5:
-                    messages.add(Strings.Stats_LevelUp_DodgeRoll+" 3");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_DodgeRoll, "3"));
                     break;
                 case 6:
                     break;
                 case 7:
-                    messages.add(Strings.Stats_LevelUp_DodgeRoll+" MAX");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_DodgeRoll, "MAX"));
                     break;
             	}
             	break;
             	
             case Strings.Form_Master:
             	messages.add(Strings.Stats_LevelUp_FormGauge);
-            	switch (this.getDriveLevel(driveForm)) {
+            	switch (this.getDriveLevel(driveForm)+1) {
             	case 2:
                     break;
                 case 3:
-                    messages.add(Strings.Stats_LevelUp_AerialDodge+" 2");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_AerialDodge, "2"));
                     break;
                 case 4:
                     break;
                 case 5:
-                    messages.add(Strings.Stats_LevelUp_AerialDodge+" 3");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_AerialDodge, "3"));
                     break;
                 case 6:
                     break;
                 case 7:
-                    messages.add(Strings.Stats_LevelUp_AerialDodge+" MAX");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_AerialDodge, "MAX"));
                     break;
             	}
             	break;
             	
             case Strings.Form_Final:
             	messages.add(Strings.Stats_LevelUp_FormGauge);
-            	switch (this.getDriveLevel(driveForm)) {
+            	switch (this.getDriveLevel(driveForm)+1) {
             	case 2:
                     break;
                 case 3:
-                    messages.add(Strings.Stats_LevelUp_Glide+" 2");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_Glide, "2"));
                     break;
                 case 4:
                     break;
                 case 5:
-                    messages.add(Strings.Stats_LevelUp_Glide+" 3");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_Glide, "3"));
                     break;
                 case 6:
                     break;
                 case 7:
-                    messages.add(Strings.Stats_LevelUp_Glide+" MAX");
+                    messages.add(Utils.translateToLocalFormatted(Strings.Stats_LevelUp_Glide, "MAX"));
                     break;
             	}
             	break;
@@ -424,7 +426,7 @@ public class DriveStateCapability {
         }
         @Override
         public void remDP(double dp) {
-            if (dp + this.dp < 0)
+            if (this.dp - dp < 0)
                 this.dp = 0;
             else
                 this.dp -= dp;

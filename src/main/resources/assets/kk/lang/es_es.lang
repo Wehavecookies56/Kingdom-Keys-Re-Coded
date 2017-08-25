@@ -1093,6 +1093,12 @@ stats.levelUpStr=¡Fuerza aumentada!
 stats.levelUpDef=¡Defensa aumentada!
 stats.levelUpMag=¡Magia aumentada!
 stats.levelUpHP=¡VT máxima aumentada!
+stats.levelUpFG=¡Aumenta el indicador de Forma!
+stats.levelUpHighJump=¡Salto de Altura LV %1$s!
+stats.levelUpQuickRun=¡Carrera Rápida LV %1$s!
+stats.levelUpDodgeRoll=¡Voltereta LV %1$s!
+stats.levelUpAerialDodge=¡Regate Aéreo LV %1$s!
+stats.levelUpGlide=¡Planeador LV %1$s!
 
 ############################
 #Chat messages

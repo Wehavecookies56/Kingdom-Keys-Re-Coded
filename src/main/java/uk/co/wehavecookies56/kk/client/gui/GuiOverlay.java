@@ -276,7 +276,7 @@ public class GuiOverlay extends GuiScreen {
                         	GL11.glTranslatef(2 * 0.8f+50, sHeight/3+mc.fontRenderer.FONT_HEIGHT * 0.8f * i +21, 0);
                             GL11.glTranslatef(-35, 0, 0);
                             GL11.glScalef(0.8f, 0.8f, 1);
-                            drawString(mc.fontRenderer, Utils.translateToLocal(message), 0, 0, 0xFFFFFF);
+                            drawString(mc.fontRenderer, Utils.translateToLocalFormatted(message), 0, 0, 0xFFFFFF);
 
                         }
 

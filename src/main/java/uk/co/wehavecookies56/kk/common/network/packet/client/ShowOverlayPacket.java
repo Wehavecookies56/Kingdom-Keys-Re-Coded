@@ -21,11 +21,6 @@ public class ShowOverlayPacket extends AbstractMessage.AbstractClientMessage<Sho
         this.type = type;
     }
     
-  /*  public ShowOverlayPacket (String type, byte[] driveColor) {
-        this.type = type;
-        this.driveColor = driveColor;
-    }*/
-
     public ShowOverlayPacket (String type, int munny) {
         this.type = type;
         this.munny = munny;
