@@ -42,7 +42,7 @@ public class ModSounds {
             Record_Sinister_Sundown = registerSound("records.sinister sundown"),
             Record_The_13th_Anthology = registerSound("records.the 13th anthology"),
             Music_A_Day_In_Agrabah = registerSound("music.a day in agrabah"),
-            Music_A_Fight_To_The_Death = registerSound("music.a fight to the the death"),
+            Music_A_Fight_To_The_Death = registerSound("music.a fight to the death"),
             Music_A_Very_Small_Wish = registerSound("music.a very small wish"),
             Music_Adventures_In_The_Savannah = registerSound("music.adventures in the savannah"),
             Music_Arabian_Dream = registerSound("music.arabian dream"),

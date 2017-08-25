@@ -165,7 +165,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
-                drawString(fontRenderer, "From Gauge", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
+                drawString(fontRenderer, "Form Gauge", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
 
                 drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
@@ -178,7 +178,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
-                drawString(fontRenderer, "From Gauge", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
+                drawString(fontRenderer, "Form Gauge", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
 
                 drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
                 drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
