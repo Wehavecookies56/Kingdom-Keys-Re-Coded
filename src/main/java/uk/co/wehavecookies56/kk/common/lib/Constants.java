@@ -124,7 +124,7 @@ public class Constants {
     // Drive abilities
     public static double[]
     	VALOR_SPEED = {0,1.1,1.1,1.1,1.1,1.1,1.1,1.1},
-    	VALOR_JUMP = {0,0.020,0.020,0.25,0.025,0.030,0.030,0.035},
+    	VALOR_JUMP = {0,0.020,0.020,0.025,0.025,0.030,0.030,0.035},
     	
     	WISDOM_QR = {0,0.05,0.05,0.1,0.1,0.15,0.15,0.2},
     	

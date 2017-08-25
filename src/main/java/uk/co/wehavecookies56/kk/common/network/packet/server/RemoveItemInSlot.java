@@ -103,7 +103,7 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
                 player.getCapability(ModCapabilities.DRIVE_STATE, null).setDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getMaxDP());
                 PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
 
-                TextComponentTranslation driMessage = new TextComponentTranslation(Strings.Chat_DriveBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
+                TextComponentTranslation driMessage = new TextComponentTranslation(Strings.Chat_DriveBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()));
                 driMessage.getStyle().setColor(TextFormatting.GREEN);
                 player.sendMessage(driMessage);
             	break;

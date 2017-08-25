@@ -1117,6 +1117,7 @@ chat.manifest.learn=The knowledge manifested the '%1$s'
 chat.powerboost=Strength increased! Now it's %1$s!
 chat.defenseboost=Defense increased! Now it's %1$s!
 chat.magicboost=Magic increased! Now it's %1$s!
+chat.driveboost=Drive Form Increased! Now it's %1$s!
 
 ##########################
 #Entities
