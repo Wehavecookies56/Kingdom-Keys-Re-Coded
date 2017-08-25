@@ -190,7 +190,7 @@ public class InputHandler {
         EntityPlayer player = mc.player;
         World world = mc.world;
         PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-        IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+        IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
         this.magicCommands = new ArrayList<String>();
         this.magicCommands.clear();
         this.itemsCommands = new ArrayList<String>();
@@ -214,7 +214,7 @@ public class InputHandler {
                 break;
             case GuiCommandMenu.MAGIC:
                 if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
-                    if (!STATS.getRecharge() && (!this.magicCommands.isEmpty() && !DS.getActiveDriveName().equals(Strings.Form_Valor))) {
+                    if (!STATS.getRecharge() && (!this.magicCommands.isEmpty() && !DRIVE.getActiveDriveName().equals(Strings.Form_Valor))) {
                         GuiCommandMenu.magicselected = 0;
                         GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
                         world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
@@ -242,19 +242,19 @@ public class InputHandler {
 
             case GuiCommandMenu.DRIVE:
                 if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
-                    if (DS.getInDrive()) {// Revert
-                        if (DS.getActiveDriveName().equals(Strings.Form_Anti) && !player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
+                    if (DRIVE.getInDrive()) {// Revert
+                        if (DRIVE.getActiveDriveName().equals(Strings.Form_Anti) && !player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
                             GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
                             world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
                             player.sendMessage(new TextComponentTranslation("Cannot revert while in Anti form"));
                         } else {
-                            PacketDispatcher.sendToServer(new DriveFormPacket(DS.getActiveDriveName(), true));
-                            if (DriveFormRegistry.isDriveFormRegistered(DS.getActiveDriveName())) DriveFormRegistry.get(DS.getActiveDriveName()).endDrive(player);
+                            PacketDispatcher.sendToServer(new DriveFormPacket(DRIVE.getActiveDriveName(), true));
+                            if (DriveFormRegistry.isDriveFormRegistered(DRIVE.getActiveDriveName())) DriveFormRegistry.get(DRIVE.getActiveDriveName()).endDrive(player);
                             GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
                             GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
                             world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
                         }
-                    } else if (this.driveCommands.isEmpty() || STATS.getDP() <= 0) {
+                    } else if (this.driveCommands.isEmpty() || DRIVE.getDP() <= 0) {
                         world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
                         GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
                     } else {
@@ -288,7 +288,7 @@ public class InputHandler {
         }
 
         if (GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE) {
-            if (this.driveCommands.isEmpty()) {} else if ((STATS.getDP() >= Constants.getCost((String) this.driveCommands.get(GuiCommandMenu.driveselected)))) {
+            if (this.driveCommands.isEmpty()) {} else if ((DRIVE.getDP() >= Constants.getCost((String) this.driveCommands.get(GuiCommandMenu.driveselected)))) {
             	if(this.driveCommands.get(GuiCommandMenu.driveselected).equals(Strings.Form_Final)) {
         			ModDriveForms.getDriveForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
             	}else {

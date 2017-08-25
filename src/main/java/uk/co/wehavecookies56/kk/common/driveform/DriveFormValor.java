@@ -45,7 +45,7 @@ public class DriveFormValor extends DriveForm {
 	            		DRIVE.setDriveLevel(DRIVE.getActiveDriveName(),actualLevel+1); 
 	            	}
 	            }
-	            PacketDispatcher.sendTo(new SyncDriveData(DRIVE, player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+	            PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);
         	}
         }
 	}

@@ -160,7 +160,7 @@ public class GuiCommandMenu extends GuiScreen {
                     else
                         drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive_Revert), 6 + textX, 4, 0xFFFFFF);
                     GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-                } else if (this.driveCommands.isEmpty() || STATS.getDP() <= 0)
+                } else if (this.driveCommands.isEmpty() || DS.getDP() <= 0)
                     drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0x888888);
                 else
                     drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive), 6 + textX, 4, 0xFFFFFF);
@@ -448,7 +448,7 @@ public class GuiCommandMenu extends GuiScreen {
                     GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * (driveCommands.size() - i)), 0);
                     GL11.glScalef(scale, scale, scale);
                     if (submenu == SUB_DRIVE) {
-                        if (STATS.getDP() >= Constants.getCost(driveCommands.get(i)) || mc.player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
+                        if (DS.getDP() >= Constants.getCost(driveCommands.get(i)) || mc.player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
                             drawString(mc.fontRenderer, Utils.translateToLocal(driveCommands.get(i)), 6, 4, 0xFFFFFF);
                         else
                             drawString(mc.fontRenderer, Utils.translateToLocal(driveCommands.get(i)), 6, 4, 0x888888);

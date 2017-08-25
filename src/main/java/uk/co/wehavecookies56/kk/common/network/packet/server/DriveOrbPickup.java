@@ -35,8 +35,8 @@ public class DriveOrbPickup extends AbstractMessage.AbstractServerMessage<DriveO
     @Override
     public void process (EntityPlayer player, Side side) {
         toRemove.setCount(toRemove.getCount()-1);
-        player.getCapability(ModCapabilities.PLAYER_STATS, null).addDP(toRemove.getTagCompound().getInteger("amount"));
-        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        player.getCapability(ModCapabilities.DRIVE_STATE, null).addDP(toRemove.getTagCompound().getInteger("amount"));
+        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
     }
 
 }

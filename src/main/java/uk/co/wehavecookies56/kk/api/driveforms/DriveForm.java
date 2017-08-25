@@ -75,8 +75,8 @@ public abstract class DriveForm {
         }
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName(getName());
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(true);
-        player.getCapability(ModCapabilities.PLAYER_STATS, null).setFP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getFormGaugeLevel(getName()) * 100);
-        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        player.getCapability(ModCapabilities.DRIVE_STATE, null).setFP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getFormGaugeLevel(getName()) * 100);
+        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
         PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(player), player, 64.0D);
         player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.drive, SoundCategory.MASTER, 1.0f, 1.0f);
     }
@@ -110,10 +110,10 @@ public abstract class DriveForm {
             player.inventory.offHandInventory.set(0, new ItemStack(((ItemKeychain)player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(1).getItem()).getKeyblade()));
         }
         if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()){
-            if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getFP() > 0) {
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).remFP(0.1);
-                if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getFP() < 0) {
-                    player.getCapability(ModCapabilities.PLAYER_STATS, null).setFP(0);
+            if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getFP() > 0) {
+                player.getCapability(ModCapabilities.DRIVE_STATE, null).remFP(0.1);
+                if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getFP() < 0) {
+                    player.getCapability(ModCapabilities.DRIVE_STATE, null).setFP(0);
                     endDrive(player);
                     if (player.world.isRemote) {
                         PacketDispatcher.sendToServer(new DriveFormPacket(getName(), true));
@@ -131,10 +131,10 @@ public abstract class DriveForm {
     }
 
     public void endDrive (EntityPlayer player) {
-        player.getCapability(ModCapabilities.PLAYER_STATS, null).setFP(0);
-        player.getCapability(ModCapabilities.PLAYER_STATS, null).remDP(getCost());
-        if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getDP() < 0) {
-            player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
+        player.getCapability(ModCapabilities.DRIVE_STATE, null).setFP(0);
+        player.getCapability(ModCapabilities.DRIVE_STATE, null).remDP(getCost());
+        if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getDP() < 0) {
+            player.getCapability(ModCapabilities.DRIVE_STATE, null).setDP(0);
         }
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(false);
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName("none");
@@ -145,7 +145,7 @@ public abstract class DriveForm {
         player.inventory.offHandInventory.set(0, ItemStack.EMPTY);
         player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setActiveSlot(-1);
         if (!player.world.isRemote)
-            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
 
     }
 

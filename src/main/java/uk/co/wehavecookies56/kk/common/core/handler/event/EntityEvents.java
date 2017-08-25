@@ -94,6 +94,9 @@ public class EntityEvents {
         dsAfter.setDriveLevel(Strings.Form_Final, dsBefore.getDriveLevel(Strings.Form_Final));
         dsAfter.setDriveGaugeLevel(dsBefore.getDriveGaugeLevel());
         dsAfter.setInDrive(dsBefore.getInDrive());
+        dsAfter.setDP(dsBefore.getDP());
+        dsAfter.setFP(dsBefore.getFP());
+
         for (int i = 0; i < dsBefore.getInventoryDriveForms().getSlots(); i++) {
             dsAfter.getInventoryDriveForms().setStackInSlot(i, dsBefore.getInventoryDriveForms().getStackInSlot(i));
         }
@@ -120,8 +123,6 @@ public class EntityEvents {
         PlayerStatsCapability.IPlayerStats statsBefore = event.getOriginal().getCapability(ModCapabilities.PLAYER_STATS, null);
         PlayerStatsCapability.IPlayerStats statsAfter = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
         statsAfter.setDefense(statsBefore.getDefense());
-        statsAfter.setDP(statsBefore.getDP());
-        statsAfter.setFP(statsBefore.getFP());
         statsAfter.setExperience(statsBefore.getExperience());
         statsAfter.setHP(statsBefore.getHP());
         statsAfter.setLevel(statsBefore.getLevel());
@@ -162,8 +163,8 @@ public class EntityEvents {
             orgAfter.setUnlockPoints((int)(statsAfter.getLevel() / 5));
             dsAfter.setActiveDriveName("none");
             dsAfter.setInDrive(false);
-            statsAfter.setDP(0);
-            statsAfter.setFP(0);
+            dsAfter.setDP(0);
+            dsAfter.setFP(0);
         }
     }
 
@@ -263,7 +264,7 @@ public class EntityEvents {
             PacketDispatcher.sendTo(new SyncMagicInventory(event.getEntity().getCapability(ModCapabilities.MAGIC_STATE, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncItemsInventory(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncDriveInventory(event.getEntity().getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntity());
-            PacketDispatcher.sendTo(new SyncDriveData(event.getEntity().getCapability(ModCapabilities.DRIVE_STATE, null), event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
+            PacketDispatcher.sendTo(new SyncDriveData(event.getEntity().getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncMagicData(event.getEntity().getCapability(ModCapabilities.MAGIC_STATE, null), event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncKeybladeData(event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncLevelData(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
@@ -688,8 +689,8 @@ public class EntityEvents {
         }
         if (event.getSource().getTrueSource() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
-            player.getCapability(ModCapabilities.PLAYER_STATS, null).addDP(1);
-            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+            player.getCapability(ModCapabilities.DRIVE_STATE, null).addDP(1);
+            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
         }
         if(event.getEntityLiving() instanceof IKHMob) {
             EntityPlayer player = null;

@@ -14,6 +14,7 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
@@ -45,13 +46,25 @@ public class DriveStateCapability {
         int getDriveExp(String drive);
         int getDriveGaugeLevel();
         int getFormGaugeLevel(String drive);
+        double getDP();
+        double getMaxDP();
+        double getFP();
+        double getMaxFP();
+        
         void setDriveGaugeLevel(int level);
         void setInDrive(boolean drive);
         void setActiveDriveName(String drive);
         void setAntiPoints(int points);
         void setDriveLevel(String drive, int level);
         void setDriveExp(String drive, int exp);
-
+        
+        boolean setDP(double dp);
+        void addDP(double dp);
+        void remDP(double dp);
+        void setFP(double fp);
+        void addFP(double fp);
+        void remFP(double fp);
+        
         void learnDriveForm(DriveForm form);
 
         ItemStackHandler getInventoryDriveForms();
@@ -80,6 +93,10 @@ public class DriveStateCapability {
             properties.setInteger("DriveExpMaster", instance.getDriveExp(Strings.Form_Master));
             properties.setInteger("DriveExpFinal", instance.getDriveExp(Strings.Form_Final));
             properties.setInteger("DriveGaugeLevel", instance.getDriveGaugeLevel());
+            
+            properties.setDouble("DP", instance.getDP());
+            properties.setDouble("FP", instance.getFP());
+
 
             properties.setTag("DriveInvKey", instance.getInventoryDriveForms().serializeNBT());
 
@@ -104,6 +121,10 @@ public class DriveStateCapability {
             instance.setDriveExp(Strings.Form_Master, properties.getInteger("DriveExpMaster"));
             instance.setDriveExp(Strings.Form_Final, properties.getInteger("DriveExpFinal"));
             instance.setDriveGaugeLevel(properties.getInteger("DriveGaugeLevel"));
+            
+            instance.setDP(properties.getDouble("DP"));
+            instance.setFP(properties.getDouble("FP"));
+
 
             instance.getInventoryDriveForms().deserializeNBT(properties.getCompoundTag("DriveInvKey"));
         }
@@ -121,6 +142,11 @@ public class DriveStateCapability {
         private int driveGaugeLevel = 3;
         int valor, wisdom, limit, master, Final;
         int valorExp, wisdomExp, limitExp, masterExp, FinalExp;
+        
+        private double dp = 0;
+        private double fp = 0;
+        private double maxFP = 300;
+        
         @Override public boolean getInDrive() { return inDrive; }
         @Override public String getActiveDriveName() { return activeDrive; }
         @Override public int getAntiPoints() { return antiPoints; }
@@ -232,7 +258,7 @@ public class DriveStateCapability {
         }
         @Override
         public void displayLevelUpMessage (EntityPlayer player, String driveForm) {
-            this.getMessages().clear();
+        	this.getMessages().clear();
             switch (driveForm) {
             
             case Strings.Form_Valor:
@@ -343,10 +369,66 @@ public class DriveStateCapability {
             }
             
             player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 0.5f, 1.0f);
-            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
+            
             PacketDispatcher.sendTo(new ShowOverlayPacket("drivelevelup"),(EntityPlayerMP)player);
         }
- 
+		@Override
+		public double getMaxDP() {
+			return getDriveGaugeLevel()*100;
+		}
+		@Override
+		public double getDP() {
+			return this.dp;
+		}
+		
+		@Override
+        public double getFP() {
+            return fp;
+        }
+
+        @Override
+        public double getMaxFP() {
+            return maxFP;
+        }
+
+        @Override
+        public void setFP(double fp) {
+            this.fp = fp;
+        }
+
+        @Override
+        public void addFP(double fp) {
+            this.fp += fp;
+        }
+
+        @Override
+        public void remFP(double fp) {
+            this.fp -= fp;
+        }
+        
+        @Override
+        public boolean setDP(double dp) {
+            if (dp <= getMaxDP()) {
+                this.dp = dp;
+                return true;
+            }
+            return false;
+        }
+        @Override
+        public void addDP(double dp) {
+            if (dp + this.dp > getMaxDP())
+                this.dp = getMaxDP();
+            else
+                this.dp += dp;
+        }
+        @Override
+        public void remDP(double dp) {
+            if (dp + this.dp < 0)
+                this.dp = 0;
+            else
+                this.dp -= dp;
+        }
     }
 }
 

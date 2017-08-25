@@ -54,8 +54,8 @@ public class GuiDrive extends GuiScreen {
 
         PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
         DriveStateCapability.IDriveState STATE = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
-        double dp = STATS.getDP();
-        double fp = STATS.getFP();
+        double dp = STATE.getDP();
+        double fp = STATE.getFP();
 
         currDrive = (float) ((oneValue * dp) - getCurrBar(dp, STATE.getDriveGaugeLevel()) * guiLength);
         if (STATE.getInDrive())
@@ -126,7 +126,7 @@ public class GuiDrive extends GuiScreen {
                 this.drawTexturedModalRect(14, 6, numPos, 38, 8, guiHeight);
             }
             GL11.glPopMatrix();
-            if (STATS.getDP() >= getMaxBars(STATE.getDriveGaugeLevel()) && !STATE.getInDrive()) {
+            if (STATE.getDP() >= getMaxBars(STATE.getDriveGaugeLevel()) && !STATE.getInDrive()) {
                 GL11.glPushMatrix();
                 counter++;
                 /*

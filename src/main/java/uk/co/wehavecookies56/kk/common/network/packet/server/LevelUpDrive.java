@@ -56,7 +56,7 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 
         int hasDriveInSlot = -1, nullSlot = -1;
 
-        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveLevel(form, levels);
         for (int i = 0; i < InventoryDriveForms.INV_SIZE; i++) {
             if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), ItemStack.EMPTY)) {
@@ -90,6 +90,6 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
             player.sendMessage(errorMessage);
         }
         PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
-        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
     }
 }

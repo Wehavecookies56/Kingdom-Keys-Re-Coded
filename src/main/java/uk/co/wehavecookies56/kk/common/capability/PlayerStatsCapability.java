@@ -11,6 +11,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -36,10 +37,7 @@ public class PlayerStatsCapability {
         int getDefense();
         int getMagic();
         int getHP();
-        double getDP();
-        double getMaxDP();
-        double getFP();
-        double getMaxFP();
+       
         double getMP();
         double getMaxMP();
         boolean getRecharge();
@@ -58,13 +56,7 @@ public class PlayerStatsCapability {
         void addMagic(int magic);
         int setHP(int hp);
         int addHP(int hp);
-        boolean setMaxDP(double dp);
-        boolean setDP(double dp);
-        void addDP(double dp);
-        void remDP(double dp);
-        void setFP(double fp);
-        void addFP(double fp);
-        void remFP(double fp);
+        
         boolean setMP(double mp);
         void addMP(double mp);
         void remMP(double mp);
@@ -94,12 +86,9 @@ public class PlayerStatsCapability {
             properties.setInteger("Defense", instance.getDefense());
             properties.setInteger("Magic", instance.getMagic());
             properties.setInteger("HP", instance.getHP());
-            properties.setDouble("DP", instance.getDP());
-            properties.setDouble("MaxDP", instance.getMaxDP());
             properties.setDouble("MP", instance.getMP());
             properties.setDouble("Max MP", instance.getMaxMP());
             properties.setBoolean("Recharge", instance.getRecharge());
-            properties.setDouble("FP", instance.getFP());
 
             properties.setBoolean("HUD", instance.getHudMode());
 
@@ -119,13 +108,10 @@ public class PlayerStatsCapability {
             instance.setDefense(properties.getInteger("Defense"));
             instance.setMagic(properties.getInteger("Magic"));
             instance.setHP(properties.getInteger("HP"));
-            instance.setDP(properties.getDouble("DP"));
-            instance.setMaxDP(properties.getDouble("MaxDP"));
             instance.setMP(properties.getDouble("MP"));
             instance.setMaxMP(properties.getDouble("Max MP"));
             instance.setRecharge(properties.getBoolean("Recharge"));
             instance.setHudMode(properties.getBoolean("HUD"));
-            instance.setFP(properties.getDouble("FP"));
 
             instance.setChoice1(properties.getString("Choice1"));
             instance.setChoice2(properties.getString("Choice2"));
@@ -134,30 +120,7 @@ public class PlayerStatsCapability {
     }
 
     public static class Default implements IPlayerStats {
-        @Override
-        public double getFP() {
-            return fp;
-        }
-
-        @Override
-        public double getMaxFP() {
-            return maxFP;
-        }
-
-        @Override
-        public void setFP(double fp) {
-            this.fp = fp;
-        }
-
-        @Override
-        public void addFP(double fp) {
-            this.fp += fp;
-        }
-
-        @Override
-        public void remFP(double fp) {
-            this.fp -= fp;
-        }
+        
 
         private int level = 1;
         private int maxLevel = 100;
@@ -174,10 +137,7 @@ public class PlayerStatsCapability {
         private int hp = 20;
         private double mp = 100;
         private double maxMP = 100;
-        private double dp = 0;
-        private double fp = 0;
-        private double maxFP = 300;
-        private double maxDP = 300;
+        
         private boolean recharge = false;
         private boolean cheatMode = false;
         private boolean hudmode = true;
@@ -238,14 +198,7 @@ public class PlayerStatsCapability {
         public int getHP() {
             return this.hp;
         }
-        @Override
-        public double getDP() {
-            return this.dp;
-        }
-        @Override
-        public double getMaxDP() {
-            return this.maxDP;
-        }
+       
         @Override
         public boolean getRecharge() {
             return this.recharge;
@@ -340,38 +293,8 @@ public class PlayerStatsCapability {
             messages.add(Strings.Stats_LevelUp_HP);
             return this.hp;
         }
-        @Override
-        public boolean setMaxDP(double dp) {
-        	if (dp <= 1000) {
-        		this.maxDP = dp;
-        		return true;
-        	}
-        	return false;
-        }
-        @Override
-        public boolean setDP(double dp) {
-            if (dp <= this.maxDP) {
-                this.dp = dp;
-                return true;
-            }
-            return false;
-        }
-        @Override
-        public void addDP(double dp) {
-            if (dp + this.dp > this.maxDP)
-                this.dp = this.maxDP;
-            else
-                this.dp += dp;
-        }
-        @Override
-        public void remDP(double dp) {
-            if(cheatMode)
-                return;
-            if (dp + this.dp < 0)
-                this.dp = 0;
-            else
-                this.dp -= dp;
-        }
+       
+       
         @Override
         public boolean setMP(double mp) {
             if (mp <= this.maxMP) {

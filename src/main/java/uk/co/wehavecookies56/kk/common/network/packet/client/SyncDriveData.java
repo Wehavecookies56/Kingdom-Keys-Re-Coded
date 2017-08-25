@@ -30,7 +30,7 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 
     public SyncDriveData() {}
 
-    public SyncDriveData(IDriveState state, IPlayerStats stats) {
+    public SyncDriveData(IDriveState state) {
         this.inDrive = state.getInDrive();
         this.driveName = state.getActiveDriveName();
         this.antiPoints = state.getAntiPoints();
@@ -47,9 +47,8 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
         this.finalExp = state.getDriveExp(Strings.Form_Final);
         this.driveGaugeLevel = state.getDriveGaugeLevel();
 
-        this.dp = stats.getDP();
-        this.fp = stats.getFP();
-        this.maxDP = stats.getMaxDP();
+        this.dp = state.getDP();
+        this.fp = state.getFP();
         
         this.messages = state.getMessages();
     }
@@ -74,7 +73,6 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 
         this.dp = buffer.readDouble();
         this.fp = buffer.readDouble();
-        this.maxDP = buffer.readDouble();
         
         this.messages = new ArrayList<String>();
         while(buffer.isReadable()) {
@@ -102,7 +100,6 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
 
         buffer.writeDouble(this.dp);
         buffer.writeDouble(this.fp);
-        buffer.writeDouble(this.maxDP);
         
         for (int i = 0; i < this.messages.size(); i++) {
             buffer.writeString(this.messages.get(i));
@@ -112,7 +109,6 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
     @Override
     public void process(EntityPlayer player, Side side) {
         final IDriveState state = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-        final IPlayerStats stats = player.getCapability(ModCapabilities.PLAYER_STATS, null);
         state.setInDrive(inDrive);
         state.setActiveDriveName(driveName);
         state.setAntiPoints(antiPoints);
@@ -129,13 +125,12 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
         state.setDriveExp(Strings.Form_Final, finalExp);
         state.setDriveGaugeLevel(driveGaugeLevel);
 
-        stats.setDP(dp);
-        stats.setFP(fp);
-        stats.setMaxDP(maxDP);
+        state.setDP(dp);
+        state.setFP(fp);
         
-        stats.getMessages().clear();
+        state.getMessages().clear();
         for (int i = 0; i < this.messages.size(); i++) {
-            stats.getMessages().add(this.messages.get(i));
+        	state.getMessages().add(this.messages.get(i));
         }
     }
 

@@ -100,10 +100,8 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
                     player.inventory.removeStackFromSlot(player.inventory.currentItem);
             	
                 player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()+1);
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).setMaxDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()*100);
-                PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null),player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)player);
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxDP());
-                PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null),player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)player);
+                player.getCapability(ModCapabilities.DRIVE_STATE, null).setDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getMaxDP());
+                PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
 
                 TextComponentTranslation driMessage = new TextComponentTranslation(Strings.Chat_DriveBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
                 driMessage.getStyle().setColor(TextFormatting.GREEN);

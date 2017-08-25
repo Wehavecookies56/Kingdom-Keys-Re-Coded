@@ -1,6 +1,15 @@
 package uk.co.wehavecookies56.kk.common.core.handler.event;
 
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.annotation.Nullable;
+
+import org.lwjgl.input.Keyboard;
+
 import com.google.common.collect.Multimap;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -25,13 +34,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import org.lwjgl.input.Keyboard;
 import uk.co.wehavecookies56.kk.api.munny.MunnyRegistry;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.item.ItemHpOrb;
@@ -44,15 +54,16 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.*;
+import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by Toby on 19/07/2016.
@@ -61,6 +72,9 @@ public class ItemEvents {
 
     @SubscribeEvent
     public void onEntityItemPickUp (EntityItemPickupEvent event) {
+        IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
+        IDriveState DRIVE = event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null);
+
         if (event.getItem().getItem().getItem() instanceof ItemMunny) {
             final MunnyCapability.IMunny munny = event.getEntityPlayer().getCapability(ModCapabilities.MUNNY, null);
             MunnyPickup packet = new MunnyPickup(event.getItem().getItem());
@@ -71,7 +85,6 @@ public class ItemEvents {
 
         } else if (event.getItem().getItem().getItem() instanceof ItemHpOrb) {
             if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
-            PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
             HpOrbPickup packet = new HpOrbPickup(event.getItem().getItem());
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
                 if (event.getEntityPlayer().getHealth() >= STATS.getHP()) {
@@ -85,18 +98,16 @@ public class ItemEvents {
                 event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
             }
         } else if (event.getItem().getItem().getItem() == ModItems.DriveOrb) {
-            final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);{
-                if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-                    event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
-                    STATS.addDP(event.getItem().getItem().getTagCompound().getInteger("amount"));
-                    EntityPlayer player = event.getEntityPlayer();
+            if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+                event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
+                DRIVE.addDP(event.getItem().getItem().getTagCompound().getInteger("amount"));
+                EntityPlayer player = event.getEntityPlayer();
 
-                    PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-                    PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntityPlayer());
-                }
+                PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
+                PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntityPlayer());
             }
+            
         } else if (event.getItem().getItem().getItem() == ModItems.MagicOrb) {
-            final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
             double mp = STATS.getMP();
             if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {

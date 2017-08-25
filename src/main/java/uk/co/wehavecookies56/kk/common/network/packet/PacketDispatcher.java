@@ -76,7 +76,6 @@ public class PacketDispatcher {
         registerMessage(DriveOrbPickup.class);
         registerMessage(MagicOrbPickup.class);
         registerMessage(OpenMenu.class);
-        registerMessage(OpenShop.class);
         registerMessage(OpenSynthesis.class);
         registerMessage(DriveFormPacket.class);
         registerMessage(AntiPoints.class);

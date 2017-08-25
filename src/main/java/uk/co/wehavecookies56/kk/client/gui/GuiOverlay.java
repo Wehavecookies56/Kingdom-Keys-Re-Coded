@@ -161,29 +161,54 @@ public class GuiOverlay extends GuiScreen {
             }
             
             if (showDriveLevelUp) {
-                ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/levelup.png");
+        		byte[] driveColor = new byte[] {(byte) 255,(byte) 255,(byte) 255};
+
+        		switch(mc.player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName()) {
+        		case Strings.Form_Valor:
+                	driveColor[0] = (byte) 255; driveColor[1] = (byte) 0; driveColor[2] = (byte) 0;
+                	break;
+                	
+                case Strings.Form_Wisdom:
+                	driveColor[0] = (byte) 0; driveColor[1] = (byte) 0; driveColor[2] = (byte) 255;
+                	break;
+                	
+                case Strings.Form_Limit:
+                	driveColor[0] = (byte) 153; driveColor[1] = (byte) 76; driveColor[2] = (byte) 255;
+                	break;
+                	
+                case Strings.Form_Master:
+                	driveColor[0] = (byte) 255; driveColor[1] = (byte) 185; driveColor[2] = (byte) 25;
+                	break;
+                	
+                case Strings.Form_Final:
+                	driveColor[0] = (byte) 230; driveColor[1] = (byte) 230; driveColor[2] = (byte) 230;
+                	break;
+        		}
+        		
+        		ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/levelup.png");
                 
                 GL11.glPushMatrix();
                 {
                     int height = (mc.fontRenderer.FONT_HEIGHT - 3) * DRIVE.getMessages().size();
                     GL11.glEnable(GL11.GL_BLEND);
                     
-                    //TODO change with the drive form color
-                    GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
+                    GL11.glColor4ub(driveColor[0], driveColor[1], driveColor[2], (byte) 255);
                     GL11.glPushMatrix();
                     {
                         mc.renderEngine.bindTexture(texture);
                         int width = event.getResolution().getScaledWidth();
+                        int sHeight = event.getResolution().getScaledHeight();
+
                         GL11.glPushMatrix();
                         {
-                            GL11.glTranslatef((width - 153.6f - 2), 0, 0);
+                            GL11.glTranslatef(2, sHeight/3, 0);
                             GL11.glScalef(0.6f, 0.6f, 1);
                             drawTexturedModalRect(0, 0, 0, 0, 256, 36);
                         }
                         GL11.glPopMatrix();
                         GL11.glPushMatrix();
                         {
-                            GL11.glTranslatef(width - ((mc.fontRenderer.getStringWidth("LEVEL UP!")) * 0.75f) - 115, 4, 0);
+                            GL11.glTranslatef(6, sHeight/3+5, 0);
                             GL11.glScalef(0.75f, 0.75f, 1);
                             drawString(mc.fontRenderer, "LEVEL UP!" + TextFormatting.ITALIC, 0, 0, Color.decode(String.format("#%02x%02x%02x", (byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2])).hashCode());
                         }
@@ -192,63 +217,69 @@ public class GuiOverlay extends GuiScreen {
                         {
                             GL11.glPushMatrix();
                             {
-                                GL11.glTranslatef(width - ((mc.fontRenderer.getStringWidth("LV. ")) * 0.75f) - 90, 4, 0);
+                                GL11.glTranslatef(2 + (mc.fontRenderer.getStringWidth("LV. ") * 0.75f)+38, sHeight/3+4, 0);
                                 GL11.glScalef(0.75f, 0.75f, 1);
                                 drawString(mc.fontRenderer, "LV.", 0, 0, 0xE3D000);
                             }
                             GL11.glPopMatrix();
                             GL11.glPushMatrix();
                             {
-                                GL11.glTranslatef(width - 256.0f * 0.75f + ((mc.fontRenderer.getStringWidth("7")) * 0.75f) + 88, 4, 0);
+                                GL11.glTranslatef(2 * 0.75f + ((mc.fontRenderer.getStringWidth("999")) * 0.75f)+50, sHeight/3+4, 0);
                                 GL11.glScalef(0.75f, 0.75f, 1);
                                 drawString(mc.fontRenderer, "" + DRIVE.getDriveLevel(DRIVE.getActiveDriveName()), 0, 0, 0xFFFFFF);
                             }
                             GL11.glPopMatrix();
                             GL11.glPushMatrix();
                             {
-                                GL11.glTranslatef(width - ((mc.fontRenderer.getStringWidth(DRIVE.getActiveDriveName())) * 0.75f) - 7, 4, 0);
+                                GL11.glTranslatef(100 + ((mc.fontRenderer.getStringWidth(DRIVE.getActiveDriveName())) * 0.75f) - 35, sHeight/3+4, 0);
                                 GL11.glScalef(0.75f, 0.75f, 1);
-                                drawString(mc.fontRenderer, DRIVE.getActiveDriveName(), 0, 0, 0xFFFFFF);
+                                drawString(mc.fontRenderer, Utils.translateToLocal(DRIVE.getActiveDriveName()), 0, 0, 0xFFFFFF);
                             }
                             GL11.glPopMatrix();
                         }
                         GL11.glPopMatrix();
                     }
                     GL11.glPopMatrix();
-                    GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
+                    GL11.glColor4ub(driveColor[0], driveColor[1], driveColor[2], (byte) 255);
                     GL11.glPushMatrix();
                     {
                         mc.renderEngine.bindTexture(texture);
                         int width = event.getResolution().getScaledWidth();
-                        GL11.glTranslatef((width - 256.0f * 0.6f - 2), 36.0f * 0.6f, 0);
+                        int sHeight = event.getResolution().getScaledHeight();
+
+                        GL11.glTranslatef(2.0f * 0.6f+1,sHeight/3+ 36.0f * 0.6f, 0);
                         GL11.glScalef(0.6f, height, 1);
                         drawTexturedModalRect(0, 0, 0, 36, 256, 1);
                     }
                     GL11.glPopMatrix();
-                    GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
+                    GL11.glColor4ub(driveColor[0], driveColor[1], driveColor[2], (byte) 255);
                     GL11.glPushMatrix();
                     {
                         mc.renderEngine.bindTexture(texture);
                         int width = event.getResolution().getScaledWidth();
-                        GL11.glTranslatef((width - 256.0f * 0.6f - 2), height + (36.0f * 0.6f), 0);
+                        int sHeight = event.getResolution().getScaledHeight();
+
+                        GL11.glTranslatef(2, sHeight/3+height + (36.0f * 0.6f), 0);
                         GL11.glScalef(0.6f, 0.6f, 1);
                         drawTexturedModalRect(0, 0, 0, 37, 256, 14);
                     }
                     GL11.glPopMatrix();
-                    GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
+                    GL11.glColor4ub(driveColor[0], driveColor[1], driveColor[2], (byte) 255);
                     
                     for (int i = 0; i < DRIVE.getMessages().size(); i++) {
                         GL11.glPushMatrix();
                         {
                             int width = event.getResolution().getScaledWidth();
+                            int sHeight = event.getResolution().getScaledHeight();
 
                             String message = DRIVE.getMessages().get(i).toString();
-                            GL11.glTranslatef((width - 256.0f * 0.8f + (mc.fontRenderer.getStringWidth("Maximum HP Increased!")) * 0.8f), mc.fontRenderer.FONT_HEIGHT * 0.8f * i + 23, 0);
+                        	GL11.glTranslatef(2 * 0.8f+50, sHeight/3+mc.fontRenderer.FONT_HEIGHT * 0.8f * i +21, 0);
                             GL11.glTranslatef(-35, 0, 0);
                             GL11.glScalef(0.8f, 0.8f, 1);
                             drawString(mc.fontRenderer, Utils.translateToLocal(message), 0, 0, 0xFFFFFF);
 
                         }
+
                         GL11.glPopMatrix();
                     }
                     GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) 255);
