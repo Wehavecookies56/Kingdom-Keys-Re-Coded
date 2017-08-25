@@ -10,9 +10,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnDriveFormParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
@@ -69,9 +71,13 @@ public abstract class DriveForm {
     }
 
     public void initDrive (EntityPlayer player) {
-        if (!summonKeyblades(player)) {
-            player.world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
-            return;
+    	String form = getName();
+    	System.out.println(form);
+        if(!form.equals(Strings.Form_Anti)) {
+	    	if (!summonKeyblades(player)) {
+	            player.world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
+	            return;
+	        }
         }
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName(getName());
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(true);
@@ -120,6 +126,7 @@ public abstract class DriveForm {
                     }
                 }
             }else{
+            	System.out.println(FMLCommonHandler.instance().getEffectiveSide());
                 endDrive(player);
                 Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
                 if(hasOffHand())

@@ -1,8 +1,12 @@
 package uk.co.wehavecookies56.kk.common.block;
 
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -17,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability.IFirstTimeJoin;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
@@ -24,10 +29,9 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnCureParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 
-import java.util.List;
-import java.util.Random;
-
 public class BlockSavePoint extends Block {
+
+    static int timeHealed;
 
     protected BlockSavePoint (Material material, String toolClass, int level, float hardness, float resistance, String name) {
         super(material);
@@ -50,7 +54,9 @@ public class BlockSavePoint extends Block {
 
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entityIn) {
-        if (!world.isRemote) updateState(world, pos);
+        if (!world.isRemote) 
+        	updateState(world, pos);
+        this.timeHealed = (int) Minecraft.getSystemTime() / 1000;
     }
 
     @Override
@@ -69,9 +75,18 @@ public class BlockSavePoint extends Block {
             if (e instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) e;
                 IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-                boolean samePos = player.getBedLocation().getX() == pos.getX() && player.getBedLocation().getY() == pos.getY() && player.getBedLocation().getZ() == pos.getZ();
-                System.out.println(samePos);
-               // BlockPos bedPos = new BlockPos(pos.getX(),pos.getY()-1,pos.getZ());
+               // System.out.println(player.getBedLocation());
+               // System.out.println(pos.getX());
+                boolean samePos;
+                BlockPos bedPos;
+                if(player.getBedLocation() == null) {
+                	IFirstTimeJoin originalPos = player.getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
+                	bedPos = new BlockPos(originalPos.getPosX(),originalPos.getPosY(),originalPos.getPosZ());
+                }else{
+                	bedPos = player.getBedLocation();
+                }
+                
+                samePos = bedPos.getX() == pos.getX() && bedPos.getY() == pos.getY() && bedPos.getZ() == pos.getZ();
 
                 if (player.isSneaking() && !samePos) {
                     player.setSpawnChunk(pos, true, 0);
@@ -84,9 +99,13 @@ public class BlockSavePoint extends Block {
                 {
                     player.heal(1);
                     STATS.addMP(2);
-                    if (player.getFoodStats().getFoodLevel() < 20) player.getFoodStats().addStats(4, 0);
-                    world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savepoint, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                    PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos, true), player, 64.0D);
+                    if (player.getFoodStats().getFoodLevel() < 20)
+                    	player.getFoodStats().addStats(4, 0);
+                   
+                    if (timeHealed + 1 <= (int) Minecraft.getSystemTime() / 1000){
+                    	world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savepoint, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                    	PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos, true), player, 64.0D);
+                    }
                     PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null),STATS), (EntityPlayerMP)player);
                 }
             }
