@@ -61,6 +61,7 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
                 keychain = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
                 keychain.setStackInSlot(slot, ItemStack.EMPTY);
                 break;
+                
             case Strings.DefenseBoost:
                 if(!player.capabilities.isCreativeMode)
                     player.inventory.removeStackFromSlot(player.inventory.currentItem);
@@ -69,6 +70,7 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
                 strMessage.getStyle().setColor(TextFormatting.GREEN);
                 player.sendMessage(strMessage);
                 break;
+                
             case Strings.MagicBoost:
                 if(!player.capabilities.isCreativeMode)
                     player.inventory.removeStackFromSlot(player.inventory.currentItem);
@@ -77,6 +79,7 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
                 magMessage.getStyle().setColor(TextFormatting.GREEN);
                 player.sendMessage(magMessage);
                 break;
+                
             case Strings.PowerBoost:
                 if(!player.capabilities.isCreativeMode)
                     player.inventory.removeStackFromSlot(player.inventory.currentItem);
@@ -85,20 +88,26 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
                 powMessage.getStyle().setColor(TextFormatting.GREEN);
                 player.sendMessage(powMessage);
                 break;
+                
             case Strings.Potion:
                 potions = player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
                 potions.setStackInSlot(slot, ItemStack.EMPTY);
                 if (sound) player.world.playSound(null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 0.5f, 1);
                 break;
+                
             case Strings.DriveBoost:
             	if(!player.capabilities.isCreativeMode)
                     player.inventory.removeStackFromSlot(player.inventory.currentItem);
+            	
                 player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()+1);
                 player.getCapability(ModCapabilities.PLAYER_STATS, null).setMaxDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()*100);
+                PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null),player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)player);
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxDP());
+                PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null),player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)player);
+
                 TextComponentTranslation driMessage = new TextComponentTranslation(Strings.Chat_DriveBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
                 driMessage.getStyle().setColor(TextFormatting.GREEN);
                 player.sendMessage(driMessage);
-                PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null),player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)player);
             	break;
         }
         PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)player);

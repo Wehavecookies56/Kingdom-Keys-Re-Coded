@@ -224,10 +224,11 @@ public class DriveStateCapability {
 
         @Override
         public void setDriveGaugeLevel(int level) {
-        	if(this.driveGaugeLevel + level > 9)
+        	if(level > 9) {
         		this.driveGaugeLevel = 9;
-        	else
+        	}else{
         		this.driveGaugeLevel = level;
+        	}
         }
         @Override
         public void displayLevelUpMessage (EntityPlayer player, String driveForm) {
