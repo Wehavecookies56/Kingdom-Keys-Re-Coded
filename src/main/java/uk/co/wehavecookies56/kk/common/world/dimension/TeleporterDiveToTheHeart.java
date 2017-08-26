@@ -1,22 +1,25 @@
 package uk.co.wehavecookies56.kk.common.world.dimension;
 
+import java.util.Random;
+
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.base.BlockStationOfAwakening;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
-
-import java.util.Random;
 
 /**
  * Created by Toby on 01/08/2016.
@@ -124,6 +127,15 @@ public class TeleporterDiveToTheHeart extends Teleporter {
             entityIn.motionX = 0.0D;
             entityIn.motionY = 0.0D;
             entityIn.motionZ = 0.0D;
+            
+            if(entityIn instanceof EntityPlayer) {
+            	EntityPlayer player = (EntityPlayer) entityIn;
+            	if (!player.world.isRemote) {
+                    if (player.dimension == ModDimensions.diveToTheHeartID) {
+                        player.sendMessage(new TextComponentTranslation("Welcome to Kingdom Keys Re:Coded!\nPress %1$s to open the menu\nMake a choice between the Sword, Shield and Staff then leave using the door", InputHandler.Keybinds.OPENMENU.getKeybind().getDisplayName()));
+                    }
+                }
+            }
 
         }
 

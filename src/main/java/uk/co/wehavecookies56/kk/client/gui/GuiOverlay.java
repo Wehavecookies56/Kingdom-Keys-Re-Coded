@@ -27,7 +27,7 @@ public class GuiOverlay extends GuiScreen {
     public static boolean showMunny;
     public static boolean showLevelUp;
     public static boolean showDriveLevelUp;
-    public static String driveForm;
+    public static String driveForm = "none";
     public static long timeExp;
     public static long timeMunny;
     public static long timeLevelUp;
@@ -161,7 +161,7 @@ public class GuiOverlay extends GuiScreen {
                 	showLevelUp = false;
             }
             
-            if (showDriveLevelUp || true) {
+            if (showDriveLevelUp) {
         		byte[] driveColor = new byte[] {(byte) 255,(byte) 255,(byte) 255};
 
         		switch(driveForm) {//mc.player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName()

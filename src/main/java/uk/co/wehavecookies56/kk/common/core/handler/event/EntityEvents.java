@@ -227,11 +227,7 @@ public class EntityEvents {
 
     @SubscribeEvent
     public void OnEntityJoinWorld (EntityJoinWorldEvent event) {
-        if (event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
-            if (event.getEntity().dimension == ModDimensions.diveToTheHeartID) {
-                ((EntityPlayer) event.getEntity()).sendMessage(new TextComponentTranslation("Welcome to Kingdom Keys Re:Coded!\nPress %1$s to open the menu\nMake a choice between the Sword, Shield and Staff then leave using the door", InputHandler.Keybinds.OPENMENU.getKeybind().getDisplayName()));
-            }
-        }
+        
         if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.DriveRecovery.getUnlocalizedName());
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.HighDriveRecovery.getUnlocalizedName());
@@ -599,7 +595,6 @@ public class EntityEvents {
                                 STATS.setChoice1("door");
                             }
                         }
-                        System.out.println(STATS.getChoice1());
                     }
                 }
             }
@@ -655,9 +650,9 @@ public class EntityEvents {
         }
 
     }
-    @SubscribeEvent
+   /* @SubscribeEvent
     public void onLivingUpdate (LivingEvent.LivingUpdateEvent event) {
-        /*if (event.getEntityLiving() instanceof EntityPlayer) {
+        if (event.getEntityLiving() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 
             if(player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue() == 0 && player.isAirBorne){
@@ -665,8 +660,8 @@ public class EntityEvents {
                 player.motionY=0;
                 player.motionZ=0;
             }
-        }*/
-    }
+        }
+    }*/
 
     @SubscribeEvent
     public void onHurt (LivingHurtEvent event) {
