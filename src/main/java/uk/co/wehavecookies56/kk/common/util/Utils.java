@@ -157,7 +157,7 @@ public class Utils {
 
     public static IDAndBlockPos getDimensionIDAndBlockPos(String dimension) {
     	IDAndBlockPos idAndBlockPos = new IDAndBlockPos();
-    	int id;
+    	
 		switch(dimension) {
 		case Strings.SoA:
 			idAndBlockPos.id = ModDimensions.diveToTheHeartID;

@@ -504,7 +504,7 @@ public class ItemEvents {
         		return;
         	}
         
-            if (event.getEntityItem().getItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getItem().getItem() != ModItems.WoodenStick)) {
+            if (event.getEntityItem().getItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getItem().getItem() != ModItems.WoodenStick && event.getEntityItem().getItem().getItem() != ModItems.DreamSword && event.getEntityItem().getItem().getItem() != ModItems.DreamStaff)) {
                 event.getEntityItem().isDead = true;
                 event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);
                 if(!ItemStack.areItemStacksEqual(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY))
