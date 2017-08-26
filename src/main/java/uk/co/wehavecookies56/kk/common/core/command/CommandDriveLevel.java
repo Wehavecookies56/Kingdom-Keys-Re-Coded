@@ -136,7 +136,9 @@ public class CommandDriveLevel implements ICommand {
                     form = Utils.translateToLocal(Strings.Form_Final);
                     break;
                 }
-                PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
+                DRIVE.displayLevelUpMessage(player,"form."+args[0].toLowerCase()); 
+
+                //PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
 
                 if(form != null) {
                 	if(args.length == 3)

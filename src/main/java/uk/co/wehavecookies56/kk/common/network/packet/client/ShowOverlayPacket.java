@@ -13,31 +13,38 @@ public class ShowOverlayPacket extends AbstractMessage.AbstractClientMessage<Sho
 
     String type;
     int munny;
-   // byte[] driveColor;
+    String driveForm;
 
     public ShowOverlayPacket () {}
 
     public ShowOverlayPacket (String type) {
         this.type = type;
+        this.driveForm="";
     }
     
     public ShowOverlayPacket (String type, int munny) {
         this.type = type;
         this.munny = munny;
+        this.driveForm="";
+    }
+    
+    public ShowOverlayPacket (String type, String driveForm) {
+        this.type = type;
+        this.driveForm = driveForm;
     }
 
     @Override
     protected void read (PacketBuffer buffer) throws IOException {
         this.type = buffer.readString(50);
         this.munny = buffer.readInt();
-       // this.driveColor = buffer.readByteArray();
+        this.driveForm = buffer.readString(25);
     }
 
     @Override
     protected void write (PacketBuffer buffer) throws IOException {
         buffer.writeString(this.type);
         buffer.writeInt(this.munny);
-       // buffer.writeByteArray(this.driveColor);
+        buffer.writeString(this.driveForm);
     }
 
     @Override
@@ -58,7 +65,7 @@ public class ShowOverlayPacket extends AbstractMessage.AbstractClientMessage<Sho
         if (this.type.equals("drivelevelup")) {
             GuiOverlay.showDriveLevelUp = true;
             GuiOverlay.timeDriveLevelUp = (int) Minecraft.getSystemTime() / 1000;
-           // GuiOverlay.driveColor = this.driveColor;
+            GuiOverlay.driveForm = this.driveForm;
         }
     }
 

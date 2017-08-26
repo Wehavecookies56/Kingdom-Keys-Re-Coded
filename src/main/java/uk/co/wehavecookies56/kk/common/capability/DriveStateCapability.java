@@ -264,8 +264,8 @@ public class DriveStateCapability {
             
             case Strings.Form_Valor:
                 messages.add(Utils.translateToLocal(Strings.Stats_LevelUp_FormGauge));
-                //System.out.println(this.getDriveLevel(driveForm));
-            	switch (this.getDriveLevel(driveForm)+1) {
+                System.out.println(this.getDriveLevel(driveForm));
+            	switch (this.getDriveLevel(driveForm)) {
             	case 2:
                     break;
                 case 3:
@@ -286,7 +286,7 @@ public class DriveStateCapability {
             	
             case Strings.Form_Wisdom:
             	messages.add(Strings.Stats_LevelUp_FormGauge);
-            	switch (this.getDriveLevel(driveForm)+1) {
+            	switch (this.getDriveLevel(driveForm)) {
             	case 2:
                     break;
                 case 3:
@@ -307,7 +307,7 @@ public class DriveStateCapability {
             	
             case Strings.Form_Limit:
             	messages.add(Strings.Stats_LevelUp_FormGauge);
-            	switch (this.getDriveLevel(driveForm)+1) {
+            	switch (this.getDriveLevel(driveForm)) {
             	case 2:
                     break;
                 case 3:
@@ -328,7 +328,7 @@ public class DriveStateCapability {
             	
             case Strings.Form_Master:
             	messages.add(Strings.Stats_LevelUp_FormGauge);
-            	switch (this.getDriveLevel(driveForm)+1) {
+            	switch (this.getDriveLevel(driveForm)) {
             	case 2:
                     break;
                 case 3:
@@ -349,7 +349,7 @@ public class DriveStateCapability {
             	
             case Strings.Form_Final:
             	messages.add(Strings.Stats_LevelUp_FormGauge);
-            	switch (this.getDriveLevel(driveForm)+1) {
+            	switch (this.getDriveLevel(driveForm)) {
             	case 2:
                     break;
                 case 3:
@@ -373,7 +373,7 @@ public class DriveStateCapability {
             player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 0.5f, 1.0f);
             PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
             
-            PacketDispatcher.sendTo(new ShowOverlayPacket("drivelevelup"),(EntityPlayerMP)player);
+            PacketDispatcher.sendTo(new ShowOverlayPacket("drivelevelup", driveForm),(EntityPlayerMP)player);
         }
 		@Override
 		public double getMaxDP() {

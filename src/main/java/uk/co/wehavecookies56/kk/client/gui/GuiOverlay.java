@@ -27,6 +27,7 @@ public class GuiOverlay extends GuiScreen {
     public static boolean showMunny;
     public static boolean showLevelUp;
     public static boolean showDriveLevelUp;
+    public static String driveForm;
     public static long timeExp;
     public static long timeMunny;
     public static long timeLevelUp;
@@ -160,10 +161,10 @@ public class GuiOverlay extends GuiScreen {
                 	showLevelUp = false;
             }
             
-            if (showDriveLevelUp) {
+            if (showDriveLevelUp || true) {
         		byte[] driveColor = new byte[] {(byte) 255,(byte) 255,(byte) 255};
 
-        		switch(mc.player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName()) {
+        		switch(driveForm) {//mc.player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName()
         		case Strings.Form_Valor:
                 	driveColor[0] = (byte) 255; driveColor[1] = (byte) 0; driveColor[2] = (byte) 0;
                 	break;
@@ -224,16 +225,16 @@ public class GuiOverlay extends GuiScreen {
                             GL11.glPopMatrix();
                             GL11.glPushMatrix();
                             {
-                                GL11.glTranslatef(2 * 0.75f + ((mc.fontRenderer.getStringWidth("999")) * 0.75f)+50, sHeight/3+4, 0);
+                                GL11.glTranslatef(2 * 0.75f + (mc.fontRenderer.getStringWidth("999") * 0.75f)+50, sHeight/3+4, 0);
                                 GL11.glScalef(0.75f, 0.75f, 1);
-                                drawString(mc.fontRenderer, "" + DRIVE.getDriveLevel(DRIVE.getActiveDriveName()), 0, 0, 0xFFFFFF);
+                                drawString(mc.fontRenderer, "" + DRIVE.getDriveLevel(driveForm), 0, 0, 0xFFFFFF);
                             }
                             GL11.glPopMatrix();
                             GL11.glPushMatrix();
                             {
-                                GL11.glTranslatef(100 + ((mc.fontRenderer.getStringWidth(DRIVE.getActiveDriveName())) * 0.75f) - 35, sHeight/3+4, 0);
+                                GL11.glTranslatef(150 - (mc.fontRenderer.getStringWidth(Utils.translateToLocal(driveForm)) * 0.75f), sHeight/3+4, 0);
                                 GL11.glScalef(0.75f, 0.75f, 1);
-                                drawString(mc.fontRenderer, Utils.translateToLocal(DRIVE.getActiveDriveName()), 0, 0, 0xFFFFFF);
+                                drawString(mc.fontRenderer, Utils.translateToLocal(driveForm), 0, 0, 0xFFFFFF);
                             }
                             GL11.glPopMatrix();
                         }
