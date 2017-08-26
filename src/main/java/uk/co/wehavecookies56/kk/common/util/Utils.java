@@ -161,23 +161,22 @@ public class Utils {
 		switch(dimension) {
 		case Strings.SoA:
 			idAndBlockPos.id = ModDimensions.diveToTheHeartID;
-			idAndBlockPos.pos = new BlockPos(-1, 64, -1);
+			idAndBlockPos.pos = new BlockPos(-1, 64, 7);
 			idAndBlockPos.offset = new BlockPos(0,0,0);
-
 			break;
+			
 		case Strings.TraverseTown:
 			idAndBlockPos.id = ModDimensions.traverseTownID;
 			idAndBlockPos.pos = new BlockPos(192, 5, 161);
 			idAndBlockPos.offset = new BlockPos(0,0,0);
 			break;
+			
 		case Strings.DestinyIslands:
 			idAndBlockPos.id = ModDimensions.destinyIslandsID;
 			idAndBlockPos.pos = new BlockPos(145, 27+60, 200);
 			idAndBlockPos.offset = new BlockPos(0,60,0);
 			break;
-		case Strings.OverWorld:
-			idAndBlockPos.id = 0;
-			break;
+			
 		default:
 			idAndBlockPos.id = -500;
 			idAndBlockPos.pos = new BlockPos(0,0,0);
