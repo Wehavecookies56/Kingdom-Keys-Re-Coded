@@ -21,9 +21,9 @@
                         "scale": 0.02
                     },
                     "gui": {
-                        "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
-                        "translation": [ 0.1, 0, 0 ],
-                        "scale": 0.008
+                        "rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
+                        "translation": [ 0, -0.3, 0 ],
+                        "scale": 0.0075
                     },
                     "firstperson_righthand": {
                         "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
@@ -38,7 +38,7 @@
                     "ground": {
                         "rotation": [ { "x": 45 }, { "y": 0 }, { "z": 0 } ],
                         "scale": 0.008
-                                      }
+                    }
                 }
             }
         ]
