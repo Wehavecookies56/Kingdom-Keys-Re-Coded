@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.world.dimension;
 
+import java.util.Random;
+
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
@@ -8,80 +10,68 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.Teleporter;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.world.WorldLoader;
 import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
-
-import java.util.Random;
 
 /**
  * Created by Toby on 01/08/2016.
  */
-public class TeleporterDestinyIslands extends Teleporter {
+public class DimensionTeleporter extends Teleporter {
 
     private final WorldServer worldServerInstance;
     /** A private Random() function in Teleporter */
     private final Random random;
     private final Long2ObjectMap<Teleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
-
-    public TeleporterDestinyIslands(WorldServer worldIn) {
+    private String dimension;
+    private BlockPos spawn;
+    
+    public DimensionTeleporter(WorldServer worldIn, String dimension, BlockPos pos) {
         super(worldIn);
         this.worldServerInstance = worldIn;
         this.random = new Random(worldIn.getSeed());
+        this.dimension = dimension;
+        this.spawn = pos;
     }
 
-    public void teleport(Entity entity, World world) {
+    public void teleport(Entity entity) {
         EntityPlayerMP playerMP = (EntityPlayerMP) entity;
-
-        //KingdomKeysWorld taverseTown = new KingdomKeysWorld(new ResourceLocation(Reference.MODID, "worlds/traversetown.world"), playerMP.world);
-
-        BlockPos spawn = new BlockPos(145, 27+60, 200);
 
         entity.setPosition(spawn.getX(), spawn.getY()+1, spawn.getZ());
 
         entity.motionX = entity.motionY = entity.motionZ = 0.0D;
         entity.setPosition(spawn.getX(), spawn.getY()+1, spawn.getZ());
 
-        if (playerMP.dimension != ModDimensions.destinyIslandsID)
-            playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, ModDimensions.destinyIslandsID, this);
+        if (playerMP.dimension != Utils.getDimensionIDAndBlockPos(dimension).id)
+            playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, Utils.getDimensionIDAndBlockPos(dimension).id, this);
 
         WorldSavedDataKingdomKeys data = WorldSavedDataKingdomKeys.get(playerMP.world);
 
         if (!data.isGenerated()) {
             entity.sendMessage(new TextComponentTranslation("Generating world, this will take a while..."));
             entity.sendMessage(new TextComponentTranslation("This only happens the first time you visit the world"));
-            //taverseTown.generate();
             WorldLoader loader = new WorldLoader();
-            loader.processAndGenerateStructureFile("destinyislands", playerMP.world.getMinecraftServer().getServer().getWorld(ModDimensions.destinyIslandsID), 0, 60, 0);
+            loader.processAndGenerateStructureFile(dimension, playerMP.world.getMinecraftServer().getServer().getWorld(Utils.getDimensionIDAndBlockPos(dimension).id), Utils.getDimensionIDAndBlockPos(dimension).offset);
+           
             entity.sendMessage(new TextComponentTranslation("World generated completed, please wait while chunks load..."));
-            entity.sendMessage(new TextComponentTranslation("Expect a large performance drop while this happens"));
+            entity.sendMessage(new TextComponentTranslation("Expect a large performance drop while this happens")); 
             data.setGenerated(true);
         }
 
         entity.setPositionAndRotation(spawn.getX(), spawn.getY()+1, spawn.getZ(), 180, 0);
         entity.setPosition(spawn.getX(), spawn.getY()+1, spawn.getZ());
         entity.setPosition(spawn.getX(), spawn.getY()+1, spawn.getZ());
-
-
-        //worldLoader.processAndGenerateSchematic(new ResourceLocation(Reference.MODID, "worlds/traversetown.world"), playerMP.world, 0, 0, 0);
-
-
     }
 
     @Override
     public void placeInPortal(Entity entityIn, float rotationYaw) {
-
-        if (worldServerInstance.provider.getDimension() == ModDimensions.destinyIslandsID) {
-
+        if (worldServerInstance.provider.getDimension() == Utils.getDimensionIDAndBlockPos(dimension).id) {
             entityIn.setLocationAndAngles(entityIn.posX, entityIn.posY, entityIn.posZ, entityIn.rotationYaw, 0.0F);
-
             entityIn.motionX = 0.0D;
             entityIn.motionY = 0.0D;
             entityIn.motionZ = 0.0D;
-
         }
-
     }
 
     @Override

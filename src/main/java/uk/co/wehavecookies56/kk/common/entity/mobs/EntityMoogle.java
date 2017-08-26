@@ -1,5 +1,8 @@
 package uk.co.wehavecookies56.kk.common.entity.mobs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -21,9 +24,6 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Toby on 19/08/2016.

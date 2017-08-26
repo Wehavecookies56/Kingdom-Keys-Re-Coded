@@ -9,7 +9,11 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagL;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagM;
 import uk.co.wehavecookies56.kk.common.item.ItemSynthesisBagS;
-import uk.co.wehavecookies56.kk.common.item.base.*;
+import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.item.org.ItemOrgShield;
 
 public class SlotCustom extends SlotItemHandler {

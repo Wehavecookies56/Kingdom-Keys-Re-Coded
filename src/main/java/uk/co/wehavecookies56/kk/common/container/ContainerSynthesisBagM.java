@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.container;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
@@ -11,8 +13,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventorySynthesisBagM;
 import uk.co.wehavecookies56.kk.common.container.slot.SlotSynthesisBag;
-
-import javax.annotation.Nonnull;
 
 public class ContainerSynthesisBagM extends Container {
 

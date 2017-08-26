@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -8,8 +10,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-
-import javax.annotation.Nonnull;
 
 public class EntityBlizzaga extends EntityThrowable {
     public EntityPlayer shootingEntity;

@@ -1,5 +1,10 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
+import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.ROXAS;
+import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.XEMNAS;
+
+import java.io.IOException;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -9,11 +14,6 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgMemberSelect;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import java.io.IOException;
-
-import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.ROXAS;
-import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.XEMNAS;
 
 /**
  * Created by Toby on 08/02/2017.

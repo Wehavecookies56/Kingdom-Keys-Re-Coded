@@ -6,10 +6,10 @@
  */
 package com.jadarstudios.developercapes.user;
 
-import com.jadarstudios.developercapes.cape.ICape;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.jadarstudios.developercapes.cape.ICape;
 
 /**
  * This player is getting their own cape

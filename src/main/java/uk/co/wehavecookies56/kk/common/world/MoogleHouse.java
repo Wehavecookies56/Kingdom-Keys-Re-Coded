@@ -1,5 +1,8 @@
 package uk.co.wehavecookies56.kk.common.world;
 
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
@@ -20,9 +23,6 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
-
-import java.util.List;
-import java.util.Random;
 
 public class MoogleHouse extends StructureVillagePieces.Village {
 

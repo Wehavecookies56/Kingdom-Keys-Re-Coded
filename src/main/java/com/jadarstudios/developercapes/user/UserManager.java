@@ -6,12 +6,12 @@
  */
 package com.jadarstudios.developercapes.user;
 
+import java.util.Collection;
+import java.util.HashMap;
+
 import com.jadarstudios.developercapes.DevCapes;
 import com.jadarstudios.developercapes.cape.CapeManager;
 import com.jadarstudios.developercapes.cape.ICape;
-
-import java.util.Collection;
-import java.util.HashMap;
 
 /**
  * Users can not be trusted to put capes on by themselves

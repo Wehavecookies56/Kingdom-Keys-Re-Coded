@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
+import java.nio.charset.Charset;
+
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,8 +13,6 @@ import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOr
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnPortalParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortalTP;
-
-import java.nio.charset.Charset;
 
 public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnData {
 

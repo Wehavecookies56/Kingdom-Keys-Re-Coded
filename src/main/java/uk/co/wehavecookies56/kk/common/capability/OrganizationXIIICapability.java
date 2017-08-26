@@ -1,5 +1,8 @@
 package uk.co.wehavecookies56.kk.common.capability;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
@@ -12,9 +15,6 @@ import net.minecraftforge.common.util.Constants;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Toby on 08/02/2017.

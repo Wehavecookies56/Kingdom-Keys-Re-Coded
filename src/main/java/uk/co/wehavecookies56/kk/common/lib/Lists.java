@@ -1,12 +1,12 @@
 package uk.co.wehavecookies56.kk.common.lib;
 
-import net.minecraft.item.Item;
-import uk.co.wehavecookies56.kk.common.util.Utils;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static uk.co.wehavecookies56.kk.common.item.ModItems.*;
+import net.minecraft.item.Item;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class Lists {
 

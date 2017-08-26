@@ -5,6 +5,13 @@ public class Strings {
     public static final String tabKingdomKeys = "tabKingdomKeys";
     public static final String tabKingdomKeysBlocks = "tabKingdomKeysblocks";
 
+    //Dimensions
+    public static final String
+    DestinyIslands = "destinyislands",
+	TraverseTown = "traversetown",
+	SoA = "soa",
+	OverWorld = "overworld";
+    
     // Records
     public static final String
     Disc_Duration_Desc = "disc.duration.desc",

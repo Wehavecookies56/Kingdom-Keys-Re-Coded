@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server;
 
+import java.io.IOException;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -8,8 +10,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.item.org.ItemClaymore;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
-
-import java.io.IOException;
 
 public class DesummonClaymore extends AbstractMessage.AbstractServerMessage<DesummonClaymore> {
 

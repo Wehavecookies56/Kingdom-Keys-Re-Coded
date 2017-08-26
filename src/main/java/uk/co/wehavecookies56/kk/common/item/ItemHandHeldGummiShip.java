@@ -1,5 +1,9 @@
 package uk.co.wehavecookies56.kk.common.item;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,13 +15,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.world.dimension.DimensionTeleporter;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDestinyIslands;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterTraverseTown;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class ItemHandHeldGummiShip extends ItemKKBase {
 
@@ -29,13 +30,16 @@ public class ItemHandHeldGummiShip extends ItemKKBase {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
     	if (!player.world.isRemote) {
+    		String nextDimension="";
         	if(player.dimension == ModDimensions.destinyIslandsID) {
-        		new TeleporterTraverseTown(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.traverseTownID)).teleport(((EntityPlayer) player), player.world);
+        		nextDimension = Strings.TraverseTown;
         	} else if(player.dimension == ModDimensions.traverseTownID) {
-                new TeleporterOverworld(player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
+        		nextDimension = Strings.OverWorld;
         	} else {
-                new TeleporterDestinyIslands(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.destinyIslandsID)).teleport(((EntityPlayer) player), player.world);
+        		nextDimension = Strings.DestinyIslands;
         	}
+    		new DimensionTeleporter(player.world.getMinecraftServer().getServer().getWorld(Utils.getDimensionIDAndBlockPos(nextDimension).id), nextDimension, null).teleport((EntityPlayer) player);
+
         }
         return super.onItemRightClick(world, player, hand);
     }   

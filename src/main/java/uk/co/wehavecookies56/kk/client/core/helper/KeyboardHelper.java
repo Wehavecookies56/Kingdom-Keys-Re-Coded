@@ -1,6 +1,7 @@
 package uk.co.wehavecookies56.kk.client.core.helper;
 
 import org.lwjgl.input.Keyboard;
+
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 
 public class KeyboardHelper {

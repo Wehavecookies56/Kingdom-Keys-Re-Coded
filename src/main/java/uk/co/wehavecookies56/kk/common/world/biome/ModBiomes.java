@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.world.biome;
 
+import java.awt.Color;
+
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeVoid;
 import net.minecraftforge.common.BiomeDictionary;
@@ -7,8 +9,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
-
-import java.awt.Color;
 
 
 public class ModBiomes {

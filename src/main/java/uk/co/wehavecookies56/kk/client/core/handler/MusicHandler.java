@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.client.core.handler;
 
+import java.util.Random;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -10,8 +12,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DimensionType;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
-
-import java.util.Random;
 
 public class MusicHandler implements ITickable {
 

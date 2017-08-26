@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
+import java.io.IOException;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.EnumHand;
@@ -8,8 +10,6 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import java.io.IOException;
 
 public class GuiMenu_Items_Player extends GuiMenu_Bars {
 

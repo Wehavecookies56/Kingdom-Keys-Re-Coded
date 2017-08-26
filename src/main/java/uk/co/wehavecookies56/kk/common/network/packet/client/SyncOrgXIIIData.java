@@ -1,5 +1,9 @@
 package uk.co.wehavecookies56.kk.common.network.packet.client;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,10 +14,6 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractClientMessage;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
 

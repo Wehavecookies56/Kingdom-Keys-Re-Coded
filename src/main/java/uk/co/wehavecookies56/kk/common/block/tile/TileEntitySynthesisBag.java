@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.block.tile;
 
+import java.util.Arrays;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -9,8 +11,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
-
-import java.util.Arrays;
 
 public class TileEntitySynthesisBag extends TileEntity implements IInventory {
     // Create and initialize the items variable that will store store the items

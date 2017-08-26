@@ -1,5 +1,10 @@
 package uk.co.wehavecookies56.kk.common.item.base;
 
+import java.text.DecimalFormat;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -18,10 +23,6 @@ import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import javax.annotation.Nullable;
-import java.text.DecimalFormat;
-import java.util.List;
 
 public class ItemKKRecord extends ItemRecord {
 

@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.entity.magic;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,8 +15,6 @@ import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardParticles;
-
-import javax.annotation.Nonnull;
 
 public class EntityBlizzara extends EntityThrowable {
     public EntityPlayer shootingEntity;
