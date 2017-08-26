@@ -248,8 +248,9 @@ public class InputHandler {
                             world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
                             player.sendMessage(new TextComponentTranslation("Cannot revert while in Anti form"));
                         } else {
-                            PacketDispatcher.sendToServer(new DriveFormPacket(DRIVE.getActiveDriveName(), true));
-                            if (DriveFormRegistry.isDriveFormRegistered(DRIVE.getActiveDriveName())) DriveFormRegistry.get(DRIVE.getActiveDriveName()).endDrive(player);
+                        	PacketDispatcher.sendToServer(new DriveFormPacket(DRIVE.getActiveDriveName(), true));
+                            if (DriveFormRegistry.isDriveFormRegistered(DRIVE.getActiveDriveName()))
+                            	DriveFormRegistry.get(DRIVE.getActiveDriveName()).endDrive(player);
                             GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
                             GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
                             world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);

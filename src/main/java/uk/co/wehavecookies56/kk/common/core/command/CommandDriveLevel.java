@@ -51,7 +51,7 @@ public class CommandDriveLevel implements ICommand {
 
     @Override
     public String getUsage (ICommandSender sender) {
-        return "/leveldrive <form> [level (can be negative)]";
+        return "/leveldrive <form> <level> [player]";
     }
 
     @Override
@@ -90,6 +90,7 @@ public class CommandDriveLevel implements ICommand {
                 TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
             else if (args.length >= 2 && args.length <= 3) {
             	//Get the player
+            	
             	if(args.length == 3) {
                     if(getPlayerFromUsername(args[2]) != null) {
                     	player = getPlayerFromUsername(args[2]);
@@ -142,8 +143,11 @@ public class CommandDriveLevel implements ICommand {
                 		TextHelper.sendFormattedChatMessage("Succesfully leveled up "+form+" to level "+args[1]+" for player "+args[2], TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
                 	else
                 		TextHelper.sendFormattedChatMessage("Succesfully leveled up "+form+" to level "+args[1], TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
-               }else
-                    TextHelper.sendFormattedChatMessage("Unknown form "+args[0], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());    
+               }else {
+                    TextHelper.sendFormattedChatMessage("Unknown form "+args[0], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+               }
+            }else{
+            	TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());            		
             }
         }
     }
