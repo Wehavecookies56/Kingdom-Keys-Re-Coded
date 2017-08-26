@@ -5,6 +5,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.GuiScrollingList;
@@ -13,6 +14,9 @@ import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
+import uk.co.wehavecookies56.kk.common.item.org.ItemOrgShield;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
@@ -61,19 +65,40 @@ public class GuiRecipeList extends GuiScrollingList {
     protected void drawSlot (int var1, int var2, int var3, int var4, Tessellator var5) {
         SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
 
-        int color = 0xFFFFFF;
+        int colour = 0xFFFFFF;
         if (parent.isRecipeUsable(RECIPES.getKnownRecipes().get(var1))) {
-            color = 0x55FF55;
+            colour = 0x55FF55;
+        }
+            Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)));
+        if (item instanceof ItemKeyblade) {
+            drawStats((ItemKeyblade)item, var1, var3, colour);
+        } else if (item instanceof ItemOrgWeapon) {
+            drawStats((ItemOrgWeapon) item, var1, var3, colour);
+        } else {
+            this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
+            this.ir.renderItemAndEffectIntoGUI(new ItemStack(item), this.left + 3, var3 + 12);
         }
 
-        ItemKeyblade keyblade = (ItemKeyblade) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)));
+    }
 
-        this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, color);
-        this.ir.renderItemAndEffectIntoGUI(new ItemStack(keyblade), this.left + 3, var3 + 12);
-        String plus = keyblade.getStrength() < 0 ? "" : "+";
-        this.f.drawString("Str: "+ plus +keyblade.getStrength(),this.left + 25, var3 + 12, 0xFF0000);
-        plus = keyblade.getMagic() < 0 ? "" : "+";
-        this.f.drawString("Mag: "+ plus +keyblade.getMagic(),this.left + 25, var3 + 20, 0x4444FF);
+    public void drawStats(ItemKeyblade item, int var1, int var3, int colour) {
+        SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+        this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
+        this.ir.renderItemAndEffectIntoGUI(new ItemStack(item), this.left + 3, var3 + 12);
+        String plus = item.getStrength() < 0 ? "" : "+";
+        this.f.drawString("Str: "+ plus +item.getStrength(),this.left + 25, var3 + 12, 0xFF0000);
+        plus = item.getMagic() < 0 ? "" : "+";
+        this.f.drawString("Mag: "+ plus +item.getMagic(),this.left + 25, var3 + 20, 0x4444FF);
+    }
+
+    public void drawStats(ItemOrgWeapon item, int var1, int var3, int colour) {
+        SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+        this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
+        this.ir.renderItemAndEffectIntoGUI(new ItemStack(item), this.left + 3, var3 + 12);
+        String plus = item.getStrength() < 0 ? "" : "+";
+        this.f.drawString("Str: "+ plus +item.getStrength(),this.left + 25, var3 + 12, 0xFF0000);
+        plus = item.getMagic() < 0 ? "" : "+";
+        this.f.drawString("Mag: "+ plus +item.getMagic(),this.left + 25, var3 + 20, 0x4444FF);
     }
 
 }

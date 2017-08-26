@@ -6,6 +6,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -26,6 +27,7 @@ import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -462,8 +464,14 @@ public class GuiSynthesis extends GuiTooltip {
                         GL11.glTranslatef(posX, 70, 0);
                         GL11.glScalef(2 * scale, 2 * scale, 2 * scale);
                         drawString(fontRenderer, Utils.translateToLocal(RECIPES.getKnownRecipes().get(i).toString() + ".name"), 0, 0, 0xFFF700);
-                        drawString(fontRenderer, "Strength: +"+((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getStrength(), 0, 10, 0xFF0000);
-                        drawString(fontRenderer, "Magic: +"+ ((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getMagic(), 0, 20, 0x4444FF);
+                        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)));
+                        if (item instanceof ItemKeyblade) {
+                            drawString(fontRenderer, "Strength: +" + ((ItemKeyblade) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getStrength(), 0, 10, 0xFF0000);
+                            drawString(fontRenderer, "Magic: +" + ((ItemKeyblade) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getMagic(), 0, 20, 0x4444FF);
+                        } else if (item instanceof ItemOrgWeapon) {
+                            drawString(fontRenderer, "Strength: +" + ((ItemOrgWeapon) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getStrength(), 0, 10, 0xFF0000);
+                            drawString(fontRenderer, "Magic: +" + ((ItemOrgWeapon) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getMagic(), 0, 20, 0x4444FF);
+                        }
                     }
                     GL11.glPopMatrix();
 
