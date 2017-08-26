@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.block.tile;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -13,8 +15,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import javax.annotation.Nullable;
 
 /**
  * Created by Toby on 06/11/2016.

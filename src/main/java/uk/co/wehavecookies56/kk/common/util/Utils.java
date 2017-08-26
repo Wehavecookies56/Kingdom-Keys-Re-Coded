@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.util;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -12,11 +13,13 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
 import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.server.SummonOrgWeapon;
+import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 
 /**
  * Created by Toby on 19/07/2016.
@@ -152,4 +155,35 @@ public class Utils {
 
     public static enum OrgMember { XEMNAS, XIGBAR, XALDIN, VEXEN, LEXAEUS, ZEXION, SAIX, AXEL, DEMYX, LUXORD, MARLUXIA, LARXENE, ROXAS, NONE}
 
+    public static IDAndBlockPos getDimensionIDAndBlockPos(String dimension) {
+    	IDAndBlockPos idAndBlockPos = new IDAndBlockPos();
+    	int id;
+		switch(dimension) {
+		case Strings.SoA:
+			idAndBlockPos.id = ModDimensions.diveToTheHeartID;
+			idAndBlockPos.pos = new BlockPos(-1, 64, -1);
+			idAndBlockPos.offset = new BlockPos(0,0,0);
+
+			break;
+		case Strings.TraverseTown:
+			idAndBlockPos.id = ModDimensions.traverseTownID;
+			idAndBlockPos.pos = new BlockPos(192, 5, 161);
+			idAndBlockPos.offset = new BlockPos(0,0,0);
+			break;
+		case Strings.DestinyIslands:
+			idAndBlockPos.id = ModDimensions.destinyIslandsID;
+			idAndBlockPos.pos = new BlockPos(145, 27+60, 200);
+			idAndBlockPos.offset = new BlockPos(0,60,0);
+			break;
+		case Strings.OverWorld:
+			idAndBlockPos.id = 0;
+			break;
+		default:
+			idAndBlockPos.id = -500;
+			idAndBlockPos.pos = new BlockPos(0,0,0);
+			System.out.println("ID not found for world "+dimension);
+		}
+    	return idAndBlockPos;
+    	
+    }
 }

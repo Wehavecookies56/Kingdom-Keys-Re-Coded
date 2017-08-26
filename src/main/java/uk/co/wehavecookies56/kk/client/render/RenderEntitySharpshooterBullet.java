@@ -1,6 +1,11 @@
 package uk.co.wehavecookies56.kk.client.render;
 
+import java.util.List;
+
+import org.lwjgl.opengl.GL11;
+
 import com.google.common.base.Function;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -17,12 +22,9 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.b3d.B3DLoader;
 import net.minecraftforge.common.model.TRSRTransformation;
-import org.lwjgl.opengl.GL11;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
-
-import java.util.List;
 
 public class RenderEntitySharpshooterBullet extends Render<EntitySharpshooterBullet> {
 

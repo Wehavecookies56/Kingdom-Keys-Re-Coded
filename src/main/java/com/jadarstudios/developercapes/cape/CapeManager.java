@@ -6,12 +6,12 @@
  */
 package com.jadarstudios.developercapes.cape;
 
-import com.jadarstudios.developercapes.DevCapes;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.HashMap;
+
+import com.jadarstudios.developercapes.DevCapes;
 
 /**
  * This manages all of the capes, be nice to it or you won't get one!

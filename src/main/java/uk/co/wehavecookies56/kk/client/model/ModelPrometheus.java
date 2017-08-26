@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.client.model;
 
+import java.util.HashMap;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -8,8 +10,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
 import uk.co.wehavecookies56.kk.client.core.helper.ModelHelper;
-
-import java.util.HashMap;
 
 public class ModelPrometheus extends ModelBase {
 

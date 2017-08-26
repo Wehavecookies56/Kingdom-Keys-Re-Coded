@@ -1,17 +1,16 @@
 package uk.co.wehavecookies56.kk.common.network.packet.client;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDriveData> {
 

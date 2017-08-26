@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.Teleporter;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
@@ -37,7 +36,7 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         this.random = new Random(worldIn.getSeed());
     }
 
-    public void teleport(Entity entity, World world) {
+    public void teleport(Entity entity) {
         EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 
         int height = 3;

@@ -1,17 +1,47 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
+import java.io.IOException;
+
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
-import uk.co.wehavecookies56.kk.client.gui.pages.*;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageArmourKeyblade;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageArmourOrgXIII;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageBugBloxAbout;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageBugBloxSpecial;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageBugBloxStandard;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageCommandMenuAbout;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageCommandMenuAttack;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageCommandMenuDrive;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageCommandMenuItems;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageCommandMenuMagic;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageDriveFormsAbout;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageDriveFormsDP;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageDriveFormsForms;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageKeybladeAbout;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageKeybladeCreation;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageKeybladeSummoning;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageKeybladesList;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageMagicAbout;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageMagicMP;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageMagicMagics;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageMiscCommands;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageMiscCraftingMaterials;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageMiscHearts;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageMiscMenu;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageMiscMunny;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageMiscMusicDiscs;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageMiscOrganizationWeapons;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageSynthesisAbout;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageSynthesisMaterials;
+import uk.co.wehavecookies56.kk.client.gui.pages.PageSynthesisRecipes;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
-
-import java.io.IOException;
 
 public class GuiJournal extends GuiScreen {
 

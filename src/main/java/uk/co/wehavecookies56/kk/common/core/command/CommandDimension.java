@@ -1,5 +1,10 @@
 package uk.co.wehavecookies56.kk.common.core.command;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -12,11 +17,10 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
-import uk.co.wehavecookies56.kk.common.world.dimension.*;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
+import uk.co.wehavecookies56.kk.common.util.IDAndBlockPos;
+import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.world.dimension.DimensionTeleporter;
+import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
 
 public class CommandDimension implements ICommand {
 
@@ -85,21 +89,16 @@ public class CommandDimension implements ICommand {
             }
             if(player != null) {
                 if (!player.world.isRemote) {
-                	switch(args[0]) {
-                	case "soa":
-                        new TeleporterDiveToTheHeart(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.diveToTheHeartID)).teleport(player, player.world);
-                		break;
-                	case "overworld":
+                	String dimension = args[0].toLowerCase();
+                	if(dimension.equals("overworld"))
                         new TeleporterOverworld(player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
-                        break;
-                	case "traversetown":
-                		new TeleporterTraverseTown(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.traverseTownID)).teleport(((EntityPlayer) player), player.world);
-                		break;
-                	case "destinyislands":
-                        new TeleporterDestinyIslands(player.world.getMinecraftServer().getServer().getWorld(ModDimensions.destinyIslandsID)).teleport(((EntityPlayer) player), player.world);
-                		break;
-                	default:
-                        TextHelper.sendFormattedChatMessage("Invalid dimension, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+                	else {	
+                    	IDAndBlockPos idAndBlockPos = Utils.getDimensionIDAndBlockPos(dimension);
+	                	if(idAndBlockPos.id != -500 && idAndBlockPos.pos != null) {
+	                		new DimensionTeleporter(player.world.getMinecraftServer().getServer().getWorld(idAndBlockPos.id), dimension, idAndBlockPos.pos).teleport((EntityPlayer) player);
+	                	} else {
+	                        TextHelper.sendFormattedChatMessage("Invalid dimension, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+	                	}
                 	}
                 }
             }else{

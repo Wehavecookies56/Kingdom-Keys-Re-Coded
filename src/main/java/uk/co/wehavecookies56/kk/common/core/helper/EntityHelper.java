@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.core.helper;
 
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
@@ -12,8 +14,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
-
-import java.util.List;
 
 public class EntityHelper 
 {

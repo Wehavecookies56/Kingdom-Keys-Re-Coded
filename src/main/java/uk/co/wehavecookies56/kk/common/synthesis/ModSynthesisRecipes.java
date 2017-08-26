@@ -1,9 +1,9 @@
 package uk.co.wehavecookies56.kk.common.synthesis;
 
+import static uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry.registerRecipe;
+
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.synthesis.recipe.*;
-
-import static uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry.registerRecipe;
 
 public class ModSynthesisRecipes {
 

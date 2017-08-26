@@ -1,7 +1,12 @@
 package uk.co.wehavecookies56.kk.client.core.helper;
 
+import java.util.HashMap;
+
+import org.lwjgl.opengl.GL11;
+
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -11,9 +16,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.Attributes;
 import net.minecraftforge.client.model.obj.OBJModel;
-import org.lwjgl.opengl.GL11;
-
-import java.util.HashMap;
 
 public class ModelHelper {
 

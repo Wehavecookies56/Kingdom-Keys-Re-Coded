@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.network.packet.server;
 
+import java.io.IOException;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -14,8 +16,6 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractServerMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
-
-import java.io.IOException;
 
 public class DeSummonKeyblade extends AbstractServerMessage<DeSummonKeyblade> {
 

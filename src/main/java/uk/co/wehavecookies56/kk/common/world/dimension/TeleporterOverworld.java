@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.world.dimension;
 
+import java.util.Random;
+
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
@@ -11,8 +13,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-
-import java.util.Random;
 
 /**
  * Created by Toby on 01/08/2016.

@@ -1,11 +1,11 @@
 package uk.co.wehavecookies56.kk.common.block;
 
+import java.util.Random;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import uk.co.wehavecookies56.kk.common.block.base.BlockBlox;
-
-import java.util.Random;
 
 public class BlockPrizeBlox extends BlockBlox {
 

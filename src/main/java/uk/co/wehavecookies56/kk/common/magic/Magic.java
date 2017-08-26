@@ -8,7 +8,13 @@ import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.*;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicAero;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicBlizzard;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicCure;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicFire;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicKH1Fire;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicStop;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicThunder;
 
 public class Magic {
 

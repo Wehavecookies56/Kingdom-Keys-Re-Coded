@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.network.packet.client;
 
+import java.io.IOException;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
@@ -8,8 +10,6 @@ import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveSta
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryDriveForms;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractClientMessage;
-
-import java.io.IOException;
 
 public class SyncDriveInventory extends AbstractClientMessage<SyncDriveInventory> {
 

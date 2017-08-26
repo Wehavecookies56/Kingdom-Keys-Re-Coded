@@ -6,13 +6,13 @@
  */
 package com.jadarstudios.developercapes.user;
 
-import com.jadarstudios.developercapes.DevCapes;
-import com.jadarstudios.developercapes.cape.CapeManager;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.jadarstudios.developercapes.DevCapes;
+import com.jadarstudios.developercapes.cape.CapeManager;
 
 /**
  * All groups have to be managed
