@@ -129,7 +129,7 @@ public class TeleporterDiveToTheHeart extends Teleporter {
             
             if(entityIn instanceof EntityPlayer) {
             	EntityPlayer player = (EntityPlayer) entityIn;
-            	if (!player.world.isRemote) {
+            	if (player.world.isRemote) {
                     if (player.dimension == ModDimensions.diveToTheHeartID) {
                         player.sendMessage(new TextComponentTranslation("Welcome to Kingdom Keys Re:Coded!\nPress %1$s to open the menu\nMake a choice between the Sword, Shield and Staff then leave using the door", InputHandler.Keybinds.OPENMENU.getKeybind().getDisplayName()));
                     }
