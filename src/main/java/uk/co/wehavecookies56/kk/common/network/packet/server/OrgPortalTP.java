@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
-import uk.co.wehavecookies56.kk.common.world.dimension.DimensionTeleporter;
+import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOrgPortal;
 
 public class OrgPortalTP extends AbstractMessage.AbstractServerMessage<OrgPortalTP> {
 
@@ -44,7 +44,7 @@ public class OrgPortalTP extends AbstractMessage.AbstractServerMessage<OrgPortal
     public void process (EntityPlayer player, Side side) {
     	//TODO dimension
     	BlockPos pos = new BlockPos(x,y,z);
-    	new DimensionTeleporter((WorldServer) player.world, null, pos).teleport(player, pos, dim);
+    	new TeleporterOrgPortal((WorldServer) player.world).teleport(player, pos, dim);
     	
        // player.setPositionAndUpdate(x,y,z);
     }

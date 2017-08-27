@@ -6,10 +6,7 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.play.server.SPacketEntity;
-import net.minecraft.network.play.server.SPacketEntityTeleport;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.Teleporter;
@@ -37,11 +34,7 @@ public class DimensionTeleporter extends Teleporter {
         this.dimension = dimension;
         this.spawn = pos;
     }
-    
-    /**
-     * World files teleporter
-     * @param entity
-     */
+
     public void teleport(Entity entity) {
         EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 
@@ -69,24 +62,6 @@ public class DimensionTeleporter extends Teleporter {
         entity.setPositionAndRotation(spawn.getX(), spawn.getY()+1, spawn.getZ(), 180, 0);
         entity.setPosition(spawn.getX(), spawn.getY()+1, spawn.getZ());
         entity.setPosition(spawn.getX(), spawn.getY()+1, spawn.getZ());
-    }
-    
-    /**
-     * Org portal teleporter
-     * @param player
-     * @param pos
-     * @param dimension
-     */
-    public void teleport(EntityPlayer player, BlockPos pos, int dimension) {
-        EntityPlayerMP playerMP = (EntityPlayerMP) player;
-        playerMP.setPositionAndUpdate(pos.getX()+0.5, pos.getY(), pos.getZ()+0.5);
-        playerMP.motionX = playerMP.motionY = playerMP.motionZ = 0;
-        playerMP.setPositionAndUpdate(pos.getX()+0.5, pos.getY(), pos.getZ()+0.5);
-        if (player.world.provider.getDimension() != dimension)
-            playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, dimension, this);
-        playerMP.setPositionAndUpdate(pos.getX()+0.5, pos.getY(), pos.getZ()+0.5);
-        playerMP.connection.sendPacket(new SPacketEntityTeleport(playerMP));
-        playerMP.connection.sendPacket(new SPacketEntity(playerMP.getEntityId()));
     }
 
     @Override
