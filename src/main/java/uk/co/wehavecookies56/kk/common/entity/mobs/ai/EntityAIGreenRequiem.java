@@ -32,9 +32,11 @@ public class EntityAIGreenRequiem extends EntityAITarget {
             if(ticksBeforeNextHeal <= 0) {
                 for(EntityLivingBase elb : EntityHelper.getEntitiesNear(this.taskOwner, 70))
                     if(elb instanceof IKHMob && (((IKHMob)elb).getType() == MobType.HEARTLESS_EMBLEM || ((IKHMob)elb).getType() == MobType.HEARTLESS_PUREBLOOD)){
-                        elb.setHealth(elb.getHealth() + 5);
-                        this.taskOwner.world.playSound(null, this.taskOwner.posX, this.taskOwner.posY, this.taskOwner.posZ, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.HOSTILE, 0.2F, 1.0F);
-                        PacketDispatcher.sendToAllAround(new SpawnCureParticles(elb,1), new NetworkRegistry.TargetPoint(this.taskOwner.dimension, this.taskOwner.posX, this.taskOwner.posY, this.taskOwner.posZ, 20));
+                        if(elb.getHealth() > 0) {
+                        	elb.setHealth(elb.getHealth() + 5);
+	                        this.taskOwner.world.playSound(null, this.taskOwner.posX, this.taskOwner.posY, this.taskOwner.posZ, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.HOSTILE, 0.2F, 1.0F);
+	                        PacketDispatcher.sendToAllAround(new SpawnCureParticles(elb,1), new NetworkRegistry.TargetPoint(this.taskOwner.dimension, this.taskOwner.posX, this.taskOwner.posY, this.taskOwner.posZ, 20));
+                        }
                     }
                 ticksBeforeNextHeal = 100 + this.taskOwner.getRNG().nextInt(10);
             }
