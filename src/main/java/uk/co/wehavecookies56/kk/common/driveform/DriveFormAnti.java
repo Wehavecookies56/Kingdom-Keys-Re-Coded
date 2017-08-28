@@ -1,27 +1,38 @@
 package uk.co.wehavecookies56.kk.common.driveform;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
-import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class DriveFormAnti extends DriveForm {
+	
+	@SubscribeEvent
+	public static void healEvent(LivingHealEvent event) {
+		if (event.getEntity() instanceof EntityPlayer) {
+        	EntityPlayer player = (EntityPlayer) event.getEntity();
+        	
+            DriveStateCapability.IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+
+        	if(DRIVE.getActiveDriveName().equals(Strings.Form_Anti)) {
+        		event.setCanceled(true);
+        	}
+		}
+	}
+	
     double cost;
 
     public DriveFormAnti (double cost) {

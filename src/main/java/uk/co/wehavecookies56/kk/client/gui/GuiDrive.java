@@ -16,6 +16,7 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 @SideOnly (Side.CLIENT)
 public class GuiDrive extends GuiScreen {
@@ -66,7 +67,7 @@ public class GuiDrive extends GuiScreen {
             currDrive = guiLength;
         }
         if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
-            if (!STATE.getActiveDriveName().equals("none")) {
+            if (!STATE.getActiveDriveName().equals("none") && !STATE.getActiveDriveName().equals(Strings.Form_Anti)) {
                 event.setCanceled(true);
             }
         }

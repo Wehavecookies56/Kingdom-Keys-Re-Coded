@@ -499,7 +499,7 @@ public class ItemEvents {
 	@SubscribeEvent
     public void onItemTossEvent (ItemTossEvent event) {
         if (!event.getPlayer().world.isRemote)
-        	if(event.getPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
+        	if(event.getPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive() && !event.getPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Anti)) {
         		event.setCanceled(true);
         		return;
         	}
