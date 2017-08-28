@@ -91,49 +91,41 @@ public class UsernameHandler {
             {
                 EntityPlayer player = event.getPlayer();
                 event.setCanceled(true);
-                WorldServer worlds[] = DimensionManager.getWorlds();
+                
+                String nameFormat = "\u00A7f";
+                String chatFormat = "\u00A7f";
+                String prefixFormat = "\u00A7f";
+                String prefix = "";
+                String prefixWithFormat = "";
 
-                List players = null;
-                for(int p=0; p<worlds.length;p++)
-                {
-                    players = worlds[p].playerEntities;
+                if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("nameformat"))
+                    nameFormat = this.usernamePropsRegistry.get(event.getUsername()).get("nameformat");
 
-                    String nameFormat = null;
-                    String chatFormat = null;
-                    String prefixFormat = null;
-                    String prefix = null;
+                if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("chatformat"))
+                    chatFormat = this.usernamePropsRegistry.get(event.getUsername()).get("chatformat");
 
-                    for (int i = 0; i < players.size(); i++)
-                    {
-                        if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("nameformat")){
-                            nameFormat = this.usernamePropsRegistry.get(event.getUsername()).get("nameformat");
-                        }
-                        else nameFormat = "\u00A7f";
+                if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefixformat"))
+                    prefixFormat = this.usernamePropsRegistry.get(event.getUsername()).get("prefixformat");
 
-                        if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("chatformat")){
-                            chatFormat = this.usernamePropsRegistry.get(event.getUsername()).get("chatformat");
-                        }
-                        else chatFormat = "\u00A7f";
+                if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefix"))
+                    prefix = this.usernamePropsRegistry.get(event.getUsername()).get("prefix");
+                
+                if (!prefix.isEmpty()) 
+                	prefixWithFormat =  "[" + prefixFormat + prefix + TextFormatting.WHITE + "] ";
+                
+                String nameWithFormat = TextFormatting.WHITE + "<" + nameFormat + player.getDisplayNameString() + TextFormatting.WHITE + "> ";
+                	
+                TextComponentTranslation message = new TextComponentTranslation(prefixWithFormat + nameWithFormat + chatFormat + event.getMessage().replaceAll("%", "%%"));
+                
+                
+                List<EntityPlayer> players = null;
 
-                        if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefixformat")){
-                            prefixFormat = this.usernamePropsRegistry.get(event.getUsername()).get("prefixformat");
-                        }
-                        else prefixFormat = "\u00A7f";
-
-                        if (this.usernamePropsRegistry.get(event.getUsername()).containsKey("prefix")){
-                            prefix = this.usernamePropsRegistry.get(event.getUsername()).get("prefix");
-                        }
-                        else prefix = "";
-
-                        EntityPlayer target = (EntityPlayer) players.get(i);
-                        String prefixWithFormat = "";
-                        if (!prefix.isEmpty()) prefixWithFormat =  "[" + prefixFormat + prefix + TextFormatting.WHITE + "] ";
-                        String nameWithFormat = TextFormatting.WHITE + "<" + nameFormat + player.getDisplayNameString() + TextFormatting.WHITE + "> ";
-                        TextComponentTranslation message = new TextComponentTranslation(prefixWithFormat + nameWithFormat + chatFormat + event.getMessage());
+                for(WorldServer world : DimensionManager.getWorlds()){
+                	for(EntityPlayer target : world.playerEntities){
                         target.sendMessage(message);
-                        LogManager.getLogger().info(message.getUnformattedText());
-                      }
+                    }
                 }
+               LogManager.getLogger().info(message.getUnformattedText());
             }
         }
     }
