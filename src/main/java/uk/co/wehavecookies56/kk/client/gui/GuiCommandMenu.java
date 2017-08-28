@@ -45,8 +45,6 @@ public class GuiCommandMenu extends GuiScreen {
     int MENU_WIDTH = 71;
     int MENU_HEIGHT = 15;
 
-    int alpha = 255;
-
     int textX = 0;
 
     public static List<String> driveCommands;
@@ -61,14 +59,13 @@ public class GuiCommandMenu extends GuiScreen {
     public static int magicselected = 0;
     public static int potionselected = 0;
     public static int driveselected = 0;
-    public static boolean FireUnlocked = true, BlizzardUnlocked, ThunderUnlocked, CureUnlocked, GravityUnlocked, AeroUnlocked, StopUnlocked, ValorUnlocked, WisdomUnlocked, LimitUnlocked, MasterUnlocked, FinalUnlocked;
+    public static boolean FireUnlocked, BlizzardUnlocked, ThunderUnlocked, CureUnlocked, GravityUnlocked, AeroUnlocked, StopUnlocked, ValorUnlocked, WisdomUnlocked, LimitUnlocked, MasterUnlocked, FinalUnlocked;
 
     ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/commandmenu.png");
 
     @SubscribeEvent (priority = EventPriority.NORMAL)
     public void onRenderOverlayPost (RenderGameOverlayEvent event) {
-        if(mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode())
-        {
+        if(mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()){
             if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT && !mc.ingameGUI.getChatGUI().getChatOpen() && MainConfig.displayGUI()) {
                 GL11.glPushMatrix();
                 {
@@ -97,6 +94,8 @@ public class GuiCommandMenu extends GuiScreen {
     }
 
     public void drawCommandMenu (int width, int height) {
+        int alpha = MainConfig.client.hud.guiAlpha;
+
         IDriveState DS = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
 
@@ -119,14 +118,12 @@ public class GuiCommandMenu extends GuiScreen {
             if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), ItemStack.EMPTY)) 
             	this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
         
-        // Magic:"+magicselected+" Drive:"+driveselected);
-        //System.out.println("Is KH1 Fire?: "+ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer).getKH1Fire());
         float scale = 1.05f;
         int colour;
         // DRIVE
         GL11.glPushMatrix();
         {
-            GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) 255);
+            GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
 
             int u;
             int v = 0;
@@ -135,7 +132,8 @@ public class GuiCommandMenu extends GuiScreen {
             mc.renderEngine.bindTexture(texture);
             GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * DRIVE), 0);
             GL11.glScalef(scale, scale, scale);
-            if (submenu != 0) GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) this.alpha);
+            if (submenu != 0)
+            	GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) alpha);
 
             if (selected == DRIVE) { // Selected
                 textX = 5;
@@ -152,6 +150,7 @@ public class GuiCommandMenu extends GuiScreen {
                 else
                     drawTexturedModalRect(0, 0, TOP_WIDTH, 0, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
             }
+            
             if(this.submenu == 0)
             {
                 if (DS.getInDrive()) {
@@ -172,7 +171,7 @@ public class GuiCommandMenu extends GuiScreen {
         // ITEMS
         GL11.glPushMatrix();
         {
-            GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
+            GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
 
             int u;
             int v = 0;
@@ -181,7 +180,8 @@ public class GuiCommandMenu extends GuiScreen {
             mc.renderEngine.bindTexture(texture);
             GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * ITEMS), 0);
             GL11.glScalef(scale, scale, scale);
-            if (submenu != 0) GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) this.alpha);
+            if (submenu != 0)
+            	GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) alpha);
             if (selected == ITEMS) { // Selected
                 textX = 5;
                 if (EntityEvents.isHostiles)
@@ -210,7 +210,7 @@ public class GuiCommandMenu extends GuiScreen {
         // MAGIC
         GL11.glPushMatrix();
         {
-            GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
+            GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
 
             int u;
             int v = 0;
@@ -218,7 +218,8 @@ public class GuiCommandMenu extends GuiScreen {
             mc.renderEngine.bindTexture(texture);
             GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * MAGIC), 0);
             GL11.glScalef(scale, scale, scale);
-            if (submenu != 0) GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) this.alpha);
+            if (submenu != 0) 
+            	GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) alpha);
             if (selected == MAGIC) { // Selected
                 textX = 5;
                 if (EntityEvents.isHostiles)
@@ -253,7 +254,7 @@ public class GuiCommandMenu extends GuiScreen {
         // ATTACK
         GL11.glPushMatrix();
         {
-            GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
+            GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
 
             int u;
             int v = 0;
@@ -262,7 +263,8 @@ public class GuiCommandMenu extends GuiScreen {
             GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * ATTACK), 0);
             GL11.glScalef(scale, scale, scale);
 
-            if (submenu != 0)     GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) this.alpha);
+            if (submenu != 0)   
+            	GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) alpha);
 
             if (selected == ATTACK) { // Selected
 
@@ -290,12 +292,13 @@ public class GuiCommandMenu extends GuiScreen {
         // TOP
         GL11.glPushMatrix();
         {
-            GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
+            GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
 
             mc.renderEngine.bindTexture(texture);
             GL11.glTranslatef(0, (height - MENU_HEIGHT * scale * TOP), 0);
             GL11.glScalef(scale, scale, scale);
-            if (submenu != 0) GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) this.alpha);
+            if (submenu != 0)
+            	GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) alpha);
 
             if (EntityEvents.isHostiles)
                 drawTexturedModalRect(0, 0, 0, 15, TOP_WIDTH, TOP_HEIGHT);
@@ -312,7 +315,7 @@ public class GuiCommandMenu extends GuiScreen {
             // MAGIC TOP
             GL11.glPushMatrix();
             {
-                GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
+                GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
                 mc.renderEngine.bindTexture(texture);
                 GL11.glTranslatef(5, (height - MENU_HEIGHT * scale * (spells.size() + 1)), 0);
                 GL11.glScalef(scale, scale, scale);
@@ -325,7 +328,7 @@ public class GuiCommandMenu extends GuiScreen {
             for (int i = 0; i < spells.size(); i++) {
                 GL11.glPushMatrix();
                 {
-                    GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
+                    GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
                     int u;
                     int v;
                     int x;
@@ -355,11 +358,12 @@ public class GuiCommandMenu extends GuiScreen {
             }
         }
         // Items submenu //
-        if (items == null) {} else if (!items.isEmpty()) {
+        if (items == null) {} 
+        else if (!items.isEmpty()) {
             // Items TOP
             GL11.glPushMatrix();
             {
-                GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
+                GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
                 mc.renderEngine.bindTexture(texture);
                 GL11.glTranslatef(5, (height - MENU_HEIGHT * scale * (items.size() + 1)), 0);
                 GL11.glScalef(scale, scale, scale);
@@ -373,7 +377,7 @@ public class GuiCommandMenu extends GuiScreen {
             for (int i = 0; i < items.size(); i++) {
                 GL11.glPushMatrix();
                 {
-                    GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
+                    GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
                     int u;
                     int v;
                     int x;
@@ -398,11 +402,12 @@ public class GuiCommandMenu extends GuiScreen {
         }
 
         // Drive form submenu //
-        if (driveCommands == null) {} else if (!driveCommands.isEmpty()) {
+        if (driveCommands == null) {} 
+        else if (!driveCommands.isEmpty()) {
             // DRIVE TOP
             GL11.glPushMatrix();
             {
-                GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
+                GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
                 mc.renderEngine.bindTexture(texture);
                 GL11.glTranslatef(5, (height - MENU_HEIGHT * scale * (driveCommands.size() + 1)), 0);
                 GL11.glScalef(1.25f, scale, scale);
@@ -412,7 +417,7 @@ public class GuiCommandMenu extends GuiScreen {
 
             GL11.glPushMatrix();
             {
-                GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
+                GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
                 GL11.glTranslatef(5, (height - MENU_HEIGHT * scale * (driveCommands.size() + 1)), 0);
                 GL11.glScalef(scale, scale, scale);
                 if (submenu == SUB_DRIVE) drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Drive_Title), 6, 4, 0xFFFFFF);
@@ -421,7 +426,7 @@ public class GuiCommandMenu extends GuiScreen {
             for (int i = 0; i < driveCommands.size(); i++) {
                 GL11.glPushMatrix();
                 {
-                    GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) this.alpha);
+                    GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
                     int u;
                     int v;
                     int x;
@@ -443,7 +448,7 @@ public class GuiCommandMenu extends GuiScreen {
 
                 GL11.glPushMatrix();
                 {
-                    GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) this.alpha);
+                    GL11.glColor4ub((byte) 80, (byte) 80, (byte) 80, (byte) alpha);
                     int x;
                     x = (driveselected == i) ? 10 : 5;
                     GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * (driveCommands.size() - i)), 0);
