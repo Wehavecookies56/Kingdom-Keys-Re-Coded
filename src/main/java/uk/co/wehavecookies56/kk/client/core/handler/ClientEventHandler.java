@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.client.core.handler;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,6 +16,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Bars;
+import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;
@@ -84,14 +87,13 @@ public class ClientEventHandler {
             }
         }
     }
-
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
         TickEvent.Phase phase = event.phase;
         TickEvent.Type type = event.type;
         if (phase == TickEvent.Phase.END) {
             if (type.equals(TickEvent.Type.CLIENT)) {
-                if (!mc.isGamePaused() && MainConfig.client.sound.EnableCustomMusic) {
+            	if (!mc.isGamePaused() && MainConfig.client.sound.EnableCustomMusic) {
                     musicHandler.update();
                     if (mc.currentScreen instanceof GuiMenu_Bars) {
                         mc.getSoundHandler().setSoundLevel(SoundCategory.MASTER, 0.2F);
@@ -125,9 +127,11 @@ public class ClientEventHandler {
         }
     }
 
+    long lastAlarmStart;
     @SubscribeEvent
     public void renderTick(TickEvent.RenderTickEvent event) {
         EntityPlayer player = Minecraft.getMinecraft().player;
+
         if (InputHandler.lockOn != null && player != null) {
             if(InputHandler.lockOn.isDead) {
                 InputHandler.lockOn = null;
