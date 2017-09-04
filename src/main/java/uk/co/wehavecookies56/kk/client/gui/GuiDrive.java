@@ -16,6 +16,7 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 @SideOnly (Side.CLIENT)
 public class GuiDrive extends GuiScreen {
@@ -66,7 +67,7 @@ public class GuiDrive extends GuiScreen {
             currDrive = guiLength;
         }
         if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
-            if (!STATE.getActiveDriveName().equals("none")) {
+            if (!STATE.getActiveDriveName().equals("none") && !STATE.getActiveDriveName().equals(Strings.Form_Anti)) {
                 event.setCanceled(true);
             }
         }
@@ -130,18 +131,6 @@ public class GuiDrive extends GuiScreen {
             if (STATE.getDP() >= getMaxBars(STATE.getDriveGaugeLevel()) && !STATE.getInDrive()) {
                 GL11.glPushMatrix();
                 counter++;
-                /*
-                switch (counter) {
-                    case 1:
-                        GL11.glColor3ub((byte) 255, (byte) 50, (byte) 40);
-                        break;
-                    case 2:
-                        GL11.glColor3ub((byte) 35, (byte) 255, (byte) 50);
-                        break;
-                    case 3:
-                        GL11.glColor3ub((byte) 35, (byte) 50, (byte) 255);
-                        break;
-                }*/
                 
                 if(counter > 0 && counter < 50)
                     GL11.glColor3ub((byte) 255, (byte) 50, (byte) 40);
@@ -153,6 +142,7 @@ public class GuiDrive extends GuiScreen {
                 	GL11.glColor3ub((byte) 255, (byte) 255, (byte) 255);
                 else if(counter >= 200)
                      	counter = 0;
+                
                 GL11.glTranslatef(((screenWidth - guiWidth * scale) + (10 * scale)), ((screenHeight - guiHeight * scale) - (12 * scale)), 0);
                 GL11.glScalef(scale, scale, scale);
                 this.drawTexturedModalRect(0, 0, 0, 57, 30, guiHeight);

@@ -55,11 +55,14 @@ public abstract class DriveForm {
         } else {
             if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY)) {
                 if (ItemStack.areItemStacksEqual(player.getHeldItemMainhand(), ItemStack.EMPTY) && ItemStack.areItemStacksEqual(player.getHeldItemOffhand(), ItemStack.EMPTY)) {
-                    Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
-                    if (player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).activeSlot() == -1) {
-                        player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setActiveSlot(player.inventory.currentItem);
+                    if(!getName().equals(Strings.Form_Anti)) {
+		            	Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
+		                if (player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).activeSlot() == -1) {
+		                    player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setActiveSlot(player.inventory.currentItem);
+		                }
                     }
-                    return true;
+	                return true;
+
                 } else {
                     player.sendMessage(new TextComponentTranslation("Main hand and off hand slot must both be empty to activate form"));
                 }
@@ -73,11 +76,9 @@ public abstract class DriveForm {
     public void initDrive (EntityPlayer player) {
     	String form = getName();
     	System.out.println(form);
-        if(!form.equals(Strings.Form_Anti)) {
-	    	if (!summonKeyblades(player)) {
-	            player.world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
-	            return;
-	        }
+    	if (!summonKeyblades(player)) {
+            player.world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
+            return;
         }
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName(getName());
         player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(true);
@@ -128,11 +129,14 @@ public abstract class DriveForm {
             }else{
             	System.out.println(FMLCommonHandler.instance().getEffectiveSide());
                 endDrive(player);
-                Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
+                if (player.world.isRemote) {
+                    PacketDispatcher.sendToServer(new DriveFormPacket(getName(), true));
+                }
+                /*Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
                 if(hasOffHand())
                     Utils.summonWeapon(player, EnumHand.OFF_HAND, getKeychainSlot());
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-                player.inventory.offHandInventory.set(0, ItemStack.EMPTY);
+                player.inventory.offHandInventory.set(0, ItemStack.EMPTY);*/
             }
         }
     }

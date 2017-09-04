@@ -57,7 +57,8 @@ public class InputHandler {
 
     private Keybinds getPressedKey () {
         for (Keybinds key : Keybinds.values())
-            if (key.isPressed()) return key;
+            if (key.isPressed()) 
+            	return key;
         return null;
     }
 
@@ -74,9 +75,6 @@ public class InputHandler {
             prob = 10;
         else if (ap >= 10)
             prob = 25;
-
-        /*System.out.println("AP: "+ap);
-        System.out.println("Prob: "+prob+"%");*/
 
         if (random * 100 < prob) {
             PacketDispatcher.sendToServer(new DriveFormPacket(Strings.Form_Anti));
