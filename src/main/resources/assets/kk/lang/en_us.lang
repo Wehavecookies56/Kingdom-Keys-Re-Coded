@@ -920,9 +920,11 @@ gui.kk.reports.keyblades.title.main=Keyblades
 #Commands
 gui.commandmenu.command=COMMANDS
 gui.commandmenu.attack=Attack
+gui.commandmenu.portal=Portal
 gui.commandmenu.magic=Magic
 gui.commandmenu.items=Items
 gui.commandmenu.drive=Drive
+gui.commandmenu.limit=Limit
 gui.commandmenu.drive.revert=Revert
 
 #Magic

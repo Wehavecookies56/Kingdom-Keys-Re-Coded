@@ -14,9 +14,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -28,12 +31,14 @@ import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.client.gui.GuiCommandMenu;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.LockOn;
+import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
@@ -44,6 +49,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortal;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicWisdomShot;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
@@ -143,13 +149,18 @@ public class InputHandler {
 
         this.magicCommands.clear();
         for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i), ItemStack.EMPTY)) this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
+            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i), ItemStack.EMPTY)) 
+            	this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
+        
         this.itemsCommands.clear();
         for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i), ItemStack.EMPTY)) this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getItemName());
+            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i), ItemStack.EMPTY)) 
+            	this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getItemName());
+       
         this.driveCommands.clear();
         for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i),ItemStack.EMPTY)) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
+            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i),ItemStack.EMPTY))
+            	this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
         // Mainmenu
         if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
             if (GuiCommandMenu.selected == GuiCommandMenu.DRIVE)
@@ -206,6 +217,32 @@ public class InputHandler {
         switch (GuiCommandMenu.selected) {
             case GuiCommandMenu.ATTACK:
                     player.swingArm(EnumHand.MAIN_HAND);
+                	if(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
+                        if(!player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge()){
+                            IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+
+                            if(orgXIII.getPortalX()!=0 && orgXIII.getPortalY()!=0 && orgXIII.getPortalZ()!=0){
+                                RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
+                                if (rtr != null) {
+                                    if (rtr.typeOfHit == rtr.typeOfHit.BLOCK){
+                                        double distanceSq = player.getDistanceSq(rtr.getBlockPos());
+                                        double reachSq = 100 * 100;
+                                        if (reachSq >= distanceSq) {
+                                            BlockPos pos = rtr.getBlockPos();
+                                            BlockPos destination = new BlockPos(orgXIII.getPortalX(),orgXIII.getPortalY(),orgXIII.getPortalZ());
+                                            EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos, destination, orgXIII.getPortalDimension());
+                                            world.spawnEntity(portal);
+                                            PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos(),destination, orgXIII.getPortalDimension()));
+                                            player.world.playSound((EntityPlayer) player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+                                        }
+                                    }
+                                }
+                            }else{
+                                player.sendMessage(new TextComponentString(TextFormatting.RED + "You don't have any portal destination"));
+                            }
+                        }
+                    }
+
                     if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom))
                     {
                         PacketDispatcher.sendToServer(new MagicWisdomShot());
@@ -241,28 +278,36 @@ public class InputHandler {
 
             case GuiCommandMenu.DRIVE:
                 if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
-                    if (DRIVE.getInDrive()) {// Revert
-                        if (DRIVE.getActiveDriveName().equals(Strings.Form_Anti) && !player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
-                            GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-                            world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
-                            player.sendMessage(new TextComponentTranslation("Cannot revert while in Anti form"));
-                        } else {
-                        	PacketDispatcher.sendToServer(new DriveFormPacket(DRIVE.getActiveDriveName(), true));
-                            if (DriveFormRegistry.isDriveFormRegistered(DRIVE.getActiveDriveName()))
-                            	DriveFormRegistry.get(DRIVE.getActiveDriveName()).endDrive(player);
-                            GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
-                            GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-                            world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
-                        }
-                    } else if (this.driveCommands.isEmpty() || DRIVE.getDP() <= 0) {
-                        world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
+                	if(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
+                		//TODO Use Limit
+                        player.sendMessage(new TextComponentString("Limits are not available yet"));
+                        GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
                         GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
-                    } else {
-                        GuiCommandMenu.driveselected = 0;
-                        GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
-                        world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
-                        return;
-                    }
+                        world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
+                	} else {
+	                    if (DRIVE.getInDrive()) {// Revert
+	                        if (DRIVE.getActiveDriveName().equals(Strings.Form_Anti) && !player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
+	                            GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+	                            world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
+	                            player.sendMessage(new TextComponentTranslation("Cannot revert while in Anti form"));
+	                        } else {
+	                        	PacketDispatcher.sendToServer(new DriveFormPacket(DRIVE.getActiveDriveName(), true));
+	                            if (DriveFormRegistry.isDriveFormRegistered(DRIVE.getActiveDriveName()))
+	                            	DriveFormRegistry.get(DRIVE.getActiveDriveName()).endDrive(player);
+	                            GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+	                            GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+	                            world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
+	                        }
+	                    } else if (this.driveCommands.isEmpty() || DRIVE.getDP() <= 0) {
+	                        world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
+	                        GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+	                    } else {
+	                        GuiCommandMenu.driveselected = 0;
+	                        GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
+	                        world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
+	                        return;
+	                    }
+	                }
                 }
                 break;
         }
