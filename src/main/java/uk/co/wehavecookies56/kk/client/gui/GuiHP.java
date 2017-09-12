@@ -177,7 +177,7 @@ public class GuiHP extends GuiScreen {
                 
 				counter++;
 				System.out.println(counter);
-				if(counter >= 1350) {
+				if(counter >= 1380) {
             		counter = 0;
             		player.playSound(ModSounds.alarm, 1, 1);
             	}
