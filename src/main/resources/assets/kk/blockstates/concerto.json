@@ -6,15 +6,15 @@
     },
 	"variants": {
         "inventory": [
-            {
-               "transform": {
+             {
+                "transform": {
 					"thirdperson_lefthand": {
-                        "rotation": [ { "x": 70 }, { "y": 0 }, { "z": 00 } ],
+                        "rotation": [ { "x": 70 }, { "y": 180 }, { "z": 00 } ],
                         "translation": [ 0, 0.15, 0.4 ],
                         "scale": 0.02
                     },
                     "thirdperson_righthand": {
-                        "rotation": [ { "x": 70 }, { "y": 0 }, { "z": 00 } ],
+                        "rotation": [ { "x": 70 }, { "y": 180 }, { "z": 00 } ],
                         "translation": [ 0, 0.15, 0.4 ],
                         "scale": 0.02
                     },
