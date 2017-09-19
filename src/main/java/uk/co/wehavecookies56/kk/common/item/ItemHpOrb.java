@@ -16,11 +16,11 @@ public class ItemHpOrb extends ItemKKBase {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-        if (!(player.getHealth() == 20)) {
+        if (player.getHealth() < player.getMaxHealth()) {
             player.heal(2);
             player.inventory.decrStackSize(player.inventory.currentItem, 1);
         }
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getActiveItemStack());
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItemMainhand());
     }
 
 }

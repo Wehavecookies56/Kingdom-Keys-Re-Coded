@@ -479,10 +479,10 @@ public class InputHandler {
             @SuppressWarnings("unchecked")
             List<Entity> list = mc.world.getEntitiesWithinAABBExcludingEntity(
                     theRenderViewEntity,
-                    theViewBoundingBox.expand(
+                    theViewBoundingBox.grow(
                             lookvec.x * var2,
                             lookvec.y * var2,
-                            lookvec.z * var2).expand(var9, var9, var9));
+                            lookvec.z * var2).grow(var9, var9, var9));
             double d = calcdist;
 
             for (Entity entity : list) {
@@ -495,7 +495,7 @@ public class InputHandler {
                             entity.posX+entity.width/2,
                             entity.posY+entity.height,
                             entity.posZ+entity.width/2);
-                    aabb.expand(bordersize, bordersize, bordersize);
+                    aabb.grow(bordersize, bordersize, bordersize);
                     RayTraceResult mop0 = aabb.calculateIntercept(pos, var8);
 
                     if (aabb.contains(pos)) {

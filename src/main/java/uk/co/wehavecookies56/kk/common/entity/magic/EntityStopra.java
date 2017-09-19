@@ -48,7 +48,7 @@ public class EntityStopra extends Entity {
         else
             player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10000000149011612D);
 
-        AxisAlignedBB aabb = player.getEntityBoundingBox().expand(DISTANCE, DISTANCE, DISTANCE);
+        AxisAlignedBB aabb = player.getEntityBoundingBox().grow(DISTANCE, DISTANCE, DISTANCE);
         List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
         if (!list.isEmpty()){
 
@@ -68,7 +68,7 @@ public class EntityStopra extends Entity {
                 }
             }
         }
-        aabb.expand(-DISTANCE, -DISTANCE, -DISTANCE);
+        aabb.grow(-DISTANCE, -DISTANCE, -DISTANCE);
 
         super.onUpdate();
     }

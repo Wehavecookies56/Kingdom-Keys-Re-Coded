@@ -43,7 +43,7 @@ public class WorldGenBlox implements IWorldGenerator {
      * @param chunkZ
      */
     private void generateSurface (World world, Random rand, int chunkX, int chunkZ) {
-        for (int k = 0; k < 85; k++) {
+        for (int k = 0; k < 66; k++) {
             Biome biome = world.getBiome(new BlockPos(chunkX, 0, chunkZ));
             int firstBlockXCoord = chunkX + rand.nextInt(16);
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
@@ -82,8 +82,8 @@ public class WorldGenBlox implements IWorldGenerator {
                 }
             }
         }
+        
         for (int k = 0; k < 10; k++) {
-
             int firstBlockXCoord = chunkX + rand.nextInt(16);
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int quisqueY = rand.nextInt(world.getHeight() - 40) + 40;
@@ -109,16 +109,16 @@ public class WorldGenBlox implements IWorldGenerator {
     }
 
     private void generateNether (World world, Random rand, int chunkX, int chunkZ) {
-        for (int k = 0; k < 85; k++) {
+        for (int k = 0; k < 50; k++) {
             int firstBlockXCoord = chunkX + rand.nextInt(16);
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int OreY = rand.nextInt(100);
             BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
 
-            new WorldGenMinable(ModBlocks.BlazingOreN.getDefaultState(), 5, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.DarkOreN.getDefaultState(), 5, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+            new WorldGenMinable(ModBlocks.BlazingOreN.getDefaultState(), 4, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+            new WorldGenMinable(ModBlocks.DarkOreN.getDefaultState(), 2, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
             new WorldGenMinable(ModBlocks.EnergyOreN.getDefaultState(), 5, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.TwilightOreN.getDefaultState(), 5, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+            new WorldGenMinable(ModBlocks.TwilightOreN.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
 
         }
     }
