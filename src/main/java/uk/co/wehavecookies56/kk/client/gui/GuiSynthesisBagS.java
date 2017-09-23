@@ -34,9 +34,11 @@ public class GuiSynthesisBagS extends GuiContainer {
 
     @Override
     public void drawScreen (int mouseX, int mouseY, float partialTicks) {
+        drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.xSize_lo = mouseX;
         this.ySize_lo = mouseY;
+        renderHoveredToolTip(mouseX, mouseY);
     }
 
     @Override
