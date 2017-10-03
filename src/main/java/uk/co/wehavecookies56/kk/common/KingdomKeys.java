@@ -12,15 +12,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import uk.co.wehavecookies56.kk.common.core.command.CommandCheatMode;
-import uk.co.wehavecookies56.kk.common.core.command.CommandDimension;
-import uk.co.wehavecookies56.kk.common.core.command.CommandDriveLevel;
-import uk.co.wehavecookies56.kk.common.core.command.CommandGiveMunny;
-import uk.co.wehavecookies56.kk.common.core.command.CommandLearnRecipe;
-import uk.co.wehavecookies56.kk.common.core.command.CommandLevelUp;
-import uk.co.wehavecookies56.kk.common.core.command.CommandRemoveKeychain;
-import uk.co.wehavecookies56.kk.common.core.command.CommandResetLevel;
-import uk.co.wehavecookies56.kk.common.core.command.CommandShowHud;
+import uk.co.wehavecookies56.kk.common.core.command.*;
 import uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
 import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
@@ -69,6 +61,7 @@ public class KingdomKeys {
         e.registerServerCommand(new CommandDriveLevel());
         e.registerServerCommand(new CommandShowHud());
         e.registerServerCommand(new CommandDimension());
+        e.registerServerCommand(new CommandOpenKeychains());
 
         logger.info("Commands loaded");
     }

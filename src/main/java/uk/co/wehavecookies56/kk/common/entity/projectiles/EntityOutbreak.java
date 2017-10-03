@@ -56,7 +56,7 @@ public class EntityOutbreak extends EntityThrowable implements IThrowableEntity 
         if (returning) {
             this.rotationYaw = (rotation + 1) % 360;
             List entityTagetList = this.world.getEntitiesWithinAABB(
-                    Entity.class, this.getEntityBoundingBox().expand(1.0D, 1.0D, 1.0D));
+                    Entity.class, this.getEntityBoundingBox().grow(1.0D, 1.0D, 1.0D));
             for (int i = 0; i < entityTagetList.size(); i++) {
                 Entity entityTarget = (Entity) entityTagetList.get(i);
                 if (entityTarget != null && entityTarget instanceof EntityPlayer) {

@@ -113,13 +113,15 @@ public class ItemKeyblade extends ItemSword {
         } else {
             if (world.isRemote){
                 RayTraceResult rtr = Minecraft.getMinecraft().objectMouseOver;
-                if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.OFF_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade && hand == EnumHand.OFF_HAND) {
-                    player.swingArm(EnumHand.OFF_HAND);
-                    if (rtr.entityHit != null) {
-                        PacketDispatcher.sendToServer(new AttackEntity(rtr.entityHit.getEntityId()));
-                        return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(hand));
-                    }
-                    return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(hand));
+                if(rtr != null) {
+	                if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.OFF_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade && hand == EnumHand.OFF_HAND) {
+	                    player.swingArm(EnumHand.OFF_HAND);
+	                    if (rtr.entityHit != null) {
+	                        PacketDispatcher.sendToServer(new AttackEntity(rtr.entityHit.getEntityId()));
+	                        return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(hand));
+	                    }
+	                    return new ActionResult<ItemStack>(EnumActionResult.FAIL, player.getHeldItem(hand));
+	                }
                 }
 
             }

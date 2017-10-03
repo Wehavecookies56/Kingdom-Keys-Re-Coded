@@ -173,7 +173,7 @@ public class DamageCalculation {
 
                 if (weapon.getItem() instanceof ItemClaymore) {
                     if (weapon.getItemDamage() == 1)
-                        damage *= 1.5F;
+                        damage *= 1.25F;
                 }
                 finalDamage = (float) (damage * MainConfig.items.damageMultiplier);
             }

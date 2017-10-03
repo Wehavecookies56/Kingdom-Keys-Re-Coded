@@ -20,7 +20,8 @@ public class Magic {
 
     public static double getMagicCost (String magic, EntityPlayer player) {
         double cost = 0;
-        if (player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) cost = 0;
+        if (player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) 
+        	cost = 0;
         return cost;
     }
 

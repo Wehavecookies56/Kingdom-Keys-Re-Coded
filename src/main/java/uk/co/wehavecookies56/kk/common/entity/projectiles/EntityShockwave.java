@@ -52,7 +52,7 @@ public class EntityShockwave extends Entity {
 
         byte radius = 2; 
         AxisAlignedBB originalAABB = player.getEntityBoundingBox();
-        AxisAlignedBB aabb = originalAABB.expand(radius, radius, radius).expand(-radius, -radius, -radius);
+        AxisAlignedBB aabb = originalAABB.grow(radius, radius, radius);
         List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
         if (!list.isEmpty())
         	for (int i = 0; i < list.size(); i++) {

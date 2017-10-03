@@ -53,6 +53,7 @@ import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
@@ -68,6 +69,7 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenOrgGUI;
@@ -81,6 +83,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
 import uk.co.wehavecookies56.kk.common.world.dimension.DimensionTeleporter;
@@ -335,6 +338,7 @@ public class EntityEvents {
         if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntity();
             SummonKeybladeCapability.ISummonKeyblade SUMMON = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
+            IOrganizationXIII ORG = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
             if (SUMMON.getIsKeybladeSummoned(EnumHand.MAIN_HAND)) {
                 if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
                     PacketDispatcher.sendToServer(new DeSummonKeyblade());
@@ -345,6 +349,22 @@ public class EntityEvents {
                         for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
                             if (!ItemStack.areItemStacksEqual(player.inventory.getStackInSlot(i), ItemStack.EMPTY)) {
                                 if (player.inventory.getStackInSlot(i).getItem() instanceof ItemRealKeyblade) {
+                                    player.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
+                                }
+                            }
+                        }
+                    }
+                }
+            }else if (ORG.summonedWeapon(EnumHand.MAIN_HAND)) {
+                if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+                    PacketDispatcher.sendToServer(new DeSummonOrgWeapon());
+                    PacketDispatcher.sendTo(new SyncOrgXIIIData(ORG), (EntityPlayerMP) player);
+                }else{
+                    SUMMON.setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);
+                    if (event.getEntity().world.getGameRules().getBoolean("keepInventory")) {
+                        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
+                            if (!ItemStack.areItemStacksEqual(player.inventory.getStackInSlot(i), ItemStack.EMPTY)) {
+                                if (player.inventory.getStackInSlot(i).getItem() instanceof IOrgWeapon) {
                                     player.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
                                 }
                             }
@@ -648,8 +668,8 @@ public class EntityEvents {
         if (!DS.getActiveDriveName().equals("none") && DriveFormRegistry.isDriveFormRegistered(DS.getActiveDriveName())) {
             DriveFormRegistry.get(DS.getActiveDriveName()).update(event.player);
         }
-        List<Entity> entities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(16.0D, 10.0D, 16.0D));
-        List<Entity> bossEntities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(150.0D, 100.0D, 150.0D));
+        List<Entity> entities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().grow(16.0D, 10.0D, 16.0D));
+        List<Entity> bossEntities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().grow(150.0D, 100.0D, 150.0D));
         if (!bossEntities.isEmpty()) {
             for (int i = 0; i < bossEntities.size(); i++) {
                 if (bossEntities.get(i) instanceof EntityDragon || bossEntities.get(i) instanceof EntityWither) {
@@ -715,13 +735,15 @@ public class EntityEvents {
             }
             if(player != null) {
                 if(khMob.getType() == MobType.HEARTLESS_EMBLEM || khMob.getType() == MobType.HEARTLESS_PUREBLOOD || khMob.getType() == MobType.NOBODY) {
-                    if(ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY))
+                    /*if(ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY) && ) {//Main empty but offhand is damagable
                         event.setCanceled(true);
-                    if(!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
-                        if(!(player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemOrgWeapon)) {
+                    } else {*/
+                		//If the player has a real weapon in any slot
+                        if(!(player.getHeldItemMainhand().getItem() instanceof ItemKeyblade || player.getHeldItemMainhand().getItem() instanceof ItemOrgWeapon ||
+                        	 player.getHeldItemOffhand().getItem() instanceof ItemKeyblade || player.getHeldItemOffhand().getItem() instanceof ItemOrgWeapon)) {
                             event.setCanceled(true);
                         }
-                    }
+                    //}
                 }
             }
         }

@@ -32,7 +32,7 @@ public class EntityThunder extends Entity {
         this.posZ = z;
         this.player = sender;
         double distance = 3.0D;
-        AxisAlignedBB aabb = player.getEntityBoundingBox().expand(5, 5, 5);
+        AxisAlignedBB aabb = player.getEntityBoundingBox().grow(5, 5, 5);
         List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
         if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
             Entity e = (Entity) list.get(i);
@@ -46,7 +46,7 @@ public class EntityThunder extends Entity {
                     PacketDispatcher.sendToAllAround(new SpawnThunderEntity(this,1), dimension, this.posX, this.posY, this.posZ, 64D);
             }
         }
-        aabb.expand(-5, -5, -5);
+        aabb.grow(-5, -5, -5);
     }
 
     @Override
