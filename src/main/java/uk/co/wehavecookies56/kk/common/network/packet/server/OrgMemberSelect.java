@@ -5,6 +5,7 @@ import java.io.IOException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -45,6 +46,12 @@ OrgMemberSelect extends AbstractMessage.AbstractServerMessage<OrgMemberSelect> {
     @Override
     public void process(EntityPlayer player, Side side) {
         OrganizationXIIICapability.IOrganizationXIII org = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+        if (player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned(EnumHand.MAIN_HAND)) {
+            Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
+        }
+        if (player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned(EnumHand.OFF_HAND)) {
+            Utils.summonWeapon(player, EnumHand.OFF_HAND, 0);
+        }
         org.setMember(member);
         player.sendMessage(new TextComponentString("You have aligned with " + member.name()));
         switch (member) {
