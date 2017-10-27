@@ -37,7 +37,7 @@ public abstract class DriveForm {
 
     public boolean summonKeyblades(EntityPlayer player) {
         if (hasOffHand()) {
-            if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY) && !ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(1), ItemStack.EMPTY)) {
+            if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY) && !ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(getKeychainSlot()), ItemStack.EMPTY)) {
                 if (ItemStack.areItemStacksEqual(player.getHeldItemMainhand(), ItemStack.EMPTY) && ItemStack.areItemStacksEqual(player.getHeldItemOffhand(), ItemStack.EMPTY)) {
                     Utils.summonWeapon(player, EnumHand.MAIN_HAND, 0);
                     Utils.summonWeapon(player, EnumHand.OFF_HAND, getKeychainSlot());
