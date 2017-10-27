@@ -23,6 +23,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
@@ -200,7 +201,8 @@ public class EntityEvents {
     @SubscribeEvent
     public void playerRespawn(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent event) {
         if (event.isEndConquered()) {
-    		new DimensionTeleporter(event.player.world.getMinecraftServer().getServer().getWorld(Utils.getDimensionIDAndBlockPos(Strings.TraverseTown).id), Strings.TraverseTown, null).teleport((EntityPlayer) event.player);
+            BlockPos spawn = new BlockPos(192, 5, 161);
+            new DimensionTeleporter(event.player.world.getMinecraftServer().getServer().getWorld(Utils.getDimensionIDAndBlockPos(Strings.TraverseTown).id), Strings.TraverseTown, spawn).teleport((EntityPlayer) event.player);
         }
     }
 
