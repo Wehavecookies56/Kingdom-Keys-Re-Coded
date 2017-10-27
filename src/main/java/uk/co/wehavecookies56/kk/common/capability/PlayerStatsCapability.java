@@ -705,7 +705,7 @@ public class PlayerStatsCapability {
                 player.setHealth(getHP());
                 player.getFoodStats().addStats(20,0);
                 player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).addPoints(1);
-                PacketDispatcher.sendToServer(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)));
+                PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
             }
             player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 0.5f, 1.0f);
             player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());
