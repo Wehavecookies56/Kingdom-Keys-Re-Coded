@@ -49,11 +49,9 @@ public class EntitySharpshooterBullet extends EntityThrowable implements IThrowa
                 this.setDead();
                 return;
             }
-            float shotDamage;
-            if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() < 2)
-                shotDamage = 2;
-            else
-                shotDamage = (float) ((player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength())-(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
+          
+            float shotDamage = player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() / 2 < 2 ? 2 : (float) ((player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() / 2F));
+
             mop.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) getThrower()), shotDamage);
 
         }
