@@ -83,14 +83,16 @@ public class ItemEvents {
             PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getItem().getItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getEntityPlayer());
 
         } else if (event.getItem().getItem().getItem() instanceof ItemHpOrb) {
-            if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
+            if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) 
+            	if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) 
+            		return;
             HpOrbPickup packet = new HpOrbPickup(event.getItem().getItem());
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-                if (event.getEntityPlayer().getHealth() >= STATS.getHP()) {
+                if (event.getEntityPlayer().getHealth() >= event.getEntityPlayer().getMaxHealth()) {
                     event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
                     return;
                 }
-                if (event.getEntityPlayer().getHealth() < STATS.getHP() - 1)
+                if (event.getEntityPlayer().getHealth() < event.getEntityPlayer().getMaxHealth() - 1)
                     event.getEntityPlayer().heal(2);
                 else
                     event.getEntityPlayer().heal(1);
