@@ -64,7 +64,8 @@ public class BlockSavePoint extends Block {
 
     @Override
     public void updateTick (World world, BlockPos pos, IBlockState state, Random rand) {
-        if (!world.isRemote) updateState(world, pos);
+        if (!world.isRemote) 
+        	updateState(world, pos);
     }
 
     private void updateState (World world, BlockPos pos) {
