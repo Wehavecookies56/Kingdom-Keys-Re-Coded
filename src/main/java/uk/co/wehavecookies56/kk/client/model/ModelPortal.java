@@ -27,7 +27,7 @@ public class ModelPortal extends ModelBase
             model = (OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("kk:models/block/portal.obj"));
             modelParts = ModelHelper.getModelsForGroups(model);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
