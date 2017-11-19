@@ -40,7 +40,12 @@ public class SyncOrgPortal extends AbstractMessage.AbstractClientMessage<SyncOrg
 
     @Override
     public void process (EntityPlayer player, Side side) {
-        EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos, destPos, dimension);
+    	EntityOrgPortal portal;
+    	if(pos != destPos)
+    		portal = new EntityOrgPortal(player.world, player, pos, destPos, dimension, true);
+    	else
+    		portal = new EntityOrgPortal(player.world, player, pos, destPos, dimension, false);
+    	
         player.world.spawnEntity(portal);
         //player.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
     }

@@ -20,19 +20,22 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
     //EntityPlayer caster;
     BlockPos destinationPos;
     int destinationDim;
+    boolean shouldTeleport;
 
     public EntityOrgPortal (World world) {
         super(world);
     }
 
-    public EntityOrgPortal (World world, EntityPlayer sender, BlockPos spawnPos, BlockPos destinationPos, int destinationDim) {
+    public EntityOrgPortal (World world, EntityPlayer sender, BlockPos spawnPos, BlockPos destinationPos, int destinationDim, boolean shouldTP) {
         super(world);
         this.posX = spawnPos.getX()+0.5;
         this.posY = spawnPos.getY();
         this.posZ = spawnPos.getZ()+0.5;
         this.destinationPos = destinationPos;
         this.destinationDim = destinationDim;
+        this.shouldTeleport = shouldTP;
     }
+    
     
     @Override
     public void onUpdate () {
@@ -53,16 +56,16 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
 
     @Override
     public void onCollideWithPlayer(EntityPlayer player) {
-        //THIS IS ON THE CLIENT
-        //System.out.println(caster);
-        if(!this.isEntityAlive())
-            return;
-        if(player != null){
-            if (destinationPos != null) {
-                if(destinationPos.getX()!=0 && destinationPos.getY()!=0 && destinationPos.getZ()!=0){
-                    PacketDispatcher.sendToServer(new OrgPortalTP(this.destinationDim,destinationPos.getX()+0.5, destinationPos.getY()+1, destinationPos.getZ()+0.5));
-                }
-            }
+        if(shouldTeleport) {
+	        if(!this.isEntityAlive())
+	            return;
+	        if(player != null){
+	            if (destinationPos != null) {
+	                if(destinationPos.getX()!=0 && destinationPos.getY()!=0 && destinationPos.getZ()!=0){
+	                    PacketDispatcher.sendToServer(new OrgPortalTP(this.destinationDim,destinationPos.getX()+0.5, destinationPos.getY()+1, destinationPos.getZ()+0.5));
+	                }
+	            }
+	        }
         }
 
         super.onCollideWithPlayer(player);
@@ -92,15 +95,18 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
     public void readSpawnData(ByteBuf additionalData) {
     	destinationPos = new BlockPos(additionalData.readInt(),additionalData.readInt(),additionalData.readInt());
     	destinationDim = additionalData.readInt();
+    	shouldTeleport = additionalData.readBoolean();
     }
 
     @Override
     public void writeSpawnData(ByteBuf buffer) {
     	if(destinationPos == null)
             return;
+    	
         buffer.writeInt(destinationPos.getX());
         buffer.writeInt(destinationPos.getY());
         buffer.writeInt(destinationPos.getZ());
         buffer.writeInt(destinationDim);
+        buffer.writeBoolean(shouldTeleport);
     }
 }

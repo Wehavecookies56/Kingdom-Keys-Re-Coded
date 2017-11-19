@@ -49,8 +49,13 @@ public class OrgPortal extends AbstractMessage.AbstractServerMessage<OrgPortal> 
             player.getCapability(ModCapabilities.PLAYER_STATS, null).setMP(0);
 
         PacketDispatcher.sendToAllAround(new SpawnPortalParticles(pos), player, 64.0D);
-        EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos, destPos, dimension);
+        EntityOrgPortal portal = new EntityOrgPortal(player.world, player, pos, destPos, dimension, true);
         player.world.spawnEntity(portal);
+        
+        EntityOrgPortal destPortal = new EntityOrgPortal(player.world, player, destPos, destPos, dimension, false);
+        player.world.spawnEntity(destPortal);
+
+        
         PacketDispatcher.sendToAll(new SyncOrgPortal(pos, destPos, dimension));
         PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 
