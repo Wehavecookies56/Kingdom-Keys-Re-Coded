@@ -33,21 +33,13 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
         this.destinationPos = destinationPos;
         this.destinationDim = destinationDim;
     }
-
-    /*public void setCaster(EntityPlayer caster) {
-        this.caster = caster;
-    }*/
     
     @Override
     public void onUpdate () {
         super.onUpdate();
 
-        /*if (caster == null){
-            this.setDead();
-            return;
-        }*/
         if (!world.isRemote)
-            PacketDispatcher.sendToAll(new SpawnPortalParticles(this.getPosition())); //TODO check if works
+            PacketDispatcher.sendToAll(new SpawnPortalParticles(this.getPosition()));
         
         if (ticksExisted > 100) 
         	setDead();

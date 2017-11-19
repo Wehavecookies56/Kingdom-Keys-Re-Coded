@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.client.render;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -33,19 +34,21 @@ public class RenderPortal  extends Render implements IRenderFactory<EntityOrgPor
     @Override
     public void doRender (Entity entity, double x, double y, double z, float yaw, float pitch) {
         GL11.glPushMatrix();
-        GL11.glTranslated(x, y, z);
-        GL11.glRotatef(90, 0.0F, 0.0F, 1.0F);
-        float f2 = pitch;
-        float f3 = pitch;
-
-        float f4 = 0.5F;
-        GL11.glScalef(1.0f, 1.0f, 1.0f);
-
-        GL11.glRotatef(yaw * 100, 1, 0, 0);
+        GL11.glTranslated(x, y+1, z);
+       
+        float ticks = entity.ticksExisted;
+        if(ticks < 10) //Growing
+        	GL11.glScalef(ticks*0.2f, ticks*0.2f, ticks*0.2f);
+        else if(ticks > 90) //Opposite of growing
+        	GL11.glScalef((100-ticks)*0.2f, (100-ticks)*0.2f, (100-ticks)*0.2f);
+        else //Static size
+        	GL11.glScalef(2.0f, 2.0f, 2.0f);
+        
+        //System.out.println(entity.ticksExisted);
+        GL11.glRotatef(-Minecraft.getMinecraft().player.getPitchYaw().y, 0, 1, 0);
 
         bindEntityTexture(entity);
 
-        GL11.glScalef(-1.0F, -1.0F, 1.0F);
         this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
         GL11.glPopMatrix();
