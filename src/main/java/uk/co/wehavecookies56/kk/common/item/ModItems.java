@@ -2150,33 +2150,33 @@ public class ModItems {
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event) {
             // Xemnas
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Malice,6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Sanction,6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Overlord,6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Veneration, 6,4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Autocracy, 6,4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Conquest, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Terminus, 6,4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Judgement, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Discipline, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Aristocracy, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Superiority, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Aggression, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Fury, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Despair, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Triumph, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Ruination, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Domination, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Annihilation, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Tyrant, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Magnificence, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Infinity, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Interdiction, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.RoundFan, 6, 4));
-            event.getRegistry().register(new ItemEtherealBlade(Strings.Absolute, 6, 4));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Malice, BalanceConfig.orgweapons.malice));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Sanction, BalanceConfig.orgweapons.sanction));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Overlord, BalanceConfig.orgweapons.overlord));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Veneration, BalanceConfig.orgweapons.veneration));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Autocracy, BalanceConfig.orgweapons.autocracy));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Conquest, BalanceConfig.orgweapons.conquest));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Terminus, BalanceConfig.orgweapons.terminus));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Judgement, BalanceConfig.orgweapons.judment));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Discipline, BalanceConfig.orgweapons.discipline));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Aristocracy, BalanceConfig.orgweapons.aristocracy));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Superiority, BalanceConfig.orgweapons.superiority));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Aggression, BalanceConfig.orgweapons.aggression));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Fury, BalanceConfig.orgweapons.fury));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Despair, BalanceConfig.orgweapons.despair));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Triumph, BalanceConfig.orgweapons.triumph));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Ruination, BalanceConfig.orgweapons.ruination));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Domination, BalanceConfig.orgweapons.domination));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Annihilation, BalanceConfig.orgweapons.annihilation));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Tyrant, BalanceConfig.orgweapons.tyrant));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Magnificence, BalanceConfig.orgweapons.magnificence));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Infinity, BalanceConfig.orgweapons.infinity));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Interdiction, BalanceConfig.orgweapons.interdiction));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.RoundFan, BalanceConfig.orgweapons.roundfan));
+            event.getRegistry().register(new ItemEtherealBlade(Strings.Absolute, BalanceConfig.orgweapons.absolute));
 
             // Xigbar
-            event.getRegistry().register(new ItemArrowguns(Strings.Standalone, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Standalone, BalanceConfig.orgweapons.standalone));
             event.getRegistry().register(new ItemArrowguns(Strings.Killerbee, 4, 9));
             event.getRegistry().register(new ItemArrowguns(Strings.Stingray, 4, 9));
             event.getRegistry().register(new ItemArrowguns(Strings.Counterweight, 4, 9));

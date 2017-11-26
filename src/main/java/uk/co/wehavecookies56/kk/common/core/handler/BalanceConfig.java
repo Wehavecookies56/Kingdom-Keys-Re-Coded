@@ -16,6 +16,7 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
     @Config.Comment("Set Keyblade Strength and Magic values")
     @Config.LangKey("kk.balance.keyblades")
     public static Keyblades keyblades = new Keyblades();
+    public static OrgWeapons orgweapons = new OrgWeapons();
 
     public static class Keyblades {
         // Keyblade configs
@@ -143,6 +144,59 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
                 youngXehanortsKeyblade = new int[] { 13, 8 },
                 zeroOne = new int[] { 10, 4 }
                 ;
+    }
+    
+    public static class OrgWeapons {
+        // Organization Weapons configs
+        @Config.RequiresMcRestart
+        public double[]
+        		//Xemnas
+                malice = new double[] { 6, 4 },
+                sanction = new double[] { 6, 4 },
+                overlord = new double[] { 6, 4 },
+                veneration = new double[] { 6, 4 },
+                autocracy = new double[] { 6, 4 },
+                conquest = new double[] { 6, 4 },
+                terminus = new double[] { 6, 4 },
+                judment = new double[] { 6, 4 },
+                discipline = new double[] { 6, 4 },
+                aristocracy = new double[] { 6, 4 },
+                superiority = new double[] { 6, 4 },
+                aggression = new double[] { 6, 4 },
+                fury = new double[] { 6, 4 },
+                despair = new double[] { 6, 4 },
+                triumph = new double[] { 6, 4 },
+                ruination = new double[] { 6, 4 },
+                domination = new double[] { 6, 4 },
+                annihilation = new double[] { 6, 4 },
+                tyrant = new double[] { 6, 4 },
+                magnificence = new double[] { 6, 4 },
+                infinity = new double[] { 6, 4 },
+                interdiction = new double[] { 6, 4 },
+                roundfan = new double[] { 6, 4 },
+                absolute = new double[] { 6, 4 },
+                
+                //Xigbar
+        		standalone = new double[] {4, 9 };
+        
+                //Xaldin
+                
+                //Vexen
+                
+                //Lexaeus
+                
+                //Zexion
+                
+                //Saix
+                
+                //Axel
+                
+                //Demyx
+                
+                //Luxord
+                
+                //Marluxia
+                
     }
 
     @Mod.EventBusSubscriber(modid = Reference.MODID)

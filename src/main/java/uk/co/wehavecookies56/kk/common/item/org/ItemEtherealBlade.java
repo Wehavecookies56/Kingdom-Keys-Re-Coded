@@ -12,8 +12,8 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemEtherealBlade extends ItemOrgWeapon implements IOrgWeapon{
 
-    public ItemEtherealBlade (String name, double strength, double magic)  {
-        super(name, strength, magic);
+    public ItemEtherealBlade (String name, double[] stats)  {
+        super(name, stats);
         setMaxStackSize(1);
     }
 

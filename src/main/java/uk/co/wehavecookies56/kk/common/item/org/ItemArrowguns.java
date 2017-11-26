@@ -18,8 +18,8 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemArrowguns extends ItemOrgWeapon implements IOrgWeapon{
 
-    public ItemArrowguns (String name, double strength, double magic)  {
-        super(name, strength, magic);
+    public ItemArrowguns (String name, double[] stats)  {
+        super(name, stats);
         setMaxStackSize(1);
     }
 

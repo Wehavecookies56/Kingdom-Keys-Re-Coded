@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.registry.IThrowableEntity;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 
-public class EntityBlazeofGlory extends EntityChakram implements IThrowableEntity {
+public class EntityBlazeofGlory extends EntityChakram {
 
     EntityPlayer player;
 
