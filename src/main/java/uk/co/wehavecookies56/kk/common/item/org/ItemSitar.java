@@ -9,8 +9,8 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class ItemSitar extends ItemOrgWeapon implements IOrgWeapon {
 
-    public ItemSitar (String name, double strength, double magic)  {
-        super(name, strength, magic);
+    public ItemSitar (String name, double[] stats)  {
+        super(name, stats);
         setMaxStackSize(1);
     }
 

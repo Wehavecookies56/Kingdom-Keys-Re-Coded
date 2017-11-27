@@ -26,8 +26,8 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemLexicon extends ItemOrgWeapon implements IOrgWeapon{
 
-    public ItemLexicon (String name, double strength, double magic)  {
-        super(name, strength, magic);
+    public ItemLexicon (String name, double[] stats)  {
+        super(name, stats);
         setMaxStackSize(1);
     }
 

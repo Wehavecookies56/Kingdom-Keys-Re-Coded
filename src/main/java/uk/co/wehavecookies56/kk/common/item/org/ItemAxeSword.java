@@ -15,8 +15,8 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemAxeSword extends ItemOrgWeapon implements IOrgWeapon{
 
-    public ItemAxeSword (String name, double strength, double magic)  {
-        super(name, strength, magic);
+    public ItemAxeSword (String name, double[] stats)  {
+        super(name, stats);
         setMaxStackSize(1);
     }
 

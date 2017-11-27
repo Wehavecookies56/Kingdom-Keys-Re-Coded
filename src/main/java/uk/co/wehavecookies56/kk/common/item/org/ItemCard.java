@@ -6,8 +6,8 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemCard extends ItemOrgWeapon implements IOrgWeapon{
 
-    public ItemCard (String name, double strength, double magic)  {
-        super(name, strength,magic);
+    public ItemCard (String name, double[] stats)  {
+        super(name, stats);
         setMaxStackSize(1);
     }
 

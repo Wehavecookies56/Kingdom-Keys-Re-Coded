@@ -2177,32 +2177,32 @@ public class ModItems {
 
             // Xigbar
             event.getRegistry().register(new ItemArrowguns(Strings.Standalone, BalanceConfig.orgweapons.standalone));
-            event.getRegistry().register(new ItemArrowguns(Strings.Killerbee, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Stingray, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Counterweight, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Precision, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.DualHead, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Bahamut, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Gullwing, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.BlueFrame, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.StarShell, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Sunrise, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Ignition, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Armstrong, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.HardBoiledHeat, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.DiabloEye, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.DoubleTap, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Stardust, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.EnergyMuzzle, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.CrimeAndPunishment, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.CupidsArrow, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.FinalWeapon, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Sharpshooter, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Dryer, 4, 9));
-            event.getRegistry().register(new ItemArrowguns(Strings.Trumpet, 4, 9));
+            event.getRegistry().register(new ItemArrowguns(Strings.Killerbee, BalanceConfig.orgweapons.killerbee));
+            event.getRegistry().register(new ItemArrowguns(Strings.Stingray, BalanceConfig.orgweapons.stingray));
+            event.getRegistry().register(new ItemArrowguns(Strings.Counterweight, BalanceConfig.orgweapons.counterweight));
+            event.getRegistry().register(new ItemArrowguns(Strings.Precision, BalanceConfig.orgweapons.precision));
+            event.getRegistry().register(new ItemArrowguns(Strings.DualHead, BalanceConfig.orgweapons.dualhead));
+            event.getRegistry().register(new ItemArrowguns(Strings.Bahamut, BalanceConfig.orgweapons.bahamut));
+            event.getRegistry().register(new ItemArrowguns(Strings.Gullwing, BalanceConfig.orgweapons.gullwing));
+            event.getRegistry().register(new ItemArrowguns(Strings.BlueFrame, BalanceConfig.orgweapons.blueframe));
+            event.getRegistry().register(new ItemArrowguns(Strings.StarShell, BalanceConfig.orgweapons.starshell));
+            event.getRegistry().register(new ItemArrowguns(Strings.Sunrise, BalanceConfig.orgweapons.sunrise));
+            event.getRegistry().register(new ItemArrowguns(Strings.Ignition, BalanceConfig.orgweapons.ignition));
+            event.getRegistry().register(new ItemArrowguns(Strings.Armstrong, BalanceConfig.orgweapons.armstrong));
+            event.getRegistry().register(new ItemArrowguns(Strings.HardBoiledHeat, BalanceConfig.orgweapons.hardboiledheat));
+            event.getRegistry().register(new ItemArrowguns(Strings.DiabloEye, BalanceConfig.orgweapons.diabloeye));
+            event.getRegistry().register(new ItemArrowguns(Strings.DoubleTap, BalanceConfig.orgweapons.doubletrap));
+            event.getRegistry().register(new ItemArrowguns(Strings.Stardust, BalanceConfig.orgweapons.stardust));
+            event.getRegistry().register(new ItemArrowguns(Strings.EnergyMuzzle, BalanceConfig.orgweapons.energymuzzle));
+            event.getRegistry().register(new ItemArrowguns(Strings.CrimeAndPunishment, BalanceConfig.orgweapons.crimeandpunishment));
+            event.getRegistry().register(new ItemArrowguns(Strings.CupidsArrow, BalanceConfig.orgweapons.cupidsarrow));
+            event.getRegistry().register(new ItemArrowguns(Strings.FinalWeapon, BalanceConfig.orgweapons.finalweapon));
+            event.getRegistry().register(new ItemArrowguns(Strings.Sharpshooter, BalanceConfig.orgweapons.sharpshooter));
+            event.getRegistry().register(new ItemArrowguns(Strings.Dryer, BalanceConfig.orgweapons.dryer));
+            event.getRegistry().register(new ItemArrowguns(Strings.Trumpet, BalanceConfig.orgweapons.trumpet));
 
             // Xaldin
-            event.getRegistry().register(new ItemLances(Strings.Zephyr, 9, 4));
+            event.getRegistry().register(new ItemLances(Strings.Zephyr, BalanceConfig.orgweapons.zephyr));
             event.getRegistry().register(new ItemLances(Strings.Moonglade, 9, 4));
             event.getRegistry().register(new ItemLances(Strings.Aer, 9, 4));
             event.getRegistry().register(new ItemLances(Strings.Nescience, 9, 4));
@@ -2254,7 +2254,7 @@ public class ModItems {
             event.getRegistry().register(new ItemOrgShield(Strings.Snowman));
 
             // Lexaeus
-            event.getRegistry().register(new ItemAxeSword(Strings.Reticence, 15, 7));
+            event.getRegistry().register(new ItemAxeSword(Strings.Reticence, BalanceConfig.orgweapons.reticence));
             event.getRegistry().register(new ItemAxeSword(Strings.Goliath, 15, 7));
             event.getRegistry().register(new ItemAxeSword(Strings.CopperRed, 15, 7));
             event.getRegistry().register(new ItemAxeSword(Strings.Daybreak, 15, 7));

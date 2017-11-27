@@ -38,9 +38,9 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
     String weapon;
-    public ItemChakram (double strength, double magic, String weapon) {
-        super(weapon, strength, magic);
-        this.weapon = weapon;
+    public ItemChakram (String name, double[] stats) {
+        super(name, stats);
+        this.weapon = name;
         setMaxStackSize(1);
     }
 

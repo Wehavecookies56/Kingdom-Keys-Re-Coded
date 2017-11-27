@@ -10,8 +10,8 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemLances extends ItemOrgWeapon implements IOrgWeapon{
 
-    public ItemLances (String name, double strength, double magic)  {
-        super(name, strength, magic);
+    public ItemLances (String name, double[] stats)  {
+        super(name, stats);
         setMaxStackSize(1);
     }
 
