@@ -2409,30 +2409,30 @@ public class ModItems {
             event.getRegistry().register(new ItemCard(Strings.HighRollersSecret, BalanceConfig.orgweapons.highrollerssecret));
 
             // Marluxia
-            event.getRegistry().register(new ItemScythe(Strings.FickleErica, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.JiltedAnemone, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.ProudAmaryllis, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.MadSafflower, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.PoorMelissa, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.TragicAllium, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.MournfulCineria, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.PseudoSilene, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.FaithlessDigitalis, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.GrimMuscari, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.DocileVallota, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.QuietBelladonna, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.PartingIpheion, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.LoftyGerbera, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.GallantAchillea, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.NoblePeony, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.FearsomeAnise, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.VindictiveThistle, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.FairHelianthus, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.SolemnMagnolia, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.HallowedLotus, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.GracefulDahlia, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.StirringLadle, 8, 5));
-            event.getRegistry().register(new ItemScythe(Strings.DaintyBellflowers, 8, 5));
+            event.getRegistry().register(new ItemScythe(Strings.FickleErica, BalanceConfig.orgweapons.fickleerica));
+            event.getRegistry().register(new ItemScythe(Strings.JiltedAnemone, BalanceConfig.orgweapons.JiltedAnemone));
+            event.getRegistry().register(new ItemScythe(Strings.ProudAmaryllis, BalanceConfig.orgweapons.ProudAmaryllis));
+            event.getRegistry().register(new ItemScythe(Strings.MadSafflower, BalanceConfig.orgweapons.MadSafflower));
+            event.getRegistry().register(new ItemScythe(Strings.PoorMelissa, BalanceConfig.orgweapons.PoorMelissa));
+            event.getRegistry().register(new ItemScythe(Strings.TragicAllium, BalanceConfig.orgweapons.TragicAllium));
+            event.getRegistry().register(new ItemScythe(Strings.MournfulCineria, BalanceConfig.orgweapons.MournfulCineria));
+            event.getRegistry().register(new ItemScythe(Strings.PseudoSilene, BalanceConfig.orgweapons.PseudoSilene));
+            event.getRegistry().register(new ItemScythe(Strings.FaithlessDigitalis, BalanceConfig.orgweapons.FaithlessDigitalis));
+            event.getRegistry().register(new ItemScythe(Strings.GrimMuscari, BalanceConfig.orgweapons.GrimMuscari));
+            event.getRegistry().register(new ItemScythe(Strings.DocileVallota, BalanceConfig.orgweapons.DocileVallota));
+            event.getRegistry().register(new ItemScythe(Strings.QuietBelladonna, BalanceConfig.orgweapons.QuietBelladonna));
+            event.getRegistry().register(new ItemScythe(Strings.PartingIpheion, BalanceConfig.orgweapons.PartingIpheion));
+            event.getRegistry().register(new ItemScythe(Strings.LoftyGerbera, BalanceConfig.orgweapons.LoftyGerbera));
+            event.getRegistry().register(new ItemScythe(Strings.GallantAchillea, BalanceConfig.orgweapons.GallantAchillea));
+            event.getRegistry().register(new ItemScythe(Strings.NoblePeony, BalanceConfig.orgweapons.NoblePeony));
+            event.getRegistry().register(new ItemScythe(Strings.FearsomeAnise, BalanceConfig.orgweapons.FaithlessDigitalis));
+            event.getRegistry().register(new ItemScythe(Strings.VindictiveThistle, BalanceConfig.orgweapons.VindictiveThistle));
+            event.getRegistry().register(new ItemScythe(Strings.FairHelianthus, BalanceConfig.orgweapons.FairHelianthus));
+            event.getRegistry().register(new ItemScythe(Strings.SolemnMagnolia, BalanceConfig.orgweapons.SolemnMagnolia));
+            event.getRegistry().register(new ItemScythe(Strings.HallowedLotus, BalanceConfig.orgweapons.HallowedLotus));
+            event.getRegistry().register(new ItemScythe(Strings.GracefulDahlia, BalanceConfig.orgweapons.GracefulDahlia));
+            event.getRegistry().register(new ItemScythe(Strings.StirringLadle, BalanceConfig.orgweapons.StirringLadle));
+            event.getRegistry().register(new ItemScythe(Strings.DaintyBellflowers, BalanceConfig.orgweapons.DaintyBellflowers));
 
             // Larxene
             event.getRegistry().register(new ItemKnife(Strings.Trancheuse, 8, 6));
