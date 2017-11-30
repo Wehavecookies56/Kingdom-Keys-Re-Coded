@@ -285,7 +285,7 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
                 
                 //Saix
                 newmoon = new double[] { 7, 6 },
-                werebook = new double[] { 7, 6 },
+                werewolf = new double[] { 7, 6 },
                 artemis = new double[] { 7, 6 },       
                 luminary = new double[] { 7, 6 },       
                 selene = new double[] { 7, 6 },       
