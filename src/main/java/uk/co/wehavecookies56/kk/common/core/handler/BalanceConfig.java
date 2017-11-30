@@ -348,7 +348,7 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
                 interlude = new double[] { 5, 8 },        
                 serenade = new double[] { 5, 8 },        
                 songbird = new double[] { 5, 8 },        
-                risetoflame = new double[] { 5, 8 },        
+                risetofame = new double[] { 5, 8 },
                 rockstar = new double[] { 5, 8 },        
                 eightfinger = new double[] { 5, 8 },        
                 concierto = new double[] { 5, 8 },        
