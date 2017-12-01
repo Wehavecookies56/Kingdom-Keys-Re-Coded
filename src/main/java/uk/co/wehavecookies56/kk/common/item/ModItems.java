@@ -1842,6 +1842,18 @@ public class ModItems {
 
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.OrganizationRobe_Boots)
     public static Item OrganizationRobe_Boots;
+    
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Xemnas_Helmet)
+    public static Item Xemnas_Helmet;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Xemnas_Chestplate)
+    public static Item Xemnas_Chestplate;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Xemnas_Leggings)
+    public static Item Xemnas_Leggings;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Xemnas_Boots)
+    public static Item Xemnas_Boots;
 
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.Terra_Helmet)
     public static Item Terra_Helmet;
@@ -1892,7 +1904,9 @@ public class ModItems {
     public static Item Eraqus_Boots;
 
     // Armour material
-    private static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", -1, new int[] { 2, 3, 3, 1 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 5);
+    private static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", -1, new int[] { 3, 4, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 5);
+    private static ArmorMaterial XEMNASROBE = EnumHelper.addArmorMaterial("XEMNASROBE", Reference.MODID + ":xemnasrobe", -1, new int[] { 3, 5, 6, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 5);
+
     private static ArmorMaterial TERRA = EnumHelper.addArmorMaterial("TERRA", Reference.MODID + ":terra", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 4);
     private static ArmorMaterial AQUA = EnumHelper.addArmorMaterial("AQUA", Reference.MODID + ":aqua", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2);
     private static ArmorMaterial VENTUS = EnumHelper.addArmorMaterial("VENTUS", Reference.MODID + ":ventus", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3);
@@ -2257,6 +2271,7 @@ public class ModItems {
             event.getRegistry().register(new ItemAxeSword(Strings.Reticence, BalanceConfig.orgweapons.reticence));
             event.getRegistry().register(new ItemAxeSword(Strings.Goliath, BalanceConfig.orgweapons.goliath));
             event.getRegistry().register(new ItemAxeSword(Strings.CopperRed, BalanceConfig.orgweapons.copperred));
+            event.getRegistry().register(new ItemAxeSword(Strings.Daybreak, BalanceConfig.orgweapons.daybreak));
             event.getRegistry().register(new ItemAxeSword(Strings.Colossus, BalanceConfig.orgweapons.colossus));
             event.getRegistry().register(new ItemAxeSword(Strings.UrsaMajor, BalanceConfig.orgweapons.ursamajor));
             event.getRegistry().register(new ItemAxeSword(Strings.Megacosm, BalanceConfig.orgweapons.megacosm));
@@ -2409,56 +2424,56 @@ public class ModItems {
             event.getRegistry().register(new ItemCard(Strings.HighRollersSecret, BalanceConfig.orgweapons.highrollerssecret));
 
             // Marluxia
-            event.getRegistry().register(new ItemScythe(Strings.FickleErica, BalanceConfig.orgweapons.fickleerica));
-            event.getRegistry().register(new ItemScythe(Strings.JiltedAnemone, BalanceConfig.orgweapons.JiltedAnemone));
-            event.getRegistry().register(new ItemScythe(Strings.ProudAmaryllis, BalanceConfig.orgweapons.ProudAmaryllis));
-            event.getRegistry().register(new ItemScythe(Strings.MadSafflower, BalanceConfig.orgweapons.MadSafflower));
-            event.getRegistry().register(new ItemScythe(Strings.PoorMelissa, BalanceConfig.orgweapons.PoorMelissa));
-            event.getRegistry().register(new ItemScythe(Strings.TragicAllium, BalanceConfig.orgweapons.TragicAllium));
-            event.getRegistry().register(new ItemScythe(Strings.MournfulCineria, BalanceConfig.orgweapons.MournfulCineria));
-            event.getRegistry().register(new ItemScythe(Strings.PseudoSilene, BalanceConfig.orgweapons.PseudoSilene));
-            event.getRegistry().register(new ItemScythe(Strings.FaithlessDigitalis, BalanceConfig.orgweapons.FaithlessDigitalis));
-            event.getRegistry().register(new ItemScythe(Strings.GrimMuscari, BalanceConfig.orgweapons.GrimMuscari));
-            event.getRegistry().register(new ItemScythe(Strings.DocileVallota, BalanceConfig.orgweapons.DocileVallota));
-            event.getRegistry().register(new ItemScythe(Strings.QuietBelladonna, BalanceConfig.orgweapons.QuietBelladonna));
-            event.getRegistry().register(new ItemScythe(Strings.PartingIpheion, BalanceConfig.orgweapons.PartingIpheion));
-            event.getRegistry().register(new ItemScythe(Strings.LoftyGerbera, BalanceConfig.orgweapons.LoftyGerbera));
-            event.getRegistry().register(new ItemScythe(Strings.GallantAchillea, BalanceConfig.orgweapons.GallantAchillea));
-            event.getRegistry().register(new ItemScythe(Strings.NoblePeony, BalanceConfig.orgweapons.NoblePeony));
-            event.getRegistry().register(new ItemScythe(Strings.FearsomeAnise, BalanceConfig.orgweapons.FaithlessDigitalis));
-            event.getRegistry().register(new ItemScythe(Strings.VindictiveThistle, BalanceConfig.orgweapons.VindictiveThistle));
-            event.getRegistry().register(new ItemScythe(Strings.FairHelianthus, BalanceConfig.orgweapons.FairHelianthus));
-            event.getRegistry().register(new ItemScythe(Strings.SolemnMagnolia, BalanceConfig.orgweapons.SolemnMagnolia));
-            event.getRegistry().register(new ItemScythe(Strings.HallowedLotus, BalanceConfig.orgweapons.HallowedLotus));
-            event.getRegistry().register(new ItemScythe(Strings.GracefulDahlia, BalanceConfig.orgweapons.GracefulDahlia));
-            event.getRegistry().register(new ItemScythe(Strings.StirringLadle, BalanceConfig.orgweapons.StirringLadle));
-            event.getRegistry().register(new ItemScythe(Strings.DaintyBellflowers, BalanceConfig.orgweapons.DaintyBellflowers));
-
+            event.getRegistry().register(new ItemScythe(Strings.FickleErica, BalanceConfig.orgweapons.fickleerica));                   
+            event.getRegistry().register(new ItemScythe(Strings.JiltedAnemone, BalanceConfig.orgweapons.jiltedanemone));               
+            event.getRegistry().register(new ItemScythe(Strings.ProudAmaryllis, BalanceConfig.orgweapons.proudamaryllis));             
+            event.getRegistry().register(new ItemScythe(Strings.MadSafflower, BalanceConfig.orgweapons.madsafflower));                 
+            event.getRegistry().register(new ItemScythe(Strings.PoorMelissa, BalanceConfig.orgweapons.poormelissa));                   
+            event.getRegistry().register(new ItemScythe(Strings.TragicAllium, BalanceConfig.orgweapons.tragicallium));                 
+            event.getRegistry().register(new ItemScythe(Strings.MournfulCineria, BalanceConfig.orgweapons.mournfulcineria));           
+            event.getRegistry().register(new ItemScythe(Strings.PseudoSilene, BalanceConfig.orgweapons.pseudosilene));                 
+            event.getRegistry().register(new ItemScythe(Strings.FaithlessDigitalis, BalanceConfig.orgweapons.faithlessdigitalis));     
+            event.getRegistry().register(new ItemScythe(Strings.GrimMuscari, BalanceConfig.orgweapons.grimmuscari));                   
+            event.getRegistry().register(new ItemScythe(Strings.DocileVallota, BalanceConfig.orgweapons.docilevallota));               
+            event.getRegistry().register(new ItemScythe(Strings.QuietBelladonna, BalanceConfig.orgweapons.quietbelladonna));           
+            event.getRegistry().register(new ItemScythe(Strings.PartingIpheion, BalanceConfig.orgweapons.partingipheion));             
+            event.getRegistry().register(new ItemScythe(Strings.LoftyGerbera, BalanceConfig.orgweapons.loftygerbera));                 
+            event.getRegistry().register(new ItemScythe(Strings.GallantAchillea, BalanceConfig.orgweapons.gallantachillea));           
+            event.getRegistry().register(new ItemScythe(Strings.NoblePeony, BalanceConfig.orgweapons.noblepeony));                     
+            event.getRegistry().register(new ItemScythe(Strings.FearsomeAnise, BalanceConfig.orgweapons.faithlessdigitalis));          
+            event.getRegistry().register(new ItemScythe(Strings.VindictiveThistle, BalanceConfig.orgweapons.vindictivethistle));       
+            event.getRegistry().register(new ItemScythe(Strings.FairHelianthus, BalanceConfig.orgweapons.fairhelianthus));             
+            event.getRegistry().register(new ItemScythe(Strings.SolemnMagnolia, BalanceConfig.orgweapons.solemnmagnolia));             
+            event.getRegistry().register(new ItemScythe(Strings.HallowedLotus, BalanceConfig.orgweapons.hallowedlotus));               
+            event.getRegistry().register(new ItemScythe(Strings.GracefulDahlia, BalanceConfig.orgweapons.gracefuldahlia));             
+            event.getRegistry().register(new ItemScythe(Strings.StirringLadle, BalanceConfig.orgweapons.stirringladle));               
+            event.getRegistry().register(new ItemScythe(Strings.DaintyBellflowers, BalanceConfig.orgweapons.daintybellflowers));       
+                                                                                                                                       
             // Larxene
-            event.getRegistry().register(new ItemKnife(Strings.Trancheuse, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Orage, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Tourbillon, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Tempete, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Carmin, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Meteore, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Etoile, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Irregulier, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Dissonance, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Eruption, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.SoleilCouchant, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Indigo, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Vague, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Deluge, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Rafale, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Typhon, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Extirpeur, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.CroixDuSud, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Lumineuse, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.ClairdeLune, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.VoldeNuit, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Foudre, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Demoiselle, 8, 6));
-            event.getRegistry().register(new ItemKnife(Strings.Ampoule, 8, 6));
+            event.getRegistry().register(new ItemKnife(Strings.Trancheuse, BalanceConfig.orgweapons.trancheuse));
+            event.getRegistry().register(new ItemKnife(Strings.Orage, BalanceConfig.orgweapons.orage));
+            event.getRegistry().register(new ItemKnife(Strings.Tourbillon, BalanceConfig.orgweapons.tourbillon));
+            event.getRegistry().register(new ItemKnife(Strings.Tempete, BalanceConfig.orgweapons.tempete));
+            event.getRegistry().register(new ItemKnife(Strings.Carmin, BalanceConfig.orgweapons.carmin));
+            event.getRegistry().register(new ItemKnife(Strings.Meteore, BalanceConfig.orgweapons.meteore));
+            event.getRegistry().register(new ItemKnife(Strings.Etoile, BalanceConfig.orgweapons.etoile));
+            event.getRegistry().register(new ItemKnife(Strings.Irregulier, BalanceConfig.orgweapons.irregulier));
+            event.getRegistry().register(new ItemKnife(Strings.Dissonance, BalanceConfig.orgweapons.dissonance));
+            event.getRegistry().register(new ItemKnife(Strings.Eruption, BalanceConfig.orgweapons.eruption));
+            event.getRegistry().register(new ItemKnife(Strings.SoleilCouchant, BalanceConfig.orgweapons.soleilcouchant));
+            event.getRegistry().register(new ItemKnife(Strings.Indigo, BalanceConfig.orgweapons.indigo));
+            event.getRegistry().register(new ItemKnife(Strings.Vague, BalanceConfig.orgweapons.vague));
+            event.getRegistry().register(new ItemKnife(Strings.Deluge, BalanceConfig.orgweapons.deluge));
+            event.getRegistry().register(new ItemKnife(Strings.Rafale, BalanceConfig.orgweapons.rafale));
+            event.getRegistry().register(new ItemKnife(Strings.Typhon, BalanceConfig.orgweapons.typhon));
+            event.getRegistry().register(new ItemKnife(Strings.Extirpeur, BalanceConfig.orgweapons.extirpeur));
+            event.getRegistry().register(new ItemKnife(Strings.CroixDuSud, BalanceConfig.orgweapons.croixdusud));
+            event.getRegistry().register(new ItemKnife(Strings.Lumineuse, BalanceConfig.orgweapons.lumineuse));
+            event.getRegistry().register(new ItemKnife(Strings.ClairdeLune, BalanceConfig.orgweapons.clairdelune));
+            event.getRegistry().register(new ItemKnife(Strings.VoldeNuit, BalanceConfig.orgweapons.voldenuit));
+            event.getRegistry().register(new ItemKnife(Strings.Foudre, BalanceConfig.orgweapons.foudre));
+            event.getRegistry().register(new ItemKnife(Strings.Demoiselle, BalanceConfig.orgweapons.demoiselle));
+            event.getRegistry().register(new ItemKnife(Strings.Ampoule, BalanceConfig.orgweapons.ampoule));
 
             event.getRegistry().register(new ItemOrgShield(Strings.DreamShield));
 
@@ -2720,6 +2735,11 @@ public class ModItems {
             event.getRegistry().register(new ItemOrganizationRobe(ORGANIZATIONROBE, 1, EntityEquipmentSlot.CHEST, 1, Strings.OrganizationRobe_Chestplate));
             event.getRegistry().register(new ItemOrganizationRobe(ORGANIZATIONROBE, 2, EntityEquipmentSlot.LEGS, 2, Strings.OrganizationRobe_Leggings));
             event.getRegistry().register(new ItemOrganizationRobe(ORGANIZATIONROBE, 1, EntityEquipmentSlot.FEET, 3, Strings.OrganizationRobe_Boots));
+            
+            event.getRegistry().register(new ItemXemnasRobe(XEMNASROBE, 1, EntityEquipmentSlot.HEAD, 0, Strings.Xemnas_Helmet));
+            event.getRegistry().register(new ItemXemnasRobe(XEMNASROBE, 1, EntityEquipmentSlot.CHEST, 1, Strings.Xemnas_Chestplate));
+            event.getRegistry().register(new ItemXemnasRobe(XEMNASROBE, 2, EntityEquipmentSlot.LEGS, 2, Strings.Xemnas_Leggings));
+            event.getRegistry().register(new ItemXemnasRobe(XEMNASROBE, 1, EntityEquipmentSlot.FEET, 3, Strings.Xemnas_Boots));
 
             event.getRegistry().register(new ItemTerraArmor(TERRA, 1, EntityEquipmentSlot.HEAD, 0, Strings.Terra_Helmet));
             event.getRegistry().register(new ItemTerraArmor(TERRA, 1, EntityEquipmentSlot.CHEST, 1, Strings.Terra_Chestplate));

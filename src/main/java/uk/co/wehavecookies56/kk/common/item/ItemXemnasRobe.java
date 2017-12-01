@@ -7,9 +7,9 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
-public class ItemOrganizationRobe extends ItemArmor /*implements ISpecialArmor*/ {
+public class ItemXemnasRobe extends ItemArmor /*implements ISpecialArmor*/ {
 
-    public ItemOrganizationRobe (ArmorMaterial material, int renderIndex, EntityEquipmentSlot slot, int armorType, String name) {
+    public ItemXemnasRobe (ArmorMaterial material, int renderIndex, EntityEquipmentSlot slot, int armorType, String name) {
         super(material, renderIndex, slot);
         setRegistryName(name);
         setUnlocalizedName(name);
@@ -18,10 +18,10 @@ public class ItemOrganizationRobe extends ItemArmor /*implements ISpecialArmor*/
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-        if (stack.getItem() == ModItems.OrganizationRobe_Leggings)
-            return Reference.MODID + ":textures/armour/organizationrobe_2.png";
+        if (stack.getItem() == ModItems.Xemnas_Leggings)
+            return Reference.MODID + ":textures/armour/xemnas_2.png";
         else
-            return Reference.MODID + ":textures/armour/organizationrobe_1.png";
+            return Reference.MODID + ":textures/armour/xemnas_1.png";
     }
 
     @Override

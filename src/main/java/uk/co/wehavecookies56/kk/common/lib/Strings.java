@@ -332,6 +332,11 @@ public class Strings {
     OrganizationRobe_Leggings = "organizationrobe_leggings",
     OrganizationRobe_Boots = "organizationrobe_boots",
 
+	Xemnas_Helmet = "xemnas_helmet",
+    Xemnas_Chestplate = "xemnas_chestplate",
+    Xemnas_Leggings = "xemnas_leggings",
+    Xemnas_Boots = "xemnas_boots",
+    	    
     Terra_Helmet = "terra_helmet",
     Terra_Chestplate = "terra_chestplate",
     Terra_Leggings = "terra_leggings",
