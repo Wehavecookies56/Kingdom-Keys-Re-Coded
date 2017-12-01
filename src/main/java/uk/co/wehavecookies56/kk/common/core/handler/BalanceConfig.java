@@ -16,6 +16,9 @@ public class BalanceConfig {
 	@Config.Comment("Set Keyblade Strength and Magic values")
 	@Config.LangKey("kk.balance.keyblades")
 	public static Keyblades keyblades = new Keyblades();
+	
+	@Config.Comment("Set Organization Weapon Strength and Magic values")
+	@Config.LangKey("kk.balance.orgweapons")
 	public static OrgWeapons orgweapons = new OrgWeapons();
 
 	public static class Keyblades {

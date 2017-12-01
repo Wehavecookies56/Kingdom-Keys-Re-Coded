@@ -17,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgWeaponUnlock;
@@ -481,7 +482,7 @@ public class GuiOrgUnlock extends GuiScreen {
         fontRenderer.drawString("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints(), posX + 256 - fontRenderer.getStringWidth("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints()) - 5, posY + 5, 0x2B2B2B);
         super.drawScreen(mouseX, mouseY, partialTicks);
         if (selected != null)
-            fontRenderer.drawString(new ItemStack(selected.unlock).getDisplayName() + " selected", (width / 2) - (texWidth / 2) + 5, (height / 2) - (texHeight / 2) + 180, 0x2B2B2B);
+            fontRenderer.drawString(new ItemStack(selected.unlock).getDisplayName()+": str: +"+((ItemOrgWeapon)selected.getUnlock()).getStrength()+" mag: +"+((ItemOrgWeapon)selected.getUnlock()).getMagic(), (width / 2) - (texWidth / 2) + 5, (height / 2) - (texHeight / 2) + 180, 0x2B2B2B);
     }
 
     @Override
