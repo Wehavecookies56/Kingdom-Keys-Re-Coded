@@ -244,6 +244,11 @@ item.organizationrobe_chestplate.name=Organization Coat
 item.organizationrobe_leggings.name=Organization Leggings
 item.organizationrobe_boots.name=Organization Boots
 
+item.xemnas_helmet.name=Organization Hood
+item.xemnas_chestplate.name=Organization Coat
+item.xemnas_leggings.name=Organization Leggings
+item.xemnas_boots.name=Organization Boots
+
 item.aqua_helmet.name=Aqua's Helmet
 item.aqua_chestplate.name=Aqua's Chestplate
 item.aqua_leggings.name=Aqua's Leggings

@@ -244,6 +244,11 @@ item.organizationrobe_chestplate.name=Gabardina de la Organización
 item.organizationrobe_leggings.name=Pantalones de la Organización
 item.organizationrobe_boots.name=Botas de la Organización
 
+item.xemnas_helmet.name=Capucha de la Organización
+item.xemnas_chestplate.name=Gabardina de la Organización
+item.xemnas_leggings.name=Pantalones de la Organización
+item.xemnas_boots.name=Botas de la Organización
+
 item.aqua_helmet.name=Casco de Aqua
 item.aqua_chestplate.name=Pechera de Aqua
 item.aqua_leggings.name=Grebas de Aqua
