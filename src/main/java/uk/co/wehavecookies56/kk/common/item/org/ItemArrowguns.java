@@ -36,9 +36,9 @@ public class ItemArrowguns extends ItemOrgWeapon implements IOrgWeapon{
                 world.playSound(player.posX, player.posY, player.posZ, ModSounds.sharpshooterbullet, SoundCategory.PLAYERS, 0.5F, 1F / (itemRand.nextFloat() * 0.4F + 0.8F), false);
                 EntitySharpshooterBullet bullet = new EntitySharpshooterBullet(world,player);
                 world.spawnEntity(bullet);
-                bullet.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 3f, 0);
+                bullet.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 4f, 0);
                 if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
-                    player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(7);
+                    player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(5);
                 player.swingArm(EnumHand.MAIN_HAND);
             }
         } else {
