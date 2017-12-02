@@ -1904,8 +1904,8 @@ public class ModItems {
     public static Item Eraqus_Boots;
 
     // Armour material
-    private static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", -1, new int[] { 3, 4, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 5);
-    private static ArmorMaterial XEMNASROBE = EnumHelper.addArmorMaterial("XEMNASROBE", Reference.MODID + ":xemnasrobe", -1, new int[] { 3, 5, 6, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 5);
+    private static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", -1, new int[] { 3, 4, 5, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 5);
+    private static ArmorMaterial XEMNASROBE = EnumHelper.addArmorMaterial("XEMNASROBE", Reference.MODID + ":xemnasrobe", -1, new int[] { 3, 4, 5, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 5);
 
     private static ArmorMaterial TERRA = EnumHelper.addArmorMaterial("TERRA", Reference.MODID + ":terra", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 4);
     private static ArmorMaterial AQUA = EnumHelper.addArmorMaterial("AQUA", Reference.MODID + ":aqua", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2);

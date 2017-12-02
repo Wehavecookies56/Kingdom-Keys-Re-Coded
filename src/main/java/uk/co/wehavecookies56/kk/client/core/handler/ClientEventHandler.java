@@ -127,7 +127,7 @@ public class ClientEventHandler {
         }
     }
 
-    long lastAlarmStart;
+    //long lastAlarmStart;
     @SubscribeEvent
     public void renderTick(TickEvent.RenderTickEvent event) {
         EntityPlayer player = Minecraft.getMinecraft().player;

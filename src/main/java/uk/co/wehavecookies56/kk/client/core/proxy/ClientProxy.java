@@ -376,6 +376,11 @@ public class ClientProxy extends CommonProxy {
         registerModel(OrganizationRobe_Chestplate);
         registerModel(OrganizationRobe_Leggings);
         registerModel(OrganizationRobe_Boots);
+        
+        registerModel(Xemnas_Helmet);
+        registerModel(Xemnas_Chestplate);
+        registerModel(Xemnas_Leggings);
+        registerModel(Xemnas_Boots);
 
         registerModel(Terra_Helmet);
         registerModel(Terra_Chestplate);
