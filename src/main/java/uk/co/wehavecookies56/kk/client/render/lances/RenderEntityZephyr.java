@@ -3,10 +3,15 @@ package uk.co.wehavecookies56.kk.client.render.lances;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import uk.co.wehavecookies56.kk.client.model.chakrams.ModelEternalFlames;
 import uk.co.wehavecookies56.kk.client.model.lances.ModelZephyr;
@@ -32,15 +37,16 @@ public class RenderEntityZephyr extends Render implements IRenderFactory<EntityZ
     }
 
     @Override
-    public void doRender (Entity entity, double x, double y, double z, float yaw, float pitch) {
-        GL11.glPushMatrix();
+    public void doRender (Entity entity, double x, double y, double z, float yaw, float partialTicks) {
+    	GL11.glPushMatrix();
         GL11.glTranslated(x, y, z);
-        GL11.glRotatef(90, 0.0F, 0.0F, 1.0F);
+        //GL11.glRotatef(90, 0.0F, 0.0F, 1.0F);
+
+        GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F, 1.0F);
        
         GL11.glScalef(0.02f, 0.02f, 0.02f);
         
-        //GL11.glRotatef(pitch*10, 0,0, 1);
-
         bindEntityTexture(entity);
 
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
