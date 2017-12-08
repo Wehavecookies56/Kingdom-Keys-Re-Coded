@@ -4,7 +4,9 @@ import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -42,21 +44,23 @@ public class MagicBlizzard extends AbstractMessage.AbstractServerMessage<MagicBl
                 EntityBlizzard entityBlizzard = new EntityBlizzard(world, player);
                 world.spawnEntity(entityBlizzard);
                 entityBlizzard.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
-                PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzard(world), 1), player, 64.0D);
+                //PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzard(world), 1), player, 64.0D);
                 break;
             case 2:
                 EntityBlizzara entityBlizzara = new EntityBlizzara(world, player);
                 world.spawnEntity(entityBlizzara);
                 entityBlizzara.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 2, 0);
-                PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzara(world), 1), player, 64.0D);
+                //PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzara(world), 2), player, 64.0D);
                 break;
             case 3:
                 EntityBlizzaga entityBlizzaga = new EntityBlizzaga(world, player);
                 world.spawnEntity(entityBlizzaga);
                 entityBlizzaga.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 3, 0);
-                PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzaga(world), 1), player, 64.0D);
+                //PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzaga(world), 3), player, 64.0D);
                 break;
         }
+        world.playSound(player.posX, player.posY, player.posZ, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1, 1, false);
+
         PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
     }
 

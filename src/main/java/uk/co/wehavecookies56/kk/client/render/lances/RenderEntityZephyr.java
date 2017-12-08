@@ -39,19 +39,19 @@ public class RenderEntityZephyr extends Render implements IRenderFactory<EntityZ
     @Override
     public void doRender (Entity entity, double x, double y, double z, float yaw, float partialTicks) {
     	GL11.glPushMatrix();
-        GL11.glTranslated(x, y, z);
-        //GL11.glRotatef(90, 0.0F, 0.0F, 1.0F);
-
-        GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F, 1.0F);
-       
-        GL11.glScalef(0.02f, 0.02f, 0.02f);
-        
-        bindEntityTexture(entity);
-
-        GL11.glScalef(-1.0F, -1.0F, 1.0F);
-        this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-
+    	{
+	        GL11.glTranslated(x, y, z);
+	        GL11.glRotatef(90, 0.0F, 0.0F, 1.0F);
+	
+	        GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks, 0.0F, 1.0F, 0.0F);
+	        GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 1.0F, 0.0F, 0.0F);
+	       
+	        GL11.glScalef(0.02f, 0.02f, 0.02f);
+	        
+	        bindEntityTexture(entity);
+	
+	        this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+    	}
         GL11.glPopMatrix();
     }
 

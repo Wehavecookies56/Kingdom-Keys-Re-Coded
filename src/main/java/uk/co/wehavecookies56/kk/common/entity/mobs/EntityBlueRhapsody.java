@@ -44,27 +44,7 @@ public class EntityBlueRhapsody extends BaseEntityHeartless implements IKHMob {
         this.dataManager.register(EntityHelper.STATE, 0);
         this.dataManager.register(EntityHelper.ANIMATION, 0);
     }
-
-    @Override
-    protected boolean isValidLightLevel() {
-        return true;
-    }
-
-    @Override
-    protected boolean canDespawn() {
-        return true;
-    }
-
-    @Override
-    public boolean isAIDisabled() {
-        return false;
-    }
-
-    @Override
-    public boolean getCanSpawnHere() {
-        return true;
-    }
-
+    
     @Override
     public MobType getType() {
         return MobType.HEARTLESS_EMBLEM;
