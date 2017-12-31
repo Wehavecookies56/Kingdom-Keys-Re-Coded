@@ -10,12 +10,13 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
-import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 @SideOnly (Side.CLIENT)
 public class GuiDrive extends GuiScreen {
@@ -29,39 +30,24 @@ public class GuiDrive extends GuiScreen {
     double guiLength = 47D;
     double oneValue = (guiLength / 100D);
     double currDrive;
+    double currForm;
 
     public GuiDrive () {
 
     }
 
-    public int getCurrBar (double dp) {
-        int bar = 0;
-        if (dp < 100)
-            bar = 0;
-        else if (dp < 200 && dp >= 100)
-            bar = 1;
-        else if (dp < 300 && dp >= 200)
-            bar = 2;
-        else if (dp < 400 && dp >= 300)
-            bar = 3;
-        else if (dp < 500 && dp >= 400)
-            bar = 4;
-        else if (dp < 600 && dp >= 500)
-            bar = 5;
-        else if (dp < 700 && dp >= 600)
-            bar = 6;
-        else if (dp < 800 && dp >= 700)
-            bar = 7;
-        else if (dp < 900 && dp > 800)
-            bar = 8;
-        else if (dp < 1000 && dp > 900)
-            bar = 9;
-        else
-            bar = 9;
-        // max
+    public int getMaxBars(int level) {
+        return level * 100;
+    }
+
+    public int getCurrBar (double dp, int level) {
+        int bar = (int)dp / 100;
+        if (bar > level)
+            bar = level;
         return bar;
     }
 
+    byte counter = 0;
     @SubscribeEvent
     public void onRenderOverlayPost (RenderGameOverlayEvent event) {
         if (!MainConfig.displayGUI())
@@ -69,11 +55,22 @@ public class GuiDrive extends GuiScreen {
         if(!mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
 
         PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
-        double dp = STATS.getDP();
+        DriveStateCapability.IDriveState STATE = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
+        double dp = STATE.getDP();
+        double fp = STATE.getFP();
 
-        currDrive = (float) ((oneValue * dp) - getCurrBar(dp) * guiLength);
-        if (dp == 100 || dp == 200 || dp == 300 || dp == 400 || dp == 500 || dp == 600 || dp == 700 || dp == 800 || dp == 900) currDrive = 0;
-
+        currDrive = (float) ((oneValue * dp) - getCurrBar(dp, STATE.getDriveGaugeLevel()) * guiLength);
+        if (STATE.getInDrive())
+            currForm = (float) ((oneValue * fp) - getCurrBar(fp, STATE.getFormGaugeLevel(STATE.getActiveDriveName())) * guiLength);
+        //if ((dp == 100 || dp == 200 || dp == 300 || dp == 400 || dp == 500 || dp == 600 || dp == 700 || dp == 800 || dp == 900) && dp != getMaxBars(STATE.getDriveGaugeLevel())) currDrive = 0;
+        if (dp == getMaxBars(STATE.getDriveGaugeLevel())) {
+            currDrive = guiLength;
+        }
+        if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
+            if (!STATE.getActiveDriveName().equals("none") && !STATE.getActiveDriveName().equals(Strings.Form_Anti)) {
+                event.setCanceled(true);
+            }
+        }
         if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
             int guiWidth = 95;
             int guiBarWidth = 83;
@@ -98,58 +95,54 @@ public class GuiDrive extends GuiScreen {
             }
             float posX = 52 * scale;
             float posY = 20 * scale;
-
+//System.out.println(STATS.getMaxDP());
             GL11.glPushMatrix();
             GL11.glTranslatef((screenWidth - guiWidth * scale) - posX, (screenHeight - guiHeight * scale) - posY, 0);
             GL11.glScalef(scale, scale, scale);
             // Background
-            this.drawTexturedModalRect(15, 6, 0, 0, guiWidth, guiHeight);
+            if (STATE.getActiveDriveName().equals("none")) {
+                this.drawTexturedModalRect(15, 6, 0, 0, guiWidth, guiHeight);
+            } else {
+                this.drawTexturedModalRect(15, 6, 98, 0, guiWidth, guiHeight);
+            }
             GL11.glPopMatrix();
             // Yellow meter
             GL11.glPushMatrix();
             GL11.glTranslatef((screenWidth - guiWidth * scale) + (guiWidth - guiBarWidth) * scale + (24 * scale) - posX, (screenHeight - guiHeight * scale) - (2 * scale) - posY, 0);
             GL11.glScalef(scale, scale, scale);
-            this.drawTexturedModalRect(15, 6, 0, 18, (int) currDrive, guiHeight);
+            if (STATE.getActiveDriveName().equals("none")) {
+                this.drawTexturedModalRect(15, 6, 0, 18, (int) currDrive, guiHeight);
+            } else {
+                this.drawTexturedModalRect(15, 6, 98, 18, (int) currForm, guiHeight);
+            }
             GL11.glPopMatrix();
             // Level
             GL11.glPushMatrix();
             GL11.glTranslatef((screenWidth - guiWidth * scale) + (85 * scale) - posX, (screenHeight - guiHeight * scale) - (2 * scale) - posY, 0);
             GL11.glScalef(scale, scale, scale);
-            if (getCurrBar(dp) == 0)
-                this.drawTexturedModalRect(15, 6, 0, 38, 8, guiHeight);
-            else if (getCurrBar(dp) == 1)
-                this.drawTexturedModalRect(15, 6, 10, 38, 8, guiHeight);
-            else if (getCurrBar(dp) == 2)
-                this.drawTexturedModalRect(15, 6, 20, 38, 8, guiHeight);
-            else if (getCurrBar(dp) == 3)
-                this.drawTexturedModalRect(15, 6, 30, 38, 8, guiHeight);
-            else if (getCurrBar(dp) == 4)
-                this.drawTexturedModalRect(15, 6, 40, 38, 8, guiHeight);
-            else if (getCurrBar(dp) == 5)
-                this.drawTexturedModalRect(15, 6, 50, 38, 8, guiHeight);
-            else if (getCurrBar(dp) == 6)
-                this.drawTexturedModalRect(15, 6, 60, 38, 8, guiHeight);
-            else if (getCurrBar(dp) == 7)
-                this.drawTexturedModalRect(15, 6, 70, 38, 8, guiHeight);
-            else if (getCurrBar(dp) == 8)
-                this.drawTexturedModalRect(15, 6, 80, 38, 8, guiHeight);
-            else if (getCurrBar(dp) == 9) this.drawTexturedModalRect(15, 6, 90, 38, 8, guiHeight);
+            if (STATE.getActiveDriveName().equals("none")) {
+                int numPos = getCurrBar(dp, STATE.getDriveGaugeLevel()) * 10;
+                this.drawTexturedModalRect(14, 6, numPos, 38, 8, guiHeight);
+            } else {
+                int numPos = 98 + (getCurrBar(fp, STATE.getFormGaugeLevel(STATE.getActiveDriveName())) * 10);
+                this.drawTexturedModalRect(14, 6, numPos, 38, 8, guiHeight);
+            }
             GL11.glPopMatrix();
-            if (STATS.getDP() >= 1000) {
+            if (STATE.getDP() >= getMaxBars(STATE.getDriveGaugeLevel()) && !STATE.getInDrive()) {
                 GL11.glPushMatrix();
-                switch (Utils.randomWithRange(1, 4)) {
-                    case 1:
-                        GL11.glColor3ub((byte) 255, (byte) 50, (byte) 40);
-
-                        break;
-                    case 2:
-                        GL11.glColor3ub((byte) 35, (byte) 255, (byte) 50);
-
-                        break;
-                    case 3:
-                        GL11.glColor3ub((byte) 35, (byte) 50, (byte) 255);
-                        break;
-                }
+                counter++;
+                
+                if(counter > 0 && counter < 50)
+                    GL11.glColor3ub((byte) 255, (byte) 50, (byte) 40);
+                else if(counter >= 50 && counter < 100)
+                    GL11.glColor3ub((byte) 35, (byte) 255, (byte) 50);
+                else if(counter >= 100 && counter < 150)
+                    GL11.glColor3ub((byte) 35, (byte) 50, (byte) 255);
+                else if(counter >= 150 && counter < 200)     
+                	GL11.glColor3ub((byte) 255, (byte) 255, (byte) 255);
+                else if(counter >= 200)
+                     	counter = 0;
+                
                 GL11.glTranslatef(((screenWidth - guiWidth * scale) + (10 * scale)), ((screenHeight - guiHeight * scale) - (12 * scale)), 0);
                 GL11.glScalef(scale, scale, scale);
                 this.drawTexturedModalRect(0, 0, 0, 57, 30, guiHeight);

@@ -3,18 +3,51 @@ package uk.co.wehavecookies56.kk.common.driveform;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
-import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnDriveFormParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 
+@Mod.EventBusSubscriber(modid = Reference.MODID)
 public class DriveFormLimit extends DriveForm {
+	
+	@SubscribeEvent
+	public static void getXP(LivingHurtEvent event) {
+        if (event.getSource().getImmediateSource() instanceof EntityPlayer) {
+        	EntityPlayer player = (EntityPlayer) event.getSource().getImmediateSource();
+        	
+            PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+            DriveStateCapability.IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 
+            if(DRIVE.getActiveDriveName().equals(Strings.Form_Limit)) {
+            	DRIVE.setDriveExp(DRIVE.getActiveDriveName(), DRIVE.getDriveExp(DRIVE.getActiveDriveName())+1);
+            
+	            int[] costs = DriveFormRegistry.get(DRIVE.getActiveDriveName()).getExpCosts();
+	            int actualLevel = DRIVE.getDriveLevel(DRIVE.getActiveDriveName());
+	            int actualExp = DRIVE.getDriveExp(DRIVE.getActiveDriveName());
+	           
+	            if(costs.length == 7 && actualLevel < 7) {
+	            	if (actualExp >= costs[actualLevel]){
+	            		System.out.println("LEVEL UP");
+	            		DRIVE.setDriveLevel(DRIVE.getActiveDriveName(),actualLevel+1); 
+	                    DRIVE.displayLevelUpMessage(player, DRIVE.getActiveDriveName());
+	            	}
+	            }
+	            PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);
+            }
+        }
+	}
+	
     double cost;
 
     public DriveFormLimit (double cost) {
@@ -37,35 +70,33 @@ public class DriveFormLimit extends DriveForm {
     }
 
     @Override
+    public boolean hasOffHand() {
+        return false;
+    }
+
+    @Override
+    public int getKeychainSlot() {
+        return 0;
+    }
+
+    @Override
     public void initDrive (EntityPlayer player) {
-        player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName(getName());
-        player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(true);
-        PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-        PacketDispatcher.sendToAllAround(new SpawnDriveFormParticles(player), player, 64.0D);
-        player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.drive, SoundCategory.MASTER, 1.0f, 1.0f);
+        super.initDrive(player);
+        if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(getName()))
+            player.sendMessage(new TextComponentTranslation(TextFormatting.RED + "Limit form activated"));
     }
 
     @Override
     public void update (EntityPlayer player) {
-        if (player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode() == false){
-            if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getDP() > 0)
-            {
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).remDP(0.1);
-                if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getDP() < 0)
-                {
-                    player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
-                }
-            }else{
-                endDrive(player);
-            }
-        }
+        super.update(player);
     }
     @Override
     public void endDrive (EntityPlayer player) {
-        player.getCapability(ModCapabilities.PLAYER_STATS, null).setDP(0);
-        player.getCapability(ModCapabilities.DRIVE_STATE, null).setInDrive(false);
-        player.getCapability(ModCapabilities.DRIVE_STATE, null).setActiveDriveName("none");
-        if (!player.world.isRemote)
-            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        super.endDrive(player);
     }
+    
+    @Override
+	public int[] getExpCosts() {
+		return new int[]{0,80,240,520,968,1528,2200};
+	}
 }

@@ -4,6 +4,8 @@ import javax.annotation.Nullable;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.ITextComponent;
@@ -19,7 +21,7 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
  */
 public class TileEntityPedestal extends TileEntity {
     final int NUMBER_OF_SLOTS = 1;
-    private ItemStackHandler itemStacks = new ItemStackHandler(NUMBER_OF_SLOTS);
+    public ItemStackHandler itemStacks = new ItemStackHandler(NUMBER_OF_SLOTS);
     public int rotation=0;
     public ItemStack keyblade;
 
@@ -53,6 +55,7 @@ public class TileEntityPedestal extends TileEntity {
 
     @Override
     public NBTTagCompound writeToNBT (NBTTagCompound parentNBTTagCompound) {
+        super.writeToNBT(parentNBTTagCompound);
         parentNBTTagCompound.setTag("inventory", itemStacks.serializeNBT());
         parentNBTTagCompound.setInteger("Rotation", rotation);
         NBTTagCompound keybladeCompound = new NBTTagCompound();
@@ -98,5 +101,23 @@ public class TileEntityPedestal extends TileEntity {
                 return Utils.translateToLocal(getKeyblade().getDisplayName());
         }
         return null;
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag() {
+        return writeToNBT(new NBTTagCompound());
+    }
+
+    @Nullable
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        NBTTagCompound compound = new NBTTagCompound();
+        this.writeToNBT(compound);
+        return new SPacketUpdateTileEntity(getPos(), 1, compound);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+        this.readFromNBT(pkt.getNbtCompound());
     }
 }

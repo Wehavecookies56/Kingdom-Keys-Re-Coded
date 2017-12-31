@@ -43,26 +43,6 @@ public class EntityGreenRequiem extends BaseEntityHeartless implements IKHMob {
     }
 
     @Override
-    protected boolean isValidLightLevel() {
-        return true;
-    }
-
-    @Override
-    protected boolean canDespawn() {
-        return true;
-    }
-
-    @Override
-    public boolean isAIDisabled() {
-        return false;
-    }
-
-    @Override
-    public boolean getCanSpawnHere() {
-        return true;
-    }
-
-    @Override
     public MobType getType() {
         return MobType.HEARTLESS_EMBLEM;
     }

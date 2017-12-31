@@ -28,11 +28,6 @@ public class PlayerStatsCapability {
     public interface IPlayerStats {
         List<String> getMessages();
         int getExperience();
-        int getVExperience();
-        int getWExperience();
-        int getLExperience();
-        int getMExperience();
-        int getFExperience();
 
         int getLevel();
         int getMaxLevel();
@@ -41,8 +36,7 @@ public class PlayerStatsCapability {
         int getDefense();
         int getMagic();
         int getHP();
-        double getDP();
-        double getMaxDP();
+       
         double getMP();
         double getMaxMP();
         boolean getRecharge();
@@ -52,12 +46,7 @@ public class PlayerStatsCapability {
 
         boolean setLevel(int level);
         boolean setExperience(int experience);
-        boolean setVExperience(int vexperience);
-        boolean setWExperience(int wexperience);
-        boolean setLExperience(int lexperience);
-        boolean setMExperience(int mexperience);
-        boolean setFExperience(int fexperience);
-        void addExperience(EntityPlayer player, int amount, String type);
+        void addExperience(EntityPlayer player, int amount);
         void setStrength(int strength);
         void addStrength(int strength);
         void setDefense(int defense);
@@ -66,9 +55,7 @@ public class PlayerStatsCapability {
         void addMagic(int magic);
         int setHP(int hp);
         int addHP(int hp);
-        boolean setDP(double dp);
-        void addDP(double dp);
-        void remDP(double dp);
+        
         boolean setMP(double mp);
         void addMP(double mp);
         void remMP(double mp);
@@ -94,12 +81,10 @@ public class PlayerStatsCapability {
             NBTTagCompound properties = new NBTTagCompound();
             properties.setInteger("Level", instance.getLevel());
             properties.setInteger("Experience", instance.getExperience());
-            properties.setInteger("VExperience", instance.getVExperience());
             properties.setInteger("Strength", instance.getStrength());
             properties.setInteger("Defense", instance.getDefense());
             properties.setInteger("Magic", instance.getMagic());
             properties.setInteger("HP", instance.getHP());
-            properties.setDouble("DP", instance.getDP());
             properties.setDouble("MP", instance.getMP());
             properties.setDouble("Max MP", instance.getMaxMP());
             properties.setBoolean("Recharge", instance.getRecharge());
@@ -109,7 +94,6 @@ public class PlayerStatsCapability {
             properties.setString("Choice1", instance.getChoice1());
             properties.setString("Choice2", instance.getChoice2());
             properties.setTag("PotionsInvKey", instance.getInventoryPotionsMenu().serializeNBT());
-
 
             return properties;
         }
@@ -123,7 +107,6 @@ public class PlayerStatsCapability {
             instance.setDefense(properties.getInteger("Defense"));
             instance.setMagic(properties.getInteger("Magic"));
             instance.setHP(properties.getInteger("HP"));
-            instance.setDP(properties.getDouble("DP"));
             instance.setMP(properties.getDouble("MP"));
             instance.setMaxMP(properties.getDouble("Max MP"));
             instance.setRecharge(properties.getBoolean("Recharge"));
@@ -136,14 +119,11 @@ public class PlayerStatsCapability {
     }
 
     public static class Default implements IPlayerStats {
+        
+
         private int level = 1;
         private int maxLevel = 100;
         private int experience = 0;
-        private int valorExperience = 0;
-        private int wisdomExperience = 0;
-        private int limitExperience = 0;
-        private int masterExperience = 0;
-        private int finalExperience = 0;
         private int maxExperience = Integer.MAX_VALUE;
         private int valorMaxExperience = Integer.MAX_VALUE;
         private int wisdomMaxExperience = Integer.MAX_VALUE;
@@ -156,59 +136,88 @@ public class PlayerStatsCapability {
         private int hp = 20;
         private double mp = 100;
         private double maxMP = 100;
-        private double dp = 0;
-        private double maxDP = 1000;
+        
         private boolean recharge = false;
         private boolean cheatMode = false;
         private boolean hudmode = true;
         private int remainingExp = 0;
         private List<String> messages = new ArrayList<String>();
 
-        private String choice1="none",choice2="none";
+        private String choice1="", choice2="";
 
         private final ItemStackHandler inventoryPotions = new ItemStackHandler(InventoryPotionsMenu.INV_SIZE);
 
-        @Override public List<String> getMessages() { return this.messages; }
+        @Override
+        public List<String> getMessages() {
+            return this.messages;
+        }
 
-        @Override public ItemStackHandler getInventoryPotionsMenu(){return this.inventoryPotions;}
+        @Override
+        public ItemStackHandler getInventoryPotionsMenu(){
+            return this.inventoryPotions;
+        }
 
-        @Override public double getMP() { return this.mp; }
-        @Override public double getMaxMP() { return this.maxMP; }
-        @Override public int getLevel() { return this.level; }
-        @Override public int getMaxLevel() { return this.maxLevel; }
-        @Override public int getExperience() {
+        @Override
+        public double getMP() {
+            return this.mp;
+        }
+        @Override
+        public double getMaxMP() {
+            return this.maxMP;
+        }
+        @Override
+        public int getLevel() {
+            return this.level;
+        }
+        @Override
+        public int getMaxLevel() {
+            return this.maxLevel;
+        }
+        @Override
+        public int getExperience() {
             return this.experience;
         }
-        @Override public int getVExperience() {
-            return this.valorExperience;
+        @Override
+        public int getMaxExperience() {
+            return this.maxExperience;
+        }
+        @Override
+        public int getStrength() {
+            return this.strength;
+        }
+        @Override
+        public int getDefense() {
+            return this.defense;
+        }
+        @Override
+        public int getMagic() {
+            return this.magic;
+        }
+        @Override
+        public int getHP() {
+            return this.hp;
+        }
+       
+        @Override
+        public boolean getRecharge() {
+            return this.recharge;
+        }
+        @Override
+        public boolean getHudMode() {
+            return this.hudmode;
         }
 
-        @Override public int getWExperience() {
-            return this.wisdomExperience;
+        @Override
+        public String getChoice1() {
+            return this.choice1;
         }
-        @Override public int getLExperience() {
-            return this.limitExperience;
+        @Override
+        public String getChoice2() {
+            return this.choice2;
         }
-        @Override public int getMExperience() {
-            return this.masterExperience;
-        }
-        @Override public int getFExperience() {
-            return this.finalExperience;
-        }
-        @Override public int getMaxExperience() { return this.maxExperience; }
-        @Override public int getStrength() { return this.strength; }
-        @Override public int getDefense() { return this.defense; }
-        @Override public int getMagic() { return this.magic; }
-        @Override public int getHP() { return this.hp; }
-        @Override public double getDP() { return this.dp; }
-        @Override public double getMaxDP() { return this.maxDP; }
-        @Override public boolean getRecharge() { return this.recharge; }
-        @Override public boolean getHudMode() {return this.hudmode;}
 
-        @Override public String getChoice1(){return this.choice1;}
-        @Override public String getChoice2(){return this.choice2;}
-
-        @Override public boolean setLevel(int level) {
+        @Override
+        public boolean setLevel(int level) {
             if (level <= this.maxLevel) {
                 this.level = level;
                 return true;
@@ -216,138 +225,120 @@ public class PlayerStatsCapability {
             return false;
         }
 
-        @Override public void clearMessages() {
+        @Override
+        public void clearMessages() {
             this.getMessages().clear();
         }
-        @Override public boolean setExperience(int experience) {
+        @Override
+        public boolean setExperience(int experience) {
             if (experience <= this.maxExperience) {
                 this.experience = experience;
                 return true;
             } return false;
         }
 
-        @Override public boolean setVExperience(int experience) {
-            if (valorExperience <= this.valorMaxExperience) {
-                this.valorExperience = experience;
-                return true;
-            } return false;
-        }
-        @Override public boolean setWExperience(int experience) {
-            if (wisdomExperience <= this.wisdomMaxExperience) {
-                this.wisdomExperience = experience;
-                return true;
-            } return false;
-        }
-        @Override public boolean setLExperience(int experience) {
-            if (limitExperience <= this.limitMaxExperience) {
-                this.limitExperience = experience;
-                return true;
-            } return false;
-        }
-        @Override public boolean setMExperience(int experience) {
-            if (masterExperience <= this.masterMaxExperience) {
-                this.masterExperience = experience;
-                return true;
-            } return false;
-        }
-        @Override public boolean setFExperience(int experience) {
-            if (finalExperience <= this.finalMaxExperience) {
-                this.finalExperience = experience;
-                return true;
-            } return false;
-        }
-
-
         @Override
-        public void addExperience(EntityPlayer player, int amount, String type)
-        {
-            if(player != null)
-            {
+        public void addExperience(EntityPlayer player, int amount) {
+            if(player != null) {
                 IPlayerStats stats = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-                switch(type)
-                {
-                    case "normal":
-                            if (this.experience + amount <= this.maxExperience){
-                                this.experience += amount;
-                                while (this.getExpNeeded(this.getLevel(), this.experience) <= 0 && this.getLevel() != 100) {
-                                    this.setLevel(this.getLevel() + 1);
-                                    this.levelUpStatsAndDisplayMessage(player);
-                                    PacketDispatcher.sendTo(new ShowOverlayPacket("levelup", level),(EntityPlayerMP)player);
-                                }
-                            }else {
-                                this.experience = this.maxExperience;
-                            }
-                            PacketDispatcher.sendTo(new ShowOverlayPacket("exp"),(EntityPlayerMP)player);
-                        break;
-                    case Strings.Form_Valor:
-                        if (this.valorExperience + amount <= this.valorMaxExperience)
-                            this.valorExperience += amount;
-                        else
-                            this.valorExperience = this.valorMaxExperience;
-                        break;
-                    case Strings.Form_Wisdom:
-                        if (this.wisdomExperience + amount <= this.wisdomMaxExperience)
-                            this.wisdomExperience += amount;
-                        else
-                            this.wisdomExperience = this.wisdomMaxExperience;
-                        break;
-                    case Strings.Form_Limit:
-                        if (this.limitExperience + amount <= this.limitMaxExperience)
-                            this.limitExperience += amount;
-                        else
-                            this.limitExperience = this.limitMaxExperience;
-                        break;
-                    case Strings.Form_Master:
-                        if (this.masterExperience + amount <= this.masterMaxExperience)
-                            this.masterExperience += amount;
-                        else
-                            this.masterExperience = this.masterMaxExperience;
-                        break;
-                    case Strings.Form_Final:
-                        if (this.finalExperience + amount <= this.finalMaxExperience)
-                            this.finalExperience += amount;
-                        else
-                            this.finalExperience = this.finalMaxExperience;
-                        break;
+                if (this.experience + amount <= this.maxExperience){
+                    this.experience += amount;
+                    while (this.getExpNeeded(this.getLevel(), this.experience) <= 0 && this.getLevel() != 100) {
+                        this.setLevel(this.getLevel() + 1);
+                        this.levelUpStatsAndDisplayMessage(player);
+                        PacketDispatcher.sendTo(new ShowOverlayPacket("levelup"),(EntityPlayerMP)player);
+                    }
+                }else {
+                    this.experience = this.maxExperience;
                 }
+                PacketDispatcher.sendTo(new ShowOverlayPacket("exp"),(EntityPlayerMP)player);
             }
         }
-        @Override public void setStrength(int strength) { this.strength = strength; }
-        @Override public void addStrength(int strength) {
+        @Override
+        public void setStrength(int strength) {
+            this.strength = strength;
+        }
+        @Override
+        public void addStrength(int strength) {
             this.strength += strength;
-            messages.add("str");
+            messages.add(Strings.Stats_LevelUp_Str);
         }
-        @Override public void setDefense(int defense) { this.defense = defense; }
-        @Override public void addDefense(int defense) {
+        @Override
+        public void setDefense(int defense) {
+            this.defense = defense;
+        }
+        @Override
+        public void addDefense(int defense) {
             this.defense += defense;
-            messages.add("def");
+            messages.add(Strings.Stats_LevelUp_Def);
         }
-        @Override public void setMagic(int magic) { this.magic = magic; }
-        @Override public void addMagic(int magic) {
+        @Override
+        public void setMagic(int magic) {
+            this.magic = magic;
+        }
+        @Override
+        public void addMagic(int magic) {
             this.magic += magic;
-            messages.add("mag");
+            messages.add(Strings.Stats_LevelUp_Magic);
         }
-        @Override public int setHP(int hp) {
+        @Override
+        public int setHP(int hp) {
             this.hp = hp;
             return this.hp;
         }
-        @Override public int addHP(int hp) {
+        @Override
+        public int addHP(int hp) {
             this.hp += hp;
-            messages.add("hp");
+            messages.add(Strings.Stats_LevelUp_HP);
             return this.hp;
         }
-        @Override public boolean setDP(double dp) { if (dp <= this.maxDP) {this.dp = dp; return true; } return false; }
-        @Override public void addDP(double dp) { if (dp + this.dp > this.maxDP) this.dp = this.maxDP; else this.dp += dp; }
-        @Override public void remDP(double dp) {if(cheatMode) return; if (dp + this.dp < 0) this.dp = 0; else this.dp -= dp; }
-        @Override public boolean setMP(double mp) { if (mp <= this.maxMP) {this.mp = mp; return true; } return false; }
-        @Override public void addMP(double mp) { if (mp + this.mp > this.maxMP) this.mp = this.maxMP; else this.mp += mp; }
-        @Override public void remMP(double mp) {if(cheatMode) return; if (this.mp - mp < 0) this.mp = 0;    else this.mp -= mp; }
-        @Override public void setMaxMP(double maxMP) { this.maxMP = maxMP;}
-        @Override public void setRecharge(boolean recharge) { this.recharge = recharge; }
-        @Override public void setHudMode(boolean hud) { this.hudmode = hud; }
+       
+       
+        @Override
+        public boolean setMP(double mp) {
+            if (mp <= this.maxMP) {
+                this.mp = mp;
+                return true;
+            }
+            return false;
+        }
+        @Override
+        public void addMP(double mp) {
+            if (mp + this.mp > this.maxMP)
+                this.mp = this.maxMP;
+            else
+                this.mp += mp;
+        }
+        @Override
+        public void remMP(double mp) {
+            if(cheatMode)
+                return;
+            if (this.mp - mp < 0)
+                this.mp = 0;
+            else
+                this.mp -= mp;
+        }
+        @Override
+        public void setMaxMP(double maxMP) {
+            this.maxMP = maxMP;
+        }
+        @Override
+        public void setRecharge(boolean recharge) {
+            this.recharge = recharge;
+        }
+        @Override
+        public void setHudMode(boolean hud) {
+            this.hudmode = hud;
+        }
 
-        @Override public void setChoice1(String choice){this.choice1=choice;}
-        @Override public void setChoice2(String choice){this.choice2=choice;}
+        @Override
+        public void setChoice1(String choice) {
+            this.choice1 = choice;
+        }
+        @Override
+        public void setChoice2(String choice) {
+            this.choice2 = choice;
+        }
 
         @Override
         public int getExpNeeded(int level, int currentExp) {
@@ -714,7 +705,7 @@ public class PlayerStatsCapability {
                 player.setHealth(getHP());
                 player.getFoodStats().addStats(20,0);
                 player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).addPoints(1);
-                PacketDispatcher.sendToServer(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)));
+                PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
             }
             player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 0.5f, 1.0f);
             player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());

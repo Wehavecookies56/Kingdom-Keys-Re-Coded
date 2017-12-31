@@ -11,7 +11,7 @@
             {
                 "transform": {
 					"thirdperson_lefthand": {
-                        "rotation": [ { "x": 70 }, { "y": -40 }, { "z": 00 } ],
+                        "rotation": [ { "x": 70 }, { "y": 160 }, { "z": 00 } ],
                         "translation": [ 0.012, -0.25, -0.6 ],
                         "scale": 0.012
                     },
@@ -31,7 +31,7 @@
                         "scale": 0.01
                     },
                     "firstperson_lefthand": {
-                         "rotation": [ { "x": 180 }, { "y": 180 }, { "z": 170 } ],
+                         "rotation": [ { "x": 180 }, { "y": 0 }, { "z": 190 } ],
                         "translation": [ 0, -0.5, 0 ],
                         "scale": 0.01
                     },

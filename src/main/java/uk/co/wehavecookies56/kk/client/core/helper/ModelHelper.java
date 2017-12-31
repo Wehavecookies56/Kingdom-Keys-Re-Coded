@@ -100,9 +100,12 @@ public class ModelHelper {
 
         HashMap<String, IBakedModel> modelParts = new HashMap<String, IBakedModel>();
 
-        if (!objModel.getMatLib().getGroups().keySet().isEmpty()) for (String key : objModel.getMatLib().getGroups().keySet()) {
-            String k = key;
-            if (!modelParts.containsKey(key)) modelParts.put(k, objModel.bake(new OBJModel.OBJState(ImmutableList.of(k), false), Attributes.DEFAULT_BAKED_FORMAT, ModelHelper.textureGetterFlipV));
+        if (!objModel.getMatLib().getGroups().keySet().isEmpty()) {
+        	for (String key : objModel.getMatLib().getGroups().keySet()) {
+        		if (!modelParts.containsKey(key)) { 
+        			modelParts.put(key, objModel.bake(new OBJModel.OBJState(ImmutableList.of(key), false), Attributes.DEFAULT_BAKED_FORMAT, ModelHelper.textureGetterFlipV));
+        		}
+        	}
         }
 
         modelParts.put(ALL_PARTS, objModel.bake(objModel.getDefaultState(), Attributes.DEFAULT_BAKED_FORMAT, textureGetterFlipV));

@@ -39,7 +39,7 @@ public class EntityHelper
 
     public static List<EntityLivingBase> getEntitiesNear(Entity e, double radius)
     {
-        AxisAlignedBB aabb = new AxisAlignedBB(e.posX, e.posY, e.posZ, e.posX + 1, e.posY + 1, e.posZ + 1).expand(radius, radius, radius);
+        AxisAlignedBB aabb = new AxisAlignedBB(e.posX, e.posY, e.posZ, e.posX + 1, e.posY + 1, e.posZ + 1).grow(radius, radius, radius);
         List<EntityLivingBase> list = e.world.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
         list.remove(e);
         return list;

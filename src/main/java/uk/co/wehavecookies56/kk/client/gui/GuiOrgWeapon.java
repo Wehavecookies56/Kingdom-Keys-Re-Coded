@@ -64,9 +64,6 @@ public class GuiOrgWeapon extends GuiScreen {
             GlStateManager.pushMatrix();
             GlStateManager.translate((width / 2) - (256 / 2) - 5 + 94, (height / 2) - (256 / 2) + 88, 0);
             GlStateManager.scale(5, 5, 5);
-            if (!unlocked.isEmpty() && !unlocked.contains(weapons.get(current))) {
-
-            }
             GlStateManager.enableBlend();
             GlStateManager.color(0, 0, 0);
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 1.0F, 1.0F);
@@ -159,7 +156,7 @@ public class GuiOrgWeapon extends GuiScreen {
         select.y = (height / 2) - (select.height / 2) + 90;
         confirm.visible = false;
         cancel.visible = false;
-        select.enabled = (unlocked.isEmpty() || !unlocked.contains(weapons.get(current)));
+        select.enabled = (!unlocked.isEmpty() && unlocked.contains(weapons.get(current)));
         if (confirmChoice) {
             confirm.visible = true;
             cancel.visible = true;

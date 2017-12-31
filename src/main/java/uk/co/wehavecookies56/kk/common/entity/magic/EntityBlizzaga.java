@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.entity.magic;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -10,6 +11,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
+import uk.co.wehavecookies56.kk.common.entity.LockOn;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnBlizzardParticles;
 
 public class EntityBlizzaga extends EntityThrowable {
     public EntityPlayer shootingEntity;
@@ -31,6 +36,21 @@ public class EntityBlizzaga extends EntityThrowable {
     @Override
     protected float getGravityVelocity() {
         return 0.0F;
+    }
+    
+    @Override
+    public void onUpdate () {
+        super.onUpdate();
+        if (shootingEntity == null) return;
+        int rotation = 0;
+        if (!world.isRemote)
+            PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this, 3), (EntityPlayer) shootingEntity, 64.0D);
+        if(LockOn.target != null) {
+            EntityLiving target = (EntityLiving)InputHandler.lockOn;
+            setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);
+        }
+        this.rotationYaw = (rotation + 1) % 360;
+        if (ticksExisted > 60) setDead();
     }
 
     @Override

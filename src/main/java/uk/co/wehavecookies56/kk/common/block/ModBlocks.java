@@ -45,11 +45,17 @@ public class ModBlocks {
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BlazingOre)
     public static Block BlazingOre;
 
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BlazingOreN)
+    public static Block BlazingOreN;
+
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.BrightOre)
     public static Block BrightOre;
 
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DarkOre)
     public static Block DarkOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DarkOreN)
+    public static Block DarkOreN;
 
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.DarkOreE)
     public static Block DarkOreE;
@@ -59,6 +65,9 @@ public class ModBlocks {
 
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.EnergyOre)
     public static Block EnergyOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.EnergyOreN)
+    public static Block EnergyOreN;
 
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.FrostOre)
     public static Block FrostOre;
@@ -89,6 +98,9 @@ public class ModBlocks {
 
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TwilightOre)
     public static Block TwilightOre;
+
+    @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.TwilightOreN)
+    public static Block TwilightOreN;
 
     @GameRegistry.ObjectHolder(Reference.MODID + ":" + Strings.SynthesisTable)
     public static Block SynthesisTable;
@@ -131,11 +143,14 @@ public class ModBlocks {
             event.getRegistry().register(new BlockRarePrizeBlox(Material.IRON, "pickaxe", 1, 1f, 1f, Strings.RarePrizeBlox));
             event.getRegistry().register(new BlockGhostBlox(Material.CIRCUITS, "pickaxe", 1, 1f, 1f, Strings.GhostBlox));
             event.getRegistry().register(new BlockBlazingOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.BlazingOre));
+            event.getRegistry().register(new BlockBlazingOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.BlazingOreN));
             event.getRegistry().register(new BlockBrightOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.BrightOre));
             event.getRegistry().register(new BlockDarkOre(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.DarkOre));
             event.getRegistry().register(new BlockDarkOreE(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.DarkOreE));
+            event.getRegistry().register(new BlockDarkOre(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.DarkOreN));
             event.getRegistry().register(new BlockDenseOre(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.DenseOre));
             event.getRegistry().register(new BlockEnergyOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.EnergyOre));
+            event.getRegistry().register(new BlockEnergyOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.EnergyOreN));
             event.getRegistry().register(new BlockFrostOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.FrostOre));
             event.getRegistry().register(new BlockLightningOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.LightningOre));
             event.getRegistry().register(new BlockLucidOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.LucidOre));
@@ -146,6 +161,7 @@ public class ModBlocks {
             event.getRegistry().register(new BlockTranquilOre(Material.IRON, "pickaxe", 1, 2f, 1f, Strings.TranquilOre));
             event.getRegistry().register(new BlockStormyOre(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.StormyOre));
             event.getRegistry().register(new BlockTwilightOre(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.TwilightOre));
+            event.getRegistry().register(new BlockTwilightOre(Material.IRON, "pickaxe", 2, 2f, 1f, Strings.TwilightOreN));
             event.getRegistry().register(new BlockSynthesisTable(Material.WOOD, "axe", 0, 1, 1, Strings.SynthesisTable));
             event.getRegistry().register(new BlockKKChest(Material.ROCK, "pickaxe", 3, 20f, 5f, Strings.KKChest));
             event.getRegistry().register(new BlockSavePoint(Material.CIRCUITS, "pickaxe", 3, 20f, 5f, Strings.SavePoint));
@@ -168,11 +184,14 @@ public class ModBlocks {
             event.getRegistry().register(new ItemBlock(RarePrizeBlox).setRegistryName(RarePrizeBlox.getRegistryName()));
             event.getRegistry().register(new ItemBlock(GhostBlox).setRegistryName(GhostBlox.getRegistryName()));
             event.getRegistry().register(new ItemBlock(BlazingOre).setRegistryName(BlazingOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(BlazingOreN).setRegistryName(BlazingOreN.getRegistryName()));
             event.getRegistry().register(new ItemBlock(BrightOre).setRegistryName(BrightOre.getRegistryName()));
             event.getRegistry().register(new ItemBlock(DarkOre).setRegistryName(DarkOre.getRegistryName()));
             event.getRegistry().register(new ItemBlock(DarkOreE).setRegistryName(DarkOreE.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(DarkOreN).setRegistryName(DarkOreN.getRegistryName()));
             event.getRegistry().register(new ItemBlock(DenseOre).setRegistryName(DenseOre.getRegistryName()));
             event.getRegistry().register(new ItemBlock(EnergyOre).setRegistryName(EnergyOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(EnergyOreN).setRegistryName(EnergyOreN.getRegistryName()));
             event.getRegistry().register(new ItemBlock(FrostOre).setRegistryName(FrostOre.getRegistryName()));
             event.getRegistry().register(new ItemBlock(LightningOre).setRegistryName(LightningOre.getRegistryName()));
             event.getRegistry().register(new ItemBlock(LucidOre).setRegistryName(LucidOre.getRegistryName()));
@@ -183,6 +202,7 @@ public class ModBlocks {
             event.getRegistry().register(new ItemBlock(TranquilOre).setRegistryName(TranquilOre.getRegistryName()));
             event.getRegistry().register(new ItemBlock(StormyOre).setRegistryName(StormyOre.getRegistryName()));
             event.getRegistry().register(new ItemBlock(TwilightOre).setRegistryName(TwilightOre.getRegistryName()));
+            event.getRegistry().register(new ItemBlock(TwilightOreN).setRegistryName(TwilightOreN.getRegistryName()));
             event.getRegistry().register(new ItemBlock(SynthesisTable).setRegistryName(SynthesisTable.getRegistryName()));
             event.getRegistry().register(new ItemBlock(KKChest).setRegistryName(KKChest.getRegistryName()));
             event.getRegistry().register(new ItemBlock(SavePoint).setRegistryName(SavePoint.getRegistryName()));

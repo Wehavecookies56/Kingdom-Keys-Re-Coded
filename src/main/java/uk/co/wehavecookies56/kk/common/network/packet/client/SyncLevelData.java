@@ -18,7 +18,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLevelData> {
 
     int experience, level, strength, magic, defense, hp;
-    int vExp, wExp, lExp, mExp, fExp;
+    String choice1, choice2;
     List<String> messages;
 
     public SyncLevelData() {}
@@ -30,13 +30,8 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         this.strength = stats.getStrength();
         this.magic = stats.getMagic();
         this.hp = stats.getHP();
+        this.choice1 = stats.getChoice1();
         this.messages = stats.getMessages();
-        this.vExp = stats.getVExperience();
-        this.wExp = stats.getWExperience();
-        this.lExp = stats.getLExperience();
-        this.mExp = stats.getMExperience();
-        this.fExp = stats.getFExperience();
-
     }
 
     @Override
@@ -47,12 +42,7 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         this.strength = buffer.readInt();
         this.magic = buffer.readInt();
         this.hp = buffer.readInt();
-        this.vExp = buffer.readInt();
-        this.wExp = buffer.readInt();
-        this.lExp = buffer.readInt();
-        this.mExp = buffer.readInt();
-        this.fExp = buffer.readInt();
-
+        this.choice1 = buffer.readString(40);
         this.messages = new ArrayList<String>();
         while(buffer.isReadable()) {
             this.messages.add(buffer.readString(100));
@@ -67,12 +57,7 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         buffer.writeInt(this.strength);
         buffer.writeInt(this.magic);
         buffer.writeInt(this.hp);
-        buffer.writeInt(this.vExp);
-        buffer.writeInt(this.wExp);
-        buffer.writeInt(this.lExp);
-        buffer.writeInt(this.mExp);
-        buffer.writeInt(this.fExp);
-
+        buffer.writeString(this.choice1);
         for (int i = 0; i < this.messages.size(); i++) {
             buffer.writeString(this.messages.get(i));
         }
@@ -87,12 +72,7 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         stats.setStrength(this.strength);
         stats.setMagic(this.magic);
         stats.setHP(this.hp);
-        stats.setVExperience(vExp);
-        stats.setWExperience(wExp);
-        stats.setLExperience(lExp);
-        stats.setMExperience(mExp);
-        stats.setFExperience(fExp);
-
+        stats.setChoice1(this.choice1);
         player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(stats.getHP());
         stats.getMessages().clear();
         for (int i = 0; i < this.messages.size(); i++) {

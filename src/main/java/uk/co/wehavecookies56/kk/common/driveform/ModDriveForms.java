@@ -33,23 +33,23 @@ public class ModDriveForms {
         switch (drive) {
             case Strings.Form_Valor:
                 PacketDispatcher.sendToServer(new DriveFormPacket(Strings.Form_Valor));
-                PacketDispatcher.sendToServer(new AntiPoints(1, "+"));
+                PacketDispatcher.sendToServer(new AntiPoints(1));
                 break;
             case Strings.Form_Wisdom:
                 PacketDispatcher.sendToServer(new DriveFormPacket(Strings.Form_Wisdom));
-                PacketDispatcher.sendToServer(new AntiPoints(1, "+"));
+                PacketDispatcher.sendToServer(new AntiPoints(1));
                 break;
             case Strings.Form_Limit:
                 PacketDispatcher.sendToServer(new DriveFormPacket(Strings.Form_Limit));
-                PacketDispatcher.sendToServer(new AntiPoints(1, "+"));
+                PacketDispatcher.sendToServer(new AntiPoints(1));
                 break;
             case Strings.Form_Master:
                 PacketDispatcher.sendToServer(new DriveFormPacket(Strings.Form_Master));
-                PacketDispatcher.sendToServer(new AntiPoints(1, "+"));
+                PacketDispatcher.sendToServer(new AntiPoints(1));
                 break;
             case Strings.Form_Final:
                 PacketDispatcher.sendToServer(new DriveFormPacket(Strings.Form_Final));
-                PacketDispatcher.sendToServer(new AntiPoints(4, "-"));
+                PacketDispatcher.sendToServer(new AntiPoints(-10));
                 break;
             default:
                 break;

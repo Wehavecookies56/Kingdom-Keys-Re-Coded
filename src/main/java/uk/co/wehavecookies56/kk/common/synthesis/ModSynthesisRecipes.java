@@ -29,6 +29,8 @@ public class ModSynthesisRecipes {
         registerRecipe(new RecipeDiamondDust(ModItems.DiamondDust.getUnlocalizedName()));
         registerRecipe(new RecipeDivewing(ModItems.Divewing.getUnlocalizedName()));
         registerRecipe(new RecipeDivineRose(ModItems.DivineRose.getUnlocalizedName()));
+        registerRecipe(new RecipeDreamShield(ModItems.DreamShield.getUnlocalizedName()));
+        registerRecipe(new RecipeDreamStaff(ModItems.DreamStaff.getUnlocalizedName()));
         registerRecipe(new RecipeDreamSword(ModItems.DreamSword.getUnlocalizedName()));
         registerRecipe(new RecipeDualDisc(ModItems.DualDisc.getUnlocalizedName()));
         registerRecipe(new RecipeEarthshaker(ModItems.Earthshaker.getUnlocalizedName()));

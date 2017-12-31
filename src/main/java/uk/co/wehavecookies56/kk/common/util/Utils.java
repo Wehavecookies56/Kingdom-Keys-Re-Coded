@@ -1,6 +1,25 @@
 package uk.co.wehavecookies56.kk.common.util;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
+import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
+import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
+import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.SummonOrgWeapon;
+import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 
 /**
  * Created by Toby on 19/07/2016.
@@ -66,7 +85,104 @@ public class Utils {
         TextComponentTranslation translation = new TextComponentTranslation(name);
         return translation.getFormattedText();
     }
+    
+    /**
+     * Summon a weapon in a player's hand
+     * @param player
+     * @param hand
+     * @param keychainSlot
+     * @return
+     */
+    public static boolean summonWeapon(EntityPlayer player, EnumHand hand, int keychainSlot) {
+        SummonKeybladeCapability.ISummonKeyblade summonCap = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
+        OrganizationXIIICapability.IOrganizationXIII organizationXIIICap = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+
+        if (organizationXIIICap.getMember() == Utils.OrgMember.NONE) {
+            if (ItemStack.areItemStacksEqual(summonCap.getInventoryKeychain().getStackInSlot(keychainSlot), ItemStack.EMPTY)) {
+                player.sendMessage(new TextComponentTranslation(TextFormatting.RED + "Missing keychain to summon"));
+                return false;
+            }
+            if (!summonCap.getIsKeybladeSummoned(hand) && ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && summonCap.getInventoryKeychain().getStackInSlot(0).getItem() instanceof ItemKeychain) {
+                summonCap.setActiveSlot(player.inventory.currentItem);
+                
+                ItemStack keychain = summonCap.getInventoryKeychain().getStackInSlot(keychainSlot);
+                ItemStack keyblade = new ItemStack(((ItemKeychain)(keychain.getItem())).getKeyblade());
+
+                if (hand == EnumHand.MAIN_HAND) {
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, keyblade);
+                } else {
+                    player.inventory.offHandInventory.set(0, keyblade);
+                }
+                
+                if (player.world.isRemote)
+                    PacketDispatcher.sendToServer(new SummonKeyblade(hand, keychainSlot));
+                
+                return true;
+            } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof ItemRealKeyblade && summonCap.getIsKeybladeSummoned(hand)) {
+                if (player.world.isRemote)
+                    PacketDispatcher.sendToServer(new DeSummonKeyblade(hand));
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                player.inventory.offHandInventory.set(0, ItemStack.EMPTY);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            if (!organizationXIIICap.summonedWeapon(hand) && ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY)) {
+                if (player.world.isRemote)
+                    PacketDispatcher.sendToServer(new SummonOrgWeapon(hand, organizationXIIICap.currentWeapon()));
+                if (hand == EnumHand.MAIN_HAND)
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(organizationXIIICap.currentWeapon()));
+                else
+                    player.inventory.offHandInventory.set(0, new ItemStack(organizationXIIICap.currentWeapon()));
+                organizationXIIICap.setWeaponSummoned(hand, true);
+                return true;
+            } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof IOrgWeapon || (organizationXIIICap.getMember() == Utils.OrgMember.ROXAS && !ItemStack.areItemStacksEqual(player.getHeldItem(hand), ItemStack.EMPTY) && player.getHeldItem(hand).getItem() instanceof ItemKeyblade)) {
+                if (player.world.isRemote) {
+                    PacketDispatcher.sendToServer(new DeSummonOrgWeapon(hand));
+                }
+                organizationXIIICap.setWeaponSummoned(hand, false);
+                if (hand == EnumHand.MAIN_HAND)
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                else
+                    player.inventory.offHandInventory.set(0, ItemStack.EMPTY);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 
     public static enum OrgMember { XEMNAS, XIGBAR, XALDIN, VEXEN, LEXAEUS, ZEXION, SAIX, AXEL, DEMYX, LUXORD, MARLUXIA, LARXENE, ROXAS, NONE}
 
+    public static IDAndBlockPos getDimensionIDAndBlockPos(String dimension) {
+    	IDAndBlockPos idAndBlockPos = new IDAndBlockPos();
+    	
+		switch(dimension) {
+		case Strings.SoA:
+			idAndBlockPos.id = ModDimensions.diveToTheHeartID;
+			idAndBlockPos.pos = new BlockPos(-1, 64, 7);
+			idAndBlockPos.offset = new BlockPos(0,0,0);
+			break;
+			
+		case Strings.TraverseTown:
+			idAndBlockPos.id = ModDimensions.traverseTownID;
+			idAndBlockPos.pos = new BlockPos(192, 5, 161);
+			idAndBlockPos.offset = new BlockPos(0,0,0);
+			break;
+			
+		case Strings.DestinyIslands:
+			idAndBlockPos.id = ModDimensions.destinyIslandsID;
+			idAndBlockPos.pos = new BlockPos(145, 27+60, 200);
+			idAndBlockPos.offset = new BlockPos(0,60,0);
+			break;
+			
+		default:
+			idAndBlockPos.id = -500;
+			idAndBlockPos.pos = new BlockPos(0,0,0);
+			System.out.println("ID not found for world "+dimension);
+		}
+    	return idAndBlockPos;
+    	
+    }
 }

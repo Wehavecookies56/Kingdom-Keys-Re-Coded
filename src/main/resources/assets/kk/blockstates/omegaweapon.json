@@ -1,0 +1,46 @@
+{
+	"forge_marker": 1,
+    "defaults": {
+    	"textures": {
+			
+    		},
+        "model": "kk:omegaweapon.obj"
+    },
+	"variants": {
+        "inventory": [
+            {
+                "transform": {
+                    "thirdperson_lefthand": {
+                        "rotation": [ { "x": 0 }, { "y": -90 }, { "z": 0 } ],
+                        "translation": [ 0, 0, 0],
+                        "scale": 0.008
+                    },
+                    "thirdperson_righthand": {
+                        "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
+                        "translation": [ 0, 0, 0 ],
+                        "scale": 0.008
+                    },
+                    "gui": {
+                        "rotation": [ { "x": 45 }, { "y": 180 }, { "z": 45 } ],
+                        "translation": [ 0, 0, 0 ],
+                        "scale": 0.005
+                    },
+                    "firstperson_righthand": {
+                        "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
+                        "translation": [ 0, 0, 0 ],
+                        "scale": 0.005
+                    },
+                    "firstperson_lefthand": {
+                        "rotation": [ { "x": 0 }, { "y": -90 }, { "z": 0 } ],
+                        "translation": [ 0, 0, 0 ],
+                        "scale": 0.005
+                    },
+                    "ground": {
+                        "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+                        "scale": 0.005
+                    }
+                }
+            }
+        ]
+    }
+}

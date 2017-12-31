@@ -20,6 +20,7 @@ public class TileEntityKKChest extends TileEntity {
 
     @Override
     public NBTTagCompound writeToNBT (NBTTagCompound parentNBTTagCompound) {
+        super.writeToNBT(parentNBTTagCompound);
         parentNBTTagCompound.setTag("inventory", itemStacks.serializeNBT());
         NBTTagCompound keybladeCompound = new NBTTagCompound();
         if (keyblade != null && !ItemStack.areItemStacksEqual(keyblade, ItemStack.EMPTY))

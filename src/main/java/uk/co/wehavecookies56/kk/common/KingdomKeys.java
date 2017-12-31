@@ -2,6 +2,9 @@ package uk.co.wehavecookies56.kk.common;
 
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -9,16 +12,10 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import uk.co.wehavecookies56.kk.common.core.command.CommandCheatMode;
-import uk.co.wehavecookies56.kk.common.core.command.CommandDimension;
-import uk.co.wehavecookies56.kk.common.core.command.CommandDriveLevel;
-import uk.co.wehavecookies56.kk.common.core.command.CommandGiveMunny;
-import uk.co.wehavecookies56.kk.common.core.command.CommandLearnRecipe;
-import uk.co.wehavecookies56.kk.common.core.command.CommandLevelUp;
-import uk.co.wehavecookies56.kk.common.core.command.CommandRemoveKeychain;
-import uk.co.wehavecookies56.kk.common.core.command.CommandResetLevel;
-import uk.co.wehavecookies56.kk.common.core.command.CommandShowHud;
+import uk.co.wehavecookies56.kk.common.core.command.*;
 import uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
+import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 
@@ -33,17 +30,25 @@ public class KingdomKeys {
 
     public static Logger logger;
 
+    public static EnumCreatureType HEARTLESS = EnumHelper.addCreatureType(Reference.MODID + ":heartless", IKHMob.class, 30, Material.AIR, false, false);
+    public static EnumCreatureType MOOGLE = EnumHelper.addCreatureType(Reference.MODID + ":moogles", EntityMoogle.class, 10, Material.AIR, true, false);
+
     @EventHandler
     public void preInit (FMLPreInitializationEvent e) {
         logger = e.getModLog();
+
         proxy.preInit(e);
     }
 
     @EventHandler
-    public void init (FMLInitializationEvent e) { proxy.init(e); }
+    public void init (FMLInitializationEvent e) {
+        proxy.init(e);
+    }
 
     @EventHandler
-    public void postInit (FMLPostInitializationEvent e) { proxy.postInit(e); }
+    public void postInit (FMLPostInitializationEvent e) {
+        proxy.postInit(e);
+    }
 
     @EventHandler
     public void serverStart (FMLServerStartingEvent e) {
@@ -56,6 +61,7 @@ public class KingdomKeys {
         e.registerServerCommand(new CommandDriveLevel());
         e.registerServerCommand(new CommandShowHud());
         e.registerServerCommand(new CommandDimension());
+        e.registerServerCommand(new CommandOpenKeychains());
 
         logger.info("Commands loaded");
     }

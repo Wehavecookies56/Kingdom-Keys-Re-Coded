@@ -13,7 +13,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 public class DamageCalculation {
     public static float fireMultiplier = 0.8F;
     public static float blizzardMultiplier = 1;
-    public static float aeroMultiplier = 0.4F;
+    public static float aeroMultiplier = 0.2F;
 
     /**
      * Magic
@@ -173,7 +173,7 @@ public class DamageCalculation {
 
                 if (weapon.getItem() instanceof ItemClaymore) {
                     if (weapon.getItemDamage() == 1)
-                        damage *= 1.5F;
+                        damage *= 1.25F;
                 }
                 finalDamage = (float) (damage * MainConfig.items.damageMultiplier);
             }

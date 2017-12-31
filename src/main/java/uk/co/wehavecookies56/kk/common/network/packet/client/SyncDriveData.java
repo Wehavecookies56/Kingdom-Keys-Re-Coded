@@ -1,13 +1,14 @@
 package uk.co.wehavecookies56.kk.common.network.packet.client;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
@@ -21,11 +22,14 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
     int limitLevel, limitExp;
     int masterLevel, masterExp;
     int finalLevel, finalExp;
-    double dp;
+    int driveGaugeLevel;
+    double dp, fp, maxDP;
+    List<String> messages;
+
 
     public SyncDriveData() {}
 
-    public SyncDriveData(IDriveState state, IPlayerStats stats) {
+    public SyncDriveData(IDriveState state) {
         this.inDrive = state.getInDrive();
         this.driveName = state.getActiveDriveName();
         this.antiPoints = state.getAntiPoints();
@@ -40,8 +44,12 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
         this.limitExp = state.getDriveExp(Strings.Form_Limit);
         this.masterExp = state.getDriveExp(Strings.Form_Master);
         this.finalExp = state.getDriveExp(Strings.Form_Final);
+        this.driveGaugeLevel = state.getDriveGaugeLevel();
 
-        this.dp = stats.getDP();
+        this.dp = state.getDP();
+        this.fp = state.getFP();
+        
+        this.messages = state.getMessages();
     }
 
     @Override
@@ -60,8 +68,15 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
         this.limitExp = buffer.readInt();
         this.masterExp = buffer.readInt();
         this.finalExp = buffer.readInt();
+        this.driveGaugeLevel = buffer.readInt();
 
         this.dp = buffer.readDouble();
+        this.fp = buffer.readDouble();
+        
+        this.messages = new ArrayList<String>();
+        while(buffer.isReadable()) {
+            this.messages.add(buffer.readString(100));
+        }
     }
 
     @Override
@@ -80,14 +95,19 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
         buffer.writeInt(this.limitExp);
         buffer.writeInt(this.masterExp);
         buffer.writeInt(this.finalExp);
+        buffer.writeInt(this.driveGaugeLevel);
 
         buffer.writeDouble(this.dp);
+        buffer.writeDouble(this.fp);
+        
+        for (int i = 0; i < this.messages.size(); i++) {
+            buffer.writeString(this.messages.get(i));
+        }
     }
 
     @Override
     public void process(EntityPlayer player, Side side) {
         final IDriveState state = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-        final IPlayerStats stats = player.getCapability(ModCapabilities.PLAYER_STATS, null);
         state.setInDrive(inDrive);
         state.setActiveDriveName(driveName);
         state.setAntiPoints(antiPoints);
@@ -102,8 +122,15 @@ public class SyncDriveData extends AbstractMessage.AbstractClientMessage<SyncDri
         state.setDriveExp(Strings.Form_Limit, limitExp);
         state.setDriveExp(Strings.Form_Master, masterExp);
         state.setDriveExp(Strings.Form_Final, finalExp);
+        state.setDriveGaugeLevel(driveGaugeLevel);
 
-        stats.setDP(dp);
+        state.setDP(dp);
+        state.setFP(fp);
+        
+        state.getMessages().clear();
+        for (int i = 0; i < this.messages.size(); i++) {
+        	state.getMessages().add(this.messages.get(i));
+        }
     }
 
 }

@@ -7,7 +7,6 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -18,7 +17,7 @@ import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
 import uk.co.wehavecookies56.kk.common.container.ContainerKeychain;
-import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -53,6 +52,7 @@ public class GuiKeychains extends GuiContainer {
         ySize_lo = mouseY;
         drawBackground(width, height);
         super.drawScreen(mouseX, mouseY, f);
+        renderHoveredToolTip(mouseX, mouseY);
     }
 
     public static final ResourceLocation optionsBackground = new ResourceLocation(Reference.MODID, "textures/gui/menubg.png");
@@ -79,8 +79,8 @@ public class GuiKeychains extends GuiContainer {
         Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
         GL11.glPushMatrix();
         {
-            GL11.glColor3ub((byte) 24, (byte) 36, (byte) 214);
-            // drawDefaultBackground();
+            GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
+            drawDefaultBackground();
             drawModalRectWithCustomSizedTexture(0, -140 / 16, 0, 0, screenWidth, 70, 32, 32);
             drawModalRectWithCustomSizedTexture(0, screenHeight - ((screenHeight / 8) + 70 / 16), 0, 0, screenWidth, 70, 32, 32);
         }
@@ -101,15 +101,15 @@ public class GuiKeychains extends GuiContainer {
             drawString(fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, screenHeight - ((screenHeight / 8) - 100 / 16), 0xFFD000);
         }
         GL11.glPopMatrix();
-
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY) {
-        String s = InventoryKeychain.name;
-        fontRenderer.drawString(s, xSize / 2 - fontRenderer.getStringWidth(s) / 2, 12, 4210752);
-        fontRenderer.drawString(I18n.format("container.inventory"), xSize / 2 - fontRenderer.getStringWidth(I18n.format("container.inventory")) / 2, ySize - 96, 4210752);
-
+        String s = Strings.Form_Valor;
+        fontRenderer.drawString(Utils.translateToLocal(Strings.MainKeychain), 30, 11, 4210752);
+        fontRenderer.drawString(Utils.translateToLocal(Strings.Form_Valor), 30, 30, 4210752);
+        fontRenderer.drawString(Utils.translateToLocal(Strings.Form_Master), 30, 49, 4210752);
+        fontRenderer.drawString(Utils.translateToLocal(Strings.Form_Final), 30, 68, 4210752);
     }
 
     @Override

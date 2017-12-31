@@ -56,7 +56,7 @@ public class EntityAero extends Entity {
         else
             player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10000000149011612D);
 
-        AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
+        AxisAlignedBB aabb = player.getEntityBoundingBox().grow(2, 2, 2);
         List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
         if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
             Entity e = (Entity) list.get(i);
@@ -70,7 +70,7 @@ public class EntityAero extends Entity {
                 e.motionY*=1.2;
             }
         }
-        aabb.expand(-2, -2, -2);
+        aabb.grow(-2, -2, -2);
 
         super.onUpdate();
     }

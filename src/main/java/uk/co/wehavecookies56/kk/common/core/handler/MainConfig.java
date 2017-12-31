@@ -77,7 +77,7 @@ public class MainConfig {
         @Config.RequiresMcRestart
         @Config.Name("Giga Shadow spawning ratio")
         @Config.Comment("Sets Giga Shadow heartless spawning ratio")
-        public int gigaShadowRatio = 5;
+        public int gigaShadowRatio = 2;
 
         @Config.RequiresMcRestart
         @Config.Name("Red Nocturne spawning ratio")

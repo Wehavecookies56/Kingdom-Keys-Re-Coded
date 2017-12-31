@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
@@ -26,8 +27,9 @@ public class OrganizationXIIICapability {
         //Utils.OrgMember current();
         Utils.OrgMember getMember();
         Item currentWeapon();
-        boolean summonedWeapon();
+        boolean summonedWeapon(EnumHand hand);
         boolean getOpenedGUI();
+        int getPortalDimension();
         double getPortalX();
         double getPortalY();
         double getPortalZ();
@@ -39,8 +41,9 @@ public class OrganizationXIIICapability {
         void setUnlockedWeapons(List<Item> list);
         void addUnlockedWeapon(Item item);
         void removeUnlockedWeapon(Item item);
-        void setWeaponSummoned(boolean summoned);
+        void setWeaponSummoned(EnumHand hand, boolean summoned);
         void setOpenedGUI(boolean opened);
+        void setPortalDimension(int dimension);
         void setPortalX(double x);
         void setPortalY(double y);
         void setPortalZ(double z);
@@ -67,7 +70,8 @@ public class OrganizationXIIICapability {
                 }
             }
             properties.setTag("UnlockedWeapons", tagList);
-            properties.setBoolean("Summoned", instance.summonedWeapon());
+            properties.setBoolean("Summoned", instance.summonedWeapon(EnumHand.MAIN_HAND));
+            properties.setBoolean("SummonedOffhand", instance.summonedWeapon(EnumHand.OFF_HAND));
             properties.setBoolean("Opened", instance.getOpenedGUI());
             properties.setDouble("PortalX", instance.getPortalX());
             properties.setDouble("PortalY", instance.getPortalY());
@@ -90,7 +94,8 @@ public class OrganizationXIIICapability {
                     KingdomKeys.logger.info("Loaded unlocked weapon: " + new ItemStack(weapons).getDisplayName());
                 }
             }
-            instance.setWeaponSummoned(properties.getBoolean("Summoned"));
+            instance.setWeaponSummoned(EnumHand.MAIN_HAND, properties.getBoolean("Summoned"));
+            instance.setWeaponSummoned(EnumHand.OFF_HAND, properties.getBoolean("SummonedOffhand"));
             instance.setOpenedGUI(properties.getBoolean("Opened"));
             instance.setPortalX(properties.getDouble("PortalX"));
             instance.setPortalY(properties.getDouble("PortalY"));
@@ -103,7 +108,10 @@ public class OrganizationXIIICapability {
         private Utils.OrgMember member = Utils.OrgMember.NONE;
         private Item weapon = ModItems.KingdomKey;
         private List<Item> weapons = new ArrayList<>();
-        private boolean summoned, openedGui=false;
+        private boolean mainHandSummoned = false;
+        private boolean offHandSummoned = false;
+        private boolean openedGui = false;
+        private int dim = 0;
         private double orgPortalX = 0;
         private double orgPortalY = 0;
         private double orgPortalZ = 0;
@@ -150,13 +158,16 @@ public class OrganizationXIIICapability {
         }
 
         @Override
-        public boolean summonedWeapon() {
-            return this.summoned;
+        public boolean summonedWeapon(EnumHand hand) {
+            return hand == EnumHand.MAIN_HAND ? mainHandSummoned : offHandSummoned;
         }
 
         @Override
-        public void setWeaponSummoned(boolean summoned) {
-            this.summoned = summoned;
+        public void setWeaponSummoned(EnumHand hand, boolean summoned) {
+            if (hand == EnumHand.MAIN_HAND)
+                this.mainHandSummoned = summoned;
+            else
+                this.offHandSummoned = summoned;
         }
 
         @Override
@@ -168,6 +179,11 @@ public class OrganizationXIIICapability {
         public void setOpenedGUI(boolean opened) {
             this.openedGui=opened;
         }
+        
+        @Override
+		public int getPortalDimension() {
+			return dim;
+		}
 
         @Override
         public double getPortalX() {
@@ -183,6 +199,11 @@ public class OrganizationXIIICapability {
         public double getPortalZ() {
             return orgPortalZ;
         }
+
+        @Override
+		public void setPortalDimension(int dimension) {
+			this.dim = dimension;
+		}
 
         @Override
         public void setPortalX(double x) {
@@ -222,6 +243,8 @@ public class OrganizationXIIICapability {
         public void addPoints(int points) {
             this.unlockPoints += points;
         }
+
+		
     }
 
 }

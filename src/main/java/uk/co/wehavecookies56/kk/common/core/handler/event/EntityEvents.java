@@ -1,6 +1,11 @@
 package uk.co.wehavecookies56.kk.common.core.handler.event;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
@@ -18,35 +23,44 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.DimensionType;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
-import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
+import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
 import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
+import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
@@ -56,6 +70,7 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenOrgGUI;
@@ -69,7 +84,10 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
+import uk.co.wehavecookies56.kk.common.world.dimension.DimensionTeleporter;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDiveToTheHeart;
 import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
@@ -104,7 +122,11 @@ public class EntityEvents {
         dsAfter.setDriveLevel(Strings.Form_Limit, dsBefore.getDriveLevel(Strings.Form_Limit));
         dsAfter.setDriveLevel(Strings.Form_Master, dsBefore.getDriveLevel(Strings.Form_Master));
         dsAfter.setDriveLevel(Strings.Form_Final, dsBefore.getDriveLevel(Strings.Form_Final));
+        dsAfter.setDriveGaugeLevel(dsBefore.getDriveGaugeLevel());
         dsAfter.setInDrive(dsBefore.getInDrive());
+        dsAfter.setDP(dsBefore.getDP());
+        dsAfter.setFP(dsBefore.getFP());
+
         for (int i = 0; i < dsBefore.getInventoryDriveForms().getSlots(); i++) {
             dsAfter.getInventoryDriveForms().setStackInSlot(i, dsBefore.getInventoryDriveForms().getStackInSlot(i));
         }
@@ -122,14 +144,15 @@ public class EntityEvents {
         }
         SummonKeybladeCapability.ISummonKeyblade skBefore = event.getOriginal().getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
         SummonKeybladeCapability.ISummonKeyblade skAfter = event.getEntityPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
-        skAfter.setIsKeybladeSummoned(skBefore.getIsKeybladeSummoned());
+        skAfter.setIsKeybladeSummoned(EnumHand.MAIN_HAND, skBefore.getIsKeybladeSummoned(EnumHand.MAIN_HAND));
+        skAfter.setIsKeybladeSummoned(EnumHand.OFF_HAND, skBefore.getIsKeybladeSummoned(EnumHand.OFF_HAND));
+        skAfter.setActiveSlot(skBefore.activeSlot());
         for (int i = 0; i < skBefore.getInventoryKeychain().getSlots(); i++) {
             skAfter.getInventoryKeychain().setStackInSlot(i, skBefore.getInventoryKeychain().getStackInSlot(i));
         }
         PlayerStatsCapability.IPlayerStats statsBefore = event.getOriginal().getCapability(ModCapabilities.PLAYER_STATS, null);
         PlayerStatsCapability.IPlayerStats statsAfter = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
         statsAfter.setDefense(statsBefore.getDefense());
-        statsAfter.setDP(statsBefore.getDP());
         statsAfter.setExperience(statsBefore.getExperience());
         statsAfter.setHP(statsBefore.getHP());
         statsAfter.setLevel(statsBefore.getLevel());
@@ -157,15 +180,29 @@ public class EntityEvents {
         OrganizationXIIICapability.IOrganizationXIII orgAfter = event.getEntityPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null);
         orgAfter.setMember(orgBefore.getMember());
         orgAfter.setCurrentWeapon(orgBefore.currentWeapon());
-        orgAfter.setWeaponSummoned(orgBefore.summonedWeapon());
+        orgAfter.setWeaponSummoned(EnumHand.MAIN_HAND, orgBefore.summonedWeapon(EnumHand.MAIN_HAND));
+        orgAfter.setWeaponSummoned(EnumHand.OFF_HAND, orgBefore.summonedWeapon(EnumHand.OFF_HAND));
         orgAfter.setPortalX(orgBefore.getPortalX());
         orgAfter.setPortalY(orgBefore.getPortalY());
         orgAfter.setPortalZ(orgBefore.getPortalZ());
         if (event.isWasDeath()) {
             orgAfter.setMember(Utils.OrgMember.NONE);
-            orgAfter.setWeaponSummoned(false);
+            orgAfter.setWeaponSummoned(EnumHand.MAIN_HAND, false);
+            orgAfter.setWeaponSummoned(EnumHand.OFF_HAND, false);
             orgAfter.setUnlockedWeapons(new ArrayList<Item>());
             orgAfter.setUnlockPoints((int)(statsAfter.getLevel() / 5));
+            dsAfter.setActiveDriveName("none");
+            dsAfter.setInDrive(false);
+            dsAfter.setDP(0);
+            dsAfter.setFP(0);
+        }
+    }
+
+    @SubscribeEvent
+    public void playerRespawn(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent event) {
+        if (event.isEndConquered()) {
+            BlockPos spawn = new BlockPos(192, 5, 161);
+            new DimensionTeleporter(event.player.world.getMinecraftServer().getServer().getWorld(Utils.getDimensionIDAndBlockPos(Strings.TraverseTown).id), Strings.TraverseTown, spawn).teleport((EntityPlayer) event.player);
         }
     }
 
@@ -213,12 +250,15 @@ public class EntityEvents {
     public static boolean isHostiles = false;
 
     @SubscribeEvent
-    public void OnEntityJoinWorld (EntityJoinWorldEvent event) {
-        if (event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
-            if (event.getEntity().dimension == ModDimensions.diveToTheHeartID) {
-                ((EntityPlayer) event.getEntity()).sendMessage(new TextComponentTranslation("Welcome to Kingdom Keys Re:Coded!\nPress %1$s to open the menu\nMake a choice between the Sword, Shield and Staff then leave using the door", InputHandler.Keybinds.OPENMENU.getKeybind().getDisplayName()));
-            }
+    public void potentialSpawns(WorldEvent.PotentialSpawns event) {
+        if (event.getType() == KingdomKeys.HEARTLESS) {
+            event.setCanceled(!WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).spawnHeartless);
         }
+    }
+
+    @SubscribeEvent
+    public void OnEntityJoinWorld (EntityJoinWorldEvent event) {
+        
         if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.DriveRecovery.getUnlocalizedName());
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.HighDriveRecovery.getUnlocalizedName());
@@ -238,11 +278,20 @@ public class EntityEvents {
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_MythrilGem);
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_MythrilCrystal);
 
+            if (event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getSlots() != InventoryKeychain.INV_SIZE) {
+                ItemStackHandler oldInv = event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
+                event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setInventory(new ItemStackHandler(InventoryKeychain.INV_SIZE));
+                ItemStackHandler newInv = event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
+                for (int i = 0; i < oldInv.getSlots(); i++) {
+                    newInv.setStackInSlot(i, oldInv.getStackInSlot(i));
+                }
+            }
+
             PacketDispatcher.sendTo(new SyncHudData(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncMagicInventory(event.getEntity().getCapability(ModCapabilities.MAGIC_STATE, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncItemsInventory(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncDriveInventory(event.getEntity().getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntity());
-            PacketDispatcher.sendTo(new SyncDriveData(event.getEntity().getCapability(ModCapabilities.DRIVE_STATE, null), event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
+            PacketDispatcher.sendTo(new SyncDriveData(event.getEntity().getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncMagicData(event.getEntity().getCapability(ModCapabilities.MAGIC_STATE, null), event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncKeybladeData(event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) event.getEntity());
             PacketDispatcher.sendTo(new SyncLevelData(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
@@ -256,10 +305,14 @@ public class EntityEvents {
                 FTJ.setPosZ(((EntityPlayer) event.getEntity()).getPosition().getZ());
                 if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID && MainConfig.worldgen.EnableStationOfAwakening)
                     if (!event.getWorld().isRemote)
-                        new TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().getWorld(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer) event.getEntity()), event.getWorld());
+                        new TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().getWorld(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer) event.getEntity()));
             }
 
             ((EntityPlayer) event.getEntity()).getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getHP());
+
+            if (((EntityPlayer) event.getEntity()).getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel() < 3) {
+                ((EntityPlayer) event.getEntity()).getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(3);
+            }
 
             try {
                 if (event.getEntity() instanceof EntityPlayerMP){
@@ -287,12 +340,13 @@ public class EntityEvents {
         if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntity();
             SummonKeybladeCapability.ISummonKeyblade SUMMON = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
-            if (SUMMON.getIsKeybladeSummoned()) {
+            IOrganizationXIII ORG = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+            if (SUMMON.getIsKeybladeSummoned(EnumHand.MAIN_HAND)) {
                 if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-                    PacketDispatcher.sendToServer(new DeSummonKeyblade(player.inventory.getCurrentItem()));
+                    PacketDispatcher.sendToServer(new DeSummonKeyblade());
                     PacketDispatcher.sendTo(new SyncKeybladeData(SUMMON), (EntityPlayerMP) player);
                 }else{
-                    SUMMON.setIsKeybladeSummoned(false);
+                    SUMMON.setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);
                     if (event.getEntity().world.getGameRules().getBoolean("keepInventory")) {
                         for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
                             if (!ItemStack.areItemStacksEqual(player.inventory.getStackInSlot(i), ItemStack.EMPTY)) {
@@ -303,7 +357,27 @@ public class EntityEvents {
                         }
                     }
                 }
+            }else if (ORG.summonedWeapon(EnumHand.MAIN_HAND)) {
+                if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+                    PacketDispatcher.sendToServer(new DeSummonOrgWeapon());
+                    PacketDispatcher.sendTo(new SyncOrgXIIIData(ORG), (EntityPlayerMP) player);
+                }else{
+                    SUMMON.setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);
+                    if (event.getEntity().world.getGameRules().getBoolean("keepInventory")) {
+                        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
+                            if (!ItemStack.areItemStacksEqual(player.inventory.getStackInSlot(i), ItemStack.EMPTY)) {
+                                if (player.inventory.getStackInSlot(i).getItem() instanceof IOrgWeapon) {
+                                    player.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
+                                }
+                            }
+                        }
+                    }
+                }
             }
+        }
+
+        if (event.getEntity() instanceof EntityDragon) {
+            WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).setSpawnHeartless(true);
         }
 
         if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityMob) if (event.getSource().getTrueSource() instanceof EntityPlayer) {
@@ -311,17 +385,13 @@ public class EntityEvents {
 
             EntityMob mob = (EntityMob) event.getEntity();
 
-            player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,(int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2),"normal");
-            if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom))
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Wisdom);
-            if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Final))
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Final);
+            player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,(int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2));
 
             if(event.getEntity() instanceof EntityDragon) {
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,2000, "normal");
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,2000);
             }
             if(event.getEntity() instanceof EntityWither) {
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,1500, "normal");
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,1500);
             }
             PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
         }
@@ -329,48 +399,46 @@ public class EntityEvents {
 
     @SubscribeEvent
     public void onLivingDrops (LivingDropsEvent event) {
-        if (!MainConfig.entities.disableDrops) {
-            if (event.getEntity() instanceof EntityPlayer) {
-                for (int i = 0; i < event.getDrops().size(); i++) {
-                    if (event.getDrops().get(i).getItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getItem().getItem() != ModItems.WoodenStick)) {
-                        event.getDrops().remove(i);
+        if (event.getEntity() instanceof EntityPlayer) {
+            for (int i = 0; i < event.getDrops().size(); i++) {
+                if (event.getDrops().get(i).getItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getItem().getItem() != ModItems.WoodenStick)) {
+                    event.getDrops().remove(i);
 
-                        event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
-                        i = 0;
-                    }
-                    if (event.getDrops().get(i).getItem().getItem() == event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
-                        event.getDrops().remove(i);
+                    event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);
+                    i = 0;
+                }
+                if (event.getDrops().get(i).getItem().getItem() == event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
+                    event.getDrops().remove(i);
 
-                        event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
-                        i = 0;
-                    }
+                    event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(((EntityPlayer) event.getEntity()).getActiveHand(), false);
+                    i = 0;
                 }
             }
-
-
+        }
+        if (!MainConfig.entities.disableDrops) {
             if (event.getSource().getTrueSource() instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
-                if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
-                    if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
+                if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+                    if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade) {
                         if (event.getEntity() instanceof EntityMob)
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("recipe"))
                                 dropRecipe(event);
                     }
                 }
                 if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.OFF_HAND), ItemStack.EMPTY)) {
-                    if (player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof ItemKeyblade) {
+                    if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade) {
                         if (event.getEntity() instanceof EntityMob)
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("recipe"))
                                 dropRecipe(event);
                     }
                 }
 
-                if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
-                    if (player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRealKeyblade) {
-                        if (event.getEntity() instanceof EntityAnimal)
+                if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+                    if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemRealKeyblade) {
+                        if (event.getEntity() instanceof EntityAnimal) {
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("heart"))
                                 event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Heart), 2);
-                        else if (event.getEntity() instanceof EntityMob) {
+                        } else if (event.getEntity() instanceof EntityMob) {
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("darkheart"))
                                 event.getEntityLiving().entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("spellorb") && event.getEntity() instanceof EntityWitch) {
@@ -504,16 +572,15 @@ public class EntityEvents {
         }
     }
 
-    String chosen = "";
     @SubscribeEvent
     public void onPlayerTick (TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
         if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
             if (!ItemStack.areItemStacksEqual(player.inventory.armorInventory.get(0), ItemStack.EMPTY) && player.inventory.armorInventory.get(1) != ItemStack.EMPTY && player.inventory.armorInventory.get(2) != ItemStack.EMPTY && player.inventory.armorInventory.get(3) != ItemStack.EMPTY) {
-                if (player.inventory.armorInventory.get(0).getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.OrganizationRobe_Helmet) {
+            	boolean isWearingOrgArmor = player.inventory.armorInventory.get(0).getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.OrganizationRobe_Helmet;
+            	boolean isWearingXemnasArmor = player.inventory.armorInventory.get(0).getItem() == ModItems.Xemnas_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.Xemnas_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.Xemnas_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.Xemnas_Helmet;
+                if (isWearingOrgArmor || isWearingXemnasArmor) {
                     if (!player.world.isRemote) {
-                        //TODO enabling this allows the first screen to pop up
-                        //player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setShowWelcome(true);
 
                         if (!player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getOpenedGUI()) {
                             player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(true);
@@ -526,44 +593,65 @@ public class EntityEvents {
                     player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(false);
             }
         }
-
-        if(player.dimension == ModDimensions.diveToTheHeartID) {
-            if(player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
-                if(chosen.equals(Strings.Choice_Shield)){
-                    chosen = Strings.Choice_Shield;
-                    TextComponentTranslation shield = new TextComponentTranslation("Shield");
-                    shield.getStyle().setColor(TextFormatting.YELLOW);
-                    player.sendMessage(shield);
+        
+        //Choices
+        IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+        if (!event.player.world.isRemote) {
+            if (player.dimension == ModDimensions.diveToTheHeartID) {
+                if (player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
+                    if (!STATS.getChoice1().equals(Strings.Choice_Shield)) {
+                        STATS.setChoice1(Strings.Choice_Shield);
+                        TextComponentTranslation shield = new TextComponentTranslation("Shield");
+                        shield.getStyle().setColor(TextFormatting.YELLOW);
+                        player.sendMessage(shield);
+                    }
+                } else if (player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
+                    if (!STATS.getChoice1().equals(Strings.Choice_Staff)) {
+                        STATS.setChoice1(Strings.Choice_Staff);
+                        TextComponentTranslation staff = new TextComponentTranslation("Staff");
+                        staff.getStyle().setColor(TextFormatting.YELLOW);
+                        player.sendMessage(staff);
+                    }
+                } else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) {
+                    if (!STATS.getChoice1().equals(Strings.Choice_Sword)) {
+                        STATS.setChoice1(Strings.Choice_Sword);
+                        TextComponentTranslation sword = new TextComponentTranslation("Sword");
+                        sword.getStyle().setColor(TextFormatting.YELLOW);
+                        player.sendMessage(sword);
+                    }
+                } else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
+                    if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID) {
+                        if (!STATS.getChoice1().equals("") && !STATS.getChoice1().equals("door")) {
+                            //if (!player.world.isRemote) {
+                            switch (STATS.getChoice1()) {
+                                case Strings.Choice_Shield:
+                                    STATS.addDefense(2);
+                                    break;
+                                case Strings.Choice_Staff:
+                                    STATS.addMagic(2);
+                                    break;
+                                case Strings.Choice_Sword:
+                                    STATS.addStrength(2);
+                                    break;
+                            }
+                            PacketDispatcher.sendTo(new SyncLevelData(STATS), (EntityPlayerMP) player);
+                            new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
+                            //}
+                        } else {
+                            if (!STATS.getChoice1().equals("door")) {
+                                TextComponentTranslation needChoice = new TextComponentTranslation("You must make a choice");
+                                needChoice.getStyle().setColor(TextFormatting.RED);
+                                player.sendMessage(needChoice);
+                                STATS.setChoice1("door");
+                            }
+                        }
+                    }
                 }
             }
-
-            else if(player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
-                if(chosen.equals(Strings.Choice_Staff)){
-                    chosen = Strings.Choice_Staff;
-                    TextComponentTranslation staff = new TextComponentTranslation("Staff");
-                    staff.getStyle().setColor(TextFormatting.YELLOW);
-                    player.sendMessage(staff);
-                }
-            }
-
-            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) {
-                if(chosen.equals(Strings.Choice_Sword)){
-                    chosen = Strings.Choice_Sword;
-                    TextComponentTranslation sword = new TextComponentTranslation("Sword");
-                    sword.getStyle().setColor(TextFormatting.YELLOW);
-                    player.sendMessage(sword);
-                }
-            }
-
-            else if(player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
-                if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID)
-                    if (!player.world.isRemote)
-                        new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport(( player), player.world);
-            }
-
         }
+        //PacketDispatcher.sendTo(new SyncLevelData(event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)event.player);
 
-        PlayerStatsCapability.IPlayerStats STATS = event.player.getCapability(ModCapabilities.PLAYER_STATS, null);
+
         DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         if (!DS.getInDrive())
             if (STATS.getMP() <= 0 || STATS.getRecharge()) {
@@ -584,8 +672,8 @@ public class EntityEvents {
         if (!DS.getActiveDriveName().equals("none") && DriveFormRegistry.isDriveFormRegistered(DS.getActiveDriveName())) {
             DriveFormRegistry.get(DS.getActiveDriveName()).update(event.player);
         }
-        List<Entity> entities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(16.0D, 10.0D, 16.0D));
-        List<Entity> bossEntities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().expand(150.0D, 100.0D, 150.0D));
+        List<Entity> entities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().grow(16.0D, 10.0D, 16.0D));
+        List<Entity> bossEntities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().grow(150.0D, 100.0D, 150.0D));
         if (!bossEntities.isEmpty()) {
             for (int i = 0; i < bossEntities.size(); i++) {
                 if (bossEntities.get(i) instanceof EntityDragon || bossEntities.get(i) instanceof EntityWither) {
@@ -612,9 +700,9 @@ public class EntityEvents {
         }
 
     }
-    @SubscribeEvent
+   /* @SubscribeEvent
     public void onLivingUpdate (LivingEvent.LivingUpdateEvent event) {
-        /*if (event.getEntityLiving() instanceof EntityPlayer) {
+        if (event.getEntityLiving() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 
             if(player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue() == 0 && player.isAirBorne){
@@ -622,8 +710,8 @@ public class EntityEvents {
                 player.motionY=0;
                 player.motionZ=0;
             }
-        }*/
-    }
+        }
+    }*/
 
     @SubscribeEvent
     public void onHurt (LivingHurtEvent event) {
@@ -638,6 +726,11 @@ public class EntityEvents {
                 if (EntityThunder.summonLightning)
                     event.setCanceled(true);
         }
+        if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
+            player.getCapability(ModCapabilities.DRIVE_STATE, null).addDP(1);
+            PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
+        }
         if(event.getEntityLiving() instanceof IKHMob) {
             EntityPlayer player = null;
             IKHMob khMob = (IKHMob) event.getEntityLiving();
@@ -646,13 +739,15 @@ public class EntityEvents {
             }
             if(player != null) {
                 if(khMob.getType() == MobType.HEARTLESS_EMBLEM || khMob.getType() == MobType.HEARTLESS_PUREBLOOD || khMob.getType() == MobType.NOBODY) {
-                    if(ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY))
+                    /*if(ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY) && ) {//Main empty but offhand is damagable
                         event.setCanceled(true);
-                    if(!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
-                        if(!(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon)) {
+                    } else {*/
+                		//If the player has a real weapon in any slot
+                        if(!(player.getHeldItemMainhand().getItem() instanceof ItemKeyblade || player.getHeldItemMainhand().getItem() instanceof ItemOrgWeapon ||
+                        	 player.getHeldItemOffhand().getItem() instanceof ItemKeyblade || player.getHeldItemOffhand().getItem() instanceof ItemOrgWeapon)) {
                             event.setCanceled(true);
                         }
-                    }
+                    //}
                 }
             }
         }
@@ -660,16 +755,9 @@ public class EntityEvents {
             EntityPlayer player = (EntityPlayer) event.getSource().getImmediateSource();
             if(event.getSource().getDamageType().equals("thorns")) return;
 
-            PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-            DriveStateCapability.IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-            if(!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) {
-                if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade || player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon) {
+            if(!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+                if(player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemOrgWeapon) {
                     event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
-                    if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Valor))
-                        STATS.addExperience(player, 1, Strings.Form_Valor);
-                    if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Limit))
-                        STATS.addExperience(player, 1, Strings.Form_Limit);
-
                 }
             }
         }
@@ -688,7 +776,28 @@ public class EntityEvents {
 //            }
         }
     }
-    
+
+    @SubscribeEvent
+    public void container(PlayerContainerEvent.Open event) {
+        if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+            event.getEntityPlayer().closeScreen();
+        }
+    }
+
+    @SubscribeEvent
+    public void interactWithEntity(PlayerInteractEvent.EntityInteract event) {
+        if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public void interactWithBlock(PlayerInteractEvent.RightClickBlock event) {
+        if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none") || (event.getEntityPlayer().dimension == ModDimensions.diveToTheHeartID && !event.getEntityPlayer().capabilities.isCreativeMode)) {
+            event.setCanceled(true);
+        }
+    }
+
     @SubscribeEvent
     public void onJump (LivingJumpEvent event) {
         if (event.getEntityLiving() instanceof EntityPlayer) {

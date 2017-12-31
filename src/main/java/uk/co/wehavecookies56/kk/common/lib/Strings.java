@@ -5,6 +5,13 @@ public class Strings {
     public static final String tabKingdomKeys = "tabKingdomKeys";
     public static final String tabKingdomKeysBlocks = "tabKingdomKeysblocks";
 
+    //Dimensions
+    public static final String
+    DestinyIslands = "destinyislands",
+	TraverseTown = "traversetown",
+	SoA = "soa",
+	OverWorld = "overworld";
+    
     // Records
     public static final String
     Disc_Duration_Desc = "disc.duration.desc",
@@ -98,9 +105,11 @@ public class Strings {
     Gui_CommandMenu = "gui.commandmenu",
     Gui_CommandMenu_Command = Gui_CommandMenu + ".command",
     Gui_CommandMenu_Attack = Gui_CommandMenu + ".attack",
+    Gui_CommandMenu_Portal = Gui_CommandMenu + ".portal",
     Gui_CommandMenu_Magic = Gui_CommandMenu + ".magic",
     Gui_CommandMenu_Items = Gui_CommandMenu + ".items",
     Gui_CommandMenu_Drive = Gui_CommandMenu + ".drive",
+    Gui_CommandMenu_Limit = Gui_CommandMenu + ".limit",
     Gui_CommandMenu_Drive_Revert = Gui_CommandMenu_Drive + ".revert",
     Gui_CommandMenu_Magic_Title = Gui_CommandMenu_Magic + ".title",
 
@@ -183,7 +192,8 @@ public class Strings {
     Chat_Manifest = "chat.manifest.learn",
     Chat_PowerBoost = "chat.powerboost",
     Chat_DefenseBoost = "chat.defenseboost",
-    Chat_MagicBoost = "chat.magicboost"
+    Chat_MagicBoost = "chat.magicboost",
+    Chat_DriveBoost = "chat.driveboost";
     ;
 
     //Stats
@@ -191,7 +201,13 @@ public class Strings {
     Stats_LevelUp_Str = "stats.levelUpStr",
     Stats_LevelUp_Def = "stats.levelUpDef",
     Stats_LevelUp_Magic = "stats.levelUpMag",
-    Stats_LevelUp_HP = "stats.levelUpHP"
+    Stats_LevelUp_HP = "stats.levelUpHP",
+    Stats_LevelUp_FormGauge = "stats.levelUpFG",
+	Stats_LevelUp_HighJump = "stats.levelUpHighJump",
+	Stats_LevelUp_QuickRun = "stats.levelUpQuickRun",
+	Stats_LevelUp_DodgeRoll = "stats.levelUpDodgeRoll",
+	Stats_LevelUp_AerialDodge = "stats.levelUpAerialDodge",
+	Stats_LevelUp_Glide = "stats.levelUpGlide"
     ;
 
     // Blocks
@@ -215,11 +231,14 @@ public class Strings {
 
     // Ores
     BlazingOre = "blazingore",
+    BlazingOreN = "blazingoren",
     BrightOre = "brightore",
     DarkOre = "darkore",
     DarkOreE = "darkoree",
+    DarkOreN = "darkoren",
     DenseOre = "denseore",
     EnergyOre = "energyore",
+    EnergyOreN = "energyoren",
     FrostOre = "frostore",
     LucidOre = "lucidore",
     LightningOre = "lightningore",
@@ -230,7 +249,7 @@ public class Strings {
     StormyOre = "stormyore",
     TranquilOre = "tranquilore",
     TwilightOre = "twilightore",
-
+    TwilightOreN = "twilightoren",
     // Others
     SynthesisTable = "synthesistable",
     SavePoint = "savepoint",
@@ -266,6 +285,7 @@ public class Strings {
     DefenseBoost = "defenseboost",
     MagicBoost = "magicboost",
     PowerBoost = "powerboost",
+    DriveBoost = "driveboost",
     Panacea = "panacea",
     HpOrb = "hporb",
     DriveOrb = "driveorb",
@@ -312,6 +332,11 @@ public class Strings {
     OrganizationRobe_Leggings = "organizationrobe_leggings",
     OrganizationRobe_Boots = "organizationrobe_boots",
 
+	Xemnas_Helmet = "xemnas_helmet",
+    Xemnas_Chestplate = "xemnas_chestplate",
+    Xemnas_Leggings = "xemnas_leggings",
+    Xemnas_Boots = "xemnas_boots",
+    	    
     Terra_Helmet = "terra_helmet",
     Terra_Chestplate = "terra_chestplate",
     Terra_Leggings = "terra_leggings",
@@ -837,6 +862,7 @@ public class Strings {
     Aubade = "aubade",
     WoodenStick = "woodenstick",
     DreamSword = "dreamsword",
+    DreamStaff = "dreamstaff",
     DreamShield = "dreamshield",
     ZeroOne = "zeroone",
     Earthshaker = "earthshaker",
@@ -1014,7 +1040,7 @@ public class Strings {
 
     public static final String
     KKChestInventory = "container.kkchest",
-    KeychainInventory = "container.keychain",
+    MainKeychain = "mainkeychain",
     SynthesisBagSInventory = "container.synthesisbagsinventory",
     SynthesisBagMInventory = "container.synthesisbagminventory",
     SynthesisBagLInventory = "container.synthesisbaglinventory",

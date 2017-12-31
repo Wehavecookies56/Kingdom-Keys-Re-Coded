@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.client.gui;
 import java.io.IOException;
 
 import net.minecraft.client.gui.GuiButton;
+import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability.IMagicState;
@@ -52,12 +53,14 @@ public class GuiMenu_Status extends GuiMenu_Bars {
     }
 
     private void updateButtons () {
+        IDriveState DRIVE = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
+
         stats_player.enabled = selected != STATS_PLAYER;
-        stats_valor.enabled = selected != STATS_VALOR;
-        stats_wisdom.enabled = selected != STATS_WISDOM;
-        stats_limit.enabled = selected != STATS_LIMIT;
-        stats_master.enabled = selected != STATS_MASTER;
-        stats_final.enabled = selected != STATS_FINAL;
+        stats_valor.enabled = selected != STATS_VALOR && DRIVE.getDriveLevel(Strings.Form_Valor) > 0;
+        stats_wisdom.enabled = selected != STATS_WISDOM && DRIVE.getDriveLevel(Strings.Form_Wisdom) > 0;
+        stats_limit.enabled = selected != STATS_LIMIT && DRIVE.getDriveLevel(Strings.Form_Limit) > 0;
+        stats_master.enabled = selected != STATS_MASTER && DRIVE.getDriveLevel(Strings.Form_Master) > 0;
+        stats_final.enabled = selected != STATS_FINAL && DRIVE.getDriveLevel(Strings.Form_Final) > 0;
         updateScreen();
     }
 
@@ -92,9 +95,16 @@ public class GuiMenu_Status extends GuiMenu_Bars {
     public void drawScreen (int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
         final PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
-        IMagicState ms = mc.player.getCapability(ModCapabilities.MAGIC_STATE, null);
-        IDriveState ds = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
+
+        IMagicState MAGIC = mc.player.getCapability(ModCapabilities.MAGIC_STATE, null);
+        IDriveState DRIVE = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         //System.out.println(ds.getDriveLevel(Strings.Form_Valor)+" "+ds.getDriveLevel(Strings.Form_Wisdom)+" "+ds.getDriveLevel(Strings.Form_Limit)+" "+ds.getDriveLevel(Strings.Form_Master)+" "+ds.getDriveLevel(Strings.Form_Final));
+        int[] valorCosts = DriveFormRegistry.get(Strings.Form_Valor).getExpCosts();
+        int[] wisdomCosts = DriveFormRegistry.get(Strings.Form_Wisdom).getExpCosts();
+        int[] limitCosts = DriveFormRegistry.get(Strings.Form_Limit).getExpCosts();
+        int[] masterCosts = DriveFormRegistry.get(Strings.Form_Master).getExpCosts();
+        int[] finalCosts = DriveFormRegistry.get(Strings.Form_Final).getExpCosts();
+        int remainingExp;
         switch (selected) {
             case STATS_PLAYER:
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
@@ -104,7 +114,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
                 drawString(fontRenderer, "HP", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
                 drawString(fontRenderer, "MP", 125, ((-140 / 16) + 75) + 58, 0xFFFFFF);
                 drawString(fontRenderer, "AP", 125, ((-140 / 16) + 75) + 70, 0xFFFFFF);
-                drawString(fontRenderer, "Drive Guage", 125, ((-140 / 16) + 75) + 82, 0xFFFFFF);
+                drawString(fontRenderer, "Drive Gauge", 125, ((-140 / 16) + 75) + 82, 0xFFFFFF);
                 drawString(fontRenderer, "Bonus Level", 125, ((-140 / 16) + 75) + 94, 0xFFFFFF);
                 drawString(fontRenderer, "Strength", 125, ((-140 / 16) + 75) + 106, 0xFFFFFF);
                 drawString(fontRenderer, "Magic", 125, ((-140 / 16) + 75) + 118, 0xFFFFFF);
@@ -129,7 +139,7 @@ public class GuiMenu_Status extends GuiMenu_Bars {
                 drawString(fontRenderer, "" + (int) mc.player.getMaxHealth(), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
                 drawString(fontRenderer, "" + (int) STATS.getMaxMP(), 230, ((-140 / 16) + 75) + 58, 0xFFD900);
                 drawString(fontRenderer, "N/A", 230, ((-140 / 16) + 75) + 70, 0xFFD900);
-                drawString(fontRenderer, "9", 230, ((-140 / 16) + 75) + 82, 0xFFD900);
+                drawString(fontRenderer, ""+ DRIVE.getDriveGaugeLevel(), 230, ((-140 / 16) + 75) + 82, 0xFFD900);
                 drawString(fontRenderer, "N/A", 230, ((-140 / 16) + 75) + 94, 0xFFD900);
                 drawString(fontRenderer, "" + STATS.getStrength(), 230, ((-140 / 16) + 75) + 106, 0xFFD900);
                 drawString(fontRenderer, "" + STATS.getMagic(), 230, ((-140 / 16) + 75) + 118, 0xFFD900);
@@ -139,61 +149,80 @@ public class GuiMenu_Status extends GuiMenu_Bars {
                 drawString(fontRenderer, "0%", 230, ((-140 / 16) + 75) + 166, 0xFFD900);
                 drawString(fontRenderer, "0%", 230, ((-140 / 16) + 75) + 178, 0xFFD900);
 
-                drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Fire), 370, ((-140 / 16) + 75) + 10, 0xFFD900);
-                drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Blizzard), 370, ((-140 / 16) + 75) + 22, 0xFFD900);
-                drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Thunder), 370, ((-140 / 16) + 75) + 34, 0xFFD900);
-                drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Cure), 370, ((-140 / 16) + 75) + 46, 0xFFD900);
-                drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Gravity), 370, ((-140 / 16) + 75) + 58, 0xFFD900);
-                drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Aero), 370, ((-140 / 16) + 75) + 70, 0xFFD900);
-                drawString(fontRenderer, "" + ms.getMagicLevel(Strings.Spell_Stop), 370, ((-140 / 16) + 75) + 82, 0xFFD900);
+                drawString(fontRenderer, "" + MAGIC.getMagicLevel(Strings.Spell_Fire), 370, ((-140 / 16) + 75) + 10, 0xFFD900);
+                drawString(fontRenderer, "" + MAGIC.getMagicLevel(Strings.Spell_Blizzard), 370, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + MAGIC.getMagicLevel(Strings.Spell_Thunder), 370, ((-140 / 16) + 75) + 34, 0xFFD900);
+                drawString(fontRenderer, "" + MAGIC.getMagicLevel(Strings.Spell_Cure), 370, ((-140 / 16) + 75) + 46, 0xFFD900);
+                drawString(fontRenderer, "" + MAGIC.getMagicLevel(Strings.Spell_Gravity), 370, ((-140 / 16) + 75) + 58, 0xFFD900);
+                drawString(fontRenderer, "" + MAGIC.getMagicLevel(Strings.Spell_Aero), 370, ((-140 / 16) + 75) + 70, 0xFFD900);
+                drawString(fontRenderer, "" + MAGIC.getMagicLevel(Strings.Spell_Stop), 370, ((-140 / 16) + 75) + 82, 0xFFD900);
 
 
                 break;
             case STATS_VALOR:
+            	remainingExp = DRIVE.getDriveLevel(Strings.Form_Valor) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Valor)]-DRIVE.getDriveExp(Strings.Form_Valor);
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+                drawString(fontRenderer, "Form Gauge", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
 
-                drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-                drawString(fontRenderer, "" + STATS.getVExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
-
+                drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + remainingExp, 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getFormGaugeLevel(Strings.Form_Valor), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
                 break;
             case STATS_WISDOM:
+            	remainingExp = DRIVE.getDriveLevel(Strings.Form_Wisdom) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Wisdom)]-DRIVE.getDriveExp(Strings.Form_Wisdom);
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+                drawString(fontRenderer, "Form Gauge", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
 
-                drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-                drawString(fontRenderer, "" + STATS.getWExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + remainingExp, 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getFormGaugeLevel(Strings.Form_Wisdom), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
                 break;
             case STATS_LIMIT:
+            	remainingExp = DRIVE.getDriveLevel(Strings.Form_Limit) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Limit)]-DRIVE.getDriveExp(Strings.Form_Limit);
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+                drawString(fontRenderer, "From Gauge", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
 
-                drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-                drawString(fontRenderer, "" + STATS.getLExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + remainingExp, 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getFormGaugeLevel(Strings.Form_Limit), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
                 break;
             case STATS_MASTER:
+            	remainingExp = DRIVE.getDriveLevel(Strings.Form_Master) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Master)]-DRIVE.getDriveExp(Strings.Form_Master);
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+                drawString(fontRenderer, "From Gauge", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
 
-                drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Master), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-                drawString(fontRenderer, "" + STATS.getMExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Master), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Master), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + remainingExp, 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getFormGaugeLevel(Strings.Form_Master), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
                 break;
             case STATS_FINAL:
+            	remainingExp = DRIVE.getDriveLevel(Strings.Form_Final) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Final)]-DRIVE.getDriveExp(Strings.Form_Final);
                 drawRect(125, ((-140 / 16) + 75) + 10, 200, ((-140 / 16) + 75) + 20, 0xFFFFFF);
                 drawString(fontRenderer, "Level", 125, ((-140 / 16) + 75) + 10, 0xFFFFFF);
                 drawString(fontRenderer, "Experience", 125, ((-140 / 16) + 75) + 22, 0xFFFFFF);
                 drawString(fontRenderer, "Next Level", 125, ((-140 / 16) + 75) + 34, 0xFFFFFF);
+                drawString(fontRenderer, "From Gauge", 125, ((-140 / 16) + 75) + 46, 0xFFFFFF);
 
-                drawString(fontRenderer, "" + ds.getDriveLevel(Strings.Form_Final), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
-                drawString(fontRenderer, "" + STATS.getFExperience(), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getDriveLevel(Strings.Form_Final), 230, ((-140 / 16) + 75) + 10, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getDriveExp(Strings.Form_Final), 230, ((-140 / 16) + 75) + 22, 0xFFD900);
+                drawString(fontRenderer, "" + remainingExp, 230, ((-140 / 16) + 75) + 34, 0xFFD900);
+                drawString(fontRenderer, "" + DRIVE.getFormGaugeLevel(Strings.Form_Final), 230, ((-140 / 16) + 75) + 46, 0xFFD900);
                 break;
         }
     }

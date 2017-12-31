@@ -77,32 +77,26 @@ public class TeleporterOverworld extends Teleporter {
      * WorldServer.getTotalWorldTime() value.
      */
     @Override
-    public void removeStalePortalLocations(long worldTime)
-    {
-        if (worldTime % 100L == 0L)
-        {
+    public void removeStalePortalLocations(long worldTime) {
+        if (worldTime % 100L == 0L) {
             long i = worldTime - 300L;
             ObjectIterator<Teleporter.PortalPosition> objectiterator = this.destinationCoordinateCache.values().iterator();
 
-            while (objectiterator.hasNext())
-            {
+            while (objectiterator.hasNext()) {
                 Teleporter.PortalPosition teleporter$portalposition = (Teleporter.PortalPosition)objectiterator.next();
 
-                if (teleporter$portalposition == null || teleporter$portalposition.lastUpdateTime < i)
-                {
+                if (teleporter$portalposition == null || teleporter$portalposition.lastUpdateTime < i) {
                     objectiterator.remove();
                 }
             }
         }
     }
 
-    public class PortalPosition extends BlockPos
-    {
+    public class PortalPosition extends BlockPos {
         /** The worldtime at which this PortalPosition was last verified */
         public long lastUpdateTime;
 
-        public PortalPosition(BlockPos pos, long lastUpdate)
-        {
+        public PortalPosition(BlockPos pos, long lastUpdate) {
             super(pos.getX(), pos.getY(), pos.getZ());
             this.lastUpdateTime = lastUpdate;
         }

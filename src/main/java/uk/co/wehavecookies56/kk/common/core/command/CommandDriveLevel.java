@@ -16,10 +16,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
-import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.server.LevelUpDrive;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class CommandDriveLevel implements ICommand {
@@ -48,7 +48,7 @@ public class CommandDriveLevel implements ICommand {
 
     @Override
     public String getUsage (ICommandSender sender) {
-        return "/leveldrive <form> [level (can be negative)]";
+        return "/leveldrive <form> <level> [player]";
     }
 
     @Override
@@ -85,94 +85,69 @@ public class CommandDriveLevel implements ICommand {
             EntityPlayer player = (EntityPlayer) sender.getCommandSenderEntity();
             if (args.length == 0 || args.length > 3)
                 TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-            else if (args.length == 2) {
-                    int level = 1;
-                    try {
-                        if (Integer.parseInt(args[1]) < 1 || Integer.parseInt(args[1]) > 3) {
-                            TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 3", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-                            return;
-                        } else
-                            level = Integer.parseInt(args[1]);
-                    } catch (Exception e) {
-                        TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 3", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+            else if (args.length >= 2 && args.length <= 3) {
+            	//Get the player
+            	
+            	if(args.length == 3) {
+                    if(getPlayerFromUsername(args[2]) != null) {
+                    	player = getPlayerFromUsername(args[2]);
+                    }
+            	}
+            	
+                int level = 1;
+                try {
+                	//Parse the given level
+                    if (Integer.parseInt(args[1]) < 1 || Integer.parseInt(args[1]) > 7) {
+                        TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 7", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
                         return;
-                    }
-                    String form = null;
-                    switch(args[0])
-                    {
-                    case "valor":
-                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Valor, true, Integer.parseInt(args[1].toString()),player.getName()));
-                        form = Utils.translateToLocal(Strings.Form_Valor);
-                        break;
-                    case "wisdom":
-                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Wisdom, true, Integer.parseInt(args[1].toString()),player.getName()));
-                        form = Utils.translateToLocal(Strings.Form_Wisdom);
-                        break;
-                    case "limit":
-                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Limit, true, Integer.parseInt(args[1].toString()),player.getName()));
-                        form = Utils.translateToLocal(Strings.Form_Limit);
-                        break;
-                    case "master":
-                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Master, true, Integer.parseInt(args[1].toString()),player.getName()));
-                        form = Utils.translateToLocal(Strings.Form_Master);
-                        break;
-                    case "final":
-                        PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Final, true, Integer.parseInt(args[1].toString()),player.getName()));
-                        form = Utils.translateToLocal(Strings.Form_Final);
-                        break;
-                    }
-                    if(form != null)
-                        TextHelper.sendFormattedChatMessage("Succesfully leveled up "+form+" to level "+args[1], TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
-                    else
-                        TextHelper.sendFormattedChatMessage("Unknown form "+args[0], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+                    } else
+                        level = Integer.parseInt(args[1]);
+                    
+                } catch (Exception e) {
+                    TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 7", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+                    return;
+                }
+                
+                IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+                String form = null;
+                
+                switch(args[0].toLowerCase()){
+                case "valor":
+                	DRIVE.setDriveLevel(Strings.Form_Valor, Integer.parseInt(args[1].toString()));
+                    form = Utils.translateToLocal(Strings.Form_Valor);
+                    break;
+                case "wisdom":
+                	DRIVE.setDriveLevel(Strings.Form_Wisdom, Integer.parseInt(args[1].toString()));
+                    form = Utils.translateToLocal(Strings.Form_Wisdom);
+                    break;
+                case "limit":
+                	DRIVE.setDriveLevel(Strings.Form_Limit, Integer.parseInt(args[1].toString()));
+                    form = Utils.translateToLocal(Strings.Form_Limit);
+                    break;
+                case "master":
+                	DRIVE.setDriveLevel(Strings.Form_Master, Integer.parseInt(args[1].toString()));
+                    form = Utils.translateToLocal(Strings.Form_Master);
+                    break;
+                case "final":
+                	DRIVE.setDriveLevel(Strings.Form_Final, Integer.parseInt(args[1].toString()));
+                    form = Utils.translateToLocal(Strings.Form_Final);
+                    break;
+                }
+                DRIVE.displayLevelUpMessage(player,"form."+args[0].toLowerCase()); 
 
-            } else if (args.length == 3) {
-                    if(FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(args[2]) != null) {
-                        int level = 1;
-                        try {
-                            if (Integer.parseInt(args[1]) < 1 || Integer.parseInt(args[1]) > 3) {
-                                TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 3", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-                                return;
-                            } else
-                                level = Integer.parseInt(args[1]);
-                        } catch (Exception e) {
-                            TextHelper.sendFormattedChatMessage("Invalid level, it must be a number between 1 - 3", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-                            return;
-                        }
-                        String form = null;
-                        switch(args[0])
-                        {
-                        case "valor":
-                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Valor, true, Integer.parseInt(args[1].toString()),args[2]));
-                            form = Utils.translateToLocal(Strings.Form_Valor);
-                            break;
-                        case "wisdom":
-                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Wisdom, true, Integer.parseInt(args[1].toString()),args[2]));
-                            form = Utils.translateToLocal(Strings.Form_Wisdom);
-                            break;
-                        case "limit":
-                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Limit, true, Integer.parseInt(args[1].toString()),args[2]));
-                            form = Utils.translateToLocal(Strings.Form_Limit);
-                            break;
-                        case "master":
-                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Master, true, Integer.parseInt(args[1].toString()),args[2]));
-                            form = Utils.translateToLocal(Strings.Form_Master);
-                            break;
-                        case "final":
-                            PacketDispatcher.sendToServer(new LevelUpDrive(Strings.Form_Final, true, Integer.parseInt(args[1].toString()),args[2]));
-                            form = Utils.translateToLocal(Strings.Form_Final);
-                            break;
-                        }
-                        if(form != null)
-                            TextHelper.sendFormattedChatMessage("Succesfully leveled up "+form+" to level "+args[1]+" for player "+args[2], TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
-                        else
-                            TextHelper.sendFormattedChatMessage("Unknown form "+args[0], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-                    }else{
-                        TextHelper.sendFormattedChatMessage("Invalid player" + args[2], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+                //PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
 
-                    }
-            } else
-                TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+                if(form != null) {
+                	if(args.length == 3)
+                		TextHelper.sendFormattedChatMessage("Succesfully leveled up "+form+" to level "+args[1]+" for player "+args[2], TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
+                	else
+                		TextHelper.sendFormattedChatMessage("Succesfully leveled up "+form+" to level "+args[1], TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
+               }else {
+                    TextHelper.sendFormattedChatMessage("Unknown form "+args[0], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+               }
+            }else{
+            	TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());            		
+            }
         }
     }
 

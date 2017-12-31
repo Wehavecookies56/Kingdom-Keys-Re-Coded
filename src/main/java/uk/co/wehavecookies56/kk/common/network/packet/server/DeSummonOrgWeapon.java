@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
@@ -18,27 +19,30 @@ public class DeSummonOrgWeapon extends AbstractServerMessage<DeSummonOrgWeapon> 
 
     public DeSummonOrgWeapon() {}
 
-    ItemStack toRemove;
+    EnumHand hand;
 
-    public DeSummonOrgWeapon(ItemStack toRemove) {
-        this.toRemove = toRemove;
+    public DeSummonOrgWeapon(EnumHand hand) {
+        this.hand = hand;
     }
 
     @Override
     protected void read (PacketBuffer buffer) throws IOException {
-        toRemove = buffer.readItemStack();
+        this.hand = EnumHand.values()[buffer.readInt()];
     }
 
     @Override
     protected void write (PacketBuffer buffer) throws IOException {
-        buffer.writeItemStack(toRemove);
+        buffer.writeInt(hand.ordinal());
     }
 
     @Override
     public void process (EntityPlayer player, Side side) {
-        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+        if (hand == EnumHand.MAIN_HAND)
+            player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+        else
+            player.inventory.offHandInventory.set(0, ItemStack.EMPTY);
         player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.unsummon, SoundCategory.MASTER, 1.0f, 1.0f);
-        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
+        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(hand, false);
         PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
     }
 

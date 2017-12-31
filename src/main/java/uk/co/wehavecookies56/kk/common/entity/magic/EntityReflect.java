@@ -54,7 +54,7 @@ public class EntityReflect extends Entity {
             player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.10000000149011612D);
 
         double distance = 3.0D;
-        AxisAlignedBB aabb = player.getEntityBoundingBox().expand(2, 2, 2);
+        AxisAlignedBB aabb = player.getEntityBoundingBox().grow(2, 2, 2);
         List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
         if (!list.isEmpty()) {
 

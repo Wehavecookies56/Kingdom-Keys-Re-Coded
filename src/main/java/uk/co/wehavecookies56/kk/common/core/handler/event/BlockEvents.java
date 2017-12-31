@@ -17,20 +17,19 @@ import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 public class BlockEvents {
 
     @SubscribeEvent
-    public void onBlockBreak(BlockEvent.BreakEvent event)
-    {
-        if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID) {
+    public void onBlockBreak(BlockEvent.BreakEvent event) {
+        if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID || event.getWorld().provider.getDimension() == ModDimensions.destinyIslandsID || event.getWorld().provider.getDimension() == ModDimensions.traverseTownID) {
             if(!event.getPlayer().capabilities.isCreativeMode)
                 event.setCanceled(true);
         }
     }
 
     @SubscribeEvent
-    public void onBlockPlace(BlockEvent.PlaceEvent event)
-    {
-        if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID) {
-            if(!event.getPlayer().capabilities.isCreativeMode)
+    public void onBlockPlace(BlockEvent.PlaceEvent event) {
+        if (event.getWorld().provider.getDimension() == ModDimensions.diveToTheHeartID || event.getWorld().provider.getDimension() == ModDimensions.destinyIslandsID || event.getWorld().provider.getDimension() == ModDimensions.traverseTownID) {
+            if(!event.getPlayer().capabilities.isCreativeMode) {
                 event.setCanceled(true);
+            }
         }
     }
 
@@ -184,7 +183,7 @@ public class BlockEvents {
    //     System.out.println("Fortune: "+event.getFortuneLevel());
  //       System.out.println("NOD+F: "+numberOfDrops);
 
-        if (event.getState().getBlock() == ModBlocks.BlazingOre) {
+        if (event.getState().getBlock() == ModBlocks.BlazingOre || event.getState().getBlock() == ModBlocks.BlazingOreN) {
             for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
@@ -224,27 +223,7 @@ public class BlockEvents {
                     break;
                 }
             }
-        } else if (event.getState().getBlock() == ModBlocks.DarkOre) {
-            for(int i = 0; i<numberOfDrops; i++)
-            {
-                int dropAmount = Utils.randomWithRange(0, 3);
-                switch (dropAmount)
-                {
-                case 0:
-                    event.getDrops().add(DarkShard);
-                    break;
-                case 1:
-                    event.getDrops().add(DarkStone);
-                    break;
-                case 2:
-                    event.getDrops().add(DarkGem);
-                    break;
-                case 3:
-                    event.getDrops().add(DarkCrystal);
-                    break;
-                }
-            }
-        } else if (event.getState().getBlock() == ModBlocks.DarkOreE) {
+        } else if (event.getState().getBlock() == ModBlocks.DarkOre || event.getState().getBlock() == ModBlocks.DarkOreE || event.getState().getBlock() == ModBlocks.DarkOreN) {
             for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
@@ -284,7 +263,7 @@ public class BlockEvents {
                     break;
                 }
             }
-        } else if (event.getState().getBlock() == ModBlocks.EnergyOre) {
+        } else if (event.getState().getBlock() == ModBlocks.EnergyOre || event.getState().getBlock() == ModBlocks.EnergyOreN) {
             for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
@@ -364,27 +343,7 @@ public class BlockEvents {
                     break;
                 }
             }
-        } else if (event.getState().getBlock() == ModBlocks.PowerOre) {
-            for(int i = 0; i<numberOfDrops; i++)
-            {
-                int dropAmount = Utils.randomWithRange(0, 3);
-                switch (dropAmount)
-                {
-                case 0:
-                    event.getDrops().add(PowerShard);
-                    break;
-                case 1:
-                    event.getDrops().add(PowerStone);
-                    break;
-                case 2:
-                    event.getDrops().add(PowerGem);
-                    break;
-                case 3:
-                    event.getDrops().add(PowerCrystal);
-                    break;
-                }
-            }
-        } else if (event.getState().getBlock() == ModBlocks.PowerOreE) {
+        } else if (event.getState().getBlock() == ModBlocks.PowerOre || event.getState().getBlock() == ModBlocks.PowerOreE) {
             for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);
@@ -464,7 +423,7 @@ public class BlockEvents {
                     break;
                 }
             }
-        } else if (event.getState().getBlock() == ModBlocks.TwilightOre) {
+        } else if (event.getState().getBlock() == ModBlocks.TwilightOre || event.getState().getBlock() == ModBlocks.TwilightOreN) {
             for(int i = 0; i<numberOfDrops; i++)
             {
                 int dropAmount = Utils.randomWithRange(0, 3);

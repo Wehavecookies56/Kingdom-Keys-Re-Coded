@@ -2,7 +2,6 @@ package uk.co.wehavecookies56.kk.common.core.command;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -12,10 +11,13 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
@@ -48,7 +50,7 @@ public class CommandRemoveKeychain implements ICommand {
 
     @Override
     public String getUsage (ICommandSender sender) {
-        return "/removechain [player]";
+        return "/removechain <slot> [player]";
     }
 
     @Override
@@ -82,30 +84,53 @@ public class CommandRemoveKeychain implements ICommand {
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (sender.getCommandSenderEntity() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) sender.getCommandSenderEntity();
-            if (args.length == 0) {
-                if (player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0) != null) {
-                    PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain", 0));
-                    PacketDispatcher.sendToAllAround(new RemoveItemInSlot("keychain", 0), (EntityPlayer) sender.getCommandSenderEntity(), 1);
+            if (args.length == 0 || args.length > 2) {
+                TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+            }else if (args.length == 1 || args.length == 2) {
+            	if(!isNumber(args[0]))
+            		return;
+            	int slot = Integer.parseInt(args[0]);
+                EntityPlayer player = (EntityPlayer) sender.getCommandSenderEntity();
+                
+            	//Get the player
+            	if(args.length == 2) {
+                    if(getPlayerFromUsername(args[1]) != null) {
+                    	player = getPlayerFromUsername(args[1]);
+                    }
+            	}
+            	
+                if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(slot), ItemStack.EMPTY)) {
+                    PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain", slot));
+                    PacketDispatcher.sendToAllAround(new RemoveItemInSlot("keychain", slot), (EntityPlayer) sender.getCommandSenderEntity(), 1);
 
-                    if (sender.getCommandSenderEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned()) if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) // props.isKeybladeSummoned()
-                                                                                                                                                                            // ==
-                                                                                                                                                                            // true
-                        PacketDispatcher.sendToServer(new DeSummonKeyblade(player.inventory.getCurrentItem()));
-                    TextHelper.sendFormattedChatMessage("Your keychain has been removed!", TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
+                    if (sender.getCommandSenderEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned(EnumHand.MAIN_HAND))
+                        if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)
+                            //player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(EnumHand.MAIN_HAND, true);
+                        PacketDispatcher.sendToServer(new DeSummonKeyblade());
+                    	if(args.length == 2)
+                    		TextHelper.sendFormattedChatMessage(args[1] + "'s keychain has been removed!", TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
+                    	else
+                    		TextHelper.sendFormattedChatMessage("Your keychain has been removed!", TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
                 } else
                     TextHelper.sendFormattedChatMessage("The chain slot has no chain!", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-            } else if (args.length == 1) {
-                EntityPlayerMP playermp = args.length == 1 ? server.getPlayerList().getPlayerByUUID(UUID.fromString(args[0])) : getCommandSenderAsPlayer(sender);
+            }
+        }
+    }
 
-                if (playermp.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0) != null) {
-                    PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain", 0));
-                    if (playermp.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned()) if (playermp.getHeldItem(EnumHand.MAIN_HAND) != null && playermp.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) PacketDispatcher.sendToServer(new DeSummonKeyblade(playermp.getHeldItem(EnumHand.MAIN_HAND)));
-                    TextHelper.sendFormattedChatMessage(args[0] + "'s keychain has been removed!", TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
-                } else
-                    TextHelper.sendFormattedChatMessage("The chain slot has no chain!", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-            } else
-                TextHelper.sendFormattedChatMessage("Invalid arguments! Usage: /removechain [player]", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+    public static EntityPlayer getPlayerFromUsername(String username) {
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+            return null;
+
+        return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(username);
+    }
+    
+    public static boolean isNumber(String num) {
+    	try {
+        	//Parse the given level
+            int number = Integer.parseInt(num);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 

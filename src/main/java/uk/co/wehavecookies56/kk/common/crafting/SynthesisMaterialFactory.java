@@ -27,7 +27,7 @@ public class SynthesisMaterialFactory implements IIngredientFactory {
             stack.getTagCompound().setString("material", material);
             stack.getTagCompound().setString("rank", rank);
         }
-        return new IngredientNBT(stack);
+        return new IngredientSynthesisMaterial(stack);
     }
 
 }

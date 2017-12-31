@@ -25,7 +25,7 @@ public class RecipeDreamSword extends Recipe {
 
     @Override
     public ItemStack getResult () {
-        return new ItemStack(ModItems.Chain_DreamSword);
+        return new ItemStack(ModItems.DreamSword);
     }
 
     @Override

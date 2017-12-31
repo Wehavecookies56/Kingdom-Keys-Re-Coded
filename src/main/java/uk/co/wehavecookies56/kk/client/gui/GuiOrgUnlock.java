@@ -17,10 +17,13 @@ import net.minecraft.util.ResourceLocation;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
+import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgWeaponUnlock;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 /**
  * Created by Toby on 27/04/2017.
@@ -480,8 +483,11 @@ public class GuiOrgUnlock extends GuiScreen {
         fontRenderer.drawString("Weapon unlocks for " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember().toString(), posX + 5, posY + 5, 0x2B2B2B);
         fontRenderer.drawString("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints(), posX + 256 - fontRenderer.getStringWidth("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints()) - 5, posY + 5, 0x2B2B2B);
         super.drawScreen(mouseX, mouseY, partialTicks);
-        if (selected != null)
-            fontRenderer.drawString(new ItemStack(selected.unlock).getDisplayName() + " selected", (width / 2) - (texWidth / 2) + 5, (height / 2) - (texHeight / 2) + 180, 0x2B2B2B);
+        if (selected != null) {
+        	int str = (int) (Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == OrgMember.ROXAS ? ((ItemKeyblade)selected.getUnlock()).getStrength() : ((ItemOrgWeapon)selected.getUnlock()).getStrength());
+        	int mag = (int) (Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == OrgMember.ROXAS ? ((ItemKeyblade)selected.getUnlock()).getMagic() : ((ItemOrgWeapon)selected.getUnlock()).getMagic());
+            fontRenderer.drawString(new ItemStack(selected.unlock).getDisplayName()+": ["+str+", "+mag+"]", (width / 2) - (texWidth / 2) + 15, (height / 2) - (texHeight / 2) + 180, 0x2B2B2B);
+        }
     }
 
     @Override

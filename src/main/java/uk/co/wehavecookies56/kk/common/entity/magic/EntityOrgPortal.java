@@ -6,6 +6,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -16,36 +17,35 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortalTP;
 
 public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnData {
 
-    EntityPlayer caster;
-    //BlockPos remotePos;
+    //EntityPlayer caster;
+    BlockPos destinationPos;
+    int destinationDim;
+    boolean shouldTeleport;
 
     public EntityOrgPortal (World world) {
         super(world);
     }
 
-    public EntityOrgPortal (World world, EntityPlayer sender, double x, double y, double z) {
+    public EntityOrgPortal (World world, EntityPlayer sender, BlockPos spawnPos, BlockPos destinationPos, int destinationDim, boolean shouldTP) {
         super(world);
-        this.posX = x+0.5;
-        this.posY = y;
-        this.posZ = z+0.5;
-        this.caster = sender;
+        this.posX = spawnPos.getX()+0.5;
+        this.posY = spawnPos.getY();
+        this.posZ = spawnPos.getZ()+0.5;
+        this.destinationPos = destinationPos;
+        this.destinationDim = destinationDim;
+        this.shouldTeleport = shouldTP;
     }
-
-    public void setCaster(EntityPlayer caster) {
-        this.caster = caster;
-    }
-
+    
+    
     @Override
     public void onUpdate () {
         super.onUpdate();
 
-        if (caster == null){
-            this.setDead();
-            return;
-        }
         if (!world.isRemote)
-            PacketDispatcher.sendToAllAround(new SpawnPortalParticles(this.getPosition()), caster, 64.0D);
-        if (ticksExisted > 100) setDead();
+            PacketDispatcher.sendToAll(new SpawnPortalParticles(this.getPosition()));
+        
+        if (ticksExisted > 100) 
+        	setDead();
     }
 
     @Override
@@ -56,18 +56,16 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
 
     @Override
     public void onCollideWithPlayer(EntityPlayer player) {
-        //THIS IS ON THE CLIENT
-        //System.out.println(caster);
-        if(!this.isEntityAlive())
-            return;
-        if(player != null){
-            if (caster != null) {
-                IOrganizationXIII orgXIII = caster.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-                if(orgXIII.getPortalX()!=0 && orgXIII.getPortalY()!=0 && orgXIII.getPortalZ()!=0){
-                    player.setPositionAndUpdate(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5);
-                    PacketDispatcher.sendToServer(new OrgPortalTP(orgXIII.getPortalX()+0.5, orgXIII.getPortalY()+1, orgXIII.getPortalZ()+0.5));
-                }
-            }
+        if(shouldTeleport) {
+	        if(!this.isEntityAlive())
+	            return;
+	        if(player != null){
+	            if (destinationPos != null) {
+	                if(destinationPos.getX()!=0 && destinationPos.getY()!=0 && destinationPos.getZ()!=0){
+	                    PacketDispatcher.sendToServer(new OrgPortalTP(this.destinationDim,destinationPos.getX()+0.5, destinationPos.getY()+1, destinationPos.getZ()+0.5));
+	                }
+	            }
+	        }
         }
 
         super.onCollideWithPlayer(player);
@@ -95,13 +93,20 @@ public class EntityOrgPortal extends Entity implements IEntityAdditionalSpawnDat
 
     @Override
     public void readSpawnData(ByteBuf additionalData) {
-        caster = world.getPlayerEntityByName(additionalData.toString(Charset.defaultCharset()));
+    	destinationPos = new BlockPos(additionalData.readInt(),additionalData.readInt(),additionalData.readInt());
+    	destinationDim = additionalData.readInt();
+    	shouldTeleport = additionalData.readBoolean();
     }
 
     @Override
     public void writeSpawnData(ByteBuf buffer) {
-        if(caster == null)
+    	if(destinationPos == null)
             return;
-        buffer.writeBytes(caster.getDisplayNameString().getBytes());
+    	
+        buffer.writeInt(destinationPos.getX());
+        buffer.writeInt(destinationPos.getY());
+        buffer.writeInt(destinationPos.getZ());
+        buffer.writeInt(destinationDim);
+        buffer.writeBoolean(shouldTeleport);
     }
 }

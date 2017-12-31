@@ -20,6 +20,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticl
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKeybladeParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnLockOnParticle;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnPortalParticles;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnShockwaveParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnStopParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnThunderEntity;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnThunderParticles;
@@ -38,6 +39,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMaterialData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgPortal;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncRecipeData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
@@ -62,7 +64,6 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenGui;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMaterials;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenShop;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenSynthesis;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgMemberSelect;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortal;
@@ -133,6 +134,8 @@ public class PacketDispatcher {
         registerMessage(SpawnPortalParticles.class);
         registerMessage(OpenOrgGUI.class);
         registerMessage(SpawnKeybladeParticles.class);
+        registerMessage(SyncOrgPortal.class);
+        registerMessage(SpawnShockwaveParticles.class);
 
         // Client to Server
         registerMessage(MunnyPickup.class);
@@ -156,7 +159,6 @@ public class PacketDispatcher {
         registerMessage(DriveOrbPickup.class);
         registerMessage(MagicOrbPickup.class);
         registerMessage(OpenMenu.class);
-        registerMessage(OpenShop.class);
         registerMessage(OpenSynthesis.class);
         registerMessage(DriveFormPacket.class);
         registerMessage(AntiPoints.class);

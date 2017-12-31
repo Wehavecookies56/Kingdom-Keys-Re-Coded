@@ -13,17 +13,17 @@
                     "thirdperson_lefthand": {
                         "rotation": [ { "x": 0 }, { "y": -90 }, { "z": 0 } ],
                         "translation": [ 0, 0.55, 0.05 ],
-                        "scale": 0.007
+                        "scale": 0.009
                     },
                     "thirdperson_righthand": {
                         "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
                         "translation": [ 0, 0.55, 0.05 ],
-                        "scale": 0.007
+                        "scale": 0.009
                     },
                     "gui": {
-                        "rotation": [ { "x": 45 }, { "y": 0 }, { "z": -45 } ],
-                        "translation": [ 0, -0.15, 0 ],
-                        "scale": 0.003
+                        "rotation": [ { "x": 45 }, { "y": 180 }, { "z": 45 } ],
+                        "translation": [ 0, 0, 0 ],
+                        "scale": 0.005
                     },
                     "firstperson_righthand": {
                         "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],

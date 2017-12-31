@@ -122,19 +122,18 @@ public class Constants {
     }
 
     // Drive abilities
-    public static double
-    VALOR_SPEED = 1.1,
-    VALOR_JUMP_1 = 0.025,
-    VALOR_JUMP_2 = 0.03,
-    VALOR_JUMP_3 = 0.035,
-    MASTER_JUMP_1 = 0.015,
-    MASTER_JUMP_2 = 0.0175,
-    MASTER_JUMP_3 = 0.02,
-    FINAL_SPEED = 1.23,
-    FINAL_JUMP = 0.03,
-    FINAL_GLIDE_1 = 0.8,
-    FINAL_GLIDE_2 = 0.6,
-    FINAL_GLIDE_3 = 0.4
+    public static double[]
+    	VALOR_SPEED = {0,1.1,1.1,1.1,1.1,1.1,1.1,1.1},
+    	VALOR_JUMP = {0,0.020,0.020,0.025,0.025,0.030,0.030,0.035},
+    	
+    	WISDOM_QR = {0,0.05,0.05,0.1,0.1,0.15,0.15,0.2},
+    	
+    	MASTER_SPEED = {0,1.8,1.8,1.8,1.8,1.8,1.8,1.8},
+    	MASTER_JUMP = {0,0.015,0.015,0.0175,0.0175,0.02,0.02,0.022},
+    	
+    	FINAL_SPEED = {0,1.23,1.23,1.23,1.23,1.23,1.23,1.23},
+    	FINAL_JUMP = {0,0.03,0.03,0.03,0.03,0.03,0.03,0.03},
+    	FINAL_GLIDE = {0,0.9,0.9,0.8,0.8,0.6,0.6,0.4}
     ;
 
     public static final double

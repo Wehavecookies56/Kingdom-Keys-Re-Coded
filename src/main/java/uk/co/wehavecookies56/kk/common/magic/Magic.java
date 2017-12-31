@@ -20,7 +20,8 @@ public class Magic {
 
     public static double getMagicCost (String magic, EntityPlayer player) {
         double cost = 0;
-        if (player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) cost = 0;
+        if (player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) 
+        	cost = 0;
         return cost;
     }
 
@@ -64,7 +65,7 @@ public class Magic {
     public static void Blizzard (EntityPlayer player, World world) {
         PacketDispatcher.sendToServer(new MagicBlizzard());
         player.swingArm(EnumHand.MAIN_HAND);
-        //if (FMLCommonHandler.instance().getSide() == Side.SERVER) PacketDispatcher.sendToDimension(new MagicBlizzard(), world.provider.getDimensionId());
+        world.playSound(player.posX, player.posY, player.posZ, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1, 0, false);
     }
 
     public static void Thunder (EntityPlayer player, World world) {
@@ -75,7 +76,7 @@ public class Magic {
     public static void Cure (EntityPlayer player, World world) {
         PacketDispatcher.sendToServer(new MagicCure());
         player.swingArm(EnumHand.MAIN_HAND);
-
+        world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1, 0, false);
     }
 
     public static void Aero (EntityPlayer player, World world) {

@@ -28,18 +28,6 @@ public class TabKingdomKeys extends CreativeTabs {
     @Override
     public void displayAllRelevantItems (NonNullList<ItemStack> list) {
         super.displayAllRelevantItems(list);
-        ItemStack munny = new ItemStack(ModItems.Munny, 1);
-        munny.setTagCompound(new NBTTagCompound());
-        munny.getTagCompound().setInteger("amount", 1000000);
-        list.add(munny);
-        ItemStack driveOrb = new ItemStack(ModItems.DriveOrb, 1);
-        driveOrb.setTagCompound(new NBTTagCompound());
-        driveOrb.getTagCompound().setInteger("amount", 1000);
-        list.add(driveOrb);
-        ItemStack magicOrb = new ItemStack(ModItems.MagicOrb, 1);
-        magicOrb.setTagCompound(new NBTTagCompound());
-        magicOrb.getTagCompound().setInteger("amount", 100);
-        list.add(magicOrb);
         try {
             getSkulls(list);
         } catch (IOException e) {

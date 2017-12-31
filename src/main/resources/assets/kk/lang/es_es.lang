@@ -115,11 +115,14 @@ holdforinfo.desc=Mantén shift para más información
 
 #Synthesis Ore
 tile.blazingore.name=Mena Ígnea
+tile.blazingoren.name=Mena Ígnea
 tile.brightore.name=Mena Clara
 tile.darkore.name=Mena Oscura
 tile.darkoree.name=Mena Oscura
+tile.darkoren.name=Mena Oscura
 tile.denseore.name=Mena Densa
 tile.energyore.name=Mena Vital
+tile.energyoren.name=Mena Vital
 tile.frostore.name=Mena Fría
 tile.lightningore.name=Mena de Rayo
 tile.lucidore.name=Mena de Ocaso
@@ -130,6 +133,7 @@ tile.serenityore.name=Mena Serena
 tile.stormyore.name=Mena Tormentosa
 tile.tranquilore.name=Mena Sosegada
 tile.twilightore.name=Mena Crepuscular
+tile.twilightoren.name=Mena Crepuscular
 
 #Otros
 tile.synthesistable.name=Mesa de Síntesis
@@ -239,6 +243,11 @@ item.organizationrobe_helmet.name=Capucha de la Organización
 item.organizationrobe_chestplate.name=Gabardina de la Organización
 item.organizationrobe_leggings.name=Pantalones de la Organización
 item.organizationrobe_boots.name=Botas de la Organización
+
+item.xemnas_helmet.name=Capucha de la Organización
+item.xemnas_chestplate.name=Gabardina de la Organización
+item.xemnas_leggings.name=Pantalones de la Organización
+item.xemnas_boots.name=Botas de la Organización
 
 item.aqua_helmet.name=Casco de Aqua
 item.aqua_chestplate.name=Pechera de Aqua
@@ -681,6 +690,8 @@ item.destinysembrace.name=Abrazo del Destino
 item.diamonddust.name=Polvo de Diamante
 item.divewing.name=Ala de Inmersión
 item.divinerose.name=Rosa Divina
+item.dreamshield.name=Escudo de Ensueño
+item.dreamstaff.name=Bastón de Ensueño
 item.dreamsword.name=Espada de Ensueño
 item.dualdisc.name=Disco Doble
 item.earthshaker.name=Teluria
@@ -803,7 +814,6 @@ item.destinysembracechain.name=Llavero de Abrazo del Destino
 item.diamonddustchain.name=Llavero de Polvo de Diamante
 item.divewingchain.name=Llavero de Ala de Inmersión
 item.divinerosechain.name=Llavero de Rosa Divina
-item.dreamswordchain.name=Llavero de Espada de Ensueño
 item.dualdiscchain.name=Llavero de Disco Doble
 item.earthshakerchain.name=Llavero de Teluria
 item.endofpainchain.name=Llavero de Fin del Dolor
@@ -991,7 +1001,7 @@ gui.menu.config.music=Activar música personalizada
 gui.menu.config.fire=¿Fuego de Kingdom Hearts 1?
 
 #Containers
-container.keychain=Pon un llavero aquí
+mainkeychain=Principal
 container.spellsinventory=Pon las magias aquí
 container.potionsinventory=Pon las pociones aquí
 container.driveinventory=Pon las fusiones aquí
@@ -1023,7 +1033,7 @@ gui.shop.main.title=Tienda
 gui.shop.main.buy=Comprar
 gui.shop.main.sell=Vender
 gui.shop.buy.cost=Precio
-gui.shop.buy.quantity=Candidad
+gui.shop.buy.quantity=Cantidad
 gui.shop.sell.price=Vender por
 
 ############################
@@ -1088,6 +1098,12 @@ stats.levelUpStr=¡Fuerza aumentada!
 stats.levelUpDef=¡Defensa aumentada!
 stats.levelUpMag=¡Magia aumentada!
 stats.levelUpHP=¡VT máxima aumentada!
+stats.levelUpFG=¡Aumenta el indicador de Forma!
+stats.levelUpHighJump=¡Salto de Altura LV %1$s!
+stats.levelUpQuickRun=¡Carrera Rápida LV %1$s!
+stats.levelUpDodgeRoll=¡Voltereta LV %1$s!
+stats.levelUpAerialDodge=¡Regate Aéreo LV %1$s!
+stats.levelUpGlide=¡Planeador LV %1$s!
 
 ############################
 #Chat messages
@@ -1103,9 +1119,10 @@ chat.magic.error=¡No se puede incrementar '%1$s', ya está al máximo!
 chat.drive.learn=¡'%1$s' aprendida!
 chat.drive.error=¡'%1$s' ya está aprendida!
 chat.manifest.learn=El conocimiento ha manifestado '%1$s'
-chat.powerboost=¡Fuerza aumentada! Ahora es %1$s!
-chat.defenseboost=¡Defensa aumentada! Ahora es %1$s!
-chat.magicboost=¡Magia aumentada! Ahora es %1$s!
+chat.powerboost=¡Fuerza aumentada! ¡Ahora es %1$s!
+chat.defenseboost=¡Defensa aumentada! ¡Ahora es %1$s!
+chat.magicboost=¡Magia aumentada! ¡Ahora es %1$s!
+chat.driveboost=¡Indicador de Fusión aumentado! ¡Ahora es %1$s!
 
 ##########################
 #Entities
@@ -1122,3 +1139,11 @@ entity.kk.Moogle.name=Moguri
 #Journal
 ##########################
 journal.commandmenuabout=El menú de comandos es el menú mostrado en la esquina inferior izquierda. Tiene 4 opciones, Atacar, Magia, Objetos y Fusión, para más información visita sus respetcivas páginas.\n\nEl menú puede navegarse usando las teclas del menú (por defecto: flechas) también puede ser navegado manteniendo pulsado (por defecto Alt) y deslizar la rueda del ratón, click izquierdo para acceder, click derecho para retroceder.
+
+##########################
+#Config
+##########################
+kk.mainconfig.title=Configuration Principal
+kk.balance.title=Configuration de balanceo
+
+kk.balance.keyblades=Llaves Espada

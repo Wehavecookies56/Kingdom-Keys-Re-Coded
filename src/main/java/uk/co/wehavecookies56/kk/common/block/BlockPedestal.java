@@ -44,7 +44,7 @@ public class BlockPedestal extends Block implements ITileEntityProvider{
             PacketDispatcher.sendToAll(new PedestalRotation(te));
             return true;
         }
-        return false;
+        return true;
     }
 
     @Override

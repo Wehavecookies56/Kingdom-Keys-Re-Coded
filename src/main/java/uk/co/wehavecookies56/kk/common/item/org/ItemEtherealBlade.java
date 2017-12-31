@@ -1,12 +1,6 @@
 package uk.co.wehavecookies56.kk.common.item.org;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -18,14 +12,9 @@ import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
 public class ItemEtherealBlade extends ItemOrgWeapon implements IOrgWeapon{
 
-    public ItemEtherealBlade (String name, double strength, double magic)  {
-        super(name, strength, magic);
+    public ItemEtherealBlade (String name, double[] stats)  {
+        super(name, stats);
         setMaxStackSize(1);
-    }
-
-    @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("I Xemnas");
     }
 
     @Override

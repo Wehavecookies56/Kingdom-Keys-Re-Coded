@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
@@ -27,5 +28,12 @@ public class ItemMunny extends ItemKKBase {
     }
 
     @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {}
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+        if (isInCreativeTab(tab)) {
+            ItemStack munny = new ItemStack(ModItems.Munny, 1);
+            munny.setTagCompound(new NBTTagCompound());
+            munny.getTagCompound().setInteger("amount", 1000000);
+            items.add(munny);
+        }
+    }
 }

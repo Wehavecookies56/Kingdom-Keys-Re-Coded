@@ -70,6 +70,13 @@ public class GuiPedestal extends GuiContainer {
     }
 
     @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        renderHoveredToolTip(mouseX, mouseY);
+    }
+
+    @Override
     protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY) {
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;

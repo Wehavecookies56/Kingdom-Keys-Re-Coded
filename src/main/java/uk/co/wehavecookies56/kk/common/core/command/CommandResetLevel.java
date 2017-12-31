@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class CommandResetLevel implements ICommand {
 
@@ -96,6 +97,17 @@ public class CommandResetLevel implements ICommand {
                 entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null).setStrength(1);
                 entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null).setDefense(1);
                 entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null).setMagic(1);
+                switch (entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null).getChoice1()) {
+                    case Strings.Choice_Shield:
+                        entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null).addDefense(2);
+                        break;
+                    case Strings.Choice_Staff:
+                        entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null).addMagic(2);
+                        break;
+                    case Strings.Choice_Sword:
+                        entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null).addStrength(2);
+                        break;
+                }
                 entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null).setHP(20);
                 player.heal(entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null).getHP());
                 TextHelper.sendFormattedChatMessage(args[0] + "'s level has been reset", TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());

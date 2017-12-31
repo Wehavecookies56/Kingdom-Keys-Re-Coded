@@ -1,7 +1,6 @@
 package uk.co.wehavecookies56.kk.common.network.packet.client;
 
 import java.io.IOException;
-import java.util.Random;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

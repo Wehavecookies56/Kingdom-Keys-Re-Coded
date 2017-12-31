@@ -13,13 +13,13 @@ public class ItemOrgWeapon extends ItemSword{
     public String description;
     double speed = 1.0;
 
-    public ItemOrgWeapon (String name, double strength, double magic) {
+    public ItemOrgWeapon (String name, double[] stats) {
         super(EnumHelper.addToolMaterial("ORGWEAPON", -4, -1, 0, 0, 20));
         setRegistryName(name);
         setUnlocalizedName(name);
         setCreativeTab(ModItems.tabKingdomKeys);
-        this.magic = magic;
-        this.strength = strength;
+        this.strength = stats[0];
+        this.magic = stats[1];
         setMaxStackSize(1);
     }
     public double getStrength() {
@@ -53,7 +53,7 @@ public class ItemOrgWeapon extends ItemSword{
     public void setSpeed(double speed) {
         this.speed = speed;
     }
-
+    
     @Override
     @SideOnly (Side.CLIENT)
     public EnumRarity getRarity (ItemStack par1ItemStack) {

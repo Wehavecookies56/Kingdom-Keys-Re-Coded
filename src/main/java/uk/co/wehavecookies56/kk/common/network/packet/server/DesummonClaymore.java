@@ -35,6 +35,6 @@ public class DesummonClaymore extends AbstractMessage.AbstractServerMessage<Desu
     public void process (EntityPlayer player, Side side) {
         stack.setItemDamage(0);
         player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
-        player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
+        player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.unsummon, SoundCategory.MASTER, 1.0f, 1.0f);
     }
 }

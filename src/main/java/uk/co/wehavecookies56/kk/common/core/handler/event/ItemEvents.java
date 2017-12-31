@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Multimap;
@@ -32,14 +31,16 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import uk.co.wehavecookies56.kk.api.munny.MunnyRegistry;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
-import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.item.ItemHpOrb;
@@ -49,6 +50,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
@@ -69,6 +71,9 @@ public class ItemEvents {
 
     @SubscribeEvent
     public void onEntityItemPickUp (EntityItemPickupEvent event) {
+        IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
+        IDriveState DRIVE = event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null);
+
         if (event.getItem().getItem().getItem() instanceof ItemMunny) {
             final MunnyCapability.IMunny munny = event.getEntityPlayer().getCapability(ModCapabilities.MUNNY, null);
             MunnyPickup packet = new MunnyPickup(event.getItem().getItem());
@@ -78,35 +83,32 @@ public class ItemEvents {
             PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getItem().getItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getEntityPlayer());
 
         } else if (event.getItem().getItem().getItem() instanceof ItemHpOrb) {
-            if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
-            PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
+            if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) 
+            	if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) 
+            		return;
             HpOrbPickup packet = new HpOrbPickup(event.getItem().getItem());
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-                if (event.getEntityPlayer().getHealth() >= STATS.getHP()) {
+                if (event.getEntityPlayer().getHealth() >= event.getEntityPlayer().getMaxHealth()) {
                     event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
                     return;
                 }
-                if (event.getEntityPlayer().getHealth() < STATS.getHP() - 1)
+                if (event.getEntityPlayer().getHealth() < event.getEntityPlayer().getMaxHealth() - 1)
                     event.getEntityPlayer().heal(2);
                 else
                     event.getEntityPlayer().heal(1);
                 event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
             }
         } else if (event.getItem().getItem().getItem() == ModItems.DriveOrb) {
-            final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);{
-                if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-                    event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
-                    STATS.addDP(event.getItem().getItem().getTagCompound().getInteger("amount"));
-                    EntityPlayer player = event.getEntityPlayer();
-                    if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Master))
-                        player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1, Strings.Form_Master);
+            if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+                event.getItem().getItem().setCount(event.getItem().getItem().getCount()-1);;
+                DRIVE.addDP(event.getItem().getItem().getTagCompound().getInteger("amount"));
+                EntityPlayer player = event.getEntityPlayer();
 
-                    PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-                    PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntityPlayer());
-                }
+                PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
+                PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntityPlayer());
             }
+            
         } else if (event.getItem().getItem().getItem() == ModItems.MagicOrb) {
-            final PlayerStatsCapability.IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
             double mp = STATS.getMP();
             if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY)) if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.EmptyBottle) return;
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
@@ -178,6 +180,8 @@ public class ItemEvents {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void addTooltip (ItemTooltipEvent event) {
+        List<String> tooltip = event.getToolTip();
+
         for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
             if (areItemStacksEqual(stack, event.getItemStack())) {
                 event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack) * event.getItemStack().getCount());
@@ -185,7 +189,7 @@ public class ItemEvents {
         }
         //TODO Localize all this
         if (event.getItemStack().getItem() instanceof ItemKeyblade && event.getEntityPlayer() != null) {
-            List<String> tooltip = event.getToolTip();
+           // List<String> tooltip = event.getToolTip();
             ItemKeyblade keyblade = (ItemKeyblade) event.getItemStack().getItem();
             (tooltip.subList(1, tooltip.size())).clear();
 
@@ -197,29 +201,13 @@ public class ItemEvents {
 
                 //System.out.println(Enchantment.getEnchantmentByID(id).getName());
                 if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all")) {
-                    switch (lvl) {
-                    case 1:
-                        sharpnessDamage = 1;
-                        break;
-                    case 2:
-                        sharpnessDamage = 1.5;
-                        break;
-                    case 3:
-                        sharpnessDamage = 2;
-                        break;
-                    case 4:
-                        sharpnessDamage = 2.5;
-                        break;
-                    case 5:
-                        sharpnessDamage = 3;
-                        break;
-                    }
+                    sharpnessDamage = getSharpnessDamage(lvl);
                 }
             }
 
             double keyStrength = keyblade.getStrength()+sharpnessDamage;
 
-            String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
+            String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "-";
             tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * MainConfig.items.damageMultiplier + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade)+sharpnessDamage) + "]");
             tooltip.add(TextFormatting.BLUE + "Magic: "+magicSymbol + keyblade.getMagic() * MainConfig.items.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(),1,keyblade) + "]");
             if (keyblade.getDescription() != null) {
@@ -287,7 +275,7 @@ public class ItemEvents {
         }
 
         if (event.getItemStack().getItem() instanceof ItemKeychain && event.getEntityPlayer() != null) {
-            List<String> tooltip = event.getToolTip();
+           // List<String> tooltip = event.getToolTip();
             ItemKeyblade keyblade = ((ItemKeychain) event.getItemStack().getItem()).getKeyblade();
             if (keyblade != null) {
                 (tooltip.subList(1, tooltip.size())).clear();
@@ -298,23 +286,7 @@ public class ItemEvents {
                     int id = nbttaglist.getCompoundTagAt(i).getShort("id");
                     int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
                     if (Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all")) {
-                        switch (lvl) {
-                            case 1:
-                                sharpnessDamage = 1;
-                                break;
-                            case 2:
-                                sharpnessDamage = 1.5;
-                                break;
-                            case 3:
-                                sharpnessDamage = 2;
-                                break;
-                            case 4:
-                                sharpnessDamage = 2.5;
-                                break;
-                            case 5:
-                                sharpnessDamage = 3;
-                                break;
-                        }
+                        sharpnessDamage = getSharpnessDamage(lvl);
                     }
                 }
 
@@ -351,38 +323,22 @@ public class ItemEvents {
                 }
             }
         }
+        //List<String> tooltip = event.getToolTip();
 
         if (event.getItemStack().getItem() instanceof ItemOrgWeapon) {
-            List<String> tooltip = event.getToolTip();
             ItemOrgWeapon weapon = (ItemOrgWeapon) event.getItemStack().getItem();
             (tooltip.subList(1, tooltip.size())).clear();
 
             NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
             double sharpnessDamage = 0;
-                 for (int i = 0; i < nbttaglist.tagCount(); i++) {
-                     int id = nbttaglist.getCompoundTagAt(i).getShort("id");
-                     int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
+             for (int i = 0; i < nbttaglist.tagCount(); i++) {
+                 int id = nbttaglist.getCompoundTagAt(i).getShort("id");
+                 int lvl = nbttaglist.getCompoundTagAt(i).getShort("lvl");
 
-                    //System.out.println(Enchantment.getEnchantmentByID(id).getName());
-                    if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all")) {
-                        switch (lvl) {
-                        case 1:
-                            sharpnessDamage = 1;
-                            break;
-                        case 2:
-                            sharpnessDamage = 1.5;
-                            break;
-                        case 3:
-                            sharpnessDamage = 2;
-                            break;
-                        case 4:
-                            sharpnessDamage = 2.5;
-                            break;
-                        case 5:
-                            sharpnessDamage = 3;
-                            break;
-                        }
-                 }
+                //System.out.println(Enchantment.getEnchantmentByID(id).getName());
+                if(Enchantment.getEnchantmentByID(id).getName().equals("enchantment.damage.all")) {
+                    sharpnessDamage = getSharpnessDamage(lvl);
+                }
             }
 
             double keyStrength = weapon.getStrength()+sharpnessDamage;
@@ -400,6 +356,8 @@ public class ItemEvents {
                     tooltip.add("Hold " +  TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY + " for description");
                 }
             }
+            
+            
             if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
                 if (event.getItemStack().hasTagCompound()) {
                     tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Stats");
@@ -452,6 +410,11 @@ public class ItemEvents {
             } else {
                 tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
             }
+        }
+        
+        if(event.getItemStack().getItem() instanceof IOrgWeapon && event.getItemStack().getItem() != ModItems.DreamShield) {
+        	String member = ((IOrgWeapon) event.getItemStack().getItem()).getMember().toString();
+        	tooltip.add(member.substring(0, 1)+member.substring(1, member.length()).toLowerCase());
         }
 
         Item ghostBlox = Item.getItemFromBlock(ModBlocks.GhostBlox);
@@ -519,13 +482,23 @@ public class ItemEvents {
 
     }
 
-    @SubscribeEvent
+    private double getSharpnessDamage(int lvl) {
+		return lvl / 2 + 0.5;
+	}
+
+	@SubscribeEvent
     public void onItemTossEvent (ItemTossEvent event) {
         if (!event.getPlayer().world.isRemote)
-            if (event.getEntityItem().getItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getItem().getItem() != ModItems.WoodenStick)) {
+        	if(event.getPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive() && !event.getPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Anti)) {
+        		event.setCanceled(true);
+        		return;
+        	}
+        
+            if (event.getEntityItem().getItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getItem().getItem() != ModItems.WoodenStick && event.getEntityItem().getItem().getItem() != ModItems.DreamSword && event.getEntityItem().getItem().getItem() != ModItems.DreamStaff)) {
                 event.getEntityItem().isDead = true;
-                event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(false);
-                PacketDispatcher.sendTo(new SyncKeybladeData(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) event.getPlayer());
+                event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);
+                if(!ItemStack.areItemStacksEqual(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY))
+                	PacketDispatcher.sendTo(new SyncKeybladeData(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) event.getPlayer());
 
             } else if (event.getEntityItem().getItem().getItem() instanceof ItemMunny) {
                 event.setCanceled(true);
@@ -537,7 +510,7 @@ public class ItemEvents {
             }
         if (event.getEntityItem().getItem().getItem() == event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
             event.getEntityItem().isDead = true;
-            event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(false);
+            event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(EnumHand.MAIN_HAND, false);
             PacketDispatcher.sendTo(new SyncOrgXIIIData(event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) event.getPlayer());
         }
     }

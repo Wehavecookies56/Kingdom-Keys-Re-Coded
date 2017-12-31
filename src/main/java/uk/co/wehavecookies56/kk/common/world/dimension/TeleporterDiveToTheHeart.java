@@ -6,14 +6,19 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.Teleporter;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.base.BlockStationOfAwakening;
+import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
+import uk.co.wehavecookies56.kk.common.item.ModItems;
 
 /**
  * Created by Toby on 01/08/2016.
@@ -31,7 +36,7 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         this.random = new Random(worldIn.getSeed());
     }
 
-    public void teleport(Entity entity, World world) {
+    public void teleport(Entity entity) {
         EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 
         int height = 3;
@@ -54,10 +59,8 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         int radius = 15;
         int barrierRadius = 16;
         int barrierHeight = 5;
-        for(int i = 0; i<barrierHeight; i++)
-        {
-            for(float j = 0; j < 2 * Math.PI * barrierRadius; j += 0.5)
-            {
+        for(int i = 0; i<barrierHeight; i++) {
+            for(float j = 0; j < 2 * Math.PI * barrierRadius; j += 0.5) {
                 playerMP.world.setBlockState(new BlockPos((int)Math.floor(dx + Math.sin(j) * barrierRadius), dy +i, (int)Math.floor(dz + Math.cos(j) * barrierRadius)), Blocks.BARRIER.getDefaultState());
             }
         }
@@ -87,15 +90,30 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         playerMP.world.setBlockState(new BlockPos(dx+(-4), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 13));
         playerMP.world.setBlockState(new BlockPos(dx+(4), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 14));
         playerMP.world.setBlockState(new BlockPos(dx+(12), dy, dz+(11)), ModBlocks.StationOfAwakening.getDefaultState().withProperty(BlockStationOfAwakening.VARIANT, 15));
-        
+
+        TileEntityPedestal shieldPedestal = new TileEntityPedestal();
+        shieldPedestal.setKeyblade(new ItemStack(ModItems.DreamShield));
+        shieldPedestal.itemStacks.setStackInSlot(0, new ItemStack(ModItems.DreamShield));
+        shieldPedestal.rotation = 3;
         playerMP.world.setBlockState(new BlockPos(dx-12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Shield
+        playerMP.world.setTileEntity(new BlockPos(dx-12, dy+1, dz), shieldPedestal);
         
+        TileEntityPedestal staffPedestal = new TileEntityPedestal();
+        staffPedestal.setKeyblade(new ItemStack(ModItems.DreamStaff));
+        staffPedestal.itemStacks.setStackInSlot(0, new ItemStack(ModItems.DreamStaff));
+        staffPedestal.rotation=1;
         playerMP.world.setBlockState(new BlockPos(dx+12, dy+1, dz), ModBlocks.Pedestal.getDefaultState()); //Staff
-        
+        playerMP.world.setTileEntity(new BlockPos(dx+12, dy+1, dz), staffPedestal);
+
+        TileEntityPedestal swordPedestal = new TileEntityPedestal();
+        swordPedestal.setKeyblade(new ItemStack(ModItems.DreamSword));
+        swordPedestal.itemStacks.setStackInSlot(0, new ItemStack(ModItems.DreamSword));
+        swordPedestal.rotation=1;
         playerMP.world.setBlockState(new BlockPos(dx, dy+1, dz-12), ModBlocks.Pedestal.getDefaultState());  //Sword
-        
+        playerMP.world.setTileEntity(new BlockPos(dx, dy+1, dz-12), swordPedestal);
+
         playerMP.world.setBlockState(new BlockPos(dx, dy+1, dz+12), ModBlocks.StationOfAwakeningDoor.getDefaultState());
-        
+
     }
 
     @Override
@@ -108,6 +126,15 @@ public class TeleporterDiveToTheHeart extends Teleporter {
             entityIn.motionX = 0.0D;
             entityIn.motionY = 0.0D;
             entityIn.motionZ = 0.0D;
+            
+            if(entityIn instanceof EntityPlayer) {
+            	EntityPlayer player = (EntityPlayer) entityIn;
+            	if (player.world.isRemote) {
+                    if (player.dimension == ModDimensions.diveToTheHeartID) {
+                        player.sendMessage(new TextComponentTranslation("Welcome to Kingdom Keys Re:Coded!\nPress %1$s to open the menu\nMake a choice between the Sword, Shield and Staff then leave using the door", InputHandler.Keybinds.OPENMENU.getKeybind().getDisplayName()));
+                    }
+                }
+            }
 
         }
 
@@ -128,32 +155,26 @@ public class TeleporterDiveToTheHeart extends Teleporter {
      * WorldServer.getTotalWorldTime() value.
      */
     @Override
-    public void removeStalePortalLocations(long worldTime)
-    {
-        if (worldTime % 100L == 0L)
-        {
+    public void removeStalePortalLocations(long worldTime) {
+        if (worldTime % 100L == 0L) {
             long i = worldTime - 300L;
             ObjectIterator<Teleporter.PortalPosition> objectiterator = this.destinationCoordinateCache.values().iterator();
 
-            while (objectiterator.hasNext())
-            {
+            while (objectiterator.hasNext()) {
                 Teleporter.PortalPosition teleporter$portalposition = (Teleporter.PortalPosition)objectiterator.next();
 
-                if (teleporter$portalposition == null || teleporter$portalposition.lastUpdateTime < i)
-                {
+                if (teleporter$portalposition == null || teleporter$portalposition.lastUpdateTime < i) {
                     objectiterator.remove();
                 }
             }
         }
     }
 
-    public class PortalPosition extends BlockPos
-    {
+    public class PortalPosition extends BlockPos {
         /** The worldtime at which this PortalPosition was last verified */
         public long lastUpdateTime;
 
-        public PortalPosition(BlockPos pos, long lastUpdate)
-        {
+        public PortalPosition(BlockPos pos, long lastUpdate) {
             super(pos.getX(), pos.getY(), pos.getZ());
             this.lastUpdateTime = lastUpdate;
         }

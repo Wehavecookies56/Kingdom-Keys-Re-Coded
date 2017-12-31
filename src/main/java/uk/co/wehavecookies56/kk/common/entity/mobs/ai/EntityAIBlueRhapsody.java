@@ -36,8 +36,7 @@ public class EntityAIBlueRhapsody extends EntityAITarget {
                 esfb.posY = this.taskOwner.posY + (double)(this.taskOwner.height / 2.0F) + 0.5D;
                 this.taskOwner.world.spawnEntity(esfb);
                 ticksBeforeNextBlizzard = 30 + this.taskOwner.getRNG().nextInt(10);
-            }
-            else {
+            } else {
                 ticksBeforeNextBlizzard--;
             }
 

@@ -1,15 +1,137 @@
 package uk.co.wehavecookies56.kk.client.core.handler;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.ISound;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Bars;
+import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
+import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
 
+@SideOnly(Side.CLIENT)
 public class ClientEventHandler {
+
+    private Minecraft mc = Minecraft.getMinecraft();
+    private MusicHandler musicHandler = new MusicHandler(mc);
+    int ticks = 0;
+
+    @SubscribeEvent
+    public void debugInfo(RenderGameOverlayEvent.Text event) {
+        String modName = "[" + TextFormatting.GOLD + Reference.MODNAME + TextFormatting.RESET + "] ";
+        if (Minecraft.getMinecraft().gameSettings.showDebugInfo) {
+            if (musicHandler.isPlaying()) {
+                event.getLeft().add(modName + "Current music: " + musicHandler.getCurrentlyPlaying());
+            }
+            if (musicHandler.getCurrentlyPlaying() == null) {
+                String time = String.format("%.02f", (float) musicHandler.getTimeUntilNextMusic() / 20F);
+                event.getLeft().add(modName + "Next music in: " + time + "s");
+            }
+            boolean combat = EntityEvents.isHostiles || EntityEvents.isBoss;
+            boolean cheatMode = (mc.player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode());
+            boolean spawnHeartless = WorldSavedDataKingdomKeys.get(mc.world).spawnHeartless;
+
+            TextFormatting colour = TextFormatting.RED;
+            if (combat)
+                colour = TextFormatting.GREEN;
+            event.getLeft().add(modName + "In combat: " + colour + combat);
+            colour = TextFormatting.RED;
+            if (cheatMode)
+                colour = TextFormatting.GREEN;
+            event.getLeft().add(modName + "Cheatmode?: " + colour + cheatMode);
+            colour = TextFormatting.RED;
+            if (spawnHeartless)
+                colour = TextFormatting.GREEN;
+            event.getLeft().add(modName + "Spawn heartless?: " + colour + spawnHeartless);
+            if (!mc.player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+                event.getLeft().add(modName + "Drive form: " + mc.player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName());
+            }
+            if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
+                event.getLeft().add(modName + "Org member: " + mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember());
+                boolean orgWeaponSummonedMainHand = mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).summonedWeapon(EnumHand.MAIN_HAND);
+                colour = TextFormatting.RED;
+                if (orgWeaponSummonedMainHand)
+                    colour = TextFormatting.GREEN;
+                event.getLeft().add(modName + "Main hand weapon summoned?: " + colour + orgWeaponSummonedMainHand);
+                boolean orgWeaponSummonedOffHand = mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).summonedWeapon(EnumHand.OFF_HAND);
+                colour = TextFormatting.RED;
+                if (orgWeaponSummonedOffHand)
+                    colour = TextFormatting.GREEN;
+                event.getLeft().add(modName + "Off hand weapon summoned?: " + colour + orgWeaponSummonedOffHand);
+            } else {
+                colour = TextFormatting.RED;
+                boolean mainHandKeybladeSummoned = mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned(EnumHand.MAIN_HAND);
+                if (mainHandKeybladeSummoned)
+                    colour = TextFormatting.GREEN;
+                event.getLeft().add(modName + "Main hand keyblade summoned?: " + colour + mainHandKeybladeSummoned);
+                boolean offHandKeybladeSummoned = mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned(EnumHand.OFF_HAND);
+                colour = TextFormatting.RED;
+                if (offHandKeybladeSummoned)
+                    colour = TextFormatting.GREEN;
+                event.getLeft().add(modName + "Off hand keyblade summoned?: " + colour + offHandKeybladeSummoned);
+            }
+        }
+    }
+    @SubscribeEvent
+    public void onClientTick(TickEvent.ClientTickEvent event) {
+        TickEvent.Phase phase = event.phase;
+        TickEvent.Type type = event.type;
+        if (phase == TickEvent.Phase.END) {
+            if (type.equals(TickEvent.Type.CLIENT)) {
+            	if (!mc.isGamePaused() && MainConfig.client.sound.EnableCustomMusic) {
+                    musicHandler.update();
+                    if (mc.currentScreen instanceof GuiMenu_Bars) {
+                        mc.getSoundHandler().setSoundLevel(SoundCategory.MASTER, 0.2F);
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void musicControl(PlaySoundEvent event) {
+        ISound sound = event.getSound();
+        SoundCategory category = sound.getCategory();
+        if (category == SoundCategory.MUSIC) {
+            if (!sound.getSoundLocation().toString().contains("kk") && MainConfig.client.sound.EnableCustomMusic) {
+                event.setResultSound(null);
+                return;
+            }
+            if (!sound.getSoundLocation().toString().contains("kk") && this.musicHandler.isPlaying() && MainConfig.client.sound.EnableCustomMusic) {
+                event.setResultSound(null);
+                return;
+            } else {
+                if (MainConfig.client.sound.EnableCustomMusic) {
+                    musicHandler.stopSound(sound);
+                }
+            }
+        } else if (category == SoundCategory.RECORDS) {
+            this.musicHandler.stopMusic();
+            this.mc.getSoundHandler().stopSounds();
+            return;
+        }
+    }
+
+    //long lastAlarmStart;
     @SubscribeEvent
     public void renderTick(TickEvent.RenderTickEvent event) {
         EntityPlayer player = Minecraft.getMinecraft().player;
+
         if (InputHandler.lockOn != null && player != null) {
             if(InputHandler.lockOn.isDead) {
                 InputHandler.lockOn = null;

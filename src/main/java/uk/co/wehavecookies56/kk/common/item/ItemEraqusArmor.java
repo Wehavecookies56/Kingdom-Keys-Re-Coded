@@ -16,24 +16,6 @@ public class ItemEraqusArmor extends ItemArmor /*implements ISpecialArmor*/ {
         setCreativeTab(ModItems.tabKingdomKeys);
     }
 
-    /*
-    @Override
-    public ArmorProperties getProperties (EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
-        if (source == DamageSource.inFire || source == DamageSource.lava || source == DamageSource.onFire) return new ArmorProperties(1, 1, MathHelper.floor_double(damage * .25D));
-        return new ArmorProperties(0, 0, 0);
-    }
-
-    @Override
-    public int getArmorDisplay (EntityPlayer player, ItemStack armor, int slot) {
-        return 4;
-    }
-
-    @Override
-    public void damageArmor (EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
-        stack.damageItem(damage * 2, entity);
-    }
-    */
-
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
         if (stack.getItem() == ModItems.Eraqus_Leggings)

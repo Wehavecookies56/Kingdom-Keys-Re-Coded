@@ -88,10 +88,13 @@ public class GuiShop extends GuiScreen {
         EntityPlayer player = Minecraft.getMinecraft().player;
         boolean full = false;
         for (ItemStack element : player.inventory.mainInventory) {
-            if (element != ItemStack.EMPTY && element.getItem() != Items.AIR) full = true;
-            if (element == ItemStack.EMPTY || element.getItem() == Items.AIR) return false;
+            if (element != ItemStack.EMPTY && element.getItem() != Items.AIR)
+            	full = true;
+            if (element == ItemStack.EMPTY || element.getItem() == Items.AIR) 
+            	return false;
         }
-        if (full) return true;
+        if (full)
+        	return true;
         return false;
     }
 
@@ -276,11 +279,7 @@ public class GuiShop extends GuiScreen {
                     //minus.visible = true;
                     quantity.setVisible(true);
                     if (Integer.parseInt(quantity.getText()) > 0) {
-                        if (!isInventoryFull()) {
-                            sellConfirm.enabled = true;
-                        } else {
-                            sellConfirm.enabled = false;
-                        }
+                        sellConfirm.enabled = true;
                     } else {
                         sellConfirm.enabled = false;
                     }

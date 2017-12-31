@@ -33,7 +33,8 @@ public class CommandLearnRecipe implements ICommand {
         this.autoComplete = new ArrayList<String>();
         this.autoComplete.add("all");
         for (Object value : RecipeRegistry.getRecipeMap().values())
-            if (value instanceof Recipe) this.autoComplete.add(((Recipe) value).getName().substring(5));
+            if (value instanceof Recipe) 
+            	this.autoComplete.add(((Recipe) value).getName().substring(5));
     }
 
     @Override

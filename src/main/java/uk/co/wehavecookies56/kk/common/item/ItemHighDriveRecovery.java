@@ -25,7 +25,7 @@ public class ItemHighDriveRecovery extends ItemKKPotion {
 
     @Override
     public void potionEffect (EntityPlayer player) {
-        player.getCapability(ModCapabilities.PLAYER_STATS, null).addDP(player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxDP());
+        player.getCapability(ModCapabilities.DRIVE_STATE, null).addDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getMaxDP());
     }
 
     @Override

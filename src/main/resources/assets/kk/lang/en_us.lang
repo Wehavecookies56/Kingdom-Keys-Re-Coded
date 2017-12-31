@@ -115,11 +115,14 @@ holdforinfo.desc=Hold shift for more info
 
 #Synthesis Ore
 tile.blazingore.name=Blazing Ore
+tile.blazingoren.name=Blazing Ore
 tile.brightore.name=Bright Ore
 tile.darkore.name=Dark Ore
 tile.darkoree.name=Dark Ore
+tile.darkoren.name=Dark Ore
 tile.denseore.name=Dense Ore
 tile.energyore.name=Energy Ore
+tile.energyoren.name=Energy Ore
 tile.frostore.name=Frost Ore
 tile.lightningore.name=Lightning Ore
 tile.lucidore.name=Lucid Ore
@@ -130,6 +133,7 @@ tile.serenityore.name=Serenity Ore
 tile.stormyore.name=Stormy Ore
 tile.tranquilore.name=Tranquil Ore
 tile.twilightore.name=Twilight Ore
+tile.twilightoren.name=Twilight Ore
 
 #Other
 tile.synthesistable.name=Synthesis Table
@@ -239,6 +243,11 @@ item.organizationrobe_helmet.name=Organization Hood
 item.organizationrobe_chestplate.name=Organization Coat
 item.organizationrobe_leggings.name=Organization Leggings
 item.organizationrobe_boots.name=Organization Boots
+
+item.xemnas_helmet.name=Organization Hood
+item.xemnas_chestplate.name=Organization Coat
+item.xemnas_leggings.name=Organization Leggings
+item.xemnas_boots.name=Organization Boots
 
 item.aqua_helmet.name=Aqua's Helmet
 item.aqua_chestplate.name=Aqua's Chestplate
@@ -681,6 +690,8 @@ item.destinysembrace.name=Destiny's Embrace
 item.diamonddust.name=Diamond Dust
 item.divewing.name=Divewing
 item.divinerose.name=Divine Rose
+item.dreamshield.name=Dream Shield
+item.dreamstaff.name=Dream Staff
 item.dreamsword.name=Dream Sword
 item.dualdisc.name=Dual Disc
 item.earthshaker.name=Earthshaker
@@ -803,7 +814,6 @@ item.destinysembracechain.name=Destiny's Embrace Chain
 item.diamonddustchain.name=Diamond Dust Chain
 item.divewingchain.name=Divewing Chain
 item.divinerosechain.name=Divine Rose Chain
-item.dreamswordchain.name=Dream Sword Chain
 item.dualdiscchain.name=Dual Disc Chain
 item.earthshakerchain.name=Earthshaker Chain
 item.endofpainchain.name=End of Pain Chain
@@ -915,9 +925,11 @@ gui.kk.reports.keyblades.title.main=Keyblades
 #Commands
 gui.commandmenu.command=COMMANDS
 gui.commandmenu.attack=Attack
+gui.commandmenu.portal=Portal
 gui.commandmenu.magic=Magic
 gui.commandmenu.items=Items
 gui.commandmenu.drive=Drive
+gui.commandmenu.limit=Limit
 gui.commandmenu.drive.revert=Revert
 
 #Magic
@@ -991,7 +1003,7 @@ gui.menu.config.music=Enable custom music
 gui.menu.config.fire=Kingdom Hearts 1 Fire?
 
 #Containers
-container.keychain=Place a keychain here
+mainkeychain=Main
 container.spellsinventory=Place Spell Orbs here
 container.potionsinventory=Place potions here
 container.driveinventory=Place Form Orbs here
@@ -1088,6 +1100,12 @@ stats.levelUpStr=Strength Increased!
 stats.levelUpDef=Defense Increased!
 stats.levelUpMag=Magic Increased!
 stats.levelUpHP=Maximum HP Increased!
+stats.levelUpFG=Form Gauge Powered Up!
+stats.levelUpHighJump=High Jump LV %1$s!
+stats.levelUpQuickRun=Quick Run LV %1$s!
+stats.levelUpDodgeRoll=Dodge Roll LV %1$s!
+stats.levelUpAerialDodge=Aerial Dodge LV %1$s!
+stats.levelUpGlide=Glide LV %1$s!
 
 ############################
 #Chat messages
@@ -1106,6 +1124,7 @@ chat.manifest.learn=The knowledge manifested the '%1$s'
 chat.powerboost=Strength increased! Now it's %1$s!
 chat.defenseboost=Defense increased! Now it's %1$s!
 chat.magicboost=Magic increased! Now it's %1$s!
+chat.driveboost=Drive Form Increased! Now it's %1$s!
 
 ##########################
 #Entities

@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
@@ -117,12 +118,15 @@ public class GuiHP extends GuiScreen {
 
     }
 
+    int counter = 0;
     @SubscribeEvent
     public void onRenderOverlayPost (RenderGameOverlayEvent event) {
         if (!MainConfig.displayGUI())
             return;
         if(!Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getHudMode()) return;
-        if (event.getType().equals(ElementType.HEALTH) && event.isCancelable()) if (!MainConfig.client.hud.EnableHeartsOnHUD) event.setCanceled(true);
+        if (event.getType().equals(ElementType.HEALTH) && event.isCancelable()) 
+        	if (!MainConfig.client.hud.EnableHeartsOnHUD)
+        		event.setCanceled(true);
         if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
 
             Minecraft mc = Minecraft.getMinecraft();
@@ -165,14 +169,22 @@ public class GuiHP extends GuiScreen {
                 GL11.glTranslatef((screenWidth - (hpBarWidth) * scale) - 10 * scale, (screenHeight - (guiHeight) * scale) + 3 * scale, 0);
                 GL11.glScalef(scale, scale, scale);
                 drawHPBarTop(0, 0, (int) ((hpBarWidth - (4 * scale))), scale);
-                GL11.glPopMatrix();
             } else {
                 GL11.glPushMatrix();
                 GL11.glTranslatef((screenWidth - (hpBarWidth) * scale) - 10 * scale, (screenHeight - (guiHeight) * scale) + 3 * scale, 0);
                 GL11.glScalef(scale, scale, scale);
                 drawHPBarTopRed(0, 0, (int) ((hpBarWidth - (4 * scale))), scale);
-                GL11.glPopMatrix();
+                
+				counter++;
+				System.out.println(counter);
+				if(counter >= 1380) {
+            		counter = 0;
+            		player.playSound(ModSounds.alarm, 1, 1);
+            	}
+
+            	
             }
+            GL11.glPopMatrix();
         }
     }
 }

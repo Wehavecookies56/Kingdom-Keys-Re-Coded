@@ -31,7 +31,7 @@ public class EntityThundara extends Entity {
         this.posZ = z;
         this.player = sender;
         double distance = 3.0D;
-        AxisAlignedBB aabb = player.getEntityBoundingBox().expand(3, 3, 3);
+        AxisAlignedBB aabb = player.getEntityBoundingBox().grow(3, 3, 3);
         List list = this.world.getEntitiesWithinAABBExcludingEntity(player, aabb);
         if (!list.isEmpty()) for (int i = 0; i < list.size(); i++) {
             Entity e = (Entity) list.get(i);
@@ -41,7 +41,7 @@ public class EntityThundara extends Entity {
                 this.world.spawnEntity((new EntityLightningBolt(this.world, e.posX, e.posY, e.posZ, false)));
             }
         }
-        aabb.expand(-3, -3, -3);
+        aabb.grow(-3, -3, -3);
     }
 
     @Override

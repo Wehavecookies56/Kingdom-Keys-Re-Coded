@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -23,6 +23,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
@@ -66,7 +67,9 @@ import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisFreeDevRecipes;
 import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisMaterials;
 import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisRecipes;
 import uk.co.wehavecookies56.kk.common.world.ChestGen;
+import uk.co.wehavecookies56.kk.common.world.MoogleHouse;
 import uk.co.wehavecookies56.kk.common.world.WorldGenBlox;
+import uk.co.wehavecookies56.kk.common.world.biome.ModBiomes;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 
 public class CommonProxy {
@@ -91,7 +94,7 @@ public class CommonProxy {
         // Packets
         PacketDispatcher.registerPackets();
         KingdomKeys.logger.info("Packets loaded");
-
+        MinecraftForge.EVENT_BUS.register(new ModBiomes());
         ModDimensions.init();
 
         ModCapabilities.registerCapabilities();
@@ -111,6 +114,7 @@ public class CommonProxy {
         // Instance
         MinecraftForge.EVENT_BUS.register(KingdomKeys.instance);
 
+        ModBiomes.init();
         //    ModSounds.init();
         //LogHelper.info("Sounds loaded");
 
@@ -162,14 +166,21 @@ public class CommonProxy {
         }
         Biome[] biomesArray = biomes.toArray(new Biome[biomes.size()]);
 
-        EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 1, 3, EnumCreatureType.MONSTER, biomesArray);
-        EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
-        EntityRegistry.addSpawn(EntityRedNocturne.class, MainConfig.entities.redNocturneRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
-        EntityRegistry.addSpawn(EntityBlueRhapsody.class, MainConfig.entities.blueRhapsodyRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
-        EntityRegistry.addSpawn(EntityYellowOpera.class, MainConfig.entities.yellowOperaRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
-        EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 1, 1, EnumCreatureType.MONSTER, biomesArray);
+        if (MainConfig.entities.shadowRatio != 0)
+            EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 3, 5, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.gigaShadowRatio != 0)
+            EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.redNocturneRatio != 0)
+            EntityRegistry.addSpawn(EntityRedNocturne.class, MainConfig.entities.redNocturneRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.blueRhapsodyRatio != 0)
+            EntityRegistry.addSpawn(EntityBlueRhapsody.class, MainConfig.entities.blueRhapsodyRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.yellowOperaRatio != 0)
+            EntityRegistry.addSpawn(EntityYellowOpera.class, MainConfig.entities.yellowOperaRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.greenRequiemRatio != 0)
+            EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
 
-        EntityRegistry.addSpawn(EntityMoogle.class, MainConfig.entities.moogleRatio, 1, 1, EnumCreatureType.CREATURE, biomesArray);
+        if (MainConfig.entities.moogleRatio != 0)
+            EntityRegistry.addSpawn(EntityMoogle.class, MainConfig.entities.moogleRatio, 1, 1, KingdomKeys.MOOGLE, biomesArray);
 
         Lists.init();
 
@@ -191,6 +202,11 @@ public class CommonProxy {
 
         Constants.registerCosts();
         Constants.registerMagicLevels();
+
+        if (MainConfig.worldgen.EnableWorldGen) {
+            VillagerRegistry.instance().registerVillageCreationHandler(new MoogleHouse.VillageManager());
+            MapGenStructureIO.registerStructureComponent(MoogleHouse.class, Reference.MODID + ":moogle_house");
+        }
 
         // Chest loot init
         MinecraftForge.EVENT_BUS.register(new ChestGen());

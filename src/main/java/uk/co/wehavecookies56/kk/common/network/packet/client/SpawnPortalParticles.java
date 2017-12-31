@@ -1,6 +1,7 @@
 package uk.co.wehavecookies56.kk.common.network.packet.client;
 
 import java.io.IOException;
+import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
@@ -8,6 +9,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class SpawnPortalParticles extends AbstractMessage.AbstractClientMessage<SpawnPortalParticles> {
 
@@ -38,16 +40,12 @@ public class SpawnPortalParticles extends AbstractMessage.AbstractClientMessage<
 
     @Override
     public void process (EntityPlayer player, Side side) {
-        double r;
-        r = 1D;
-        for (int a = 1; a <= 360; a += 10) {
-            double x = this.x + (r * Math.cos(Math.toRadians(a)));
-            double z = this.z + (r * Math.sin(Math.toRadians(a)));
-            for(double i=0;i<3;i=i+0.25){
-            player.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, this.y+i, z, 0.0D, 0.0D, 0.0D);
-            //player.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, this.y+i, z, 0.0D, 0.0D, 0.0D);
-            }
-
-        }
+    	for(int i=0;i<10;i++) {
+			double x = Utils.randomWithRange(-1.5d,1.5d);
+			double y = Utils.randomWithRange(0d,5d);
+			double z = Utils.randomWithRange(-1.5d,1.5d);
+		
+		    player.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.x+x, this.y+y, this.z+z, 0.0D, 0.0D, 0.0D);
+    	}
     }
 }

@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 
@@ -105,14 +106,17 @@ public class CommandLevelUp implements ICommand {
                 PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
                 STATS.setLevel(1);
                 STATS.setExperience(0);
-                STATS.setStrength(1);
-                STATS.setDefense(1);
-                STATS.setMagic(1);
+				if(STATS.getChoice1().equals(Strings.Choice_Sword)) STATS.setStrength(3);
+                else STATS.setStrength(1);
+				if(STATS.getChoice1().equals(Strings.Choice_Shield)) STATS.setDefense(3);
+                else STATS.setDefense(1);
+				if(STATS.getChoice1().equals(Strings.Choice_Staff)) STATS.setMagic(3);
+                else STATS.setMagic(1);
                 STATS.setHP(20);
                 player.setHealth(20);
 
                 while (STATS.getLevel() < level)
-                    STATS.addExperience(player, STATS.getExpNeeded(level - 1, STATS.getExperience()), "normal");
+                    STATS.addExperience(player, STATS.getExpNeeded(level - 1, STATS.getExperience()));
                 player.heal(STATS.getHP());
                 TextHelper.sendFormattedChatMessage("Your level is now " + args[0], TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
                 PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
@@ -133,15 +137,18 @@ public class CommandLevelUp implements ICommand {
                 PlayerStatsCapability.IPlayerStats STATS = entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null);
                 STATS.setLevel(1);
                 STATS.setExperience(0);
-                STATS.setStrength(1);
-                STATS.setDefense(1);
-                STATS.setMagic(1);
+				if(STATS.getChoice1().equals(Strings.Choice_Sword)) STATS.setStrength(3);
+                else STATS.setStrength(1);
+				if(STATS.getChoice1().equals(Strings.Choice_Shield)) STATS.setDefense(3);
+                else STATS.setDefense(1);
+				if(STATS.getChoice1().equals(Strings.Choice_Staff)) STATS.setMagic(3);
+                else STATS.setMagic(1);
                 STATS.setHP(20);
                 entityplayermp.setHealth(20);
 
 
                 while (STATS.getLevel() < level)
-                    STATS.addExperience(entityplayermp, STATS.getExpNeeded(level - 1, STATS.getExperience()), "normal");
+                    STATS.addExperience(entityplayermp, STATS.getExpNeeded(level - 1, STATS.getExperience()));
                 entityplayermp.heal(STATS.getHP());
                 TextHelper.sendFormattedChatMessage(args[1] + "'s level is now " + args[0], TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
                 TextHelper.sendFormattedChatMessage("Your level is now " + args[0], TextFormatting.YELLOW, (EntityPlayer) entityplayermp);
