@@ -76,6 +76,7 @@ public class BlockSavePoint extends Block {
             if (e instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) e;
                 IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+
                // System.out.println(player.getBedLocation());
                // System.out.println(pos.getX());
                 boolean samePos;
@@ -95,7 +96,7 @@ public class BlockSavePoint extends Block {
                     TextHelper.sendFormattedChatMessage("Spawn point saved!", TextFormatting.GREEN, player);
                     world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savespawn, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 }
-                
+              
                 if(player.getHealth() < player.getMaxHealth() || STATS.getMP() < STATS.getMaxMP())
                 {
                     player.heal(1);
