@@ -16,7 +16,7 @@ public class BaseEntityHeartless extends EntityMob{
     	BlockPos pos = new BlockPos(posX,posY,posZ);
     	IBlockState state = world.getBlockState(pos);
         int l = state.getLightValue(world, pos);
-    	return l <= this.rand.nextInt(8);
+    	return l <= 7;
     }
 
     @Override

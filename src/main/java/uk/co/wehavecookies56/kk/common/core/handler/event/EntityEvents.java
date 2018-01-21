@@ -751,12 +751,13 @@ public class EntityEvents {
                 }
             }
         }
-        if (event.getSource().getImmediateSource() instanceof EntityPlayer) {
+        if (event.getSource().getImmediateSource() instanceof EntityPlayer && !event.getSource().damageType.equals(EnumHand.OFF_HAND.name())) {
             EntityPlayer player = (EntityPlayer) event.getSource().getImmediateSource();
             if(event.getSource().getDamageType().equals("thorns")) return;
 
             if(!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
                 if(player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemOrgWeapon) {
+                    System.out.println(event.getAmount());
                     event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
                 }
             }

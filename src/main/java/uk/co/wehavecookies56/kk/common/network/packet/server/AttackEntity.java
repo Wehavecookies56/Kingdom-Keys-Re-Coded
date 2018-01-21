@@ -64,8 +64,8 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
         if (!net.minecraftforge.common.ForgeHooks.onPlayerAttackTarget(player, targetEntity)) return;
         if (targetEntity.canBeAttackedWithItem()) {
             if (!targetEntity.hitByEntity(player)) {
-                float f = (float)player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
-                f += DamageCalculation.getStrengthDamage(player, (ItemKeyblade)player.getHeldItemOffhand().getItem());
+                //float f = (float)player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
+                float f = DamageCalculation.getStrengthDamage(player, (ItemKeyblade)player.getHeldItemOffhand().getItem());
                 //f += (float)(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + ((ItemKeyblade)player.getHeldItemOffhand().getItem()).getStrength());
                 float f1;
 
@@ -73,6 +73,10 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                     f1 = EnchantmentHelper.getModifierForCreature(player.getHeldItemOffhand(), ((EntityLivingBase)targetEntity).getCreatureAttribute());
                 } else {
                     f1 = EnchantmentHelper.getModifierForCreature(player.getHeldItemOffhand(), EnumCreatureAttribute.UNDEFINED);
+                }
+
+                if (player.getHeldItemMainhand().getItem() instanceof ItemKeyblade) {
+                    //f -= 3;
                 }
 
                 float f2 = 1;//player.getCooledAttackStrength(0.5F);
@@ -127,7 +131,9 @@ public class AttackEntity extends AbstractServerMessage<AttackEntity> {
                     double d1 = targetEntity.motionX;
                     double d2 = targetEntity.motionY;
                     double d3 = targetEntity.motionZ;
-                    boolean flag5 = targetEntity.attackEntityFrom(DamageSource.causePlayerDamage(player), f);
+                    DamageSource playerDamage = DamageSource.causePlayerDamage(player);
+                    playerDamage.damageType = EnumHand.OFF_HAND.name();
+                    boolean flag5 = targetEntity.attackEntityFrom(playerDamage, f);
 
                     if (flag5) {
                         if (i > 0) {
