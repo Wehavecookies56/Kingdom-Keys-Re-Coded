@@ -4,23 +4,7 @@ import static uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry.registe
 
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeDefenseBoost;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeDriveRecovery;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeElixir;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeEther;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeHiPotion;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeHighDriveRecovery;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeMagicBoost;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeMegaEther;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeMegaPotion;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeMegalixir;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeMythrilCrystal;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeMythrilGem;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeMythrilShard;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipeMythrilStone;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipePanacea;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipePotion;
-import uk.co.wehavecookies56.kk.common.synthesis.recipe.RecipePowerBoost;
+import uk.co.wehavecookies56.kk.common.synthesis.recipe.*;
 
 /**
  * Created by Toby on 16/07/2016.
@@ -45,6 +29,8 @@ public class ModSynthesisFreeDevRecipes {
         registerFreeDevRecipe(new RecipePowerBoost(ModItems.PowerBoost.getUnlocalizedName()));
         registerFreeDevRecipe(new RecipeMagicBoost(ModItems.MagicBoost.getUnlocalizedName()));
         registerFreeDevRecipe(new RecipePanacea(ModItems.Panacaea.getUnlocalizedName()));
+        registerFreeDevRecipe(new RecipeManifestIllusion(Strings.SM_ManifestIllusion));
+        registerFreeDevRecipe(new RecipeLostIllusion(Strings.SM_LostIllusion));
     }
 
 }

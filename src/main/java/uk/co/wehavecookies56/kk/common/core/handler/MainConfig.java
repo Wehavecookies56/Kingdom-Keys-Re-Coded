@@ -39,6 +39,10 @@ public class MainConfig {
         @Config.Comment("Sets Station of Awakening's ID (default \"auto\")")
         public String StationOfAwakeningID = "auto";
 
+        @Config.Name("Enable Synthesis Materials Ores")
+        @Config.Comment("Enables the ores that drop synthesis materials which are now replaced by mob drops")
+        public boolean EnableSynthesisOres = false;
+
     }
 
     public static class Network {

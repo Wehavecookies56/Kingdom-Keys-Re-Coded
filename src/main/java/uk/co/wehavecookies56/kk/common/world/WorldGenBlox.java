@@ -50,35 +50,36 @@ public class WorldGenBlox implements IWorldGenerator {
             int quisqueY = rand.nextInt(world.getHeight() - 40) + 40;
             int OreY = rand.nextInt(100);
             BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
-
-            new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.EnergyOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-            List<Biome> coldBiomes = new ArrayList<>(BiomeDictionary.getBiomes(BiomeDictionary.Type.COLD));
-            for (int i = 0; i < coldBiomes.size(); i++){
-                if (biome == coldBiomes.get(i))
-                    new WorldGenMinable(ModBlocks.FrostOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-            }
-            new WorldGenMinable(ModBlocks.LightningOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.LucidOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.RemembranceOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.SerenityOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.TranquilOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.TwilightOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-
-            if (OreY < 20) {
-                new WorldGenMinable(ModBlocks.DarkOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+            if (MainConfig.worldgen.EnableWorldGen) {
+                new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
                 new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-                List<Biome> wetBiomes = new ArrayList<Biome>(BiomeDictionary.getBiomes(BiomeDictionary.Type.WET));
-                for (int i = 0; i < wetBiomes.size(); i++) {
-                    if (biome == wetBiomes.get(i))
-                        new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-                }
-                new WorldGenMinable(ModBlocks.StormyOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
-                for (int i = 0; i < coldBiomes.size(); i++){
+                new WorldGenMinable(ModBlocks.EnergyOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                List<Biome> coldBiomes = new ArrayList<>(BiomeDictionary.getBiomes(BiomeDictionary.Type.COLD));
+                for (int i = 0; i < coldBiomes.size(); i++) {
                     if (biome == coldBiomes.get(i))
-                        new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                        new WorldGenMinable(ModBlocks.FrostOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                }
+                new WorldGenMinable(ModBlocks.LightningOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.LucidOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.RemembranceOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.SerenityOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.TranquilOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.TwilightOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+
+                if (OreY < 20) {
+                    new WorldGenMinable(ModBlocks.DarkOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                    new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                    List<Biome> wetBiomes = new ArrayList<Biome>(BiomeDictionary.getBiomes(BiomeDictionary.Type.WET));
+                    for (int i = 0; i < wetBiomes.size(); i++) {
+                        if (biome == wetBiomes.get(i))
+                            new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                    }
+                    new WorldGenMinable(ModBlocks.StormyOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                    for (int i = 0; i < coldBiomes.size(); i++) {
+                        if (biome == coldBiomes.get(i))
+                            new WorldGenMinable(ModBlocks.PowerOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
+                    }
                 }
             }
         }
@@ -114,11 +115,12 @@ public class WorldGenBlox implements IWorldGenerator {
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int OreY = rand.nextInt(100);
             BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
-
-            new WorldGenMinable(ModBlocks.BlazingOreN.getDefaultState(), 4, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.DarkOreN.getDefaultState(), 2, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.EnergyOreN.getDefaultState(), 5, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.TwilightOreN.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+            if (MainConfig.worldgen.EnableWorldGen) {
+                new WorldGenMinable(ModBlocks.BlazingOreN.getDefaultState(), 4, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.DarkOreN.getDefaultState(), 2, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.EnergyOreN.getDefaultState(), 5, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.TwilightOreN.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
+            }
 
         }
     }
@@ -145,14 +147,16 @@ public class WorldGenBlox implements IWorldGenerator {
             new WorldGenMinable(ModBlocks.RarePrizeBlox.getDefaultState(), 2, BlockMatcher.forBlock(Blocks.END_STONE)).generate(world, rand, OrePos);
 
         }
-        for (int k = 0; k < 30; k++) {
-            int firstBlockXCoord = chunkX + rand.nextInt(16);
-            int firstBlockZCoord = chunkZ + rand.nextInt(16);
-            int OreY = rand.nextInt(200);
-            BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
+        if (MainConfig.worldgen.EnableWorldGen) {
+            for (int k = 0; k < 30; k++) {
+                int firstBlockXCoord = chunkX + rand.nextInt(16);
+                int firstBlockZCoord = chunkZ + rand.nextInt(16);
+                int OreY = rand.nextInt(200);
+                BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
 
-            new WorldGenMinable(ModBlocks.DarkOreE.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.END_STONE)).generate(world, rand, OrePos);
-            new WorldGenMinable(ModBlocks.PowerOreE.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.END_STONE)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.DarkOreE.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.END_STONE)).generate(world, rand, OrePos);
+                new WorldGenMinable(ModBlocks.PowerOreE.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.END_STONE)).generate(world, rand, OrePos);
+            }
         }
     }
 }

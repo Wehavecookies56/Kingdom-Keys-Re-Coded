@@ -1,11 +1,6 @@
 package uk.co.wehavecookies56.kk.common.core.handler.event;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import com.mojang.authlib.GameProfile;
 
@@ -14,9 +9,8 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityWitch;
-import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -28,6 +22,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -41,6 +36,8 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
@@ -65,12 +62,13 @@ import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
-import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
+import uk.co.wehavecookies56.kk.common.entity.mobs.*;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
+import uk.co.wehavecookies56.kk.common.lib.EntityDropEntry;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenOrgGUI;
@@ -277,6 +275,8 @@ public class EntityEvents {
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_MythrilStone);
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_MythrilGem);
             FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_MythrilCrystal);
+            FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_ManifestIllusion);
+            FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_LostIllusion);
 
             if (event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getSlots() != InventoryKeychain.INV_SIZE) {
                 ItemStackHandler oldInv = event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
@@ -397,8 +397,117 @@ public class EntityEvents {
         }
     }
 
+    public static List<EntityDropEntry> entityDrops = new ArrayList<>();
+    static {
+        //Blazing
+        entityDrops.add(new EntityDropEntry(EntityRedNocturne.class, ModItems.blazingShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityBlaze.class, ModItems.blazingStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityMagmaCube.class, ModItems.blazingGem.createStack(), 20));
+        //entityDrops.add(new EntityDropEntry(EntityCrimsonJazz.class, ModItems.blazingCrystal.createStack(), 20));
+
+        //Frost
+        entityDrops.add(new EntityDropEntry(EntityPolarBear.class, ModItems.frostShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntitySnowman.class, ModItems.frostStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityBlueRhapsody.class, ModItems.frostGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityElderGuardian.class, ModItems.frostCrystal.createStack(), 66));
+
+        //Lightning
+        entityDrops.add(new EntityDropEntry(EntityYellowOpera.class, ModItems.lightningShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityGuardian.class, ModItems.lightningStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityIllusionIllager.class, ModItems.lightningGem.createStack(), 20));
+        //entityDrops.add(new EntityDropEntry(EntityEmeraldBlues.class, ModItems.lightningCrystal.createStack(), 20));
+
+        //Lucid
+        entityDrops.add(new EntityDropEntry(EntityZombie.class, ModItems.lucidShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntitySkeleton.class, ModItems.lucidStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntitySlime.class, ModItems.lucidGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityGigaShadow.class, ModItems.lucidCrystal.createStack(), 20));
+
+        //Power
+        entityDrops.add(new EntityDropEntry(EntityCreeper.class, ModItems.powerShard.createStack(), 20));
+        //entityDrops.add(new EntityDropEntry(EntitySilverRock.class, ModItems.powerStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityGhast.class, ModItems.powerGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityWither.class, ModItems.powerCrystal.createStack(), 66));
+
+        //Dark
+        entityDrops.add(new EntityDropEntry(EntityEndermite.class, ModItems.darkShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityShadow.class, ModItems.darkStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityEnderman.class, ModItems.darkGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityDragon.class, ModItems.darkCrystal.createStack(), 66));
+
+        //Dense
+        entityDrops.add(new EntityDropEntry(EntitySilverfish.class, ModItems.denseShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntitySpider.class, ModItems.denseStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityVex.class, ModItems.denseGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityEvoker.class, ModItems.denseCrystal.createStack(), 20));
+
+        //Twilight
+        entityDrops.add(new EntityDropEntry(EntitySilverfish.class, ModItems.twilightShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityHusk.class, ModItems.twilightStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityStray.class, ModItems.twilightGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityDragon.class, ModItems.twilightCrystal.createStack(), 66));
+
+        //Mythril
+        entityDrops.add(new EntityDropEntry(EntityShulker.class, ModItems.mythrilShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityShulker.class, ModItems.mythrilStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityShulker.class, ModItems.mythrilGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityShulker.class, ModItems.mythrilCrystal.createStack(), 20));
+
+        //Stormy
+        entityDrops.add(new EntityDropEntry(EntityParrot.class, ModItems.stormyShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityZombieVillager.class, ModItems.stormyStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityCreeper.class, ModItems.stormyGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityWither.class, ModItems.stormyCrystal.createStack(), 66));
+
+        //Remembrance
+        entityDrops.add(new EntityDropEntry(EntityHorse.class, ModItems.remembranceShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityCaveSpider.class, ModItems.remembranceStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityIronGolem.class, ModItems.remembranceGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityEnderman.class, ModItems.remembranceCrystal.createStack(), 20));
+
+        //Bright
+        entityDrops.add(new EntityDropEntry(EntityLlama.class, ModItems.brightShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityCaveSpider.class, ModItems.brightStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityGreenRequiem.class, ModItems.brightGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityVindicator.class, ModItems.brightCrystal.createStack(), 20));
+
+        //Energy
+        entityDrops.add(new EntityDropEntry(EntityCreeper.class, ModItems.energyShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityGuardian.class, ModItems.energyStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityWitch.class, ModItems.energyGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityElderGuardian.class, ModItems.energyCrystal.createStack(), 66));
+
+        //Serenity
+        entityDrops.add(new EntityDropEntry(EntityChicken.class, ModItems.serenityShard.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityPig.class, ModItems.serenityStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntitySheep.class, ModItems.serenityGem.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityCow.class, ModItems.serenityCrystal.createStack(), 20));
+
+        //Orichalcum
+        entityDrops.add(new EntityDropEntry(EntityWitherSkeleton.class, ModItems.orichalcum.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityIronGolem.class, ModItems.orichalcum.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityDragon.class, ModItems.orichalcumPlus.createStack(), 66));
+        entityDrops.add(new EntityDropEntry(EntityElderGuardian.class, ModItems.orichalcumPlus.createStack(), 66));
+        entityDrops.add(new EntityDropEntry(EntityWither.class, ModItems.orichalcumPlus.createStack(), 66));
+
+    }
+
+    public void addEntityDrop(LivingDropsEvent event, EntityDropEntry drop) {
+        if (!MainConfig.entities.disableDrops) {
+            if (drop.dropConditions(event)) {
+                event.getEntity().entityDropItem(drop.getItem(), 1);
+            }
+        }
+    }
+
     @SubscribeEvent
     public void onLivingDrops (LivingDropsEvent event) {
+        for (int i = 0; i < entityDrops.size(); i++) {
+            if (entityDrops.get(i).getDroppedFrom().isInstance(event.getEntity())) {
+                addEntityDrop(event, entityDrops.get(i));
+            }
+        }
+        // Remove any summoned keyblades or org weapons on death
         if (event.getEntity() instanceof EntityPlayer) {
             for (int i = 0; i < event.getDrops().size(); i++) {
                 if (event.getDrops().get(i).getItem().getItem() instanceof ItemKeyblade && (event.getDrops().get(i).getItem().getItem() != ModItems.WoodenKeyblade && event.getDrops().get(i).getItem().getItem() != ModItems.WoodenStick)) {

@@ -34,6 +34,7 @@ import uk.co.wehavecookies56.kk.common.item.org.ItemScythe;
 import uk.co.wehavecookies56.kk.common.item.org.ItemSitar;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.lib.SynthesisStack;
 
 public class ModItems {
 
@@ -1915,6 +1916,67 @@ public class ModItems {
     public static ToolMaterial KEYCHAIN = EnumHelper.addToolMaterial("KEYCHAIN", 0, 1, 0, -4, 30);
 
     public static CreativeTabs tabKingdomKeys = new TabKingdomKeys(CreativeTabs.getNextID(), Strings.tabKingdomKeys);
+
+    public static SynthesisStack blazingShard = new SynthesisStack(Strings.SM_BlazingShard, Strings.SM_Rank_C);
+    public static SynthesisStack blazingStone = new SynthesisStack(Strings.SM_BlazingStone, Strings.SM_Rank_B);
+    public static SynthesisStack blazingGem = new SynthesisStack(Strings.SM_BlazingGem, Strings.SM_Rank_A);
+    public static SynthesisStack blazingCrystal = new SynthesisStack(Strings.SM_BlazingCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack brightShard = new SynthesisStack(Strings.SM_BrightShard, Strings.SM_Rank_C);
+    public static SynthesisStack brightStone = new SynthesisStack(Strings.SM_BrightStone, Strings.SM_Rank_B);
+    public static SynthesisStack brightGem = new SynthesisStack(Strings.SM_BrightGem, Strings.SM_Rank_A);
+    public static SynthesisStack brightCrystal = new SynthesisStack(Strings.SM_BrightCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack frostShard = new SynthesisStack(Strings.SM_FrostShard, Strings.SM_Rank_C);
+    public static SynthesisStack frostStone = new SynthesisStack(Strings.SM_FrostStone, Strings.SM_Rank_B);
+    public static SynthesisStack frostGem = new SynthesisStack(Strings.SM_FrostGem, Strings.SM_Rank_A);
+    public static SynthesisStack frostCrystal = new SynthesisStack(Strings.SM_FrostCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack lightningShard = new SynthesisStack(Strings.SM_LightningShard, Strings.SM_Rank_C);
+    public static SynthesisStack lightningStone = new SynthesisStack(Strings.SM_LightningStone, Strings.SM_Rank_B);
+    public static SynthesisStack lightningGem = new SynthesisStack(Strings.SM_LightningGem, Strings.SM_Rank_A);
+    public static SynthesisStack lightningCrystal = new SynthesisStack(Strings.SM_LightningCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack lucidShard = new SynthesisStack(Strings.SM_LucidShard, Strings.SM_Rank_C);
+    public static SynthesisStack lucidStone = new SynthesisStack(Strings.SM_LucidStone, Strings.SM_Rank_B);
+    public static SynthesisStack lucidGem = new SynthesisStack(Strings.SM_LucidGem, Strings.SM_Rank_A);
+    public static SynthesisStack lucidCrystal = new SynthesisStack(Strings.SM_LucidCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack powerShard = new SynthesisStack(Strings.SM_PowerShard, Strings.SM_Rank_C);
+    public static SynthesisStack powerStone = new SynthesisStack(Strings.SM_PowerStone, Strings.SM_Rank_B);
+    public static SynthesisStack powerGem = new SynthesisStack(Strings.SM_PowerGem, Strings.SM_Rank_A);
+    public static SynthesisStack powerCrystal = new SynthesisStack(Strings.SM_PowerCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack darkShard = new SynthesisStack(Strings.SM_DarkShard, Strings.SM_Rank_C);
+    public static SynthesisStack darkStone = new SynthesisStack(Strings.SM_DarkStone, Strings.SM_Rank_B);
+    public static SynthesisStack darkGem = new SynthesisStack(Strings.SM_DarkGem, Strings.SM_Rank_A);
+    public static SynthesisStack darkCrystal = new SynthesisStack(Strings.SM_DarkCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack denseShard = new SynthesisStack(Strings.SM_DenseShard, Strings.SM_Rank_C);
+    public static SynthesisStack denseStone = new SynthesisStack(Strings.SM_DenseStone, Strings.SM_Rank_B);
+    public static SynthesisStack denseGem = new SynthesisStack(Strings.SM_DenseGem, Strings.SM_Rank_A);
+    public static SynthesisStack denseCrystal = new SynthesisStack(Strings.SM_DenseCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack twilightShard = new SynthesisStack(Strings.SM_TwilightShard, Strings.SM_Rank_C);
+    public static SynthesisStack twilightStone = new SynthesisStack(Strings.SM_TwilightStone, Strings.SM_Rank_B);
+    public static SynthesisStack twilightGem = new SynthesisStack(Strings.SM_TwilightGem, Strings.SM_Rank_A);
+    public static SynthesisStack twilightCrystal = new SynthesisStack(Strings.SM_TwilightCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack mythrilShard = new SynthesisStack(Strings.SM_MythrilShard, Strings.SM_Rank_C);
+    public static SynthesisStack mythrilStone = new SynthesisStack(Strings.SM_MythrilStone, Strings.SM_Rank_B);
+    public static SynthesisStack mythrilGem = new SynthesisStack(Strings.SM_MythrilGem, Strings.SM_Rank_A);
+    public static SynthesisStack mythrilCrystal = new SynthesisStack(Strings.SM_MythrilCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack stormyShard = new SynthesisStack(Strings.SM_StormyShard, Strings.SM_Rank_C);
+    public static SynthesisStack stormyStone = new SynthesisStack(Strings.SM_StormyStone, Strings.SM_Rank_B);
+    public static SynthesisStack stormyGem = new SynthesisStack(Strings.SM_StormyGem, Strings.SM_Rank_A);
+    public static SynthesisStack stormyCrystal = new SynthesisStack(Strings.SM_StormyCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack remembranceShard = new SynthesisStack(Strings.SM_RemembranceShard, Strings.SM_Rank_C);
+    public static SynthesisStack remembranceStone = new SynthesisStack(Strings.SM_RemembranceStone, Strings.SM_Rank_B);
+    public static SynthesisStack remembranceGem = new SynthesisStack(Strings.SM_RemembranceGem, Strings.SM_Rank_A);
+    public static SynthesisStack remembranceCrystal = new SynthesisStack(Strings.SM_RemembranceCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack energyShard = new SynthesisStack(Strings.SM_EnergyShard, Strings.SM_Rank_C);
+    public static SynthesisStack energyStone = new SynthesisStack(Strings.SM_EnergyStone, Strings.SM_Rank_B);
+    public static SynthesisStack energyGem = new SynthesisStack(Strings.SM_EnergyGem, Strings.SM_Rank_A);
+    public static SynthesisStack energyCrystal = new SynthesisStack(Strings.SM_EnergyCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack serenityShard = new SynthesisStack(Strings.SM_SerenityShard, Strings.SM_Rank_C);
+    public static SynthesisStack serenityStone = new SynthesisStack(Strings.SM_SerenityStone, Strings.SM_Rank_B);
+    public static SynthesisStack serenityGem = new SynthesisStack(Strings.SM_SerenityGem, Strings.SM_Rank_A);
+    public static SynthesisStack serenityCrystal = new SynthesisStack(Strings.SM_SerenityCrystal, Strings.SM_Rank_S);
+    public static SynthesisStack orichalcum = new SynthesisStack(Strings.SM_Orichalcum, Strings.SM_Rank_A);
+    public static SynthesisStack orichalcumPlus = new SynthesisStack(Strings.SM_OrichalcumPlus, Strings.SM_Rank_S);
+    public static SynthesisStack manifestIllusion = new SynthesisStack(Strings.SM_ManifestIllusion, Strings.SM_Rank_A);
+    public static SynthesisStack lostIllusion = new SynthesisStack(Strings.SM_LostIllusion, Strings.SM_Rank_S);
 
     public static void init() {
         ((ItemKeyblade)AbaddonPlasma).setDescription("A weapon that lets you string together faster, incredibly long ground combos.");
