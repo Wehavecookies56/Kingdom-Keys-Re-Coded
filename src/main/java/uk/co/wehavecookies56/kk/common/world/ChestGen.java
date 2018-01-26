@@ -1,10 +1,7 @@
 package uk.co.wehavecookies56.kk.common.world;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.storage.loot.LootEntry;
-import net.minecraft.world.storage.loot.LootEntryItem;
-import net.minecraft.world.storage.loot.LootPool;
-import net.minecraft.world.storage.loot.RandomValueRange;
+import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.SetCount;
@@ -95,12 +92,46 @@ public class ChestGen {
                     LootPool musicDiscPool = new LootPool(musicDiscEntries, new LootCondition[0], new RandomValueRange(1, 2), new RandomValueRange(0), "kk_loot_music_discs");
                     event.getTable().addPool(musicDiscPool);
                     break;
+                case "end_city_treasure":
+                    LootEntry[] endCityEntries = {
+                            new LootEntryItem(ModItems.LevelUpMagicThunder, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.LevelUpMagicThunder.getUnlocalizedName().substring(5)),
+                            new LootEntryEmpty(70, 1, new LootCondition[0], Reference.MODID + ":" + "end_city_empty")
+                    };
+                    LootPool endCityPool = new LootPool(endCityEntries, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0), "kk_end_city");
+                    event.getTable().addPool(endCityPool);
+                    break;
+                case "igloo_chest":
+                    LootEntry[] iglooEntries = {
+                            new LootEntryItem(ModItems.LevelUpMagicBlizzard, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.LevelUpMagicBlizzard.getUnlocalizedName().substring(5)),
+                            new LootEntryEmpty(70, 1, new LootCondition[0], Reference.MODID + ":" + "igloo_empty")
+                    };
+                    LootPool iglooPool = new LootPool(iglooEntries, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0), "kk_igloo");
+                    event.getTable().addPool(iglooPool);
+                    break;
+                case "nether_bridge":
+                    LootEntry[] netherFortressEntries = {
+                            new LootEntryItem(ModItems.LevelUpMagicFire, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.LevelUpMagicFire.getUnlocalizedName().substring(5)),
+                            new LootEntryEmpty(70, 1, new LootCondition[0], Reference.MODID + ":" + "nether_fortress_empty")
+                    };
+                    LootPool netherFortressPool = new LootPool(netherFortressEntries, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0), "kk_nether_fortress");
+                    event.getTable().addPool(netherFortressPool);
+                    break;
             }
             try {
                 LootPool main = event.getTable().getPool("main");
-                main.addEntry(new LootEntryItem(ModItems.Recipe, 2, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)));
+                LootEntry[] recipeEntry = {
+                        new LootEntryItem(ModItems.Recipe, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)),
+                        new LootEntryEmpty(70, 1, new LootCondition[0], Reference.MODID + ":" + "recipes_empty")
+
+                };
+                main.addEntry(recipeEntry[0]);
+                main.addEntry(recipeEntry[1]);
             } catch (NullPointerException e) {
-                LootEntry[] recipeEntry = {new LootEntryItem(ModItems.Recipe, 5, 10, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5))};
+                LootEntry[] recipeEntry = {
+                        new LootEntryItem(ModItems.Recipe, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)),
+                        new LootEntryEmpty(70, 1, new LootCondition[0], Reference.MODID + ":" + "recipes_empty")
+
+                };
                 LootPool main = new LootPool(recipeEntry, new LootCondition[0], new RandomValueRange(1, 2), new RandomValueRange(0, 0), "kk_recipes");
             }
             LootPool materialPool = new LootPool(materialEntries, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0), "kk_loot_rare_materials");

@@ -159,6 +159,7 @@ public class EntityEvents {
         statsAfter.setMP(statsBefore.getMP());
         statsAfter.setRecharge(statsBefore.getRecharge());
         statsAfter.setStrength(statsBefore.getStrength());
+        statsAfter.setEnderDragonDefeated(statsBefore.enderDragonDefeated());
         for (int i = 0; i < statsBefore.getInventoryPotionsMenu().getSlots(); i++) {
             statsAfter.getInventoryPotionsMenu().setStackInSlot(i, statsBefore.getInventoryPotionsMenu().getStackInSlot(i));
         }
@@ -386,6 +387,16 @@ public class EntityEvents {
             EntityMob mob = (EntityMob) event.getEntity();
 
             player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,(int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2));
+            if (!player.getCapability(ModCapabilities.PLAYER_STATS, null).enderDragonDefeated()) {
+                player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()+1);
+                player.getCapability(ModCapabilities.DRIVE_STATE, null).setDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getMaxDP());
+                PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
+
+                TextComponentTranslation driMessage = new TextComponentTranslation(Strings.Chat_DriveBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()));
+                driMessage.getStyle().setColor(TextFormatting.GREEN);
+                player.sendMessage(driMessage);
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).setEnderDragonDefeated(true);
+            }
 
             if(event.getEntity() instanceof EntityDragon) {
                 player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player,2000);
@@ -489,6 +500,15 @@ public class EntityEvents {
         entityDrops.add(new EntityDropEntry(EntityDragon.class, ModItems.orichalcumPlus.createStack(), 66));
         entityDrops.add(new EntityDropEntry(EntityElderGuardian.class, ModItems.orichalcumPlus.createStack(), 66));
         entityDrops.add(new EntityDropEntry(EntityWither.class, ModItems.orichalcumPlus.createStack(), 66));
+
+        //Spells
+        entityDrops.add(new EntityDropEntry(EntityMagmaCube.class, new ItemStack(ModItems.LevelUpMagicFire), 12));
+        entityDrops.add(new EntityDropEntry(EntityElderGuardian.class, new ItemStack(ModItems.LevelUpMagicBlizzard), 50));
+        entityDrops.add(new EntityDropEntry(EntityIllusionIllager.class, new ItemStack(ModItems.LevelUpMagicThunder), 20));
+        entityDrops.add(new EntityDropEntry(EntityDragon.class, new ItemStack(ModItems.LevelUpMagicCure), 25));
+        entityDrops.add(new EntityDropEntry(EntityWither.class, new ItemStack(ModItems.LevelUpMagicCure), 25));
+        entityDrops.add(new EntityDropEntry(EntityBat.class, new ItemStack(ModItems.LevelUpMagicAero), 5));
+        entityDrops.add(new EntityDropEntry(EntityGhast.class, new ItemStack(ModItems.LevelUpMagicAero), 20));
 
     }
 

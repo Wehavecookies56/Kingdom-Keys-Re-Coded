@@ -50,7 +50,7 @@ public class WorldGenBlox implements IWorldGenerator {
             int quisqueY = rand.nextInt(world.getHeight() - 40) + 40;
             int OreY = rand.nextInt(100);
             BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
-            if (MainConfig.worldgen.EnableWorldGen) {
+            if (MainConfig.worldgen.EnableSynthesisOres) {
                 new WorldGenMinable(ModBlocks.BlazingOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
                 new WorldGenMinable(ModBlocks.BrightOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
                 new WorldGenMinable(ModBlocks.DenseOre.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.STONE)).generate(world, rand, OrePos);
@@ -115,7 +115,7 @@ public class WorldGenBlox implements IWorldGenerator {
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int OreY = rand.nextInt(100);
             BlockPos OrePos = new BlockPos(firstBlockXCoord, OreY, firstBlockZCoord);
-            if (MainConfig.worldgen.EnableWorldGen) {
+            if (MainConfig.worldgen.EnableSynthesisOres) {
                 new WorldGenMinable(ModBlocks.BlazingOreN.getDefaultState(), 4, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
                 new WorldGenMinable(ModBlocks.DarkOreN.getDefaultState(), 2, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
                 new WorldGenMinable(ModBlocks.EnergyOreN.getDefaultState(), 5, BlockMatcher.forBlock(Blocks.NETHERRACK)).generate(world, rand, OrePos);
@@ -147,7 +147,7 @@ public class WorldGenBlox implements IWorldGenerator {
             new WorldGenMinable(ModBlocks.RarePrizeBlox.getDefaultState(), 2, BlockMatcher.forBlock(Blocks.END_STONE)).generate(world, rand, OrePos);
 
         }
-        if (MainConfig.worldgen.EnableWorldGen) {
+        if (MainConfig.worldgen.EnableSynthesisOres) {
             for (int k = 0; k < 30; k++) {
                 int firstBlockXCoord = chunkX + rand.nextInt(16);
                 int firstBlockZCoord = chunkZ + rand.nextInt(16);

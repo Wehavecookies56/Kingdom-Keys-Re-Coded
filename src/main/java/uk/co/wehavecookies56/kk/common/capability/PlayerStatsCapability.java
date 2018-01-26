@@ -29,6 +29,8 @@ public class PlayerStatsCapability {
         List<String> getMessages();
         int getExperience();
 
+        boolean enderDragonDefeated();
+
         int getLevel();
         int getMaxLevel();
         int getMaxExperience();
@@ -62,6 +64,8 @@ public class PlayerStatsCapability {
         void setMaxMP(double mp);
         void setRecharge(boolean recharge);
 
+        void setEnderDragonDefeated(boolean defeated);
+
         void setChoice1(String choice);
         void setChoice2(String choice);
 
@@ -88,6 +92,7 @@ public class PlayerStatsCapability {
             properties.setDouble("MP", instance.getMP());
             properties.setDouble("Max MP", instance.getMaxMP());
             properties.setBoolean("Recharge", instance.getRecharge());
+            properties.setBoolean("Ender Dragon Defeated", instance.enderDragonDefeated());
 
             properties.setBoolean("HUD", instance.getHudMode());
 
@@ -110,6 +115,8 @@ public class PlayerStatsCapability {
             instance.setMP(properties.getDouble("MP"));
             instance.setMaxMP(properties.getDouble("Max MP"));
             instance.setRecharge(properties.getBoolean("Recharge"));
+            instance.setEnderDragonDefeated(properties.getBoolean("Ender Dragon Defeated"));
+
             instance.setHudMode(properties.getBoolean("HUD"));
 
             instance.setChoice1(properties.getString("Choice1"));
@@ -139,6 +146,7 @@ public class PlayerStatsCapability {
         
         private boolean recharge = false;
         private boolean cheatMode = false;
+        private boolean enderDragonDefeated = false;
         private boolean hudmode = true;
         private int remainingExp = 0;
         private List<String> messages = new ArrayList<String>();
@@ -146,6 +154,16 @@ public class PlayerStatsCapability {
         private String choice1="", choice2="";
 
         private final ItemStackHandler inventoryPotions = new ItemStackHandler(InventoryPotionsMenu.INV_SIZE);
+
+        @Override
+        public boolean enderDragonDefeated() {
+            return this.enderDragonDefeated;
+        }
+
+        @Override
+        public void setEnderDragonDefeated(boolean defeated) {
+            this.enderDragonDefeated = defeated;
+        }
 
         @Override
         public List<String> getMessages() {

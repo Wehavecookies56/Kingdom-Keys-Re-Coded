@@ -22,6 +22,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
@@ -38,6 +39,7 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.GuiHandler;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.handler.UsernameHandler;
+import uk.co.wehavecookies56.kk.common.core.handler.VillagerTrades;
 import uk.co.wehavecookies56.kk.common.core.handler.event.BlockEvents;
 import uk.co.wehavecookies56.kk.common.core.handler.event.CapabilityEvents;
 import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;
@@ -51,13 +53,7 @@ import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityFire;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
+import uk.co.wehavecookies56.kk.common.entity.mobs.*;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
@@ -150,6 +146,9 @@ public class CommonProxy {
         EntityHelper.registerEntity("bluerhapsody", EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());
         EntityHelper.registerEntity("yellowopera", EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());
         EntityHelper.registerEntity("greenrequiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
+        EntityHelper.registerEntity("silverrock", EntitySilverRock.class, Color.LIGHT_GRAY.getRGB(), Color.darkGray.getRGB());
+        EntityHelper.registerEntity("crimsonjazz", EntityCrimsonJazz.class, Color.green.getRGB(), Color.blue.getRGB());
+        EntityHelper.registerEntity("emeraldblues", EntityEmeraldBlues.class, Color.black.getRGB(), Color.red.getRGB());
         EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
 
         Iterator<Biome> biomeRegistry = Biome.REGISTRY.iterator();
@@ -207,6 +206,9 @@ public class CommonProxy {
             VillagerRegistry.instance().registerVillageCreationHandler(new MoogleHouse.VillageManager());
             MapGenStructureIO.registerStructureComponent(MoogleHouse.class, Reference.MODID + ":moogle_house");
         }
+
+        VillagerRegistry.VillagerProfession librarian = ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new ResourceLocation("minecraft:librarian"));
+        librarian.getCareer(1).addTrade(1, new VillagerTrades());
 
         // Chest loot init
         MinecraftForge.EVENT_BUS.register(new ChestGen());
