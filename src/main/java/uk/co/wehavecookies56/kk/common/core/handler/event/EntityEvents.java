@@ -251,7 +251,11 @@ public class EntityEvents {
     @SubscribeEvent
     public void potentialSpawns(WorldEvent.PotentialSpawns event) {
         if (event.getType() == KingdomKeys.HEARTLESS) {
-            event.setCanceled(!WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).spawnHeartless);
+            if (!WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).spawnHeartless) {
+                event.setCanceled(true);
+            } else if (event.getWorld().getLight(event.getPos()) > 7 && event.getWorld().isDaytime()) {
+                event.setCanceled(true);
+            }
         }
     }
 
@@ -801,8 +805,8 @@ public class EntityEvents {
         if (!DS.getActiveDriveName().equals("none") && DriveFormRegistry.isDriveFormRegistered(DS.getActiveDriveName())) {
             DriveFormRegistry.get(DS.getActiveDriveName()).update(event.player);
         }
-        List<Entity> entities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().grow(16.0D, 10.0D, 16.0D));
-        List<Entity> bossEntities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().grow(150.0D, 100.0D, 150.0D));
+        List<Entity> entities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().grow(16.0D, 10.0D, 16.0D).offset(-8.0D, -5.0D, -8.0D));
+        List<Entity> bossEntities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().grow(150.0D, 100.0D, 150.0D).offset(-75.0D, -50.0D, -75.0D));
         if (!bossEntities.isEmpty()) {
             for (int i = 0; i < bossEntities.size(); i++) {
                 if (bossEntities.get(i) instanceof EntityDragon || bossEntities.get(i) instanceof EntityWither) {
