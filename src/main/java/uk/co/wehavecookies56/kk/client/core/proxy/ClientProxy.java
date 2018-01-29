@@ -76,6 +76,7 @@ import uk.co.wehavecookies56.kk.client.gui.GuiLockOn;
 import uk.co.wehavecookies56.kk.client.gui.GuiMP;
 import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
 import uk.co.wehavecookies56.kk.client.gui.GuiPlayerPortrait;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelCrimsonJazz;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelMoogle;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelRedNocturne;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelShadow;
@@ -924,8 +925,8 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityYellowOpera.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, "yellowopera"));
         RenderingRegistry.registerEntityRenderingHandler(EntityGreenRequiem.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, "greenrequiem"));
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverRock.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, "silverrock"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityCrimsonJazz.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, "crimsonjazz"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityEmeraldBlues.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, "emeraldblues"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityCrimsonJazz.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelCrimsonJazz(), 1.1F, "crimsonjazz"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityEmeraldBlues.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelCrimsonJazz(), 1.1F, "emeraldblues"));
         RenderingRegistry.registerEntityRenderingHandler(EntityMoogle.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMoogle(), 1, "moogle"));
     }
 

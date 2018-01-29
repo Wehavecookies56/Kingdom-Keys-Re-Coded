@@ -75,7 +75,6 @@ public abstract class DriveForm {
 
     public void initDrive (EntityPlayer player) {
     	String form = getName();
-    	System.out.println(form);
     	if (!summonKeyblades(player)) {
             player.world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
             return;
@@ -127,7 +126,6 @@ public abstract class DriveForm {
                     }
                 }
             }else{
-            	System.out.println(FMLCommonHandler.instance().getEffectiveSide());
                 endDrive(player);
                 if (player.world.isRemote) {
                     PacketDispatcher.sendToServer(new DriveFormPacket(getName(), true));

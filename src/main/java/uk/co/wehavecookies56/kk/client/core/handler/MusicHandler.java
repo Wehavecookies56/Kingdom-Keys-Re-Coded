@@ -127,11 +127,9 @@ public class MusicHandler implements ITickable {
     }
 
     public void playMusic(SoundEvent music, MusicType type) {
-        System.out.println(music.getSoundName());
         currentlyPlaying = PositionedSoundRecord.getMusicRecord(music);
         for (int i = 0; i < type.getMusic().length; i++) {
             if (mc.getSoundHandler().isSoundPlaying(PositionedSoundRecord.getMusicRecord(type.getMusic()[i]))) {
-                System.out.println("Already playing");
                 return;
             }
         }

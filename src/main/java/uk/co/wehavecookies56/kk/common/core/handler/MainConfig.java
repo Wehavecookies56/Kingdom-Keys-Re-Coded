@@ -105,6 +105,21 @@ public class MainConfig {
         public int greenRequiemRatio = 5;
 
         @Config.RequiresMcRestart
+        @Config.Name("Crimson Jazz spawning ratio")
+        @Config.Comment("Sets Crimson Jazz heartless spawning ratio")
+        public int crimsonJazzRatio = 5;
+
+        @Config.RequiresMcRestart
+        @Config.Name("Emerald Blues spawning ratio")
+        @Config.Comment("Sets Emerald Blues heartless spawning ratio")
+        public int emeraldBluesRatio = 5;
+
+        @Config.RequiresMcRestart
+        @Config.Name("Silver Rock spawning ratio")
+        @Config.Comment("Sets Silver Rock heartless spawning ratio")
+        public int silverRockRatio = 5;
+
+        @Config.RequiresMcRestart
         @Config.Name("Moogle spawning ratio")
         @Config.Comment("Moogle spawning ratio")
         public int moogleRatio = 5;

@@ -418,7 +418,7 @@ public class EntityEvents {
         entityDrops.add(new EntityDropEntry(EntityRedNocturne.class, ModItems.blazingShard.createStack(), 20));
         entityDrops.add(new EntityDropEntry(EntityBlaze.class, ModItems.blazingStone.createStack(), 20));
         entityDrops.add(new EntityDropEntry(EntityMagmaCube.class, ModItems.blazingGem.createStack(), 20));
-        //entityDrops.add(new EntityDropEntry(EntityCrimsonJazz.class, ModItems.blazingCrystal.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityCrimsonJazz.class, ModItems.blazingCrystal.createStack(), 20));
 
         //Frost
         entityDrops.add(new EntityDropEntry(EntityPolarBear.class, ModItems.frostShard.createStack(), 20));
@@ -430,7 +430,7 @@ public class EntityEvents {
         entityDrops.add(new EntityDropEntry(EntityYellowOpera.class, ModItems.lightningShard.createStack(), 20));
         entityDrops.add(new EntityDropEntry(EntityGuardian.class, ModItems.lightningStone.createStack(), 20));
         entityDrops.add(new EntityDropEntry(EntityIllusionIllager.class, ModItems.lightningGem.createStack(), 20));
-        //entityDrops.add(new EntityDropEntry(EntityEmeraldBlues.class, ModItems.lightningCrystal.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntityEmeraldBlues.class, ModItems.lightningCrystal.createStack(), 20));
 
         //Lucid
         entityDrops.add(new EntityDropEntry(EntityZombie.class, ModItems.lucidShard.createStack(), 20));
@@ -440,7 +440,7 @@ public class EntityEvents {
 
         //Power
         entityDrops.add(new EntityDropEntry(EntityCreeper.class, ModItems.powerShard.createStack(), 20));
-        //entityDrops.add(new EntityDropEntry(EntitySilverRock.class, ModItems.powerStone.createStack(), 20));
+        entityDrops.add(new EntityDropEntry(EntitySilverRock.class, ModItems.powerStone.createStack(), 20));
         entityDrops.add(new EntityDropEntry(EntityGhast.class, ModItems.powerGem.createStack(), 20));
         entityDrops.add(new EntityDropEntry(EntityWither.class, ModItems.powerCrystal.createStack(), 66));
 
@@ -780,6 +780,10 @@ public class EntityEvents {
                         }
                     }
                 }
+            } else if (player.dimension == ModDimensions.traverseTownID) {
+                if (player.getPosition().getX() == 193 && player.getPosition().getZ() == 161 && player.getPosition().getY() == 6) {
+                    new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
+                }
             }
         }
         //PacketDispatcher.sendTo(new SyncLevelData(event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)event.player);
@@ -890,7 +894,6 @@ public class EntityEvents {
 
             if(!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
                 if(player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof IOrgWeapon) {
-                    System.out.println(event.getAmount());
                     event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
                 }
             }

@@ -176,7 +176,6 @@ public class GuiHP extends GuiScreen {
                 drawHPBarTopRed(0, 0, (int) ((hpBarWidth - (4 * scale))), scale);
                 
 				counter++;
-				System.out.println(counter);
 				if(counter >= 1380) {
             		counter = 0;
             		player.playSound(ModSounds.alarm, 1, 1);

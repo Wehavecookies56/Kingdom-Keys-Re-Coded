@@ -10,10 +10,12 @@ import java.util.Map;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Biomes;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeHell;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -147,8 +149,8 @@ public class CommonProxy {
         EntityHelper.registerEntity("yellowopera", EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());
         EntityHelper.registerEntity("greenrequiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
         EntityHelper.registerEntity("silverrock", EntitySilverRock.class, Color.LIGHT_GRAY.getRGB(), Color.darkGray.getRGB());
-        EntityHelper.registerEntity("crimsonjazz", EntityCrimsonJazz.class, Color.green.getRGB(), Color.blue.getRGB());
-        EntityHelper.registerEntity("emeraldblues", EntityEmeraldBlues.class, Color.black.getRGB(), Color.red.getRGB());
+        EntityHelper.registerEntity("crimsonjazz", EntityCrimsonJazz.class, Color.black.getRGB(), Color.red.getRGB());
+        EntityHelper.registerEntity("emeraldblues", EntityEmeraldBlues.class, Color.green.getRGB(), Color.blue.getRGB());
         EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
 
         Iterator<Biome> biomeRegistry = Biome.REGISTRY.iterator();
@@ -177,7 +179,12 @@ public class CommonProxy {
             EntityRegistry.addSpawn(EntityYellowOpera.class, MainConfig.entities.yellowOperaRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
         if (MainConfig.entities.greenRequiemRatio != 0)
             EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
-
+        if (MainConfig.entities.emeraldBluesRatio != 0)
+            EntityRegistry.addSpawn(EntityEmeraldBlues.class, MainConfig.entities.emeraldBluesRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.silverRockRatio != 0)
+            EntityRegistry.addSpawn(EntitySilverRock.class, MainConfig.entities.silverRockRatio, 1, 1, KingdomKeys.HEARTLESS, Biomes.SKY);
+        if (MainConfig.entities.crimsonJazzRatio != 0)
+            EntityRegistry.addSpawn(EntityCrimsonJazz.class, MainConfig.entities.crimsonJazzRatio, 1, 1, KingdomKeys.HEARTLESS, Biomes.HELL);
         if (MainConfig.entities.moogleRatio != 0)
             EntityRegistry.addSpawn(EntityMoogle.class, MainConfig.entities.moogleRatio, 1, 1, KingdomKeys.MOOGLE, biomesArray);
 
