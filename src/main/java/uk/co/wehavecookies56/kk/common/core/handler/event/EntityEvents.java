@@ -876,8 +876,8 @@ public class EntityEvents {
                         event.setCanceled(true);
                     } else {*/
                 		//If the player has a real weapon in any slot
-                        if(!(player.getHeldItemMainhand().getItem() instanceof ItemKeyblade || player.getHeldItemMainhand().getItem() instanceof ItemOrgWeapon ||
-                        	 player.getHeldItemOffhand().getItem() instanceof ItemKeyblade || player.getHeldItemOffhand().getItem() instanceof ItemOrgWeapon)) {
+                        if(!(player.getHeldItemMainhand().getItem() instanceof ItemKeyblade || player.getHeldItemMainhand().getItem() instanceof IOrgWeapon ||
+                        	 player.getHeldItemOffhand().getItem() instanceof ItemKeyblade || player.getHeldItemOffhand().getItem() instanceof IOrgWeapon)) {
                             event.setCanceled(true);
                         }
                     //}
@@ -889,7 +889,7 @@ public class EntityEvents {
             if(event.getSource().getDamageType().equals("thorns")) return;
 
             if(!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
-                if(player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemOrgWeapon) {
+                if(player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof IOrgWeapon) {
                     System.out.println(event.getAmount());
                     event.setAmount(event.getAmount()-4 + DamageCalculation.getStrengthDamage(player));
                 }

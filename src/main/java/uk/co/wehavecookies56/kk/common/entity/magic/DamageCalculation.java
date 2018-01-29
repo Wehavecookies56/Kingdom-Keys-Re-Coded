@@ -7,6 +7,7 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.org.ItemClaymore;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
@@ -58,7 +59,7 @@ public class DamageCalculation {
     /**
      * Magic
      */
-    public static float getMagicDamage(EntityPlayer player, int level, ItemOrgWeapon weapon) {
+    public static float getMagicDamage(EntityPlayer player, int level, IOrgWeapon weapon) {
         if (player != null) {
             float damage = 0;
             float finalDamage = 0;
@@ -153,8 +154,8 @@ public class DamageCalculation {
         if (player != null) {
             float damage = 0;
             float finalDamage = 0;
-            if (weapon.getItem() instanceof ItemOrgWeapon) {
-                damage = (float) (((ItemOrgWeapon) weapon.getItem()).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
+            if (weapon.getItem() instanceof IOrgWeapon) {
+                damage = (float) (((IOrgWeapon) weapon.getItem()).getStrength() + player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
 
                 switch (player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName()) {
                     case Strings.Form_Valor:
@@ -191,7 +192,7 @@ public class DamageCalculation {
 
             if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade) {
                 finalDamage = getStrengthDamage(player, (ItemKeyblade) player.getHeldItemMainhand().getItem());
-            } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemOrgWeapon) {
+            } else if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof IOrgWeapon) {
                 finalDamage = getOrgStrengthDamage(player, player.getHeldItemMainhand());
             }
             return finalDamage;

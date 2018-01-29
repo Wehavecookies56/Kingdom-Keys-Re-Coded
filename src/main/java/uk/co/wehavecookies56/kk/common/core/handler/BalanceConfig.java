@@ -21,6 +21,10 @@ public class BalanceConfig {
 	@Config.LangKey("kk.balance.orgweapons")
 	public static OrgWeapons orgweapons = new OrgWeapons();
 
+    @Config.Comment("Set Other Weapon's Strength and Magic values")
+    @Config.LangKey("kk.balance.other")
+    public static Other other = new Other();
+
 	public static class Keyblades {
 		// Keyblade configs
 		@Config.RequiresMcRestart
@@ -45,8 +49,6 @@ public class BalanceConfig {
 				diamondDust = new int[] { 3, 10 },
 				divewing = new int[] { 8, 8 },
 				divineRose = new int[] { 11, 0 },
-				dreamStaff = new int[] { 0, 1 },
-				dreamSword = new int[] { 1, 0 },
 				dualDisc = new int[] { 5, 3 },
 				earthshaker = new int[] { 4, 0 },
 				endofPain = new int[] { 10, 8 },
@@ -232,7 +234,30 @@ public class BalanceConfig {
 				wyvern = new double[] { 9, 4 },
 
 				//Vexen
-				//TODO ??? Should have some strength and magic, should we implement in ItemOrgShield the strength and magic stats?
+				testerzero = new double[] { 5, 10 },
+				productone = new double[] { 6, 10 },
+				deepfreeze = new double[] { 6, 11 },
+				cryoliteshield = new double[] { 7, 11 },
+				falsetheory = new double[] { 7, 12 },
+				glacier = new double[] { 7, 13 },
+				absolutezero = new double[] { 8, 13 },
+                gunz = new double[] { 9, 13 },
+                mindel = new double[] { 9, 14 },
+                snowslide = new double[] { 9, 15 },
+                iceberg = new double[] { 10, 15 },
+                inquisition = new double[] { 11, 15 },
+                scrutiny = new double[] { 11, 16 },
+                empiricism = new double[] { 12, 16 },
+                edification = new double[] { 12, 17 },
+                contrivance = new double[] { 12, 18 },
+                wurm = new double[] { 13, 18 },
+                subzero = new double[] { 13, 19 },
+                coldblood = new double[] { 14, 19 },
+                diamondshield = new double[] { 15, 19 },
+                aegis = new double[] { 15, 20 },
+                frozenpride = new double[] { 16, 20 },
+				potlid = new double[] { 5, 10 },
+				snowman = new double[] { 5, 10 },
 
 				//Lexaeus
 				reticence = new double[] { 10, 2 },
@@ -446,6 +471,18 @@ public class BalanceConfig {
 				ampoule = new double[] { 8, 6 };
 
 	}
+
+	public static class Other {
+        @Config.RequiresMcRestart
+        public int[] dreamStaff = new int[] { 0, 1 };
+
+        @Config.RequiresMcRestart
+        public int[] dreamSword = new int[] { 1, 0 };
+
+        @Config.RequiresMcRestart
+        public double[] dreamShield = new double[] { 0, 0 };
+
+    }
 
 	@Mod.EventBusSubscriber(modid = Reference.MODID)
 	private static class Events {

@@ -2301,30 +2301,30 @@ public class ModItems {
             event.getRegistry().register(new ItemLances(Strings.Wyvern, BalanceConfig.orgweapons.wyvern));
 
             // Vexen
-            event.getRegistry().register(new ItemOrgShield(Strings.TesterZero));
-            event.getRegistry().register(new ItemOrgShield(Strings.ProductOne));
-            event.getRegistry().register(new ItemOrgShield(Strings.DeepFreeze));
-            event.getRegistry().register(new ItemOrgShield(Strings.CryoliteShield));
-            event.getRegistry().register(new ItemOrgShield(Strings.FalseTheory));
-            event.getRegistry().register(new ItemOrgShield(Strings.Glacier));
-            event.getRegistry().register(new ItemOrgShield(Strings.AbsoluteZero));
-            event.getRegistry().register(new ItemOrgShield(Strings.Gunz));
-            event.getRegistry().register(new ItemOrgShield(Strings.Mindel));
-            event.getRegistry().register(new ItemOrgShield(Strings.Snowslide));
-            event.getRegistry().register(new ItemOrgShield(Strings.Iceberg));
-            event.getRegistry().register(new ItemOrgShield(Strings.Inquisition));
-            event.getRegistry().register(new ItemOrgShield(Strings.Scrutiny));
-            event.getRegistry().register(new ItemOrgShield(Strings.Empiricism));
-            event.getRegistry().register(new ItemOrgShield(Strings.Edification));
-            event.getRegistry().register(new ItemOrgShield(Strings.Contrivance));
-            event.getRegistry().register(new ItemOrgShield(Strings.Wurm));
-            event.getRegistry().register(new ItemOrgShield(Strings.Subzero));
-            event.getRegistry().register(new ItemOrgShield(Strings.ColdBlood));
-            event.getRegistry().register(new ItemOrgShield(Strings.DiamondShield));
-            event.getRegistry().register(new ItemOrgShield(Strings.Aegis));
-            event.getRegistry().register(new ItemOrgShield(Strings.FrozenPride));
-            event.getRegistry().register(new ItemOrgShield(Strings.PotLid));
-            event.getRegistry().register(new ItemOrgShield(Strings.Snowman));
+            event.getRegistry().register(new ItemOrgShield(Strings.TesterZero, BalanceConfig.orgweapons.testerzero));
+            event.getRegistry().register(new ItemOrgShield(Strings.ProductOne, BalanceConfig.orgweapons.productone));
+            event.getRegistry().register(new ItemOrgShield(Strings.DeepFreeze, BalanceConfig.orgweapons.deepfreeze));
+            event.getRegistry().register(new ItemOrgShield(Strings.CryoliteShield, BalanceConfig.orgweapons.cryoliteshield));
+            event.getRegistry().register(new ItemOrgShield(Strings.FalseTheory, BalanceConfig.orgweapons.falsetheory));
+            event.getRegistry().register(new ItemOrgShield(Strings.Glacier, BalanceConfig.orgweapons.glacier));
+            event.getRegistry().register(new ItemOrgShield(Strings.AbsoluteZero, BalanceConfig.orgweapons.absolutezero));
+            event.getRegistry().register(new ItemOrgShield(Strings.Gunz, BalanceConfig.orgweapons.gunz));
+            event.getRegistry().register(new ItemOrgShield(Strings.Mindel, BalanceConfig.orgweapons.mindel));
+            event.getRegistry().register(new ItemOrgShield(Strings.Snowslide, BalanceConfig.orgweapons.snowslide));
+            event.getRegistry().register(new ItemOrgShield(Strings.Iceberg, BalanceConfig.orgweapons.iceberg));
+            event.getRegistry().register(new ItemOrgShield(Strings.Inquisition, BalanceConfig.orgweapons.inquisition));
+            event.getRegistry().register(new ItemOrgShield(Strings.Scrutiny, BalanceConfig.orgweapons.scrutiny));
+            event.getRegistry().register(new ItemOrgShield(Strings.Empiricism, BalanceConfig.orgweapons.empiricism));
+            event.getRegistry().register(new ItemOrgShield(Strings.Edification, BalanceConfig.orgweapons.edification));
+            event.getRegistry().register(new ItemOrgShield(Strings.Contrivance, BalanceConfig.orgweapons.contrivance));
+            event.getRegistry().register(new ItemOrgShield(Strings.Wurm, BalanceConfig.orgweapons.wurm));
+            event.getRegistry().register(new ItemOrgShield(Strings.Subzero, BalanceConfig.orgweapons.subzero));
+            event.getRegistry().register(new ItemOrgShield(Strings.ColdBlood, BalanceConfig.orgweapons.coldblood));
+            event.getRegistry().register(new ItemOrgShield(Strings.DiamondShield, BalanceConfig.orgweapons.diamondshield));
+            event.getRegistry().register(new ItemOrgShield(Strings.Aegis, BalanceConfig.orgweapons.aegis));
+            event.getRegistry().register(new ItemOrgShield(Strings.FrozenPride, BalanceConfig.orgweapons.frozenpride));
+            event.getRegistry().register(new ItemOrgShield(Strings.PotLid, BalanceConfig.orgweapons.potlid));
+            event.getRegistry().register(new ItemOrgShield(Strings.Snowman, BalanceConfig.orgweapons.snowman));
 
             // Lexaeus
             event.getRegistry().register(new ItemAxeSword(Strings.Reticence, BalanceConfig.orgweapons.reticence));
@@ -2534,7 +2534,7 @@ public class ModItems {
             event.getRegistry().register(new ItemKnife(Strings.Demoiselle, BalanceConfig.orgweapons.demoiselle));
             event.getRegistry().register(new ItemKnife(Strings.Ampoule, BalanceConfig.orgweapons.ampoule));
 
-            event.getRegistry().register(new ItemOrgShield(Strings.DreamShield));
+            event.getRegistry().register(new ItemOrgShield(Strings.DreamShield, BalanceConfig.other.dreamShield));
 
             //keyblades
             event.getRegistry().register(new ItemRealKeyblade(Strings.AbaddonPlasma, BalanceConfig.keyblades.abaddonPlasma[0], BalanceConfig.keyblades.abaddonPlasma[1]));
@@ -2557,8 +2557,8 @@ public class ModItems {
             event.getRegistry().register(new ItemRealKeyblade(Strings.DiamondDust, BalanceConfig.keyblades.diamondDust[0], BalanceConfig.keyblades.diamondDust[1]));
             event.getRegistry().register(new ItemRealKeyblade(Strings.Divewing, BalanceConfig.keyblades.divewing[0], BalanceConfig.keyblades.divewing[1]));
             event.getRegistry().register(new ItemRealKeyblade(Strings.DivineRose, BalanceConfig.keyblades.divineRose[0], BalanceConfig.keyblades.divineRose[1]));
-            event.getRegistry().register(new ItemKeyblade(Strings.DreamStaff, BalanceConfig.keyblades.dreamStaff[0], BalanceConfig.keyblades.dreamStaff[1]));
-            event.getRegistry().register(new ItemKeyblade(Strings.DreamSword, BalanceConfig.keyblades.dreamSword[0], BalanceConfig.keyblades.dreamSword[1]));
+            event.getRegistry().register(new ItemKeyblade(Strings.DreamStaff, BalanceConfig.other.dreamStaff[0], BalanceConfig.other.dreamStaff[1]));
+            event.getRegistry().register(new ItemKeyblade(Strings.DreamSword, BalanceConfig.other.dreamSword[0], BalanceConfig.other.dreamSword[1]));
             event.getRegistry().register(new ItemRealKeyblade(Strings.DualDisc, BalanceConfig.keyblades.dualDisc[0], BalanceConfig.keyblades.dualDisc[1]));
             event.getRegistry().register(new ItemRealKeyblade(Strings.Earthshaker, BalanceConfig.keyblades.earthshaker[0], BalanceConfig.keyblades.earthshaker[1]));
             event.getRegistry().register(new ItemRealKeyblade(Strings.EndofPain, BalanceConfig.keyblades.endofPain[0], BalanceConfig.keyblades.endofPain[1]));

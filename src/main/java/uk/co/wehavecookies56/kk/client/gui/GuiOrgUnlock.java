@@ -19,6 +19,7 @@ import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgWeaponUnlock;
@@ -484,8 +485,8 @@ public class GuiOrgUnlock extends GuiScreen {
         fontRenderer.drawString("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints(), posX + 256 - fontRenderer.getStringWidth("Points: " + Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getUnlockPoints()) - 5, posY + 5, 0x2B2B2B);
         super.drawScreen(mouseX, mouseY, partialTicks);
         if (selected != null) {
-        	int str = (int) (Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == OrgMember.ROXAS ? ((ItemKeyblade)selected.getUnlock()).getStrength() : ((ItemOrgWeapon)selected.getUnlock()).getStrength());
-        	int mag = (int) (Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == OrgMember.ROXAS ? ((ItemKeyblade)selected.getUnlock()).getMagic() : ((ItemOrgWeapon)selected.getUnlock()).getMagic());
+        	int str = (int) (Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == OrgMember.ROXAS ? ((ItemKeyblade)selected.getUnlock()).getStrength() : ((IOrgWeapon)selected.getUnlock()).getStrength());
+        	int mag = (int) (Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == OrgMember.ROXAS ? ((ItemKeyblade)selected.getUnlock()).getMagic() : ((IOrgWeapon)selected.getUnlock()).getMagic());
             fontRenderer.drawString(new ItemStack(selected.unlock).getDisplayName()+": ["+str+", "+mag+"]", (width / 2) - (texWidth / 2) + 15, (height / 2) - (texHeight / 2) + 180, 0x2B2B2B);
         }
     }

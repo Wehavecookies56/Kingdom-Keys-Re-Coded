@@ -15,6 +15,7 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
@@ -70,8 +71,8 @@ public class GuiRecipeList extends GuiScrollingList {
             Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)));
         if (item instanceof ItemKeyblade) {
             drawStats((ItemKeyblade)item, var1, var3, colour);
-        } else if (item instanceof ItemOrgWeapon) {
-            drawStats((ItemOrgWeapon) item, var1, var3, colour);
+        } else if (item instanceof IOrgWeapon) {
+            drawStats((IOrgWeapon) item, var1, var3, colour);
         } else {
             this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
             this.ir.renderItemAndEffectIntoGUI(new ItemStack(item), this.left + 3, var3 + 12);
@@ -89,10 +90,10 @@ public class GuiRecipeList extends GuiScrollingList {
         this.f.drawString("Mag: "+ plus +item.getMagic(),this.left + 25, var3 + 20, 0x4444FF);
     }
 
-    public void drawStats(ItemOrgWeapon item, int var1, int var3, int colour) {
+    public void drawStats(IOrgWeapon item, int var1, int var3, int colour) {
         SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
         this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
-        this.ir.renderItemAndEffectIntoGUI(new ItemStack(item), this.left + 3, var3 + 12);
+        this.ir.renderItemAndEffectIntoGUI(new ItemStack(item.getItem()), this.left + 3, var3 + 12);
         String plus = item.getStrength() < 0 ? "" : "+";
         this.f.drawString("Str: "+ plus +item.getStrength(),this.left + 25, var3 + 12, 0xFF0000);
         plus = item.getMagic() < 0 ? "" : "+";

@@ -1,14 +1,17 @@
 package uk.co.wehavecookies56.kk.common.item.base;
 
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
-public class ItemOrgWeapon extends ItemSword{
+public class ItemOrgWeapon extends ItemSword implements IOrgWeapon {
     double magic, strength;
     public String description;
     double speed = 1.0;
@@ -22,10 +25,13 @@ public class ItemOrgWeapon extends ItemSword{
         this.magic = stats[1];
         setMaxStackSize(1);
     }
+
+    @Override
     public double getStrength() {
         return this.strength;
     }
 
+    @Override
     public double getMagic() {
         return this.magic;
     }
@@ -38,10 +44,12 @@ public class ItemOrgWeapon extends ItemSword{
         this.magic = magic;
     }
 
+    @Override
     public void setDescription(String description) {
         this.description = description;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
@@ -60,4 +68,13 @@ public class ItemOrgWeapon extends ItemSword{
         return EnumRarity.UNCOMMON;
     }
 
+    @Override
+    public Utils.OrgMember getMember() {
+        return Utils.OrgMember.NONE;
+    }
+
+    @Override
+    public Item getItem() {
+        return this;
+    }
 }

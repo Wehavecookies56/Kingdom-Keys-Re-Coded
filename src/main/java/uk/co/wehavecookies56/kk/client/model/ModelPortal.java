@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
 import org.lwjgl.opengl.GL11;
@@ -26,6 +27,8 @@ public class ModelPortal extends ModelBase
         try {
             model = (OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("kk:models/block/portal.obj"));
             modelParts = ModelHelper.getModelsForGroups(model);
+        } catch (ModelLoaderRegistry.LoaderException e) {
+            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

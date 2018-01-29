@@ -325,8 +325,8 @@ public class ItemEvents {
         }
         //List<String> tooltip = event.getToolTip();
 
-        if (event.getItemStack().getItem() instanceof ItemOrgWeapon) {
-            ItemOrgWeapon weapon = (ItemOrgWeapon) event.getItemStack().getItem();
+        if (event.getItemStack().getItem() instanceof IOrgWeapon) {
+            IOrgWeapon weapon = (IOrgWeapon) event.getItemStack().getItem();
             (tooltip.subList(1, tooltip.size())).clear();
 
             NBTTagList nbttaglist = event.getItemStack().getEnchantmentTagList();
@@ -350,7 +350,7 @@ public class ItemEvents {
             if (weapon.getDescription() != null) {
                 if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                     tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
-                    tooltip.add(weapon.description);
+                    tooltip.add(weapon.getDescription());
                     tooltip.add("");
                 } else {
                     tooltip.add("Hold " +  TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY + " for description");

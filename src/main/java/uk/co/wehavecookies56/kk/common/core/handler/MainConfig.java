@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 /**
@@ -171,7 +172,7 @@ public class MainConfig {
         if (client.hud.AlwaysShowGUI == 0)
             return false;
         Minecraft mc = Minecraft.getMinecraft();
-        return ((client.hud.AlwaysShowGUI == 2) || ((!ItemStack.areItemStacksEqual(mc.player.getHeldItemMainhand(), ItemStack.EMPTY)) && ((mc.player.getHeldItemMainhand().getItem() instanceof ItemKeyblade) || mc.player.getHeldItemMainhand().getItem() instanceof ItemOrgWeapon)));
+        return ((client.hud.AlwaysShowGUI == 2) || ((!ItemStack.areItemStacksEqual(mc.player.getHeldItemMainhand(), ItemStack.EMPTY)) && ((mc.player.getHeldItemMainhand().getItem() instanceof ItemKeyblade) || mc.player.getHeldItemMainhand().getItem() instanceof IOrgWeapon)));
     }
 
     @Mod.EventBusSubscriber(modid = Reference.MODID)
