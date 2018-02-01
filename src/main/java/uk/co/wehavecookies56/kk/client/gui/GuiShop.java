@@ -275,8 +275,6 @@ public class GuiShop extends GuiScreen {
                     sellList.occupyList();
                     quantity.setMaxValue(sellList.stackSizes.get(sellSelected));
                     sellConfirm.visible = true;
-                    //plus.visible = true;
-                    //minus.visible = true;
                     quantity.setVisible(true);
                     if (Integer.parseInt(quantity.getText()) > 0) {
                         sellConfirm.enabled = true;

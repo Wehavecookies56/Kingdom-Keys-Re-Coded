@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
@@ -44,14 +45,19 @@ public class TakeSoldItem extends AbstractMessage.AbstractServerMessage<TakeSold
     public void process (EntityPlayer player, Side side) {
         int quantityRemaining = quantity;
         for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
-            if (player.inventory.getStackInSlot(i).getItem() == soldItem.getItem()) {
-                if (quantityRemaining >= player.inventory.getStackInSlot(i).getCount()) {
-                    player.inventory.removeStackFromSlot(i);
-                    quantityRemaining -= player.inventory.getStackInSlot(i).getCount();
-                } else if (quantityRemaining < player.inventory.getStackInSlot(i).getCount()) {
-                    player.inventory.getStackInSlot(i).shrink(quantityRemaining);
-                }
-            }
+        	if(player.inventory.getStackInSlot(i).getItem() instanceof ItemSynthesisMaterial) {
+        		ItemStack invItem = player.inventory.getStackInSlot(i);
+	            if (invItem.getTagCompound().getString("material").equals(soldItem.getTagCompound().getString("material"))) { //If player has the item
+	        		//System.out.println(invItem.getTagCompound().getString("material")+">"+soldItem.getTagCompound().getString("material"));
+	                if (quantityRemaining >= player.inventory.getStackInSlot(i).getCount()) { //If the amount you want to sell is bigger or equals to the amount you have
+	                    player.inventory.removeStackFromSlot(i); //Remove the item
+	                    quantityRemaining -= player.inventory.getStackInSlot(i).getCount();
+	                } else if (quantityRemaining < player.inventory.getStackInSlot(i).getCount()) {
+	                    player.inventory.getStackInSlot(i).shrink(quantityRemaining);
+	                    quantityRemaining = 0;
+	                }
+	            }
+        	}
         }
         player.getCapability(ModCapabilities.MUNNY, null).addMunny(munnyToGive);
         PacketDispatcher.sendTo(new SyncMunnyData(player.getCapability(ModCapabilities.MUNNY, null)), (EntityPlayerMP) player);

@@ -15,12 +15,12 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIShadow;
 
-public class EntityShadow extends BaseEntityHeartless implements IKHMob {
+public class EntityMegaShadow extends BaseEntityHeartless implements IKHMob {
     // ENTITY_STATE : 1 - Invisible
 
-    public EntityShadow(World world) {
+    public EntityMegaShadow(World world) {
         super(world);
-        this.setSize(width, height/2);
+        this.setSize(width*2, height/2*2);
         this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
@@ -37,8 +37,8 @@ public class EntityShadow extends BaseEntityHeartless implements IKHMob {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.28D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
     }
 
     @Override
