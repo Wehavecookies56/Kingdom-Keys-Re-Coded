@@ -1,6 +1,11 @@
 package uk.co.wehavecookies56.kk.common.core.handler.event;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
@@ -9,8 +14,43 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.monster.EntityBlaze;
+import net.minecraft.entity.monster.EntityCaveSpider;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityElderGuardian;
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityEndermite;
+import net.minecraft.entity.monster.EntityEvoker;
+import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntityGuardian;
+import net.minecraft.entity.monster.EntityHusk;
+import net.minecraft.entity.monster.EntityIllusionIllager;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.EntityMagmaCube;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntityPolarBear;
+import net.minecraft.entity.monster.EntityShulker;
+import net.minecraft.entity.monster.EntitySilverfish;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.monster.EntitySnowman;
+import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.monster.EntityStray;
+import net.minecraft.entity.monster.EntityVex;
+import net.minecraft.entity.monster.EntityVindicator;
+import net.minecraft.entity.monster.EntityWitch;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.EntityZombieVillager;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityLlama;
+import net.minecraft.entity.passive.EntityParrot;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -22,7 +62,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -36,8 +75,6 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
@@ -60,12 +97,21 @@ import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
+import uk.co.wehavecookies56.kk.common.entity.EntityGummiShip;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
-import uk.co.wehavecookies56.kk.common.entity.mobs.*;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySilverRock;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
+import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.EntityDropEntry;
@@ -704,10 +750,21 @@ public class EntityEvents {
             }
         }
     }
+    
+    
 
     @SubscribeEvent
     public void onPlayerTick (TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
+        if(player.isRiding()) {
+        	if(player.getRidingEntity() instanceof EntityGummiShip) {
+                if (((EntityGummiShip)player.getRidingEntity()).backInputDown) {
+                	System.out.println("Open");
+                	//Open GUI or something to either telepor tto selected world or go to the lobby
+                }
+        	}
+        }
+        
         if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
             if (!ItemStack.areItemStacksEqual(player.inventory.armorInventory.get(0), ItemStack.EMPTY) && player.inventory.armorInventory.get(1) != ItemStack.EMPTY && player.inventory.armorInventory.get(2) != ItemStack.EMPTY && player.inventory.armorInventory.get(3) != ItemStack.EMPTY) {
             	boolean isWearingOrgArmor = player.inventory.armorInventory.get(0).getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.OrganizationRobe_Helmet;

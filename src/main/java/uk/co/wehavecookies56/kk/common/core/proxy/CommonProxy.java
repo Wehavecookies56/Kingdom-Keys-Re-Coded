@@ -15,7 +15,6 @@ import net.minecraft.util.IThreadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeHell;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -51,11 +50,22 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.crafting.KKOreDictionary;
 import uk.co.wehavecookies56.kk.common.crafting.ModItemsRecipes;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
+import uk.co.wehavecookies56.kk.common.entity.EntityGummiShip;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityFire;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
-import uk.co.wehavecookies56.kk.common.entity.mobs.*;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMegaShadow;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySilverRock;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
@@ -153,6 +163,9 @@ public class CommonProxy {
         EntityHelper.registerEntity("crimsonjazz", EntityCrimsonJazz.class, Color.black.getRGB(), Color.red.getRGB());
         EntityHelper.registerEntity("emeraldblues", EntityEmeraldBlues.class, Color.green.getRGB(), Color.blue.getRGB());
         EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
+        
+        EntityHelper.registerEntity("gummiship",EntityGummiShip.class);
+
 
         Iterator<Biome> biomeRegistry = Biome.REGISTRY.iterator();
         List<Biome> biomes = new ArrayList<>();
@@ -223,6 +236,7 @@ public class CommonProxy {
         // Chest loot init
         MinecraftForge.EVENT_BUS.register(new ChestGen());
         KingdomKeys.logger.info("Chest loot loaded");
+        
     }
 
     public void postInit (FMLPostInitializationEvent event) {
