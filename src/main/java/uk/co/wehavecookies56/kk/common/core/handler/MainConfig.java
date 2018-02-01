@@ -80,6 +80,11 @@ public class MainConfig {
         public int shadowRatio = 10;
 
         @Config.RequiresMcRestart
+        @Config.Name("Mega Shadow spawning ratio")
+        @Config.Comment("Sets Mega Shadow heartless spawning ratio")
+        public int megaShadowRatio = 4;
+        
+        @Config.RequiresMcRestart
         @Config.Name("Giga Shadow spawning ratio")
         @Config.Comment("Sets Giga Shadow heartless spawning ratio")
         public int gigaShadowRatio = 2;

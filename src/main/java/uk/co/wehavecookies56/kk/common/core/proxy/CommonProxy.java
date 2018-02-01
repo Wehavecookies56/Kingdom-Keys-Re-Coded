@@ -170,6 +170,8 @@ public class CommonProxy {
 
         if (MainConfig.entities.shadowRatio != 0)
             EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 3, 5, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.megaShadowRatio != 0)
+            EntityRegistry.addSpawn(EntityMegaShadow.class, MainConfig.entities.megaShadowRatio, 2, 3, KingdomKeys.HEARTLESS, biomesArray);
         if (MainConfig.entities.gigaShadowRatio != 0)
             EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
         if (MainConfig.entities.redNocturneRatio != 0)
