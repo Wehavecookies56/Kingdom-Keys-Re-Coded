@@ -77,6 +77,7 @@ import uk.co.wehavecookies56.kk.client.gui.GuiMP;
 import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
 import uk.co.wehavecookies56.kk.client.gui.GuiPlayerPortrait;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelCrimsonJazz;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelDarkball;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelMoogle;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelRedNocturne;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelShadow;
@@ -929,6 +930,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityCrimsonJazz.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelCrimsonJazz(), 1.1F, "crimsonjazz"));
         RenderingRegistry.registerEntityRenderingHandler(EntityEmeraldBlues.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelCrimsonJazz(), 1.1F, "emeraldblues"));
         RenderingRegistry.registerEntityRenderingHandler(EntityMoogle.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMoogle(), 1, "moogle"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkball.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelDarkball(), 1, "darkball"));
     }
 
     @Override
@@ -967,6 +969,12 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getMinecraft().effectRenderer.addEffect(particleTest);
     }
 
+    public void spawnDarkSmokeParticle(World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, float alpha) 
+    {
+        Particle particleTest = new EntityParticleFXTest(new ResourceLocation(Reference.MODID, "textures/fx/darksmoke.png"), world, posX, posY, posZ, motionX, motionY, motionZ, alpha);
+        Minecraft.getMinecraft().effectRenderer.addEffect(particleTest);
+    }
+    
     private void registerKeyBindings () {
         MinecraftForge.EVENT_BUS.register(new InputHandler());
         for (InputHandler.Keybinds key : InputHandler.Keybinds.values())

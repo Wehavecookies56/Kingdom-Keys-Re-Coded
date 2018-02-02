@@ -57,6 +57,7 @@ import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDarkball;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
@@ -163,6 +164,7 @@ public class CommonProxy {
         EntityHelper.registerEntity("crimsonjazz", EntityCrimsonJazz.class, Color.black.getRGB(), Color.red.getRGB());
         EntityHelper.registerEntity("emeraldblues", EntityEmeraldBlues.class, Color.green.getRGB(), Color.blue.getRGB());
         EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
+        EntityHelper.registerEntity("darkball", EntityDarkball.class, 0x020030, 0x492263);
         
         EntityHelper.registerEntity("gummiship",EntityGummiShip.class);
 
@@ -263,5 +265,7 @@ public class CommonProxy {
     }
 
     public void spawnTestParticle(World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, float alpha) {}
+
+    public void spawnDarkSmokeParticle(World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, float alpha) {}
 
 }

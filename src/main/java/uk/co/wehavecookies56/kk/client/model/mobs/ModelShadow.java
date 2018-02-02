@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.client.model.mobs;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 
 public class ModelShadow extends ModelBase
 {
@@ -201,7 +202,7 @@ public class ModelShadow extends ModelBase
             AntenaLeft2.render(f5);
             AntenaRight1.render(f5);
             AntenaRight2.render(f5);
-        //}
+       //}
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -215,7 +216,10 @@ public class ModelShadow extends ModelBase
     {
         updateDistanceMovedTotal(e);
         cycleIndex = (int) ((getDistanceMovedTotal() * CYCLES_PER_BLOCK) % animationWalk.length);
-
+        
+        if(EntityHelper.getState(e) == 1)
+        	System.out.println("" + EntityHelper.getState(e));
+        
         if(e.getDistance(e.prevPosX, e.prevPosY, e.prevPosZ) > 0)
         {
             LegLeft1.rotateAngleX = degToRad(animationWalk[cycleIndex][0]);
