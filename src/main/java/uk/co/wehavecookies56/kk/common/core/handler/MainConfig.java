@@ -65,7 +65,6 @@ public class MainConfig {
     }
 
     public static class Entities {
-
         @Config.Name("Disable mob drops")
         @Config.Comment("Disables all the items dropped from mobs added by KK (This includes: hearts, munny, hp, mp, dp, recipes}")
         public boolean disableDrops = false;
@@ -74,6 +73,7 @@ public class MainConfig {
         @Config.Comment("Remove an item from this list to disable it from dropping")
         public String[] dropsList = { "recipe", "darkheart", "heart", "pureheart", "kingdomhearts", "munny", "spellorb", "dporb", "hporb", "mporb" };
 
+        //Pureblood
         @Config.RequiresMcRestart
         @Config.Name("Shadow spawning ratio")
         @Config.Comment("Sets Shadow heartless spawning ratio")
@@ -82,13 +82,19 @@ public class MainConfig {
         @Config.RequiresMcRestart
         @Config.Name("Mega Shadow spawning ratio")
         @Config.Comment("Sets Mega Shadow heartless spawning ratio")
-        public int megaShadowRatio = 4;
+        public int megaShadowRatio = 5;
         
         @Config.RequiresMcRestart
         @Config.Name("Giga Shadow spawning ratio")
         @Config.Comment("Sets Giga Shadow heartless spawning ratio")
         public int gigaShadowRatio = 2;
-
+        
+        @Config.RequiresMcRestart
+        @Config.Name("Darkball spawning ratio")
+        @Config.Comment("Sets Darkball heartless spawning ratio")
+        public int darkballRatio = 4;
+        
+        //Emblem
         @Config.RequiresMcRestart
         @Config.Name("Red Nocturne spawning ratio")
         @Config.Comment("Sets Red Nocturne heartless spawning ratio")

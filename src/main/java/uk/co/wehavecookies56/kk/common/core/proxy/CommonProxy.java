@@ -183,12 +183,17 @@ public class CommonProxy {
         }
         Biome[] biomesArray = biomes.toArray(new Biome[biomes.size()]);
 
+        //Pureblood
         if (MainConfig.entities.shadowRatio != 0)
             EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 3, 5, KingdomKeys.HEARTLESS, biomesArray);
         if (MainConfig.entities.megaShadowRatio != 0)
             EntityRegistry.addSpawn(EntityMegaShadow.class, MainConfig.entities.megaShadowRatio, 2, 3, KingdomKeys.HEARTLESS, biomesArray);
         if (MainConfig.entities.gigaShadowRatio != 0)
             EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
+        if (MainConfig.entities.darkballRatio != 0)
+            EntityRegistry.addSpawn(EntityDarkball.class, MainConfig.entities.darkballRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
+
+        //Emblem
         if (MainConfig.entities.redNocturneRatio != 0)
             EntityRegistry.addSpawn(EntityRedNocturne.class, MainConfig.entities.redNocturneRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
         if (MainConfig.entities.blueRhapsodyRatio != 0)
@@ -203,6 +208,7 @@ public class CommonProxy {
             EntityRegistry.addSpawn(EntitySilverRock.class, MainConfig.entities.silverRockRatio, 1, 1, KingdomKeys.HEARTLESS, Biomes.SKY);
         if (MainConfig.entities.crimsonJazzRatio != 0)
             EntityRegistry.addSpawn(EntityCrimsonJazz.class, MainConfig.entities.crimsonJazzRatio, 1, 1, KingdomKeys.HEARTLESS, Biomes.HELL);
+
         if (MainConfig.entities.moogleRatio != 0)
             EntityRegistry.addSpawn(EntityMoogle.class, MainConfig.entities.moogleRatio, 1, 1, KingdomKeys.MOOGLE, biomesArray);
 
