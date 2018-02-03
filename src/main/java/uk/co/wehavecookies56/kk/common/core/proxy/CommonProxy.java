@@ -166,7 +166,7 @@ public class CommonProxy {
         EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
         EntityHelper.registerEntity("darkball", EntityDarkball.class, 0x020030, 0x492263);
         
-        EntityHelper.registerEntity("gummiship",EntityGummiShip.class);
+        EntityHelper.registerEntity("gummiship",EntityGummiShip.class, 0xFF0000, 0x6666AA);
 
 
         Iterator<Biome> biomeRegistry = Biome.REGISTRY.iterator();

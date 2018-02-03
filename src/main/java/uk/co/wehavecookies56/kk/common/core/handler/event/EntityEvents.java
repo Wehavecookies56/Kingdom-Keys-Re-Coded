@@ -58,6 +58,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
@@ -756,14 +757,23 @@ public class EntityEvents {
     @SubscribeEvent
     public void onPlayerTick (TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
-        if(player.isRiding()) {
+       /* if(player.isRiding()) {
         	if(player.getRidingEntity() instanceof EntityGummiShip) {
-                if (((EntityGummiShip)player.getRidingEntity()).backInputDown) {
-                	System.out.println("Open");
-                	//Open GUI or something to either telepor tto selected world or go to the lobby
+        		/*float yaw = player.rotationYaw;
+        		float pitch = player.rotationPitch;
+        		float f = 1.0F;
+            	double motionX = (double)(-MathHelper.sin(yaw / 180.0F * (float)Math.PI) * MathHelper.cos(pitch / 180.0F * (float)Math.PI) * f);
+            	double motionZ = (double)(MathHelper.cos(yaw / 180.0F * (float)Math.PI) * MathHelper.cos(pitch / 180.0F * (float)Math.PI) * f);
+            	double motionY = (double)(-MathHelper.sin((pitch) / 180.0F * (float)Math.PI) * f);
+                if (((EntityGummiShip)player.getRidingEntity()).forwardInputDown) {
+                	player.getRidingEntity().setVelocity(motionX, motionY, motionZ);
+                }else if (((EntityGummiShip)player.getRidingEntity()).backInputDown) {
+                	player.getRidingEntity().setVelocity(-motionX, -motionY, -motionZ);
+
                 }
+				
         	}
-        }
+        }*/
         
         if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
             if (!ItemStack.areItemStacksEqual(player.inventory.armorInventory.get(0), ItemStack.EMPTY) && player.inventory.armorInventory.get(1) != ItemStack.EMPTY && player.inventory.armorInventory.get(2) != ItemStack.EMPTY && player.inventory.armorInventory.get(3) != ItemStack.EMPTY) {
@@ -771,7 +781,6 @@ public class EntityEvents {
             	boolean isWearingXemnasArmor = player.inventory.armorInventory.get(0).getItem() == ModItems.Xemnas_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.Xemnas_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.Xemnas_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.Xemnas_Helmet;
                 if (isWearingOrgArmor || isWearingXemnasArmor) {
                     if (!player.world.isRemote) {
-
                         if (!player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getOpenedGUI()) {
                             player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(true);
                             PacketDispatcher.sendTo(new OpenOrgGUI(), (EntityPlayerMP) player);
