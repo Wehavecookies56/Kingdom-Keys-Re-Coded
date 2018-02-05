@@ -51,14 +51,17 @@ public class GuiCommandMenu extends GuiScreen {
     public static List<String> spells;
     public static List<String> items;
 
-    public static final int SUB_MAIN = 0, SUB_MAGIC = 1, SUB_ITEMS = 2, SUB_DRIVE = 3;
+    public static final int SUB_MAIN = 0, SUB_MAGIC = 1, SUB_ITEMS = 2, SUB_DRIVE = 3, SUB_PORTALS = 4;
 
     public static final int NONE = 0;
     public static int selected = ATTACK;
-    public static int submenu = 0;
-    public static int magicselected = 0;
-    public static int potionselected = 0;
-    public static int driveselected = 0;
+    public static int 
+    		submenu = 0,
+    		magicselected = 0,
+    		potionselected = 0,
+    		driveselected = 0,
+    		portalSelected = 0;
+    
     public static boolean FireUnlocked, BlizzardUnlocked, ThunderUnlocked, CureUnlocked, GravityUnlocked, AeroUnlocked, StopUnlocked, ValorUnlocked, WisdomUnlocked, LimitUnlocked, MasterUnlocked, FinalUnlocked;
 
     ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/commandmenu.png");
@@ -218,6 +221,7 @@ public class GuiCommandMenu extends GuiScreen {
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         }
         GL11.glPopMatrix();
+        
         // MAGIC
         GL11.glPushMatrix();
         {

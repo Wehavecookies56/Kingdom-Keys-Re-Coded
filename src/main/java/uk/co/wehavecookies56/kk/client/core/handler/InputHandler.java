@@ -58,6 +58,7 @@ public class InputHandler {
     List<String> magicCommands;
     List<String> itemsCommands;
     List<String> driveCommands;
+    List<String> portalCommands;
 
     public static EntityLivingBase lockOn = null;
 
@@ -101,15 +102,27 @@ public class InputHandler {
         this.magicCommands = new ArrayList<String>();
         this.itemsCommands = new ArrayList<String>();
         this.driveCommands = new ArrayList<String>();
+        this.portalCommands = new ArrayList<String>();
+        
         this.magicCommands.clear();
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i), ItemStack.EMPTY)) this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
+        for (int i = 0; i < player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSlots(); i++)
+            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i), ItemStack.EMPTY))
+            	this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
+        
         this.itemsCommands.clear();
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i), ItemStack.EMPTY)) this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
+        for (int i = 0; i < player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSlots(); i++)
+            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i), ItemStack.EMPTY))
+            	this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
+        
         this.driveCommands.clear();
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), ItemStack.EMPTY)) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
+        for (int i = 0; i < player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSlots(); i++)
+            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), ItemStack.EMPTY)) 
+            	this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
+        
+        /*this.portalCommands.clear();
+        for(int i=0;i<player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortals().length;i++)
+        	System.out.println();*/
+        
         // Mainmenu
         if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
             if (GuiCommandMenu.selected == GuiCommandMenu.ATTACK)
@@ -218,7 +231,20 @@ public class InputHandler {
             case GuiCommandMenu.ATTACK:
                     player.swingArm(EnumHand.MAIN_HAND);
                 	if(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
-                        if(!player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge()){
+                		//Submenu of the portals
+                		if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
+                            if (!this.itemsCommands.isEmpty()) {
+                                GuiCommandMenu.submenu = GuiCommandMenu.SUB_PORTALS;
+                                GuiCommandMenu.portalSelected = 0;
+                                world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
+                            } else {
+                                GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+                                world.playSound(player, player.getPosition(), ModSounds.error, SoundCategory.MASTER, 1.0f, 1.0f);
+                            }
+                            return;
+                        }
+                		
+                     /*   if(!player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge()){
                             IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
 
                             if(orgXIII.getPortalX()!=0 && orgXIII.getPortalY()!=0 && orgXIII.getPortalZ()!=0){
@@ -239,7 +265,8 @@ public class InputHandler {
                             }else{
                                 player.sendMessage(new TextComponentString(TextFormatting.RED + "You don't have any portal destination"));
                             }
-                        }
+                        }*/
+                		
                     }
 
                     if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom))
