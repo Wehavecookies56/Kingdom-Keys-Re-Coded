@@ -109,8 +109,6 @@ public class GuiShop extends GuiScreen {
         this.buttonList.add(sell = new GuiButton(SELL, 5, 65 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Sell)));
         this.buttonList.add(buyConfirm = new GuiButton(BUYCONFIRM, 220, height - ((height / 8) + 70 / 16) - 25, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Buy)));
         this.buttonList.add(sellConfirm = new GuiButton(SELLCONFIRM, 220, height - ((height / 8) + 70 / 16) - 25, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Sell)));
-        //this.buttonList.add(plus = new GuiButton(PLUS, 100, 120, 10, 10, "+"));
-        //this.buttonList.add(minus = new GuiButton(MINUS, 110, 120, 10, 10, "-"));
         this.buttonList.add(synthesis = new GuiButton(SYNTHESIS, 5, 90 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Title)));
         quantity = new GuiNumberTextField(QUANTITY, Minecraft.getMinecraft().fontRenderer, 222, height - ((height / 8) + 70 / 16) - 45, 20, 15, 64);
         quantity.setText("0");
@@ -214,8 +212,6 @@ public class GuiShop extends GuiScreen {
             buyConfirm.enabled = false;
             sellConfirm.visible = false;
             sellConfirm.enabled = false;
-            //plus.visible = false;
-            //minus.visible = false;
             synthesis.visible = true;
             synthesis.enabled = true;
             quantity.setVisible(false);
@@ -243,8 +239,6 @@ public class GuiShop extends GuiScreen {
             sellConfirm.enabled = false;
             if (buySelected != -1) {
                 buyConfirm.visible = true;
-                //plus.visible = true;
-                //minus.visible = true;
                 quantity.setVisible(true);
                 if (!isInventoryFull()) {
                     if (!quantity.getText().isEmpty()) {
@@ -266,8 +260,6 @@ public class GuiShop extends GuiScreen {
             } else {
                 quantity.setVisible(false);
                 buyConfirm.visible = false;
-                //plus.visible = false;
-                //minus.visible = false;
             }
         } else if (submenu == SELL) {
             if (sellSelected != -1) {
@@ -287,8 +279,6 @@ public class GuiShop extends GuiScreen {
             } else {
                 quantity.setVisible(false);
                 sellConfirm.visible = false;
-                //plus.visible = false;
-                //minus.visible = false;
             }
             back.enabled = true;
             back.visible = true;

@@ -28,7 +28,7 @@ public class ModelShadow extends ModelBase
 
     // Default variables for every model
     protected double distanceMovedTotal = 0.0D; 
-    protected static final double CYCLES_PER_BLOCK = 1.0D; 
+    protected double CYCLES_PER_BLOCK; 
     protected int cycleIndex = 0;
     private int[][] ticksForWalkingAnimation = new int[][]
     {
@@ -46,8 +46,8 @@ public class ModelShadow extends ModelBase
         { 0        , 100    , -51    , -90    , 2        , -46},
     };
 
-    public ModelShadow()
-    {
+    public ModelShadow(double cycles){
+    	this.CYCLES_PER_BLOCK = cycles;
         textureWidth = 32;
         textureHeight = 32;
 
@@ -220,8 +220,7 @@ public class ModelShadow extends ModelBase
         if(EntityHelper.getState(e) == 1)
         	System.out.println("" + EntityHelper.getState(e));
         
-        if(e.getDistance(e.prevPosX, e.prevPosY, e.prevPosZ) > 0)
-        {
+        if(e.getDistance(e.prevPosX, e.prevPosY, e.prevPosZ) > 0){
             LegLeft1.rotateAngleX = degToRad(animationWalk[cycleIndex][0]);
             LegLeft2.rotateAngleX = degToRad(animationWalk[cycleIndex][1]);
             LegLeft3.rotateAngleX = degToRad(animationWalk[cycleIndex][2]);
@@ -229,9 +228,7 @@ public class ModelShadow extends ModelBase
             LegRight1.rotateAngleX = degToRad(animationWalk[cycleIndex][3]);
             LegRight2.rotateAngleX = degToRad(animationWalk[cycleIndex][4]);
             LegRight3.rotateAngleX = degToRad(animationWalk[cycleIndex][5]);
-        }
-        else
-        {
+        }else{
             LegLeft1.rotateAngleX = LegRight1.rotateAngleX = -0.7063936F;
             LegLeft2.rotateAngleX = LegRight2.rotateAngleX = 0.8922867F;
             LegLeft3.rotateAngleX = LegRight3.rotateAngleX = 0;
@@ -252,6 +249,6 @@ public class ModelShadow extends ModelBase
 
     protected float degToRad(double degrees)
     {
-        return (float) (degrees * (double)Math.PI / 180) ;
+        return (float) (degrees * (double)Math.PI / 180);
     }
 }
