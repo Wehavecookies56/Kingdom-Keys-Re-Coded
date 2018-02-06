@@ -30,9 +30,7 @@ public class OrganizationXIIICapability {
         boolean summonedWeapon(EnumHand hand);
         boolean getOpenedGUI();
         int getPortalDimension();
-        double getPortalX();
-        double getPortalY();
-        double getPortalZ();
+        double[] getPortalCoords(byte pID);
         int getUnlockPoints();
 
         List<Item> unlockedWeapons();
@@ -44,13 +42,10 @@ public class OrganizationXIIICapability {
         void setWeaponSummoned(EnumHand hand, boolean summoned);
         void setOpenedGUI(boolean opened);
         void setPortalDimension(int dimension);
-        void setPortalX(double x);
-        void setPortalY(double y);
-        void setPortalZ(double z);
+        void setPortalCoords(byte pID, double[] coords);
         void setUnlockPoints(int points);
         void removePoints(int points);
         void addPoints(int points);
-
     }
 
     public static class Storage implements Capability.IStorage<IOrganizationXIII> {
@@ -73,9 +68,12 @@ public class OrganizationXIIICapability {
             properties.setBoolean("Summoned", instance.summonedWeapon(EnumHand.MAIN_HAND));
             properties.setBoolean("SummonedOffhand", instance.summonedWeapon(EnumHand.OFF_HAND));
             properties.setBoolean("Opened", instance.getOpenedGUI());
-            properties.setDouble("PortalX", instance.getPortalX());
-            properties.setDouble("PortalY", instance.getPortalY());
-            properties.setDouble("PortalZ", instance.getPortalZ());
+            for(byte i=0;i<3;i++) {
+	            properties.setDouble("Portal"+i+"X", instance.getPortalCoords(i)[0]);
+	            properties.setDouble("Portal"+i+"Y", instance.getPortalCoords(i)[1]);
+	            properties.setDouble("Portal"+i+"Z", instance.getPortalCoords(i)[2]);
+	            properties.setDouble("Portal"+i+"D", instance.getPortalCoords(i)[3]);
+            }
             properties.setInteger("UnlockPoints", instance.getUnlockPoints());
             return properties;
         }
@@ -97,9 +95,13 @@ public class OrganizationXIIICapability {
             instance.setWeaponSummoned(EnumHand.MAIN_HAND, properties.getBoolean("Summoned"));
             instance.setWeaponSummoned(EnumHand.OFF_HAND, properties.getBoolean("SummonedOffhand"));
             instance.setOpenedGUI(properties.getBoolean("Opened"));
-            instance.setPortalX(properties.getDouble("PortalX"));
-            instance.setPortalY(properties.getDouble("PortalY"));
-            instance.setPortalZ(properties.getDouble("PortalZ"));
+            for(byte i=0;i<3;i++) {
+	            instance.setPortalCoords(i,new double[]{
+	            		properties.getDouble("Portal"+i+"X"),
+	            		properties.getDouble("Portal"+i+"Y"),
+	            		properties.getDouble("Portal"+i+"Z"),
+	            		properties.getDouble("Portal"+i+"D")});
+            }
             instance.setUnlockPoints(properties.getInteger("UnlockPoints"));
         }
     }
@@ -112,9 +114,12 @@ public class OrganizationXIIICapability {
         private boolean offHandSummoned = false;
         private boolean openedGui = false;
         private int dim = 0;
-        private double orgPortalX = 0;
-        private double orgPortalY = 0;
-        private double orgPortalZ = 0;
+        private double[][] orgPortalPos = {
+        	//	X,Y,Z,dim
+        		{0,0,0,0},//Portal 0
+        		{0,0,0,0},//Portal 1
+        		{0,0,0,0} //Portal 2
+        		};
         private int unlockPoints = 0;
 
         @Override
@@ -186,39 +191,20 @@ public class OrganizationXIIICapability {
 		}
 
         @Override
-        public double getPortalX() {
-            return orgPortalX;
-        }
+		public double[] getPortalCoords(byte pID) {
+			return orgPortalPos[pID];
+		}
 
-        @Override
-        public double getPortalY() {
-            return orgPortalY;
-        }
-
-        @Override
-        public double getPortalZ() {
-            return orgPortalZ;
-        }
+		@Override
+		public void setPortalCoords(byte pID, double[] coords) {
+			orgPortalPos[pID] = coords;
+		}
+		
 
         @Override
 		public void setPortalDimension(int dimension) {
 			this.dim = dimension;
 		}
-
-        @Override
-        public void setPortalX(double x) {
-            this.orgPortalX = x;
-        }
-
-        @Override
-        public void setPortalY(double y) {
-            this.orgPortalY = y;
-        }
-
-        @Override
-        public void setPortalZ(double z) {
-            this.orgPortalZ = z;
-        }
 
         @Override
         public int getUnlockPoints() {
@@ -243,7 +229,6 @@ public class OrganizationXIIICapability {
         public void addPoints(int points) {
             this.unlockPoints += points;
         }
-
 		
     }
 

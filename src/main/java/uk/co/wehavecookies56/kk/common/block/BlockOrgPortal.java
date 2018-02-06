@@ -41,6 +41,8 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
+            byte index=-1;
+
             if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
                 if (world.getTileEntity(pos) instanceof TileEntityOrgPortal) {
 
@@ -50,17 +52,26 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
                         te.setOwner(player);
                         te.markDirty();
 
-                        player.sendMessage(new TextComponentString(TextFormatting.GREEN + "This is now " + player.getDisplayNameString() + "'s portal"));
-                        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalDimension(player.dimension);
-                        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalX(pos.getX());
-                        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalY(pos.getY());
-                        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalZ(pos.getZ());
-                        //System.out.println(pos.getX()+","+pos.getY()+","+pos.getZ());
+                    	for(byte i=0;i<3;i++) {
+                    		double[] coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
+                    		System.out.println(coords[0]);
+                        	if(coords[0] == 0.0D && coords[1] == 0.0D && coords[2] == 0.0D) {
+                        		index = i;
+                        		break;
+                        	}
+                    	}
+                    	System.out.println("A: "+index);
+                        if(index != -1) {	
+                            player.sendMessage(new TextComponentString(TextFormatting.GREEN + "This is now " + player.getDisplayNameString() + "'s portal "+index));
+                        	player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalCoords((byte)index, new double[] {pos.getX(),pos.getY(),pos.getZ(),player.dimension});
+                        } else {
+                            player.sendMessage(new TextComponentString(TextFormatting.RED + "You have no empty slots for portals"));
+                        }
                         PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
                         return true;
 
                     }else if(te.getOwner().equals(player.getDisplayNameString())){
-                        player.sendMessage(new TextComponentString(TextFormatting.YELLOW + "This is your portal"));
+                        player.sendMessage(new TextComponentString(TextFormatting.YELLOW + "This is your portal "+index));
                     }else {
                         player.sendMessage(new TextComponentString(TextFormatting.RED + "This portal belongs to "+player.getDisplayNameString()));
                         return false;
@@ -81,12 +92,25 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
                 TileEntityOrgPortal te = (TileEntityOrgPortal) world.getTileEntity(pos);
                 if (te.getOwner() != null) {
                     EntityPlayer player = world.getPlayerEntityByName(te.getOwner());
-                    player.sendMessage(new TextComponentString(TextFormatting.RED + "Portal destination disappeared"));
-                    player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalX(0);
-                    player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalY(0);
-                    player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalZ(0);
+                    
+                    byte index=-1;
+                	for(byte i=0;i<3;i++) {
+                		double[] coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
+                    	if(coords[0] == pos.getX() && coords[1] == pos.getY() && coords[2] == pos.getZ()) {
+                    		index = i;
+                    		break;
+                    	}
+                	}
+                	System.out.println("R: "+index);
+                    if(index != -1) {	
+                        player.sendMessage(new TextComponentString(TextFormatting.RED + "Portal destination disappeared"));
+                        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalCoords((byte)index, new double[] {0,0,0,0});
+                    } else {
+                        player.sendMessage(new TextComponentString(TextFormatting.RED + "You have no empty slots for portals"));
+                    }
+                    
+                    
                     PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
-                    //System.out.println(player);
                 }
             }
         }

@@ -58,7 +58,7 @@ public class InputHandler {
     List<String> magicCommands;
     List<String> itemsCommands;
     List<String> driveCommands;
-    List<String> portalCommands;
+    List<double[]> portalCommands;
 
     public static EntityLivingBase lockOn = null;
 
@@ -93,16 +93,16 @@ public class InputHandler {
         } else
             return false;
     }
-
-    public void commandUp () {
-        Minecraft mc = Minecraft.getMinecraft();
+    
+    public void loadLists() {
+    	Minecraft mc = Minecraft.getMinecraft();
         EntityPlayer player = mc.player;
         PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
         IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
         this.magicCommands = new ArrayList<String>();
         this.itemsCommands = new ArrayList<String>();
         this.driveCommands = new ArrayList<String>();
-        this.portalCommands = new ArrayList<String>();
+        this.portalCommands = new ArrayList<double[]>();
         
         this.magicCommands.clear();
         for (int i = 0; i < player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSlots(); i++)
@@ -119,9 +119,18 @@ public class InputHandler {
             if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), ItemStack.EMPTY)) 
             	this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
         
-        /*this.portalCommands.clear();
-        for(int i=0;i<player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortals().length;i++)
-        	System.out.println();*/
+        this.portalCommands.clear();
+        for(byte i=0;i<3;i++) {
+        	double[] coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
+        	System.out.println(i+"- "+coords[0]);
+        	if(!(coords[0] == 0 && coords[1] == 0 && coords[2] == 0)) {
+        		this.portalCommands.add(coords);
+        	}
+        }
+    }
+
+    public void commandUp () {
+        loadLists();
         
         // Mainmenu
         if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
@@ -142,39 +151,34 @@ public class InputHandler {
             if (GuiCommandMenu.potionselected > 0) {
                 GuiCommandMenu.potionselected--;
                 GuiCommandMenu.submenu = GuiCommandMenu.SUB_ITEMS;
-            } else if (GuiCommandMenu.potionselected <= 1) GuiCommandMenu.potionselected = this.itemsCommands.size() - 1;
+            } else if (GuiCommandMenu.potionselected <= 1) {
+            	GuiCommandMenu.potionselected = this.itemsCommands.size() - 1;
+            }
         }
-        // InsideDrive
-        else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE) if (GuiCommandMenu.driveselected > 0) {
-            GuiCommandMenu.driveselected--;
-            GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
-        } else if (GuiCommandMenu.driveselected <= 1) GuiCommandMenu.driveselected = this.driveCommands.size() - 1;
+     // InsideDrive
+        else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE) { 
+        	if (GuiCommandMenu.driveselected > 0) {
+        		GuiCommandMenu.driveselected--;
+        		GuiCommandMenu.submenu = GuiCommandMenu.SUB_DRIVE;
+        	} else if (GuiCommandMenu.driveselected <= 1) { 
+        		GuiCommandMenu.driveselected = this.driveCommands.size() - 1;
+        	}
+        }
+     // InsidePortal
+        else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_PORTALS) { 
+        	if (GuiCommandMenu.portalSelected > 0) {
+        		GuiCommandMenu.portalSelected--;
+        		GuiCommandMenu.submenu = GuiCommandMenu.SUB_PORTALS;
+        	} else if (GuiCommandMenu.portalSelected <= 1) { 
+        		GuiCommandMenu.portalSelected = this.portalCommands.size() - 1;
+        	}
+        }
     }
 
     public void commandDown () {
-        Minecraft mc = Minecraft.getMinecraft();
-        EntityPlayer player = mc.player;
-        PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-        IDriveState DS = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-        this.magicCommands = new ArrayList<String>();
-        this.itemsCommands = new ArrayList<String>();
-        this.driveCommands = new ArrayList<String>();
+        loadLists();
 
-        this.magicCommands.clear();
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i), ItemStack.EMPTY)) 
-            	this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
-        
-        this.itemsCommands.clear();
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i), ItemStack.EMPTY)) 
-            	this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getItemName());
-       
-        this.driveCommands.clear();
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i),ItemStack.EMPTY))
-            	this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
-        // Mainmenu
+    	// Mainmenu
         if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
             if (GuiCommandMenu.selected == GuiCommandMenu.DRIVE)
                 GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
@@ -206,6 +210,14 @@ public class InputHandler {
                 if (GuiCommandMenu.driveselected >= this.driveCommands.size() - 1) GuiCommandMenu.driveselected = 0;
             }
         }
+        else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_PORTALS) {
+            if (GuiCommandMenu.portalSelected < this.portalCommands.size() - 1) {
+                GuiCommandMenu.portalSelected++;
+                GuiCommandMenu.submenu = GuiCommandMenu.SUB_PORTALS;
+            } else {
+                if (GuiCommandMenu.portalSelected >= this.portalCommands.size() - 1) GuiCommandMenu.portalSelected = 0;
+            }
+        }
     }
 
     public void commandEnter () {
@@ -214,18 +226,8 @@ public class InputHandler {
         World world = mc.world;
         PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
         IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-        this.magicCommands = new ArrayList<String>();
-        this.magicCommands.clear();
-        this.itemsCommands = new ArrayList<String>();
-        this.itemsCommands.clear();
-        this.driveCommands = new ArrayList<String>();
-        this.driveCommands.clear();
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i), ItemStack.EMPTY)) this.magicCommands.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i), ItemStack.EMPTY)) this.itemsCommands.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSlots(); i++)
-            if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), ItemStack.EMPTY)) this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
+
+        loadLists();
 
         switch (GuiCommandMenu.selected) {
             case GuiCommandMenu.ATTACK:
@@ -233,7 +235,7 @@ public class InputHandler {
                 	if(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
                 		//Submenu of the portals
                 		if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
-                            if (!this.itemsCommands.isEmpty()) {
+                            if (!this.portalCommands.isEmpty()) {
                                 GuiCommandMenu.submenu = GuiCommandMenu.SUB_PORTALS;
                                 GuiCommandMenu.portalSelected = 0;
                                 world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
@@ -269,8 +271,7 @@ public class InputHandler {
                 		
                     }
 
-                    if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom))
-                    {
+                    if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom)){
                         PacketDispatcher.sendToServer(new MagicWisdomShot());
                     }
                 break;
@@ -337,9 +338,44 @@ public class InputHandler {
                 }
                 break;
         }
+        
+        //Portal Submenu
+        if (GuiCommandMenu.selected == GuiCommandMenu.ATTACK && GuiCommandMenu.submenu == GuiCommandMenu.SUB_PORTALS) {
+            if (this.portalCommands.isEmpty()) {} 
+            else {
+            	//ModDriveForms.getDriveForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
+            	if(!player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge()){
+                    IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+                    double[] coords = orgXIII.getPortalCoords((byte)GuiCommandMenu.portalSelected);
+                    if(coords[0]!=0 && coords[1]!=0 && coords[2]!=0){
+                        RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
+                        if (rtr != null) {
+                            if (rtr.typeOfHit == rtr.typeOfHit.BLOCK){
+                                double distanceSq = player.getDistanceSq(rtr.getBlockPos());
+                                double reachSq = 100 * 100;
+                                if (reachSq >= distanceSq) {
+                                    BlockPos pos = rtr.getBlockPos();
+                                    BlockPos destination = new BlockPos(coords[0],coords[1],coords[2]);
+
+                                    PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos(),destination, orgXIII.getPortalDimension()));
+                                    player.world.playSound((EntityPlayer) player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+                                }
+                            }
+                        }
+                    }else{
+                        player.sendMessage(new TextComponentString(TextFormatting.RED + "You don't have any portal destination"));
+                    }
+            	
+                    GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
+                	GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+                	world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
+            	}
+            }
+        }
+        
+        //Magic Submenu
         if (GuiCommandMenu.selected == GuiCommandMenu.MAGIC && GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAGIC) {
-            if (this.magicCommands.isEmpty())
-            {}
+            if (this.magicCommands.isEmpty()){}
             else if (!STATS.getRecharge() || Constants.getCost((String) this.magicCommands.get(GuiCommandMenu.magicselected)) == -1 && STATS.getMP() > 0) {
                 Magic.getMagic(player, world, (String) this.magicCommands.get(GuiCommandMenu.magicselected));
                 GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
@@ -372,6 +408,7 @@ public class InputHandler {
                 world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
             }
         }
+        
     }
 
     public void commandBack () {
@@ -387,6 +424,9 @@ public class InputHandler {
             GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
             world.playSound(player, player.getPosition(), ModSounds.cancel, SoundCategory.MASTER, 1.0f, 1.0f);
         } else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE) {
+            GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
+            world.playSound(player, player.getPosition(), ModSounds.cancel, SoundCategory.MASTER, 1.0f, 1.0f);
+        } else if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_PORTALS) {
             GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
             world.playSound(player, player.getPosition(), ModSounds.cancel, SoundCategory.MASTER, 1.0f, 1.0f);
         }
