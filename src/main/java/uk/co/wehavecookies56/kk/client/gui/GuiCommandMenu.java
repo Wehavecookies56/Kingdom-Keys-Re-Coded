@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -47,18 +48,22 @@ public class GuiCommandMenu extends GuiScreen {
 
     int textX = 0;
 
+    public static List<double[]> portalCommands;
     public static List<String> driveCommands;
     public static List<String> spells;
     public static List<String> items;
 
-    public static final int SUB_MAIN = 0, SUB_MAGIC = 1, SUB_ITEMS = 2, SUB_DRIVE = 3;
+    public static final int SUB_MAIN = 0, SUB_MAGIC = 1, SUB_ITEMS = 2, SUB_DRIVE = 3, SUB_PORTALS = 4;
 
     public static final int NONE = 0;
     public static int selected = ATTACK;
-    public static int submenu = 0;
-    public static int magicselected = 0;
-    public static int potionselected = 0;
-    public static int driveselected = 0;
+    public static int 
+    		submenu = 0,
+    		magicselected = 0,
+    		potionselected = 0,
+    		driveselected = 0,
+    		portalSelected = 0;
+    
     public static boolean FireUnlocked, BlizzardUnlocked, ThunderUnlocked, CureUnlocked, GravityUnlocked, AeroUnlocked, StopUnlocked, ValorUnlocked, WisdomUnlocked, LimitUnlocked, MasterUnlocked, FinalUnlocked;
 
     ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/commandmenu.png");
@@ -100,31 +105,41 @@ public class GuiCommandMenu extends GuiScreen {
     	}
     	
         int alpha = MainConfig.client.hud.guiAlpha;
-
+        EntityPlayer player = Minecraft.getMinecraft().player;
         IDriveState DS = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         PlayerStatsCapability.IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
 
         this.spells = new ArrayList<String>();
         this.items = new ArrayList<String>();
         this.driveCommands = new ArrayList<String>();
+        this.portalCommands = new ArrayList<double[]>();
 
         this.spells.clear();
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSlots(); i++)
+        for (int i = 0; i < player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSlots(); i++)
             if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i), ItemStack.EMPTY)) 
             	this.spells.add(((ItemSpellOrb) Minecraft.getMinecraft().player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getStackInSlot(i).getItem()).getMagicName());
        
         this.items.clear();
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSlots(); i++)
+        for (int i = 0; i < player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSlots(); i++)
             if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i), ItemStack.EMPTY))
             	this.items.add(((ItemKKPotion) Minecraft.getMinecraft().player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getStackInSlot(i).getItem()).getUnlocalizedName().substring(5));
       
         this.driveCommands.clear();
-        for (int i = 0; i < Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSlots(); i++)
+        for (int i = 0; i < player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getSlots(); i++)
             if (!ItemStack.areItemStacksEqual(Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i), ItemStack.EMPTY)) 
             	this.driveCommands.add(((ItemDriveForm) Minecraft.getMinecraft().player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().getStackInSlot(i).getItem()).getDriveFormName());
         
+        this.portalCommands.clear();
+        for(byte i=0;i<3;i++) {
+        	double[] coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
+        	if(!(coords[0] == 0 && coords[1] == 0 && coords[2] == 0)) {
+        		this.portalCommands.add(coords);
+        	}
+        }
+        
         float scale = 1.05f;
         int colour;
+        
         // DRIVE
         GL11.glPushMatrix();
         {
@@ -218,6 +233,7 @@ public class GuiCommandMenu extends GuiScreen {
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         }
         GL11.glPopMatrix();
+        
         // MAGIC
         GL11.glPushMatrix();
         {
@@ -317,12 +333,57 @@ public class GuiCommandMenu extends GuiScreen {
                 drawTexturedModalRect(0, 0, 0, 15, TOP_WIDTH, TOP_HEIGHT);
             else
                 drawTexturedModalRect(0, 0, 0, 0+extraY, TOP_WIDTH, TOP_HEIGHT);
-            if(this.submenu == 0)
-            {
+            if(this.submenu == 0){
                 drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Command), 6, 4, 0xFFFFFF);
             }
         }
         GL11.glPopMatrix();
+        
+     // Portal submenu //
+        if (portalCommands == null) {} 
+        else if (!portalCommands.isEmpty()) {
+            // PORTAL TOP
+            GL11.glPushMatrix();
+            {
+                GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
+                mc.renderEngine.bindTexture(texture);
+                GL11.glTranslatef(5, (height - MENU_HEIGHT * scale * (portalCommands.size() + 1)), 0);
+                GL11.glScalef(scale, scale, scale);
+                if (submenu == SUB_PORTALS) {
+                    drawTexturedModalRect(0, 0, 0, 0+extraY, TOP_WIDTH, TOP_HEIGHT);
+                    drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic_Title), 6, 4, 0xFFFFFF);
+                }
+            }
+            GL11.glPopMatrix();
+            for (int i = 0; i < portalCommands.size(); i++) {
+                GL11.glPushMatrix();
+                {
+                    GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) alpha);
+                    int u;
+                    int v;
+                    int x;
+                    x = (portalSelected == i) ? 10 : 5;
+
+                    mc.renderEngine.bindTexture(texture);
+                    GL11.glTranslatef(x, (height - MENU_HEIGHT * scale * (portalCommands.size() - i)), 0);
+                    GL11.glScalef(scale, scale, scale);
+                    if (submenu == SUB_PORTALS) {
+                        v = 0;
+                        if (portalSelected == i)
+                            drawTexturedModalRect(0, 0, TOP_WIDTH, 15+extraY, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+                        else
+                            drawTexturedModalRect(0, 0, TOP_WIDTH, 0+extraY, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
+                        //colour = Constants.getCost(spells.get(i)) < STATS.getMP() ? 0xFFFFFF : 0xFF9900;
+                        
+                        double[] portal = portalCommands.get(i);
+                        //String magicName = Constants.getMagicName(magic, level);
+                        drawString(mc.fontRenderer, Utils.translateToLocal(i+""), 6, 4, 0xFFFFFF);
+                        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+                    }
+                }
+                GL11.glPopMatrix();
+            }
+        }
         
         // Magic submenu //
         if (spells == null) {} else if (!spells.isEmpty()) {
