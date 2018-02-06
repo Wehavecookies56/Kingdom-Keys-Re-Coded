@@ -76,11 +76,7 @@ import uk.co.wehavecookies56.kk.client.gui.GuiLockOn;
 import uk.co.wehavecookies56.kk.client.gui.GuiMP;
 import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
 import uk.co.wehavecookies56.kk.client.gui.GuiPlayerPortrait;
-import uk.co.wehavecookies56.kk.client.model.mobs.ModelCrimsonJazz;
-import uk.co.wehavecookies56.kk.client.model.mobs.ModelDarkball;
-import uk.co.wehavecookies56.kk.client.model.mobs.ModelMoogle;
-import uk.co.wehavecookies56.kk.client.model.mobs.ModelRedNocturne;
-import uk.co.wehavecookies56.kk.client.model.mobs.ModelShadow;
+import uk.co.wehavecookies56.kk.client.model.mobs.*;
 import uk.co.wehavecookies56.kk.client.render.*;
 import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityAshes;
 import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityBlazeofGlory;
@@ -934,7 +930,10 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityEmeraldBlues.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelCrimsonJazz(), 1.1F, "emeraldblues"));
         RenderingRegistry.registerEntityRenderingHandler(EntityMoogle.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMoogle(), 1, "moogle"));
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkball.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelDarkball(), 1, "darkball"));
-        
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkball.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1, "MinuteBomb"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkball.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1, "SkaterBomb"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkball.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1, "StormBomb"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkball.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1, "Detonator"));
     }
 
     @Override
