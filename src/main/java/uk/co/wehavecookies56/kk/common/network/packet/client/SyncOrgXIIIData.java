@@ -44,8 +44,6 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         //this.dim = organizationXIII.getPortalDimension();
         for(byte i=0;i<3;i++) {
         	this.orgPortalCoords[i] = organizationXIII.getPortalCoords((byte)i);
-        	//this.orgPortalY = organizationXIII.getPortalY();
-        	//this.orgPortalZ = organizationXIII.getPortalZ();
         }
         this.unlockPoints = organizationXIII.getUnlockPoints();
     }
@@ -57,18 +55,15 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         this.summonedMainHand = buffer.readBoolean();
         this.summonedOffHand = buffer.readBoolean();
         this.opened = buffer.readBoolean();
-        //this.dim = buffer.readInt();
-        //this.orgPortalX = buffer.readDouble();
+
         for(byte i=0;i<3;i++) {
     		this.orgPortalCoords[i].setPID(buffer.readByte());
     		this.orgPortalCoords[i].setX(buffer.readDouble());
     		this.orgPortalCoords[i].setY(buffer.readDouble());
     		this.orgPortalCoords[i].setZ(buffer.readDouble());
     		this.orgPortalCoords[i].setDimID(buffer.readInt());
-
         }
-       // this.orgPortalY = buffer.readDouble();
-       // this.orgPortalZ = buffer.readDouble();
+
         this.unlockPoints = buffer.readInt();
 
         weapons = new ArrayList<>();
@@ -84,6 +79,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         buffer.writeBoolean(this.summonedMainHand);
         buffer.writeBoolean(this.summonedOffHand);
         buffer.writeBoolean(this.opened);
+        
         for(byte i=0;i<3;i++) {
         	buffer.writeByte(this.orgPortalCoords[i].getPID());
         	buffer.writeDouble(this.orgPortalCoords[i].getX());
@@ -107,7 +103,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         organizationXIII.setWeaponSummoned(EnumHand.MAIN_HAND, this.summonedMainHand);
         organizationXIII.setWeaponSummoned(EnumHand.OFF_HAND, this.summonedOffHand);
         organizationXIII.setOpenedGUI(this.opened);
-        //organizationXIII.setPortalDimension(this.dim);
+
         for(byte i=0;i<3;i++) {
         	organizationXIII.setPortalCoords(i, this.orgPortalCoords[i]);
         }

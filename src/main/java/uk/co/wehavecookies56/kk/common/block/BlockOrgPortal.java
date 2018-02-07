@@ -65,7 +65,7 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
                         if(index != -1) {	
                             player.sendMessage(new TextComponentString(TextFormatting.GREEN + "This is now " + player.getDisplayNameString() + "'s portal "+index));
                         	player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalCoords((byte)index, new PortalCoords((byte) index, pos.getX(),pos.getY(),pos.getZ(),player.dimension));
-                    		System.out.println(index+" "+player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(index).getX());
+                    		System.out.println(index+" "+player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(index).getDimID());
 
                         } else {
                             player.sendMessage(new TextComponentString(TextFormatting.RED + "You have no empty slots for portals"));

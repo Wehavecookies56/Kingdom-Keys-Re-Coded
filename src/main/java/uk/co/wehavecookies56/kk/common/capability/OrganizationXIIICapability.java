@@ -30,7 +30,6 @@ public class OrganizationXIIICapability {
         Item currentWeapon();
         boolean summonedWeapon(EnumHand hand);
         boolean getOpenedGUI();
-        int getPortalDimension();
         PortalCoords getPortalCoords(byte pID);
         int getUnlockPoints();
 
@@ -42,7 +41,6 @@ public class OrganizationXIIICapability {
         void removeUnlockedWeapon(Item item);
         void setWeaponSummoned(EnumHand hand, boolean summoned);
         void setOpenedGUI(boolean opened);
-        void setPortalDimension(int dimension);
         void setPortalCoords(byte pID, PortalCoords coords);
         void setUnlockPoints(int points);
         void removePoints(int points);
@@ -116,7 +114,6 @@ public class OrganizationXIIICapability {
         private boolean mainHandSummoned = false;
         private boolean offHandSummoned = false;
         private boolean openedGui = false;
-        private int dim = 0;
         private PortalCoords[] orgPortalCoords = {new PortalCoords((byte)0,0,0,0,0),new PortalCoords((byte)0,0,0,0,0),new PortalCoords((byte)0,0,0,0,0)};
         private int unlockPoints = 0;
 
@@ -184,34 +181,13 @@ public class OrganizationXIIICapability {
         }
         
         @Override
-		public int getPortalDimension() {
-			return dim;
-		}
-
-        @Override
 		public PortalCoords getPortalCoords(byte pID) {
-        	for(byte i=0;i<3;i++) {
-        		if(orgPortalCoords[i].getPID() == pID) {
-        			return orgPortalCoords[i];
-        		}
-        	}
-			return new PortalCoords((byte)0,0,0,0,0);
+        	return orgPortalCoords[pID];
 		}
 
 		@Override
 		public void setPortalCoords(byte pID, PortalCoords coords) {
-        	//for(byte i=0;i<3;i++) {
-        		//if(orgPortalCoords[i].getPID() == pID) {
-        			orgPortalCoords[pID] = coords;
-        		//}
-        	//}
-
-		}
-		
-
-        @Override
-		public void setPortalDimension(int dimension) {
-			this.dim = dimension;
+  			orgPortalCoords[pID] = coords;
 		}
 
         @Override

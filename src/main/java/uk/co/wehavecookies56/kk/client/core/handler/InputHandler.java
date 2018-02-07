@@ -236,7 +236,7 @@ public class InputHandler {
                 	if(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
                 		//Submenu of the portals
                 		if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
-                            if (!this.portalCommands.isEmpty()) {
+                            if (!this.portalCommands.isEmpty() && !STATS.getRecharge()) {
                                 GuiCommandMenu.submenu = GuiCommandMenu.SUB_PORTALS;
                                 GuiCommandMenu.portalSelected = 0;
                                 world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
@@ -322,23 +322,10 @@ public class InputHandler {
             else {
             	//ModDriveForms.getDriveForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
             	if(!player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge()){
-                    IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
                     PortalCoords coords = this.portalCommands.get((byte)GuiCommandMenu.portalSelected);
                     if(coords.getX()!=0 && coords.getY()!=0 && coords.getZ()!=0){
-                        RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
-                        if (rtr != null) {
-                            if (rtr.typeOfHit == rtr.typeOfHit.BLOCK){
-                                double distanceSq = player.getDistanceSq(rtr.getBlockPos());
-                                double reachSq = 100 * 100;
-                                if (reachSq >= distanceSq) {
-                                    BlockPos pos = rtr.getBlockPos();
-                                    BlockPos destination = new BlockPos(coords.getX(),coords.getY(),coords.getZ());
-
-                                    PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos(),destination, orgXIII.getPortalDimension()));
-                                    player.world.playSound((EntityPlayer) player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
-                                }
-                            }
-                        }
+                    	//ValidPortal
+                        summonPortal(player,coords);
                     }else{
                         player.sendMessage(new TextComponentString(TextFormatting.RED + "You don't have any portal destination"));
                     }
@@ -388,7 +375,7 @@ public class InputHandler {
         
     }
 
-    public void commandBack () {
+	public void commandBack () {
         Minecraft mc = Minecraft.getMinecraft();
         EntityPlayer player = mc.player;
         World world = mc.world;
@@ -563,6 +550,24 @@ public class InputHandler {
         }
         return returnMOP;
     }
+    
+    private void summonPortal(EntityPlayer player, PortalCoords coords) {
+        IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+    	RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
+        if (rtr != null) {
+            if (rtr.typeOfHit == rtr.typeOfHit.BLOCK){
+                double distanceSq = player.getDistanceSq(rtr.getBlockPos());
+                double reachSq = 100 * 100;
+                if (reachSq >= distanceSq) {
+                    BlockPos pos = rtr.getBlockPos();
+                    BlockPos destination = new BlockPos(coords.getX(),coords.getY(),coords.getZ());
+
+                    PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos(),destination, coords.getDimID()));
+                    player.world.playSound((EntityPlayer) player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+                }
+            }
+        }
+	}
 
     @SubscribeEvent
     public void OnMouseWheelScroll (MouseEvent event) {

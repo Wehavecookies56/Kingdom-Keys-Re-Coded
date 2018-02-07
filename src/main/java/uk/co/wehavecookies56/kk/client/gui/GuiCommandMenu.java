@@ -268,17 +268,17 @@ public class GuiCommandMenu extends GuiScreen {
             }
             
             if(this.submenu == 0){
+            	int color;
                 if (spells == null) {
-                    drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
+                	color = 0x888888;
                 } else {
-                    //if (!ExtendedPlayer.get(mc.thePlayer).getRecharge() && !spells.isEmpty() && !ExtendedPlayer.get(mc.thePlayer).getDriveInUse().equals("Valor"))
                     if (!STATS.getRecharge() && (!this.spells.isEmpty() && !DS.getActiveDriveName().equals(Strings.Form_Valor)))
-
-                        drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0xFFFFFF);
+                    	color = 0xFFFFFF;
                     else
-                        drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, 0x888888);
-                    GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+                    	color = 0x888888;
                 }
+                drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic), 6 + textX, 4, color);
+                GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             }
         }
         GL11.glPopMatrix();
@@ -314,10 +314,11 @@ public class GuiCommandMenu extends GuiScreen {
                     drawTexturedModalRect(0, 0, TOP_WIDTH, 0+extraY, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
             }
             if(this.submenu == 0){
+            	int color = this.portalCommands.isEmpty() || STATS.getRecharge() ? 0x888888 : 0xFFFFFF;
             	if(extraY == 45)
-            		drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Portal), 6 + textX, 4, 0xFFFFFF);
+            		drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Portal), 6 + textX, 4, color);
             	else
-            		drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Attack), 6 + textX, 4, 0xFFFFFF);
+            		drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Attack), 6 + textX, 4, color);
             }
 
         }
@@ -344,8 +345,9 @@ public class GuiCommandMenu extends GuiScreen {
         GL11.glPopMatrix();
         
      // Portal submenu //
-        if (portalCommands == null) {} 
-        else if (!portalCommands.isEmpty()) {
+        if (portalCommands == null) {
+        	
+        } else if (!portalCommands.isEmpty()) {
             // PORTAL TOP
             GL11.glPushMatrix();
             {
