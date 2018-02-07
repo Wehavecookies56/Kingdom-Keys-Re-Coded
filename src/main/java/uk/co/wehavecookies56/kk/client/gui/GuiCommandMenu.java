@@ -28,6 +28,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.util.PortalCoords;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 @SideOnly (Side.CLIENT)
@@ -48,7 +49,7 @@ public class GuiCommandMenu extends GuiScreen {
 
     int textX = 0;
 
-    public static List<double[]> portalCommands;
+    public static List<PortalCoords> portalCommands;
     public static List<String> driveCommands;
     public static List<String> spells;
     public static List<String> items;
@@ -112,7 +113,7 @@ public class GuiCommandMenu extends GuiScreen {
         this.spells = new ArrayList<String>();
         this.items = new ArrayList<String>();
         this.driveCommands = new ArrayList<String>();
-        this.portalCommands = new ArrayList<double[]>();
+        this.portalCommands = new ArrayList<PortalCoords>();
 
         this.spells.clear();
         for (int i = 0; i < player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSlots(); i++)
@@ -131,9 +132,12 @@ public class GuiCommandMenu extends GuiScreen {
         
         this.portalCommands.clear();
         for(byte i=0;i<3;i++) {
-        	double[] coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
-        	if(!(coords[0] == 0 && coords[1] == 0 && coords[2] == 0)) {
-        		this.portalCommands.add(coords);
+        	PortalCoords coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
+        	//System.out.println(i+" "+coords);
+        	if(coords != null) {
+	        	if(!(coords.getX() == 0 && coords.getY() == 0 && coords.getZ() == 0)) {
+	        		this.portalCommands.add(coords);
+	        	}
         	}
         }
         
@@ -375,9 +379,9 @@ public class GuiCommandMenu extends GuiScreen {
                             drawTexturedModalRect(0, 0, TOP_WIDTH, 0+extraY, TOP_WIDTH + MENU_WIDTH, v + MENU_HEIGHT);
                         //colour = Constants.getCost(spells.get(i)) < STATS.getMP() ? 0xFFFFFF : 0xFF9900;
                         
-                        double[] portal = portalCommands.get(i);
+                        PortalCoords portal = portalCommands.get(i);
                         //String magicName = Constants.getMagicName(magic, level);
-                        drawString(mc.fontRenderer, Utils.translateToLocal(i+""), 6, 4, 0xFFFFFF);
+                        drawString(mc.fontRenderer, Utils.translateToLocal(portal.getPID()+""), 6, 4, 0xFFFFFF);
                         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
                     }
                 }

@@ -51,6 +51,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortal;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicWisdomShot;
+import uk.co.wehavecookies56.kk.common.util.PortalCoords;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class InputHandler {
@@ -58,7 +59,7 @@ public class InputHandler {
     List<String> magicCommands;
     List<String> itemsCommands;
     List<String> driveCommands;
-    List<double[]> portalCommands;
+    List<PortalCoords> portalCommands;
 
     public static EntityLivingBase lockOn = null;
 
@@ -102,7 +103,7 @@ public class InputHandler {
         this.magicCommands = new ArrayList<String>();
         this.itemsCommands = new ArrayList<String>();
         this.driveCommands = new ArrayList<String>();
-        this.portalCommands = new ArrayList<double[]>();
+        this.portalCommands = new ArrayList<PortalCoords>();
         
         this.magicCommands.clear();
         for (int i = 0; i < player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().getSlots(); i++)
@@ -121,10 +122,10 @@ public class InputHandler {
         
         this.portalCommands.clear();
         for(byte i=0;i<3;i++) {
-        	double[] coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
-        	System.out.println(i+"- "+coords[0]);
-        	if(!(coords[0] == 0 && coords[1] == 0 && coords[2] == 0)) {
+        	PortalCoords coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
+        	if(!(coords.getX() == 0 && coords.getY() == 0 && coords.getZ() == 0)) {
         		this.portalCommands.add(coords);
+        		System.out.println(i+" Added portal: "+coords.getPID());
         	}
         }
     }
@@ -245,30 +246,6 @@ public class InputHandler {
                             }
                             return;
                         }
-                		
-                     /*   if(!player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge()){
-                            IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-
-                            if(orgXIII.getPortalX()!=0 && orgXIII.getPortalY()!=0 && orgXIII.getPortalZ()!=0){
-                                RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
-                                if (rtr != null) {
-                                    if (rtr.typeOfHit == rtr.typeOfHit.BLOCK){
-                                        double distanceSq = player.getDistanceSq(rtr.getBlockPos());
-                                        double reachSq = 100 * 100;
-                                        if (reachSq >= distanceSq) {
-                                            BlockPos pos = rtr.getBlockPos();
-                                            BlockPos destination = new BlockPos(orgXIII.getPortalX(),orgXIII.getPortalY(),orgXIII.getPortalZ());
-
-                                            PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos(),destination, orgXIII.getPortalDimension()));
-                                            player.world.playSound((EntityPlayer) player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
-                                        }
-                                    }
-                                }
-                            }else{
-                                player.sendMessage(new TextComponentString(TextFormatting.RED + "You don't have any portal destination"));
-                            }
-                        }*/
-                		
                     }
 
                     if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom)){
@@ -346,8 +323,8 @@ public class InputHandler {
             	//ModDriveForms.getDriveForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
             	if(!player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge()){
                     IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-                    double[] coords = orgXIII.getPortalCoords((byte)GuiCommandMenu.portalSelected);
-                    if(coords[0]!=0 && coords[1]!=0 && coords[2]!=0){
+                    PortalCoords coords = this.portalCommands.get((byte)GuiCommandMenu.portalSelected);
+                    if(coords.getX()!=0 && coords.getY()!=0 && coords.getZ()!=0){
                         RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
                         if (rtr != null) {
                             if (rtr.typeOfHit == rtr.typeOfHit.BLOCK){
@@ -355,7 +332,7 @@ public class InputHandler {
                                 double reachSq = 100 * 100;
                                 if (reachSq >= distanceSq) {
                                     BlockPos pos = rtr.getBlockPos();
-                                    BlockPos destination = new BlockPos(coords[0],coords[1],coords[2]);
+                                    BlockPos destination = new BlockPos(coords.getX(),coords.getY(),coords.getZ());
 
                                     PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos(),destination, orgXIII.getPortalDimension()));
                                     player.world.playSound((EntityPlayer) player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);

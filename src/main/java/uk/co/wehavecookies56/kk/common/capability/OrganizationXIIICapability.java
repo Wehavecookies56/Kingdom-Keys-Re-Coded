@@ -14,6 +14,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.util.PortalCoords;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 /**
@@ -30,7 +31,7 @@ public class OrganizationXIIICapability {
         boolean summonedWeapon(EnumHand hand);
         boolean getOpenedGUI();
         int getPortalDimension();
-        double[] getPortalCoords(byte pID);
+        PortalCoords getPortalCoords(byte pID);
         int getUnlockPoints();
 
         List<Item> unlockedWeapons();
@@ -42,7 +43,7 @@ public class OrganizationXIIICapability {
         void setWeaponSummoned(EnumHand hand, boolean summoned);
         void setOpenedGUI(boolean opened);
         void setPortalDimension(int dimension);
-        void setPortalCoords(byte pID, double[] coords);
+        void setPortalCoords(byte pID, PortalCoords coords);
         void setUnlockPoints(int points);
         void removePoints(int points);
         void addPoints(int points);
@@ -69,10 +70,11 @@ public class OrganizationXIIICapability {
             properties.setBoolean("SummonedOffhand", instance.summonedWeapon(EnumHand.OFF_HAND));
             properties.setBoolean("Opened", instance.getOpenedGUI());
             for(byte i=0;i<3;i++) {
-	            properties.setDouble("Portal"+i+"X", instance.getPortalCoords(i)[0]);
-	            properties.setDouble("Portal"+i+"Y", instance.getPortalCoords(i)[1]);
-	            properties.setDouble("Portal"+i+"Z", instance.getPortalCoords(i)[2]);
-	            properties.setDouble("Portal"+i+"D", instance.getPortalCoords(i)[3]);
+            	properties.setByte("Portal"+i+"N", instance.getPortalCoords(i).getPID());
+	            properties.setDouble("Portal"+i+"X", instance.getPortalCoords(i).getX());
+	            properties.setDouble("Portal"+i+"Y", instance.getPortalCoords(i).getY());
+	            properties.setDouble("Portal"+i+"Z", instance.getPortalCoords(i).getZ());
+	            properties.setInteger("Portal"+i+"D", instance.getPortalCoords(i).getDimID());
             }
             properties.setInteger("UnlockPoints", instance.getUnlockPoints());
             return properties;
@@ -96,11 +98,12 @@ public class OrganizationXIIICapability {
             instance.setWeaponSummoned(EnumHand.OFF_HAND, properties.getBoolean("SummonedOffhand"));
             instance.setOpenedGUI(properties.getBoolean("Opened"));
             for(byte i=0;i<3;i++) {
-	            instance.setPortalCoords(i,new double[]{
+	            instance.setPortalCoords(i,new PortalCoords(
+	            		properties.getByte("Portal"+i+"N"),
 	            		properties.getDouble("Portal"+i+"X"),
 	            		properties.getDouble("Portal"+i+"Y"),
 	            		properties.getDouble("Portal"+i+"Z"),
-	            		properties.getDouble("Portal"+i+"D")});
+	            		properties.getInteger("Portal"+i+"D")));
             }
             instance.setUnlockPoints(properties.getInteger("UnlockPoints"));
         }
@@ -114,12 +117,7 @@ public class OrganizationXIIICapability {
         private boolean offHandSummoned = false;
         private boolean openedGui = false;
         private int dim = 0;
-        private double[][] orgPortalPos = {
-        	//	X,Y,Z,dim
-        		{0,0,0,0},//Portal 0
-        		{0,0,0,0},//Portal 1
-        		{0,0,0,0} //Portal 2
-        		};
+        private PortalCoords[] orgPortalCoords = {new PortalCoords((byte)0,0,0,0,0),new PortalCoords((byte)0,0,0,0,0),new PortalCoords((byte)0,0,0,0,0)};
         private int unlockPoints = 0;
 
         @Override
@@ -191,13 +189,23 @@ public class OrganizationXIIICapability {
 		}
 
         @Override
-		public double[] getPortalCoords(byte pID) {
-			return orgPortalPos[pID];
+		public PortalCoords getPortalCoords(byte pID) {
+        	for(byte i=0;i<3;i++) {
+        		if(orgPortalCoords[i].getPID() == pID) {
+        			return orgPortalCoords[i];
+        		}
+        	}
+			return new PortalCoords((byte)0,0,0,0,0);
 		}
 
 		@Override
-		public void setPortalCoords(byte pID, double[] coords) {
-			orgPortalPos[pID] = coords;
+		public void setPortalCoords(byte pID, PortalCoords coords) {
+        	//for(byte i=0;i<3;i++) {
+        		//if(orgPortalCoords[i].getPID() == pID) {
+        			orgPortalCoords[pID] = coords;
+        		//}
+        	//}
+
 		}
 		
 

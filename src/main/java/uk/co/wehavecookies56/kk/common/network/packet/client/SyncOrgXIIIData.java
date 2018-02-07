@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractClientMessage;
+import uk.co.wehavecookies56.kk.common.util.PortalCoords;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
@@ -28,12 +29,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
     //double orgPortalY;
     //double orgPortalZ;
     
-    double[][] orgPortalPos = {
-        	//	X,Y,Z,dim
-    		{0,0,0,0},//Portal 0
-    		{0,0,0,0},//Portal 1
-    		{0,0,0,0} //Portal 2
-    		};
+    PortalCoords[] orgPortalCoords = {new PortalCoords((byte)0,0,0,0,0),new PortalCoords((byte)0,0,0,0,0),new PortalCoords((byte)0,0,0,0,0)};
     int unlockPoints;
 
     public SyncOrgXIIIData() {}
@@ -47,7 +43,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         this.opened = organizationXIII.getOpenedGUI();
         //this.dim = organizationXIII.getPortalDimension();
         for(byte i=0;i<3;i++) {
-        	this.orgPortalPos[i] = organizationXIII.getPortalCoords((byte)i);
+        	this.orgPortalCoords[i] = organizationXIII.getPortalCoords((byte)i);
         	//this.orgPortalY = organizationXIII.getPortalY();
         	//this.orgPortalZ = organizationXIII.getPortalZ();
         }
@@ -64,9 +60,12 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         //this.dim = buffer.readInt();
         //this.orgPortalX = buffer.readDouble();
         for(byte i=0;i<3;i++) {
-        	for(byte j=0;j<4;j++) {
-        		this.orgPortalPos[i][j] = buffer.readDouble();
-        	}
+    		this.orgPortalCoords[i].setPID(buffer.readByte());
+    		this.orgPortalCoords[i].setX(buffer.readDouble());
+    		this.orgPortalCoords[i].setY(buffer.readDouble());
+    		this.orgPortalCoords[i].setZ(buffer.readDouble());
+    		this.orgPortalCoords[i].setDimID(buffer.readInt());
+
         }
        // this.orgPortalY = buffer.readDouble();
        // this.orgPortalZ = buffer.readDouble();
@@ -85,16 +84,13 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         buffer.writeBoolean(this.summonedMainHand);
         buffer.writeBoolean(this.summonedOffHand);
         buffer.writeBoolean(this.opened);
-        //buffer.writeInt(this.dim);
-        //buffer.writeDouble(this.orgPortalX);
         for(byte i=0;i<3;i++) {
-        	for(byte j=0;j<4;j++) {
-        		//System.out.println(i+" "+j);
-        		buffer.writeDouble(this.orgPortalPos[i][j]);
-        	}
+        	buffer.writeByte(this.orgPortalCoords[i].getPID());
+        	buffer.writeDouble(this.orgPortalCoords[i].getX());
+        	buffer.writeDouble(this.orgPortalCoords[i].getY());
+        	buffer.writeDouble(this.orgPortalCoords[i].getZ());
+        	buffer.writeInt(this.orgPortalCoords[i].getDimID());
         }
-        //buffer.writeDouble(this.orgPortalY);
-        //buffer.writeDouble(this.orgPortalZ);
         buffer.writeInt(this.unlockPoints);
 
         for (int i = 0; i < weapons.size(); i++) {
@@ -113,7 +109,7 @@ public class SyncOrgXIIIData extends AbstractClientMessage<SyncOrgXIIIData> {
         organizationXIII.setOpenedGUI(this.opened);
         //organizationXIII.setPortalDimension(this.dim);
         for(byte i=0;i<3;i++) {
-        	organizationXIII.setPortalCoords(i, this.orgPortalPos[i]);
+        	organizationXIII.setPortalCoords(i, this.orgPortalCoords[i]);
         }
         organizationXIII.setUnlockPoints(this.unlockPoints);
     }

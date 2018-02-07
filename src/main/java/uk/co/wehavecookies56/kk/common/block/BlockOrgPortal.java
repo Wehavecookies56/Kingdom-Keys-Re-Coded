@@ -18,6 +18,7 @@ import uk.co.wehavecookies56.kk.common.block.tile.TileEntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
+import uk.co.wehavecookies56.kk.common.util.PortalCoords;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class BlockOrgPortal extends Block implements ITileEntityProvider{
@@ -53,9 +54,9 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
                         te.markDirty();
 
                     	for(byte i=0;i<3;i++) {
-                    		double[] coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
-                    		System.out.println(coords[0]);
-                        	if(coords[0] == 0.0D && coords[1] == 0.0D && coords[2] == 0.0D) {
+                    		PortalCoords coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
+                    		System.out.println(i+" "+coords.getX());
+                        	if(coords.getX() == 0.0D && coords.getY() == 0.0D && coords.getZ() == 0.0D) {
                         		index = i;
                         		break;
                         	}
@@ -63,7 +64,9 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
                     	System.out.println("A: "+index);
                         if(index != -1) {	
                             player.sendMessage(new TextComponentString(TextFormatting.GREEN + "This is now " + player.getDisplayNameString() + "'s portal "+index));
-                        	player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalCoords((byte)index, new double[] {pos.getX(),pos.getY(),pos.getZ(),player.dimension});
+                        	player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalCoords((byte)index, new PortalCoords((byte) index, pos.getX(),pos.getY(),pos.getZ(),player.dimension));
+                    		System.out.println(index+" "+player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(index).getX());
+
                         } else {
                             player.sendMessage(new TextComponentString(TextFormatting.RED + "You have no empty slots for portals"));
                         }
@@ -95,8 +98,8 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
                     
                     byte index=-1;
                 	for(byte i=0;i<3;i++) {
-                		double[] coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
-                    	if(coords[0] == pos.getX() && coords[1] == pos.getY() && coords[2] == pos.getZ()) {
+                		PortalCoords coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
+                    	if(coords.getX() == pos.getX() && coords.getY() == pos.getY() && coords.getZ() == pos.getZ()) {
                     		index = i;
                     		break;
                     	}
@@ -104,7 +107,7 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider{
                 	System.out.println("R: "+index);
                     if(index != -1) {	
                         player.sendMessage(new TextComponentString(TextFormatting.RED + "Portal destination disappeared"));
-                        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalCoords((byte)index, new double[] {0,0,0,0});
+                        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalCoords((byte)index, new PortalCoords((byte)index,0,0,0,0));
                     } else {
                         player.sendMessage(new TextComponentString(TextFormatting.RED + "You have no empty slots for portals"));
                     }
