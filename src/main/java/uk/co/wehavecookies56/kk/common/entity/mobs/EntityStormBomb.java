@@ -28,8 +28,8 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIMinuteBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIShadow;
 
 
-public class EntityDetonator extends BaseEntityHeartless implements IKHMob{
-    public EntityDetonator(World worldIn){
+public class EntityStormBomb extends BaseEntityHeartless implements IKHMob{
+    public EntityStormBomb(World worldIn){
         super(worldIn);
         this.setSize(width*2, height/2*2);
         this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));

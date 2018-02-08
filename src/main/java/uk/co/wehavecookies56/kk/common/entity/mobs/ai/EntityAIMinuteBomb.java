@@ -1,21 +1,29 @@
 package uk.co.wehavecookies56.kk.common.entity.mobs.ai;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
-import net.minecraft.world.World;
-import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDarkball;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDetonator;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMinuteBomb;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySkaterBomb;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityStormBomb;
 
 public class EntityAIMinuteBomb extends EntityAITarget{
 	
-	private boolean canUseAttack = true;
 	private int ticksBeforeExplode = 50;
-	private double[] pivotPosToMove;
+	private float strength;
 	
 	public EntityAIMinuteBomb(EntityCreature creature){
         super(creature, true);
+        if(creature instanceof EntityMinuteBomb) {
+        	strength = 1F;
+        } else if(creature instanceof EntitySkaterBomb) {
+        	strength = 2F;
+        } else if(creature instanceof EntityStormBomb) {
+        	strength = 3F;
+        } else if(creature instanceof EntityDetonator) {
+        	strength = 4F;
+        }
         ticksBeforeExplode = 60;
     }
 	
@@ -35,20 +43,22 @@ public class EntityAIMinuteBomb extends EntityAITarget{
 	}*/
 
 	public boolean shouldContinueExecuting(){
-        if(this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) < 5) {
-		
+        if(this.taskOwner.getAttackTarget() != null) {
 			EntityLivingBase target = this.taskOwner.getAttackTarget();
-			if(taskOwner.getDistanceToEntity(target) < 5) {
+    		//System.out.println(this.taskOwner.getDistanceSqToEntity(target));
+
+			if(taskOwner.getDistanceToEntity(target) < 10) {
 				if(ticksBeforeExplode > 0){
 					ticksBeforeExplode--;
+					return true;
 				} else {
 					System.out.println("Boom");
-					taskOwner.world.createExplosion(taskOwner, taskOwner.posX, taskOwner.posY, taskOwner.posZ, 3F, true);
+					taskOwner.world.createExplosion(taskOwner, taskOwner.posX, taskOwner.posY, taskOwner.posZ, strength, false);
 					taskOwner.setDead();
+					return false;
 				}
-			}
-			return true;
-		} 
+			} 
+        }
 		return false;
 		
 
