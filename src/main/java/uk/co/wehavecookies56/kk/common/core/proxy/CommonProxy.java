@@ -62,6 +62,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMegaShadow;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMinuteBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
@@ -165,6 +166,7 @@ public class CommonProxy {
         EntityHelper.registerEntity("emeraldblues", EntityEmeraldBlues.class, Color.green.getRGB(), Color.blue.getRGB());
         EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
         EntityHelper.registerEntity("darkball", EntityDarkball.class, 0x020030, 0x492263);
+        EntityHelper.registerEntity("minutebomb", EntityMinuteBomb.class, 0x020030, 0x492263);
         
         EntityHelper.registerEntity("gummiship",EntityGummiShip.class, 0xFF0000, 0x6666AA);
 

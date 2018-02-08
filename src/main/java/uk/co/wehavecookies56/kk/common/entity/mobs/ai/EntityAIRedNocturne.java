@@ -22,12 +22,7 @@ public class EntityAIRedNocturne extends EntityAITarget
     @Override
     public boolean shouldContinueExecuting() {
         if(this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) < MAX_DISTANCE_FOR_FIREBALL) {
-            /*if(this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) < 12)
-            {
-                EntityHelper.setAnimation(this.taskOwner, 1);
-            }*/
-            if(ticksBeforeNextFlame <= 0)
-            {
+            if(ticksBeforeNextFlame <= 0){
                 double d0 = this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget());
                 float f = MathHelper.sqrt(MathHelper.sqrt(d0));
                 double d1 = this.taskOwner.getAttackTarget().posX - this.taskOwner.posX;
@@ -39,9 +34,7 @@ public class EntityAIRedNocturne extends EntityAITarget
                 esfb.posY = this.taskOwner.posY + (double)(this.taskOwner.height / 2.0F) + 0.5D;
                 this.taskOwner.world.spawnEntity(esfb);
                 ticksBeforeNextFlame = 30 + this.taskOwner.getRNG().nextInt(10);
-            }
-            else
-            {
+            } else {
                 ticksBeforeNextFlame--;
             }
 
