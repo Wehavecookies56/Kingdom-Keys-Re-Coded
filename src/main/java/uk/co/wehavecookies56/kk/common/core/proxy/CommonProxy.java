@@ -75,6 +75,8 @@ import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.lib.Spawnings;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisFreeDevRecipes;
 import uk.co.wehavecookies56.kk.common.synthesis.ModSynthesisMaterials;
@@ -152,73 +154,30 @@ public class CommonProxy {
         EntityHelper.registerEntity("blastblox",EntityBlastBlox.class);
         EntityHelper.registerEntity("fire",EntityFire.class);
         EntityHelper.registerEntity("thunder",EntityThunder.class);
-        //EntityRegistry.registerModEntity(EntityOrgPortal.class, "kkOrgPortalE", 1004, KingdomKeys.instance, 16, 1, false);
         EntityHelper.registerEntity("kkOrgPortalE", EntityOrgPortal.class);
 
-
         // Heartless registry
-        EntityHelper.registerEntity("shadow", EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());
-        EntityHelper.registerEntity("megashadow", EntityMegaShadow.class, Color.BLACK.getRGB(), Color.GRAY.getRGB());
-        EntityHelper.registerEntity("gigashadow", EntityGigaShadow.class, Color.BLACK.getRGB(), Color.BLACK.getRGB());
-        EntityHelper.registerEntity("rednocturne", EntityRedNocturne.class, Color.RED.getRGB(), Color.PINK.getRGB());
-        EntityHelper.registerEntity("bluerhapsody", EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());
-        EntityHelper.registerEntity("yellowopera", EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());
-        EntityHelper.registerEntity("greenrequiem", EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
-        EntityHelper.registerEntity("silverrock", EntitySilverRock.class, Color.LIGHT_GRAY.getRGB(), Color.darkGray.getRGB());
-        EntityHelper.registerEntity("crimsonjazz", EntityCrimsonJazz.class, Color.black.getRGB(), Color.red.getRGB());
-        EntityHelper.registerEntity("emeraldblues", EntityEmeraldBlues.class, Color.green.getRGB(), Color.blue.getRGB());
-        EntityHelper.registerEntity("moogle", EntityMoogle.class, 0xDACAB0, 0xC50033);
-        EntityHelper.registerEntity("darkball", EntityDarkball.class, 0x020030, 0x492263);
-        EntityHelper.registerEntity("minutebomb", EntityMinuteBomb.class, 0x020030, 0x492263);
-        EntityHelper.registerEntity("skaterbomb", EntitySkaterBomb.class, 0x020030, 0x492263);
-        EntityHelper.registerEntity("stormbomb", EntityStormBomb.class, 0x020030, 0x492263);
-        EntityHelper.registerEntity("detonator", EntityDetonator.class, 0x020030, 0x492263);
-        EntityHelper.registerEntity("gummiship",EntityGummiShip.class, 0xFF0000, 0x6666AA);
+        EntityHelper.registerEntity(Strings.Shadow, EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());
+        EntityHelper.registerEntity(Strings.MegaShadow, EntityMegaShadow.class, Color.BLACK.getRGB(), Color.GRAY.getRGB());
+        EntityHelper.registerEntity(Strings.GigaShadow, EntityGigaShadow.class, Color.BLACK.getRGB(), Color.BLACK.getRGB());
+        EntityHelper.registerEntity(Strings.Darkball, EntityDarkball.class, 0x020030, 0x492263);
+        
+        EntityHelper.registerEntity(Strings.RedNocturne, EntityRedNocturne.class, Color.RED.getRGB(), Color.PINK.getRGB());
+        EntityHelper.registerEntity(Strings.BlueRhapsody, EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());
+        EntityHelper.registerEntity(Strings.YellowOpera, EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());
+        EntityHelper.registerEntity(Strings.GreenRequiem, EntityGreenRequiem.class, Color.LIGHT_GRAY.getRGB(), Color.green.getRGB());
+        EntityHelper.registerEntity(Strings.SilverRock, EntitySilverRock.class, Color.LIGHT_GRAY.getRGB(), Color.darkGray.getRGB());
+        EntityHelper.registerEntity(Strings.CrimsonJazz, EntityCrimsonJazz.class, Color.black.getRGB(), Color.red.getRGB());
+        EntityHelper.registerEntity(Strings.EmeraldBlues, EntityEmeraldBlues.class, Color.green.getRGB(), Color.blue.getRGB());
+        EntityHelper.registerEntity(Strings.MinuteBomb, EntityMinuteBomb.class, 0x020030, 0x8B4513);
+        EntityHelper.registerEntity(Strings.SkaterBomb, EntitySkaterBomb.class, 0x020030, 0xAAAAFF);
+        EntityHelper.registerEntity(Strings.StormBomb, EntityStormBomb.class, 0x020030, Color.CYAN.getRGB());
+        EntityHelper.registerEntity(Strings.Detonator, EntityDetonator.class, 0x020030, Color.RED.getRGB());
+        EntityHelper.registerEntity(Strings.Moogle, EntityMoogle.class, 0xDACAB0, 0xC50033);
+        EntityHelper.registerEntity(Strings.GummiShip,EntityGummiShip.class, 0xFF0000, 0x6666AA);
 
-
-        Iterator<Biome> biomeRegistry = Biome.REGISTRY.iterator();
-        List<Biome> biomes = new ArrayList<>();
-        while(biomeRegistry.hasNext()) {
-            Biome biome = biomeRegistry.next();
-            biomes.add(biome);
-        }
-        for (String b : MainConfig.entities.mobBiomeExclusion) {
-            if (Biome.REGISTRY.containsKey(new ResourceLocation(b))) {
-                KingdomKeys.logger.info("Removed mob spawns for biome " + b);
-                biomes.remove(Biome.REGISTRY.getObject(new ResourceLocation(b)));
-            }
-        }
-        Biome[] biomesArray = biomes.toArray(new Biome[biomes.size()]);
-
-        //Pureblood
-        if (MainConfig.entities.shadowRatio != 0)
-            EntityRegistry.addSpawn(EntityShadow.class, MainConfig.entities.shadowRatio, 3, 5, KingdomKeys.HEARTLESS, biomesArray);
-        if (MainConfig.entities.megaShadowRatio != 0)
-            EntityRegistry.addSpawn(EntityMegaShadow.class, MainConfig.entities.megaShadowRatio, 2, 3, KingdomKeys.HEARTLESS, biomesArray);
-        if (MainConfig.entities.gigaShadowRatio != 0)
-            EntityRegistry.addSpawn(EntityGigaShadow.class, MainConfig.entities.gigaShadowRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
-        if (MainConfig.entities.darkballRatio != 0)
-            EntityRegistry.addSpawn(EntityDarkball.class, MainConfig.entities.darkballRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
-
-        //Emblem
-        if (MainConfig.entities.redNocturneRatio != 0)
-            EntityRegistry.addSpawn(EntityRedNocturne.class, MainConfig.entities.redNocturneRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
-        if (MainConfig.entities.blueRhapsodyRatio != 0)
-            EntityRegistry.addSpawn(EntityBlueRhapsody.class, MainConfig.entities.blueRhapsodyRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
-        if (MainConfig.entities.yellowOperaRatio != 0)
-            EntityRegistry.addSpawn(EntityYellowOpera.class, MainConfig.entities.yellowOperaRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
-        if (MainConfig.entities.greenRequiemRatio != 0)
-            EntityRegistry.addSpawn(EntityGreenRequiem.class, MainConfig.entities.greenRequiemRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
-        if (MainConfig.entities.emeraldBluesRatio != 0)
-            EntityRegistry.addSpawn(EntityEmeraldBlues.class, MainConfig.entities.emeraldBluesRatio, 1, 1, KingdomKeys.HEARTLESS, biomesArray);
-        if (MainConfig.entities.silverRockRatio != 0)
-            EntityRegistry.addSpawn(EntitySilverRock.class, MainConfig.entities.silverRockRatio, 1, 1, KingdomKeys.HEARTLESS, Biomes.SKY);
-        if (MainConfig.entities.crimsonJazzRatio != 0)
-            EntityRegistry.addSpawn(EntityCrimsonJazz.class, MainConfig.entities.crimsonJazzRatio, 1, 1, KingdomKeys.HEARTLESS, Biomes.HELL);
-
-        if (MainConfig.entities.moogleRatio != 0)
-            EntityRegistry.addSpawn(EntityMoogle.class, MainConfig.entities.moogleRatio, 1, 1, KingdomKeys.MOOGLE, biomesArray);
-
+        Spawnings.init();
+        
         Lists.init();
 
         ModItemsRecipes.init();

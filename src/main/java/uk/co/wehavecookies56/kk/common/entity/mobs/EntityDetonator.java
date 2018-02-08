@@ -48,7 +48,7 @@ public class EntityDetonator extends BaseEntityHeartless implements IKHMob{
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.22D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(36.0D);
     }
 
     @Override
@@ -61,5 +61,4 @@ public class EntityDetonator extends BaseEntityHeartless implements IKHMob{
         return EntityHelper.MobType.HEARTLESS_EMBLEM;
     }
 
-    
 }

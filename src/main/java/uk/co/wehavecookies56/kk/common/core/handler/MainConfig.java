@@ -129,6 +129,26 @@ public class MainConfig {
         @Config.Name("Silver Rock spawning ratio")
         @Config.Comment("Sets Silver Rock heartless spawning ratio")
         public int silverRockRatio = 5;
+        
+        @Config.RequiresMcRestart
+        @Config.Name("Silver Rock spawning ratio")
+        @Config.Comment("Sets Silver Rock heartless spawning ratio")
+        public int minuteBombRatio = 6;
+        
+        @Config.RequiresMcRestart
+        @Config.Name("Silver Rock spawning ratio")
+        @Config.Comment("Sets Silver Rock heartless spawning ratio")
+        public int skaterBombRatio = 5;
+        
+        @Config.RequiresMcRestart
+        @Config.Name("Silver Rock spawning ratio")
+        @Config.Comment("Sets Silver Rock heartless spawning ratio")
+        public int stormBombRatio = 3;
+        
+        @Config.RequiresMcRestart
+        @Config.Name("Silver Rock spawning ratio")
+        @Config.Comment("Sets Silver Rock heartless spawning ratio")
+        public int detonatorRatio = 2;
 
         @Config.RequiresMcRestart
         @Config.Name("Moogle spawning ratio")
