@@ -22,6 +22,27 @@ public class Strings {
     Choice_Sword = "sword",
     Choice_Staff = "staff",
     Choice_Shield = "shield";
+    
+    //Entities
+    public static final String
+    Shadow = "shadow",
+    MegaShadow = "megashadow",
+    GigaShadow = "gigashadow",
+    Darkball = "darkball",
+    
+    RedNocturne = "rednocturne",
+    BlueRhapsody = "bluerhapsody",
+    YellowOpera = "yellowopera",
+    GreenRequiem = "greenrequiem",
+    SilverRock = "silverrock",
+    CrimsonJazz = "crimsonjazz",
+    EmeraldBlues = "emeraldblues",
+    MinuteBomb = "minutebomb",
+    SkaterBomb = "skaterbomb",
+    StormBomb = "stormbomb",
+    Detonator = "detonator",
+    Moogle = "moogle",
+    GummiShip = "gummiship";
 
     // Achievements
     public static final String
@@ -194,7 +215,6 @@ public class Strings {
     Chat_DefenseBoost = "chat.defenseboost",
     Chat_MagicBoost = "chat.magicboost",
     Chat_DriveBoost = "chat.driveboost";
-    ;
 
     //Stats
     public static final String
@@ -316,6 +336,7 @@ public class Strings {
     SynthesisBagL = "synthesisbagl"
     ;
 
+    //Infused Materials
     public static final String
     BlazingInfusedCoal = "blazinginfusedcoal",
     FrostInfusedSnowBall = "frostinfusedsnowball",
@@ -364,6 +385,7 @@ public class Strings {
     SM_Rank_B = SM_Rank + ".b",
     SM_Rank_A = SM_Rank + ".a",
     SM_Rank_S = SM_Rank + ".s",
+    
     SM_BlazingShard = "sm.blazingshard",
     SM_BlazingStone = "sm.blazingstone",
     SM_BlazingGem = "sm.blazinggem",
@@ -1038,6 +1060,7 @@ public class Strings {
     Chain_ZeroOne = "zeroonechain"
     ;
 
+    //Containers
     public static final String
     KKChestInventory = "container.kkchest",
     MainKeychain = "mainkeychain",

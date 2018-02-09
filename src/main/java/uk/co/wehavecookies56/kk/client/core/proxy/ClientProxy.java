@@ -122,6 +122,7 @@ import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntitySizzlin
 import uk.co.wehavecookies56.kk.common.entity.projectiles.lances.EntityZephyr;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = Reference.MODID)
 public class ClientProxy extends CommonProxy {
@@ -264,22 +265,24 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGummiShip.class, (IRenderFactory) new RenderEntityGummiShip(Minecraft.getMinecraft().getRenderManager()));
 
         
-        RenderingRegistry.registerEntityRenderingHandler(EntityShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(1D), 1, "shadow"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityMegaShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(0.5D), 3, "shadow"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityGigaShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(0.3D), 5, "shadow"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityRedNocturne.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, "rednocturne"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityBlueRhapsody.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, "bluerhapsody"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityYellowOpera.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, "yellowopera"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityGreenRequiem.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, "greenrequiem"));
-        RenderingRegistry.registerEntityRenderingHandler(EntitySilverRock.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, "silverrock"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityCrimsonJazz.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelCrimsonJazz(), 1.1F, "crimsonjazz"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityEmeraldBlues.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelCrimsonJazz(), 1.1F, "emeraldblues"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityMoogle.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMoogle(), 1, "moogle"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkball.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelDarkball(), 1, "darkball"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityMinuteBomb.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1, "minutebomb"));
-        RenderingRegistry.registerEntityRenderingHandler(EntitySkaterBomb.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1.1f, "skaterbomb"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityStormBomb.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1.1f, "stormbomb"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityDetonator.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1.2f, "detonator"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(1D), 1, Strings.Shadow));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMegaShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(0.5D), 3, Strings.Shadow));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGigaShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(0.3D), 5, Strings.Shadow));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkball.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelDarkball(), 1, Strings.Darkball));
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityRedNocturne.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, Strings.RedNocturne));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBlueRhapsody.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, Strings.BlueRhapsody));
+        RenderingRegistry.registerEntityRenderingHandler(EntityYellowOpera.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, Strings.YellowOpera));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGreenRequiem.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, Strings.GreenRequiem));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySilverRock.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, Strings.SilverRock));
+        RenderingRegistry.registerEntityRenderingHandler(EntityCrimsonJazz.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelCrimsonJazz(), 1.1F, Strings.CrimsonJazz));
+        RenderingRegistry.registerEntityRenderingHandler(EntityEmeraldBlues.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelCrimsonJazz(), 1.1F, Strings.EmeraldBlues));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMinuteBomb.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1, Strings.MinuteBomb));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySkaterBomb.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1.1f, Strings.SkaterBomb));
+        RenderingRegistry.registerEntityRenderingHandler(EntityStormBomb.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1.1f, Strings.StormBomb));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDetonator.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1.2f, Strings.Detonator));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMoogle.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMoogle(), 1, Strings.Moogle));
+
     }
 
     @Override
