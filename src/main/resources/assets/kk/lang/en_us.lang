@@ -144,6 +144,7 @@ tile.savepoint.name=Save Point
 tile.savepoint.desc=Sneak while standing on it to set your spawn point
 tile.stationofawakeningdoor.name=Station of Awakening Door
 tile.stationofawakening.name=Station of Awakening floor
+tile.orgportal.name=Organization Portal
 
 ############################
 #Items
@@ -929,8 +930,8 @@ gui.commandmenu.portal=Portal
 gui.commandmenu.magic=Magic
 gui.commandmenu.items=Items
 gui.commandmenu.drive=Drive
-gui.commandmenu.limit=Limit
 gui.commandmenu.drive.revert=Revert
+gui.commandmenu.limit=Limit
 
 #Magic
 gui.commandmenu.magic.title=MAGIC
@@ -1130,15 +1131,21 @@ chat.driveboost=Drive Form Increased! Now it's %1$s!
 #Entities
 ##########################
 entity.shadow.name=Shadow
+entity.megashadow.name=Mega Shadow
 entity.gigashadow.name=Giga Shadow
+entity.darkball.name=Darkball
 entity.rednocturne.name=Red Nocturne
 entity.bluerhapsody.name=Blue Rhapsody
 entity.yellowopera.name=Yellow Opera
 entity.greenrequiem.name=Green Requiem
-entity.moogle.name=Moogle
 entity.crimsonjazz.name=Crimson Jazz
 entity.emeraldblues.name=Emerald Blues
 entity.silverrock.name=Silver Rock
+entity.minutebomb.name=Minute Bomb
+entity.skaterbomb.name=Skater Bomb
+entity.stormbomb.name=Storm Bomb
+entity.detonator.name=Detonator
+entity.moogle.name=Moogle
 
 ##########################
 #Journal

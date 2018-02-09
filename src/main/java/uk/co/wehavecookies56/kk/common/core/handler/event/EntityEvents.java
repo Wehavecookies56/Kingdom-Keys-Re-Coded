@@ -7,8 +7,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.lwjgl.opengl.GL11;
+
 import com.mojang.authlib.GameProfile;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -58,10 +65,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -98,7 +105,6 @@ import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
-import uk.co.wehavecookies56.kk.common.entity.EntityGummiShip;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
@@ -106,6 +112,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMinuteBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySilverRock;
@@ -751,8 +758,6 @@ public class EntityEvents {
             }
         }
     }
-    
-    
 
     @SubscribeEvent
     public void onPlayerTick (TickEvent.PlayerTickEvent event) {
@@ -852,8 +857,6 @@ public class EntityEvents {
                 }
             }
         }
-        //PacketDispatcher.sendTo(new SyncLevelData(event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP)event.player);
-
 
         DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
         if (!DS.getInDrive())
@@ -1010,5 +1013,53 @@ public class EntityEvents {
             }
         }
     }
+    /*
+    @SubscribeEvent
+    public void onRenderLiving (RenderLivingEvent event) {
+    	Entity entity = event.getEntity();
+    	 //double d3 = event.getEntity().getDistanceSqToEntity(Minecraft.getMinecraft().player);
+    	 String name = "Test";
+         //if (d3 <= (double)(par9 * par9))
+    	 double par3=1, par5=1, par7=1;
+    	 int par9=0;
+    	 
+         if(entity instanceof EntityMinuteBomb){
+     		Minecraft minecraft = Minecraft.getMinecraft();
+     		FontRenderer fontRenderer = minecraft.fontRenderer;
+             float f = 1.6F;
+             float f1 = 0.016666668F * f;
+             GL11.glPushMatrix();
+             GL11.glTranslatef((float)par3 + 0.0F, (float)par5 + entity.height + 0.5F, (float)par7);
+             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+             GL11.glRotatef(-minecraft.player.cameraPitch, 0.0F, 1.0F, 0.0F);
+             GL11.glRotatef(minecraft.player.cameraYaw, 1.0F, 0.0F, 0.0F);
+             GL11.glScalef(-f1, -f1, f1);
+             GL11.glDisable(GL11.GL_LIGHTING);
+             GL11.glDepthMask(false);
+             GL11.glDisable(GL11.GL_DEPTH_TEST);
+             GL11.glEnable(GL11.GL_BLEND);
+             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+             Tessellator tessellator = Tessellator.getInstance();
+             BufferBuilder buffer = tessellator.getBuffer();
+             byte b0 = 0;
 
+             GL11.glDisable(GL11.GL_TEXTURE_2D);
+             int j = fontRenderer.getStringWidth(name) / 2;
+             //tessellator.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.25F);
+             buffer.pos((double)(-j - 1), (double)(-1 + b0), 0.0D);
+             buffer.pos((double)(-j - 1), (double)(8 + b0), 0.0D);
+             buffer.pos((double)(j + 1), (double)(8 + b0), 0.0D);
+             buffer.pos((double)(j + 1), (double)(-1 + b0), 0.0D);
+             tessellator.draw();
+             GL11.glEnable(GL11.GL_TEXTURE_2D);
+             fontRenderer.drawString(name, -fontRenderer.getStringWidth(name) / 2, b0, 553648127);
+             GL11.glEnable(GL11.GL_DEPTH_TEST);
+             GL11.glDepthMask(true);
+             fontRenderer.drawString(name, -fontRenderer.getStringWidth(name) / 2, b0, -1);
+             GL11.glEnable(GL11.GL_LIGHTING);
+             GL11.glDisable(GL11.GL_BLEND);
+             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+             GL11.glPopMatrix();
+         }
+    }*/
 }

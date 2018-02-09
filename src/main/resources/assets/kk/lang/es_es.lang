@@ -144,6 +144,7 @@ tile.savepoint.name=Punto de Guardado
 tile.savepoint.desc=Agachate cuando estes en él para guardar el spawn.
 tile.stationofawakeningdoor.name=Puerta de la Estación del Despertar
 tile.stationofawakening.name=Suelo de la estación del Despertar
+tile.orgportal.name=Organization Portal
 
 ############################
 #Items
@@ -925,10 +926,12 @@ gui.kk.reports.keyblades.title.main=Llaves Espada
 #Commands
 gui.commandmenu.command=COMANDOS
 gui.commandmenu.attack=Atacar
+gui.commandmenu.portal=Portal
 gui.commandmenu.magic=Magia
 gui.commandmenu.items=Objetos
 gui.commandmenu.drive=Fusión
 gui.commandmenu.drive.revert=Revertir
+gui.commandmenu.limit=Limit
 
 #Magic
 gui.commandmenu.magic.title=MAGIA
@@ -1127,12 +1130,21 @@ chat.driveboost=¡Indicador de Fusión aumentado! ¡Ahora es %1$s!
 ##########################
 #Entities
 ##########################
-entity.kk.Shadow.name=Sombra
-entity.kk.GigaShadow.name=Giga Sombra
-entity.kk.RedNocturne.name=Nocturno Rojo
-entity.kk.BlueRhapsody.name=Rapsodia Azul
-entity.kk.YellowOpera.name=Ópera Amarilla
-entity.kk.GreenRequiem.name=Réquiem Verde
+entity.kk.shadow.name=Sombra
+entity.megashadow.name=Mega Shadow
+entity.kk.gigashadow.name=Giga Sombra
+entity.darkball.name=Bola Oscura
+entity.kk.rednocturne.name=Nocturno Rojo
+entity.kk.bluerhapsody.name=Rapsodia Azul
+entity.kk.yellowopera.name=Ópera Amarilla
+entity.kk.greenrequiem.name=Réquiem Verde
+entity.crimsonjazz.name=Jazz Carmesí
+entity.emeraldblues.name=Blues Esmeralda
+entity.silverrock.name=Roca Plateada
+entity.minutebomb.name=Minuto Explosivo
+entity.skaterbomb.name=Bomba Patinadora
+entity.stormbomb.name=Bomba Tormentosa
+entity.detonator.name=Detonador
 entity.kk.Moogle.name=Moguri
 
 ##########################

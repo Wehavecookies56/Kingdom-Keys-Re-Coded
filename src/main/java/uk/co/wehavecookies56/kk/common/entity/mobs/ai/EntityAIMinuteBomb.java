@@ -10,7 +10,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityStormBomb;
 
 public class EntityAIMinuteBomb extends EntityAITarget{
 	
-	private int ticksBeforeExplode = 50;
+	private int ticksBeforeExplode = 60;
 	private float strength;
 	
 	public EntityAIMinuteBomb(EntityCreature creature){
@@ -32,27 +32,15 @@ public class EntityAIMinuteBomb extends EntityAITarget{
         return this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) < 1024;
     }
 	
-	/*public boolean prevAttackCalc()
-	{
-		if(this.theEntity.getPreviousAttackState() == EntityDarkball.SpecialAttack.DARKCLOUD)
-		{
-			if(theEntity.rand.nextFloat() <= 0.3f) return true;
-			else return false;
-		}
-		return true;
-	}*/
-
 	public boolean shouldContinueExecuting(){
         if(this.taskOwner.getAttackTarget() != null) {
 			EntityLivingBase target = this.taskOwner.getAttackTarget();
-    		//System.out.println(this.taskOwner.getDistanceSqToEntity(target));
 
 			if(taskOwner.getDistanceToEntity(target) < 10) {
 				if(ticksBeforeExplode > 0){
 					ticksBeforeExplode--;
 					return true;
 				} else {
-					System.out.println("Boom");
 					taskOwner.world.createExplosion(taskOwner, taskOwner.posX, taskOwner.posY, taskOwner.posZ, strength, false);
 					taskOwner.setDead();
 					return false;
