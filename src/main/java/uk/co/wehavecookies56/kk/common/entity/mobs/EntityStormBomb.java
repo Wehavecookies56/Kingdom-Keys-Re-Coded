@@ -31,7 +31,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIShadow;
 public class EntityStormBomb extends BaseEntityHeartless implements IKHMob{
     public EntityStormBomb(World worldIn){
         super(worldIn);
-        this.setSize(width*2, height/2*2);
+        this.setSize(0.6F, 1.4F);
         this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));

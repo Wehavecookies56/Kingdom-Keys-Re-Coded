@@ -37,7 +37,30 @@ import static uk.co.wehavecookies56.kk.common.block.ModBlocks.SynthesisTable;
 import static uk.co.wehavecookies56.kk.common.block.ModBlocks.TranquilOre;
 import static uk.co.wehavecookies56.kk.common.block.ModBlocks.TwilightOre;
 import static uk.co.wehavecookies56.kk.common.block.ModBlocks.TwilightOreN;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.*;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Artemis;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Astrologia;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.BalsamicMoon;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Berserker;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Bunnymoon;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Crater;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Crescent;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Dichotomy;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Gibbous;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Horoscope;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.JustDesserts;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.KingOfTheNight;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.LightYear;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Luminary;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.LunarPhase;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Lunatic;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Moonrise;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Moonset;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.NewMoon;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Orbit;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.QueenOfTheNight;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Selene;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Twilight;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.Werewolf;
 
 import com.jadarstudios.developercapes.DevCapes;
 
@@ -76,8 +99,21 @@ import uk.co.wehavecookies56.kk.client.gui.GuiLockOn;
 import uk.co.wehavecookies56.kk.client.gui.GuiMP;
 import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
 import uk.co.wehavecookies56.kk.client.gui.GuiPlayerPortrait;
-import uk.co.wehavecookies56.kk.client.model.mobs.*;
-import uk.co.wehavecookies56.kk.client.render.*;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelCrimsonJazz;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelDarkball;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelMinuteBomb;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelMoogle;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelRedNocturne;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelShadow;
+import uk.co.wehavecookies56.kk.client.render.LayerRendererDrive;
+import uk.co.wehavecookies56.kk.client.render.RenderEntityFlyingHeart;
+import uk.co.wehavecookies56.kk.client.render.RenderEntityGummiShip;
+import uk.co.wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
+import uk.co.wehavecookies56.kk.client.render.RenderFactoryFlyingHeart;
+import uk.co.wehavecookies56.kk.client.render.RenderFactorySharpshooterBullet;
+import uk.co.wehavecookies56.kk.client.render.RenderKHMob;
+import uk.co.wehavecookies56.kk.client.render.RenderPortal;
+import uk.co.wehavecookies56.kk.client.render.TESRPedestal;
 import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityAshes;
 import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityBlazeofGlory;
 import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityBurnout;
@@ -98,10 +134,26 @@ import uk.co.wehavecookies56.kk.client.render.lances.RenderEntityZephyr;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy;
+import uk.co.wehavecookies56.kk.common.entity.EntityFlyingHeart;
 import uk.co.wehavecookies56.kk.common.entity.EntityGummiShip;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
-import uk.co.wehavecookies56.kk.common.entity.mobs.*;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDarkball;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDetonator;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMegaShadow;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMinuteBomb;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySilverRock;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySkaterBomb;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityStormBomb;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityAshes;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityBlazeofGlory;
@@ -135,6 +187,7 @@ public class ClientProxy extends CommonProxy {
         for (Item i : ModItems.ITEMS) {
             registerModel(i);
         }
+        
         //Berserk
         registerModel(NewMoon, 1, NewMoon.getRegistryName() + "_b");
         registerModel(Werewolf, 1, Werewolf.getRegistryName() + "_b");
@@ -260,9 +313,11 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityOutbreak.class, (IRenderFactory) new RenderEntityOutbreak(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntitySizzlingEdge.class, (IRenderFactory) new RenderEntitySizzlingEdge(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityDoubleEdge.class, (IRenderFactory) new RenderEntityDoubleEdge(Minecraft.getMinecraft().getRenderManager()));
-
+        
+        //Others
         RenderingRegistry.registerEntityRenderingHandler(EntitySharpshooterBullet.class, new RenderFactorySharpshooterBullet());
         RenderingRegistry.registerEntityRenderingHandler(EntityGummiShip.class, (IRenderFactory) new RenderEntityGummiShip(Minecraft.getMinecraft().getRenderManager()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFlyingHeart.class, (IRenderFactory) new RenderEntityFlyingHeart(Minecraft.getMinecraft().getRenderManager()));
 
         
         RenderingRegistry.registerEntityRenderingHandler(EntityShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(1D), 1, Strings.Shadow));

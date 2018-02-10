@@ -107,6 +107,7 @@ import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
+import uk.co.wehavecookies56.kk.common.entity.mobs.BaseEntityHeartless;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
@@ -626,8 +627,10 @@ public class EntityEvents {
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("heart"))
                                 event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Heart), 2);
                         } else if (event.getEntity() instanceof EntityMob) {
-                            if (Arrays.asList(MainConfig.entities.dropsList).contains("darkheart"))
-                                event.getEntityLiving().entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
+                            if (Arrays.asList(MainConfig.entities.dropsList).contains("darkheart")) {
+                            	if(!(event.getEntityLiving() instanceof IKHMob && ((IKHMob)event.getEntityLiving()).getType() == MobType.HEARTLESS_PUREBLOOD))
+                            		event.getEntityLiving().entityDropItem(new ItemStack(ModItems.DarkHeart), 2);
+                            }
                             if (Arrays.asList(MainConfig.entities.dropsList).contains("spellorb") && event.getEntity() instanceof EntityWitch) {
                                 int rand;
                                 rand = Utils.randomWithRange(1, 30);

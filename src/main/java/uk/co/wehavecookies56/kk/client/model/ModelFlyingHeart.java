@@ -1,4 +1,4 @@
-package uk.co.wehavecookies56.kk.client.model.chakrams;
+package uk.co.wehavecookies56.kk.client.model;
 
 import java.util.HashMap;
 
@@ -14,14 +14,14 @@ import uk.co.wehavecookies56.kk.client.core.helper.ModelHelper;
 /**
  * Created by NStel on 3/29/2017.
  */
-public class ModelSizzlingEdge extends ModelBase {
+public class ModelFlyingHeart extends ModelBase {
 
     OBJModel model;
     HashMap<String, IBakedModel> modelParts;
 
-    public ModelSizzlingEdge() {
+    public ModelFlyingHeart() {
         try {
-            model = (OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("kk:models/item/sizzlingedge.obj"));
+            model = (OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("kk:models/item/flyingheart.obj"));
             modelParts = ModelHelper.getModelsForGroups(model);
         } catch (Exception e) {
 

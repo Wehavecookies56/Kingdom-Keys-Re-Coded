@@ -2,19 +2,14 @@ package uk.co.wehavecookies56.kk.common.core.proxy;
 
 import java.awt.Color;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Biomes;
 import net.minecraft.util.IThreadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -50,6 +45,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.crafting.KKOreDictionary;
 import uk.co.wehavecookies56.kk.common.crafting.ModItemsRecipes;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
+import uk.co.wehavecookies56.kk.common.entity.EntityFlyingHeart;
 import uk.co.wehavecookies56.kk.common.entity.EntityGummiShip;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityFire;
@@ -93,8 +89,7 @@ public class CommonProxy {
         // Display mod info in console
         KingdomKeys.logger.info("You are running " + Reference.MODNAME + " version " + Reference.MODVER + " for Minecraft " + Reference.MCVER);
 
-        if(MainConfig.client.hud.chat)
-        {
+        if(MainConfig.client.hud.chat){
             try {
                 UsernameHandler.init(event);
             } catch (MalformedURLException e) {
@@ -155,6 +150,7 @@ public class CommonProxy {
         EntityHelper.registerEntity("fire",EntityFire.class);
         EntityHelper.registerEntity("thunder",EntityThunder.class);
         EntityHelper.registerEntity("kkOrgPortalE", EntityOrgPortal.class);
+        EntityHelper.registerEntity("kkFlyingHeart", EntityFlyingHeart.class);
 
         // Heartless registry
         EntityHelper.registerEntity(Strings.Shadow, EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());
