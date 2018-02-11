@@ -35,7 +35,7 @@ public class RenderEntityFlyingHeart extends Render implements IRenderFactory<En
 	    @Override
 	    public void doRender (Entity entity, double x, double y, double z, float yaw, float pitch) {
 	        GL11.glPushMatrix();
-	        GL11.glTranslated(x, y +(entity.ticksExisted/5f)-1, z); //TODO make the entity move, not the render
+	        GL11.glTranslated(x, y, z); // OLD : (entity.ticksExisted/5f)-1
             
 	        GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 128.0F, 128.0F);
@@ -48,9 +48,7 @@ public class RenderEntityFlyingHeart extends Render implements IRenderFactory<En
 	        else //Static size
 	        	GL11.glScalef(0.005f, 0.005f, 0.005f);
 
-
-	        GL11.glRotatef(-Minecraft.getMinecraft().player.getPitchYaw().y, 0, 1, 0);
-	        GL11.glRotatef(rotation+=4, 0, 1, 0);
+	        GL11.glRotatef(rotation += 4, 0, 1, 0);
 
 	        bindEntityTexture(entity);
 

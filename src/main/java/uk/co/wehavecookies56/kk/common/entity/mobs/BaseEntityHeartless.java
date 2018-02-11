@@ -39,28 +39,21 @@ public class BaseEntityHeartless extends EntityMob{
     }
     
     @Override
-    public void onDeath(DamageSource cause){
+    public void onDeath(DamageSource cause)
+    {  	
     	super.onDeath(cause);
-    	if(this instanceof IKHMob) {
-    		if(((IKHMob)this).getType() == MobType.HEARTLESS_EMBLEM) {
-		    	if(!world.isRemote) {
-		    		EntityFlyingHeart heart = new EntityFlyingHeart(this.world, this.posX, this.posY-1, this.posZ);
+    	if(this instanceof IKHMob) 
+    	{
+    		if(((IKHMob)this).getType() == MobType.HEARTLESS_EMBLEM) 
+    		{
+		    	if(!world.isRemote)
+		    	{
+		    		EntityFlyingHeart heart = new EntityFlyingHeart(this.world);
+		    		heart.setPosition(this.posX, this.posY + 1, this.posZ);
 		    		world.spawnEntity(heart);
 		    	}
     		}
     	}
-    	
-        //heart.setThrowableHeading((double)1, (double)1, (double)1, 2, 1);
-
-    	
-    	//heart.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
-    	
-    	/*float f = -MathHelper.sin(rotationYawIn * 0.017453292F) * MathHelper.cos(rotationPitchIn * 0.017453292F);
-        float f1 = -MathHelper.sin((rotationPitchIn + pitchOffset) * 0.017453292F);
-        float f2 = MathHelper.cos(rotationYawIn * 0.017453292F) * MathHelper.cos(rotationPitchIn * 0.017453292F);*/
-        //heart.motionX += entityThrower.motionX;
-        //heart.motionZ += entityThrower.motionZ;
-
        
     }
     

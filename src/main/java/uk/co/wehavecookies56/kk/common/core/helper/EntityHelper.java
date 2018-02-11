@@ -48,7 +48,7 @@ public class EntityHelper
     public enum Dir {SOUTH, SOUTH_EAST, EAST, NORTH, NORTH_EAST, NORTH_WEST, WEST, SOUTH_WEST;}
 
     public enum MobType {HEARTLESS_PUREBLOOD, HEARTLESS_EMBLEM, NOBODY, NPC;}
-
+    
     public static Dir get8Directions(Entity e)
     {
         switch(MathHelper.floor(e.rotationYaw * 8.0F / 360.0F + 0.5D) & 7)

@@ -27,9 +27,9 @@ public class EntityDarkball extends BaseEntityHeartless implements IKHMob
     
     protected final int 
     	DAMAGE_HIT = 0,
-    	DAMAGE_CHARGE = 1,
-    	DAMAGE_BERSERK = 1,
-    	DAMAGE_DARKCLOUD = 1;
+    	DAMAGE_CHARGE = 6,
+    	DAMAGE_BERSERK = 5,
+    	DAMAGE_DARKCLOUD = 4;
     
 	public EntityDarkball(World worldIn) 
 	{
@@ -200,13 +200,13 @@ public class EntityDarkball extends BaseEntityHeartless implements IKHMob
         public void updateTask()
         { 
         	if(theEntity.getAttackTarget() != null && canUseAttack)
-        	{  
+        	{
         		whileAttackTimer++;
-        		System.out.println("darkcloud " + whileAttackTimer);
+        		//System.out.println("darkcloud " + whileAttackTimer);
         		EntityHelper.setState(theEntity, 3);
         		EntityLivingBase target = this.theEntity.getAttackTarget();
 				for (int i = 0; i < 20; i++)
-				{				
+				{
 					double offsetX = (new Random().nextInt(5) + 1.0D + 5.0D) - 5.0D; //3
 					double offsetY = (new Random().nextInt(5) + 1.0D + 5.0D) - 5.0D;
 					double offsetZ = (new Random().nextInt(5) + 1.0D + 5.0D) - 5.0D;
@@ -308,7 +308,7 @@ public class EntityDarkball extends BaseEntityHeartless implements IKHMob
         	if(theEntity.getAttackTarget() != null && canUseAttack)
         	{  
         		whileAttackTimer++;
-        		System.out.println("berserk " + whileAttackTimer);
+        		//System.out.println("berserk " + whileAttackTimer);
         		EntityHelper.setState(theEntity, 2);
 				for (int i = 0; i < 20; i++)
 				{				
@@ -414,7 +414,7 @@ public class EntityDarkball extends BaseEntityHeartless implements IKHMob
         	if(theEntity.getAttackTarget() != null && canUseAttack)
         	{
         		whileAttackTimer++;
-        		System.out.println("charge " + whileAttackTimer);
+        		//System.out.println("charge " + whileAttackTimer);
         		EntityHelper.setState(theEntity, 1);
             	EntityLivingBase target = this.theEntity.getAttackTarget();
 	            this.theEntity.getNavigator().tryMoveToXYZ(posToCharge[0], posToCharge[1], posToCharge[2], 3.0D);

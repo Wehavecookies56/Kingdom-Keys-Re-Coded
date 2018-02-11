@@ -41,6 +41,7 @@ public class Strings {
     SkaterBomb = "skaterbomb",
     StormBomb = "stormbomb",
     Detonator = "detonator",
+    LargeBody = "largebody",
     Moogle = "moogle",
     GummiShip = "gummiship";
 

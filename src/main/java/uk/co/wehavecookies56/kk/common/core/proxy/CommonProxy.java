@@ -58,6 +58,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDetonator;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityLargeBody;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMegaShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMinuteBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
@@ -169,6 +170,7 @@ public class CommonProxy {
         EntityHelper.registerEntity(Strings.SkaterBomb, EntitySkaterBomb.class, 0x020030, 0xAAAAFF);
         EntityHelper.registerEntity(Strings.StormBomb, EntityStormBomb.class, 0x020030, Color.CYAN.getRGB());
         EntityHelper.registerEntity(Strings.Detonator, EntityDetonator.class, 0x020030, Color.RED.getRGB());
+        EntityHelper.registerEntity(Strings.LargeBody, EntityLargeBody.class, 0x4d177c, 0x29014c);
         EntityHelper.registerEntity(Strings.Moogle, EntityMoogle.class, 0xDACAB0, 0xC50033);
         EntityHelper.registerEntity(Strings.GummiShip,EntityGummiShip.class, 0xFF0000, 0x6666AA);
 
