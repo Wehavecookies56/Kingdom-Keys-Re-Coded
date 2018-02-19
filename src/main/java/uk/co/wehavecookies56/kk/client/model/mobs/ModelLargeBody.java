@@ -207,7 +207,7 @@ public class ModelLargeBody extends ModelBase
     	{
 	    	cycleIndex = (int) ((totalDistance * 4) % this.legsMovementAnimation.length);
 	    	this.leftLeg1.rotateAngleX = degToRad(legsMovementAnimation[cycleIndex]);
-	    	this.rightLeg1.rotateAngleX = degToRad(legsMovementAnimation[cycleIndex]) * -1;
+	    	this.rightLeg1.rotateAngleX = -degToRad(legsMovementAnimation[cycleIndex]);
     	}
     	else
     	{
@@ -228,7 +228,7 @@ public class ModelLargeBody extends ModelBase
     	else if(EntityHelper.getState(ent) == 1)
     	{	
     		cycleIndex = (int) (ent.ticksExisted % chargeFlailArmsAnimation.length);
-    		this.leftArm1.rotateAngleX  = (float) chargeFlailArmsAnimation[cycleIndex] * -1;
+    		this.leftArm1.rotateAngleX  = (float) -chargeFlailArmsAnimation[cycleIndex];
     		this.rightArm1.rotateAngleX  = (float) chargeFlailArmsAnimation[cycleIndex];
     	} 	
     	else if(EntityHelper.getState(ent) == 2)

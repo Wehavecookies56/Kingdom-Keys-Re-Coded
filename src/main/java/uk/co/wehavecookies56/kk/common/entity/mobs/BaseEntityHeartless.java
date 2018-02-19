@@ -42,19 +42,14 @@ public class BaseEntityHeartless extends EntityMob{
     public void onDeath(DamageSource cause)
     {  	
     	super.onDeath(cause);
-    	if(this instanceof IKHMob) 
-    	{
-    		if(((IKHMob)this).getType() == MobType.HEARTLESS_EMBLEM) 
-    		{
-		    	if(!world.isRemote)
-		    	{
+    	if(this instanceof IKHMob){
+    		if(((IKHMob)this).getType() == MobType.HEARTLESS_EMBLEM){
+		    	if(!world.isRemote){
 		    		EntityFlyingHeart heart = new EntityFlyingHeart(this.world);
 		    		heart.setPosition(this.posX, this.posY + 1, this.posZ);
 		    		world.spawnEntity(heart);
 		    	}
     		}
     	}
-       
     }
-    
 }

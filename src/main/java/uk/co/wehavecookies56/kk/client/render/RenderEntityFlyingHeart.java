@@ -43,7 +43,7 @@ public class RenderEntityFlyingHeart extends Render implements IRenderFactory<En
 	        float ticks = entity.ticksExisted;
 	        if(ticks < 10) //Growing
 	        	GL11.glScalef(ticks*0.0005f, ticks*0.0005f, ticks*0.0005f);
-	        else if(ticks > 20) //Disappearing
+	        else if(ticks > EntityFlyingHeart.MAX_TICKS - 10) //Disappearing
 	        	GL11.glScalef((30-ticks)*0.0005f, (30-ticks)*0.0005f, (30-ticks)*0.0005f);
 	        else //Static size
 	        	GL11.glScalef(0.005f, 0.005f, 0.005f);

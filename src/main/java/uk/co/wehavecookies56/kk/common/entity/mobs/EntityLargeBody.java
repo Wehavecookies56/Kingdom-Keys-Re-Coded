@@ -62,7 +62,7 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
     	    	
     	int rotation = MathHelper.floor(this.getRotationYawHead() * 4.0F / 360.0F + 0.5D) & 3;    	
     	
-        this.partBelly.width = 2.4F;
+        this.partBelly.width = 2.2F;
         this.partBelly.height = 2.4F;
     	
         if(this.getHealth() < this.getMaxHealth()/3)
@@ -114,16 +114,16 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
     	switch(rotation)
     	{   	
     	case 0:
-            this.partBelly.setPosition(this.posX, this.posY, this.posZ + 0.7);
+            this.partBelly.setPosition(this.posX, this.posY, this.posZ + 0.8);
     		break;
     	case 1:
-            this.partBelly.setPosition(this.posX - 0.7, this.posY, this.posZ);
+            this.partBelly.setPosition(this.posX - 0.8, this.posY, this.posZ);
     		break;
     	case 2:
-            this.partBelly.setPosition(this.posX, this.posY, this.posZ - 0.7);
+            this.partBelly.setPosition(this.posX, this.posY, this.posZ - 0.8);
     		break;
     	case 3:
-            this.partBelly.setPosition(this.posX + 0.7, this.posY, this.posZ);
+            this.partBelly.setPosition(this.posX + 0.8, this.posY, this.posZ);
     		break;
     	}  	
     	this.partBelly.onUpdate();
