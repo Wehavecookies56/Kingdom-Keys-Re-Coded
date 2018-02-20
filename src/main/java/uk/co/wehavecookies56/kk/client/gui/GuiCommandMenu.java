@@ -357,7 +357,7 @@ public class GuiCommandMenu extends GuiScreen {
                 GL11.glScalef(scale, scale, scale);
                 if (submenu == SUB_PORTALS) {
                     drawTexturedModalRect(0, 0, 0, 0+extraY, TOP_WIDTH, TOP_HEIGHT);
-                    drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Magic_Title), 6, 4, 0xFFFFFF);
+                    drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Portals_Title), 6, 4, 0xFFFFFF);
                 }
             }
             GL11.glPopMatrix();
@@ -383,7 +383,7 @@ public class GuiCommandMenu extends GuiScreen {
                         
                         PortalCoords portal = portalCommands.get(i);
                         //String magicName = Constants.getMagicName(magic, level);
-                        drawString(mc.fontRenderer, Utils.translateToLocal(portal.getPID()+""), 6, 4, 0xFFFFFF);
+                        drawString(mc.fontRenderer, Utils.translateToLocal(portal.getShortCoords()+""), 6, 4, 0xFFFFFF);
                         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
                     }
                 }

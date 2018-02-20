@@ -43,6 +43,11 @@ public class PortalCoords {
 	public void setDimID(int dimID) {
 		this.dimID = dimID;
 	}
+
+	public String getShortCoords() {
+		//return x+", "+y+", "+z;
+		return String.valueOf(pID+1);
+	}
 	
 	
 }

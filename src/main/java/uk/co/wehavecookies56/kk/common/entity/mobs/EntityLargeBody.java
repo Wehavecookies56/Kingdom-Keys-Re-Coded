@@ -41,8 +41,7 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
     	DAMAGE_MOWDOWN = 5,
     	DAMAGE_SHOCKWAVE = 4;
     
-	public EntityLargeBody(World worldIn) 
-	{
+	public EntityLargeBody(World worldIn) {
 		super(worldIn);
 		this.setSize(2, 3F);
 		this.tasks.addTask(0, new EntityAIAttackMelee(this, 1.0D, false));
@@ -53,9 +52,16 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
 		this.tasks.addTask(4, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-		this.partsArray = new EntityPart[] {partBelly};
+		this.partsArray = new EntityPart[] { partBelly };
 	}
 
+	public void applyEntityAttributes() {
+		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
+    }
     public void onLivingUpdate()
     { 
     	super.onLivingUpdate();
@@ -92,17 +98,8 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
     		timeForNextAI = 80;
     	}
         
-    	if(this.isAngry)
-    	{
-	        KingdomKeys.proxy.spawnDarkSmokeParticle(
-	        		world, 
-	        		posX, 
-	        		posY + 1, 
-	        		posZ, 
-	        		0, 
-	        		0.01D, 
-	        		0, 
-	        		0.8F);
+		if (this.isAngry) {
+			KingdomKeys.proxy.spawnDarkSmokeParticle(world, posX, posY + 1, posZ, 0, 0.01D, 0, 0.8F);
     	}
     	
     	if(EntityHelper.getState(this) != 10 || EntityHelper.getState(this) != 2)
@@ -127,15 +124,6 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
     		break;
     	}  	
     	this.partBelly.onUpdate();
-    }
-	
-    public void applyEntityAttributes() 
-    {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
     }
 
 	public boolean attackEntityAsMob(Entity ent)

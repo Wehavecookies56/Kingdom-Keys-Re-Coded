@@ -22,7 +22,7 @@ public class EntityAIShadow extends EntityAITarget {
         if (this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) < MAX_DISTANCE_FOR_AI) {
 
         	if(EntityHelper.getState(taskOwner) == 1)
-        		System.out.println("" + EntityHelper.getState(taskOwner));
+        		//System.out.println("" + EntityHelper.getState(taskOwner));
         	
             if(!this.taskOwner.onGround) {
                 EntityHelper.setState(this.taskOwner, 0);

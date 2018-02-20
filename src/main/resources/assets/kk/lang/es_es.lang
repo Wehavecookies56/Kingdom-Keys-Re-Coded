@@ -933,6 +933,9 @@ gui.commandmenu.drive=Fusión
 gui.commandmenu.drive.revert=Revertir
 gui.commandmenu.limit=Limit
 
+#Portal
+gui.commandmenu.portal.title=PORTALS
+
 #Magic
 gui.commandmenu.magic.title=MAGIA
 gui.commandmenu.magic.fire=Piro
