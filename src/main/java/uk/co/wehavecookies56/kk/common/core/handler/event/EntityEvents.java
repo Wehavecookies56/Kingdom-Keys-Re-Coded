@@ -236,9 +236,8 @@ public class EntityEvents {
         orgAfter.setCurrentWeapon(orgBefore.currentWeapon());
         orgAfter.setWeaponSummoned(EnumHand.MAIN_HAND, orgBefore.summonedWeapon(EnumHand.MAIN_HAND));
         orgAfter.setWeaponSummoned(EnumHand.OFF_HAND, orgBefore.summonedWeapon(EnumHand.OFF_HAND));
-        orgAfter.setPortalCoords((byte)0, orgBefore.getPortalCoords((byte)0));
-        //orgAfter.setPortalY(orgBefore.getPortalY());
-        //orgAfter.setPortalZ(orgBefore.getPortalZ());
+        for(int i=0;i<3;i++)
+        orgAfter.setPortalCoords((byte)i, orgBefore.getPortalCoords((byte)i));
         if (event.isWasDeath()) {
             orgAfter.setMember(Utils.OrgMember.NONE);
             orgAfter.setWeaponSummoned(EnumHand.MAIN_HAND, false);

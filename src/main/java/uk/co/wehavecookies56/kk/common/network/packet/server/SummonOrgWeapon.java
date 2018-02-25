@@ -12,8 +12,11 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKeybladeParticles;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnOrgWeaponParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 
 public class SummonOrgWeapon extends AbstractMessage.AbstractServerMessage<SummonOrgWeapon> {
@@ -47,7 +50,9 @@ public class SummonOrgWeapon extends AbstractMessage.AbstractServerMessage<Summo
         else
             player.inventory.offHandInventory.set(0, stack);
         player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
-        player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(hand, true);
+        IOrganizationXIII ORG = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+        ORG.setWeaponSummoned(hand, true);
+        PacketDispatcher.sendToAllAround(new SpawnOrgWeaponParticles(player, ORG.getMember().ordinal()), player, 64.0D);
         PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
     }
 }

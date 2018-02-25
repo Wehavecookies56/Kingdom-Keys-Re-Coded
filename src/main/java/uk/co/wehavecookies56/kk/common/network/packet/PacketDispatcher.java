@@ -19,6 +19,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnFireParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKH1FireParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnKeybladeParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnLockOnParticle;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnOrgWeaponParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnPortalParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnShockwaveParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnStopParticles;
@@ -134,6 +135,7 @@ public class PacketDispatcher {
         registerMessage(SpawnPortalParticles.class);
         registerMessage(OpenOrgGUI.class);
         registerMessage(SpawnKeybladeParticles.class);
+        registerMessage(SpawnOrgWeaponParticles.class);
         registerMessage(SyncOrgPortal.class);
         registerMessage(SpawnShockwaveParticles.class);
 
