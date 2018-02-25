@@ -13,24 +13,25 @@ import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 
 public class BlockKKOre extends Block {
 
-    public BlockKKOre (Material material, String toolClass, int level, float hardness, float resistance, String name) {
-        super(material);
-        this.setHarvestLevel(toolClass, level);
-        setHardness(hardness);
-        setResistance(resistance);
-        setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
-        setRegistryName(name);
-        setUnlocalizedName(name);
-    }
-    private Random rand = new Random();
+	public BlockKKOre(Material material, String toolClass, int level, float hardness, float resistance, String name) {
+		super(material);
+		this.setHarvestLevel(toolClass, level);
+		setHardness(hardness);
+		setResistance(resistance);
+		setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
+		setRegistryName(name);
+		setUnlocalizedName(name);
+	}
 
-    @Override
-    public Item getItemDropped (IBlockState state, Random r, int fortune) {
-        return null;
-    }
+	private Random rand = new Random();
 
-    @Override
-    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
-            return MathHelper.getInt(rand, 2, 4);
-    }
+	@Override
+	public Item getItemDropped(IBlockState state, Random r, int fortune) {
+		return null;
+	}
+
+	@Override
+	public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
+		return MathHelper.getInt(rand, 2, 4);
+	}
 }

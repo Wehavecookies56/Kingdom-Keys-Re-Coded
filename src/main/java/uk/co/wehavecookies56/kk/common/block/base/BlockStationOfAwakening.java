@@ -34,22 +34,9 @@ public class BlockStationOfAwakening extends Block {
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
         if (tab == ModBlocks.tabKingdomKeysBlocks) {
-            list.add(new ItemStack(this, 1, 0));
-            list.add(new ItemStack(this, 1, 1));
-            list.add(new ItemStack(this, 1, 2));
-            list.add(new ItemStack(this, 1, 3));
-            list.add(new ItemStack(this, 1, 4));
-            list.add(new ItemStack(this, 1, 5));
-            list.add(new ItemStack(this, 1, 6));
-            list.add(new ItemStack(this, 1, 7));
-            list.add(new ItemStack(this, 1, 8));
-            list.add(new ItemStack(this, 1, 9));
-            list.add(new ItemStack(this, 1, 10));
-            list.add(new ItemStack(this, 1, 11));
-            list.add(new ItemStack(this, 1, 12));
-            list.add(new ItemStack(this, 1, 13));
-            list.add(new ItemStack(this, 1, 14));
-            list.add(new ItemStack(this, 1, 15));
+        	for(int i=0;i<=15;i++) {
+        		list.add(new ItemStack(this, 1, i));
+        	}
         }
         super.getSubBlocks(tab, list);
     }

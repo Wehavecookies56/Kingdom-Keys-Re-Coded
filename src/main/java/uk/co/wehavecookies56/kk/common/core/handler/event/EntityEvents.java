@@ -270,19 +270,10 @@ public class EntityEvents {
                     itemstack = player.getHeldItemOffhand();
                 }
             }
-
-            switch(getEnchantment(itemstack, 21)) {
-                case 1:
-                    recipeRand = Utils.randomWithRange(1, 98);
-                    break;
-                case 2:
-                    recipeRand = Utils.randomWithRange(1, 96);
-                    break;
-                case 3:
-                    recipeRand = Utils.randomWithRange(1, 94);
-                    break;
-            }
-
+            int level = getEnchantmentLevel(itemstack, 21);
+            int max = 100 - (level * 2);
+            recipeRand = Utils.randomWithRange(1, max);
+            
             if(recipeRand <= 1) {
                 event.getEntityLiving().entityDropItem(new ItemStack(ModItems.Recipe), 1);
             }
@@ -290,7 +281,7 @@ public class EntityEvents {
     }
 
 
-    public int getEnchantment(ItemStack stack, int id) {
+    public int getEnchantmentLevel(ItemStack stack, int id) {
         for (int i = 0; i < stack.getEnchantmentTagList().tagCount(); i++) {
             if (stack.getEnchantmentTagList().getCompoundTagAt(i).getShort("id") == id) {
                 return stack.getEnchantmentTagList().getCompoundTagAt(i).getShort("lvl");
@@ -300,7 +291,6 @@ public class EntityEvents {
     }
 
     public static boolean isBoss = false;
-
     public static boolean isHostiles = false;
 
     @SubscribeEvent
@@ -568,6 +558,13 @@ public class EntityEvents {
         entityDrops.add(new EntityDropEntry(EntityWither.class, new ItemStack(ModItems.LevelUpMagicCure), 25));
         entityDrops.add(new EntityDropEntry(EntityBat.class, new ItemStack(ModItems.LevelUpMagicAero), 5));
         entityDrops.add(new EntityDropEntry(EntityGhast.class, new ItemStack(ModItems.LevelUpMagicAero), 20));
+        
+        entityDrops.add(new EntityDropEntry(EntityWitch.class, new ItemStack(ModItems.LevelUpMagicFire), 10));
+        entityDrops.add(new EntityDropEntry(EntityWitch.class, new ItemStack(ModItems.LevelUpMagicBlizzard), 10));
+        entityDrops.add(new EntityDropEntry(EntityWitch.class, new ItemStack(ModItems.LevelUpMagicThunder), 10));
+        entityDrops.add(new EntityDropEntry(EntityWitch.class, new ItemStack(ModItems.LevelUpMagicCure), 10));
+        entityDrops.add(new EntityDropEntry(EntityWitch.class, new ItemStack(ModItems.LevelUpMagicAero), 10));
+        entityDrops.add(new EntityDropEntry(EntityWitch.class, new ItemStack(ModItems.LevelUpMagicStop), 10));
 
     }
 
