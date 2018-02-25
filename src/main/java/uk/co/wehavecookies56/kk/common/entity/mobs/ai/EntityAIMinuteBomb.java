@@ -8,36 +8,36 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMinuteBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySkaterBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityStormBomb;
 
-public class EntityAIMinuteBomb extends EntityAITarget{
-	
-	private int ticksBeforeExplode = 60;
+public class EntityAIMinuteBomb extends EntityAITarget {
+
+	private int ticksBeforeExplode;
 	private float strength;
-	
-	public EntityAIMinuteBomb(EntityCreature creature){
-        super(creature, true);
-        if(creature instanceof EntityMinuteBomb) {
-        	strength = 1F;
-        } else if(creature instanceof EntitySkaterBomb) {
-        	strength = 2F;
-        } else if(creature instanceof EntityStormBomb) {
-        	strength = 3F;
-        } else if(creature instanceof EntityDetonator) {
-        	strength = 4F;
-        }
-        ticksBeforeExplode = 60;
-    }
-	
+
+	public EntityAIMinuteBomb(EntityCreature creature) {
+		super(creature, true);
+		if (creature instanceof EntityMinuteBomb) {
+			strength = 2F;
+		} else if (creature instanceof EntitySkaterBomb) {
+			strength = 3F;
+		} else if (creature instanceof EntityStormBomb) {
+			strength = 4F;
+		} else if (creature instanceof EntityDetonator) {
+			strength = 5F;
+		}
+		ticksBeforeExplode = 50;
+	}
+
 	@Override
-    public boolean shouldExecute() {
-        return this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) < 1024;
-    }
-	
-	public boolean shouldContinueExecuting(){
-        if(this.taskOwner.getAttackTarget() != null) {
+	public boolean shouldExecute() {
+		return this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) < 1024;
+	}
+
+	public boolean shouldContinueExecuting() {
+		if (this.taskOwner.getAttackTarget() != null) {
 			EntityLivingBase target = this.taskOwner.getAttackTarget();
 
-			if(taskOwner.getDistanceToEntity(target) < 10) {
-				if(ticksBeforeExplode > 0){
+			if (taskOwner.getDistanceToEntity(target) < 10) {
+				if (ticksBeforeExplode > 0) {
 					ticksBeforeExplode--;
 					return true;
 				} else {
@@ -45,18 +45,13 @@ public class EntityAIMinuteBomb extends EntityAITarget{
 					taskOwner.setDead();
 					return false;
 				}
-			} 
-        }
+			}
+		}
 		return false;
-		
-
 	}
 
-	public void startExecuting(){
-		//canUseAttack = true;
+	public void startExecuting() {
 		ticksBeforeExplode = 60;
-		//whileAttackTimer = 0;
-
-		//EntityHelper.setState(theEntity, 0);
+		// EntityHelper.setState(theEntity, 0);
 	}
 }
