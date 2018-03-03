@@ -20,6 +20,8 @@ import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveSta
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class CommandDriveLevel implements ICommand {
@@ -110,10 +112,13 @@ public class CommandDriveLevel implements ICommand {
                 
                 IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
                 String form = null;
-                
+                int oldLevel = DRIVE.getDriveLevel("form."+args[0].toLowerCase());
+                int newLevel = Integer.parseInt(args[1].toString());
+                //System.out.println("Old: "+oldLevel+"\tNew: "+newLevel);
+
                 switch(args[0].toLowerCase()){
                 case "valor":
-                	DRIVE.setDriveLevel(Strings.Form_Valor, Integer.parseInt(args[1].toString()));
+                	DRIVE.setDriveLevel(Strings.Form_Valor, newLevel);
                     form = Utils.translateToLocal(Strings.Form_Valor);
                     break;
                 case "wisdom":
@@ -135,6 +140,18 @@ public class CommandDriveLevel implements ICommand {
                 }
                 DRIVE.displayLevelUpMessage(player,"form."+args[0].toLowerCase()); 
 
+                if(oldLevel != 7 && newLevel == 7) {
+                	//Increase
+                    player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()+1);
+                    player.getCapability(ModCapabilities.DRIVE_STATE, null).setDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getMaxDP());
+                    PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
+
+                } else if(oldLevel == 7 && newLevel != 7) {
+                	//Decrease
+                    player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()-1);
+                    player.getCapability(ModCapabilities.DRIVE_STATE, null).setDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getMaxDP());
+                    PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
+                }
                 //PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
 
                 if(form != null) {
