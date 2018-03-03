@@ -43,9 +43,12 @@ public class RenderEntityZephyr extends Render implements IRenderFactory<EntityZ
 	        GL11.glTranslated(x, y, z);
 	        GL11.glRotatef(90, 0.0F, 0.0F, 1.0F);
 	
-	        GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks, 0.0F, 1.0F, 0.0F);
+	        GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks - 90, 0.0F, 1.0F, 0.0F);
 	        GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 1.0F, 0.0F, 0.0F);
-	       
+	        
+	        //GL11.glRotatef(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * par9 - 90.0F, 0.0F, 1.0F, 0.0F);
+	        //GL11.glRotatef(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * par9, 0.0F, 0.0F, 1.0F);
+
 	        GL11.glScalef(0.02f, 0.02f, 0.02f);
 	        
 	        bindEntityTexture(entity);
