@@ -155,6 +155,7 @@ public class Utils {
 
     public static enum OrgMember { XEMNAS, XIGBAR, XALDIN, VEXEN, LEXAEUS, ZEXION, SAIX, AXEL, DEMYX, LUXORD, MARLUXIA, LARXENE, ROXAS, NONE}
 
+    public static enum XemnasMember { XEMNAS, XIGBAR, XALDIN, VEXEN, LEXAEUS, ZEXION, SAIX, AXEL, DEMYX, LUXORD, MARLUXIA, LARXENE, ROXAS, NONE}
     public static IDAndBlockPos getDimensionIDAndBlockPos(String dimension) {
     	IDAndBlockPos idAndBlockPos = new IDAndBlockPos();
     	

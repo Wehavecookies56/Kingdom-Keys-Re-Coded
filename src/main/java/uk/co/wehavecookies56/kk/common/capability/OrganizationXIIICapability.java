@@ -27,6 +27,7 @@ public class OrganizationXIIICapability {
     public interface IOrganizationXIII {
         //Utils.OrgMember current();
         Utils.OrgMember getMember();
+
         Item currentWeapon();
         boolean summonedWeapon(EnumHand hand);
         boolean getOpenedGUI();
@@ -35,6 +36,7 @@ public class OrganizationXIIICapability {
 
         List<Item> unlockedWeapons();
         void setMember(Utils.OrgMember member);
+
         void setCurrentWeapon(Item weapon);
         void setUnlockedWeapons(List<Item> list);
         void addUnlockedWeapon(Item item);

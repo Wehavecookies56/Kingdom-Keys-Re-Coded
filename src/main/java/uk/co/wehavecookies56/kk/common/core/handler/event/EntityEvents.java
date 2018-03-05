@@ -778,7 +778,7 @@ public class EntityEvents {
 				
         	}
         }*/
-        
+
         if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
             if (!ItemStack.areItemStacksEqual(player.inventory.armorInventory.get(0), ItemStack.EMPTY) && player.inventory.armorInventory.get(1) != ItemStack.EMPTY && player.inventory.armorInventory.get(2) != ItemStack.EMPTY && player.inventory.armorInventory.get(3) != ItemStack.EMPTY) {
             	boolean isWearingOrgArmor = player.inventory.armorInventory.get(0).getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.OrganizationRobe_Helmet;
@@ -796,7 +796,22 @@ public class EntityEvents {
                     player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(false);
             }
         }
-        
+        if (player.getCapability(ModCapabilities.Xemnas, null).getMember() == Utils.OrgMember.NONE) {
+            if (!ItemStack.areItemStacksEqual(player.inventory.armorInventory.get(0), ItemStack.EMPTY) && player.inventory.armorInventory.get(1) != ItemStack.EMPTY && player.inventory.armorInventory.get(2) != ItemStack.EMPTY && player.inventory.armorInventory.get(3) != ItemStack.EMPTY) {
+                boolean isWearingXemnasArmor = player.inventory.armorInventory.get(0).getItem() == ModItems.Xemnas_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.Xemnas_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.Xemnas_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.Xemnas_Helmet;
+                if ( isWearingXemnasArmor) {
+                    if (!player.world.isRemote) {
+                        if (!player.getCapability(ModCapabilities.Xemnas, null).getOpenedGUI()) {
+                            player.getCapability(ModCapabilities.Xemnas, null).setOpenedGUI(true);
+                            PacketDispatcher.sendTo(new OpenOrgGUI(), (EntityPlayerMP) player);
+                        }
+                    }
+                }
+            } else {
+                if (player.getCapability(ModCapabilities.Xemnas, null).getMember() == Utils.OrgMember.NONE)
+                    player.getCapability(ModCapabilities.Xemnas, null).setOpenedGUI(false);
+            }
+        }
         //Choices
         IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
         if (!event.player.world.isRemote) {

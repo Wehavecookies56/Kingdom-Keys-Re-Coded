@@ -36,6 +36,9 @@ public class ModCapabilities {
     public static final Capability<ICheatMode> CHEAT_MODE = null;
     @CapabilityInject(IOrganizationXIII.class)
     public static final Capability<IOrganizationXIII> ORGANIZATION_XIII = null;
+    @CapabilityInject(IOrganizationXIII.class)
+    public static final Capability<IOrganizationXIII> Xemnas = null;
+
 
     public static void registerCapabilities() {
         CapabilityManager.INSTANCE.register(IMunny.class, new MunnyCapability.Storage(), MunnyCapability.Default.class);

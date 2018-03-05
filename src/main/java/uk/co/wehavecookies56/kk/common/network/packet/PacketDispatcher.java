@@ -43,46 +43,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgPortal;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncRecipeData;
-import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
-import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
-import uk.co.wehavecookies56.kk.common.network.packet.server.CreateFromSynthesisRecipe;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DepositMaterialsFromBag;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DesummonClaymore;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DriveOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.GiveBoughtItem;
-import uk.co.wehavecookies56.kk.common.network.packet.server.GiveItemInSlot;
-import uk.co.wehavecookies56.kk.common.network.packet.server.GlidePacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.LevelUpDrive;
-import uk.co.wehavecookies56.kk.common.network.packet.server.LevelUpSound;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MagicOrbPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MagnetBloxMotion;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MasterFormPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenGui;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMaterials;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenSynthesis;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OrgMemberSelect;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortal;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortalTP;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OrgWeaponSelect;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OrgWeaponUnlock;
-import uk.co.wehavecookies56.kk.common.network.packet.server.PedestalItem;
-import uk.co.wehavecookies56.kk.common.network.packet.server.PlaySoundAtPlayer;
-import uk.co.wehavecookies56.kk.common.network.packet.server.PotionConsume;
-import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlot;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SummonClaymore;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SummonKeyblade;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SummonOrgWeapon;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SyncStatMessagesPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.SynthesisMaterialPickup;
-import uk.co.wehavecookies56.kk.common.network.packet.server.TakeMaterials;
-import uk.co.wehavecookies56.kk.common.network.packet.server.TakeSoldItem;
-import uk.co.wehavecookies56.kk.common.network.packet.server.UseRecipe;
+import uk.co.wehavecookies56.kk.common.network.packet.server.*;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.LevelUpMagic;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicAero;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicBlizzard;
@@ -93,6 +54,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicStop;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicThunder;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicWisdomShot;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.SetKH1Fire;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class PacketDispatcher {
     private static byte packetId = 0;
@@ -189,6 +151,7 @@ public class PacketDispatcher {
         registerMessage(DesummonClaymore.class);
         registerMessage(OrgPortalTP.class);
         registerMessage(OrgWeaponUnlock.class);
+        registerMessage(XemnasMemberSelect.class);
         // Bidirectional
     }
 
