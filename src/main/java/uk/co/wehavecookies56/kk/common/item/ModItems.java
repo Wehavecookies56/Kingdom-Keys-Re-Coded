@@ -10,9 +10,9 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.core.handler.BalanceConfig;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKKArmor;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKRecord;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
@@ -126,17 +126,20 @@ public class ModItems {
             OrganizationRobe_Boots, Xemnas_Helmet, Xemnas_Chestplate, Xemnas_Leggings, Xemnas_Boots, Terra_Helmet,
             Terra_Chestplate, Terra_Leggings, Terra_Boots, Aqua_Helmet, Aqua_Chestplate, Aqua_Leggings, Aqua_Boots,
             Ventus_Helmet, Ventus_Chestplate, Ventus_Leggings, Ventus_Boots, Eraqus_Helmet, Eraqus_Chestplate,
-            Eraqus_Leggings, Eraqus_Boots
+            Eraqus_Leggings, Eraqus_Boots, NightmareVentus_Helmet, NightmareVentus_Chestplate, NightmareVentus_Leggings, NightmareVentus_Boots,
+            AntiCoat_Helmet, AntiCoat_Chestplate, AntiCoat_Leggings, AntiCoat_Boots
     ;
 
     // Armour materials
     private static ArmorMaterial ORGANIZATIONROBE = EnumHelper.addArmorMaterial("ORGANIZATIONROBE", Reference.MODID + ":organizationrobe", -1, new int[] { 3, 4, 5, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 5);
     private static ArmorMaterial XEMNASROBE = EnumHelper.addArmorMaterial("XEMNASROBE", Reference.MODID + ":xemnasrobe", -1, new int[] { 3, 4, 5, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 5);
+    private static ArmorMaterial ANTIROBE = EnumHelper.addArmorMaterial("ANTIROBE", Reference.MODID + ":antirobe", -1, new int[] { 3, 4, 5, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 5);
 
     private static ArmorMaterial TERRA = EnumHelper.addArmorMaterial("TERRA", Reference.MODID + ":terra", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 4);
     private static ArmorMaterial AQUA = EnumHelper.addArmorMaterial("AQUA", Reference.MODID + ":aqua", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2);
     private static ArmorMaterial VENTUS = EnumHelper.addArmorMaterial("VENTUS", Reference.MODID + ":ventus", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3);
     private static ArmorMaterial ERAQUS = EnumHelper.addArmorMaterial("ERAQUS", Reference.MODID + ":eraqus", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 5);
+    private static ArmorMaterial NIGHTMAREVENTUS = EnumHelper.addArmorMaterial("NIGHTMAREVENTUSVENTUS", Reference.MODID + ":nightmareventus", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3);
 
     // Tool materials
     public static ToolMaterial KEYCHAIN = EnumHelper.addToolMaterial("KEYCHAIN", 0, 1, 0, -4, 30);
@@ -683,26 +686,34 @@ public class ModItems {
             OrganizationRobe_Chestplate = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, EntityEquipmentSlot.CHEST, 1, Strings.OrganizationRobe_Chestplate),
             OrganizationRobe_Leggings = new ItemOrganizationRobe(ORGANIZATIONROBE, 2, EntityEquipmentSlot.LEGS, 2, Strings.OrganizationRobe_Leggings),
             OrganizationRobe_Boots = new ItemOrganizationRobe(ORGANIZATIONROBE, 1, EntityEquipmentSlot.FEET, 3, Strings.OrganizationRobe_Boots),
-            Xemnas_Helmet = new ItemXemnasRobe(XEMNASROBE, 1, EntityEquipmentSlot.HEAD, 0, Strings.Xemnas_Helmet),
-            Xemnas_Chestplate = new ItemXemnasRobe(XEMNASROBE, 1, EntityEquipmentSlot.CHEST, 1, Strings.Xemnas_Chestplate),
-            Xemnas_Leggings = new ItemXemnasRobe(XEMNASROBE, 2, EntityEquipmentSlot.LEGS, 2, Strings.Xemnas_Leggings),
-            Xemnas_Boots = new ItemXemnasRobe(XEMNASROBE, 1, EntityEquipmentSlot.FEET, 3, Strings.Xemnas_Boots),
-            Terra_Helmet = new ItemTerraArmor(TERRA, 1, EntityEquipmentSlot.HEAD, 0, Strings.Terra_Helmet),
-            Terra_Chestplate = new ItemTerraArmor(TERRA, 1, EntityEquipmentSlot.CHEST, 1, Strings.Terra_Chestplate),
-            Terra_Leggings = new ItemTerraArmor(TERRA, 2, EntityEquipmentSlot.LEGS, 2, Strings.Terra_Leggings),
-            Terra_Boots = new ItemTerraArmor(TERRA, 1, EntityEquipmentSlot.FEET, 3,Strings.Terra_Boots),
-            Aqua_Helmet = new ItemAquaArmor(AQUA, 1, EntityEquipmentSlot.HEAD, 0, Strings.Aqua_Helmet),
-            Aqua_Chestplate = new ItemAquaArmor(AQUA, 1, EntityEquipmentSlot.CHEST, 1, Strings.Aqua_Chestplate),
-            Aqua_Leggings = new ItemAquaArmor(AQUA, 2, EntityEquipmentSlot.LEGS, 2, Strings.Aqua_Leggings),
-            Aqua_Boots = new ItemAquaArmor(AQUA, 1, EntityEquipmentSlot.FEET, 3, Strings.Aqua_Boots),
-            Ventus_Helmet = new ItemVentusArmor(VENTUS, 1, EntityEquipmentSlot.HEAD, 0, Strings.Ventus_Helmet),
-            Ventus_Chestplate = new ItemVentusArmor(VENTUS, 1, EntityEquipmentSlot.CHEST, 1, Strings.Ventus_Chestplate),
-            Ventus_Leggings = new ItemVentusArmor(VENTUS, 2, EntityEquipmentSlot.LEGS, 2, Strings.Ventus_Leggings),
-            Ventus_Boots = new ItemVentusArmor(VENTUS, 1, EntityEquipmentSlot.FEET, 3, Strings.Ventus_Boots),
-            Eraqus_Helmet = new ItemEraqusArmor(ERAQUS, 1, EntityEquipmentSlot.HEAD, 0, Strings.Eraqus_Helmet),
-            Eraqus_Chestplate = new ItemEraqusArmor(ERAQUS, 1, EntityEquipmentSlot.CHEST, 1, Strings.Eraqus_Chestplate),
-            Eraqus_Leggings = new ItemEraqusArmor(ERAQUS, 2, EntityEquipmentSlot.LEGS, 2, Strings.Eraqus_Leggings),
-            Eraqus_Boots = new ItemEraqusArmor(ERAQUS, 1, EntityEquipmentSlot.FEET, 3, Strings.Eraqus_Boots),
+            Xemnas_Helmet = new ItemOrganizationRobe(XEMNASROBE, 1, EntityEquipmentSlot.HEAD, 0, Strings.Xemnas_Helmet),
+            Xemnas_Chestplate = new ItemOrganizationRobe(XEMNASROBE, 1, EntityEquipmentSlot.CHEST, 1, Strings.Xemnas_Chestplate),
+            Xemnas_Leggings = new ItemOrganizationRobe(XEMNASROBE, 2, EntityEquipmentSlot.LEGS, 2, Strings.Xemnas_Leggings),
+            Xemnas_Boots = new ItemOrganizationRobe(XEMNASROBE, 1, EntityEquipmentSlot.FEET, 3, Strings.Xemnas_Boots),
+			AntiCoat_Helmet = new ItemOrganizationRobe(ANTIROBE, 1, EntityEquipmentSlot.HEAD, 0, Strings.AntiCoat_Helmet),
+			AntiCoat_Chestplate = new ItemOrganizationRobe(ANTIROBE, 1, EntityEquipmentSlot.CHEST, 1, Strings.AntiCoat_Chestplate),
+			AntiCoat_Leggings = new ItemOrganizationRobe(ANTIROBE, 2, EntityEquipmentSlot.LEGS, 2, Strings.AntiCoat_Leggings),
+			AntiCoat_Boots = new ItemOrganizationRobe(ANTIROBE, 1, EntityEquipmentSlot.FEET, 3, Strings.AntiCoat_Boots),
+            Terra_Helmet = new ItemKKArmor(TERRA, 1, EntityEquipmentSlot.HEAD, 0, Strings.Terra_Helmet),
+            Terra_Chestplate = new ItemKKArmor(TERRA, 1, EntityEquipmentSlot.CHEST, 1, Strings.Terra_Chestplate),
+            Terra_Leggings = new ItemKKArmor(TERRA, 2, EntityEquipmentSlot.LEGS, 2, Strings.Terra_Leggings),
+            Terra_Boots = new ItemKKArmor(TERRA, 1, EntityEquipmentSlot.FEET, 3,Strings.Terra_Boots),
+            Aqua_Helmet = new ItemKKArmor(AQUA, 1, EntityEquipmentSlot.HEAD, 0, Strings.Aqua_Helmet),
+            Aqua_Chestplate = new ItemKKArmor(AQUA, 1, EntityEquipmentSlot.CHEST, 1, Strings.Aqua_Chestplate),
+            Aqua_Leggings = new ItemKKArmor(AQUA, 2, EntityEquipmentSlot.LEGS, 2, Strings.Aqua_Leggings),
+            Aqua_Boots = new ItemKKArmor(AQUA, 1, EntityEquipmentSlot.FEET, 3, Strings.Aqua_Boots),
+            Ventus_Helmet = new ItemKKArmor(VENTUS, 1, EntityEquipmentSlot.HEAD, 0, Strings.Ventus_Helmet),
+            Ventus_Chestplate = new ItemKKArmor(VENTUS, 1, EntityEquipmentSlot.CHEST, 1, Strings.Ventus_Chestplate),
+            Ventus_Leggings = new ItemKKArmor(VENTUS, 2, EntityEquipmentSlot.LEGS, 2, Strings.Ventus_Leggings),
+            Ventus_Boots = new ItemKKArmor(VENTUS, 1, EntityEquipmentSlot.FEET, 3, Strings.Ventus_Boots),
+            NightmareVentus_Helmet = new ItemKKArmor(NIGHTMAREVENTUS, 1, EntityEquipmentSlot.HEAD, 0, Strings.NightmareVentus_Helmet),
+            NightmareVentus_Chestplate = new ItemKKArmor(NIGHTMAREVENTUS, 1, EntityEquipmentSlot.CHEST, 1, Strings.NightmareVentus_Chestplate),
+            NightmareVentus_Leggings = new ItemKKArmor(NIGHTMAREVENTUS, 2, EntityEquipmentSlot.LEGS, 2, Strings.NightmareVentus_Leggings),
+            NightmareVentus_Boots = new ItemKKArmor(NIGHTMAREVENTUS, 1, EntityEquipmentSlot.FEET, 3, Strings.NightmareVentus_Boots),
+            Eraqus_Helmet = new ItemKKArmor(ERAQUS, 1, EntityEquipmentSlot.HEAD, 0, Strings.Eraqus_Helmet),
+            Eraqus_Chestplate = new ItemKKArmor(ERAQUS, 1, EntityEquipmentSlot.CHEST, 1, Strings.Eraqus_Chestplate),
+            Eraqus_Leggings = new ItemKKArmor(ERAQUS, 2, EntityEquipmentSlot.LEGS, 2, Strings.Eraqus_Leggings),
+            Eraqus_Boots = new ItemKKArmor(ERAQUS, 1, EntityEquipmentSlot.FEET, 3, Strings.Eraqus_Boots),
             Munny = new ItemMunny(Strings.Munny),
             EmptyBottle = new ItemKKBase(Strings.EmptyBottle).setMaxStackSize(1),
             Potion = new ItemPotion(0, true, "hp"),

@@ -119,6 +119,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySilverRock;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
 import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
+import uk.co.wehavecookies56.kk.common.item.ItemOrganizationRobe;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
@@ -781,9 +782,12 @@ public class EntityEvents {
 
         if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
             if (!ItemStack.areItemStacksEqual(player.inventory.armorInventory.get(0), ItemStack.EMPTY) && player.inventory.armorInventory.get(1) != ItemStack.EMPTY && player.inventory.armorInventory.get(2) != ItemStack.EMPTY && player.inventory.armorInventory.get(3) != ItemStack.EMPTY) {
-            	boolean isWearingOrgArmor = player.inventory.armorInventory.get(0).getItem() == ModItems.OrganizationRobe_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.OrganizationRobe_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.OrganizationRobe_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.OrganizationRobe_Helmet;
-            	boolean isWearingXemnasArmor = player.inventory.armorInventory.get(0).getItem() == ModItems.Xemnas_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.Xemnas_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.Xemnas_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.Xemnas_Helmet;
-                if (isWearingOrgArmor || isWearingXemnasArmor) {
+            	boolean isWearingOrgArmor= player.inventory.armorInventory.get(0).getItem() instanceof ItemOrganizationRobe && 
+            			player.inventory.armorInventory.get(1).getItem() instanceof ItemOrganizationRobe && 
+            			player.inventory.armorInventory.get(2).getItem() instanceof ItemOrganizationRobe &&
+            			player.inventory.armorInventory.get(3).getItem() instanceof ItemOrganizationRobe;
+            	//boolean isWearingXemnasArmor = player.inventory.armorInventory.get(0).getItem() == ModItems.Xemnas_Boots && player.inventory.armorInventory.get(1).getItem() == ModItems.Xemnas_Leggings && player.inventory.armorInventory.get(2).getItem() == ModItems.Xemnas_Chestplate && player.inventory.armorInventory.get(3).getItem() == ModItems.Xemnas_Helmet;
+                if (isWearingOrgArmor) {
                     if (!player.world.isRemote) {
                         if (!player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getOpenedGUI()) {
                             player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setOpenedGUI(true);

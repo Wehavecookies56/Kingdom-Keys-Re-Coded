@@ -360,6 +360,11 @@ public class Strings {
     Xemnas_Leggings = "xemnas_leggings",
     Xemnas_Boots = "xemnas_boots",
     	    
+	AntiCoat_Helmet = "anticoat_helmet",
+	AntiCoat_Chestplate = "anticoat_chestplate",
+	AntiCoat_Leggings = "anticoat_leggings",
+	AntiCoat_Boots = "anticoat_boots",
+    	    
     Terra_Helmet = "terra_helmet",
     Terra_Chestplate = "terra_chestplate",
     Terra_Leggings = "terra_leggings",
@@ -374,6 +379,11 @@ public class Strings {
     Ventus_Chestplate = "ventus_chestplate",
     Ventus_Leggings = "ventus_leggings",
     Ventus_Boots = "ventus_boots",
+    
+    NightmareVentus_Helmet = "nightmareventus_helmet",
+    NightmareVentus_Chestplate = "nightmareventus_chestplate",
+    NightmareVentus_Leggings = "nightmareventus_leggings",
+    NightmareVentus_Boots = "nightmareventus_boots",
 
     Eraqus_Helmet = "eraqus_helmet",
     Eraqus_Chestplate = "eraqus_chestplate",

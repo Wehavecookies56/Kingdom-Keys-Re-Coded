@@ -5,12 +5,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class ItemOrganizationRobe extends ItemArmor /*implements ISpecialArmor*/ {
 
+	String armorName;
     public ItemOrganizationRobe (ArmorMaterial material, int renderIndex, EntityEquipmentSlot slot, int armorType, String name) {
         super(material, renderIndex, slot);
+        this.armorName = name.substring(0,name.indexOf("_"));
         setRegistryName(name);
         setUnlocalizedName(name);
         setCreativeTab(ModItems.tabKingdomKeys);
@@ -18,10 +21,11 @@ public class ItemOrganizationRobe extends ItemArmor /*implements ISpecialArmor*/
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-        if (stack.getItem() == ModItems.OrganizationRobe_Leggings)
-            return Reference.MODID + ":textures/armour/organizationrobe_2.png";
+    	//System.out.println(armorName);
+        if (slot == EntityEquipmentSlot.LEGS)
+            return Reference.MODID + ":textures/armour/"+armorName+"_2.png";
         else
-            return Reference.MODID + ":textures/armour/organizationrobe_1.png";
+            return Reference.MODID + ":textures/armour/"+armorName+"_1.png";
     }
 
     @Override
