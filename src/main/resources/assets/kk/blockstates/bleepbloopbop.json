@@ -13,12 +13,12 @@
                     "thirdperson_lefthand": {
                         "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
                         "translation": [ 0, 0.8, 0 ],
-                        "scale": 0.015
+                        "scale": 0.02
                     },
                     "thirdperson_righthand": {
                         "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
                         "translation": [ 0, 0.8, 0 ],
-                        "scale": 0.15
+                        "scale": 0.02
                     },
                     "gui": {
                         "rotation": [ { "x": 0 }, { "y": 0 }, { "z": -45 } ],
