@@ -1,13 +1,9 @@
-# Blender MTL File: 'None'
-# Material Count: 1
+# Created by Metasequoia
 
 newmtl mat2
-Ns 96.078431
-Ka 0.600000 0.600000 0.600000
-Kd 0.800000 0.800000 0.800000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
+Ka 0.48000 0.48000 0.48000
+Kd 0.64000 0.64000 0.64000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
 map_Kd kk:items/models/bleepbloopbop
+
