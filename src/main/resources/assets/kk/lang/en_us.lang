@@ -270,6 +270,16 @@ item.ventus_chestplate.name=Ventus's Chestplate
 item.ventus_leggings.name=Ventus's Leggings
 item.ventus_boots.name=Ventus's Boots
 
+item.nightmareventus_helmet.name=Nightmare Ventus's Helmet
+item.nightmareventus_chestplate.name=Nightmare Ventus's Chestplate
+nightmareventus_leggings.name=Nightmare Ventus's Leggings
+nightmareventus_boots.name=Nightmare Ventus's Boots
+
+item.anticoat_helmet.name=Anticoat Helmet
+item.anticoat_chestplate.name=Anticoat Chestplate
+item.anticoat_leggings.name=Anticoat Leggings
+item.anticoat_boots.name=Anticoat Boots
+
 #Misc
 item.emptybottle.name=Empty Bottle
 item.potion.name=Potion

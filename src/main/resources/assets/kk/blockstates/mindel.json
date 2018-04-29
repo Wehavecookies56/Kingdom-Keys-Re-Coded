@@ -2,9 +2,9 @@
 	"forge_marker": 1,
   	"defaults": {
     	"textures": {
-		"wurm": "kk:items/models/wurm"
+		"mindel": "kk:items/models/mindel"
       },
-      "model": "kk:wurm.obj"
+      "model": "kk:mindel.obj"
   	},
 	"variants": {
   	"inventory": [
