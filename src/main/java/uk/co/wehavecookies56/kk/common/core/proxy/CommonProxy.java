@@ -55,6 +55,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDarkball;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDetonator;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDirePlant;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
@@ -67,7 +68,9 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySilverRock;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySkaterBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityStormBomb;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityWhiteMushroom;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySeedBullet;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
@@ -152,6 +155,7 @@ public class CommonProxy {
         EntityHelper.registerEntity("thunder",EntityThunder.class);
         EntityHelper.registerEntity("kkOrgPortalE", EntityOrgPortal.class);
         EntityHelper.registerEntity("kkFlyingHeart", EntityFlyingHeart.class);
+        EntityHelper.registerEntity("seedBullet", EntitySeedBullet.class);
 
         // Heartless registry
         EntityHelper.registerEntity(Strings.Shadow, EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());
@@ -171,6 +175,8 @@ public class CommonProxy {
         EntityHelper.registerEntity(Strings.StormBomb, EntityStormBomb.class, 0x020030, Color.CYAN.getRGB());
         EntityHelper.registerEntity(Strings.Detonator, EntityDetonator.class, 0x020030, Color.RED.getRGB());
         EntityHelper.registerEntity(Strings.LargeBody, EntityLargeBody.class, 0x4d177c, 0x29014c);
+        EntityHelper.registerEntity(Strings.WhiteMushroom, EntityWhiteMushroom.class, 0xe3e5e8, 0xffffff);
+        EntityHelper.registerEntity(Strings.DirePlant, EntityDirePlant.class, 0x4ba04e, 0xedc2c2);
         EntityHelper.registerEntity(Strings.Moogle, EntityMoogle.class, 0xDACAB0, 0xC50033);
         EntityHelper.registerEntity(Strings.GummiShip,EntityGummiShip.class, 0xFF0000, 0x6666AA);
 

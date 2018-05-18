@@ -42,6 +42,8 @@ public class Strings {
     StormBomb = "stormbomb",
     Detonator = "detonator",
     LargeBody = "largebody",
+    WhiteMushroom = "whitemushroom",
+    DirePlant = "direplant",
     Moogle = "moogle",
     GummiShip = "gummiship";
 

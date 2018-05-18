@@ -27,7 +27,7 @@ public class EntityHelper
     public static void setAnimation(Entity e, int i) { e.getDataManager().set(ANIMATION, i); }
     public static int getAnimation(Entity e) { return e.getDataManager().get(ANIMATION); }
 
-    public static double percentage(double i, double j) {return i * (j / 100);}
+    public static double percentage(double i, double j) {return (i * 100) / j;}
 
     public static void registerEntity(String name, Class<? extends Entity> entity) {
         EntityRegistry.registerModEntity(new ResourceLocation(Reference.MODID, name), entity, name, entityID++, KingdomKeys.instance, 64, 3, true);

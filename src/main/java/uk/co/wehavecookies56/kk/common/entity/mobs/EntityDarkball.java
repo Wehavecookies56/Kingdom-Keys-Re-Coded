@@ -76,9 +76,6 @@ public class EntityDarkball extends BaseEntityHeartless implements IKHMob
 			this.setEntityInvulnerable(true);
 		else
 			this.setEntityInvulnerable(false);
-		
-		//this.motionY = (entitylivingbase.posY + (double)entitylivingbase.getEyeHeight()) * 0.3;
-		//this.isAirBorne = true;
 		 
 		super.updateAITasks();
 	}

@@ -2,8 +2,10 @@ package uk.co.wehavecookies56.kk.common.entity.mobs.multipart;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityMultiPart;
+import net.minecraft.entity.MoverType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.AxisAlignedBB;
 
 public class EntityPart extends Entity
 {
@@ -17,12 +19,17 @@ public class EntityPart extends Entity
         this.parent = parent;
         this.partName = partName;
     }
+        
+	public void setNewHitbox(double minX, double minY, double minZ, double maxX, double maxY, double maxZ)
+	{
+		this.setEntityBoundingBox(new AxisAlignedBB(minX, minY, minZ, minX + maxX, minY + maxY, minZ + maxZ));
+	}
 
     public void onUpdate()
     {
     	//System.out.println(this.getPosition());
     	super.onUpdate();
-    }
+    } 
     
     protected void entityInit() {}
 

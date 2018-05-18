@@ -1158,6 +1158,9 @@ entity.minutebomb.name=Minute Bomb
 entity.skaterbomb.name=Skater Bomb
 entity.stormbomb.name=Storm Bomb
 entity.detonator.name=Detonator
+entity.largebody.name=Large Body
+entity.direplant.name=Dire Plant
+entity.whitemushroom.name=White Mushroom
 entity.moogle.name=Moogle
 
 ##########################

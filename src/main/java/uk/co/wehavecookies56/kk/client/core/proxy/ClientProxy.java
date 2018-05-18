@@ -101,11 +101,13 @@ import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
 import uk.co.wehavecookies56.kk.client.gui.GuiPlayerPortrait;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelCrimsonJazz;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelDarkball;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelDirePlant;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelLargeBody;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelMinuteBomb;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelMoogle;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelRedNocturne;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelShadow;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelWhiteMushroom;
 import uk.co.wehavecookies56.kk.client.render.LayerRendererDrive;
 import uk.co.wehavecookies56.kk.client.render.RenderEntityFlyingHeart;
 import uk.co.wehavecookies56.kk.client.render.RenderEntityGummiShip;
@@ -113,6 +115,7 @@ import uk.co.wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
 import uk.co.wehavecookies56.kk.client.render.RenderFactorySharpshooterBullet;
 import uk.co.wehavecookies56.kk.client.render.RenderKHMob;
 import uk.co.wehavecookies56.kk.client.render.RenderPortal;
+import uk.co.wehavecookies56.kk.client.render.RenderSeedBullet;
 import uk.co.wehavecookies56.kk.client.render.TESRPedestal;
 import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityAshes;
 import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityBlazeofGlory;
@@ -142,6 +145,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDarkball;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDetonator;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDirePlant;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
@@ -154,7 +158,9 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySilverRock;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySkaterBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityStormBomb;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityWhiteMushroom;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySeedBullet;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityAshes;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityBlazeofGlory;
@@ -319,13 +325,11 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntitySharpshooterBullet.class, new RenderFactorySharpshooterBullet());
         RenderingRegistry.registerEntityRenderingHandler(EntityGummiShip.class, (IRenderFactory) new RenderEntityGummiShip(Minecraft.getMinecraft().getRenderManager()));
         RenderingRegistry.registerEntityRenderingHandler(EntityFlyingHeart.class, (IRenderFactory) new RenderEntityFlyingHeart(Minecraft.getMinecraft().getRenderManager()));
-
+        RenderingRegistry.registerEntityRenderingHandler(EntitySeedBullet.class, (IRenderFactory) new RenderSeedBullet(Minecraft.getMinecraft().getRenderManager()) ); 
         
         RenderingRegistry.registerEntityRenderingHandler(EntityShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(1D), 1, Strings.Shadow));
         RenderingRegistry.registerEntityRenderingHandler(EntityMegaShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(0.5D), 3, Strings.Shadow));
         RenderingRegistry.registerEntityRenderingHandler(EntityGigaShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(0.3D), 5, Strings.Shadow));
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkball.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelDarkball(), 1, Strings.Darkball));
-
         RenderingRegistry.registerEntityRenderingHandler(EntityRedNocturne.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, Strings.RedNocturne));
         RenderingRegistry.registerEntityRenderingHandler(EntityBlueRhapsody.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, Strings.BlueRhapsody));
         RenderingRegistry.registerEntityRenderingHandler(EntityYellowOpera.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelRedNocturne(), 1, Strings.YellowOpera));
@@ -338,7 +342,11 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityStormBomb.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1.1f, Strings.StormBomb));
         RenderingRegistry.registerEntityRenderingHandler(EntityDetonator.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMinuteBomb(), 1.2f, Strings.Detonator));
         RenderingRegistry.registerEntityRenderingHandler(EntityLargeBody.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelLargeBody(), 1.4f, Strings.LargeBody));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkball.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelDarkball(), 1, Strings.Darkball));     
+        RenderingRegistry.registerEntityRenderingHandler(EntityWhiteMushroom.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelWhiteMushroom(), 1, Strings.WhiteMushroom));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDirePlant.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelDirePlant(), 1, Strings.DirePlant));
 
+        
         RenderingRegistry.registerEntityRenderingHandler(EntityMoogle.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMoogle(), 1, Strings.Moogle));
 
     }
