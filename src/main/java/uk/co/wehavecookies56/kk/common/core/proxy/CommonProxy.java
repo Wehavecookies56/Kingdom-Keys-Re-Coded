@@ -140,11 +140,11 @@ public class CommonProxy {
         KingdomKeys.logger.info("Renders loaded");
 
         // Tile entity registry
-        GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, "synthesistable");
-        GameRegistry.registerTileEntity(TileEntityKKChest.class, "kkchest");
-        GameRegistry.registerTileEntity(TileEntityStationOfAwakening.class, "stationofawakening");
-        GameRegistry.registerTileEntity(TileEntityPedestal.class, "kkpedestal");
-        GameRegistry.registerTileEntity(TileEntityOrgPortal.class, "kkorgportal");
+        GameRegistry.registerTileEntity(TileEntitySynthesisTable.class, new ResourceLocation(Reference.MODID,"synthesistable"));
+        GameRegistry.registerTileEntity(TileEntityKKChest.class, new ResourceLocation(Reference.MODID,"kkchest"));
+        GameRegistry.registerTileEntity(TileEntityStationOfAwakening.class, new ResourceLocation(Reference.MODID,"stationofawakening"));
+        GameRegistry.registerTileEntity(TileEntityPedestal.class, new ResourceLocation(Reference.MODID,"kkpedestal"));
+        GameRegistry.registerTileEntity(TileEntityOrgPortal.class, new ResourceLocation(Reference.MODID,"kkorgportal"));
         KingdomKeys.logger.info("Tile entity loaded");
 
         // Proxy used as Gui handler

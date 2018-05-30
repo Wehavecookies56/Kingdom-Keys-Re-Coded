@@ -35,7 +35,8 @@ public class Spawnings {
         List<Biome> biomes = new ArrayList<>();
         while(biomeRegistry.hasNext()) {
             Biome biome = biomeRegistry.next();
-            biomes.add(biome);
+            if (biome.getSpawnableList(KingdomKeys.HEARTLESS) != null && biome.getSpawnableList(KingdomKeys.MOOGLE) != null)
+                biomes.add(biome);
         }
         for (String b : MainConfig.entities.mobBiomeExclusion) {
             if (Biome.REGISTRY.containsKey(new ResourceLocation(b))) {
