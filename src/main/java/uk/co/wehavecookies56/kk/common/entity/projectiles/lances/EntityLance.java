@@ -35,24 +35,13 @@ public class EntityLance extends EntityThrowable {// implements IThrowableEntity
 
 	@Override
 	protected float getGravityVelocity() {
-		return 0.0F;
+		return 0.01F;
 	}
 
 	@Override
 	public void onUpdate() {
-		//int rotation = 0;
-		// KingdomKeys.proxy.spawnTestParticle(world, posX + world.rand.nextDouble() *
-		// width * 2.0F - width, posY + world.rand.nextDouble() * height, posZ +
-		// world.rand.nextDouble() * width * 2.0F - width, world.rand.nextGaussian() *
-		// 0.02D, world.rand.nextGaussian() * 0.02D, world.rand.nextGaussian() * 0.02D,
-		// 0.2F);
-		//this.rotationYaw = (rotation + 1) % 360;
-
-		/*
-		 * if (ticksExisted > 15) { setReturn(); }
-		 */
-
-		if (ticksExisted > 60)
+		
+		if (ticksExisted > 160)
 			setDead();
 		if (this.getThrower() == null)
 			setDead();
@@ -87,18 +76,14 @@ public class EntityLance extends EntityThrowable {// implements IThrowableEntity
 		} else {
 			BlockPos blockpos = mop.getBlockPos();
 			if (this.world.getBlockState(blockpos).getBlock() != Blocks.TALLGRASS) {
-				this.setDead();
+				this.motionX=0;
+				this.motionY=0;
+				this.motionZ=0;
 			}
 
 		}
 
 		this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 	}
-
-	/*
-	 * @Override public void setThrower (Entity entity) {
-	 * 
-	 * }
-	 */
-
+	
 }
