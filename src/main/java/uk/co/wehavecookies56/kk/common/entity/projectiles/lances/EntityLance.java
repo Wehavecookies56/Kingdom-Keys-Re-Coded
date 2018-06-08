@@ -40,13 +40,13 @@ public class EntityLance extends EntityThrowable {// implements IThrowableEntity
 
 	@Override
 	public void onUpdate() {
-		int rotation = 0;
+		//int rotation = 0;
 		// KingdomKeys.proxy.spawnTestParticle(world, posX + world.rand.nextDouble() *
 		// width * 2.0F - width, posY + world.rand.nextDouble() * height, posZ +
 		// world.rand.nextDouble() * width * 2.0F - width, world.rand.nextGaussian() *
 		// 0.02D, world.rand.nextGaussian() * 0.02D, world.rand.nextGaussian() * 0.02D,
 		// 0.2F);
-		this.rotationYaw = (rotation + 1) % 360;
+		//this.rotationYaw = (rotation + 1) % 360;
 
 		/*
 		 * if (ticksExisted > 15) { setReturn(); }
