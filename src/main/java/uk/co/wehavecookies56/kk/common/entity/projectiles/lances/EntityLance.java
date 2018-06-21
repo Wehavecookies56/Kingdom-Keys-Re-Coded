@@ -41,11 +41,9 @@ public class EntityLance extends EntityThrowable {// implements IThrowableEntity
 	@Override
 	public void onUpdate() {
 		
-		if (ticksExisted > 160)
+		if (ticksExisted > 160 || this.getThrower() == null)
 			setDead();
-		if (this.getThrower() == null)
-			setDead();
-
+		
 		super.onUpdate();
 	}
 

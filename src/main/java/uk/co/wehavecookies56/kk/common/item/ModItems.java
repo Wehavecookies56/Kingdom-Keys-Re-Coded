@@ -1071,7 +1071,6 @@ public class ModItems {
         ((ItemKeychain)Chain_WishingStar).setKeyblade((ItemKeyblade) WishingStar);
         ((ItemKeychain)Chain_YoungXehanortsKeyblade).setKeyblade((ItemKeyblade) YoungXehanortsKeyblade);
         ((ItemKeychain)Chain_ZeroOne).setKeyblade((ItemKeyblade) ZeroOne);
-
     }
 
     @Mod.EventBusSubscriber(modid = Reference.MODID)
