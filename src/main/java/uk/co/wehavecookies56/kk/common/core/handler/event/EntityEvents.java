@@ -911,8 +911,8 @@ public class EntityEvents {
             isBoss = false;
         }
         if (!entities.isEmpty()) {
-            for (int i = 0; i < entities.size(); i++) {
-                if (entities.get(i) instanceof EntityMob) {
+        	for(Entity entity : entities) {
+                if (entity instanceof EntityMob) {
                     isHostiles = true;
                     break;
                 } else {

@@ -36,8 +36,6 @@ public class GuiDrive extends GuiScreen {
 	String nextColor = "r";
 	static final int CONS = 5;
 
-	
-
 	public GuiDrive() {
 
 	}
@@ -53,7 +51,11 @@ public class GuiDrive extends GuiScreen {
 		return bar;
 	}
 
-	byte counter = 0;
+	long counter = Minecraft.getSystemTime();
+
+	private boolean doChange = false;
+
+	private int timeLastChange = (int) Minecraft.getSystemTime();
 
 	@SubscribeEvent
 	public void onRenderOverlayPost(RenderGameOverlayEvent event) {
@@ -109,6 +111,7 @@ public class GuiDrive extends GuiScreen {
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth - guiWidth * scale) - posX, (screenHeight - guiHeight * scale) - posY, 0);
 			GL11.glScalef(scale, scale, scale);
+
 			// Background
 			if (STATE.getActiveDriveName().equals("none")) {
 				this.drawTexturedModalRect(15, 6, 0, 0, guiWidth, guiHeight);
@@ -116,6 +119,7 @@ public class GuiDrive extends GuiScreen {
 				this.drawTexturedModalRect(15, 6, 98, 0, guiWidth, guiHeight);
 			}
 			GL11.glPopMatrix();
+
 			// Yellow meter
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth - guiWidth * scale) + (guiWidth - guiBarWidth) * scale + (24 * scale) - posX, (screenHeight - guiHeight * scale) - (2 * scale) - posY, 0);
@@ -126,104 +130,110 @@ public class GuiDrive extends GuiScreen {
 				this.drawTexturedModalRect(15, 6, 98, 18, (int) currForm, guiHeight);
 			}
 			GL11.glPopMatrix();
+
 			// Level
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth - guiWidth * scale) + (85 * scale) - posX, (screenHeight - guiHeight * scale) - (2 * scale) - posY, 0);
 			GL11.glScalef(scale, scale, scale);
-			if (STATE.getActiveDriveName().equals("none")) {
-				int numPos = getCurrBar(dp, STATE.getDriveGaugeLevel()) * 10;
-				this.drawTexturedModalRect(14, 6, numPos, 38, 8, guiHeight);
-			} else {
-				int numPos = 98 + (getCurrBar(fp, STATE.getFormGaugeLevel(STATE.getActiveDriveName())) * 10);
-				this.drawTexturedModalRect(14, 6, numPos, 38, 8, guiHeight);
-			}
+
+			int numPos = STATE.getActiveDriveName().equals("none") ? getCurrBar(dp, STATE.getDriveGaugeLevel()) * 10 : 98 + (getCurrBar(fp, STATE.getFormGaugeLevel(STATE.getActiveDriveName())) * 10);
+			/*
+			 * if (STATE.getActiveDriveName().equals("none")) { int numPos = getCurrBar(dp,
+			 * STATE.getDriveGaugeLevel()) * 10; } else { int numPos = 98 + (getCurrBar(fp,
+			 * STATE.getFormGaugeLevel(STATE.getActiveDriveName())) * 10); }
+			 */
+			this.drawTexturedModalRect(14, 6, numPos, 38, 8, guiHeight);
+
 			GL11.glPopMatrix();
 
 			if (STATE.getDP() >= getMaxBars(STATE.getDriveGaugeLevel()) && !STATE.getInDrive()) {
 				GL11.glPushMatrix();
 				{
-					counter++;
-//System.out.println(nextColor);
-//r=255; g=255;b=255;
-					switch (nextColor) {
-					case "r":
-						if (r <= 255 - CONS) {
-							r+=CONS;
+				//	System.out.println(Minecraft.getSystemTime()+" : "+timeLastChange);
+					if (doChange) {
+						//counter += 100;
+						// System.out.println(nextColor);
+						// r=255; g=255;b=255;
+						switch (nextColor) {
+						case "r":
+							if (r <= 255 - CONS) {
+								r += CONS;
+							}
+							if (g - CONS >= 0) {
+								g -= CONS;
+							}
+
+							if (b - CONS >= 0) {
+								b -= CONS;
+							}
+
+							if (r >= 255 && g <= 0 && b <= 0) {
+								nextColor = "g";
+							}
+							break;
+						case "g":
+							if (r - CONS >= 0) {
+								r -= CONS;
+							}
+							if (g <= 255 - CONS) {
+								g += CONS;
+							}
+
+							if (b - CONS >= 0) {
+								b -= CONS;
+							}
+
+							if (r <= 0 && g >= 255 && b <= 0) {
+								nextColor = "b";
+							}
+							break;
+						case "b":
+							if (r - CONS >= 0) {
+								r -= CONS;
+							}
+							if (g - CONS >= 0) {
+								g -= CONS;
+							}
+
+							if (b <= 255 - CONS) {
+								b += CONS;
+							}
+
+							if (r <= 0 && g <= 0 && b >= 255) {
+								nextColor = "w";
+							}
+							break;
+						case "w":
+							if (r <= 255 - CONS) {
+								r += CONS;
+							}
+							if (g <= 255 - CONS) {
+								g += CONS;
+							}
+
+							if (b <= 255 - CONS) {
+								b += CONS;
+							}
+
+							if (r >= 255 && g >= 255 && b >= 255) {
+								nextColor = "r";
+							}
+							break;
 						}
-						if(g-CONS >= 0 ) {
-							g-=CONS;
-						}
+
+						// System.out.println(r+" "+g+" "+b);
+
+						GL11.glColor3ub((byte) r, (byte) g, (byte) b);
+
+						timeLastChange = (int) Minecraft.getSystemTime();
+						doChange = false;
 						
-						if(b-CONS >= 0 ) {
-							b-=CONS;
-						}
 						
-						if(r >= 255 && g <= 0 && b <= 0) {
-							nextColor = "g";
+					} else {
+						if (timeLastChange + 1 < (int) Minecraft.getSystemTime()) {
+							doChange = true;
 						}
-						break;
-					case "g":
-						if (r-CONS >= 0) {
-							r-=CONS;
-						}
-						if(g <= 255 - CONS) {
-							g+=CONS;
-						}
-						
-						if(b-CONS >= 0 ) {
-							b-=CONS;
-						}
-						
-						if(r <= 0 && g >= 255 && b <= 0) {
-							nextColor = "b";
-						}
-						break;
-					case "b":
-						if (r-CONS >= 0 ) {
-							r-=CONS;
-						}
-						if(g-CONS >= 0 ) {
-							g-=CONS;
-						}
-						
-						if(b <= 255 - CONS) {
-							b+=CONS;
-						}
-						
-						if(r <= 0 && g <= 0 && b >= 255) {
-							nextColor = "w";
-						}
-						break;
-					case "w":
-						if (r <= 255 - CONS) {
-							r+=CONS;
-						}
-						if(g <= 255 - CONS) {
-							g+=CONS;
-						}
-						
-						if(b <= 255 - CONS) {
-							b+=CONS;
-						}
-						
-						if(r >= 255 && g >= 255 && b >= 255) {
-							nextColor = "r";
-						}
-						break;
 					}
-
-					//System.out.println(r+" "+g+" "+b);
-					
-					GL11.glColor3ub((byte) r, (byte) g, (byte) b);
-
-					/*
-					 * if (counter > 0 && counter < 50) { GL11.glColor3ub((byte) 255, (byte) 50,
-					 * (byte) 40); } else if (counter >= 50 && counter < 100) {
-					 * GL11.glColor3ub((byte) 35, (byte) 255, (byte) 50); } else if (counter >= 100
-					 * && counter < 150) { GL11.glColor3ub((byte) 35, (byte) 50, (byte) 255); } else
-					 * if (counter >= 150 && counter < 200) { GL11.glColor3ub((byte) 255, (byte)
-					 * 255, (byte) 255); } else if (counter >= 200) { counter = 0; }
-					 */
 
 					GL11.glTranslatef(((screenWidth - guiWidth * scale) + (10 * scale)), ((screenHeight - guiHeight * scale) - (12 * scale)), 0);
 					GL11.glScalef(scale, scale, scale);

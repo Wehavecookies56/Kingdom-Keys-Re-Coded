@@ -318,7 +318,7 @@ public class GuiCommandMenu extends GuiScreen {
             	if(extraY == 45)
             		drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Portal), 6 + textX, 4, color);
             	else
-            		drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Attack), 6 + textX, 4, color);
+            		drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Attack), 6 + textX, 4, 0xFFFFFF);
             }
 
         }
