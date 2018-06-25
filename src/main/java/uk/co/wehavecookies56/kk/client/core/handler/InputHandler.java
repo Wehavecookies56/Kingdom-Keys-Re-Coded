@@ -396,6 +396,9 @@ public class InputHandler {
         }
         GuiCommandMenu.magicselected = 0;
         GuiCommandMenu.driveselected = 0;
+        
+    	GuiHelper.openTutorial(1);
+
     }
 
     @SubscribeEvent

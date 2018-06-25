@@ -35,6 +35,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import uk.co.wehavecookies56.kk.api.munny.MunnyRegistry;
+import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
@@ -48,7 +49,7 @@ import uk.co.wehavecookies56.kk.common.item.ItemMunny;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
-import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
+import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -73,7 +74,7 @@ public class ItemEvents {
     public void onEntityItemPickUp (EntityItemPickupEvent event) {
         IPlayerStats STATS = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
         IDriveState DRIVE = event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null);
-
+        
         if (event.getItem().getItem().getItem() instanceof ItemMunny) {
             final MunnyCapability.IMunny munny = event.getEntityPlayer().getCapability(ModCapabilities.MUNNY, null);
             MunnyPickup packet = new MunnyPickup(event.getItem().getItem());
@@ -131,7 +132,10 @@ public class ItemEvents {
                     }
                 }
             }
-        }
+        } else if (event.getItem().getItem().getItem() instanceof ItemSpellOrb) {
+        	System.out.println("OPEN Tutorial for magic");
+        }        
+        
     }
 
     public void addSynthesisMaterialToBag(IItemHandler inv, EntityItemPickupEvent event) {

@@ -38,11 +38,7 @@ public class EntityDropEntry {
      */
     public boolean dropConditions(LivingDropsEvent event) {
         int rand = Utils.randomWithRange(1, 100);
-        if (rand > 100 - dropChance) {
-            return true;
-        } else {
-            return false;
-        }
+        return rand > 100 - dropChance;
     }
 
 

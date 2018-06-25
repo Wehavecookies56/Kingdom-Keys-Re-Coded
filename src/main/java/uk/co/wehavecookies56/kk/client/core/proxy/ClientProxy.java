@@ -182,6 +182,7 @@ import uk.co.wehavecookies56.kk.common.entity.projectiles.lances.EntityZephyr;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = Reference.MODID)
 public class ClientProxy extends CommonProxy {
@@ -367,6 +368,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void postInit (FMLPostInitializationEvent e) {
         super.postInit(e);
+        Tutorials.initTutorials();
         KingdomKeys.logger.info("Events loaded");
     }
 

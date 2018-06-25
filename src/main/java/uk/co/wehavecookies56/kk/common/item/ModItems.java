@@ -1075,7 +1075,6 @@ public class ModItems {
 
     @Mod.EventBusSubscriber(modid = Reference.MODID)
     public static class register {
-
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event) {
             for (Item i : ModItems.ITEMS) {

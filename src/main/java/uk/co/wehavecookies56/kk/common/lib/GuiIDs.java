@@ -21,5 +21,5 @@ public final class GuiIDs {
     public static final int GUI_ORG_WEAPONS = modGuiIndex++;
     public static final int GUI_ORG = modGuiIndex++;
     public static final int GUI_ORG_UNLOCK = modGuiIndex++;
-
+    public static final int GUI_TUTORIAL = modGuiIndex++;
 }
