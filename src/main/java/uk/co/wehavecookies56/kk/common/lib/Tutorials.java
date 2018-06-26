@@ -3,12 +3,13 @@ package uk.co.wehavecookies56.kk.common.lib;
 import java.util.ArrayList;
 
 public class Tutorials {
-	static final int TUTORIAL_KEYBLADE = 0;
-	static final int TUTORIAL_MAGIC = 1;
-	static final int TUTORIAL_MAGIC_2 = 2;
-	static final int TUTORIAL_DRIVE = 3;
-	static final int TUTORIAL_DRIVE_2 = 4;
-	static final int TUTORIAL_DRIVE_3 = 5;
+	private static int index = 0;
+	public static final int TUTORIAL_KEYBLADE = index++;
+	public static final int TUTORIAL_MAGIC = index++;
+	public static final int TUTORIAL_MAGIC_2 = index++;
+	public static final int TUTORIAL_DRIVE = index++;
+	public static final int TUTORIAL_DRIVE_2 = index++;
+	public static final int TUTORIAL_DRIVE_3 = index++;
 	
 	//All the tutorials
 	public static Tutorial 
@@ -24,6 +25,7 @@ public class Tutorials {
 	};
 	
 	public static void initTutorials() {
+		
 		tutorialMagic.addNextTutorial(tutorialMagic2);
 		tutorialDrive.addNextTutorial(tutorialDrive2);
 		tutorialDrive2.addNextTutorial(tutorialDrive3);
@@ -41,35 +43,29 @@ public class Tutorials {
 	public static ArrayList<String> getLines(int num) {
 		ArrayList<String> lines = new ArrayList<String>();
 
-		switch(num) {
-		case TUTORIAL_KEYBLADE:
+		if(num == TUTORIAL_KEYBLADE) {
 			lines.add("Keyblade 1");
 			lines.add("Keyblade 2");
-			break;
-		case TUTORIAL_MAGIC:
+		} else if(num == TUTORIAL_MAGIC) {
 			lines.add("Magic 1");
 			lines.add("Magic 2");
 			lines.add("Magic 3");
-			
-			break;
-		case TUTORIAL_MAGIC_2:
+		} else if(num == TUTORIAL_MAGIC_2) {
 			lines.add("Magic2 1");
 			lines.add("Magic2 2");
-			break;
-		case TUTORIAL_DRIVE:
+
+		} else if(num == TUTORIAL_DRIVE) {
 			lines.add("Drive 1");
 
-			break;
-		case TUTORIAL_DRIVE_2:
+		} else if(num == TUTORIAL_DRIVE_2) {
 			lines.add("Drive2 1");
 
-			break;
-		case TUTORIAL_DRIVE_3:
+		} else if(num == TUTORIAL_DRIVE_3) {
 			lines.add("Drive3 1");
 			lines.add("Drive3 2");
-			break;
+
 		}
-		
+			
 		return lines;
 	}
 }

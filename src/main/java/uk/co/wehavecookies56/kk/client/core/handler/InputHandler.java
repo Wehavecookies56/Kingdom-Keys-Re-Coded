@@ -44,6 +44,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.magic.Magic;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
@@ -397,7 +398,7 @@ public class InputHandler {
         GuiCommandMenu.magicselected = 0;
         GuiCommandMenu.driveselected = 0;
         
-    	GuiHelper.openTutorial(1);
+    	GuiHelper.openTutorial(Tutorials.TUTORIAL_DRIVE);
 
     }
 

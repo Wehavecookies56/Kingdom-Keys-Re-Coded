@@ -47,13 +47,16 @@ import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.item.ItemHpOrb;
 import uk.co.wehavecookies56.kk.common.item.ItemMunny;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.OpenTutorialGUI;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
@@ -133,7 +136,9 @@ public class ItemEvents {
                 }
             }
         } else if (event.getItem().getItem().getItem() instanceof ItemSpellOrb) {
-        	System.out.println("OPEN Tutorial for magic");
+        	PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_MAGIC), (EntityPlayerMP) event.getEntityPlayer());
+        } else if (event.getItem().getItem().getItem() instanceof ItemDriveForm) {
+        	PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_DRIVE), (EntityPlayerMP) event.getEntityPlayer());
         }        
         
     }

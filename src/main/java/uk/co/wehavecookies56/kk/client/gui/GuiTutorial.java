@@ -79,5 +79,7 @@ public class GuiTutorial extends GuiScreen {
 
 	public void updateButtons() {
 		ok.visible = !tutorial.hasNext();
+		next.visible = tutorial.hasNext();
+		prev.visible = tutorial.hasPrev();
 	}
 }

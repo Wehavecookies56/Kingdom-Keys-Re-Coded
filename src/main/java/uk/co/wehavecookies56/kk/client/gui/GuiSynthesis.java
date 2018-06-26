@@ -25,6 +25,7 @@ import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.Recipe;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
+import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
@@ -38,6 +39,7 @@ import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.CreateFromSynthesisRecipe;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DepositMaterialsFromBag;
@@ -136,6 +138,7 @@ public class GuiSynthesis extends GuiTooltip {
                     if (isRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected))) {
                         PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1));
                         mc.player.world.playSound(mc.player, mc.player.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
+                        GuiHelper.openTutorial(Tutorials.TUTORIAL_KEYBLADE);
                     }
                 } else if (freeDevSelected != -1) {
                     if (isFreeDevRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected))) {
