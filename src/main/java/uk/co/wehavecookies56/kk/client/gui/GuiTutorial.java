@@ -4,9 +4,12 @@ import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.ROXAS;
 import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.XEMNAS;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.ResourceLocation;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.Tutorial;
 import uk.co.wehavecookies56.kk.common.lib.Tutorials;
@@ -38,14 +41,32 @@ public class GuiTutorial extends GuiScreen {
 			drawCenteredString(fontRenderer, line, (width / 2), height / 2 - fontRenderer.FONT_HEIGHT * (tutorial.getTutorialText().size() - i), 0xFFFFFF);
 		}
 
+		drawImages();
+
+	}
+
+	private void drawImages() {
+		ArrayList<ResourceLocation> images = tutorial.getTutorialImages();
+		for (int i = 0; i < images.size(); i++) {
+			GlStateManager.pushMatrix();
+			{
+				mc.renderEngine.bindTexture(images.get(i));
+				GlStateManager.enableAlpha();
+				GlStateManager.enableBlend();
+				GlStateManager.scale(0.4, 0.4, 0.4);
+				drawTexturedModalRect((width / 2) - (256 / 2) - 5, (height / 2) - (256 / 2) + 400 * i, 0, 0, 256, 256);
+			}
+			GlStateManager.popMatrix();
+		}
+
 	}
 
 	@Override
 	public void initGui() {
 		buttonList.clear();
-		buttonList.add(next = new GuiButton(NEXT, (width / 2), height / 2 * 3 / 2, 50, 20, ">"));
-		buttonList.add(prev = new GuiButton(PREV, (width / 2) - 50, height / 2 * 3 / 2, 50, 20, "<"));
-		buttonList.add(ok = new GuiButton(OK, (width / 2) - 50, height / 2 * 3 / 2+20, 100, 20, "OK"));
+		buttonList.add(next = new GuiButton(NEXT, (width / 2), height-60, 50, 20, ">"));
+		buttonList.add(prev = new GuiButton(PREV, (width / 2) - 50, height-60, 50, 20, "<"));
+		buttonList.add(ok = new GuiButton(OK, (width / 2) - 50, height - 40, 100, 20, "OK"));
 
 		super.initGui();
 		updateButtons();
@@ -55,7 +76,6 @@ public class GuiTutorial extends GuiScreen {
 	protected void actionPerformed(GuiButton button) throws IOException {
 		switch (button.id) {
 		case NEXT:
-			System.out.println(tutorial);
 			if (tutorial.hasNext()) {
 				this.tutorial = tutorial.getNext();
 			}
@@ -69,7 +89,8 @@ public class GuiTutorial extends GuiScreen {
 
 			mc.displayGuiScreen(null);
 			// PacketDispatcher.sendToServer(new OrgMemberSelect(current));
-			// mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setMember(current);
+			// mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII,
+			// null).setMember(current);
 
 			break;
 		}
@@ -78,8 +99,8 @@ public class GuiTutorial extends GuiScreen {
 	}
 
 	public void updateButtons() {
-		ok.visible = !tutorial.hasNext();
-		next.visible = tutorial.hasNext();
-		prev.visible = tutorial.hasPrev();
+		ok.enabled = !tutorial.hasNext();
+		next.enabled = tutorial.hasNext();
+		prev.enabled = tutorial.hasPrev();
 	}
 }

@@ -2,6 +2,8 @@ package uk.co.wehavecookies56.kk.common.lib;
 
 import java.util.ArrayList;
 
+import net.minecraft.util.ResourceLocation;
+
 public class Tutorial {
 	int id;
 	Tutorial nextTutorial;
@@ -16,9 +18,13 @@ public class Tutorial {
 	public int getTutorialID() {
 		return id;
 	}
-	
+
 	public ArrayList<String> getTutorialText() {
 		return Tutorials.getLines(id);
+	}
+	
+	public ArrayList<ResourceLocation> getTutorialImages() {
+		return Tutorials.getImages(id);
 	}
 	
 	public boolean hasPrev() {
