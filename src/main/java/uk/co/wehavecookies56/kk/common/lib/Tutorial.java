@@ -19,7 +19,7 @@ public class Tutorial {
 		return id;
 	}
 
-	public ArrayList<String> getTutorialText() {
+	public String[][] getTutorialText() {
 		return Tutorials.getLines(id);
 	}
 	

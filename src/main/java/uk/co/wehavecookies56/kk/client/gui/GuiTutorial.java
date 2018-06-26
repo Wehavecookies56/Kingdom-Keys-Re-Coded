@@ -31,18 +31,35 @@ public class GuiTutorial extends GuiScreen {
 	GuiButton next, prev, ok;
 	final int NEXT = 0, PREV = 1, OK = 2;
 
+	int maxLength1 = 0, maxLength2 = 0;;
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
-
-		for (int i = 0; i < tutorial.getTutorialText().size(); i++) {
-			String line = tutorial.getTutorialText().get(i);
-			drawCenteredString(fontRenderer, line, (width / 2), height / 2 - fontRenderer.FONT_HEIGHT * (tutorial.getTutorialText().size() - i), 0xFFFFFF);
-		}
-
+		drawLines();
 		drawImages();
+	}
 
+	private void drawLines() {
+		int num = tutorial.getTutorialText().length;
+		for (int i = 0; i < num; i++) {
+			
+			for (int j = 0; j < tutorial.getTutorialText()[0].length; j++) {
+				String line = tutorial.getTutorialText()[i][j];
+				if (line != null) {
+					// System.out.println(line);
+					
+					if (i == 0) {
+						maxLength1 = Math.max(maxLength1, fontRenderer.getStringWidth(line));
+						drawCenteredString(fontRenderer, line, (width / 2) + maxLength1 / 4, height / 3 - fontRenderer.FONT_HEIGHT * (num - j) - 10, 0xFFFFFF);
+					} else if(i == 1) {
+						maxLength2 = Math.max(maxLength2, fontRenderer.getStringWidth(line));
+						drawCenteredString(fontRenderer, line, (width / 2) + maxLength2 / 4, height / 3 * 2 - fontRenderer.FONT_HEIGHT * (num - j) - 10, 0xFFFFFF);
+					}
+				}
+			}
+		}
 	}
 
 	private void drawImages() {
@@ -54,7 +71,12 @@ public class GuiTutorial extends GuiScreen {
 				GlStateManager.enableAlpha();
 				GlStateManager.enableBlend();
 				GlStateManager.scale(0.4, 0.4, 0.4);
-				drawTexturedModalRect((width / 2) - (256 / 2) - 5, (height / 2) - (256 / 2) + 400 * i, 0, 0, 256, 256);
+				// drawTexturedModalRect((width / 2) - maxLength /*(256 / 2) - 5*/, (height / 2)
+				// - (256 / 2) + 400 * i, 0, 0, 256, 256);
+				if (i == 0)
+					drawTexturedModalRect((width / 2) - maxLength1 / 2, height / 3 * 2 * i + 50, 0, 0, 256, 256);
+				else
+					drawTexturedModalRect((width / 2) - maxLength2 / 2, height / 3 * 2 * i + 150, 0, 0, 256, 256);
 			}
 			GlStateManager.popMatrix();
 		}
@@ -64,8 +86,8 @@ public class GuiTutorial extends GuiScreen {
 	@Override
 	public void initGui() {
 		buttonList.clear();
-		buttonList.add(next = new GuiButton(NEXT, (width / 2), height-60, 50, 20, ">"));
-		buttonList.add(prev = new GuiButton(PREV, (width / 2) - 50, height-60, 50, 20, "<"));
+		buttonList.add(next = new GuiButton(NEXT, (width / 2), height - 60, 50, 20, ">"));
+		buttonList.add(prev = new GuiButton(PREV, (width / 2) - 50, height - 60, 50, 20, "<"));
 		buttonList.add(ok = new GuiButton(OK, (width / 2) - 50, height - 40, 100, 20, "OK"));
 
 		super.initGui();

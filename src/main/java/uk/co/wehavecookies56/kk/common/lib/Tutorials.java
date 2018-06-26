@@ -44,17 +44,22 @@ public class Tutorials {
 		return null;
 	}
 	
-	public static ArrayList<String> getLines(int num) {
-		ArrayList<String> lines = new ArrayList<String>();
+	public static String[][] getLines(int num) {
+		String[][] lines = new String[2][4];
 
 		if(num == TUTORIAL_KEYBLADE) {
-			lines.add("The keyblades are the main weapons in the mod");
-			lines.add("They can be obtained through the synthesis table");
+			lines[0][0]="The keyblades are the main weapons in the mod";
+			lines[0][1]="It's a weapon which can defeat heartless and collect hearts";
+			lines[0][2] = ":)";
+
+			lines[1][0]="They can be obtained through the synthesis table";
+			lines[1][1]="Or through being Roxas as a member of the Organization XIII";
+			lines[1][2]="Or through being Roxas as a member of the Organization XIII 2";
 			
 		} else if(num == TUTORIAL_KEYBLADE_2) {
-			lines.add("The keyblades are the main weapons in the mod");
-
-		} else if(num == TUTORIAL_MAGIC) {
+			lines[0][0] = "To equip it you must do things";
+			lines[1][1] = "To equip it you must do things2";
+		} /*else if(num == TUTORIAL_MAGIC) {
 			lines.add("Magic 1");
 			lines.add("Magic 2");
 			lines.add("Magic 3");
@@ -73,7 +78,7 @@ public class Tutorials {
 			lines.add("Drive3 1");
 			lines.add("Drive3 2");
 
-		}
+		}*/
 			
 		return lines;
 	}
@@ -83,7 +88,7 @@ public class Tutorials {
 
 		if(num == TUTORIAL_KEYBLADE) {
 			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/keyblade/keyblade.png"));
-			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/keyblade/keyblade.png"));
+			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/keyblade/synthesistable.png"));
 			
 		}/* else if(num == TUTORIAL_KEYBLADE_2) {
 			images.add("The keyblades are the main weapons in the mod");
