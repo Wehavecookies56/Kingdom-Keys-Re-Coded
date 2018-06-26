@@ -15,10 +15,14 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
+import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
 import uk.co.wehavecookies56.kk.common.block.base.BlockStationOfAwakening;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.lib.Tutorials;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OpenGui;
 
 /**
  * Created by Toby on 01/08/2016.
@@ -113,7 +117,6 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         playerMP.world.setTileEntity(new BlockPos(dx, dy+1, dz-12), swordPedestal);
 
         playerMP.world.setBlockState(new BlockPos(dx, dy+1, dz+12), ModBlocks.StationOfAwakeningDoor.getDefaultState());
-
     }
 
     @Override

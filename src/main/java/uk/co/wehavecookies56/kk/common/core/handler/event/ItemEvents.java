@@ -136,9 +136,9 @@ public class ItemEvents {
                 }
             }
         } else if (event.getItem().getItem().getItem() instanceof ItemSpellOrb) {
-        	PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_MAGIC), (EntityPlayerMP) event.getEntityPlayer());
+        	PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_MAGIC_1), (EntityPlayerMP) event.getEntityPlayer());
         } else if (event.getItem().getItem().getItem() instanceof ItemDriveForm) {
-        	PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_DRIVE), (EntityPlayerMP) event.getEntityPlayer());
+        	PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_DRIVE_1), (EntityPlayerMP) event.getEntityPlayer());
         }        
         
     }

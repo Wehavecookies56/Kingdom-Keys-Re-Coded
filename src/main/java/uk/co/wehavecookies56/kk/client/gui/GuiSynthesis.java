@@ -138,7 +138,7 @@ public class GuiSynthesis extends GuiTooltip {
                     if (isRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected))) {
                         PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1));
                         mc.player.world.playSound(mc.player, mc.player.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
-                        GuiHelper.openTutorial(Tutorials.TUTORIAL_KEYBLADE);
+                        GuiHelper.openTutorial(Tutorials.TUTORIAL_KEYBLADE_1);
                     }
                 } else if (freeDevSelected != -1) {
                     if (isFreeDevRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected))) {

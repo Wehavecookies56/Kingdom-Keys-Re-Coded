@@ -398,7 +398,7 @@ public class InputHandler {
         GuiCommandMenu.magicselected = 0;
         GuiCommandMenu.driveselected = 0;
         
-    	GuiHelper.openTutorial(Tutorials.TUTORIAL_KEYBLADE);
+    	GuiHelper.openTutorial(Tutorials.TUTORIAL_KEYBLADE_1);
 
     }
 

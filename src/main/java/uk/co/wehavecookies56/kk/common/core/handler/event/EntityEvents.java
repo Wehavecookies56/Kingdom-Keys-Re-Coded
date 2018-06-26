@@ -89,6 +89,7 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
+import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
@@ -126,6 +127,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.EntityDropEntry;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenOrgGUI;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
@@ -139,6 +141,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
+import uk.co.wehavecookies56.kk.common.network.packet.server.OpenGui;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
 import uk.co.wehavecookies56.kk.common.world.dimension.DimensionTeleporter;
@@ -353,9 +356,12 @@ public class EntityEvents {
                 FTJ.setPosX(((EntityPlayer) event.getEntity()).getPosition().getX());
                 FTJ.setPosY(((EntityPlayer) event.getEntity()).getPosition().getY());
                 FTJ.setPosZ(((EntityPlayer) event.getEntity()).getPosition().getZ());
-                if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID && MainConfig.worldgen.EnableStationOfAwakening)
-                    if (!event.getWorld().isRemote)
+                if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID && MainConfig.worldgen.EnableStationOfAwakening) {
+                    if (!event.getWorld().isRemote) {
                         new TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().getWorld(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer) event.getEntity()));
+                    }
+                }
+
             }
 
             ((EntityPlayer) event.getEntity()).getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getHP());
@@ -840,6 +846,10 @@ public class EntityEvents {
                         TextComponentTranslation sword = new TextComponentTranslation("Sword");
                         sword.getStyle().setColor(TextFormatting.YELLOW);
                         player.sendMessage(sword);
+                    	//GuiHelper.openTutorial(Tutorials.TUTORIAL_SOA_1);
+                    	System.out.println("OPENING SOA TUTORIAL");
+                        PacketDispatcher.sendTo(new OpenGui(Tutorials.TUTORIAL_SOA_1), (EntityPlayerMP) player);
+
                     }
                 } else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
                     if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID) {
