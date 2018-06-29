@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.client.gui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 import org.lwjgl.opengl.GL11;
 
@@ -49,7 +50,8 @@ public class GuiMaterialList extends GuiScrollingList {
 
     @Override
     protected boolean isSelected (int index) {
-        if (index == parent.materialSelected) return true;
+        if (index == parent.materialSelected)
+        	return true;
         return false;
     }
 
@@ -64,6 +66,7 @@ public class GuiMaterialList extends GuiScrollingList {
         List<String> materials = new ArrayList<String>();
 
         materials.addAll(MATS.getKnownMaterialsMap().keySet());
+       // materials.addAll(new TreeMap(MATS.getKnownMaterialsMap()).keySet());
 
         this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(materials.get(var1).toString() + ".name") + " x" + MATS.getKnownMaterialsMap().get(materials.get(var1)), listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
         Material m = MaterialRegistry.get(materials.get(var1).toString());

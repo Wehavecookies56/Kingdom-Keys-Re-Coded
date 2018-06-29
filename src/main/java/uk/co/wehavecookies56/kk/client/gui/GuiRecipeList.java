@@ -56,7 +56,6 @@ public class GuiRecipeList extends GuiScrollingList {
     @Override
     protected void drawBackground () {
         SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
-
         this.f.drawString(RECIPES.getKnownRecipes().size() + "/" + RecipeRegistry.getRecipeMap().size(), this.left + 130, 65, 0xFFFFFF);
     }
 
@@ -68,7 +67,9 @@ public class GuiRecipeList extends GuiScrollingList {
         if (parent.isRecipeUsable(RECIPES.getKnownRecipes().get(var1))) {
             colour = 0x55FF55;
         }
-            Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)));
+        
+        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)));
+        
         if (item instanceof ItemKeyblade) {
             drawStats((ItemKeyblade)item, var1, var3, colour);
         } else if (item instanceof IOrgWeapon) {

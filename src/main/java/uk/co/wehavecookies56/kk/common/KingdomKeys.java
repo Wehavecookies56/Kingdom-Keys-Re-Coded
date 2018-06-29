@@ -62,6 +62,8 @@ public class KingdomKeys {
         e.registerServerCommand(new CommandShowHud());
         e.registerServerCommand(new CommandDimension());
         e.registerServerCommand(new CommandOpenKeychains());
+        e.registerServerCommand(new CommandLearnMaterial());
+
         logger.info("Commands loaded");
     }
 

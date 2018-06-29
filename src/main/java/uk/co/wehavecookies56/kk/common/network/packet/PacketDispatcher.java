@@ -64,7 +64,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.MagnetBloxMotion;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MasterFormPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenGui;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMaterials;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DepositMaterials;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenSynthesis;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgMemberSelect;
@@ -158,7 +158,7 @@ public class PacketDispatcher {
         registerMessage(MagicStop.class);
         registerMessage(MagicWisdomShot.class);
         registerMessage(UseRecipe.class);
-        registerMessage(OpenMaterials.class);
+        registerMessage(DepositMaterials.class);
         registerMessage(DepositMaterialsFromBag.class);
         registerMessage(CreateFromSynthesisRecipe.class);
         registerMessage(DriveOrbPickup.class);

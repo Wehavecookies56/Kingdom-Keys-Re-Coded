@@ -35,7 +35,7 @@ public class RecipeRegistry {
         return recipeMap.get(name);
     }
 
-    public static boolean learnrecipe (List<String> list, EntityPlayer player, String recipeName) {
+    public static boolean learnRecipe (List<String> list, EntityPlayer player, String recipeName) {
         if (!isRecipeKnown(list, recipeName)) {
             Recipe recipe = recipeMap.get(recipeName);
             player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).learnRecipe(recipe);

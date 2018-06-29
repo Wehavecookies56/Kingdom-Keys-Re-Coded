@@ -1,6 +1,7 @@
 package uk.co.wehavecookies56.kk.api.materials;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
@@ -17,7 +18,8 @@ public class MaterialRegistry {
     }
 
     public static boolean registerMaterial (Material material) {
-        if (isMaterialRegistered(material.getName())) return false;
+        if (isMaterialRegistered(material.getName()))
+        	return false;
         materialMap.put(material.getName(), material);
         return true;
     }

@@ -60,7 +60,7 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
 
             //TextHelper.sendFormattedChatMessage(message, TextFormatting.YELLOW, player);
         } else {
-            RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe1);
+            RecipeRegistry.learnRecipe(RECIPES.getKnownRecipes(), player, recipe1);
             TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe1+".name"));
             learnMessage.getStyle().setColor(TextFormatting.GREEN);
             player.sendMessage(learnMessage);
@@ -75,7 +75,7 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
             player.sendMessage(repeatMessage);
 
         } else {
-            RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe2);
+            RecipeRegistry.learnRecipe(RECIPES.getKnownRecipes(), player, recipe2);
             TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe2+".name"));
             learnMessage.getStyle().setColor(TextFormatting.GREEN);
             player.sendMessage(learnMessage);
@@ -90,7 +90,7 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
             player.sendMessage(repeatMessage);
 
         } else {
-            RecipeRegistry.learnrecipe(RECIPES.getKnownRecipes(), player, recipe3);
+            RecipeRegistry.learnRecipe(RECIPES.getKnownRecipes(), player, recipe3);
             TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe3+".name"));
             learnMessage.getStyle().setColor(TextFormatting.GREEN);
             player.sendMessage(learnMessage);

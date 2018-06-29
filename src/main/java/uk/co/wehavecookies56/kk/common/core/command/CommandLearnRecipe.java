@@ -20,77 +20,80 @@ import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class CommandLearnRecipe implements ICommand {
 
-    private List<String> aliases;
-    private List<String> autoComplete;
+	private List<String> aliases;
+	private List<String> autoComplete;
 
-    public CommandLearnRecipe () {
-        this.aliases = new ArrayList<String>();
-        this.aliases.add("learnrecipe");
-        this.aliases.add("addrecipe");
-        this.aliases.add("giverecipe");
-        this.aliases.add("kklearnrecipe");
+	public CommandLearnRecipe() {
+		this.aliases = new ArrayList<String>();
+		this.aliases.add("learnrecipe");
+		this.aliases.add("addrecipe");
+		this.aliases.add("giverecipe");
+		this.aliases.add("kklearnrecipe");
 
-        this.autoComplete = new ArrayList<String>();
-        this.autoComplete.add("all");
-        for (Object value : RecipeRegistry.getRecipeMap().values())
-            if (value instanceof Recipe) 
-            	this.autoComplete.add(((Recipe) value).getName().substring(5));
-    }
+		this.autoComplete = new ArrayList<String>();
+		this.autoComplete.add("all");
+		for (Object value : RecipeRegistry.getRecipeMap().values())
+			if (value instanceof Recipe)
+				this.autoComplete.add(((Recipe) value).getName().substring(5));
+	}
 
-    @Override
-    public int compareTo (ICommand arg0) {
-        return 0;
-    }
+	@Override
+	public int compareTo(ICommand arg0) {
+		return 0;
+	}
 
-    @Override
-    public String getName () {
-        return "learnrecipe";
-    }
+	@Override
+	public String getName() {
+		return "learnrecipe";
+	}
 
-    public int getRequiredPermissionLevel () {
-        return 2;
-    }
+	public int getRequiredPermissionLevel() {
+		return 2;
+	}
 
-    @Override
-    public String getUsage (ICommandSender sender) {
-        return "/learnrecipe <value>";
-    }
+	@Override
+	public String getUsage(ICommandSender sender) {
+		return "/learnrecipe <name>";
+	}
 
-    @Override
-    public List<String> getAliases () {
-        return this.aliases;
-    }
+	@Override
+	public List<String> getAliases() {
+		return this.aliases;
+	}
 
-    @Override
-    public boolean isUsernameIndex (String[] args, int index) {
-        return false;
-    }
+	@Override
+	public boolean isUsernameIndex(String[] args, int index) {
+		return false;
+	}
 
-    @Override
-    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-        if (sender.getCommandSenderEntity() instanceof EntityPlayer) if (args.length == 0)
-            TextHelper.sendFormattedChatMessage("Invalid arguments, usage \"/learnrecipe <name>\"", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-        else if (RecipeRegistry.isRecipeKnown(((EntityPlayer) sender.getCommandSenderEntity()).getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes(), "item." + args[0].toLowerCase()))
-            TextHelper.sendFormattedChatMessage("You already know this recipe", TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
-        else if (RecipeRegistry.isRecipeRegistered("item." + args[0].toLowerCase())) {
-            RecipeRegistry.learnrecipe(((EntityPlayer) sender.getCommandSenderEntity()).getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes(), (EntityPlayer) sender.getCommandSenderEntity(), "item." + args[0].toLowerCase());
-            TextHelper.sendFormattedChatMessage("Successfully learnt recipe for " + Utils.translateToLocal("item." + args[0].toLowerCase() + ".name"), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
-        } else if (args[0].equals("all")) {
-            for (Object value : RecipeRegistry.getRecipeMap().values())
-                if (value instanceof Recipe) if (!RecipeRegistry.isRecipeKnown(((EntityPlayer) sender.getCommandSenderEntity()).getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes(), ((Recipe) value).getName())) RecipeRegistry.learnrecipe(((EntityPlayer) sender.getCommandSenderEntity()).getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes(), (EntityPlayer) sender.getCommandSenderEntity(), ((Recipe) value).getName());
-            TextHelper.sendFormattedChatMessage("Successfully learnt all the recipe", TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
-        } else
-            TextHelper.sendFormattedChatMessage("This recipe doesn't exist", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+	@Override
+	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+		if (sender.getCommandSenderEntity() instanceof EntityPlayer)
+			if (args.length == 0)
+				TextHelper.sendFormattedChatMessage("Invalid arguments, usage \""+getUsage(sender)+"\"", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+			else if (RecipeRegistry.isRecipeKnown(((EntityPlayer) sender.getCommandSenderEntity()).getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes(), "item." + args[0].toLowerCase()))
+				TextHelper.sendFormattedChatMessage("You already know this recipe", TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
+			else if (RecipeRegistry.isRecipeRegistered("item." + args[0].toLowerCase())) {
+				RecipeRegistry.learnRecipe(((EntityPlayer) sender.getCommandSenderEntity()).getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes(), (EntityPlayer) sender.getCommandSenderEntity(), "item." + args[0].toLowerCase());
+				TextHelper.sendFormattedChatMessage("Successfully learnt recipe for " + Utils.translateToLocal("item." + args[0].toLowerCase() + ".name"), TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+			} else if (args[0].equals("all")) {
+				for (Object value : RecipeRegistry.getRecipeMap().values())
+					if (value instanceof Recipe)
+						if (!RecipeRegistry.isRecipeKnown(((EntityPlayer) sender.getCommandSenderEntity()).getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes(), ((Recipe) value).getName()))
+							RecipeRegistry.learnRecipe(((EntityPlayer) sender.getCommandSenderEntity()).getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes(), (EntityPlayer) sender.getCommandSenderEntity(), ((Recipe) value).getName());
+				TextHelper.sendFormattedChatMessage("Successfully learnt all the recipe", TextFormatting.GREEN, (EntityPlayer) sender.getCommandSenderEntity());
+			} else
+				TextHelper.sendFormattedChatMessage("This recipe doesn't exist", TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 
-    }
+	}
 
-    @Override
-    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-        return sender.canUseCommand(getRequiredPermissionLevel(), getName());
-    }
+	@Override
+	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+		return sender.canUseCommand(getRequiredPermissionLevel(), getName());
+	}
 
-    @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
-        return this.autoComplete;
-    }
+	@Override
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
+		return this.autoComplete;
+	}
 }

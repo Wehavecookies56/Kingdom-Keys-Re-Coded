@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.capability;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,6 +11,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import uk.co.wehavecookies56.kk.api.materials.Material;
+import uk.co.wehavecookies56.kk.api.recipes.Recipe;
 
 
 public class SynthesisMaterialCapability {
@@ -18,7 +20,7 @@ public class SynthesisMaterialCapability {
 
 
     public interface ISynthesisMaterial {
-        Map<String, Integer> getKnownMaterialsMap();
+        TreeMap<String, Integer> getKnownMaterialsMap();
         int getMaterialAmount(Material material);
 
         void addMaterial (Material material, int amount);
@@ -49,7 +51,8 @@ public class SynthesisMaterialCapability {
             while (it.hasNext()) {
                 String key = (String) it.next();
                 instance.getKnownMaterialsMap().put(key.toString(), properties.getInteger(key));
-                if (properties.getInteger(key) == 0 && key.toString() != null) instance.getKnownMaterialsMap().remove(key.toString());
+                if (properties.getInteger(key) == 0 && key.toString() != null) 
+                	instance.getKnownMaterialsMap().remove(key.toString());
             }
 
         }
@@ -57,10 +60,10 @@ public class SynthesisMaterialCapability {
     }
 
     public static class Default implements ISynthesisMaterial {
-        private Map<String, Integer> materials = new HashMap<String, Integer>();
+        private TreeMap<String, Integer> materials = new TreeMap<String, Integer>();
 
         @Override
-        public Map<String, Integer> getKnownMaterialsMap() {
+        public TreeMap<String, Integer> getKnownMaterialsMap() {
             return materials;
         }
 
@@ -110,11 +113,11 @@ public class SynthesisMaterialCapability {
         public void removeMaterial(Material material, int amount) {
             if (materials.containsKey(material.getName())) {
                 int currAmount = materials.get(material.getName());
-                if (amount > currAmount) return;
+                if (amount > currAmount) 
+                	amount = currAmount;
                 materials.replace(material.getName(), currAmount - amount);
             } else
                 return;
         }
     }
-
 }
