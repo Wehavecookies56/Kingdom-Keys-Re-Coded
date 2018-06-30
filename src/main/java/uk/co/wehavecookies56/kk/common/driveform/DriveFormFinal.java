@@ -114,6 +114,8 @@ public class DriveFormFinal extends DriveForm {
             if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
                 jumpHeld = true;
                 player.motionY *= Constants.FINAL_GLIDE[actualLevel];
+               // player.motionX *= Constants.FINAL_GLIDE_SPEED[actualLevel];
+			//	player.motionZ *= Constants.FINAL_GLIDE_SPEED[actualLevel];
             } else {
                 jumpHeld = false;
             }
