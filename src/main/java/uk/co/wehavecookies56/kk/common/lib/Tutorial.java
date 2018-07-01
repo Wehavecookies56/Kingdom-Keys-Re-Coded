@@ -6,17 +6,23 @@ import net.minecraft.util.ResourceLocation;
 
 public class Tutorial {
 	int id;
+	String name;
 	Tutorial nextTutorial;
 	Tutorial prevTutorial;
 
-	public Tutorial(int idTutorial) {
+	public Tutorial(int idTutorial, String name) {
 		this.id = idTutorial;
+		this.name = name;
 		this.nextTutorial = null;
 		this.prevTutorial = null;
 	}
 	
 	public int getTutorialID() {
 		return id;
+	}
+	
+	public String getTutorialName() {
+		return name;
 	}
 
 	public String[][] getTutorialText() {

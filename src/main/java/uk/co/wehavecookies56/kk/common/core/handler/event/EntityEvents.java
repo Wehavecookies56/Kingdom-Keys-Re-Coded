@@ -7,15 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.lwjgl.opengl.GL11;
-
 import com.mojang.authlib.GameProfile;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -65,11 +59,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -90,7 +82,6 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
-import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
@@ -110,13 +101,11 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
-import uk.co.wehavecookies56.kk.common.entity.mobs.BaseEntityHeartless;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMinuteBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySilverRock;
@@ -142,6 +131,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncTutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
 import uk.co.wehavecookies56.kk.common.network.packet.server.GlidePacket;
@@ -353,6 +343,8 @@ public class EntityEvents {
 			PacketDispatcher.sendTo(new SyncKeybladeData(event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) event.getEntity());
 			PacketDispatcher.sendTo(new SyncLevelData(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
 			PacketDispatcher.sendTo(new SyncOrgXIIIData(event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) event.getEntity());
+			PacketDispatcher.sendTo(new SyncTutorials(event.getEntity().getCapability(ModCapabilities.TUTORIALS, null)), (EntityPlayerMP) event.getEntity());
+
 			FirstTimeJoinCapability.IFirstTimeJoin FTJ = event.getEntity().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
 			if (!FTJ.getFirstTimeJoin()) {
 				((EntityPlayer) event.getEntity()).inventory.addItemStackToInventory(new ItemStack(ModItems.WoodenKeyblade));

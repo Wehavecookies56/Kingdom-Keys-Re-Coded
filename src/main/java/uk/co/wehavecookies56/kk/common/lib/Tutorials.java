@@ -16,18 +16,16 @@ public class Tutorials {
 	public static final int TUTORIAL_SOA_1 = index++;
 
 	// All the tutorials
-	public static Tutorial tutorialKeyblade1 = new Tutorial(TUTORIAL_KEYBLADE_1);
-	public static Tutorial tutorialKeyblade2 = new Tutorial(TUTORIAL_KEYBLADE_2);
-	public static Tutorial tutorialMagic1 = new Tutorial(TUTORIAL_MAGIC_1);
-	public static Tutorial tutorialMagic2 = new Tutorial(TUTORIAL_MAGIC_2);
-	public static Tutorial tutorialDrive1 = new Tutorial(TUTORIAL_DRIVE_1);
-	public static Tutorial tutorialDrive2 = new Tutorial(TUTORIAL_DRIVE_2);
-	public static Tutorial tutorialDrive3 = new Tutorial(TUTORIAL_DRIVE_3);
-	public static Tutorial tutorialSOA1 = new Tutorial(TUTORIAL_SOA_1);
+	public static Tutorial tutorialKeyblade1 = new Tutorial(TUTORIAL_KEYBLADE_1, "Keyblade");
+	public static Tutorial tutorialKeyblade2 = new Tutorial(TUTORIAL_KEYBLADE_2, "Keyblade 2");
+	public static Tutorial tutorialMagic1 = new Tutorial(TUTORIAL_MAGIC_1, "Magic");
+	public static Tutorial tutorialMagic2 = new Tutorial(TUTORIAL_MAGIC_2, "Magic 2");
+	public static Tutorial tutorialDrive1 = new Tutorial(TUTORIAL_DRIVE_1, "Drive");
+	public static Tutorial tutorialDrive2 = new Tutorial(TUTORIAL_DRIVE_2, "Drive 2");
+	public static Tutorial tutorialDrive3 = new Tutorial(TUTORIAL_DRIVE_3, "Drive 3");
+	public static Tutorial tutorialSOA1 = new Tutorial(TUTORIAL_SOA_1, "Station of Awakening");
 
-	public static Tutorial[] tutorials = {
-		tutorialKeyblade1,tutorialKeyblade2,tutorialMagic1,tutorialMagic2,tutorialDrive1,tutorialDrive2,tutorialDrive3,tutorialSOA1
-	};
+	public static Tutorial[] tutorials = { tutorialKeyblade1, tutorialKeyblade2, tutorialMagic1, tutorialMagic2, tutorialDrive1, tutorialDrive2, tutorialDrive3, tutorialSOA1 };
 
 	public static void initTutorials() {
 		tutorialKeyblade1.addNextTutorial(tutorialKeyblade2);
@@ -43,6 +41,18 @@ public class Tutorials {
 			}
 		}
 		return null;
+	}
+
+	public static Tutorial getRoot(int id) {
+		Tutorial tuto = getTutorialById(id);
+		while (tuto.prevTutorial != null) {
+			tuto = tuto.prevTutorial;
+		}
+		return tuto;
+	}
+
+	public static String getTutorialName(int id) {
+		return getTutorialById(id).getTutorialName();
 	}
 
 	public static String[][] getLines(int num) {
@@ -98,7 +108,7 @@ public class Tutorials {
 
 		} else if (num == TUTORIAL_SOA_1) {
 			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/soa/soa.png"));
-		} 
+		}
 
 		return images;
 	}

@@ -66,9 +66,12 @@ public class GuiHelper {
 	}
 
 	public static void openTutorial(int num) {
-		System.out.println("TUTOS: "+Minecraft.getMinecraft().player.getCapability(ModCapabilities.TUTORIALS, null).getKnownTutorials());
-		System.out.println(Minecraft.getMinecraft().player.getCapability(ModCapabilities.TUTORIALS, null).getKnownTutorial(num));
 		if(!Minecraft.getMinecraft().player.getCapability(ModCapabilities.TUTORIALS, null).getKnownTutorial(num))
 			Minecraft.getMinecraft().displayGuiScreen(new GuiTutorial(num));
 	}
+	public static void openTutorial(int num, boolean b) {
+		if(b)
+			Minecraft.getMinecraft().displayGuiScreen(new GuiTutorial(num));
+	}
+
 }

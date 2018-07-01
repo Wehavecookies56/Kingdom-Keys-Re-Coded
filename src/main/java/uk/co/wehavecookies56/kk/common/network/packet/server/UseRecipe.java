@@ -61,7 +61,6 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
                 TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe+".name"));
                 repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
                 player.sendMessage(repeatMessage);
-                //TextHelper.sendFormattedChatMessage(message, TextFormatting.YELLOW, player);
             } else { //If recipe is not known, learn it
                 RecipeRegistry.learnRecipe(RECIPES.getKnownRecipes(), player, recipe);
                 TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe+".name"));

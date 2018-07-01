@@ -11,6 +11,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.client.gui.pages.PageArmourKeyblade;
 import uk.co.wehavecookies56.kk.client.gui.pages.PageArmourOrgXIII;
 import uk.co.wehavecookies56.kk.client.gui.pages.PageBugBloxAbout;
@@ -41,7 +42,9 @@ import uk.co.wehavecookies56.kk.client.gui.pages.PageMiscOrganizationWeapons;
 import uk.co.wehavecookies56.kk.client.gui.pages.PageSynthesisAbout;
 import uk.co.wehavecookies56.kk.client.gui.pages.PageSynthesisMaterials;
 import uk.co.wehavecookies56.kk.client.gui.pages.PageSynthesisRecipes;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 
 public class GuiJournal extends GuiScreen {
 
@@ -66,6 +69,8 @@ public class GuiJournal extends GuiScreen {
 
     GuiButtonLink topic_commandmenu_about, topic_commandmenu_attack, topic_commandmenu_magic, topic_commandmenu_items, topic_commandmenu_drive, topic_keyblades_about, topic_keyblades_list, topic_keyblades_summoning, topic_keyblades_creation, topic_bugblox_about, topic_bugblox_standardblox, topic_bugblox_specialblox, topic_synthesis_about, topic_synthesis_materials, topic_synthesis_recipes, topic_armour_keyblade, topic_armour_organization, topic_magic_about, topic_magic_mp, topic_magic_magics, topic_driveforms_about, topic_driveforms_dp, topic_driveforms_forms, topic_misc_hearts, topic_misc_munny, topic_misc_menu, topic_misc_craftingmaterials, topic_misc_organizationweapons, topic_misc_musicdiscs, topic_misc_commands;
 
+    GuiButton[] tutorials=new GuiButton[Tutorials.tutorials.length];
+    
     static ScaledResolution res;
 
     static float scrollPos = 0;
@@ -256,6 +261,8 @@ public class GuiJournal extends GuiScreen {
         topic_misc_musicdiscs = new GuiButtonLink(TOPIC_MISC_MUSICDISCS, 0, 0, 0, 0, "Music Discs", 0x0645AD);
         topic_misc_commands = new GuiButtonLink(TOPIC_MISC_COMMANDS, 0, 0, 0, 0, "Commands", 0x0645AD);
 
+        
+       
     }
 
     @Override
@@ -330,6 +337,7 @@ public class GuiJournal extends GuiScreen {
 
         drawDarkBG(texture, xPos_coll_commandMenu - 1, yPos_coll_commandMenu - 1, 102, (this.height / 2) + 8, 1F);
         drawDarkBG(texture, xPos_coll_commandMenu + 103, yPos_coll_commandMenu - 1, 8, (this.height / 2) + 8, 1F);
+        
         if (currentPage != null) {
             topic_commandmenu_about.colour = currentPage.equals(page_commandmenu_about.getName()) ? 0xFFFFFF : 0x0645AD;
             topic_commandmenu_attack.colour = currentPage.equals(page_commandmenu_attack.getName()) ? 0xFFFFFF : 0x0645AD;
@@ -873,7 +881,17 @@ public class GuiJournal extends GuiScreen {
         buttonList.add(topic_misc_organizationweapons);
         buttonList.add(topic_misc_musicdiscs);
         buttonList.add(topic_misc_commands);
-
+       
+        //TODO Tutorial Buttons
+        int tutorialIndex = 0;
+        
+        for(int i=0;i<Tutorials.tutorials.length;i++) {
+        	if(Tutorials.tutorials[i] == Tutorials.getRoot(i)) {       		
+        		if(mc.player.getCapability(ModCapabilities.TUTORIALS, null).getKnownTutorial(Tutorials.tutorials[i].getTutorialID()))
+        			buttonList.add(new GuiButton(10+i, 0, tutorialIndex++*20,100,20, Tutorials.getTutorialName(i)));
+        	}
+        }
+ 
         scroll_collapse.width = (int) (7 * 1.5f);
         scroll_collapse.height = (int) (7 * 1.5f);
         scroll_collapse.x = xPos_coll_commandMenu + 102;
@@ -1049,6 +1067,12 @@ public class GuiJournal extends GuiScreen {
 
     @Override
     protected void actionPerformed (GuiButton button) throws IOException {
+    	
+    	if(button.id >= 10 && button.id < 100) {
+    		System.out.println(Tutorials.getTutorialName(button.id-10));
+    		GuiHelper.openTutorial(button.id-10,true);
+    	}
+    	
         switch (button.id) {
             case COLLAPSE_COMMANDMENU:
                 if (!collapse_commandmenu.collapsed) {
@@ -1277,6 +1301,8 @@ public class GuiJournal extends GuiScreen {
             case TOPIC_MISC_COMMANDS:
                 currentPage = page_misc_commands.getName();
                 break;
+                
+            
         }
 
     }
