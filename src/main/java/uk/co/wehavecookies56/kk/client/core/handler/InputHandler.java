@@ -15,6 +15,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
@@ -401,6 +402,38 @@ public class InputHandler {
        	GuiHelper.openTutorial(Tutorials.TUTORIAL_KEYBLADE_1);
 
     }
+	
+	private void commandAction() {
+		Minecraft mc = Minecraft.getMinecraft();
+        EntityPlayer player = mc.player;
+        
+        int wisdomLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Wisdom);
+
+        if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom)) {
+        	float yaw = player.rotationYaw;
+			float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
+			float motionZ = MathHelper.cos(yaw / 180.0f * (float) Math.PI);
+
+			double power = Constants.WISDOM_QR[wisdomLevel];
+			
+			if(player.onGround)
+				player.addVelocity(motionX * power, 0, motionZ * power);
+			else
+				player.addVelocity(motionX * power/2, 0, motionZ * power/2);
+
+        } else if(!player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
+        	if (wisdomLevel > 2) {
+    			float yaw = player.rotationYaw;
+    			float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
+    			float motionZ = MathHelper.cos(yaw / 180.0f * (float) Math.PI);
+
+    			double power = Constants.WISDOM_QR[wisdomLevel - 2];
+    			
+    			if(player.onGround)
+    				player.addVelocity(motionX * power, 0, motionZ * power);
+    		}
+        }
+	}
 
     @SubscribeEvent
     public void handleKeyInputEvent (InputEvent.KeyInputEvent event) {
@@ -456,6 +489,9 @@ public class InputHandler {
                 break;
             case SCROLL_ACTIVATOR:
                 break;
+            case ACTION:
+            	commandAction();
+            	break;
 
             case LOCK_ON:
                 if (lockOn == null) {
@@ -482,7 +518,9 @@ public class InputHandler {
         }
     }
 
-    public static RayTraceResult getMouseOverExtended(float dist) {
+   
+
+	public static RayTraceResult getMouseOverExtended(float dist) {
         Minecraft mc = FMLClientHandler.instance().getClient();
         Entity theRenderViewEntity = mc.getRenderViewEntity();
         AxisAlignedBB theViewBoundingBox = new AxisAlignedBB(
@@ -616,7 +654,16 @@ public class InputHandler {
 
     public static enum Keybinds {
 
-        OPENMENU ("key.kingdomkeys.openmenu", Keyboard.KEY_M), SCROLL_UP ("key.kingdomkeys.scrollup", Keyboard.KEY_UP), SCROLL_DOWN ("key.kingdomkeys.scrolldown", Keyboard.KEY_DOWN), ENTER ("key.kingdomkeys.enter", Keyboard.KEY_RIGHT), BACK ("key.kingdomkeys.back", Keyboard.KEY_LEFT), SCROLL_ACTIVATOR ("key.kingdomkeys.scrollactivator", Keyboard.KEY_LMENU), SUMMON_KEYBLADE ("key.kingdomkeys.summonkeyblade", Keyboard.KEY_G), LOCK_ON ("key.kingdomkeys.lockon", Keyboard.KEY_Z), SHOW_GUI ("key.kingdomkeys.showgui", Keyboard.KEY_O);
+        OPENMENU ("key.kingdomkeys.openmenu", Keyboard.KEY_M),
+        SCROLL_UP ("key.kingdomkeys.scrollup", Keyboard.KEY_UP),
+        SCROLL_DOWN ("key.kingdomkeys.scrolldown", Keyboard.KEY_DOWN), 
+        ENTER ("key.kingdomkeys.enter", Keyboard.KEY_RIGHT), 
+        BACK ("key.kingdomkeys.back", Keyboard.KEY_LEFT), 
+        SCROLL_ACTIVATOR ("key.kingdomkeys.scrollactivator", Keyboard.KEY_LMENU),
+        SUMMON_KEYBLADE ("key.kingdomkeys.summonkeyblade", Keyboard.KEY_G), 
+        LOCK_ON ("key.kingdomkeys.lockon", Keyboard.KEY_Z), 
+        SHOW_GUI ("key.kingdomkeys.showgui", Keyboard.KEY_O),
+        ACTION ("key.kingdomkeys.action", Keyboard.KEY_X);
 
         private final KeyBinding keybinding;
 

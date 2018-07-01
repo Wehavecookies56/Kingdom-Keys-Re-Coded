@@ -92,7 +92,7 @@ public class DriveFormWisdom extends DriveForm {
     @Override
     public void update (EntityPlayer player) {
         super.update(player);
-    	int actualLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Wisdom);
+    	/*int actualLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Wisdom);
 
         float yaw = player.rotationYaw;
         float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
@@ -109,7 +109,7 @@ public class DriveFormWisdom extends DriveForm {
         	if(player.motionY > 0){
         		player.addVelocity(motionX * power, 0 * power, motionZ * power);
         	}
-        }
+        }*/
     }
 
     @Override

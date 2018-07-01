@@ -995,7 +995,7 @@ public class EntityEvents {
 	}
 
 	private void quickRun(EntityPlayer player) {
-		int wisdomLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Wisdom);
+		/*int wisdomLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Wisdom);
 
 		if (wisdomLevel > 2) {
 			float yaw = player.rotationYaw;
@@ -1014,7 +1014,7 @@ public class EntityEvents {
 					player.addVelocity(motionX * power, 0 * power, motionZ * power);
 				}
 			}
-		}
+		}*/
 	}
 
 	int jumps = 0;
