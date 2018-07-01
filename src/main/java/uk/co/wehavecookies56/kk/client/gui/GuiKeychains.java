@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
+import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
 import uk.co.wehavecookies56.kk.common.container.ContainerKeychain;
@@ -31,7 +32,7 @@ public class GuiKeychains extends GuiContainer {
 
     private float ySize_lo;
 
-    private static final ResourceLocation iconLocation = new ResourceLocation("kk", "textures/gui/keychain_inv.png");
+    private static final ResourceLocation iconLocation = new ResourceLocation(Reference.MODID, "textures/gui/keychain_inv.png");
 
     private final ItemStackHandler inventory;
 
@@ -43,7 +44,8 @@ public class GuiKeychains extends GuiContainer {
     @Override
     protected void keyTyped (char c, int keyCode) throws IOException {
         super.keyTyped(c, keyCode);
-        if (keyCode == InputHandler.Keybinds.OPENMENU.getKeybind().getKeyCode()) GuiHelper.openMenu_Items();
+        if (keyCode == InputHandler.Keybinds.OPENMENU.getKeybind().getKeyCode()) 
+        	GuiHelper.openMenu_Items();
     }
 
     @Override
@@ -105,7 +107,6 @@ public class GuiKeychains extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY) {
-        String s = Strings.Form_Valor;
         fontRenderer.drawString(Utils.translateToLocal(Strings.MainKeychain), 30, 11, 4210752);
         fontRenderer.drawString(Utils.translateToLocal(Strings.Form_Valor), 30, 30, 4210752);
         fontRenderer.drawString(Utils.translateToLocal(Strings.Form_Master), 30, 49, 4210752);
