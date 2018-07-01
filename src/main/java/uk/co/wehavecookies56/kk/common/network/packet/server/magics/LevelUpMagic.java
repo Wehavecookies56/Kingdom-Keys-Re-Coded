@@ -57,27 +57,35 @@ public class LevelUpMagic extends AbstractServerMessage<LevelUpMagic> {
             }
         }
 
-        if (!hasMagicInSlot) {
-            player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().setStackInSlot(firstEmptySlot, player.getHeldItem(EnumHand.MAIN_HAND));
-            player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+        //Check if has magic
+        if (!hasMagicInSlot) { //Magic not found in the inventory
+            setInFreeSlot(player,firstEmptySlot);
             TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Magic_Learn, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
             learnMessage.getStyle().setColor(TextFormatting.YELLOW);
             player.sendMessage(learnMessage);
-        } else {
-            if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) < Constants.MAX_MAGIC_LEVEL) {
-                player.getCapability(ModCapabilities.MAGIC_STATE, null).setMagicLevel(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) + 1);
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-                TextComponentTranslation levelupMessage = new TextComponentTranslation(Strings.Chat_Magic_Levelup, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) - 1)), new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
-                levelupMessage.getStyle().setColor(TextFormatting.YELLOW);
-                player.sendMessage(levelupMessage);
-
-            } else {
-                TextComponentTranslation errorMessage = new TextComponentTranslation(Strings.Chat_Magic_Error, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
-                errorMessage.getStyle().setColor(TextFormatting.YELLOW);
-                player.sendMessage(errorMessage);
-            }
+        } else { //Magic found, level up
+            levelUpMagic(player);
         }
         PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
         PacketDispatcher.sendTo(new SyncMagicInventory(player.getCapability(ModCapabilities.MAGIC_STATE, null)), (EntityPlayerMP) player);
     }
+
+	private void setInFreeSlot(EntityPlayer player, int firstEmptySlot) {
+		player.getCapability(ModCapabilities.MAGIC_STATE, null).getInventorySpells().setStackInSlot(firstEmptySlot, player.getHeldItem(EnumHand.MAIN_HAND));
+        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);		
+	}
+	
+	private void levelUpMagic(EntityPlayer player) {
+		if (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) < Constants.MAX_MAGIC_LEVEL) { //If the magic level is below the limit, increase it
+            player.getCapability(ModCapabilities.MAGIC_STATE, null).setMagicLevel(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) + 1);
+            player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+            TextComponentTranslation levelupMessage = new TextComponentTranslation(Strings.Chat_Magic_Levelup, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic) - 1)), new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
+            levelupMessage.getStyle().setColor(TextFormatting.YELLOW);
+            player.sendMessage(levelupMessage);
+        } else { //Max magic level
+            TextComponentTranslation errorMessage = new TextComponentTranslation(Strings.Chat_Magic_Error, new TextComponentTranslation(Constants.getMagicName(magic, player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(magic))));
+            errorMessage.getStyle().setColor(TextFormatting.YELLOW);
+            player.sendMessage(errorMessage);
+        }		
+	}
 }

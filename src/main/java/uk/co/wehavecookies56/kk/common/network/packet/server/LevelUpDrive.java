@@ -84,17 +84,8 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
 
         //If doesn't have drive in inventory
         if (hasDriveInSlot == -1) {
-            player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().setStackInSlot(nullSlot, player.getHeldItem(EnumHand.MAIN_HAND));
-            System.out.println(player.getHeldItemMainhand());
-            if(player.getHeldItemMainhand().getItem() instanceof ItemDriveForm) {
-                String form = ((ItemDriveForm) player.getHeldItemMainhand().getItem()).getDriveFormName();
-                //System.out.println(form+"\n"+player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(form));
-                if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(form) == 0) {
-                    player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveLevel(form, 1);
-                }
-            }
-            player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-
+            setInFreeSlot(player,nullSlot);
+            
             TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Drive_Learn, new TextComponentTranslation(this.form));
             learnMessage.getStyle().setColor(TextFormatting.YELLOW);
             player.sendMessage(learnMessage);
@@ -106,4 +97,16 @@ public class LevelUpDrive extends AbstractMessage.AbstractServerMessage<LevelUpD
         PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
         PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
     }
+
+	private void setInFreeSlot(EntityPlayer player, int nullSlot) {
+		player.getCapability(ModCapabilities.DRIVE_STATE, null).getInventoryDriveForms().setStackInSlot(nullSlot, player.getHeldItem(EnumHand.MAIN_HAND));
+        if(player.getHeldItemMainhand().getItem() instanceof ItemDriveForm) {
+            String form = ((ItemDriveForm) player.getHeldItemMainhand().getItem()).getDriveFormName();
+            //System.out.println(form+"\n"+player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(form));
+            if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(form) == 0) {
+                player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveLevel(form, 1);
+            }
+        }
+        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+	}
 }

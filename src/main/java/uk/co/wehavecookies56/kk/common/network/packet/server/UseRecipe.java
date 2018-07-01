@@ -50,51 +50,25 @@ public class UseRecipe extends AbstractMessage.AbstractServerMessage<UseRecipe> 
     public void process (EntityPlayer player, Side side) {
         boolean consume = false;
         SynthesisRecipeCapability.ISynthesisRecipe RECIPES = player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
-        if (RecipeRegistry.get(recipe1) == null) {
-            String message = "ERROR: Recipe for " + Utils.translateToLocal(recipe1 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
-            TextHelper.sendFormattedChatMessage(message, TextFormatting.RED, player);
-        } else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe1)) {
-            TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe1+".name"));
-            repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
-            player.sendMessage(repeatMessage);
-
-            //TextHelper.sendFormattedChatMessage(message, TextFormatting.YELLOW, player);
-        } else {
-            RecipeRegistry.learnRecipe(RECIPES.getKnownRecipes(), player, recipe1);
-            TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe1+".name"));
-            learnMessage.getStyle().setColor(TextFormatting.GREEN);
-            player.sendMessage(learnMessage);
-            consume = true;
-        }
-        if (RecipeRegistry.get(recipe2) == null) {
-            String message = "ERROR: Recipe for " + Utils.translateToLocal(recipe2 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
-            TextHelper.sendFormattedChatMessage(message, TextFormatting.RED, player);
-        } else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe2)) {
-            TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe2+".name"));
-            repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
-            player.sendMessage(repeatMessage);
-
-        } else {
-            RecipeRegistry.learnRecipe(RECIPES.getKnownRecipes(), player, recipe2);
-            TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe2+".name"));
-            learnMessage.getStyle().setColor(TextFormatting.GREEN);
-            player.sendMessage(learnMessage);
-            consume = true;
-        }
-        if (RecipeRegistry.get(recipe3) == null) {
-            String message = "ERROR: Recipe for " + Utils.translateToLocal(recipe3 + ".name") + " was not learnt because it is not a valid recipe, Report this to Wehavecookies56";
-            TextHelper.sendFormattedChatMessage(message, TextFormatting.RED, player);
-        } else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe3)) {
-            TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe3+".name"));
-            repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
-            player.sendMessage(repeatMessage);
-
-        } else {
-            RecipeRegistry.learnRecipe(RECIPES.getKnownRecipes(), player, recipe3);
-            TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe3+".name"));
-            learnMessage.getStyle().setColor(TextFormatting.GREEN);
-            player.sendMessage(learnMessage);
-            consume = true;
+        String[] recipes = new String[] {recipe1,recipe2,recipe3};
+        
+        //Loop through all the recipes in the recipe item
+        for(String recipe : recipes) {
+        	if (RecipeRegistry.get(recipe) == null) { //If recipe is not valid
+                String message = "ERROR: Recipe for " + Utils.translateToLocal(recipe + ".name") + " was not learnt because it is not a valid recipe, Report this to a dev";
+                TextHelper.sendFormattedChatMessage(message, TextFormatting.RED, player);
+            } else if (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe)) { //If recipe already known
+                TextComponentTranslation repeatMessage = new TextComponentTranslation(Strings.Chat_Recipe_Repeat, new TextComponentTranslation(recipe+".name"));
+                repeatMessage.getStyle().setColor(TextFormatting.YELLOW);
+                player.sendMessage(repeatMessage);
+                //TextHelper.sendFormattedChatMessage(message, TextFormatting.YELLOW, player);
+            } else { //If recipe is not known, learn it
+                RecipeRegistry.learnRecipe(RECIPES.getKnownRecipes(), player, recipe);
+                TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe+".name"));
+                learnMessage.getStyle().setColor(TextFormatting.GREEN);
+                player.sendMessage(learnMessage);
+                consume = true;
+            }
         }
 
         if (consume)
