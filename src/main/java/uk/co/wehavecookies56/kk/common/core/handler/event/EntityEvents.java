@@ -447,26 +447,29 @@ public class EntityEvents {
 				EntityMob mob = (EntityMob) event.getEntity();
 
 				player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, (int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2));
-				if (!player.getCapability(ModCapabilities.PLAYER_STATS, null).enderDragonDefeated()) {
-					player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel() + 1);
-					player.getCapability(ModCapabilities.DRIVE_STATE, null).setDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getMaxDP());
-					PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
-
-					TextComponentTranslation driMessage = new TextComponentTranslation(Strings.Chat_DriveBoost, new TextComponentTranslation("" + player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()));
-					driMessage.getStyle().setColor(TextFormatting.GREEN);
-					player.sendMessage(driMessage);
-					player.getCapability(ModCapabilities.PLAYER_STATS, null).setEnderDragonDefeated(true);
-				}
 
 				if (event.getEntity() instanceof EntityDragon) {
 					player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 2000);
+					
+					if (!player.getCapability(ModCapabilities.PLAYER_STATS, null).enderDragonDefeated()) {
+						player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel() + 1);
+						player.getCapability(ModCapabilities.DRIVE_STATE, null).setDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getMaxDP());
+						PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
+
+						TextComponentTranslation driMessage = new TextComponentTranslation(Strings.Chat_DriveBoost, new TextComponentTranslation("" + player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()));
+						driMessage.getStyle().setColor(TextFormatting.GREEN);
+						player.sendMessage(driMessage);
+						player.getCapability(ModCapabilities.PLAYER_STATS, null).setEnderDragonDefeated(true);
+					}
 				}
 				if (event.getEntity() instanceof EntityWither) {
 					player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1500);
 				}
+				
 				EntityXPGet xp = new EntityXPGet(mob.world, mob.getMaxHealth());
 	    		xp.setPosition(mob.posX, mob.posY + 1, mob.posZ);
 	    		player.world.spawnEntity(xp);
+	    		
 				PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 			}
 	}
