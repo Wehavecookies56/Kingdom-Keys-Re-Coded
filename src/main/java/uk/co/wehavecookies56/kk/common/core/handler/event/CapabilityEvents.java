@@ -23,6 +23,7 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
+import uk.co.wehavecookies56.kk.common.capability.TutorialsCapability;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 /**
@@ -281,6 +282,29 @@ public class CapabilityEvents {
                 }
             });
 
+            event.addCapability(new ResourceLocation(Reference.MODID, "ITutorials"), new ICapabilitySerializable<NBTTagCompound>() {
+                TutorialsCapability.ITutorials inst = ModCapabilities.TUTORIALS.getDefaultInstance();
+
+                @Override
+                public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+                    return capability == ModCapabilities.TUTORIALS;
+                }
+
+                @Override
+                public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+                    return capability == ModCapabilities.TUTORIALS ? (T) inst : null;
+                }
+
+                @Override
+                public NBTTagCompound serializeNBT() {
+                    return (NBTTagCompound) ModCapabilities.TUTORIALS.getStorage().writeNBT(ModCapabilities.TUTORIALS, inst, null);
+                }
+
+                @Override
+                public void deserializeNBT(NBTTagCompound nbt) {
+                    ModCapabilities.TUTORIALS.getStorage().readNBT(ModCapabilities.TUTORIALS, inst, null, nbt);
+                }
+            });
         }
     }
 

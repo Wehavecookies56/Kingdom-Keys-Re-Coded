@@ -13,6 +13,7 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerS
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability.ISummonKeyblade;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability.ISynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability.ISynthesisRecipe;
+import uk.co.wehavecookies56.kk.common.capability.TutorialsCapability.ITutorials;
 
 public class ModCapabilities {
 
@@ -38,6 +39,8 @@ public class ModCapabilities {
     public static final Capability<IOrganizationXIII> ORGANIZATION_XIII = null;
     @CapabilityInject(IOrganizationXIII.class)
     public static final Capability<IOrganizationXIII> Xemnas = null;
+    @CapabilityInject(ITutorials.class)
+    public static final Capability<ITutorials> TUTORIALS = null;
 
 
     public static void registerCapabilities() {
@@ -51,6 +54,8 @@ public class ModCapabilities {
         CapabilityManager.INSTANCE.register(ISynthesisMaterial.class, new SynthesisMaterialCapability.Storage(), SynthesisMaterialCapability.Default.class);
         CapabilityManager.INSTANCE.register(ICheatMode.class, new CheatModeCapability.Storage(), CheatModeCapability.Default.class);
         CapabilityManager.INSTANCE.register(IOrganizationXIII.class, new OrganizationXIIICapability.Storage(), OrganizationXIIICapability.Default.class);
+        CapabilityManager.INSTANCE.register(ITutorials.class, new TutorialsCapability.Storage(), TutorialsCapability.Default.class);
+
     }
 
 }

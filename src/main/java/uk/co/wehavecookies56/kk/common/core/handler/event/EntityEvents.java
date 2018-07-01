@@ -440,17 +440,30 @@ public class EntityEvents {
 			WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).setSpawnHeartless(true);
 		}
 
-		if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityMob)
+		if (!event.getEntity().world.isRemote) {
 			if (event.getSource().getTrueSource() instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 
-				EntityMob mob = (EntityMob) event.getEntity();
+				if (event.getEntity() instanceof EntityMob) {
 
-				player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, (int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2));
+					EntityMob mob = (EntityMob) event.getEntity();
 
-				if (event.getEntity() instanceof EntityDragon) {
+					player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, (int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2));
+
+					if (event.getEntity() instanceof EntityWither) {
+						player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1500);
+					}
+
+					EntityXPGet xp = new EntityXPGet(mob.world, mob.getMaxHealth());
+					xp.setPosition(mob.posX, mob.posY + 1, mob.posZ);
+					player.world.spawnEntity(xp);
+
+					PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+				} else if (event.getEntity() instanceof EntityDragon) {
+					EntityDragon mob = (EntityDragon) event.getEntity();
+
 					player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 2000);
-					
+
 					if (!player.getCapability(ModCapabilities.PLAYER_STATS, null).enderDragonDefeated()) {
 						player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel() + 1);
 						player.getCapability(ModCapabilities.DRIVE_STATE, null).setDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getMaxDP());
@@ -460,18 +473,14 @@ public class EntityEvents {
 						driMessage.getStyle().setColor(TextFormatting.GREEN);
 						player.sendMessage(driMessage);
 						player.getCapability(ModCapabilities.PLAYER_STATS, null).setEnderDragonDefeated(true);
+
+						EntityXPGet xp = new EntityXPGet(mob.world, mob.getMaxHealth());
+						xp.setPosition(mob.posX, mob.posY + 1, mob.posZ);
+						player.world.spawnEntity(xp);
 					}
 				}
-				if (event.getEntity() instanceof EntityWither) {
-					player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1500);
-				}
-				
-				EntityXPGet xp = new EntityXPGet(mob.world, mob.getMaxHealth());
-	    		xp.setPosition(mob.posX, mob.posY + 1, mob.posZ);
-	    		player.world.spawnEntity(xp);
-	    		
-				PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 			}
+		}
 	}
 
 	public static List<EntityDropEntry> entityDrops = new ArrayList<>();
@@ -1048,7 +1057,7 @@ public class EntityEvents {
 
 				} else if (jumpHeld) {
 					player.motionY *= Constants.FINAL_GLIDE[finalLevel - 2];
-					//System.out.println(Constants.FINAL_GLIDE[finalLevel - 2]);
+					// System.out.println(Constants.FINAL_GLIDE[finalLevel - 2]);
 				}
 			}
 		}

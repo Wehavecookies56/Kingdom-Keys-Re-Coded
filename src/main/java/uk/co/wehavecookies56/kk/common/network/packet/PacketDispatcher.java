@@ -44,6 +44,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgPortal;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncRecipeData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncTutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
 import uk.co.wehavecookies56.kk.common.network.packet.server.CreateFromSynthesisRecipe;
@@ -83,6 +84,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.SyncStatMessagesPac
 import uk.co.wehavecookies56.kk.common.network.packet.server.SynthesisMaterialPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.TakeMaterials;
 import uk.co.wehavecookies56.kk.common.network.packet.server.TakeSoldItem;
+import uk.co.wehavecookies56.kk.common.network.packet.server.TutorialsPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.UseRecipe;
 import uk.co.wehavecookies56.kk.common.network.packet.server.XemnasMemberSelect;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.LevelUpMagic;
@@ -141,6 +143,7 @@ public class PacketDispatcher {
         registerMessage(SyncOrgPortal.class);
         registerMessage(SpawnShockwaveParticles.class);
         registerMessage(OpenTutorialGUI.class);
+        registerMessage(SyncTutorials.class);
 
         // Client to Server
         registerMessage(MunnyPickup.class);
@@ -193,6 +196,8 @@ public class PacketDispatcher {
         registerMessage(OrgPortalTP.class);
         registerMessage(OrgWeaponUnlock.class);
         registerMessage(XemnasMemberSelect.class);
+        registerMessage(TutorialsPacket.class);
+
         // Bidirectional
     }
 

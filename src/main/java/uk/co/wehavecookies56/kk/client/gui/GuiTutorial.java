@@ -1,8 +1,5 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
-import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.ROXAS;
-import static uk.co.wehavecookies56.kk.common.util.Utils.OrgMember.XEMNAS;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,8 +11,7 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.Tutorial;
 import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OrgMemberSelect;
-import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.network.packet.server.TutorialsPacket;
 
 /**
  * Created by Toby on 08/02/2017.
@@ -108,12 +104,9 @@ public class GuiTutorial extends GuiScreen {
 			}
 			break;
 		case OK:
-
 			mc.displayGuiScreen(null);
-			// PacketDispatcher.sendToServer(new OrgMemberSelect(current));
-			// mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII,
-			// null).setMember(current);
-
+			mc.player.getCapability(ModCapabilities.TUTORIALS, null).setKnownTutorial(tutorial.getRoot().getTutorialID(), true);
+			PacketDispatcher.sendToServer(new TutorialsPacket(tutorial.getRoot().getTutorialID()));
 			break;
 		}
 		super.actionPerformed(button);

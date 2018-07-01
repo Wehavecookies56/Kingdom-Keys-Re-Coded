@@ -26,7 +26,7 @@ public class Tutorials {
 	public static Tutorial tutorialSOA1 = new Tutorial(TUTORIAL_SOA_1);
 
 	public static Tutorial[] tutorials = {
-		tutorialKeyblade1,tutorialMagic1,tutorialMagic2,tutorialDrive1,tutorialDrive2,tutorialDrive3,tutorialSOA1
+		tutorialKeyblade1,tutorialKeyblade2,tutorialMagic1,tutorialMagic2,tutorialDrive1,tutorialDrive2,tutorialDrive3,tutorialSOA1
 	};
 
 	public static void initTutorials() {
