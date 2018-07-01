@@ -107,6 +107,7 @@ import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
+import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
 import uk.co.wehavecookies56.kk.common.entity.mobs.BaseEntityHeartless;
@@ -463,6 +464,9 @@ public class EntityEvents {
 				if (event.getEntity() instanceof EntityWither) {
 					player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1500);
 				}
+				EntityXPGet xp = new EntityXPGet(mob.world, mob.getMaxHealth());
+	    		xp.setPosition(mob.posX, mob.posY + 1, mob.posZ);
+	    		player.world.spawnEntity(xp);
 				PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
 			}
 	}
@@ -953,7 +957,7 @@ public class EntityEvents {
 		if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
 
 			highJump(player);
-			// quickRun(player);
+			quickRun(player);
 			// dodgeRoll(player);
 
 			aerialDodge(player);
@@ -971,7 +975,7 @@ public class EntityEvents {
 			}
 
 			if (j) {
-				if (player.motionY > 0) {
+				if (player.motionY > 0 && !player.isSneaking()) {
 					player.motionY += Constants.VALOR_JUMP[valorLevel];
 				}
 			}
@@ -994,7 +998,7 @@ public class EntityEvents {
 			}
 
 			if (j) {
-				if (player.motionY > 0) {
+				if (player.motionY > 0 && player.isSneaking()) {
 					player.addVelocity(motionX * power, 0 * power, motionZ * power);
 				}
 			}
@@ -1011,12 +1015,11 @@ public class EntityEvents {
 				jumps = 0;
 			} else {
 				if (player.world.isRemote) {
-					if (player.motionY < 0 && Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
+					if (player.motionY < 0 && Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown() && !player.isSneaking()) {
 						if (this.jumps < 1) {
 							this.jumps++;
 							player.jump();
 							player.motionY *= Constants.MASTER_SECOND_JUMP[masterLevel - 2];
-							System.out.println(Constants.MASTER_SECOND_JUMP[masterLevel - 2]);
 							PacketDispatcher.sendToServer(new MasterFormPacket());
 						}
 					}
@@ -1032,7 +1035,7 @@ public class EntityEvents {
 		if (finalLevel > 2) {
 			if (player.motionY < 0) {
 				if (player.world.isRemote) {
-					if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
+					if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown() && !player.isSneaking()) {
 						jumpHeld = true;
 						player.motionY *= Constants.FINAL_GLIDE[finalLevel - 2];
 					} else {
@@ -1042,7 +1045,7 @@ public class EntityEvents {
 
 				} else if (jumpHeld) {
 					player.motionY *= Constants.FINAL_GLIDE[finalLevel - 2];
-					System.out.println(Constants.FINAL_GLIDE[finalLevel - 2]);
+					//System.out.println(Constants.FINAL_GLIDE[finalLevel - 2]);
 				}
 			}
 		}
@@ -1119,21 +1122,21 @@ public class EntityEvents {
 
 	@SubscribeEvent
 	public void container(PlayerContainerEvent.Open event) {
-		if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+		if (event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
 			event.getEntityPlayer().closeScreen();
 		}
 	}
 
 	@SubscribeEvent
 	public void interactWithEntity(PlayerInteractEvent.EntityInteract event) {
-		if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+		if (event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
 			event.setCanceled(true);
 		}
 	}
 
 	@SubscribeEvent
 	public void interactWithBlock(PlayerInteractEvent.RightClickBlock event) {
-		if (!event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none") || (event.getEntityPlayer().dimension == ModDimensions.diveToTheHeartID && !event.getEntityPlayer().capabilities.isCreativeMode)) {
+		if (event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive() || (event.getEntityPlayer().dimension == ModDimensions.diveToTheHeartID && !event.getEntityPlayer().capabilities.isCreativeMode)) {
 			event.setCanceled(true);
 		}
 	}

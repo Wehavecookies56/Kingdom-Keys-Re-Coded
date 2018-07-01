@@ -4,10 +4,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.EntityFlyingHeart;
+import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
 
 public class BaseEntityHeartless extends EntityMob{
 

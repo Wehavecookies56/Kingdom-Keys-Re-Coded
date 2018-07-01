@@ -47,6 +47,7 @@ import uk.co.wehavecookies56.kk.common.crafting.ModItemsRecipes;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.EntityFlyingHeart;
 import uk.co.wehavecookies56.kk.common.entity.EntityGummiShip;
+import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityFire;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
@@ -155,6 +156,8 @@ public class CommonProxy {
         EntityHelper.registerEntity("thunder",EntityThunder.class);
         EntityHelper.registerEntity("kkOrgPortalE", EntityOrgPortal.class);
         EntityHelper.registerEntity("kkFlyingHeart", EntityFlyingHeart.class);
+        EntityHelper.registerEntity("kkXPGet", EntityXPGet.class);
+
         EntityHelper.registerEntity("seedBullet", EntitySeedBullet.class);
 
         // Heartless registry

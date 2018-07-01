@@ -15,8 +15,7 @@ import uk.co.wehavecookies56.kk.client.model.ModelFlyingHeart;
 import uk.co.wehavecookies56.kk.common.entity.EntityFlyingHeart;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
-public class RenderEntityFlyingHeart extends Render implements IRenderFactory<EntityFlyingHeart>
-{
+public class RenderEntityFlyingHeart extends Render implements IRenderFactory<EntityFlyingHeart>{
 
 	ModelBase model;
 	float rotation;
@@ -39,27 +38,29 @@ public class RenderEntityFlyingHeart extends Render implements IRenderFactory<En
 	public void doRender(Entity entity, double x, double y, double z, float yaw, float pitch)
 	{
 		GL11.glPushMatrix();
-		GL11.glTranslated(x, y, z); // OLD : (entity.ticksExisted/5f)-1
-
-		GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 128.0F, 128.0F);
-
-		float ticks = entity.ticksExisted;
-		if (ticks < 10) // Growing
-			GL11.glScalef(ticks * 0.0005f, ticks * 0.0005f, ticks * 0.0005f);
-		else if (ticks > EntityFlyingHeart.MAX_TICKS - 10) // Disappearing
-			GL11.glScalef((30 - ticks) * 0.0005f, (30 - ticks) * 0.0005f, (30 - ticks) * 0.0005f);
-		else // Static size
-			GL11.glScalef(0.005f, 0.005f, 0.005f);
-
-		GL11.glRotatef(rotation += 4, 0, 1, 0);
-
-		bindEntityTexture(entity);
-
-		// GL11.glScalef(-1.0F, -1.0F, 1.0F);
-		this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-
-		GL11.glPopAttrib();
+		{
+			GL11.glTranslated(x, y, z); // OLD : (entity.ticksExisted/5f)-1
+	
+			GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
+			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 128.0F, 128.0F);
+	
+			float ticks = entity.ticksExisted;
+			if (ticks < 10) // Growing
+				GL11.glScalef(ticks * 0.0005f, ticks * 0.0005f, ticks * 0.0005f);
+			else if (ticks > EntityFlyingHeart.MAX_TICKS - 10) // Disappearing
+				GL11.glScalef((30 - ticks) * 0.0005f, (30 - ticks) * 0.0005f, (30 - ticks) * 0.0005f);
+			else // Static size
+				GL11.glScalef(0.005f, 0.005f, 0.005f);
+	
+			GL11.glRotatef(rotation += 4, 0, 1, 0);
+	
+			bindEntityTexture(entity);
+	
+			// GL11.glScalef(-1.0F, -1.0F, 1.0F);
+			this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+	
+			GL11.glPopAttrib();
+		}
 		GL11.glPopMatrix();
 	}
 
