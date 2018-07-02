@@ -502,12 +502,14 @@ public class ItemEvents {
         		event.setCanceled(true);
         		return;
         	}
-        
+
             if (event.getEntityItem().getItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getItem().getItem() != ModItems.WoodenStick && event.getEntityItem().getItem().getItem() != ModItems.DreamSword && event.getEntityItem().getItem().getItem() != ModItems.DreamStaff)) {
                 event.getEntityItem().isDead = true;
                 event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);
-                if(!ItemStack.areItemStacksEqual(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY))
-                	PacketDispatcher.sendTo(new SyncKeybladeData(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) event.getPlayer());
+                if(!ItemStack.areItemStacksEqual(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY)) {
+                	if(!event.getPlayer().world.isRemote)
+                		PacketDispatcher.sendTo(new SyncKeybladeData(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) event.getPlayer());
+                }
 
             } else if (event.getEntityItem().getItem().getItem() instanceof ItemMunny) {
                 event.setCanceled(true);
