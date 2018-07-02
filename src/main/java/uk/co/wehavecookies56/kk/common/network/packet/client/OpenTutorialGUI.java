@@ -14,6 +14,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 public class OpenTutorialGUI extends AbstractMessage.AbstractClientMessage<OpenTutorialGUI> {
 
 	int id;
+	boolean always;
 	
     public OpenTutorialGUI() {
 
@@ -21,21 +22,28 @@ public class OpenTutorialGUI extends AbstractMessage.AbstractClientMessage<OpenT
     
     public OpenTutorialGUI(int id) {
     	this.id = id;
+    	this.always = false;
+    }
+    
+    public OpenTutorialGUI(int id,boolean always) {
+    	this.id = id;
+    	this.always = always;
     }
 
     @Override
     protected void read(PacketBuffer buffer) throws IOException {
     	id = buffer.readInt();
+    	always = buffer.readBoolean();
     }
 
     @Override
     protected void write(PacketBuffer buffer) throws IOException {
     	buffer.writeInt(id);
+    	buffer.writeBoolean(always);
     }
 
     @Override
     public void process(EntityPlayer player, Side side) {
-        //player.openGui(KingdomKeys.instance, GuiIDs.GUI_TUTORIAL, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
-    	GuiHelper.openTutorial(id);
+    	GuiHelper.openTutorial(id,always);
     }
 }

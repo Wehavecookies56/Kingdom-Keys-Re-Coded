@@ -66,12 +66,21 @@ public class GuiHelper {
 	}
 
 	public static void openTutorial(int num) {
-		if(!Minecraft.getMinecraft().player.getCapability(ModCapabilities.TUTORIALS, null).getKnownTutorial(num))
-			Minecraft.getMinecraft().displayGuiScreen(new GuiTutorial(num));
+		if (Minecraft.getMinecraft().player != null) {
+			if (Minecraft.getMinecraft().player.hasCapability(ModCapabilities.TUTORIALS, null)) {
+				if (!Minecraft.getMinecraft().player.getCapability(ModCapabilities.TUTORIALS, null).getKnownTutorial(num)) {
+					Minecraft.getMinecraft().displayGuiScreen(new GuiTutorial(num));
+				}
+			}
+		}
 	}
+
 	public static void openTutorial(int num, boolean b) {
-		if(b)
+		if (b)
 			Minecraft.getMinecraft().displayGuiScreen(new GuiTutorial(num));
+		else{
+			openTutorial(num);
+		}
 	}
 
 }

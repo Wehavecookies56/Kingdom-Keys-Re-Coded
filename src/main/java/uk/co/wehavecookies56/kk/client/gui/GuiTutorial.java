@@ -3,6 +3,8 @@ package uk.co.wehavecookies56.kk.client.gui;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.http.util.TextUtils;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,6 +14,7 @@ import uk.co.wehavecookies56.kk.common.lib.Tutorial;
 import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.TutorialsPacket;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 /**
  * Created by Toby on 08/02/2017.
@@ -38,22 +41,35 @@ public class GuiTutorial extends GuiScreen {
 	}
 
 	private void drawLines() {
+		String[] lines = new String[8];
+
 		int num = tutorial.getTutorialText().length;
+		int c = 0;
 		for (int i = 0; i < num; i++) {
-			
 			for (int j = 0; j < tutorial.getTutorialText()[0].length; j++) {
 				String line = tutorial.getTutorialText()[i][j];
 				if (line != null) {
-					// System.out.println(line);
-					
-					if (i == 0) {
-						maxLength1 = Math.max(maxLength1, fontRenderer.getStringWidth(line));
-						drawCenteredString(fontRenderer, line, (width / 2) + maxLength1 / 4, height / 3 - fontRenderer.FONT_HEIGHT * (num - j) - 10, 0xFFFFFF);
-					} else if(i == 1) {
-						maxLength2 = Math.max(maxLength2, fontRenderer.getStringWidth(line));
-						drawCenteredString(fontRenderer, line, (width / 2) + maxLength2 / 4, height / 3 * 2 - fontRenderer.FONT_HEIGHT * (num - j) - 10, 0xFFFFFF);
+					String translatedLine = Utils.translateToLocal(line);
+					translatedLine = translatedLine.replace("§r", "");
+					if (!line.equals(translatedLine)) {
+						lines[c] = translatedLine;
+						if (i == 0) {
+							maxLength1 = Math.max(maxLength1, fontRenderer.getStringWidth(translatedLine));
+						} else if (i == 1) {
+							maxLength2 = Math.max(maxLength2, fontRenderer.getStringWidth(translatedLine));
+						}
 					}
 				}
+				c++;
+			}
+		}
+
+		for (int i = 0; i < lines.length; i++) {
+			String line = lines[i];
+			if (i < 4) {
+				drawCenteredString(fontRenderer, line, (width / 2) + maxLength1 / 4, height / 3 - fontRenderer.FONT_HEIGHT * (num - i)-10, 0xFFFFFF);
+			} else {
+				drawCenteredString(fontRenderer, line, (width / 2) + maxLength2 / 4, height / 3 * 2 - fontRenderer.FONT_HEIGHT * (num - i) - 40, 0xFFFFFF);
 			}
 		}
 	}
@@ -67,12 +83,11 @@ public class GuiTutorial extends GuiScreen {
 				GlStateManager.enableAlpha();
 				GlStateManager.enableBlend();
 				GlStateManager.scale(0.4, 0.4, 0.4);
-				// drawTexturedModalRect((width / 2) - maxLength /*(256 / 2) - 5*/, (height / 2)
-				// - (256 / 2) + 400 * i, 0, 0, 256, 256);
+
 				if (i == 0)
-					drawTexturedModalRect((width / 2) - maxLength1 / 2, height / 3 * 2 * i + 50, 0, 0, 256, 256);
+					drawTexturedModalRect((width / 2) - maxLength1 / 2, height / 3 * 2 * i + 100, 0, 0, 256, 256);
 				else
-					drawTexturedModalRect((width / 2) - maxLength2 / 2, height / 3 * 2 * i + 150, 0, 0, 256, 256);
+					drawTexturedModalRect((width / 2) - maxLength2 / 2, height / 3 * 2 * i + 200, 0, 0, 256, 256);
 			}
 			GlStateManager.popMatrix();
 		}

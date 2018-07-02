@@ -57,7 +57,7 @@ public class Tutorial {
 		this.nextTutorial = tutorial;
 		this.nextTutorial.addPrevTutorial(this);
 	}
-
+	
 	public Tutorial getRoot() {
 		Tutorial tuto = this;
 		while(tuto.prevTutorial != null) {

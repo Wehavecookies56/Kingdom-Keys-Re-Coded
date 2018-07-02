@@ -1175,3 +1175,94 @@ kk.mainconfig.title=Main Configuration
 kk.balance.title=Balance Configuration
 
 kk.balance.keyblades=Keyblades
+
+##########################
+#Tutorials
+##########################
+tutorial.keyblade1.0.0=The keyblades are the main weapon type in the mod
+tutorial.keyblade1.0.1=It's one of the few weapons which can defeat heartless
+tutorial.keyblade1.0.2=and the only one to collect hearts
+
+tutorial.keyblade1.1.0=Keyblades can be obtained through creation at either
+tutorial.keyblade1.1.1=a synthesis table or by speaking with a Moogle
+tutorial.keyblade1.1.2=Creation of a Keyblade also requires a synthesis recipe
+tutorial.keyblade1.1.3=which can be obtained from dungeons or as a rare random hostile mob drop
+
+
+tutorial.keyblade2.0.0=How to equip it (Comming soon)
+
+
+tutorial.magic1.0.0=Magic spells unlock useful powers
+tutorial.magic1.0.1=They are rare drops from mobs
+
+tutorial.magic1.1.0=There are 6 known magics you can get
+tutorial.magic1.1.1=Each one has it's own power and work different
+tutorial.magic1.1.2=When you see a magic in orange it means it
+tutorial.magic1.1.3=is going to consume all your MP
+
+
+tutorial.magic2.0.0=This is the MP bar
+tutorial.magic2.0.1=Each magic consume a different amount
+tutorial.magic2.0.2=of MP and the bar will decrease
+
+tutorial.magic2.1.0=Once the bar hits 0 it will become pink
+tutorial.magic2.1.1=and will start to slowly regenerate
+tutorial.magic2.1.2=Meanwhile no magic can be used until
+tutorial.magic2.1.3=it recharges and becomes blue again
+
+
+tutorial.drive1.0.0=Drive forms grant useful powers
+tutorial.drive1.0.1=for a limited amount of time
+
+
+tutorial.drive1.1.0=There are 5 forms you can get
+tutorial.drive1.1.1=each one with their own growth ability
+tutorial.drive1.1.2=There is also a hidden form
+tutorial.drive1.1.3=which has some dark powers...
+
+
+tutorial.drive2.0.0=This is the drive gauge
+tutorial.drive2.0.1=once it fills it increases a level
+
+tutorial.drive2.1.0=The max level is 3 but you can
+tutorial.drive2.1.1=increase the limit by leveling the forms
+tutorial.drive2.1.2=to level 7 and killing the enderdragon
+
+
+tutorial.drive3.0.0=In order to activate a drive form
+tutorial.drive3.0.1=You must have a main keychain equipped
+tutorial.drive3.0.2=And if the drive form uses 2 keyblades
+tutorial.drive3.0.3=You must have another keychain for it's slot
+
+tutorial.drive3.1.0=Once you are in a drive form
+tutorial.drive3.1.1=the drive gauge will be replaced
+tutorial.drive3.1.2=by this form gauge, once it depletes
+tutorial.drive3.1.3=the drive form will revert automatically
+
+
+tutorial.soa1.0.0=Welcome to Kingdom Keys!
+tutorial.soa1.0.1=You are right now in the Station of Awakening
+tutorial.soa1.0.2=Here you have to make a choice
+tutorial.soa1.0.3=Stand in top of the pedestal to make the choice
+
+tutorial.soa1.1.0=The sword gives an initial power boost
+tutorial.soa1.1.1=The staff gives an initial magic boost
+tutorial.soa1.1.2=The shield gives an initial defense boost
+tutorial.soa1.1.3=Once you're done leave through the door
+
+tutorial.soa2.0.0=Sword
+tutorial.soa2.0.1=The power of the warrior
+tutorial.soa2.0.2=Invincible courage
+tutorial.soa2.0.3=A sword of terrible destruction
+
+tutorial.soa3.0.0=Staff
+tutorial.soa3.0.1=The power of the mystic
+tutorial.soa3.0.2=Inner strength
+tutorial.soa3.0.3=A staff of wonder and ruin
+
+tutorial.soa4.0.0=Shield
+tutorial.soa4.0.1=The power of the guardian
+tutorial.soa4.0.2=Kindness to aid friends
+tutorial.soa4.0.3=A shield to repel all
+
+tutorial.abilities1.0.0=Abilities are gonna help you through your gameplay

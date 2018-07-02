@@ -270,6 +270,16 @@ item.ventus_chestplate.name=Pechera de Ventus
 item.ventus_leggings.name=Grebas de Ventus
 item.ventus_boots.name=Botas de Ventus
 
+item.nightmareventus_helmet.name=Casco de Ventus Pesadilla
+item.nightmareventus_chestplate.name=Pechera de Ventus Pesadilla
+nightmareventus_leggings.name=Nightmare Grebas de Ventus Pesadilla
+nightmareventus_boots.name=Botas de Ventus Pesadilla
+
+item.anticoat_helmet.name=Capucha Antitraje
+item.anticoat_chestplate.name=Gabardina Antitraje
+item.anticoat_leggings.name=Pantalones Antitraje
+item.anticoat_boots.name=Botas Antitraje
+
 #Misc
 item.emptybottle.name=Empty Bottle
 item.potion.name=Potion
@@ -1148,6 +1158,9 @@ entity.minutebomb.name=Minuto Explosivo
 entity.skaterbomb.name=Bomba Patinadora
 entity.stormbomb.name=Bomba Tormentosa
 entity.detonator.name=Detonador
+entity.largebody.name=Grandullón
+entity.direplant.name=Mala Hierba
+entity.whitemushroom.name=Seta Blanca
 entity.kk.Moogle.name=Moguri
 
 ##########################
@@ -1162,3 +1175,94 @@ kk.mainconfig.title=Configuration Principal
 kk.balance.title=Configuration de balanceo
 
 kk.balance.keyblades=Llaves Espada
+
+##########################
+#Tutorials
+##########################
+tutorial.keyblade1.0.0=La Llave Espada es el tipo de arma principal en el mod
+tutorial.keyblade1.0.1=Es una de las pocas armas capaz de derrotar los Sincorazón
+tutorial.keyblade1.0.2=y la única capaz de recolectar corazones
+
+tutorial.keyblade1.1.0=Las Llave Espada se pueden obtener fabricandolas
+tutorial.keyblade1.1.1=en el sintetizador o hablando con un Moguri
+tutorial.keyblade1.1.2=La creación de una Llave Espada también requiere una receta de síntesis
+tutorial.keyblade1.1.3=que puede ser obtenida en mazmorras o como un drop raro de mob hostil
+
+
+tutorial.keyblade2.0.0=Como equiparla (Coming soon)
+
+
+tutorial.magic1.0.0=Los hechizos de magia desbloquean grandes poderes
+tutorial.magic1.0.1=Son drops raros de algunos mobs
+
+tutorial.magic1.1.0=Hay 6 magias conocidas que puedes obtener
+tutorial.magic1.1.1=Cada una tiene su propio poder y funciona diferente
+tutorial.magic1.1.2=Cuando veas una magia en naranja significa
+tutorial.magic1.1.3=que va a consumir todo tu MP
+
+
+tutorial.magic2.0.0=Esta es la barra de MP
+tutorial.magic2.0.1=Cada magia consume una cantidad distinta
+tutorial.magic2.0.2=de MP y la barra disminuirá
+
+tutorial.magic2.1.0=Cuando la barra llegue a 0 se volverá rosa
+tutorial.magic2.1.1=y se empezará a regenerar poco a poco
+tutorial.magic2.1.2=De mientras no se podrá utilizar ninguna magia
+tutorial.magic2.1.3=hasta que se recargue y se vuelva azul de nuevo
+
+
+tutorial.drive1.0.0=Las Formas de Fusión ofrecen poderes increíbles
+tutorial.drive1.0.1=por uina cantidad limitada de tiempo
+
+
+tutorial.drive1.1.0=Hay 5 formas que puedes conseguir
+tutorial.drive1.1.1=Cada una con su propia habilidad de desarrollo
+tutorial.drive1.1.2=Tambien hay una forma oculta
+tutorial.drive1.1.3=la cual tiene extraños poderes oscuros...
+
+
+tutorial.drive2.0.0=Esta es la barra de fusión
+tutorial.drive2.0.1=cuando se llena incrementa un nivel
+
+tutorial.drive2.1.0=El nivel máximo es 3 al principio pero puedes
+tutorial.drive2.1.1=incrementar dicho límite subiendo las formas
+tutorial.drive2.1.2=al nivel 7 y matando al Dragón del End
+
+
+tutorial.drive3.0.0=Para activar una forma de Fusión
+tutorial.drive3.0.1=Debes tener un llavero equipado en el slot principal
+tutorial.drive3.0.2=Y si la fusión utiliza 2 Llave Espada
+tutorial.drive3.0.3=Debes tener otro llavero en su respectivo slot
+
+tutorial.drive3.1.0=Cuando estés en una forma de fusión
+tutorial.drive3.1.1=la barra de fusión se reemplazará
+tutorial.drive3.1.2=Por esta barra de forma , cuando se vacíe
+tutorial.drive3.1.3=la fusión se revertirá automáticamente
+
+
+tutorial.soa1.0.0=Bienvenido a Kingdom Keys!
+tutorial.soa1.0.1=Ahora mismo estás en la Estación del Despertar
+tutorial.soa1.0.2=Aquí tienes que hacer una elección
+tutorial.soa1.0.3=Súbete a un pedestal para elegir
+
+tutorial.soa1.1.0=La espada ofrece un incremento de poder inicial
+tutorial.soa1.1.1=El bastón ofrece un incremento de magia inicial
+tutorial.soa1.1.2=El escudo ofrece un incremento de defensa inicial
+tutorial.soa1.1.3=Cuando termines sal por la puerta
+
+tutorial.soa2.0.0=Espada
+tutorial.soa2.0.1=El poder del guerrero
+tutorial.soa2.0.2=Valentía sin igual
+tutorial.soa2.0.3=Una espada hecha para herir al prógimo
+
+tutorial.soa3.0.0=Bastón
+tutorial.soa3.0.1=El poder del hechicero
+tutorial.soa3.0.2=Fuerza interior
+tutorial.soa3.0.3=Un bastón capaz de robarte el alma
+
+tutorial.soa4.0.0=Escudo
+tutorial.soa4.0.1=El poder del guardián
+tutorial.soa4.0.2=Bondad para ayudar a los amigos
+tutorial.soa4.0.3=Un escudo cobarde que todo lo rechaza
+
+tutorial.abilities1.0.0=Abilities are gonna help you through your gameplay

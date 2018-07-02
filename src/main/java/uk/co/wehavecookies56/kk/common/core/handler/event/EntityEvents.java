@@ -62,6 +62,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -82,6 +83,7 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
+import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
@@ -122,6 +124,7 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenOrgGUI;
+import uk.co.wehavecookies56.kk.common.network.packet.client.OpenTutorialGUI;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
@@ -136,7 +139,6 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
 import uk.co.wehavecookies56.kk.common.network.packet.server.GlidePacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MasterFormPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.server.OpenGui;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
 import uk.co.wehavecookies56.kk.common.world.dimension.DimensionTeleporter;
@@ -843,14 +845,24 @@ public class EntityEvents {
 		}
 		// Choices
 		IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+		World world = event.player.world;
 		if (!event.player.world.isRemote) {
 			if (player.dimension == ModDimensions.diveToTheHeartID) {
+				
+				PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SOA_1), (EntityPlayerMP) player);
+				//if(world.isRemote)
+		       		//GuiHelper.openTutorial(Tutorials.TUTORIAL_SOA_1);
+				
 				if (player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
 					if (!STATS.getChoice1().equals(Strings.Choice_Shield)) {
 						STATS.setChoice1(Strings.Choice_Shield);
 						TextComponentTranslation shield = new TextComponentTranslation("Shield");
 						shield.getStyle().setColor(TextFormatting.YELLOW);
 						player.sendMessage(shield);
+						
+						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SHIELD_1,true), (EntityPlayerMP) player);
+						//if(world.isRemote)
+						//	GuiHelper.openTutorial(Tutorials.TUTORIAL_SHIELD_1, true);
 					}
 				} else if (player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
 					if (!STATS.getChoice1().equals(Strings.Choice_Staff)) {
@@ -858,6 +870,11 @@ public class EntityEvents {
 						TextComponentTranslation staff = new TextComponentTranslation("Staff");
 						staff.getStyle().setColor(TextFormatting.YELLOW);
 						player.sendMessage(staff);
+						
+						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_STAFF_1,true), (EntityPlayerMP) player);
+
+						//if(world.isRemote)
+							//GuiHelper.openTutorial(Tutorials.TUTORIAL_STAFF_1, true);
 					}
 				} else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) {
 					if (!STATS.getChoice1().equals(Strings.Choice_Sword)) {
@@ -865,10 +882,11 @@ public class EntityEvents {
 						TextComponentTranslation sword = new TextComponentTranslation("Sword");
 						sword.getStyle().setColor(TextFormatting.YELLOW);
 						player.sendMessage(sword);
-						// GuiHelper.openTutorial(Tutorials.TUTORIAL_SOA_1);
-						System.out.println("OPENING SOA TUTORIAL");
-						PacketDispatcher.sendTo(new OpenGui(Tutorials.TUTORIAL_SOA_1), (EntityPlayerMP) player);
+						
+						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SWORD_1,true), (EntityPlayerMP) player);
 
+						//if(world.isRemote)
+						//	GuiHelper.openTutorial(Tutorials.TUTORIAL_SWORD_1, true);
 					}
 				} else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
 					if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID) {
@@ -906,7 +924,7 @@ public class EntityEvents {
 		}
 
 		DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
-		if (!DS.getInDrive())
+		//if (!DS.getInDrive())
 			if (STATS.getMP() <= 0 || STATS.getRecharge()) {
 				STATS.setRecharge(true);
 				if (STATS.getMP() != STATS.getMaxMP()) {
@@ -922,7 +940,7 @@ public class EntityEvents {
 					}
 				}
 			}
-		if (!DS.getActiveDriveName().equals("none") && DriveFormRegistry.isDriveFormRegistered(DS.getActiveDriveName())) {
+		if (DS.getInDrive() && DriveFormRegistry.isDriveFormRegistered(DS.getActiveDriveName())) {
 			DriveFormRegistry.get(DS.getActiveDriveName()).update(event.player);
 		}
 		List<Entity> entities = event.player.world.getEntitiesWithinAABBExcludingEntity(event.player, event.player.getEntityBoundingBox().grow(16.0D, 10.0D, 16.0D).offset(-8.0D, -5.0D, -8.0D));

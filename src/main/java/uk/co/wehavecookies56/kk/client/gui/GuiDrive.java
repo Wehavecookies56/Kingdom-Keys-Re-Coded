@@ -72,9 +72,7 @@ public class GuiDrive extends GuiScreen {
 		currDrive = (float) ((oneValue * dp) - getCurrBar(dp, STATE.getDriveGaugeLevel()) * guiLength);
 		if (STATE.getInDrive())
 			currForm = (float) ((oneValue * fp) - getCurrBar(fp, STATE.getFormGaugeLevel(STATE.getActiveDriveName())) * guiLength);
-		// if ((dp == 100 || dp == 200 || dp == 300 || dp == 400 || dp == 500 || dp ==
-		// 600 || dp == 700 || dp == 800 || dp == 900) && dp !=
-		// getMaxBars(STATE.getDriveGaugeLevel())) currDrive = 0;
+
 		if (dp == getMaxBars(STATE.getDriveGaugeLevel())) {
 			currDrive = guiLength;
 		}
@@ -125,9 +123,9 @@ public class GuiDrive extends GuiScreen {
 			GL11.glTranslatef((screenWidth - guiWidth * scale) + (guiWidth - guiBarWidth) * scale + (24 * scale) - posX, (screenHeight - guiHeight * scale) - (2 * scale) - posY, 0);
 			GL11.glScalef(scale, scale, scale);
 			if (STATE.getActiveDriveName().equals("none")) {
-				this.drawTexturedModalRect(15, 6, 0, 18, (int) currDrive, guiHeight);
+				this.drawTexturedModalRect(14, 6, 0, 18, (int) currDrive, guiHeight);
 			} else {
-				this.drawTexturedModalRect(15, 6, 98, 18, (int) currForm, guiHeight);
+				this.drawTexturedModalRect(16, 6, 98, 18, (int) currForm, guiHeight);
 			}
 			GL11.glPopMatrix();
 
@@ -136,13 +134,13 @@ public class GuiDrive extends GuiScreen {
 			GL11.glTranslatef((screenWidth - guiWidth * scale) + (85 * scale) - posX, (screenHeight - guiHeight * scale) - (2 * scale) - posY, 0);
 			GL11.glScalef(scale, scale, scale);
 
-			int numPos = STATE.getActiveDriveName().equals("none") ? getCurrBar(dp, STATE.getDriveGaugeLevel()) * 10 : 98 + (getCurrBar(fp, STATE.getFormGaugeLevel(STATE.getActiveDriveName())) * 10);
+			int numPos = STATE.getActiveDriveName().equals("none") ? getCurrBar(dp, STATE.getDriveGaugeLevel()) * 10 : 97 + (getCurrBar(fp, STATE.getFormGaugeLevel(STATE.getActiveDriveName())) * 10);
 			/*
 			 * if (STATE.getActiveDriveName().equals("none")) { int numPos = getCurrBar(dp,
 			 * STATE.getDriveGaugeLevel()) * 10; } else { int numPos = 98 + (getCurrBar(fp,
 			 * STATE.getFormGaugeLevel(STATE.getActiveDriveName())) * 10); }
 			 */
-			this.drawTexturedModalRect(14, 6, numPos, 38, 8, guiHeight);
+			this.drawTexturedModalRect(14, 6, numPos, 38, 9, guiHeight);
 
 			GL11.glPopMatrix();
 

@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.lib;
 import java.util.ArrayList;
 
 import net.minecraft.util.ResourceLocation;
+import uk.co.wehavecookies56.kk.common.item.ModItems;
 
 public class Tutorials {
 	private static int index = 0;
@@ -14,24 +15,35 @@ public class Tutorials {
 	public static final int TUTORIAL_DRIVE_2 = index++;
 	public static final int TUTORIAL_DRIVE_3 = index++;
 	public static final int TUTORIAL_SOA_1 = index++;
+	public static final int TUTORIAL_SWORD_1 = index++;
+	public static final int TUTORIAL_STAFF_1 = index++;
+	public static final int TUTORIAL_SHIELD_1 = index++;
+//	public static final int TUTORIAL_ABILITIES_1 = index++;
 
-	// All the tutorials
-	public static Tutorial tutorialKeyblade1 = new Tutorial(TUTORIAL_KEYBLADE_1, "Keyblade");
-	public static Tutorial tutorialKeyblade2 = new Tutorial(TUTORIAL_KEYBLADE_2, "Keyblade 2");
-	public static Tutorial tutorialMagic1 = new Tutorial(TUTORIAL_MAGIC_1, "Magic");
-	public static Tutorial tutorialMagic2 = new Tutorial(TUTORIAL_MAGIC_2, "Magic 2");
-	public static Tutorial tutorialDrive1 = new Tutorial(TUTORIAL_DRIVE_1, "Drive");
-	public static Tutorial tutorialDrive2 = new Tutorial(TUTORIAL_DRIVE_2, "Drive 2");
-	public static Tutorial tutorialDrive3 = new Tutorial(TUTORIAL_DRIVE_3, "Drive 3");
-	public static Tutorial tutorialSOA1 = new Tutorial(TUTORIAL_SOA_1, "Station of Awakening");
+	public static Tutorial[] tutorials = {
+		new Tutorial(TUTORIAL_KEYBLADE_1,"Keyblade"),
+		new Tutorial(TUTORIAL_KEYBLADE_2, "Keyblade 2"),
+		new Tutorial(TUTORIAL_MAGIC_1, "Magic"),
+		new Tutorial(TUTORIAL_MAGIC_2, "Magic 2"), 
+		new Tutorial(TUTORIAL_DRIVE_1, "Drive"), 
+		new Tutorial(TUTORIAL_DRIVE_2, "Drive 2"), 
+		new Tutorial(TUTORIAL_DRIVE_3, "Drive 3"), 
+		new Tutorial(TUTORIAL_SOA_1, "Station of Awakening"),
+		new Tutorial(TUTORIAL_SWORD_1, "Station of Awakening Sword"),
+		new Tutorial(TUTORIAL_STAFF_1, "Station of Awakening Staff"),
+		new Tutorial(TUTORIAL_SHIELD_1, "Station of Awakening Shield"),
 
-	public static Tutorial[] tutorials = { tutorialKeyblade1, tutorialKeyblade2, tutorialMagic1, tutorialMagic2, tutorialDrive1, tutorialDrive2, tutorialDrive3, tutorialSOA1 };
-
+		//new Tutorial(TUTORIAL_ABILITIES_1,"Abilities")
+	};
+	
 	public static void initTutorials() {
-		tutorialKeyblade1.addNextTutorial(tutorialKeyblade2);
-		tutorialMagic1.addNextTutorial(tutorialMagic2);
-		tutorialDrive1.addNextTutorial(tutorialDrive2);
-		tutorialDrive2.addNextTutorial(tutorialDrive3);
+		tutorials[TUTORIAL_KEYBLADE_1].addNextTutorial(tutorials[TUTORIAL_KEYBLADE_2]);
+		tutorials[TUTORIAL_MAGIC_1].addNextTutorial(tutorials[TUTORIAL_MAGIC_2]);
+		tutorials[TUTORIAL_DRIVE_1].addNextTutorial(tutorials[TUTORIAL_DRIVE_2]);
+		tutorials[TUTORIAL_DRIVE_2].addNextTutorial(tutorials[TUTORIAL_DRIVE_3]);
+		/*tutorials[TUTORIAL_SOA_1].addNextTutorial(tutorials[TUTORIAL_SOA_2]);
+		tutorials[TUTORIAL_SOA_2].addNextTutorial(tutorials[TUTORIAL_SOA_3]);
+		tutorials[TUTORIAL_SOA_3].addNextTutorial(tutorials[TUTORIAL_SOA_4]);*/
 	}
 
 	public static Tutorial getTutorialById(int id) {
@@ -57,43 +69,49 @@ public class Tutorials {
 
 	public static String[][] getLines(int num) {
 		String[][] lines = new String[2][4];
-
-		if (num == TUTORIAL_KEYBLADE_1) {
-			lines[0][0] = "The keyblades are the main weapons in the mod";
-			lines[0][1] = "It's a weapon which can defeat heartless and collect hearts";
-			lines[0][2] = ":)";
-
-			lines[1][0] = "They can be obtained through the synthesis table";
-			lines[1][1] = "Or through being Roxas as a member of the Organization XIII";
-			lines[1][2] = "Or through being Roxas as a member of the Organization XIII 2";
-
+		String prefix = "tutorial.";
+		if(num == TUTORIAL_KEYBLADE_1) {
+			prefix += "keyblade1";
+		
 		} else if (num == TUTORIAL_KEYBLADE_2) {
-			lines[0][0] = "To equip it you must do things";
-			lines[1][1] = "To equip it you must do things2";
-
+			prefix +="keyblade2";
+			
 		} else if (num == TUTORIAL_MAGIC_1) {
-			lines[0][0] = "Magic 1";
-			lines[0][1] = "Magic 2";
-			lines[0][2] = "Magic 3";
+			prefix +="magic1";
 
 		} else if (num == TUTORIAL_MAGIC_2) {
-			lines[0][0] = "Magic2 1";
-			lines[0][1] = "Magic2 2";
+			prefix +="magic2";
 
 		} else if (num == TUTORIAL_DRIVE_1) {
-			lines[0][0] = "Drive 1";
+			prefix +="drive1";
 
 		} else if (num == TUTORIAL_DRIVE_2) {
-			lines[0][0] = "Drive2 1";
+			prefix +="drive2";
 
 		} else if (num == TUTORIAL_DRIVE_3) {
-			lines[0][0] = "Drive3 1";
-			lines[0][1] = "Drive3 2";
+			prefix +="drive3";
 
 		} else if (num == TUTORIAL_SOA_1) {
-			lines[0][0] = "Welcome to Kingdom Keys!";
-			lines[0][1] = "You are right now in the Station of Awakening";
+			prefix +="soa1";
+			
+		} else if (num == TUTORIAL_SWORD_1) {
+			prefix +="soa2";
 
+		} else if (num == TUTORIAL_STAFF_1) {
+			prefix +="soa3";
+			
+		} else if (num == TUTORIAL_SHIELD_1) {
+			prefix +="soa4";
+		}	
+		/* else if (num == TUTORIAL_ABILITIES_1) {
+			prefix +="abilities1";
+		}*/
+		
+		
+		for (int i = 0; i < lines.length; i++) {
+			for (int j = 0; j < lines[0].length; j++) {
+				lines[i][j] = prefix + "." + i + "." + j;
+			}
 		}
 
 		return lines;
@@ -103,11 +121,32 @@ public class Tutorials {
 		ArrayList<ResourceLocation> images = new ArrayList<ResourceLocation>();
 
 		if (num == TUTORIAL_KEYBLADE_1) {
-			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/keyblade/keyblade.png"));
-			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/keyblade/synthesistable.png"));
+			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/keyblade.png"));
+			images.add(new ResourceLocation(Reference.MODID, "textures/blocks/synthesistable.png"));
+
+		} else if (num == TUTORIAL_MAGIC_1) {
+			images.add(new ResourceLocation(Reference.MODID, "textures/items/levelupmagicfire.png"));
+			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/magics.png"));
+
+		} else if (num == TUTORIAL_MAGIC_2) {
+			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/mpbar.png"));
+			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/mpbarr.png"));
+
+		} else if (num == TUTORIAL_DRIVE_1) {
+			images.add(new ResourceLocation(Reference.MODID, "textures/items/levelupdrivevalor.png"));
+			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/forms.png"));
+			
+		} else if (num == TUTORIAL_DRIVE_2) {
+			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/drivebar.png"));
+			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/drivebarf.png"));
+			
+		} else if (num == TUTORIAL_DRIVE_3) {
+			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/keychains.png"));
+			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/formbar.png"));
 
 		} else if (num == TUTORIAL_SOA_1) {
-			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/soa/soa.png"));
+			images.add(new ResourceLocation(Reference.MODID, "textures/gui/tutorials/soa.png"));
+			images.add(new ResourceLocation(Reference.MODID, "textures/items/keyblades/dreamsword.png"));
 		}
 
 		return images;
