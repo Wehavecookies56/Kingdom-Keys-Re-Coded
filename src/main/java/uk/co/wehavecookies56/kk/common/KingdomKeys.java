@@ -63,7 +63,7 @@ public class KingdomKeys {
         e.registerServerCommand(new CommandDimension());
         e.registerServerCommand(new CommandOpenKeychains());
         e.registerServerCommand(new CommandLearnMaterial());
-
+        e.registerServerCommand(new CommandRemoveTutorial());
         logger.info("Commands loaded");
     }
 

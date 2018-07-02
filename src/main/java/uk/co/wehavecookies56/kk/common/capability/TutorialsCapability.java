@@ -26,6 +26,8 @@ public class TutorialsCapability {
 		void setKnownTutorial(int id, boolean watched);
 
 		ArrayList<Integer> getKnownTutorials();
+		
+		void setKnownTutorials(ArrayList<Integer> list);
 	}
 
 	public static class Storage implements IStorage<ITutorials> {
@@ -86,10 +88,6 @@ public class TutorialsCapability {
 					System.out.println("Tutorial was not watched");
 				}
 			}
-
-			// PacketDispatcher.sendTo(new
-			// SyncTutorialsData(player.getCapability(ModCapabilities.PLAYER_STATS, null)),
-			// (EntityPlayerMP) player);
 		}
 
 		@Override
@@ -97,5 +95,11 @@ public class TutorialsCapability {
 			return list;
 		}
 
+		@Override
+		public void setKnownTutorials(ArrayList<Integer> list) {
+			//System.out.println(this.list);
+			//System.out.println(list);
+			this.list = list;
+		}
 	}
 }
