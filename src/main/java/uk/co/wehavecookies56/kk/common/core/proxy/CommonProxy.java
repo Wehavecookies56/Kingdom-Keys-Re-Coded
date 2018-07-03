@@ -247,4 +247,7 @@ public class CommonProxy {
 
     public void spawnDarkSmokeParticle(World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, float alpha) {}
 
+    public boolean isDedicatedServer() {
+        return true;
+    }
 }

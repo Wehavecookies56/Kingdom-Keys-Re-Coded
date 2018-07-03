@@ -38,6 +38,9 @@
                     "ground": {
                         "rotation": [ { "x": 45 }, { "y": 0 }, { "z": 0 } ],
                         "scale": 0.01
+                    },
+                    "fixed": {
+                        "scale": 0.01
                     }
                 }
             }

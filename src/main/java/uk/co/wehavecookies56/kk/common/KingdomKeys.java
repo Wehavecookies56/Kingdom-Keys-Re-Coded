@@ -19,7 +19,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 
-@Mod (name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER, modLanguage = "java", updateJSON = "https://raw.githubusercontent.com/Wehavecookies56/Kingdom-Keys-Re-Coded/master/update.json")
+@Mod (name = Reference.MODNAME, modid = Reference.MODID, version = Reference.MODVER, dependencies = "required:forge@[14.23.4.2694,);", modLanguage = "java", updateJSON = "https://raw.githubusercontent.com/Wehavecookies56/Kingdom-Keys-Re-Coded/master/update.json")
 public class KingdomKeys {
 
     @SidedProxy (clientSide = Reference.CLIENTPROXY, serverSide = Reference.COMMONPROXY)

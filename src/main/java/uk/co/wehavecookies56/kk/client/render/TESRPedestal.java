@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.client.render;
 
+import net.minecraft.client.renderer.RenderHelper;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -37,21 +38,27 @@ public class TESRPedestal extends TileEntitySpecialRenderer<TileEntityPedestal> 
             this.renderItem = Minecraft.getMinecraft().getRenderItem();
             GlStateManager.pushMatrix(); {
                 int rot = te.getRotation();
-                GlStateManager.translate(0.5, 1.3, 0.5);
+                GlStateManager.translate(0.5, 1.8, 0.5);
                 GlStateManager.rotate(90*rot, 0, 1, 0);
-                GlStateManager.scale(0.02, 0.02, 0.02);
+                GlStateManager.scale(2, 2, 2);
                 te.setKeyblade(itemHandler.getStackInSlot(0));
                 Item itemToRender = te.keyblade.getItem();
                 GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 128.0F, 128.0F);
-
+                //GlStateManager.enableBlend();
+                //GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_COLOR);
+                int l = Minecraft.getMinecraft().getRenderManager().world.getCombinedLight(te.getPos().up(), 0);
+                int i1 = l % 65536;
+                int j1 = l / 65536;
+                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)i1, (float)j1);
+                GL11.glColor4f(1,1,1,1);
                 if(itemToRender instanceof ItemKeyblade)
-                    renderItem.renderItem(new ItemStack(itemToRender), ItemCameraTransforms.TransformType.NONE);
+                    renderItem.renderItem(new ItemStack(itemToRender), ItemCameraTransforms.TransformType.FIXED);
                 else if (itemToRender instanceof ItemKeychain)
-                    renderItem.renderItem(new ItemStack(((ItemKeychain) itemToRender).getKeyblade()), ItemCameraTransforms.TransformType.NONE);
+                    renderItem.renderItem(new ItemStack(((ItemKeychain) itemToRender).getKeyblade()), ItemCameraTransforms.TransformType.FIXED);
                 else if (itemToRender instanceof ItemOrgShield)
-                    renderItem.renderItem(new ItemStack((itemToRender)), ItemCameraTransforms.TransformType.NONE);
-
+                    renderItem.renderItem(new ItemStack((itemToRender)), ItemCameraTransforms.TransformType.FIXED);
+                //GlStateManager.disableBlend();
+                RenderHelper.disableStandardItemLighting();
                 GL11.glPopAttrib();
 
             }

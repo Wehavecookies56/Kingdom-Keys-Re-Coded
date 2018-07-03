@@ -414,4 +414,8 @@ public class ClientProxy extends CommonProxy {
         return (ctx.side.isClient() ? Minecraft.getMinecraft() : super.getThreadFromContext(ctx));
     }
 
+    @Override
+    public boolean isDedicatedServer() {
+        return false;
+    }
 }

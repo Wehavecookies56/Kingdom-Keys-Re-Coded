@@ -4,14 +4,20 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.client.core.proxy.ClientProxy;
+import uk.co.wehavecookies56.kk.common.KingdomKeys;
+import uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.lib.IconProperty;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
@@ -19,6 +25,9 @@ public class ItemSynthesisMaterial extends ItemKKBase {
 
     public ItemSynthesisMaterial (String name) {
         super(name);
+        if (!KingdomKeys.proxy.isDedicatedServer()) {
+            this.addPropertyOverride(new ResourceLocation("icon"), new IconProperty());
+        }
     }
 
     @Override
@@ -206,140 +215,19 @@ public class ItemSynthesisMaterial extends ItemKKBase {
     @Override
     public EnumRarity getRarity (ItemStack stack) {
         if(stack.hasTagCompound()){
-            if(stack.getTagCompound().hasKey("material")){
-                switch(stack.getTagCompound().getString("material")){
-                    case Strings.SM_BlazingShard:
+            if(stack.getTagCompound().hasKey("rank")){
+                switch(stack.getTagCompound().getString("rank")){
+                    case Strings.SM_Rank_C:
                         return EnumRarity.COMMON;
-                    case Strings.SM_BlazingStone:
+                    case Strings.SM_Rank_B:
                         return EnumRarity.UNCOMMON;
-                    case Strings.SM_BlazingGem:
+                    case Strings.SM_Rank_A:
                         return EnumRarity.RARE;
-                    case Strings.SM_BlazingCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_FrostShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_FrostStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_FrostGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_FrostCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_LightningShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_LightningStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_LightningGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_LightningCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_LucidShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_LucidStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_LucidGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_LucidCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_PowerShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_PowerStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_PowerGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_PowerCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_DarkShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_DarkStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_DarkGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_DarkCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_DenseShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_DenseStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_DenseGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_DenseCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_TwilightShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_TwilightStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_TwilightGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_TwilightCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_MythrilShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_MythrilStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_MythrilGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_MythrilCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_BrightShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_BrightStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_BrightGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_BrightCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_EnergyShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_EnergyStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_EnergyGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_EnergyCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_SerenityShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_SerenityStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_SerenityGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_SerenityCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_Orichalcum:
-                        return EnumRarity.RARE;
-                    case Strings.SM_OrichalcumPlus:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_RemembranceShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_RemembranceStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_RemembranceGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_RemembranceCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_TranquilShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_TranquilStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_TranquilGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_TranquilCrystal:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_ManifestIllusion:
-                        return EnumRarity.RARE;
-                    case Strings.SM_LostIllusion:
-                        return EnumRarity.EPIC;
-                    case Strings.SM_StormyShard:
-                        return EnumRarity.COMMON;
-                    case Strings.SM_StormyStone:
-                        return EnumRarity.UNCOMMON;
-                    case Strings.SM_StormyGem:
-                        return EnumRarity.RARE;
-                    case Strings.SM_StormyCrystal:
+                    case Strings.SM_Rank_S:
                         return EnumRarity.EPIC;
                 }
             }
         }
         return EnumRarity.COMMON;
     }
-
 }
