@@ -146,17 +146,13 @@ public class GuiSynthesis extends GuiTooltip {
 			break;
 		case RECIPES:
 			submenu = RECIPES;
-			recFilter.setVisible(true);
-			freeDevFilter.setVisible(false);
 			break;
 		case FREEDEV:
 			submenu = FREEDEV;
-			freeDevFilter.setVisible(true);
 			break;
 		case MATERIALS:
 			Deposit.visible = true;
 			DepositBag.visible = true;
-			matFilter.setVisible(true);
 			submenu = MATERIALS;
 			break;
 		case CREATE:
