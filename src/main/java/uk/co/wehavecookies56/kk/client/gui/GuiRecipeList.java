@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -14,7 +16,6 @@ import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -39,17 +40,18 @@ public class GuiRecipeList extends GuiScrollingList {
 
     @Override
     protected int getSize () {
-        return Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().size();
+		List<String> recipes = parent.recipesFilter();
+		return recipes.size();
     }
 
     @Override
     protected void elementClicked (int index, boolean doubleClick) {
-        parent.selected = index;
+        parent.recipeSelected = index;
     }
 
     @Override
     protected boolean isSelected (int index) {
-        if (index == parent.selected) return true;
+        if (index == parent.recipeSelected) return true;
         return false;
     }
 
@@ -61,29 +63,28 @@ public class GuiRecipeList extends GuiScrollingList {
 
     @Override
     protected void drawSlot (int var1, int var2, int var3, int var4, Tessellator var5) {
-        SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
-
+        List<String> recipes = parent.recipesFilter();
+        
         int colour = 0xFFFFFF;
-        if (parent.isRecipeUsable(RECIPES.getKnownRecipes().get(var1))) {
+        if (parent.isRecipeUsable(recipes.get(var1))) {
             colour = 0x55FF55;
         }
         
-        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)));
+        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, recipes.get(var1).substring(5)));
         
         if (item instanceof ItemKeyblade) {
             drawStats((ItemKeyblade)item, var1, var3, colour);
         } else if (item instanceof IOrgWeapon) {
             drawStats((IOrgWeapon) item, var1, var3, colour);
         } else {
-            this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
+            this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(recipes.get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
             this.ir.renderItemAndEffectIntoGUI(new ItemStack(item), this.left + 3, var3 + 12);
         }
 
     }
 
     public void drawStats(ItemKeyblade item, int var1, int var3, int colour) {
-        SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
-        this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
+        this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(parent.recipesFilter().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
         this.ir.renderItemAndEffectIntoGUI(new ItemStack(item), this.left + 3, var3 + 12);
         String plus = item.getStrength() < 0 ? "" : "+";
         this.f.drawString("Str: "+ plus +item.getStrength(),this.left + 25, var3 + 12, 0xFF0000);
@@ -92,8 +93,7 @@ public class GuiRecipeList extends GuiScrollingList {
     }
 
     public void drawStats(IOrgWeapon item, int var1, int var3, int colour) {
-        SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
-        this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getKnownRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
+        this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(parent.recipesFilter().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
         this.ir.renderItemAndEffectIntoGUI(new ItemStack(item.getItem()), this.left + 3, var3 + 12);
         String plus = item.getStrength() < 0 ? "" : "+";
         this.f.drawString("Str: "+ plus +item.getStrength(),this.left + 25, var3 + 12, 0xFF0000);

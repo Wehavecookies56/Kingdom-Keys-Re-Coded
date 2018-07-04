@@ -1,5 +1,6 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,6 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -30,11 +32,12 @@ import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability.IMunny;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
+import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability.ISynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
+import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability.ISynthesisRecipe;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
-import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
@@ -42,15 +45,17 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.CreateFromSynthesisRecipe;
-import uk.co.wehavecookies56.kk.common.network.packet.server.DepositMaterialsFromBag;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DepositMaterials;
+import uk.co.wehavecookies56.kk.common.network.packet.server.DepositMaterialsFromBag;
 import uk.co.wehavecookies56.kk.common.network.packet.server.TakeMaterials;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class GuiSynthesis extends GuiTooltip {
-
-	public int selected = -1;
+	public int RECIPESFILTER = 0, FREEDEVFILTER = 1, MATERIALSFILTER = 2;
+	public int recipeSelected = -1;
 	public int freeDevSelected = -1;
+	public int materialSelected = -1;
+
 	public final int MAIN = 0, BACK = 0, RECIPES = 1, FREEDEV = 2, MATERIALS = 3, CREATE = 4, TAKE1 = 5, TAKESTACK = 6, TAKEHALFSTACK = 7, TAKEALL = 8, DEPOSIT = 9, DEPOSITBAG = 10;
 	public int submenu;
 	private final GuiScreen parentScreen;
@@ -60,11 +65,12 @@ public class GuiSynthesis extends GuiTooltip {
 	private GuiFreeDevelopmentRecipeList freeDevRecipeList;
 
 	public GuiButton Back, FreeDev, Recipes, Materials, Create, Take1, TakeStack, TakeHalfStack, TakeAll, Deposit, DepositBag;
-	public int materialSelected = -1;
 
 	public GuiSynthesis(GuiScreen parentScreen) {
 		this.parentScreen = parentScreen;
 	}
+
+	GuiTextField recFilter,freeDevFilter,matFilter;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -81,6 +87,10 @@ public class GuiSynthesis extends GuiTooltip {
 		this.buttonList.add(FreeDev = new GuiButton(FREEDEV, 5, 65 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_FreeDev)));
 		this.buttonList.add(Materials = new GuiButton(MATERIALS, 5, 90 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials)));
 
+		recFilter = new GuiTextField(RECIPESFILTER, mc.fontRenderer, 9, 65 - 25, 182, 20);
+		freeDevFilter = new GuiTextField(FREEDEVFILTER, mc.fontRenderer, 9, 65 - 25, 182, 20);
+		matFilter = new GuiTextField(MATERIALSFILTER, mc.fontRenderer, 9, 65 - 25, 142, 20);
+
 		this.buttonList.add(Deposit = new GuiButton(DEPOSIT, width - 105, height - ((height / 2) + 90), 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_Deposit_Inv)));
 		this.buttonList.add(DepositBag = new GuiButton(DEPOSITBAG, width - 105, height - ((height / 2) + 70), 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_Deposit_Bag)));
 
@@ -90,6 +100,17 @@ public class GuiSynthesis extends GuiTooltip {
 		this.buttonList.add(TakeAll = new GuiButton(TAKEALL, 420, height - ((height / 8) + 70 / 16) - 25, 75, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Materials_TakeAll)));
 
 		updateButtons();
+	}
+
+	@Override
+	protected void keyTyped(char typedChar, int keyCode) throws IOException {
+		this.recFilter.textboxKeyTyped(typedChar, keyCode);
+		this.freeDevFilter.textboxKeyTyped(typedChar, keyCode);
+		this.matFilter.textboxKeyTyped(typedChar, keyCode);
+		recipeSelected = -1;
+		freeDevSelected = -1;
+		materialSelected = -1;
+		super.keyTyped(typedChar, keyCode);
 	}
 
 	@Override
@@ -125,32 +146,36 @@ public class GuiSynthesis extends GuiTooltip {
 			break;
 		case RECIPES:
 			submenu = RECIPES;
+			recFilter.setVisible(true);
+			freeDevFilter.setVisible(false);
 			break;
 		case FREEDEV:
 			submenu = FREEDEV;
+			freeDevFilter.setVisible(true);
 			break;
 		case MATERIALS:
 			Deposit.visible = true;
 			DepositBag.visible = true;
+			matFilter.setVisible(true);
 			submenu = MATERIALS;
 			break;
 		case CREATE:
-			if (selected != -1) {
-				if (isRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected))) {
-					PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected), 1));
+			if (recipeSelected != -1) {
+				if (isRecipeUsable(recipesFilter().get(recipeSelected))) {
+					PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(recipesFilter().get(recipeSelected), 1));
 					mc.player.world.playSound(mc.player, mc.player.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
 					GuiHelper.openTutorial(Tutorials.TUTORIAL_KEYBLADE_1);
 				}
 			} else if (freeDevSelected != -1) {
-				if (isFreeDevRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected))) {
-					PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected), 1));
+				if (isFreeDevRecipeUsable(freeDevFilter().get(freeDevSelected))) {
+					PacketDispatcher.sendToServer(new CreateFromSynthesisRecipe(freeDevFilter().get(freeDevSelected), 1));
 					mc.player.world.playSound(mc.player, mc.player.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
 				}
 			}
 
 			break;
 		case TAKE1:
-			materials.addAll(MATS.getKnownMaterialsMap().keySet());
+			materials = materialsFilter();
 
 			freeSlots = getFreeSlots();
 			foundMaterial = getInventoryMaterial(materials.get(materialSelected));
@@ -164,7 +189,7 @@ public class GuiSynthesis extends GuiTooltip {
 			}
 			break;
 		case TAKEHALFSTACK:
-			materials.addAll(MATS.getKnownMaterialsMap().keySet());
+			materials = materialsFilter();
 
 			freeSlots = getFreeSlots();
 			foundMaterial = getInventoryMaterial(materials.get(materialSelected));
@@ -179,7 +204,7 @@ public class GuiSynthesis extends GuiTooltip {
 
 			break;
 		case TAKESTACK:
-			materials.addAll(MATS.getKnownMaterialsMap().keySet());
+			materials = materialsFilter();
 
 			freeSlots = getFreeSlots();
 			if (freeSlots >= 1) {
@@ -192,7 +217,8 @@ public class GuiSynthesis extends GuiTooltip {
 			}
 			break;
 		case TAKEALL:
-			materials.addAll(MATS.getKnownMaterialsMap().keySet());
+			materials = materialsFilter();
+
 			freeSlots = getFreeSlots();
 			if (freeSlots >= 1)
 				PacketDispatcher.sendToServer(new TakeMaterials(freeSlots * 64, materials.get(materialSelected)));
@@ -286,7 +312,9 @@ public class GuiSynthesis extends GuiTooltip {
 		if (submenu == FREEDEV) {
 			if (freeDevSelected != -1) {
 				Create.visible = true;
-				if (isFreeDevRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().get(freeDevSelected)))
+				
+				List<String> freeDev = freeDevFilter();
+				if (isFreeDevRecipeUsable(freeDev.get(freeDevSelected)))
 					Create.enabled = true;
 				else {
 					if (isInventoryFull())
@@ -330,22 +358,20 @@ public class GuiSynthesis extends GuiTooltip {
 
 		if (materialSelected != -1) {
 			SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
-			List<String> materials = new ArrayList<String>();
 
-			materials.addAll(MATS.getKnownMaterialsMap().keySet());
-			if (!MATS.getKnownMaterialsMap().isEmpty()) {
+			List<String> materials = materialsFilter();
+
+			if (!materials.isEmpty()) {
 				if (!(MATS.getKnownMaterialsMap().get(materials.get(materialSelected)) < 1)) {
 					Take1.enabled = true;
 					TakeStack.enabled = true;
 					TakeHalfStack.enabled = true;
 					TakeAll.enabled = true;
-
 				} else {
 					Take1.enabled = false;
 					TakeStack.enabled = false;
 					TakeHalfStack.enabled = false;
 					TakeAll.enabled = false;
-
 				}
 			} else {
 				materialSelected = -1;
@@ -363,9 +389,9 @@ public class GuiSynthesis extends GuiTooltip {
 		}
 
 		if (submenu == RECIPES) {
-			if (selected != -1) {
+			if (recipeSelected != -1) {
 				Create.visible = true;
-				if (isRecipeUsable(mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getKnownRecipes().get(selected))) {
+				if (isRecipeUsable(recipesFilter().get(recipeSelected))) {
 					Create.enabled = true;
 				} else {
 					if (isInventoryFull())
@@ -400,7 +426,7 @@ public class GuiSynthesis extends GuiTooltip {
 		drawDefaultBackground();
 		if (submenu == RECIPES)
 			this.recipeList.drawScreen(mouseX, mouseY, partialTicks);
-		
+
 		else if (submenu == MATERIALS)
 			this.materialList.drawScreen(mouseX, mouseY, partialTicks);
 
@@ -421,23 +447,38 @@ public class GuiSynthesis extends GuiTooltip {
 			drawSelectedFreeDev();
 
 		else {
-			selected = -1;
+			recipeSelected = -1;
 			materialSelected = -1;
 			freeDevSelected = -1;
 		}
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
+	@Override
+	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+		this.recFilter.mouseClicked(mouseX, mouseY, mouseButton);
+		this.freeDevFilter.mouseClicked(mouseX, mouseY, mouseButton);
+		this.matFilter.mouseClicked(mouseX, mouseY, mouseButton);
+		super.mouseClicked(mouseX, mouseY, mouseButton);
+	}
+
 	public void drawSelectedMaterial() {
 		SynthesisMaterialCapability.ISynthesisMaterial MATS = mc.player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+
 		if (materialSelected != -1) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
 			drawGradientRect(190, 60, 500, height - ((height / 8) + 70 / 16), -1072689136, -804253680);
 		}
 		List<String> materials = new ArrayList<String>();
 
-		materials.addAll(MATS.getKnownMaterialsMap().keySet());
-		for (int i = 0; i < MATS.getKnownMaterialsMap().size(); i++)
+		materials = materialsFilter();
+
+
+		this.matFilter.drawTextBox();
+		// this.drawString(mc.fontRenderer, "R:", 5, 101, 0xFFFFFF);
+
+		// materials.addAll(MATS.getKnownMaterialsMap().keySet());
+		for (int i = 0; i < materials.size(); i++)
 			if (materialSelected == i) {
 				GL11.glPushMatrix();
 				{
@@ -474,16 +515,17 @@ public class GuiSynthesis extends GuiTooltip {
 	}
 
 	public void drawSelectedRecipe() {
-		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		this.recFilter.drawTextBox();
+
 		int posX = 220;
-		if (selected != -1) {
+		if (recipeSelected != -1) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
 			drawGradientRect(posX - 10, 60, 700, height - ((height / 8) + 70 / 16), -1072689136, -804253680);
 		}
 		GL11.glPushMatrix();
 		{
-			for (int i = 0; i < RECIPES.getKnownRecipes().size(); i++)
-				if (selected == i) {
+			for (int i = 0; i < recipesFilter().size(); i++)
+				if (recipeSelected == i) {
 					float scale = 1.0f;
 					if (mc.gameSettings.guiScale == Constants.SCALE_LARGE) {
 						scale = 0.5f;
@@ -492,14 +534,14 @@ public class GuiSynthesis extends GuiTooltip {
 					{
 						GL11.glTranslatef(posX, 70, 0);
 						GL11.glScalef(2 * scale, 2 * scale, 2 * scale);
-						drawString(fontRenderer, Utils.translateToLocal(RECIPES.getKnownRecipes().get(i).toString() + ".name"), 0, 0, 0xFFF700);
-						Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)));
+						drawString(fontRenderer, Utils.translateToLocal(recipesFilter().get(i).toString() + ".name"), 0, 0, 0xFFF700);
+						Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, recipesFilter().get(i).substring(5)));
 						if (item instanceof ItemKeyblade) {
-							drawString(fontRenderer, "Strength: +" + ((ItemKeyblade) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getStrength(), 0, 10, 0xFF0000);
-							drawString(fontRenderer, "Magic: +" + ((ItemKeyblade) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getMagic(), 0, 20, 0x4444FF);
+							drawString(fontRenderer, "Strength: +" + ((ItemKeyblade) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, recipesFilter().get(i).substring(5)))).getStrength(), 0, 10, 0xFF0000);
+							drawString(fontRenderer, "Magic: +" + ((ItemKeyblade) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, recipesFilter().get(i).substring(5)))).getMagic(), 0, 20, 0x4444FF);
 						} else if (item instanceof IOrgWeapon) {
-							drawString(fontRenderer, "Strength: +" + ((IOrgWeapon) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getStrength(), 0, 10, 0xFF0000);
-							drawString(fontRenderer, "Magic: +" + ((IOrgWeapon) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(i).substring(5)))).getMagic(), 0, 20, 0x4444FF);
+							drawString(fontRenderer, "Strength: +" + ((IOrgWeapon) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, recipesFilter().get(i).substring(5)))).getStrength(), 0, 10, 0xFF0000);
+							drawString(fontRenderer, "Magic: +" + ((IOrgWeapon) ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, recipesFilter().get(i).substring(5)))).getMagic(), 0, 20, 0x4444FF);
 						}
 					}
 					GL11.glPopMatrix();
@@ -509,7 +551,8 @@ public class GuiSynthesis extends GuiTooltip {
 					int row = 0;
 					int column = 0;
 					int materialLength = 0;
-					Iterator it = RecipeRegistry.get(RECIPES.getKnownRecipes().get(i)).getRequirements().entrySet().iterator();
+					Iterator it = RecipeRegistry.get(recipesFilter().get(i)).getRequirements().entrySet().iterator();
+					
 					while (it.hasNext()) {
 						Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>) it.next();
 						int distY = (int) (24 * scale);
@@ -577,7 +620,9 @@ public class GuiSynthesis extends GuiTooltip {
 	}
 
 	public void drawSelectedFreeDev() {
-		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		this.freeDevFilter.drawTextBox();
+		
+		//SynthesisRecipeCapability.ISynthesisRecipe RECIPES = mc.player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
 		int posX = 220;
 		if (freeDevSelected != -1) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
@@ -585,7 +630,7 @@ public class GuiSynthesis extends GuiTooltip {
 		}
 		GL11.glPushMatrix();
 		{
-			for (int i = 0; i < RECIPES.getFreeDevRecipes().size(); i++)
+			for (int i = 0; i < freeDevFilter().size(); i++)
 				if (freeDevSelected == i) {
 					float scale = 1.0f;
 					if (mc.gameSettings.guiScale == Constants.SCALE_LARGE) {
@@ -595,17 +640,7 @@ public class GuiSynthesis extends GuiTooltip {
 					{
 						GL11.glTranslatef(posX, 70, 0);
 						GL11.glScalef(2 * scale, 2 * scale, 2 * scale);
-						drawString(fontRenderer, Utils.translateToLocal(RECIPES.getFreeDevRecipes().get(i).toString() + ".name"), 0, 0, 0xFFF700);
-						// drawString(fontRendererObj, "Strength:
-						// +"+((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new
-						// ResourceLocation(Reference.MODID,
-						// RECIPES.getKnownRecipes().get(i).substring(5)))).getStrength(), 0, 10,
-						// 0xFF0000);
-						// drawString(fontRendererObj, "Magic: +"+
-						// ((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new
-						// ResourceLocation(Reference.MODID,
-						// RECIPES.getKnownRecipes().get(i).substring(5)))).getMagic(), 0, 20,
-						// 0x4444FF);
+						drawString(fontRenderer, Utils.translateToLocal(freeDevFilter().get(i).toString() + ".name"), 0, 0, 0xFFF700);
 					}
 					GL11.glPopMatrix();
 
@@ -614,7 +649,8 @@ public class GuiSynthesis extends GuiTooltip {
 					int row = 0;
 					int column = 0;
 					int materialLength = 0;
-					Iterator it = FreeDevRecipeRegistry.get(RECIPES.getFreeDevRecipes().get(i)).getRequirements().entrySet().iterator();
+					Iterator it = FreeDevRecipeRegistry.get(freeDevFilter().get(i)).getRequirements().entrySet().iterator();
+					
 					while (it.hasNext()) {
 						Map.Entry<Material, Integer> pair = (Map.Entry<Material, Integer>) it.next();
 						int distY = (int) (24 * scale);
@@ -747,4 +783,50 @@ public class GuiSynthesis extends GuiTooltip {
 		return null;
 	}
 
+	
+
+	public List<String> recipesFilter() {
+        ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+
+		List<String> recipes = new ArrayList<String>();
+
+		for (String recipe : RECIPES.getKnownRecipes()) {
+			String translatedRec = Utils.translateToLocal(recipe+".name");
+
+			if(translatedRec.toLowerCase().contains(recFilter.getText().toLowerCase())) {
+				recipes.add(recipe);
+			}
+		}
+		return recipes;		
+	}
+
+	public List<String> freeDevFilter() {
+        SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+
+        List<String> freeDevRecipes = new ArrayList<String>();
+
+		for (String recipe : RECIPES.getFreeDevRecipes()) {
+			String translatedRec = Utils.translateToLocal(recipe+".name");
+
+			if(translatedRec.toLowerCase().contains(freeDevFilter.getText().toLowerCase())) {
+				freeDevRecipes.add(recipe);
+			}
+		}
+		return freeDevRecipes;	
+	}
+	
+	public List<String> materialsFilter() {
+		ISynthesisMaterial MATS = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+
+		List<String> materials = new ArrayList<String>();
+
+		for (String mat : MATS.getKnownMaterialsMap().keySet()) {
+			String translatedMat = Utils.translateToLocal(mat+".name");
+
+			if(translatedMat.toLowerCase().contains(matFilter.getText().toLowerCase())) {
+				materials.add(mat);
+			}
+		}
+		return materials;		
+	}
 }

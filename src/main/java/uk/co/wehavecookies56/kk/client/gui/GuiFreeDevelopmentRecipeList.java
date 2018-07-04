@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -35,7 +37,8 @@ public class GuiFreeDevelopmentRecipeList extends GuiScrollingList {
 
     @Override
     protected int getSize () {
-        return Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes().size();
+		List<String> freeDev = parent.freeDevFilter();
+		return freeDev.size();
     }
 
     @Override
@@ -58,11 +61,9 @@ public class GuiFreeDevelopmentRecipeList extends GuiScrollingList {
 
     @Override
     protected void drawSlot (int var1, int var2, int var3, int var4, Tessellator var5) {
-        SynthesisRecipeCapability.ISynthesisRecipe RECIPES = Minecraft.getMinecraft().player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+        List<String> recipes = parent.freeDevFilter();
 
-        this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(RECIPES.getFreeDevRecipes().get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, 0xFFFFFF);
-        this.ir.renderItemAndEffectIntoGUI(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getFreeDevRecipes().get(var1).substring(5)))), this.left + 3, var3 + 12);
-        //this.f.drawString("Str: +"+((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)))).getStrength(),this.left + 25, var3 + 12, 0xFF0000);
-        //this.f.drawString("Mag: +"+((ItemKeyblade)ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, RECIPES.getKnownRecipes().get(var1).substring(5)))).getMagic(),this.left + 25, var3 + 20, 0x4444FF);
+        this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(recipes.get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, 0xFFFFFF);
+        this.ir.renderItemAndEffectIntoGUI(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, recipes.get(var1).substring(5)))), this.left + 3, var3 + 12);
     }
 }

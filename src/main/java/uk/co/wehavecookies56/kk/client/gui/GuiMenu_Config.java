@@ -44,14 +44,16 @@ public class GuiMenu_Config extends GuiMenu_Bars {
                 musicToggle.displayString = String.valueOf(MainConfig.client.sound.EnableCustomMusic);
                 break;
             case FIRE:
-                if(kh1Fire){
+               /* if(kh1Fire){
                     PacketDispatcher.sendToServer(new SetKH1Fire(false));
                     kh1Fire = false;
                 }else{
                     PacketDispatcher.sendToServer(new SetKH1Fire(true));
                     kh1Fire = true;
-                }
-                //PacketDispatcher.sendToServer(new GetKH1Fire());
+                }*/
+                PacketDispatcher.sendToServer(new SetKH1Fire(!kh1Fire));
+            	kh1Fire = !kh1Fire;
+            	
                 fire.displayString = String.valueOf(kh1Fire);
                 break;
         }
