@@ -22,7 +22,7 @@ public class GuiLockOn extends GuiScreen {
 
 	int hpGuiWidth = 173;
 	float hpBarWidth;
-	int barDivider;
+	int BarHP;
 	int hpBars;
 	int currentBar;
 
@@ -107,27 +107,36 @@ public class GuiLockOn extends GuiScreen {
 			int currHealth = noborderguiwidth - (int) (oneHeart * target.getHealth());
 			float scale = 0.65f;
 
-			barDivider = 10;
+			BarHP = 20;
 
-			//System.out.println(target.getHealth());
-			hpBars = (int) target.getMaxHealth() / barDivider;
-			currentBar = (int) target.getHealth() / barDivider;
-			
-			if (target.getHealth() % barDivider != 0) // If there is module it will have it's hp bar
+			// If the max health is not divisible by BarHP reduce it
+			while (target.getMaxHealth() % BarHP != 0) {
+				BarHP--;
+				if (BarHP == 0) {// If it's not divisible by 0 set it to the entity health
+					BarHP = (int) target.getMaxHealth();
+					break;
+				}
+
+			}
+
+			// Number of HP bars (returns 1 more but it gets removed after)
+			hpBars = (int) target.getMaxHealth() / BarHP;
+			// Current HP Bar
+			currentBar = (int) target.getHealth() / BarHP;
+
+			if (target.getHealth() % BarHP != 0) // If there is module it will have it's hp bar
 				currentBar++;
-			
+
 			int oneBar = (int) (target.getMaxHealth() / hpBars);
 
-			if(target.getMaxHealth() % target.getHealth() == 0) {
-				hpBarWidth = oneBar *10;
+			if (target.getMaxHealth() == target.getHealth()) {
+				hpBarWidth = oneBar * 10;
 			} else {
 				hpBarWidth = (float) (Math.ceil(target.getHealth() % oneBar) * 10);
 			}
-			System.out.println(target.getMaxHealth());
-			//hpBarWidth = (int) (target.getHealth()/hpBars *10);
+
+			//Background HP width
 			int hpBarMaxWidth = (int) (target.getMaxHealth() * 10 / hpBars);
-
-
 
 			switch (mc.gameSettings.guiScale) {
 			case Constants.SCALE_AUTO:
@@ -152,7 +161,7 @@ public class GuiLockOn extends GuiScreen {
 			{
 				GL11.glTranslatef((screenWidth - (hpBarWidth) * scale) - 2 * scale * 2, 1, 0);
 				GL11.glScalef(scale, scale, scale);
-				drawHPBarTop(0, 0, (int)Math.ceil(hpBarWidth), scale);
+				drawHPBarTop(0, 0, (int) Math.ceil(hpBarWidth), scale);
 			}
 			GL11.glPopMatrix();
 		}
@@ -214,7 +223,6 @@ public class GuiLockOn extends GuiScreen {
 	}
 
 	public void drawHPBarTop(int posX, int posY, int width, float scale) {
-		// System.out.println(hpBars);
 		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
 		GL11.glPushMatrix();
 		{
