@@ -21,7 +21,11 @@ public class GuiLockOn extends GuiScreen {
 	int guiHeight = 256;
 
 	int hpGuiWidth = 173;
-	int hpBarWidth;
+	float hpBarWidth;
+	int barDivider;
+	int hpBars;
+	int currentBar;
+
 	int hpGuiHeight = 10;
 	int noborderguiwidth = 171;
 
@@ -89,67 +93,6 @@ public class GuiLockOn extends GuiScreen {
 		}
 	}
 
-	public void drawHPBarBack(int posX, int posY, int width, float scale) {
-		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
-		GL11.glPushMatrix();
-		{
-			//Left Margin
-			GL11.glPushMatrix();
-			{
-				GL11.glTranslatef(scale * posX, scale * posY, 0);
-				GL11.glScalef(scale, scale, 0);
-				drawTexturedModalRect(0, 0, 0, 0, 2, 10);
-			}
-			GL11.glPopMatrix();
-			
-			//Background
-			GL11.glPushMatrix();
-			{
-				GL11.glTranslatef((posX + 2) * scale, posY * scale, 0);
-				GL11.glScalef(width, scale, 0);
-				drawTexturedModalRect(0, 0, 2, 0, 1, 10);
-			}
-			GL11.glPopMatrix();
-
-			//Right Margin
-			GL11.glPushMatrix();
-			{
-				GL11.glTranslatef((posX + 2) * scale + width, scale * posY, 0);
-				GL11.glScalef(scale, scale, 0);
-				drawTexturedModalRect(0, 0, 3, 0, 2, 10);
-			}
-			GL11.glPopMatrix();
-
-			//HP Icon
-			GL11.glPushMatrix();
-			{
-				GL11.glTranslatef(posX + width - 14, posY + 7, 0);
-				GL11.glScalef(scale, scale, 0);
-				drawTexturedModalRect(1, 0, 0, 32, 23, 12);
-			}
-			GL11.glPopMatrix();
-			
-			
-		}
-		GL11.glPopMatrix();
-
-	}
-
-	public void drawHPBarTop(int posX, int posY, int width, float scale) {
-		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
-		GL11.glPushMatrix();
-		{
-			GL11.glPushMatrix();
-			{
-				GL11.glTranslatef((posX + 2) * scale, (posY + 2) * scale, 0);
-				GL11.glScalef(width, scale, 0);
-				drawTexturedModalRect(0, 0, 2, 12, 1, 6);
-			}
-			GL11.glPopMatrix();
-		}
-		GL11.glPopMatrix();
-	}
-
 	public void drawHPBar(RenderGameOverlayEvent event, EntityLivingBase target) {
 		int screenWidth = event.getResolution().getScaledWidth();
 		int screenHeight = event.getResolution().getScaledHeight();
@@ -164,9 +107,27 @@ public class GuiLockOn extends GuiScreen {
 			int currHealth = noborderguiwidth - (int) (oneHeart * target.getHealth());
 			float scale = 0.65f;
 
-			hpBarWidth = (int) Math.ceil(target.getHealth() * 1.5);
+			barDivider = 10;
 
-			int hpBarMaxWidth = (int) ((int) target.getMaxHealth() * 1.5);
+			//System.out.println(target.getHealth());
+			hpBars = (int) target.getMaxHealth() / barDivider;
+			currentBar = (int) target.getHealth() / barDivider;
+			
+			if (target.getHealth() % barDivider != 0) // If there is module it will have it's hp bar
+				currentBar++;
+			
+			int oneBar = (int) (target.getMaxHealth() / hpBars);
+
+			if(target.getMaxHealth() % target.getHealth() == 0) {
+				hpBarWidth = oneBar *10;
+			} else {
+				hpBarWidth = (float) (Math.ceil(target.getHealth() % oneBar) * 10);
+			}
+			System.out.println(target.getMaxHealth());
+			//hpBarWidth = (int) (target.getHealth()/hpBars *10);
+			int hpBarMaxWidth = (int) (target.getMaxHealth() * 10 / hpBars);
+
+
 
 			switch (mc.gameSettings.guiScale) {
 			case Constants.SCALE_AUTO:
@@ -180,8 +141,6 @@ public class GuiLockOn extends GuiScreen {
 				break;
 			}
 
-			int posX = 190 - hpBarWidth;
-
 			GL11.glPushMatrix();
 			{
 				GL11.glTranslatef((screenWidth - hpBarMaxWidth * scale) - 2 * scale * 2, 1, 0);
@@ -193,9 +152,93 @@ public class GuiLockOn extends GuiScreen {
 			{
 				GL11.glTranslatef((screenWidth - (hpBarWidth) * scale) - 2 * scale * 2, 1, 0);
 				GL11.glScalef(scale, scale, scale);
-				drawHPBarTop(0, 0, hpBarWidth, scale);
+				drawHPBarTop(0, 0, (int)Math.ceil(hpBarWidth), scale);
 			}
 			GL11.glPopMatrix();
 		}
 	}
+
+	public void drawHPBarBack(int posX, int posY, int width, float scale) {
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
+		GL11.glPushMatrix();
+		{
+			// Left Margin
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef(scale * posX, scale * posY, 0);
+				GL11.glScalef(scale, scale, 0);
+				drawTexturedModalRect(0, 0, 0, 0, 2, 10);
+			}
+			GL11.glPopMatrix();
+
+			// Background
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef((posX + 2) * scale, posY * scale, 0);
+				GL11.glScalef(width, scale, 0);
+				drawTexturedModalRect(0, 0, 2, 0, 1, 10);
+			}
+			GL11.glPopMatrix();
+
+			// Right Margin
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef((posX + 2) * scale + width, scale * posY, 0);
+				GL11.glScalef(scale, scale, 0);
+				drawTexturedModalRect(0, 0, 3, 0, 2, 10);
+			}
+			GL11.glPopMatrix();
+
+			// HP Icon
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef(posX + width - 14, posY + 7, 0);
+				GL11.glScalef(scale, scale, 0);
+				drawTexturedModalRect(1, 0, 0, 32, 23, 12);
+			}
+			GL11.glPopMatrix();
+
+			// HP Bars
+			for (int i = 0; i < hpBars - 1; i++) {
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef(posX + width - 14 - (11 * (i + 1)), posY + 7, 0);
+					GL11.glScalef(scale, scale, 0);
+					drawTexturedModalRect(0, 0, 0, 46, 17, 12);
+				}
+				GL11.glPopMatrix();
+			}
+		}
+		GL11.glPopMatrix();
+
+	}
+
+	public void drawHPBarTop(int posX, int posY, int width, float scale) {
+		// System.out.println(hpBars);
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/hpbar.png"));
+		GL11.glPushMatrix();
+		{
+			// HP Bar
+			GL11.glPushMatrix();
+			{
+				GL11.glTranslatef((posX + 2) * scale, (posY + 2) * scale, 0);
+				GL11.glScalef(width, scale, 0);
+				drawTexturedModalRect(0, 0, 2, 12, 1, 6);
+			}
+			GL11.glPopMatrix();
+
+			// HP Bars
+			for (int i = 0; i < currentBar - 1; i++) {
+				GL11.glPushMatrix();
+				{
+					GL11.glTranslatef(posX + width - 14 - (11 * (i + 1)), posY + 7, 0);
+					GL11.glScalef(scale, scale, 0);
+					drawTexturedModalRect(2, 2, 2, 62, 16, 12);
+				}
+				GL11.glPopMatrix();
+			}
+		}
+		GL11.glPopMatrix();
+	}
+
 }
