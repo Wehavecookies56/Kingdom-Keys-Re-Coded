@@ -32,6 +32,8 @@ public class GuiLockOn extends GuiScreen {
 	int max = 23;
 	int i = max;
 	int multiplier = 4;
+	
+	float scale;
 
 	@SubscribeEvent
 	public void onRenderOverlayPost(RenderGameOverlayEvent event) {
@@ -56,8 +58,8 @@ public class GuiLockOn extends GuiScreen {
 			int screenWidth = event.getResolution().getScaledWidth();
 			int screenHeight = event.getResolution().getScaledHeight();
 
-			float scale = 0.65f;
-			switch (mc.gameSettings.guiScale) {
+			scale = 0.75F;
+			/*switch (mc.gameSettings.guiScale) {
 			case Constants.SCALE_AUTO:
 				scale = 0.85f;
 				break;
@@ -67,7 +69,7 @@ public class GuiLockOn extends GuiScreen {
 			default:
 				scale = 0.65f;
 				break;
-			}
+			}*/
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth / 2) - (guiWidth / 2) * scale / reduction, (screenHeight / 2) - (guiHeight / 2) * scale / reduction, 0);
 			GL11.glScalef(scale / reduction, scale / reduction, scale / reduction);
@@ -105,9 +107,9 @@ public class GuiLockOn extends GuiScreen {
 
 			float oneHeart = (noborderguiwidth / target.getMaxHealth());
 			int currHealth = noborderguiwidth - (int) (oneHeart * target.getHealth());
-			float scale = 0.65f;
+			//float scale = 0.65f;
 
-			BarHP = 20;
+			BarHP = 25;
 
 			// If the max health is not divisible by BarHP reduce it
 			while (target.getMaxHealth() % BarHP != 0) {
@@ -138,7 +140,7 @@ public class GuiLockOn extends GuiScreen {
 			//Background HP width
 			int hpBarMaxWidth = (int) (target.getMaxHealth() * 10 / hpBars);
 
-			switch (mc.gameSettings.guiScale) {
+			/*switch (mc.gameSettings.guiScale) {
 			case Constants.SCALE_AUTO:
 				scale = 0.85f;
 				break;
@@ -148,7 +150,7 @@ public class GuiLockOn extends GuiScreen {
 			default:
 				scale = 0.70f;
 				break;
-			}
+			}*/
 
 			GL11.glPushMatrix();
 			{
