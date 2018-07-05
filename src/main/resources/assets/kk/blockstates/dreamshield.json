@@ -40,7 +40,12 @@
 						"rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
 						"translation": [ 0, 0, 0 ],
 						"scale": 0.015
-					}
+					},
+                    "fixed": {
+                        "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
+                        "translation": [ 0, -0.25, 0 ],
+                        "scale": 0.01
+                    }
         }
       }
     ],
