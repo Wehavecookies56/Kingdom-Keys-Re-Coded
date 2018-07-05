@@ -32,20 +32,19 @@ import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.client.gui.GuiCommandMenu;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
-import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.LockOn;
-import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
+import uk.co.wehavecookies56.kk.common.entity.mobs.multipart.EntityPart;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
-import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.magic.Magic;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
@@ -505,6 +504,14 @@ public class InputHandler {
                                     lockOn = (EntityLivingBase) rtr.entityHit;
                                     LockOn.target = (EntityLivingBase) rtr.entityHit;
                                     player.world.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+                                } else if(rtr.entityHit instanceof EntityPart){
+                                	EntityPart part = (EntityPart) rtr.entityHit;
+                                	if(part.getParent() != null && part.getParent() instanceof EntityLivingBase) {
+                                        lockOn = (EntityLivingBase) part.getParent();
+                                        LockOn.target = (EntityLivingBase) part.getParent();
+                                        player.world.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+
+                                	}
                                 }
                             }
                         }

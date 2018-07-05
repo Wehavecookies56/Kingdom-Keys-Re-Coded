@@ -1,8 +1,7 @@
 package uk.co.wehavecookies56.kk.common.entity.mobs.multipart;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.IEntityMultiPart;
-import net.minecraft.entity.MoverType;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -52,6 +51,10 @@ public class EntityPart extends Entity
     public boolean isEntityEqual(Entity entityIn)
     {
         return this == entityIn || this.parent == entityIn;
+    }
+    
+    public IMultiPartEntity getParent() {
+    	return this.parent;
     }
     
 }
