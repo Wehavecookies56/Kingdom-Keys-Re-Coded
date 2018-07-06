@@ -62,6 +62,8 @@ public class PlayerStatsCapability {
         void addMP(double mp);
         void remMP(double mp);
         void setMaxMP(double mp);
+        double addMaxMP(double mp);
+
         void setRecharge(boolean recharge);
 
         void setEnderDragonDefeated(boolean defeated);
@@ -140,9 +142,9 @@ public class PlayerStatsCapability {
         private int strength = 1;
         private int defense = 1;
         private int magic = 1;
-        private int hp = 20;
-        private double mp = 100;
-        private double maxMP = 100;
+        private int maxHP = 20;
+        private double mp = 20;
+        private double maxMP = 20;
         
         private boolean recharge = false;
         private boolean cheatMode = false;
@@ -213,7 +215,7 @@ public class PlayerStatsCapability {
         }
         @Override
         public int getHP() {
-            return this.hp;
+            return this.maxHP;
         }
        
         @Override
@@ -301,14 +303,14 @@ public class PlayerStatsCapability {
         }
         @Override
         public int setHP(int hp) {
-            this.hp = hp;
-            return this.hp;
+            this.maxHP = hp;
+            return this.maxHP;
         }
         @Override
         public int addHP(int hp) {
-            this.hp += hp;
+            this.maxHP += hp;
             messages.add(Strings.Stats_LevelUp_HP);
-            return this.hp;
+            return this.maxHP;
         }
        
        
@@ -340,6 +342,14 @@ public class PlayerStatsCapability {
         public void setMaxMP(double maxMP) {
             this.maxMP = maxMP;
         }
+        
+        public double addMaxMP(double mp) {
+            this.maxMP += mp;
+            messages.add(Strings.Stats_LevelUp_MP);
+            System.out.println(maxMP);
+            return this.maxMP;
+        }
+        
         @Override
         public void setRecharge(boolean recharge) {
             this.recharge = recharge;
@@ -723,8 +733,11 @@ public class PlayerStatsCapability {
                 player.setHealth(getHP());
                 player.getFoodStats().addStats(20,0);
                 player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).addPoints(1);
+                this.addMaxMP(5);
+                this.setMP(this.getMaxMP());
                 PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
             }
+            
             player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 0.5f, 1.0f);
             player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());
             PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
