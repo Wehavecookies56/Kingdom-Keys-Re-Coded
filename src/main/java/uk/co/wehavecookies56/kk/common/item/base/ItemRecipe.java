@@ -34,28 +34,30 @@ public class ItemRecipe extends ItemKKBase {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		String[] recipes = null;
-		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-			PacketDispatcher.sendToServer(new UseRecipe(player.getHeldItemMainhand().getTagCompound().getString("recipe1"), player.getHeldItemMainhand().getTagCompound().getString("recipe2"), player.getHeldItemMainhand().getTagCompound().getString("recipe3")));
-			return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItemMainhand());
-		} else if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-			recipes = new String[] { player.getHeldItemMainhand().getTagCompound().getString("recipe1"), player.getHeldItemMainhand().getTagCompound().getString("recipe2"), player.getHeldItemMainhand().getTagCompound().getString("recipe3") };
-		}
-
-		SynthesisRecipeCapability.ISynthesisRecipe RECIPES = player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
-
-		boolean consume = false;
-
-		for (String recipe : recipes) {
-			if (RecipeRegistry.get(recipe) != null && !RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe)) {
-				consume = true;
+		if (hand == EnumHand.MAIN_HAND) {
+			String[] recipes = null;
+			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+				PacketDispatcher.sendToServer(new UseRecipe(player.getHeldItemMainhand().getTagCompound().getString("recipe1"), player.getHeldItemMainhand().getTagCompound().getString("recipe2"), player.getHeldItemMainhand().getTagCompound().getString("recipe3")));
+				return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItemMainhand());
+			} else if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+				recipes = new String[] { player.getHeldItemMainhand().getTagCompound().getString("recipe1"), player.getHeldItemMainhand().getTagCompound().getString("recipe2"), player.getHeldItemMainhand().getTagCompound().getString("recipe3") };
 			}
-		}
 
-		if (consume) {
-			player.getHeldItemMainhand().setCount(player.getHeldItemMainhand().getCount() - 1);
-		} else {
-			shuffleRecipes(player.getHeldItemMainhand(), player);
+			SynthesisRecipeCapability.ISynthesisRecipe RECIPES = player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+
+			boolean consume = false;
+
+			for (String recipe : recipes) {
+				if (RecipeRegistry.get(recipe) != null && !RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), recipe)) {
+					consume = true;
+				}
+			}
+
+			if (consume) {
+				player.getHeldItemMainhand().setCount(player.getHeldItemMainhand().getCount() - 1);
+			} else {
+				shuffleRecipes(player.getHeldItemMainhand(), player);
+			}
 		}
 		return super.onItemRightClick(world, player, hand);
 	}
