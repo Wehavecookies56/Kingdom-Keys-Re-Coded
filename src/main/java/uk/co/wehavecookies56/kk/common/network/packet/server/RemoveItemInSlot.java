@@ -92,7 +92,8 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
             case Strings.Potion:
                 potions = player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
                 potions.setStackInSlot(slot, ItemStack.EMPTY);
-                if (sound) player.world.playSound(null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 0.5f, 1);
+                if (sound) 
+                	player.world.playSound(null, player.getPosition(), ModSounds.potion, SoundCategory.MASTER, 0.5f, 1);
                 break;
                 
             case Strings.DriveBoost:

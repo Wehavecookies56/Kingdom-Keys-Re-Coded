@@ -26,7 +26,7 @@ public abstract class ItemKKPotion extends ItemFood {
         setUnlocalizedName(name);
         setCreativeTab(ModItems.tabKingdomKeys);
         setAlwaysEdible();
-        setMaxStackSize(1);
+        //setMaxStackSize(64);
         this.potionType = type;
     }
 
@@ -40,7 +40,7 @@ public abstract class ItemKKPotion extends ItemFood {
     }
 
     public void setItemName (String unlocalizedName) {
-        this.name = name;
+        this.name = unlocalizedName;
     }
 
     public static void getItem (EntityPlayer player, World world, String item, int slot) {

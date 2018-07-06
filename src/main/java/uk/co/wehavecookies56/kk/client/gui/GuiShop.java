@@ -33,7 +33,7 @@ public class GuiShop extends GuiScreen {
     public int buySelected = -1;
     public int sellSelected = -1;
     private final GuiScreen parent;
-    final int HOME = -1, BUY = 0, SELL = 1, BACK = 2, BUYCONFIRM = 3, PLUS = 4, MINUS = 5, SYNTHESIS = 6, SELLCONFIRM = 4;
+    final int HOME = -1, BUY = 0, SELL = 1, BACK = 2, BUYCONFIRM = 3, SELLCONFIRM = 4, SELLALLCONFIRM = 5, SYNTHESIS = 6;
     final int QUANTITY = 0;
     int submenu = HOME;
     private GuiBuyList buyList;
@@ -41,7 +41,7 @@ public class GuiShop extends GuiScreen {
 
     protected String title = Utils.translateToLocal(Strings.Gui_Shop_Main_Title);
 
-    GuiButton buy, sell, back, buyConfirm, plus, minus, synthesis, sellConfirm;
+    GuiButton buy, sell, back, buyConfirm, synthesis, sellConfirm, sellAllConfirm;
     GuiNumberTextField quantity;
 
     public GuiShop(GuiScreen parent) {
@@ -109,9 +109,21 @@ public class GuiShop extends GuiScreen {
         this.buttonList.add(sell = new GuiButton(SELL, 5, 65 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Sell)));
         this.buttonList.add(buyConfirm = new GuiButton(BUYCONFIRM, 220, height - ((height / 8) + 70 / 16) - 25, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Buy)));
         this.buttonList.add(sellConfirm = new GuiButton(SELLCONFIRM, 220, height - ((height / 8) + 70 / 16) - 25, 100, 20, Utils.translateToLocal(Strings.Gui_Shop_Main_Sell)));
+        float totalAmount = 0;
+      
+        /*
+        for(int i=0;i<sellList.sellableItems.size();i++) {
+            for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
+	        	if (ItemEvents.areItemStacksEqual(stack, sellList.sellableItems.get(i))) 
+	        		totalAmount += MunnyRegistry.munnyValues.get(stack) / 2 ;// GuiSellList.stackSizes.get(i);
+            }
+        }*/
+        
+        this.buttonList.add(sellAllConfirm = new GuiButton(SELLALLCONFIRM, 320, height - ((height / 8) + 70 / 16) - 25, 100, 20, "Sell all"));
+
         this.buttonList.add(synthesis = new GuiButton(SYNTHESIS, 5, 90 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Title)));
         quantity = new GuiNumberTextField(QUANTITY, Minecraft.getMinecraft().fontRenderer, 222, height - ((height / 8) + 70 / 16) - 45, 20, 15, 64);
-        quantity.setText("0");
+        quantity.setText("1");
         updateButtons();
     }
 
@@ -171,6 +183,18 @@ public class GuiShop extends GuiScreen {
                 }
                 sellList.occupyList();
                 break;
+                
+            case SELLALLCONFIRM:
+               // if (sellSelected != -1) {
+            	for(int i=0;i<sellList.getSize();i++) {
+                    int amount = GuiSellList.stackSizes.get(i);
+                    PacketDispatcher.sendToServer(new TakeSoldItem(getPriceFromSelected(i, true, amount) / 2, amount, GuiSellList.sellableItems.get(i)));
+                    quantity.setText("0");
+                }
+                sellSelected = -1;
+                sellList.occupyList();
+                break;
+
             case SYNTHESIS:
                 PacketDispatcher.sendToServer(new OpenSynthesis());
                 Minecraft.getMinecraft().displayGuiScreen(new GuiSynthesis(this));
@@ -212,6 +236,7 @@ public class GuiShop extends GuiScreen {
             buyConfirm.enabled = false;
             sellConfirm.visible = false;
             sellConfirm.enabled = false;
+            sellAllConfirm.visible = false;
             synthesis.visible = true;
             synthesis.enabled = true;
             quantity.setVisible(false);
@@ -237,6 +262,8 @@ public class GuiShop extends GuiScreen {
             synthesis.enabled = false;
             sellConfirm.visible = false;
             sellConfirm.enabled = false;
+            sellAllConfirm.visible = false;
+
             if (buySelected != -1) {
                 buyConfirm.visible = true;
                 quantity.setVisible(true);
@@ -262,6 +289,8 @@ public class GuiShop extends GuiScreen {
                 buyConfirm.visible = false;
             }
         } else if (submenu == SELL) {
+            sellAllConfirm.visible = true;
+
             if (sellSelected != -1) {
                 if (!quantity.getText().isEmpty()) {
                     sellList.occupyList();

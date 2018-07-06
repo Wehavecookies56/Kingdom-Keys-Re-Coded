@@ -16,6 +16,7 @@ import net.minecraftforge.fml.client.GuiScrollingList;
 import uk.co.wehavecookies56.kk.api.munny.MunnyRegistry;
 import uk.co.wehavecookies56.kk.common.core.handler.event.ItemEvents;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
+import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
@@ -497,7 +498,17 @@ public class GuiBuyList extends GuiScrollingList {
         GL11.glPushMatrix(); {
             GL11.glTranslatef(posX, 70, 0);
             GL11.glScalef(2, 2, 2);
-            parent.drawString(Minecraft.getMinecraft().fontRenderer, itemsForSale.get(parent.buySelected).getDisplayName(), 0, 0, 0xFFFFFF);
+           
+            String name;
+            if(itemsForSale.get(parent.buySelected) != null) {
+	            if(itemsForSale.get(parent.buySelected).getItem() instanceof ItemSynthesisMaterial) {
+	            	name = Utils.translateToLocal(itemsForSale.get(parent.buySelected).getTagCompound().getString("material")+".name");
+	            } else {
+	            	name = itemsForSale.get(parent.buySelected).getDisplayName();
+	            }
+	            parent.drawString(Minecraft.getMinecraft().fontRenderer, name + " x" + Utils.getInt(parent.quantity.getText()), 0, 0, 0xFFFFFF);
+            }
+           // parent.drawString(Minecraft.getMinecraft().fontRenderer, itemsForSale.get(parent.buySelected).getDisplayName(), 0, 0, 0xFFFFFF);
         }
         GL11.glPopMatrix();
         parent.drawString(Minecraft.getMinecraft().fontRenderer, Utils.translateToLocal(Strings.Gui_Shop_Buy_Quantity), 220, parent.height - ((parent.height / 8) + 70 / 16) - 60, 0xFFFFFF);
@@ -505,7 +516,7 @@ public class GuiBuyList extends GuiScrollingList {
             GL11.glTranslatef(posX, 90, 0);
             for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
                 if (ItemEvents.areItemStacksEqual(stack, itemsForSale.get(parent.buySelected))) {
-                    Minecraft.getMinecraft().fontRenderer.drawString(Utils.translateToLocal(Strings.Gui_Shop_Buy_Cost) + ": " + MunnyRegistry.munnyValues.get(stack), 0, 0, 0xFFFF55);
+                    Minecraft.getMinecraft().fontRenderer.drawString(Utils.translateToLocal(Strings.Gui_Shop_Buy_Cost) + ": " + MunnyRegistry.munnyValues.get(stack) * Utils.getInt(parent.quantity.getText()), 0, 0, 0xFFFF55);
                 }
             }
         }

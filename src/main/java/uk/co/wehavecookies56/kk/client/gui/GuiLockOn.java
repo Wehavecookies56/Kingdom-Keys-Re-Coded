@@ -59,17 +59,7 @@ public class GuiLockOn extends GuiScreen {
 			int screenHeight = event.getResolution().getScaledHeight();
 
 			scale = 0.75F;
-			/*switch (mc.gameSettings.guiScale) {
-			case Constants.SCALE_AUTO:
-				scale = 0.85f;
-				break;
-			case Constants.SCALE_NORMAL:
-				scale = 0.85f;
-				break;
-			default:
-				scale = 0.65f;
-				break;
-			}*/
+			
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth / 2) - (guiWidth / 2) * scale / reduction, (screenHeight / 2) - (guiHeight / 2) * scale / reduction, 0);
 			GL11.glScalef(scale / reduction, scale / reduction, scale / reduction);
@@ -83,8 +73,7 @@ public class GuiLockOn extends GuiScreen {
 
 			GL11.glPushMatrix();
 
-			if (target != null)// TODO && player has scan ability
-			{
+			if (target != null) { // TODO && player has scan ability
 				this.drawString(mc.fontRenderer, target.getName(), screenWidth - mc.fontRenderer.getStringWidth(target.getName()), 15, 0xFFFFFF);
 				drawHPBar(event, (EntityLivingBase) target);
 			}
@@ -107,18 +96,16 @@ public class GuiLockOn extends GuiScreen {
 
 			float oneHeart = (noborderguiwidth / target.getMaxHealth());
 			int currHealth = noborderguiwidth - (int) (oneHeart * target.getHealth());
-			//float scale = 0.65f;
 
 			BarHP = 25;
 
 			// If the max health is not divisible by BarHP reduce it
 			while (target.getMaxHealth() % BarHP != 0) {
 				BarHP--;
-				if (BarHP == 0) {// If it's not divisible by 0 set it to the entity health
+				if (BarHP == 1) {// If it's not divisible by 0 set it to the entity health
 					BarHP = (int) target.getMaxHealth();
 					break;
 				}
-
 			}
 
 			// Number of HP bars (returns 1 more but it gets removed after)
@@ -139,18 +126,6 @@ public class GuiLockOn extends GuiScreen {
 
 			//Background HP width
 			int hpBarMaxWidth = (int) (target.getMaxHealth() * 10 / hpBars);
-
-			/*switch (mc.gameSettings.guiScale) {
-			case Constants.SCALE_AUTO:
-				scale = 0.85f;
-				break;
-			case Constants.SCALE_NORMAL:
-				scale = 0.85f;
-				break;
-			default:
-				scale = 0.70f;
-				break;
-			}*/
 
 			GL11.glPushMatrix();
 			{

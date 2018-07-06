@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.container.slot;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -22,6 +24,17 @@ public class SlotCustom extends SlotItemHandler {
     public SlotCustom (IItemHandler inventory, int index, int x, int y, int window) {
         super(inventory, index, x, y);
         this.window = window;
+        
+    }
+    
+    @Override
+    public int getItemStackLimit(@Nonnull ItemStack stack){
+    	return 1;
+    }
+    
+    @Override
+    public int getSlotStackLimit() {
+    	return 1;
     }
 
     @Override

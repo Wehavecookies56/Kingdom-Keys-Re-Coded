@@ -26,6 +26,16 @@ import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
  */
 public class Utils {
 
+	public static int getInt(String num) {
+		int number;
+		try {
+			number = Integer.parseInt(num);
+			return number;
+		}catch(Exception e) {
+			return 0;
+		}
+	}
+	
     /**
      * Method for generating random integer between the 2 parameters, The order of
      * min and max do not matter.
