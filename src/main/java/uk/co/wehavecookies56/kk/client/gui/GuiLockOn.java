@@ -110,6 +110,7 @@ public class GuiLockOn extends GuiScreen {
 
 			// Number of HP bars (returns 1 more but it gets removed after)
 			hpBars = (int) target.getMaxHealth() / BarHP;
+			
 			// Current HP Bar
 			currentBar = (int) target.getHealth() / BarHP;
 

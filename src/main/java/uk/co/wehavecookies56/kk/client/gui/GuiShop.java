@@ -1,12 +1,15 @@
 package uk.co.wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -15,8 +18,10 @@ import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.api.munny.MunnyRegistry;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.MunnyCapability;
+import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability.ISynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.handler.event.ItemEvents;
+import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -34,6 +39,7 @@ public class GuiShop extends GuiScreen {
     public int sellSelected = -1;
     private final GuiScreen parent;
     final int HOME = -1, BUY = 0, SELL = 1, BACK = 2, BUYCONFIRM = 3, SELLCONFIRM = 4, SELLALLCONFIRM = 5, SYNTHESIS = 6;
+    int FILTER = 0;
     final int QUANTITY = 0;
     int submenu = HOME;
     private GuiBuyList buyList;
@@ -47,6 +53,8 @@ public class GuiShop extends GuiScreen {
     public GuiShop(GuiScreen parent) {
         this.parent = parent;
     }
+    
+	GuiTextField filter;//,sellFilter;
 
     public int getPriceFromSelected(int index, boolean selling, int amount) {
         if (index != -1 && !(index > GuiBuyList.itemsForSale.size())) {
@@ -122,6 +130,9 @@ public class GuiShop extends GuiScreen {
         this.buttonList.add(sellAllConfirm = new GuiButton(SELLALLCONFIRM, 320, height - ((height / 8) + 70 / 16) - 25, 100, 20, "Sell all"));
 
         this.buttonList.add(synthesis = new GuiButton(SYNTHESIS, 5, 90 + 25, 100, 20, Utils.translateToLocal(Strings.Gui_Synthesis_Main_Title)));
+		filter = new GuiTextField(FILTER, mc.fontRenderer, 9, 65 - 25, 182, 20);
+		//freeDevFilter = new GuiTextField(FREEDEVFILTER, mc.fontRenderer, 9, 65 - 25, 182, 20);
+
         quantity = new GuiNumberTextField(QUANTITY, Minecraft.getMinecraft().fontRenderer, 222, height - ((height / 8) + 70 / 16) - 45, 20, 15, 64);
         quantity.setText("1");
         updateButtons();
@@ -143,6 +154,8 @@ public class GuiShop extends GuiScreen {
             }
         }
         quantity.drawTextBox();
+		filter.drawTextBox();
+
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -186,9 +199,9 @@ public class GuiShop extends GuiScreen {
                 
             case SELLALLCONFIRM:
                // if (sellSelected != -1) {
-            	for(int i=0;i<sellList.getSize();i++) {
+            	for(int i=0;i<sellFilter().size();i++) {
                     int amount = GuiSellList.stackSizes.get(i);
-                    PacketDispatcher.sendToServer(new TakeSoldItem(getPriceFromSelected(i, true, amount) / 2, amount, GuiSellList.sellableItems.get(i)));
+                    PacketDispatcher.sendToServer(new TakeSoldItem(getPriceFromSelected(i, true, amount) / 2, amount, sellFilter().get(i)));
                     quantity.setText("0");
                 }
                 sellSelected = -1;
@@ -206,6 +219,13 @@ public class GuiShop extends GuiScreen {
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
         quantity.textboxKeyTyped(typedChar, keyCode);
+		filter.textboxKeyTyped(typedChar, keyCode);
+		
+		if(filter.isFocused()) {
+			buySelected = -1;
+			sellSelected = -1;
+		}
+		
         updateButtons();
         super.keyTyped(typedChar, keyCode);
     }
@@ -213,6 +233,7 @@ public class GuiShop extends GuiScreen {
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
         quantity.mouseClicked(mouseX, mouseY, mouseButton);
+		filter.mouseClicked(mouseX, mouseY, mouseButton);
         super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
@@ -240,7 +261,9 @@ public class GuiShop extends GuiScreen {
             synthesis.visible = true;
             synthesis.enabled = true;
             quantity.setVisible(false);
+            filter.setVisible(false);
         } else if (submenu == BUY) {
+        	filter.setVisible(true);
             int munny = Minecraft.getMinecraft().player.getCapability(ModCapabilities.MUNNY, null).getMunny();
             if (getPriceFromSelected(buySelected, false, 1) == 0) {
                 quantity.setMaxValue(64);
@@ -289,6 +312,7 @@ public class GuiShop extends GuiScreen {
                 buyConfirm.visible = false;
             }
         } else if (submenu == SELL) {
+        	filter.setVisible(true);
             sellAllConfirm.visible = true;
 
             if (sellSelected != -1) {
@@ -364,5 +388,39 @@ public class GuiShop extends GuiScreen {
         GL11.glPopMatrix();
 
     }
+    
+    public List<ItemStack> buyFilter() {
+		List<ItemStack> materials = new ArrayList<ItemStack>();
 
+		for (ItemStack mat : buyList.itemsForSale) {
+			String translatedMat = mat.getUnlocalizedName();
+			if(mat.getItem() instanceof ItemSynthesisMaterial) {
+				translatedMat = mat.getTagCompound().getString("material");
+			}
+			translatedMat = Utils.translateToLocal(translatedMat+".name");
+			//System.out.println(translatedMat);
+			if(translatedMat.toLowerCase().contains(filter.getText().toLowerCase())) {
+				materials.add(mat);
+			}
+		}
+		return materials;		
+	}
+
+    
+    public List<ItemStack> sellFilter() {
+		List<ItemStack> materials = new ArrayList<ItemStack>();
+
+		for (ItemStack mat : sellList.sellableItems) {
+			String translatedMat = mat.getUnlocalizedName();
+			if(mat.getItem() instanceof ItemSynthesisMaterial) {
+				translatedMat = mat.getTagCompound().getString("material");
+			}
+			translatedMat = Utils.translateToLocal(translatedMat+".name");
+			//System.out.println(translatedMat);
+			if(translatedMat.toLowerCase().contains(filter.getText().toLowerCase())) {
+				materials.add(mat);
+			}
+		}
+		return materials;		
+	}
 }

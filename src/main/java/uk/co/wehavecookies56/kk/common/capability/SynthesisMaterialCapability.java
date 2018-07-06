@@ -21,12 +21,13 @@ public class SynthesisMaterialCapability {
 
     public interface ISynthesisMaterial {
         TreeMap<String, Integer> getKnownMaterialsMap();
+        //TreeMap<String, Integer> getBuyableMaterialsMap();
+
         int getMaterialAmount(Material material);
 
         void addMaterial (Material material, int amount);
         void removeMaterial (Material material, int amount);
         void setMaterial (Material material, int amount);
-
     }
 
     public static class Storage implements IStorage<ISynthesisMaterial> {
