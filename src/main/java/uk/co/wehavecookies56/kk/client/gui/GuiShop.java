@@ -68,7 +68,6 @@ public class GuiShop extends GuiScreen {
                         return MunnyRegistry.munnyValues.get(stack) * amount;
                     }
                 }
-
             }
         } else {
             return 0;
@@ -176,7 +175,7 @@ public class GuiShop extends GuiScreen {
             case BUYCONFIRM:
                 if (buySelected != -1) {
                     if (canAffordSelected()) {
-                        ItemStack stack = GuiBuyList.itemsForSale.get(buySelected);
+                        ItemStack stack = buyFilter().get(buySelected);
                         if (!quantity.getText().isEmpty())
                             stack.setCount(Integer.parseInt(quantity.getText()));
                         PacketDispatcher.sendToServer(new GiveBoughtItem(getPriceFromSelected(buySelected, false, Integer.parseInt(quantity.getText())), stack.getCount(), stack));

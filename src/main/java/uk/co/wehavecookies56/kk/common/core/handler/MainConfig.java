@@ -131,24 +131,29 @@ public class MainConfig {
         public int silverRockRatio = 5;
         
         @Config.RequiresMcRestart
-        @Config.Name("Silver Rock spawning ratio")
-        @Config.Comment("Sets Silver Rock heartless spawning ratio")
+        @Config.Name("Minute Bomb spawning ratio")
+        @Config.Comment("Sets Minute Bomb heartless spawning ratio")
         public int minuteBombRatio = 6;
         
         @Config.RequiresMcRestart
-        @Config.Name("Silver Rock spawning ratio")
-        @Config.Comment("Sets Silver Rock heartless spawning ratio")
+        @Config.Name("Skater Bomb spawning ratio")
+        @Config.Comment("Sets Skater Bomb heartless spawning ratio")
         public int skaterBombRatio = 5;
         
         @Config.RequiresMcRestart
-        @Config.Name("Silver Rock spawning ratio")
-        @Config.Comment("Sets Silver Rock heartless spawning ratio")
+        @Config.Name("Storm Bomb spawning ratio")
+        @Config.Comment("Sets Storm Bomb heartless spawning ratio")
         public int stormBombRatio = 3;
         
         @Config.RequiresMcRestart
-        @Config.Name("Silver Rock spawning ratio")
-        @Config.Comment("Sets Silver Rock heartless spawning ratio")
+        @Config.Name("Detonator spawning ratio")
+        @Config.Comment("Sets Detonator heartless spawning ratio")
         public int detonatorRatio = 2;
+        
+        @Config.RequiresMcRestart
+        @Config.Name("Dire Plant spawning ratio")
+        @Config.Comment("Sets Dire Plant heartless spawning ratio")
+        public int direPlantRatio = 4;
 
         @Config.RequiresMcRestart
         @Config.Name("Moogle spawning ratio")
