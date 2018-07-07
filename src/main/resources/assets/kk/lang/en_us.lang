@@ -1066,6 +1066,7 @@ key.kingdomkeys.openmenu=Open Menu
 key.kingdomkeys.summonkeyblade=Summon Keyblade
 key.kingdomkeys.showgui=Show HUD (on/off/on with keyblade)
 key.kingdomkeys.lockon=Toggle Lock On
+key.kingdomkeys.action=Action Key
 
 ############################
 #Spells and forms
@@ -1114,6 +1115,7 @@ stats.levelUpStr=Strength Increased!
 stats.levelUpDef=Defense Increased!
 stats.levelUpMag=Magic Increased!
 stats.levelUpHP=Maximum HP Increased!
+stats.levelUpMP=Maximum MP Increased!
 stats.levelUpFG=Form Gauge Powered Up!
 stats.levelUpHighJump=High Jump LV %1$s!
 stats.levelUpQuickRun=Quick Run LV %1$s!
