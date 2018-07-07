@@ -51,6 +51,8 @@ public class RenderSeedBullet extends Render implements IRenderFactory<EntitySee
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		
 		GL11.glPopMatrix();
+		
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);	
 	}
 	
 	public Render<? super EntitySeedBullet> createRenderFor(RenderManager manager)
