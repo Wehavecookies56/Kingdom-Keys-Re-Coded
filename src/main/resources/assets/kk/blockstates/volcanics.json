@@ -1,12 +1,12 @@
 {
 	"forge_marker": 1,
     "defaults": {
-        "textures": {
-
-        },
-        "model": "kk:volcanics.obj",
-        
-    },
+        "textures": { 
+ 
+        }, 
+        "model": "kk:volcanics.obj" 
+         
+    }, 
    	"variants": {
         "inventory": [
             {
