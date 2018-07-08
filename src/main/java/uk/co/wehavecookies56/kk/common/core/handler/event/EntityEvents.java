@@ -86,6 +86,7 @@ import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
 import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -1149,7 +1150,9 @@ public class EntityEvents {
 		}
 		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
-			player.getCapability(ModCapabilities.DRIVE_STATE, null).addDP(1);
+			IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+			if (!DRIVE.getInDrive()) // If player is in base get a bit of DP
+				DRIVE.addDP(1);
 			PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
 		}
 		if (event.getEntityLiving() instanceof IKHMob) {
@@ -1160,16 +1163,14 @@ public class EntityEvents {
 			}
 			if (player != null) {
 				if (khMob.getType() == MobType.HEARTLESS_EMBLEM || khMob.getType() == MobType.HEARTLESS_PUREBLOOD || khMob.getType() == MobType.NOBODY) {
-					/*
-					 * if(ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()),
-					 * ItemStack.EMPTY) && ) {//Main empty but offhand is damagable
-					 * event.setCanceled(true); } else {
-					 */
 					// If the player has a real weapon in any slot
-					if (!(player.getHeldItemMainhand().getItem() instanceof ItemKeyblade || player.getHeldItemMainhand().getItem() instanceof IOrgWeapon || player.getHeldItemOffhand().getItem() instanceof ItemKeyblade || player.getHeldItemOffhand().getItem() instanceof IOrgWeapon)) {
-						event.setCanceled(true);
+					if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Anti)) {
+						if (!(player.getHeldItemMainhand().getItem() instanceof ItemKeyblade || player.getHeldItemMainhand().getItem() instanceof IOrgWeapon || player.getHeldItemOffhand().getItem() instanceof ItemKeyblade || player.getHeldItemOffhand().getItem() instanceof IOrgWeapon)) {
+							event.setCanceled(true);
+						}
+					} else {
+						event.setAmount(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
 					}
-					// }
 				}
 			}
 		}
@@ -1178,10 +1179,16 @@ public class EntityEvents {
 			if (event.getSource().getDamageType().equals("thorns"))
 				return;
 
-			if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
-				if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof IOrgWeapon) {
-					event.setAmount(event.getAmount() - 4 + DamageCalculation.getStrengthDamage(player));
+			if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Anti)) {
+				if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+					if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+						if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof IOrgWeapon) {
+							event.setAmount(event.getAmount() - 4 + DamageCalculation.getStrengthDamage(player));
+						}
+					}
 				}
+			} else {
+				event.setAmount(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
 			}
 		}
 	}

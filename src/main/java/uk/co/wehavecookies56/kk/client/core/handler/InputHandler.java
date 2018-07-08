@@ -255,7 +255,7 @@ public class InputHandler {
                 break;
             case GuiCommandMenu.MAGIC:
                 if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
-                    if (!STATS.getRecharge() && (!this.magicCommands.isEmpty() && !DRIVE.getActiveDriveName().equals(Strings.Form_Valor))) {
+                    if (!STATS.getRecharge() && (!this.magicCommands.isEmpty() && (!DRIVE.getActiveDriveName().equals(Strings.Form_Valor) && !DRIVE.getActiveDriveName().equals(Strings.Form_Anti)))) {
                         GuiCommandMenu.magicselected = 0;
                         GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
                         world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
@@ -362,10 +362,10 @@ public class InputHandler {
         if (GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE) {
             if (this.driveCommands.isEmpty()) {} else if ((DRIVE.getDP() >= Constants.getCost((String) this.driveCommands.get(GuiCommandMenu.driveselected)))) {
             	if(this.driveCommands.get(GuiCommandMenu.driveselected).equals(Strings.Form_Final)) {
-        			ModDriveForms.getDriveForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
+        			ModDriveForms.driveIntoForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
             	}else {
             		if(!antiFormCheck()){
-            			ModDriveForms.getDriveForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
+            			ModDriveForms.driveIntoForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
             		}
             	}
                 GuiCommandMenu.selected = GuiCommandMenu.ATTACK;

@@ -79,11 +79,9 @@ public class GuiHelper {
 					}
 				}
 			}
-		} else { //If does nto pop up should save as known tutorial
+		} else { //If does not pop up should save as known tutorial
 			Tutorial tutorial = Tutorials.getTutorialById(num);
 			PacketDispatcher.sendToServer(new TutorialsPacket(tutorial.getRoot().getTutorialID()));
-            //TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe+".name"));
-
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentTranslation("You unlocked a new tutorial: \""+tutorial.getTutorialName()+"\""));
 		}
 	}

@@ -272,7 +272,7 @@ public class GuiCommandMenu extends GuiScreen {
                 if (spells == null) {
                 	color = 0x888888;
                 } else {
-                    if (!STATS.getRecharge() && (!this.spells.isEmpty() && !DS.getActiveDriveName().equals(Strings.Form_Valor)))
+                    if (!STATS.getRecharge() && (!this.spells.isEmpty() && (!DS.getActiveDriveName().equals(Strings.Form_Valor) && !DS.getActiveDriveName().equals(Strings.Form_Anti))))
                     	color = 0xFFFFFF;
                     else
                     	color = 0x888888;
