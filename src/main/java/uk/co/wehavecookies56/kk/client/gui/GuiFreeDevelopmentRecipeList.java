@@ -62,8 +62,13 @@ public class GuiFreeDevelopmentRecipeList extends GuiScrollingList {
     @Override
     protected void drawSlot (int var1, int var2, int var3, int var4, Tessellator var5) {
         List<String> recipes = parent.freeDevFilter();
+        
+        int colour = 0xFFFFFF;
+        if (parent.isFreeDevRecipeUsable(recipes.get(var1))) {
+            colour = 0x55FF55;
+        }
 
-        this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(recipes.get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, 0xFFFFFF);
+        this.f.drawString(f.trimStringToWidth(Utils.translateToLocal(recipes.get(var1).toString() + ".name"), listWidth - 1), this.left + 3, var3 + 2, colour);
         this.ir.renderItemAndEffectIntoGUI(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Reference.MODID, recipes.get(var1).substring(5)))), this.left + 3, var3 + 12);
     }
 }
