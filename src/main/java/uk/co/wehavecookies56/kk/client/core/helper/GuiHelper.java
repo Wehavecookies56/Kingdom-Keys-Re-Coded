@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.client.gui.GuiJournal;
 import uk.co.wehavecookies56.kk.client.gui.GuiMenu;
@@ -81,6 +82,9 @@ public class GuiHelper {
 		} else { //If does nto pop up should save as known tutorial
 			Tutorial tutorial = Tutorials.getTutorialById(num);
 			PacketDispatcher.sendToServer(new TutorialsPacket(tutorial.getRoot().getTutorialID()));
+            //TextComponentTranslation learnMessage = new TextComponentTranslation(Strings.Chat_Recipe_Learn, new TextComponentTranslation(recipe+".name"));
+
+			Minecraft.getMinecraft().player.sendMessage(new TextComponentTranslation("You unlocked a new tutorial: \""+tutorial.getTutorialName()+"\""));
 		}
 	}
 
