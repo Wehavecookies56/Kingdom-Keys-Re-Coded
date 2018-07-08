@@ -14,10 +14,14 @@ import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Status;
 import uk.co.wehavecookies56.kk.client.gui.GuiTutorial;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.lib.Tutorial;
+import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenGui;
+import uk.co.wehavecookies56.kk.common.network.packet.server.TutorialsPacket;
 
 public class GuiHelper {
 
@@ -66,12 +70,17 @@ public class GuiHelper {
 	}
 
 	public static void openTutorial(int num) {
-		if (Minecraft.getMinecraft().player != null) {
-			if (Minecraft.getMinecraft().player.hasCapability(ModCapabilities.TUTORIALS, null)) {
-				if (!Minecraft.getMinecraft().player.getCapability(ModCapabilities.TUTORIALS, null).getKnownTutorial(num)) {
-					Minecraft.getMinecraft().displayGuiScreen(new GuiTutorial(num));
+		if(MainConfig.client.tutorialsPopup) { //If pop up you read it
+			if (Minecraft.getMinecraft().player != null) {
+				if (Minecraft.getMinecraft().player.hasCapability(ModCapabilities.TUTORIALS, null)) {
+					if (!Minecraft.getMinecraft().player.getCapability(ModCapabilities.TUTORIALS, null).getKnownTutorial(num)) {
+						Minecraft.getMinecraft().displayGuiScreen(new GuiTutorial(num));
+					}
 				}
 			}
+		} else { //If does nto pop up should save as known tutorial
+			Tutorial tutorial = Tutorials.getTutorialById(num);
+			PacketDispatcher.sendToServer(new TutorialsPacket(tutorial.getRoot().getTutorialID()));
 		}
 	}
 

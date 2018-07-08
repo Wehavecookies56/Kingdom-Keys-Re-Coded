@@ -164,7 +164,6 @@ public class MainConfig {
         @Config.Name("Kingdom Keys Mob spawn biome exclusion list")
         @Config.Comment("Any biome in this list heartless will not spawn in with support for mod biomes")
         public String[] mobBiomeExclusion = { "minecraft:hell", "minecraft:sky", "minecraft:void" };
-
     }
 
     public static Client client = new Client();
@@ -173,6 +172,10 @@ public class MainConfig {
 
         public HUD hud = new HUD();
         public Sound sound = new Sound();
+        
+        @Config.Name("Tutorials pop up")
+        @Config.Comment("Should tutorials pop up when you unlock them? Might leave you vulnerable in servers.")
+        public boolean tutorialsPopup = true;
 
         public class HUD {
 
@@ -195,6 +198,7 @@ public class MainConfig {
             @Config.Name("Gui Alpha (W.I.P.)")
             @Config.Comment("Sets the Command Menu and Bars opacity (0-255)")
             public int guiAlpha = 255;
+            
         }
 
         public class Sound {

@@ -39,7 +39,7 @@ public class MagicAero extends AbstractServerMessage<MagicAero> {
         if (!world.isRemote) {
             switch (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(Strings.Spell_Aero)) {
             case 1:
-                world.spawnEntity(new EntityAero(world, player, player.posX, player.posY, player.posZ));
+                world.spawnEntity(new EntityAero(world, player, player.posX, player.posY, player.posZ, false));
                 PacketDispatcher.sendToAllAround(new SpawnAeroParticles(player,1), player, 64.0D);
                 break;
             case 2:
