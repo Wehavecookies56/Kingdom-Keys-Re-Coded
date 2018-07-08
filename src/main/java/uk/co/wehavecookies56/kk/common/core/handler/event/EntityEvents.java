@@ -379,7 +379,7 @@ public class EntityEvents {
 
 				if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID && MainConfig.worldgen.EnableStationOfAwakening) {
 					if (!event.getWorld().isRemote) {
-						IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(ModDimensions.destinyIslandsID);
+						IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(ModDimensions.diveToTheHeartID);
 						DimTeleporter tp = new DimTeleporter(info.pos, info.id);
 
 						if (((EntityPlayer) event.getEntity()).world.provider.getDimension() != info.id) {

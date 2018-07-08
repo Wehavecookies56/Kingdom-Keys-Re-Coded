@@ -82,7 +82,6 @@ public class GuiHelper {
 		} else { //If does not pop up should save as known tutorial
 			Tutorial tutorial = Tutorials.getTutorialById(num);
 			PacketDispatcher.sendToServer(new TutorialsPacket(tutorial.getRoot().getTutorialID()));
-			Minecraft.getMinecraft().player.sendMessage(new TextComponentTranslation("You unlocked a new tutorial: \""+tutorial.getTutorialName()+"\""));
 		}
 	}
 

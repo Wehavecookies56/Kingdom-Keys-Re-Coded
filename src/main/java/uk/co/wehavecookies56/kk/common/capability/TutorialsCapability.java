@@ -74,9 +74,9 @@ public class TutorialsCapability {
 			if (watched) {
 				if (!list.contains(id)) {
 					list.add(id);
-				} else {
+				}/* else {
 					System.out.println("Tutorial already watched");
-				}
+				}*/
 			} else {
 				if (list.contains(id)) {
 					for (int i = 0; i < list.size(); i++) {
@@ -84,9 +84,9 @@ public class TutorialsCapability {
 							list.remove(i);
 						}
 					}
-				} else {
+				}/* else {
 					System.out.println("Tutorial was not watched");
-				}
+				}*/
 			}
 		}
 
