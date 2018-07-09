@@ -39,8 +39,8 @@ public class EntityShockwave extends Entity {
         if (player == null) return;
         int rotation = 0;
 
-        if (!world.isRemote)
-        	PacketDispatcher.sendToAllAround(new SpawnShockwaveParticles(this), player, 64.0D);
+       // if (!world.isRemote)
+       // 	PacketDispatcher.sendToAllAround(new SpawnShockwaveParticles(this), player, 64.0D);
 
         this.rotationYaw = (rotation + 1) % 360;
         if (ticksExisted > 30) setDead();
@@ -58,15 +58,17 @@ public class EntityShockwave extends Entity {
         	for (int i = 0; i < list.size(); i++) {
             Entity e = (Entity) list.get(i);
             if (e instanceof EntityLivingBase) {
+            	EntityRock rock = new EntityRock(world, player, e.posX, e.posY, e.posZ);
+            	world.spawnEntity(rock);
             	//System.out.println(e);
-            	if(player.getHeldItemMainhand() != null)
+            	/*if(player.getHeldItemMainhand() != null)
             		e.attackEntityFrom(DamageSource.causePlayerDamage(player), DamageCalculation.getOrgStrengthDamage(player,player.getHeldItemMainhand())/2);//*DamageCalculation.aeroMultiplier);
                 double d = e.posX - posX;
                 double d1;
                 for (d1 = e.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)
                     d = (Math.random() - Math.random()) * 0.01D;
                 ((EntityLivingBase) e).knockBack(e, 2, -d, -d1);
-                e.motionY*=1.2;
+                e.motionY*=1.2;*/
             }
         }
 

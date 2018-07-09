@@ -9,8 +9,8 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class TileEntityOrgPortal extends TileEntity{
     String ownerName;
-    final int NUMBER_OF_SLOTS = 36;
-    private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];
+    /*final int NUMBER_OF_SLOTS = 36;
+    private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];*/
 
     @Override
     public NBTTagCompound writeToNBT (NBTTagCompound parentNBTTagCompound) {
