@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityRock;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityShockwave;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
