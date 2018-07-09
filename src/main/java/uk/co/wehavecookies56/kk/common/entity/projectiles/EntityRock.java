@@ -48,7 +48,7 @@ public class EntityRock extends EntityThrowable {
         }
         
         target.attackEntityFrom(DamageSource.causePlayerDamage(owner), DamageCalculation.getMagicDamage(owner, 1));
-        target.motionY+=1.5;
+        target.motionY+=0.5;
 
         /*if (shootingEntity instanceof EntityPlayer) {
             if (!world.isRemote)

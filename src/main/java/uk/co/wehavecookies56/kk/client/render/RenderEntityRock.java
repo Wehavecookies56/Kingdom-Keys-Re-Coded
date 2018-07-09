@@ -17,7 +17,7 @@ import uk.co.wehavecookies56.kk.common.entity.EntityFlyingHeart;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityRock;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
-public class RenderEntityRock extends Render implements IRenderFactory<EntityFlyingHeart> {
+public class RenderEntityRock extends Render implements IRenderFactory<EntityRock> {
 
 	ModelBase model;
 
@@ -36,7 +36,7 @@ public class RenderEntityRock extends Render implements IRenderFactory<EntityFly
 	public void doRender(Entity entity, double x, double y, double z, float yaw, float pitch) {
 		GL11.glPushMatrix();
 		{
-			GL11.glTranslated(x, y, z); // OLD : (entity.ticksExisted/5f)-1
+			GL11.glTranslated(x, y, z);
 
 			GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 128.0F, 128.0F);
@@ -46,7 +46,7 @@ public class RenderEntityRock extends Render implements IRenderFactory<EntityFly
 			float ticks = entity.ticksExisted;
 			if (ticks < 10) // Growing
 				GL11.glScalef(ticks * 0.001f, ticks * 0.001f, ticks * 0.001f);
-			else if (ticks > EntityRock.MAX_TICKS - 10 && !entity.isDead) // Disappearing
+			else if (ticks > EntityRock.MAX_TICKS - 5 && !entity.isDead) // Disappearing
 				GL11.glScalef((EntityRock.MAX_TICKS - ticks) * 0.001f, (EntityRock.MAX_TICKS - ticks) * 0.001f, (EntityRock.MAX_TICKS - ticks) * 0.001f);
 			else // Static size
 				GL11.glScalef(0.01f, 0.01f, 0.01f);
@@ -62,7 +62,7 @@ public class RenderEntityRock extends Render implements IRenderFactory<EntityFly
 	}
 
 	@Override
-	public Render<? super EntityFlyingHeart> createRenderFor(RenderManager manager) {
+	public Render<? super EntityRock> createRenderFor(RenderManager manager) {
 		return new RenderEntityRock(manager);
 	}
 
