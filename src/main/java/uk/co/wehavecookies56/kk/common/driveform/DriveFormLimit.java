@@ -13,6 +13,7 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -41,6 +42,11 @@ public class DriveFormLimit extends DriveForm {
 	            		System.out.println("LEVEL UP");
 	            		DRIVE.setDriveLevel(DRIVE.getActiveDriveName(),actualLevel+1); 
 	                    DRIVE.displayLevelUpMessage(player, DRIVE.getActiveDriveName());
+	                    
+	                    if(actualLevel + 1 == 7) {
+	        	            DRIVE.setDriveGaugeLevel(DRIVE.getDriveGaugeLevel()+1);
+	                    	DRIVE.setDP(DRIVE.getMaxDP());
+	                    }
 	            	}
 	            }
 	            PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);
