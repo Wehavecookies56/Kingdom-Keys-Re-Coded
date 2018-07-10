@@ -486,7 +486,7 @@ public class EntityEvents {
 						player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1500);
 					}
 
-					EntityXPGet xp = new EntityXPGet(mob.world, mob.getMaxHealth());
+					EntityXPGet xp = new EntityXPGet(mob.world, player, mob);
 					xp.setPosition(mob.posX, mob.posY + 1, mob.posZ);
 					player.world.spawnEntity(xp);
 
@@ -506,7 +506,7 @@ public class EntityEvents {
 						player.sendMessage(driMessage);
 						player.getCapability(ModCapabilities.PLAYER_STATS, null).setEnderDragonDefeated(true);
 
-						EntityXPGet xp = new EntityXPGet(mob.world, mob.getMaxHealth());
+						EntityXPGet xp = new EntityXPGet(mob.world, player, mob);
 						xp.setPosition(mob.posX, mob.posY + 1, mob.posZ);
 						player.world.spawnEntity(xp);
 					}
