@@ -249,6 +249,7 @@ public class EntityEvents {
 			dsAfter.setInDrive(false);
 			dsAfter.setDP(0);
 			dsAfter.setFP(0);
+			statsAfter.setMP(statsAfter.getMaxMP());
 		}
 	}
 
@@ -279,6 +280,11 @@ public class EntityEvents {
 				tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
 			}
 		}
+
+		
+
+		
+		
 	}
 
 	public void dropRecipe(LivingDropsEvent event) {
@@ -326,7 +332,6 @@ public class EntityEvents {
 
 	@SubscribeEvent
 	public void OnEntityJoinWorld(EntityJoinWorldEvent event) {
-
 		if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.DriveRecovery.getUnlocalizedName());
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.HighDriveRecovery.getUnlocalizedName());
