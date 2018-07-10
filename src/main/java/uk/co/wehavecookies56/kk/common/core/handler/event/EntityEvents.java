@@ -985,11 +985,10 @@ public class EntityEvents {
 		}
 
 		DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
-		// if (!DS.getInDrive())
 		if (STATS.getMP() <= 0 || STATS.getRecharge()) {
 			STATS.setRecharge(true);
 			if (STATS.getMP() != STATS.getMaxMP()) {
-				STATS.addMP(0.1);
+				STATS.addMP(STATS.getMaxMP()/900);
 				if (STATS.getMP() > STATS.getMaxMP())
 					STATS.setMP(STATS.getMaxMP());
 

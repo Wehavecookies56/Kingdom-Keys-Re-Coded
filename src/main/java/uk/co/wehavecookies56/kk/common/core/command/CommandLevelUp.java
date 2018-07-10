@@ -124,6 +124,7 @@ public class CommandLevelUp implements ICommand {
                 STATS.setHP(20);
                 player.setHealth(20);
                 STATS.setMaxMP(20);
+                STATS.setMP(STATS.getMaxMP());
                 
                 while (STATS.getLevel() < level)
                     STATS.addExperience(player, STATS.getExpNeeded(level - 1, STATS.getExperience()));

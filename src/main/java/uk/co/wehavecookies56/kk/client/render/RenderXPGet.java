@@ -64,7 +64,7 @@ public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHe
 					EntityLivingBase mobEntity = (EntityLivingBase) mc.world.getEntityByID(eXP.entityID);
 					IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
 					if (STATS.getLevel() < STATS.getMaxLevel())
-						text = "+" + mobEntity.getMaxHealth() / 2 + "xp";
+						text = "+" + (int)(mobEntity.getMaxHealth() / 2) + "xp";
 	
 					if (mc.player.getDisplayNameString().equals(eXP.playerName))
 						mc.fontRenderer.drawString(text, -mc.fontRenderer.getStringWidth(text) / 2, 0, 0x0099ff);
