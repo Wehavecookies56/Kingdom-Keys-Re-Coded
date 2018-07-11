@@ -126,7 +126,7 @@ public class InputHandler {
         	PortalCoords coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
         	if(!(coords.getX() == 0 && coords.getY() == 0 && coords.getZ() == 0)) {
         		this.portalCommands.add(coords);
-        		System.out.println(i+" Added portal: "+coords.getPID());
+        		//System.out.println(i+" Added portal: "+coords.getPID());
         	}
         }
     }

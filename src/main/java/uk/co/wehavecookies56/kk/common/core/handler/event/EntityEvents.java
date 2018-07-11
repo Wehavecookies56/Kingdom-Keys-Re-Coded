@@ -433,6 +433,12 @@ public class EntityEvents {
 			EntityPlayer player = (EntityPlayer) event.getEntity();
 			SummonKeybladeCapability.ISummonKeyblade SUMMON = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
 			IOrganizationXIII ORG = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+			IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+			if(DRIVE.getInDrive()) {
+                if (DriveFormRegistry.isDriveFormRegistered(DRIVE.getActiveDriveName())) {
+                	DriveFormRegistry.get(DRIVE.getActiveDriveName()).endDrive(player);
+                }
+			}
 			if (SUMMON.getIsKeybladeSummoned(EnumHand.MAIN_HAND)) {
 				if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
 					PacketDispatcher.sendToServer(new DeSummonKeyblade());
