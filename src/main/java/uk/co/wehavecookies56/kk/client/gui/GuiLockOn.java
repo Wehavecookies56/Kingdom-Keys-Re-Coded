@@ -10,7 +10,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import uk.co.wehavecookies56.kk.api.abilities.AbilityEvent;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
+import uk.co.wehavecookies56.kk.common.KingdomKeys;
+import uk.co.wehavecookies56.kk.common.ability.Abilities;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
@@ -34,6 +37,24 @@ public class GuiLockOn extends GuiScreen {
 	int multiplier = 4;
 	
 	float scale;
+
+	static boolean scan = false;
+
+	@SubscribeEvent
+	public void equipAbility(AbilityEvent.Equip event) {
+		KingdomKeys.logger.info("Equipped " + event.getAbility().getName());
+		if (event.getAbility().equals(Abilities.scan)) {
+			scan = true;
+		}
+	}
+
+	@SubscribeEvent
+	public void unequipAbility(AbilityEvent.Unequip event) {
+		KingdomKeys.logger.info("Unequipped " + event.getAbility().getName());
+		if (event.getAbility().equals(Abilities.scan)) {
+			scan = false;
+		}
+	}
 
 	@SubscribeEvent
 	public void onRenderOverlayPost(RenderGameOverlayEvent event) {
@@ -73,7 +94,7 @@ public class GuiLockOn extends GuiScreen {
 
 			GL11.glPushMatrix();
 
-			if (target != null) { // TODO && player has scan ability
+			if (target != null && scan) { // TODO && player has scan ability
 				this.drawString(mc.fontRenderer, target.getName(), screenWidth - mc.fontRenderer.getStringWidth(target.getName()), 15, 0xFFFFFF);
 				drawHPBar(event, (EntityLivingBase) target);
 			}

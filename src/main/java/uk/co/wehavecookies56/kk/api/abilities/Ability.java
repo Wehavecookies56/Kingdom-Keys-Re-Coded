@@ -4,10 +4,21 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public abstract class Ability extends IForgeRegistryEntry.Impl<Ability> {
+public class Ability extends IForgeRegistryEntry.Impl<Ability> {
 
-    public abstract int getAPCost();
+    int apCost;
+    String name;
 
-    public abstract String getName();
+    public Ability (int apCost, String name) {
+        this.apCost = apCost;
+        this.name = name;
+    }
 
+    public int getApCost() {
+        return apCost;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
