@@ -1,11 +1,15 @@
 package uk.co.wehavecookies56.kk.common.util;
 
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
@@ -185,5 +189,14 @@ public class Utils {
 		}
     	return idAndBlockPos;
     	
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void drawScaledModalRect(Gui gui, float x, float y, int u, int v, int width, int height, float scaleX, float scaleY) {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x, y, 0);
+        GlStateManager.scale(scaleX, scaleY, 1);
+        gui.drawTexturedModalRect(0, 0, u, v, width, height);
+        GlStateManager.popMatrix();
     }
 }

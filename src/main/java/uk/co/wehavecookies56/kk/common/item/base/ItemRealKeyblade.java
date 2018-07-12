@@ -1,12 +1,44 @@
 package uk.co.wehavecookies56.kk.common.item.base;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
+import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.api.abilities.Ability;
+import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
+import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
+
 public class ItemRealKeyblade extends ItemKeyblade {
 
     public ItemRealKeyblade (String name, double strength, double magic) {
         super(name, strength, magic);
         setMaxStackSize(1);
     }
-/*
+
+    public Ability getAbility() {
+        return null;
+    }
+
+    @Override
+    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if (entityIn instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) entityIn;
+            if (!player.isCreative() && !player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
+                SummonKeybladeCapability.ISummonKeyblade keyblade = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
+                DriveStateCapability.IDriveState driveformCap = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+                if (!keyblade.getIsKeybladeSummoned(EnumHand.MAIN_HAND) && !keyblade.getIsKeybladeSummoned(EnumHand.OFF_HAND) && !driveformCap.getInDrive()) {
+                    stack.setCount(0);
+                }
+            }
+        }
+        super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
+
+    /*
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player, EnumHand hand)
     {

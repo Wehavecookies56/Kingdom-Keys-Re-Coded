@@ -18,7 +18,7 @@ public class RenderingEvents {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onRenderItemInFrame (RenderItemInFrameEvent event) {
-        if (!ItemStack.areItemStacksEqual(event.getItem(), ItemStack.EMPTY)) if (event.getItem().getItem() instanceof ItemKeyblade) GlStateManager.scale(0.02f, 0.02f, 0.02f);
+        //if (!ItemStack.areItemStacksEqual(event.getItem(), ItemStack.EMPTY)) if (event.getItem().getItem() instanceof ItemKeyblade) GlStateManager.scale(0.02f, 0.02f, 0.02f);
     }
 
     @SideOnly (Side.CLIENT)

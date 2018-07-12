@@ -96,7 +96,8 @@ public class ClientEventHandler {
             	if (!mc.isGamePaused() && MainConfig.client.sound.EnableCustomMusic) {
                     musicHandler.update();
                     if (mc.currentScreen instanceof GuiMenu_Bars) {
-                        mc.getSoundHandler().setSoundLevel(SoundCategory.MASTER, 0.2F);
+                        float lowerVolume = Math.max(0, mc.gameSettings.getSoundLevel(SoundCategory.MASTER)-0.2F);
+                        mc.getSoundHandler().setSoundLevel(SoundCategory.MASTER, lowerVolume);
                     }
                 }
             }

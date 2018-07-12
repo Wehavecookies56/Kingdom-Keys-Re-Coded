@@ -5,20 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import uk.co.wehavecookies56.kk.client.gui.GuiDriveForms;
-import uk.co.wehavecookies56.kk.client.gui.GuiKKChest;
-import uk.co.wehavecookies56.kk.client.gui.GuiKeychains;
-import uk.co.wehavecookies56.kk.client.gui.GuiOrg;
-import uk.co.wehavecookies56.kk.client.gui.GuiOrgUnlock;
-import uk.co.wehavecookies56.kk.client.gui.GuiOrgWeapon;
-import uk.co.wehavecookies56.kk.client.gui.GuiPedestal;
-import uk.co.wehavecookies56.kk.client.gui.GuiPotions;
-import uk.co.wehavecookies56.kk.client.gui.GuiShop;
-import uk.co.wehavecookies56.kk.client.gui.GuiSpells;
-import uk.co.wehavecookies56.kk.client.gui.GuiSynthesis;
-import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagL;
-import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagM;
-import uk.co.wehavecookies56.kk.client.gui.GuiSynthesisBagS;
+import uk.co.wehavecookies56.kk.client.gui.*;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityKKChest;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.container.ContainerDriveForms;
@@ -55,21 +42,20 @@ public class GuiHandler implements IGuiHandler {
                 return new ContainerKKChest(player.inventory, (TileEntityKKChest) world.getTileEntity(new BlockPos(x, y, z)));
             else
                 return null;
-        }
-        else if (ID == GuiIDs.GUI_SPELLS_INV) {
+        } else if (ID == GuiIDs.GUI_SPELLS_INV) {
             return null;
-        }
-        else if (ID == GuiIDs.GUI_SYNTHESISBAGS_INV)
+        } else if (ID == GuiIDs.GUI_SYNTHESISBAGS_INV)
             return new ContainerSynthesisBagS(player, player.inventory);
         else if (ID == GuiIDs.GUI_SYNTHESISBAGM_INV)
             return new ContainerSynthesisBagM(player, player.inventory);
-        else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV) 
+        else if (ID == GuiIDs.GUI_SYNTHESISBAGL_INV)
             return new ContainerSynthesisBagL(player, player.inventory);
-        else if (ID == GuiIDs.GUI_PEDESTAL_INV)
+        else if (ID == GuiIDs.GUI_PEDESTAL_INV) {
             if (te instanceof TileEntityPedestal)
                 return new ContainerPedestal(player.inventory, (TileEntityPedestal) world.getTileEntity(new BlockPos(x, y, z)));
             else
                 return null;
+        }
         return null;
     }
 
@@ -113,6 +99,10 @@ public class GuiHandler implements IGuiHandler {
             return new GuiOrg();
         else if (ID == GuiIDs.GUI_ORG_UNLOCK)
             return new GuiOrgUnlock();
+        else if (ID == GuiIDs.GUI_PLAYER_ITEMS) {
+            System.out.println("TEST");
+            return new GuiMenu_Items_Player();
+        }
         return null;
 
     }

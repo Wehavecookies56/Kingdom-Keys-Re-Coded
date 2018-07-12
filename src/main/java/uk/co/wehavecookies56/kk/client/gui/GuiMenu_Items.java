@@ -2,19 +2,25 @@ package uk.co.wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
+import uk.co.wehavecookies56.kk.client.gui.redesign.GuiMenuButton;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
-public class GuiMenu_Items extends GuiMenu_Bars {
+public class GuiMenu_Items extends GuiScreen {
 
     final int ITEMS_PLAYER = 1, ITEMS_STOCK = 2, ITEMS_BACK = 3;
 
     GuiButton items_player, items_stock, items_back;
 
-    public GuiMenu_Items (String name) {
-        super(Strings.Gui_Menu_Items_Title);
+    GuiMenu_Bars background;
+
+    public GuiMenu_Items () {
+        background = new GuiMenu_Bars(Strings.Gui_Menu_Items_Title);
+        mc = Minecraft.getMinecraft();
     }
 
     @Override
@@ -27,7 +33,7 @@ public class GuiMenu_Items extends GuiMenu_Bars {
                 GuiHelper.openMenu();
                 break;
             case ITEMS_STOCK:
-                GuiHelper.openPlayerInventory(mc.player);
+                mc.displayGuiScreen(new GuiStock());
                 break;
         }
         updateButtons();
@@ -40,17 +46,30 @@ public class GuiMenu_Items extends GuiMenu_Bars {
     @Override
     public void initGui () {
         super.initGui();
-        int button_itemsY = (-140 / 16) + 75;
+        background.width = width;
+        background.height = height;
+        background.init();
+        float topBarHeight = (float)height * 0.17F;
+        int button_itemsY = (int)topBarHeight+5;
+        float buttonPosX = (float)width * 0.1526F;
+        float buttonWidth = ((float)width * 0.1744F)-22;
 
         int button_items_playerY = button_itemsY;
         int button_items_stockY = button_items_playerY + 22;
         int button_items_backY = button_items_stockY + 22;
 
-        buttonList.add(items_player = new GuiButton(ITEMS_PLAYER, 5, button_items_playerY, 100, 20, mc.player.getDisplayNameString()));
-        buttonList.add(items_stock = new GuiButton(ITEMS_STOCK, 5, button_items_stockY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Stock)));
-        buttonList.add(items_back = new GuiButton(ITEMS_BACK, 5, button_items_backY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
+        buttonList.add(items_player = new GuiMenuButton(ITEMS_PLAYER, (int)buttonPosX, button_items_playerY, (int)buttonWidth, mc.player.getDisplayNameString()));
+        buttonList.add(items_stock = new GuiMenuButton(ITEMS_STOCK, (int)buttonPosX, button_items_stockY, (int)buttonWidth, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Stock)));
+        buttonList.add(items_back = new GuiMenuButton(ITEMS_BACK, (int)buttonPosX, button_items_backY, (int)buttonWidth, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
 
         updateButtons();
     }
 
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        background.drawBars();
+        background.drawMunnyTime();
+        background.drawBiomeDim();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+    }
 }

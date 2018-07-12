@@ -4,40 +4,42 @@ import java.io.IOException;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraftforge.items.ItemStackHandler;
+import uk.co.wehavecookies56.kk.api.menu.ItemCategory;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
+import uk.co.wehavecookies56.kk.client.gui.redesign.GuiElementBox;
+import uk.co.wehavecookies56.kk.client.gui.redesign.GuiEquippedItem;
+import uk.co.wehavecookies56.kk.client.gui.redesign.GuiWeapons;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
-public class GuiMenu_Items_Player extends GuiMenu_Bars {
+public class GuiMenu_Items_Player extends GuiScreen {
 
     final int KEYCHAIN = 1, SPELLS = 2, ITEMS = 3, DRIVE = 4, BACK = 5;
     GuiButton keychain, spells, items, driveforms, back;
 
-    public GuiMenu_Items_Player (String name) {
-        super(Minecraft.getMinecraft().player.getDisplayName().getFormattedText());
+    GuiMenu_Bars background;
+    GuiElementBox listBox;
+    GuiElementBox detailsBox;
+    GuiEquippedItem weapon, valor, master, Final, helmet, chestplate, leggings, boots, accessory1, accessory2, accessory3, accessory4, item1, item2, item3, item4, item5;
+
+    public GuiMenu_Items_Player () {
+        background = new GuiMenu_Bars(Strings.Gui_Menu_Items_Title);
+        mc = Minecraft.getMinecraft();
     }
 
     @Override
     protected void actionPerformed (GuiButton button) throws IOException {
         switch (button.id) {
-            case KEYCHAIN:
-                if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE)
-                    GuiHelper.openInv(GuiIDs.GUI_KEYCHAIN_INV);
-                else
-                    Minecraft.getMinecraft().displayGuiScreen(new GuiOrgWeapon());
-                break;
-            case SPELLS:
-                GuiHelper.openInv(GuiIDs.GUI_SPELLS_INV);
-                break;
-            case ITEMS:
-                GuiHelper.openInv(GuiIDs.GUI_POTIONS_INV);
-                break;
-            case DRIVE:
-                GuiHelper.openInv(GuiIDs.GUI_DRIVE_INV);
-                break;
             case BACK:
                 GuiHelper.openMenu_Items();
                 break;
@@ -46,41 +48,102 @@ public class GuiMenu_Items_Player extends GuiMenu_Bars {
     }
 
     private void updateButtons () {
-        if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE){ //Keyblade user
-            if(mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE,null).getIsKeybladeSummoned(EnumHand.MAIN_HAND) || mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE,null).getIsKeybladeSummoned(EnumHand.OFF_HAND)){
-                keychain.enabled = false;
-            }
-        }else{ //Org member
-            if(mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII,null).summonedWeapon(EnumHand.MAIN_HAND) || mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII,null).summonedWeapon(EnumHand.OFF_HAND)){
-                keychain.enabled = false;
-            }
-        }
         updateScreen();
     }
 
     @Override
     public void initGui () {
+        background.width = width;
+        background.height = height;
+        background.init();
         super.initGui();
-        int button_itemsY = (-140 / 16) + 75;
 
-        int button_items_keybladeY = button_itemsY;
-        int button_items_spellsY = button_items_keybladeY + 22;
-        int button_items_itemsY = button_items_spellsY + 22;
-        int button_items_driveY = button_items_itemsY + 22;
-        int button_items_backY = button_items_driveY + 22;
+        float listBoxX = width * 0.1463F;
+        float boxY = height * 0.174F;
+        float listBoxWidth = width * 0.452F;
+        float boxHeight = height * 0.5972F;
+        float detailsWidth = width * 0.2588F;
+        float detailsX = listBoxX+listBoxWidth;
+        listBox = new GuiElementBox((int)listBoxX, (int)boxY, (int)listBoxWidth, (int)boxHeight, 0x4C4C4C);
+        detailsBox = new GuiElementBox((int)detailsX, (int)boxY, (int)detailsWidth, (int)boxHeight, 0x4C4C4C);
 
-        String weapon;
-        if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE)
-            weapon = Strings.Gui_Menu_Items_Button_Keychain;
-        else
-            weapon = Strings.Gui_Menu_Items_Button_OrgWeapon;
+        float itemsX = width * 0.2869F;
+        float itemsY = height * 0.1907F;
 
-        buttonList.add(keychain = new GuiButton(KEYCHAIN, 5, button_items_keybladeY, 100, 20, Utils.translateToLocal(weapon)));
-        buttonList.add(spells = new GuiButton(SPELLS, 5, button_items_spellsY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Spells)));
-        buttonList.add(items = new GuiButton(ITEMS, 5, button_items_itemsY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Potions)));
-        buttonList.add(driveforms = new GuiButton(DRIVE, 5, button_items_driveY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Drive)));
-        buttonList.add(back = new GuiButton(BACK, 5, button_items_backY, 100, 20, Utils.translateToLocal(Strings.Gui_Menu_Items_Button_Back)));
+        ItemStackHandler keychains = mc.player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
+
+        int itemHeight = 14;
+
+        OrganizationXIIICapability.IOrganizationXIII org = mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+        PlayerStatsCapability.IPlayerStats playerStats = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
+
+
+        if (org.getMember() == Utils.OrgMember.NONE) {
+            weapon = new GuiEquippedItem(keychains.getStackInSlot(0), (int) itemsX, (int) itemsY, 0x3C0002, new GuiWeapons(0, 0x701F23, 0x3C0000), ItemCategory.TOOL, this, "Weapon", 0xFE8185);
+            valor = new GuiEquippedItem(keychains.getStackInSlot(1), (int) itemsX, (int) itemsY + 1 + itemHeight, 0x003231, new GuiWeapons(1, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Valor", 0x069293);
+            master = new GuiEquippedItem(keychains.getStackInSlot(2), (int) itemsX, (int) itemsY + 2 + (itemHeight * 2), 0x003231, new GuiWeapons(2, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Master", 0x069293);
+            Final = new GuiEquippedItem(keychains.getStackInSlot(3), (int) itemsX, (int) itemsY + 3 + (itemHeight * 3), 0x003231, new GuiWeapons(3, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Final", 0x069293);
+            helmet = new GuiEquippedItem(mc.player.inventory.armorInventory.get(3), (int)itemsX, (int)itemsY+4+(itemHeight*4), 0x685800, null, ItemCategory.EQUIPMENT, this, "Armour", 0xFEF461);
+            chestplate = new GuiEquippedItem(mc.player.inventory.armorInventory.get(2), (int)itemsX, (int)itemsY+5+(itemHeight*5), 0x685800, null, ItemCategory.EQUIPMENT, this);
+            leggings = new GuiEquippedItem(mc.player.inventory.armorInventory.get(1), (int)itemsX, (int)itemsY+6+(itemHeight*6), 0x685800, null, ItemCategory.EQUIPMENT, this);
+            boots = new GuiEquippedItem(mc.player.inventory.armorInventory.get(0), (int)itemsX, (int)itemsY+7+(itemHeight*7), 0x685800, null, ItemCategory.EQUIPMENT, this);
+            item1 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int)itemsY+8+(itemHeight*8),0x003213, null, ItemCategory.CONSUMABLE, this, "Items", 0x41F031);
+            item2 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(1), (int) itemsX, (int)itemsY+9+(itemHeight*9),0x003213, null, ItemCategory.CONSUMABLE, this);
+            item3 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(2), (int) itemsX, (int)itemsY+10+(itemHeight*10),0x003213, null, ItemCategory.CONSUMABLE, this);
+            item4 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(3), (int) itemsX, (int)itemsY+11+(itemHeight*11),0x003213, null, ItemCategory.CONSUMABLE, this);
+            item5 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(4), (int) itemsX, (int)itemsY+12+(itemHeight*12),0x003213, null, ItemCategory.CONSUMABLE, this);
+        } else {
+            weapon = new GuiEquippedItem(new ItemStack(org.currentWeapon()), (int) itemsX, (int) itemsY, 0x3C0002, new GuiOrgWeapon(), ItemCategory.TOOL, this, "Weapon", 0xFE8185);
+            helmet = new GuiEquippedItem(mc.player.inventory.armorInventory.get(3), (int)itemsX, (int)itemsY+1+(itemHeight*1), 0x685800, null, ItemCategory.EQUIPMENT, this, "Armour", 0xFEF461);
+            chestplate = new GuiEquippedItem(mc.player.inventory.armorInventory.get(2), (int)itemsX, (int)itemsY+2+(itemHeight*2), 0x685800, null, ItemCategory.EQUIPMENT, this);
+            leggings = new GuiEquippedItem(mc.player.inventory.armorInventory.get(1), (int)itemsX, (int)itemsY+3+(itemHeight*3), 0x685800, null, ItemCategory.EQUIPMENT, this);
+            boots = new GuiEquippedItem(mc.player.inventory.armorInventory.get(0), (int)itemsX, (int)itemsY+4+(itemHeight*4), 0x685800, null, ItemCategory.EQUIPMENT, this);
+            item1 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int)itemsY+5+(itemHeight*5),0x003213, null, ItemCategory.CONSUMABLE, this, "Items", 0x41F031);
+            item2 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(1), (int) itemsX, (int)itemsY+6+(itemHeight*6),0x003213, null, ItemCategory.CONSUMABLE, this);
+            item3 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(2), (int) itemsX, (int)itemsY+7+(itemHeight*7),0x003213, null, ItemCategory.CONSUMABLE, this);
+            item4 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(3), (int) itemsX, (int)itemsY+8+(itemHeight*8),0x003213, null, ItemCategory.CONSUMABLE, this);
+            item5 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(4), (int) itemsX, (int)itemsY+9+(itemHeight*9),0x003213, null, ItemCategory.CONSUMABLE, this);
+        }
         updateButtons();
     }
 
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        background.drawBars();
+        background.drawMunnyTime();
+        background.drawBiomeDim();
+        listBox.draw();
+        detailsBox.draw();
+        GlStateManager.pushMatrix();
+        RenderHelper.enableStandardItemLighting();
+        RenderHelper.enableGUIStandardItemLighting();
+        weapon.drawButton(mc, mouseX, mouseY, partialTicks);
+        if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
+            valor.drawButton(mc, mouseX, mouseY, partialTicks);
+            master.drawButton(mc, mouseX, mouseY, partialTicks);
+            Final.drawButton(mc, mouseX, mouseY, partialTicks);
+        }
+        helmet.drawButton(mc, mouseX, mouseY, partialTicks);
+        chestplate.drawButton(mc, mouseX, mouseY, partialTicks);
+        leggings.drawButton(mc, mouseX, mouseY, partialTicks);
+        boots.drawButton(mc, mouseX, mouseY, partialTicks);
+        item1.drawButton(mc, mouseX, mouseY, partialTicks);
+        item2.drawButton(mc, mouseX, mouseY, partialTicks);
+        item3.drawButton(mc, mouseX, mouseY, partialTicks);
+        item4.drawButton(mc, mouseX, mouseY, partialTicks);
+        item5.drawButton(mc, mouseX, mouseY, partialTicks);
+        GlStateManager.popMatrix();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+    }
+
+    @Override
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        weapon.mousePressed(mc, mouseX, mouseY);
+        if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
+            valor.mousePressed(mc, mouseX, mouseY);
+            master.mousePressed(mc, mouseX, mouseY);
+            Final.mousePressed(mc, mouseX, mouseY);
+        }
+        super.mouseClicked(mouseX, mouseY, mouseButton);
+    }
 }
