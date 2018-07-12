@@ -27,39 +27,25 @@ import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIMinuteBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIShadow;
 
+public class EntityMinuteBomb extends BaseEntityBomb {
+	public EntityMinuteBomb(World worldIn) {
+		super(worldIn);
+		this.setSize(0.6F, 1.3F);
+	}
 
-public class EntityMinuteBomb extends BaseEntityHeartless implements IKHMob{
-    public EntityMinuteBomb(World worldIn){
-        super(worldIn);
-        this.setSize(0.6F, 1.3F);
-        this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
-        this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityAgeable.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityAnimal.class, true));
-        this.targetTasks.addTask(4, new EntityAIMinuteBomb(this));
-    }
-    @Override
-    public void applyEntityAttributes(){
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-    }
+	@Override
+	public void applyEntityAttributes() {
+		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+	}
 
-    @Override
-    protected void entityInit(){
-        super.entityInit();
-        this.getDataManager().register(EntityHelper.STATE, 0);
-    }
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.getDataManager().register(EntityHelper.STATE, 0);
+	}
 
-    public EntityHelper.MobType getType(){
-        return EntityHelper.MobType.HEARTLESS_EMBLEM;
-    }
-
-    
 }

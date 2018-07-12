@@ -12,7 +12,7 @@ public class Abilities {
 
     @SubscribeEvent
     public static void registerAbilities(RegistryEvent.Register<Ability> event) {
-        event.getRegistry().register(scan = new Ability(1, "ability.scan").setRegistryName("kk:ability.scan"));
+        event.getRegistry().register(scan = new Ability(1, "ability.scan"));
     }
 
 }

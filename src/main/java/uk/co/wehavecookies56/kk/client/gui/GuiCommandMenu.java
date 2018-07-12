@@ -387,9 +387,7 @@ public class GuiCommandMenu extends GuiScreen {
 		GL11.glPopMatrix();
 
 		// Portal submenu //
-		if (portalCommands == null) {
-
-		} else if (!portalCommands.isEmpty()) {
+		if (portalCommands != null && !portalCommands.isEmpty()) {
 			// PORTAL TOP
 			GL11.glPushMatrix();
 			{
@@ -450,8 +448,7 @@ public class GuiCommandMenu extends GuiScreen {
 		}
 
 		// Magic submenu //
-		if (spells == null) {
-		} else if (!spells.isEmpty()) {
+		if (spells != null && !spells.isEmpty()) {
 			// MAGIC TOP
 			GL11.glPushMatrix();
 			{
@@ -520,8 +517,7 @@ public class GuiCommandMenu extends GuiScreen {
 			}
 		}
 		// Items submenu //
-		if (items == null) {
-		} else if (!items.isEmpty()) {
+		if (items != null && !items.isEmpty()) {
 			// Items TOP
 			GL11.glPushMatrix();
 			{
@@ -581,8 +577,7 @@ public class GuiCommandMenu extends GuiScreen {
 		}
 
 		// Drive form submenu //
-		if (driveCommands == null) {
-		} else if (!driveCommands.isEmpty()) {
+		if (driveCommands != null && !driveCommands.isEmpty()) {
 			// DRIVE TOP
 			GL11.glPushMatrix();
 			{

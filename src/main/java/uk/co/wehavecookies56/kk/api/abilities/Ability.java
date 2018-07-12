@@ -1,8 +1,7 @@
 package uk.co.wehavecookies56.kk.api.abilities;
 
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class Ability extends IForgeRegistryEntry.Impl<Ability> {
 
@@ -12,6 +11,7 @@ public class Ability extends IForgeRegistryEntry.Impl<Ability> {
     public Ability (int apCost, String name) {
         this.apCost = apCost;
         this.name = name;
+        setRegistryName(Reference.MODID+":ability.scan");
     }
 
     public int getApCost() {

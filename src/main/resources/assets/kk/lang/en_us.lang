@@ -280,6 +280,11 @@ item.anticoat_chestplate.name=Anticoat Chestplate
 item.anticoat_leggings.name=Anticoat Leggings
 item.anticoat_boots.name=Anticoat Boots
 
+item.vanitas_helmet.name=Vanitas Helmet
+item.vanitas_chestplate.name=Vanitas Chestplate
+item.vanitas_leggings.name=Vanitas Leggings
+item.vanitas_boots.name=Vanitas Boots
+
 #Misc
 item.emptybottle.name=Empty Bottle
 item.potion.name=Potion

@@ -127,7 +127,7 @@ public class ModItems {
             Terra_Chestplate, Terra_Leggings, Terra_Boots, Aqua_Helmet, Aqua_Chestplate, Aqua_Leggings, Aqua_Boots,
             Ventus_Helmet, Ventus_Chestplate, Ventus_Leggings, Ventus_Boots, Eraqus_Helmet, Eraqus_Chestplate,
             Eraqus_Leggings, Eraqus_Boots, NightmareVentus_Helmet, NightmareVentus_Chestplate, NightmareVentus_Leggings, NightmareVentus_Boots,
-            AntiCoat_Helmet, AntiCoat_Chestplate, AntiCoat_Leggings, AntiCoat_Boots
+            AntiCoat_Helmet, AntiCoat_Chestplate, AntiCoat_Leggings, AntiCoat_Boots,Vanitas_Helmet, Vanitas_Chestplate, Vanitas_Leggings, Vanitas_Boots
     ;
 
     // Armour materials
@@ -140,6 +140,7 @@ public class ModItems {
     private static ArmorMaterial VENTUS = EnumHelper.addArmorMaterial("VENTUS", Reference.MODID + ":ventus", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3);
     private static ArmorMaterial ERAQUS = EnumHelper.addArmorMaterial("ERAQUS", Reference.MODID + ":eraqus", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 5);
     private static ArmorMaterial NIGHTMAREVENTUS = EnumHelper.addArmorMaterial("NIGHTMAREVENTUSVENTUS", Reference.MODID + ":nightmareventus", -1, new int[] { 4, 7, 8, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3);
+    private static ArmorMaterial VANITAS = EnumHelper.addArmorMaterial("VANITAS", Reference.MODID + ":vanitas", -1, new int[] { 3, 4, 5, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 5);
 
     // Tool materials
     public static ToolMaterial KEYCHAIN = EnumHelper.addToolMaterial("KEYCHAIN", 0, 1, 0, -4, 30);
@@ -714,6 +715,10 @@ public class ModItems {
             Eraqus_Chestplate = new ItemKKArmor(ERAQUS, 1, EntityEquipmentSlot.CHEST, 1, Strings.Eraqus_Chestplate),
             Eraqus_Leggings = new ItemKKArmor(ERAQUS, 2, EntityEquipmentSlot.LEGS, 2, Strings.Eraqus_Leggings),
             Eraqus_Boots = new ItemKKArmor(ERAQUS, 1, EntityEquipmentSlot.FEET, 3, Strings.Eraqus_Boots),
+    		Vanitas_Helmet = new ItemKKArmor(VANITAS, 1, EntityEquipmentSlot.HEAD, 0, Strings.Vanitas_Helmet),
+            Vanitas_Chestplate = new ItemKKArmor(VANITAS, 1, EntityEquipmentSlot.CHEST, 1, Strings.Vanitas_Chestplate),
+            Vanitas_Leggings = new ItemKKArmor(VANITAS, 2, EntityEquipmentSlot.LEGS, 2, Strings.Vanitas_Leggings),
+            Vanitas_Boots = new ItemKKArmor(VANITAS, 1, EntityEquipmentSlot.FEET, 3, Strings.Vanitas_Boots),
             Munny = new ItemMunny(Strings.Munny),
             EmptyBottle = new ItemKKBase(Strings.EmptyBottle).setMaxStackSize(1),
             Potion = new ItemPotion(0, true, "hp"),

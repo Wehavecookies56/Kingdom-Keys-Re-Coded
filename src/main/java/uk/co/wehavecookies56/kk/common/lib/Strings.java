@@ -391,7 +391,12 @@ public class Strings {
     Eraqus_Helmet = "eraqus_helmet",
     Eraqus_Chestplate = "eraqus_chestplate",
     Eraqus_Leggings = "eraqus_leggings",
-    Eraqus_Boots = "eraqus_boots";
+    Eraqus_Boots = "eraqus_boots",
+    
+    Vanitas_Helmet = "vanitas_helmet",
+	Vanitas_Chestplate = "vanitas_chestplate",
+	Vanitas_Leggings = "vanitas_leggings",
+	Vanitas_Boots = "vanitas_boots";
 
     // Synthesis Materials
     public static final String

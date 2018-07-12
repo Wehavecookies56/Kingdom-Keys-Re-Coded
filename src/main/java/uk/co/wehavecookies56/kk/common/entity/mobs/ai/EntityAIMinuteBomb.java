@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.entity.mobs.ai;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
+import uk.co.wehavecookies56.kk.common.entity.mobs.BaseEntityBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDetonator;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMinuteBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySkaterBomb;
@@ -10,9 +11,9 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityStormBomb;
 
 public class EntityAIMinuteBomb extends EntityAITarget {
 
-	private int ticksBeforeExplode;
 	private float strength;
-
+	private BaseEntityBomb bomb;
+	
 	public EntityAIMinuteBomb(EntityCreature creature) {
 		super(creature, true);
 		if (creature instanceof EntityMinuteBomb) {
@@ -24,7 +25,10 @@ public class EntityAIMinuteBomb extends EntityAITarget {
 		} else if (creature instanceof EntityDetonator) {
 			strength = 5F;
 		}
-		ticksBeforeExplode = 50;
+		
+		if(creature instanceof BaseEntityBomb){
+			this.bomb = (BaseEntityBomb) creature;
+		}
 	}
 
 	@Override
@@ -37,8 +41,8 @@ public class EntityAIMinuteBomb extends EntityAITarget {
 			EntityLivingBase target = this.taskOwner.getAttackTarget();
 
 			if (taskOwner.getDistanceToEntity(target) < 10) {
-				if (ticksBeforeExplode > 0) {
-					ticksBeforeExplode--;
+				if (bomb.ticksToExplode > 0) {
+					bomb.ticksToExplode--;
 					return true;
 				} else {
 					taskOwner.world.createExplosion(taskOwner, taskOwner.posX, taskOwner.posY, taskOwner.posZ, strength, false);
@@ -50,8 +54,8 @@ public class EntityAIMinuteBomb extends EntityAITarget {
 		return false;
 	}
 
-	public void startExecuting() {
-		ticksBeforeExplode = 60;
+	/*public void startExecuting() {
+		bomb.ticksToExplode = 60;
 		// EntityHelper.setState(theEntity, 0);
-	}
+	}*/
 }
