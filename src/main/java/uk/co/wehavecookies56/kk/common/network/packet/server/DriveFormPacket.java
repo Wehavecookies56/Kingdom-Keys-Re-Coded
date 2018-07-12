@@ -7,6 +7,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
+import uk.co.wehavecookies56.kk.common.entity.magic.EntityAero;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
 public class DriveFormPacket extends AbstractMessage.AbstractServerMessage<DriveFormPacket> {
@@ -42,11 +43,13 @@ public class DriveFormPacket extends AbstractMessage.AbstractServerMessage<Drive
     @Override
     public void process (EntityPlayer player, Side side) {
         if (this.revert) {
-            if (DriveFormRegistry.isDriveFormRegistered(form)) 
+            if (DriveFormRegistry.isDriveFormRegistered(form)) { 
             	DriveFormRegistry.get(form).endDrive(player);
+            }
         } else {
-            if (DriveFormRegistry.isDriveFormRegistered(form))
+            if (DriveFormRegistry.isDriveFormRegistered(form)) {
             	DriveFormRegistry.get(form).initDrive(player);
+            }
         }
     }
 }

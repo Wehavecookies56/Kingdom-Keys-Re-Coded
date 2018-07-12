@@ -17,9 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-import uk.co.wehavecookies56.kk.common.world.dimension.DimensionTeleporter;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
 
 public class ItemHandHeldGummiShip extends ItemKKBase {
 
@@ -32,7 +30,8 @@ public class ItemHandHeldGummiShip extends ItemKKBase {
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
     	if (!player.world.isRemote) {
     		String nextDimension="";
-        	if(player.dimension == ModDimensions.destinyIslandsID) {
+    		
+        	/*if(player.dimension == ModDimensions.destinyIslandsID) {
         		nextDimension = Strings.TraverseTown;
         	} else if(player.dimension == ModDimensions.traverseTownID) {
                 new TeleporterOverworld(player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
@@ -41,7 +40,7 @@ public class ItemHandHeldGummiShip extends ItemKKBase {
         		nextDimension = Strings.DestinyIslands;
         	}
     		new DimensionTeleporter(player.world.getMinecraftServer().getServer().getWorld(Utils.getDimensionIDAndBlockPos(nextDimension).id), nextDimension, Utils.getDimensionIDAndBlockPos(nextDimension).pos).teleport((EntityPlayer) player);
-
+*/
         }
         return super.onItemRightClick(world, player, hand);
     }   

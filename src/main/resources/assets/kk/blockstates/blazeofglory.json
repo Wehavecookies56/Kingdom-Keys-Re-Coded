@@ -1,15 +1,16 @@
 {
 	"forge_marker": 1,
     "defaults": {
-        "textures": {
-            "blazeofglory_1": "kk:items/models/blazeofglory_1",
-            "blazeofglory_2": "kk:items/models/blazeofglory_2",
-            "blazeofglory_3": "kk:items/models/blazeofglory_3"
-
-        },
-        "model": "kk:blazeofglory.obj",
-        "custom": { "flip-v": true }
-    },
+        "textures": { 
+            "blazeofglory_1": "kk:items/models/blazeofglory_1", 
+            "blazeofglory_2": "kk:items/models/blazeofglory_2", 
+            "blazeofglory_3": "kk:items/models/blazeofglory_3" 
+ 
+        }, 
+        "model": "kk:blazeofglory.obj", 
+        "custom": { "flip-v": true } 
+         
+    }, 
    	"variants": {
         "inventory": [
             {
@@ -42,6 +43,11 @@
                     "ground": {
                         "rotation": [ { "x": 45 }, { "y": 0 }, { "z": 0 } ],
                         "scale": 0.01
+					},
+					"fixed": {
+						"rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
+						"translation": [ 0, -0.25, 0 ],
+						"scale": 0.01
                     }
                 }
             }

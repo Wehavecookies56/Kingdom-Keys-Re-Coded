@@ -62,6 +62,7 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
     }
+	
     public void onLivingUpdate()
     { 
     	super.onLivingUpdate();

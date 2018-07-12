@@ -1,13 +1,26 @@
 package uk.co.wehavecookies56.kk.common.core.handler.event;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import uk.co.wehavecookies56.kk.common.block.BlockOrgPortal;
 import uk.co.wehavecookies56.kk.common.block.ModBlocks;
+import uk.co.wehavecookies56.kk.common.block.tile.TileEntityOrgPortal;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.ItemStacks;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
+import uk.co.wehavecookies56.kk.common.util.PortalCoords;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
 
@@ -30,7 +43,52 @@ public class BlockEvents {
             if(!event.getPlayer().capabilities.isCreativeMode) {
                 event.setCanceled(true);
             }
+        } else {
+        	World world = event.getWorld();
+        	EntityPlayer player = event.getPlayer();
+        	BlockPos pos = event.getPos();
+        	if(!world.isRemote && Block.isEqualTo(event.getPlacedBlock().getBlock(), ModBlocks.OrgPortal)) {
+        		
+        		byte index = -1;
+
+    			if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
+    				if (world.getTileEntity(pos) instanceof TileEntityOrgPortal) {
+
+    					TileEntityOrgPortal te = (TileEntityOrgPortal) world.getTileEntity(pos);
+
+    					if (te.getOwner() == null) {
+    						te.setOwner(player);
+    						te.markDirty();
+
+    						for (byte i = 0; i < 3; i++) {
+    							PortalCoords coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
+    							// System.out.println(i+" "+coords.getX());
+    							if (coords.getX() == 0.0D && coords.getY() == 0.0D && coords.getZ() == 0.0D) {
+    								index = i;
+    								break;
+    							}
+    						}
+    						// System.out.println("A: "+index);
+    						if (index != -1) {
+    							player.sendMessage(new TextComponentString(TextFormatting.GREEN + "This is now " + player.getDisplayNameString() + "'s portal " + (index + 1)));
+    							player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).setPortalCoords((byte) index, new PortalCoords((byte) index, pos.getX(), pos.getY(), pos.getZ(), player.dimension));
+    							System.out.println(index + " " + player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(index).getDimID());
+    							PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
+    						} else {
+    							player.sendMessage(new TextComponentString(TextFormatting.RED + "You have no empty slots for portals"));
+    						}
+
+    					} else if (te.getOwner().equals(player.getDisplayNameString())) {
+    						player.sendMessage(new TextComponentString(TextFormatting.YELLOW + "This is your portal " + index));
+    					} else {
+    						player.sendMessage(new TextComponentString(TextFormatting.RED + "This portal belongs to " + te.getOwner()));
+    					}
+
+    				}
+    			}
+        	}
         }
+        
     }
 
     @SubscribeEvent

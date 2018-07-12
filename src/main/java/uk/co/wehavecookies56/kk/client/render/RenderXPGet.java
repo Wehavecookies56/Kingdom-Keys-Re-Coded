@@ -4,14 +4,16 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import uk.co.wehavecookies56.kk.client.model.ModelFlyingHeart;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.entity.EntityFlyingHeart;
 import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
@@ -41,7 +43,7 @@ public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHe
 
 			GL11.glPushMatrix();
 			{
-				GL11.glTranslated(x, y+1, z);
+				GL11.glTranslated(x, y + 1, z);
 
 				// GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 				// OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 128.0F,
@@ -52,13 +54,22 @@ public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHe
 				GL11.glRotated(180, 1, 0, 0);
 				GL11.glRotatef(mc.player.getPitchYaw().y, 0, 1, 0);
 				GL11.glRotatef(-mc.player.getPitchYaw().x, 1, 0, 0);
-				
-				String text="+0xp";
-				if(mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getLevel() < mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxLevel())
-					text = "+"+eXP.xp + "xp";
-				
-				mc.fontRenderer.drawString(text, -mc.fontRenderer.getStringWidth(text)/2, 0, 0x0099ff);
 
+				String text = "+0xp";
+				System.out.println(eXP);
+				
+				EntityPlayer player = mc.world.getPlayerEntityByName(eXP.playerName);
+				
+				if(mc.world.getEntityByID(eXP.entityID) instanceof EntityLivingBase) {
+					EntityLivingBase mobEntity = (EntityLivingBase) mc.world.getEntityByID(eXP.entityID);
+					IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+					if (STATS.getLevel() < STATS.getMaxLevel())
+						text = "+" + (int)(mobEntity.getMaxHealth() / 2) + "xp";
+	
+					if (mc.player.getDisplayNameString().equals(eXP.playerName))
+						mc.fontRenderer.drawString(text, -mc.fontRenderer.getStringWidth(text) / 2, 0, 0x0099ff);
+					
+				}
 				// GL11.glRotatef(rotation += 4, 0, 1, 0);
 
 				// bindEntityTexture(entity);

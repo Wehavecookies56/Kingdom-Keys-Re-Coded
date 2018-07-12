@@ -45,6 +45,16 @@ public class EntityBlizzard extends EntityThrowable {
             if (!world.isRemote)
                 PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this,1), dimension, this.posX, this.posY, this.posZ, 64D);
         }
+        
+        //System.out.println(world.isRemote);
+        if(!world.isRemote) {
+        	if (this.world.getBlockState(this.getPosition()).getBlock() == Blocks.WATER) 
+				this.world.setBlockState(this.getPosition(), Blocks.ICE.getDefaultState());
+			else if (this.world.getBlockState(this.getPosition()).getBlock() == Blocks.FIRE)
+				this.world.setBlockState(this.getPosition(), Blocks.AIR.getDefaultState());
+			else if (this.world.getBlockState(this.getPosition()).getBlock() == Blocks.LAVA)
+				this.world.setBlockState(this.getPosition(), Blocks.OBSIDIAN.getDefaultState());
+        }
         if (ticksExisted > 60) setDead();
     }
 

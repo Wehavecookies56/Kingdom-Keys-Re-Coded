@@ -30,7 +30,7 @@ public class CommandDriveLevel implements ICommand {
 
     public CommandDriveLevel () {
         this.aliases = new ArrayList<String>();
-        this.aliases.add("leveldrive");
+        this.aliases.add("kkleveldrive");
         this.aliases.add("kkdrivelevel");
     }
 
@@ -142,15 +142,15 @@ public class CommandDriveLevel implements ICommand {
 
                 if(oldLevel != 7 && newLevel == 7) {
                 	//Increase
-                    player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()+1);
-                    player.getCapability(ModCapabilities.DRIVE_STATE, null).setDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getMaxDP());
-                    PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
+                	DRIVE.setDriveGaugeLevel(DRIVE.getDriveGaugeLevel()+1);
+                	DRIVE.setDP(DRIVE.getMaxDP());
+                    PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);
 
                 } else if(oldLevel == 7 && newLevel != 7) {
                 	//Decrease
-                    player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel()-1);
-                    player.getCapability(ModCapabilities.DRIVE_STATE, null).setDP(player.getCapability(ModCapabilities.DRIVE_STATE, null).getMaxDP());
-                    PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
+                	DRIVE.setDriveGaugeLevel(DRIVE.getDriveGaugeLevel()-1);
+                	DRIVE.setDP(DRIVE.getMaxDP());
+                    PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);
                 }
                 //PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
 

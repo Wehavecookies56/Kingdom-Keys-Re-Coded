@@ -43,6 +43,11 @@ public class DriveFormWisdom extends DriveForm {
 		            		System.out.println("LEVEL UP");
 		            		DRIVE.setDriveLevel(DRIVE.getActiveDriveName(),actualLevel+1); 
 		                    DRIVE.displayLevelUpMessage(player, DRIVE.getActiveDriveName());
+
+		                    if(actualLevel + 1 == 7) {
+		        	            DRIVE.setDriveGaugeLevel(DRIVE.getDriveGaugeLevel()+1);
+		                    	DRIVE.setDP(DRIVE.getMaxDP());
+		                    }
 		            	}
 		            }
 		            PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);

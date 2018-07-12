@@ -39,24 +39,33 @@ public class MagicBlizzard extends AbstractMessage.AbstractServerMessage<MagicBl
         if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(Constants.getCost(Strings.Spell_Blizzard));
         World world = player.world;
 
+        int distance = 5;
         switch (player.getCapability(ModCapabilities.MAGIC_STATE, null).getMagicLevel(Strings.Spell_Blizzard)) {
             case 1:
                 EntityBlizzard entityBlizzard = new EntityBlizzard(world, player);
                 world.spawnEntity(entityBlizzard);
                 entityBlizzard.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
-                //PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzard(world), 1), player, 64.0D);
                 break;
             case 2:
-                EntityBlizzara entityBlizzara = new EntityBlizzara(world, player);
-                world.spawnEntity(entityBlizzara);
-                entityBlizzara.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 2, 0);
-                //PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzara(world), 2), player, 64.0D);
+            	for(int i=0;i<3;i++) {
+                    EntityBlizzara entityBlizzara = new EntityBlizzara(world, player);
+                    world.spawnEntity(entityBlizzara);
+                    entityBlizzara.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw-distance+(distance*i), 0, 2, 0);
+        		}
                 break;
             case 3:
-                EntityBlizzaga entityBlizzaga = new EntityBlizzaga(world, player);
-                world.spawnEntity(entityBlizzaga);
-                entityBlizzaga.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 3, 0);
-                //PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(new EntityBlizzaga(world), 3), player, 64.0D);
+            	for(int i=0;i<3;i++) {
+                    EntityBlizzaga entityBlizzaga = new EntityBlizzaga(world, player);
+                    world.spawnEntity(entityBlizzaga);
+                    entityBlizzaga.setHeadingFromThrower(player, player.rotationPitch-distance+(distance*i), player.rotationYaw, 0, 3, 0);
+            	}
+            	
+            	for(int i=0;i<3;i++) {
+                    EntityBlizzaga entityBlizzaga = new EntityBlizzaga(world, player);
+                    world.spawnEntity(entityBlizzaga);
+                    entityBlizzaga.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw-distance+(distance*i), 0, 3, 0);
+        		}
+            	
                 break;
         }
         world.playSound(player.posX, player.posY, player.posZ, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1, 1, false);

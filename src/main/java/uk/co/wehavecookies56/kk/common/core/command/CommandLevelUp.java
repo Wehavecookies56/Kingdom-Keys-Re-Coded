@@ -106,15 +106,26 @@ public class CommandLevelUp implements ICommand {
                 PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
                 STATS.setLevel(1);
                 STATS.setExperience(0);
-				if(STATS.getChoice1().equals(Strings.Choice_Sword)) STATS.setStrength(3);
-                else STATS.setStrength(1);
-				if(STATS.getChoice1().equals(Strings.Choice_Shield)) STATS.setDefense(3);
-                else STATS.setDefense(1);
-				if(STATS.getChoice1().equals(Strings.Choice_Staff)) STATS.setMagic(3);
-                else STATS.setMagic(1);
+				if(STATS.getChoice1().equals(Strings.Choice_Sword)) 
+					STATS.setStrength(3);
+                else
+                	STATS.setStrength(1);
+				
+				if(STATS.getChoice1().equals(Strings.Choice_Shield)) 
+					STATS.setDefense(3);
+                else
+                	STATS.setDefense(1);
+				
+				if(STATS.getChoice1().equals(Strings.Choice_Staff))
+					STATS.setMagic(3);
+                else 
+                	STATS.setMagic(1);
+				
                 STATS.setHP(20);
                 player.setHealth(20);
-
+                STATS.setMaxMP(20);
+                STATS.setMP(STATS.getMaxMP());
+                
                 while (STATS.getLevel() < level)
                     STATS.addExperience(player, STATS.getExpNeeded(level - 1, STATS.getExperience()));
                 player.heal(STATS.getHP());

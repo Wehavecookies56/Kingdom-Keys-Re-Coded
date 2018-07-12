@@ -3,13 +3,15 @@ package uk.co.wehavecookies56.kk.client.gui;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.http.util.TextUtils;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Tutorial;
 import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -28,7 +30,8 @@ public class GuiTutorial extends GuiScreen {
 	}
 
 	GuiButton next, prev, ok;
-	final int NEXT = 0, PREV = 1, OK = 2;
+	GuiButtonCheckBox check;
+	final int NEXT = 0, PREV = 1, OK = 2, CHECK = 3;
 
 	int maxLength1 = 0, maxLength2 = 0;;
 
@@ -96,10 +99,14 @@ public class GuiTutorial extends GuiScreen {
 
 	@Override
 	public void initGui() {
+		check = new GuiButtonCheckBox(CHECK, (width / 2) + 50, height - 60, "Do not show future tutorials");
+		check.setChecked(!MainConfig.client.tutorialsPopup);
+		
 		buttonList.clear();
 		buttonList.add(next = new GuiButton(NEXT, (width / 2), height - 60, 50, 20, ">"));
 		buttonList.add(prev = new GuiButton(PREV, (width / 2) - 50, height - 60, 50, 20, "<"));
 		buttonList.add(ok = new GuiButton(OK, (width / 2) - 50, height - 40, 100, 20, "OK"));
+		buttonList.add(check);
 
 		super.initGui();
 		updateButtons();
@@ -122,6 +129,9 @@ public class GuiTutorial extends GuiScreen {
 			mc.displayGuiScreen(null);
 			mc.player.getCapability(ModCapabilities.TUTORIALS, null).setKnownTutorial(tutorial.getRoot().getTutorialID(), true);
 			PacketDispatcher.sendToServer(new TutorialsPacket(tutorial.getRoot().getTutorialID()));
+			
+			MainConfig.client.tutorialsPopup = !check.isChecked();
+            ConfigManager.sync(Reference.MODID, Config.Type.INSTANCE);
 			break;
 		}
 		super.actionPerformed(button);

@@ -19,8 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.util.IDAndBlockPos;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-import uk.co.wehavecookies56.kk.common.world.dimension.DimensionTeleporter;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
+import uk.co.wehavecookies56.kk.common.world.dimension.DimTeleporter;
 
 public class CommandDimension implements ICommand {
 
@@ -90,15 +89,14 @@ public class CommandDimension implements ICommand {
             if(player != null) {
                 if (!player.world.isRemote) {
                 	String dimension = args[0].toLowerCase();
-                	if(dimension.equals("overworld"))
-                        new TeleporterOverworld(player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
-                	else {	
-                    	IDAndBlockPos idAndBlockPos = Utils.getDimensionIDAndBlockPos(dimension);
-	                	if(idAndBlockPos.id != -500 && idAndBlockPos.pos != null) {
-	                		new DimensionTeleporter(player.world.getMinecraftServer().getServer().getWorld(idAndBlockPos.id), dimension, idAndBlockPos.pos).teleport((EntityPlayer) player);
-	                	} else {
-	                        TextHelper.sendFormattedChatMessage("Invalid dimension, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-	                	}
+                	
+                	IDAndBlockPos idAndBlockPos = Utils.getDimensionIDAndBlockPos(dimension);
+                	DimTeleporter tp = new DimTeleporter(idAndBlockPos.pos, idAndBlockPos.id);
+                	
+                	if(((EntityPlayer)sender).world.provider.getDimension() != idAndBlockPos.id) {
+                		((EntityPlayer)sender).changeDimension(idAndBlockPos.id, tp);
+                	} else {
+                		tp.placeEntity(sender.getEntityWorld(), (EntityPlayer)sender, ((EntityPlayer)sender).rotationYaw);
                 	}
                 }
             }else{

@@ -104,14 +104,14 @@ public class GuiDrive extends GuiScreen {
 				break;
 			}
 			float posX = 52 * scale;
-			float posY = 20 * scale;
+			float posY = 20 * scale + 2;
 			// System.out.println(STATS.getMaxDP());
 			GL11.glPushMatrix();
 			GL11.glTranslatef((screenWidth - guiWidth * scale) - posX, (screenHeight - guiHeight * scale) - posY, 0);
 			GL11.glScalef(scale, scale, scale);
 
 			// Background
-			if (STATE.getActiveDriveName().equals("none")) {
+			if (!STATE.getInDrive()) {
 				this.drawTexturedModalRect(15, 6, 0, 0, guiWidth, guiHeight);
 			} else {
 				this.drawTexturedModalRect(15, 6, 98, 0, guiWidth, guiHeight);
@@ -147,11 +147,7 @@ public class GuiDrive extends GuiScreen {
 			if (STATE.getDP() >= getMaxBars(STATE.getDriveGaugeLevel()) && !STATE.getInDrive()) {
 				GL11.glPushMatrix();
 				{
-				//	System.out.println(Minecraft.getSystemTime()+" : "+timeLastChange);
 					if (doChange) {
-						//counter += 100;
-						// System.out.println(nextColor);
-						// r=255; g=255;b=255;
 						switch (nextColor) {
 						case "r":
 							if (r <= 255 - CONS) {
@@ -225,8 +221,6 @@ public class GuiDrive extends GuiScreen {
 
 						timeLastChange = (int) Minecraft.getSystemTime();
 						doChange = false;
-						
-						
 					} else {
 						if (timeLastChange + 1 < (int) Minecraft.getSystemTime()) {
 							doChange = true;
@@ -235,7 +229,7 @@ public class GuiDrive extends GuiScreen {
 
 					GL11.glTranslatef(((screenWidth - guiWidth * scale) + (10 * scale)), ((screenHeight - guiHeight * scale) - (12 * scale)), 0);
 					GL11.glScalef(scale, scale, scale);
-					this.drawTexturedModalRect(0, 0, 0, 57, 30, guiHeight);
+					this.drawTexturedModalRect(0, -3, 0, 57, 30, guiHeight);
 					GL11.glColor3ub((byte) 255, (byte) 255, (byte) 255);
 				}
 				GL11.glPopMatrix();

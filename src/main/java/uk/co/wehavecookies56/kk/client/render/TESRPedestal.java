@@ -39,7 +39,7 @@ public class TESRPedestal extends TileEntitySpecialRenderer<TileEntityPedestal> 
             GlStateManager.pushMatrix(); {
                 int rot = te.getRotation();
                 GlStateManager.translate(0.5, 1.8, 0.5);
-                GlStateManager.rotate(90*rot, 0, 1, 0);
+                GlStateManager.rotate(90*rot-90, 0, 1, 0);
                 GlStateManager.scale(2, 2, 2);
                 te.setKeyblade(itemHandler.getStackInSlot(0));
                 Item itemToRender = te.keyblade.getItem();

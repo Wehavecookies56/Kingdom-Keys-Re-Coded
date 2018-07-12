@@ -43,11 +43,15 @@ public class EntityBlizzara extends EntityThrowable {
         super.onUpdate();
         if (shootingEntity == null) return;
         int rotation = 0;
-        if (!world.isRemote)
+        if (!world.isRemote) {
             PacketDispatcher.sendToAllAround(new SpawnBlizzardParticles(this, 2), (EntityPlayer) shootingEntity, 64.0D);
-        if(LockOn.target != null) {
-            EntityLiving target = (EntityLiving)InputHandler.lockOn;
-            setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);
+            
+            if (this.world.getBlockState(this.getPosition()).getBlock() == Blocks.WATER) 
+				this.world.setBlockState(this.getPosition(), Blocks.ICE.getDefaultState());
+			else if (this.world.getBlockState(this.getPosition()).getBlock() == Blocks.FIRE)
+				this.world.setBlockState(this.getPosition(), Blocks.AIR.getDefaultState());
+			else if (this.world.getBlockState(this.getPosition()).getBlock() == Blocks.LAVA)
+				this.world.setBlockState(this.getPosition(), Blocks.OBSIDIAN.getDefaultState());
         }
         this.rotationYaw = (rotation + 1) % 360;
         if (ticksExisted > 60) setDead();

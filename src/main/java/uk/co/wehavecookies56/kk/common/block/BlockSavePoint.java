@@ -31,7 +31,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 
 public class BlockSavePoint extends Block {
 
-    static int timeHealed;
+    long ticks = 0;
 
     protected BlockSavePoint (Material material, String toolClass, int level, float hardness, float resistance, String name) {
         super(material);
@@ -56,11 +56,8 @@ public class BlockSavePoint extends Block {
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entityIn) {
         if (!world.isRemote) 
         	updateState(world, pos);
-        this.timeHealed = (int) Minecraft.getSystemTime() / 1000;
+        //this.timeHealed = (int) Minecraft.getSystemTime() / 1000;
     }
-
-    @Override
-    public void randomTick (World worldIn, BlockPos pos, IBlockState state, Random random) {}
 
     @Override
     public void updateTick (World world, BlockPos pos, IBlockState state, Random rand) {
@@ -69,6 +66,7 @@ public class BlockSavePoint extends Block {
     }
 
     private void updateState (World world, BlockPos pos) {
+    	ticks++;
         List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1)));
         if (!list.isEmpty())
         	for (int i = 0; i < list.size(); i++) {
@@ -97,14 +95,13 @@ public class BlockSavePoint extends Block {
                     world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savespawn, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 }
               
-                if(player.getHealth() < player.getMaxHealth() || STATS.getMP() < STATS.getMaxMP())
-                {
+                if(player.getHealth() < player.getMaxHealth() || STATS.getMP() < STATS.getMaxMP()){
                     player.heal(1);
                     STATS.addMP(2);
                     if (player.getFoodStats().getFoodLevel() < 20)
                     	player.getFoodStats().addStats(4, 0);
-                   
-                    if (timeHealed + 1 <= (int) Minecraft.getSystemTime() / 1000){
+                                  
+                    if (ticks % 20 == 0){
                     	world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.savepoint, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     	PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos, true), player, 64.0D);
                     }

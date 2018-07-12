@@ -32,20 +32,19 @@ import uk.co.wehavecookies56.kk.client.core.helper.KeyboardHelper;
 import uk.co.wehavecookies56.kk.client.gui.GuiCommandMenu;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
-import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability.IOrganizationXIII;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.LockOn;
-import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
+import uk.co.wehavecookies56.kk.common.entity.mobs.multipart.EntityPart;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
-import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.magic.Magic;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
@@ -127,7 +126,7 @@ public class InputHandler {
         	PortalCoords coords = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getPortalCoords(i);
         	if(!(coords.getX() == 0 && coords.getY() == 0 && coords.getZ() == 0)) {
         		this.portalCommands.add(coords);
-        		System.out.println(i+" Added portal: "+coords.getPID());
+        		//System.out.println(i+" Added portal: "+coords.getPID());
         	}
         }
     }
@@ -256,7 +255,7 @@ public class InputHandler {
                 break;
             case GuiCommandMenu.MAGIC:
                 if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
-                    if (!STATS.getRecharge() && (!this.magicCommands.isEmpty() && !DRIVE.getActiveDriveName().equals(Strings.Form_Valor))) {
+                    if (!STATS.getRecharge() && (!this.magicCommands.isEmpty() && (!DRIVE.getActiveDriveName().equals(Strings.Form_Valor) && !DRIVE.getActiveDriveName().equals(Strings.Form_Anti)))) {
                         GuiCommandMenu.magicselected = 0;
                         GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAGIC;
                         world.playSound(player, player.getPosition(), ModSounds.select, SoundCategory.MASTER, 1.0f, 1.0f);
@@ -363,10 +362,10 @@ public class InputHandler {
         if (GuiCommandMenu.selected == GuiCommandMenu.DRIVE && GuiCommandMenu.submenu == GuiCommandMenu.SUB_DRIVE) {
             if (this.driveCommands.isEmpty()) {} else if ((DRIVE.getDP() >= Constants.getCost((String) this.driveCommands.get(GuiCommandMenu.driveselected)))) {
             	if(this.driveCommands.get(GuiCommandMenu.driveselected).equals(Strings.Form_Final)) {
-        			ModDriveForms.getDriveForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
+        			ModDriveForms.driveIntoForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
             	}else {
             		if(!antiFormCheck()){
-            			ModDriveForms.getDriveForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
+            			ModDriveForms.driveIntoForm(player, world, (String) this.driveCommands.get(GuiCommandMenu.driveselected));
             		}
             	}
                 GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
@@ -505,6 +504,14 @@ public class InputHandler {
                                     lockOn = (EntityLivingBase) rtr.entityHit;
                                     LockOn.target = (EntityLivingBase) rtr.entityHit;
                                     player.world.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+                                } else if(rtr.entityHit instanceof EntityPart){
+                                	EntityPart part = (EntityPart) rtr.entityHit;
+                                	if(part.getParent() != null && part.getParent() instanceof EntityLivingBase) {
+                                        lockOn = (EntityLivingBase) part.getParent();
+                                        LockOn.target = (EntityLivingBase) part.getParent();
+                                        player.world.playSound((EntityPlayer)player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+
+                                	}
                                 }
                             }
                         }

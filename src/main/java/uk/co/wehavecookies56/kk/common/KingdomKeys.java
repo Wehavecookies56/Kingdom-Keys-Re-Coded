@@ -31,6 +31,8 @@ public class KingdomKeys {
     public static Logger logger;
 
     public static EnumCreatureType HEARTLESS = EnumHelper.addCreatureType(Reference.MODID + ":heartless", IKHMob.class, 30, Material.AIR, false, false);
+    public static EnumCreatureType NOBODY = EnumHelper.addCreatureType(Reference.MODID + ":nobody", IKHMob.class, 30, Material.AIR, false, false);
+
     public static EnumCreatureType MOOGLE = EnumHelper.addCreatureType(Reference.MODID + ":moogles", EntityMoogle.class, 10, Material.AIR, true, false);
 
     @EventHandler

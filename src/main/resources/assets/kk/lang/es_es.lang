@@ -1066,6 +1066,7 @@ key.kingdomkeys.openmenu=Menú
 key.kingdomkeys.summonkeyblade=Invocar Llave Espada
 key.kingdomkeys.showgui=Mostrar HUD (on/off/on con keyblade)
 key.kingdomkeys.lockon=Activar Fijación
+key.kingdomkeys.action=Tecla de Acción
 
 ############################
 #Spells and forms
@@ -1114,6 +1115,7 @@ stats.levelUpStr=¡Fuerza aumentada!
 stats.levelUpDef=¡Defensa aumentada!
 stats.levelUpMag=¡Magia aumentada!
 stats.levelUpHP=¡VT máxima aumentada!
+stats.levelUpHP=¡PM máximos aumentados!
 stats.levelUpFG=¡Aumenta el indicador de Forma!
 stats.levelUpHighJump=¡Salto de Altura LV %1$s!
 stats.levelUpQuickRun=¡Carrera Rápida LV %1$s!

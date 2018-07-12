@@ -18,6 +18,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLevelData> {
 
     int experience, level, strength, magic, defense, hp;
+    double MP, maxMP;
     String choice1, choice2;
     List<String> messages;
 
@@ -29,6 +30,8 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         this.defense = stats.getDefense();
         this.strength = stats.getStrength();
         this.magic = stats.getMagic();
+        this.MP = stats.getMP();
+        this.maxMP = stats.getMaxMP();
         this.hp = stats.getHP();
         this.choice1 = stats.getChoice1();
         this.messages = stats.getMessages();
@@ -41,6 +44,8 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         this.defense = buffer.readInt();
         this.strength = buffer.readInt();
         this.magic = buffer.readInt();
+        this.MP = buffer.readDouble();
+        this.maxMP = buffer.readDouble();
         this.hp = buffer.readInt();
         this.choice1 = buffer.readString(40);
         this.messages = new ArrayList<String>();
@@ -56,6 +61,8 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         buffer.writeInt(this.defense);
         buffer.writeInt(this.strength);
         buffer.writeInt(this.magic);
+        buffer.writeDouble(this.MP);
+        buffer.writeDouble(this.maxMP);
         buffer.writeInt(this.hp);
         buffer.writeString(this.choice1);
         for (int i = 0; i < this.messages.size(); i++) {
@@ -71,6 +78,8 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         stats.setDefense(this.defense);
         stats.setStrength(this.strength);
         stats.setMagic(this.magic);
+        stats.setMP(this.MP);
+        stats.setMaxMP(this.maxMP);
         stats.setHP(this.hp);
         stats.setChoice1(this.choice1);
         player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(stats.getHP());

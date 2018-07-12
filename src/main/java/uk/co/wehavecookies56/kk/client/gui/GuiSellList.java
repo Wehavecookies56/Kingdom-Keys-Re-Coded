@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.GuiScrollingList;
 import uk.co.wehavecookies56.kk.api.munny.MunnyRegistry;
 import uk.co.wehavecookies56.kk.common.core.handler.event.ItemEvents;
+import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
@@ -54,7 +55,7 @@ public class GuiSellList extends GuiScrollingList {
 
     @Override
     protected int getSize () {
-        return sellableItems.size();
+		return parent.sellFilter().size();
     }
 
     @Override
@@ -75,19 +76,21 @@ public class GuiSellList extends GuiScrollingList {
     }
 
     @Override
-    protected void drawSlot (int slotIdx, int entryRight, int slotTop, int slotBuffer, Tessellator tess) {
-        if (!sellableItems.isEmpty() && slotIdx < sellableItems.size()) {
+    protected void drawSlot (int slotIdx, int entryRight, int slotTop, int slotBuffer, Tessellator tess) {    	
+    	List<ItemStack> items = parent.sellFilter();
 
-            String name = sellableItems.get(slotIdx).getDisplayName() + " x" + stackSizes.get(slotIdx);
+        if (!items.isEmpty() && slotIdx < items.size()) {
 
-            if (sellableItems.get(slotIdx).hasTagCompound()) {
-                if (sellableItems.get(slotIdx).getTagCompound().hasKey("material")) {
-                    name = Utils.translateToLocal(sellableItems.get(slotIdx).getTagCompound().getString("material") + ".name") + " x" + stackSizes.get(slotIdx);
+            String name = items.get(slotIdx).getDisplayName() + " x" + stackSizes.get(slotIdx);
+
+            if (items.get(slotIdx).hasTagCompound()) {
+                if (items.get(slotIdx).getTagCompound().hasKey("material")) {
+                    name = Utils.translateToLocal(items.get(slotIdx).getTagCompound().getString("material") + ".name") + " x" + stackSizes.get(slotIdx);
                 }
             }
             Minecraft.getMinecraft().fontRenderer.drawString(name, this.left + 3, slotTop, 0xFFFFFF);
             for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
-                if (ItemEvents.areItemStacksEqual(stack, sellableItems.get(slotIdx))) {
+                if (ItemEvents.areItemStacksEqual(stack, items.get(slotIdx))) {
                     Minecraft.getMinecraft().fontRenderer.drawString((MunnyRegistry.munnyValues.get(stack) / 2) + "", this.left + 3, slotTop + 12, 0xFFFF55);
                 }
             }
@@ -95,23 +98,39 @@ public class GuiSellList extends GuiScrollingList {
     }
 
     public void drawSellSelected() {
+    	List<ItemStack> items = parent.sellFilter();
+
         int posX = 220;
         if (parent.sellSelected != -1) {
             Minecraft.getMinecraft().renderEngine.bindTexture(parent.optionsBackground);
             drawGradientRect(posX - 10, 60, 700, parent.height - ((parent.height / 8) + 70 / 16), -1072689136, -804253680);
         }
-        GL11.glPushMatrix(); {
+        
+        GL11.glPushMatrix(); 
+        {
             GL11.glTranslatef(posX, 70, 0);
             GL11.glScalef(2, 2, 2);
-            parent.drawString(Minecraft.getMinecraft().fontRenderer, sellableItems.get(parent.sellSelected).getDisplayName() + " x" + stackSizes.get(parent.sellSelected), 0, 0, 0xFFFFFF);
+            String name;
+            if(items.get(parent.sellSelected) != null) {
+	            if(items.get(parent.sellSelected).getItem() instanceof ItemSynthesisMaterial) {
+	            	name = Utils.translateToLocal(items.get(parent.sellSelected).getTagCompound().getString("material")+".name");
+	            } else {
+	            	name = items.get(parent.sellSelected).getDisplayName();
+	            }
+	            parent.drawString(Minecraft.getMinecraft().fontRenderer, name + " x" + stackSizes.get(parent.sellSelected), 0, 0, 0xFFFFFF);
+            }
         }
         GL11.glPopMatrix();
+        
         parent.drawString(Minecraft.getMinecraft().fontRenderer, Utils.translateToLocal(Strings.Gui_Shop_Buy_Quantity), 220, parent.height - ((parent.height / 8) + 70 / 16) - 60, 0xFFFFFF);
-        GL11.glPushMatrix(); {
+
+        GL11.glPushMatrix(); 
+        {
             GL11.glTranslatef(posX, 90, 0);
             for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
                 if (ItemEvents.areItemStacksEqual(stack, sellableItems.get(parent.sellSelected))) {
-                    Minecraft.getMinecraft().fontRenderer.drawString(Utils.translateToLocal(Strings.Gui_Shop_Sell_Price) + ": " + (MunnyRegistry.munnyValues.get(stack) / 2), 0, 0, 0xFFFF55);
+                	int price = MunnyRegistry.munnyValues.get(stack) / 2 * Utils.getInt(parent.quantity.getText());
+                    Minecraft.getMinecraft().fontRenderer.drawString(Utils.translateToLocal(Strings.Gui_Shop_Sell_Price) + ": " + price, 0, 0, 0xFFFF55);
                 }
             }
         }

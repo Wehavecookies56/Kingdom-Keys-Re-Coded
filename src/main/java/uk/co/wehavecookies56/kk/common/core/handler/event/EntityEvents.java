@@ -76,6 +76,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.items.ItemStackHandler;
@@ -83,9 +84,9 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
-import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
 import uk.co.wehavecookies56.kk.common.capability.MagicStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -139,12 +140,11 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
 import uk.co.wehavecookies56.kk.common.network.packet.server.GlidePacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MasterFormPacket;
+import uk.co.wehavecookies56.kk.common.util.IDAndBlockPos;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
-import uk.co.wehavecookies56.kk.common.world.dimension.DimensionTeleporter;
+import uk.co.wehavecookies56.kk.common.world.dimension.DimTeleporter;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterDiveToTheHeart;
-import uk.co.wehavecookies56.kk.common.world.dimension.TeleporterOverworld;
 
 /**
  * Created by Toby on 19/07/2016.
@@ -249,15 +249,42 @@ public class EntityEvents {
 			dsAfter.setInDrive(false);
 			dsAfter.setDP(0);
 			dsAfter.setFP(0);
+			statsAfter.setMP(statsAfter.getMaxMP());
 		}
 	}
 
 	@SubscribeEvent
-	public void playerRespawn(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent event) {
+	public void playerRespawn(PlayerRespawnEvent event) {
+		EntityPlayer player = event.player;
+
+		if (event.player.dimension == ModDimensions.destinyIslandsID || event.player.dimension == ModDimensions.diveToTheHeartID || event.player.dimension == ModDimensions.traverseTownID) {
+			IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(event.player.dimension);
+			DimTeleporter tp = new DimTeleporter(info.pos, info.id);
+
+			if (player.world.provider.getDimension() != info.id) {
+				player.changeDimension(info.id, tp);
+			} else {
+				tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
+			}
+		}
+
 		if (event.isEndConquered()) {
 			BlockPos spawn = new BlockPos(192, 5, 161);
-			new DimensionTeleporter(event.player.world.getMinecraftServer().getServer().getWorld(Utils.getDimensionIDAndBlockPos(Strings.TraverseTown).id), Strings.TraverseTown, spawn).teleport((EntityPlayer) event.player);
+
+			IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(ModDimensions.traverseTownID);
+			DimTeleporter tp = new DimTeleporter(info.pos, info.id);
+
+			if (player.world.provider.getDimension() != info.id) {
+				player.changeDimension(info.id, tp);
+			} else {
+				tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
+			}
 		}
+
+		
+
+		
+		
 	}
 
 	public void dropRecipe(LivingDropsEvent event) {
@@ -305,7 +332,6 @@ public class EntityEvents {
 
 	@SubscribeEvent
 	public void OnEntityJoinWorld(EntityJoinWorldEvent event) {
-
 		if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.DriveRecovery.getUnlocalizedName());
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.HighDriveRecovery.getUnlocalizedName());
@@ -347,6 +373,7 @@ public class EntityEvents {
 			PacketDispatcher.sendTo(new SyncOrgXIIIData(event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) event.getEntity());
 			PacketDispatcher.sendTo(new SyncTutorials(event.getEntity().getCapability(ModCapabilities.TUTORIALS, null)), (EntityPlayerMP) event.getEntity());
 
+			// First time player joins
 			FirstTimeJoinCapability.IFirstTimeJoin FTJ = event.getEntity().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
 			if (!FTJ.getFirstTimeJoin()) {
 				((EntityPlayer) event.getEntity()).inventory.addItemStackToInventory(new ItemStack(ModItems.WoodenKeyblade));
@@ -354,9 +381,20 @@ public class EntityEvents {
 				FTJ.setPosX(((EntityPlayer) event.getEntity()).getPosition().getX());
 				FTJ.setPosY(((EntityPlayer) event.getEntity()).getPosition().getY());
 				FTJ.setPosZ(((EntityPlayer) event.getEntity()).getPosition().getZ());
+
 				if (((EntityPlayer) event.getEntity()).dimension != ModDimensions.diveToTheHeartID && MainConfig.worldgen.EnableStationOfAwakening) {
 					if (!event.getWorld().isRemote) {
-						new TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().getWorld(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer) event.getEntity()));
+						IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(ModDimensions.diveToTheHeartID);
+						DimTeleporter tp = new DimTeleporter(info.pos, info.id);
+
+						if (((EntityPlayer) event.getEntity()).world.provider.getDimension() != info.id) {
+							((EntityPlayer) event.getEntity()).changeDimension(info.id, tp);
+						} else {
+							tp.placeEntity(((EntityPlayer) event.getEntity()).getEntityWorld(), ((EntityPlayer) event.getEntity()), ((EntityPlayer) event.getEntity()).rotationYaw);
+						}
+						// new
+						// TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().getWorld(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer)
+						// event.getEntity()));
 					}
 				}
 
@@ -395,6 +433,12 @@ public class EntityEvents {
 			EntityPlayer player = (EntityPlayer) event.getEntity();
 			SummonKeybladeCapability.ISummonKeyblade SUMMON = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
 			IOrganizationXIII ORG = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+			IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+			if(DRIVE.getInDrive()) {
+                if (DriveFormRegistry.isDriveFormRegistered(DRIVE.getActiveDriveName())) {
+                	DriveFormRegistry.get(DRIVE.getActiveDriveName()).endDrive(player);
+                }
+			}
 			if (SUMMON.getIsKeybladeSummoned(EnumHand.MAIN_HAND)) {
 				if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
 					PacketDispatcher.sendToServer(new DeSummonKeyblade());
@@ -448,7 +492,7 @@ public class EntityEvents {
 						player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1500);
 					}
 
-					EntityXPGet xp = new EntityXPGet(mob.world, mob.getMaxHealth());
+					EntityXPGet xp = new EntityXPGet(mob.world, player, mob);
 					xp.setPosition(mob.posX, mob.posY + 1, mob.posZ);
 					player.world.spawnEntity(xp);
 
@@ -468,7 +512,7 @@ public class EntityEvents {
 						player.sendMessage(driMessage);
 						player.getCapability(ModCapabilities.PLAYER_STATS, null).setEnderDragonDefeated(true);
 
-						EntityXPGet xp = new EntityXPGet(mob.world, mob.getMaxHealth());
+						EntityXPGet xp = new EntityXPGet(mob.world, player, mob);
 						xp.setPosition(mob.posX, mob.posY + 1, mob.posZ);
 						player.world.spawnEntity(xp);
 					}
@@ -848,21 +892,21 @@ public class EntityEvents {
 		World world = event.player.world;
 		if (!event.player.world.isRemote) {
 			if (player.dimension == ModDimensions.diveToTheHeartID) {
-				
+
 				PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SOA_1), (EntityPlayerMP) player);
-				//if(world.isRemote)
-		       		//GuiHelper.openTutorial(Tutorials.TUTORIAL_SOA_1);
-				
+				// if(world.isRemote)
+				// GuiHelper.openTutorial(Tutorials.TUTORIAL_SOA_1);
+
 				if (player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
 					if (!STATS.getChoice1().equals(Strings.Choice_Shield)) {
 						STATS.setChoice1(Strings.Choice_Shield);
 						TextComponentTranslation shield = new TextComponentTranslation("Shield");
 						shield.getStyle().setColor(TextFormatting.YELLOW);
 						player.sendMessage(shield);
-						
-						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SHIELD_1,true), (EntityPlayerMP) player);
-						//if(world.isRemote)
-						//	GuiHelper.openTutorial(Tutorials.TUTORIAL_SHIELD_1, true);
+
+						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SHIELD_1, true), (EntityPlayerMP) player);
+						// if(world.isRemote)
+						// GuiHelper.openTutorial(Tutorials.TUTORIAL_SHIELD_1, true);
 					}
 				} else if (player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
 					if (!STATS.getChoice1().equals(Strings.Choice_Staff)) {
@@ -870,11 +914,11 @@ public class EntityEvents {
 						TextComponentTranslation staff = new TextComponentTranslation("Staff");
 						staff.getStyle().setColor(TextFormatting.YELLOW);
 						player.sendMessage(staff);
-						
-						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_STAFF_1,true), (EntityPlayerMP) player);
 
-						//if(world.isRemote)
-							//GuiHelper.openTutorial(Tutorials.TUTORIAL_STAFF_1, true);
+						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_STAFF_1, true), (EntityPlayerMP) player);
+
+						// if(world.isRemote)
+						// GuiHelper.openTutorial(Tutorials.TUTORIAL_STAFF_1, true);
 					}
 				} else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) {
 					if (!STATS.getChoice1().equals(Strings.Choice_Sword)) {
@@ -882,14 +926,14 @@ public class EntityEvents {
 						TextComponentTranslation sword = new TextComponentTranslation("Sword");
 						sword.getStyle().setColor(TextFormatting.YELLOW);
 						player.sendMessage(sword);
-						
-						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SWORD_1,true), (EntityPlayerMP) player);
 
-						//if(world.isRemote)
-						//	GuiHelper.openTutorial(Tutorials.TUTORIAL_SWORD_1, true);
+						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SWORD_1, true), (EntityPlayerMP) player);
+
+						// if(world.isRemote)
+						// GuiHelper.openTutorial(Tutorials.TUTORIAL_SWORD_1, true);
 					}
 				} else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
-					if (((EntityPlayer) player).dimension == ModDimensions.diveToTheHeartID) {
+					if (player.dimension == ModDimensions.diveToTheHeartID) {
 						if (!STATS.getChoice1().equals("") && !STATS.getChoice1().equals("door")) {
 							// if (!player.world.isRemote) {
 							switch (STATS.getChoice1()) {
@@ -904,7 +948,19 @@ public class EntityEvents {
 								break;
 							}
 							PacketDispatcher.sendTo(new SyncLevelData(STATS), (EntityPlayerMP) player);
-							new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
+
+							IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(0);
+							DimTeleporter tp = new DimTeleporter(info.pos, info.id);
+
+							if (player.world.provider.getDimension() != info.id) {
+								player.changeDimension(info.id, tp);
+							} else {
+								tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
+							}
+
+							// new
+							// TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player),
+							// player.world);
 							// }
 						} else {
 							if (!STATS.getChoice1().equals("door")) {
@@ -918,28 +974,38 @@ public class EntityEvents {
 				}
 			} else if (player.dimension == ModDimensions.traverseTownID) {
 				if (player.getPosition().getX() == 193 && player.getPosition().getZ() == 161 && player.getPosition().getY() == 6) {
-					new TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player), player.world);
+
+					IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(0);
+					DimTeleporter tp = new DimTeleporter(info.pos, info.id);
+
+					if (player.world.provider.getDimension() != info.id) {
+						player.changeDimension(info.id, tp);
+					} else {
+						tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
+					}
+					// new
+					// TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player),
+					// player.world);
 				}
 			}
 		}
 
 		DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
-		//if (!DS.getInDrive())
-			if (STATS.getMP() <= 0 || STATS.getRecharge()) {
-				STATS.setRecharge(true);
-				if (STATS.getMP() != STATS.getMaxMP()) {
-					STATS.addMP(0.1);
-					if (STATS.getMP() > STATS.getMaxMP())
-						STATS.setMP(STATS.getMaxMP());
-
-				} else {
+		if (STATS.getMP() <= 0 || STATS.getRecharge()) {
+			STATS.setRecharge(true);
+			if (STATS.getMP() != STATS.getMaxMP()) {
+				STATS.addMP(STATS.getMaxMP()/900);
+				if (STATS.getMP() > STATS.getMaxMP())
 					STATS.setMP(STATS.getMaxMP());
-					STATS.setRecharge(false);
-					if (event.side.isServer()) {
-						PacketDispatcher.sendTo(new SyncMagicData(event.player.getCapability(ModCapabilities.MAGIC_STATE, null), event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.player);
-					}
+
+			} else {
+				STATS.setMP(STATS.getMaxMP());
+				STATS.setRecharge(false);
+				if (event.side.isServer()) {
+					PacketDispatcher.sendTo(new SyncMagicData(event.player.getCapability(ModCapabilities.MAGIC_STATE, null), event.player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.player);
 				}
 			}
+		}
 		if (DS.getInDrive() && DriveFormRegistry.isDriveFormRegistered(DS.getActiveDriveName())) {
 			DriveFormRegistry.get(DS.getActiveDriveName()).update(event.player);
 		}
@@ -1005,26 +1071,22 @@ public class EntityEvents {
 	}
 
 	private void quickRun(EntityPlayer player) {
-		/*int wisdomLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Wisdom);
-
-		if (wisdomLevel > 2) {
-			float yaw = player.rotationYaw;
-			float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
-			float motionZ = MathHelper.cos(yaw / 180.0f * (float) Math.PI);
-
-			double power = Constants.WISDOM_QR[wisdomLevel - 2];
-
-			boolean j = false;
-			if (player.world.isRemote) {
-				j = Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown();
-			}
-
-			if (j) {
-				if (player.motionY > 0 && player.isSneaking()) {
-					player.addVelocity(motionX * power, 0 * power, motionZ * power);
-				}
-			}
-		}*/
+		/*
+		 * int wisdomLevel = player.getCapability(ModCapabilities.DRIVE_STATE,
+		 * null).getDriveLevel(Strings.Form_Wisdom);
+		 * 
+		 * if (wisdomLevel > 2) { float yaw = player.rotationYaw; float motionX =
+		 * -MathHelper.sin(yaw / 180.0f * (float) Math.PI); float motionZ =
+		 * MathHelper.cos(yaw / 180.0f * (float) Math.PI);
+		 * 
+		 * double power = Constants.WISDOM_QR[wisdomLevel - 2];
+		 * 
+		 * boolean j = false; if (player.world.isRemote) { j =
+		 * Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown(); }
+		 * 
+		 * if (j) { if (player.motionY > 0 && player.isSneaking()) {
+		 * player.addVelocity(motionX * power, 0 * power, motionZ * power); } } }
+		 */
 	}
 
 	int jumps = 0;
@@ -1098,7 +1160,9 @@ public class EntityEvents {
 		}
 		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
-			player.getCapability(ModCapabilities.DRIVE_STATE, null).addDP(1);
+			IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+			if (!DRIVE.getInDrive()) // If player is in base get a bit of DP
+				DRIVE.addDP(1);
 			PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
 		}
 		if (event.getEntityLiving() instanceof IKHMob) {
@@ -1109,16 +1173,14 @@ public class EntityEvents {
 			}
 			if (player != null) {
 				if (khMob.getType() == MobType.HEARTLESS_EMBLEM || khMob.getType() == MobType.HEARTLESS_PUREBLOOD || khMob.getType() == MobType.NOBODY) {
-					/*
-					 * if(ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()),
-					 * ItemStack.EMPTY) && ) {//Main empty but offhand is damagable
-					 * event.setCanceled(true); } else {
-					 */
 					// If the player has a real weapon in any slot
-					if (!(player.getHeldItemMainhand().getItem() instanceof ItemKeyblade || player.getHeldItemMainhand().getItem() instanceof IOrgWeapon || player.getHeldItemOffhand().getItem() instanceof ItemKeyblade || player.getHeldItemOffhand().getItem() instanceof IOrgWeapon)) {
-						event.setCanceled(true);
+					if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Anti)) {
+						if (!(player.getHeldItemMainhand().getItem() instanceof ItemKeyblade || player.getHeldItemMainhand().getItem() instanceof IOrgWeapon || player.getHeldItemOffhand().getItem() instanceof ItemKeyblade || player.getHeldItemOffhand().getItem() instanceof IOrgWeapon)) {
+							event.setCanceled(true);
+						}
+					} else {
+						event.setAmount(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
 					}
-					// }
 				}
 			}
 		}
@@ -1127,10 +1189,16 @@ public class EntityEvents {
 			if (event.getSource().getDamageType().equals("thorns"))
 				return;
 
-			if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
-				if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof IOrgWeapon) {
-					event.setAmount(event.getAmount() - 4 + DamageCalculation.getStrengthDamage(player));
+			if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Anti)) {
+				if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+					if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+						if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof IOrgWeapon) {
+							event.setAmount(event.getAmount() - 4 + DamageCalculation.getStrengthDamage(player));
+						}
+					}
 				}
+			} else {
+				event.setAmount(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
 			}
 		}
 	}

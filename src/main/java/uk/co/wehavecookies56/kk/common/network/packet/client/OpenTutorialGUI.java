@@ -25,7 +25,7 @@ public class OpenTutorialGUI extends AbstractMessage.AbstractClientMessage<OpenT
     	this.always = false;
     }
     
-    public OpenTutorialGUI(int id,boolean always) {
+    public OpenTutorialGUI(int id, boolean always) {
     	this.id = id;
     	this.always = always;
     }

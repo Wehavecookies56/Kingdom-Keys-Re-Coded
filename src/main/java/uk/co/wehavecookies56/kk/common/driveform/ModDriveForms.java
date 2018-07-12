@@ -29,7 +29,7 @@ public class ModDriveForms {
         DriveFormRegistry.registerDriveForm(Anti);
     }
 
-    public static void getDriveForm (EntityPlayer player, World world, String drive) {
+    public static void driveIntoForm (EntityPlayer player, World world, String drive) {
         switch (drive) {
             case Strings.Form_Valor:
                 PacketDispatcher.sendToServer(new DriveFormPacket(Strings.Form_Valor));

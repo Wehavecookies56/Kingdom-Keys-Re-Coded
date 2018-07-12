@@ -67,12 +67,12 @@ public class SpawnCureParticles extends AbstractMessage.AbstractClientMessage<Sp
         }
 
         if (savePoint) {
-            r = 0.5D;
+            r = 0.6D;
             x = x + 0.6;
             z = z + 0.6;
             for (int a = 1; a <= 360; a += 7) {
-                double x = this.x + (r * Math.cos(Math.toRadians(a)));
-                double z = this.z + (r * Math.sin(Math.toRadians(a)));
+                double x = this.x-0.1 + (r * Math.cos(Math.toRadians(a)));
+                double z = this.z-0.1 + (r * Math.sin(Math.toRadians(a)));
 
                 player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, x, this.y + 1.5D, z, 0.0D, 0.0D, 0.0D);
                 player.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, x, this.y + 1.05D, z, 0.0D, 0.0D, 0.0D);

@@ -10,7 +10,8 @@ import net.minecraft.world.World;
 public class EntitySeedBullet extends EntityThrowable
 {
 	private EntityLivingBase ent;
-
+	private int ticks = 30;
+	
 	public EntitySeedBullet(World world)
 	{
 		super(world);
@@ -40,4 +41,14 @@ public class EntitySeedBullet extends EntityThrowable
 		}
 	}
 
+	public void onEntityUpdate()
+	{			
+		if(ticks <= 0)
+		{
+			ticks = 30;
+			this.setDead();
+		}
+		else
+			ticks--;
+	}
 }
