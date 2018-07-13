@@ -3,6 +3,7 @@ package uk.co.wehavecookies56.kk.common.capability;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.capability.CheatModeCapability.ICheatMode;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability.IFirstTimeJoin;
@@ -41,8 +42,10 @@ public class ModCapabilities {
     public static final Capability<IOrganizationXIII> Xemnas = null;
     @CapabilityInject(ITutorials.class)
     public static final Capability<ITutorials> TUTORIALS = null;
+    @CapabilityInject(IAbilities.class)
+    public static final Capability<IAbilities> ABILITIES = null;
 
-
+    
     public static void registerCapabilities() {
         CapabilityManager.INSTANCE.register(IMunny.class, new MunnyCapability.Storage(), MunnyCapability.Default.class);
         CapabilityManager.INSTANCE.register(IPlayerStats.class, new PlayerStatsCapability.Storage(), PlayerStatsCapability.Default.class);
@@ -55,6 +58,7 @@ public class ModCapabilities {
         CapabilityManager.INSTANCE.register(ICheatMode.class, new CheatModeCapability.Storage(), CheatModeCapability.Default.class);
         CapabilityManager.INSTANCE.register(IOrganizationXIII.class, new OrganizationXIIICapability.Storage(), OrganizationXIIICapability.Default.class);
         CapabilityManager.INSTANCE.register(ITutorials.class, new TutorialsCapability.Storage(), TutorialsCapability.Default.class);
+        CapabilityManager.INSTANCE.register(IAbilities.class, new AbilitiesCapability.Storage(), AbilitiesCapability.Default.class);
 
     }
 

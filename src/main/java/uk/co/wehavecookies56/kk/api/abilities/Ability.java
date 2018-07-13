@@ -11,7 +11,7 @@ public class Ability extends IForgeRegistryEntry.Impl<Ability> {
     public Ability (int apCost, String name) {
         this.apCost = apCost;
         this.name = name;
-        setRegistryName(Reference.MODID+":ability.scan");
+        setRegistryName(Reference.MODID+":"+name);
     }
 
     public int getApCost() {

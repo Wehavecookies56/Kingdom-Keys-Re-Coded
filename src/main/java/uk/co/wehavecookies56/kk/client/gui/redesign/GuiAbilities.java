@@ -17,7 +17,7 @@ public class GuiAbilities extends GuiScreen {
 
     GuiMenu_Bars background;
 
-    GuiMenuButton test, test2;
+    //GuiMenuButton test, test2;
 
     public GuiAbilities() {
         mc = Minecraft.getMinecraft();
@@ -37,8 +37,13 @@ public class GuiAbilities extends GuiScreen {
         background.width = width;
         background.height = height;
         background.init();
-        buttonList.add(test = new GuiMenuButton(0, 0, 0, 200, "TEST SCAN ABILITY EQUIP"));
-        buttonList.add(test2 = new GuiMenuButton(1, 0, 20, 200, "TEST SCAN ABILITY UNEQUIP"));
+        
+        int id = 0;
+        for(int i = 0;i<5;i++) {
+        	buttonList.add(new GuiMenuButton(id++, 0, id*20, 100, "Scan ABILITY EQUIP"));
+        	buttonList.add(new GuiMenuButton(id++, 0, id*20, 100, "SCAN ABILITY UNEQUIP"));
+        }
+        
         super.initGui();
     }
 

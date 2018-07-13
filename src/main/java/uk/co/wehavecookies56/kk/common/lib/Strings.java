@@ -828,10 +828,17 @@ public class Strings {
     Ampoule = "ampoule"
     ;
 
-    // Knowledges
     public static final String
     AbandonedKnowledge = "abandonedknowledge";
 
+    // Abilities
+    public static final String
+    AbilityScan = "ability.scan",
+    AbilityHighJump = "ability.highjump",
+    AbilityQuickRun = "ability.quickrun",
+    AbilityAerialDodge = "ability.aerialdodge",
+    AbilityGlide = "ability.glide";    	
+    
     // Keyblades
     public static final String
     KingdomKey = "kingdomkey",
