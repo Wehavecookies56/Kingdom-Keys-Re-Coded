@@ -14,12 +14,15 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.ability.Abilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class PlayerStatsCapability {
 
@@ -78,6 +81,9 @@ public class PlayerStatsCapability {
         int getExpNeeded(int level, int experience);
         void levelUpStatsAndDisplayMessage(EntityPlayer player);
         void clearMessages();
+        
+        void setRechargeSpeed(double amount);
+        double getRechargeSpeed();
     }
 
     public static class Storage implements IStorage<IPlayerStats> {
@@ -101,6 +107,7 @@ public class PlayerStatsCapability {
             properties.setString("Choice1", instance.getChoice1());
             properties.setString("Choice2", instance.getChoice2());
             properties.setTag("PotionsInvKey", instance.getInventoryPotionsMenu().serializeNBT());
+            properties.setDouble("RechargeSpeed", instance.getRechargeSpeed());
 
             return properties;
         }
@@ -124,6 +131,8 @@ public class PlayerStatsCapability {
             instance.setChoice1(properties.getString("Choice1"));
             instance.setChoice2(properties.getString("Choice2"));
             instance.getInventoryPotionsMenu().deserializeNBT(properties.getCompoundTag("PotionsInvKey"));
+            
+            instance.setRechargeSpeed(properties.getDouble("RechargeSpeed"));
         }
     }
 
@@ -147,6 +156,7 @@ public class PlayerStatsCapability {
         private double maxMP = 20;
         
         private boolean recharge = false;
+        private double rechargeSpeed = 1;
         private boolean cheatMode = false;
         private boolean enderDragonDefeated = false;
         private boolean hudmode = true;
@@ -383,6 +393,7 @@ public class PlayerStatsCapability {
             switch (this.level) {
                 case 2:
                     this.addDefense(1);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(Abilities.scan, true);
                     break;
                 case 3:
                     this.addStrength(1);
@@ -411,6 +422,7 @@ public class PlayerStatsCapability {
                     this.addMagic(1);
                     this.addDefense(1);
                     this.addHP(5);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(Abilities.mpHaste, true);
                     break;
                 case 11:
                     this.addStrength(1);
@@ -738,9 +750,21 @@ public class PlayerStatsCapability {
                 PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
             }
             
+            PacketDispatcher.sendTo(new SyncAbilities(player.getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) player);
+
             player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 0.5f, 1.0f);
             player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());
             PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
         }
+
+		@Override
+		public void setRechargeSpeed(double amount) {
+			this.rechargeSpeed = amount;
+		}
+
+		@Override
+		public double getRechargeSpeed() {
+			return rechargeSpeed;
+		}
     }
 }

@@ -12,6 +12,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability;
 import uk.co.wehavecookies56.kk.common.capability.CheatModeCapability;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
@@ -303,6 +304,30 @@ public class CapabilityEvents {
                 @Override
                 public void deserializeNBT(NBTTagCompound nbt) {
                     ModCapabilities.TUTORIALS.getStorage().readNBT(ModCapabilities.TUTORIALS, inst, null, nbt);
+                }
+            });
+            
+            event.addCapability(new ResourceLocation(Reference.MODID, "IAbilities"), new ICapabilitySerializable<NBTTagCompound>() {
+                AbilitiesCapability.IAbilities inst = ModCapabilities.ABILITIES.getDefaultInstance();
+
+                @Override
+                public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+                    return capability == ModCapabilities.ABILITIES;
+                }
+
+                @Override
+                public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+                    return capability == ModCapabilities.ABILITIES ? (T) inst : null;
+                }
+
+                @Override
+                public NBTTagCompound serializeNBT() {
+                    return (NBTTagCompound) ModCapabilities.ABILITIES.getStorage().writeNBT(ModCapabilities.ABILITIES, inst, null);
+                }
+
+                @Override
+                public void deserializeNBT(NBTTagCompound nbt) {
+                    ModCapabilities.ABILITIES.getStorage().readNBT(ModCapabilities.ABILITIES, inst, null, nbt);
                 }
             });
         }

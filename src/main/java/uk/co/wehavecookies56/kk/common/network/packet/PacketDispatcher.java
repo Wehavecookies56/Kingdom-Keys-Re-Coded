@@ -68,7 +68,8 @@ public class PacketDispatcher {
         registerMessage(OpenTutorialGUI.class);
         registerMessage(SyncTutorials.class);
         registerMessage(OpenPlayerItemsGUI.class);
-
+        registerMessage(SyncAbilities.class);
+        
         // Client to Server
         registerMessage(MunnyPickup.class);
         registerMessage(HpOrbPickup.class);

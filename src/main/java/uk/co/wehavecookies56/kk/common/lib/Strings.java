@@ -837,7 +837,8 @@ public class Strings {
     AbilityHighJump = "ability.highjump",
     AbilityQuickRun = "ability.quickrun",
     AbilityAerialDodge = "ability.aerialdodge",
-    AbilityGlide = "ability.glide";    	
+    AbilityGlide = "ability.glide",
+    AbilityMPHaste = "ability.mphaste";
     
     // Keyblades
     public static final String
