@@ -16,11 +16,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 
 public class CommandLevelUp implements ICommand {
@@ -104,6 +106,8 @@ public class CommandLevelUp implements ICommand {
                     return;
                 }
                 PlayerStatsCapability.IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+                IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+
                 STATS.setLevel(1);
                 STATS.setExperience(0);
 				if(STATS.getChoice1().equals(Strings.Choice_Sword)) 
@@ -125,12 +129,15 @@ public class CommandLevelUp implements ICommand {
                 player.setHealth(20);
                 STATS.setMaxMP(20);
                 STATS.setMP(STATS.getMaxMP());
-                
+                ABILITIES.clearAbilities();
+
+
                 while (STATS.getLevel() < level)
                     STATS.addExperience(player, STATS.getExpNeeded(level - 1, STATS.getExperience()));
                 player.heal(STATS.getHP());
                 TextHelper.sendFormattedChatMessage("Your level is now " + args[0], TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
                 PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+                PacketDispatcher.sendTo(new SyncAbilities(ABILITIES), (EntityPlayerMP) player);
 
             } else if (args.length == 2) {
                 int level = 1;
@@ -146,6 +153,8 @@ public class CommandLevelUp implements ICommand {
                 }
                 EntityPlayerMP entityplayermp = args.length == 2 ?  (EntityPlayerMP) getPlayerFromUsername(args[1]) : getCommandSenderAsPlayer(sender);
                 PlayerStatsCapability.IPlayerStats STATS = entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null);
+                IAbilities ABILITIES = entityplayermp.getCapability(ModCapabilities.ABILITIES, null);
+
                 STATS.setLevel(1);
                 STATS.setExperience(0);
 				if(STATS.getChoice1().equals(Strings.Choice_Sword)) STATS.setStrength(3);
@@ -156,7 +165,7 @@ public class CommandLevelUp implements ICommand {
                 else STATS.setMagic(1);
                 STATS.setHP(20);
                 entityplayermp.setHealth(20);
-
+                ABILITIES.clearAbilities();
 
                 while (STATS.getLevel() < level)
                     STATS.addExperience(entityplayermp, STATS.getExpNeeded(level - 1, STATS.getExperience()));
@@ -165,6 +174,7 @@ public class CommandLevelUp implements ICommand {
                 TextHelper.sendFormattedChatMessage("Your level is now " + args[0], TextFormatting.YELLOW, (EntityPlayer) entityplayermp);
 
                 PacketDispatcher.sendTo(new SyncLevelData(entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) entityplayermp);
+                PacketDispatcher.sendTo(new SyncAbilities(ABILITIES), (EntityPlayerMP) entityplayermp);
 
             } else
                 TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());

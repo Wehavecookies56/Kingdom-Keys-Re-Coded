@@ -47,10 +47,6 @@ public class GuiMenu_Bars extends GuiScreen {
     public void drawScreen (int mouseX, int mouseY, float partialTicks) {
         RenderHelper.disableStandardItemLighting();
         drawBackground(width, height, drawPlayerInfo);
-        if (drawPlayerInfo) {
-
-        }
-
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 

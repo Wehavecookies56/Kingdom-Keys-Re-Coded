@@ -3,12 +3,18 @@ package uk.co.wehavecookies56.kk.client.gui.redesign;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.relauncher.Side;
+import uk.co.wehavecookies56.kk.api.abilities.Ability;
 import uk.co.wehavecookies56.kk.api.abilities.AbilityEvent;
 import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Bars;
 import uk.co.wehavecookies56.kk.common.ability.Abilities;
+import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
+import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilities;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 
 import java.io.IOException;
 
@@ -39,9 +45,12 @@ public class GuiAbilities extends GuiScreen {
         background.init();
         
         int id = 0;
-        for(int i = 0;i<5;i++) {
-        	buttonList.add(new GuiMenuButton(id++, 0, id*20, 100, "Scan ABILITY EQUIP"));
-        	buttonList.add(new GuiMenuButton(id++, 0, id*20, 100, "SCAN ABILITY UNEQUIP"));
+        IAbilities ABILITIES = mc.player.getCapability(ModCapabilities.ABILITIES, null);
+
+        for(int i = 0;i<ABILITIES.getUnlockedAbilities().size();i++) {
+        	Ability ability = ABILITIES.getUnlockedAbilities().get(i);
+        	buttonList.add(new GuiMenuButton(id++, 0, id*20, 100, ability.getName()+" EQUIP"));
+        	buttonList.add(new GuiMenuButton(id++, 0, id*20, 100, ability.getName()+" UNEQUIP"));
         }
         
         super.initGui();

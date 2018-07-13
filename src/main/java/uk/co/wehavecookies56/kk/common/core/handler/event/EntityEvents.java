@@ -80,11 +80,13 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.items.ItemStackHandler;
+import uk.co.wehavecookies56.kk.api.abilities.AbilityEvent;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
+import uk.co.wehavecookies56.kk.common.ability.Abilities;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
@@ -126,6 +128,7 @@ import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenOrgGUI;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenTutorialGUI;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
@@ -151,6 +154,28 @@ import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
  */
 public class EntityEvents {
 
+	@SubscribeEvent
+	public void equipAbility(AbilityEvent.Equip event) {
+		KingdomKeys.logger.info("Equipped " + event.getAbility().getName());
+		if (event.getAbility().equals(Abilities.mpHaste)) {
+			IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
+			STATS.setRechargeSpeed(STATS.getRechargeSpeed()+1);
+		}
+		PacketDispatcher.sendTo(new SyncLevelData(event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getPlayer());
+
+	}
+
+	@SubscribeEvent
+	public void unequipAbility(AbilityEvent.Unequip event) {
+		KingdomKeys.logger.info("Unequipped " + event.getAbility().getName());
+		if (event.getAbility().equals(Abilities.mpHaste)) {
+			IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
+			STATS.setRechargeSpeed(STATS.getRechargeSpeed()-1);
+		}
+		PacketDispatcher.sendTo(new SyncLevelData(event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getPlayer());
+
+	}
+	
 	@SubscribeEvent
 	public void onPlayerClone(PlayerEvent.Clone event) {
 		FirstTimeJoinCapability.IFirstTimeJoin ftjBefore = event.getOriginal().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
@@ -281,10 +306,6 @@ public class EntityEvents {
 			}
 		}
 
-		
-
-		
-		
 	}
 
 	public void dropRecipe(LivingDropsEvent event) {
@@ -372,6 +393,7 @@ public class EntityEvents {
 			PacketDispatcher.sendTo(new SyncLevelData(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
 			PacketDispatcher.sendTo(new SyncOrgXIIIData(event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) event.getEntity());
 			PacketDispatcher.sendTo(new SyncTutorials(event.getEntity().getCapability(ModCapabilities.TUTORIALS, null)), (EntityPlayerMP) event.getEntity());
+            PacketDispatcher.sendTo(new SyncAbilities(event.getEntity().getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) event.getEntity());
 
 			// First time player joins
 			FirstTimeJoinCapability.IFirstTimeJoin FTJ = event.getEntity().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
@@ -994,7 +1016,7 @@ public class EntityEvents {
 		if (STATS.getMP() <= 0 || STATS.getRecharge()) {
 			STATS.setRecharge(true);
 			if (STATS.getMP() != STATS.getMaxMP()) {
-				STATS.addMP(STATS.getMaxMP()/900);
+				STATS.addMP(STATS.getMaxMP() / (900/STATS.getRechargeSpeed()));
 				if (STATS.getMP() > STATS.getMaxMP())
 					STATS.setMP(STATS.getMaxMP());
 

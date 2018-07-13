@@ -7,20 +7,26 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import uk.co.wehavecookies56.kk.api.abilities.Ability;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
+import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class AbilitiesCapability {
 
 
 	public interface IAbilities {
-		boolean getUnlockedAbility(String id);
+		boolean getUnlockedAbility(Ability ability);
 
-		void unlockAbility(String id, boolean unlocked);
+		void unlockAbility(Ability ability, boolean unlocked);
 
-		HashMap<String,Integer> getUnlockedAbilities();
+		ArrayList<Ability> getUnlockedAbilities();
+		
+		void clearAbilities();
 		
 		//void setKnownTutorials(ArrayList<Integer> list);
 	}
@@ -33,10 +39,11 @@ public class AbilitiesCapability {
 
 			NBTTagList tagList = new NBTTagList();
 			for (int i = 0; i < instance.getUnlockedAbilities().size(); i++) {
-				int s = instance.getUnlockedAbilities().get(i);
-				NBTTagCompound tutorials = new NBTTagCompound();
-				tutorials.setInteger("Abilities" + i, s);
-				tagList.appendTag(tutorials);
+				Ability a = instance.getUnlockedAbilities().get(i);
+				String s = a.getName();
+				NBTTagCompound abilities = new NBTTagCompound();
+				abilities.setString("Abilities" + i, s);
+				tagList.appendTag(abilities);
 			}
 			properties.setTag("AbilitiesList", tagList);
 
@@ -47,54 +54,50 @@ public class AbilitiesCapability {
 		public void readNBT(Capability<IAbilities> capability, IAbilities instance, EnumFacing side, NBTBase nbt) {
 			NBTTagCompound properties = (NBTTagCompound) nbt;
 
-			NBTTagList tagList = properties.getTagList("TutorialList", Constants.NBT.TAG_COMPOUND);
+			NBTTagList tagList = properties.getTagList("AbilitiesList", Constants.NBT.TAG_COMPOUND);
 			for (int i = 0; i < tagList.tagCount(); i++) {
-				NBTTagCompound tutorials = tagList.getCompoundTagAt(i);
-				instance.getUnlockedAbilities().add(i, tutorials.getInteger("Tutorials" + i));
-				KingdomKeys.logger.info("Loaded known tutorial: " + tutorials.getInteger("Tutorials" + i) + " " + i);
+				NBTTagCompound abilities = tagList.getCompoundTagAt(i);
+				Ability ability = GameRegistry.findRegistry(Ability.class).getValue(new ResourceLocation(Reference.MODID+":"+abilities.getString("Abilities"+i)));
+				instance.getUnlockedAbilities().add(i,ability);
+				KingdomKeys.logger.info("Loaded known ability: " + abilities.getString("Abilities" + i) + " " + i);
 			}
 		}
 	}
 
 	public static class Default implements IAbilities {
-		HashMap<String,Integer> list = new HashMap<String,Integer>();
+		ArrayList<Ability> list = new ArrayList<Ability>();
 
 		@Override
-		public boolean getUnlockedAbility(String id) {
-			return list.containsKey(id);
+		public boolean getUnlockedAbility(Ability ability) {
+			return list.contains(ability);
 		}
 
 		@Override
-		public void unlockAbility(String id, boolean unlocked) {
-			if (unlocked) {
-				if (!list.containsKey(id)) {
-					list.add(id);
-				}/* else {
-					System.out.println("Tutorial already watched");
-				}*/
+		public void unlockAbility(Ability ability, boolean unlock) {
+			System.out.println(list);
+			if (unlock) {
+				list.add(ability);
 			} else {
-				if (list.containsKey(id)) {
+				if (list.contains(ability)) {
 					for (int i = 0; i < list.size(); i++) {
-						if (list.get(i) == id) {
+						if (list.get(i).getName().equals(ability.getName())) {
 							list.remove(i);
 						}
 					}
-				}/* else {
-					System.out.println("Tutorial was not watched");
-				}*/
+				}
 			}
+			System.out.println(list);
+
 		}
 
 		@Override
-		public HashMap<String, Integer> getUnlockedAbilities() {
+		public ArrayList<Ability> getUnlockedAbilities() {
 			return list;
 		}
 
-		/*@Override
-		public void setKnownTutorials(ArrayList<Integer> list) {
-			//System.out.println(this.list);
-			//System.out.println(list);
-			this.list = list;
-		}*/
+		@Override
+		public void clearAbilities() {
+			list.clear();	
+		}
 	}
 }
