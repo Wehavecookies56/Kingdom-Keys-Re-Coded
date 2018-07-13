@@ -18,17 +18,24 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class AbilitiesCapability {
 
-
 	public interface IAbilities {
 		boolean getUnlockedAbility(Ability ability);
 
-		void unlockAbility(Ability ability, boolean unlocked);
+		void unlockAbility(Ability ability);
 
 		ArrayList<Ability> getUnlockedAbilities();
-		
-		void clearAbilities();
-		
-		//void setKnownTutorials(ArrayList<Integer> list);
+
+		void clearUnlockedAbilities();
+
+		boolean getEquippedAbility(Ability ability);
+
+		void equipAbility(Ability ability, boolean unlocked);
+
+		ArrayList<Ability> getEquippedAbilities();
+
+		void clearEquippedAbilities();
+
+		// void setKnownTutorials(ArrayList<Integer> list);
 	}
 
 	public static class Storage implements IStorage<IAbilities> {
@@ -57,47 +64,71 @@ public class AbilitiesCapability {
 			NBTTagList tagList = properties.getTagList("AbilitiesList", Constants.NBT.TAG_COMPOUND);
 			for (int i = 0; i < tagList.tagCount(); i++) {
 				NBTTagCompound abilities = tagList.getCompoundTagAt(i);
-				Ability ability = GameRegistry.findRegistry(Ability.class).getValue(new ResourceLocation(Reference.MODID+":"+abilities.getString("Abilities"+i)));
-				instance.getUnlockedAbilities().add(i,ability);
+				Ability ability = GameRegistry.findRegistry(Ability.class).getValue(new ResourceLocation(Reference.MODID + ":" + abilities.getString("Abilities" + i)));
+				instance.getUnlockedAbilities().add(i, ability);
 				KingdomKeys.logger.info("Loaded known ability: " + abilities.getString("Abilities" + i) + " " + i);
 			}
 		}
 	}
 
 	public static class Default implements IAbilities {
-		ArrayList<Ability> list = new ArrayList<Ability>();
+		ArrayList<Ability> unlockedList = new ArrayList<Ability>();
 
 		@Override
 		public boolean getUnlockedAbility(Ability ability) {
-			return list.contains(ability);
+			return unlockedList.contains(ability);
 		}
 
 		@Override
-		public void unlockAbility(Ability ability, boolean unlock) {
-			System.out.println(list);
-			if (unlock) {
-				list.add(ability);
-			} else {
-				if (list.contains(ability)) {
-					for (int i = 0; i < list.size(); i++) {
-						if (list.get(i).getName().equals(ability.getName())) {
-							list.remove(i);
-						}
-					}
-				}
-			}
-			System.out.println(list);
-
+		public void unlockAbility(Ability ability) {
+			System.out.println("Going to unlock");
+			unlockedList.add(ability);
+			
+			System.out.println(unlockedList);
 		}
 
 		@Override
 		public ArrayList<Ability> getUnlockedAbilities() {
-			return list;
+			return unlockedList;
 		}
 
 		@Override
-		public void clearAbilities() {
-			list.clear();	
+		public void clearUnlockedAbilities() {
+			unlockedList.clear();
+		}
+
+		ArrayList<Ability> equippedList = new ArrayList<Ability>();
+
+		@Override
+		public boolean getEquippedAbility(Ability ability) {
+			return equippedList.contains(ability);
+		}
+
+		@Override
+		public void equipAbility(Ability ability, boolean equip) {
+			System.out.println("Going to equip");
+			if (equip) {
+				equippedList.add(ability);
+			} else {
+				if (equippedList.contains(ability)) {
+					for (int i = 0; i < equippedList.size(); i++) {
+						if (equippedList.get(i).getName().equals(ability.getName())) {
+							equippedList.remove(i);
+						}
+					}
+				}
+			}
+			System.out.println(equippedList);
+		}
+
+		@Override
+		public ArrayList<Ability> getEquippedAbilities() {
+			return equippedList;
+		}
+
+		@Override
+		public void clearEquippedAbilities() {
+			equippedList.clear();
 		}
 	}
 }

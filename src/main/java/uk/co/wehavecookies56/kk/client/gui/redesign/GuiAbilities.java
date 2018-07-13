@@ -49,8 +49,14 @@ public class GuiAbilities extends GuiScreen {
 
         for(int i = 0;i<ABILITIES.getUnlockedAbilities().size();i++) {
         	Ability ability = ABILITIES.getUnlockedAbilities().get(i);
-        	buttonList.add(new GuiMenuButton(id++, 0, id*20, 100, ability.getName()+" EQUIP"));
-        	buttonList.add(new GuiMenuButton(id++, 0, id*20, 100, ability.getName()+" UNEQUIP"));
+        	String text = "";
+        	if(ABILITIES.getEquippedAbility(ability)) {
+        		text = "Equip "+ability.getName();
+        	} else {
+        		text = "Unequip "+ability.getName();
+        	}
+        	buttonList.add(new GuiMenuButton(id++, 0, id*20, 100, text));
+        	//buttonList.add(new GuiMenuButton(id++, 0, id*20, 100, ability.getName()+" UNEQUIP"));
         }
         
         super.initGui();
@@ -58,12 +64,16 @@ public class GuiAbilities extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
-        if (button.id == 0) {
-            MinecraftForge.EVENT_BUS.post(new AbilityEvent.Equip(mc.player, Abilities.scan));
+    	IAbilities ABILITIES = mc.player.getCapability(ModCapabilities.ABILITIES, null);
+        for(int i = 0;i<ABILITIES.getEquippedAbilities().size();i++) {
+        	Ability ability = ABILITIES.getEquippedAbilities().get(i);
+        	if(ABILITIES.getUnlockedAbility(ability)) {
+                MinecraftForge.EVENT_BUS.post(new AbilityEvent.Unequip(mc.player, ability));
+        	} else {
+        		MinecraftForge.EVENT_BUS.post(new AbilityEvent.Equip(mc.player, ability));
+        	}
         }
-        if (button.id == 1) {
-            MinecraftForge.EVENT_BUS.post(new AbilityEvent.Unequip(mc.player, Abilities.scan));
-        }
+       
         super.actionPerformed(button);
     }
 }

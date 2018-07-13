@@ -393,7 +393,7 @@ public class PlayerStatsCapability {
             switch (this.level) {
                 case 2:
                     this.addDefense(1);
-                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(Abilities.scan, true);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(Abilities.scan);
                     break;
                 case 3:
                     this.addStrength(1);
@@ -422,7 +422,7 @@ public class PlayerStatsCapability {
                     this.addMagic(1);
                     this.addDefense(1);
                     this.addHP(5);
-                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(Abilities.mpHaste, true);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(Abilities.mpHaste);
                     break;
                 case 11:
                     this.addStrength(1);

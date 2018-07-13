@@ -129,7 +129,7 @@ public class CommandLevelUp implements ICommand {
                 player.setHealth(20);
                 STATS.setMaxMP(20);
                 STATS.setMP(STATS.getMaxMP());
-                ABILITIES.clearAbilities();
+                ABILITIES.clearUnlockedAbilities();
 
 
                 while (STATS.getLevel() < level)
@@ -165,7 +165,7 @@ public class CommandLevelUp implements ICommand {
                 else STATS.setMagic(1);
                 STATS.setHP(20);
                 entityplayermp.setHealth(20);
-                ABILITIES.clearAbilities();
+                ABILITIES.clearUnlockedAbilities();
 
                 while (STATS.getLevel() < level)
                     STATS.addExperience(entityplayermp, STATS.getExpNeeded(level - 1, STATS.getExperience()));

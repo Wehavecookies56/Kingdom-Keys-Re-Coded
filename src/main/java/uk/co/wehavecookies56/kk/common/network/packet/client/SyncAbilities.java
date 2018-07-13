@@ -20,22 +20,23 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
 public class SyncAbilities extends AbstractMessage.AbstractClientMessage<SyncAbilities> {
 
-    private List<Ability> abilities;
+    private List<Ability> unlockedAbilities, equippedAbilities;
 
     public SyncAbilities() {}
 
     public SyncAbilities(AbilitiesCapability.IAbilities abilities) {
-        this.abilities = abilities.getUnlockedAbilities();
+        this.unlockedAbilities = abilities.getUnlockedAbilities();
+        this.equippedAbilities = abilities.getEquippedAbilities();
        // System.out.println(tutorials);
 
     }
 
     @Override
     protected void read(PacketBuffer buffer) throws IOException {
-    	abilities = new ArrayList<Ability>();
+    	unlockedAbilities = new ArrayList<Ability>();
         while(buffer.isReadable()){
 			Ability ability = GameRegistry.findRegistry(Ability.class).getValue(new ResourceLocation(Reference.MODID+":"+buffer.readString(100)));
-        	abilities.add(ability);
+        	unlockedAbilities.add(ability);
         }
     	//System.out.println(tutorials);
 
@@ -43,8 +44,8 @@ public class SyncAbilities extends AbstractMessage.AbstractClientMessage<SyncAbi
 
     @Override
     protected void write(PacketBuffer buffer) throws IOException {
-        for (int i = 0; i < abilities.size(); i++){
-            buffer.writeString(abilities.get(i).getName());
+        for (int i = 0; i < unlockedAbilities.size(); i++){
+            buffer.writeString(unlockedAbilities.get(i).getName());
         }
        // System.out.println(tutorials);
     }
@@ -52,8 +53,8 @@ public class SyncAbilities extends AbstractMessage.AbstractClientMessage<SyncAbi
     @Override
     public void process(EntityPlayer player, Side side) {
         final AbilitiesCapability.IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
-        for (int i = 0; i < abilities.size(); i++) {
-        	ABILITIES.unlockAbility(abilities.get(i), true);
+        for (int i = 0; i < unlockedAbilities.size(); i++) {
+        	ABILITIES.unlockAbility(unlockedAbilities.get(i));
         }
     }
 
