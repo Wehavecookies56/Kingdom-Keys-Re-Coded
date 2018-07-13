@@ -161,7 +161,7 @@ public class EntityEvents {
 			IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
 			STATS.setRechargeSpeed(STATS.getRechargeSpeed()+1);
 		}
-		PacketDispatcher.sendTo(new SyncLevelData(event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getPlayer());
+		//PacketDispatcher.sendTo(new SyncLevelData(event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getPlayer());
 
 	}
 
@@ -172,7 +172,7 @@ public class EntityEvents {
 			IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
 			STATS.setRechargeSpeed(STATS.getRechargeSpeed()-1);
 		}
-		PacketDispatcher.sendTo(new SyncLevelData(event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getPlayer());
+		//PacketDispatcher.sendTo(new SyncLevelData(event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getPlayer());
 
 	}
 	

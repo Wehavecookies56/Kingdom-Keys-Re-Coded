@@ -134,30 +134,6 @@ public class GuiMenu_Bars extends GuiScreen {
 
     protected void drawBackground (int screenWidth, int screenHeight, boolean drawPlayer) {
         Minecraft.getMinecraft().renderEngine.bindTexture(optionsBackground);
-
-        /*
-        GlStateManager.pushMatrix();
-        {
-            GL11.glColor4ub((byte) MainConfig.client.hud.interfaceColour[0], (byte) MainConfig.client.hud.interfaceColour[1], (byte) MainConfig.client.hud.interfaceColour[2], (byte) 255);
-            // GL11.glColor4f(0.3F, 0.3F, 0.3F, 1.0F);
-            // GL11.glScalef(2f, 2f, 2f);
-            drawDefaultBackground();
-            drawModalRectWithCustomSizedTexture(0, 0, 0, 0, screenWidth, 60, 32, 32);
-            drawModalRectWithCustomSizedTexture(0, screenHeight - ((screenHeight / 8) + 70 / 16), 0, 0, screenWidth, 70, 32, 32);
-        }
-        GlStateManager.popMatrix();
-        GlStateManager.pushMatrix();
-        {
-            GlStateManager.scale(2, 2, 2);
-            String title = Utils.translateToLocal(name);
-            drawString(fontRenderer, title, 5, 5, 0xFFFFFF);
-        }
-        GlStateManager.popMatrix();
-        */
-
-        if (drawPlayer) {
-
-        }
     }
 
 }
