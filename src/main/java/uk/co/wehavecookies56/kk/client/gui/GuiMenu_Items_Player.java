@@ -87,7 +87,7 @@ public class GuiMenu_Items_Player extends GuiScreen {
             chestplate = new GuiEquippedItem(mc.player.inventory.armorInventory.get(2), (int)itemsX, (int)itemsY+5+(itemHeight*5), 0x685800, null, ItemCategory.EQUIPMENT, this);
             leggings = new GuiEquippedItem(mc.player.inventory.armorInventory.get(1), (int)itemsX, (int)itemsY+6+(itemHeight*6), 0x685800, null, ItemCategory.EQUIPMENT, this);
             boots = new GuiEquippedItem(mc.player.inventory.armorInventory.get(0), (int)itemsX, (int)itemsY+7+(itemHeight*7), 0x685800, null, ItemCategory.EQUIPMENT, this);
-            item1 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int)itemsY+8+(itemHeight*8),0x003213, null, ItemCategory.CONSUMABLE, this, "Items", 0x41F031);
+            item1 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int)itemsY+8+(itemHeight*8),0x003213, new GuiWeapons(1, 0x0A1616, 0x032F3C), ItemCategory.CONSUMABLE, this, "Items", 0x41F031);
             item2 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(1), (int) itemsX, (int)itemsY+9+(itemHeight*9),0x003213, null, ItemCategory.CONSUMABLE, this);
             item3 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(2), (int) itemsX, (int)itemsY+10+(itemHeight*10),0x003213, null, ItemCategory.CONSUMABLE, this);
             item4 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(3), (int) itemsX, (int)itemsY+11+(itemHeight*11),0x003213, null, ItemCategory.CONSUMABLE, this);
@@ -144,6 +144,7 @@ public class GuiMenu_Items_Player extends GuiScreen {
             master.mousePressed(mc, mouseX, mouseY);
             Final.mousePressed(mc, mouseX, mouseY);
         }
+        item1.mousePressed(mc, mouseX, mouseY);
         super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 }

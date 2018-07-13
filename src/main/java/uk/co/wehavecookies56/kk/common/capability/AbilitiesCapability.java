@@ -26,6 +26,7 @@ public class AbilitiesCapability {
 		ArrayList<Ability> getUnlockedAbilities();
 
 		void clearUnlockedAbilities();
+		void setUnlockedAbilities(ArrayList<Ability> ability);
 
 		boolean getEquippedAbility(Ability ability);
 
@@ -129,6 +130,11 @@ public class AbilitiesCapability {
 		@Override
 		public void clearEquippedAbilities() {
 			equippedList.clear();
+		}
+
+		@Override
+		public void setUnlockedAbilities(ArrayList<Ability> list) {
+			this.unlockedList = list;
 		}
 	}
 }

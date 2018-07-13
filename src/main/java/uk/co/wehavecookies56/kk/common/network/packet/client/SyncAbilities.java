@@ -20,7 +20,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
 public class SyncAbilities extends AbstractMessage.AbstractClientMessage<SyncAbilities> {
 
-    private List<Ability> unlockedAbilities, equippedAbilities;
+    private ArrayList<Ability> unlockedAbilities, equippedAbilities;
 
     public SyncAbilities() {}
 
@@ -53,9 +53,10 @@ public class SyncAbilities extends AbstractMessage.AbstractClientMessage<SyncAbi
     @Override
     public void process(EntityPlayer player, Side side) {
         final AbilitiesCapability.IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
-        for (int i = 0; i < unlockedAbilities.size(); i++) {
+        ABILITIES.setUnlockedAbilities(unlockedAbilities);
+       /* for (int i = 0; i < unlockedAbilities.size(); i++) {
         	ABILITIES.unlockAbility(unlockedAbilities.get(i));
-        }
+        }*/
     }
 
 
