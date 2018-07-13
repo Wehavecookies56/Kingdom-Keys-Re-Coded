@@ -25,6 +25,21 @@ public class SpawningConfig {
 	public static Nobody nobodies = new Nobody();
 	public static Others others = new Others();
 
+	@Config.RequiresMcRestart
+	@Config.Name("Enable all heartless spawns")
+	@Config.Comment("Toggle all heartless from spawning")
+	public static boolean spawnHeartless = true;
+
+	@Config.RequiresMcRestart
+	@Config.Name("Enable all moogle spawns")
+	@Config.Comment("Toggle all moogles from spawning")
+	public static boolean spawnMoogles = true;
+
+	@Config.RequiresMcRestart
+	@Config.Name("Enable all nobody spawns")
+	@Config.Comment("Toggle all nobodies from spawning")
+	public static boolean spawnNobodies = true;
+
 	public static class Heartless {
 
 		@Config.RequiresMcRestart

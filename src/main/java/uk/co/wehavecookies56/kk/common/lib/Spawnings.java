@@ -71,31 +71,35 @@ public class Spawnings {
 		Biome[] othersBiomesArray = othersBiomes.toArray(new Biome[othersBiomes.size()]);
 
 		// Pureblood
-		registerSpawn(EntityShadow.class, SpawningConfig.heartless.shadowRatio, 3, 5, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityMegaShadow.class, SpawningConfig.heartless.megaShadowRatio, 2, 3, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityGigaShadow.class, SpawningConfig.heartless.gigaShadowRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityDarkball.class, SpawningConfig.heartless.darkballRatio, 1, 2, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+		if (SpawningConfig.spawnHeartless) {
+			registerSpawn(EntityShadow.class, SpawningConfig.heartless.shadowRatio, 3, 5, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityMegaShadow.class, SpawningConfig.heartless.megaShadowRatio, 2, 3, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityGigaShadow.class, SpawningConfig.heartless.gigaShadowRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityDarkball.class, SpawningConfig.heartless.darkballRatio, 1, 2, KingdomKeys.HEARTLESS, heartlessBiomesArray);
 
-		// Emblem
-		registerSpawn(EntityRedNocturne.class, SpawningConfig.heartless.redNocturneRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityBlueRhapsody.class, SpawningConfig.heartless.blueRhapsodyRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityYellowOpera.class, SpawningConfig.heartless.yellowOperaRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityGreenRequiem.class, SpawningConfig.heartless.greenRequiemRatio, 1, 2, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityEmeraldBlues.class, SpawningConfig.heartless.emeraldBluesRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntitySilverRock.class, SpawningConfig.heartless.silverRockRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityCrimsonJazz.class, SpawningConfig.heartless.crimsonJazzRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityMinuteBomb.class, SpawningConfig.heartless.minuteBombRatio, 2, 4, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntitySkaterBomb.class, SpawningConfig.heartless.skaterBombRatio, 1, 3, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityStormBomb.class, SpawningConfig.heartless.stormBombRatio, 1, 2, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityDetonator.class, SpawningConfig.heartless.detonatorRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		registerSpawn(EntityDirePlant.class, SpawningConfig.heartless.direPlantRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
-		
+			// Emblem
+			registerSpawn(EntityRedNocturne.class, SpawningConfig.heartless.redNocturneRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityBlueRhapsody.class, SpawningConfig.heartless.blueRhapsodyRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityYellowOpera.class, SpawningConfig.heartless.yellowOperaRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityGreenRequiem.class, SpawningConfig.heartless.greenRequiemRatio, 1, 2, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityEmeraldBlues.class, SpawningConfig.heartless.emeraldBluesRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntitySilverRock.class, SpawningConfig.heartless.silverRockRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityCrimsonJazz.class, SpawningConfig.heartless.crimsonJazzRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityMinuteBomb.class, SpawningConfig.heartless.minuteBombRatio, 2, 4, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntitySkaterBomb.class, SpawningConfig.heartless.skaterBombRatio, 1, 3, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityStormBomb.class, SpawningConfig.heartless.stormBombRatio, 1, 2, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityDetonator.class, SpawningConfig.heartless.detonatorRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+			registerSpawn(EntityDirePlant.class, SpawningConfig.heartless.direPlantRatio, 1, 1, KingdomKeys.HEARTLESS, heartlessBiomesArray);
+		}
 		//Nobody
-		//registerSpawn(EntityDusk.class, SpawnConfig.nobody.duskRatio, 1, 1, KingdomKeys.NOBODY, nobodyBiomesArray);
-		
-		// Others
-		registerSpawn(EntityMoogle.class, SpawningConfig.others.moogleRatio, 1, 1, KingdomKeys.MOOGLE, othersBiomesArray);
+		if (SpawningConfig.spawnNobodies) {
+			//registerSpawn(EntityDusk.class, SpawnConfig.nobody.duskRatio, 1, 1, KingdomKeys.NOBODY, nobodyBiomesArray);
+		}
 
+		// Others
+		if (SpawningConfig.spawnMoogles) {
+			registerSpawn(EntityMoogle.class, SpawningConfig.others.moogleRatio, 1, 1, KingdomKeys.MOOGLE, othersBiomesArray);
+		}
 		KingdomKeys.logger.info("Entity spawning loaded");
 
 	}
