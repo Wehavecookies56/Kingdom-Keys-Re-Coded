@@ -22,3 +22,4 @@ build
 eclipse
 run
 src/main/resources/assets/kk/models/item/Main.class
+*.xlsx

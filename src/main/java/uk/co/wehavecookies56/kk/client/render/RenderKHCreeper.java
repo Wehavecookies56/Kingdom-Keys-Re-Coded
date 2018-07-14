@@ -11,23 +11,25 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.entity.mobs.BaseEntityBomb;
 
-public class RenderKHMob extends RenderLiving<EntityLiving> implements IRenderFactory<EntityMob>
+public class RenderKHCreeper extends RenderLiving<EntityLiving> implements IRenderFactory<EntityMob>
 {
 
 	private float scale;
 	private ModelBase model;
 	private String texturesSprite;
-	private ResourceLocation texture;
+	private ResourceLocation texture, swordTexture, spearTexture;
 
-	public RenderKHMob(RenderManager mg, ModelBase model, float scale, String staticTexture)
+	public RenderKHCreeper(RenderManager mg, ModelBase model, float scale)
 	{
 		super(mg, model, scale / 2);
 		this.model = model;
 		this.scale = scale;
-		this.texturesSprite = staticTexture;
-		this.texture = new ResourceLocation("kk:textures/mobs/" + staticTexture + ".png");
+		this.texture = new ResourceLocation("kk:textures/mobs/creeper.png");
+		this.swordTexture = new ResourceLocation("kk:textures/mobs/creepersword.png");
+		this.spearTexture = new ResourceLocation("kk:textures/mobs/creeperspear.png");
 	}
 
 	@Override
@@ -39,44 +41,24 @@ public class RenderKHMob extends RenderLiving<EntityLiving> implements IRenderFa
 
 	protected ResourceLocation getEntityTexture(EntityLiving entity)
 	{
-		return this.texture;
+		if(EntityHelper.getState(entity) == 0 || EntityHelper.getState(entity) == 3)
+			return this.texture;
+		else if(EntityHelper.getState(entity) == 1)
+			return this.swordTexture;
+		else if(EntityHelper.getState(entity) == 2)
+			return this.spearTexture;
+		
+		return texture;
 	}
 
 	public Render<? super EntityMob> createRenderFor(RenderManager manager)
 	{
-		return new RenderKHMob(manager, model, scale, texturesSprite);
+		return new RenderKHCreeper(manager, model, scale);
 	}
 
 	@Override
 	public void doRender(EntityLiving entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
-		if (entity instanceof BaseEntityBomb)
-		{
-			Minecraft mc = Minecraft.getMinecraft();
-			BaseEntityBomb bomb = (BaseEntityBomb) entity;
-
-			if (bomb.ticksToExplode <= 60) // TODO Make this somehow work
-			{
-				GL11.glPushMatrix();
-				{
-					GL11.glTranslated(x, y + 1, z);
-
-					GL11.glScaled(0.05, 0.05, 0.05);
-					GL11.glRotated(180, 0, 1, 0);
-					GL11.glRotated(180, 1, 0, 0);
-					GL11.glRotatef(mc.player.getPitchYaw().y, 0, 1, 0);
-					GL11.glRotatef(-mc.player.getPitchYaw().x, 1, 0, 0);
-
-					System.out.println(bomb.ticksToExplode);
-
-					String text = bomb.ticksToExplode / 20 + "";
-					mc.fontRenderer.drawString(text, -mc.fontRenderer.getStringWidth(text) / 2, -20, 0xffffff);
-
-					GL11.glColor4f(1, 1, 1, 1);
-				}
-				GL11.glPopMatrix();
-			}
-		}
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
 	}
 }

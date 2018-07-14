@@ -1168,6 +1168,8 @@ entity.detonator.name=Detonator
 entity.largebody.name=Large Body
 entity.direplant.name=Dire Plant
 entity.whitemushroom.name=White Mushroom
+entity.dusk.name=Dusk
+entity.creeper.name=Creeper
 entity.moogle.name=Moogle
 
 ##########################

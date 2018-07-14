@@ -99,9 +99,11 @@ import uk.co.wehavecookies56.kk.client.gui.GuiLockOn;
 import uk.co.wehavecookies56.kk.client.gui.GuiMP;
 import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
 import uk.co.wehavecookies56.kk.client.gui.GuiPlayerPortrait;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelCreeper;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelCrimsonJazz;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelDarkball;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelDirePlant;
+import uk.co.wehavecookies56.kk.client.model.mobs.ModelDusk;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelLargeBody;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelMinuteBomb;
 import uk.co.wehavecookies56.kk.client.model.mobs.ModelMoogle;
@@ -115,6 +117,7 @@ import uk.co.wehavecookies56.kk.client.render.RenderEntityGummiShip;
 import uk.co.wehavecookies56.kk.client.render.RenderEntityRock;
 import uk.co.wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
 import uk.co.wehavecookies56.kk.client.render.RenderFactorySharpshooterBullet;
+import uk.co.wehavecookies56.kk.client.render.RenderKHCreeper;
 import uk.co.wehavecookies56.kk.client.render.RenderKHMob;
 import uk.co.wehavecookies56.kk.client.render.RenderPortal;
 import uk.co.wehavecookies56.kk.client.render.RenderSeedBullet;
@@ -146,10 +149,12 @@ import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCreeper;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDarkball;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDetonator;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDirePlant;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDusk;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
@@ -353,6 +358,9 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkball.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelDarkball(), 1, Strings.Darkball));
 		RenderingRegistry.registerEntityRenderingHandler(EntityWhiteMushroom.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelWhiteMushroom(), 1, Strings.WhiteMushroom));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDirePlant.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelDirePlant(), 1, Strings.DirePlant));
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityDusk.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelDusk(), 1.3F, Strings.Dusk));
+		RenderingRegistry.registerEntityRenderingHandler(EntityCreeper.class, (IRenderFactory) new RenderKHCreeper(Minecraft.getMinecraft().getRenderManager(), new ModelCreeper(), 0.8F));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMoogle.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMoogle(), 1, Strings.Moogle));
 

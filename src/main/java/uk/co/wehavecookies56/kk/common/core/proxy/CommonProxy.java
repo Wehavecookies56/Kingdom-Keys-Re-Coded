@@ -53,10 +53,12 @@ import uk.co.wehavecookies56.kk.common.entity.magic.EntityFire;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityOrgPortal;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCreeper;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDarkball;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDetonator;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDirePlant;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDusk;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
@@ -185,6 +187,9 @@ public class CommonProxy {
 		EntityHelper.registerEntity(Strings.Moogle, EntityMoogle.class, 0xDACAB0, 0xC50033);
 		EntityHelper.registerEntity(Strings.GummiShip, EntityGummiShip.class, 0xFF0000, 0x6666AA);
 
+		EntityHelper.registerEntity(Strings.Dusk, EntityDusk.class, 0xb8bdc4, 0xfcfcfc);
+		EntityHelper.registerEntity(Strings.Creeper, EntityCreeper.class, 0xb8bdc4, 0xfcfcfc);
+		
 		Spawnings.init();
 
 		Lists.init();
