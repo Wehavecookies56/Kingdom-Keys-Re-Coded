@@ -51,9 +51,9 @@ public class GuiAbilities extends GuiScreen {
 			Ability ability = ABILITIES.getUnlockedAbilities().get(i);
 			String text = "";
 			if (ABILITIES.getEquippedAbility(ability)) {
-				text = "Equip " + ability.getName();
+				text = "Equip " + ability.getName()+" ["+ability.getCategory()+"]";
 			} else {
-				text = "Unequip " + ability.getName();
+				text = "Unequip " + ability.getName()+" ["+ability.getCategory()+"]";
 			}
 			buttonList.add(new GuiMenuButton(id++, 0, id * 20, 100, text));
 		}

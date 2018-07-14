@@ -1,5 +1,7 @@
 package uk.co.wehavecookies56.kk.common.lib;
 
+import uk.co.wehavecookies56.kk.api.abilities.Ability;
+
 public class Strings {
 
     public static final String tabKingdomKeys = "tabKingdomKeys";
@@ -834,13 +836,119 @@ public class Strings {
     AbandonedKnowledge = "abandonedknowledge";
 
     // Abilities
-    public static final String
+   /* public static final String
     AbilityScan = "ability.scan",
     AbilityHighJump = "ability.highjump",
     AbilityQuickRun = "ability.quickrun",
     AbilityAerialDodge = "ability.aerialdodge",
     AbilityGlide = "ability.glide",
-    AbilityMPHaste = "ability.mphaste";
+    AbilityMPHaste = "ability.mphaste";*/
+    
+    // Action
+ 	public static String 
+ 	aerialDive = "ability.aerialdive",
+ 	aerialFinish = "ability.aerialfinish",
+ 	aerialSprial = "ability.aerialsprial",
+ 	aerialSweep = "ability.aerialsweep",
+ 	arsArcanum = "ability.arsarcanum",
+ 	autoFinal = "ability.autofinal",
+ 	autoLimit = "ability.autolimit",
+ 	autoMaster = "ability.automaster",
+ 	autoSummon = "ability.autosummon",
+ 	autoValor = "ability.autovalor",
+ 	autoWisdom = "ability.autowisdom",
+ 	blitz = "ability.blitz",
+ 	counterattack = "ability.counterattack",
+ 	counterguard = "ability.counterguard",
+ 	crescent = "ability.crescent",
+ 	dodgeSlash = "ability.dodgeslash",
+ 	explosion = "ability.explosion",
+ 	finishingLeap = "ability.finishingleap",
+ 	flashStep = "ability.flashstep",
+ 	gravityBreak = "ability.gravitybreak",
+ 	guard = "ability.guard",
+ 	guardBreak = "ability.guardbreak",
+ 	horizontalSlash = "ability.horizontalslash",
+ 	hurricaneBlast = "ability.hurricaneblast",
+ 	magnetSplash = "ability.magnetsplash",
+ 	ragnarok = "ability.ragnarok",
+ 	retaliatingSlash = "ability.retaliatingslash",
+ 	rippleDrive = "ability.rippledrive",
+ 	roundBreak = "ability.roundbreak",
+ 	slapshot = "ability.slapshot",
+ 	slidingDash = "ability.slidingdash",
+ 	sonicBlade = "ability.sonicblade",
+ 	strikeRaid = "ability.strikeraid",
+ 	stunImpact = "ability.stunimpact",
+ 	upperSlash = "ability.upperslash",
+ 	vortex = "ability.vortex",
+ 	zantetsuken = "ability.zantetsuken";
+ 	
+ 	// Growth
+ 	public static String 
+ 	aerialDodge = "ability.aerialdodge",
+ 	dodgeRoll = "ability.dodgeroll",
+ 	glide = "ability.glide",
+ 	highJump = "ability.highjump",
+ 	quickRun = "ability.quickrun";
+ 	
+ 	// Support
+ 	public static String 
+ 	aerialRecovery = "ability.aerialrecovery",
+ 	airComboBoost = "ability.aircomboboost",
+ 	airComboPlus = "ability.aircomboplus",
+ 	berserk = "ability.berserk",
+ 	berserkCharge = "ability.berserkcharge",
+ 	blizzardBoost = "ability.blizzardboost",
+ 	blizzardScreen = "ability.blizzardscreen",
+ 	combinationBoost = "ability.combinationboost",
+ 	comboBoost = "ability.comboboost",
+ 	comboFBoost = "ability.combofboost",
+ 	comboMaster = "ability.combomaster",
+ 	comboPlus = "ability.comboplus",
+ 	criticalPlus = "ability.criticalplus",
+ 	cureBoost = "ability.cureboost",
+ 	damageControl = "ability.damagecontrol",
+ 	damageDrive = "ability.damagedrive",
+ 	darkScreen = "ability.darkscreen",
+ 	defender = "ability.defender",
+ 	draw = "ability.draw",
+ 	driveBoost = "ability.driveboost",
+ 	driveConverter = "ability.driveconverter",
+ 	encounterPlus = "ability.encounterplus",
+ 	endlessMagic = "ability.endlessmagic",
+ 	expBoost = "ability.expboost",
+ 	expWalker = "ability.expwalker",
+ 	experienceBoost = "ability.experienceboost",
+ 	finishBoost = "ability.finishboost",
+ 	finishingPlus = "ability.finishingplus",
+ 	fireBoost = "ability.fireboost",
+ 	fireScreen = "ability.firescreen",
+ 	formBoost = "ability.formboost",
+ 	hpBoost = "ability.hpboost",
+ 	hpGain = "ability.hpgain",
+ 	hpPrizePlus = "ability.hpprizeplus",
+ 	itemBoost = "ability.itemboost",
+ 	jackpot = "ability.jackpot",
+ 	leafBracer = "ability.leafbracer",
+ 	lightAndDark = "ability.lightanddark",
+ 	luckyLucky = "ability.luckylucky",
+ 	magicLockOn = "ability.magiclockon",
+ 	mpHaste = "ability.mphaste",
+ 	mpHastega = "ability.mphastega",
+ 	mpHastera = "ability.mphastera",
+ 	mpRage = "ability.mprage",
+ 	negativeCombo = "ability.negativecombo",
+ 	onceMore = "ability.oncemore",
+ 	reactionBoost = "ability.reactionboost",
+ 	scan = "ability.scan",
+ 	secondChance = "ability.secondchance",
+ 	summonBoost = "ability.summonboost",
+ 	synchBlade = "ability.synchblade",
+ 	techBoost = "ability.techboost",
+ 	thunderBoost = "ability.thunderboost",
+ 	thunderScreen = "ability.thunderscreen",
+ 	zeroEXP = "ability.zeroexp";
     
     // Keyblades
     public static final String
