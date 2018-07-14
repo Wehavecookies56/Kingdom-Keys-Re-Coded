@@ -28,6 +28,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
+import uk.co.wehavecookies56.kk.api.abilities.Ability;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
@@ -37,8 +38,18 @@ public class ItemKeyblade extends ItemSword {
 	public String description;
 	double speed = 1.0;
 
+	Ability ability;
 	// TODO Set attack speed
 
+	public ItemKeyblade(String name, double strength, double magic, Ability ability) {
+		this(name,strength,magic);
+		this.ability = ability;
+	}
+	
+	public Ability getAbility() {
+		return this.ability;
+	}
+	
 	public ItemKeyblade(String name, double strength, double magic) {
 		super(EnumHelper.addToolMaterial("KEYBLADE", -4, -1, 0, 0, 20));
 		setRegistryName(name);

@@ -13,15 +13,21 @@ import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 
 public class ItemRealKeyblade extends ItemKeyblade {
-
+	//Ability ability;
+	
+    public ItemRealKeyblade (String name, double strength, double magic, Ability ability) {
+    	super(name,strength,magic,ability);
+        setMaxStackSize(1);
+    	//this.ability = ability;
+    }
     public ItemRealKeyblade (String name, double strength, double magic) {
         super(name, strength, magic);
         setMaxStackSize(1);
     }
 
-    public Ability getAbility() {
-        return null;
-    }
+    //public Ability getAbility() {
+       // return this.ability;
+   // }
 
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {

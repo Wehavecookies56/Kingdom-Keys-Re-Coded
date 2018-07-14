@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import uk.co.wehavecookies56.kk.api.abilities.AbilityEvent;
 import uk.co.wehavecookies56.kk.client.core.handler.InputHandler;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
-import uk.co.wehavecookies56.kk.common.ability.Abilities;
+import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
@@ -43,7 +43,7 @@ public class GuiLockOn extends GuiScreen {
 	@SubscribeEvent
 	public void equipAbility(AbilityEvent.Equip event) {
 		KingdomKeys.logger.info("Equipped " + event.getAbility().getName());
-		if (event.getAbility().equals(Abilities.scan)) {
+		if (event.getAbility().equals(ModAbilities.scan)) {
 			scan = true;
 		}
 	}
@@ -51,7 +51,7 @@ public class GuiLockOn extends GuiScreen {
 	@SubscribeEvent
 	public void unequipAbility(AbilityEvent.Unequip event) {
 		KingdomKeys.logger.info("Unequipped " + event.getAbility().getName());
-		if (event.getAbility().equals(Abilities.scan)) {
+		if (event.getAbility().equals(ModAbilities.scan)) {
 			scan = false;
 		}
 	}

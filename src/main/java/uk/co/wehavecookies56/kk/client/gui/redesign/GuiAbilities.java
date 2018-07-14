@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.api.abilities.Ability;
 import uk.co.wehavecookies56.kk.api.abilities.AbilityEvent;
 import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Bars;
-import uk.co.wehavecookies56.kk.common.ability.Abilities;
+import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilities;

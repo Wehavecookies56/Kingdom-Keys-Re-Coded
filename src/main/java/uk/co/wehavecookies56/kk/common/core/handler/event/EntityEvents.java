@@ -86,7 +86,7 @@ import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
-import uk.co.wehavecookies56.kk.common.ability.Abilities;
+import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
@@ -157,7 +157,7 @@ public class EntityEvents {
 	@SubscribeEvent
 	public void equipAbility(AbilityEvent.Equip event) {
 		KingdomKeys.logger.info("Equipped " + event.getAbility().getName());
-		if (event.getAbility().equals(Abilities.mpHaste)) {
+		if (event.getAbility().equals(ModAbilities.mpHaste)) {
 			IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
 			STATS.setRechargeSpeed(STATS.getRechargeSpeed()+1);
 		}
@@ -168,7 +168,7 @@ public class EntityEvents {
 	@SubscribeEvent
 	public void unequipAbility(AbilityEvent.Unequip event) {
 		KingdomKeys.logger.info("Unequipped " + event.getAbility().getName());
-		if (event.getAbility().equals(Abilities.mpHaste)) {
+		if (event.getAbility().equals(ModAbilities.mpHaste)) {
 			IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
 			STATS.setRechargeSpeed(STATS.getRechargeSpeed()-1);
 		}

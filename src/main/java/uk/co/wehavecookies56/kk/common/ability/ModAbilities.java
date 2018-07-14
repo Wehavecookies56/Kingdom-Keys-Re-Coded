@@ -13,9 +13,7 @@ import uk.co.wehavecookies56.kk.api.abilities.Ability;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 @Mod.EventBusSubscriber
-public class Abilities {
-
-	//public static Ability scan, highJump, quickRun, aerialDodge, glide, mpHaste;
+public class ModAbilities {
 
 	// Action
 	public static Ability 
@@ -90,7 +88,6 @@ public class Abilities {
 	driveConverter,
 	encounterPlus,
 	endlessMagic,
-	expBoost,
 	expWalker,
 	experienceBoost,
 	finishBoost,
@@ -192,7 +189,6 @@ public class Abilities {
 		event.getRegistry().register(driveConverter = new Ability(1, Strings.driveConverter, Ability.Category.SUPPORT));
 		event.getRegistry().register(encounterPlus = new Ability(1, Strings.encounterPlus, Ability.Category.SUPPORT));
 		event.getRegistry().register(endlessMagic = new Ability(1, Strings.endlessMagic, Ability.Category.SUPPORT));
-		event.getRegistry().register(expBoost = new Ability(1, Strings.expBoost, Ability.Category.SUPPORT));
 		event.getRegistry().register(expWalker = new Ability(1, Strings.expWalker, Ability.Category.SUPPORT));
 		event.getRegistry().register(experienceBoost = new Ability(1, Strings.experienceBoost, Ability.Category.SUPPORT));
 		event.getRegistry().register(finishBoost = new Ability(1, Strings.finishBoost, Ability.Category.SUPPORT));

@@ -917,7 +917,6 @@ public class Strings {
  	driveConverter = "ability.driveconverter",
  	encounterPlus = "ability.encounterplus",
  	endlessMagic = "ability.endlessmagic",
- 	expBoost = "ability.expboost",
  	expWalker = "ability.expwalker",
  	experienceBoost = "ability.experienceboost",
  	finishBoost = "ability.finishboost",

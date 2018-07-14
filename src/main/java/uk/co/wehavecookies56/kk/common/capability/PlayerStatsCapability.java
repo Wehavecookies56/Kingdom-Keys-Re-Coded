@@ -14,7 +14,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
-import uk.co.wehavecookies56.kk.common.ability.Abilities;
+import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -393,7 +393,7 @@ public class PlayerStatsCapability {
             switch (this.level) {
                 case 2:
                     this.addDefense(1);
-                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(Abilities.scan);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.scan);
                     break;
                 case 3:
                     this.addStrength(1);
@@ -422,7 +422,7 @@ public class PlayerStatsCapability {
                     this.addMagic(1);
                     this.addDefense(1);
                     this.addHP(5);
-                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(Abilities.mpHaste);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.mpHaste);
                     break;
                 case 11:
                     this.addStrength(1);
