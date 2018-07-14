@@ -1179,6 +1179,111 @@ kk.balance.title=Configuration de balanceo
 kk.balance.keyblades=Llaves Espada
 
 ##########################
+#Abilities
+##########################
+#Action
+ability.aerialdive=Aerial Dive
+ability.aerialfinish=Aerial Finish
+ability.aerialsprial=Aerial Sprial
+ability.aerialsweep=Aerial Sweep
+ability.arsarcanum=Ars Arcanum
+ability.autofinal=Auto Final
+ability.autolimit=Auto Limit
+ability.automaster=Auto Master
+ability.autosummon=Auto Summon
+ability.autovalor=Auto Valor
+ability.autowisdom=Auto Wisdom
+ability.blitz=Blitz
+ability.counterattack=Counterattack
+ability.counterguard=Counterguard
+ability.crescent=Crescent
+ability.dodgeslash=Dodge Slash
+ability.explosion=Explosion
+ability.finishingleap=Finishing Leap
+ability.flashstep=Flash Step
+ability.gravitybreak=Gravity Break
+ability.guard=Guard
+ability.guardbreak=Guard Break
+ability.horizontalslash=Horizontal Slash
+ability.hurricaneblast=Hurricane Blast
+ability.magnetsplash=Magnet Splash
+ability.ragnarok=Ragnarok
+ability.retaliatingslash=Retaliating Slash
+ability.rippledrive=Ripple Drive
+ability.roundbreak=Round Break
+ability.slapshot=Slapshot
+ability.slidingdash=Sliding Dash
+ability.sonicblade=Sonic Blade
+ability.strikeraid=Strike Raid
+ability.stunimpact=Stun Impact
+ability.upperslash=Upper Slash
+ability.vortex=Vortex
+ability.zantetsuken=Zantetsuken
+
+#Growth
+ability.aerialdodge=Regate Aéreo
+ability.dodgeroll=Voltereta
+ability.glide=Planeador
+ability.highjump=Salto de Altura
+ability.quickrun=Carrera Rápida
+
+#Support
+ability.aerialrecovery=Aerial Recovery
+ability.aircomboboost=Air Combo Boost
+ability.aircomboplus=Air Combo Plus
+ability.berserk=Berserk
+ability.berserkcharge=Berserk Charge
+ability.blizzardboost=Blizzard Boost
+ability.blizzardscreen=Blizzard Screen
+ability.combinationboost=Combination Boost
+ability.comboboost=Combo Boost
+ability.combofboost=Combo F Boost
+ability.combomaster=Combo Master
+ability.comboplus=Combo Plus
+ability.criticalplus=Critical Plus
+ability.cureboost=Cure Boost
+ability.damagecontrol=Damage Control
+ability.damagedrive=Damage Drive
+ability.darkscreen=Dark Screen
+ability.defender=Defender
+ability.draw=Treasure Magnet
+ability.driveboost=Drive Boost
+ability.driveconverter=Drive Converter
+ability.encounterplus=Encounter Plus
+ability.endlessmagic=Endless Magic
+ability.expwalker=EXP Walker
+ability.experienceboost=Experience Boost
+ability.finishboost=Finish Boost
+ability.finishingplus=Finishing Plus
+ability.fireboost=Fire Boost
+ability.firescreen=Fire Screen
+ability.formboost=Form Boost
+ability.hpboost=HP Boost
+ability.hpgain=HP Gain
+ability.hpprizeplus=HP Prize Plus
+ability.itemboost=Item Boost
+ability.jackpot=Jackpot
+ability.leafbracer=Leaf Bracer
+ability.light&dark=Light & Dark
+ability.luckylucky=Lucky Lucky
+ability.magiclock-on=Magic Lock-On
+ability.mphaste=MP Haste
+ability.mphastega=MP Hastega
+ability.mphastera=MP Hastera
+ability.mprage=MP Rage
+ability.negativecombo=Negative Combo
+ability.oncemore=Once More
+ability.reactionboost=Reaction Boost
+ability.scan=Scan
+ability.secondchance=Second Chance
+ability.summonboost=Summon Boost
+ability.synchblade=Synch Blade
+ability.techboost=Tech Boost
+ability.thunderboost=Thunder Boost
+ability.thunderscreen=Thunder Screen
+ability.zeroexp=Zero EXP
+
+##########################
 #Tutorials
 ##########################
 tutorial.keyblade1.0.0=La Llave Espada es el tipo de arma principal en el mod

@@ -14,6 +14,7 @@ import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilities;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 
 import java.io.IOException;
@@ -51,9 +52,9 @@ public class GuiAbilities extends GuiScreen {
 			Ability ability = ABILITIES.getUnlockedAbilities().get(i);
 			String text = "";
 			if (ABILITIES.getEquippedAbility(ability)) {
-				text = "Equip " + ability.getName()+" ["+ability.getCategory()+"]";
+				text = "Equip " + Utils.translateToLocal(ability.getName())+" ["+ability.getCategory()+"]";
 			} else {
-				text = "Unequip " + ability.getName()+" ["+ability.getCategory()+"]";
+				text = "Unequip " + Utils.translateToLocal(ability.getName())+" ["+ability.getCategory()+"]";
 			}
 			buttonList.add(new GuiMenuButton(id++, 0, id * 20, 100, text));
 		}
