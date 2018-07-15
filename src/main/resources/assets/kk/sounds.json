@@ -123,6 +123,20 @@
     		{"name": "kk:savespawn", "stream": false}
     	]
     },
+	
+	"menuin": {
+    	"category": "player",
+    	"sounds": [
+    		{"name": "kk:menuin", "stream": false}
+    	]
+    },
+	
+	"menuout": {
+    	"category": "player",
+    	"sounds": [
+    		{"name": "kk:menuout", "stream": false}
+    	]
+    },
 
     "records.birth by sleep -a link to the future-": {
     	"category": "record", 

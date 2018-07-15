@@ -68,7 +68,8 @@ public class PacketDispatcher {
         registerMessage(OpenTutorialGUI.class);
         registerMessage(SyncTutorials.class);
         registerMessage(OpenPlayerItemsGUI.class);
-        registerMessage(SyncAbilities.class);
+        registerMessage(SyncUnlockedAbilities.class);
+        registerMessage(SyncEquippedAbilities.class);
         
         // Client to Server
         registerMessage(MunnyPickup.class);
@@ -123,6 +124,7 @@ public class PacketDispatcher {
         registerMessage(XemnasMemberSelect.class);
         registerMessage(TutorialsPacket.class);
         registerMessage(EquipKeychain.class);
+        registerMessage(EquipAbility.class);
 
         // Bidirectional
     }

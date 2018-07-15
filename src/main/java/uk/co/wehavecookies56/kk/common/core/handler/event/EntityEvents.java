@@ -128,9 +128,9 @@ import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenOrgGUI;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenTutorialGUI;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncEquippedAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncHudData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncItemsInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
@@ -139,6 +139,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncTutorials;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncUnlockedAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonOrgWeapon;
 import uk.co.wehavecookies56.kk.common.network.packet.server.GlidePacket;
@@ -373,7 +374,7 @@ public class EntityEvents {
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_MythrilCrystal);
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_ManifestIllusion);
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_LostIllusion);
-
+			
 			if (event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getSlots() != InventoryKeychain.INV_SIZE) {
 				ItemStackHandler oldInv = event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
 				event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setInventory(new ItemStackHandler(InventoryKeychain.INV_SIZE));
@@ -393,7 +394,8 @@ public class EntityEvents {
 			PacketDispatcher.sendTo(new SyncLevelData(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
 			PacketDispatcher.sendTo(new SyncOrgXIIIData(event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) event.getEntity());
 			PacketDispatcher.sendTo(new SyncTutorials(event.getEntity().getCapability(ModCapabilities.TUTORIALS, null)), (EntityPlayerMP) event.getEntity());
-            PacketDispatcher.sendTo(new SyncAbilities(event.getEntity().getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) event.getEntity());
+            PacketDispatcher.sendTo(new SyncUnlockedAbilities(event.getEntity().getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) event.getEntity());
+            PacketDispatcher.sendTo(new SyncEquippedAbilities(event.getEntity().getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) event.getEntity());
 
 			// First time player joins
 			FirstTimeJoinCapability.IFirstTimeJoin FTJ = event.getEntity().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
@@ -414,9 +416,6 @@ public class EntityEvents {
 						} else {
 							tp.placeEntity(((EntityPlayer) event.getEntity()).getEntityWorld(), ((EntityPlayer) event.getEntity()), ((EntityPlayer) event.getEntity()).rotationYaw);
 						}
-						// new
-						// TeleporterDiveToTheHeart(event.getWorld().getMinecraftServer().getServer().getWorld(ModDimensions.diveToTheHeartID)).teleport(((EntityPlayer)
-						// event.getEntity()));
 					}
 				}
 

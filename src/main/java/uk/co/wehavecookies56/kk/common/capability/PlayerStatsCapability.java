@@ -19,7 +19,7 @@ import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.ShowOverlayPacket;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilities;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncUnlockedAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -794,7 +794,7 @@ public class PlayerStatsCapability {
             	this.addMaxAP(1);
             }
             
-            PacketDispatcher.sendTo(new SyncAbilities(player.getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) player);
+            PacketDispatcher.sendTo(new SyncUnlockedAbilities(player.getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) player);
 
             player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 0.5f, 1.0f);
             player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());

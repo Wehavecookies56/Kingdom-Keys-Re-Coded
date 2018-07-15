@@ -36,6 +36,8 @@ public class AbilitiesCapability {
 
 		void clearEquippedAbilities();
 
+		void setEquippedAbilities(ArrayList<Ability> equippedAbilities);
+
 		// void setKnownTutorials(ArrayList<Integer> list);
 	}
 
@@ -137,6 +139,11 @@ public class AbilitiesCapability {
 		@Override
 		public void setUnlockedAbilities(ArrayList<Ability> list) {
 			this.unlockedList = list;
+		}
+		
+		@Override
+		public void setEquippedAbilities(ArrayList<Ability> list) {
+			this.equippedList = list;
 		}
 	}
 }

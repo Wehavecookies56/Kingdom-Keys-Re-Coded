@@ -16,15 +16,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
-import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
+import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilities;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncEquippedAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncUnlockedAbilities;
 
 public class CommandLevelUp implements ICommand {
 
@@ -144,7 +145,8 @@ public class CommandLevelUp implements ICommand {
                 player.heal(STATS.getHP());
                 TextHelper.sendFormattedChatMessage("Your level is now " + args[0], TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
                 PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
-                PacketDispatcher.sendTo(new SyncAbilities(ABILITIES), (EntityPlayerMP) player);
+                PacketDispatcher.sendTo(new SyncUnlockedAbilities(ABILITIES), (EntityPlayerMP) player);
+                PacketDispatcher.sendTo(new SyncEquippedAbilities(ABILITIES), (EntityPlayerMP) player);
 
             } else if (args.length == 2) {
                 int level = 1;
@@ -181,7 +183,7 @@ public class CommandLevelUp implements ICommand {
                 TextHelper.sendFormattedChatMessage("Your level is now " + args[0], TextFormatting.YELLOW, (EntityPlayer) entityplayermp);
 
                 PacketDispatcher.sendTo(new SyncLevelData(entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) entityplayermp);
-                PacketDispatcher.sendTo(new SyncAbilities(ABILITIES), (EntityPlayerMP) entityplayermp);
+                PacketDispatcher.sendTo(new SyncUnlockedAbilities(ABILITIES), (EntityPlayerMP) entityplayermp);
 
             } else
                 TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());

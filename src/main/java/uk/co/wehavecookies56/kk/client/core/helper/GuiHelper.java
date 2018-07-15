@@ -1,8 +1,10 @@
 package uk.co.wehavecookies56.kk.client.core.helper;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
@@ -15,6 +17,7 @@ import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Items;
 import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Items_Player;
 import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Status;
 import uk.co.wehavecookies56.kk.client.gui.GuiTutorial;
+import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
@@ -30,6 +33,9 @@ public class GuiHelper {
 
 	@SideOnly(Side.CLIENT)
 	public static void openMenu() {
+		Minecraft.getMinecraft().world.playSound(Minecraft.getMinecraft().player, Minecraft.getMinecraft().player.getPosition(), ModSounds.menuin, SoundCategory.MASTER, 1.0f, 1.0f);
+
+		//Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(ModSounds.menuin, 1.0F));
 		Minecraft.getMinecraft().displayGuiScreen(new GuiMenu());
 	}
 
@@ -60,6 +66,7 @@ public class GuiHelper {
 	@SideOnly(Side.CLIENT)
 	public static void closeGui() {
 		Minecraft.getMinecraft().displayGuiScreen(null);
+		Minecraft.getMinecraft().world.playSound(Minecraft.getMinecraft().player, Minecraft.getMinecraft().player.getPosition(), ModSounds.menuout, SoundCategory.MASTER, 1.0f, 1.0f);
 	}
 
 	@SideOnly(Side.CLIENT)

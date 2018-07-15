@@ -15,7 +15,8 @@ import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Bars;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilities;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncUnlockedAbilities;
+import uk.co.wehavecookies56.kk.common.network.packet.server.EquipAbility;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
@@ -47,6 +48,23 @@ public class GuiAbilities extends GuiScreen {
 	}
 
 	private void drawAP() {
+		
+		int id = 0;
+		IAbilities ABILITIES = mc.player.getCapability(ModCapabilities.ABILITIES, null);
+
+		for (int i = 0; i < ABILITIES.getUnlockedAbilities().size(); i++) {
+			Ability ability = ABILITIES.getUnlockedAbilities().get(i);
+			String text = "";
+			if (ABILITIES.getEquippedAbility(ability)) {
+				text = "[-] "; // Has to unequip
+			} else {
+				text = "[+] "; // Has to equip
+			}
+			text += Utils.translateToLocal(ability.getName()) + " (" + ability.getApCost() + ") [" + ability.getCategory() + "]";
+			buttonList.add(new GuiMenuButton(id++, 0, id * 20, 100, text));
+		}
+
+		
 		ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
 
 		int screenWidth = sr.getScaledWidth();
@@ -58,6 +76,7 @@ public class GuiAbilities extends GuiScreen {
 		int posY = screenHeight - 100;
 		float scale = 1F;
 
+		
 		int ap = STATS.getConsumedAP();
 		int maxAP = STATS.getMaxAP();
 		mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/mpBar.png"));
@@ -97,48 +116,18 @@ public class GuiAbilities extends GuiScreen {
 		background.width = width;
 		background.height = height;
 		background.init();
-
-		int id = 0;
-		IAbilities ABILITIES = mc.player.getCapability(ModCapabilities.ABILITIES, null);
-
-		for (int i = 0; i < ABILITIES.getUnlockedAbilities().size(); i++) {
-			Ability ability = ABILITIES.getUnlockedAbilities().get(i);
-			String text = "";
-			if (ABILITIES.getEquippedAbility(ability)) {
-				text = "[-] "; // Has to unequip
-			} else {
-				text = "[+] "; // Has to equip
-			}
-			text += Utils.translateToLocal(ability.getName()) + " (" + ability.getApCost() + ") [" + ability.getCategory() + "]";
-			buttonList.add(new GuiMenuButton(id++, 0, id * 20, 100, text));
-		}
-
 		super.initGui();
 	}
 
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException {
 		IAbilities ABILITIES = mc.player.getCapability(ModCapabilities.ABILITIES, null);
-		IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
-
+   	
 		Ability ability = ABILITIES.getUnlockedAbilities().get(button.id);
-		if (ABILITIES.getEquippedAbility(ability)) {
-			MinecraftForge.EVENT_BUS.post(new AbilityEvent.Unequip(mc.player, ability));
-			STATS.setConsumedAP(STATS.getConsumedAP() - ability.getApCost());
-			ABILITIES.equipAbility(ability, false);
-			
-		} else {
-			MinecraftForge.EVENT_BUS.post(new AbilityEvent.Equip(mc.player, ability));
-			if (STATS.getConsumedAP() + ability.getApCost() > STATS.getMaxAP()) {
-				System.out.println("Not enough AP");
-			} else {
-				STATS.setConsumedAP(STATS.getConsumedAP() + ability.getApCost());
-				ABILITIES.equipAbility(ability, true);
-			}
-		}
+		PacketDispatcher.sendToServer(new EquipAbility(ability.getName()));
 		
 		mc.displayGuiScreen(this); // TODO change this to a proper updating method
-
+		//updateScreen();
 		super.actionPerformed(button);
 	}
 }
