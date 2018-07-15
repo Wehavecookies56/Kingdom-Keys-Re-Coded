@@ -41,7 +41,7 @@ public class PlayerStatsCapability {
         int getDefense();
         int getMagic();
         int getHP();
-        int getAP();
+        int getConsumedAP();
         int getMaxAP();
        
         double getMP();
@@ -114,7 +114,7 @@ public class PlayerStatsCapability {
             properties.setString("Choice2", instance.getChoice2());
             properties.setTag("PotionsInvKey", instance.getInventoryPotionsMenu().serializeNBT());
             properties.setDouble("RechargeSpeed", instance.getRechargeSpeed());
-            properties.setInteger("AP", instance.getAP());
+            properties.setInteger("AP", instance.getConsumedAP());
             properties.setInteger("MaxAP", instance.getMaxAP());
 
             return properties;
@@ -165,7 +165,7 @@ public class PlayerStatsCapability {
         private double mp = 20;
         private double maxMP = 40;
         private int consumedAP=0;
-        private int maxAP = 1;
+        private int maxAP = 10;
         
         private boolean recharge = false;
         private double rechargeSpeed = 1;
@@ -240,7 +240,7 @@ public class PlayerStatsCapability {
             return this.maxHP;
         }
         @Override
-        public int getAP() {
+        public int getConsumedAP() {
             return this.consumedAP;
         }
         @Override
@@ -788,6 +788,10 @@ public class PlayerStatsCapability {
                 this.addMaxMP(5);
                 this.setMP(this.getMaxMP());
                 PacketDispatcher.sendTo(new SyncOrgXIIIData(player.getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) player);
+            }
+            
+            if(this.level%2 == 0) {
+            	this.addMaxAP(1);
             }
             
             PacketDispatcher.sendTo(new SyncAbilities(player.getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) player);

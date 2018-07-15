@@ -58,7 +58,7 @@ public class GuiAbilities extends GuiScreen {
 		int posY = screenHeight - 100;
 		float scale = 1F;
 
-		int ap = STATS.getAP();
+		int ap = STATS.getConsumedAP();
 		int maxAP = STATS.getMaxAP();
 		mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/mpBar.png"));
 
@@ -124,15 +124,15 @@ public class GuiAbilities extends GuiScreen {
 		Ability ability = ABILITIES.getUnlockedAbilities().get(button.id);
 		if (ABILITIES.getEquippedAbility(ability)) {
 			MinecraftForge.EVENT_BUS.post(new AbilityEvent.Unequip(mc.player, ability));
-			STATS.setConsumedAP(STATS.getAP() - ability.getApCost());
+			STATS.setConsumedAP(STATS.getConsumedAP() - ability.getApCost());
 			ABILITIES.equipAbility(ability, false);
 			
 		} else {
 			MinecraftForge.EVENT_BUS.post(new AbilityEvent.Equip(mc.player, ability));
-			if (STATS.getAP() + ability.getApCost() > STATS.getMaxAP()) {
+			if (STATS.getConsumedAP() + ability.getApCost() > STATS.getMaxAP()) {
 				System.out.println("Not enough AP");
 			} else {
-				STATS.setConsumedAP(STATS.getAP() + ability.getApCost());
+				STATS.setConsumedAP(STATS.getConsumedAP() + ability.getApCost());
 				ABILITIES.equipAbility(ability, true);
 			}
 		}

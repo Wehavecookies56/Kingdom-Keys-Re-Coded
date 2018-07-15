@@ -17,7 +17,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
  */
 public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLevelData> {
 
-    int experience, level, strength, magic, defense, hp;
+    int experience, level, strength, magic, defense, hp, ap, maxAP;
     double MP, maxMP;
     String choice1, choice2;
     List<String> messages;
@@ -34,6 +34,8 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         this.maxMP = stats.getMaxMP();
         this.hp = stats.getHP();
         this.choice1 = stats.getChoice1();
+        this.ap = stats.getConsumedAP();
+        this.maxAP = stats.getMaxAP();
         this.messages = stats.getMessages();
     }
 
@@ -48,6 +50,8 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         this.maxMP = buffer.readDouble();
         this.hp = buffer.readInt();
         this.choice1 = buffer.readString(40);
+        this.ap = buffer.readInt();
+        this.maxAP = buffer.readInt();
         this.messages = new ArrayList<String>();
         while(buffer.isReadable()) {
             this.messages.add(buffer.readString(100));
@@ -65,6 +69,8 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         buffer.writeDouble(this.maxMP);
         buffer.writeInt(this.hp);
         buffer.writeString(this.choice1);
+        buffer.writeInt(this.ap);
+        buffer.writeInt(this.maxAP);
         for (int i = 0; i < this.messages.size(); i++) {
             buffer.writeString(this.messages.get(i));
         }
@@ -82,6 +88,8 @@ public class SyncLevelData extends AbstractMessage.AbstractClientMessage<SyncLev
         stats.setMaxMP(this.maxMP);
         stats.setHP(this.hp);
         stats.setChoice1(this.choice1);
+        stats.setConsumedAP(ap);
+        stats.setMaxAP(maxAP);
         player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(stats.getHP());
         stats.getMessages().clear();
         for (int i = 0; i < this.messages.size(); i++) {

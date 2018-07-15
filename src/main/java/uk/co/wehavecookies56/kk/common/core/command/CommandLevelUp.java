@@ -17,6 +17,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
+import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
@@ -129,7 +130,13 @@ public class CommandLevelUp implements ICommand {
                 player.setHealth(20);
                 STATS.setMaxMP(20);
                 STATS.setMP(STATS.getMaxMP());
+                STATS.setMaxAP(10);
+                STATS.setConsumedAP(0);
+                ABILITIES.clearEquippedAbilities();
+
                 ABILITIES.clearUnlockedAbilities();
+
+                ABILITIES.unlockAbility(ModAbilities.zeroEXP);
 
 
                 while (STATS.getLevel() < level)
