@@ -108,6 +108,7 @@ public class AbilitiesCapability {
 		@Override
 		public void equipAbility(Ability ability, boolean equip) {
 			if (equip) {
+				
 				System.out.println("Going to equip "+ability.getName());
 				equippedList.add(ability);
 			} else {

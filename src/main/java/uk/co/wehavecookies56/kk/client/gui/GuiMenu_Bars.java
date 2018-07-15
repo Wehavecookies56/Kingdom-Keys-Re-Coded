@@ -73,7 +73,7 @@ public class GuiMenu_Bars extends GuiScreen {
     public void drawBiomeDim() {
         GlStateManager.pushMatrix();
         {
-            drawString(mc.fontRenderer, mc.player.world.provider.getDimensionType().getName(), width - mc.fontRenderer.getStringWidth(mc.player.world.provider.getDimensionType().getName()) - 5, 5, 0xF58B33);
+            drawString(mc.fontRenderer, mc.player.world.provider.getDimensionType().getName().toUpperCase(), width - mc.fontRenderer.getStringWidth(mc.player.world.provider.getDimensionType().getName()) - 5, 5, 0xF58B33);
             drawString(mc.fontRenderer, mc.player.world.getBiome(mc.player.getPosition()).getBiomeName(), width - mc.fontRenderer.getStringWidth(mc.player.world.getBiome(mc.player.getPosition()).getBiomeName()) - 5, 20, 0xF58B33);
         }
         GlStateManager.popMatrix();

@@ -42,6 +42,7 @@ public class PlayerStatsCapability {
         int getMagic();
         int getHP();
         int getAP();
+        int getMaxAP();
        
         double getMP();
         double getMaxMP();
@@ -61,8 +62,10 @@ public class PlayerStatsCapability {
         void addMagic(int magic);
         int setHP(int hp);
         int addHP(int hp);
-        int setAP(int ap);
-        int addAP(int ap);
+        int setConsumedAP(int ap);
+        int addConsumedAP(int ap);
+        int setMaxAP(int ap);
+        int addMaxAP(int ap);
         
         boolean setMP(double mp);
         void addMP(double mp);
@@ -112,6 +115,7 @@ public class PlayerStatsCapability {
             properties.setTag("PotionsInvKey", instance.getInventoryPotionsMenu().serializeNBT());
             properties.setDouble("RechargeSpeed", instance.getRechargeSpeed());
             properties.setInteger("AP", instance.getAP());
+            properties.setInteger("MaxAP", instance.getMaxAP());
 
             return properties;
         }
@@ -137,7 +141,8 @@ public class PlayerStatsCapability {
             instance.getInventoryPotionsMenu().deserializeNBT(properties.getCompoundTag("PotionsInvKey"));
             
             instance.setRechargeSpeed(properties.getDouble("RechargeSpeed"));
-            instance.setAP(properties.getInteger("AP"));
+            instance.setConsumedAP(properties.getInteger("AP"));
+            instance.setMaxAP(properties.getInteger("MaxAP"));
         }
     }
 
@@ -159,7 +164,8 @@ public class PlayerStatsCapability {
         private int maxHP = 20;
         private double mp = 20;
         private double maxMP = 40;
-        private int ap=1;
+        private int consumedAP=0;
+        private int maxAP = 1;
         
         private boolean recharge = false;
         private double rechargeSpeed = 1;
@@ -235,9 +241,12 @@ public class PlayerStatsCapability {
         }
         @Override
         public int getAP() {
-            return this.ap;
+            return this.consumedAP;
         }
-       
+        @Override
+        public int getMaxAP() {
+            return this.maxAP;
+        }
         @Override
         public boolean getRecharge() {
             return this.recharge;
@@ -333,15 +342,26 @@ public class PlayerStatsCapability {
             return this.maxHP;
         }
         @Override
-        public int setAP(int ap) {
-            this.ap = ap;
-            return this.ap;
+        public int setConsumedAP(int ap) {
+            this.consumedAP = ap;
+            return this.consumedAP;
         }
         @Override
-        public int addAP(int ap) {
-            this.ap += ap;
+        public int addConsumedAP(int ap) {
+            this.consumedAP += ap;
+           // messages.add(Strings.Stats_LevelUp_AP);
+            return this.consumedAP;
+        }
+        @Override
+        public int setMaxAP(int ap) {
+            this.maxAP = ap;
+            return this.maxAP;
+        }
+        @Override
+        public int addMaxAP(int ap) {
+        	this.maxAP += ap;
             messages.add(Strings.Stats_LevelUp_AP);
-            return this.ap;
+            return this.maxAP;
         }
        
         @Override

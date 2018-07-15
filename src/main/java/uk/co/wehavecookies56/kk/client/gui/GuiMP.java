@@ -46,9 +46,7 @@ public class GuiMP extends GuiScreen {
 
 			int screenWidth = event.getResolution().getScaledWidth();
 			int screenHeight = event.getResolution().getScaledHeight();
-
-			float oneHeart = (noborderguiwidth / player.getMaxHealth());
-			int currHealth = noborderguiwidth - (int) (oneHeart * player.getHealth());
+			
 			float scale = 0.65f;
 
 			STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
