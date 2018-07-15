@@ -107,13 +107,14 @@ public class AbilitiesCapability {
 
 		@Override
 		public void equipAbility(Ability ability, boolean equip) {
-			System.out.println("Going to equip");
 			if (equip) {
+				System.out.println("Going to equip "+ability.getName());
 				equippedList.add(ability);
 			} else {
+				System.out.println("Going to unequip "+ability.getName());
 				if (equippedList.contains(ability)) {
 					for (int i = 0; i < equippedList.size(); i++) {
-						if (equippedList.get(i).getName().equals(ability.getName())) {
+						if (equippedList.get(i) ==ability) {
 							equippedList.remove(i);
 						}
 					}

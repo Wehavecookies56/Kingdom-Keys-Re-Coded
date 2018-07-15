@@ -231,6 +231,7 @@ public class Strings {
     Stats_LevelUp_Magic = "stats.levelUpMag",
     Stats_LevelUp_HP = "stats.levelUpHP",
     Stats_LevelUp_MP = "stats.levelUpMP",
+    Stats_LevelUp_AP = "stats.levelUpAP",
     Stats_LevelUp_FormGauge = "stats.levelUpFG",
 	Stats_LevelUp_HighJump = "stats.levelUpHighJump",
 	Stats_LevelUp_QuickRun = "stats.levelUpQuickRun",

@@ -41,6 +41,7 @@ public class PlayerStatsCapability {
         int getDefense();
         int getMagic();
         int getHP();
+        int getAP();
        
         double getMP();
         double getMaxMP();
@@ -60,6 +61,8 @@ public class PlayerStatsCapability {
         void addMagic(int magic);
         int setHP(int hp);
         int addHP(int hp);
+        int setAP(int ap);
+        int addAP(int ap);
         
         boolean setMP(double mp);
         void addMP(double mp);
@@ -108,6 +111,7 @@ public class PlayerStatsCapability {
             properties.setString("Choice2", instance.getChoice2());
             properties.setTag("PotionsInvKey", instance.getInventoryPotionsMenu().serializeNBT());
             properties.setDouble("RechargeSpeed", instance.getRechargeSpeed());
+            properties.setInteger("AP", instance.getAP());
 
             return properties;
         }
@@ -133,6 +137,7 @@ public class PlayerStatsCapability {
             instance.getInventoryPotionsMenu().deserializeNBT(properties.getCompoundTag("PotionsInvKey"));
             
             instance.setRechargeSpeed(properties.getDouble("RechargeSpeed"));
+            instance.setAP(properties.getInteger("AP"));
         }
     }
 
@@ -153,7 +158,8 @@ public class PlayerStatsCapability {
         private int magic = 1;
         private int maxHP = 20;
         private double mp = 20;
-        private double maxMP = 20;
+        private double maxMP = 40;
+        private int ap=1;
         
         private boolean recharge = false;
         private double rechargeSpeed = 1;
@@ -226,6 +232,10 @@ public class PlayerStatsCapability {
         @Override
         public int getHP() {
             return this.maxHP;
+        }
+        @Override
+        public int getAP() {
+            return this.ap;
         }
        
         @Override
@@ -322,7 +332,17 @@ public class PlayerStatsCapability {
             messages.add(Strings.Stats_LevelUp_HP);
             return this.maxHP;
         }
-       
+        @Override
+        public int setAP(int ap) {
+            this.ap = ap;
+            return this.ap;
+        }
+        @Override
+        public int addAP(int ap) {
+            this.ap += ap;
+            messages.add(Strings.Stats_LevelUp_AP);
+            return this.ap;
+        }
        
         @Override
         public boolean setMP(double mp) {
