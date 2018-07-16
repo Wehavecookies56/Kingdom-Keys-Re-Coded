@@ -384,6 +384,10 @@ public class EntityEvents {
 				}
 			}
 
+			if (event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getMaxAP() < 10) {
+				event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).setMaxAP(10);
+			}
+
 			PacketDispatcher.sendTo(new SyncHudData(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
 			PacketDispatcher.sendTo(new SyncMagicInventory(event.getEntity().getCapability(ModCapabilities.MAGIC_STATE, null)), (EntityPlayerMP) event.getEntity());
 			PacketDispatcher.sendTo(new SyncItemsInventory(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());

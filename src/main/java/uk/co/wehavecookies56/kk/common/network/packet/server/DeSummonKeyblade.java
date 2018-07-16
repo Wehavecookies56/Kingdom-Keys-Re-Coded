@@ -13,6 +13,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage.AbstractServerMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
@@ -40,9 +41,9 @@ public class DeSummonKeyblade extends AbstractServerMessage<DeSummonKeyblade> {
     @Override
     public void process (EntityPlayer player, Side side) {
         player.sendMessage(new TextComponentTranslation(TextFormatting.DARK_GREEN + "Desummoned " + player.getHeldItem(hand).getDisplayName()));
-        if (hand == EnumHand.MAIN_HAND)
+        if (hand == EnumHand.MAIN_HAND && player.getHeldItemMainhand().getItem() instanceof ItemKeyblade)
             player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-        else
+        else if (player.getHeldItemOffhand().getItem() instanceof ItemKeyblade)
             player.inventory.offHandInventory.set(0, ItemStack.EMPTY);
         player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.unsummon, SoundCategory.MASTER, 1.0f, 1.0f);
         player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(hand, false);

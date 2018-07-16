@@ -124,6 +124,21 @@ public class GuiAbilities extends GuiScreen {
 		IAbilities ABILITIES = mc.player.getCapability(ModCapabilities.ABILITIES, null);
    	
 		Ability ability = ABILITIES.getUnlockedAbilities().get(button.id);
+		IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
+		if (ABILITIES.getEquippedAbility(ability)) {
+			MinecraftForge.EVENT_BUS.post(new AbilityEvent.Unequip(mc.player, ability));
+			STATS.setConsumedAP(STATS.getConsumedAP() - ability.getApCost());
+			ABILITIES.equipAbility(ability, false);
+
+		} else {
+			MinecraftForge.EVENT_BUS.post(new AbilityEvent.Equip(mc.player, ability));
+			if (STATS.getConsumedAP() + ability.getApCost() > STATS.getMaxAP()) {
+				System.out.println("Not enough AP");
+			} else {
+				STATS.setConsumedAP(STATS.getConsumedAP() + ability.getApCost());
+				ABILITIES.equipAbility(ability, true);
+			}
+		}
 		PacketDispatcher.sendToServer(new EquipAbility(ability.getName()));
 		
 		mc.displayGuiScreen(this); // TODO change this to a proper updating method
