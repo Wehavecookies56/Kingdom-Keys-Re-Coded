@@ -12,6 +12,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import uk.co.wehavecookies56.kk.client.model.ModelFlyingHeart;
+import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
+import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
 import uk.co.wehavecookies56.kk.common.entity.EntityFlyingHeart;
@@ -57,27 +59,21 @@ public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHe
 
 				String text = "+0xp";
 				System.out.println(eXP);
-				
+
 				EntityPlayer player = mc.world.getPlayerEntityByName(eXP.playerName);
-				
-				if(mc.world.getEntityByID(eXP.entityID) instanceof EntityLivingBase) {
+
+				if (mc.world.getEntityByID(eXP.entityID) instanceof EntityLivingBase) {
 					EntityLivingBase mobEntity = (EntityLivingBase) mc.world.getEntityByID(eXP.entityID);
 					IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-					if (STATS.getLevel() < STATS.getMaxLevel())
-						text = "+" + (int)(mobEntity.getMaxHealth() / 2) + "xp";
-	
-					if (mc.player.getDisplayNameString().equals(eXP.playerName))
-						mc.fontRenderer.drawString(text, -mc.fontRenderer.getStringWidth(text) / 2, 0, 0x0099ff);
-					
+					IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+					if (!ABILITIES.getEquippedAbility(ModAbilities.zeroEXP)) {
+						if (STATS.getLevel() < STATS.getMaxLevel())
+							text = "+" + (int) (mobEntity.getMaxHealth() / 2) + "xp";
+
+						if (mc.player.getDisplayNameString().equals(eXP.playerName))
+							mc.fontRenderer.drawString(text, -mc.fontRenderer.getStringWidth(text) / 2, 0, 0x0099ff);
+					}
 				}
-				// GL11.glRotatef(rotation += 4, 0, 1, 0);
-
-				// bindEntityTexture(entity);
-
-				// this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-
-				// GL11.glPopAttrib();
-
 			}
 			GL11.glPopMatrix();
 		}
