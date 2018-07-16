@@ -62,7 +62,7 @@ public class EntityCreeper extends EntityMob implements IKHMob
 	{
 		private EntityCreeper theEntity;	// the entity who holds this AI
 		private boolean canUseAttack = true;	// true/false value to decide if we can use this ability or if the cooldown starts
-		private int attackTimer = 30, whileAttackTimer; // attackTimer is the cooldown while whileAttackTimer is the amount of ticks the attack runned for
+		private int attackTimer = 5, whileAttackTimer; // attackTimer is the cooldown while whileAttackTimer is the amount of ticks the attack runned for
 		private double[] posToFall; // an double array that holds the pos values (x,y,z) for where to drop the entity
 		
 		public EntityCreeperAI(EntityCreeper e) 
@@ -114,16 +114,12 @@ public class EntityCreeper extends EntityMob implements IKHMob
 		{
 			canUseAttack = true;
 			if(EntityHelper.getState(theEntity) > 2)
-				attackTimer = 20 + world.rand.nextInt(10);
+				attackTimer = 10 + world.rand.nextInt(5);
 			else
-				attackTimer = 40 + world.rand.nextInt(10);
+				attackTimer = 20 + world.rand.nextInt(5);
 			EntityHelper.setState(theEntity, 0);
 			this.theEntity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.17D);
 			whileAttackTimer = 0;
-			EntityLivingBase target = this.theEntity.getAttackTarget();
-
-			if(target != null)
-				posToFall = new double[] {target.posX, target.posY, target.posZ};	
 		}
 			
 		/*
@@ -146,7 +142,7 @@ public class EntityCreeper extends EntityMob implements IKHMob
 	            		if(world.rand.nextInt(100) + world.rand.nextDouble() <= 50) // again but for another randomized number to see which morph to run, there's a 50/50 chance for both
 	            		{
 	            			//SWORD
-	            			if(theEntity.getDistanceToEntity(theEntity.getAttackTarget()) < 5) // for the sword one we need to check if the target is 4 blocks or less away from the entity (just because it wouldn't make much sense for a close-ranged attack to occur when the target is 5 miles away)
+	            			if(theEntity.getDistanceToEntity(theEntity.getAttackTarget()) < 8) // for the sword one we need to check if the target is 4 blocks or less away from the entity (just because it wouldn't make much sense for a close-ranged attack to occur when the target is 5 miles away)
 	            			{
 		            			EntityHelper.setState(theEntity, 1); // setting the state to 1 (sword morphing)
 		            			
@@ -157,22 +153,24 @@ public class EntityCreeper extends EntityMob implements IKHMob
 		            			 */
 		            			this.theEntity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 		            			
-		            			for(EntityLivingBase enemy : EntityHelper.getEntitiesNear(this.theEntity, 2))
+		            			for(EntityLivingBase enemy : EntityHelper.getEntitiesNear(this.theEntity, 4))
 		            				enemy.attackEntityFrom(DamageSource.causeMobDamage(this.theEntity), 8);
 	            			}
+	            			else
+	            				updateTask();
 	            		}
 	            		else
 	            		{
 	            			//SPEAR
 	            			/*
 	            			 Same as with the sword, the only difference being we move the entity 4 blocks above the target location (for that sweet "falling from sky" effect)
-	            			 Also deals only 3 hearts for entities around 1.25 blocks around it (cuz it's a spear not a sword, smaller range)
+	            			 Also deals only 3 hearts for entities around 2 blocks around it (cuz it's a spear not a sword, smaller range)
 	            			 */
 	            			EntityHelper.setState(theEntity, 2);
-	            			this.theEntity.setPositionAndUpdate(posToFall[0], posToFall[1] + 4, posToFall[2]);
+	            			this.theEntity.setPositionAndUpdate(target.posX, target.posY + 4, target.posZ);
 	            			this.theEntity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 	            			
-	            			for(EntityLivingBase enemy : EntityHelper.getEntitiesNear(this.theEntity, 1.25))
+	            			for(EntityLivingBase enemy : EntityHelper.getEntitiesNear(this.theEntity, 3))
 	            				enemy.attackEntityFrom(DamageSource.causeMobDamage(this.theEntity), 6);
 	            		}
 	        		}
@@ -182,13 +180,14 @@ public class EntityCreeper extends EntityMob implements IKHMob
 	        			{
 		        			//LEG SWIPE
 		        			EntityHelper.setState(theEntity, 3);
-		        			System.out.println("LEG AI");
 		        			
 	            			this.theEntity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 	            			
-	            			for(EntityLivingBase enemy : EntityHelper.getEntitiesNear(this.theEntity, 1.5))
+	            			for(EntityLivingBase enemy : EntityHelper.getEntitiesNear(this.theEntity, 2.5))
 	            				enemy.attackEntityFrom(DamageSource.causeMobDamage(this.theEntity), 4);
 	        			}
+            			else
+            				updateTask();
 	        		}
 	        		
 	        	}

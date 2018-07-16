@@ -2,13 +2,16 @@ package uk.co.wehavecookies56.kk.common.entity.mobs;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
-import uk.co.wehavecookies56.kk.common.entity.mobs.ai.EntityAIRedNocturne;
 
 public class EntitySilverRock extends BaseEntityHeartless implements IKHMob {
 
@@ -22,7 +25,7 @@ public class EntitySilverRock extends BaseEntityHeartless implements IKHMob {
         this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityAgeable.class, true));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityAnimal.class, true));
-        this.targetTasks.addTask(4, new EntityAIRedNocturne(this));
+        //this.targetTasks.addTask(4, new EntityAIRedNocturne(this));
     }
 
     @Override

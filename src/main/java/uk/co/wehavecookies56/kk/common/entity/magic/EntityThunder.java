@@ -59,7 +59,7 @@ public class EntityThunder extends Entity {
                 PacketDispatcher.sendToAllAround(new SpawnThunderParticles(this, 1), (EntityPlayer)player, 64.0D);
         }else{
             if (!world.isRemote)
-                PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this,1), dimension, this.posX, this.posY, this.posZ, 64D);
+                PacketDispatcher.sendToAllAround(new SpawnThunderParticles(this, 1), dimension, this.posX, this.posY, this.posZ, 64D);
         }
 
         double r = 2.0D;

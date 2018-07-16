@@ -1,220 +1,287 @@
 package uk.co.wehavecookies56.kk.client.model.mobs;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
 
-public class ModelRedNocturne extends ModelBase {
-    ModelRenderer LowerBody;
-    ModelRenderer UpperBody;
-    ModelRenderer MidBody;
-    ModelRenderer Head;
-    ModelRenderer Helmet04;
-    ModelRenderer Helmet02;
-    ModelRenderer Helmet01;
-    ModelRenderer Helmet03;
-    ModelRenderer Helmet05;
-    ModelRenderer Helmet06;
-    ModelRenderer Antenna01;
-    ModelRenderer RightLeg;
-    ModelRenderer LeftLeg;
-    ModelRenderer Antenna02;
-    ModelRenderer Antenna03;
-    ModelRenderer Antenna04;
-    ModelRenderer Antenna05;
- 
-    private int ticksBeforeNextAnimationMelee = 0, ticksForMeleeAnimation = 0;
+public class ModelRedNocturne extends ModelBase
+{
+	public ModelRenderer Body;
+	public ModelRenderer Body1;
+	public ModelRenderer RightLeg;
+	public ModelRenderer LeftLeg;
+	public ModelRenderer Body2;
+	public ModelRenderer Collar1;
+	public ModelRenderer Collar2;
+	public ModelRenderer Collar3;
+	public ModelRenderer Collar4;
+	public ModelRenderer Head;
+	public ModelRenderer Hat;
+	public ModelRenderer Hat1;
+	public ModelRenderer HatDetail1;
+	public ModelRenderer HatDetail2;
+	public ModelRenderer HatDetail3;
+	public ModelRenderer HatDetail4;
+	public ModelRenderer HatTop1;
+	public ModelRenderer HatTop2;
+	public ModelRenderer HatTop3;
+	public ModelRenderer HatTop4;
+	public ModelRenderer HatTop5;
+	public ModelRenderer RightLegDetail1;
+	public ModelRenderer RightLegDetail2;
+	public ModelRenderer RightLegDetail3;
+	public ModelRenderer LeftLegDetail1;
+	public ModelRenderer LeftLegDetail2;
+	public ModelRenderer LeftLegDetail3;
+	
+    private boolean canAnimate = true;
+	private double frame;
 
-    public ModelRedNocturne() {
+	public ModelRedNocturne()
+	{
+		this.textureWidth = 64;
+		this.textureHeight = 64;
+		this.HatDetail4 = new ModelRenderer(this, 29, 5);
+		this.HatDetail4.setRotationPoint(-2.5F, 2.0F, 0.5F);
+		this.HatDetail4.addBox(0.0F, -0.5F, -3.0F, 0, 1, 6, 0.0F);
+		this.Collar4 = new ModelRenderer(this, 29, -3);
+		this.Collar4.setRotationPoint(-3.0F, -1.0F, 0.0F);
+		this.Collar4.addBox(0.0F, -1.0F, -3.0F, 0, 2, 6, 0.0F);
+		this.RightLegDetail3 = new ModelRenderer(this, 0, 35);
+		this.RightLegDetail3.setRotationPoint(0.0F, 2.5F, 0.0F);
+		this.RightLegDetail3.addBox(-0.5F, 0.0F, -0.5F, 1, 2, 1, 0.0F);
+		this.Body2 = new ModelRenderer(this, 0, 23);
+		this.Body2.setRotationPoint(0.0F, -3.0F, 0.0F);
+		this.Body2.addBox(-3.0F, 0.0F, -3.0F, 6, 3, 6, 0.0F);
+		this.RightLegDetail1 = new ModelRenderer(this, 0, 35);
+		this.RightLegDetail1.setRotationPoint(0.0F, 2.5F, 0.0F);
+		this.RightLegDetail1.addBox(-0.5F, 0.0F, -0.5F, 1, 2, 1, 0.0F);
+		this.setRotateAngle(RightLegDetail1, 0.0F, 0.0F, 0.7853981633974483F);
+		this.HatDetail2 = new ModelRenderer(this, 29, 6);
+		this.HatDetail2.setRotationPoint(0.5F, 2.0F, 3.5F);
+		this.HatDetail2.addBox(-3.0F, -0.5F, 0.0F, 6, 1, 0, 0.0F);
+		this.LeftLegDetail1 = new ModelRenderer(this, 0, 35);
+		this.LeftLegDetail1.setRotationPoint(0.0F, 2.5F, 0.0F);
+		this.LeftLegDetail1.addBox(-0.5F, 0.0F, -0.5F, 1, 2, 1, 0.0F);
+		this.setRotateAngle(LeftLegDetail1, 0.0F, 0.0F, 0.7853981633974483F);
+		this.LeftLegDetail2 = new ModelRenderer(this, 0, 35);
+		this.LeftLegDetail2.setRotationPoint(0.0F, 2.5F, 0.0F);
+		this.LeftLegDetail2.addBox(-0.5F, 0.0F, -0.5F, 1, 2, 1, 0.0F);
+		this.setRotateAngle(LeftLegDetail2, 0.0F, 0.0F, -0.7853981633974483F);
+		this.HatTop3 = new ModelRenderer(this, 28, 25);
+		this.HatTop3.setRotationPoint(0.5F, -2.5F, 0.0F);
+		this.HatTop3.addBox(-0.5F, 0.0F, -0.5F, 1, 3, 1, 0.0F);
+		this.setRotateAngle(HatTop3, 0.0F, 0.0F, 1.5707963267948966F);
+		this.RightLeg = new ModelRenderer(this, 0, 35);
+		this.RightLeg.setRotationPoint(-2.0F, 1.0F, 0.5F);
+		this.RightLeg.addBox(-0.5F, 0.0F, -0.5F, 1, 3, 1, 0.0F);
+		this.Collar1 = new ModelRenderer(this, 29, 0);
+		this.Collar1.setRotationPoint(0.0F, -1.0F, -3.0F);
+		this.Collar1.addBox(-3.0F, -1.0F, 0.0F, 6, 2, 0, 0.0F);
+		this.Head = new ModelRenderer(this, 0, 53);
+		this.Head.setRotationPoint(0.0F, -2.0F, 0.0F);
+		this.Head.addBox(-2.0F, -2.0F, -2.0F, 4, 4, 4, 0.0F);
+		this.HatTop1 = new ModelRenderer(this, 28, 34);
+		this.HatTop1.setRotationPoint(0.0F, -0.5F, 0.0F);
+		this.HatTop1.addBox(-0.5F, -4.5F, -0.5F, 1, 4, 1, 0.0F);
+		this.LeftLeg = new ModelRenderer(this, 0, 35);
+		this.LeftLeg.setRotationPoint(2.0F, 1.0F, 0.5F);
+		this.LeftLeg.addBox(-0.5F, 0.0F, -0.5F, 1, 3, 1, 0.0F);
+		this.LeftLegDetail3 = new ModelRenderer(this, 0, 35);
+		this.LeftLegDetail3.setRotationPoint(0.0F, 2.5F, 0.0F);
+		this.LeftLegDetail3.addBox(-0.5F, 0.0F, -0.5F, 1, 2, 1, 0.0F);
+		this.HatTop4 = new ModelRenderer(this, 28, 20);
+		this.HatTop4.setRotationPoint(-0.5F, 3.3F, 0.0F);
+		this.HatTop4.addBox(-0.5F, -3.0F, -0.5F, 1, 3, 1, 0.0F);
+		this.setRotateAngle(HatTop4, 0.0F, 0.0F, 1.5707963267948966F);
+		this.HatTop2 = new ModelRenderer(this, 28, 30);
+		this.HatTop2.setRotationPoint(-0.1F, -4.2F, 0.0F);
+		this.HatTop2.addBox(-0.5F, -2.0F, -0.5F, 1, 2, 1, 0.0F);
+		this.setRotateAngle(HatTop2, 0.0F, 0.0F, 0.7853981633974483F);
+		this.Hat = new ModelRenderer(this, 0, 34);
+		this.Hat.setRotationPoint(-0.5F, -3.5F, -0.5F);
+		this.Hat.addBox(-2.5F, -0.5F, -2.5F, 6, 2, 6, 0.0F);
+		this.Hat1 = new ModelRenderer(this, 0, 44);
+		this.Hat1.setRotationPoint(0.5F, -0.5F, 0.5F);
+		this.Hat1.addBox(-2.5F, -1.0F, -2.5F, 5, 1, 5, 0.0F);
+		this.HatDetail1 = new ModelRenderer(this, 29, 6);
+		this.HatDetail1.setRotationPoint(0.5F, 2.0F, -2.5F);
+		this.HatDetail1.addBox(-3.0F, -0.5F, 0.0F, 6, 1, 0, 0.0F);
+		this.Body1 = new ModelRenderer(this, 0, 12);
+		this.Body1.setRotationPoint(0.0F, -3.0F, 0.0F);
+		this.Body1.addBox(-3.5F, 0.0F, -3.5F, 7, 2, 7, 0.0F);
+		this.RightLegDetail2 = new ModelRenderer(this, 0, 35);
+		this.RightLegDetail2.setRotationPoint(0.0F, 2.5F, 0.0F);
+		this.RightLegDetail2.addBox(-0.5F, 0.0F, -0.5F, 1, 2, 1, 0.0F);
+		this.setRotateAngle(RightLegDetail2, 0.0F, 0.0F, -0.7853981633974483F);
+		this.HatTop5 = new ModelRenderer(this, 22, 23);
+		this.HatTop5.setRotationPoint(-1.0F, -2.5F, 0.0F);
+		this.HatTop5.addBox(-0.5F, -0.5F, -0.5F, 1, 1, 1, 0.0F);
+		this.setRotateAngle(HatTop5, 0.0F, 0.0F, 1.5707963267948966F);
+		this.Collar3 = new ModelRenderer(this, 29, -3);
+		this.Collar3.setRotationPoint(3.0F, -1.0F, 0.0F);
+		this.Collar3.addBox(0.0F, -1.0F, -3.0F, 0, 2, 6, 0.0F);
+		this.Collar2 = new ModelRenderer(this, 29, 0);
+		this.Collar2.setRotationPoint(0.0F, -1.0F, 3.0F);
+		this.Collar2.addBox(-3.0F, -1.0F, 0.0F, 6, 2, 0, 0.0F);
+		this.HatDetail3 = new ModelRenderer(this, 29, 5);
+		this.HatDetail3.setRotationPoint(3.5F, 2.0F, 0.5F);
+		this.HatDetail3.addBox(0.0F, -0.5F, -3.0F, 0, 1, 6, 0.0F);
+		this.Body = new ModelRenderer(this, 0, 0);
+		this.Body.setRotationPoint(0.0F, 8.1F, 0.0F);
+		this.Body.addBox(-4.0F, -1.0F, -4.0F, 8, 2, 8, 0.0F);
+		this.Hat.addChild(this.HatDetail4);
+		this.Body2.addChild(this.Collar4);
+		this.RightLeg.addChild(this.RightLegDetail3);
+		this.Body1.addChild(this.Body2);
+		this.RightLeg.addChild(this.RightLegDetail1);
+		this.Hat.addChild(this.HatDetail2);
+		this.LeftLeg.addChild(this.LeftLegDetail1);
+		this.LeftLeg.addChild(this.LeftLegDetail2);
+		this.HatTop2.addChild(this.HatTop3);
+		this.Body.addChild(this.RightLeg);
+		this.Body2.addChild(this.Collar1);
+		this.Body2.addChild(this.Head);
+		this.Hat1.addChild(this.HatTop1);
+		this.Body.addChild(this.LeftLeg);
+		this.LeftLeg.addChild(this.LeftLegDetail3);
+		this.HatTop3.addChild(this.HatTop4);
+		this.HatTop1.addChild(this.HatTop2);
+		this.Head.addChild(this.Hat);
+		this.Hat.addChild(this.Hat1);
+		this.Hat.addChild(this.HatDetail1);
+		this.Body.addChild(this.Body1);
+		this.RightLeg.addChild(this.RightLegDetail2);
+		this.HatTop4.addChild(this.HatTop5);
+		this.Body2.addChild(this.Collar3);
+		this.Body2.addChild(this.Collar2);
+		this.Hat.addChild(this.HatDetail3);
+	}
 
-        textureWidth = 64;
-        textureHeight = 64;
-
-        LowerBody = new ModelRenderer(this, 0, 47);
-        LowerBody.addBox(-4F, 0F, -4F, 8, 3, 8);
-        LowerBody.setRotationPoint(0F, 1F, 0F);
-        LowerBody.setTextureSize(64, 32);
-        LowerBody.mirror = true;
-        setRotation(LowerBody, 0F, 0F, 0F);
-
-        UpperBody = new ModelRenderer(this, 0, 30);
-        UpperBody.addBox(-3F, -4F, -3F, 6, 2, 6);
-        UpperBody.setRotationPoint(0F, 1F, 0F);
-        UpperBody.setTextureSize(64, 32);
-        UpperBody.mirror = true;
-        setRotation(UpperBody, 0F, 0F, 0F);
-
-        MidBody = new ModelRenderer(this, 0, 38);
-        MidBody.addBox(-3.5F, -2F, -3.5F, 7, 2, 7);
-        MidBody.setRotationPoint(0F, 1F, 0F);
-        MidBody.setTextureSize(64, 32);
-        MidBody.mirror = true;
-        setRotation(MidBody, 0F, 0F, 0F);
-
-        Head = new ModelRenderer(this, 0, 0);
-        Head.addBox(-2F, -8F, -2F, 4, 4, 4);
-        Head.setRotationPoint(0F, 1F, 0F);
-        Head.setTextureSize(64, 32);
-        Head.mirror = true;
-        setRotation(Head, 0F, 0F, 0F);
-
-        Helmet04 = new ModelRenderer(this, 0, 13);
-        Helmet04.addBox(-3F, -6F, -3F, 0, 3, 6);
-        Helmet04.setRotationPoint(0F, 1F, 0F);
-        Helmet04.setTextureSize(64, 32);
-        Helmet04.mirror = true;
-        setRotation(Helmet04, 0F, 0F, 0F);
-
-        Helmet02 = new ModelRenderer(this, 0, 13);
-        Helmet02.addBox(3F, -6F, -3F, 0, 3, 6);
-        Helmet02.setRotationPoint(0F, 1F, 0F);
-        Helmet02.setTextureSize(64, 32);
-        Helmet02.mirror = true;
-        setRotation(Helmet02, 0F, 0F, 0F);
-
-        Helmet01 = new ModelRenderer(this, 14, 13);
-        Helmet01.addBox(-3F, -6F, -3F, 6, 3, 0);
-        Helmet01.setRotationPoint(0F, 1F, 0F);
-        Helmet01.setTextureSize(64, 32);
-        Helmet01.mirror = true;
-        setRotation(Helmet01, 0F, 0F, 0F);
-
-        Helmet03 = new ModelRenderer(this, 0, 13);
-        Helmet03.addBox(-3F, -6F, 3F, 6, 3, 0);
-        Helmet03.setRotationPoint(0F, 1F, 0F);
-        Helmet03.setTextureSize(64, 32);
-        Helmet03.mirror = true;
-        setRotation(Helmet03, 0F, 0F, 0F);
-
-        Helmet05 = new ModelRenderer(this, 34, 0);
-        Helmet05.addBox(-3F, -10F, -3F, 6, 2, 6);
-        Helmet05.setRotationPoint(0F, 1F, 0F);
-        Helmet05.setTextureSize(64, 32);
-        Helmet05.mirror = true;
-        setRotation(Helmet05, 0F, 0F, 0F);
-
-        Helmet06 = new ModelRenderer(this, 34, 0);
-        Helmet06.addBox(-2.5F, -11F, -2.5F, 5, 1, 5);
-        Helmet06.setRotationPoint(0F, 1F, 0F);
-        Helmet06.setTextureSize(64, 32);
-        Helmet06.mirror = true;
-        setRotation(Helmet06, 0F, 0F, 0F);
-
-        Antenna01 = new ModelRenderer(this, 41, 0);
-        Antenna01.addBox(-0.5F, -15F, -0.5F, 1, 4, 1);
-        Antenna01.setRotationPoint(0F, 1F, 0F);
-        Antenna01.setTextureSize(64, 32);
-        Antenna01.mirror = true;
-        setRotation(Antenna01, 0F, 0F, 0F);
-
-        RightLeg = new ModelRenderer(this, 30, 0);
-        RightLeg.addBox(-2.5F, 3F, 0F, 1, 2, 0);
-        RightLeg.setRotationPoint(0F, 1F, 0F);
-        RightLeg.setTextureSize(64, 32);
-        RightLeg.mirror = true;
-        setRotation(RightLeg, 0F, 0F, 0F);
-
-        LeftLeg = new ModelRenderer(this, 30, 0);
-        LeftLeg.addBox(1.5F, 3F, 0F, 1, 2, 0);
-        LeftLeg.setRotationPoint(0F, 1F, 0F);
-        LeftLeg.setTextureSize(64, 32);
-        LeftLeg.mirror = true;
-        setRotation(LeftLeg, 0F, 0F, 0F);
-
-        Antenna02 = new ModelRenderer(this, 41, 0);
-        Antenna02.addBox(10.1F, -10.9F, -0.5F, 3, 1, 1);
-        Antenna02.setRotationPoint(0F, 1F, 0F);
-        Antenna02.setTextureSize(64, 32);
-        Antenna02.mirror = true;
-        setRotation(Antenna02, 0F, 0F, -0.7853982F);
-
-        Antenna03 = new ModelRenderer(this, 41, 0);
-        Antenna03.addBox(-12.66667F, -13.2F, -0.5F, 2, 1, 1);
-        Antenna03.setRotationPoint(0F, 1F, 0F);
-        Antenna03.setTextureSize(64, 32);
-        Antenna03.mirror = true;
-        setRotation(Antenna03, 0F, 0F, 0.7853982F);
-
-        Antenna04 = new ModelRenderer(this, 41, 0);
-        Antenna04.addBox(10.1F, -13.7F, -0.5F, 3, 1, 1);
-        Antenna04.setRotationPoint(0F, 1F, 0F);
-        Antenna04.setTextureSize(64, 32);
-        Antenna04.mirror = true;
-        setRotation(Antenna04, 0F, 0F, -0.7853982F);
-
-        Antenna05 = new ModelRenderer(this, 41, 0);
-        Antenna05.addBox(-12.8F, -11.23333F, -0.5F, 1, 1, 1);
-        Antenna05.setRotationPoint(0F, 1F, 0F);
-        Antenna05.setTextureSize(64, 32);
-        Antenna05.mirror = true;
-        setRotation(Antenna05, 0F, 0F, 0.7853982F);
-    }
-
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5);
-        LowerBody.render(f5);
-        UpperBody.render(f5);
-        MidBody.render(f5);
-        Head.render(f5);
-        Helmet04.render(f5);
-        Helmet02.render(f5);
-        Helmet01.render(f5);
-        Helmet03.render(f5);
-        Helmet05.render(f5);
-        Helmet06.render(f5);
-        Antenna01.render(f5);
-        RightLeg.render(f5);
-        LeftLeg.render(f5);
-        Antenna02.render(f5);
-        Antenna03.render(f5);
-        Antenna04.render(f5);
-        Antenna05.render(f5);
-    }
-
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+    	super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.Body.render(f5);
+	}
+	
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
-        //System.out.println(entity.getDataManager().get(EntityHelper.ANIMATION));
+    	double[] animationShootFire = new double[]
+				{0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360};
+    	double[] animationShootBlizzard = new double[]
+				{0, -10, -20, -30, -20, -10, 0, 10, 20, 30, 40, 50, 60, 70, 60, 50, 40, 30, 20, 10, 5, 0};
 
-        if (EntityHelper.getAnimation(entity) == 0)
-        {
-            LowerBody.rotateAngleX = UpperBody.rotateAngleX = MidBody.rotateAngleX = Head.rotateAngleX = Helmet01.rotateAngleX = Helmet02.rotateAngleX = Helmet03.rotateAngleX
-                    = Helmet04.rotateAngleX = Helmet05.rotateAngleX = Helmet06.rotateAngleX = RightLeg.rotateAngleX = LeftLeg.rotateAngleX = Antenna01.rotateAngleX = 0;
-            //System.out.println(entity);
-        }
-        if (EntityHelper.getAnimation(entity) == 1)
-        {
-            LowerBody.rotateAngleX = UpperBody.rotateAngleX = MidBody.rotateAngleX = Head.rotateAngleX = Helmet01.rotateAngleX = Helmet02.rotateAngleX = Helmet03.rotateAngleX
-                    = Helmet04.rotateAngleX = Helmet05.rotateAngleX = Helmet06.rotateAngleX = RightLeg.rotateAngleX = LeftLeg.rotateAngleX = Antenna01.rotateAngleX = degToRad(-43);
+    	double[] animationMeleeAttack = new double[]
+				{0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490, 500, 510, 520, 530};
 
-            if(ticksForMeleeAnimation <= 360 / 30)
-            {
-
-                LowerBody.rotateAngleY = UpperBody.rotateAngleY = MidBody.rotateAngleY = Head.rotateAngleY = Helmet01.rotateAngleY = Helmet02.rotateAngleY = Helmet03.rotateAngleY
-                        = Helmet04.rotateAngleY = Helmet05.rotateAngleY = Helmet06.rotateAngleY = RightLeg.rotateAngleY = LeftLeg.rotateAngleY = Antenna01.rotateAngleY = degToRad(ticksForMeleeAnimation * 30);
-                ticksForMeleeAnimation++;
-            }
-            else
-            {
-                //EntityHelper.setAnimation(entity, 0);
-                ticksForMeleeAnimation = 0;
-            }
-        }
-    }
-
-    private void setRotation(ModelRenderer model, float x, float y, float z) {
-        model.rotateAngleX = x;
-        model.rotateAngleY = y;
-        model.rotateAngleZ = z;
-    }
-
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
+    	
+	    if(!Minecraft.getMinecraft().isGamePaused())
+	    {
+	    	if(EntityHelper.getState(entity) == 1)
+	    	{
+	    		if(entity instanceof EntityRedNocturne || entity instanceof EntityYellowOpera || entity instanceof EntityGreenRequiem)
+	    		{
+		    		if(frame < animationShootFire.length)
+		    		{
+			    		this.Hat1.offsetY = this.HatTop1.offsetY = -0.2F;
+		    			this.Hat1.rotateAngleY = degToRad(animationShootFire[(int) frame]);
+		    			this.HatTop1.rotateAngleY = degToRad(animationShootFire[(animationShootFire.length - 1) - (int) frame]) * 2;
+		    		}
+		    		else
+		    		{
+		    			this.Hat1.rotateAngleY = this.HatTop1.rotateAngleY = degToRad(0);
+		    			this.Hat1.offsetY = this.HatTop1.offsetY = 0F;
+		    			frame = 0;
+		    			EntityHelper.setState(entity, 0);
+		    		}
+		    		
+		    		this.frame += 0.7;
+	    		}
+	    		else if(entity instanceof EntityBlueRhapsody)
+	    		{
+		    		if(frame < animationShootBlizzard.length)
+		    		{
+		    			this.Body.rotateAngleX = degToRad(animationShootBlizzard[(int) frame]);
+		    			
+		    			if(frame > animationShootBlizzard.length - 16)
+		    			{
+				    		this.Hat1.offsetY = this.HatTop1.offsetY = -0.2F;
+			    			this.Hat1.rotateAngleY = degToRad(animationShootFire[(int) frame]);
+			    			this.HatTop1.rotateAngleY = degToRad(animationShootFire[(animationShootFire.length - 1) - (int) frame]) * 2;				
+		    			}
+		    		}
+		    		else
+		    		{
+		    			this.Hat1.rotateAngleY = this.HatTop1.rotateAngleY = degToRad(0);
+		    			this.Hat1.offsetY = this.HatTop1.offsetY = 0F;
+		    			this.Body.rotateAngleX = degToRad(0);
+		    			frame = 0;
+		    			EntityHelper.setState(entity, 0);
+		    		}
+		    		
+		    		this.frame += 0.6;    			
+	    		}
+	    	}
+	    	else if(EntityHelper.getState(entity) == 2)
+	    	{
+	    		if(frame < animationMeleeAttack.length)
+	    		{
+		    		this.Hat1.offsetY = this.HatTop1.offsetY = -0.6F;
+		    		this.Body.rotateAngleX = degToRad(85);	    		
+	    			this.Body.rotateAngleY = degToRad(animationMeleeAttack[(int) frame]);
+	    		}
+	    		else
+	    		{
+	    			this.Body.rotateAngleX = degToRad(0);
+	    			this.Hat1.rotateAngleY = this.Body.rotateAngleY = degToRad(0);
+	    			this.Hat1.offsetY = this.HatTop1.offsetY = 0F;
+	    			frame = 0;
+	    			EntityHelper.setState(entity, 0);
+	    		}
+	    		
+	    		this.frame += 1.2;
+	    	}
+	    	else if(EntityHelper.getState(entity) == 3)
+	    	{
+	    		if(entity instanceof EntityYellowOpera)
+	    		{
+		    		if(frame < animationMeleeAttack.length)
+		    		{
+			    		this.Body.rotateAngleX = degToRad(90);	    		
+		    			this.Body.rotateAngleZ = degToRad(animationMeleeAttack[(int) frame]);
+		    		}
+		    		else
+		    		{
+		    			this.Body.rotateAngleX = this.Body.rotateAngleZ = degToRad(0);
+		    			frame = 0;
+		    			EntityHelper.setState(entity, 0);
+		    		}
+		    		
+		    		this.frame += 1.2;
+	    		}
+	    	}
+	    }
     }
 
     protected float degToRad(double degrees)
     {
-        return (float) (degrees * (double)Math.PI / 180) ;
+        return (float) (degrees * (double)Math.PI / 180);
     }
+    
+	/**
+	 * This is a helper function from Tabula to set the rotation of model parts
+	 */
+	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
+	{
+		modelRenderer.rotateAngleX = x;
+		modelRenderer.rotateAngleY = y;
+		modelRenderer.rotateAngleZ = z;
+	}
 }

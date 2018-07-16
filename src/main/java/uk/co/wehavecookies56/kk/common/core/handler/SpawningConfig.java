@@ -51,7 +51,7 @@ public class SpawningConfig {
 		@Config.RequiresMcRestart
 		@Config.Name("Shadow spawning ratio")
 		@Config.Comment("Sets Shadow heartless spawning ratio")
-		public int shadowRatio = 10;
+		public int shadowRatio = 30;
 
 		@Config.RequiresMcRestart
 		@Config.Name("Mega Shadow spawning ratio")
@@ -66,28 +66,28 @@ public class SpawningConfig {
 		@Config.RequiresMcRestart
 		@Config.Name("Darkball spawning ratio")
 		@Config.Comment("Sets Darkball heartless spawning ratio")
-		public int darkballRatio = 4;
-
+		public int darkballRatio = 15;		
+		
 		// Emblem
 		@Config.RequiresMcRestart
 		@Config.Name("Red Nocturne spawning ratio")
 		@Config.Comment("Sets Red Nocturne heartless spawning ratio")
-		public int redNocturneRatio = 5;
+		public int redNocturneRatio = 20;
 
 		@Config.RequiresMcRestart
 		@Config.Name("Blue Rhapsody spawning ratio")
 		@Config.Comment("Sets Blue Rhapsody heartless spawning ratio")
-		public int blueRhapsodyRatio = 5;
+		public int blueRhapsodyRatio = 20;
 
 		@Config.RequiresMcRestart
 		@Config.Name("Yellow Opera spawning ratio")
 		@Config.Comment("Sets Yellow Opera heartless spawning ratio")
-		public int yellowOperaRatio = 5;
+		public int yellowOperaRatio = 20;
 
 		@Config.RequiresMcRestart
 		@Config.Name("Green Requiem spawning ratio")
 		@Config.Comment("Sets Green Requiem heartless spawning ratio")
-		public int greenRequiemRatio = 5;
+		public int greenRequiemRatio = 20;
 
 		@Config.RequiresMcRestart
 		@Config.Name("Crimson Jazz spawning ratio")
@@ -127,7 +127,12 @@ public class SpawningConfig {
 		@Config.RequiresMcRestart
 		@Config.Name("Dire Plant spawning ratio")
 		@Config.Comment("Sets Dire Plant heartless spawning ratio")
-		public int direPlantRatio = 4;
+		public int direPlantRatio = 10;
+		
+		@Config.RequiresMcRestart
+		@Config.Name("Large Body spawning ratio")
+		@Config.Comment("Sets Large Body heartless spawning ratio")
+		public int largeBodyRatio = 15;
 	}
 
 	public static class Nobody {
@@ -141,6 +146,11 @@ public class SpawningConfig {
 		@Config.Name("Dusk spawning ratio")
 		@Config.Comment("Sets Dusk nobody spawning ratio")
 		public int dusktRatio = 3;
+		
+		@Config.RequiresMcRestart
+		@Config.Name("Creeper spawning ratio")
+		@Config.Comment("Sets Creeper nobody spawning ratio")
+		public int creeperRatio = 40;
 	}
 
 	public static class Others {

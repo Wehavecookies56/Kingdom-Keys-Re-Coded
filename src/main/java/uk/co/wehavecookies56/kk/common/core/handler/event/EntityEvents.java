@@ -346,13 +346,12 @@ public class EntityEvents {
 	public static boolean isHostiles = false;
 
 	@SubscribeEvent
-	public void potentialSpawns(WorldEvent.PotentialSpawns event) {
-		if (event.getType() == KingdomKeys.HEARTLESS) {
-			if (!WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).spawnHeartless) {
+	public void potentialSpawns(WorldEvent.PotentialSpawns event) 
+	{
+		if (event.getType() == KingdomKeys.HEARTLESS || event.getType() == KingdomKeys.NOBODY) 
+		{
+			if (!WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).spawnHeartless)
 				event.setCanceled(true);
-			} else if (event.getWorld().getLight(event.getPos()) > 7 && event.getWorld().isDaytime()) {
-				event.setCanceled(true);
-			}
 		}
 	}
 
