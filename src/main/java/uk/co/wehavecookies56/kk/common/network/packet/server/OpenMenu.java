@@ -9,10 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.*;
 
 public class OpenMenu extends AbstractMessage.AbstractServerMessage<OpenMenu> {
 
@@ -34,5 +31,6 @@ public class OpenMenu extends AbstractMessage.AbstractServerMessage<OpenMenu> {
         PacketDispatcher.sendTo(new SyncMagicData(player.getCapability(ModCapabilities.MAGIC_STATE, null), player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
         PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
         PacketDispatcher.sendTo(new SyncLevelData(player.getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) player);
+        PacketDispatcher.sendTo(new SyncEquippedAbilities(player.getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) player);
     }
 }

@@ -31,7 +31,7 @@ public class RecipeMythrilGem extends Recipe {
     public ItemStack getResult () {
         ItemStack stack = new ItemStack(ModItems.SynthesisMaterial);
         stack.setTagCompound(new NBTTagCompound());
-        stack.getTagCompound().setString("material", Strings.SM_MythrilShard);
+        stack.getTagCompound().setString("material", Strings.SM_MythrilGem);
         stack.getTagCompound().setString("rank", Strings.SM_Rank_A);
         return stack;
     }

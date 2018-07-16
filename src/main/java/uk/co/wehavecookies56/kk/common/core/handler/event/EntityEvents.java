@@ -511,10 +511,13 @@ public class EntityEvents {
 
 					EntityMob mob = (EntityMob) event.getEntity();
 
-					player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, (int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2));
-
-					if (event.getEntity() instanceof EntityWither) {
-						player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1500);
+					if (!player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.zeroEXP)) {
+						player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, (int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2));
+					}
+					if (!player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.zeroEXP)) {
+						if (event.getEntity() instanceof EntityWither) {
+							player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 1500);
+						}
 					}
 
 					EntityXPGet xp = new EntityXPGet(mob.world, player, mob);
@@ -525,7 +528,9 @@ public class EntityEvents {
 				} else if (event.getEntity() instanceof EntityDragon) {
 					EntityDragon mob = (EntityDragon) event.getEntity();
 
-					player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 2000);
+					if (!player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.zeroEXP)) {
+						player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, 2000);
+					}
 
 					if (!player.getCapability(ModCapabilities.PLAYER_STATS, null).enderDragonDefeated()) {
 						player.getCapability(ModCapabilities.DRIVE_STATE, null).setDriveGaugeLevel(player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveGaugeLevel() + 1);
