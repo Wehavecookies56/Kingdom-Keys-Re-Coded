@@ -158,25 +158,29 @@ public class EntityEvents {
 	@SubscribeEvent
 	public void equipAbility(AbilityEvent.Equip event) {
 		KingdomKeys.logger.info("Equipped " + event.getAbility().getName());
+		IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
 		if (event.getAbility() == ModAbilities.mpHaste) {
-			IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
-			STATS.setRechargeSpeed(STATS.getRechargeSpeed()+1);
+			STATS.setRechargeSpeed(STATS.getRechargeSpeed() + 1);
+		} else if (event.getAbility() == ModAbilities.mpHastera) {
+			STATS.setRechargeSpeed(STATS.getRechargeSpeed() + 2);
+		} else if (event.getAbility() == ModAbilities.mpHastega) {
+			STATS.setRechargeSpeed(STATS.getRechargeSpeed() + 3);
 		}
-		//PacketDispatcher.sendTo(new SyncLevelData(event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getPlayer());
-
 	}
 
 	@SubscribeEvent
 	public void unequipAbility(AbilityEvent.Unequip event) {
 		KingdomKeys.logger.info("Unequipped " + event.getAbility().getName());
+		IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
 		if (event.getAbility() == ModAbilities.mpHaste) {
-			IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
-			STATS.setRechargeSpeed(STATS.getRechargeSpeed()-1);
+			STATS.setRechargeSpeed(STATS.getRechargeSpeed() - 1);
+		} else if (event.getAbility() == ModAbilities.mpHastera) {
+			STATS.setRechargeSpeed(STATS.getRechargeSpeed() - 2);
+		} else if (event.getAbility() == ModAbilities.mpHastega) {
+			STATS.setRechargeSpeed(STATS.getRechargeSpeed() - 3);
 		}
-		//PacketDispatcher.sendTo(new SyncLevelData(event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getPlayer());
-
 	}
-	
+
 	@SubscribeEvent
 	public void onPlayerClone(PlayerEvent.Clone event) {
 		FirstTimeJoinCapability.IFirstTimeJoin ftjBefore = event.getOriginal().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
@@ -374,7 +378,7 @@ public class EntityEvents {
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_MythrilCrystal);
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_ManifestIllusion);
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_LostIllusion);
-			
+
 			if (event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getSlots() != InventoryKeychain.INV_SIZE) {
 				ItemStackHandler oldInv = event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
 				event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setInventory(new ItemStackHandler(InventoryKeychain.INV_SIZE));
@@ -398,8 +402,8 @@ public class EntityEvents {
 			PacketDispatcher.sendTo(new SyncLevelData(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
 			PacketDispatcher.sendTo(new SyncOrgXIIIData(event.getEntity().getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) event.getEntity());
 			PacketDispatcher.sendTo(new SyncTutorials(event.getEntity().getCapability(ModCapabilities.TUTORIALS, null)), (EntityPlayerMP) event.getEntity());
-            PacketDispatcher.sendTo(new SyncUnlockedAbilities(event.getEntity().getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) event.getEntity());
-            PacketDispatcher.sendTo(new SyncEquippedAbilities(event.getEntity().getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) event.getEntity());
+			PacketDispatcher.sendTo(new SyncUnlockedAbilities(event.getEntity().getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) event.getEntity());
+			PacketDispatcher.sendTo(new SyncEquippedAbilities(event.getEntity().getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) event.getEntity());
 
 			// First time player joins
 			FirstTimeJoinCapability.IFirstTimeJoin FTJ = event.getEntity().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
@@ -459,10 +463,10 @@ public class EntityEvents {
 			SummonKeybladeCapability.ISummonKeyblade SUMMON = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
 			IOrganizationXIII ORG = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
 			IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
-			if(DRIVE.getInDrive()) {
-                if (DriveFormRegistry.isDriveFormRegistered(DRIVE.getActiveDriveName())) {
-                	DriveFormRegistry.get(DRIVE.getActiveDriveName()).endDrive(player);
-                }
+			if (DRIVE.getInDrive()) {
+				if (DriveFormRegistry.isDriveFormRegistered(DRIVE.getActiveDriveName())) {
+					DriveFormRegistry.get(DRIVE.getActiveDriveName()).endDrive(player);
+				}
 			}
 			if (SUMMON.getIsKeybladeSummoned(EnumHand.MAIN_HAND)) {
 				if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
@@ -1024,7 +1028,7 @@ public class EntityEvents {
 		if (STATS.getMP() <= 0 || STATS.getRecharge()) {
 			STATS.setRecharge(true);
 			if (STATS.getMP() != STATS.getMaxMP()) {
-				STATS.addMP(STATS.getMaxMP() / (900/STATS.getRechargeSpeed()));
+				STATS.addMP(STATS.getMaxMP() / (900 - (STATS.getRechargeSpeed()*100)));
 				if (STATS.getMP() > STATS.getMaxMP())
 					STATS.setMP(STATS.getMaxMP());
 
