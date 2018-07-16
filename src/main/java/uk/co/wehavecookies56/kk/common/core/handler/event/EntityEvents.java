@@ -158,7 +158,7 @@ public class EntityEvents {
 	@SubscribeEvent
 	public void equipAbility(AbilityEvent.Equip event) {
 		KingdomKeys.logger.info("Equipped " + event.getAbility().getName());
-		if (event.getAbility().equals(ModAbilities.mpHaste)) {
+		if (event.getAbility() == ModAbilities.mpHaste) {
 			IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
 			STATS.setRechargeSpeed(STATS.getRechargeSpeed()+1);
 		}
@@ -169,7 +169,7 @@ public class EntityEvents {
 	@SubscribeEvent
 	public void unequipAbility(AbilityEvent.Unequip event) {
 		KingdomKeys.logger.info("Unequipped " + event.getAbility().getName());
-		if (event.getAbility().equals(ModAbilities.mpHaste)) {
+		if (event.getAbility() == ModAbilities.mpHaste) {
 			IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
 			STATS.setRechargeSpeed(STATS.getRechargeSpeed()-1);
 		}

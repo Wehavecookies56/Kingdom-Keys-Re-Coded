@@ -14,8 +14,11 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import uk.co.wehavecookies56.kk.api.abilities.Ability;
+import uk.co.wehavecookies56.kk.api.abilities.AbilityEvent;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -133,6 +136,12 @@ public class CommandLevelUp implements ICommand {
                 STATS.setMP(STATS.getMaxMP());
                 STATS.setMaxAP(10);
                 STATS.setConsumedAP(0);
+                
+                for(Ability ability : ABILITIES.getEquippedAbilities()) {
+                	MinecraftForge.EVENT_BUS.post(new AbilityEvent.Unequip(player, ability));
+                	System.out.println("unequipped "+ability.getName());
+                }
+
                 ABILITIES.clearEquippedAbilities();
 
                 ABILITIES.clearUnlockedAbilities();

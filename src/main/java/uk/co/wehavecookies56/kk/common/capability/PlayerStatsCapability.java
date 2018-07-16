@@ -497,6 +497,7 @@ public class PlayerStatsCapability {
                 case 20:
                     this.addMagic(1);
                     this.addHP(5);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.mpHastera);
                     break;
                 case 21:
                     this.addStrength(1);
@@ -605,6 +606,7 @@ public class PlayerStatsCapability {
                     this.addMagic(1);
                     this.addDefense(1);
                     this.addHP(5);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.mpHastega);
                     break;
                 case 51:
                     this.addStrength(1);

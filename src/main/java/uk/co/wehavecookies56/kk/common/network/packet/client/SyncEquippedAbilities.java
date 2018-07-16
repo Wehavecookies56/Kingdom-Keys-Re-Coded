@@ -27,7 +27,7 @@ public class SyncEquippedAbilities extends AbstractMessage.AbstractClientMessage
 
 	public SyncEquippedAbilities(AbilitiesCapability.IAbilities abilities) {
 		this.equippedAbilities = abilities.getEquippedAbilities();
-		// System.out.println(tutorials);
+		System.out.println(equippedAbilities);
 
 	}
 
@@ -38,7 +38,7 @@ public class SyncEquippedAbilities extends AbstractMessage.AbstractClientMessage
 			Ability ability = GameRegistry.findRegistry(Ability.class).getValue(new ResourceLocation(Reference.MODID + ":" + buffer.readString(100)));
 			equippedAbilities.add(ability);
 		}
-		// System.out.println(tutorials);
+		System.out.println(equippedAbilities);
 
 	}
 
@@ -47,13 +47,15 @@ public class SyncEquippedAbilities extends AbstractMessage.AbstractClientMessage
 		for (int i = 0; i < equippedAbilities.size(); i++) {
 			buffer.writeString(equippedAbilities.get(i).getName());
 		}
-		// System.out.println(tutorials);
+		System.out.println(equippedAbilities);
 	}
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		final AbilitiesCapability.IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 		ABILITIES.setEquippedAbilities(equippedAbilities);
+		System.out.println(equippedAbilities);
+
 	}
 
 }
