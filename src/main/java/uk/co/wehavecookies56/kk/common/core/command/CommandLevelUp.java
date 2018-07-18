@@ -132,7 +132,7 @@ public class CommandLevelUp implements ICommand {
 				
                 STATS.setHP(20);
                 player.setHealth(20);
-                STATS.setMaxMP(20);
+                STATS.setMaxMP(40);
                 STATS.setMP(STATS.getMaxMP());
                 STATS.setMaxAP(10);
                 STATS.setConsumedAP(0);

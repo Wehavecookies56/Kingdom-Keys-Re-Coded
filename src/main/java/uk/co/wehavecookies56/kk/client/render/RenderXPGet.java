@@ -77,7 +77,6 @@ public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHe
 			}
 			GL11.glPopMatrix();
 		}
-
 	}
 
 	@Override

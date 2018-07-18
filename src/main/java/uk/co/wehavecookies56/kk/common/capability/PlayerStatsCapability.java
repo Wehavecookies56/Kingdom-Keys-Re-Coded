@@ -480,6 +480,7 @@ public class PlayerStatsCapability {
                 case 15:
                     this.addStrength(1);
                     this.addHP(5);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.formBoost);
                     break;
                 case 16:
                     this.addMagic(1);
@@ -515,6 +516,7 @@ public class PlayerStatsCapability {
                 case 25:
                     this.addStrength(1);
                     this.addHP(5);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.driveConverter);
                     break;
                 case 26:
                     this.addMagic(1);

@@ -346,10 +346,8 @@ public class EntityEvents {
 	public static boolean isHostiles = false;
 
 	@SubscribeEvent
-	public void potentialSpawns(WorldEvent.PotentialSpawns event) 
-	{
-		if (event.getType() == KingdomKeys.HEARTLESS || event.getType() == KingdomKeys.NOBODY) 
-		{
+	public void potentialSpawns(WorldEvent.PotentialSpawns event) {
+		if (event.getType() == KingdomKeys.HEARTLESS || event.getType() == KingdomKeys.NOBODY) {
 			if (!WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).spawnHeartless)
 				event.setCanceled(true);
 		}
@@ -1016,19 +1014,20 @@ public class EntityEvents {
 					} else {
 						tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
 					}
-					// new
-					// TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player),
-					// player.world);
 				}
 			}
 		}
-
 		DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
 		if (STATS.getMP() <= 0 || STATS.getRecharge()) {
 			STATS.setRecharge(true);
-			if (STATS.getMP() != STATS.getMaxMP()) {
-				STATS.addMP(STATS.getMaxMP() / (900 - (STATS.getRechargeSpeed()*100)));
-				if (STATS.getMP() > STATS.getMaxMP())
+			if (STATS.getMP() < STATS.getMaxMP()) {
+				System.out.println(STATS.getRechargeSpeed());
+				// System.out.println(STATS.getMaxMP());
+				double percent = 100 / 4 * (STATS.getRechargeSpeed());
+				System.out.println(percent);
+
+				STATS.addMP(Math.max(1, percent) / 5);
+				if (STATS.getMP() >= STATS.getMaxMP())
 					STATS.setMP(STATS.getMaxMP());
 
 			} else {
@@ -1183,6 +1182,15 @@ public class EntityEvents {
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			PlayerStatsCapability.IPlayerStats STATS = event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null);
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+			
+			IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+			if (!DRIVE.getInDrive()) {
+				if (player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.driveConverter)) {
+					DRIVE.addDP(event.getAmount());
+				}
+			}
+			
+			PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);
 			if (event.getAmount() - STATS.getDefense() <= 0)
 				event.setAmount(1);
 			else
@@ -1190,6 +1198,8 @@ public class EntityEvents {
 			if (event.getSource().getDamageType().equals("lightningBolt"))
 				if (EntityThunder.summonLightning)
 					event.setCanceled(true);
+
+			
 		}
 		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();

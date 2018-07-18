@@ -12,6 +12,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityAero;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
@@ -119,7 +120,11 @@ public abstract class DriveForm {
         }
         if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()){
             if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getFP() > 0) {
-                player.getCapability(ModCapabilities.DRIVE_STATE, null).remFP(0.1);
+            	double amount = 0.1;
+            	if(player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.formBoost)) {
+            		amount = 0.08;
+            	}
+                player.getCapability(ModCapabilities.DRIVE_STATE, null).remFP(amount);
                 if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getFP() < 0) {
                     player.getCapability(ModCapabilities.DRIVE_STATE, null).setFP(0);
                     endDrive(player);
