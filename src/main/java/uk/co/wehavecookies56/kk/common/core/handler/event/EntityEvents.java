@@ -1185,7 +1185,7 @@ public class EntityEvents {
 			
 			IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 			if (!DRIVE.getInDrive()) {
-				if (player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.driveConverter)) {
+				if (player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.damageDrive)) {
 					DRIVE.addDP(event.getAmount());
 				}
 			}
