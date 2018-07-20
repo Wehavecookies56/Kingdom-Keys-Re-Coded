@@ -23,7 +23,7 @@ import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DeSummonKeyblade;
-import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlot;
+import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlotAndGiveEffect;
 
 public class CommandRemoveKeychain implements ICommand {
 
@@ -100,8 +100,8 @@ public class CommandRemoveKeychain implements ICommand {
             	}
             	
                 if (!ItemStack.areItemStacksEqual(player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(slot), ItemStack.EMPTY)) {
-                    PacketDispatcher.sendToServer(new RemoveItemInSlot("keychain", slot));
-                    PacketDispatcher.sendToAllAround(new RemoveItemInSlot("keychain", slot), (EntityPlayer) sender.getCommandSenderEntity(), 1);
+                    PacketDispatcher.sendToServer(new RemoveItemInSlotAndGiveEffect("keychain", slot));
+                    PacketDispatcher.sendToAllAround(new RemoveItemInSlotAndGiveEffect("keychain", slot), (EntityPlayer) sender.getCommandSenderEntity(), 1);
 
                     if (sender.getCommandSenderEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getIsKeybladeSummoned(EnumHand.MAIN_HAND))
                         if (!ItemStack.areItemStacksEqual(player.getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY) && player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemKeyblade)

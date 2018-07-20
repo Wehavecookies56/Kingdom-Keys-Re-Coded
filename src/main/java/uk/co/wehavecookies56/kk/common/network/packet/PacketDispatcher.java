@@ -100,7 +100,7 @@ public class PacketDispatcher {
         registerMessage(SynthesisMaterialPickup.class);
         registerMessage(MagnetBloxMotion.class);
         registerMessage(TakeMaterials.class);
-        registerMessage(RemoveItemInSlot.class);
+        registerMessage(RemoveItemInSlotAndGiveEffect.class);
         registerMessage(GiveItemInSlot.class);
         registerMessage(PotionConsume.class);
         registerMessage(AttackEntity.class);

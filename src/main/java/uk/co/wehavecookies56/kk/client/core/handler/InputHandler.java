@@ -271,7 +271,7 @@ public class InputHandler {
 
 		switch (GuiCommandMenu.selected) {
 		case GuiCommandMenu.ATTACK:
-			//player.swingArm(EnumHand.MAIN_HAND);
+			// player.swingArm(EnumHand.MAIN_HAND);
 			if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
 				// Submenu of the portals
 				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
@@ -286,7 +286,7 @@ public class InputHandler {
 					return;
 				}
 			} else {
-				//Attacks Submenu
+				// Attacks Submenu
 				if (GuiCommandMenu.submenu == GuiCommandMenu.SUB_MAIN) {
 					if (!this.attackCommands.isEmpty() && !STATS.getRecharge()) {
 						GuiCommandMenu.submenu = GuiCommandMenu.SUB_ATTACKS;
@@ -375,7 +375,7 @@ public class InputHandler {
 				// this.driveCommands.get(GuiCommandMenu.driveselected));
 				if (!player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge()) {
 					Ability ability = this.attackCommands.get((byte) GuiCommandMenu.attackSelected);
-					//UseAbility
+					// UseAbility
 					useAttack(player, ability);
 					GuiCommandMenu.selected = GuiCommandMenu.ATTACK;
 					GuiCommandMenu.submenu = GuiCommandMenu.SUB_MAIN;
@@ -383,7 +383,7 @@ public class InputHandler {
 				}
 			}
 		}
-		
+
 		// Portal Submenu
 		if (GuiCommandMenu.selected == GuiCommandMenu.ATTACK && GuiCommandMenu.submenu == GuiCommandMenu.SUB_PORTALS) {
 			if (this.portalCommands.isEmpty()) {
@@ -650,28 +650,32 @@ public class InputHandler {
 		}
 		return returnMOP;
 	}
-	
+
 	private void useAttack(EntityPlayer player, Ability ability) {
-		if(ability == ModAbilities.sonicBlade) {
+		if (ability == ModAbilities.sonicBlade) {
 			System.out.println("Sonic");
-			
 			PacketDispatcher.sendToServer(new SonicBladePacket());
 		}
 	}
 
 	private void summonPortal(EntityPlayer player, PortalCoords coords) {
 		IOrganizationXIII orgXIII = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-		RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
-		if (rtr != null) {
-			if (rtr.typeOfHit == rtr.typeOfHit.BLOCK) {
-				double distanceSq = player.getDistanceSq(rtr.getBlockPos());
-				double reachSq = 100 * 100;
-				if (reachSq >= distanceSq) {
-					BlockPos pos = rtr.getBlockPos();
-					BlockPos destination = new BlockPos(coords.getX(), coords.getY(), coords.getZ());
+		BlockPos destination = new BlockPos(coords.getX(), coords.getY(), coords.getZ());
 
-					PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos(), destination, coords.getDimID()));
-					player.world.playSound((EntityPlayer) player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+		if (player.isSneaking()) {
+			PacketDispatcher.sendToServer(new OrgPortal(player.getPosition().down(), destination, coords.getDimID()));
+			player.world.playSound((EntityPlayer) player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+		} else {
+			RayTraceResult rtr = InputHandler.getMouseOverExtended(100);
+			if (rtr != null) {
+				if (rtr.typeOfHit == rtr.typeOfHit.BLOCK) {
+					double distanceSq = player.getDistanceSq(rtr.getBlockPos());
+					double reachSq = 100 * 100;
+					if (reachSq >= distanceSq) {
+						BlockPos pos = rtr.getBlockPos();
+						PacketDispatcher.sendToServer(new OrgPortal(rtr.getBlockPos(), destination, coords.getDimID()));
+						player.world.playSound((EntityPlayer) player, player.getPosition(), ModSounds.lockon, SoundCategory.MASTER, 1.0f, 1.0f);
+					}
 				}
 			}
 		}

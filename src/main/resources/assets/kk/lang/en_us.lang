@@ -299,6 +299,7 @@ item.highdriverecovery.name=High Drive Recovery
 item.powerboost.name=Power Boost
 item.magicboost.name=Magic Boost
 item.defenseboost.name=Defense Boost
+item.apboost.name=AP Boost
 item.panacea.name=Panacea
 item.hporb.name=HP Orb
 item.driveorb.name=DP Orb
@@ -1121,6 +1122,7 @@ stats.levelUpDef=Defense Increased!
 stats.levelUpMag=Magic Increased!
 stats.levelUpHP=Maximum HP Increased!
 stats.levelUpMP=Maximum MP Increased!
+stats.levelUpAP=Maximum AP Increased!
 stats.levelUpFG=Form Gauge Powered Up!
 stats.levelUpHighJump=High Jump LV %1$s!
 stats.levelUpQuickRun=Quick Run LV %1$s!
@@ -1146,6 +1148,7 @@ chat.powerboost=Strength increased! Now it's %1$s!
 chat.defenseboost=Defense increased! Now it's %1$s!
 chat.magicboost=Magic increased! Now it's %1$s!
 chat.driveboost=Drive Form Increased! Now it's %1$s!
+chat.apboost=Maximum AP increased! Now it's %1$s!
 
 ##########################
 #Entities
