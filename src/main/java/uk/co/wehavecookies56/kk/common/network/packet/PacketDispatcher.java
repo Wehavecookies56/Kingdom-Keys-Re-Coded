@@ -10,16 +10,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.client.*;
 import uk.co.wehavecookies56.kk.common.network.packet.server.*;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.LevelUpMagic;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicAero;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicBlizzard;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicCure;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicFire;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicKH1Fire;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicStop;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicThunder;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicWisdomShot;
-import uk.co.wehavecookies56.kk.common.network.packet.server.magics.SetKH1Fire;
+import uk.co.wehavecookies56.kk.common.network.packet.server.magics.*;
+import uk.co.wehavecookies56.kk.common.network.packet.server.abilities.*;
 
 public class PacketDispatcher {
     private static byte packetId = 0;
@@ -70,6 +62,7 @@ public class PacketDispatcher {
         registerMessage(OpenPlayerItemsGUI.class);
         registerMessage(SyncUnlockedAbilities.class);
         registerMessage(SyncEquippedAbilities.class);
+        registerMessage(SyncAbilitiesData.class);
         
         // Client to Server
         registerMessage(MunnyPickup.class);
@@ -125,6 +118,7 @@ public class PacketDispatcher {
         registerMessage(TutorialsPacket.class);
         registerMessage(EquipKeychain.class);
         registerMessage(EquipAbility.class);
+        registerMessage(SonicBladePacket.class);
 
         // Bidirectional
     }

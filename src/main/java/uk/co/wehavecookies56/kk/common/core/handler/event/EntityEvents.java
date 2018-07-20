@@ -59,6 +59,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
@@ -87,6 +88,7 @@ import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
+import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
@@ -128,6 +130,7 @@ import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenOrgGUI;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenTutorialGUI;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilitiesData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncEquippedAbilities;
@@ -858,7 +861,22 @@ public class EntityEvents {
 	@SubscribeEvent
 	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		EntityPlayer player = event.player;
+		IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+		/*if (ABILITIES.getUseSonicBlade()) {
+			//sonicBladeTicks++;
+			float yaw = player.rotationYaw;
+			float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
+			float motionZ = MathHelper.cos(yaw / 180.0f * (float) Math.PI);
 
+			double power = 4;
+
+			if (player.onGround)
+				player.addVelocity(motionX * power, 0, motionZ * power);
+			
+			//ABILITIES.setUseSonicBlade(false);
+			if(player.world.isRemote)
+				PacketDispatcher.sendTo(new SyncAbilitiesData(ABILITIES), (EntityPlayerMP)player); 
+		}*/
 		checkBaseGrowthAbility(player);
 
 		/*
@@ -1182,14 +1200,14 @@ public class EntityEvents {
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			PlayerStatsCapability.IPlayerStats STATS = event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null);
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-			
+
 			IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 			if (!DRIVE.getInDrive()) {
 				if (player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.damageDrive)) {
 					DRIVE.addDP(event.getAmount());
 				}
 			}
-			
+
 			PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);
 			if (event.getAmount() - STATS.getDefense() <= 0)
 				event.setAmount(1);
@@ -1199,7 +1217,6 @@ public class EntityEvents {
 				if (EntityThunder.summonLightning)
 					event.setCanceled(true);
 
-			
 		}
 		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();

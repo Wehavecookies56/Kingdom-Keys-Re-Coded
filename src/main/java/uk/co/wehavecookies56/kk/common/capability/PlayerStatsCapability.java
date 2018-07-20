@@ -600,6 +600,7 @@ public class PlayerStatsCapability {
                 case 48:
                     this.addStrength(1);
                     this.addMagic(1);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.sonicBlade);
                     break;
                 case 49:
                     this.addStrength(1);
@@ -626,6 +627,7 @@ public class PlayerStatsCapability {
                 case 55:
                     this.addStrength(1);
                     this.addHP(5);
+                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.strikeRaid);
                     break;
                 case 56:
                     this.addMagic(1);
