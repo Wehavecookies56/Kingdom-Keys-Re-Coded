@@ -104,10 +104,7 @@ public class AbilitiesCapability {
 
 		@Override
 		public void unlockAbility(Ability ability) {
-			System.out.println("Going to unlock");
 			unlockedList.add(ability);
-
-			System.out.println(unlockedList);
 		}
 
 		@Override
@@ -130,11 +127,10 @@ public class AbilitiesCapability {
 		@Override
 		public void equipAbility(Ability ability, boolean equip) {
 			if (equip) {
-
-				System.out.println("Going to equip " + ability.getName());
+				//System.out.println("Going to equip " + ability.getName());
 				equippedList.add(ability);
 			} else {
-				System.out.println("Going to unequip " + ability.getName());
+				//System.out.println("Going to unequip " + ability.getName());
 				if (equippedList.contains(ability)) {
 					for (int i = 0; i < equippedList.size(); i++) {
 						if (equippedList.get(i) == ability) {
@@ -143,7 +139,7 @@ public class AbilitiesCapability {
 					}
 				}
 			}
-			System.out.println(equippedList);
+			//System.out.println(equippedList);
 		}
 
 		@Override

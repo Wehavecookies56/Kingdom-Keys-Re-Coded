@@ -113,13 +113,7 @@ public class GuiAbilities extends GuiScreen {
 		}
 		GL11.glPopMatrix();
 
-		int requiredAP = 0;
-		if(hoveredAbility != null)
-			requiredAP = hoveredAbility.getApCost();
-		else
-			requiredAP = 0;
-			//System.out.println(hoveredAbility.getName());
-		//System.out.println(requiredAP);
+		int requiredAP = (hoveredAbility != null) ? hoveredAbility.getApCost() : 0;		
 		
 		// Foreground
 		GL11.glPushMatrix();
@@ -165,8 +159,6 @@ public class GuiAbilities extends GuiScreen {
 		}
 		PacketDispatcher.sendToServer(new EquipAbility(ability.getName()));
 
-		mc.displayGuiScreen(this); // TODO change this to a proper updating method
-		// updateScreen();
 		super.actionPerformed(button);
 	}
 }
