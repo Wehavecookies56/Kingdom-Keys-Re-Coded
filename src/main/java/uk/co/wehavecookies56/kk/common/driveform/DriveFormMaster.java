@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveForm;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
+import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
@@ -19,6 +20,7 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncUnlockedAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MasterFormPacket;
 
 @Mod.EventBusSubscriber(modid = Reference.MODID)
@@ -43,6 +45,9 @@ public class DriveFormMaster extends DriveForm {
 					if (actualExp >= costs[actualLevel]) {
 						System.out.println("LEVEL UP");
 						DRIVE.setDriveLevel(DRIVE.getActiveDriveName(), actualLevel + 1);
+	            		if(DRIVE.getDriveLevel(Strings.Form_Master) == 3)
+	            			player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.aerialDodge);
+
 						DRIVE.displayLevelUpMessage(player, DRIVE.getActiveDriveName());
 						
 	                    if(actualLevel + 1 == 7) {
@@ -52,6 +57,7 @@ public class DriveFormMaster extends DriveForm {
 					}
 				}
 				PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);
+				PacketDispatcher.sendTo(new SyncUnlockedAbilities(player.getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) player);
 			}
 		}
 	}

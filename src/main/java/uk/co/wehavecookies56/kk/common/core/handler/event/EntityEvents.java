@@ -374,7 +374,7 @@ public class EntityEvents {
 		}
 
 		if (event.isEndConquered()) {
-			BlockPos spawn = new BlockPos(192, 5, 161);
+			//BlockPos spawn = new BlockPos(192, 5, 161);
 
 			IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(ModDimensions.traverseTownID);
 			DimTeleporter tp = new DimTeleporter(info.pos, info.id);
@@ -1164,13 +1164,19 @@ public class EntityEvents {
 	private void checkBaseGrowthAbility(EntityPlayer player) {
 
 		if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
-
-			highJump(player);
-			quickRun(player);
-			// dodgeRoll(player);
-
-			aerialDodge(player);
-			glide(player);
+			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+			
+			if(ABILITIES.getEquippedAbility(ModAbilities.highJump))
+				highJump(player);
+			
+			//Quick run is handled in InputHandler when checking the action key
+			
+			if(ABILITIES.getEquippedAbility(ModAbilities.dodgeRoll))
+				// dodgeRoll(player);
+			if(ABILITIES.getEquippedAbility(ModAbilities.aerialDodge))
+				aerialDodge(player);
+			if(ABILITIES.getEquippedAbility(ModAbilities.glide))
+				glide(player);
 		}
 	}
 
