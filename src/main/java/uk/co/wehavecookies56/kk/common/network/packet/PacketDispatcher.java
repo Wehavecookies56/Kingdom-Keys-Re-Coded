@@ -119,6 +119,7 @@ public class PacketDispatcher {
         registerMessage(EquipKeychain.class);
         registerMessage(EquipAbility.class);
         registerMessage(SonicBladePacket.class);
+        registerMessage(InvinciblePacket.class);
 
         // Bidirectional
     }

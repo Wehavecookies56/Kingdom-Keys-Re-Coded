@@ -82,7 +82,7 @@ public class ItemEvents {
 			final MunnyCapability.IMunny munny = event.getEntityPlayer().getCapability(ModCapabilities.MUNNY, null);
 			MunnyPickup packet = new MunnyPickup(event.getItem().getItem());
 			event.getItem().getItem().setCount(event.getItem().getItem().getCount() - 1);
-			
+
 			munny.addMunny(event.getItem().getItem().getTagCompound().getInteger("amount"));
 			PacketDispatcher.sendTo(new SyncMunnyData(munny), (EntityPlayerMP) event.getEntityPlayer());
 			PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getItem().getItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getEntityPlayer());
@@ -103,13 +103,13 @@ public class ItemEvents {
 				else
 					event.getEntityPlayer().heal(1);
 				event.getItem().getItem().setCount(event.getItem().getItem().getCount() - 1);
-				
+
 			}
 		} else if (event.getItem().getItem().getItem() == ModItems.DriveOrb) {
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
 				event.getItem().getItem().setCount(event.getItem().getItem().getCount() - 1);
 				EntityPlayer player = event.getEntityPlayer();
-				if(DRIVE.getInDrive()) {
+				if (DRIVE.getInDrive()) {
 					DRIVE.addFP(event.getItem().getItem().getTagCompound().getInteger("amount"));
 				} else {
 					DRIVE.addDP(event.getItem().getItem().getTagCompound().getInteger("amount"));
@@ -126,7 +126,7 @@ public class ItemEvents {
 					return;
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
 				event.getItem().getItem().setCount(event.getItem().getItem().getCount() - 1);
-				
+
 				STATS.addMP(event.getItem().getItem().getTagCompound().getInteger("amount"));
 				PacketDispatcher.sendTo(new SyncMagicData(event.getEntityPlayer().getCapability(ModCapabilities.MAGIC_STATE, null), STATS), (EntityPlayerMP) event.getEntityPlayer());
 			}
@@ -233,6 +233,7 @@ public class ItemEvents {
 			String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "-";
 			tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * MainConfig.items.damageMultiplier + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade) + sharpnessDamage) + "]");
 			tooltip.add(TextFormatting.BLUE + "Magic: " + magicSymbol + keyblade.getMagic() * MainConfig.items.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(), 1, keyblade) + "]");
+//			tooltip.add(TextFormatting.GREEN + "Ability: " + keyblade.getAbility() == null ? "---" : Utils.translateToLocal(keyblade.getAbility().getName()));
 			if (keyblade.getDescription() != null) {
 				if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
 					tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");

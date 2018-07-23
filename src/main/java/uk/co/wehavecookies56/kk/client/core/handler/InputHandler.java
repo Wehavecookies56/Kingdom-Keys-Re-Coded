@@ -45,7 +45,9 @@ import uk.co.wehavecookies56.kk.common.entity.LockOn;
 import uk.co.wehavecookies56.kk.common.entity.mobs.multipart.EntityPart;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
+import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
+import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.magic.Magic;
@@ -54,6 +56,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.AntiPoints;
 import uk.co.wehavecookies56.kk.common.network.packet.server.DriveFormPacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OpenMenu;
 import uk.co.wehavecookies56.kk.common.network.packet.server.OrgPortal;
+import uk.co.wehavecookies56.kk.common.network.packet.server.abilities.InvinciblePacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.abilities.SonicBladePacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.magics.MagicWisdomShot;
 import uk.co.wehavecookies56.kk.common.util.PortalCoords;
@@ -476,34 +479,66 @@ public class InputHandler {
 	}
 
 	private void commandAction() {
+		boolean hold = true;
 		Minecraft mc = Minecraft.getMinecraft();
 		EntityPlayer player = mc.player;
 
-		if (player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.quickRun)) {
-			int wisdomLevel = player.getCapability(ModCapabilities.DRIVE_STATE, null).getDriveLevel(Strings.Form_Wisdom);
+		IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+		IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 
-			if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Wisdom)) {
-				float yaw = player.rotationYaw;
-				float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
-				float motionZ = MathHelper.cos(yaw / 180.0f * (float) Math.PI);
-
-				double power = Constants.WISDOM_QR[wisdomLevel];
-
-				if (player.onGround)
-					player.addVelocity(motionX * power, 0, motionZ * power);
-				else
-					player.addVelocity(motionX * power / 2, 0, motionZ * power / 2);
-
-			} else if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
-				if (wisdomLevel > 2) {
+		if (player.motionX != 0 && player.motionZ != 0) { // If player is moving do dodge roll / quick run
+			if (hold) {
+				if (ABILITIES.getEquippedAbility(ModAbilities.quickRun) || DRIVE.getActiveDriveName().equals(Strings.Form_Wisdom)) {
 					float yaw = player.rotationYaw;
 					float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
 					float motionZ = MathHelper.cos(yaw / 180.0f * (float) Math.PI);
 
-					double power = Constants.WISDOM_QR[wisdomLevel - 2];
+					int wisdomLevel = DRIVE.getDriveLevel(Strings.Form_Wisdom);
+
+					double power = 0;
+					// Wisdom Form
+					if (DRIVE.getActiveDriveName().equals(Strings.Form_Wisdom)) {
+						power = Constants.WISDOM_QR[wisdomLevel];
+
+						if (!player.onGround)
+							player.addVelocity(motionX * power / 2, 0, motionZ * power / 2);
+
+						// Base
+					} else if (!DRIVE.getInDrive()) {
+						if (wisdomLevel > 2) {
+							power = Constants.WISDOM_QR[wisdomLevel - 2];
+						}
+					}
 
 					if (player.onGround)
 						player.addVelocity(motionX * power, 0, motionZ * power);
+
+				}
+			} else {
+				if (ABILITIES.getEquippedAbility(ModAbilities.dodgeRoll) || DRIVE.getActiveDriveName().equals(Strings.Form_Limit)) {
+					int limitLevel = DRIVE.getDriveLevel(Strings.Form_Limit);
+					double power = 0;
+					if (DRIVE.getActiveDriveName().equals(Strings.Form_Limit)) {
+						power = Constants.LIMIT_DR[limitLevel];
+					} else if (!DRIVE.getInDrive()) {
+						if (limitLevel > 2) {
+							power = Constants.LIMIT_DR[limitLevel - 2];
+						}
+					}
+
+					if (player.onGround) {
+						player.addVelocity(player.motionX * power, 0, player.motionZ * power);
+						PacketDispatcher.sendToServer(new InvinciblePacket(20));
+					}
+				}
+			}
+		} else { // If player is not moving do guard
+			if (ABILITIES.getEquippedAbility(ModAbilities.guard)) {
+				if (player.getHeldItemMainhand() != null) {
+					// If the player holds a weapon
+					if (player.getHeldItemMainhand().getItem() instanceof ItemKeyblade || player.getHeldItemMainhand().getItem() instanceof IOrgWeapon) {
+						PacketDispatcher.sendToServer(new InvinciblePacket(20));
+					}
 				}
 			}
 		}

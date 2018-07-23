@@ -58,13 +58,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
@@ -85,6 +86,7 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
+import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
@@ -130,6 +132,7 @@ import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenOrgGUI;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenTutorialGUI;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilitiesData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncEquippedAbilities;
@@ -196,7 +199,7 @@ public class EntityEvents {
 		updateOrg(event.getOriginal(), event.getEntityPlayer());
 		updateAbilities(event.getOriginal(), event.getEntityPlayer());
 		updateTutorials(event.getOriginal(), event.getEntityPlayer());
-		
+
 		// This ones have to change uppon death
 		if (event.isWasDeath()) {
 			updateDeath(event.getOriginal(), event.getEntityPlayer());
@@ -306,7 +309,7 @@ public class EntityEvents {
 		statsAfter.setConsumedAP(statsBefore.getConsumedAP());
 
 		player.setHealth(player.getMaxHealth());
-		
+
 		for (int i = 0; i < statsBefore.getInventoryPotionsMenu().getSlots(); i++) {
 			statsAfter.getInventoryPotionsMenu().setStackInSlot(i, statsBefore.getInventoryPotionsMenu().getStackInSlot(i));
 		}
@@ -374,7 +377,7 @@ public class EntityEvents {
 		}
 
 		if (event.isEndConquered()) {
-			//BlockPos spawn = new BlockPos(192, 5, 161);
+			// BlockPos spawn = new BlockPos(192, 5, 161);
 
 			IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(ModDimensions.traverseTownID);
 			DimTeleporter tp = new DimTeleporter(info.pos, info.id);
@@ -969,6 +972,14 @@ public class EntityEvents {
 		 * } }
 		 */
 
+		if (ABILITIES.getInvincible()) {
+			ABILITIES.setInvTicks(ABILITIES.getInvTicks() - 1);
+			if (ABILITIES.getInvTicks() == 0) {
+				ABILITIES.setInvincible(false);
+				PacketDispatcher.sendTo(new SyncAbilitiesData(ABILITIES), (EntityPlayerMP) player);
+			}
+		}
+
 		if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
 			if (!ItemStack.areItemStacksEqual(player.inventory.armorInventory.get(0), ItemStack.EMPTY) && player.inventory.armorInventory.get(1) != ItemStack.EMPTY && player.inventory.armorInventory.get(2) != ItemStack.EMPTY && player.inventory.armorInventory.get(3) != ItemStack.EMPTY) {
 				boolean isWearingOrgArmor = player.inventory.armorInventory.get(0).getItem() instanceof ItemOrganizationRobe && player.inventory.armorInventory.get(1).getItem() instanceof ItemOrganizationRobe && player.inventory.armorInventory.get(2).getItem() instanceof ItemOrganizationRobe && player.inventory.armorInventory.get(3).getItem() instanceof ItemOrganizationRobe;
@@ -1164,19 +1175,24 @@ public class EntityEvents {
 	private void checkBaseGrowthAbility(EntityPlayer player) {
 
 		if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
+
 			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
-			
-			if(ABILITIES.getEquippedAbility(ModAbilities.highJump))
+
+			if (ABILITIES.getEquippedAbility(ModAbilities.highJump)) {
 				highJump(player);
-			
-			//Quick run is handled in InputHandler when checking the action key
-			
-			if(ABILITIES.getEquippedAbility(ModAbilities.dodgeRoll))
+			}
+
+			// Quick run is handled in InputHandler when checking the action key
+
+			if (ABILITIES.getEquippedAbility(ModAbilities.dodgeRoll)) {
 				// dodgeRoll(player);
-			if(ABILITIES.getEquippedAbility(ModAbilities.aerialDodge))
+			}
+			if (ABILITIES.getEquippedAbility(ModAbilities.aerialDodge)) {
 				aerialDodge(player);
-			if(ABILITIES.getEquippedAbility(ModAbilities.glide))
+			}
+			if (ABILITIES.getEquippedAbility(ModAbilities.glide)) {
 				glide(player);
+			}
 		}
 	}
 
@@ -1262,25 +1278,28 @@ public class EntityEvents {
 		}
 	}
 
-	/*
-	 * @SubscribeEvent public void onLivingUpdate (LivingEvent.LivingUpdateEvent
-	 * event) { if (event.getEntityLiving() instanceof EntityPlayer) { EntityPlayer
-	 * player = (EntityPlayer) event.getEntityLiving();
-	 * 
-	 * if(player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).
-	 * getAttributeValue() == 0 && player.isAirBorne){ player.motionX=0;
-	 * player.motionY=0; player.motionZ=0; } } }
-	 */
+	@SubscribeEvent
+	public void onAttack(LivingAttackEvent event) {
+		if (event.getEntityLiving() instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+
+			if (ABILITIES.getInvincible()) {
+				player.world.playSound(player, player.getPosition(), ModSounds.antidrive, SoundCategory.MASTER, 1F, 1F);
+				event.setCanceled(true);
+			}
+		}
+	}
 
 	@SubscribeEvent
 	public void onHurt(LivingHurtEvent event) {
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			PlayerStatsCapability.IPlayerStats STATS = event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null);
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-
+			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 			IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 			if (!DRIVE.getInDrive()) {
-				if (player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.damageDrive)) {
+				if (ABILITIES.getEquippedAbility(ModAbilities.damageDrive)) {
 					DRIVE.addDP(event.getAmount());
 				}
 			}
@@ -1343,7 +1362,11 @@ public class EntityEvents {
 	@SubscribeEvent
 	public void onFall(LivingFallEvent event) {
 		if (event.getEntityLiving() instanceof EntityPlayer) {
-			event.setDistance(0);
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+			if (ABILITIES.getEquippedAbility(ModAbilities.highJump) || ABILITIES.getEquippedAbility(ModAbilities.aerialDodge) || ABILITIES.getEquippedAbility(ModAbilities.glide)) {
+				event.setDistance(0);
+			}
 		}
 	}
 

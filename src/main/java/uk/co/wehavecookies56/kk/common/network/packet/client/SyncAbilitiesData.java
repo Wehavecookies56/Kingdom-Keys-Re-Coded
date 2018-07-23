@@ -20,13 +20,14 @@ import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
 public class SyncAbilitiesData extends AbstractMessage.AbstractClientMessage<SyncAbilitiesData> {
 
-	private boolean useSonicBlade;
+	private boolean useSonicBlade, invincible;
 
 	public SyncAbilitiesData() {
 	}
 
 	public SyncAbilitiesData(AbilitiesCapability.IAbilities abilities) {
 		this.useSonicBlade = abilities.getUseSonicBlade();
+		this.invincible = abilities.getInvincible();
 		// System.out.println(tutorials);
 
 	}
@@ -34,17 +35,20 @@ public class SyncAbilitiesData extends AbstractMessage.AbstractClientMessage<Syn
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
 		useSonicBlade = buffer.readBoolean();
+		invincible = buffer.readBoolean();
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
 		buffer.writeBoolean(useSonicBlade);
+		buffer.writeBoolean(invincible);
 	}
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		final AbilitiesCapability.IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 		ABILITIES.setUseSonicBlade(useSonicBlade);
+		ABILITIES.setInvincible(invincible);
 	}
 
 }

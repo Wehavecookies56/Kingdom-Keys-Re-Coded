@@ -42,6 +42,14 @@ public class AbilitiesCapability {
 		boolean getUseSonicBlade();
 
 		void setUseSonicBlade(boolean use);
+
+		boolean getInvincible();
+
+		void setInvincible(boolean inv);
+		
+		int getInvTicks();
+		
+		void setInvTicks(int ticks);
 	}
 
 	public static class Storage implements IStorage<IAbilities> {
@@ -70,6 +78,7 @@ public class AbilitiesCapability {
 			}
 			properties.setTag("EAbilitiesList", eTagList);
 			return properties;
+
 		}
 
 		@Override
@@ -83,7 +92,7 @@ public class AbilitiesCapability {
 				instance.getUnlockedAbilities().add(i, ability);
 				KingdomKeys.logger.info("Loaded unlocked ability: " + abilities.getString("UAbilities" + i) + " " + i);
 			}
-			
+
 			NBTTagList eTagList = properties.getTagList("EAbilitiesList", Constants.NBT.TAG_COMPOUND);
 			for (int i = 0; i < eTagList.tagCount(); i++) {
 				NBTTagCompound abilities = eTagList.getCompoundTagAt(i);
@@ -127,10 +136,10 @@ public class AbilitiesCapability {
 		@Override
 		public void equipAbility(Ability ability, boolean equip) {
 			if (equip) {
-				//System.out.println("Going to equip " + ability.getName());
+				// System.out.println("Going to equip " + ability.getName());
 				equippedList.add(ability);
 			} else {
-				//System.out.println("Going to unequip " + ability.getName());
+				// System.out.println("Going to unequip " + ability.getName());
 				if (equippedList.contains(ability)) {
 					for (int i = 0; i < equippedList.size(); i++) {
 						if (equippedList.get(i) == ability) {
@@ -139,7 +148,7 @@ public class AbilitiesCapability {
 					}
 				}
 			}
-			//System.out.println(equippedList);
+			// System.out.println(equippedList);
 		}
 
 		@Override
@@ -161,7 +170,7 @@ public class AbilitiesCapability {
 		public void setEquippedAbilities(ArrayList<Ability> list) {
 			this.equippedList = list;
 		}
-		
+
 		boolean useSonicBlade = false;
 
 		@Override
@@ -172,6 +181,30 @@ public class AbilitiesCapability {
 		@Override
 		public void setUseSonicBlade(boolean use) {
 			useSonicBlade = use;
+		}
+
+		boolean invincibility = false;
+		int invTicks = 0;
+		
+		@Override
+		public boolean getInvincible() {
+			return this.invincibility;
+		}
+
+		@Override
+		public void setInvincible(boolean inv) {
+			this.invincibility = inv;
+			this.invTicks = 0;
+		}
+		
+		@Override
+		public int getInvTicks() {
+			return this.invTicks;
+		}
+		
+		@Override
+		public void setInvTicks(int ticks) {
+			this.invTicks = ticks;
 		}
 	}
 }
