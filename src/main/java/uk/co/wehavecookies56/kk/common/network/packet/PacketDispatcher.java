@@ -120,7 +120,7 @@ public class PacketDispatcher {
         registerMessage(EquipAbility.class);
         registerMessage(SonicBladePacket.class);
         registerMessage(InvinciblePacket.class);
-
+        registerMessage(MessageExtendedReachAttackPacket.class);
         // Bidirectional
     }
 

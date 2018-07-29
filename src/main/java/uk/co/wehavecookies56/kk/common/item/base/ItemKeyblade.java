@@ -32,9 +32,10 @@ import uk.co.wehavecookies56.kk.api.abilities.Ability;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
+import uk.co.wehavecookies56.kk.common.util.IExtendedReach;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
-public class ItemKeyblade extends ItemSword {
+public class ItemKeyblade extends ItemSword implements IExtendedReach {
 	double magic, strength;
 	public String description;
 	double speed = 1.0;
@@ -177,6 +178,12 @@ public class ItemKeyblade extends ItemSword {
 		}
 		
 		return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
+	}
+
+	@Override
+	public float getReach()
+	{
+		return 20.0F;
 	}
 
 }
