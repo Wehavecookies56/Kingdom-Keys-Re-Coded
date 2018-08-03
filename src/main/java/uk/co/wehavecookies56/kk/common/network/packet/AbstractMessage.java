@@ -101,12 +101,9 @@ public abstract class AbstractMessage<T extends AbstractMessage<T>> implements I
      */
     private static final <T extends AbstractMessage<T>> void checkThreadAndEnqueue (final AbstractMessage<T> msg, final MessageContext ctx) {
         IThreadListener thread = KingdomKeys.proxy.getThreadFromContext(ctx);
-        if (!thread.isCallingFromMinecraftThread()) thread.addScheduledTask(new Runnable() {
-            @Override
-            public void run () {
-                msg.process(KingdomKeys.proxy.getPlayerEntity(ctx), ctx.side);
-            }
-        });
+        if (!thread.isCallingFromMinecraftThread()) thread.addScheduledTask( ()->
+                msg.process(KingdomKeys.proxy.getPlayerEntity(ctx), ctx.side)
+        );
     }
 
     /**
