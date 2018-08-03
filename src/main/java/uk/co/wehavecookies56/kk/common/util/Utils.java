@@ -235,17 +235,19 @@ public class Utils {
 		IDAndBlockPos idAndBlockPos = new IDAndBlockPos();
 
 		if (dimension == ModDimensions.diveToTheHeartID) {
-			idAndBlockPos.id = ModDimensions.diveToTheHeartID;
+			idAndBlockPos.id = dimension;
 			idAndBlockPos.name = Strings.SoA;
 			idAndBlockPos.pos = new BlockPos(-1, 80, 7);
 			idAndBlockPos.offset = new BlockPos(0, 0, 0);
+		
 		} else if (dimension == ModDimensions.traverseTownID) {
-			idAndBlockPos.id = ModDimensions.traverseTownID;
+			idAndBlockPos.id = dimension;
 			idAndBlockPos.name = Strings.TraverseTown;
 			idAndBlockPos.pos = new BlockPos(192, 5, 161);
 			idAndBlockPos.offset = new BlockPos(0, 0, 0);
+
 		} else if (dimension == ModDimensions.destinyIslandsID) {
-			idAndBlockPos.id = ModDimensions.destinyIslandsID;
+			idAndBlockPos.id = dimension;
 			idAndBlockPos.name = Strings.DestinyIslands;
 			idAndBlockPos.pos = new BlockPos(145, 27 + 60, 200);
 			idAndBlockPos.offset = new BlockPos(0, 60, 0);

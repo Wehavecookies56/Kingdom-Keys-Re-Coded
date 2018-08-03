@@ -26,6 +26,7 @@ public class AbilitiesCapability {
 		ArrayList<Ability> getUnlockedAbilities();
 
 		void clearUnlockedAbilities();
+
 		void setUnlockedAbilities(ArrayList<Ability> ability);
 
 		boolean getEquippedAbility(Ability ability);
@@ -38,7 +39,17 @@ public class AbilitiesCapability {
 
 		void setEquippedAbilities(ArrayList<Ability> equippedAbilities);
 
-		// void setKnownTutorials(ArrayList<Integer> list);
+		boolean getUseSonicBlade();
+
+		void setUseSonicBlade(boolean use);
+
+		boolean getInvincible();
+
+		void setInvincible(boolean inv);
+		
+		int getInvTicks();
+		
+		void setInvTicks(int ticks);
 	}
 
 	public static class Storage implements IStorage<IAbilities> {
@@ -47,29 +58,47 @@ public class AbilitiesCapability {
 		public NBTBase writeNBT(Capability<IAbilities> capability, IAbilities instance, EnumFacing side) {
 			NBTTagCompound properties = new NBTTagCompound();
 
-			NBTTagList tagList = new NBTTagList();
+			NBTTagList uTagList = new NBTTagList();
 			for (int i = 0; i < instance.getUnlockedAbilities().size(); i++) {
 				Ability a = instance.getUnlockedAbilities().get(i);
 				String s = a.getName();
 				NBTTagCompound abilities = new NBTTagCompound();
-				abilities.setString("Abilities" + i, s);
-				tagList.appendTag(abilities);
+				abilities.setString("UAbilities" + i, s);
+				uTagList.appendTag(abilities);
 			}
-			properties.setTag("AbilitiesList", tagList);
+			properties.setTag("UAbilitiesList", uTagList);
 
+			NBTTagList eTagList = new NBTTagList();
+			for (int i = 0; i < instance.getEquippedAbilities().size(); i++) {
+				Ability a = instance.getEquippedAbilities().get(i);
+				String s = a.getName();
+				NBTTagCompound abilities = new NBTTagCompound();
+				abilities.setString("EAbilities" + i, s);
+				eTagList.appendTag(abilities);
+			}
+			properties.setTag("EAbilitiesList", eTagList);
 			return properties;
+
 		}
 
 		@Override
 		public void readNBT(Capability<IAbilities> capability, IAbilities instance, EnumFacing side, NBTBase nbt) {
 			NBTTagCompound properties = (NBTTagCompound) nbt;
 
-			NBTTagList tagList = properties.getTagList("AbilitiesList", Constants.NBT.TAG_COMPOUND);
-			for (int i = 0; i < tagList.tagCount(); i++) {
-				NBTTagCompound abilities = tagList.getCompoundTagAt(i);
-				Ability ability = GameRegistry.findRegistry(Ability.class).getValue(new ResourceLocation(Reference.MODID + ":" + abilities.getString("Abilities" + i)));
+			NBTTagList uTagList = properties.getTagList("UAbilitiesList", Constants.NBT.TAG_COMPOUND);
+			for (int i = 0; i < uTagList.tagCount(); i++) {
+				NBTTagCompound abilities = uTagList.getCompoundTagAt(i);
+				Ability ability = GameRegistry.findRegistry(Ability.class).getValue(new ResourceLocation(Reference.MODID + ":" + abilities.getString("UAbilities" + i)));
 				instance.getUnlockedAbilities().add(i, ability);
-				KingdomKeys.logger.info("Loaded known ability: " + abilities.getString("Abilities" + i) + " " + i);
+				KingdomKeys.logger.info("Loaded unlocked ability: " + abilities.getString("UAbilities" + i) + " " + i);
+			}
+
+			NBTTagList eTagList = properties.getTagList("EAbilitiesList", Constants.NBT.TAG_COMPOUND);
+			for (int i = 0; i < eTagList.tagCount(); i++) {
+				NBTTagCompound abilities = eTagList.getCompoundTagAt(i);
+				Ability ability = GameRegistry.findRegistry(Ability.class).getValue(new ResourceLocation(Reference.MODID + ":" + abilities.getString("EAbilities" + i)));
+				instance.getEquippedAbilities().add(i, ability);
+				KingdomKeys.logger.info("Loaded equipped ability: " + abilities.getString("EAbilities" + i) + " " + i);
 			}
 		}
 	}
@@ -84,10 +113,7 @@ public class AbilitiesCapability {
 
 		@Override
 		public void unlockAbility(Ability ability) {
-			System.out.println("Going to unlock");
 			unlockedList.add(ability);
-			
-			System.out.println(unlockedList);
 		}
 
 		@Override
@@ -110,20 +136,19 @@ public class AbilitiesCapability {
 		@Override
 		public void equipAbility(Ability ability, boolean equip) {
 			if (equip) {
-				
-				System.out.println("Going to equip "+ability.getName());
+				// System.out.println("Going to equip " + ability.getName());
 				equippedList.add(ability);
 			} else {
-				System.out.println("Going to unequip "+ability.getName());
+				// System.out.println("Going to unequip " + ability.getName());
 				if (equippedList.contains(ability)) {
 					for (int i = 0; i < equippedList.size(); i++) {
-						if (equippedList.get(i) ==ability) {
+						if (equippedList.get(i) == ability) {
 							equippedList.remove(i);
 						}
 					}
 				}
 			}
-			System.out.println(equippedList);
+			// System.out.println(equippedList);
 		}
 
 		@Override
@@ -140,10 +165,46 @@ public class AbilitiesCapability {
 		public void setUnlockedAbilities(ArrayList<Ability> list) {
 			this.unlockedList = list;
 		}
-		
+
 		@Override
 		public void setEquippedAbilities(ArrayList<Ability> list) {
 			this.equippedList = list;
+		}
+
+		boolean useSonicBlade = false;
+
+		@Override
+		public boolean getUseSonicBlade() {
+			return useSonicBlade;
+		}
+
+		@Override
+		public void setUseSonicBlade(boolean use) {
+			useSonicBlade = use;
+		}
+
+		boolean invincibility = false;
+		int invTicks = 0;
+		
+		@Override
+		public boolean getInvincible() {
+			return this.invincibility;
+		}
+
+		@Override
+		public void setInvincible(boolean inv) {
+			this.invincibility = inv;
+			this.invTicks = 0;
+		}
+		
+		@Override
+		public int getInvTicks() {
+			return this.invTicks;
+		}
+		
+		@Override
+		public void setInvTicks(int ticks) {
+			this.invTicks = ticks;
 		}
 	}
 }

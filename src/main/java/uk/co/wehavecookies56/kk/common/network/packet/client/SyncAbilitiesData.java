@@ -18,44 +18,37 @@ import uk.co.wehavecookies56.kk.common.capability.TutorialsCapability;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.AbstractMessage;
 
-public class SyncEquippedAbilities extends AbstractMessage.AbstractClientMessage<SyncEquippedAbilities> {
+public class SyncAbilitiesData extends AbstractMessage.AbstractClientMessage<SyncAbilitiesData> {
 
-	private ArrayList<Ability> equippedAbilities;
+	private boolean useSonicBlade, invincible;
 
-	public SyncEquippedAbilities() {
+	public SyncAbilitiesData() {
 	}
 
-	public SyncEquippedAbilities(AbilitiesCapability.IAbilities abilities) {
-		this.equippedAbilities = abilities.getEquippedAbilities();
-		//System.out.println(equippedAbilities);
+	public SyncAbilitiesData(AbilitiesCapability.IAbilities abilities) {
+		this.useSonicBlade = abilities.getUseSonicBlade();
+		this.invincible = abilities.getInvincible();
+		// System.out.println(tutorials);
 
 	}
 
 	@Override
 	protected void read(PacketBuffer buffer) throws IOException {
-		equippedAbilities = new ArrayList<Ability>();
-		while (buffer.isReadable()) {
-			Ability ability = GameRegistry.findRegistry(Ability.class).getValue(new ResourceLocation(Reference.MODID + ":" + buffer.readString(100)));
-			equippedAbilities.add(ability);
-		}
-		//System.out.println(equippedAbilities);
-
+		useSonicBlade = buffer.readBoolean();
+		invincible = buffer.readBoolean();
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) throws IOException {
-		for (int i = 0; i < equippedAbilities.size(); i++) {
-			buffer.writeString(equippedAbilities.get(i).getName());
-		}
-		//System.out.println(equippedAbilities);
+		buffer.writeBoolean(useSonicBlade);
+		buffer.writeBoolean(invincible);
 	}
 
 	@Override
 	public void process(EntityPlayer player, Side side) {
 		final AbilitiesCapability.IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
-		ABILITIES.setEquippedAbilities(equippedAbilities);
-		//System.out.println(equippedAbilities);
-
+		ABILITIES.setUseSonicBlade(useSonicBlade);
+		ABILITIES.setInvincible(invincible);
 	}
 
 }

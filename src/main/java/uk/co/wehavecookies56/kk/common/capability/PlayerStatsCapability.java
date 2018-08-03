@@ -15,6 +15,7 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
+import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -429,11 +430,12 @@ public class PlayerStatsCapability {
 
         @Override
         public void levelUpStatsAndDisplayMessage (EntityPlayer player) {
+        	IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
             this.getMessages().clear();
             switch (this.level) {
                 case 2:
                     this.addDefense(1);
-                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.scan);
+                    ABILITIES.unlockAbility(ModAbilities.scan);
                     break;
                 case 3:
                     this.addStrength(1);
@@ -444,6 +446,7 @@ public class PlayerStatsCapability {
                 case 5:
                     this.addStrength(1);
                     this.addHP(5);
+                    ABILITIES.unlockAbility(ModAbilities.guard);
                     break;
                 case 6:
                     this.addMagic(1);
@@ -462,7 +465,7 @@ public class PlayerStatsCapability {
                     this.addMagic(1);
                     this.addDefense(1);
                     this.addHP(5);
-                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.mpHaste);
+                    ABILITIES.unlockAbility(ModAbilities.mpHaste);
                     break;
                 case 11:
                     this.addStrength(1);
@@ -480,7 +483,7 @@ public class PlayerStatsCapability {
                 case 15:
                     this.addStrength(1);
                     this.addHP(5);
-                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.formBoost);
+                    ABILITIES.unlockAbility(ModAbilities.formBoost);
                     break;
                 case 16:
                     this.addMagic(1);
@@ -498,7 +501,7 @@ public class PlayerStatsCapability {
                 case 20:
                     this.addMagic(1);
                     this.addHP(5);
-                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.mpHastera);
+                    ABILITIES.unlockAbility(ModAbilities.mpHastera);
                     break;
                 case 21:
                     this.addStrength(1);
@@ -516,7 +519,7 @@ public class PlayerStatsCapability {
                 case 25:
                     this.addStrength(1);
                     this.addHP(5);
-                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.damageDrive);
+                    ABILITIES.unlockAbility(ModAbilities.damageDrive);
                     break;
                 case 26:
                     this.addMagic(1);
@@ -600,6 +603,7 @@ public class PlayerStatsCapability {
                 case 48:
                     this.addStrength(1);
                     this.addMagic(1);
+                    ABILITIES.unlockAbility(ModAbilities.sonicBlade);
                     break;
                 case 49:
                     this.addStrength(1);
@@ -608,7 +612,7 @@ public class PlayerStatsCapability {
                     this.addMagic(1);
                     this.addDefense(1);
                     this.addHP(5);
-                    player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.mpHastega);
+                    ABILITIES.unlockAbility(ModAbilities.mpHastega);
                     break;
                 case 51:
                     this.addStrength(1);
@@ -626,6 +630,7 @@ public class PlayerStatsCapability {
                 case 55:
                     this.addStrength(1);
                     this.addHP(5);
+                    ABILITIES.unlockAbility(ModAbilities.strikeRaid);
                     break;
                 case 56:
                     this.addMagic(1);
@@ -798,7 +803,7 @@ public class PlayerStatsCapability {
             	this.addMaxAP(1);
             }
             
-            PacketDispatcher.sendTo(new SyncUnlockedAbilities(player.getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) player);
+            PacketDispatcher.sendTo(new SyncUnlockedAbilities(ABILITIES), (EntityPlayerMP) player);
 
             player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.levelup, SoundCategory.MASTER, 0.5f, 1.0f);
             player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getHP());

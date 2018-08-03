@@ -39,6 +39,24 @@ public class GuiAbilities extends GuiScreen {
 	}
 
 	@Override
+	public void initGui() {
+		background.width = width;
+		background.height = height;
+		background.init();
+
+		IAbilities ABILITIES = mc.player.getCapability(ModCapabilities.ABILITIES, null);
+		int id = 0;
+
+		for (int i = 0; i < ABILITIES.getUnlockedAbilities().size(); i++) {
+			Ability ability = ABILITIES.getUnlockedAbilities().get(i);
+			buttonList.add(new GuiMenuButton(id++, 0, id * 20, 100, ability.getName()));
+			System.out.println(ability.getName());
+		}
+
+		super.initGui();
+	}
+
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		background.drawBars();
 		background.drawBiomeDim();
@@ -48,11 +66,12 @@ public class GuiAbilities extends GuiScreen {
 	}
 
 	private void drawAP() {
-		
-		int id = 0;
-		IAbilities ABILITIES = mc.player.getCapability(ModCapabilities.ABILITIES, null);
 
-		for (int i = 0; i < ABILITIES.getUnlockedAbilities().size(); i++) {
+		IAbilities ABILITIES = mc.player.getCapability(ModCapabilities.ABILITIES, null);
+		IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
+
+		Ability hoveredAbility = null;
+		for (int i = 0; i < buttonList.size(); i++) {
 			Ability ability = ABILITIES.getUnlockedAbilities().get(i);
 			String text = "";
 			if (ABILITIES.getEquippedAbility(ability)) {
@@ -61,25 +80,29 @@ public class GuiAbilities extends GuiScreen {
 				text = "[+] "; // Has to equip
 			}
 			text += Utils.translateToLocal(ability.getName()) + " (" + ability.getApCost() + ") [" + ability.getCategory() + "]";
-			buttonList.add(new GuiMenuButton(id++, 0, id * 20, 100, text));
+			GuiMenuButton button = (GuiMenuButton) buttonList.get(i);
+			if (ability.getApCost() > STATS.getMaxAP() - STATS.getConsumedAP() && !ABILITIES.getEquippedAbility(ability)) {
+				button.enabled = false;
+			}
+			button.displayString = text;
+			
+			if (button.isHovered())
+				hoveredAbility = ABILITIES.getUnlockedAbilities().get(button.id);
 		}
 
-		
 		ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
 
 		int screenWidth = sr.getScaledWidth();
 		int screenHeight = sr.getScaledHeight();
 
-		IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
 		int barWidth = 100;
 		int posX = screenWidth - barWidth;
 		int posY = screenHeight - 100;
 		float scale = 1F;
 
-		
 		int ap = STATS.getConsumedAP();
 		int maxAP = STATS.getMaxAP();
-		mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/mpBar.png"));
+		mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/mpbar.png"));
 
 		// Background
 		GL11.glPushMatrix();
@@ -90,15 +113,18 @@ public class GuiAbilities extends GuiScreen {
 		}
 		GL11.glPopMatrix();
 
+		int requiredAP = (hoveredAbility != null) ? hoveredAbility.getApCost() : 0;		
+		
 		// Foreground
 		GL11.glPushMatrix();
 		{
-			// ap = 3;
-			// maxAP = 10;
+			int v = 12;
+			if(requiredAP > STATS.getMaxAP() - STATS.getConsumedAP() && hoveredAbility != null && !ABILITIES.getEquippedAbility(hoveredAbility))
+				v = 2;
 			int percent = ap * barWidth / maxAP;
 			GL11.glTranslatef((posX - 2) * scale, posY * scale, 0);
 			GL11.glScalef(percent, scale, 0);
-			drawTexturedModalRect(0, 0, 2, 12, 1, 7);
+			drawTexturedModalRect(0, 0, 2, v, 1, 7);
 		}
 		GL11.glPopMatrix();
 
@@ -112,17 +138,9 @@ public class GuiAbilities extends GuiScreen {
 	}
 
 	@Override
-	public void initGui() {
-		background.width = width;
-		background.height = height;
-		background.init();
-		super.initGui();
-	}
-
-	@Override
 	protected void actionPerformed(GuiButton button) throws IOException {
 		IAbilities ABILITIES = mc.player.getCapability(ModCapabilities.ABILITIES, null);
-   	
+
 		Ability ability = ABILITIES.getUnlockedAbilities().get(button.id);
 		IPlayerStats STATS = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
 		if (ABILITIES.getEquippedAbility(ability)) {
@@ -140,9 +158,7 @@ public class GuiAbilities extends GuiScreen {
 			}
 		}
 		PacketDispatcher.sendToServer(new EquipAbility(ability.getName()));
-		
-		mc.displayGuiScreen(this); // TODO change this to a proper updating method
-		//updateScreen();
+
 		super.actionPerformed(button);
 	}
 }

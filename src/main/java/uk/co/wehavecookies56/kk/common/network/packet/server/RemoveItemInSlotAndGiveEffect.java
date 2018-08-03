@@ -19,22 +19,22 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
 
-public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<RemoveItemInSlot> {
+public class RemoveItemInSlotAndGiveEffect extends AbstractMessage.AbstractServerMessage<RemoveItemInSlotAndGiveEffect> {
     String inv;
     int slot;
     ItemStackHandler potions;
     ItemStackHandler keychain;
     boolean sound;
 
-    public RemoveItemInSlot () {}
+    public RemoveItemInSlotAndGiveEffect () {}
 
-    public RemoveItemInSlot (String inventory, int slot) {
+    public RemoveItemInSlotAndGiveEffect (String inventory, int slot) {
         this.inv = inventory;
         this.slot = slot;
         this.sound = false;
     }
 
-    public RemoveItemInSlot (String inventory, int slot, boolean sound) {
+    public RemoveItemInSlotAndGiveEffect (String inventory, int slot, boolean sound) {
         this.inv = inventory;
         this.slot = slot;
         this.sound = sound;
@@ -87,6 +87,15 @@ public class RemoveItemInSlot extends AbstractMessage.AbstractServerMessage<Remo
                 TextComponentTranslation powMessage = new TextComponentTranslation(Strings.Chat_PowerBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
                 powMessage.getStyle().setColor(TextFormatting.GREEN);
                 player.sendMessage(powMessage);
+                break;
+                
+            case Strings.APBoost:
+                if(!player.capabilities.isCreativeMode)
+                    player.inventory.removeStackFromSlot(player.inventory.currentItem);
+                player.getCapability(ModCapabilities.PLAYER_STATS, null).addMaxAP(1);
+                TextComponentTranslation apMessage = new TextComponentTranslation(Strings.Chat_APBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxAP()));
+                apMessage.getStyle().setColor(TextFormatting.GREEN);
+                player.sendMessage(apMessage);
                 break;
                 
             case Strings.Potion:

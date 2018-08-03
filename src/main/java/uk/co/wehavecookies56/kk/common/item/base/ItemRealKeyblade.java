@@ -15,7 +15,7 @@ import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 public class ItemRealKeyblade extends ItemKeyblade {
 	//Ability ability;
 	
-    public ItemRealKeyblade (String name, double strength, double magic, Ability ability) {
+    public ItemRealKeyblade (String name, double strength, double magic, String ability) {
     	super(name,strength,magic,ability);
         setMaxStackSize(1);
     	//this.ability = ability;

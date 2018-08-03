@@ -16,12 +16,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import uk.co.wehavecookies56.kk.api.abilities.Ability;
+import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
+import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncUnlockedAbilities;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class CommandDriveLevel implements ICommand {
@@ -115,29 +119,40 @@ public class CommandDriveLevel implements ICommand {
                 int oldLevel = DRIVE.getDriveLevel("form."+args[0].toLowerCase());
                 int newLevel = Integer.parseInt(args[1].toString());
                 //System.out.println("Old: "+oldLevel+"\tNew: "+newLevel);
-
+                IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+                Ability ability = null;
+                String name = "";
                 switch(args[0].toLowerCase()){
                 case "valor":
-                	DRIVE.setDriveLevel(Strings.Form_Valor, newLevel);
-                    form = Utils.translateToLocal(Strings.Form_Valor);
+                	ability = ModAbilities.highJump;
+                	name = Strings.Form_Valor;
                     break;
                 case "wisdom":
-                	DRIVE.setDriveLevel(Strings.Form_Wisdom, Integer.parseInt(args[1].toString()));
-                    form = Utils.translateToLocal(Strings.Form_Wisdom);
+                	ability = ModAbilities.quickRun;
+                	name = Strings.Form_Wisdom;
                     break;
                 case "limit":
-                	DRIVE.setDriveLevel(Strings.Form_Limit, Integer.parseInt(args[1].toString()));
-                    form = Utils.translateToLocal(Strings.Form_Limit);
-                    break;
+                	ability = ModAbilities.dodgeRoll;
+                	name = Strings.Form_Limit;
+                	break;
                 case "master":
-                	DRIVE.setDriveLevel(Strings.Form_Master, Integer.parseInt(args[1].toString()));
-                    form = Utils.translateToLocal(Strings.Form_Master);
+                	ability = ModAbilities.aerialDodge;
+                	name = Strings.Form_Master;
                     break;
                 case "final":
-                	DRIVE.setDriveLevel(Strings.Form_Final, Integer.parseInt(args[1].toString()));
-                    form = Utils.translateToLocal(Strings.Form_Final);
+                	ability = ModAbilities.glide;
+                	name = Strings.Form_Final;
                     break;
                 }
+                
+                DRIVE.setDriveLevel(name, newLevel);
+            	if(DRIVE.getDriveLevel(name) >= 3) {
+            		if(!ABILITIES.getUnlockedAbility(ability))
+        				ABILITIES.unlockAbility(ability);
+            	}
+                form = Utils.translateToLocal(name);
+				PacketDispatcher.sendTo(new SyncUnlockedAbilities(player.getCapability(ModCapabilities.ABILITIES, null)), (EntityPlayerMP) player);
+
                 DRIVE.displayLevelUpMessage(player,"form."+args[0].toLowerCase()); 
 
                 if(oldLevel != 7 && newLevel == 7) {

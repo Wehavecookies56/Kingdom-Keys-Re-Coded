@@ -32,22 +32,26 @@ import uk.co.wehavecookies56.kk.api.abilities.Ability;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
+import uk.co.wehavecookies56.kk.common.util.IExtendedReach;
+import uk.co.wehavecookies56.kk.common.util.Utils;
 
-public class ItemKeyblade extends ItemSword {
+public class ItemKeyblade extends ItemSword implements IExtendedReach {
 	double magic, strength;
 	public String description;
 	double speed = 1.0;
 
-	Ability ability;
+	String ability;
 	// TODO Set attack speed
 
-	public ItemKeyblade(String name, double strength, double magic, Ability ability) {
-		this(name,strength,magic);
+	public ItemKeyblade(String name, double strength, double magic, String ability) {
+		super(EnumHelper.addToolMaterial("KEYBLADE", -4, -1, 0, 0, 20));
+		setRegistryName(name);
+		setUnlocalizedName(name);
+		setCreativeTab(ModItems.tabKingdomKeys);
 		this.ability = ability;
-	}
-	
-	public Ability getAbility() {
-		return this.ability;
+		this.magic = magic;
+		this.strength = strength;
+		setMaxStackSize(1);		
 	}
 	
 	public ItemKeyblade(String name, double strength, double magic) {
@@ -67,6 +71,10 @@ public class ItemKeyblade extends ItemSword {
 	public double getMagic() {
 		return this.magic;
 	}
+	
+	public Ability getAbility() {
+		return Utils.getAbilityFromName(this.ability);
+	}
 
 	public void setStrength(int strength) {
 		this.strength = strength;
@@ -74,6 +82,10 @@ public class ItemKeyblade extends ItemSword {
 
 	public void setMagic(int magic) {
 		this.magic = magic;
+	}
+	
+	public void setAbility(String ability) {
+		this.ability = ability;
 	}
 
 	public void setDescription(String description) {
@@ -166,6 +178,12 @@ public class ItemKeyblade extends ItemSword {
 		}
 		
 		return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
+	}
+
+	@Override
+	public float getReach()
+	{
+		return 20.0F;
 	}
 
 }

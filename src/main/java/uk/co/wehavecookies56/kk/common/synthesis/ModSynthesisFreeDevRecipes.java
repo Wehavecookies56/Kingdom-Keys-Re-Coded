@@ -27,6 +27,7 @@ public class ModSynthesisFreeDevRecipes {
         registerFreeDevRecipe(new RecipeMegalixir(ModItems.Megalixir.getUnlocalizedName()));
         registerFreeDevRecipe(new RecipeDefenseBoost(ModItems.DefenseBoost.getUnlocalizedName()));
         registerFreeDevRecipe(new RecipePowerBoost(ModItems.PowerBoost.getUnlocalizedName()));
+        registerFreeDevRecipe(new RecipeAPBoost(ModItems.APBoost.getUnlocalizedName()));
         registerFreeDevRecipe(new RecipeMagicBoost(ModItems.MagicBoost.getUnlocalizedName()));
         registerFreeDevRecipe(new RecipePanacea(ModItems.Panacaea.getUnlocalizedName()));
         registerFreeDevRecipe(new RecipeManifestIllusion(Strings.SM_ManifestIllusion));

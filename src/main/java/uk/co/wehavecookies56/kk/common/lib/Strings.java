@@ -220,6 +220,7 @@ public class Strings {
     Chat_Drive_Error = "chat.drive.error",
     Chat_Manifest = "chat.manifest.learn",
     Chat_PowerBoost = "chat.powerboost",
+    Chat_APBoost = "chat.apboost",
     Chat_DefenseBoost = "chat.defenseboost",
     Chat_MagicBoost = "chat.magicboost",
     Chat_DriveBoost = "chat.driveboost";
@@ -315,6 +316,7 @@ public class Strings {
     DefenseBoost = "defenseboost",
     MagicBoost = "magicboost",
     PowerBoost = "powerboost",
+    APBoost = "apboost",
     DriveBoost = "driveboost",
     Panacea = "panacea",
     HpOrb = "hporb",

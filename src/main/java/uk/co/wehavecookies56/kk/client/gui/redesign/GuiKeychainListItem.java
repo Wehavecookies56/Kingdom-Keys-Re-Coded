@@ -155,10 +155,7 @@ public class GuiKeychainListItem extends GuiButton {
 			String label = "N/A";
 			if (item.getKeyblade() instanceof ItemKeyblade) {
 				ItemKeyblade itemRealKeyblade = (ItemKeyblade) item.getKeyblade();
-				System.out.println(itemRealKeyblade.getAbility());
-				if (itemRealKeyblade.getAbility() != null) {
-					label = Utils.translateToLocal(itemRealKeyblade.getAbility().getName());
-				}
+				label = (itemRealKeyblade.getAbility() != null) ? Utils.translateToLocal(itemRealKeyblade.getAbility().getName()): "N/A";
 			}
 			float centerX = (labelWidth / 2) - (mc.fontRenderer.getStringWidth(label) / 2);
 			drawString(mc.fontRenderer, label, (int) (x + width + centerX), y + 3, labelColour);

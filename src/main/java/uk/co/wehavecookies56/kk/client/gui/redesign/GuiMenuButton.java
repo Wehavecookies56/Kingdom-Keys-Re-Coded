@@ -56,6 +56,10 @@ public class GuiMenuButton extends GuiButton {
             GlStateManager.popMatrix();
         }
     }
+    
+    public boolean isHovered() {
+    	return hovered;
+    }
 
     public boolean isSelected() {
         return selected;

@@ -58,7 +58,7 @@ public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHe
 				GL11.glRotatef(-mc.player.getPitchYaw().x, 1, 0, 0);
 
 				String text = "+0xp";
-				System.out.println(eXP);
+		//		System.out.println(eXP);
 
 				EntityPlayer player = mc.world.getPlayerEntityByName(eXP.playerName);
 

@@ -58,13 +58,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
@@ -85,8 +86,10 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
+import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
+import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability;
 import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.FirstTimeJoinCapability;
@@ -100,6 +103,7 @@ import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerS
 import uk.co.wehavecookies56.kk.common.capability.SummonKeybladeCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
+import uk.co.wehavecookies56.kk.common.capability.TutorialsCapability.ITutorials;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
@@ -128,6 +132,7 @@ import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenOrgGUI;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenTutorialGUI;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilitiesData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncEquippedAbilities;
@@ -157,7 +162,7 @@ public class EntityEvents {
 
 	@SubscribeEvent
 	public void equipAbility(AbilityEvent.Equip event) {
-		KingdomKeys.logger.info("Equipped " + event.getAbility().getName());
+		// KingdomKeys.logger.info("Equipped " + event.getAbility().getName());
 		IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
 		if (event.getAbility() == ModAbilities.mpHaste) {
 			STATS.setRechargeSpeed(STATS.getRechargeSpeed() + 1);
@@ -170,7 +175,7 @@ public class EntityEvents {
 
 	@SubscribeEvent
 	public void unequipAbility(AbilityEvent.Unequip event) {
-		KingdomKeys.logger.info("Unequipped " + event.getAbility().getName());
+		// KingdomKeys.logger.info("Unequipped " + event.getAbility().getName());
 		IPlayerStats STATS = event.getPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
 		if (event.getAbility() == ModAbilities.mpHaste) {
 			STATS.setRechargeSpeed(STATS.getRechargeSpeed() - 1);
@@ -183,17 +188,59 @@ public class EntityEvents {
 
 	@SubscribeEvent
 	public void onPlayerClone(PlayerEvent.Clone event) {
-		FirstTimeJoinCapability.IFirstTimeJoin ftjBefore = event.getOriginal().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
-		FirstTimeJoinCapability.IFirstTimeJoin ftjAfter = event.getEntityPlayer().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
+		updateFTJ(event.getOriginal(), event.getEntityPlayer());
+		updateMunny(event.getOriginal(), event.getEntityPlayer());
+		updateDrive(event.getOriginal(), event.getEntityPlayer());
+		updateMagic(event.getOriginal(), event.getEntityPlayer());
+		updateSK(event.getOriginal(), event.getEntityPlayer());
+		updateStats(event.getOriginal(), event.getEntityPlayer());
+		updateRecipes(event.getOriginal(), event.getEntityPlayer());
+		updateMaterials(event.getOriginal(), event.getEntityPlayer());
+		updateOrg(event.getOriginal(), event.getEntityPlayer());
+		updateAbilities(event.getOriginal(), event.getEntityPlayer());
+		updateTutorials(event.getOriginal(), event.getEntityPlayer());
+
+		// This ones have to change uppon death
+		if (event.isWasDeath()) {
+			updateDeath(event.getOriginal(), event.getEntityPlayer());
+		}
+
+	}
+
+	private void updateDeath(EntityPlayer original, EntityPlayer player) {
+		DriveStateCapability.IDriveState dsAfter = player.getCapability(ModCapabilities.DRIVE_STATE, null);
+		OrganizationXIIICapability.IOrganizationXIII orgAfter = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+		PlayerStatsCapability.IPlayerStats statsAfter = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+
+		orgAfter.setMember(Utils.OrgMember.NONE);
+		orgAfter.setWeaponSummoned(EnumHand.MAIN_HAND, false);
+		orgAfter.setWeaponSummoned(EnumHand.OFF_HAND, false);
+		orgAfter.setUnlockedWeapons(new ArrayList<Item>());
+		orgAfter.setUnlockPoints((int) (statsAfter.getLevel() / 5));
+		dsAfter.setActiveDriveName("none");
+		dsAfter.setInDrive(false);
+		dsAfter.setDP(0);
+		dsAfter.setFP(0);
+	}
+
+	private void updateFTJ(EntityPlayer original, EntityPlayer player) {
+		FirstTimeJoinCapability.IFirstTimeJoin ftjBefore = original.getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
+		FirstTimeJoinCapability.IFirstTimeJoin ftjAfter = player.getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
 		ftjAfter.setFirstTimeJoin(ftjBefore.getFirstTimeJoin());
 		ftjAfter.setPosX(ftjBefore.getPosX());
 		ftjAfter.setPosY(ftjBefore.getPosY());
 		ftjAfter.setPosZ(ftjBefore.getPosZ());
-		MunnyCapability.IMunny munnyBefore = event.getOriginal().getCapability(ModCapabilities.MUNNY, null);
-		MunnyCapability.IMunny munnyAfter = event.getEntityPlayer().getCapability(ModCapabilities.MUNNY, null);
+	}
+
+	private void updateMunny(EntityPlayer original, EntityPlayer player) {
+		MunnyCapability.IMunny munnyBefore = original.getCapability(ModCapabilities.MUNNY, null);
+		MunnyCapability.IMunny munnyAfter = player.getCapability(ModCapabilities.MUNNY, null);
 		munnyAfter.setMunny(munnyBefore.getMunny());
-		DriveStateCapability.IDriveState dsBefore = event.getOriginal().getCapability(ModCapabilities.DRIVE_STATE, null);
-		DriveStateCapability.IDriveState dsAfter = event.getEntityPlayer().getCapability(ModCapabilities.DRIVE_STATE, null);
+	}
+
+	private void updateDrive(EntityPlayer original, EntityPlayer player) {
+		DriveStateCapability.IDriveState dsBefore = original.getCapability(ModCapabilities.DRIVE_STATE, null);
+		DriveStateCapability.IDriveState dsAfter = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 		dsAfter.setActiveDriveName(dsBefore.getActiveDriveName());
 		dsAfter.setAntiPoints(dsBefore.getAntiPoints());
 		dsAfter.setDriveExp(Strings.Form_Valor, dsBefore.getDriveExp(Strings.Form_Valor));
@@ -214,8 +261,11 @@ public class EntityEvents {
 		for (int i = 0; i < dsBefore.getInventoryDriveForms().getSlots(); i++) {
 			dsAfter.getInventoryDriveForms().setStackInSlot(i, dsBefore.getInventoryDriveForms().getStackInSlot(i));
 		}
-		MagicStateCapability.IMagicState magicBefore = event.getOriginal().getCapability(ModCapabilities.MAGIC_STATE, null);
-		MagicStateCapability.IMagicState magicAfter = event.getEntityPlayer().getCapability(ModCapabilities.MAGIC_STATE, null);
+	}
+
+	private void updateMagic(EntityPlayer original, EntityPlayer player) {
+		MagicStateCapability.IMagicState magicBefore = original.getCapability(ModCapabilities.MAGIC_STATE, null);
+		MagicStateCapability.IMagicState magicAfter = player.getCapability(ModCapabilities.MAGIC_STATE, null);
 		magicAfter.setKH1Fire(magicBefore.getKH1Fire());
 		magicAfter.setMagicLevel(Strings.Spell_Fire, magicBefore.getMagicLevel(Strings.Spell_Fire));
 		magicAfter.setMagicLevel(Strings.Spell_Blizzard, magicBefore.getMagicLevel(Strings.Spell_Blizzard));
@@ -223,64 +273,92 @@ public class EntityEvents {
 		magicAfter.setMagicLevel(Strings.Spell_Cure, magicBefore.getMagicLevel(Strings.Spell_Cure));
 		magicAfter.setMagicLevel(Strings.Spell_Stop, magicBefore.getMagicLevel(Strings.Spell_Stop));
 		magicAfter.setMagicLevel(Strings.Spell_Aero, magicBefore.getMagicLevel(Strings.Spell_Aero));
+
 		for (int i = 0; i < magicBefore.getInventorySpells().getSlots(); i++) {
 			magicAfter.getInventorySpells().setStackInSlot(i, magicBefore.getInventorySpells().getStackInSlot(i));
 		}
-		SummonKeybladeCapability.ISummonKeyblade skBefore = event.getOriginal().getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
-		SummonKeybladeCapability.ISummonKeyblade skAfter = event.getEntityPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
+
+	}
+
+	private void updateSK(EntityPlayer original, EntityPlayer player) {
+		SummonKeybladeCapability.ISummonKeyblade skBefore = original.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
+		SummonKeybladeCapability.ISummonKeyblade skAfter = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
 		skAfter.setIsKeybladeSummoned(EnumHand.MAIN_HAND, skBefore.getIsKeybladeSummoned(EnumHand.MAIN_HAND));
 		skAfter.setIsKeybladeSummoned(EnumHand.OFF_HAND, skBefore.getIsKeybladeSummoned(EnumHand.OFF_HAND));
 		skAfter.setActiveSlot(skBefore.activeSlot());
+
 		for (int i = 0; i < skBefore.getInventoryKeychain().getSlots(); i++) {
 			skAfter.getInventoryKeychain().setStackInSlot(i, skBefore.getInventoryKeychain().getStackInSlot(i));
 		}
-		PlayerStatsCapability.IPlayerStats statsBefore = event.getOriginal().getCapability(ModCapabilities.PLAYER_STATS, null);
-		PlayerStatsCapability.IPlayerStats statsAfter = event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null);
+	}
+
+	private void updateStats(EntityPlayer original, EntityPlayer player) {
+		PlayerStatsCapability.IPlayerStats statsBefore = original.getCapability(ModCapabilities.PLAYER_STATS, null);
+		PlayerStatsCapability.IPlayerStats statsAfter = player.getCapability(ModCapabilities.PLAYER_STATS, null);
 		statsAfter.setDefense(statsBefore.getDefense());
 		statsAfter.setExperience(statsBefore.getExperience());
 		statsAfter.setHP(statsBefore.getHP());
 		statsAfter.setLevel(statsBefore.getLevel());
 		statsAfter.setMagic(statsBefore.getMagic());
 		statsAfter.setMaxMP(statsBefore.getMaxMP());
-		statsAfter.setMP(statsBefore.getMP());
+		statsAfter.setMP(statsBefore.getMaxMP());
 		statsAfter.setRecharge(statsBefore.getRecharge());
 		statsAfter.setStrength(statsBefore.getStrength());
 		statsAfter.setEnderDragonDefeated(statsBefore.enderDragonDefeated());
+		statsAfter.setMaxAP(statsBefore.getMaxAP());
+		statsAfter.setConsumedAP(statsBefore.getConsumedAP());
+
+		player.setHealth(player.getMaxHealth());
+
 		for (int i = 0; i < statsBefore.getInventoryPotionsMenu().getSlots(); i++) {
 			statsAfter.getInventoryPotionsMenu().setStackInSlot(i, statsBefore.getInventoryPotionsMenu().getStackInSlot(i));
 		}
-		SynthesisRecipeCapability.ISynthesisRecipe recipesBefore = event.getOriginal().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
-		SynthesisRecipeCapability.ISynthesisRecipe recipesAfter = event.getEntityPlayer().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		PacketDispatcher.sendTo(new SyncLevelData(statsAfter), (EntityPlayerMP) player);
+	}
+
+	private void updateRecipes(EntityPlayer original, EntityPlayer player) {
+		SynthesisRecipeCapability.ISynthesisRecipe recipesBefore = original.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+		SynthesisRecipeCapability.ISynthesisRecipe recipesAfter = player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null);
+
 		for (int i = 0; i < recipesBefore.getKnownRecipes().size(); i++) {
 			recipesAfter.learnRecipe(RecipeRegistry.get(recipesBefore.getKnownRecipes().get(i)));
 		}
-		SynthesisMaterialCapability.ISynthesisMaterial materialsBefore = event.getOriginal().getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
-		SynthesisMaterialCapability.ISynthesisMaterial materialsAfter = event.getEntityPlayer().getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+	}
+
+	private void updateMaterials(EntityPlayer original, EntityPlayer player) {
+		SynthesisMaterialCapability.ISynthesisMaterial materialsBefore = original.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
+		SynthesisMaterialCapability.ISynthesisMaterial materialsAfter = player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null);
 		Iterator<Map.Entry<String, Integer>> it = materialsBefore.getKnownMaterialsMap().entrySet().iterator();
+
 		while (it.hasNext()) {
 			Map.Entry<String, Integer> pair = (Map.Entry<String, Integer>) it.next();
 			materialsAfter.setMaterial(MaterialRegistry.get(pair.getKey().toString()), pair.getValue());
 		}
-		OrganizationXIIICapability.IOrganizationXIII orgBefore = event.getOriginal().getCapability(ModCapabilities.ORGANIZATION_XIII, null);
-		OrganizationXIIICapability.IOrganizationXIII orgAfter = event.getEntityPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+	}
+
+	private void updateOrg(EntityPlayer original, EntityPlayer player) {
+		OrganizationXIIICapability.IOrganizationXIII orgBefore = original.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
+		OrganizationXIIICapability.IOrganizationXIII orgAfter = player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
 		orgAfter.setMember(orgBefore.getMember());
 		orgAfter.setCurrentWeapon(orgBefore.currentWeapon());
 		orgAfter.setWeaponSummoned(EnumHand.MAIN_HAND, orgBefore.summonedWeapon(EnumHand.MAIN_HAND));
 		orgAfter.setWeaponSummoned(EnumHand.OFF_HAND, orgBefore.summonedWeapon(EnumHand.OFF_HAND));
 		for (int i = 0; i < 3; i++)
 			orgAfter.setPortalCoords((byte) i, orgBefore.getPortalCoords((byte) i));
-		if (event.isWasDeath()) {
-			orgAfter.setMember(Utils.OrgMember.NONE);
-			orgAfter.setWeaponSummoned(EnumHand.MAIN_HAND, false);
-			orgAfter.setWeaponSummoned(EnumHand.OFF_HAND, false);
-			orgAfter.setUnlockedWeapons(new ArrayList<Item>());
-			orgAfter.setUnlockPoints((int) (statsAfter.getLevel() / 5));
-			dsAfter.setActiveDriveName("none");
-			dsAfter.setInDrive(false);
-			dsAfter.setDP(0);
-			dsAfter.setFP(0);
-			statsAfter.setMP(statsAfter.getMaxMP());
-		}
+
+	}
+
+	private void updateAbilities(EntityPlayer original, EntityPlayer player) {
+		IAbilities abilitiesBefore = original.getCapability(ModCapabilities.ABILITIES, null);
+		IAbilities abilitiesAfter = player.getCapability(ModCapabilities.ABILITIES, null);
+		abilitiesAfter.setUnlockedAbilities(abilitiesBefore.getUnlockedAbilities());
+		abilitiesAfter.setEquippedAbilities(abilitiesBefore.getEquippedAbilities());
+	}
+
+	private void updateTutorials(EntityPlayer original, EntityPlayer player) {
+		ITutorials tutorialsBefore = original.getCapability(ModCapabilities.TUTORIALS, null);
+		ITutorials tutorialsAfter = player.getCapability(ModCapabilities.TUTORIALS, null);
+		tutorialsAfter.setKnownTutorials(tutorialsBefore.getKnownTutorials());
 	}
 
 	@SubscribeEvent
@@ -299,7 +377,7 @@ public class EntityEvents {
 		}
 
 		if (event.isEndConquered()) {
-			BlockPos spawn = new BlockPos(192, 5, 161);
+			// BlockPos spawn = new BlockPos(192, 5, 161);
 
 			IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(ModDimensions.traverseTownID);
 			DimTeleporter tp = new DimTeleporter(info.pos, info.id);
@@ -360,6 +438,7 @@ public class EntityEvents {
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.HighDriveRecovery.getUnlocalizedName());
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.MagicBoost.getUnlocalizedName());
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.PowerBoost.getUnlocalizedName());
+			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.APBoost.getUnlocalizedName());
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.DefenseBoost.getUnlocalizedName());
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.Elixir.getUnlocalizedName());
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.Megalixir.getUnlocalizedName());
@@ -858,7 +937,20 @@ public class EntityEvents {
 	@SubscribeEvent
 	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		EntityPlayer player = event.player;
-
+		IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+		/*
+		 * if (ABILITIES.getUseSonicBlade()) { //sonicBladeTicks++; float yaw =
+		 * player.rotationYaw; float motionX = -MathHelper.sin(yaw / 180.0f * (float)
+		 * Math.PI); float motionZ = MathHelper.cos(yaw / 180.0f * (float) Math.PI);
+		 * 
+		 * double power = 4;
+		 * 
+		 * if (player.onGround) player.addVelocity(motionX * power, 0, motionZ * power);
+		 * 
+		 * //ABILITIES.setUseSonicBlade(false); if(player.world.isRemote)
+		 * PacketDispatcher.sendTo(new SyncAbilitiesData(ABILITIES),
+		 * (EntityPlayerMP)player); }
+		 */
 		checkBaseGrowthAbility(player);
 
 		/*
@@ -879,6 +971,14 @@ public class EntityEvents {
 		 * 
 		 * } }
 		 */
+
+		if (ABILITIES.getInvincible()) {
+			ABILITIES.setInvTicks(ABILITIES.getInvTicks() - 1);
+			if (ABILITIES.getInvTicks() == 0) {
+				ABILITIES.setInvincible(false);
+				PacketDispatcher.sendTo(new SyncAbilitiesData(ABILITIES), (EntityPlayerMP) player);
+			}
+		}
 
 		if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
 			if (!ItemStack.areItemStacksEqual(player.inventory.armorInventory.get(0), ItemStack.EMPTY) && player.inventory.armorInventory.get(1) != ItemStack.EMPTY && player.inventory.armorInventory.get(2) != ItemStack.EMPTY && player.inventory.armorInventory.get(3) != ItemStack.EMPTY) {
@@ -1076,12 +1176,23 @@ public class EntityEvents {
 
 		if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
 
-			highJump(player);
-			quickRun(player);
-			// dodgeRoll(player);
+			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 
-			aerialDodge(player);
-			glide(player);
+			if (ABILITIES.getEquippedAbility(ModAbilities.highJump)) {
+				highJump(player);
+			}
+
+			// Quick run is handled in InputHandler when checking the action key
+
+			if (ABILITIES.getEquippedAbility(ModAbilities.dodgeRoll)) {
+				// dodgeRoll(player);
+			}
+			if (ABILITIES.getEquippedAbility(ModAbilities.aerialDodge)) {
+				aerialDodge(player);
+			}
+			if (ABILITIES.getEquippedAbility(ModAbilities.glide)) {
+				glide(player);
+			}
 		}
 	}
 
@@ -1167,29 +1278,32 @@ public class EntityEvents {
 		}
 	}
 
-	/*
-	 * @SubscribeEvent public void onLivingUpdate (LivingEvent.LivingUpdateEvent
-	 * event) { if (event.getEntityLiving() instanceof EntityPlayer) { EntityPlayer
-	 * player = (EntityPlayer) event.getEntityLiving();
-	 * 
-	 * if(player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).
-	 * getAttributeValue() == 0 && player.isAirBorne){ player.motionX=0;
-	 * player.motionY=0; player.motionZ=0; } } }
-	 */
+	@SubscribeEvent
+	public void onAttack(LivingAttackEvent event) {
+		if (event.getEntityLiving() instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+
+			if (ABILITIES.getInvincible()) {
+				player.world.playSound(player, player.getPosition(), ModSounds.antidrive, SoundCategory.MASTER, 1F, 1F);
+				event.setCanceled(true);
+			}
+		}
+	}
 
 	@SubscribeEvent
 	public void onHurt(LivingHurtEvent event) {
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			PlayerStatsCapability.IPlayerStats STATS = event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null);
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-			
+			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 			IDriveState DRIVE = player.getCapability(ModCapabilities.DRIVE_STATE, null);
 			if (!DRIVE.getInDrive()) {
-				if (player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.damageDrive)) {
+				if (ABILITIES.getEquippedAbility(ModAbilities.damageDrive)) {
 					DRIVE.addDP(event.getAmount());
 				}
 			}
-			
+
 			PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);
 			if (event.getAmount() - STATS.getDefense() <= 0)
 				event.setAmount(1);
@@ -1199,7 +1313,6 @@ public class EntityEvents {
 				if (EntityThunder.summonLightning)
 					event.setCanceled(true);
 
-			
 		}
 		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
@@ -1249,7 +1362,11 @@ public class EntityEvents {
 	@SubscribeEvent
 	public void onFall(LivingFallEvent event) {
 		if (event.getEntityLiving() instanceof EntityPlayer) {
-			event.setDistance(0);
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+			if (ABILITIES.getEquippedAbility(ModAbilities.highJump) || ABILITIES.getEquippedAbility(ModAbilities.aerialDodge) || ABILITIES.getEquippedAbility(ModAbilities.glide)) {
+				event.setDistance(0);
+			}
 		}
 	}
 
