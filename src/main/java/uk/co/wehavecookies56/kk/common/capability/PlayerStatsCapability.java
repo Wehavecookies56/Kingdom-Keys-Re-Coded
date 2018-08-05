@@ -549,6 +549,7 @@ public class PlayerStatsCapability {
                     break;
                 case 33:
                     this.addStrength(1);
+                    ABILITIES.unlockAbility(ModAbilities.driveConverter);
                     break;
                 case 34:
                     this.addMagic(1);

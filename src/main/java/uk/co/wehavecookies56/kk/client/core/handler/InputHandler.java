@@ -551,7 +551,7 @@ public class InputHandler {
 		World world = mc.world;
 		SummonKeybladeCapability.ISummonKeyblade SUMMON = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null);
 
-		if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals("none")) {
+		if (player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
 			Minecraft.getMinecraft().gameSettings.keyBindSwapHands.isPressed();
 		}
 

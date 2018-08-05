@@ -879,31 +879,41 @@ public class EntityEvents {
 				ItemStack magicOrb = new ItemStack(ModItems.MagicOrb, 1);
 				magicOrb.setTagCompound(new NBTTagCompound());
 				ItemStack HPOrb = new ItemStack(ModItems.HpOrb, 1);
-
+				IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+				boolean driveConverter = ABILITIES.getEquippedAbility(ModAbilities.driveConverter);
+				
 				if (event.getEntity() instanceof EntityAnimal) {
-					munny.getTagCompound().setInteger("amount", Utils.randomWithRange(1, 20));
+					munny.getTagCompound().setInteger("amount", Utils.randomWithRange(1, driveConverter ? 10 : 20)); //If DriveConverter is equipped you get 1-10 munny
 					if (Arrays.asList(MainConfig.entities.dropsList).contains("munny"))
 						event.getEntityLiving().entityDropItem(munny, 1);
-					driveOrb.getTagCompound().setInteger("amount", 1);
+					
+					driveOrb.getTagCompound().setInteger("amount", driveConverter ? 2 : 1);
 					if (Arrays.asList(MainConfig.entities.dropsList).contains("dporb"))
 						event.getEntityLiving().entityDropItem(driveOrb, 1);
+					
 					magicOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(2, 8));
 					if (Arrays.asList(MainConfig.entities.dropsList).contains("mporb"))
 						event.getEntityLiving().entityDropItem(magicOrb, 1);
+					
 					if (Arrays.asList(MainConfig.entities.dropsList).contains("hporb"))
 						event.getEntityLiving().entityDropItem(HPOrb, 1);
+					
 				} else if (event.getEntity() instanceof EntityMob) {
-					munny.getTagCompound().setInteger("amount", Utils.randomWithRange(5, 50));
+					munny.getTagCompound().setInteger("amount", Utils.randomWithRange(5, driveConverter ? 25 : 50));
 					if (Arrays.asList(MainConfig.entities.dropsList).contains("munny"))
 						event.getEntityLiving().entityDropItem(munny, 1);
-					driveOrb.getTagCompound().setInteger("amount", 5);
+					
+					driveOrb.getTagCompound().setInteger("amount", driveConverter ? 10 : 5);
 					if (Arrays.asList(MainConfig.entities.dropsList).contains("dporb"))
 						event.getEntityLiving().entityDropItem(driveOrb, 1);
+					
 					magicOrb.getTagCompound().setInteger("amount", Utils.randomWithRange(5, 15));
 					if (Arrays.asList(MainConfig.entities.dropsList).contains("mporb"))
 						event.getEntityLiving().entityDropItem(magicOrb, 1);
+					
 					if (Arrays.asList(MainConfig.entities.dropsList).contains("hporb"))
 						event.getEntityLiving().entityDropItem(HPOrb, 1);
+					
 
 				} else if (event.getEntity() instanceof EntityAgeable) {
 					munny.getTagCompound().setInteger("amount", Utils.randomWithRange(50, 100));

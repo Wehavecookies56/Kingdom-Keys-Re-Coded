@@ -109,6 +109,7 @@ public class ItemEvents {
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
 				event.getItem().getItem().setCount(event.getItem().getItem().getCount() - 1);
 				EntityPlayer player = event.getEntityPlayer();
+				System.out.println(event.getItem().getItem().getTagCompound().getInteger("amount"));
 				if (DRIVE.getInDrive()) {
 					DRIVE.addFP(event.getItem().getItem().getTagCompound().getInteger("amount"));
 				} else {
