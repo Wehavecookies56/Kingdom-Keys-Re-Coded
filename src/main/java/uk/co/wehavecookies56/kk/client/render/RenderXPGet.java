@@ -46,11 +46,6 @@ public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHe
 			GL11.glPushMatrix();
 			{
 				GL11.glTranslated(x, y + 1, z);
-
-				// GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-				// OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 128.0F,
-				// 128.0F);
-
 				GL11.glScaled(0.05, 0.05, 0.05);
 				GL11.glRotated(180, 0, 1, 0);
 				GL11.glRotated(180, 1, 0, 0);
@@ -58,20 +53,20 @@ public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHe
 				GL11.glRotatef(-mc.player.getPitchYaw().x, 1, 0, 0);
 
 				String text = "+0xp";
-		//		System.out.println(eXP);
+				// System.out.println(eXP);
 
-				EntityPlayer player = mc.world.getPlayerEntityByName(eXP.playerName);
-
-				if (mc.world.getEntityByID(eXP.entityID) instanceof EntityLivingBase) {
-					EntityLivingBase mobEntity = (EntityLivingBase) mc.world.getEntityByID(eXP.entityID);
-					IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-					IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
-					if (!ABILITIES.getEquippedAbility(ModAbilities.zeroEXP)) {
-						if (STATS.getLevel() < STATS.getMaxLevel())
-							text = "+" + (int) (mobEntity.getMaxHealth() / 2) + "xp";
-
-						if (mc.player.getDisplayNameString().equals(eXP.playerName))
+				if (mc.player.getDisplayNameString().equals(eXP.killerName)) {
+					
+					EntityPlayer player = mc.world.getPlayerEntityByName(eXP.killerName);
+					if (mc.world.getEntityByID(eXP.entityID) instanceof EntityLivingBase) {
+						EntityLivingBase mobEntity = (EntityLivingBase) mc.world.getEntityByID(eXP.entityID);
+						IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
+						IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
+						if (!ABILITIES.getEquippedAbility(ModAbilities.zeroEXP)) {
+							if (STATS.getLevel() < STATS.getMaxLevel())
+								text = "+" + (int) (mobEntity.getMaxHealth() / 2) + "xp";
 							mc.fontRenderer.drawString(text, -mc.fontRenderer.getStringWidth(text) / 2, 0, 0x0099ff);
+						}
 					}
 				}
 			}

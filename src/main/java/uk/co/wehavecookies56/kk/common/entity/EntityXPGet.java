@@ -13,12 +13,12 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 public class EntityXPGet extends Entity implements IEntityAdditionalSpawnData{
 	public final static int MAX_TICKS = 30;
 	public static int entityID;
-	public static String playerName;
+	public static String killerName;
 	
 	public EntityXPGet(World worldIn, EntityPlayer player, EntityLivingBase entity){
         super(worldIn);
         this.setSize(0.5F, 1);
-        this.playerName = player.getDisplayNameString();
+        this.killerName = player.getDisplayNameString();
         this.entityID = entity.getEntityId();
     }
 	
@@ -44,16 +44,16 @@ public class EntityXPGet extends Entity implements IEntityAdditionalSpawnData{
 
 	 @Override
 	    public void readSpawnData(ByteBuf additionalData) {
-	    	playerName = ByteBufUtils.readUTF8String(additionalData);
+	    	killerName = ByteBufUtils.readUTF8String(additionalData);
 	    	entityID = additionalData.readInt();
 	    }
 
 	    @Override
 	    public void writeSpawnData(ByteBuf buffer) {
-	    	if(playerName == null)
+	    	if(killerName == null)
 	            return;
 	    	
-	    	ByteBufUtils.writeUTF8String(buffer, playerName);    
+	    	ByteBufUtils.writeUTF8String(buffer, killerName);    
 	    	buffer.writeInt(entityID);
 	    }
 	
