@@ -22,13 +22,13 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 
 public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHeart> {
 
-	ModelBase model;
+	//ModelBase model;
 	float rotation;
 
 	public RenderXPGet(RenderManager renderManager) {
 		super(renderManager);
 		shadowSize = 1;
-		this.model = new ModelFlyingHeart();
+		//this.model = new ModelFlyingHeart();
 		rotation = 0;
 	}
 
@@ -56,7 +56,7 @@ public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHe
 				// System.out.println(eXP);
 
 				if (mc.player.getDisplayNameString().equals(eXP.killerName)) {
-					
+
 					EntityPlayer player = mc.world.getPlayerEntityByName(eXP.killerName);
 					if (mc.world.getEntityByID(eXP.entityID) instanceof EntityLivingBase) {
 						EntityLivingBase mobEntity = (EntityLivingBase) mc.world.getEntityByID(eXP.entityID);
