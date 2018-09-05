@@ -39,7 +39,7 @@ public class ItemKeyblade extends ItemSword implements IExtendedReach {
 	double magic, strength;
 	public String description;
 	double speed = 1.0;
-
+	float reach;
 	String ability;
 	// TODO Set attack speed
 
@@ -52,6 +52,18 @@ public class ItemKeyblade extends ItemSword implements IExtendedReach {
 		this.magic = magic;
 		this.strength = strength;
 		setMaxStackSize(1);		
+	}
+	
+	public ItemKeyblade(String name, double strength, double magic, String ability, float reach) {
+		super(EnumHelper.addToolMaterial("KEYBLADE", -4, -1, 0, 0, 20));
+		setRegistryName(name);
+		setUnlocalizedName(name);
+		setCreativeTab(ModItems.tabKingdomKeys);
+		this.ability = ability;
+		this.magic = magic;
+		this.strength = strength;
+		setMaxStackSize(1);
+		this.reach = reach;
 	}
 	
 	public ItemKeyblade(String name, double strength, double magic) {
@@ -183,7 +195,7 @@ public class ItemKeyblade extends ItemSword implements IExtendedReach {
 	@Override
 	public float getReach()
 	{
-		return 20.0F;
+		return this.reach;
 	}
 
 }

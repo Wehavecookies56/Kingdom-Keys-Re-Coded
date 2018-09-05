@@ -454,7 +454,7 @@ public class ModItems {
             CrownofGuilt = new ItemRealKeyblade(Strings.CrownofGuilt, BalanceConfig.keyblades.crownofGuilt[0], BalanceConfig.keyblades.crownofGuilt[1]),
             DarkerThanDark = new ItemRealKeyblade(Strings.DarkerThanDark, BalanceConfig.keyblades.darkerthanDark[0], BalanceConfig.keyblades.darkerthanDark[1]),
             Darkgnaw = new ItemRealKeyblade(Strings.Darkgnaw, BalanceConfig.keyblades.darkgnaw[0], BalanceConfig.keyblades.darkgnaw[1]),
-            DecisivePumpkin = new ItemRealKeyblade(Strings.DecisivePumpkin, BalanceConfig.keyblades.decisivePumpkin[0], BalanceConfig.keyblades.decisivePumpkin[1], Strings.comboBoost),
+            DecisivePumpkin = new ItemRealKeyblade(Strings.DecisivePumpkin, BalanceConfig.keyblades.decisivePumpkin[0], BalanceConfig.keyblades.decisivePumpkin[1], Strings.comboBoost, 5F),
             DestinysEmbrace = new ItemRealKeyblade(Strings.DestinysEmbrace, BalanceConfig.keyblades.destinysEmbrace[0], BalanceConfig.keyblades.destinysEmbrace[1]),
             DiamondDust = new ItemRealKeyblade(Strings.DiamondDust, BalanceConfig.keyblades.diamondDust[0], BalanceConfig.keyblades.diamondDust[1]),
             Divewing = new ItemRealKeyblade(Strings.Divewing, BalanceConfig.keyblades.divewing[0], BalanceConfig.keyblades.divewing[1]),

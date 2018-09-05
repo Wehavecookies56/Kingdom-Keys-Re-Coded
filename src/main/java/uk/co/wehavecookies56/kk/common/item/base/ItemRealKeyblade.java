@@ -18,12 +18,20 @@ public class ItemRealKeyblade extends ItemKeyblade {
     public ItemRealKeyblade (String name, double strength, double magic, String ability) {
     	super(name,strength,magic,ability);
         setMaxStackSize(1);
+    }
+    
+    public ItemRealKeyblade (String name, double strength, double magic, String ability, float reach) {
+    	super(name,strength,magic,ability,reach);
+        setMaxStackSize(1);
     	//this.ability = ability;
     }
+    
     public ItemRealKeyblade (String name, double strength, double magic) {
         super(name, strength, magic);
         setMaxStackSize(1);
     }
+    
+    
 
     //public Ability getAbility() {
        // return this.ability;
