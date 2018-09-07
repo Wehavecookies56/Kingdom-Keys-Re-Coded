@@ -117,6 +117,7 @@ public class PacketDispatcher {
         registerMessage(XemnasMemberSelect.class);
         registerMessage(TutorialsPacket.class);
         registerMessage(EquipKeychain.class);
+        registerMessage(EquipPotion.class);
         registerMessage(EquipAbility.class);
         registerMessage(SonicBladePacket.class);
         registerMessage(InvinciblePacket.class);

@@ -8,17 +8,16 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.api.menu.ItemCategory;
 import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.client.gui.redesign.GuiElementBox;
 import uk.co.wehavecookies56.kk.client.gui.redesign.GuiEquippedItem;
+import uk.co.wehavecookies56.kk.client.gui.redesign.GuiItems;
 import uk.co.wehavecookies56.kk.client.gui.redesign.GuiWeapons;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.OrganizationXIIICapability;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
-import uk.co.wehavecookies56.kk.common.lib.GuiIDs;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
@@ -77,33 +76,27 @@ public class GuiMenu_Items_Player extends GuiScreen {
         OrganizationXIIICapability.IOrganizationXIII org = mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null);
         PlayerStatsCapability.IPlayerStats playerStats = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
 
-
+        int offset;
         if (org.getMember() == Utils.OrgMember.NONE) {
             weapon = new GuiEquippedItem(keychains.getStackInSlot(0), (int) itemsX, (int) itemsY, 0x3C0002, new GuiWeapons(0, 0x701F23, 0x3C0000), ItemCategory.TOOL, this, "Weapon", 0xFE8185);
             valor = new GuiEquippedItem(keychains.getStackInSlot(1), (int) itemsX, (int) itemsY + 1 + itemHeight, 0x003231, new GuiWeapons(1, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Valor", 0x069293);
             master = new GuiEquippedItem(keychains.getStackInSlot(2), (int) itemsX, (int) itemsY + 2 + (itemHeight * 2), 0x003231, new GuiWeapons(2, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Master", 0x069293);
             Final = new GuiEquippedItem(keychains.getStackInSlot(3), (int) itemsX, (int) itemsY + 3 + (itemHeight * 3), 0x003231, new GuiWeapons(3, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Final", 0x069293);
-            helmet = new GuiEquippedItem(mc.player.inventory.armorInventory.get(3), (int)itemsX, (int)itemsY+4+(itemHeight*4), 0x685800, null, ItemCategory.EQUIPMENT, this, "Armour", 0xFEF461);
-            chestplate = new GuiEquippedItem(mc.player.inventory.armorInventory.get(2), (int)itemsX, (int)itemsY+5+(itemHeight*5), 0x685800, null, ItemCategory.EQUIPMENT, this);
-            leggings = new GuiEquippedItem(mc.player.inventory.armorInventory.get(1), (int)itemsX, (int)itemsY+6+(itemHeight*6), 0x685800, null, ItemCategory.EQUIPMENT, this);
-            boots = new GuiEquippedItem(mc.player.inventory.armorInventory.get(0), (int)itemsX, (int)itemsY+7+(itemHeight*7), 0x685800, null, ItemCategory.EQUIPMENT, this);
-            item1 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int)itemsY+8+(itemHeight*8),0x003213, new GuiWeapons(1, 0x0A1616, 0x032F3C), ItemCategory.CONSUMABLE, this, "Items", 0x41F031);
-            item2 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(1), (int) itemsX, (int)itemsY+9+(itemHeight*9),0x003213, null, ItemCategory.CONSUMABLE, this);
-            item3 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(2), (int) itemsX, (int)itemsY+10+(itemHeight*10),0x003213, null, ItemCategory.CONSUMABLE, this);
-            item4 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(3), (int) itemsX, (int)itemsY+11+(itemHeight*11),0x003213, null, ItemCategory.CONSUMABLE, this);
-            item5 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(4), (int) itemsX, (int)itemsY+12+(itemHeight*12),0x003213, null, ItemCategory.CONSUMABLE, this);
+            offset = 4;
         } else {
             weapon = new GuiEquippedItem(new ItemStack(org.currentWeapon()), (int) itemsX, (int) itemsY, 0x3C0002, new GuiOrgWeapon(), ItemCategory.TOOL, this, "Weapon", 0xFE8185);
-            helmet = new GuiEquippedItem(mc.player.inventory.armorInventory.get(3), (int)itemsX, (int)itemsY+1+(itemHeight*1), 0x685800, null, ItemCategory.EQUIPMENT, this, "Armour", 0xFEF461);
-            chestplate = new GuiEquippedItem(mc.player.inventory.armorInventory.get(2), (int)itemsX, (int)itemsY+2+(itemHeight*2), 0x685800, null, ItemCategory.EQUIPMENT, this);
-            leggings = new GuiEquippedItem(mc.player.inventory.armorInventory.get(1), (int)itemsX, (int)itemsY+3+(itemHeight*3), 0x685800, null, ItemCategory.EQUIPMENT, this);
-            boots = new GuiEquippedItem(mc.player.inventory.armorInventory.get(0), (int)itemsX, (int)itemsY+4+(itemHeight*4), 0x685800, null, ItemCategory.EQUIPMENT, this);
-            item1 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int)itemsY+5+(itemHeight*5),0x003213, null, ItemCategory.CONSUMABLE, this, "Items", 0x41F031);
-            item2 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(1), (int) itemsX, (int)itemsY+6+(itemHeight*6),0x003213, null, ItemCategory.CONSUMABLE, this);
-            item3 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(2), (int) itemsX, (int)itemsY+7+(itemHeight*7),0x003213, null, ItemCategory.CONSUMABLE, this);
-            item4 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(3), (int) itemsX, (int)itemsY+8+(itemHeight*8),0x003213, null, ItemCategory.CONSUMABLE, this);
-            item5 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(4), (int) itemsX, (int)itemsY+9+(itemHeight*9),0x003213, null, ItemCategory.CONSUMABLE, this);
+            offset = 1;
         }
+        helmet = new GuiEquippedItem(mc.player.inventory.armorInventory.get(3), (int)itemsX, (int)itemsY+offset+(itemHeight*offset++), 0x685800, null, ItemCategory.EQUIPMENT, this, "Armour", 0xFEF461);
+        chestplate = new GuiEquippedItem(mc.player.inventory.armorInventory.get(2), (int)itemsX, (int)itemsY+offset+(itemHeight*offset++), 0x685800, null, ItemCategory.EQUIPMENT, this);
+        leggings = new GuiEquippedItem(mc.player.inventory.armorInventory.get(1), (int)itemsX, (int)itemsY+offset+(itemHeight*offset++), 0x685800, null, ItemCategory.EQUIPMENT, this);
+        boots = new GuiEquippedItem(mc.player.inventory.armorInventory.get(0), (int)itemsX, (int)itemsY+offset+(itemHeight*offset++), 0x685800, null, ItemCategory.EQUIPMENT, this);
+        item1 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int)itemsY+offset+(itemHeight*offset++),0x003213, new GuiItems(0, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this, "Items", 0x41F031);
+        item2 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(1), (int) itemsX, (int)itemsY+offset+(itemHeight*offset++),0x003213, new GuiItems(1, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this);
+        item3 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(2), (int) itemsX, (int)itemsY+offset+(itemHeight*offset++),0x003213, new GuiItems(2, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this);
+        item4 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(3), (int) itemsX, (int)itemsY+offset+(itemHeight*offset++),0x003213, new GuiItems(3, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this);
+        item5 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(4), (int) itemsX, (int)itemsY+offset+(itemHeight*offset++),0x003213, new GuiItems(4, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this);
+        
         updateButtons();
     }
 
@@ -145,6 +138,11 @@ public class GuiMenu_Items_Player extends GuiScreen {
             Final.mousePressed(mc, mouseX, mouseY);
         }
         item1.mousePressed(mc, mouseX, mouseY);
+        item2.mousePressed(mc, mouseX, mouseY);
+        item3.mousePressed(mc, mouseX, mouseY);
+        item4.mousePressed(mc, mouseX, mouseY);
+        item5.mousePressed(mc, mouseX, mouseY);
+
         super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 }

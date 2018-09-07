@@ -86,6 +86,7 @@ public class GuiEquippedItem extends GuiButton {
 				GlStateManager.color(col.getRed() / 128F, col.getGreen() / 128F, col.getBlue() / 128F, 1);
 				GlStateManager.translate(x + 0.6F, y, 0);
 				GlStateManager.scale(0.5F, 0.5F, 1);
+				//Gradient background
 				for (int i = 0; i < height * 2; i++) {
 					GlStateManager.pushMatrix();
 					{
