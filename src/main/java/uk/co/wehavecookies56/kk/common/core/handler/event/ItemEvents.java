@@ -64,8 +64,10 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SyncKeybladeData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMagicData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncMunnyData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncOrgXIIIData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncTutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.server.HpOrbPickup;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MunnyPickup;
+import uk.co.wehavecookies56.kk.common.network.packet.server.TutorialsPacket;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 /**
@@ -148,9 +150,12 @@ public class ItemEvents {
 				}
 			}
 		} else if (event.getItem().getItem().getItem() instanceof ItemSpellOrb) {
-			PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_MAGIC_1), (EntityPlayerMP) event.getEntityPlayer());
+			//PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_MAGIC_1), (EntityPlayerMP) event.getEntityPlayer());
+			//event.getEntityPlayer().getCapability(ModCapabilities.TUTORIALS, null).setKnownTutorial(Tutorials.getTutorialById(Tutorials.TUTORIAL_MAGIC_1).getRoot().getTutorialID(), true);
+			//PacketDispatcher.sendTo(new SyncTutorials(event.getEntityPlayer().getCapability(ModCapabilities.TUTORIALS, null)), (EntityPlayerMP) event.getEntityPlayer());
+			PacketDispatcher.sendToServer(new TutorialsPacket(Tutorials.getTutorialById(Tutorials.TUTORIAL_MAGIC_1).getRoot().getTutorialID()));
 		} else if (event.getItem().getItem().getItem() instanceof ItemDriveForm) {
-			PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_DRIVE_1), (EntityPlayerMP) event.getEntityPlayer());
+			PacketDispatcher.sendToServer(new TutorialsPacket(Tutorials.getTutorialById(Tutorials.TUTORIAL_DRIVE_1).getRoot().getTutorialID()));
 		}
 
 	}

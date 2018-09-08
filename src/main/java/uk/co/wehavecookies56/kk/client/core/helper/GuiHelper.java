@@ -88,19 +88,10 @@ public class GuiHelper {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static void openTutorial(int num) {
-		if(MainConfig.client.tutorialsPopup) { //If pop up you read it
-			if (Minecraft.getMinecraft().player != null) {
-				if (Minecraft.getMinecraft().player.hasCapability(ModCapabilities.TUTORIALS, null)) {
-					if (!Minecraft.getMinecraft().player.getCapability(ModCapabilities.TUTORIALS, null).getKnownTutorial(num)) {
-						Minecraft.getMinecraft().displayGuiScreen(new GuiTutorial(num));
-					}
-				}
-			}
-		} else { //If does not pop up should save as known tutorial
-			Tutorial tutorial = Tutorials.getTutorialById(num);
-			PacketDispatcher.sendToServer(new TutorialsPacket(tutorial.getRoot().getTutorialID()));
-		}
+	public static void learnTutorial(int num) {
+		Tutorial tutorial = Tutorials.getTutorialById(num);
+		PacketDispatcher.sendToServer(new TutorialsPacket(tutorial.getRoot().getTutorialID()));
+		
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -108,7 +99,7 @@ public class GuiHelper {
 		if (b)
 			Minecraft.getMinecraft().displayGuiScreen(new GuiTutorial(num));
 		else{
-			openTutorial(num);
+			learnTutorial(num);
 		}
 	}
 

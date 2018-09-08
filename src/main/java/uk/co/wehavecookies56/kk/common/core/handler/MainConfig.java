@@ -82,9 +82,9 @@ public class MainConfig {
 		public HUD hud = new HUD();
 		public Sound sound = new Sound();
 
-		@Config.Name("Tutorials pop up")
-		@Config.Comment("Should tutorials pop up when you unlock them? Might leave you vulnerable in servers.")
-		public boolean tutorialsPopup = true;
+		//@Config.Name("Tutorials pop up")
+		//@Config.Comment("Should tutorials pop up when you unlock them? Might leave you vulnerable in servers.")
+		//public boolean tutorialsPopup = true;
 
 		public class HUD {
 
