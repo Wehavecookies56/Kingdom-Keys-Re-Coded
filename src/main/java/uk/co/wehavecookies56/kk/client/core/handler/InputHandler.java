@@ -479,7 +479,6 @@ public class InputHandler {
 	}
 
 	private void commandAction() {
-		boolean hold = true;
 		Minecraft mc = Minecraft.getMinecraft();
 		EntityPlayer player = mc.player;
 
@@ -487,7 +486,7 @@ public class InputHandler {
 		IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 
 		if (player.motionX != 0 && player.motionZ != 0) { // If player is moving do dodge roll / quick run
-			if (hold) {
+			if (player.isSprinting()) {
 				if (ABILITIES.getEquippedAbility(ModAbilities.quickRun) || DRIVE.getActiveDriveName().equals(Strings.Form_Wisdom)) {
 					float yaw = player.rotationYaw;
 					float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
@@ -499,12 +498,9 @@ public class InputHandler {
 					// Wisdom Form
 					if (DRIVE.getActiveDriveName().equals(Strings.Form_Wisdom)) {
 						power = Constants.WISDOM_QR[wisdomLevel];
-
 						if (!player.onGround)
 							player.addVelocity(motionX * power / 2, 0, motionZ * power / 2);
-
-						// Base
-					} else if (!DRIVE.getInDrive()) {
+					} else if (!DRIVE.getInDrive()) { //Base
 						if (wisdomLevel > 2) {
 							power = Constants.WISDOM_QR[wisdomLevel - 2];
 						}
@@ -520,7 +516,7 @@ public class InputHandler {
 					double power = 0;
 					if (DRIVE.getActiveDriveName().equals(Strings.Form_Limit)) {
 						power = Constants.LIMIT_DR[limitLevel];
-					} else if (!DRIVE.getInDrive()) {
+					} else if (!DRIVE.getInDrive()) {//Base
 						if (limitLevel > 2) {
 							power = Constants.LIMIT_DR[limitLevel - 2];
 						}

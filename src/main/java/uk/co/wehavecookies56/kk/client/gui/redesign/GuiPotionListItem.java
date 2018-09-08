@@ -103,31 +103,41 @@ public class GuiPotionListItem extends GuiButton {
 				float strPosY = parent.height * 0.5185F;
 				float strNumPosX = parent.width * 0.7473F;
 				float magPosY = parent.height * 0.5657F;
-				//String strengthStr = String.valueOf(((int) item.getKeyblade().getStrength()));
-				//String magicStr = String.valueOf(((int) item.getKeyblade().getMagic()));
-				/*int strength = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + ((int) itemgetStrength());
-				int magic = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() + ((int) item.getKeyblade().getMagic());
-				String openBracketStr = " [  ";
-				String openBracketMag = " [  ";
-				String totalStr = String.valueOf(strength);
-				String totalMag = String.valueOf(magic);
-				if (totalStr.length() == 1) {
-					openBracketStr += " ";
-				}
-				if (totalMag.length() == 1) {
-					openBracketMag += " ";
-				}
-				drawString(mc.fontRenderer, "Strength", (int) strPosX, (int) strPosY, 0xEE8603);
-				drawString(mc.fontRenderer, strengthStr, (int) strNumPosX, (int) strPosY, 0xFFFFFF);
-				drawString(mc.fontRenderer, openBracketStr, (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr), (int) strPosY, 0xBF6004);
-				drawString(mc.fontRenderer, String.valueOf(strength), (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr), (int) strPosY, 0xFBEA21);
-				drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr) + mc.fontRenderer.getStringWidth(String.valueOf(strength)), (int) strPosY, 0xBF6004);
-				drawString(mc.fontRenderer, "Magic", (int) strPosX, (int) magPosY, 0xEE8603);
-				drawString(mc.fontRenderer, magicStr, (int) strNumPosX, (int) magPosY, 0xFFFFFF);
-				drawString(mc.fontRenderer, openBracketMag, (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr), (int) magPosY, 0xBF6004);
-				drawString(mc.fontRenderer, String.valueOf(magic), (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag), (int) magPosY, 0xFBEA21);
-				drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag) + mc.fontRenderer.getStringWidth(String.valueOf(magic)), (int) magPosY, 0xBF6004);
-				*/
+				// String strengthStr = String.valueOf(((int)
+				// item.getKeyblade().getStrength()));
+				// String magicStr = String.valueOf(((int) item.getKeyblade().getMagic()));
+				/*
+				 * int strength = mc.player.getCapability(ModCapabilities.PLAYER_STATS,
+				 * null).getStrength() + ((int) itemgetStrength()); int magic =
+				 * mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() +
+				 * ((int) item.getKeyblade().getMagic()); String openBracketStr = " [  "; String
+				 * openBracketMag = " [  "; String totalStr = String.valueOf(strength); String
+				 * totalMag = String.valueOf(magic); if (totalStr.length() == 1) {
+				 * openBracketStr += " "; } if (totalMag.length() == 1) { openBracketMag += " ";
+				 * } drawString(mc.fontRenderer, "Strength", (int) strPosX, (int) strPosY,
+				 * 0xEE8603); drawString(mc.fontRenderer, strengthStr, (int) strNumPosX, (int)
+				 * strPosY, 0xFFFFFF); drawString(mc.fontRenderer, openBracketStr, (int)
+				 * strNumPosX + mc.fontRenderer.getStringWidth(strengthStr), (int) strPosY,
+				 * 0xBF6004); drawString(mc.fontRenderer, String.valueOf(strength), (int)
+				 * strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) +
+				 * mc.fontRenderer.getStringWidth(openBracketStr), (int) strPosY, 0xFBEA21);
+				 * drawString(mc.fontRenderer, " ]", (int) strNumPosX +
+				 * mc.fontRenderer.getStringWidth(strengthStr) +
+				 * mc.fontRenderer.getStringWidth(openBracketStr) +
+				 * mc.fontRenderer.getStringWidth(String.valueOf(strength)), (int) strPosY,
+				 * 0xBF6004); drawString(mc.fontRenderer, "Magic", (int) strPosX, (int) magPosY,
+				 * 0xEE8603); drawString(mc.fontRenderer, magicStr, (int) strNumPosX, (int)
+				 * magPosY, 0xFFFFFF); drawString(mc.fontRenderer, openBracketMag, (int)
+				 * strNumPosX + mc.fontRenderer.getStringWidth(magicStr), (int) magPosY,
+				 * 0xBF6004); drawString(mc.fontRenderer, String.valueOf(magic), (int)
+				 * strNumPosX + mc.fontRenderer.getStringWidth(magicStr) +
+				 * mc.fontRenderer.getStringWidth(openBracketMag), (int) magPosY, 0xFBEA21);
+				 * drawString(mc.fontRenderer, " ]", (int) strNumPosX +
+				 * mc.fontRenderer.getStringWidth(magicStr) +
+				 * mc.fontRenderer.getStringWidth(openBracketMag) +
+				 * mc.fontRenderer.getStringWidth(String.valueOf(magic)), (int) magPosY,
+				 * 0xBF6004);
+				 */
 				float tooltipPosX = parent.width * 0.3333F;
 				float tooltipPosY = parent.height * 0.8F;
 				mc.fontRenderer.drawSplitString(new ItemStack(item).getTooltip(mc.player, ITooltipFlag.TooltipFlags.ADVANCED).toString(), (int) tooltipPosX + 3, (int) tooltipPosY + 3, (int) (parent.width * 0.46875F), 0x43B5E9);
@@ -144,20 +154,16 @@ public class GuiPotionListItem extends GuiButton {
 				GlStateManager.translate(x + width + 2.1F, y, 0);
 				GlStateManager.scale(0.5F, 0.5F, 1);
 				drawTexturedModalRect(0, 0, 219, 34, 14, 28);
-				
+
 				for (int i = 0; i < (labelWidth * 2) - (17 + 14); i++) {
 					drawTexturedModalRect(14 + i, 0, 184, 34, 1, 28);
 				}
 				drawTexturedModalRect((labelWidth * 2) - 17, 0, 186, 34, 17, 28);
 			}
 			GlStateManager.popMatrix();
-			String label = "N/A";
-			/*if (item.getKeyblade() instanceof ItemKeyblade) {
-				ItemKeyblade itemRealKeyblade = (ItemKeyblade) item.getKeyblade();
-				label = (itemRealKeyblade.getAbility() != null) ? Utils.translateToLocal(itemRealKeyblade.getAbility().getName()): "N/A";
-			}
+			String label = "x" + stack.getCount();
 			float centerX = (labelWidth / 2) - (mc.fontRenderer.getStringWidth(label) / 2);
-			drawString(mc.fontRenderer, label, (int) (x + width + centerX), y + 3, labelColour);*/
+			drawString(mc.fontRenderer, label, (int) (x + width + centerX), y + 3, labelColour);
 		}
 	}
 

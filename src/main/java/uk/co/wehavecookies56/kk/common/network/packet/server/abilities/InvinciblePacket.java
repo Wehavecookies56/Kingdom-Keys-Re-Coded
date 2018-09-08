@@ -41,7 +41,6 @@ public class InvinciblePacket extends AbstractServerMessage<InvinciblePacket> {
 		ABILITIES.setInvincible(true);
 		ABILITIES.setInvTicks(ticks);
 		
-
 		if (!world.isRemote) {
 			PacketDispatcher.sendTo(new SyncAbilitiesData(ABILITIES), (EntityPlayerMP) player);
 		}
