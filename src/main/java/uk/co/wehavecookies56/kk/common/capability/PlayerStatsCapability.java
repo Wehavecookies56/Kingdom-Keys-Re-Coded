@@ -91,6 +91,7 @@ public class PlayerStatsCapability {
         
         void setRechargeSpeed(double amount);
         double getRechargeSpeed();
+        void setPotionsInventory(ItemStackHandler handler);
     }
 
     public static class Storage implements IStorage<IPlayerStats> {
@@ -148,8 +149,6 @@ public class PlayerStatsCapability {
     }
 
     public static class Default implements IPlayerStats {
-        
-
         private int level = 1;
         private int maxLevel = 100;
         private int experience = 0;
@@ -178,7 +177,7 @@ public class PlayerStatsCapability {
 
         private String choice1="", choice2="";
 
-        private final ItemStackHandler inventoryPotions = new ItemStackHandler(InventoryPotionsMenu.INV_SIZE);
+        private ItemStackHandler inventoryPotions = new ItemStackHandler(InventoryPotionsMenu.INV_SIZE);
 
         @Override
         public boolean enderDragonDefeated() {
@@ -820,5 +819,10 @@ public class PlayerStatsCapability {
 		public double getRechargeSpeed() {
 			return rechargeSpeed;
 		}
+
+		@Override
+        public void setPotionsInventory(ItemStackHandler handler) {
+            inventoryPotions = handler;
+        }
     }
 }

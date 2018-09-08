@@ -105,6 +105,7 @@ import uk.co.wehavecookies56.kk.common.capability.SynthesisMaterialCapability;
 import uk.co.wehavecookies56.kk.common.capability.SynthesisRecipeCapability;
 import uk.co.wehavecookies56.kk.common.capability.TutorialsCapability.ITutorials;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
+import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
@@ -459,6 +460,15 @@ public class EntityEvents {
 				ItemStackHandler oldInv = event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
 				event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setInventory(new ItemStackHandler(InventoryKeychain.INV_SIZE));
 				ItemStackHandler newInv = event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
+				for (int i = 0; i < oldInv.getSlots(); i++) {
+					newInv.setStackInSlot(i, oldInv.getStackInSlot(i));
+				}
+			}
+			
+			if (event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu().getSlots() != InventoryPotionsMenu.INV_SIZE) {
+				ItemStackHandler oldInv = event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
+				event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).setPotionsInventory(new ItemStackHandler(InventoryPotionsMenu.INV_SIZE));
+				ItemStackHandler newInv = event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
 				for (int i = 0; i < oldInv.getSlots(); i++) {
 					newInv.setStackInSlot(i, oldInv.getStackInSlot(i));
 				}

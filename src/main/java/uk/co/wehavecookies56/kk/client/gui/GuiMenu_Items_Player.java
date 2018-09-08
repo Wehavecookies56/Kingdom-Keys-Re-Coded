@@ -31,7 +31,7 @@ public class GuiMenu_Items_Player extends GuiScreen {
 	GuiElementBox detailsBox;
 	GuiEquippedItem weapon, valor, master, Final, helmet, chestplate, leggings, boots;
 	GuiEquippedItem equippedAccessories[] = new GuiEquippedItem[4];
-	GuiEquippedItem equippedItems[] = new GuiEquippedItem[5];
+	GuiEquippedItem equippedItems[] = new GuiEquippedItem[8];
 
 	public GuiMenu_Items_Player() {
 		background = new GuiMenu_Bars(Strings.Gui_Menu_Items_Title);
