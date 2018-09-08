@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
+import uk.co.wehavecookies56.kk.api.menu.IItemCategory;
+import uk.co.wehavecookies56.kk.api.menu.ItemCategory;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
@@ -16,7 +18,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.GiveItemInSlot;
 import uk.co.wehavecookies56.kk.common.network.packet.server.PotionConsume;
 import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlotAndGiveEffect;
 
-public abstract class ItemKKPotion extends ItemFood {
+public abstract class ItemKKPotion extends ItemFood implements IItemCategory{
 
     String potionType, name;
 
@@ -126,28 +128,6 @@ public abstract class ItemKKPotion extends ItemFood {
     @Override
     public void onFoodEaten (ItemStack item, World world, EntityPlayer player) {
         potionEffect(player);
-
-        /*
-         * if (potionType == "hp") player.heal(player.getMaxHealth() / 3); else
-         * if (potionType == "mp")
-         * ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp(
-         * ) / 3); else if (potionType == "elixir") {
-         * ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp(
-         * ) / 3); player.heal(player.getMaxHealth() / 3); }
-         *
-         * if (potionType == "hp2") player.heal(player.getMaxHealth() * 2 / 3);
-         * else if (potionType == "mp2")
-         * ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp(
-         * ) * 2 / 3); else if (potionType == "elixir2") {
-         * ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp(
-         * ) * 2 / 3); player.heal(player.getMaxHealth() * 2 / 3); } else if
-         * (potionType == "hp3") player.heal(player.getMaxHealth()); else if
-         * (potionType == "mp3")
-         * ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp(
-         * )); else if (potionType == "elixir3") {
-         * ExtendedPlayer.get(player).addMp(ExtendedPlayer.get(player).getMaxMp(
-         * )); player.heal(player.getMaxHealth()); }
-         */
         if (!player.capabilities.isCreativeMode) 
         	PacketDispatcher.sendToServer(new GiveItemInSlot(new ItemStack(ModItems.EmptyBottle), player.inventory.getFirstEmptyStack(),false));
     }
@@ -171,4 +151,11 @@ public abstract class ItemKKPotion extends ItemFood {
             PacketDispatcher.sendToServer(new RemoveItemInSlotAndGiveEffect("potion", slot, true));
         }
     }
+    
+
+	@Override
+	public ItemCategory getCategory() {
+		return ItemCategory.CONSUMABLE;
+	}
+
 }

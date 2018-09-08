@@ -6,9 +6,11 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import uk.co.wehavecookies56.kk.api.menu.IItemCategory;
+import uk.co.wehavecookies56.kk.api.menu.ItemCategory;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 
-public class ItemOrganizationRobe extends ItemArmor /*implements ISpecialArmor*/ {
+public class ItemOrganizationRobe extends ItemArmor implements IItemCategory {
 
 	String armorName;
     public ItemOrganizationRobe (ArmorMaterial material, int renderIndex, EntityEquipmentSlot slot, int armorType, String name) {
@@ -37,5 +39,10 @@ public class ItemOrganizationRobe extends ItemArmor /*implements ISpecialArmor*/
     public boolean getIsRepairable (ItemStack armor, ItemStack stack) {
         return stack.getItem() == ModItems.DarkLeather;
     }
+
+	@Override
+	public ItemCategory getCategory() {
+		return ItemCategory.EQUIPMENT;
+	}
 
 }

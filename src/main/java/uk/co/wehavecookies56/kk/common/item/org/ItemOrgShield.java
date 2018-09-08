@@ -9,11 +9,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import uk.co.wehavecookies56.kk.api.menu.IItemCategory;
+import uk.co.wehavecookies56.kk.api.menu.ItemCategory;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
-public class ItemOrgShield extends ItemShield implements IOrgWeapon{
+public class ItemOrgShield extends ItemShield implements IOrgWeapon, IItemCategory{
 
     double magic, strength;
     String description;
@@ -86,4 +88,9 @@ public class ItemOrgShield extends ItemShield implements IOrgWeapon{
     public String getDescription() {
         return description;
     }
+
+	@Override
+	public ItemCategory getCategory() {
+		return ItemCategory.TOOL;
+	}
 }

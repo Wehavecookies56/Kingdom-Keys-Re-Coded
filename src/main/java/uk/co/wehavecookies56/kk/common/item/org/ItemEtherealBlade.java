@@ -10,7 +10,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 import uk.co.wehavecookies56.kk.common.util.Utils.OrgMember;
 
-public class ItemEtherealBlade extends ItemOrgWeapon implements IOrgWeapon{
+public class ItemEtherealBlade extends ItemOrgWeapon{
 
     public ItemEtherealBlade (String name, double[] stats)  {
         super(name, stats);

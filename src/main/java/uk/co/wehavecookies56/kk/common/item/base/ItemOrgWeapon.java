@@ -7,11 +7,13 @@ import net.minecraft.item.ItemSword;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import uk.co.wehavecookies56.kk.api.menu.IItemCategory;
+import uk.co.wehavecookies56.kk.api.menu.ItemCategory;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
-public class ItemOrgWeapon extends ItemSword implements IOrgWeapon {
+public class ItemOrgWeapon extends ItemSword implements IOrgWeapon, IItemCategory {
     double magic, strength;
     public String description;
     double speed = 1.0;
@@ -77,4 +79,9 @@ public class ItemOrgWeapon extends ItemSword implements IOrgWeapon {
     public Item getItem() {
         return this;
     }
+
+	@Override
+	public ItemCategory getCategory() {
+		return ItemCategory.TOOL;
+	}
 }

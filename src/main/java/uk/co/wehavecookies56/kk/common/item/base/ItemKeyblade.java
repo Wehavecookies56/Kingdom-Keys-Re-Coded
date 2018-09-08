@@ -29,13 +29,15 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import uk.co.wehavecookies56.kk.api.abilities.Ability;
+import uk.co.wehavecookies56.kk.api.menu.IItemCategory;
+import uk.co.wehavecookies56.kk.api.menu.ItemCategory;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.AttackEntity;
 import uk.co.wehavecookies56.kk.common.util.IExtendedReach;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
-public class ItemKeyblade extends ItemSword implements IExtendedReach {
+public class ItemKeyblade extends ItemSword implements IExtendedReach, IItemCategory {
 	double magic, strength;
 	public String description;
 	double speed = 1.0;
@@ -196,6 +198,11 @@ public class ItemKeyblade extends ItemSword implements IExtendedReach {
 	public float getReach()
 	{
 		return this.reach;
+	}
+
+	@Override
+	public ItemCategory getCategory() {
+		return ItemCategory.TOOL;
 	}
 
 }

@@ -29,7 +29,9 @@ public class GuiMenu_Items_Player extends GuiScreen {
 	GuiMenu_Bars background;
 	GuiElementBox listBox;
 	GuiElementBox detailsBox;
-	GuiEquippedItem weapon, valor, master, Final, helmet, chestplate, leggings, boots, accessory1, accessory2, accessory3, accessory4, item1, item2, item3, item4, item5;
+	GuiEquippedItem weapon, valor, master, Final, helmet, chestplate, leggings, boots;
+	GuiEquippedItem equippedAccessories[] = new GuiEquippedItem[4];
+	GuiEquippedItem equippedItems[] = new GuiEquippedItem[5];
 
 	public GuiMenu_Items_Player() {
 		background = new GuiMenu_Bars(Strings.Gui_Menu_Items_Title);
@@ -91,12 +93,18 @@ public class GuiMenu_Items_Player extends GuiScreen {
 		chestplate = new GuiEquippedItem(mc.player.inventory.armorInventory.get(2), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, null, ItemCategory.EQUIPMENT, this);
 		leggings = new GuiEquippedItem(mc.player.inventory.armorInventory.get(1), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, null, ItemCategory.EQUIPMENT, this);
 		boots = new GuiEquippedItem(mc.player.inventory.armorInventory.get(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, null, ItemCategory.EQUIPMENT, this);
-		item1 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x003213, new GuiItems(0, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this, "Items", 0x41F031);
-		item2 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(1), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x003213, new GuiItems(1, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this);
-		item3 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(2), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x003213, new GuiItems(2, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this);
-		item4 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(3), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x003213, new GuiItems(3, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this);
-		item5 = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(4), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x003213, new GuiItems(4, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this);
 
+		// First one has a label so different constructor
+		equippedAccessories[0] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x041E68, new GuiItems(0, 0x0000AA, 0x041E68), ItemCategory.CONSUMABLE, this, "Accessories", 0x58B2E5);
+		for (int i = 1; i < equippedAccessories.length; i++) {
+			equippedAccessories[i] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x041E68, new GuiItems(i, 0x0000AA, 0x041E68), ItemCategory.CONSUMABLE, this);
+		}
+
+		// First one has a label so different constructor
+		equippedItems[0] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x003213, new GuiItems(0, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this, "Items", 0x41F031);
+		for (int i = 1; i < equippedItems.length; i++) {
+			equippedItems[i] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x003213, new GuiItems(i, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this);
+		}
 		updateButtons();
 	}
 
@@ -108,40 +116,49 @@ public class GuiMenu_Items_Player extends GuiScreen {
 		listBox.draw();
 		detailsBox.draw();
 		GlStateManager.pushMatrix();
-		RenderHelper.enableStandardItemLighting();
-		RenderHelper.enableGUIStandardItemLighting();
-		weapon.drawButton(mc, mouseX, mouseY, partialTicks);
-		if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
-			valor.drawButton(mc, mouseX, mouseY, partialTicks);
-			master.drawButton(mc, mouseX, mouseY, partialTicks);
-			Final.drawButton(mc, mouseX, mouseY, partialTicks);
+		{
+			RenderHelper.enableStandardItemLighting();
+			RenderHelper.enableGUIStandardItemLighting();
+
+			weapon.drawButton(mc, mouseX, mouseY, partialTicks);
+			if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
+				valor.drawButton(mc, mouseX, mouseY, partialTicks);
+				master.drawButton(mc, mouseX, mouseY, partialTicks);
+				Final.drawButton(mc, mouseX, mouseY, partialTicks);
+			}
+			helmet.drawButton(mc, mouseX, mouseY, partialTicks);
+			chestplate.drawButton(mc, mouseX, mouseY, partialTicks);
+			leggings.drawButton(mc, mouseX, mouseY, partialTicks);
+			boots.drawButton(mc, mouseX, mouseY, partialTicks);
+			
+			for (int i = 0; i < equippedAccessories.length; i++) {
+				equippedAccessories[i].drawButton(mc, mouseX, mouseY, partialTicks);
+			}
+			
+			for (int i = 0; i < equippedItems.length; i++) {
+				equippedItems[i].drawButton(mc, mouseX, mouseY, partialTicks);
+			}
 		}
-		helmet.drawButton(mc, mouseX, mouseY, partialTicks);
-		chestplate.drawButton(mc, mouseX, mouseY, partialTicks);
-		leggings.drawButton(mc, mouseX, mouseY, partialTicks);
-		boots.drawButton(mc, mouseX, mouseY, partialTicks);
-		item1.drawButton(mc, mouseX, mouseY, partialTicks);
-		item2.drawButton(mc, mouseX, mouseY, partialTicks);
-		item3.drawButton(mc, mouseX, mouseY, partialTicks);
-		item4.drawButton(mc, mouseX, mouseY, partialTicks);
-		item5.drawButton(mc, mouseX, mouseY, partialTicks);
 		GlStateManager.popMatrix();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 
 	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
-		weapon.mousePressed(mc, mouseX, mouseY);
-		if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
-			valor.mousePressed(mc, mouseX, mouseY);
-			master.mousePressed(mc, mouseX, mouseY);
-			Final.mousePressed(mc, mouseX, mouseY);
+		if (mouseButton == 0) {
+			weapon.mousePressed(mc, mouseX, mouseY);
+			if (mc.player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
+				valor.mousePressed(mc, mouseX, mouseY);
+				master.mousePressed(mc, mouseX, mouseY);
+				Final.mousePressed(mc, mouseX, mouseY);
+			}
+
+			for (int i = 0; i < equippedItems.length; i++) {
+				equippedItems[i].mousePressed(mc, mouseX, mouseY);
+			}
+		} else {
+			GuiHelper.openMenu_Items();
 		}
-		item1.mousePressed(mc, mouseX, mouseY);
-		item2.mousePressed(mc, mouseX, mouseY);
-		item3.mousePressed(mc, mouseX, mouseY);
-		item4.mousePressed(mc, mouseX, mouseY);
-		item5.mousePressed(mc, mouseX, mouseY);
 
 		super.mouseClicked(mouseX, mouseY, mouseButton);
 	}

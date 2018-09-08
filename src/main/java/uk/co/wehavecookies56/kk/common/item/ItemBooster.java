@@ -14,13 +14,15 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.api.menu.IItemCategory;
+import uk.co.wehavecookies56.kk.api.menu.ItemCategory;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.RemoveItemInSlotAndGiveEffect;
 
-public class ItemBooster extends ItemKKBase {
+public class ItemBooster extends ItemKKBase implements IItemCategory{
 	public ItemBooster(String name) {
 		super(name);
 		setMaxStackSize(1);
@@ -63,5 +65,10 @@ public class ItemBooster extends ItemKKBase {
 		}
 
 		super.addInformation(stack, worldIn, tooltip, flagIn);
+	}
+
+	@Override
+	public ItemCategory getCategory() {
+		return ItemCategory.CONSUMABLE;
 	}
 }

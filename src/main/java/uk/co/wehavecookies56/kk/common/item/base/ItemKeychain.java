@@ -6,9 +6,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import uk.co.wehavecookies56.kk.api.menu.IItemCategory;
+import uk.co.wehavecookies56.kk.api.menu.ItemCategory;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 
-public class ItemKeychain extends ItemSword {
+public class ItemKeychain extends ItemSword implements IItemCategory{
 
     public ItemKeychain(String name) {
         super(ModItems.KEYCHAIN);
@@ -47,4 +49,9 @@ public class ItemKeychain extends ItemSword {
         stack.damageItem(0, entityLiving);
         return true;
     }
+
+	@Override
+	public ItemCategory getCategory() {
+		return ItemCategory.TOOL;
+	}
 }
