@@ -1234,25 +1234,6 @@ public class EntityEvents {
 		}
 	}
 
-	private void quickRun(EntityPlayer player) {
-		/*
-		 * int wisdomLevel = player.getCapability(ModCapabilities.DRIVE_STATE,
-		 * null).getDriveLevel(Strings.Form_Wisdom);
-		 * 
-		 * if (wisdomLevel > 2) { float yaw = player.rotationYaw; float motionX =
-		 * -MathHelper.sin(yaw / 180.0f * (float) Math.PI); float motionZ =
-		 * MathHelper.cos(yaw / 180.0f * (float) Math.PI);
-		 * 
-		 * double power = Constants.WISDOM_QR[wisdomLevel - 2];
-		 * 
-		 * boolean j = false; if (player.world.isRemote) { j =
-		 * Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown(); }
-		 * 
-		 * if (j) { if (player.motionY > 0 && player.isSneaking()) {
-		 * player.addVelocity(motionX * power, 0 * power, motionZ * power); } } }
-		 */
-	}
-
 	int jumps = 0;
 
 	private void aerialDodge(EntityPlayer player) {

@@ -73,8 +73,19 @@ public class GuiMenu_Bars extends GuiScreen {
 	public void drawBiomeDim() {
 		GlStateManager.pushMatrix();
 		{
-			drawString(mc.fontRenderer, mc.player.world.provider.getDimensionType().getName().toUpperCase(), width - mc.fontRenderer.getStringWidth(mc.player.world.provider.getDimensionType().getName()) - 5, 5, 0xF58B33);
-			drawString(mc.fontRenderer, mc.player.world.getBiome(mc.player.getPosition()).getBiomeName(), width - mc.fontRenderer.getStringWidth(mc.player.world.getBiome(mc.player.getPosition()).getBiomeName()) - 5, 20, 0xF58B33);
+            
+			String text = mc.player.world.provider.getDimensionType().getName().toUpperCase()+ " | "+mc.player.world.getBiome(mc.player.getPosition()).getBiomeName();
+			drawString(mc.fontRenderer, text, width - mc.fontRenderer.getStringWidth(text) - 5, 5, 0xF58B33);
+	        
+			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/menu/mouse_icons.png"));
+            GlStateManager.color(1, 1, 1,1);
+			text = "Accept";
+            drawTexturedModalRect( width - mc.fontRenderer.getStringWidth(text)-25, 15, 0, 35, 15, 20);
+            drawTexturedModalRect( width - mc.fontRenderer.getStringWidth(text)-25, 36, 14, 35, 15, 20);
+
+            drawString(mc.fontRenderer, text, width - mc.fontRenderer.getStringWidth(text) - 5, 20, 0xF58B33);
+            drawString(mc.fontRenderer, "Back", width - mc.fontRenderer.getStringWidth(text) - 5, 40, 0xF58B33);
+
 		}
 		GlStateManager.popMatrix();
 	}
