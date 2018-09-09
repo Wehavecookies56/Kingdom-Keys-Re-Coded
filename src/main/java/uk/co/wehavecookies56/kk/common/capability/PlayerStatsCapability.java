@@ -16,6 +16,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
+import uk.co.wehavecookies56.kk.common.container.inventory.InventoryEquipmentMenu;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -82,6 +83,7 @@ public class PlayerStatsCapability {
         void setChoice2(String choice);
 
         ItemStackHandler getInventoryPotionsMenu();
+        ItemStackHandler getInventoryEquipmentMenu();
 
         boolean getHudMode();
         void setHudMode(boolean mode);
@@ -92,6 +94,7 @@ public class PlayerStatsCapability {
         void setRechargeSpeed(double amount);
         double getRechargeSpeed();
         void setPotionsInventory(ItemStackHandler handler);
+        void setEquipmentInventory(ItemStackHandler handler);
     }
 
     public static class Storage implements IStorage<IPlayerStats> {
@@ -178,6 +181,7 @@ public class PlayerStatsCapability {
         private String choice1="", choice2="";
 
         private ItemStackHandler inventoryPotions = new ItemStackHandler(InventoryPotionsMenu.INV_SIZE);
+        private ItemStackHandler inventoryEquipment = new ItemStackHandler(InventoryEquipmentMenu.INV_SIZE);
 
         @Override
         public boolean enderDragonDefeated() {
@@ -823,6 +827,16 @@ public class PlayerStatsCapability {
 		@Override
         public void setPotionsInventory(ItemStackHandler handler) {
             inventoryPotions = handler;
+        }
+
+		@Override
+		public ItemStackHandler getInventoryEquipmentMenu() {
+			return inventoryEquipment;
+		}
+		
+		@Override
+        public void setEquipmentInventory(ItemStackHandler handler) {
+            inventoryEquipment = handler;
         }
     }
 }

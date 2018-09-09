@@ -1209,7 +1209,9 @@ public class Strings {
     SynthesisBagLInventory = "container.synthesisbaglinventory",
     SpellsInventory = "container.spellsinventory",
     DriveInventory = "container.driveinventory",
-    PotionsInventory = "container.potionsinventory"
+    PotionsInventory = "container.potionsinventory",
+    EquipmentInventory = "container.equipmentinventory",
+    AccessoriesInventory = "container.accessoriesinventory"
     ;
 
     //Journal

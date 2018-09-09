@@ -29,7 +29,8 @@ public class GuiMenu_Items_Player extends GuiScreen {
 	GuiMenu_Bars background;
 	GuiElementBox listBox;
 	GuiElementBox detailsBox;
-	GuiEquippedItem weapon, valor, master, Final, helmet, chestplate, leggings, boots;
+	GuiEquippedItem weapon, valor, master, Final;// helmet, chestplate, leggings, boots;
+	GuiEquippedItem equippedArmor[] = new GuiEquippedItem[6];
 	GuiEquippedItem equippedAccessories[] = new GuiEquippedItem[4];
 	GuiEquippedItem equippedItems[] = new GuiEquippedItem[8];
 
@@ -89,11 +90,18 @@ public class GuiMenu_Items_Player extends GuiScreen {
 			weapon = new GuiEquippedItem(new ItemStack(org.currentWeapon()), (int) itemsX, (int) itemsY, 0x3C0002, new GuiOrgWeapon(), ItemCategory.TOOL, this, "Weapon", 0xFE8185);
 			offset = 1;
 		}
-		helmet = new GuiEquippedItem(mc.player.inventory.armorInventory.get(3), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, null, ItemCategory.EQUIPMENT, this, "Armour", 0xFEF461);
-		chestplate = new GuiEquippedItem(mc.player.inventory.armorInventory.get(2), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, null, ItemCategory.EQUIPMENT, this);
-		leggings = new GuiEquippedItem(mc.player.inventory.armorInventory.get(1), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, null, ItemCategory.EQUIPMENT, this);
-		boots = new GuiEquippedItem(mc.player.inventory.armorInventory.get(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, null, ItemCategory.EQUIPMENT, this);
-
+		
+		//First one has label (Head slot: 3)
+		equippedArmor[3] = new GuiEquippedItem(mc.player.inventory.armorInventory.get(3), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, new GuiItems(0, 0x0000AA, 0x041E68), ItemCategory.EQUIPMENT, this, "Armor", 0xFEF461);
+		//Those here are the armor slots
+		for (int i = 2; i >= 0; i--) { //Has to be an inverted for so it displays the right order
+			equippedArmor[i] = new GuiEquippedItem(mc.player.inventory.armorInventory.get(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, new GuiItems(i, 0x0000AA, 0x041E68), ItemCategory.EQUIPMENT, this);
+		}
+		//From here on those will be armor items slot
+		for (int i = 4; i < equippedArmor.length; i++) {
+			equippedArmor[i] = new GuiEquippedItem(playerStats.getInventoryEquipmentMenu().getStackInSlot(i-4), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, null, ItemCategory.EQUIPMENT, this);
+		}
+		
 		// First one has a label so different constructor
 		equippedAccessories[0] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x041E68, new GuiItems(0, 0x0000AA, 0x041E68), ItemCategory.CONSUMABLE, this, "Accessories", 0x58B2E5);
 		for (int i = 1; i < equippedAccessories.length; i++) {
@@ -126,10 +134,9 @@ public class GuiMenu_Items_Player extends GuiScreen {
 				master.drawButton(mc, mouseX, mouseY, partialTicks);
 				Final.drawButton(mc, mouseX, mouseY, partialTicks);
 			}
-			helmet.drawButton(mc, mouseX, mouseY, partialTicks);
-			chestplate.drawButton(mc, mouseX, mouseY, partialTicks);
-			leggings.drawButton(mc, mouseX, mouseY, partialTicks);
-			boots.drawButton(mc, mouseX, mouseY, partialTicks);
+			for (int i = 0; i < equippedArmor.length; i++) {
+				equippedArmor[i].drawButton(mc, mouseX, mouseY, partialTicks);
+			}
 			
 			for (int i = 0; i < equippedAccessories.length; i++) {
 				equippedAccessories[i].drawButton(mc, mouseX, mouseY, partialTicks);

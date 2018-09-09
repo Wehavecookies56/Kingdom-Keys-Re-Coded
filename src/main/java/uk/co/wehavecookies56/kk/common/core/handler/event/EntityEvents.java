@@ -81,7 +81,9 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.items.ItemStackHandler;
+import uk.co.wehavecookies56.kk.api.abilities.Ability;
 import uk.co.wehavecookies56.kk.api.abilities.AbilityEvent;
+import uk.co.wehavecookies56.kk.api.abilities.AbilityRegistry;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
@@ -476,6 +478,9 @@ public class EntityEvents {
 
 			if (event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getMaxAP() < 10) {
 				event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).setMaxAP(10);
+			}
+			if(!event.getEntity().getCapability(ModCapabilities.ABILITIES, null).getUnlockedAbility(ModAbilities.zeroEXP)){
+				event.getEntity().getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.zeroEXP);
 			}
 
 			PacketDispatcher.sendTo(new SyncHudData(event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null)), (EntityPlayerMP) event.getEntity());
