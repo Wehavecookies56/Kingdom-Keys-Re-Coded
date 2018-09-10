@@ -145,19 +145,19 @@ public class GuiMenu_Status extends GuiMenu_Bars {
 				form = Strings.Form_Valor;
 				break;
 			case STATS_WISDOM:
-				remainingExp = DRIVE.getDriveLevel(Strings.Form_Wisdom) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Wisdom)] - DRIVE.getDriveExp(Strings.Form_Wisdom);
+				remainingExp = DRIVE.getDriveLevel(Strings.Form_Wisdom) == 7 ? 0 : wisdomCosts[DRIVE.getDriveLevel(Strings.Form_Wisdom)] - DRIVE.getDriveExp(Strings.Form_Wisdom);
 				form = Strings.Form_Wisdom;
 				break;
 			case STATS_LIMIT:
-				remainingExp = DRIVE.getDriveLevel(Strings.Form_Limit) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Limit)] - DRIVE.getDriveExp(Strings.Form_Limit);
+				remainingExp = DRIVE.getDriveLevel(Strings.Form_Limit) == 7 ? 0 : limitCosts[DRIVE.getDriveLevel(Strings.Form_Limit)] - DRIVE.getDriveExp(Strings.Form_Limit);
 				form = Strings.Form_Limit;
 				break;
 			case STATS_MASTER:
-				remainingExp = DRIVE.getDriveLevel(Strings.Form_Master) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Master)] - DRIVE.getDriveExp(Strings.Form_Master);
+				remainingExp = DRIVE.getDriveLevel(Strings.Form_Master) == 7 ? 0 : masterCosts[DRIVE.getDriveLevel(Strings.Form_Master)] - DRIVE.getDriveExp(Strings.Form_Master);
 				form = Strings.Form_Master;
 				break;
 			case STATS_FINAL:
-				remainingExp = DRIVE.getDriveLevel(Strings.Form_Final) == 7 ? 0 : valorCosts[DRIVE.getDriveLevel(Strings.Form_Final)] - DRIVE.getDriveExp(Strings.Form_Final);
+				remainingExp = DRIVE.getDriveLevel(Strings.Form_Final) == 7 ? 0 : finalCosts[DRIVE.getDriveLevel(Strings.Form_Final)] - DRIVE.getDriveExp(Strings.Form_Final);
 				form = Strings.Form_Final;
 				break;
 			}

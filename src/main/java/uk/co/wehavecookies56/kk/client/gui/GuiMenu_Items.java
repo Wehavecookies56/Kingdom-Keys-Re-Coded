@@ -72,4 +72,12 @@ public class GuiMenu_Items extends GuiScreen {
         background.drawBiomeDim();
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
+    
+    @Override
+	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+		if (mouseButton == 1) {
+			GuiHelper.openMenu();
+		}
+		super.mouseClicked(mouseX, mouseY, mouseButton);
+	}
 }

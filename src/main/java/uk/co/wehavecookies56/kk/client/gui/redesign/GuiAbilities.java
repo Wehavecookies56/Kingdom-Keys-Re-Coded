@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -86,7 +87,7 @@ public class GuiAbilities extends GuiScreen {
 				button.enabled = false;
 			}
 			button.displayString = text;
-			
+
 			if (button.isHovered())
 				hoveredAbility = ABILITIES.getUnlockedAbilities().get(button.id);
 		}
@@ -103,37 +104,100 @@ public class GuiAbilities extends GuiScreen {
 
 		int ap = STATS.getConsumedAP();
 		int maxAP = STATS.getMaxAP();
-		mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/mpbar.png"));
+		mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/menu/menu_button.png"));
 
-		// Background
+		//Global
 		GL11.glPushMatrix();
 		{
-			GL11.glTranslatef((posX - 2) * scale, posY * scale, 0);
-			GL11.glScalef(barWidth, scale, 0);
-			drawTexturedModalRect(0, 0, 2, 22, 1, 7);
-		}
-		GL11.glPopMatrix();
+			GL11.glTranslatef((posX - 2) * scale - 20, posY * scale-10, 0);
+			
+			// Left
+			GL11.glPushMatrix();
+			{
+				GL11.glColor3f(1, 1, 1);
+				drawTexturedModalRect(0, 0, 143, 67, 7, 25);
+			}
+			GL11.glPopMatrix();
 
-		int requiredAP = (hoveredAbility != null) ? hoveredAbility.getApCost() : 0;		
-		
-		// Foreground
-		GL11.glPushMatrix();
-		{
-			int v = 12;
-			if(requiredAP > STATS.getMaxAP() - STATS.getConsumedAP() && hoveredAbility != null && !ABILITIES.getEquippedAbility(hoveredAbility))
-				v = 2;
-			int percent = ap * barWidth / maxAP;
-			GL11.glTranslatef((posX - 2) * scale, posY * scale, 0);
-			GL11.glScalef(percent, scale, 0);
-			drawTexturedModalRect(0, 0, 2, v, 1, 7);
-		}
-		GL11.glPopMatrix();
+			// Middle
+			GL11.glPushMatrix();
+			{
+				GL11.glColor3f(1, 1, 1);
+				for (int i = 0; i < barWidth; i++)
+					drawTexturedModalRect(7 + i, 0, 151, 67, 1, 25);
+			}
+			GL11.glPopMatrix();
+			// Right
+			GL11.glPushMatrix();
+			{
+				GL11.glColor3f(1, 1, 1);
+				drawTexturedModalRect(7 + barWidth, 0, 153, 67, 7, 25);
+			}
+			GL11.glPopMatrix();
 
-		GL11.glPushMatrix();
-		{
-			GL11.glTranslatef((posX - 2) * scale, posY * scale + 10, 0);
-			GL11.glScalef(scale, scale, 0);
-			drawString(mc.fontRenderer, "AP: " + ap + "/" + maxAP, 0, 0, 0xFFFFFF);
+			// Bar Background
+			GL11.glPushMatrix();
+			{
+				GL11.glColor3f(1, 1, 1);
+				for(int i=0;i<barWidth;i++)
+				drawTexturedModalRect(i+7, 17, 161, 67, 1, 25);
+			}
+			GL11.glPopMatrix();
+			
+			int requiredAP = (hoveredAbility != null) ? hoveredAbility.getApCost() : 0;
+			
+			if(ABILITIES.getEquippedAbility(hoveredAbility)) { //If hovering an equipped ability
+				requiredAP *= -1;
+
+				//Bar going to decrease (dark yellow section when hovering equipped ability)
+				GL11.glPushMatrix();
+				{					
+					int percent = (ap) * barWidth / maxAP;
+					GlStateManager.pushMatrix();
+					//GlStateManager.color(1, 1, 1,);
+					for(int i=0;i<percent;i++)
+						drawTexturedModalRect(i+7, 17, 165, 67, 1, 5);
+					GlStateManager.popMatrix();
+
+				}
+				GL11.glPopMatrix();
+			} else {
+				//Bar going to increase (blue section when hovering unequipped ability)
+				GL11.glPushMatrix();
+				{
+					int percent = (ap+requiredAP) * barWidth / maxAP;
+					GlStateManager.pushMatrix();
+					//GlStateManager.color(1, 1, 1,0.5F);
+					for(int i=0;i<percent;i++)
+						drawTexturedModalRect(i+7, 17, 167, 67, 1, 5);
+					GlStateManager.popMatrix();
+				}
+				GL11.glPopMatrix();
+			}
+			GlStateManager.color(1, 1, 1,1F);
+
+
+			// Foreground
+			GL11.glPushMatrix();
+			{
+				int percent=(ap) * barWidth / maxAP;
+				if(requiredAP < 0)
+					percent = (ap+requiredAP) * barWidth / maxAP;
+				
+				//System.out.println(ap);
+				for(int i=0;i<percent;i++)
+					drawTexturedModalRect(i+7, 17, 163, 67, 1, 5);
+			}
+			GL11.glPopMatrix();
+
+			//AP Text
+			GL11.glPushMatrix();
+			{
+				GL11.glScalef(scale*1.3F, scale, 0);
+				drawString(mc.fontRenderer, "AP: " + ap + "/" + maxAP, 16, 5, 0xFFFFFF);
+			}
+			GL11.glPopMatrix();
+
 		}
 		GL11.glPopMatrix();
 	}
@@ -162,7 +226,7 @@ public class GuiAbilities extends GuiScreen {
 
 		super.actionPerformed(button);
 	}
-	
+
 	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
 		if (mouseButton == 1) {
