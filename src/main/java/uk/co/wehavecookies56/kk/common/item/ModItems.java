@@ -490,7 +490,7 @@ public class ModItems {
             LadyLuck = new ItemRealKeyblade(Strings.LadyLuck, BalanceConfig.keyblades.ladyLuck[0], BalanceConfig.keyblades.ladyLuck[1], Strings.guard, 5F),
             LeasKeyblade = new ItemRealKeyblade(Strings.LeasKeyblade, BalanceConfig.keyblades.leasKeyblade[0], BalanceConfig.keyblades.leasKeyblade[1], Strings.guard, 5F),
             LeopardosForetellersKeyblade = new ItemRealKeyblade(Strings.LeopardosForetellersKeyblade, BalanceConfig.keyblades.leopardosForetellersKeyblade[0], BalanceConfig.keyblades.leopardosForetellersKeyblade[1], Strings.guard, 5F),
-            Leviathan = new ItemRealKeyblade(Strings.Leviathan, BalanceConfig.keyblades.leviathan[0], BalanceConfig.keyblades.leviathan[1]), Strings.guard, 5F,
+            Leviathan = new ItemRealKeyblade(Strings.Leviathan, BalanceConfig.keyblades.leviathan[0], BalanceConfig.keyblades.leviathan[1], Strings.guard, 5F),
             Lionheart = new ItemRealKeyblade(Strings.Lionheart, BalanceConfig.keyblades.lionheart[0], BalanceConfig.keyblades.lionheart[1], Strings.guard, 5F),
             LostMemory = new ItemRealKeyblade(Strings.LostMemory, BalanceConfig.keyblades.lostMemory[0], BalanceConfig.keyblades.lostMemory[1], Strings.guard, 5F),
             LunarEclipse = new ItemRealKeyblade(Strings.LunarEclipse, BalanceConfig.keyblades.lunarEclipse[0], BalanceConfig.keyblades.lunarEclipse[1], Strings.guard, 5F),
