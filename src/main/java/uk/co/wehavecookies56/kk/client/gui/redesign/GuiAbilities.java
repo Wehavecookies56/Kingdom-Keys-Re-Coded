@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.api.abilities.Ability;
 import uk.co.wehavecookies56.kk.api.abilities.AbilityEvent;
+import uk.co.wehavecookies56.kk.client.core.helper.GuiHelper;
 import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Bars;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
@@ -160,5 +161,13 @@ public class GuiAbilities extends GuiScreen {
 		PacketDispatcher.sendToServer(new EquipAbility(ability.getName()));
 
 		super.actionPerformed(button);
+	}
+	
+	@Override
+	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+		if (mouseButton == 1) {
+			GuiHelper.openMenu();
+		}
+		super.mouseClicked(mouseX, mouseY, mouseButton);
 	}
 }

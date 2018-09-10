@@ -80,11 +80,14 @@ public class GuiMenu_Bars extends GuiScreen {
 			mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/menu/mouse_icons.png"));
             GlStateManager.color(1, 1, 1,1);
 			text = "Accept";
-            drawTexturedModalRect( width - mc.fontRenderer.getStringWidth(text)-25, 15, 0, 35, 15, 20);
-            drawTexturedModalRect( width - mc.fontRenderer.getStringWidth(text)-25, 36, 14, 35, 15, 20);
+            drawTexturedModalRect( width - mc.fontRenderer.getStringWidth(text)-80, 19, 0, 35, 15, 20);
+            drawString(mc.fontRenderer, text, width - mc.fontRenderer.getStringWidth(text) - 60, 25, 0xF58B33);
 
-            drawString(mc.fontRenderer, text, width - mc.fontRenderer.getStringWidth(text) - 5, 20, 0xF58B33);
-            drawString(mc.fontRenderer, "Back", width - mc.fontRenderer.getStringWidth(text) - 5, 40, 0xF58B33);
+            mc.renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/menu/mouse_icons.png"));
+            GlStateManager.color(1, 1, 1,1);
+            text = "Back";
+            drawTexturedModalRect( width - mc.fontRenderer.getStringWidth(text)-25, 19, 14, 35, 15, 20);
+            drawString(mc.fontRenderer, text, width - mc.fontRenderer.getStringWidth(text) - 5, 25, 0xF58B33);
 
 		}
 		GlStateManager.popMatrix();
@@ -93,6 +96,7 @@ public class GuiMenu_Bars extends GuiScreen {
 	public void drawMunnyTime() {
 		GlStateManager.pushMatrix();
 		{
+			GlStateManager.scale(1.1,1.1,1);
 			drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Main_Time) + ": " + getWorldHours(mc.world) + ":" + getWorldMinutes(mc.world), 5, (int) (topBarHeight + middleHeight) + mc.fontRenderer.FONT_HEIGHT, 0xFFFFFF);
 			IMunny MUNNY = mc.player.getCapability(ModCapabilities.MUNNY, null);
 			drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_Menu_Main_Munny) + ": " + MUNNY.getMunny(), 5, (int) (topBarHeight + middleHeight), 0xF66627);
