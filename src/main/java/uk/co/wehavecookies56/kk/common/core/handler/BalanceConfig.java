@@ -197,7 +197,7 @@ public class BalanceConfig {
 				armstrong = new double[] { 10, 15 },
 				hardboiledheat = new double[] { 11, 15 },
 				diabloeye = new double[] { 11, 16 },
-				doubletrap = new double[] { 11, 17 },
+				doubletap = new double[] { 11, 17 },
 				stardust = new double[] { 12, 17 },
 				energymuzzle = new double[] { 12, 18 },
 				crimeandpunishment = new double[] { 13, 18 },
