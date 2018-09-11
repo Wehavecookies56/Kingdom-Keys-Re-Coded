@@ -18,16 +18,17 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.api.abilities.Ability;
-import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
+import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
+import uk.co.wehavecookies56.kk.common.capability.DriveStateCapability.IDriveState;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
-import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.handler.event.EntityEvents;
 import uk.co.wehavecookies56.kk.common.item.base.ItemDriveForm;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKPotion;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
+import uk.co.wehavecookies56.kk.common.item.org.ItemArrowguns;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -366,6 +367,21 @@ public class GuiCommandMenu extends GuiScreen {
 					drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Portal), 6 + textX, 4, color);
 				else
 					drawString(mc.fontRenderer, Utils.translateToLocal(Strings.Gui_CommandMenu_Attack), 6 + textX, 4, 0xFFFFFF);
+				
+				if(Minecraft.getMinecraft().player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.XIGBAR) {
+					if(player.getHeldItemMainhand() != null) {
+						if(player.getHeldItemMainhand().getItem() instanceof ItemArrowguns) {
+							ItemStack weapon = player.getHeldItemMainhand();
+							if(weapon.hasTagCompound()) {
+								if(weapon.getTagCompound().hasKey("ammo")) {
+									int ammo = weapon.getTagCompound().getInteger("ammo");
+									drawString(mc.fontRenderer, ammo+"", textX+TOP_WIDTH, 4, 0xFFFFFF);
+								}
+							}
+							
+						}
+					}
+				}
 			}
 
 		}

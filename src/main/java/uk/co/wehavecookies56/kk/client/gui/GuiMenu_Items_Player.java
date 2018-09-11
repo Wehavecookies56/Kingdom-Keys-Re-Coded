@@ -31,10 +31,10 @@ public class GuiMenu_Items_Player extends GuiScreen {
 	GuiElementBox listBox;
 	GuiElementBox detailsBox;
 	GuiEquippedItem weapon, valor, master, Final;// helmet, chestplate, leggings, boots;
-	GuiEquippedItem[] equippedArmor; //4
-	GuiEquippedItem[] equippedArmorItems; // 6
-	GuiEquippedItem[] equippedAccessories; // 4
-	GuiEquippedItem[] equippedItems; // 8
+	GuiEquippedItem[] equippedArmor; 
+	GuiEquippedItem[] equippedArmorItems;
+	GuiEquippedItem[] equippedAccessories;
+	GuiEquippedItem[] equippedItems;
 
 	IDriveState DRIVESTATE;
 
@@ -43,10 +43,10 @@ public class GuiMenu_Items_Player extends GuiScreen {
 		mc = Minecraft.getMinecraft();
 		DRIVESTATE = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
 		
-		equippedArmor = new GuiEquippedItem[4]; // 6
-		equippedArmorItems = new GuiEquippedItem[1]; // 6
-		equippedAccessories = new GuiEquippedItem[1]; // 4
-		equippedItems = new GuiEquippedItem[3]; // 8
+		equippedArmor = new GuiEquippedItem[4]; // 4
+		equippedArmorItems = new GuiEquippedItem[4]; // 4
+		equippedAccessories = new GuiEquippedItem[4]; // 4
+		equippedItems = new GuiEquippedItem[8]; // 8
 	}
 
 	@Override
@@ -103,10 +103,10 @@ public class GuiMenu_Items_Player extends GuiScreen {
 		}
 
 		// First one has label (Head slot: 3)
-		equippedArmor[3] = new GuiEquippedItem(mc.player.inventory.armorInventory.get(3), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0xd38f3b, new GuiItems(0, 0x0000AA, 0x041E68), ItemCategory.EQUIPMENT, this, "Armor", 0xd38f3b);
+		equippedArmor[3] = new GuiEquippedItem(mc.player.inventory.armorInventory.get(3), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0xAA4400, new GuiItems(0, 0x0000AA, 0x041E68), ItemCategory.EQUIPMENT, this, "Armor", 0xFFAA00);
 		// Those here are the armor slots
 		for (int i = 2; i >= 0; i--) { // Has to be an inverted for so it displays the right order
-			equippedArmor[i] = new GuiEquippedItem(mc.player.inventory.armorInventory.get(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0xd38f3b, new GuiItems(i, 0x0000AA, 0x041E68), ItemCategory.EQUIPMENT, this);
+			equippedArmor[i] = new GuiEquippedItem(mc.player.inventory.armorInventory.get(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0xAA4400, new GuiItems(i, 0x0000AA, 0x041E68), ItemCategory.EQUIPMENT, this);
 		}
 		// From here on those will be armor items slot
 		equippedArmorItems[0] = new GuiEquippedItem(playerStats.getInventoryEquipmentMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, null, ItemCategory.EQUIPMENT, this, "Equipment", 0xFEF461);
