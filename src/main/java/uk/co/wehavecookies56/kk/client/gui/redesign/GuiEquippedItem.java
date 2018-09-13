@@ -67,6 +67,12 @@ public class GuiEquippedItem extends GuiButton {
 
 	@Override
 	public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {
+		
+		float itemY = parent.height * 0.1907F;
+		//System.out.println(y);
+		if(this.y < itemY-1)
+			return;
+		
 		hovered = mouseX > x && mouseY >= y && mouseX < x + width && mouseY < y + height;
 		Color col = Color.decode(String.valueOf(colour));
 		GlStateManager.color(1, 1, 1, 1);

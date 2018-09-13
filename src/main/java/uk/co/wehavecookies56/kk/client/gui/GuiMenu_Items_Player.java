@@ -2,6 +2,8 @@ package uk.co.wehavecookies56.kk.client.gui;
 
 import java.io.IOException;
 
+import org.lwjgl.input.Mouse;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -31,7 +33,7 @@ public class GuiMenu_Items_Player extends GuiScreen {
 	GuiElementBox listBox;
 	GuiElementBox detailsBox;
 	GuiEquippedItem weapon, valor, master, Final;// helmet, chestplate, leggings, boots;
-	GuiEquippedItem[] equippedArmor; 
+	GuiEquippedItem[] equippedArmor;
 	GuiEquippedItem[] equippedArmorItems;
 	GuiEquippedItem[] equippedAccessories;
 	GuiEquippedItem[] equippedItems;
@@ -42,11 +44,12 @@ public class GuiMenu_Items_Player extends GuiScreen {
 		background = new GuiMenu_Bars(Strings.Gui_Menu_Items_Title);
 		mc = Minecraft.getMinecraft();
 		DRIVESTATE = mc.player.getCapability(ModCapabilities.DRIVE_STATE, null);
-		
+
 		equippedArmor = new GuiEquippedItem[4]; // 4
 		equippedArmorItems = new GuiEquippedItem[4]; // 4
 		equippedAccessories = new GuiEquippedItem[4]; // 4
 		equippedItems = new GuiEquippedItem[8]; // 8
+
 	}
 
 	@Override
@@ -62,6 +65,8 @@ public class GuiMenu_Items_Player extends GuiScreen {
 	private void updateButtons() {
 		updateScreen();
 	}
+
+	int extraOffset = 0;
 
 	@Override
 	public void initGui() {
@@ -90,40 +95,41 @@ public class GuiMenu_Items_Player extends GuiScreen {
 		PlayerStatsCapability.IPlayerStats playerStats = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null);
 
 		int offset = 0;
+
 		if (org.getMember() == Utils.OrgMember.NONE) {
-			weapon = new GuiEquippedItem(keychains.getStackInSlot(0), (int) itemsX, (int) itemsY + offset + itemHeight * offset++, 0x3C0002, new GuiWeapons(0, 0x701F23, 0x3C0000), ItemCategory.TOOL, this, "Weapon", 0xFE8185);
+			weapon = new GuiEquippedItem(keychains.getStackInSlot(0), (int) itemsX, (int) itemsY + offset + itemHeight * offset++ - extraOffset, 0x3C0002, new GuiWeapons(0, 0x701F23, 0x3C0000), ItemCategory.TOOL, this, "Weapon", 0xFE8185);
 			if (DRIVESTATE.getDriveLevel(Strings.Form_Valor) > 0)
-				valor = new GuiEquippedItem(keychains.getStackInSlot(1), (int) itemsX, (int) itemsY + offset + itemHeight * offset++, 0x003231, new GuiWeapons(1, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Valor", 0x069293);
+				valor = new GuiEquippedItem(keychains.getStackInSlot(1), (int) itemsX, (int) itemsY + offset + itemHeight * offset++ - extraOffset, 0x003231, new GuiWeapons(1, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Valor", 0x069293);
 			if (DRIVESTATE.getDriveLevel(Strings.Form_Master) > 0)
-				master = new GuiEquippedItem(keychains.getStackInSlot(2), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x003231, new GuiWeapons(2, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Master", 0x069293);
+				master = new GuiEquippedItem(keychains.getStackInSlot(2), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x003231, new GuiWeapons(2, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Master", 0x069293);
 			if (DRIVESTATE.getDriveLevel(Strings.Form_Final) > 0)
-				Final = new GuiEquippedItem(keychains.getStackInSlot(3), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x003231, new GuiWeapons(3, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Final", 0x069293);
+				Final = new GuiEquippedItem(keychains.getStackInSlot(3), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x003231, new GuiWeapons(3, 0x0A1616, 0x032F3C), ItemCategory.TOOL, this, "Final", 0x069293);
 		} else {
-			weapon = new GuiEquippedItem(new ItemStack(org.currentWeapon()), (int) itemsX, (int) itemsY + offset + itemHeight * offset++, 0x3C0002, new GuiOrgWeapon(), ItemCategory.TOOL, this, "Weapon", 0xFE8185);
+			weapon = new GuiEquippedItem(new ItemStack(org.currentWeapon()), (int) itemsX, (int) itemsY + offset + itemHeight * offset++ - extraOffset, 0x3C0002, new GuiOrgWeapon(), ItemCategory.TOOL, this, "Weapon", 0xFE8185);
 		}
 
 		// First one has label (Head slot: 3)
-		equippedArmor[3] = new GuiEquippedItem(mc.player.inventory.armorInventory.get(3), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0xAA4400, new GuiItems(0, 0x0000AA, 0x041E68), ItemCategory.EQUIPMENT, this, "Armor", 0xFFAA00);
+		equippedArmor[3] = new GuiEquippedItem(mc.player.inventory.armorInventory.get(3), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0xAA4400, new GuiItems(0, 0x0000AA, 0x041E68), ItemCategory.EQUIPMENT, this, "Armor", 0xFFAA00);
 		// Those here are the armor slots
 		for (int i = 2; i >= 0; i--) { // Has to be an inverted for so it displays the right order
-			equippedArmor[i] = new GuiEquippedItem(mc.player.inventory.armorInventory.get(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0xAA4400, new GuiItems(i, 0x0000AA, 0x041E68), ItemCategory.EQUIPMENT, this);
+			equippedArmor[i] = new GuiEquippedItem(mc.player.inventory.armorInventory.get(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0xAA4400, new GuiItems(i, 0x0000AA, 0x041E68), ItemCategory.EQUIPMENT, this);
 		}
 		// From here on those will be armor items slot
-		equippedArmorItems[0] = new GuiEquippedItem(playerStats.getInventoryEquipmentMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, null, ItemCategory.EQUIPMENT, this, "Equipment", 0xFEF461);
+		equippedArmorItems[0] = new GuiEquippedItem(playerStats.getInventoryEquipmentMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x685800, null, ItemCategory.EQUIPMENT, this, "Equipment", 0xFEF461);
 		for (int i = 1; i < equippedArmorItems.length; i++) {
-			equippedArmorItems[i] = new GuiEquippedItem(playerStats.getInventoryEquipmentMenu().getStackInSlot(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x685800, null, ItemCategory.EQUIPMENT, this);
+			equippedArmorItems[i] = new GuiEquippedItem(playerStats.getInventoryEquipmentMenu().getStackInSlot(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x685800, null, ItemCategory.EQUIPMENT, this);
 		}
 
 		// First one has a label so different constructor
-		equippedAccessories[0] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x041E68, new GuiItems(0, 0x0000AA, 0x041E68), ItemCategory.ACCESSORIES, this, "Accessories", 0x58B2E5);
+		equippedAccessories[0] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x041E68, new GuiItems(0, 0x0000AA, 0x041E68), ItemCategory.ACCESSORIES, this, "Accessories", 0x58B2E5);
 		for (int i = 1; i < equippedAccessories.length; i++) {
-			equippedAccessories[i] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x041E68, new GuiItems(i, 0x0000AA, 0x041E68), ItemCategory.ACCESSORIES, this);
+			equippedAccessories[i] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x041E68, new GuiItems(i, 0x0000AA, 0x041E68), ItemCategory.ACCESSORIES, this);
 		}
 
 		// First one has a label so different constructor
-		equippedItems[0] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x003213, new GuiItems(0, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this, "Items", 0x41F031);
+		equippedItems[0] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x003213, new GuiItems(0, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this, "Items", 0x41F031);
 		for (int i = 1; i < equippedItems.length; i++) {
-			equippedItems[i] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++), 0x003213, new GuiItems(i, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this);
+			equippedItems[i] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x003213, new GuiItems(i, 0x1B633A, 0x003214), ItemCategory.CONSUMABLE, this);
 		}
 		updateButtons();
 	}
@@ -155,6 +161,7 @@ public class GuiMenu_Items_Player extends GuiScreen {
 			for (int i = 0; i < equippedArmorItems.length; i++) {
 				equippedArmorItems[i].drawButton(mc, mouseX, mouseY, partialTicks);
 			}
+
 			for (int i = 0; i < equippedAccessories.length; i++) {
 				equippedAccessories[i].drawButton(mc, mouseX, mouseY, partialTicks);
 			}
@@ -183,11 +190,28 @@ public class GuiMenu_Items_Player extends GuiScreen {
 			for (int i = 0; i < equippedItems.length; i++) {
 				equippedItems[i].mousePressed(mc, mouseX, mouseY);
 			}
-			
-		} else {
+
+		} else if (mouseButton == 1) {
 			GuiHelper.openMenu_Items();
 		}
 
 		super.mouseClicked(mouseX, mouseY, mouseButton);
 	}
+
+	@Override
+	public void handleMouseInput() throws IOException {
+		super.handleMouseInput();
+		int wheelState = Mouse.getEventDWheel();
+		if (wheelState != 0) {
+			if (wheelState < 0 && extraOffset < 180) {// Change for a better way to know the last element
+				extraOffset += 15;
+			} else if (wheelState > 0 && extraOffset > 0) {
+				extraOffset -= 15;
+			}
+			System.out.println(extraOffset);
+
+			initGui();
+		}
+	}
+
 }
