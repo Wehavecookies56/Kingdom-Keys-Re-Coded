@@ -69,8 +69,9 @@ public class GuiEquippedItem extends GuiButton {
 	public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {
 		
 		float itemY = parent.height * 0.1907F;
+		float bottomY = parent.height - (parent.height * 0.25F);
 		//System.out.println(y);
-		if(this.y < itemY-1)
+		if(this.y < itemY-1 || this.y > bottomY-1)
 			return;
 		
 		hovered = mouseX > x && mouseY >= y && mouseX < x + width && mouseY < y + height;
