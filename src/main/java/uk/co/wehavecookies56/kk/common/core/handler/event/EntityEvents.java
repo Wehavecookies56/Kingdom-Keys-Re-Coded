@@ -1310,7 +1310,7 @@ public class EntityEvents {
 			if (event.getAmount() - STATS.getDefense() <= 0)
 				event.setAmount(1);
 			else
-				event.setAmount((float) (event.getAmount() - (STATS.getDefense() * 0.25)));
+				event.setAmount((float) (event.getAmount()*100/(100+STATS.getDefense())));
 			if (event.getSource().getDamageType().equals("lightningBolt"))
 				if (EntityThunder.summonLightning)
 					event.setCanceled(true);
