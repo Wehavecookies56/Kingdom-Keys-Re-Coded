@@ -204,9 +204,6 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
 		SHOCKWAVE;
 	}
 	
-	
-	/** XXX Large Body Mowdown */
-	
 	class EntityAILargeBodyMowdown extends EntityAIBase
 	{
 		private EntityLargeBody theEntity;	
@@ -293,9 +290,6 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
         	}
 		}
 	}
-	
-	
-	/** XXX Large Body Charge */
 	
 	class EntityAILargeBodyCharge extends EntityAIBase
 	{

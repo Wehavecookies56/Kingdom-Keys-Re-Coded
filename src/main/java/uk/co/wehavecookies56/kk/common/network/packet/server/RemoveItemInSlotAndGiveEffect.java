@@ -61,43 +61,6 @@ public class RemoveItemInSlotAndGiveEffect extends AbstractMessage.AbstractServe
                 keychain = player.getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
                 keychain.setStackInSlot(slot, ItemStack.EMPTY);
                 break;
-                
-            case Strings.DefenseBoost:
-                if(!player.capabilities.isCreativeMode)
-                    player.inventory.removeStackFromSlot(player.inventory.currentItem);
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addDefense(1);
-                TextComponentTranslation strMessage = new TextComponentTranslation(Strings.Chat_DefenseBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getDefense()));
-                strMessage.getStyle().setColor(TextFormatting.GREEN);
-                player.sendMessage(strMessage);
-                break;
-                
-            case Strings.MagicBoost:
-                if(!player.capabilities.isCreativeMode)
-                    player.inventory.removeStackFromSlot(player.inventory.currentItem);
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addMagic(1);
-                TextComponentTranslation magMessage = new TextComponentTranslation(Strings.Chat_MagicBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic()));
-                magMessage.getStyle().setColor(TextFormatting.GREEN);
-                player.sendMessage(magMessage);
-                break;
-                
-            case Strings.PowerBoost:
-                if(!player.capabilities.isCreativeMode)
-                    player.inventory.removeStackFromSlot(player.inventory.currentItem);
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addStrength(1);
-                TextComponentTranslation powMessage = new TextComponentTranslation(Strings.Chat_PowerBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
-                powMessage.getStyle().setColor(TextFormatting.GREEN);
-                player.sendMessage(powMessage);
-                break;
-                
-            case Strings.APBoost:
-                if(!player.capabilities.isCreativeMode)
-                    player.inventory.removeStackFromSlot(player.inventory.currentItem);
-                player.getCapability(ModCapabilities.PLAYER_STATS, null).addMaxAP(1);
-                TextComponentTranslation apMessage = new TextComponentTranslation(Strings.Chat_APBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxAP()));
-                apMessage.getStyle().setColor(TextFormatting.GREEN);
-                player.sendMessage(apMessage);
-                break;
-                
             case Strings.Potion:
                 potions = player.getCapability(ModCapabilities.PLAYER_STATS, null).getInventoryPotionsMenu();
                 potions.setStackInSlot(slot, ItemStack.EMPTY);

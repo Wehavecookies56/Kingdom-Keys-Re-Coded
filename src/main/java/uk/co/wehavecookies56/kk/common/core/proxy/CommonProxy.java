@@ -68,6 +68,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMinuteBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
+import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadowGlob;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySilverRock;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySkaterBomb;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityStormBomb;
@@ -165,11 +166,14 @@ public class CommonProxy {
 		EntityHelper.registerEntity("rock", EntityRock.class);
 
 		// Heartless registry
+		// Pureblood
 		EntityHelper.registerEntity(Strings.Shadow, EntityShadow.class, Color.BLACK.getRGB(), Color.YELLOW.getRGB());
 		EntityHelper.registerEntity(Strings.MegaShadow, EntityMegaShadow.class, Color.BLACK.getRGB(), Color.GRAY.getRGB());
 		EntityHelper.registerEntity(Strings.GigaShadow, EntityGigaShadow.class, Color.BLACK.getRGB(), Color.BLACK.getRGB());
 		EntityHelper.registerEntity(Strings.Darkball, EntityDarkball.class, 0x020030, 0x492263);
-
+		EntityHelper.registerEntity(Strings.ShadowGlob, EntityShadowGlob.class, Color.BLACK.getRGB(), 0x312ba0);
+		
+		// Emblems
 		EntityHelper.registerEntity(Strings.RedNocturne, EntityRedNocturne.class, Color.RED.getRGB(), Color.PINK.getRGB());
 		EntityHelper.registerEntity(Strings.BlueRhapsody, EntityBlueRhapsody.class, Color.BLUE.getRGB(), Color.CYAN.getRGB());
 		EntityHelper.registerEntity(Strings.YellowOpera, EntityYellowOpera.class, Color.orange.getRGB(), Color.yellow.getRGB());
@@ -187,6 +191,7 @@ public class CommonProxy {
 		EntityHelper.registerEntity(Strings.Moogle, EntityMoogle.class, 0xDACAB0, 0xC50033);
 		EntityHelper.registerEntity(Strings.GummiShip, EntityGummiShip.class, 0xFF0000, 0x6666AA);
 
+		// Nobodies
 		EntityHelper.registerEntity(Strings.Dusk, EntityDusk.class, 0xb8bdc4, 0xfcfcfc);
 		EntityHelper.registerEntity(Strings.Creeper, EntityCreeper.class, 0xb8bdc4, 0xfcfcfc);
 		

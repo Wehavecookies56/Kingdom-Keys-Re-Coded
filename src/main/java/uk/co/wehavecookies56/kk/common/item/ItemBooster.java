@@ -13,10 +13,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import uk.co.wehavecookies56.kk.api.menu.IItemCategory;
 import uk.co.wehavecookies56.kk.api.menu.ItemCategory;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
+import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKKBase;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
@@ -29,24 +32,47 @@ public class ItemBooster extends ItemKKBase implements IItemCategory{
 	}
 
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (world.isRemote) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+		if(!world.isRemote) {
 			if (player.getHeldItemMainhand() != null) {
 				if (player.getHeldItemMainhand().getItem() == ModItems.PowerBoost) {
-					PacketDispatcher.sendToServer(new RemoveItemInSlotAndGiveEffect(Strings.PowerBoost, player.inventory.currentItem));
-				} else if(player.getHeldItemMainhand().getItem() == ModItems.MagicBoost){
-					PacketDispatcher.sendToServer(new RemoveItemInSlotAndGiveEffect(Strings.MagicBoost, player.inventory.currentItem));
-				} else if(player.getHeldItemMainhand().getItem() == ModItems.DefenseBoost){
-					PacketDispatcher.sendToServer(new RemoveItemInSlotAndGiveEffect(Strings.DefenseBoost, player.inventory.currentItem));
-				} else if(player.getHeldItemMainhand().getItem() == ModItems.APBoost){
-					PacketDispatcher.sendToServer(new RemoveItemInSlotAndGiveEffect(Strings.APBoost, player.inventory.currentItem));
+			        if(!player.capabilities.isCreativeMode)
+			            player.inventory.removeStackFromSlot(player.inventory.currentItem);
+			        player.getCapability(ModCapabilities.PLAYER_STATS, null).addStrength(1);
+			        TextComponentTranslation powMessage = new TextComponentTranslation(Strings.Chat_PowerBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength()));
+			        powMessage.getStyle().setColor(TextFormatting.GREEN);
+			        player.sendMessage(powMessage);
+				}
+				else if(player.getHeldItemMainhand().getItem() == ModItems.MagicBoost){
+	                if(!player.capabilities.isCreativeMode)
+	                    player.inventory.removeStackFromSlot(player.inventory.currentItem);
+	                player.getCapability(ModCapabilities.PLAYER_STATS, null).addMagic(1);
+	                TextComponentTranslation magMessage = new TextComponentTranslation(Strings.Chat_MagicBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic()));
+	                magMessage.getStyle().setColor(TextFormatting.GREEN);
+	                player.sendMessage(magMessage);
+				}
+				else if(player.getHeldItemMainhand().getItem() == ModItems.DefenseBoost){
+	                if(!player.capabilities.isCreativeMode)
+	                    player.inventory.removeStackFromSlot(player.inventory.currentItem);
+	                player.getCapability(ModCapabilities.PLAYER_STATS, null).addDefense(1);
+	                TextComponentTranslation strMessage = new TextComponentTranslation(Strings.Chat_DefenseBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getDefense()));
+	                strMessage.getStyle().setColor(TextFormatting.GREEN);
+	                player.sendMessage(strMessage);			
+				}
+				else if(player.getHeldItemMainhand().getItem() == ModItems.APBoost){
+	                if(!player.capabilities.isCreativeMode)
+	                    player.inventory.removeStackFromSlot(player.inventory.currentItem);
+	                player.getCapability(ModCapabilities.PLAYER_STATS, null).addMaxAP(1);
+	                TextComponentTranslation apMessage = new TextComponentTranslation(Strings.Chat_APBoost, new TextComponentTranslation(""+player.getCapability(ModCapabilities.PLAYER_STATS, null).getMaxAP()));
+	                apMessage.getStyle().setColor(TextFormatting.GREEN);
+	                player.sendMessage(apMessage);
 				}
 				player.getActiveItemStack().setCount(player.getActiveItemStack().getCount() - 1);
 			}
 		}
 
 		player.world.playSound(player, player.getPosition(), ModSounds.itemget, SoundCategory.MASTER, 1.0f, 1.0f);
-		return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
+		return super.onItemRightClick(world, player, hand);
 	}
 
 	@Override

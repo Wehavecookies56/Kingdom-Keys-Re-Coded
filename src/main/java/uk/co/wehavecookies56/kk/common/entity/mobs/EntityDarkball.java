@@ -122,11 +122,6 @@ public class EntityDarkball extends BaseEntityHeartless implements IKHMob
 		DARKCLOUD;
 	}
 	
-	
-	/**
-	 * XXX Dark Cloud AI
-	 * @author WYND
-	 */
 	class EntityAIDarkballDarkCloud extends EntityAIBase
 	{
 		private EntityDarkball theEntity;	
@@ -232,10 +227,6 @@ public class EntityDarkball extends BaseEntityHeartless implements IKHMob
 	}
 	
 	
-	/**
-	 * XXX Berserk AI
-	 * @author WYND
-	 */
 	class EntityAIDarkballBerserk extends EntityAIBase
 	{
 		private EntityDarkball theEntity;	
@@ -333,10 +324,6 @@ public class EntityDarkball extends BaseEntityHeartless implements IKHMob
 		
 	}
 	
-	/**
-	 * XXX Charge AI
-	 * @author WYND
-	 */
 	class EntityAIDarkballCharge extends EntityAIBase
 	{
 		private EntityDarkball theEntity;	
