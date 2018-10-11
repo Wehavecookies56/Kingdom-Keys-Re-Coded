@@ -35,10 +35,10 @@ public class ItemClaymore extends ItemOrgWeapon implements IOrgWeapon{
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         if(player.getHeldItemMainhand().getItemDamage()==0){
-            if(world.isRemote){
-                PacketDispatcher.sendToServer(new SummonClaymore((ItemClaymore) player.getHeldItemMainhand().getItem()));
-            }else{
-                player.getHeldItemMainhand().setItemDamage(1);
+                    if(world.isRemote){
+                        PacketDispatcher.sendToServer(new SummonClaymore((ItemClaymore) player.getHeldItemMainhand().getItem()));
+                    }else{
+                        player.getHeldItemMainhand().setItemDamage(1);
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, player.getHeldItemMainhand());
                 player.world.playSound((EntityPlayer)null, player.getPosition(), ModSounds.summon, SoundCategory.MASTER, 1.0f, 1.0f);
             }

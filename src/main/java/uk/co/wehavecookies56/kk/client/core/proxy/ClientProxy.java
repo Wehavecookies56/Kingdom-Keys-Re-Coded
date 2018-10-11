@@ -37,33 +37,11 @@ import static uk.co.wehavecookies56.kk.common.block.ModBlocks.SynthesisTable;
 import static uk.co.wehavecookies56.kk.common.block.ModBlocks.TranquilOre;
 import static uk.co.wehavecookies56.kk.common.block.ModBlocks.TwilightOre;
 import static uk.co.wehavecookies56.kk.common.block.ModBlocks.TwilightOreN;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Artemis;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Astrologia;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.BalsamicMoon;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Berserker;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Bunnymoon;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Crater;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Crescent;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Dichotomy;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Gibbous;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Horoscope;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.JustDesserts;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.KingOfTheNight;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.LightYear;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Luminary;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.LunarPhase;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Lunatic;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Moonrise;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Moonset;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.NewMoon;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Orbit;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.QueenOfTheNight;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Selene;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Twilight;
-import static uk.co.wehavecookies56.kk.common.item.ModItems.Werewolf;
+import static uk.co.wehavecookies56.kk.common.item.ModItems.*;
 
 import com.jadarstudios.developercapes.DevCapes;
 
+import com.sun.org.apache.xml.internal.security.algorithms.implementations.IntegrityHmac;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -231,6 +209,42 @@ public class ClientProxy extends CommonProxy {
 		registerModel(Lunatic, 1, Lunatic.getRegistryName() + "_b");
 		registerModel(JustDesserts, 1, JustDesserts.getRegistryName() + "_b");
 		registerModel(Bunnymoon, 1, Bunnymoon.getRegistryName() + "_b");
+
+		// Sniper
+		registerModel(Standalone, 1, Standalone.getRegistryName() + "_s");
+		registerModel(Killerbee, 1, Killerbee.getRegistryName() + "_s");
+		registerModel(Stingray, 1, Stingray.getRegistryName() + "_s");
+		registerModel(Counterweight, 1, Counterweight.getRegistryName() + "_s");
+		registerModel(Precision, 1, Precision.getRegistryName() + "_s");
+		registerModel(DualHead, 1, DualHead.getRegistryName() + "_s");
+		registerModel(Bahamut, 1, Bahamut.getRegistryName() + "_s");
+		registerModel(Gullwing, 1, Gullwing.getRegistryName() + "_s");
+		registerModel(BlueFrame, 1, Standalone.getRegistryName() + "_s");
+		registerModel(Sunrise, 1, Sunrise.getRegistryName() + "_s");
+		registerModel(Ignition, 1, Ignition.getRegistryName() + "_s");
+		registerModel(Armstrong, 1, Armstrong.getRegistryName() + "_s");
+		registerModel(HardBoiledHeat, 1, HardBoiledHeat.getRegistryName() + "_s");
+		registerModel(DiabloEye, 1, DiabloEye.getRegistryName() + "_s");
+		registerModel(DoubleTap, 1, DoubleTap.getRegistryName() + "_s");
+		registerModel(Stardust, 1, Stardust.getRegistryName() + "_s");
+		registerModel(EnergyMuzzle, 1, EnergyMuzzle.getRegistryName() + "_s");
+		registerModel(CrimeAndPunishment, 1, CrimeAndPunishment.getRegistryName() + "_s");
+		registerModel(CupidsArrow, 1, CupidsArrow.getRegistryName() + "_s");
+		registerModel(FinalWeapon, 1, FinalWeapon.getRegistryName() + "_s");
+		registerModel(Sharpshooter, 1, Sharpshooter.getRegistryName() + "_s");
+		registerModel(Dryer, 1, Dryer.getRegistryName() + "_s");
+		registerModel(Trumpet, 1, Trumpet.getRegistryName() + "_s");
+
+
+
+
+
+
+
+
+
+
+
 
 		// Blocks
 		registerModel(Item.getItemFromBlock(GhostBlox), 0, Item.getItemFromBlock(GhostBlox).getRegistryName() + "", "visible=0");
