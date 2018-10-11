@@ -50,10 +50,6 @@ public class EntityDirePlant extends BaseEntityHeartless implements IKHMob
 		return MobType.HEARTLESS_EMBLEM;
 	}
 	
-	/**
-	 * XXX Dark Cloud AI
-	 * @author WYND
-	 */
 	class EntityAIDirePlantSeed extends EntityAIBase
 	{
 		private EntityDirePlant theEntity;	

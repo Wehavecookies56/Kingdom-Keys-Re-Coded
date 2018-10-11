@@ -60,10 +60,7 @@ public class EntityDusk extends EntityMob implements IKHMob
 		return MobType.NOBODY;
 	}
 	
-	/**
-	 * XXX Coil AI
-	 * @author WYND
-	 */
+
 	class EntityAIDuskCoil extends EntityAIBase
 	{
 		private EntityDusk theEntity;	

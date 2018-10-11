@@ -1295,6 +1295,23 @@ public class EntityEvents {
 
 	@SubscribeEvent
 	public void onHurt(LivingHurtEvent event) {
+		if (event.getSource().getImmediateSource() instanceof EntityPlayer && !event.getSource().damageType.equals(EnumHand.OFF_HAND.name())) {
+			EntityPlayer player = (EntityPlayer) event.getSource().getImmediateSource();
+			if (event.getSource().getDamageType().equals("thorns"))
+				return;
+
+			if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Anti)) {
+				if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+					if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
+						if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof IOrgWeapon) {
+							event.setAmount(event.getAmount() - 4 + DamageCalculation.getStrengthDamage(player));
+						}
+					}
+				}
+			} else {
+				event.setAmount(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
+			}
+		}
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			PlayerStatsCapability.IPlayerStats STATS = event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null);
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
@@ -1307,10 +1324,14 @@ public class EntityEvents {
 			}
 
 			PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);
-			if (event.getAmount() - STATS.getDefense() <= 0)
+			
+			float damage = (float) Math.round((event.getAmount() * 100 / ( (100 + (STATS.getLevel() * 2)) + STATS.getDefense() )));
+			
+			if (damage <= 0)
 				event.setAmount(1);
 			else
-				event.setAmount((float) (event.getAmount()*100/(100+STATS.getDefense())));
+				event.setAmount(damage);
+			
 			if (event.getSource().getDamageType().equals("lightningBolt"))
 				if (EntityThunder.summonLightning)
 					event.setCanceled(true);
@@ -1340,23 +1361,6 @@ public class EntityEvents {
 						event.setAmount(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
 					}
 				}
-			}
-		}
-		if (event.getSource().getImmediateSource() instanceof EntityPlayer && !event.getSource().damageType.equals(EnumHand.OFF_HAND.name())) {
-			EntityPlayer player = (EntityPlayer) event.getSource().getImmediateSource();
-			if (event.getSource().getDamageType().equals("thorns"))
-				return;
-
-			if (!player.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Anti)) {
-				if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
-					if (!ItemStack.areItemStacksEqual(player.getHeldItem(player.getActiveHand()), ItemStack.EMPTY)) {
-						if (player.getHeldItem(player.getActiveHand()).getItem() instanceof ItemKeyblade || player.getHeldItem(player.getActiveHand()).getItem() instanceof IOrgWeapon) {
-							event.setAmount(event.getAmount() - 4 + DamageCalculation.getStrengthDamage(player));
-						}
-					}
-				}
-			} else {
-				event.setAmount(player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength());
 			}
 		}
 	}

@@ -31,6 +31,7 @@ public class Strings {
     MegaShadow = "megashadow",
     GigaShadow = "gigashadow",
     Darkball = "darkball",
+    ShadowGlob = "shadowGlob",
     
     RedNocturne = "rednocturne",
     BlueRhapsody = "bluerhapsody",
@@ -46,8 +47,10 @@ public class Strings {
     LargeBody = "largebody",
     WhiteMushroom = "whitemushroom",
     DirePlant = "direplant",
+    
     Dusk = "dusk",
     Creeper = "creeper",
+    
     Moogle = "moogle",
     GummiShip = "gummiship";
 

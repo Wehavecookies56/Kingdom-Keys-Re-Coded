@@ -55,5 +55,49 @@ public class EntityHelper
         {case 0: return Dir.SOUTH; case 1: return Dir.SOUTH_WEST; case 2: return Dir.WEST; case 3: return Dir.NORTH_WEST; case 4: return Dir.NORTH; case 5: return Dir.NORTH_EAST; case 6: return Dir.EAST; case 7: return Dir.SOUTH_EAST;}
         return null;
     }
+    
+	public static double[] generateAnimationArray(double startPos, double minPos, double maxPos, double frameSkip, int framesPerSlot)
+	{				
+		int framesCount = 0;
+		double currentFrame = startPos;
+		boolean hasReachedMaxPos = false;
+		boolean hasReachedMinPos = false;
+		
+		for(double i = startPos; i <= maxPos; i += frameSkip)
+			framesCount++;
+		
+		for(double i = maxPos; i > minPos; i -= frameSkip)
+			framesCount++;
+		
+		for(double i = minPos; i <= startPos; i += frameSkip)
+			framesCount++;
+		
+		framesCount *= framesPerSlot;
+		
+		framesCount -= 1 * framesPerSlot;
+
+		double[] animation = new double[framesCount];	
+		
+		for(int j = 0; j < framesCount; j++)
+		{
+			for(int i = 0; i < framesPerSlot; i++)
+			{
+				if(j + 1 < framesCount)
+				{
+					if(i > 0)
+						j++;
+					animation[j] = currentFrame;
+				}
+			}
+			if(!hasReachedMaxPos && currentFrame < maxPos) currentFrame += frameSkip;			
+			else if(!hasReachedMinPos && hasReachedMaxPos && currentFrame > minPos) currentFrame -= frameSkip;
+			else if(hasReachedMinPos && currentFrame < startPos) currentFrame += frameSkip;
+			
+			if(currentFrame >= maxPos) hasReachedMaxPos = true;
+			if(currentFrame <= minPos) hasReachedMinPos = true;
+		}
+
+		return animation;
+	}
 
 }
