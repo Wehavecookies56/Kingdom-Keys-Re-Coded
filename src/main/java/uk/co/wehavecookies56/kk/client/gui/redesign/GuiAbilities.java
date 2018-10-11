@@ -45,14 +45,15 @@ public class GuiAbilities extends GuiScreen {
 		background.width = width;
 		background.height = height;
 		background.init();
-
+		
+		buttonList.clear();
 		IAbilities ABILITIES = mc.player.getCapability(ModCapabilities.ABILITIES, null);
 		int id = 0;
 
 		for (int i = 0; i < ABILITIES.getUnlockedAbilities().size(); i++) {
 			Ability ability = ABILITIES.getUnlockedAbilities().get(i);
 			buttonList.add(new GuiMenuButton(id++, 0, id * 20, 100, ability.getName()));
-			System.out.println(ability.getName());
+			//System.out.println(ability.getName());
 		}
 
 		super.initGui();
@@ -174,8 +175,7 @@ public class GuiAbilities extends GuiScreen {
 				}
 				GL11.glPopMatrix();
 			}
-			GlStateManager.color(1, 1, 1,1F);
-
+			GlStateManager.color(1, 1, 1, 1F);
 
 			// Foreground
 			GL11.glPushMatrix();
@@ -212,7 +212,7 @@ public class GuiAbilities extends GuiScreen {
 			MinecraftForge.EVENT_BUS.post(new AbilityEvent.Unequip(mc.player, ability));
 			STATS.setConsumedAP(STATS.getConsumedAP() - ability.getApCost());
 			ABILITIES.equipAbility(ability, false);
-
+			initGui();
 		} else {
 			MinecraftForge.EVENT_BUS.post(new AbilityEvent.Equip(mc.player, ability));
 			if (STATS.getConsumedAP() + ability.getApCost() > STATS.getMaxAP()) {
@@ -220,6 +220,7 @@ public class GuiAbilities extends GuiScreen {
 			} else {
 				STATS.setConsumedAP(STATS.getConsumedAP() + ability.getApCost());
 				ABILITIES.equipAbility(ability, true);
+				initGui();
 			}
 		}
 		PacketDispatcher.sendToServer(new EquipAbility(ability.getName()));

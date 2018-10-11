@@ -41,7 +41,6 @@ import static uk.co.wehavecookies56.kk.common.item.ModItems.*;
 
 import com.jadarstudios.developercapes.DevCapes;
 
-import com.sun.org.apache.xml.internal.security.algorithms.implementations.IntegrityHmac;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

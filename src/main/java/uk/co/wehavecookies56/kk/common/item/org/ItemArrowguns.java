@@ -43,25 +43,22 @@ public class ItemArrowguns extends ItemOrgWeapon implements IOrgWeapon {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         if (!player.isSneaking()) {
-            // if (player.getCapability(ModCapabilities.PLAYER_STATS, null).getMP() > 0 &&
-            // !player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge() ||
-            // player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
             if (player.getHeldItem(hand).getTagCompound().getInteger("ammo") > 0) {
                 world.playSound(player.posX, player.posY, player.posZ, ModSounds.sharpshooterbullet, SoundCategory.PLAYERS, 0.5F, 1F / (itemRand.nextFloat() * 0.4F + 0.8F), false);
                 EntitySharpshooterBullet bullet = new EntitySharpshooterBullet(world, player);
                 world.spawnEntity(bullet);
                 bullet.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 4f, 0);
-                // if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
-                // player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(5);
+                if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
                 player.swingArm(EnumHand.MAIN_HAND);
-                tempAmmo = player.getHeldItem(hand).getTagCompound().getInteger("ammo") - 1;
+                if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode()) {
+                	tempAmmo = player.getHeldItem(hand).getTagCompound().getInteger("ammo") - 1;
+                } else {
+                	tempAmmo = player.getHeldItem(hand).getTagCompound().getInteger("ammo");
+                }
                 player.getHeldItem(hand).getTagCompound().setInteger("ammo", tempAmmo);
             }
 
         } else {
-            // player.setItemInUse(stack, getMaxItemUseDuration(stack));
-        }
-        if (player.isSneaking() == true) {
             if (player.getHeldItemMainhand().getItemDamage() == 0) {
                 if (!world.isRemote) {
                     player.getHeldItemMainhand().setItemDamage(1);
