@@ -4,8 +4,7 @@
         "textures": {
             
         },
-        "model": "kk:burnout.obj",
-		"custom": { "flip-v": true }
+        "model": "kk:burnout.obj"
     },
    	"variants": {
         "inventory": [
