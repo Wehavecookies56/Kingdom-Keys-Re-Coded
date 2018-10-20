@@ -2,9 +2,9 @@
 	"forge_marker": 1,
     "defaults": {
     	"textures": {
-				"ignition": "kk:items/models/ignition"
+				"ignition_s": "kk:items/models/ignition_s"
     		},
-        "model": "kk:ignition.obj"
+        "model": "kk:ignition_s.obj"
     },
 	"variants": {
         "inventory": [
