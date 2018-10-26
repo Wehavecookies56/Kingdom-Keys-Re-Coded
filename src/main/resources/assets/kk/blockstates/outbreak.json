@@ -3,8 +3,7 @@
     "defaults": {
         "textures": {
         },
-        "model": "kk:outbreak.obj",
-		"custom": { "flip-v": true }
+        "model": "kk:outbreak.obj"
     },
    	"variants": {
         "inventory": [

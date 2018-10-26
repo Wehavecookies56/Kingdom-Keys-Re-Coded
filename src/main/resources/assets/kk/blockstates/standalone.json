@@ -2,9 +2,8 @@
 	"forge_marker": 1,
     "defaults": {
     	"textures": {
-
     		},
-        "model": "kk:standalone.obj}
+        "model": "kk:standalone.obj"
     },
 	"variants": {
         "inventory": [
