@@ -220,7 +220,7 @@ public class ClientProxy extends CommonProxy {
 		registerModel(DualHead, 1, DualHead.getRegistryName() + "_s");
 		registerModel(Bahamut, 1, Bahamut.getRegistryName() + "_s");
 		registerModel(Gullwing, 1, Gullwing.getRegistryName() + "_s");
-		registerModel(BlueFrame, 1, Standalone.getRegistryName() + "_s");
+		registerModel(BlueFrame, 1, BlueFrame.getRegistryName() + "_s");
 		registerModel(Sunrise, 1, Sunrise.getRegistryName() + "_s");
 		registerModel(Ignition, 1, Ignition.getRegistryName() + "_s");
 		registerModel(Armstrong, 1, Armstrong.getRegistryName() + "_s");

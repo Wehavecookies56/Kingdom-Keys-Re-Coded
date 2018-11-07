@@ -2,7 +2,7 @@
 	"forge_marker": 1,
     "defaults": {
     	"textures": {
-				"ignition": "kk:items/models/ignition"
+
     		},
         "model": "kk:ignition.obj"
     },

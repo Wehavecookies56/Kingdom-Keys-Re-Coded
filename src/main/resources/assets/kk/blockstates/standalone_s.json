@@ -2,7 +2,7 @@
 	"forge_marker": 1,
     "defaults": {
     	"textures": {
-				"standalone_s": "kk:items/models/standalone_s"
+
     		},
         "model": "kk:standalone_s.obj"
     },
