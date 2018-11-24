@@ -3,7 +3,7 @@
     "defaults": {
         "textures": { 
         }, 
-        "model": "kk:blazeofglory.obj"
+        "model": "kk:magmaocean.obj"
     }, 
    	"variants": {
         "inventory": [
