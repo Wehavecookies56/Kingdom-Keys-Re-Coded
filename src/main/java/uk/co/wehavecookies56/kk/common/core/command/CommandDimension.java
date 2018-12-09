@@ -28,6 +28,7 @@ public class CommandDimension implements ICommand {
     public CommandDimension () {
         this.aliases = new ArrayList<String>();
         this.aliases.add("kkdimension");
+        this.aliases.add("kkdim");
     }
 
     @Override
@@ -67,43 +68,38 @@ public class CommandDimension implements ICommand {
     }
 
     public static EntityPlayer getPlayerFromUsername(String username) {
-        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-            return null;
-
-        return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(username);
+        return FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT ? null : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(username);
     }
 
 
     @Override
     public void execute (MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-        if (sender.getCommandSenderEntity() instanceof EntityPlayer) {
-            EntityPlayer player = null;
-            if (args.length == 1) {
-                player = getCommandSenderAsPlayer(sender);
-            } else if (args.length == 2) {
-                player = getPlayerFromUsername(args[1]);
-            } else if (args.length > 2 || args.length < 1) {
-                TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
-                return;
-            }
-            if(player != null) {
-                if (!player.world.isRemote) {
-                	String dimension = args[0].toLowerCase();
-                	
-                	IDAndBlockPos idAndBlockPos = Utils.getDimensionIDAndBlockPos(dimension);
-                	DimTeleporter tp = new DimTeleporter(idAndBlockPos.pos, idAndBlockPos.id);
-                	
-                	if(((EntityPlayer)sender).world.provider.getDimension() != idAndBlockPos.id) {
-                		((EntityPlayer)sender).changeDimension(idAndBlockPos.id, tp);
-                	} else {
-                		tp.placeEntity(sender.getEntityWorld(), (EntityPlayer)sender, ((EntityPlayer)sender).rotationYaw);
-                	}
-                }
-            }else{
-                TextHelper.sendFormattedChatMessage("Invalid player, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+		EntityPlayer player = null;
+		if (args.length == 1) {
+			player = getCommandSenderAsPlayer(sender);
+		} else if (args.length == 2) {
+			player = getPlayerFromUsername(args[1]);
+			System.out.println(args[1]);
+		} else if (args.length > 2 || args.length < 1) {
+			TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+			return;
+		}
+		if (player != null) {
+			if (!player.world.isRemote) {
+				String dimension = args[0].toLowerCase();
 
-            }
-        }
+				IDAndBlockPos idAndBlockPos = Utils.getDimensionIDAndBlockPos(dimension);
+				DimTeleporter tp = new DimTeleporter(idAndBlockPos.pos, idAndBlockPos.id);
+
+				if (player.world.provider.getDimension() != idAndBlockPos.id) {
+					player.changeDimension(idAndBlockPos.id, tp);
+				} else {
+					tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
+				}
+			}
+		} else {
+			TextHelper.sendFormattedChatMessage("Invalid player, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+		}
     }
 
     @Override
