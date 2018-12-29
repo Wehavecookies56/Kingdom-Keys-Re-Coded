@@ -15,22 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityAshes;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityBlazeofGlory;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityBurnout;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityCombustion;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityDoledrum;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityDoubleEdge;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityEternalFlames;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityFerrisWheels;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityIfrit;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityInferno;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityMoulinRouge;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityOmegaTrinity;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityOutbreak;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityPrometheus;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityProminence;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntitySizzlingEdge;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.*;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
@@ -108,11 +93,16 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
             case Strings.DoubleEdge:
                 entity= new EntityDoubleEdge(world, player);
                 break;
+            case Strings.MagmaOcean:
+                entity = new EntityMagmaOcean(world, player);
+                break;
+            case Strings.Volcanics:
+                entity = new EntityVolcanics(world, player);
+                break;
             default:
                 entity = new EntityEternalFlames(world, player);
                 break;
         }
-
         if(!player.getCapability(ModCapabilities.PLAYER_STATS, null).getRecharge()) {
             if (!player.isSneaking()) {
                 world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F), false);
@@ -126,7 +116,6 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
         }
         return ActionResult.newResult(EnumActionResult.FAIL, player.getHeldItemMainhand());
     }
-
     @Override
     public OrgMember getMember() {
         return Utils.OrgMember.AXEL;
