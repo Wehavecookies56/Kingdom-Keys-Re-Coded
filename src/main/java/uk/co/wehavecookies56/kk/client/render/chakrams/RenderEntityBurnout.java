@@ -28,7 +28,7 @@ public class RenderEntityBurnout extends Render implements IRenderFactory<Entity
 
     @Override
     protected ResourceLocation getEntityTexture (Entity entity) {
-        return new ResourceLocation(Reference.MODID, "textures/items/models/" + Strings.Burnout + "1.png");
+        return new ResourceLocation(Reference.MODID, "textures/items/models/" + Strings.Burnout + ".png");
     }
 
     @Override
