@@ -102,22 +102,7 @@ import uk.co.wehavecookies56.kk.client.render.RenderPortal;
 import uk.co.wehavecookies56.kk.client.render.RenderSeedBullet;
 import uk.co.wehavecookies56.kk.client.render.RenderXPGet;
 import uk.co.wehavecookies56.kk.client.render.TESRPedestal;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityAshes;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityBlazeofGlory;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityBurnout;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityCombustion;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityDoledrum;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityDoubleEdge;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityEternalFlames;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityFerrisWheel;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityIfrit;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityInferno;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityMoulinRouge;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityOmegaTrinity;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityOutbreak;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityPrometheus;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityProminence;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntitySizzlingEdge;
+import uk.co.wehavecookies56.kk.client.render.chakrams.*;
 import uk.co.wehavecookies56.kk.client.render.lances.RenderEntityZephyr;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
@@ -152,6 +137,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityRock;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySeedBullet;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
+<<<<<<< HEAD
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySlash;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityAshes;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityBlazeofGlory;
@@ -169,6 +155,9 @@ import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityOutbrea
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityPrometheus;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityProminence;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntitySizzlingEdge;
+=======
+import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.*;
+>>>>>>> abdadbb4101cce025ab7833a4e134f286ad6e114
 import uk.co.wehavecookies56.kk.common.entity.projectiles.lances.EntityZephyr;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
@@ -348,6 +337,9 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityOutbreak.class, (IRenderFactory) new RenderEntityOutbreak(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySizzlingEdge.class, (IRenderFactory) new RenderEntitySizzlingEdge(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDoubleEdge.class, (IRenderFactory) new RenderEntityDoubleEdge(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityVolcanics.class, (IRenderFactory) new RenderEntityVolcanics(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMagmaOcean.class, (IRenderFactory) new RenderEntityMagmaOcean(Minecraft.getMinecraft().getRenderManager()));
+
 
 		// Others
 		RenderingRegistry.registerEntityRenderingHandler(EntitySharpshooterBullet.class, new RenderFactorySharpshooterBullet());

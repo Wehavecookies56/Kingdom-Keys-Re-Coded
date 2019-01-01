@@ -28,7 +28,7 @@ public class RenderEntityOutbreak extends Render implements IRenderFactory<Entit
 
     @Override
     protected ResourceLocation getEntityTexture (Entity entity) {
-        return new ResourceLocation(Reference.MODID, "textures/items/models/" + Strings.Outbreak + "1.png");
+        return new ResourceLocation(Reference.MODID, "textures/items/models/" + Strings.Outbreak + ".png");
     }
 
     @Override

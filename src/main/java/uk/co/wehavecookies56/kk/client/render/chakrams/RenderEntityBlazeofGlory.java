@@ -25,7 +25,7 @@ public class RenderEntityBlazeofGlory extends Render implements IRenderFactory<E
 
     @Override
     protected ResourceLocation getEntityTexture (Entity entity) {
-        return new ResourceLocation(Reference.MODID, "textures/items/models/" + Strings.BlazeofGlory + "_1.png");
+        return new ResourceLocation(Reference.MODID, "textures/items/models/" + Strings.BlazeofGlory + ".png");
     }
 
     @Override

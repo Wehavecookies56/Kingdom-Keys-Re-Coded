@@ -1,8 +1,8 @@
 # Created by Metasequoia
 
 newmtl mat1
-Ka 0.60000 0.60000 0.60000
-Kd 0.80000 0.80000 0.80000
+Ka 0.38353 0.38353 0.38353
+Kd 0.51137 0.51137 0.51137
 Ks 0.00000 0.00000 0.00000
 Ns 5.00000
 map_Kd kk:items/models/sunrise

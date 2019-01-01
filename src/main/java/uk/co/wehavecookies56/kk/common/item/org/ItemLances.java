@@ -61,7 +61,7 @@ public class ItemLances extends ItemOrgWeapon implements IOrgWeapon{
                 entity = new EntityPrometheus(world, player);
                 break;
             case Strings.Prominence:
-                entity = new EntityProminence(world, player);
+                entity = new EntityMagmaOcean(world, player);
                 break;
             case Strings.MoulinRouge:
                 entity = new EntityMoulinRouge(world, player);
