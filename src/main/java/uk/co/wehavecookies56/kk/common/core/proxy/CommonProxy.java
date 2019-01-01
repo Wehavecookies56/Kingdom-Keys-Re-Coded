@@ -76,6 +76,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityWhiteMushroom;
 import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityRock;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySeedBullet;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySlash;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Constants;
 import uk.co.wehavecookies56.kk.common.lib.Lists;
@@ -164,6 +165,7 @@ public class CommonProxy {
 
 		EntityHelper.registerEntity("seedBullet", EntitySeedBullet.class);
 		EntityHelper.registerEntity("rock", EntityRock.class);
+		EntityHelper.registerEntity("slash", EntitySlash.class);
 
 		// Heartless registry
 		// Pureblood

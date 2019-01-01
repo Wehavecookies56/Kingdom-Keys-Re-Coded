@@ -93,6 +93,7 @@ import uk.co.wehavecookies56.kk.client.render.RenderBomb;
 import uk.co.wehavecookies56.kk.client.render.RenderEntityFlyingHeart;
 import uk.co.wehavecookies56.kk.client.render.RenderEntityGummiShip;
 import uk.co.wehavecookies56.kk.client.render.RenderEntityRock;
+import uk.co.wehavecookies56.kk.client.render.RenderEntitySlash;
 import uk.co.wehavecookies56.kk.client.render.RenderFactoryBlastBlox;
 import uk.co.wehavecookies56.kk.client.render.RenderFactorySharpshooterBullet;
 import uk.co.wehavecookies56.kk.client.render.RenderKHCreeper;
@@ -151,6 +152,7 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityRock;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySeedBullet;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySlash;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityAshes;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityBlazeofGlory;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityBurnout;
@@ -354,6 +356,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityXPGet.class, (IRenderFactory) new RenderXPGet(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySeedBullet.class, (IRenderFactory) new RenderSeedBullet(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityRock.class, (IRenderFactory) new RenderEntityRock(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySlash.class, (IRenderFactory) new RenderEntitySlash(Minecraft.getMinecraft().getRenderManager()));
 
 		// PUREBLOOD
 		RenderingRegistry.registerEntityRenderingHandler(EntityShadow.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelShadow(1D), 1, Strings.Shadow));
