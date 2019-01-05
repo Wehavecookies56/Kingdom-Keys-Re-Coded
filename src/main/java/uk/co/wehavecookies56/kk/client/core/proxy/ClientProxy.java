@@ -138,22 +138,8 @@ import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityRock;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySeedBullet;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySlash;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityAshes;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityBlazeofGlory;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityBurnout;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityCombustion;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityDoledrum;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityDoubleEdge;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityEternalFlames;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityFerrisWheels;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityIfrit;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityInferno;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityMoulinRouge;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityOmegaTrinity;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityOutbreak;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityPrometheus;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityProminence;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntitySizzlingEdge;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.*;
+
 
 import uk.co.wehavecookies56.kk.common.entity.projectiles.lances.EntityZephyr;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
