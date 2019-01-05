@@ -137,7 +137,6 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntityRock;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySeedBullet;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySharpshooterBullet;
-<<<<<<< HEAD
 import uk.co.wehavecookies56.kk.common.entity.projectiles.EntitySlash;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityAshes;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityBlazeofGlory;
@@ -155,9 +154,7 @@ import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityOutbrea
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityPrometheus;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityProminence;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntitySizzlingEdge;
-=======
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.*;
->>>>>>> abdadbb4101cce025ab7833a4e134f286ad6e114
+
 import uk.co.wehavecookies56.kk.common.entity.projectiles.lances.EntityZephyr;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
