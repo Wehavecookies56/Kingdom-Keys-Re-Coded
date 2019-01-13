@@ -51,7 +51,7 @@ public class ItemScythe extends ItemOrgWeapon implements IOrgWeapon{
             if (!player.isSneaking()) {
                 world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F), false);
                 world.spawnEntity(entity);
-                ((EntityThrowable) entity).setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1f, 1);
+                ((EntityThrowable) entity).setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 3f, 1);
                 if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
                     player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(5);
                 player.swingArm(hand);

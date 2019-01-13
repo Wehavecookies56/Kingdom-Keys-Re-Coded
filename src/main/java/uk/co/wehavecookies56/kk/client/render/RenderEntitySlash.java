@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -39,27 +40,18 @@ public class RenderEntitySlash extends Render implements IRenderFactory<EntitySl
 		GL11.glPushMatrix();
 		{
 			GL11.glTranslated(x, y, z);
-
+			GL11.glColor4d(1, 0, 0, 1);
 			GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 128.0F, 128.0F);
 
 			GL11.glScalef(0.4F,2,0.4F);
-
-			float ticks = entity.ticksExisted;
 			GL11.glRotatef(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * pitch - 90.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glRotatef(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * pitch, 0.0F, 0.0F, 1.0F);
 	        GL11.glRotatef(90, 0,1,0);
 
-			//if (ticks < 10) // Growing
-				//GL11.glScalef(ticks * 0.001f, ticks * 0.001f, ticks * 0.001f);
-			//else if (ticks > EntityRock.MAX_TICKS - 5 && !entity.isDead) // Disappearing
-				//GL11.glScalef((EntityRock.MAX_TICKS - ticks) * 0.001f, (EntityRock.MAX_TICKS - ticks) * 0.001f, (EntityRock.MAX_TICKS - ticks) * 0.001f);
-			//else // Static size
-				//GL11.glScalef(0.01f, 0.01f, 0.01f);
+	        bindEntityTexture(entity);
+	    	GL11.glColor4f((float)255/255, (float)200/255, (float)200/255, (float)255/255);
 
-			bindEntityTexture(entity);
-
-			// GL11.glScalef(-1.0F, -1.0F, 1.0F);
 			this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
 			GL11.glPopAttrib();

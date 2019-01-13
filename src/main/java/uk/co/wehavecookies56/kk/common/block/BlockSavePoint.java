@@ -91,12 +91,22 @@ public class BlockSavePoint extends Block {
 	}
 
 	private void updateState(World world, BlockPos pos) {
-		ticks++;
-		if (a > 360)
-			a = 0;
-		a += 10;
-		PacketDispatcher.sendToAll(new SpawnCureParticles(pos, true, (int) a));
-		List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1)));
+		
+		List list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, new AxisAlignedBB(pos.add(-20, -20, -20), pos.add(20, 20, 20)));
+		if (!list.isEmpty())
+			for (int i = 0; i < list.size(); i++) {
+				Entity e = (Entity) list.get(i);
+				if (e instanceof EntityPlayer) {
+					System.out.println(pos);
+					ticks++;
+					if (a > 360)
+						a = 0;
+					a += 10;
+					PacketDispatcher.sendToAllAround(new SpawnCureParticles(pos, true, (int) a), world.provider.getDimension(), (double) pos.getX(), (double) pos.getY(), (double) pos.getZ(), 32);
+				}
+			}
+
+		list = world.getEntitiesWithinAABBExcludingEntity((Entity) null, new AxisAlignedBB(pos.add(0, 0, 0), pos.add(1, 1, 1)));
 		if (!list.isEmpty())
 			for (int i = 0; i < list.size(); i++) {
 				Entity e = (Entity) list.get(i);
@@ -126,7 +136,7 @@ public class BlockSavePoint extends Block {
 							world.playSound((EntityPlayer) null, player.getPosition(), ModSounds.savespawn, SoundCategory.BLOCKS, 1.0f, 1.0f);
 						}
 					}
-					
+
 					if (player.getHealth() < player.getMaxHealth() || STATS.getMP() < STATS.getMaxMP()) {
 						player.heal(1);
 						STATS.addMP(2);

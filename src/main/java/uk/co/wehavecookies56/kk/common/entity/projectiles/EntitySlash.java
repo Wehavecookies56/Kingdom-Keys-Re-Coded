@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -48,9 +49,10 @@ public class EntitySlash extends EntityThrowable {
 		}
 
 		target.attackEntityFrom(DamageSource.causePlayerDamage(owner), DamageCalculation.getMagicDamage(owner, 1));
-		//target.motionY += 0.5;
 
-		//System.out.println(this.ticksExisted);
+		for(double i= 0; i< 5; i+=0.5)
+			this.world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY-2.5+i, this.posZ, 1, 0.6, 0.6);
+
 		if (this.ticksExisted >= MAX_TICKS) {
 			this.setDead();
 		}
