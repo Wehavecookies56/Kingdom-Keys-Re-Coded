@@ -42,17 +42,20 @@ public class GuiMenuButton extends GuiButton {
             GlStateManager.enableBlend();
             mc.renderEngine.bindTexture(texture);
             if (hovered && enabled) {
+            	x+=10;
                 drawTexturedModalRect(x, y, leftU, selectedVPos, endWidth, height);
                 for (int i = 0; i < middleWidth; i++)
                     drawTexturedModalRect(x+i+endWidth, y, middleU, selectedVPos, 1, height);
                 drawTexturedModalRect(x+endWidth+middleWidth, y, rightU, selectedVPos, endWidth, height);
+                drawString(mc.fontRenderer, displayString, x+12, y+6, new Color(255, 255, 255).hashCode());
+                x-=10;                
             } else {
                 drawTexturedModalRect(x, y, leftU, vPos, endWidth, height);
                 for (int i = 0; i < middleWidth; i++)
                     drawTexturedModalRect(x+i+endWidth, y, middleU, vPos, 1, height);
                 drawTexturedModalRect(x+endWidth+middleWidth, y, rightU, vPos, endWidth, height);
+                drawString(mc.fontRenderer, displayString, x+12, y+6, new Color(255, 255, 255).hashCode());
             }
-            drawString(mc.fontRenderer, displayString, x+12, y+6, new Color(255, 255, 255).hashCode());
             GlStateManager.popMatrix();
         }
     }
