@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -20,12 +21,14 @@ import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.util.WorldTeleporter;
 
 public class GuiOverlay extends GuiScreen {
 	public static boolean showExp;
 	public static boolean showMunny;
 	public static boolean showLevelUp;
 	public static boolean showDriveLevelUp;
+	public static WorldTeleporter teleport;
 	public static String driveForm = "none";
 	public static long timeExp;
 	public static long timeMunny;
@@ -73,7 +76,22 @@ public class GuiOverlay extends GuiScreen {
 			if (showDriveLevelUp) {
 				showDriveLevelUp(event);
 			}
+			
+			if(teleport != null) {
+				showTeleport();
+			}
 		}
+	}
+
+	private void showTeleport() {
+		String text = teleport.toName;
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.translate(width/2-(mc.fontRenderer.getStringWidth(text)*2)/2, sHeight - sHeight/6, 1);
+			GlStateManager.scale(2, 2, 2);
+			mc.fontRenderer.drawStringWithShadow(text, 0,0, 0xFFFFFF);
+		}
+		GlStateManager.popMatrix();
 	}
 
 	private void showExp() {

@@ -59,10 +59,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -81,13 +81,12 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.items.ItemStackHandler;
-import uk.co.wehavecookies56.kk.api.abilities.Ability;
 import uk.co.wehavecookies56.kk.api.abilities.AbilityEvent;
-import uk.co.wehavecookies56.kk.api.abilities.AbilityRegistry;
 import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
+import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
@@ -154,6 +153,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.GlidePacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MasterFormPacket;
 import uk.co.wehavecookies56.kk.common.util.IDAndBlockPos;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.util.WorldTeleporter;
 import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
 import uk.co.wehavecookies56.kk.common.world.dimension.DimTeleporter;
 import uk.co.wehavecookies56.kk.common.world.dimension.ModDimensions;
@@ -368,7 +368,7 @@ public class EntityEvents {
 	public void playerRespawn(PlayerRespawnEvent event) {
 		EntityPlayer player = event.player;
 
-		if (event.player.dimension == ModDimensions.destinyIslandsID || event.player.dimension == ModDimensions.diveToTheHeartID || event.player.dimension == ModDimensions.traverseTownID) {
+		if (player.dimension == ModDimensions.destinyIslandsID || player.dimension == ModDimensions.diveToTheHeartID || player.dimension == ModDimensions.traverseTownID) {
 			IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(event.player.dimension);
 			DimTeleporter tp = new DimTeleporter(info.pos, info.id);
 
@@ -434,6 +434,11 @@ public class EntityEvents {
 		}
 	}
 
+	/*
+	 * @SubscribeEvent public void onWorldLoad(WorldEvent.Load event) {
+	 * //loadWorldTeleporters(); }
+	 */
+
 	@SubscribeEvent
 	public void OnEntityJoinWorld(EntityJoinWorldEvent event) {
 		if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
@@ -479,7 +484,7 @@ public class EntityEvents {
 			if (event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).getMaxAP() < 10) {
 				event.getEntity().getCapability(ModCapabilities.PLAYER_STATS, null).setMaxAP(10);
 			}
-			if(!event.getEntity().getCapability(ModCapabilities.ABILITIES, null).getUnlockedAbility(ModAbilities.zeroEXP)){
+			if (!event.getEntity().getCapability(ModCapabilities.ABILITIES, null).getUnlockedAbility(ModAbilities.zeroEXP)) {
 				event.getEntity().getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.zeroEXP);
 			}
 
@@ -1044,101 +1049,11 @@ public class EntityEvents {
 		}
 		// Choices
 		IPlayerStats STATS = player.getCapability(ModCapabilities.PLAYER_STATS, null);
-		World world = event.player.world;
 		if (!event.player.world.isRemote) {
 			if (player.dimension == ModDimensions.diveToTheHeartID) {
-
-				PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SOA_1), (EntityPlayerMP) player);
-				// if(world.isRemote)
-				// GuiHelper.openTutorial(Tutorials.TUTORIAL_SOA_1);
-
-				if (player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
-					if (!STATS.getChoice1().equals(Strings.Choice_Shield)) {
-						STATS.setChoice1(Strings.Choice_Shield);
-						TextComponentTranslation shield = new TextComponentTranslation("Shield");
-						shield.getStyle().setColor(TextFormatting.YELLOW);
-						player.sendMessage(shield);
-
-						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SHIELD_1, true), (EntityPlayerMP) player);
-						// if(world.isRemote)
-						// GuiHelper.openTutorial(Tutorials.TUTORIAL_SHIELD_1, true);
-					}
-				} else if (player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) {
-					if (!STATS.getChoice1().equals(Strings.Choice_Staff)) {
-						STATS.setChoice1(Strings.Choice_Staff);
-						TextComponentTranslation staff = new TextComponentTranslation("Staff");
-						staff.getStyle().setColor(TextFormatting.YELLOW);
-						player.sendMessage(staff);
-
-						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_STAFF_1, true), (EntityPlayerMP) player);
-
-						// if(world.isRemote)
-						// GuiHelper.openTutorial(Tutorials.TUTORIAL_STAFF_1, true);
-					}
-				} else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) {
-					if (!STATS.getChoice1().equals(Strings.Choice_Sword)) {
-						STATS.setChoice1(Strings.Choice_Sword);
-						TextComponentTranslation sword = new TextComponentTranslation("Sword");
-						sword.getStyle().setColor(TextFormatting.YELLOW);
-						player.sendMessage(sword);
-
-						PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SWORD_1, true), (EntityPlayerMP) player);
-
-						// if(world.isRemote)
-						// GuiHelper.openTutorial(Tutorials.TUTORIAL_SWORD_1, true);
-					}
-				} else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) {
-					if (player.dimension == ModDimensions.diveToTheHeartID) {
-						if (!STATS.getChoice1().equals("") && !STATS.getChoice1().equals("door")) {
-							// if (!player.world.isRemote) {
-							switch (STATS.getChoice1()) {
-							case Strings.Choice_Shield:
-								STATS.addDefense(2);
-								break;
-							case Strings.Choice_Staff:
-								STATS.addMagic(2);
-								break;
-							case Strings.Choice_Sword:
-								STATS.addStrength(2);
-								break;
-							}
-							PacketDispatcher.sendTo(new SyncLevelData(STATS), (EntityPlayerMP) player);
-
-							IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(0);
-							DimTeleporter tp = new DimTeleporter(info.pos, info.id);
-
-							if (player.world.provider.getDimension() != info.id) {
-								player.changeDimension(info.id, tp);
-							} else {
-								tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
-							}
-
-							// new
-							// TeleporterOverworld(event.player.world.getMinecraftServer().getServer().getWorld(0)).teleport((player),
-							// player.world);
-							// }
-						} else {
-							if (!STATS.getChoice1().equals("door")) {
-								TextComponentTranslation needChoice = new TextComponentTranslation("You must make a choice");
-								needChoice.getStyle().setColor(TextFormatting.RED);
-								player.sendMessage(needChoice);
-								STATS.setChoice1("door");
-							}
-						}
-					}
-				}
+				diveToTheHeartTP(player, STATS);
 			} else if (player.dimension == ModDimensions.traverseTownID) {
-				if (player.getPosition().getX() == 193 && player.getPosition().getZ() == 161 && player.getPosition().getY() == 6) {
-
-					IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(0);
-					DimTeleporter tp = new DimTeleporter(info.pos, info.id);
-
-					if (player.world.provider.getDimension() != info.id) {
-						player.changeDimension(info.id, tp);
-					} else {
-						tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
-					}
-				}
+				traverseTownTP(player);
 			}
 		}
 		DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
@@ -1189,6 +1104,114 @@ public class EntityEvents {
 			isHostiles = false;
 		}
 
+	}
+
+	public static WorldTeleporter[] traverseTownTeleporters = {
+		// Don't put the destination pos at the same position as the teleporter, or you would get swapped all the time
+			//First disctrict teleporters
+		new WorldTeleporter("First District", ModDimensions.traverseTown.getId(), new BlockPos(193, 6, 161), "Overworld", 0, new BlockPos(193, 6, 161)),
+		new WorldTeleporter("First District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 142), "Third District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 126)),
+			//Second District teleporters
+		
+			//Third District teleporters
+		new WorldTeleporter("Third District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 127), "First District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 143))
+	};
+
+	private static final int TEXT_RADIUS = 3;
+
+	private void traverseTownTP(EntityPlayer player) {
+		for (int i = 0; i < traverseTownTeleporters.length; i++) {
+			WorldTeleporter teleporter = traverseTownTeleporters[i]; //Individual teleporter
+			if (player.dimension == teleporter.fromDim) { // If player is in same dimension as the teleporter
+				if (player.getPosition().getX() > teleporter.fromPos.getX() - TEXT_RADIUS && player.getPosition().getX() < teleporter.fromPos.getX() + TEXT_RADIUS && player.getPosition().getZ() > teleporter.fromPos.getZ() - TEXT_RADIUS && player.getPosition().getZ() < teleporter.fromPos.getZ() + TEXT_RADIUS) {
+					GuiOverlay.teleport = teleporter; //Set gui info for teleporter
+					
+					if (player.getPosition().equals(teleporter.fromPos)) { // If player is in the position
+						IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(teleporter.toDim);
+						DimTeleporter tp = new DimTeleporter(info.pos, info.id);
+
+						if (player.world.provider.getDimension() != info.id) {
+							player.changeDimension(info.id, tp);
+							GuiOverlay.teleport = null;
+						} else {
+							tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
+							player.setPositionAndUpdate(teleporter.toPos.getX(), teleporter.toPos.getY(), teleporter.toPos.getZ());
+						}
+					}
+					break; //Break so it won't check for the next teleport (because you are near one so it doesn't need to check for other)
+				} else {
+					GuiOverlay.teleport = null;
+				}
+
+			}
+
+		}
+
+	}
+
+	private void diveToTheHeartTP(EntityPlayer player, IPlayerStats STATS) {
+		PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SOA_1), (EntityPlayerMP) player);
+
+		if (player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) { // Shield
+			if (!STATS.getChoice1().equals(Strings.Choice_Shield)) {
+				STATS.setChoice1(Strings.Choice_Shield);
+				TextComponentTranslation shield = new TextComponentTranslation("Shield");
+				shield.getStyle().setColor(TextFormatting.YELLOW);
+				player.sendMessage(shield);
+				PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SHIELD_1, true), (EntityPlayerMP) player);
+			}
+		} else if (player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) { // Staff
+			if (!STATS.getChoice1().equals(Strings.Choice_Staff)) {
+				STATS.setChoice1(Strings.Choice_Staff);
+				TextComponentTranslation staff = new TextComponentTranslation("Staff");
+				staff.getStyle().setColor(TextFormatting.YELLOW);
+				player.sendMessage(staff);
+				PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_STAFF_1, true), (EntityPlayerMP) player);
+			}
+		} else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) { // Sword
+			if (!STATS.getChoice1().equals(Strings.Choice_Sword)) {
+				STATS.setChoice1(Strings.Choice_Sword);
+				TextComponentTranslation sword = new TextComponentTranslation("Sword");
+				sword.getStyle().setColor(TextFormatting.YELLOW);
+				player.sendMessage(sword);
+				PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SWORD_1, true), (EntityPlayerMP) player);
+			}
+		} else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) { // Door
+			if (player.dimension == ModDimensions.diveToTheHeartID) {
+				if (!STATS.getChoice1().equals("") && !STATS.getChoice1().equals("door")) {
+					// if (!player.world.isRemote) {
+					switch (STATS.getChoice1()) {
+					case Strings.Choice_Shield:
+						STATS.addDefense(2);
+						break;
+					case Strings.Choice_Staff:
+						STATS.addMagic(2);
+						break;
+					case Strings.Choice_Sword:
+						STATS.addStrength(2);
+						break;
+					}
+					PacketDispatcher.sendTo(new SyncLevelData(STATS), (EntityPlayerMP) player);
+
+					IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(0);
+					DimTeleporter tp = new DimTeleporter(info.pos, info.id);
+
+					if (player.world.provider.getDimension() != info.id) {
+						player.changeDimension(info.id, tp);
+					} else {
+						tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
+					}
+
+				} else {
+					if (!STATS.getChoice1().equals("door")) {
+						TextComponentTranslation needChoice = new TextComponentTranslation("You must make a choice");
+						needChoice.getStyle().setColor(TextFormatting.RED);
+						player.sendMessage(needChoice);
+						STATS.setChoice1("door");
+					}
+				}
+			}
+		}
 	}
 
 	public static boolean jumpHeld = false;
@@ -1324,14 +1347,14 @@ public class EntityEvents {
 			}
 
 			PacketDispatcher.sendTo(new SyncDriveData(DRIVE), (EntityPlayerMP) player);
-			
-			float damage = (float) Math.round((event.getAmount() * 100 / ( (100 + (STATS.getLevel() * 2)) + STATS.getDefense() )));
-			
+
+			float damage = (float) Math.round((event.getAmount() * 100 / ((100 + (STATS.getLevel() * 2)) + STATS.getDefense())));
+
 			if (damage <= 0)
 				event.setAmount(1);
 			else
 				event.setAmount(damage);
-			
+
 			if (event.getSource().getDamageType().equals("lightningBolt"))
 				if (EntityThunder.summonLightning)
 					event.setCanceled(true);
