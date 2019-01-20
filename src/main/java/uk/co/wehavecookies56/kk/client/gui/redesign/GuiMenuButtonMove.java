@@ -13,22 +13,28 @@ import uk.co.wehavecookies56.kk.common.lib.Reference;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
 
-public class GuiMenuButton extends GuiButton {
+public class GuiMenuButtonMove extends GuiButton {
 
     private ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/menu/menu_button.png");
     private int endWidth = 11;
 
-    private int leftU = 0, middleU = 12, rightU = 14;
-    private int vPos = 0;
-    private int selectedVPos = 20;
-
-    private int middleWidth;
+    private int uPos = 133;
+    private int upV = 90, downV = 100;
+    private int selectedVUp = 110;
+    private int selectedVDown = 120;
 
     private boolean selected;
+    private int v, selectedV;
 
-    public GuiMenuButton(int buttonId, int x, int y, int widthIn, String buttonText) {
-        super(buttonId, x, y, 22 + widthIn, 20, buttonText);
-        middleWidth = widthIn;
+    public GuiMenuButtonMove(int buttonId, int x, int y, String direction) {
+        super(buttonId, x, y, 9, 9, "");
+        if(direction.equals("up")) {
+        	selectedV = selectedVUp;
+        	v = upV;
+        } else {
+        	selectedV = selectedVDown;
+        	v = downV;
+        }
     }
 
     @ParametersAreNonnullByDefault
@@ -41,16 +47,10 @@ public class GuiMenuButton extends GuiButton {
             GlStateManager.enableAlpha();
             GlStateManager.enableBlend();
             mc.renderEngine.bindTexture(texture);
-            if (hovered && enabled) {
-                drawTexturedModalRect(x, y, leftU, selectedVPos, endWidth, height);
-                for (int i = 0; i < middleWidth; i++)
-                    drawTexturedModalRect(x+i+endWidth, y, middleU, selectedVPos, 1, height);
-                drawTexturedModalRect(x+endWidth+middleWidth, y, rightU, selectedVPos, endWidth, height);
+            if (hovered && enabled) {            	
+                drawTexturedModalRect(x, y, uPos, selectedV, endWidth, height);
             } else {
-                drawTexturedModalRect(x, y, leftU, vPos, endWidth, height);
-                for (int i = 0; i < middleWidth; i++)
-                    drawTexturedModalRect(x+i+endWidth, y, middleU, vPos, 1, height);
-                drawTexturedModalRect(x+endWidth+middleWidth, y, rightU, vPos, endWidth, height);
+                drawTexturedModalRect(x, y, uPos, v, endWidth, height);
             }
             drawString(mc.fontRenderer, displayString, x+12, y+6, new Color(255, 255, 255).hashCode());
             GlStateManager.popMatrix();

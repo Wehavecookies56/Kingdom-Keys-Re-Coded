@@ -38,13 +38,13 @@ public class MessageExtendedReachAttackPacket extends AbstractMessage.AbstractSe
     @Override
     public void process(EntityPlayer player, Side side) {
         // DEBUG
-        System.out.println("Message received");
+       // System.out.println("Message received");
         // Know it will be on the server so make it thread-safe
 
 
         Entity theEntity = player.world.getEntityByID(this.entityId);
         // DEBUG
-        System.out.println("Entity = " + theEntity);
+       // System.out.println("Entity = " + theEntity);
 
         // Need to ensure that hackers can't cause trick kills,
         // so double check weapon type and reach

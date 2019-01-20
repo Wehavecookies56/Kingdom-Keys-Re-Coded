@@ -17,6 +17,7 @@ import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Items;
 import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Items_Player;
 import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Status;
 import uk.co.wehavecookies56.kk.client.gui.GuiTutorial;
+import uk.co.wehavecookies56.kk.client.gui.redesign.GuiCustomize;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -72,6 +73,11 @@ public class GuiHelper {
 	@SideOnly(Side.CLIENT)
 	public static void openStatus() {
 		Minecraft.getMinecraft().displayGuiScreen(new GuiMenu_Status(Strings.Gui_Menu_Main_Title));
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public static void openCustomize() {
+		Minecraft.getMinecraft().displayGuiScreen(new GuiCustomize());
 	}
 
 	@SideOnly(Side.CLIENT)

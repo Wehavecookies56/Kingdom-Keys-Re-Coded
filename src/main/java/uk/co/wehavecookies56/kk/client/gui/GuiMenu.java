@@ -40,10 +40,15 @@ public class GuiMenu extends GuiScreen {
 
     @Override
     protected void actionPerformed (GuiButton button) throws IOException {
+    	System.out.println("ASD");
+
         switch (button.id) {
             case ITEMS:
                 mc.displayGuiScreen(new GuiMenu_Items());
                 break;
+            case CUSTOMIZE:
+            	GuiHelper.openCustomize();
+            	break;
             case STATUS:
                 GuiHelper.openStatus();
                 break;
@@ -98,7 +103,7 @@ public class GuiMenu extends GuiScreen {
                 status.visible = true;
                 journal.visible = true;
                 config.visible = true;
-                this.customize.enabled = false;
+                this.customize.enabled = true;
                 this.party.enabled = false;
                 this.journal.enabled = true;
                 break;
