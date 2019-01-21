@@ -12,6 +12,8 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -58,6 +60,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -75,6 +78,7 @@ import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.world.WorldEvent.Load;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
@@ -153,6 +157,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.server.GlidePacket;
 import uk.co.wehavecookies56.kk.common.network.packet.server.MasterFormPacket;
 import uk.co.wehavecookies56.kk.common.util.IDAndBlockPos;
 import uk.co.wehavecookies56.kk.common.util.Utils;
+import uk.co.wehavecookies56.kk.common.util.WorldSpawner;
 import uk.co.wehavecookies56.kk.common.util.WorldTeleporter;
 import uk.co.wehavecookies56.kk.common.world.WorldSavedDataKingdomKeys;
 import uk.co.wehavecookies56.kk.common.world.dimension.DimTeleporter;
@@ -434,10 +439,10 @@ public class EntityEvents {
 		}
 	}
 
-	/*
-	 * @SubscribeEvent public void onWorldLoad(WorldEvent.Load event) {
-	 * //loadWorldTeleporters(); }
-	 */
+	@SubscribeEvent
+	public void onWorldLoad(WorldEvent.Load event) {
+		loadWorldSpawners(event);
+	}
 
 	@SubscribeEvent
 	public void OnEntityJoinWorld(EntityJoinWorldEvent event) {
@@ -1054,6 +1059,7 @@ public class EntityEvents {
 				diveToTheHeartTP(player, STATS);
 			} else if (player.dimension == ModDimensions.traverseTownID) {
 				traverseTownTP(player);
+				traverseTownSpawn(player);
 			}
 		}
 		DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
@@ -1107,25 +1113,35 @@ public class EntityEvents {
 	}
 
 	public static WorldTeleporter[] traverseTownTeleporters = {
-		// Don't put the destination pos at the same position as the teleporter, or you would get swapped all the time
-			//First disctrict teleporters
-		new WorldTeleporter("First District", ModDimensions.traverseTown.getId(), new BlockPos(193, 6, 161), "Overworld", 0, new BlockPos(193, 6, 161)),
-		new WorldTeleporter("First District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 142), "Third District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 126)),
-			//Second District teleporters
-		
-			//Third District teleporters
-		new WorldTeleporter("Third District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 127), "First District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 143))
-	};
+			// Don't put the destination pos at the same position as the teleporter, or you
+			// would get swapped all the time
+			// First disctrict teleporters
+			new WorldTeleporter("First District", ModDimensions.traverseTownID, new BlockPos(193, 6, 161), "Overworld", 0, new BlockPos(193, 6, 161)), new WorldTeleporter("First District", ModDimensions.traverseTownID, new BlockPos(166, 6, 142), "Third District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 126)),
+			// Second District teleporters
+
+			// Third District teleporters
+			new WorldTeleporter("Third District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 127), "First District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 143)) };
+
+	static ArrayList<IKHMob> heartlessList = new ArrayList<IKHMob>();
+
+	public static WorldSpawner[] traverseTownSpawners = {
+			// Spawnings for heartless
+			new WorldSpawner(ModDimensions.traverseTownID, new BlockPos(81, 8, 164), heartlessList) };
+
+	private void loadWorldSpawners(Load event) {
+		EntityShadow shadow = new EntityShadow(event.getWorld());
+		heartlessList.add(shadow);
+	}
 
 	private static final int TEXT_RADIUS = 3;
 
 	private void traverseTownTP(EntityPlayer player) {
 		for (int i = 0; i < traverseTownTeleporters.length; i++) {
-			WorldTeleporter teleporter = traverseTownTeleporters[i]; //Individual teleporter
+			WorldTeleporter teleporter = traverseTownTeleporters[i]; // Individual teleporter
 			if (player.dimension == teleporter.fromDim) { // If player is in same dimension as the teleporter
 				if (player.getPosition().getX() > teleporter.fromPos.getX() - TEXT_RADIUS && player.getPosition().getX() < teleporter.fromPos.getX() + TEXT_RADIUS && player.getPosition().getZ() > teleporter.fromPos.getZ() - TEXT_RADIUS && player.getPosition().getZ() < teleporter.fromPos.getZ() + TEXT_RADIUS) {
-					GuiOverlay.teleport = teleporter; //Set gui info for teleporter
-					
+					GuiOverlay.teleport = teleporter; // Set gui info for teleporter
+
 					if (player.getPosition().equals(teleporter.fromPos)) { // If player is in the position
 						IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(teleporter.toDim);
 						DimTeleporter tp = new DimTeleporter(info.pos, info.id);
@@ -1138,15 +1154,34 @@ public class EntityEvents {
 							player.setPositionAndUpdate(teleporter.toPos.getX(), teleporter.toPos.getY(), teleporter.toPos.getZ());
 						}
 					}
-					break; //Break so it won't check for the next teleport (because you are near one so it doesn't need to check for other)
+					break; // Break so it won't check for the next teleport (because you are near one so it
+							// doesn't need to check for another)
 				} else {
 					GuiOverlay.teleport = null;
 				}
 
 			}
-
 		}
+	}
 
+	private void traverseTownSpawn(EntityPlayer player) {
+		for (int i = 0; i < traverseTownSpawners.length; i++) {
+			WorldSpawner spawner = traverseTownSpawners[i]; // Individual teleporter
+			if (spawner.enabled) {
+				if (player.dimension == spawner.dim) { // If player is in same dimension as the teleporter
+					if (player.getPosition().getX() > spawner.pos.getX() - TEXT_RADIUS && player.getPosition().getX() < spawner.pos.getX() + TEXT_RADIUS && player.getPosition().getZ() > spawner.pos.getZ() - TEXT_RADIUS && player.getPosition().getZ() < spawner.pos.getZ() + TEXT_RADIUS) {
+						// Spawn
+						System.out.println("Spawning " + spawner.enemies.get(0));
+						Entity e = EntityList.createEntityByIDFromName(new ResourceLocation("kk","gigashadow"), player.world);
+						e.setPosition(spawner.pos.getX(),spawner.pos.getY(),spawner.pos.getZ());
+						player.world.spawnEntity(e);
+						spawner.enabled = false;
+						break; // Break so it won't check for the next teleport (because you are near one so it
+								// doesn't need to check for another)
+					}
+				}
+			}
+		}
 	}
 
 	private void diveToTheHeartTP(EntityPlayer player, IPlayerStats STATS) {

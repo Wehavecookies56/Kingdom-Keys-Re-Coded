@@ -42,7 +42,7 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider {
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		
-		/*if (!world.isRemote) {
+		if (!world.isRemote) {
 			byte index = -1;
 
 			if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
@@ -82,7 +82,7 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider {
 
 				}
 			}
-		}*/
+		}
 		return false;
 	}
 
