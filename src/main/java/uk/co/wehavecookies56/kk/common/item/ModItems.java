@@ -79,7 +79,7 @@ public class ModItems {
             GullWing, HerosCrest, HiddenDragon, Hyperdrive, IncompleteKiblade, JungleKing, KeybladeofPeoplesHearts,
             Kiblade, KingdomKey, KingdomKeyD, KnockoutPunch, LadyLuck, LeasKeyblade, LeopardosForetellersKeyblade,
             Leviathan, Lionheart, LostMemory, LunarEclipse, MarkofaHero, MasterXehanortsKeyblade, MastersDefender,
-            MaverickFlare, MetalChocobo, MidnightRoar, MirageSplit, MissingAche, Monochrome, MysteriousAbyss,
+            MaverickFlare, MetalChocobo, MidnightRoar, MirageSplit, MissingAche, MoogleoGlory, Monochrome, MysteriousAbyss,
             NightmaresEnd, NightmaresEndandMirageSplit, NoName, Oathkeeper, Oblivion, OceansRage, Olympia, OmegaWeapon,
             OminousBlight, OneWingedAngel, PainofSolitude, PhotonDebugger, PixiePetal, Pumpkinhead, Rainfell,
             RejectionofFate, RoyalRadiance, RumblingRose, SignofInnocence, SilentDirge, SkullNoise, SleepingLion,
@@ -100,7 +100,7 @@ public class ModItems {
             Chain_LadyLuck, Chain_LeasKeyblade, Chain_LeopardosForetellersKeyblade, Chain_Leviathan, Chain_Lionheart,
             Chain_LostMemory, Chain_LunarEclipse, Chain_MarkofaHero, Chain_MasterXehanortsKeyblade,
             Chain_MastersDefender, Chain_MaverickFlare, Chain_MetalChocobo, Chain_MidnightRoar, Chain_MirageSplit,
-            Chain_MissingAche, Chain_Monochrome, Chain_MysteriousAbyss, Chain_NightmaresEnd,
+            Chain_MissingAche, Chain_MoogleoGlory, Chain_Monochrome, Chain_MysteriousAbyss, Chain_NightmaresEnd,
             Chain_NightmaresEndandMirageSplit, Chain_NoName, Chain_Oathkeeper, Chain_Oblivion, Chain_OceansRage,
             Chain_Olympia, Chain_OmegaWeapon, Chain_OminousBlight, Chain_OneWingedAngel, Chain_PainofSolitude,
             Chain_PhotonDebugger, Chain_PixiePetal, Chain_Pumpkinhead, Chain_Rainfell, Chain_RejectionofFate,
@@ -126,8 +126,9 @@ public class ModItems {
             OrganizationRobe_Boots, Xemnas_Helmet, Xemnas_Chestplate, Xemnas_Leggings, Xemnas_Boots, Terra_Helmet,
             Terra_Chestplate, Terra_Leggings, Terra_Boots, Aqua_Helmet, Aqua_Chestplate, Aqua_Leggings, Aqua_Boots,
             Ventus_Helmet, Ventus_Chestplate, Ventus_Leggings, Ventus_Boots, Eraqus_Helmet, Eraqus_Chestplate,
-            Eraqus_Leggings, Eraqus_Boots, NightmareVentus_Helmet, NightmareVentus_Chestplate, NightmareVentus_Leggings, NightmareVentus_Boots,
-            AntiCoat_Helmet, AntiCoat_Chestplate, AntiCoat_Leggings, AntiCoat_Boots,Vanitas_Helmet, Vanitas_Chestplate, Vanitas_Leggings, Vanitas_Boots
+            Eraqus_Leggings, Eraqus_Boots, NightmareVentus_Helmet, NightmareVentus_Chestplate, NightmareVentus_Leggings,
+            NightmareVentus_Boots, AntiCoat_Helmet, AntiCoat_Chestplate, AntiCoat_Leggings, AntiCoat_Boots,
+            Vanitas_Helmet, Vanitas_Chestplate, Vanitas_Leggings, Vanitas_Boots
     ;
 
     // Armour materials
@@ -501,6 +502,7 @@ public class ModItems {
             MidnightRoar = new ItemRealKeyblade(Strings.MidnightRoar, BalanceConfig.keyblades.midnightRoar[0], BalanceConfig.keyblades.midnightRoar[1], Strings.guard, 5F),
             MirageSplit = new ItemRealKeyblade(Strings.MirageSplit, BalanceConfig.keyblades.mirageSplit[0], BalanceConfig.keyblades.mirageSplit[1], Strings.guard, 5F),
             MissingAche = new ItemRealKeyblade(Strings.MissingAche, BalanceConfig.keyblades.missingAche[0], BalanceConfig.keyblades.missingAche[1], Strings.guard, 5F),
+            MoogleoGlory = new ItemRealKeyblade(Strings.MoogleoGlory, BalanceConfig.keyblades.moogleoglory[0], BalanceConfig.keyblades.moogleoglory[1], Strings.guard, 5F),
             Monochrome = new ItemRealKeyblade(Strings.Monochrome, BalanceConfig.keyblades.monochrome[0], BalanceConfig.keyblades.monochrome[1], Strings.itemBoost, 5F),
             MysteriousAbyss = new ItemRealKeyblade(Strings.MysteriousAbyss, BalanceConfig.keyblades.mysteriousAbyss[0], BalanceConfig.keyblades.mysteriousAbyss[1], Strings.blizzardBoost, 5F),
             NightmaresEnd = new ItemRealKeyblade(Strings.NightmaresEnd, BalanceConfig.keyblades.nightmaresEnd[0], BalanceConfig.keyblades.nightmaresEnd[1], Strings.guard, 5F),
@@ -621,6 +623,7 @@ public class ModItems {
             Chain_MidnightRoar = new ItemKeychain(Strings.Chain_MidnightRoar),
             Chain_MirageSplit = new ItemKeychain(Strings.Chain_MirageSplit),
             Chain_MissingAche = new ItemKeychain(Strings.Chain_MissingAche),
+            Chain_MoogleoGlory = new ItemKeychain(Strings.Chain_MoogleoGlory),
             Chain_Monochrome = new ItemKeychain(Strings.Chain_Monochrome),
             Chain_MysteriousAbyss = new ItemKeychain(Strings.Chain_MysteriousAbyss),
             Chain_NightmaresEnd = new ItemKeychain(Strings.Chain_NightmaresEnd),
@@ -903,6 +906,7 @@ public class ModItems {
         ((ItemKeyblade)MidnightRoar).setDescription("A weapon that possesses high Strength. Useful against tough enemies.");
         ((ItemKeyblade)MirageSplit).setDescription("A Keyblade formed from a Reality Shift in The World That Never Was.");
         ((ItemKeyblade)MissingAche).setDescription("A weapon that lets you string together faster, longer ground combos.");
+        ((ItemKeyblade)MoogleoGlory).setDescription("Kupo (placeholder).");
         ((ItemKeyblade)Monochrome).setDescription("Increases the effect of restoration items used on the field.");
         ((ItemKeyblade)MysteriousAbyss).setDescription("Enhances magic to increase damage dealt by blizzard-based attacks.");
         ((ItemKeyblade)NightmaresEnd).setDescription("A Keyblade formed from a Reality Shift in The World That Never Was.");
@@ -1023,6 +1027,7 @@ public class ModItems {
         ((ItemKeychain)Chain_MidnightRoar).setKeyblade((ItemKeyblade) MidnightRoar);
         ((ItemKeychain)Chain_MirageSplit).setKeyblade((ItemKeyblade) MirageSplit);
         ((ItemKeychain)Chain_MissingAche).setKeyblade((ItemKeyblade) MissingAche);
+        ((ItemKeychain)Chain_MoogleoGlory).setKeyblade((ItemKeyblade) MoogleoGlory);
         ((ItemKeychain)Chain_Monochrome).setKeyblade((ItemKeyblade) Monochrome);
         ((ItemKeychain)Chain_MysteriousAbyss).setKeyblade((ItemKeyblade) MysteriousAbyss);
         ((ItemKeychain)Chain_NightmaresEnd).setKeyblade((ItemKeyblade) NightmaresEnd);

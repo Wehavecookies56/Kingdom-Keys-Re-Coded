@@ -1078,7 +1078,8 @@ public class Strings {
     LeopardosForetellersKeyblade = "leopardosforetellerskeyblade",
     UnicornisForetellersKeyblade = "unicornisforetellerskeyblade",
     UrsusForetellersKeyblade = "ursusforetellerskeyblade",
-    VulpeusForetellersKeyblade = "vulpeusforetellerskeyblade"
+    VulpeusForetellersKeyblade = "vulpeusforetellerskeyblade",
+    MoogleoGlory = "moogleoglory"
     ;
 
     // CHAINS
@@ -1144,6 +1145,7 @@ public class Strings {
     Chain_MidnightRoar = "midnightroarchain",
     Chain_MirageSplit = "miragesplitchain",
     Chain_MissingAche = "missingachechain",
+    Chain_MoogleoGlory = "moogleoglory",
     Chain_Monochrome = "monochromechain",
     Chain_MysteriousAbyss = "mysteriousabysschain",
     Chain_NightmaresEnd = "nightmaresendchain",

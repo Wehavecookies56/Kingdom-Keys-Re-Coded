@@ -89,6 +89,7 @@ public class BalanceConfig {
 				midnightRoar = new int[] { 6, 0 },
 				mirageSplit = new int[] { 8, 5 },
 				missingAche = new int[] { 3, 0 },
+				moogleoglory = new int[] {6,3},
 				monochrome = new int[] { 6, 4 },
 				mysteriousAbyss = new int[] { 6, 6 },
 				nightmaresEnd = new int[] { 9, 3 },
