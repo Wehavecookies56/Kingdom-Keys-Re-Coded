@@ -1145,7 +1145,7 @@ public class Strings {
     Chain_MidnightRoar = "midnightroarchain",
     Chain_MirageSplit = "miragesplitchain",
     Chain_MissingAche = "missingachechain",
-    Chain_MoogleoGlory = "moogleoglory",
+    Chain_MoogleoGlory = "moogleoglorychain",
     Chain_Monochrome = "monochromechain",
     Chain_MysteriousAbyss = "mysteriousabysschain",
     Chain_NightmaresEnd = "nightmaresendchain",
