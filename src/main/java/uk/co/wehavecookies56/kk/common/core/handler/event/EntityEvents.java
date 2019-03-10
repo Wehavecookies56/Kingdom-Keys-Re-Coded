@@ -439,10 +439,10 @@ public class EntityEvents {
 		}
 	}
 
-	@SubscribeEvent
-	public void onWorldLoad(WorldEvent.Load event) {
-		loadWorldSpawners(event);
-	}
+	/*
+	 * @SubscribeEvent public void onWorldLoad(WorldEvent.Load event) {
+	 * loadWorldSpawners(event); }
+	 */
 
 	@SubscribeEvent
 	public void OnEntityJoinWorld(EntityJoinWorldEvent event) {
@@ -1113,25 +1113,30 @@ public class EntityEvents {
 	}
 
 	public static WorldTeleporter[] traverseTownTeleporters = {
-			// Don't put the destination pos at the same position as the teleporter, or you
-			// would get swapped all the time
-			// First disctrict teleporters
-			new WorldTeleporter("First District", ModDimensions.traverseTownID, new BlockPos(193, 6, 161), "Overworld", 0, new BlockPos(193, 6, 161)), new WorldTeleporter("First District", ModDimensions.traverseTownID, new BlockPos(166, 6, 142), "Third District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 126)),
-			// Second District teleporters
+		// Don't put the destination pos at the same position as the teleporter, or you
+		// would get swapped all the time
+		
+		// First disctrict teleporters
+		new WorldTeleporter("First District", ModDimensions.traverseTown.getId(), new BlockPos(193, 6, 161), "Overworld", 0, new BlockPos(193, 6, 161)),
+		new WorldTeleporter("First District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 142), "Third District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 126)),
+		// Second District teleporters
 
-			// Third District teleporters
-			new WorldTeleporter("Third District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 127), "First District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 143)) };
-
-	static ArrayList<IKHMob> heartlessList = new ArrayList<IKHMob>();
+		// Third District teleporters
+		new WorldTeleporter("Third District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 127), "First District", ModDimensions.traverseTown.getId(), new BlockPos(166, 6, 143)) 
+	};
 
 	public static WorldSpawner[] traverseTownSpawners = {
-			// Spawnings for heartless
-			new WorldSpawner(ModDimensions.traverseTownID, new BlockPos(81, 8, 164), heartlessList) };
+		// Spawnings for heartless
+		new WorldSpawner(ModDimensions.traverseTownID, new BlockPos(81, 8, 164), new String[] { "gigashadow", "megashadow", "megashadow" })
+	};
 
-	private void loadWorldSpawners(Load event) {
-		EntityShadow shadow = new EntityShadow(event.getWorld());
-		heartlessList.add(shadow);
-	}
+	
+	/*
+	 * private void loadWorldSpawners(Load event) { /* EntityShadow shadow = new
+	 * EntityShadow(event.getWorld()); heartlessList.add(shadow);
+	 * 
+	 * }
+	 */
 
 	private static final int TEXT_RADIUS = 3;
 
@@ -1171,13 +1176,19 @@ public class EntityEvents {
 				if (player.dimension == spawner.dim) { // If player is in same dimension as the teleporter
 					if (player.getPosition().getX() > spawner.pos.getX() - TEXT_RADIUS && player.getPosition().getX() < spawner.pos.getX() + TEXT_RADIUS && player.getPosition().getZ() > spawner.pos.getZ() - TEXT_RADIUS && player.getPosition().getZ() < spawner.pos.getZ() + TEXT_RADIUS) {
 						// Spawn
-						System.out.println("Spawning " + spawner.enemies.get(0));
-						Entity e = EntityList.createEntityByIDFromName(new ResourceLocation("kk","gigashadow"), player.world);
-						e.setPosition(spawner.pos.getX(),spawner.pos.getY(),spawner.pos.getZ());
-						player.world.spawnEntity(e);
-						spawner.enabled = false;
-						break; // Break so it won't check for the next teleport (because you are near one so it
-								// doesn't need to check for another)
+						if (spawner.enemies != null && spawner.enemies.length > 0) {
+							System.out.println("Spawning " + spawner.enemies[0]);
+							for (int en = 0; en < spawner.enemies.length; en++) {
+								Entity e = EntityList.createEntityByIDFromName(new ResourceLocation("kk", spawner.enemies[en]), player.world);
+								e.setPosition(Utils.randomWithRange(spawner.pos.getX() - 2, spawner.pos.getX() + 2), spawner.pos.getY(), Utils.randomWithRange(spawner.pos.getZ() - 2, spawner.pos.getZ() + 2));
+								player.world.spawnEntity(e);
+							}
+							spawner.enabled = false;
+							break; // Break so it won't check for the next spawning point (because you are near one
+									// so it doesn't need to check for another)
+						} else {
+							break;
+						}
 					}
 				}
 			}
@@ -1214,7 +1225,6 @@ public class EntityEvents {
 		} else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) { // Door
 			if (player.dimension == ModDimensions.diveToTheHeartID) {
 				if (!STATS.getChoice1().equals("") && !STATS.getChoice1().equals("door")) {
-					// if (!player.world.isRemote) {
 					switch (STATS.getChoice1()) {
 					case Strings.Choice_Shield:
 						STATS.addDefense(2);
@@ -1261,11 +1271,8 @@ public class EntityEvents {
 				highJump(player);
 			}
 
-			// Quick run is handled in InputHandler when checking the action key
+			// Quick run and Dodge roll are handled in InputHandler when checking the action key
 
-			if (ABILITIES.getEquippedAbility(ModAbilities.dodgeRoll)) {
-				// dodgeRoll(player);
-			}
 			if (ABILITIES.getEquippedAbility(ModAbilities.aerialDodge)) {
 				aerialDodge(player);
 			}

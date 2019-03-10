@@ -486,7 +486,7 @@ public class InputHandler {
 		IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 
 		if (player.motionX != 0 && player.motionZ != 0) { // If player is moving do dodge roll / quick run
-			if (player.isSprinting()) {
+			if (player.isSprinting()) { //If player is sprinting do quick run
 				if (ABILITIES.getEquippedAbility(ModAbilities.quickRun) || DRIVE.getActiveDriveName().equals(Strings.Form_Wisdom)) {
 					float yaw = player.rotationYaw;
 					float motionX = -MathHelper.sin(yaw / 180.0f * (float) Math.PI);
@@ -510,7 +510,7 @@ public class InputHandler {
 						player.addVelocity(motionX * power, 0, motionZ * power);
 
 				}
-			} else {
+			} else { //If player is moving without sprinting do dodge roll
 				if (ABILITIES.getEquippedAbility(ModAbilities.dodgeRoll) || DRIVE.getActiveDriveName().equals(Strings.Form_Limit)) {
 					int limitLevel = DRIVE.getDriveLevel(Strings.Form_Limit);
 					double power = 0;

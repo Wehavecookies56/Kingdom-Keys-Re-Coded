@@ -84,9 +84,7 @@ public class DriveFormAnti extends DriveForm {
                     }
                 }
             }else{
-            	System.out.println(FMLCommonHandler.instance().getEffectiveSide());
-                endDrive(player);
-                
+                endDrive(player);                
             }
         }
     }

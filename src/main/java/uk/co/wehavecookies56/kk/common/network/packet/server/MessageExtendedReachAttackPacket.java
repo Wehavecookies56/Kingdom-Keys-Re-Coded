@@ -32,7 +32,7 @@ public class MessageExtendedReachAttackPacket extends AbstractMessage.AbstractSe
         //ByteBufUtils.writeVarInt(buf, entityId, 4);
         buffer.writeInt(entityId);
         // DEBUG
-        System.out.println("toBytes encoded");
+       // System.out.println("toBytes encoded");
     }
 
     @Override

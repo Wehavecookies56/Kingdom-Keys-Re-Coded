@@ -9,10 +9,10 @@ import uk.co.wehavecookies56.kk.common.entity.mobs.IKHMob;
 public class WorldSpawner {
 	public int dim;
 	public BlockPos pos;
-	public ArrayList<IKHMob> enemies;
+	public String[] enemies;
 	public boolean enabled = true;
 	
-	public WorldSpawner(int toDim, BlockPos toPos, ArrayList<IKHMob> enemies) {
+	public WorldSpawner(int toDim, BlockPos toPos, String[] enemies) {
 		this.dim = toDim;
 		this.pos = toPos;
 		this.enemies = enemies;

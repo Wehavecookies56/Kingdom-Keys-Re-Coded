@@ -57,7 +57,7 @@ public class EntityGummiShip extends Entity{
 	public EntityGummiShip(World worldIn){
 		super(worldIn);
 		this.preventEntitySpawning = true;
-		this.setSize(1.375F, 0.5625F);
+		this.setSize(2F, 2F);
 	}
 
 	public EntityGummiShip(World worldIn, double x, double y, double z){
@@ -69,10 +69,6 @@ public class EntityGummiShip extends Entity{
 		this.prevPosX = x;
 		this.prevPosY = y;
 		this.prevPosZ = z;
-	}
-
-	public ModelBase getModel() {
-		return new ModelDarkball();
 	}
 
 	/**

@@ -36,14 +36,12 @@ public class DriveFormMaster extends DriveForm {
 				int amount = (event.getItem().getItem().getTagCompound().getInteger("amount") / 5) > 0 ? event.getItem().getItem().getTagCompound().getInteger("amount") / 5 : 1;
 
 				DRIVE.setDriveExp(DRIVE.getActiveDriveName(), DRIVE.getDriveExp(DRIVE.getActiveDriveName()) + amount);
-				System.out.println(DRIVE.getDriveExp(DRIVE.getActiveDriveName()) + (event.getItem().getItem().getTagCompound().getInteger("amount") / 5));
 				int[] costs = DriveFormRegistry.get(DRIVE.getActiveDriveName()).getExpCosts();
 				int actualLevel = DRIVE.getDriveLevel(DRIVE.getActiveDriveName());
 				int actualExp = DRIVE.getDriveExp(DRIVE.getActiveDriveName());
 
 				if (costs.length == 7 && actualLevel < 7) {
 					if (actualExp >= costs[actualLevel]) {
-						System.out.println("LEVEL UP");
 						DRIVE.setDriveLevel(DRIVE.getActiveDriveName(), actualLevel + 1);
 	            		if(DRIVE.getDriveLevel(Strings.Form_Master) == 3)
 	            			player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.aerialDodge);

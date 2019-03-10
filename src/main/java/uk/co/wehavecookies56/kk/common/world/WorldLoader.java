@@ -36,10 +36,10 @@ public class WorldLoader {
 
             List<IBlockState> blockStates = new ArrayList<>();
 
-            System.out.println("Generating World with " + blocks.tagCount() + " blocks");
+            //System.out.println("Generating World with " + blocks.tagCount() + " blocks");
             NBTTagCompound firstBlock = blocks.getCompoundTagAt(0);
             BlockPos firstPos = new BlockPos(firstBlock.getTagList("pos", 3).getIntAt(0), firstBlock.getTagList("pos", 3).getIntAt(1), firstBlock.getTagList("pos", 3).getIntAt(2));
-            System.out.println("Starting with position " + firstPos.getX()+offset.getX() + " " + firstPos.getY()+offset.getY() + " " + firstPos.getZ()+offset.getZ());
+            //System.out.println("Starting with position " + firstPos.getX()+offset.getX() + " " + firstPos.getY()+offset.getY() + " " + firstPos.getZ()+offset.getZ());
 
             for (int i = 0; i < palette.tagCount(); i++) {
                 NBTTagCompound block = palette.getCompoundTagAt(i);
@@ -74,12 +74,12 @@ public class WorldLoader {
                         world.setBlockState(blockpos.down(), Blocks.DIRT.getDefaultState(), 2);
                 if (state.getBlock() == Blocks.CHEST) {
                     if (block.hasKey("nbt")) {
-                        System.out.println("Chest NBT");
+                        //System.out.println("Chest NBT");
                         NBTTagCompound nbtData = block.getCompoundTag("nbt");
                         world.setBlockState(blockpos, state, 2);
                         TileEntityChest te = (TileEntityChest) TileEntityChest.create(world, nbtData);
                         world.setTileEntity(blockpos, te);
-                        System.out.println(world.getTileEntity(blockpos));
+                        //System.out.println(world.getTileEntity(blockpos));
                         if (nbtData.getString("id").equals("minecraft:chest")) {
 
                         }

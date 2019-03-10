@@ -135,8 +135,6 @@ public class CommonProxy {
 		MinecraftForge.EVENT_BUS.register(KingdomKeys.instance);
 
 		ModBiomes.init();
-		// ModSounds.init();
-		// LogHelper.info("Sounds loaded");
 
 		// Update checker
 		ModItems.init();
@@ -151,7 +149,7 @@ public class CommonProxy {
 		GameRegistry.registerTileEntity(TileEntityStationOfAwakening.class, new ResourceLocation(Reference.MODID, "stationofawakening"));
 		GameRegistry.registerTileEntity(TileEntityPedestal.class, new ResourceLocation(Reference.MODID, "kkpedestal"));
 		GameRegistry.registerTileEntity(TileEntityOrgPortal.class, new ResourceLocation(Reference.MODID, "kkorgportal"));
-		KingdomKeys.logger.info("Tile entity loaded");
+		KingdomKeys.logger.info("Tile entities loaded");
 
 		// Proxy used as Gui handler
 		NetworkRegistry.INSTANCE.registerGuiHandler(KingdomKeys.instance, new GuiHandler());
@@ -231,7 +229,6 @@ public class CommonProxy {
 		// Chest loot init
 		MinecraftForge.EVENT_BUS.register(new ChestGen());
 		KingdomKeys.logger.info("Chest loot loaded");
-
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {

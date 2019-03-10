@@ -43,7 +43,6 @@ public class DriveFormWisdom extends DriveForm {
 		           
 		            if(costs.length == 7 && actualLevel < 7) {
 		            	if (actualExp >= costs[actualLevel]){
-		            		System.out.println("LEVEL UP");
 		            		DRIVE.setDriveLevel(DRIVE.getActiveDriveName(),actualLevel+1);
 		            		if(DRIVE.getDriveLevel(Strings.Form_Wisdom) == 3)
 		            			player.getCapability(ModCapabilities.ABILITIES, null).unlockAbility(ModAbilities.quickRun);
