@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -104,7 +105,7 @@ public class EntityGummiShip extends Entity{
 	}
 
 	public double getMountedYOffset(){
-		return -0.1D;
+		return 0.35D;
 	}
 
 	public boolean attackEntityFrom(DamageSource source, float amount){
@@ -298,30 +299,39 @@ public class EntityGummiShip extends Entity{
 
 	private void controlBoat(){
 		if (this.isBeingRidden()){
+			
 			//System.out.println(getControllingPassenger());
 			float f = 0.0F;
-
-			if (this.leftInputDown){
+            if (Minecraft.getMinecraft().gameSettings.keyBindLeft.isKeyDown()) {
 				System.out.println("a");
 				this.deltaRotation--;
 			}
 
-			if (this.rightInputDown){
+            if (Minecraft.getMinecraft().gameSettings.keyBindRight.isKeyDown()) {
 				++this.deltaRotation;
+			}
+            
+            if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
+				this.motionY++;
 			}
 
 			this.rotationYaw += this.deltaRotation;
 
-			if (this.forwardInputDown){
+            if (Minecraft.getMinecraft().gameSettings.keyBindForward.isKeyDown()) {
 				f += 0.04F;
 			}
 
-			if (this.backInputDown){
+            if (Minecraft.getMinecraft().gameSettings.keyBindBack.isKeyDown()) {
 				f -= 0.005F;
 			}
 
 			this.motionX += (double)(MathHelper.sin(-this.rotationYaw * 0.017453292F) * f);
 			this.motionZ += (double)(MathHelper.cos(this.rotationYaw * 0.017453292F) * f);
+			
+            if (Minecraft.getMinecraft().gameSettings.keyBindPickBlock.isKeyDown()) {
+            	this.motionX = 0;
+            	this.motionZ = 0;
+            }
 			System.out.println(motionX +" "+motionZ);
 		}
 	}
