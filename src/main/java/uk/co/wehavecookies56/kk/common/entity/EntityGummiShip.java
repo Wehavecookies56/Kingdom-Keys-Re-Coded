@@ -303,36 +303,56 @@ public class EntityGummiShip extends Entity{
 			//System.out.println(getControllingPassenger());
 			float f = 0.0F;
             if (Minecraft.getMinecraft().gameSettings.keyBindLeft.isKeyDown()) {
-				System.out.println("a");
 				this.deltaRotation--;
-			}
-
-            if (Minecraft.getMinecraft().gameSettings.keyBindRight.isKeyDown()) {
+			} else if (Minecraft.getMinecraft().gameSettings.keyBindRight.isKeyDown()) {
 				++this.deltaRotation;
+			} else {
+				deltaRotation = 0;
 			}
             
             if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
-				this.motionY++;
+				this.motionY+=0.1;
+			} else if(Minecraft.getMinecraft().gameSettings.keyBindSprint.isKeyDown()) {
+				this.motionY-=0.1;
 			}
 
 			this.rotationYaw += this.deltaRotation;
 
             if (Minecraft.getMinecraft().gameSettings.keyBindForward.isKeyDown()) {
-				f += 0.04F;
+				f += 0.05F;
+			} else if (Minecraft.getMinecraft().gameSettings.keyBindBack.isKeyDown()) {
+				f -= 0.05F;
+			} else {
+				if(motionX > 0) {
+					motionX-=0.001;
+				} else if(motionX < 0){
+					motionX+=0.001;
+				}
+				
+				if(motionZ > 0) {
+					motionZ-=0.001;
+				} else if(motionZ < 0){
+					motionZ+=0.001;
+				}
 			}
 
-            if (Minecraft.getMinecraft().gameSettings.keyBindBack.isKeyDown()) {
-				f -= 0.005F;
-			}
-
-			this.motionX += (double)(MathHelper.sin(-this.rotationYaw * 0.017453292F) * f);
-			this.motionZ += (double)(MathHelper.cos(this.rotationYaw * 0.017453292F) * f);
+            System.out.println(f);
+            if(motionX < 0.5 && motionX > -0.5)
+            	this.motionX += (double)(MathHelper.sin(-this.rotationYaw * 0.017453292F) * f);
+            if(motionZ < 0.5 && motionZ > -0.5)
+            	this.motionZ += (double)(MathHelper.cos(this.rotationYaw * 0.017453292F) * f);
 			
+			
+			System.out.println(motionX+" | "+motionZ);
             if (Minecraft.getMinecraft().gameSettings.keyBindPickBlock.isKeyDown()) {
             	this.motionX = 0;
             	this.motionZ = 0;
+            	deltaRotation=0;
             }
-			System.out.println(motionX +" "+motionZ);
+		} else {
+			this.motionX = 0;
+        	this.motionZ = 0;
+        	deltaRotation=0;
 		}
 	}
 

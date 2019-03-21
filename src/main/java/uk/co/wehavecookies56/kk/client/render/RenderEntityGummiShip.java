@@ -35,7 +35,7 @@ public class RenderEntityGummiShip extends Render implements IRenderFactory<Enti
     @Override
     public void doRender (Entity entity, double x, double y, double z, float yaw, float pitch) {
         GL11.glPushMatrix();
-        GL11.glTranslated(x, y+1.5, z-0.2);
+        GL11.glTranslated(x, y+1.5, z);
         GL11.glRotatef(90, 0.0F, 1.0F, 0F);
         GL11.glRotated(-entity.rotationYaw, 0, 1, 0);
         float f2 = pitch;
@@ -50,9 +50,9 @@ public class RenderEntityGummiShip extends Render implements IRenderFactory<Enti
 
         GL11.glScalef(-3.0F, -3.0F, 3.0F);
         
-        if(!(Minecraft.getMinecraft().player.isRidingSameEntity(entity) && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0)) { //Made so ship is not rendered if player is riding it
+        //if(!(Minecraft.getMinecraft().player.isRidingSameEntity(entity) && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0)) { //Made so ship is not rendered if player is riding it
         	this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-        }
+      //  }
 
         GL11.glPopMatrix();
     }
