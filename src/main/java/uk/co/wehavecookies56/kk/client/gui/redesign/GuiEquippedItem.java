@@ -70,7 +70,6 @@ public class GuiEquippedItem extends GuiButton {
 		
 		float itemY = parent.height * 0.1907F;
 		float bottomY = parent.height - (parent.height * 0.25F);
-		//System.out.println(y);
 		if(this.y < itemY-1 || this.y > bottomY-1)
 			return;
 		
@@ -116,13 +115,17 @@ public class GuiEquippedItem extends GuiButton {
 				drawTexturedModalRect(6, 4, category.getU(), category.getV(), 20, 20);
 			}
 			GlStateManager.popMatrix();
-			String itemName = item.getDisplayName();
-			if (item.getItem() instanceof ItemKeychain) {
-				itemName = new ItemStack(((ItemKeychain) item.getItem()).getKeyblade()).getDisplayName();
-			} else if (ItemStack.areItemStacksEqual(item, ItemStack.EMPTY)) {
-				itemName = "---";
+			if (item != null) {
+				String itemName = item.getDisplayName();
+				if (item.getItem() instanceof ItemKeychain) {
+					itemName = new ItemStack(((ItemKeychain) item.getItem()).getKeyblade()).getDisplayName();
+				} else if (ItemStack.areItemStacksEqual(item, ItemStack.EMPTY)) {
+					itemName = "---";
+				}
+				drawString(mc.fontRenderer, itemName, x + 15, y + 3, 0xFFFFFF);
+			} else {
+				drawString(mc.fontRenderer, "---", x + 15, y + 3, 0xFFFFFF);
 			}
-			drawString(mc.fontRenderer, itemName, x + 15, y + 3, 0xFFFFFF);
 			if (selected || hovered) {
 				Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/menu/menu_button.png"));
 				GlStateManager.pushMatrix();
@@ -143,97 +146,99 @@ public class GuiEquippedItem extends GuiButton {
 				float iconPosX = parent.width * 0.6374F;
 				float iconPosY = parent.height * 0.1833F;
 				float iconHeight = parent.height * 0.3148F;
-				if (item.getItem() instanceof ItemKeychain) {
-					ItemStack keyblade = new ItemStack(((ItemKeychain) item.getItem()).getKeyblade());
-					// Render keyblade in the GUI
-					GlStateManager.pushMatrix();
-					{
+				if (item != null) {
+					if (item.getItem() instanceof ItemKeychain) {
+						ItemStack keyblade = new ItemStack(((ItemKeychain) item.getItem()).getKeyblade());
+						// Render keyblade in the GUI
+						GlStateManager.pushMatrix();
+						{
+							GlStateManager.enableAlpha();
+							GlStateManager.translate(iconPosX, iconPosY, 0);
+							GlStateManager.scale((float) (0.0625F * iconHeight), (float) (0.0625F * iconHeight), 1);
+							Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(keyblade, 0, 0);
+						}
+						GlStateManager.popMatrix();
+						float strPosX = parent.width * 0.6104F;
+						float strPosY = parent.height * 0.5185F;
+						float strNumPosX = parent.width * 0.7473F;
+						float magPosY = parent.height * 0.5657F;
+						String strengthStr = String.valueOf(((int) ((ItemKeyblade) keyblade.getItem()).getStrength()));
+						String magicStr = String.valueOf(((int) ((ItemKeyblade) keyblade.getItem()).getMagic()));
+						int strength = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + ((int) ((ItemKeyblade) keyblade.getItem()).getStrength());
+						int magic = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() + ((int) ((ItemKeyblade) keyblade.getItem()).getMagic());
+						String openBracketStr = " [  ";
+						String openBracketMag = " [  ";
+						String totalStr = String.valueOf(strength);
+						String totalMag = String.valueOf(magic);
+						if (totalStr.length() == 1) {
+							openBracketStr += " ";
+						}
+						if (totalMag.length() == 1) {
+							openBracketMag += " ";
+						}
+						drawString(mc.fontRenderer, "Strength", (int) strPosX, (int) strPosY, 0xEE8603);
+						drawString(mc.fontRenderer, strengthStr, (int) strNumPosX, (int) strPosY, 0xFFFFFF);
+						drawString(mc.fontRenderer, openBracketStr, (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr), (int) strPosY, 0xBF6004);
+						drawString(mc.fontRenderer, String.valueOf(strength), (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr), (int) strPosY, 0xFBEA21);
+						drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr) + mc.fontRenderer.getStringWidth(String.valueOf(strength)), (int) strPosY, 0xBF6004);
+						drawString(mc.fontRenderer, "Magic", (int) strPosX, (int) magPosY, 0xEE8603);
+						drawString(mc.fontRenderer, magicStr, (int) strNumPosX, (int) magPosY, 0xFFFFFF);
+						drawString(mc.fontRenderer, openBracketMag, (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr), (int) magPosY, 0xBF6004);
+						drawString(mc.fontRenderer, String.valueOf(magic), (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag), (int) magPosY, 0xFBEA21);
+						drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag) + mc.fontRenderer.getStringWidth(String.valueOf(magic)), (int) magPosY, 0xBF6004);
+						float tooltipPosX = parent.width * 0.3333F;
+						float tooltipPosY = parent.height * 0.8F;
+						mc.fontRenderer.drawSplitString(((ItemKeyblade) keyblade.getItem()).description, (int) tooltipPosX + 3, (int) tooltipPosY + 3, (int) (parent.width * 0.46875F), 0x43B5E9);
+					} else if (item.getItem() instanceof ItemArmor) {
+						ItemArmor armour = (ItemArmor) item.getItem();
+						int armourAmount = armour.getArmorMaterial().getDamageReductionAmount(armour.armorType);
+
+						GlStateManager.pushMatrix();
+						GlStateManager.translate(iconPosX, iconPosY, 0);
+						GlStateManager.scale((float) (0.0625F * iconHeight), (float) (0.0625F * iconHeight), 1);
+						Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(armour), 0, 0);
+						GlStateManager.popMatrix();
+					} else if (item.getItem() instanceof IOrgWeapon) {
+						IOrgWeapon weapon = (IOrgWeapon) item.getItem();
+						GlStateManager.pushMatrix();
 						GlStateManager.enableAlpha();
 						GlStateManager.translate(iconPosX, iconPosY, 0);
 						GlStateManager.scale((float) (0.0625F * iconHeight), (float) (0.0625F * iconHeight), 1);
-						Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(keyblade, 0, 0);
+						Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(new ItemStack((Item) weapon), 0, 0);
+						GlStateManager.popMatrix();
+						float strPosX = parent.width * 0.6104F;
+						float strPosY = parent.height * 0.5185F;
+						float strNumPosX = parent.width * 0.7473F;
+						float magPosY = parent.height * 0.5657F;
+						String strengthStr = String.valueOf(((int) weapon.getStrength()));
+						String magicStr = String.valueOf(((int) weapon.getMagic()));
+						int strength = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + ((int) weapon.getStrength());
+						int magic = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() + ((int) weapon.getMagic());
+						String openBracketStr = " [  ";
+						String openBracketMag = " [  ";
+						String totalStr = String.valueOf(strength);
+						String totalMag = String.valueOf(magic);
+						if (totalStr.length() == 1) {
+							openBracketStr += " ";
+						}
+						if (totalMag.length() == 1) {
+							openBracketMag += " ";
+						}
+						drawString(mc.fontRenderer, "Strength", (int) strPosX, (int) strPosY, 0xEE8603);
+						drawString(mc.fontRenderer, strengthStr, (int) strNumPosX, (int) strPosY, 0xFFFFFF);
+						drawString(mc.fontRenderer, openBracketStr, (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr), (int) strPosY, 0xBF6004);
+						drawString(mc.fontRenderer, String.valueOf(strength), (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr), (int) strPosY, 0xFBEA21);
+						drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr) + mc.fontRenderer.getStringWidth(String.valueOf(strength)), (int) strPosY, 0xBF6004);
+						drawString(mc.fontRenderer, "Magic", (int) strPosX, (int) magPosY, 0xEE8603);
+						drawString(mc.fontRenderer, magicStr, (int) strNumPosX, (int) magPosY, 0xFFFFFF);
+						drawString(mc.fontRenderer, openBracketMag, (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr), (int) magPosY, 0xBF6004);
+						drawString(mc.fontRenderer, String.valueOf(magic), (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag), (int) magPosY, 0xFBEA21);
+						drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag) + mc.fontRenderer.getStringWidth(String.valueOf(magic)), (int) magPosY, 0xBF6004);
+						float tooltipPosX = parent.width * 0.3333F;
+						float tooltipPosY = parent.height * 0.8F;
+						// mc.fontRenderer.drawSplitString(weapon.description, (int)tooltipPosX+3,
+						// (int)tooltipPosY+3, (int)(parent.width*0.46875F), 0x43B5E9);
 					}
-					GlStateManager.popMatrix();
-					float strPosX = parent.width * 0.6104F;
-					float strPosY = parent.height * 0.5185F;
-					float strNumPosX = parent.width * 0.7473F;
-					float magPosY = parent.height * 0.5657F;
-					String strengthStr = String.valueOf(((int) ((ItemKeyblade) keyblade.getItem()).getStrength()));
-					String magicStr = String.valueOf(((int) ((ItemKeyblade) keyblade.getItem()).getMagic()));
-					int strength = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + ((int) ((ItemKeyblade) keyblade.getItem()).getStrength());
-					int magic = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() + ((int) ((ItemKeyblade) keyblade.getItem()).getMagic());
-					String openBracketStr = " [  ";
-					String openBracketMag = " [  ";
-					String totalStr = String.valueOf(strength);
-					String totalMag = String.valueOf(magic);
-					if (totalStr.length() == 1) {
-						openBracketStr += " ";
-					}
-					if (totalMag.length() == 1) {
-						openBracketMag += " ";
-					}
-					drawString(mc.fontRenderer, "Strength", (int) strPosX, (int) strPosY, 0xEE8603);
-					drawString(mc.fontRenderer, strengthStr, (int) strNumPosX, (int) strPosY, 0xFFFFFF);
-					drawString(mc.fontRenderer, openBracketStr, (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr), (int) strPosY, 0xBF6004);
-					drawString(mc.fontRenderer, String.valueOf(strength), (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr), (int) strPosY, 0xFBEA21);
-					drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr) + mc.fontRenderer.getStringWidth(String.valueOf(strength)), (int) strPosY, 0xBF6004);
-					drawString(mc.fontRenderer, "Magic", (int) strPosX, (int) magPosY, 0xEE8603);
-					drawString(mc.fontRenderer, magicStr, (int) strNumPosX, (int) magPosY, 0xFFFFFF);
-					drawString(mc.fontRenderer, openBracketMag, (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr), (int) magPosY, 0xBF6004);
-					drawString(mc.fontRenderer, String.valueOf(magic), (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag), (int) magPosY, 0xFBEA21);
-					drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag) + mc.fontRenderer.getStringWidth(String.valueOf(magic)), (int) magPosY, 0xBF6004);
-					float tooltipPosX = parent.width * 0.3333F;
-					float tooltipPosY = parent.height * 0.8F;
-					mc.fontRenderer.drawSplitString(((ItemKeyblade) keyblade.getItem()).description, (int) tooltipPosX + 3, (int) tooltipPosY + 3, (int) (parent.width * 0.46875F), 0x43B5E9);
-				} else if (item.getItem() instanceof ItemArmor) {
-					ItemArmor armour = (ItemArmor) item.getItem();
-					int armourAmount = armour.getArmorMaterial().getDamageReductionAmount(armour.armorType);
-
-					GlStateManager.pushMatrix();
-					GlStateManager.translate(iconPosX, iconPosY, 0);
-					GlStateManager.scale((float) (0.0625F * iconHeight), (float) (0.0625F * iconHeight), 1);
-					Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(armour), 0, 0);
-					GlStateManager.popMatrix();
-				} else if (item.getItem() instanceof IOrgWeapon) {
-					IOrgWeapon weapon = (IOrgWeapon) item.getItem();
-					GlStateManager.pushMatrix();
-					GlStateManager.enableAlpha();
-					GlStateManager.translate(iconPosX, iconPosY, 0);
-					GlStateManager.scale((float) (0.0625F * iconHeight), (float) (0.0625F * iconHeight), 1);
-					Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(new ItemStack((Item) weapon), 0, 0);
-					GlStateManager.popMatrix();
-					float strPosX = parent.width * 0.6104F;
-					float strPosY = parent.height * 0.5185F;
-					float strNumPosX = parent.width * 0.7473F;
-					float magPosY = parent.height * 0.5657F;
-					String strengthStr = String.valueOf(((int) weapon.getStrength()));
-					String magicStr = String.valueOf(((int) weapon.getMagic()));
-					int strength = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + ((int) weapon.getStrength());
-					int magic = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() + ((int) weapon.getMagic());
-					String openBracketStr = " [  ";
-					String openBracketMag = " [  ";
-					String totalStr = String.valueOf(strength);
-					String totalMag = String.valueOf(magic);
-					if (totalStr.length() == 1) {
-						openBracketStr += " ";
-					}
-					if (totalMag.length() == 1) {
-						openBracketMag += " ";
-					}
-					drawString(mc.fontRenderer, "Strength", (int) strPosX, (int) strPosY, 0xEE8603);
-					drawString(mc.fontRenderer, strengthStr, (int) strNumPosX, (int) strPosY, 0xFFFFFF);
-					drawString(mc.fontRenderer, openBracketStr, (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr), (int) strPosY, 0xBF6004);
-					drawString(mc.fontRenderer, String.valueOf(strength), (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr), (int) strPosY, 0xFBEA21);
-					drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr) + mc.fontRenderer.getStringWidth(String.valueOf(strength)), (int) strPosY, 0xBF6004);
-					drawString(mc.fontRenderer, "Magic", (int) strPosX, (int) magPosY, 0xEE8603);
-					drawString(mc.fontRenderer, magicStr, (int) strNumPosX, (int) magPosY, 0xFFFFFF);
-					drawString(mc.fontRenderer, openBracketMag, (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr), (int) magPosY, 0xBF6004);
-					drawString(mc.fontRenderer, String.valueOf(magic), (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag), (int) magPosY, 0xFBEA21);
-					drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag) + mc.fontRenderer.getStringWidth(String.valueOf(magic)), (int) magPosY, 0xBF6004);
-					float tooltipPosX = parent.width * 0.3333F;
-					float tooltipPosY = parent.height * 0.8F;
-					// mc.fontRenderer.drawSplitString(weapon.description, (int)tooltipPosX+3,
-					// (int)tooltipPosY+3, (int)(parent.width*0.46875F), 0x43B5E9);
 				}
 			}
 			RenderHelper.enableStandardItemLighting();

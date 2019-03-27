@@ -121,9 +121,9 @@ public class GuiMenu_Items_Player extends GuiScreen {
 		}
 
 		// First one has a label so different constructor
-		equippedAccessories[0] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(0), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x041E68, new GuiItems(0, 0x0000AA, 0x041E68), ItemCategory.ACCESSORIES, this, "Accessories", 0x58B2E5);
+		equippedAccessories[0] = new GuiEquippedItem(null, (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x041E68, new GuiItems(0, 0x0000AA, 0x041E68), ItemCategory.ACCESSORIES, this, "Accessories", 0x58B2E5);
 		for (int i = 1; i < equippedAccessories.length; i++) {
-			equippedAccessories[i] = new GuiEquippedItem(playerStats.getInventoryPotionsMenu().getStackInSlot(i), (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x041E68, new GuiItems(i, 0x0000AA, 0x041E68), ItemCategory.ACCESSORIES, this);
+			equippedAccessories[i] = new GuiEquippedItem(null, (int) itemsX, (int) itemsY + offset + (itemHeight * offset++) - extraOffset, 0x041E68, new GuiItems(i, 0x0000AA, 0x041E68), ItemCategory.ACCESSORIES, this);
 		}
 
 		// First one has a label so different constructor
