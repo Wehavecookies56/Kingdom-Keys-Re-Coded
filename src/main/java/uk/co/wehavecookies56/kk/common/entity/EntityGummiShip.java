@@ -170,6 +170,8 @@ public class EntityGummiShip extends Entity {
 	}
 
 	public void onUpdate() {
+		//System.out.println(this.getEntityData());
+
 		if (this.getTimeSinceHit() > 0) {
 			this.setTimeSinceHit(this.getTimeSinceHit() - 1);
 		}
@@ -271,9 +273,9 @@ public class EntityGummiShip extends Entity {
 				f -= 0.05F;
 			} else {
 				if (motionX > 0) {
-					motionX -= 0.001;
+					motionX -= 0.01;
 				} else if (motionX < 0) {
-					motionX += 0.001;
+					motionX += 0.01;
 				}
 
 				if (motionZ > 0) {
