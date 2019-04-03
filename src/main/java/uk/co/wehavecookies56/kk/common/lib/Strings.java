@@ -52,7 +52,10 @@ public class Strings {
     Creeper = "creeper",
     
     Moogle = "moogle",
-    GummiShip = "gummiship";
+    GummiShip = "gummiship",
+    GliderTerra = "gliderterra",
+    GliderAqua = "glideraqua",
+    GliderVentus = "gliderventus";
 
     // Achievements
     public static final String

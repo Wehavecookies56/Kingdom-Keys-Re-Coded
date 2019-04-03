@@ -91,6 +91,7 @@ import uk.co.wehavecookies56.kk.client.model.mobs.ModelWhiteMushroom;
 import uk.co.wehavecookies56.kk.client.render.LayerRendererDrive;
 import uk.co.wehavecookies56.kk.client.render.RenderBomb;
 import uk.co.wehavecookies56.kk.client.render.RenderEntityFlyingHeart;
+import uk.co.wehavecookies56.kk.client.render.RenderEntityGliderTerra;
 import uk.co.wehavecookies56.kk.client.render.RenderEntityGummiShip;
 import uk.co.wehavecookies56.kk.client.render.RenderEntityRock;
 import uk.co.wehavecookies56.kk.client.render.RenderEntitySlash;
@@ -108,6 +109,7 @@ import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy;
 import uk.co.wehavecookies56.kk.common.entity.EntityFlyingHeart;
+import uk.co.wehavecookies56.kk.common.entity.EntityGliderTerra;
 import uk.co.wehavecookies56.kk.common.entity.EntityGummiShip;
 import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
@@ -327,6 +329,9 @@ public class ClientProxy extends CommonProxy {
 		// Others
 		RenderingRegistry.registerEntityRenderingHandler(EntitySharpshooterBullet.class, new RenderFactorySharpshooterBullet());
 		RenderingRegistry.registerEntityRenderingHandler(EntityGummiShip.class, (IRenderFactory) new RenderEntityGummiShip(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityGliderTerra.class, (IRenderFactory) new RenderEntityGliderTerra(Minecraft.getMinecraft().getRenderManager()));
+		//RenderingRegistry.registerEntityRenderingHandler(EntityGummiShip.class, (IRenderFactory) new RenderEntityGummiShip(Minecraft.getMinecraft().getRenderManager()));
+		//RenderingRegistry.registerEntityRenderingHandler(EntityGummiShip.class, (IRenderFactory) new RenderEntityGummiShip(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFlyingHeart.class, (IRenderFactory) new RenderEntityFlyingHeart(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityXPGet.class, (IRenderFactory) new RenderXPGet(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySeedBullet.class, (IRenderFactory) new RenderSeedBullet(Minecraft.getMinecraft().getRenderManager()));

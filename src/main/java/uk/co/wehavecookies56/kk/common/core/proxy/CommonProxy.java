@@ -46,6 +46,9 @@ import uk.co.wehavecookies56.kk.common.crafting.KKOreDictionary;
 import uk.co.wehavecookies56.kk.common.crafting.ModItemsRecipes;
 import uk.co.wehavecookies56.kk.common.driveform.ModDriveForms;
 import uk.co.wehavecookies56.kk.common.entity.EntityFlyingHeart;
+import uk.co.wehavecookies56.kk.common.entity.EntityGliderAqua;
+import uk.co.wehavecookies56.kk.common.entity.EntityGliderTerra;
+import uk.co.wehavecookies56.kk.common.entity.EntityGliderVentus;
 import uk.co.wehavecookies56.kk.common.entity.EntityGummiShip;
 import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
 import uk.co.wehavecookies56.kk.common.entity.block.EntityBlastBlox;
@@ -190,6 +193,9 @@ public class CommonProxy {
 		EntityHelper.registerEntity(Strings.DirePlant, EntityDirePlant.class, 0x4ba04e, 0xedc2c2);
 		EntityHelper.registerEntity(Strings.Moogle, EntityMoogle.class, 0xDACAB0, 0xC50033);
 		EntityHelper.registerEntity(Strings.GummiShip, EntityGummiShip.class, 0xFF0000, 0x6666AA);
+		EntityHelper.registerEntity(Strings.GliderTerra, EntityGliderTerra.class, 0xFF0000, 0x6666AA);
+		EntityHelper.registerEntity(Strings.GliderAqua, EntityGliderAqua.class, 0xFF0000, 0x6666AA);
+		EntityHelper.registerEntity(Strings.GliderVentus, EntityGliderVentus.class, 0xFF0000, 0x6666AA);
 
 		// Nobodies
 		EntityHelper.registerEntity(Strings.Dusk, EntityDusk.class, 0xb8bdc4, 0xfcfcfc);
