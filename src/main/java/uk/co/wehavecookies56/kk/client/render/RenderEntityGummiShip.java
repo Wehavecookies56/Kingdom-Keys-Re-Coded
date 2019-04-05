@@ -48,7 +48,7 @@ public class RenderEntityGummiShip extends Render implements IRenderFactory<Enti
 
 			GL11.glScalef(-3.0F, -3.0F, 3.0F);
 
-			System.out.println(entity.getEntityData());
+			//System.out.println(entity.getEntityData());
 			NBTTagCompound nbt = entity.getEntityData() == null ? entity.getEntityData() : null;
 			
 			if (nbt == null) {
