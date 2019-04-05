@@ -13,7 +13,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -78,7 +77,6 @@ import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.event.world.WorldEvent.Load;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
@@ -113,6 +111,7 @@ import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
+import uk.co.wehavecookies56.kk.common.entity.EntityMovingVehicle;
 import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
 import uk.co.wehavecookies56.kk.common.entity.magic.DamageCalculation;
 import uk.co.wehavecookies56.kk.common.entity.magic.EntityThunder;
@@ -1437,7 +1436,10 @@ public class EntityEvents {
 			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 			if (ABILITIES.getEquippedAbility(ModAbilities.highJump) || ABILITIES.getEquippedAbility(ModAbilities.aerialDodge) || ABILITIES.getEquippedAbility(ModAbilities.glide)) {
 				event.setDistance(0);
-			}
+			}	
+		}
+		if(event.getEntityLiving().isRiding() && event.getEntityLiving().getRidingEntity() instanceof EntityMovingVehicle) {
+			event.setDistance(0);
 		}
 	}
 

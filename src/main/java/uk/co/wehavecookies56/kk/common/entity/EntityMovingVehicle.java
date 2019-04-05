@@ -28,7 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.wehavecookies56.kk.common.item.ModItems;
 
-public class EntityMovingVehicle extends Entity{
+public class EntityMovingVehicle extends Entity {
 	private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.<Integer>createKey(EntityGliderTerra.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.<Integer>createKey(EntityGliderTerra.class, DataSerializers.VARINT);
 	private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.<Float>createKey(EntityGliderTerra.class, DataSerializers.FLOAT);
@@ -45,7 +45,6 @@ public class EntityMovingVehicle extends Entity{
 	private boolean rightInputDown;
 	private boolean forwardInputDown;
 	private boolean backInputDown;
-	
 
 	public EntityMovingVehicle(World worldIn) {
 		super(worldIn);
@@ -115,9 +114,9 @@ public class EntityMovingVehicle extends Entity{
 				boolean flag = source.getTrueSource() instanceof EntityPlayer && ((EntityPlayer) source.getTrueSource()).capabilities.isCreativeMode;
 
 				if (flag || this.getDamageTaken() > 40.0F) {
-					if (!flag && this.world.getGameRules().getBoolean("doEntityDrops")) {
+					/*if (!flag && this.world.getGameRules().getBoolean("doEntityDrops")) {
 						this.dropItemWithOffset(ModItems.GummiShip, 1, 0.0F);
-					}
+					}*/
 					this.setDead();
 				}
 				return true;
@@ -128,13 +127,13 @@ public class EntityMovingVehicle extends Entity{
 	}
 
 	public void applyEntityCollision(Entity entityIn) {
-		/*if (entityIn instanceof EntityMovingVehicle) {
-			if (entityIn.getEntityBoundingBox().minY < this.getEntityBoundingBox().maxY) {
-				super.applyEntityCollision(entityIn);
-			}
-		} else if (entityIn.getEntityBoundingBox().minY <= this.getEntityBoundingBox().minY) {
-			super.applyEntityCollision(entityIn);
-		}*/
+		/*
+		 * if (entityIn instanceof EntityMovingVehicle) { if
+		 * (entityIn.getEntityBoundingBox().minY < this.getEntityBoundingBox().maxY) {
+		 * super.applyEntityCollision(entityIn); } } else if
+		 * (entityIn.getEntityBoundingBox().minY <= this.getEntityBoundingBox().minY) {
+		 * super.applyEntityCollision(entityIn); }
+		 */
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -241,13 +240,14 @@ public class EntityMovingVehicle extends Entity{
 			float f = 0.0F;
 			if (Minecraft.getMinecraft().gameSettings.keyBindLeft.isKeyDown()) {
 				this.rotationYaw -= 2;
-				if(this.isPassenger(Minecraft.getMinecraft().player)){
-					Minecraft.getMinecraft().player.rotationYaw -= 2;
+				for (Entity e : this.getPassengers()) {
+					e.rotationYaw -= 2;
 				}
+
 			} else if (Minecraft.getMinecraft().gameSettings.keyBindRight.isKeyDown()) {
 				this.rotationYaw += 2;
-				if(this.isPassenger(Minecraft.getMinecraft().player)){
-					Minecraft.getMinecraft().player.rotationYaw += 2;
+				for (Entity e : this.getPassengers()) {
+					e.rotationYaw += 2;
 				}
 			}
 
@@ -257,36 +257,35 @@ public class EntityMovingVehicle extends Entity{
 				this.motionY -= 0.1;
 			}
 
-
 			if (Minecraft.getMinecraft().gameSettings.keyBindForward.isKeyDown()) {
 				f += 0.05F;
 			} else if (Minecraft.getMinecraft().gameSettings.keyBindBack.isKeyDown()) {
 				f -= 0.05F;
 			} else {
 				if (motionX > 0) {
-					if(motionX < 0.1) {
+					if (motionX < 0.1) {
 						motionX = 0;
 					} else {
 						motionX -= 0.02;
 					}
-					
+
 				} else if (motionX < 0) {
-					if(motionX > -0.1) {
+					if (motionX > -0.1) {
 						motionX = 0;
-					}else {
+					} else {
 						motionX += 0.02;
 					}
 				}
 
 				if (motionZ > 0) {
-					if(motionZ < 0.1) {
+					if (motionZ < 0.1) {
 						motionZ = 0;
 					} else {
 						motionZ -= 0.02;
 					}
-					
+
 				} else if (motionZ < 0) {
-					if(motionZ > -0.1) {
+					if (motionZ > -0.1) {
 						motionZ = 0;
 					} else {
 						motionZ += 0.02;
@@ -332,7 +331,7 @@ public class EntityMovingVehicle extends Entity{
 
 			Vec3d vec3d = (new Vec3d((double) f, 0.0D, 0.0D)).rotateYaw(-this.rotationYaw * 0.017453292F - ((float) Math.PI / 2F));
 			passenger.setPosition(this.posX + vec3d.x, this.posY + (double) f1, this.posZ + vec3d.z);
-			//passenger.rotationYaw += this.rotationYaw;
+			// passenger.rotationYaw += this.rotationYaw;
 			passenger.setRotationYawHead(passenger.getRotationYawHead() + this.rotationYaw);
 			this.applyYawToEntity(passenger);
 

@@ -192,10 +192,10 @@ public class CommonProxy {
 		EntityHelper.registerEntity(Strings.WhiteMushroom, EntityWhiteMushroom.class, 0xe3e5e8, 0xffffff);
 		EntityHelper.registerEntity(Strings.DirePlant, EntityDirePlant.class, 0x4ba04e, 0xedc2c2);
 		EntityHelper.registerEntity(Strings.Moogle, EntityMoogle.class, 0xDACAB0, 0xC50033);
-		EntityHelper.registerEntity(Strings.GummiShip, EntityGummiShip.class, 0xFF0000, 0x6666AA);
-		EntityHelper.registerEntity(Strings.GliderTerra, EntityGliderTerra.class, 0xFF0000, 0x6666AA);
-		EntityHelper.registerEntity(Strings.GliderAqua, EntityGliderAqua.class, 0xFF0000, 0x6666AA);
-		EntityHelper.registerEntity(Strings.GliderVentus, EntityGliderVentus.class, 0xFF0000, 0x6666AA);
+		EntityHelper.registerEntity(Strings.GummiShip, EntityGummiShip.class);
+		EntityHelper.registerEntity(Strings.GliderTerra, EntityGliderTerra.class);
+		EntityHelper.registerEntity(Strings.GliderAqua, EntityGliderAqua.class);
+		EntityHelper.registerEntity(Strings.GliderVentus, EntityGliderVentus.class);
 
 		// Nobodies
 		EntityHelper.registerEntity(Strings.Dusk, EntityDusk.class, 0xb8bdc4, 0xfcfcfc);
