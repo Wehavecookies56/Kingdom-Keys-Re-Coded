@@ -103,9 +103,9 @@ public class GuiMenu extends GuiScreen {
                 status.visible = true;
                 journal.visible = true;
                 config.visible = true;
-                this.customize.enabled = true;
-                this.party.enabled = false;
-                this.journal.enabled = true;
+                party.enabled = false;
+                journal.enabled = true;
+                customize.enabled = false;
                 break;
             case SUBMENU_ITEMS:
                 items.visible = false;

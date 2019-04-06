@@ -43,7 +43,7 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-        Entity entity;
+        EntityChakram entity;
         switch(weapon){
             case Strings.Ashes:
                 entity = new EntityAshes(world, player);
@@ -107,9 +107,9 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
             if (!player.isSneaking()) {
                 world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F), false);
                 world.spawnEntity(entity);
-                ((EntityThrowable) entity).setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1f, 1);
+                ((EntityThrowable) entity).setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 2f, 1);
                 if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
-                    player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(7);
+                    player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(5);
                 player.swingArm(hand);
             }
             return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItemMainhand());

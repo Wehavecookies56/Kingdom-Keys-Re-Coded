@@ -37,22 +37,6 @@ public class ItemKKRecord extends ItemRecord {
     }
 
     @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        IBlockState iblockstate = world.getBlockState(pos);
-        if (iblockstate.getBlock() == Blocks.JUKEBOX && !((Boolean)iblockstate.getValue(BlockJukebox.HAS_RECORD)).booleanValue()) {
-            if (!world.isRemote) {
-                ((BlockJukebox)Blocks.JUKEBOX).insertRecord(world, pos, iblockstate, player.getActiveItemStack());
-                world.playEvent((EntityPlayer)null, 1010, pos, Item.getIdFromItem(this));
-                player.getActiveItemStack().setCount(player.getActiveItemStack().getCount()-1);
-                player.addStat(StatList.RECORD_PLAYED);
-            }
-            return EnumActionResult.SUCCESS;
-        }
-        else
-            return EnumActionResult.PASS;
-    }
-
-    @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
         DecimalFormat df = new DecimalFormat();

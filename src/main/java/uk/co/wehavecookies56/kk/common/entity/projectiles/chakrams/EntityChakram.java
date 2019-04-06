@@ -46,7 +46,7 @@ public class EntityChakram extends EntityThrowable implements IThrowableEntity {
 				posZ + world.rand.nextDouble() * width * 2.0F - width, world.rand.nextGaussian() * 0.02D, world.rand.nextGaussian() * 0.02D, world.rand.nextGaussian() * 0.02D, 0.2F);
 		this.rotationYaw = (rotation + 1) % 360;
 
-		if (ticksExisted > 15) {
+		if (ticksExisted > 20) {
 			setReturn();
 		}
 
@@ -73,7 +73,7 @@ public class EntityChakram extends EntityThrowable implements IThrowableEntity {
 
 	public void setReturn() {
 		returning = true;
-		setThrowableHeading(this.getThrower().posX - this.posX, this.getThrower().posY - this.posY + 1.25, this.getThrower().posZ - this.posZ, 1.5f, 0);
+		setThrowableHeading(this.getThrower().posX - this.posX, this.getThrower().posY - this.posY + 1.25, this.getThrower().posZ - this.posZ, 2f, 0);
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class EntityChakram extends EntityThrowable implements IThrowableEntity {
 			mop.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) getThrower()), shotDamage);
 		} else {
 			BlockPos blockpos = mop.getBlockPos();
-			if (this.world.getBlockState(blockpos).getBlock() != Blocks.TALLGRASS) {
+			if (this.world.getBlockState(blockpos).getBlock() != Blocks.TALLGRASS && this.world.getBlockState(blockpos).getBlock() != Blocks.DOUBLE_PLANT && this.world.getBlockState(blockpos).getBlock() != Blocks.REEDS && this.world.getBlockState(blockpos).getBlock() != Blocks.VINE) {
 				this.setReturn();
 			}
 

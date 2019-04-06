@@ -104,7 +104,7 @@ public class ItemLances extends ItemOrgWeapon implements IOrgWeapon{
                 world.spawnEntity(entity);
                 ((EntityLance) entity).setAim(player, 2, 0);//setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1f, 1);
                 if (!player.getCapability(ModCapabilities.CHEAT_MODE, null).getCheatMode())
-                    player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(7);
+                    player.getCapability(ModCapabilities.PLAYER_STATS, null).remMP(5);
                 player.swingArm(hand);
             }
             return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItemMainhand());

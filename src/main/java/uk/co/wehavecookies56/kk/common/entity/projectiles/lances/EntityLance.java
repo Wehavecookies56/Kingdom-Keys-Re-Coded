@@ -38,13 +38,15 @@ public class EntityLance extends EntityThrowable {// implements IThrowableEntity
 		return 0.01F;
 	}
 
+	boolean stuck = false;
+	
 	@Override
 	public void onUpdate() {
-		
 		if (ticksExisted > 160 || this.getThrower() == null)
 			setDead();
 		
-		super.onUpdate();
+		if(!stuck)
+			super.onUpdate();
 	}
 
 	public void setAim(Entity shooter, float velocity, float inaccuracy) {
@@ -73,10 +75,11 @@ public class EntityLance extends EntityThrowable {// implements IThrowableEntity
 			mop.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) getThrower()), shotDamage);
 		} else {
 			BlockPos blockpos = mop.getBlockPos();
-			if (this.world.getBlockState(blockpos).getBlock() != Blocks.TALLGRASS) {
+			if (this.world.getBlockState(blockpos).getBlock() != Blocks.TALLGRASS && this.world.getBlockState(blockpos).getBlock() != Blocks.DOUBLE_PLANT && this.world.getBlockState(blockpos).getBlock() != Blocks.REEDS && this.world.getBlockState(blockpos).getBlock() != Blocks.VINE) {
 				this.motionX=0;
 				this.motionY=0;
 				this.motionZ=0;
+				stuck = true;
 			}
 
 		}

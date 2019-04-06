@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -15,23 +16,15 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
-import uk.co.wehavecookies56.kk.api.abilities.Ability;
-import uk.co.wehavecookies56.kk.api.abilities.AbilityEvent;
-import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
-import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
-import uk.co.wehavecookies56.kk.common.lib.Strings;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncEquippedAbilities;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
-import uk.co.wehavecookies56.kk.common.network.packet.client.SyncUnlockedAbilities;
 
-public class CommandGiveEXP implements ICommand {
+public class CommandGiveEXP extends CommandBase {
 
 	private List<String> aliases;
 
@@ -130,7 +123,7 @@ public class CommandGiveEXP implements ICommand {
 		} else {
 			int exp = 1;
 			if (args.length == 2) {
-				EntityPlayerMP entityplayermp = (EntityPlayerMP) getPlayerFromUsername(args[1]);
+				EntityPlayerMP entityplayermp = (EntityPlayerMP) getPlayer(server, sender, args[1]);
 				try {
 					exp = Integer.parseInt(args[0]);
 					if (args.length == 2) {
