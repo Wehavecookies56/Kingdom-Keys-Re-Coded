@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -104,7 +105,7 @@ public class CommandGiveEXP implements ICommand {
 				TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 				return;
 			}
-			
+
 			try {
 				exp = Integer.parseInt(args[0]);
 				if (args.length == 1) {
@@ -117,7 +118,7 @@ public class CommandGiveEXP implements ICommand {
 					TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 				}
 			} catch (Exception e) {
-				TextHelper.sendFormattedChatMessage("Invalid number "+args[0], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+				TextHelper.sendFormattedChatMessage("Invalid number " + args[0], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 				return;
 			}
 
@@ -125,7 +126,33 @@ public class CommandGiveEXP implements ICommand {
 			STATS.addExperience(entityplayermp, exp);
 
 			PacketDispatcher.sendTo(new SyncLevelData(entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null)), entityplayermp);
+
+		} else {
+			int exp = 1;
+			if (args.length == 2) {
+				EntityPlayerMP entityplayermp = (EntityPlayerMP) getPlayerFromUsername(args[1]);
+				try {
+					exp = Integer.parseInt(args[0]);
+					if (args.length == 2) {
+						TextHelper.sendFormattedChatMessage("You got " + exp + "xp ", TextFormatting.YELLOW, entityplayermp);
+						sender.sendMessage(new TextComponentString(TextFormatting.YELLOW + args[1] + " got " + exp + "xp "));
+					}
+				} catch (Exception e) {
+					sender.sendMessage(new TextComponentString(TextFormatting.RED + "Invalid number " + args[0]));
+					TextHelper.sendFormattedChatMessage("Invalid number " + args[0], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
+					return;
+				}
+
+				PlayerStatsCapability.IPlayerStats STATS = entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null);
+				STATS.addExperience(entityplayermp, exp);
+
+				PacketDispatcher.sendTo(new SyncLevelData(entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null)), entityplayermp);
+			} else {
+				sender.sendMessage(new TextComponentString("Invalid argumernts, usage: " + getUsage(sender)));
+				return;
+			}
 		}
+
 	}
 
 	@Override
