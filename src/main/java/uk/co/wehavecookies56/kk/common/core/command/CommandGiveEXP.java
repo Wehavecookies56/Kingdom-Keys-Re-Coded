@@ -16,6 +16,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
@@ -105,8 +106,10 @@ public class CommandGiveEXP extends CommandBase {
 					TextHelper.sendFormattedChatMessage("You got " + exp + "xp ", TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
 
 				} else if (args.length == 2) {
+
 					TextHelper.sendFormattedChatMessage("You got " + exp + "xp ", TextFormatting.YELLOW, entityplayermp);
 					TextHelper.sendFormattedChatMessage(args[1] + " got " + exp + "xp ", TextFormatting.YELLOW, (EntityPlayer) sender.getCommandSenderEntity());
+
 				} else {
 					TextHelper.sendFormattedChatMessage("Invalid arguments, usage: " + getUsage(sender), TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());
 				}
@@ -123,13 +126,31 @@ public class CommandGiveEXP extends CommandBase {
 		} else {
 			int exp = 1;
 			if (args.length == 2) {
-				EntityPlayerMP entityplayermp = (EntityPlayerMP) getPlayer(server, sender, args[1]);
+				EntityPlayerMP entityplayermp;
+				exp = Integer.parseInt(args[0]);
+				if (args[1].equals("@a")) {
+					World[] worlds = server.worlds;
+					for (int i = 0; i < worlds.length; i++) {
+						List<EntityPlayer> players = worlds[i].playerEntities;
+						for (EntityPlayer p : players) {
+							entityplayermp = (EntityPlayerMP) p;
+							PlayerStatsCapability.IPlayerStats STATS = entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null);
+							STATS.addExperience(entityplayermp, exp);
+							PacketDispatcher.sendTo(new SyncLevelData(entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null)), entityplayermp);
+							TextHelper.sendFormattedChatMessage("You got " + exp + "xp ", TextFormatting.YELLOW, entityplayermp);
+
+						}
+					}
+					return;
+				}
+
+				entityplayermp = (EntityPlayerMP) getPlayer(server, sender, args[1]);
 				try {
 					exp = Integer.parseInt(args[0]);
-					if (args.length == 2) {
-						TextHelper.sendFormattedChatMessage("You got " + exp + "xp ", TextFormatting.YELLOW, entityplayermp);
-						sender.sendMessage(new TextComponentString(TextFormatting.YELLOW + args[1] + " got " + exp + "xp "));
-					}
+
+					TextHelper.sendFormattedChatMessage("You got " + exp + "xp ", TextFormatting.YELLOW, entityplayermp);
+					sender.sendMessage(new TextComponentString(TextFormatting.YELLOW + args[1] + " got " + exp + "xp "));
+
 				} catch (Exception e) {
 					sender.sendMessage(new TextComponentString(TextFormatting.RED + "Invalid number " + args[0]));
 					TextHelper.sendFormattedChatMessage("Invalid number " + args[0], TextFormatting.RED, (EntityPlayer) sender.getCommandSenderEntity());

@@ -71,6 +71,7 @@ public class GuiCommandMenu extends GuiScreen {
 			if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT && !mc.ingameGUI.getChatGUI().getChatOpen() && MainConfig.displayGUI()) {
 				GL11.glPushMatrix();
 				{
+					//System.out.println(event.getResolution().getScaledWidth()+":"+event.getResolution().getScaledHeight());
 					drawCommandMenu(event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());
 				}
 				GL11.glPopMatrix();
