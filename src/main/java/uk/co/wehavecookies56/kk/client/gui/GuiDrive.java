@@ -234,12 +234,6 @@ public class GuiDrive extends GuiScreen {
 				}
 				GL11.glPopMatrix();
 			}
-			/*
-			 * else { GL11.glPushMatrix(); GL11.glTranslatef((screenWidth - guiWidth*scale),
-			 * screenHeight - guiHeight*scale - 17, 0);
-			 * this.drawTexturedModalRect((screenWidth - guiWidth - 23), screenHeight -
-			 * guiHeight - 20, 0, 100, 30, guiHeight); GL11.glPopMatrix(); }
-			 */
 		}
 	}
 }

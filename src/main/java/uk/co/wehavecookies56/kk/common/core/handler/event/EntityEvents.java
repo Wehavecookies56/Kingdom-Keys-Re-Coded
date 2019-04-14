@@ -1012,6 +1012,10 @@ public class EntityEvents {
 				PacketDispatcher.sendTo(new SyncAbilitiesData(ABILITIES), (EntityPlayerMP) player);
 			}
 		}
+		
+		if(player.getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive()) {
+			player.getFoodStats().addStats(20, 20F);
+		}
 
 		if (player.getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() == Utils.OrgMember.NONE) {
 			if (!ItemStack.areItemStacksEqual(player.inventory.armorInventory.get(0), ItemStack.EMPTY) && player.inventory.armorInventory.get(1) != ItemStack.EMPTY && player.inventory.armorInventory.get(2) != ItemStack.EMPTY && player.inventory.armorInventory.get(3) != ItemStack.EMPTY) {
@@ -1436,7 +1440,7 @@ public class EntityEvents {
 			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 			if (ABILITIES.getEquippedAbility(ModAbilities.highJump) || ABILITIES.getEquippedAbility(ModAbilities.aerialDodge) || ABILITIES.getEquippedAbility(ModAbilities.glide)) {
 				event.setDistance(0);
-			}	
+			}
 		}
 		if(event.getEntityLiving().isRiding() && event.getEntityLiving().getRidingEntity() instanceof EntityMovingVehicle) {
 			event.setDistance(0);
