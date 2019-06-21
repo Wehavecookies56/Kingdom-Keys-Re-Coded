@@ -133,19 +133,19 @@ public class EntityRedNocturne extends BaseEntityHeartless implements IKHMob
 						this.theEntity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 						this.theEntity.getLookHelper().setLookPositionWithEntity(target, 0F, 0F);
 
-						double d0 = this.theEntity.getDistanceSqToEntity(this.theEntity.getAttackTarget());
+						double d0 = this.theEntity.getDistanceSq(this.theEntity.getAttackTarget());
 						float f = MathHelper.sqrt(MathHelper.sqrt(d0));
 						double d1 = this.theEntity.getAttackTarget().posX - this.theEntity.posX;
 						double d2 = this.theEntity.getAttackTarget().getEntityBoundingBox().minY + (double) (this.theEntity.getAttackTarget().height / 2.0F) - (this.theEntity.posY + (double) (this.theEntity.height / 2.0F));
 						double d3 = this.theEntity.getAttackTarget().posZ - this.theEntity.posZ;
 						EntityKH1Fire esfb = new EntityKH1Fire(this.theEntity.world, this.theEntity);
-						esfb.setThrowableHeading(d1, d2, d3, 1, 0);
+						esfb.shoot(d1, d2, d3, 1, 0);
 						esfb.posY = this.theEntity.posY + (double) (this.theEntity.height / 2.0F) + 0.5D;
 						this.theEntity.world.spawnEntity(esfb);
 					} 
 					else
 					{
-						if (theEntity.getDistanceToEntity(theEntity.getAttackTarget()) < 8)
+						if (theEntity.getDistance(theEntity.getAttackTarget()) < 8)
 						{
 							EntityHelper.setState(this.theEntity, 2);
 

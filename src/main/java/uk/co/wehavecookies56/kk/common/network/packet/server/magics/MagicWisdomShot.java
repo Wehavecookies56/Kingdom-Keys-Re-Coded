@@ -30,7 +30,7 @@ public class MagicWisdomShot extends AbstractMessage.AbstractServerMessage<Magic
         World world = player.world;
         EntityWisdomShot wisdomshot = new EntityWisdomShot(world, player);
         world.spawnEntity(wisdomshot);
-        wisdomshot.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 3, 0);
+        wisdomshot.shoot(player, player.rotationPitch, player.rotationYaw, 0, 3, 0);
         PacketDispatcher.sendToAllAround(new SpawnWisdomShotParticles(new EntityWisdomShot(world)), player, 64.0D);
     }
 }

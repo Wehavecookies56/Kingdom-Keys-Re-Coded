@@ -160,7 +160,7 @@ public class ClientEventHandler {
             double dy = player.posY - (target.posY + (target.height / 2.0F)-player.height);
             double angle = Math.atan2(dz, dx) * 180 / Math.PI;
             double pitch = Math.atan2(dy, Math.sqrt(dx * dx + dz * dz)) * 180 / Math.PI;
-            double distance = player.getDistanceToEntity(target);
+            double distance = player.getDistance(target);
             float rYaw = (float) (angle - player.rotationYaw);
             while (rYaw > 180) {
                 rYaw -= 360;

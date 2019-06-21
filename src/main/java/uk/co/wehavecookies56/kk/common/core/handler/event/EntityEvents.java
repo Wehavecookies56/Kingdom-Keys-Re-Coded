@@ -467,6 +467,8 @@ public class EntityEvents {
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_ManifestIllusion);
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), Strings.SM_LostIllusion);
 
+			
+			
 			if (event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getSlots() != InventoryKeychain.INV_SIZE) {
 				ItemStackHandler oldInv = event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain();
 				event.getEntity().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setInventory(new ItemStackHandler(InventoryKeychain.INV_SIZE));
@@ -616,7 +618,7 @@ public class EntityEvents {
 					EntityMob mob = (EntityMob) event.getEntity();
 
 					if (!player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.zeroEXP)) {
-						player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, (int) (mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2));
+						player.getCapability(ModCapabilities.PLAYER_STATS, null).addExperience(player, (int) ((mob.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue() / 2) * MainConfig.entities.xpMultiplier));
 					}
 					if (!player.getCapability(ModCapabilities.ABILITIES, null).getEquippedAbility(ModAbilities.zeroEXP)) {
 						if (event.getEntity() instanceof EntityWither) {

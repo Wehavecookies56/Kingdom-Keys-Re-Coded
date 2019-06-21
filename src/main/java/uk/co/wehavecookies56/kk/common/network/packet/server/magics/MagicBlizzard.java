@@ -44,26 +44,26 @@ public class MagicBlizzard extends AbstractMessage.AbstractServerMessage<MagicBl
             case 1:
                 EntityBlizzard entityBlizzard = new EntityBlizzard(world, player);
                 world.spawnEntity(entityBlizzard);
-                entityBlizzard.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
+                entityBlizzard.shoot(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
                 break;
             case 2:
             	for(int i=0;i<3;i++) {
                     EntityBlizzara entityBlizzara = new EntityBlizzara(world, player);
                     world.spawnEntity(entityBlizzara);
-                    entityBlizzara.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw-distance+(distance*i), 0, 2, 0);
+                    entityBlizzara.shoot(player, player.rotationPitch, player.rotationYaw-distance+(distance*i), 0, 2, 0);
         		}
                 break;
             case 3:
             	for(int i=0;i<3;i++) {
                     EntityBlizzaga entityBlizzaga = new EntityBlizzaga(world, player);
                     world.spawnEntity(entityBlizzaga);
-                    entityBlizzaga.setHeadingFromThrower(player, player.rotationPitch-distance+(distance*i), player.rotationYaw, 0, 3, 0);
+                    entityBlizzaga.shoot(player, player.rotationPitch-distance+(distance*i), player.rotationYaw, 0, 3, 0);
             	}
             	
             	for(int i=0;i<3;i++) {
                     EntityBlizzaga entityBlizzaga = new EntityBlizzaga(world, player);
                     world.spawnEntity(entityBlizzaga);
-                    entityBlizzaga.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw-distance+(distance*i), 0, 3, 0);
+                    entityBlizzaga.shoot(player, player.rotationPitch, player.rotationYaw-distance+(distance*i), 0, 3, 0);
         		}
             	
                 break;

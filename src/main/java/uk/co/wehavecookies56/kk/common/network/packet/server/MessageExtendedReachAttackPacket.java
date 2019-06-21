@@ -53,7 +53,7 @@ public class MessageExtendedReachAttackPacket extends AbstractMessage.AbstractSe
         }
         if (player.getHeldItemMainhand().getItem() instanceof IExtendedReach) {
             IExtendedReach theExtendedReachWeapon = (IExtendedReach) player.getHeldItemMainhand().getItem();
-            double distanceSq = player.getDistanceSqToEntity(theEntity);
+            double distanceSq = player.getDistanceSq(theEntity);
             double reachSq = theExtendedReachWeapon.getReach() * theExtendedReachWeapon.getReach();
             if (reachSq >= distanceSq) {
                 player.attackTargetEntityWithCurrentItem(theEntity);

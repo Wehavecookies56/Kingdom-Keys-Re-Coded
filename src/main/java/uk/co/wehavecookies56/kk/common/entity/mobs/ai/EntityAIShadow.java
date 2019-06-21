@@ -19,7 +19,7 @@ public class EntityAIShadow extends EntityAITarget {
 
     @Override
     public boolean shouldContinueExecuting() {
-        if (this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) < MAX_DISTANCE_FOR_AI) {
+        if (this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSq(this.taskOwner.getAttackTarget()) < MAX_DISTANCE_FOR_AI) {
 
         	if(EntityHelper.getState(taskOwner) == 1)
         		//System.out.println("" + EntityHelper.getState(taskOwner));
@@ -71,7 +71,7 @@ public class EntityAIShadow extends EntityAITarget {
             }
 
             //Leaping
-            if(this.taskOwner.onGround && this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) <= MAX_DISTANCE_FOR_LEAP && currentAi == 0 && canUseNextAttack) {
+            if(this.taskOwner.onGround && this.taskOwner.getDistanceSq(this.taskOwner.getAttackTarget()) <= MAX_DISTANCE_FOR_LEAP && currentAi == 0 && canUseNextAttack) {
                 oldAi = 0;
 
                 this.taskOwner.motionY += 0.5;
@@ -99,7 +99,7 @@ public class EntityAIShadow extends EntityAITarget {
             //System.out.println(this.taskOwner.onGround);
 
             //Dash
-            if(this.taskOwner.onGround && this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) <= MAX_DISTANCE_FOR_DASH && currentAi == 1 && canUseNextAttack) {
+            if(this.taskOwner.onGround && this.taskOwner.getDistanceSq(this.taskOwner.getAttackTarget()) <= MAX_DISTANCE_FOR_DASH && currentAi == 1 && canUseNextAttack) {
                 oldAi = 1;
 
                 this.taskOwner.motionY += 0.2;
@@ -141,7 +141,7 @@ public class EntityAIShadow extends EntityAITarget {
 
     @Override
     public boolean shouldExecute() {
-        return this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) < MAX_DISTANCE_FOR_AI;
+        return this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSq(this.taskOwner.getAttackTarget()) < MAX_DISTANCE_FOR_AI;
     }
 
 }

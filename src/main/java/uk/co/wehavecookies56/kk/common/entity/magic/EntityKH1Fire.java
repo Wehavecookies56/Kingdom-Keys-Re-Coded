@@ -44,7 +44,7 @@ public class EntityKH1Fire extends EntityThrowable {
                 PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), (EntityPlayer)shootingEntity, 64.0D);
             if(LockOn.target != null) {
                 EntityLiving target = (EntityLiving) LockOn.target;
-                setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);
+                shoot(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);
             }
         }else{
             if (!world.isRemote)

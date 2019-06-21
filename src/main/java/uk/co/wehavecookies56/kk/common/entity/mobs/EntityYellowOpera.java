@@ -128,7 +128,7 @@ public class EntityYellowOpera extends BaseEntityHeartless implements IKHMob
 						this.theEntity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 						this.theEntity.getLookHelper().setLookPositionWithEntity(target, 0F, 0F);
 
-						double d0 = this.theEntity.getDistanceSqToEntity(this.theEntity.getAttackTarget());
+						double d0 = this.theEntity.getDistanceSq(this.theEntity.getAttackTarget());
 						float f = MathHelper.sqrt(MathHelper.sqrt(d0));
 						double d1 = this.theEntity.getAttackTarget().posX - this.theEntity.posX;
 						double d2 = this.theEntity.getAttackTarget().getEntityBoundingBox().minY + (double) (this.theEntity.getAttackTarget().height / 2.0F) - (this.theEntity.posY + (double) (this.theEntity.height / 2.0F));
@@ -141,7 +141,7 @@ public class EntityYellowOpera extends BaseEntityHeartless implements IKHMob
 					{
 						if (world.rand.nextInt(100) + world.rand.nextDouble() <= 50)
 						{
-							if (theEntity.getDistanceToEntity(theEntity.getAttackTarget()) < 8)
+							if (theEntity.getDistance(theEntity.getAttackTarget()) < 8)
 							{
 								EntityHelper.setState(this.theEntity, 2);
 
@@ -175,7 +175,7 @@ public class EntityYellowOpera extends BaseEntityHeartless implements IKHMob
 					if (theEntity.getPosition().getX() == (int) target.posX && theEntity.getPosition().getY() == (int) target.posY && theEntity.getPosition().getZ() == (int) target.posZ)
 						canUseAttack = false;
 
-					if (theEntity.getDistanceSqToEntity(this.theEntity.getAttackTarget()) < 3)
+					if (theEntity.getDistanceSq(this.theEntity.getAttackTarget()) < 3)
 						canUseAttack = false;
 
 					if (initialHealth > theEntity.getHealth())

@@ -53,7 +53,7 @@ public class EntityLance extends EntityThrowable {// implements IThrowableEntity
 		float f = -MathHelper.sin(shooter.rotationYaw * 0.017453292F) * MathHelper.cos(shooter.rotationPitch * 0.017453292F);
 		float f1 = -MathHelper.sin(shooter.rotationPitch * 0.017453292F);
 		float f2 = MathHelper.cos(shooter.rotationYaw * 0.017453292F) * MathHelper.cos(shooter.rotationPitch * 0.017453292F);
-		this.setThrowableHeading((double) f, (double) f1, (double) f2, velocity, inaccuracy);
+		this.shoot((double) f, (double) f1, (double) f2, velocity, inaccuracy);
 		this.motionX += shooter.motionX;
 		this.motionZ += shooter.motionZ;
 

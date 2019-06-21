@@ -48,7 +48,7 @@ public class EntityKH1Fira extends EntityThrowable {
             PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(this, 1), shootingEntity, 64.0D);
         if(LockOn.target != null) {
             EntityLiving target = (EntityLiving)InputHandler.lockOn;
-            setThrowableHeading(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);
+            shoot(target.posX - this.posX, target.posY - this.posY + target.height, target.posZ - this.posZ, 1.5f, 0);
         }
         this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
         this.rotationYaw = (rotation + 1) % 360;

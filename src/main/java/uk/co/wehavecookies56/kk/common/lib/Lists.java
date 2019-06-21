@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.Item;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.util.Utils;
 
 public class Lists {
@@ -511,6 +512,10 @@ public class Lists {
         recipes.add(WoodenStick.getUnlocalizedName());
         recipes.add(YoungXehanortsKeyblade.getUnlocalizedName());
         recipes.add(ZeroOne.getUnlocalizedName());
+        
+        for(String keyblade : MainConfig.items.bannedKeyblades) {
+        	recipes.remove(recipes.indexOf("item."+keyblade));
+        }
     }
 
 }

@@ -142,7 +142,7 @@ public class EntityCreeper extends EntityMob implements IKHMob
 	            		if(world.rand.nextInt(100) + world.rand.nextDouble() <= 50) // again but for another randomized number to see which morph to run, there's a 50/50 chance for both
 	            		{
 	            			//SWORD
-	            			if(theEntity.getDistanceToEntity(theEntity.getAttackTarget()) < 8) // for the sword one we need to check if the target is 4 blocks or less away from the entity (just because it wouldn't make much sense for a close-ranged attack to occur when the target is 5 miles away)
+	            			if(theEntity.getDistance(theEntity.getAttackTarget()) < 8) // for the sword one we need to check if the target is 4 blocks or less away from the entity (just because it wouldn't make much sense for a close-ranged attack to occur when the target is 5 miles away)
 	            			{
 		            			EntityHelper.setState(theEntity, 1); // setting the state to 1 (sword morphing)
 		            			
@@ -176,7 +176,7 @@ public class EntityCreeper extends EntityMob implements IKHMob
 	        		}
 	        		else
 	        		{
-	        			if(theEntity.getDistanceToEntity(theEntity.getAttackTarget()) < 5)
+	        			if(theEntity.getDistance(theEntity.getAttackTarget()) < 5)
 	        			{
 		        			//LEG SWIPE
 		        			EntityHelper.setState(theEntity, 3);

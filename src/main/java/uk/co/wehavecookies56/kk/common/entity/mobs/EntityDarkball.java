@@ -241,7 +241,7 @@ public class EntityDarkball extends BaseEntityHeartless implements IKHMob
 		
 		public boolean shouldExecute() 
 		{
-			if(theEntity.getAttackTarget() != null && this.theEntity.getCurrentAttackState() == null && theEntity.getDistanceSqToEntity(theEntity.getAttackTarget()) < 15)
+			if(theEntity.getAttackTarget() != null && this.theEntity.getCurrentAttackState() == null && theEntity.getDistanceSq(theEntity.getAttackTarget()) < 15)
 			{
 				if(!canUseAttack)
 				{
@@ -339,7 +339,7 @@ public class EntityDarkball extends BaseEntityHeartless implements IKHMob
 		
 		public boolean shouldExecute() 
 		{
-			if(theEntity.getAttackTarget() != null && this.theEntity.getCurrentAttackState() == null && theEntity.getDistanceSqToEntity(theEntity.getAttackTarget()) > 4)
+			if(theEntity.getAttackTarget() != null && this.theEntity.getCurrentAttackState() == null && theEntity.getDistanceSq(theEntity.getAttackTarget()) > 4)
 			{
 				if(!canUseAttack)
 				{
@@ -409,7 +409,7 @@ public class EntityDarkball extends BaseEntityHeartless implements IKHMob
 	            if(theEntity.getPosition().getX() == (int)posToCharge[0] && theEntity.getPosition().getY() == (int)posToCharge[1] && theEntity.getPosition().getZ() == (int)posToCharge[2])
 	            	canUseAttack = false;
 	            
-            	if(theEntity.getDistanceSqToEntity(this.theEntity.getAttackTarget()) < 3)
+            	if(theEntity.getDistanceSq(this.theEntity.getAttackTarget()) < 3)
             		canUseAttack = false;
             	
             	if(initialHealth > theEntity.getHealth())
