@@ -514,7 +514,8 @@ public class Lists {
         recipes.add(ZeroOne.getUnlocalizedName());
         
         for(String keyblade : MainConfig.items.bannedKeyblades) {
-        	recipes.remove(recipes.indexOf("item."+keyblade));
+        	if(recipes.indexOf("item."+keyblade) >= 0)
+        		recipes.remove(recipes.indexOf("item."+keyblade));
         }
     }
 
