@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"SHS",
+		"F F"
+	],
+	"key": {
+		"S": {
+			"item": "kk:darkinfusediron"
+		},
+		"H": {
+			"item": "minecraft:diamond_helmet"
+		},
+		"F": {
+			"item": "kk:blazinginfusedcoal"
+		}
+	},
+	"result": {
+		"item": "kk:terra_helmet"
+	}
+}

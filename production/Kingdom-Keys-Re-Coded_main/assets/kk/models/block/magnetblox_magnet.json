@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+	"all": "kk:blocks/magnetblox_magnet",
+	"down":  "kk:blocks/magnetblox_magnet",
+	"up":    "kk:blocks/magnetblox_magnet",
+	"north": "kk:blocks/magnetblox_magnet",
+	"south": "kk:blocks/magnetblox_magnet",
+	"west":  "kk:blocks/magnetblox_magnet",
+	"east":  "kk:blocks/magnetblox_magnet"
+    }
+}

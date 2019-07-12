@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [ 
+		{ 
+			"type": "kk:synthesis_material",
+			"material": "sm.blazingcrystal",
+			"rank": "sm.rank.s"
+		}, 
+		{ 
+			"item": "minecraft:coal",
+			"data": 0
+		}
+	],
+	"result": {
+		"item": "kk:blazinginfusedcoal"
+	}
+}

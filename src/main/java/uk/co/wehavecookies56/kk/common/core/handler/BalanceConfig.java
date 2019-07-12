@@ -131,6 +131,7 @@ public class BalanceConfig {
 				twoBecomeOne = new int[] { 6, 3 },
 				ultimaWeaponKH1 = new int[] { 12, 8 },
 				ultimaWeaponKH2 = new int[] { 12, 8 },
+				ultimaWeaponKH3 = new int[] { 12, 8 },
 				ultimaWeaponBBS = new int[] { 12, 8 },
 				ultimaWeaponDDD = new int[] { 12, 8 },
 				umbrella = new int[] { 2, 0 },

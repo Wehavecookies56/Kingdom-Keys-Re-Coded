@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"D D",
+		"IBI"
+	],
+	"key": {
+		"D": {
+			"item": "kk:darkleather"
+		},
+		"B": {
+			"item": "minecraft:leather_boots"
+		},
+		"I": {
+			"item": "kk:darkinfusediron"
+		}
+	},
+	"result": {
+		"item": "kk:organizationrobe_boots"
+	}
+}

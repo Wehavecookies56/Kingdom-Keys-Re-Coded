@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" H ",
+		"HSH",
+		" H "
+	],
+	"key": {
+		"H": {
+			"item": "kk:pureheart"
+		},
+		"S": {
+			"item": "minecraft:soul_sand"
+		}
+	},
+	"result": {
+		"item": "kk:kingdomhearts"
+	}
+}

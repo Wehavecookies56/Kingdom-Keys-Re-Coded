@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "normal": { "model": "kk:magnetblox" },
+        "facing=north,magnet=false,on=false": { "model": "kk:magnetblox", "texture": { "north": "kk:blocks/magnetblox" } },
+        "facing=south,magnet=false,on=false": { "model": "kk:magnetblox", "y": 180, "texture": { "north": "kk:blocks/magnetblox" } },
+        "facing=west,magnet=false,on=false":  { "model": "kk:magnetblox", "y": 270, "texture": { "north": "kk:blocks/magnetblox" } },
+        "facing=east,magnet=false,on=false":  { "model": "kk:magnetblox", "y": 90, "texture": { "north": "kk:blocks/magnetblox" } },
+        "facing=north,magnet=false,on=true": { "model": "kk:magnetblox_on", "texture": { "north": "kk:blocks/magnetblox_on" } },
+        "facing=south,magnet=false,on=true": { "model": "kk:magnetblox_on", "y": 180, "texture": { "north": "kk:blocks/magnetblox_on" } },
+        "facing=west,magnet=false,on=true":  { "model": "kk:magnetblox_on", "y": 270, "texture": { "north": "kk:blocks/magnetblox_on" } },
+        "facing=east,magnet=false,on=true":  { "model": "kk:magnetblox_on", "y": 90, "texture": { "north": "kk:blocks/magnetblox_on" } },
+        "facing=north,magnet=true,on=false": { "model": "kk:magnetblox_magnet", "texture": { "north": "kk:blocks/magnetblox_magnet" } },
+        "facing=south,magnet=true,on=false": { "model": "kk:magnetblox_magnet", "y": 180, "texture": { "north": "kk:blocks/magnetblox_magnet" } },
+        "facing=west,magnet=true,on=false":  { "model": "kk:magnetblox_magnet", "y": 270, "texture": { "north": "kk:blocks/magnetblox_magnet" } },
+        "facing=east,magnet=true,on=false":  { "model": "kk:magnetblox_magnet", "y": 90, "texture": { "north": "kk:blocks/magnetblox_magnet" } },
+        "facing=north,magnet=true,on=true": { "model": "kk:magnetblox_magnet", "texture": { "north": "kk:blocks/magnetblox_magnet" } },
+        "facing=south,magnet=true,on=true": { "model": "kk:magnetblox_magnet", "y": 180, "texture": { "north": "kk:blocks/magnetblox_magnet" } },
+        "facing=west,magnet=true,on=true":  { "model": "kk:magnetblox_magnet", "y": 270, "texture": { "north": "kk:blocks/magnetblox_magnet" } },
+        "facing=east,magnet=true,on=true":  { "model": "kk:magnetblox_magnet", "y": 90, "texture": { "north": "kk:blocks/magnetblox_magnet" } }
+    }
+}

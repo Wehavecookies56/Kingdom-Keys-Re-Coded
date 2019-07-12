@@ -85,7 +85,7 @@ public class ModItems {
             RejectionofFate, RoyalRadiance, RumblingRose, SignofInnocence, SilentDirge, SkullNoise, SleepingLion,
             SoulEater, Spellbinder, StarSeeker, Starlight, Stormfall, StrokeofMidnight, SweetDreams, SweetMemories,
             Sweetstack, ThreeWishes, TotalEclipse, TreasureTrove, TrueLightsFlight, TwilightBlaze, TwoBecomeOne,
-            UltimaWeaponKH1, UltimaWeaponKH2, UltimaWeaponBBS, UltimaWeaponDDD, Umbrella, Unbound,
+            UltimaWeaponKH1, UltimaWeaponKH2, UltimaWeaponKH3, UltimaWeaponBBS, UltimaWeaponDDD, Umbrella, Unbound,
             UnicornisForetellersKeyblade, UrsusForetellersKeyblade, VictoryLine, VoidGear, VulpeusForetellersKeyblade,
             WaytotheDawn, WaywardWind, WinnersProof, WishingLamp, WishingStar, WoodenKeyblade, WoodenStick,
             YoungXehanortsKeyblade, ZeroOne, Chain_AbaddonPlasma, Chain_AbyssalTide, Chain_AllforOne,
@@ -108,7 +108,7 @@ public class ModItems {
             Chain_SleepingLion, Chain_SoulEater, Chain_Spellbinder, Chain_StarSeeker, Chain_Starlight, Chain_Stormfall,
             Chain_StrokeofMidnight, Chain_SweetDreams, Chain_SweetMemories, Chain_Sweetstack, Chain_ThreeWishes,
             Chain_TotalEclipse, Chain_TreasureTrove, Chain_TrueLightsFlight, Chain_TwilightBlaze, Chain_TwoBecomeOne,
-            Chain_UltimaWeaponKH1, Chain_UltimaWeaponKH2, Chain_UltimaWeaponBBS, Chain_UltimaWeaponDDD, Chain_Umbrella,
+            Chain_UltimaWeaponKH1, Chain_UltimaWeaponKH2, Chain_UltimaWeaponKH3, Chain_UltimaWeaponBBS, Chain_UltimaWeaponDDD, Chain_Umbrella,
             Chain_Unbound, Chain_UnicornisForetellersKeyblade, Chain_UrsusForetellersKeyblade, Chain_VictoryLine,
             Chain_VoidGear, Chain_VulpeusForetellersKeyblade, Chain_WaytotheDawn, Chain_WaywardWind, Chain_WinnersProof,
             Chain_WishingLamp, Chain_WishingStar, Chain_YoungXehanortsKeyblade, Chain_ZeroOne, GummiShip, Panacaea,
@@ -544,6 +544,7 @@ public class ModItems {
             TwoBecomeOne = new ItemRealKeyblade(Strings.TwoBecomeOne, BalanceConfig.keyblades.twoBecomeOne[0], BalanceConfig.keyblades.twoBecomeOne[1], Strings.lightAndDark, 5F),
             UltimaWeaponKH1 = new ItemRealKeyblade(Strings.UltimaWeaponKH1, BalanceConfig.keyblades.ultimaWeaponKH1[0], BalanceConfig.keyblades.ultimaWeaponKH1[1], Strings.guard, 5F),
             UltimaWeaponKH2 = new ItemRealKeyblade(Strings.UltimaWeaponKH2, BalanceConfig.keyblades.ultimaWeaponKH2[0], BalanceConfig.keyblades.ultimaWeaponKH2[1], Strings.mpHastega, 5F),
+            UltimaWeaponKH3 = new ItemRealKeyblade(Strings.UltimaWeaponKH3, BalanceConfig.keyblades.ultimaWeaponKH3[0], BalanceConfig.keyblades.ultimaWeaponKH3[1], Strings.guard, 5F),
             UltimaWeaponBBS = new ItemRealKeyblade(Strings.UltimaWeaponBBS, BalanceConfig.keyblades.ultimaWeaponBBS[0], BalanceConfig.keyblades.ultimaWeaponBBS[1], Strings.guard, 5F),
             UltimaWeaponDDD = new ItemRealKeyblade(Strings.UltimaWeaponDDD, BalanceConfig.keyblades.ultimaWeaponDDD[0], BalanceConfig.keyblades.ultimaWeaponDDD[1], Strings.guard, 5F),
             Umbrella = new ItemKeyblade(Strings.Umbrella, BalanceConfig.keyblades.umbrella[0], BalanceConfig.keyblades.umbrella[1], Strings.guard, 5F),
@@ -665,6 +666,7 @@ public class ModItems {
             Chain_TwoBecomeOne = new ItemKeychain(Strings.Chain_TwoBecomeOne),
             Chain_UltimaWeaponKH1 = new ItemKeychain(Strings.Chain_UltimaWeaponKH1),
             Chain_UltimaWeaponKH2 = new ItemKeychain(Strings.Chain_UltimaWeaponKH2),
+            Chain_UltimaWeaponKH3 = new ItemKeychain(Strings.Chain_UltimaWeaponKH3),
             Chain_UltimaWeaponBBS = new ItemKeychain(Strings.Chain_UltimaWeaponBBS),
             Chain_UltimaWeaponDDD = new ItemKeychain(Strings.Chain_UltimaWeaponDDD),
             Chain_Umbrella = new ItemKeychain(Strings.Chain_Umbrella),
@@ -1069,6 +1071,7 @@ public class ModItems {
         ((ItemKeychain)Chain_TwoBecomeOne).setKeyblade((ItemKeyblade) TwoBecomeOne);
         ((ItemKeychain)Chain_UltimaWeaponKH1).setKeyblade((ItemKeyblade) UltimaWeaponKH1);
         ((ItemKeychain)Chain_UltimaWeaponKH2).setKeyblade((ItemKeyblade) UltimaWeaponKH2);
+        ((ItemKeychain)Chain_UltimaWeaponKH3).setKeyblade((ItemKeyblade) UltimaWeaponKH3);
         ((ItemKeychain)Chain_UltimaWeaponBBS).setKeyblade((ItemKeyblade) UltimaWeaponBBS);
         ((ItemKeychain)Chain_UltimaWeaponDDD).setKeyblade((ItemKeyblade) UltimaWeaponDDD);
         ((ItemKeychain)Chain_Umbrella).setKeyblade((ItemKeyblade) Umbrella);

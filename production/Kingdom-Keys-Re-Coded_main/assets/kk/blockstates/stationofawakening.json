@@ -1,0 +1,189 @@
+{
+	"forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "layer0": "kk:blocks/stationofawakening_01"
+        },
+        "model": "kk:stationofawakening_0"
+    },
+    "variants": {
+    	"normal": [
+    		{
+    			"model": "kk:stationofawakening_0",
+    			"transform":{
+						"translation": [ 0, 0, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=0": [
+    		{
+    			"model": "kk:stationofawakening_0",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=1": [
+    		{
+    			"model": "kk:stationofawakening_1",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=2": [
+    		{
+    			"model": "kk:stationofawakening_2",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=3": [
+    		{
+    			"model": "kk:stationofawakening_3",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=4": [
+    		{
+    			"model": "kk:stationofawakening_4",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=5": [
+    		{
+    			"model": "kk:stationofawakening_5",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=6": [
+    		{
+    			"model": "kk:stationofawakening_6",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=7": [
+    		{
+    			"model": "kk:stationofawakening_7",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=8": [
+    		{
+    			"model": "kk:stationofawakening_8",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=9": [
+    		{
+    			"model": "kk:stationofawakening_9",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=10": [
+    		{
+    			"model": "kk:stationofawakening_10",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=11": [
+    		{
+    			"model": "kk:stationofawakening_11",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=12": [
+    		{
+    			"model": "kk:stationofawakening_12",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=13": [
+    		{
+    			"model": "kk:stationofawakening_13",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=14": [
+    		{
+    			"model": "kk:stationofawakening_14",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+			"variant=15": [
+    		{
+    			"model": "kk:stationofawakening_15",
+    			"transform":{
+						"translation": [ 0, 2.5, 0],
+          	"scale": 4
+    			}
+    		}
+    	],
+        "inventory": [
+            {
+                "transform": {
+                    "thirdperson": {
+                    	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": 0 } ],
+                    	"translation": [ 0, 0, -0.3 ]
+                    },
+                    "gui": {
+					    "rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
+                    	"translation": [ 0, -0.4, 0 ]
+                    },
+                    "firstperson": {
+                    	"rotation": [ { "x": 0 }, { "y": 120 }, { "z": -10 } ],
+                    	"translation": [ 0, -0.3, 0 ]
+                    },
+                    "ground": {
+					},
+					"fixed": {
+						"rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
+						"translation": [ 0, -0.25, 0 ],
+						"scale": 0.01
+                    }
+                }
+            }
+        ]
+    }
+}

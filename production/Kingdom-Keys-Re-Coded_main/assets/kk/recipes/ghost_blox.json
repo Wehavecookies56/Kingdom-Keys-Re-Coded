@@ -1,0 +1,24 @@
+{
+	"type": "forge:ore_shaped",
+	"pattern": [
+		"GNG",
+		"GRG",
+		"GNG"
+	],
+	"key": {
+		"N": {
+			"item": "kk:normalblox"
+		},
+		"G": {
+			"type": "forge:ore_dict",
+			"ore": "blockGlass"
+		},
+		"R": {
+			"type": "forge:ore_dict",
+			"ore": "blockRedstone"
+		}
+	},
+	"result": {
+		"item": "kk:ghostblox"
+	}
+}

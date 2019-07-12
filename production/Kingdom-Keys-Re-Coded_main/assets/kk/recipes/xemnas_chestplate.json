@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [ 
+		{ 
+			"item": "kk:organizationrobe_chestplate"
+		}
+	],
+	"result": {
+		"item": "kk:xemnas_chestplate"
+	}
+}

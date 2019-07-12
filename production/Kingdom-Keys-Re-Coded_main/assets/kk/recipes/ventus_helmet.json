@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"SHS",
+		"F F"
+	],
+	"key": {
+		"S": {
+			"item": "kk:stormyinfusediron"
+		},
+		"H": {
+			"item": "minecraft:diamond_helmet"
+		},
+		"F": {
+			"item": "kk:lightninginfusedgold"
+		}
+	},
+	"result": {
+		"item": "kk:ventus_helmet"
+	}
+}

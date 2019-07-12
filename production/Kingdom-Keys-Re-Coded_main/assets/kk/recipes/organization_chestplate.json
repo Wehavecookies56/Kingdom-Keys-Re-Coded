@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"D D",
+		"ICI",
+		"DDD"
+	],
+	"key": {
+		"D": {
+			"item": "kk:darkleather"
+		},
+		"C": {
+			"item": "minecraft:leather_chestplate"
+		},
+		"I": {
+			"item": "kk:darkinfusediron"
+		}
+	},
+	"result": {
+		"item": "kk:organizationrobe_chestplate"
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [ 
+		{ 
+			"type": "kk:synthesis_material",
+			"material": "sm.frostcrystal",
+			"rank": "sm.rank.s"
+		}, 
+		{ 
+			"item": "minecraft:snowball"
+		}
+	],
+	"result": {
+		"item": "kk:frostinfusedsnowball"
+	}
+}

@@ -1,0 +1,19 @@
+[
+{
+  "modid": "kk",
+  "name": "Kingdom Keys Re:Coded",
+  "description": "The new and improved version of Kingdom Keys built from the ground-up.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://github.com/Wehavecookies56/Kingdom-Keys-Re-Coded",
+  "updateUrl": "",
+  "authorList": ["Wehavecookies56", "Abelatox", "Wynd"],
+  "credits": "Huge thanks to Remorse Code, Collecter, EthanGold, Sr.Gato and Lewis Weekes for supporting the mod on Patreon!\nstel312 and Pokemew12 for the extra 3D models!\nYoko Shimomura and Utada Hikaru for the incredible soundtrack\nSquare Enix and Disney for creating Kingdom Hearts",
+  "logoFile": "",
+  "screenshots": [],
+  "requiredMods": [],
+  "dependencies": [],
+  "dependants": [],
+  "useDependencyInformation": true
+}
+]

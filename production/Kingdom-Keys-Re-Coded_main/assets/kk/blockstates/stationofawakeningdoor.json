@@ -1,0 +1,90 @@
+{
+	"forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "kkchest": "kk:blocks/models/stationofawakeningdoor"
+        },
+        "model": "kk:stationofawakeningdoor.obj"
+    },
+    "variants": {
+    	"normal": [
+    		{
+    			"model": "kk:stationofawakeningdoor.obj",
+    			"transform":{
+                  "translation": [ -0.5, 0, -0.5 ],
+                	"scale": 1.0
+    			}
+    		}
+    	],
+        "facing=north": [
+            {
+                "model": "kk:stationofawakeningdoor.obj",
+                "transform":{
+                    "translation": [ 0.5, 0, 0.5 ],
+                    "scale": 1.0
+                }
+            }
+        ],
+        "facing=south": [
+            {
+                "model": "kk:stationofawakeningdoor.obj",
+                "transform":{
+                    "rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
+                    "translation": [ -0.5, 0, -0.5 ],
+                    "scale": 1.0
+                }
+            }
+        ],
+        "facing=west": [
+            {
+                "model": "kk:stationofawakeningdoor.obj",
+                "transform":{
+                    "rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
+                    "translation": [ 0.5, 0, -0.5 ],
+                    "scale": 1.0
+                }
+            }
+        ],
+        "facing=east": [
+            {
+                "model": "kk:stationofawakeningdoor.obj",
+                "transform":{
+                    "rotation": [ { "x": 0 }, { "y": 270 }, { "z": 0 } ],
+                    "translation": [ -0.5, 0, 0.5 ],
+                    "scale": 1.0
+                }
+            }
+        ],
+        "facing=down":{"model": "kk:stationofawakeningdoor.obj", "x": 90},
+        "facing=up":{"model": "kk:stationofawakeningdoor.obj", "x": 270},
+        "inventory": [
+            {
+                "transform": {
+                    "thirdperson": {
+                    	"rotation": [ { "x": 90 }, { "y": 0 }, { "z": 0 } ],
+                    	"translation": [ 0, 0, -0.3 ],
+                        "scale": 0.3
+                    },
+                    "gui": {
+					    				"rotation": [ { "x": 0 }, { "y": 180 }, { "z": 0 } ],
+                    	"translation": [ -0.15, -0.3, 0 ],
+                        "scale": 0.3
+                    },
+                    "firstperson": {
+                    	"rotation": [ { "x": 0 }, { "y": 120 }, { "z": -10 } ],
+                    	"translation": [ 0, -0.3, 0 ],
+                        "scale": 0.3
+                    },
+                    "ground": {
+                        "scale": 0.3
+					},
+					"fixed": {
+						"rotation": [ { "x": 0 }, { "y": 90 }, { "z": 0 } ],
+						"translation": [ 0, -0.25, 0 ],
+						"scale": 0.01
+                    }
+                }
+            }
+        ]
+    }
+}

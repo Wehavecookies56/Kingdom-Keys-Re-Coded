@@ -1,0 +1,19 @@
+{
+	"type": "forge:ore_shaped",
+	"pattern": [
+		" H ",
+		"HBH",
+		"BBB"
+	],
+	"key": {
+		"H": {
+			"item": "kk:pureheart"
+		},
+		"B": {
+			"item": "kk:metalblox"
+		}
+	},
+	"result": {
+		"item": "kk:pedestal"
+	}
+}

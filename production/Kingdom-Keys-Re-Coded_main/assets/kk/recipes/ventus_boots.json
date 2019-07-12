@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"S S",
+		"FBF"
+	],
+	"key": {
+		"S": {
+			"item": "kk:stormyinfusediron"
+		},
+		"B": {
+			"item": "minecraft:diamond_boots"
+		},
+		"F": {
+			"item": "kk:lightninginfusedgold"
+		}
+	},
+	"result": {
+		"item": "kk:ventus_boots"
+	}
+}

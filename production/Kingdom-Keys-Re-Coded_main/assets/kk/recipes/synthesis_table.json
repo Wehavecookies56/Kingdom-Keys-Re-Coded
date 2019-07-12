@@ -1,0 +1,26 @@
+{
+	"type": "forge:ore_shaped",
+	"pattern": [
+		"HIH",
+		"NCN",
+		"HIH"
+	],
+	"key": {
+		"H": {
+			"item": "kk:hardblox"
+		},
+		"I": {
+			"type": "forge:ore_dict",
+			"ore": "ingotIron"
+		},
+		"C": {
+			"item": "minecraft:crafting_table"
+		},
+		"N": {
+			"item": "kk:normalblox"
+		}
+	},
+	"result": {
+		"item": "kk:synthesistable"
+	}
+}

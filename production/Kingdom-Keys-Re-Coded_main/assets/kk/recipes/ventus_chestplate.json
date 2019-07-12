@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"S S",
+		"FCF",
+		"SSS"
+	],
+	"key": {
+		"S": {
+			"item": "kk:stormyinfusediron"
+		},
+		"C": {
+			"item": "minecraft:diamond_chestplate"
+		},
+		"F": {
+			"item": "kk:lightninginfusedgold"
+		}
+	},
+	"result": {
+		"item": "kk:ventus_chestplate"
+	}
+}

@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"CCC",
+		"CKC",
+		"CCC"
+	],
+	"key": {
+		"C": {
+			"item": "minecraft:cookie"
+		},
+		"K": {
+			"item": "kk:kingdomhearts"
+		}
+	},
+	"result": {
+		"item": "minecraft:skull",
+		"data": 3,
+		"nbt": {
+			"SkullOwner": "Wehavecookies56"
+		}
+	}
+}

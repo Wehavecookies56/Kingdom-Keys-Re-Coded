@@ -1,0 +1,19 @@
+{
+	"type": "forge:ore_shaped",
+	"pattern": [
+		"NS",
+		"SN"
+	],
+	"key": {
+		"N": {
+			"item": "kk:normalblox"
+		},
+		"S": {
+			"type": "forge:ore_dict",
+			"ore": "stone"
+		}
+	},
+	"result": {
+		"item": "kk:hardblox"
+	}
+}
