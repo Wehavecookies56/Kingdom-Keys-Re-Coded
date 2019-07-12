@@ -220,7 +220,7 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
 		
 		public boolean shouldExecute() 
 		{
-			if(theEntity.getAttackTarget() != null && this.theEntity.getCurrentAttackState() == null && theEntity.getDistanceToEntity(theEntity.getAttackTarget()) < 5)
+			if(theEntity.getAttackTarget() != null && this.theEntity.getCurrentAttackState() == null && theEntity.getDistance(theEntity.getAttackTarget()) < 5)
 			{
 				if(!canUseAttack)
 				{
@@ -307,7 +307,7 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
 		
 		public boolean shouldExecute() 
 		{
-			if(theEntity.getAttackTarget() != null && this.theEntity.getCurrentAttackState() == null && theEntity.getDistanceSqToEntity(theEntity.getAttackTarget()) > 4)
+			if(theEntity.getAttackTarget() != null && this.theEntity.getCurrentAttackState() == null && theEntity.getDistanceSq(theEntity.getAttackTarget()) > 4)
 			{
 				if(!canUseAttack)
 				{
@@ -379,7 +379,7 @@ public class EntityLargeBody extends BaseEntityHeartless implements IMultiPartEn
 	            		|| (theEntity.getPosition().getX() == (int)posToCharge[0] - 1 && theEntity.getPosition().getY() == (int)posToCharge[1] && theEntity.getPosition().getZ() == (int)posToCharge[2] - 1))
 	            	canUseAttack = false;
 	            
-            	if(theEntity.getDistanceSqToEntity(this.theEntity.getAttackTarget()) < 2)
+            	if(theEntity.getDistanceSq(this.theEntity.getAttackTarget()) < 2)
             		canUseAttack = false;
             	
             	if(initialHealth > theEntity.getHealth())

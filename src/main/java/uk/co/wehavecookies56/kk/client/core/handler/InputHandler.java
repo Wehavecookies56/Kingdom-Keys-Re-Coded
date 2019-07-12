@@ -603,7 +603,7 @@ public class InputHandler {
 					RayTraceResult rtr = getMouseOverExtended(100);
 					if (rtr != null) {
 						if (rtr.entityHit != null) {
-							double distanceSq = player.getDistanceSqToEntity(rtr.entityHit);
+							double distanceSq = player.getDistanceSq(rtr.entityHit);
 							double reachSq = 100 * 100;
 							if (reachSq >= distanceSq) {
 								if (rtr.entityHit instanceof EntityLivingBase) {

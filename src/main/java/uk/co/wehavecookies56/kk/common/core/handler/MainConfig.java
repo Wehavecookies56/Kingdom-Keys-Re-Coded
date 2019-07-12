@@ -60,6 +60,14 @@ public class MainConfig {
 		@Config.Comment("Keyblade Strength and Magic will be multiplied by the amount (can be decimal)")
 		public double damageMultiplier = 1.0;
 
+		@Config.Name("List of disabled keyblades")
+		@Config.Comment("Add a keyblade to disable it from being synthesised")
+		public String[] bannedKeyblades = {};
+		
+		@Config.Name("List of disabled items in free dev")
+		@Config.Comment("Add an item to disable it from being synthesised")
+		public String[] bannedItemsFreeDev = {};
+
 	}
 
 	public static class Entities {
@@ -71,7 +79,10 @@ public class MainConfig {
 		@Config.Comment("Remove an item from this list to disable it from dropping")
 		public String[] dropsList = { "recipe", "darkheart", "heart", "pureheart", "kingdomhearts", "munny", "spellorb", "dporb", "hporb", "mporb" };
 
-		
+		@Config.Name("XP multiplier")
+		@Config.Comment("XP dropped by a slain mob will be multiplied by the amount (can be decimal)")
+		public double xpMultiplier = 1.0;
+
 
 	}
 

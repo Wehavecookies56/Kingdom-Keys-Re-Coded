@@ -68,21 +68,27 @@ public class ItemRecipe extends ItemKKBase {
 		long seed = System.nanoTime();
 		// Shuffles the list of recipe to increase randomness
 		Collections.shuffle(Lists.recipes, new Random(seed));
+		
 		String Recipe1, Recipe2, Recipe3;
+		
 		Recipe1 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
+		
 		if (RECIPES.getKnownRecipes().size() < Lists.recipes.size() - 2) {
-			while (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe1))
+			while (RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe1)) {
 				Recipe1 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
+			}
 		}
 		Recipe2 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
 		if (RECIPES.getKnownRecipes().size() < Lists.recipes.size() - 1) {
-			while (Recipe2.equals(Recipe1) || RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe2))
+			while (Recipe2.equals(Recipe1) || RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe2)) {
 				Recipe2 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
+			}
 		}
 		Recipe3 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
 		if (RECIPES.getKnownRecipes().size() < Lists.recipes.size()) {
-			while ((Recipe3.equals(Recipe2) || Recipe3.equals(Recipe1)) || RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe3))
+			while ((Recipe3.equals(Recipe2) || Recipe3.equals(Recipe1)) || RecipeRegistry.isRecipeKnown(RECIPES.getKnownRecipes(), Recipe3)) {
 				Recipe3 = Lists.recipes.get(Utils.randomWithRange(0, Lists.recipes.size() - 1));
+			}
 		}
 
 		stack.setTagCompound(new NBTTagCompound());

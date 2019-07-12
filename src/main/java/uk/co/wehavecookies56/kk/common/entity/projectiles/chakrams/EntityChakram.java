@@ -73,7 +73,7 @@ public class EntityChakram extends EntityThrowable implements IThrowableEntity {
 
 	public void setReturn() {
 		returning = true;
-		setThrowableHeading(this.getThrower().posX - this.posX, this.getThrower().posY - this.posY + 1.25, this.getThrower().posZ - this.posZ, 2f, 0);
+		shoot(this.getThrower().posX - this.posX, this.getThrower().posY - this.posY + 1.25, this.getThrower().posZ - this.posZ, 2f, 0);
 	}
 
 	@Override

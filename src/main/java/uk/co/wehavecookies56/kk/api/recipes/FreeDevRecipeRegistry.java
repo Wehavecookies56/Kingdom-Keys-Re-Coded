@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.entity.player.EntityPlayer;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 
 public class FreeDevRecipeRegistry {
 
@@ -18,7 +19,9 @@ public class FreeDevRecipeRegistry {
     }
 
     public static boolean registerFreeDevRecipe (Recipe recipe) {
-        if (isFreeDevRecipeRegistered(recipe.getName())) return false;
+        if (isFreeDevRecipeRegistered(recipe.getName()))
+        	return false;
+       
         freeDevRecipeMap.put(recipe.getName(), recipe);
         return true;
     }
@@ -36,6 +39,13 @@ public class FreeDevRecipeRegistry {
     }
 
     public static boolean learnFreeDevRecipe (List<String> list, EntityPlayer player, String recipeName) {
+        for(String item : MainConfig.items.bannedItemsFreeDev) {
+        	if(recipeName.equals("item."+item)) {
+            	System.out.println("Disabled "+recipeName);
+        		return false;
+        	}
+        }        
+        
         if (!isFreeDevRecipeKnown(list, recipeName)) {
             Recipe recipe = freeDevRecipeMap.get(recipeName);
             player.getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).learnFreeDevRecipe(recipe);

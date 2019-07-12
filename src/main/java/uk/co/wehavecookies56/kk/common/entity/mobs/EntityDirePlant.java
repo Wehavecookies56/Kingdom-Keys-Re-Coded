@@ -108,7 +108,7 @@ public class EntityDirePlant extends BaseEntityHeartless implements IKHMob
                     double d1 = this.theEntity.getAttackTarget().posX - this.theEntity.posX;
                     double d2 = this.theEntity.getAttackTarget().getEntityBoundingBox().minY + (double)(this.theEntity.getAttackTarget().height / 2.0F) - (this.theEntity.posY + (double)(this.theEntity.height / 2.0F));
                     double d3 = this.theEntity.getAttackTarget().posZ - this.theEntity.posZ;
-        			seed.setThrowableHeading(d1, d2, d3, 1.2F, 0);
+        			seed.shoot(d1, d2, d3, 1.2F, 0);
         			seed.posY = this.theEntity.posY + (double)(this.theEntity.height / 2.0F) + 0.5D;
         			this.theEntity.world.spawnEntity(seed);
         		}
@@ -118,21 +118,21 @@ public class EntityDirePlant extends BaseEntityHeartless implements IKHMob
                     double d1 = this.theEntity.getAttackTarget().posX - this.theEntity.posX;
                     double d2 = this.theEntity.getAttackTarget().getEntityBoundingBox().minY + (double)(this.theEntity.getAttackTarget().height / 2.0F) - (this.theEntity.posY + (double)(this.theEntity.height / 2.0F));
                     double d3 = this.theEntity.getAttackTarget().posZ - this.theEntity.posZ;
-        			seed.setThrowableHeading(d1, d2, d3, 1.2F, 0);
+        			seed.shoot(d1, d2, d3, 1.2F, 0);
         			seed.posY = this.theEntity.posY + (double)(this.theEntity.height / 2.0F) + 0.5D;
    
         			EntitySeedBullet seed1 = new EntitySeedBullet(this.theEntity.world, this.theEntity);
                     double d11 = this.theEntity.getAttackTarget().posX - this.theEntity.posX;
                     double d21 = this.theEntity.getAttackTarget().getEntityBoundingBox().minY + (double)(this.theEntity.getAttackTarget().height / 2.0F) - (this.theEntity.posY + (double)(this.theEntity.height / 2.0F));
                     double d31 = this.theEntity.getAttackTarget().posZ - this.theEntity.posZ;
-        			seed1.setThrowableHeading(d11, d21, d31, 0.7F, 0);
+        			seed1.shoot(d11, d21, d31, 0.7F, 0);
         			seed1.posY = this.theEntity.posY + (double)(this.theEntity.height / 2.0F) + 0.5D;
         			
         			EntitySeedBullet seed11 = new EntitySeedBullet(this.theEntity.world, this.theEntity);
                     double d111 = this.theEntity.getAttackTarget().posX - this.theEntity.posX;
                     double d211 = this.theEntity.getAttackTarget().getEntityBoundingBox().minY + (double)(this.theEntity.getAttackTarget().height / 2.0F) - (this.theEntity.posY + (double)(this.theEntity.height / 2.0F));
                     double d311 = this.theEntity.getAttackTarget().posZ - this.theEntity.posZ;
-        			seed11.setThrowableHeading(d111, d211, d311, 0.5F, 0);
+        			seed11.shoot(d111, d211, d311, 0.5F, 0);
         			seed11.posY = this.theEntity.posY + (double)(this.theEntity.height / 2.0F) + 0.5D;
      			
         			this.theEntity.world.spawnEntity(seed);

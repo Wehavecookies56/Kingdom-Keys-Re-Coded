@@ -41,19 +41,19 @@ public class MagicKH1Fire extends AbstractMessage.AbstractServerMessage<MagicKH1
             case 1:
                 EntityKH1Fire entityKH1Fire = new EntityKH1Fire(world, player);
                 world.spawnEntity(entityKH1Fire);
-                entityKH1Fire.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
+                entityKH1Fire.shoot(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
                 PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(new EntityKH1Fire(world), 1), player, 64.0D);
                 break;
             case 2:
                 EntityKH1Fira entityKH1Fira = new EntityKH1Fira(world, player);
                 world.spawnEntity(entityKH1Fira);
-                entityKH1Fira.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
+                entityKH1Fira.shoot(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
                 PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(new EntityKH1Fira(world), 1), player, 64.0D);
                 break;
             case 3:
                 EntityKH1Firaga entityKH1Firaga = new EntityKH1Firaga(world, player);
                 world.spawnEntity(entityKH1Firaga);
-                entityKH1Firaga.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
+                entityKH1Firaga.shoot(player, player.rotationPitch, player.rotationYaw, 0, 1, 0);
                 PacketDispatcher.sendToAllAround(new SpawnKH1FireParticles(new EntityKH1Firaga(world), 1), player, 64.0D);
                 break;
         }

@@ -33,14 +33,14 @@ public class EntityAIMinuteBomb extends EntityAITarget {
 
 	@Override
 	public boolean shouldExecute() {
-		return this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSqToEntity(this.taskOwner.getAttackTarget()) < 1024;
+		return this.taskOwner.getAttackTarget() != null && this.taskOwner.getDistanceSq(this.taskOwner.getAttackTarget()) < 1024;
 	}
 
 	public boolean shouldContinueExecuting() {
 		if (this.taskOwner.getAttackTarget() != null) {
 			EntityLivingBase target = this.taskOwner.getAttackTarget();
 
-			if (taskOwner.getDistanceToEntity(target) < 10) {
+			if (taskOwner.getDistance(target) < 10) {
 				if (bomb.ticksToExplode > 0) {
 					bomb.ticksToExplode--;
 					return true;

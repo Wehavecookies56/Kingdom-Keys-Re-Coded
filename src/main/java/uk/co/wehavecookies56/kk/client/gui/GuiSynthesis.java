@@ -381,13 +381,12 @@ public class GuiSynthesis extends GuiTooltip {
 			TakeStack.visible = false;
 			TakeHalfStack.visible = false;
 			TakeAll.visible = false;
-
 		}
 
 		if (submenu == RECIPES) {
 			if (recipeSelected != -1) {
 				Create.visible = true;
-				if (isRecipeUsable(recipesFilter().get(recipeSelected))) {
+				if (isRecipeUsable(recipesFilter().get(recipeSelected))) {// && !recipesFilter().get(recipeSelected).equals("item.abaddonplasma")) {
 					Create.enabled = true;
 				} else {
 					if (isInventoryFull())

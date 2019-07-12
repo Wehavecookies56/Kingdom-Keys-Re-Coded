@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.TextHelper;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncLevelData;
@@ -119,7 +120,7 @@ public class CommandGiveEXP extends CommandBase {
 			}
 
 			PlayerStatsCapability.IPlayerStats STATS = entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null);
-			STATS.addExperience(entityplayermp, exp);
+			STATS.addExperience(entityplayermp,(int)(exp * MainConfig.entities.xpMultiplier));
 
 			PacketDispatcher.sendTo(new SyncLevelData(entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null)), entityplayermp);
 
@@ -158,7 +159,7 @@ public class CommandGiveEXP extends CommandBase {
 				}
 
 				PlayerStatsCapability.IPlayerStats STATS = entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null);
-				STATS.addExperience(entityplayermp, exp);
+				STATS.addExperience(entityplayermp,(int)(exp * MainConfig.entities.xpMultiplier));
 
 				PacketDispatcher.sendTo(new SyncLevelData(entityplayermp.getCapability(ModCapabilities.PLAYER_STATS, null)), entityplayermp);
 			} else {
