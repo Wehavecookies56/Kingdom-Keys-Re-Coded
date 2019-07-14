@@ -10,8 +10,9 @@ import java.io.IOException;
 
 public class Main2 {
 	public static void main(String[] args) {
+		System.out.println("Starting program");
+		int c = 0;
 		final File folder = new File(".");
-
 		File file = null;
 		File tempFile = null;
 		BufferedReader reader = null;
@@ -21,6 +22,7 @@ public class Main2 {
 			// System.out.println(fileEntry.getName());
 			file = new File(fileEntry.getName());
 			if (file.getName().contains(".mtl")) {
+				System.out.println("mtl");
 				tempFile = new File("temp" + file.getName());
 
 				try {
