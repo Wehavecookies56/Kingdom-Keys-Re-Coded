@@ -138,6 +138,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenOrgGUI;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenTutorialGUI;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilitiesData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncConfigData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncEquippedAbilities;
@@ -445,6 +446,11 @@ public class EntityEvents {
 
 	@SubscribeEvent
 	public void OnEntityJoinWorld(EntityJoinWorldEvent event) {
+
+		if (event.getEntity() instanceof EntityPlayerMP) {
+			PacketDispatcher.sendTo(new SyncConfigData(MainConfig.entities.xpMultiplier), (EntityPlayerMP) event.getEntity());
+		}
+		
 		if (!event.getEntity().world.isRemote && event.getEntity() instanceof EntityPlayer) {
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.DriveRecovery.getUnlocalizedName());
 			FreeDevRecipeRegistry.learnFreeDevRecipe(event.getEntity().getCapability(ModCapabilities.SYNTHESIS_RECIPES, null).getFreeDevRecipes(), (EntityPlayer) event.getEntity(), ModItems.HighDriveRecovery.getUnlocalizedName());

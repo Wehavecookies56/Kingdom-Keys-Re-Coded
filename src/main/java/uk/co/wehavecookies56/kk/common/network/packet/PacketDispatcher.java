@@ -30,6 +30,7 @@ import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnThunderParticl
 import uk.co.wehavecookies56.kk.common.network.packet.client.SpawnWisdomShotParticles;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncAbilitiesData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncCheatModeData;
+import uk.co.wehavecookies56.kk.common.network.packet.client.SyncConfigData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveData;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveInventory;
 import uk.co.wehavecookies56.kk.common.network.packet.client.SyncDriveWithPlayers;
@@ -219,6 +220,7 @@ public class PacketDispatcher {
         registerMessage(InvinciblePacket.class);
         registerMessage(MessageExtendedReachAttackPacket.class);
         registerMessage(SwapMagic.class);
+        registerMessage(SyncConfigData.class);
         // Bidirectional
     }
 

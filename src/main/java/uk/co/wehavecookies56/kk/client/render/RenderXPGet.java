@@ -16,6 +16,7 @@ import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.capability.PlayerStatsCapability.IPlayerStats;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 import uk.co.wehavecookies56.kk.common.entity.EntityFlyingHeart;
 import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
@@ -64,7 +65,7 @@ public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHe
 						IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 						if (!ABILITIES.getEquippedAbility(ModAbilities.zeroEXP)) {
 							if (STATS.getLevel() < STATS.getMaxLevel())
-								text = "+" + (int) (mobEntity.getMaxHealth() / 2) + "xp";
+								text = "+" + ((int) (mobEntity.getMaxHealth() / 2)) * MainConfig.entities.xpMultiplier + "xp";
 							mc.fontRenderer.drawString(text, -mc.fontRenderer.getStringWidth(text) / 2, 0, 0x0099ff);
 						}
 					}
