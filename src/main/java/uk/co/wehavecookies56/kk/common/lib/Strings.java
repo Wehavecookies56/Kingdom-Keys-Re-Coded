@@ -1083,7 +1083,8 @@ public class Strings {
     UnicornisForetellersKeyblade = "unicornisforetellerskeyblade",
     UrsusForetellersKeyblade = "ursusforetellerskeyblade",
     VulpeusForetellersKeyblade = "vulpeusforetellerskeyblade",
-    MoogleoGlory = "moogleoglory"
+    MoogleoGlory = "moogleoglory",
+    ShootingStar = "shootingstar"
     ;
 
     // CHAINS
@@ -1170,6 +1171,7 @@ public class Strings {
     Chain_RejectionofFate = "rejectionoffatechain",
     Chain_RoyalRadiance = "royalradiancechain",
     Chain_RumblingRose = "rumblingrosechain",
+    Chain_ShootingStar = "shootingstarchain",
     Chain_SignofInnocence = "signofinnocencechain",
     Chain_SilentDirge = "silentdirgechain",
     Chain_SkullNoise = "skullnoisechain",

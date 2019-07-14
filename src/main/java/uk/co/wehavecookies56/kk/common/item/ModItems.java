@@ -82,7 +82,7 @@ public class ModItems {
             MaverickFlare, MetalChocobo, MidnightRoar, MirageSplit, MissingAche, MoogleoGlory, Monochrome, MysteriousAbyss,
             NightmaresEnd, NightmaresEndandMirageSplit, NoName, Oathkeeper, Oblivion, OceansRage, Olympia, OmegaWeapon,
             OminousBlight, OneWingedAngel, PainofSolitude, PhotonDebugger, PixiePetal, Pumpkinhead, Rainfell,
-            RejectionofFate, RoyalRadiance, RumblingRose, SignofInnocence, SilentDirge, SkullNoise, SleepingLion,
+            RejectionofFate, RoyalRadiance, RumblingRose, ShootingStar, SignofInnocence, SilentDirge, SkullNoise, SleepingLion,
             SoulEater, Spellbinder, StarSeeker, Starlight, Stormfall, StrokeofMidnight, SweetDreams, SweetMemories,
             Sweetstack, ThreeWishes, TotalEclipse, TreasureTrove, TrueLightsFlight, TwilightBlaze, TwoBecomeOne,
             UltimaWeaponKH1, UltimaWeaponKH2, UltimaWeaponKH3, UltimaWeaponBBS, UltimaWeaponDDD, Umbrella, Unbound,
@@ -104,7 +104,7 @@ public class ModItems {
             Chain_NightmaresEndandMirageSplit, Chain_NoName, Chain_Oathkeeper, Chain_Oblivion, Chain_OceansRage,
             Chain_Olympia, Chain_OmegaWeapon, Chain_OminousBlight, Chain_OneWingedAngel, Chain_PainofSolitude,
             Chain_PhotonDebugger, Chain_PixiePetal, Chain_Pumpkinhead, Chain_Rainfell, Chain_RejectionofFate,
-            Chain_RoyalRadiance, Chain_RumblingRose, Chain_SignofInnocence, Chain_SilentDirge, Chain_SkullNoise,
+            Chain_RoyalRadiance, Chain_RumblingRose, Chain_ShootingStar, Chain_SignofInnocence, Chain_SilentDirge, Chain_SkullNoise,
             Chain_SleepingLion, Chain_SoulEater, Chain_Spellbinder, Chain_StarSeeker, Chain_Starlight, Chain_Stormfall,
             Chain_StrokeofMidnight, Chain_SweetDreams, Chain_SweetMemories, Chain_Sweetstack, Chain_ThreeWishes,
             Chain_TotalEclipse, Chain_TreasureTrove, Chain_TrueLightsFlight, Chain_TwilightBlaze, Chain_TwoBecomeOne,
@@ -523,6 +523,7 @@ public class ModItems {
             RejectionofFate = new ItemRealKeyblade(Strings.RejectionofFate, BalanceConfig.keyblades.rejectionofFate[0], BalanceConfig.keyblades.rejectionofFate[1], Strings.guard, 5F),
             RoyalRadiance = new ItemRealKeyblade(Strings.RoyalRadiance, BalanceConfig.keyblades.royalRadiance[0], BalanceConfig.keyblades.royalRadiance[1], Strings.guard, 5F),
             RumblingRose = new ItemRealKeyblade(Strings.RumblingRose, BalanceConfig.keyblades.rumblingRose[0], BalanceConfig.keyblades.rumblingRose[1], Strings.finishingPlus, 5F),
+            ShootingStar = new ItemRealKeyblade(Strings.ShootingStar, BalanceConfig.keyblades.shootingStar[0], BalanceConfig.keyblades.shootingStar[1], Strings.guard, 5F),
             SignofInnocence = new ItemRealKeyblade(Strings.SignofInnocence, BalanceConfig.keyblades.signofInnocence[0], BalanceConfig.keyblades.signofInnocence[1], Strings.guard, 5F),
             SilentDirge = new ItemRealKeyblade(Strings.SilentDirge, BalanceConfig.keyblades.silentDirge[0], BalanceConfig.keyblades.silentDirge[1], Strings.guard, 5F),
             SkullNoise = new ItemRealKeyblade(Strings.SkullNoise, BalanceConfig.keyblades.skullNoise[0], BalanceConfig.keyblades.skullNoise[1], Strings.guard, 5F),
@@ -645,6 +646,7 @@ public class ModItems {
             Chain_RejectionofFate = new ItemKeychain(Strings.Chain_RejectionofFate),
             Chain_RoyalRadiance = new ItemKeychain(Strings.Chain_RoyalRadiance),
             Chain_RumblingRose = new ItemKeychain(Strings.Chain_RumblingRose),
+            Chain_ShootingStar = new ItemKeychain(Strings.Chain_ShootingStar),
             Chain_SignofInnocence = new ItemKeychain(Strings.Chain_SignofInnocence),
             Chain_SilentDirge = new ItemKeychain(Strings.Chain_SilentDirge),
             Chain_SkullNoise = new ItemKeychain(Strings.Chain_SkullNoise),
@@ -908,7 +910,7 @@ public class ModItems {
         ((ItemKeyblade)MidnightRoar).setDescription("A weapon that possesses high Strength. Useful against tough enemies.");
         ((ItemKeyblade)MirageSplit).setDescription("A Keyblade formed from a Reality Shift in The World That Never Was.");
         ((ItemKeyblade)MissingAche).setDescription("A weapon that lets you string together faster, longer ground combos.");
-        ((ItemKeyblade)MoogleoGlory).setDescription("Kupo (placeholder).");
+        ((ItemKeyblade)MoogleoGlory).setDescription("Kupo.");
         ((ItemKeyblade)Monochrome).setDescription("Increases the effect of restoration items used on the field.");
         ((ItemKeyblade)MysteriousAbyss).setDescription("Enhances magic to increase damage dealt by blizzard-based attacks.");
         ((ItemKeyblade)NightmaresEnd).setDescription("A Keyblade formed from a Reality Shift in The World That Never Was.");
@@ -929,6 +931,7 @@ public class ModItems {
         ((ItemKeyblade)RejectionofFate).setDescription("A weapon that enables your attacks to reach a wide area and deal immense damage.");
         ((ItemKeyblade)RoyalRadiance).setDescription("A very powerful Keyblade. Hastens the Command Gauge when equipped.");
         ((ItemKeyblade)RumblingRose).setDescription("Has great strength, allowing finishing combo moves to be unleashed successively.");
+        ((ItemKeyblade)ShootingStar).setDescription("A Keyblade with an emphasis on Magic.");
         ((ItemKeyblade)SignofInnocence).setDescription("A weapon that boosts your Magic to give it a lot more power.");
         ((ItemKeyblade)SilentDirge).setDescription("A weapon that provides versatility by boosting both Strength and Magic.");
         ((ItemKeyblade)SkullNoise).setDescription("A Keyblade that provides a balanced boost in Strength and Magic.");
@@ -950,6 +953,7 @@ public class ModItems {
         ((ItemKeyblade)TwoBecomeOne).setDescription("A weapon of great strength and magic that has a special effect.");
         ((ItemKeyblade)UltimaWeaponKH1).setDescription("The ultimate Keyblade. Raises max MP by 2, and possesses maximum power and attributes.");
         ((ItemKeyblade)UltimaWeaponKH2).setDescription("The Keyblade above all others, holding all power and will increase MP restoration rate, once all MP has been consumed.");
+        ((ItemKeyblade)UltimaWeaponKH3).setDescription("The supreme Keyblade.");
         ((ItemKeyblade)UltimaWeaponBBS).setDescription("The most powerful of Keyblades.");
         ((ItemKeyblade)UltimaWeaponDDD).setDescription("An outstanding Keyblade that boosts all stats, and makes it easy to both land critical hits and trigger Reality Shifts.");
         ((ItemKeyblade)Umbrella).setDescription("This looks awfully familiar...");
@@ -1050,6 +1054,7 @@ public class ModItems {
         ((ItemKeychain)Chain_RejectionofFate).setKeyblade((ItemKeyblade) RejectionofFate);
         ((ItemKeychain)Chain_RoyalRadiance).setKeyblade((ItemKeyblade) RoyalRadiance);
         ((ItemKeychain)Chain_RumblingRose).setKeyblade((ItemKeyblade) RumblingRose);
+        ((ItemKeychain)Chain_ShootingStar).setKeyblade((ItemKeyblade) ShootingStar);
         ((ItemKeychain)Chain_SignofInnocence).setKeyblade((ItemKeyblade) SignofInnocence);
         ((ItemKeychain)Chain_SilentDirge).setKeyblade((ItemKeyblade) SilentDirge);
         ((ItemKeychain)Chain_SkullNoise).setKeyblade((ItemKeyblade) SkullNoise);

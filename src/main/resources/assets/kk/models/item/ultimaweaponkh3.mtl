@@ -1,9 +1,9 @@
 # Created by Metasequoia
 
 newmtl mat1
-Ka 0.38400 0.38400 0.38400
-Kd 0.51200 0.51200 0.51200
+Ka 0.60000 0.60000 0.60000
+Kd 0.80000 0.80000 0.80000
 Ks 0.00000 0.00000 0.00000
 Ns 5.00000
-map_Kd ultimaweaponkh3.png
+map_Kd kk:items/models/ultimaweaponkh3
 

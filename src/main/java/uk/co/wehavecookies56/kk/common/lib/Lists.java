@@ -454,6 +454,7 @@ public class Lists {
         recipes.add(MirageSplit.getUnlocalizedName());
         recipes.add(MissingAche.getUnlocalizedName());
         recipes.add(Monochrome.getUnlocalizedName());
+        recipes.add(MoogleoGlory.getUnlocalizedName());
         recipes.add(MysteriousAbyss.getUnlocalizedName());
         recipes.add(NightmaresEnd.getUnlocalizedName());
         recipes.add(NightmaresEndandMirageSplit.getUnlocalizedName());
@@ -473,6 +474,7 @@ public class Lists {
         recipes.add(RejectionofFate.getUnlocalizedName());
         recipes.add(RoyalRadiance.getUnlocalizedName());
         recipes.add(RumblingRose.getUnlocalizedName());
+        recipes.add(ShootingStar.getUnlocalizedName());
         recipes.add(SignofInnocence.getUnlocalizedName());
         recipes.add(SilentDirge.getUnlocalizedName());
         recipes.add(SkullNoise.getUnlocalizedName());
@@ -496,6 +498,7 @@ public class Lists {
         recipes.add(UltimaWeaponDDD.getUnlocalizedName());
         recipes.add(UltimaWeaponKH1.getUnlocalizedName());
         recipes.add(UltimaWeaponKH2.getUnlocalizedName());
+        recipes.add(UltimaWeaponKH3.getUnlocalizedName());
         recipes.add(Umbrella.getUnlocalizedName());
         recipes.add(Unbound.getUnlocalizedName());
         recipes.add(UnicornisForetellersKeyblade.getUnlocalizedName());

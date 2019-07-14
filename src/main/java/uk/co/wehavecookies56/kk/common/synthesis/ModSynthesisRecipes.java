@@ -73,6 +73,7 @@ public class ModSynthesisRecipes {
         registerRecipe(new RecipeMirageSplit(ModItems.MirageSplit.getUnlocalizedName()));
         registerRecipe(new RecipeMissingAche(ModItems.MissingAche.getUnlocalizedName()));
         registerRecipe(new RecipeMonochrome(ModItems.Monochrome.getUnlocalizedName()));
+        registerRecipe(new RecipeMoogleOGlory(ModItems.MoogleoGlory.getUnlocalizedName()));
         registerRecipe(new RecipeMysteriousAbyss(ModItems.MysteriousAbyss.getUnlocalizedName()));
         registerRecipe(new RecipeNightmaresEnd(ModItems.NightmaresEnd.getUnlocalizedName()));
         registerRecipe(new RecipeNoName(ModItems.NoName.getUnlocalizedName()));
@@ -91,6 +92,7 @@ public class ModSynthesisRecipes {
         registerRecipe(new RecipeRejectionofFate(ModItems.RejectionofFate.getUnlocalizedName()));
         registerRecipe(new RecipeRoyalRadiance(ModItems.RoyalRadiance.getUnlocalizedName()));
         registerRecipe(new RecipeRumblingRose(ModItems.RumblingRose.getUnlocalizedName()));
+        registerRecipe(new RecipeShootingStar(ModItems.ShootingStar.getUnlocalizedName()));
         registerRecipe(new RecipeSignofInnocence(ModItems.SignofInnocence.getUnlocalizedName()));
         registerRecipe(new RecipeSilentDirge(ModItems.SilentDirge.getUnlocalizedName()));
         registerRecipe(new RecipeSkullNoise(ModItems.SkullNoise.getUnlocalizedName()));
@@ -112,6 +114,7 @@ public class ModSynthesisRecipes {
         registerRecipe(new RecipeTwoBecomeOne(ModItems.TwoBecomeOne.getUnlocalizedName()));
         registerRecipe(new RecipeUltimaWeaponKH1(ModItems.UltimaWeaponKH1.getUnlocalizedName()));
         registerRecipe(new RecipeUltimaWeaponKH2(ModItems.UltimaWeaponKH2.getUnlocalizedName()));
+        registerRecipe(new RecipeUltimaWeaponKH3(ModItems.UltimaWeaponKH3.getUnlocalizedName()));
         registerRecipe(new RecipeUltimaWeaponBBS(ModItems.UltimaWeaponBBS.getUnlocalizedName()));
         registerRecipe(new RecipeUltimaWeaponDDD(ModItems.UltimaWeaponDDD.getUnlocalizedName()));
         registerRecipe(new RecipeUmbrella(ModItems.Umbrella.getUnlocalizedName()));
@@ -130,6 +133,9 @@ public class ModSynthesisRecipes {
         registerRecipe(new RecipeWoodenStick(ModItems.WoodenStick.getUnlocalizedName()));
         registerRecipe(new RecipeYoungXehanortsKeyblade(ModItems.YoungXehanortsKeyblade.getUnlocalizedName()));
         registerRecipe(new RecipeZeroOne(ModItems.ZeroOne.getUnlocalizedName()));
+
+
+
 
     }
 }

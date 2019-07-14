@@ -110,6 +110,7 @@ public class BalanceConfig {
 				rejectionofFate = new int[] { 4, 0 },
 				royalRadiance = new int[] { 14, 10 },
 				rumblingRose = new int[] { 10, 0 },
+				shootingStar = new int[] { 10, 0 },
 				signofInnocence = new int[] { 5, 1 },
 				silentDirge = new int[] { 5, 2 },
 				skullNoise = new int[] { 4, 4 },

@@ -92,7 +92,7 @@ public class ClientProxy extends CommonProxy {
 		registerModel(Lunatic, 1, Lunatic.getRegistryName() + "_b");
 		registerModel(JustDesserts, 1, JustDesserts.getRegistryName() + "_b");
 		registerModel(Bunnymoon, 1, Bunnymoon.getRegistryName() + "_b");
-
+/*
 		// Sniper
 		registerModel(Standalone, 1, Standalone.getRegistryName() + "_s");
 		registerModel(Killerbee, 1, Killerbee.getRegistryName() + "_s");
@@ -117,15 +117,7 @@ public class ClientProxy extends CommonProxy {
 		registerModel(Sharpshooter, 1, Sharpshooter.getRegistryName() + "_s");
 		registerModel(Dryer, 1, Dryer.getRegistryName() + "_s");
 		registerModel(Trumpet, 1, Trumpet.getRegistryName() + "_s");
-
-
-
-
-
-
-
-
-
+**/
 
 
 
