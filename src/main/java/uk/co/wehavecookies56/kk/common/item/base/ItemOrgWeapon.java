@@ -21,7 +21,7 @@ public class ItemOrgWeapon extends ItemSword implements IOrgWeapon, IItemCategor
     public ItemOrgWeapon (String name, double[] stats) {
         super(EnumHelper.addToolMaterial("ORGWEAPON", -4, -1, 0, 0, 20));
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(ModItems.tabKingdomKeys);
         this.strength = stats[0];
         this.magic = stats[1];

@@ -56,7 +56,7 @@ public class BlockMagnetBlox extends BlockBlox {
     }
     */
     @Override
-    public BlockRenderLayer getBlockLayer () {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 

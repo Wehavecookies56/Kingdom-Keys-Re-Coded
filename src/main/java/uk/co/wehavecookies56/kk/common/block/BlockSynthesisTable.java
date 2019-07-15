@@ -32,7 +32,7 @@ public class BlockSynthesisTable extends Block implements ITileEntityProvider {
         setResistance(resistance);
         setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
     }
 
     @Override

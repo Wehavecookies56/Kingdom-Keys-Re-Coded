@@ -129,7 +129,7 @@ public class GuiSynthesis extends GuiTooltip {
 	protected boolean getInventoryMaterial(String material) {
 		for (ItemStack element : mc.player.inventory.mainInventory)
 			if (!ItemStack.areItemStacksEqual(element, ItemStack.EMPTY))
-				if (element.getUnlocalizedName().equals(material))
+				if (element.getTranslationKey().equals(material))
 					return true;
 		return false;
 	}
@@ -604,7 +604,7 @@ public class GuiSynthesis extends GuiTooltip {
 							column = 0;
 							materialLength = 0;
 						} else {
-							materialLength = (fontRenderer.getStringWidth(Utils.translateToLocal(ModItems.Chain_IncompleteKiblade.getUnlocalizedName() + ".name") + " - You have XXXX")) + 20;
+							materialLength = (fontRenderer.getStringWidth(Utils.translateToLocal(ModItems.Chain_IncompleteKiblade.getTranslationKey() + ".name") + " - You have XXXX")) + 20;
 							column = 1;
 						}
 
@@ -702,7 +702,7 @@ public class GuiSynthesis extends GuiTooltip {
 							column = 0;
 							materialLength = 0;
 						} else {
-							materialLength = (fontRenderer.getStringWidth(Utils.translateToLocal(ModItems.Chain_IncompleteKiblade.getUnlocalizedName() + ".name") + " - You have XXXX")) + 20;
+							materialLength = (fontRenderer.getStringWidth(Utils.translateToLocal(ModItems.Chain_IncompleteKiblade.getTranslationKey() + ".name") + " - You have XXXX")) + 20;
 							column = 1;
 						}
 

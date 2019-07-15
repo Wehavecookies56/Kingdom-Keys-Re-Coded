@@ -48,7 +48,7 @@ public class ItemKeyblade extends ItemSword implements IExtendedReach, IItemCate
 	public ItemKeyblade(String name, double strength, double magic, String ability) {
 		super(EnumHelper.addToolMaterial("KEYBLADE", -4, -1, 0, 0, 20));
 		setRegistryName(name);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setCreativeTab(ModItems.tabKingdomKeys);
 		this.ability = ability;
 		this.magic = magic;
@@ -59,7 +59,7 @@ public class ItemKeyblade extends ItemSword implements IExtendedReach, IItemCate
 	public ItemKeyblade(String name, double strength, double magic, String ability, float reach) {
 		super(EnumHelper.addToolMaterial("KEYBLADE", -4, -1, 0, 0, 20));
 		setRegistryName(name);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setCreativeTab(ModItems.tabKingdomKeys);
 		this.ability = ability;
 		this.magic = magic;
@@ -71,7 +71,7 @@ public class ItemKeyblade extends ItemSword implements IExtendedReach, IItemCate
 	public ItemKeyblade(String name, double strength, double magic) {
 		super(EnumHelper.addToolMaterial("KEYBLADE", -4, -1, 0, 0, 20));
 		setRegistryName(name);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setCreativeTab(ModItems.tabKingdomKeys);
 		this.magic = magic;
 		this.strength = strength;

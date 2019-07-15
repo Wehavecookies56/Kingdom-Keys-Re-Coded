@@ -31,7 +31,7 @@ public class RecipeKiblade extends Recipe {
     @Override
     public Map<Material, Integer> getRequirements () {
         Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-        reqs.put(MaterialRegistry.get(ModItems.Chain_IncompleteKiblade.getUnlocalizedName()), 1);
+        reqs.put(MaterialRegistry.get(ModItems.Chain_IncompleteKiblade.getTranslationKey()), 1);
         reqs.put(MaterialRegistry.get(Strings.SM_Orichalcum), 8);
         reqs.put(MaterialRegistry.get(Strings.SM_OrichalcumPlus), 5);
         reqs.put(MaterialRegistry.get(Strings.SM_ManifestIllusion), 1);

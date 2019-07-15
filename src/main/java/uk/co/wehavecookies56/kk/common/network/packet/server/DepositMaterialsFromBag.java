@@ -59,8 +59,8 @@ public class DepositMaterialsFromBag extends AbstractMessage.AbstractServerMessa
                     }
                     bag.extractItem(j, bag.getStackInSlot(j).getCount(), false);
                 }
-            } else if (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory.get(i).getItem().getUnlocalizedName())) {
-                player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory.get(i).getItem().getUnlocalizedName()), player.inventory.mainInventory.get(i).getCount());
+            } else if (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory.get(i).getItem().getTranslationKey())) {
+                player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory.get(i).getItem().getTranslationKey()), player.inventory.mainInventory.get(i).getCount());
                 player.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
             }
             PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);

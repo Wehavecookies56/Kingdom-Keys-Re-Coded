@@ -96,7 +96,7 @@ public class TileEntityPedestal extends TileEntity {
     public String getName() {
         if (getKeyblade() != null && !ItemStack.areItemStacksEqual(getKeyblade(), ItemStack.EMPTY)) {
             if(getKeyblade().getItem() instanceof ItemKeychain)
-                return Utils.translateToLocal(((ItemKeychain) getKeyblade().getItem()).getKeyblade().getUnlocalizedName()+".name");
+                return Utils.translateToLocal(((ItemKeychain) getKeyblade().getItem()).getKeyblade().getTranslationKey()+".name");
             else
                 return Utils.translateToLocal(getKeyblade().getDisplayName());
         }

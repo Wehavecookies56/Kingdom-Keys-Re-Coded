@@ -31,7 +31,7 @@ public class RecipeWoodenKeyblade extends Recipe {
     @Override
     public Map<Material, Integer> getRequirements () {
         Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-        reqs.put(MaterialRegistry.get(Items.WOODEN_SWORD.getUnlocalizedName()), 1);
+        reqs.put(MaterialRegistry.get(Items.WOODEN_SWORD.getTranslationKey()), 1);
         return reqs;
     }
 

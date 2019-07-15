@@ -7,7 +7,7 @@ public class ItemKKBase extends Item {
 
     public ItemKKBase(String name) {
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(ModItems.tabKingdomKeys);
     }
 }

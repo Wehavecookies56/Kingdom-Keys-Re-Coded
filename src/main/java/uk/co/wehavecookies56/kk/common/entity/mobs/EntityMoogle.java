@@ -105,7 +105,7 @@ public class EntityMoogle extends EntityCreature implements IKHMob {
         int chunkX = 16;
         int chunkY = 16;
         int chunkRadius = 4;
-        Chunk currentChunk = world.getChunkFromChunkCoords(chunkCoordX, chunkCoordZ);
+        Chunk currentChunk = world.getChunk(chunkCoordX, chunkCoordZ);
         List<EntityMoogle> moogleInChunk = new ArrayList<>();
         currentChunk.getEntitiesOfTypeWithinAABB(EntityMoogle.class, new AxisAlignedBB(0, 0, 0, chunkX*chunkRadius, 256, chunkY*chunkRadius), moogleInChunk, null);
         if (moogleInChunk.size() >= 1) {

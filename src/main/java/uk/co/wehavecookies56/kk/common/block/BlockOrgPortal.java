@@ -31,7 +31,7 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider {
 		setSoundType(SoundType.STONE);
 		setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
 		setRegistryName(name);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 	}
 
 	@Override
@@ -119,9 +119,4 @@ public class BlockOrgPortal extends Block implements ITileEntityProvider {
 		super.breakBlock(world, pos, state);
 	}
 
-	@Override
-	public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state) {
-
-		super.onBlockDestroyedByPlayer(world, pos, state);
-	}
 }

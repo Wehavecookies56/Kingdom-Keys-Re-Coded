@@ -34,9 +34,9 @@ public class RecipeZeroOne extends Recipe {
         Map<Material, Integer> reqs = new HashMap<Material, Integer>();
         reqs.put(MaterialRegistry.get(Strings.SM_PowerCrystal), 2);
         reqs.put(MaterialRegistry.get(Strings.SM_BrightGem), 3);
-        reqs.put(MaterialRegistry.get(ModBlocks.NormalBlox.getUnlocalizedName()), 1);
-        reqs.put(MaterialRegistry.get(ModBlocks.HardBlox.getUnlocalizedName()), 1);
-        reqs.put(MaterialRegistry.get(ModBlocks.MetalBlox.getUnlocalizedName()), 1);
+        reqs.put(MaterialRegistry.get(ModBlocks.NormalBlox.getTranslationKey()), 1);
+        reqs.put(MaterialRegistry.get(ModBlocks.HardBlox.getTranslationKey()), 1);
+        reqs.put(MaterialRegistry.get(ModBlocks.MetalBlox.getTranslationKey()), 1);
         return reqs;
     }
 

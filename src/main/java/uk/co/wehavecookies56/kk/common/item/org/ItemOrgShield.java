@@ -23,7 +23,7 @@ public class ItemOrgShield extends ItemShield implements IOrgWeapon, IItemCatego
     public ItemOrgShield (String name, double[] stats) {
         super();
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(ModItems.tabKingdomKeys);
         this.maxStackSize = 1;
         this.strength = stats[0];
@@ -46,7 +46,7 @@ public class ItemOrgShield extends ItemShield implements IOrgWeapon, IItemCatego
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Utils.translateToLocal(this.getUnlocalizedName() + ".name");
+        return Utils.translateToLocal(this.getTranslationKey() + ".name");
     }
 
     @Override

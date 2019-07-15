@@ -40,7 +40,7 @@ public class SpawnKeybladeParticles extends AbstractMessage.AbstractClientMessag
             Vec3d userPos = new Vec3d(summoner.posX, summoner.posY, summoner.posZ);
             Vec3d vCenter = new Vec3d(0.4, -1.3D, -0.38D);
             vCenter = vCenter.rotateYaw((float) Math.toRadians(-summoner.renderYawOffset));
-            Vec3d v = userPos.addVector(-vCenter.x, vCenter.y, -vCenter.z);
+            Vec3d v = userPos.add(-vCenter.x, vCenter.y, -vCenter.z);
             for (int a = 0; a < 300; a++) {
                 player.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, v.x, summoner.posY + 1, v.z, Utils.randomWithRange(-0.2, 0.2), Utils.randomWithRange(-0.2, 0.2), Utils.randomWithRange(-0.2, 0.2));
                 //player.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, x, y+1, z,rand.nextDouble()*2-1,rand.nextDouble()*2-1,rand.nextDouble()*2-1);

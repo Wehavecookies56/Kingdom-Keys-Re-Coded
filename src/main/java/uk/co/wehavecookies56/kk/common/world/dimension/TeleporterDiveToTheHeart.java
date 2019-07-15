@@ -56,7 +56,7 @@ public class TeleporterDiveToTheHeart extends Teleporter {
         entity.motionX = entity.motionY = entity.motionZ = 0.0D;
         entity.setPosition(dx, dy+1, dz);
 
-        playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, ModDimensions.diveToTheHeartID, this);
+        playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, ModDimensions.diveToTheHeartID, this);
 
         entity.setPositionAndRotation(dx, dy+1, dz+8, 180, 0);
 

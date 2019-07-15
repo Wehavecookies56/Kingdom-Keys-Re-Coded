@@ -452,7 +452,7 @@ public class ItemEvents {
 				event.getToolTip().add(TextFormatting.ITALIC + Utils.translateToLocal(Strings.HoldForInfo));
 			} else {
 				int x = 30;
-				String s = Utils.translateToLocal(Strings.GhostBloxDesc).replace("%s", Utils.translateToLocal(ModBlocks.GhostBlox.getUnlocalizedName() + ".name"));
+				String s = Utils.translateToLocal(Strings.GhostBloxDesc).replace("%s", Utils.translateToLocal(ModBlocks.GhostBlox.getTranslationKey() + ".name"));
 				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
 				String[] splitS = s.split("\n");
 				for (String element : splitS)
@@ -465,7 +465,7 @@ public class ItemEvents {
 				event.getToolTip().add(TextFormatting.ITALIC + Utils.translateToLocal(Strings.HoldForInfo));
 			} else {
 				int x = 30;
-				String s = Utils.translateToLocal(Strings.DangerBloxDesc).replace("%s", Utils.translateToLocal(ModBlocks.DangerBlox.getUnlocalizedName() + ".name"));
+				String s = Utils.translateToLocal(Strings.DangerBloxDesc).replace("%s", Utils.translateToLocal(ModBlocks.DangerBlox.getTranslationKey() + ".name"));
 				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
 				String[] splitS = s.split("\n");
 				for (String element : splitS)
@@ -478,7 +478,7 @@ public class ItemEvents {
 				event.getToolTip().add(TextFormatting.ITALIC + Utils.translateToLocal(Strings.HoldForInfo));
 			} else {
 				int x = 30;
-				String s = Utils.translateToLocal(Strings.BounceBloxDesc).replace("%s", Utils.translateToLocal(ModBlocks.BounceBlox.getUnlocalizedName() + ".name"));
+				String s = Utils.translateToLocal(Strings.BounceBloxDesc).replace("%s", Utils.translateToLocal(ModBlocks.BounceBlox.getTranslationKey() + ".name"));
 				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
 				String[] splitS = s.split("\n");
 				for (String element : splitS)

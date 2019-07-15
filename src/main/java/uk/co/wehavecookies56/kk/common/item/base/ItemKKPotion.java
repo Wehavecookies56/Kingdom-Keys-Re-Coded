@@ -25,7 +25,7 @@ public abstract class ItemKKPotion extends ItemFood implements IItemCategory{
     public ItemKKPotion (int food, boolean wolf, String type, String name) {
         super(food, wolf);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(ModItems.tabKingdomKeys);
         setAlwaysEdible();
         //setMaxStackSize(64);

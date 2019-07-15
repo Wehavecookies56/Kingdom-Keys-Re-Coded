@@ -17,7 +17,7 @@ public class BlockBlox extends Block {
         setResistance(resistance);
         setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
     }
 
    

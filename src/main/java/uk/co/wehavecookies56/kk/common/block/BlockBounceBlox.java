@@ -19,7 +19,7 @@ public class BlockBounceBlox extends BlockBlox {
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         if (!entityIn.isSneaking()) {
             entityIn.playSound(SoundEvents.ENTITY_SLIME_JUMP, 1, 1);
             double d0 = 0.4D + Math.abs(entityIn.motionY) * 0.2D;
@@ -27,7 +27,7 @@ public class BlockBounceBlox extends BlockBlox {
             entityIn.motionZ *= d0;
             entityIn.motionY++;
             entityIn.fallDistance = 0;
-            super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+            super.onEntityCollision(worldIn, pos, state, entityIn);
         }
     }
 

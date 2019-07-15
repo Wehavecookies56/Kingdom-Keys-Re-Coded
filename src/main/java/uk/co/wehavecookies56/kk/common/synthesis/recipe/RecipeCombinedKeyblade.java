@@ -30,8 +30,8 @@ public class RecipeCombinedKeyblade extends Recipe {
     @Override
     public Map<Material, Integer> getRequirements () {
         Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-        reqs.put(MaterialRegistry.get(ModItems.Chain_NightmaresEnd.getUnlocalizedName()), 1);
-        reqs.put(MaterialRegistry.get(ModItems.Chain_MirageSplit.getUnlocalizedName()), 1);
+        reqs.put(MaterialRegistry.get(ModItems.Chain_NightmaresEnd.getTranslationKey()), 1);
+        reqs.put(MaterialRegistry.get(ModItems.Chain_MirageSplit.getTranslationKey()), 1);
         return reqs;
     }
 

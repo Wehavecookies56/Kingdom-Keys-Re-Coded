@@ -31,7 +31,7 @@ public class RecipeWoodenStick extends Recipe {
     @Override
     public Map<Material, Integer> getRequirements () {
         Map<Material, Integer> reqs = new HashMap<Material, Integer>();
-        reqs.put(MaterialRegistry.get(Items.STICK.getUnlocalizedName()), 3);
+        reqs.put(MaterialRegistry.get(Items.STICK.getTranslationKey()), 3);
         return reqs;
     }
 

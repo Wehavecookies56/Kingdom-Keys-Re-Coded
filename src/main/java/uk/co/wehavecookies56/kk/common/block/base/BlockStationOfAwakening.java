@@ -27,7 +27,7 @@ public class BlockStationOfAwakening extends Block {
         super(Material.GLASS);
         setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, 0));
     }
 
@@ -51,7 +51,7 @@ public class BlockStationOfAwakening extends Block {
     }
 
     @Override
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
