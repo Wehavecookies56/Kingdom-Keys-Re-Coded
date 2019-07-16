@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,6 +12,7 @@ import net.minecraft.entity.MoverType;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -45,6 +47,8 @@ public class EntityMovingVehicle extends Entity {
 	private boolean rightInputDown;
 	private boolean forwardInputDown;
 	private boolean backInputDown;
+    private float deltaRotation;
+
 
 	public EntityMovingVehicle(World worldIn) {
 		super(worldIn);
@@ -171,6 +175,16 @@ public class EntityMovingVehicle extends Entity {
 		if (this.getDamageTaken() > 0.0F) {
 			this.setDamageTaken(this.getDamageTaken() - 1.0F);
 		}
+		
+		if(!isBeingRidden()) {
+			if(world.getBlockState(this.getPosition()) == Blocks.WATER.getDefaultState()) { //Go up if underwater
+				this.motionY = 0.1D;
+			} else if(world.getBlockState(this.getPosition().down()) != Blocks.WATER.getDefaultState()) { //Go down if on air
+				this.motionY = -0.1D;
+			}
+			this.motionX = 0.0D;
+			this.motionZ = 0.0D;
+		}
 
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
@@ -179,7 +193,6 @@ public class EntityMovingVehicle extends Entity {
 		this.tickLerp();
 
 		if (this.canPassengerSteer()) {
-
 			this.updateMotion();
 
 			if (this.world.isRemote) {
@@ -187,10 +200,6 @@ public class EntityMovingVehicle extends Entity {
 			}
 
 			this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
-		} else {
-			this.motionX = 0.0D;
-			this.motionY = 0.0D;
-			this.motionZ = 0.0D;
 		}
 
 		this.doBlockCollisions();
@@ -232,6 +241,8 @@ public class EntityMovingVehicle extends Entity {
 		this.momentum = 0.9F;
 		this.motionY += d2 * 0.06153846016296973D;
 		this.motionY *= 0.75D;
+        this.deltaRotation *= this.momentum;
+
 	}
 
 	private void controlBoat() {
@@ -239,17 +250,19 @@ public class EntityMovingVehicle extends Entity {
 			// System.out.println(getControllingPassenger());
 			float f = 0.0F;
 			if (Minecraft.getMinecraft().gameSettings.keyBindLeft.isKeyDown()) {
-				this.rotationYaw -= 2;
+                this.deltaRotation-=0.5;
+				//this.rotationYaw -= 2;
 				for (Entity e : this.getPassengers()) {
-					e.rotationYaw -= 2;
+					//e.rotationYaw -= 2;
 				}
 
 			} else if (Minecraft.getMinecraft().gameSettings.keyBindRight.isKeyDown()) {
-				this.rotationYaw += 2;
+                this.deltaRotation+=0.5;
 				for (Entity e : this.getPassengers()) {
-					e.rotationYaw += 2;
+				//	e.rotationYaw += 2;
 				}
 			}
+            this.rotationYaw += this.deltaRotation;
 
 			if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
 				this.motionY += 0.1;
@@ -261,7 +274,7 @@ public class EntityMovingVehicle extends Entity {
 				f += 0.05F;
 			} else if (Minecraft.getMinecraft().gameSettings.keyBindBack.isKeyDown()) {
 				f -= 0.05F;
-			} else {
+			}/* else {
 				if (motionX > 0) {
 					if (motionX < 0.1) {
 						motionX = 0;
@@ -291,9 +304,9 @@ public class EntityMovingVehicle extends Entity {
 						motionZ += 0.02;
 					}
 				}
-			}
+			}*/
 
-			if (motionX < 0.5 && motionX > -0.5)
+			/*if (motionX < 0.5 && motionX > -0.5)
 				this.motionX += (double) (MathHelper.sin(-this.rotationYaw * 0.017453292F) * f);
 			if (motionZ < 0.5 && motionZ > -0.5)
 				this.motionZ += (double) (MathHelper.cos(this.rotationYaw * 0.017453292F) * f);
@@ -301,11 +314,10 @@ public class EntityMovingVehicle extends Entity {
 				this.motionX = 0;
 				this.motionZ = 0;
 				rotationYaw = 0;
-			}
-		} else {
-			this.motionX = 0;
-			this.motionZ = 0;
-			rotationYaw = 0;
+			}*/
+			
+            this.motionX += (double)(MathHelper.sin(-this.rotationYaw * 0.017453292F) * f);
+            this.motionZ += (double)(MathHelper.cos(this.rotationYaw * 0.017453292F) * f);
 		}
 	}
 

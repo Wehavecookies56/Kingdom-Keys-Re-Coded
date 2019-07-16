@@ -65,7 +65,7 @@ public class RenderXPGet extends Render implements IRenderFactory<EntityFlyingHe
 						IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 						if (!ABILITIES.getEquippedAbility(ModAbilities.zeroEXP)) {
 							if (STATS.getLevel() < STATS.getMaxLevel())
-								text = "+" + ((int) (mobEntity.getMaxHealth() / 2)) * MainConfig.entities.xpMultiplier + "xp";
+								text = "+" + (int)((mobEntity.getMaxHealth() / 2) * MainConfig.entities.xpMultiplier) + "xp";
 							mc.fontRenderer.drawString(text, -mc.fontRenderer.getStringWidth(text) / 2, 0, 0x0099ff);
 						}
 					}

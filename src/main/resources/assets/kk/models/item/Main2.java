@@ -39,7 +39,6 @@ public class Main2 {
 						} else {
 							writer.write(text + System.getProperty("line.separator"));
 							System.out.println(times + ": Nothing");
-
 						}
 					}
 				} catch (FileNotFoundException e) {
