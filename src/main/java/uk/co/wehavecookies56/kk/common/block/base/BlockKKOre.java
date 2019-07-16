@@ -20,7 +20,7 @@ public class BlockKKOre extends Block {
 		setResistance(resistance);
 		setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
 		setRegistryName(name);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 	}
 
 	private Random rand = new Random();

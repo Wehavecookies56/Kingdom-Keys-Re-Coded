@@ -35,7 +35,7 @@ public class BlockStationOfAwakeningDoor extends Block {
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
     }
 
     @Nullable
@@ -128,14 +128,13 @@ public class BlockStationOfAwakeningDoor extends Block {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
+        EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta);
         if (enumfacing.getAxis() == EnumFacing.Axis.Y) enumfacing = EnumFacing.NORTH;
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
 
     @Override
-    @SideOnly (Side.CLIENT)
-    public BlockRenderLayer getBlockLayer () {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.SOLID;
     }
 

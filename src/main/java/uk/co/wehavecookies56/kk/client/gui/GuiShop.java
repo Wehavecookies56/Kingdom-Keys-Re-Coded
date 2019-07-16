@@ -392,7 +392,7 @@ public class GuiShop extends GuiScreen {
 		List<ItemStack> materials = new ArrayList<ItemStack>();
 
 		for (ItemStack mat : buyList.itemsForSale) {
-			String translatedMat = mat.getUnlocalizedName();
+			String translatedMat = mat.getTranslationKey();
 			if(mat.getItem() instanceof ItemSynthesisMaterial) {
 				translatedMat = mat.getTagCompound().getString("material");
 			}
@@ -410,7 +410,7 @@ public class GuiShop extends GuiScreen {
 		List<ItemStack> materials = new ArrayList<ItemStack>();
 
 		for (ItemStack mat : sellList.sellableItems) {
-			String translatedMat = mat.getUnlocalizedName();
+			String translatedMat = mat.getTranslationKey();
 			if(mat.getItem() instanceof ItemSynthesisMaterial) {
 				translatedMat = mat.getTagCompound().getString("material");
 			}

@@ -40,7 +40,7 @@ public class BlockSavePoint extends Block {
 		setResistance(resistance);
 		setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
 		setRegistryName(name);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		// setBlockBounds(0, 0, 0, 1, 0.1F, 1);
 		setTickRandomly(true);
 		// setSoundType(SoundType.STONE);
@@ -79,7 +79,7 @@ public class BlockSavePoint extends Block {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entityIn) {
+	public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
 		if (!world.isRemote)
 			updateState(world, pos);
 	}
@@ -160,8 +160,7 @@ public class BlockSavePoint extends Block {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 

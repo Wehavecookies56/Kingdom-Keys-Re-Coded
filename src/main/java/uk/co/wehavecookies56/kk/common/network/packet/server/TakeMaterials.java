@@ -69,11 +69,11 @@ public class TakeMaterials extends AbstractServerMessage<TakeMaterials> {
                 player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).removeMaterial(MaterialRegistry.get(materialName), amount);
             } else {
                 // VANILLA ITEMS HERE
-                if (materialName.equals(Items.WOODEN_SWORD.getUnlocalizedName())) {
+                if (materialName.equals(Items.WOODEN_SWORD.getTranslationKey())) {
                     player.inventory.addItemStackToInventory(new ItemStack(Items.WOODEN_SWORD, amount));
                     player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).removeMaterial(MaterialRegistry.get(materialName), amount);
                 }
-                if (materialName.equals(Items.STICK.getUnlocalizedName())) {
+                if (materialName.equals(Items.STICK.getTranslationKey())) {
                     player.inventory.addItemStackToInventory(new ItemStack(Items.STICK, amount));
                     player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).removeMaterial(MaterialRegistry.get(materialName), amount);
                 }

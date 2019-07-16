@@ -17,7 +17,7 @@ public class ItemOrganizationRobe extends ItemArmor implements IItemCategory {
         super(material, renderIndex, slot);
         this.armorName = name.substring(0,name.indexOf("_"));
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(ModItems.tabKingdomKeys);
     }
 

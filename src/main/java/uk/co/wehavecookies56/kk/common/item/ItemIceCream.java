@@ -19,7 +19,7 @@ public class ItemIceCream extends ItemFood implements IItemCategory{
     public ItemIceCream (String name, int food, boolean wolf) {
         super(food, wolf);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(ModItems.tabKingdomKeys);
         setAlwaysEdible();
 

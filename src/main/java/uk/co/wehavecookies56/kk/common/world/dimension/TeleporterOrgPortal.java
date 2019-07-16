@@ -24,7 +24,7 @@ public class TeleporterOrgPortal extends Teleporter {
         playerMP.motionX = playerMP.motionY = playerMP.motionZ = 0;
         playerMP.setPositionAndUpdate(pos.getX()+0.5, pos.getY(), pos.getZ()+0.5);
         if (player.world.provider.getDimension() != dimension)
-            playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, dimension, this);
+            playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, dimension, this);
         playerMP.setPositionAndUpdate(pos.getX()+0.5, pos.getY(), pos.getZ()+0.5);
         playerMP.connection.sendPacket(new SPacketEntityTeleport(playerMP));
         playerMP.connection.sendPacket(new SPacketEntity(playerMP.getEntityId()));

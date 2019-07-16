@@ -50,7 +50,7 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
         setSoundType(SoundType.STONE);
         setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
     }
 
     @Override
@@ -149,7 +149,7 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
+        EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta);
         if (enumfacing.getAxis() == EnumFacing.Axis.Y) enumfacing = EnumFacing.NORTH;
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
@@ -181,8 +181,7 @@ public class BlockKKChest extends Block implements ITileEntityProvider {
     }
 
     @Override
-    @SideOnly (Side.CLIENT)
-    public BlockRenderLayer getBlockLayer () {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.SOLID;
     }
 

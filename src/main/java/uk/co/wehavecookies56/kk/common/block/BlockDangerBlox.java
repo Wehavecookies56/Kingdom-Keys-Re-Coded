@@ -38,7 +38,7 @@ public class BlockDangerBlox extends BlockBlox {
     }
 
     @Override
-    public void onEntityCollidedWithBlock (World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         if (entityIn instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityIn;
             if (ItemStack.areItemStacksEqual(player.inventory.armorInventory.get(0), ItemStack.EMPTY)) {

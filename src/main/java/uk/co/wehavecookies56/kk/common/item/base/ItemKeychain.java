@@ -16,7 +16,7 @@ public class ItemKeychain extends ItemSword implements IItemCategory{
         super(ModItems.KEYCHAIN);
         setMaxStackSize(1);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(ModItems.tabKingdomKeys);
     }
     ItemKeyblade blade;

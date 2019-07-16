@@ -41,8 +41,8 @@ public class DepositMaterials extends AbstractMessage.AbstractServerMessage<Depo
 						}
 						player.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
 					}
-				} else if (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory.get(i).getItem().getUnlocalizedName().toString())) {
-					player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory.get(i).getItem().getUnlocalizedName()), player.inventory.mainInventory.get(i).getCount());
+				} else if (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory.get(i).getItem().getTranslationKey().toString())) {
+					player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory.get(i).getItem().getTranslationKey()), player.inventory.mainInventory.get(i).getCount());
 					player.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
 				}
 				PacketDispatcher.sendTo(new SyncMaterialData(player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS, null)), (EntityPlayerMP) player);
@@ -62,10 +62,10 @@ public class DepositMaterials extends AbstractMessage.AbstractServerMessage<Depo
 		 * 
 		 * } else if
 		 * (MaterialRegistry.isMaterialRegistered(player.inventory.mainInventory[i].
-		 * getItem().getUnlocalizedName().toString())) {
+		 * getItem().getTranslationKey().toString())) {
 		 * player.getCapability(ModCapabilities.SYNTHESIS_MATERIALS,
 		 * null).addMaterial(MaterialRegistry.get(player.inventory.mainInventory[i].
-		 * getItem().getUnlocalizedName()),
+		 * getItem().getTranslationKey()),
 		 * player.inventory.mainInventory[i].stackSize);
 		 * player.inventory.setInventorySlotContents(i, null); }
 		 * PacketDispatcher.sendTo(new

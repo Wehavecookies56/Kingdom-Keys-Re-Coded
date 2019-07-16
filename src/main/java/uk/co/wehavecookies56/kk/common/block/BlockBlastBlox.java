@@ -35,7 +35,7 @@ public class BlockBlastBlox extends BlockBlox {
     }
 
     @Override
-    public void onEntityCollidedWithBlock (World world, BlockPos pos, IBlockState state, Entity entity) {
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
         explode(world, pos.getX(), pos.getY(), pos.getZ(), 1, entity instanceof EntityLivingBase ? (EntityLivingBase) entity : null);
         world.setBlockToAir(pos);
     }
@@ -46,11 +46,11 @@ public class BlockBlastBlox extends BlockBlox {
     }
 
     @Override
-    public void onBlockDestroyedByExplosion (World par1World, BlockPos pos, Explosion par5Explosion) {
-        if (!par1World.isRemote) {
-            EntityBlastBlox entitytntprimed = new EntityBlastBlox(par1World, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, par5Explosion.getExplosivePlacedBy());
-            entitytntprimed.fuse = par1World.rand.nextInt(entitytntprimed.fuse / 4) + entitytntprimed.fuse / 8;
-            par1World.spawnEntity(entitytntprimed);
+    public void onExplosionDestroy(World world, BlockPos pos, Explosion explosion) {
+        if (!world.isRemote) {
+            EntityBlastBlox entitytntprimed = new EntityBlastBlox(world, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, explosion.getExplosivePlacedBy());
+            entitytntprimed.fuse = world.rand.nextInt(entitytntprimed.fuse / 4) + entitytntprimed.fuse / 8;
+            world.spawnEntity(entitytntprimed);
         }
     }
 

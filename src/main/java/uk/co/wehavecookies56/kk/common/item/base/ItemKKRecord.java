@@ -31,7 +31,7 @@ public class ItemKKRecord extends ItemRecord {
     public ItemKKRecord (SoundEvent sound, String name, float length) {
         super(name, sound);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(ModItems.tabKingdomKeys);
         this.length = length;
     }

@@ -33,7 +33,7 @@ public class BlockPedestal extends Block implements ITileEntityProvider{
         setResistance(resistance);
         setCreativeTab(ModBlocks.tabKingdomKeysBlocks);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
     }
 
     public TileEntity createNewTileEntity (World worldIn, int meta) {
@@ -78,8 +78,7 @@ public class BlockPedestal extends Block implements ITileEntityProvider{
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer () {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.SOLID;
     }
 

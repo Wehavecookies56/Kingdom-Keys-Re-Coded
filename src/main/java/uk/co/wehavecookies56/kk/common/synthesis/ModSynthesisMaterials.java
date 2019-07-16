@@ -163,14 +163,14 @@ public class ModSynthesisMaterials {
         registerMaterial(new MaterialLostIllusion(Strings.SM_LostIllusion));
         registerMaterial(new MaterialManifestIllusion(Strings.SM_ManifestIllusion));
 
-        registerMaterial(new MaterialIncompleteKiBlade(ModItems.Chain_IncompleteKiblade.getUnlocalizedName()));
-        registerMaterial(new MaterialNightmaresEnd(ModItems.Chain_NightmaresEnd.getUnlocalizedName()));
-        registerMaterial(new MaterialMirageSplit(ModItems.Chain_MirageSplit.getUnlocalizedName()));
-        registerMaterial(new MaterialStick(Items.STICK.getUnlocalizedName()));
-        registerMaterial(new MaterialWoodenSword(Items.WOODEN_SWORD.getUnlocalizedName()));
-        registerMaterial(new MaterialNormalBlox(ModBlocks.NormalBlox.getUnlocalizedName()));
-        registerMaterial(new MaterialHardBlox(ModBlocks.HardBlox.getUnlocalizedName()));
-        registerMaterial(new MaterialMetalBlox(ModBlocks.MetalBlox.getUnlocalizedName()));
+        registerMaterial(new MaterialIncompleteKiBlade(ModItems.Chain_IncompleteKiblade.getTranslationKey()));
+        registerMaterial(new MaterialNightmaresEnd(ModItems.Chain_NightmaresEnd.getTranslationKey()));
+        registerMaterial(new MaterialMirageSplit(ModItems.Chain_MirageSplit.getTranslationKey()));
+        registerMaterial(new MaterialStick(Items.STICK.getTranslationKey()));
+        registerMaterial(new MaterialWoodenSword(Items.WOODEN_SWORD.getTranslationKey()));
+        registerMaterial(new MaterialNormalBlox(ModBlocks.NormalBlox.getTranslationKey()));
+        registerMaterial(new MaterialHardBlox(ModBlocks.HardBlox.getTranslationKey()));
+        registerMaterial(new MaterialMetalBlox(ModBlocks.MetalBlox.getTranslationKey()));
 
     }
 }

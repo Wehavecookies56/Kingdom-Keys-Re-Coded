@@ -55,38 +55,38 @@ public class ChestGen {
         ManifestIllusion.setString("rank", Strings.SM_Rank_A);
         LootFunction[] setManifestIllusion = new LootFunction[] {new SetNBT(new LootCondition[0], ManifestIllusion), new SetCount(new LootCondition[0], new RandomValueRange(1, 5))};
 
-        if (event.getName().getResourcePath().contains("chests")) {
+        if (event.getName().getPath().contains("chests")) {
             LootFunction[] setSingleStack = {new SetCount(new LootCondition[0], new RandomValueRange(1, 1))};
             LootEntry[] materialEntries = {
-                    new LootEntryItem(ModItems.SynthesisMaterial, 5, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.SynthesisMaterial, 10, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.SynthesisMaterial, 20, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.SynthesisMaterial, 10, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.SynthesisMaterial, 5, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.SynthesisMaterial, 5, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.SynthesisMaterial, 10, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getUnlocalizedName().substring(5))
+                    new LootEntryItem(ModItems.SynthesisMaterial, 5, 0, setMythrilCrystal, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.SynthesisMaterial, 10, 0, setMythrilGem, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.SynthesisMaterial, 20, 0, setMythrilStone, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.SynthesisMaterial, 30, 0, setMythrilShard, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.SynthesisMaterial, 10, 0, setOrichalcum, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.SynthesisMaterial, 5, 0, setOrichalcumPlus, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.SynthesisMaterial, 5, 0, setLostIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.SynthesisMaterial, 10, 0, setManifestIllusion, new LootCondition[0], Reference.MODID + ":" + ModItems.SynthesisMaterial.getTranslationKey().substring(5))
             };
             LootEntry[] musicDiscEntries = {
-                    new LootEntryItem(ModItems.Disc_Birth_by_Sleep_A_Link_to_the_Future, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Birth_by_Sleep_A_Link_to_the_Future.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_Darkness_of_the_Unknown, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Darkness_of_the_Unknown.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_Dearly_Beloved_Symphony_Version, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Dearly_Beloved_Symphony_Version.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_Dream_Drop_Distance_The_Next_Awakening, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Dream_Drop_Distance_The_Next_Awakening.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_Hikari_KINGDOM_Instrumental_Version, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Hikari_KINGDOM_Instrumental_Version.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_L_Oscurita_Dell_Ignoto, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_L_Oscurita_Dell_Ignoto.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_Musique_pour_la_tristesse_de_Xion, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Musique_pour_la_tristesse_de_Xion.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_No_More_Bugs_Bug_Version, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_No_More_Bugs_Bug_Version.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_Organization_XIII, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Organization_XIII.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_Sanctuary, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Sanctuary.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_Simple_And_Clean_PLANITb_Remix, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Simple_And_Clean_PLANITb_Remix.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_Sinister_Sundown, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Sinister_Sundown.getUnlocalizedName().substring(5)),
-                    new LootEntryItem(ModItems.Disc_The_13th_Anthology, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_The_13th_Anthology.getUnlocalizedName().substring(5)),
+                    new LootEntryItem(ModItems.Disc_Birth_by_Sleep_A_Link_to_the_Future, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Birth_by_Sleep_A_Link_to_the_Future.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_Darkness_of_the_Unknown, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Darkness_of_the_Unknown.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_Dearly_Beloved_Symphony_Version, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Dearly_Beloved_Symphony_Version.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_Dream_Drop_Distance_The_Next_Awakening, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Dream_Drop_Distance_The_Next_Awakening.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_Hikari_KINGDOM_Instrumental_Version, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Hikari_KINGDOM_Instrumental_Version.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_L_Oscurita_Dell_Ignoto, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_L_Oscurita_Dell_Ignoto.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_Musique_pour_la_tristesse_de_Xion, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Musique_pour_la_tristesse_de_Xion.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_No_More_Bugs_Bug_Version, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_No_More_Bugs_Bug_Version.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_Organization_XIII, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Organization_XIII.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_Sanctuary, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Sanctuary.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_Simple_And_Clean_PLANITb_Remix, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Simple_And_Clean_PLANITb_Remix.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_Sinister_Sundown, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_Sinister_Sundown.getTranslationKey().substring(5)),
+                    new LootEntryItem(ModItems.Disc_The_13th_Anthology, 5, 0, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Disc_The_13th_Anthology.getTranslationKey().substring(5)),
 
             };
-            String name = event.getName().getResourcePath();
+            String name = event.getName().getPath();
             switch (name) {
                 case "spawn_bonus_chest":
-                    event.getTable().getPool("main").addEntry(new LootEntryItem(ModItems.Chain_KingdomKey, 5, 10, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Chain_KingdomKey.getUnlocalizedName().substring(5)));
+                    event.getTable().getPool("main").addEntry(new LootEntryItem(ModItems.Chain_KingdomKey, 5, 10, setSingleStack, new LootCondition[0], Reference.MODID + ":" + ModItems.Chain_KingdomKey.getTranslationKey().substring(5)));
                     break;
                 case "simple_dungeon":
                     LootPool musicDiscPool = new LootPool(musicDiscEntries, new LootCondition[0], new RandomValueRange(1, 2), new RandomValueRange(0), "kk_loot_music_discs");
@@ -94,7 +94,7 @@ public class ChestGen {
                     break;
                 case "end_city_treasure":
                     LootEntry[] endCityEntries = {
-                            new LootEntryItem(ModItems.LevelUpMagicThunder, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.LevelUpMagicThunder.getUnlocalizedName().substring(5)),
+                            new LootEntryItem(ModItems.LevelUpMagicThunder, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.LevelUpMagicThunder.getTranslationKey().substring(5)),
                             new LootEntryEmpty(70, 1, new LootCondition[0], Reference.MODID + ":" + "end_city_empty")
                     };
                     LootPool endCityPool = new LootPool(endCityEntries, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0), "kk_end_city");
@@ -102,7 +102,7 @@ public class ChestGen {
                     break;
                 case "igloo_chest":
                     LootEntry[] iglooEntries = {
-                            new LootEntryItem(ModItems.LevelUpMagicBlizzard, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.LevelUpMagicBlizzard.getUnlocalizedName().substring(5)),
+                            new LootEntryItem(ModItems.LevelUpMagicBlizzard, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.LevelUpMagicBlizzard.getTranslationKey().substring(5)),
                             new LootEntryEmpty(70, 1, new LootCondition[0], Reference.MODID + ":" + "igloo_empty")
                     };
                     LootPool iglooPool = new LootPool(iglooEntries, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0), "kk_igloo");
@@ -110,7 +110,7 @@ public class ChestGen {
                     break;
                 case "nether_bridge":
                     LootEntry[] netherFortressEntries = {
-                            new LootEntryItem(ModItems.LevelUpMagicFire, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.LevelUpMagicFire.getUnlocalizedName().substring(5)),
+                            new LootEntryItem(ModItems.LevelUpMagicFire, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.LevelUpMagicFire.getTranslationKey().substring(5)),
                             new LootEntryEmpty(70, 1, new LootCondition[0], Reference.MODID + ":" + "nether_fortress_empty")
                     };
                     LootPool netherFortressPool = new LootPool(netherFortressEntries, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0), "kk_nether_fortress");
@@ -120,7 +120,7 @@ public class ChestGen {
             try {
                 LootPool main = event.getTable().getPool("main");
                 LootEntry[] recipeEntry = {
-                        new LootEntryItem(ModItems.Recipe, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)),
+                        new LootEntryItem(ModItems.Recipe, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getTranslationKey().substring(5)),
                         new LootEntryEmpty(70, 1, new LootCondition[0], Reference.MODID + ":" + "recipes_empty")
 
                 };
@@ -128,7 +128,7 @@ public class ChestGen {
                 main.addEntry(recipeEntry[1]);
             } catch (NullPointerException e) {
                 LootEntry[] recipeEntry = {
-                        new LootEntryItem(ModItems.Recipe, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getUnlocalizedName().substring(5)),
+                        new LootEntryItem(ModItems.Recipe, 30, 1, new LootFunction[0], new LootCondition[0], Reference.MODID + ":" + ModItems.Recipe.getTranslationKey().substring(5)),
                         new LootEntryEmpty(70, 1, new LootCondition[0], Reference.MODID + ":" + "recipes_empty")
 
                 };
