@@ -1,8 +1,6 @@
 # Created by Metasequoia
 
 newmtl mat1
-Ka 0.38400 0.38400 0.38400
-Kd 0.51200 0.51200 0.51200
-
+Ka 0.30720 0.30720 0.30720
+Kd 0.40960 0.40960 0.40960
 map_Kd kk:items/models/shootingstar
-
