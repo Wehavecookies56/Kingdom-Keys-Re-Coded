@@ -264,6 +264,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityCreeper.class, (IRenderFactory) new RenderKHCreeper(Minecraft.getMinecraft().getRenderManager(), new ModelCreeper(), 0.8F));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMoogle.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelMoogle(), 1, Strings.Moogle));
+		RenderingRegistry.registerEntityRenderingHandler(EntityOrgMoogle.class, (IRenderFactory) new RenderKHMob(Minecraft.getMinecraft().getRenderManager(), new ModelOrgMoogle(), 1, Strings.OrgMoogle));
 
 	}
 

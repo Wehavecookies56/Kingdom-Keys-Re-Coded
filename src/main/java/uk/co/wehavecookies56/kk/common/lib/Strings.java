@@ -52,6 +52,7 @@ public class Strings {
     Creeper = "creeper",
     
     Moogle = "moogle",
+    OrgMoogle = "orgmoogle",
     GummiShip = "gummiship",
     GliderTerra = "gliderterra",
     GliderAqua = "glideraqua",

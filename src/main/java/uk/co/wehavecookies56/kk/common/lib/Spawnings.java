@@ -11,25 +11,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.core.handler.SpawningConfig;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityBlueRhapsody;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCreeper;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityCrimsonJazz;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDarkball;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDetonator;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityDirePlant;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityEmeraldBlues;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGigaShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityGreenRequiem;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityLargeBody;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMegaShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMinuteBomb;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityMoogle;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityRedNocturne;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityShadow;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySilverRock;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntitySkaterBomb;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityStormBomb;
-import uk.co.wehavecookies56.kk.common.entity.mobs.EntityYellowOpera;
+import uk.co.wehavecookies56.kk.common.entity.mobs.*;
 
 public class Spawnings {
 	public static void init() {
@@ -103,6 +85,7 @@ public class Spawnings {
 		// Others
 		if (SpawningConfig.spawnMoogles) {
 			registerSpawn(EntityMoogle.class, SpawningConfig.others.moogleRatio, 1, 1, KingdomKeys.MOOGLE, othersBiomesArray);
+			registerSpawn(EntityOrgMoogle.class, SpawningConfig.others.moogleRatio, 1, 1, KingdomKeys.MOOGLE, othersBiomesArray);
 		}
 		KingdomKeys.logger.info("Entity spawning loaded");
 
