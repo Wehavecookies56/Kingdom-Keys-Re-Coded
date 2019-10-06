@@ -1,6 +1,4 @@
-package uk.co.wehavecookies56.kk.client.model.chakrams;
-
-import java.util.HashMap;
+package uk.co.wehavecookies56.kk.client.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -11,16 +9,15 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
 import uk.co.wehavecookies56.kk.client.core.helper.ModelHelper;
 
-/**
- * Created by NStel on 3/2/2017.
- */
-public class ModelCombustion extends ModelBase {
+import java.util.HashMap;
+
+public class ModelChakram extends ModelBase {
     OBJModel model;
     HashMap<String, IBakedModel> modelParts;
 
-    public ModelCombustion () {
+    public ModelChakram(String name) {
         try {
-            model = (OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("kk:models/item/combustion.obj"));
+            model = (OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("kk:models/item/" + name + ".obj"));
             modelParts = ModelHelper.getModelsForGroups(model);
         } catch (Exception e) {
 
