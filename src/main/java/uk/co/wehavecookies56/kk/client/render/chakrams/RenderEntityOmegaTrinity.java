@@ -1,14 +1,13 @@
 package uk.co.wehavecookies56.kk.client.render.chakrams;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
-import uk.co.wehavecookies56.kk.client.model.chakrams.ModelOmegaTrinity;
+import org.lwjgl.opengl.GL11;
+import uk.co.wehavecookies56.kk.client.model.ModelChakram;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityOmegaTrinity;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -23,7 +22,7 @@ public class RenderEntityOmegaTrinity extends Render implements IRenderFactory<E
     public RenderEntityOmegaTrinity (RenderManager renderManager) {
         super(renderManager);
         shadowSize = 1;
-        this.model = new ModelOmegaTrinity();
+        this.model = new ModelChakram(Strings.OmegaTrinity);
     }
 
     @Override

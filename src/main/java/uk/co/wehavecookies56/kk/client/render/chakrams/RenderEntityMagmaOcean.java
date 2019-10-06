@@ -7,8 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import org.lwjgl.opengl.GL11;
-import uk.co.wehavecookies56.kk.client.model.chakrams.ModelFerrisWheel;
-import uk.co.wehavecookies56.kk.client.model.chakrams.ModelMagmaOcean;
+import uk.co.wehavecookies56.kk.client.model.ModelChakram;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityMagmaOcean;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -20,7 +19,7 @@ public class RenderEntityMagmaOcean extends Render implements IRenderFactory<Ent
     public RenderEntityMagmaOcean (RenderManager renderManager) {
         super(renderManager);
         shadowSize = 1;
-        this.model = new ModelMagmaOcean();
+        this.model = new ModelChakram(Strings.MagmaOcean);
     }
 
     @Override

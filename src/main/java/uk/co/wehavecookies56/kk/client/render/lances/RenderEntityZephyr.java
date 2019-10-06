@@ -1,22 +1,13 @@
 package uk.co.wehavecookies56.kk.client.render.lances;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
-import uk.co.wehavecookies56.kk.client.model.chakrams.ModelEternalFlames;
+import org.lwjgl.opengl.GL11;
 import uk.co.wehavecookies56.kk.client.model.lances.ModelZephyr;
-import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityEternalFlames;
-import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityEternalFlames;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.lances.EntityZephyr;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;

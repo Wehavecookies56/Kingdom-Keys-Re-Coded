@@ -51,9 +51,6 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
             case Strings.BlazeofGlory:
                 entity = new EntityBlazeofGlory(world, player);
                 break;
-            case Strings.EternalFlames:
-                entity = new EntityEternalFlames(world, player);
-                break;
             case Strings.Ifrit:
                 entity = new EntityIfrit(world, player);
                 break;

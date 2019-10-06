@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import org.lwjgl.opengl.GL11;
-import uk.co.wehavecookies56.kk.client.model.chakrams.ModelVolcanics;
+import uk.co.wehavecookies56.kk.client.model.ModelChakram;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.chakrams.EntityVolcanics;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
@@ -19,7 +19,7 @@ public class RenderEntityVolcanics extends Render implements IRenderFactory<Enti
     public RenderEntityVolcanics (RenderManager renderManager) {
         super(renderManager);
         shadowSize = 1;
-        this.model = new ModelVolcanics();
+        this.model = new ModelChakram(Strings.Volcanics);
     }
 
     @Override
