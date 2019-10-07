@@ -11,12 +11,12 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
 import uk.co.wehavecookies56.kk.client.core.helper.ModelHelper;
 
-public class ModelZephyr extends ModelBase {
+public class ModelLance extends ModelBase {
 
     OBJModel model;
     HashMap<String, IBakedModel> modelParts;
 
-    public ModelZephyr (String name) {
+    public ModelLance(String name) {
         try {
             model = (OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("kk:models/item/" + name + ".obj"));
             modelParts = ModelHelper.getModelsForGroups(model);

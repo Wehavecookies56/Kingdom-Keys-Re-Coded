@@ -32,8 +32,8 @@ import uk.co.wehavecookies56.kk.client.fx.EntityParticleFXTest;
 import uk.co.wehavecookies56.kk.client.gui.*;
 import uk.co.wehavecookies56.kk.client.model.mobs.*;
 import uk.co.wehavecookies56.kk.client.render.*;
-import uk.co.wehavecookies56.kk.client.render.chakrams.*;
-import uk.co.wehavecookies56.kk.client.render.lances.RenderEntityZephyr;
+import uk.co.wehavecookies56.kk.client.render.chakrams.RenderEntityChakram;
+import uk.co.wehavecookies56.kk.client.render.lances.RenderEntityLance;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.block.tile.TileEntityPedestal;
 import uk.co.wehavecookies56.kk.common.core.proxy.CommonProxy;
@@ -201,27 +201,34 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlastBlox.class, new RenderFactoryBlastBlox());
 
 		// Lances
-		RenderingRegistry.registerEntityRenderingHandler(EntityZephyr.class, (IRenderFactory) new RenderEntityZephyr(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityZephyr.class, (IRenderFactory) new RenderEntityLance(Minecraft.getMinecraft().getRenderManager(), Strings.Zephyr));
 
 		// Chakrams
-		RenderingRegistry.registerEntityRenderingHandler(EntityMoulinRouge.class, (IRenderFactory) new RenderEntityMoulinRouge(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityEternalFlames.class, (IRenderFactory) new RenderEntityEternalFlames(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityIfrit.class, (IRenderFactory) new RenderEntityIfrit(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityProminence.class, (IRenderFactory) new RenderEntityProminence(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPrometheus.class, (IRenderFactory) new RenderEntityPrometheus(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityBlazeofGlory.class, (IRenderFactory) new RenderEntityBlazeofGlory(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityAshes.class, (IRenderFactory) new RenderEntityAshes(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityOmegaTrinity.class, (IRenderFactory) new RenderEntityOmegaTrinity(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityCombustion.class, (IRenderFactory) new RenderEntityCombustion(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityFerrisWheels.class, (IRenderFactory) new RenderEntityFerrisWheel(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityBurnout.class, (IRenderFactory) new RenderEntityBurnout(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityDoledrum.class, (IRenderFactory) new RenderEntityDoledrum(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityInferno.class, (IRenderFactory) new RenderEntityInferno(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityOutbreak.class, (IRenderFactory) new RenderEntityOutbreak(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySizzlingEdge.class, (IRenderFactory) new RenderEntitySizzlingEdge(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityDoubleEdge.class, (IRenderFactory) new RenderEntityDoubleEdge(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityVolcanics.class, (IRenderFactory) new RenderEntityVolcanics(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityMagmaOcean.class, (IRenderFactory) new RenderEntityMagmaOcean(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityAshes.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(),Strings.Ashes));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlazeofGlory.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.BlazeofGlory));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBurnout.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(),Strings.Burnout));
+		RenderingRegistry.registerEntityRenderingHandler(EntityCombustion.class,  new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Combustion));
+		RenderingRegistry.registerEntityRenderingHandler(EntityDoledrum.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Doldrums));
+		RenderingRegistry.registerEntityRenderingHandler(EntityDoubleEdge.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.DoubleEdge));
+		RenderingRegistry.registerEntityRenderingHandler(EntityEternalFlames.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.EternalFlames));
+		RenderingRegistry.registerEntityRenderingHandler(EntityFerrisWheels.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.FerrisWheel));
+		RenderingRegistry.registerEntityRenderingHandler(EntityIfrit.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Ifrit));
+		RenderingRegistry.registerEntityRenderingHandler(EntityInferno.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Inferno));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMagmaOcean.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.MagmaOcean));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMoulinRouge.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.MoulinRouge));
+		RenderingRegistry.registerEntityRenderingHandler(EntityProminence.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Prominence));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPrometheus.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Prometheus));
+		RenderingRegistry.registerEntityRenderingHandler(EntityOmegaTrinity.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.OmegaTrinity));
+		RenderingRegistry.registerEntityRenderingHandler(EntityOutbreak.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Outbreak));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySizzlingEdge.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.SizzlingEdge));
+		RenderingRegistry.registerEntityRenderingHandler(EntityVolcanics.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Volcanics));
+		RenderingRegistry.registerEntityRenderingHandler(EntityCorona.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Corona));
+		RenderingRegistry.registerEntityRenderingHandler(EntityWildfire.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Wildfire));
+		RenderingRegistry.registerEntityRenderingHandler(EntityConformer.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Conformers));
+		RenderingRegistry.registerEntityRenderingHandler(EntityDelayedAction.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.DelayedAction));
+		RenderingRegistry.registerEntityRenderingHandler(EntityDiveBombers.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.DiveBombers));
+
+
 
 
 		// Others

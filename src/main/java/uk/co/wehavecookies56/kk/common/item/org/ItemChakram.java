@@ -96,6 +96,21 @@ public class ItemChakram extends ItemOrgWeapon implements IOrgWeapon{
             case Strings.Volcanics:
                 entity = new EntityVolcanics(world, player);
                 break;
+            case Strings.Wildfire:
+                entity = new EntityWildfire(world, player);
+                break;
+            case Strings.Corona:
+                entity= new EntityCorona(world, player);
+                break;
+            case Strings.Conformers:
+                entity= new EntityConformer(world, player);
+                break;
+            case Strings.DelayedAction:
+                entity= new EntityDelayedAction(world, player);
+                break;
+            case Strings.DiveBombers:
+                entity= new EntityDiveBombers(world, player);
+                break;
             default:
                 entity = new EntityEternalFlames(world, player);
                 break;

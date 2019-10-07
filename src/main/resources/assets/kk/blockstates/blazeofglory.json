@@ -2,7 +2,9 @@
 	"forge_marker": 1,
     "defaults": {
         "textures": { 
+			
         }, 
+		"custom": { "flip-v": true },
         "model": "kk:blazeofglory.obj"
     }, 
    	"variants": {

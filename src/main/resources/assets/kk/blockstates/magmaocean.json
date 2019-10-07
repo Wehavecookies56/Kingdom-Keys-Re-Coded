@@ -3,6 +3,7 @@
     "defaults": {
         "textures": { 
         }, 
+		"custom": { "flip-v": true },
         "model": "kk:magmaocean.obj"
     }, 
    	"variants": {

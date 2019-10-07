@@ -7,20 +7,20 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import org.lwjgl.opengl.GL11;
-import uk.co.wehavecookies56.kk.client.model.lances.ModelZephyr;
+import uk.co.wehavecookies56.kk.client.model.lances.ModelLance;
 import uk.co.wehavecookies56.kk.common.entity.projectiles.lances.EntityZephyr;
+import uk.co.wehavecookies56.kk.common.entity.projectiles.lances.LanceEntity;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
-import uk.co.wehavecookies56.kk.common.lib.Strings;
 
-public class RenderEntityZephyr extends Render implements IRenderFactory<EntityZephyr> {
+public class RenderEntityLance extends Render implements IRenderFactory<LanceEntity> {
 
     private ModelBase model;
     private String name;
 
-    public RenderEntityZephyr (RenderManager renderManager, String name) {
+    public RenderEntityLance(RenderManager renderManager, String name) {
         super(renderManager);
         shadowSize = 1;
-        this.model = new ModelZephyr();
+        this.model = new ModelLance(name);
         this.name = name;
     }
 
@@ -51,8 +51,8 @@ public class RenderEntityZephyr extends Render implements IRenderFactory<EntityZ
     }
 
     @Override
-    public Render<? super EntityZephyr> createRenderFor (RenderManager manager) {
-        return new RenderEntityZephyr(manager, name);
+    public Render<? super LanceEntity> createRenderFor (RenderManager manager) {
+        return new RenderEntityLance(manager, name);
     }
 
 }
