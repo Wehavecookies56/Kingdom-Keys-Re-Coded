@@ -16,9 +16,9 @@ public class ModelZephyr extends ModelBase {
     OBJModel model;
     HashMap<String, IBakedModel> modelParts;
 
-    public ModelZephyr () {
+    public ModelZephyr (String name) {
         try {
-            model = (OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("kk:models/item/zephyr.obj"));
+            model = (OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("kk:models/item/" + name + ".obj"));
             modelParts = ModelHelper.getModelsForGroups(model);
         } catch (Exception e) {
 

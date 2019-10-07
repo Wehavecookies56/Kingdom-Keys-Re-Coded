@@ -14,17 +14,19 @@ import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 public class RenderEntityZephyr extends Render implements IRenderFactory<EntityZephyr> {
 
-    ModelBase model;
+    private ModelBase model;
+    private String name;
 
-    public RenderEntityZephyr (RenderManager renderManager) {
+    public RenderEntityZephyr (RenderManager renderManager, String name) {
         super(renderManager);
         shadowSize = 1;
         this.model = new ModelZephyr();
+        this.name = name;
     }
 
     @Override
     protected ResourceLocation getEntityTexture (Entity entity) {
-        return new ResourceLocation(Reference.MODID, "textures/items/models/" + Strings.Zephyr + ".png");
+        return new ResourceLocation(Reference.MODID, "textures/items/models/" + name + ".png");
     }
 
     @Override
@@ -35,7 +37,7 @@ public class RenderEntityZephyr extends Render implements IRenderFactory<EntityZ
 	
 			GL11.glRotatef(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks - 90.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glRotatef(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F, 1.0F);
-	        GL11.glRotatef(90, 0,0,1);
+	        GL11.glRotatef(0, 0,0,1);
 
 	        GL11.glScalef(0.02f, 0.02f, 0.02f);
 	        
@@ -50,7 +52,7 @@ public class RenderEntityZephyr extends Render implements IRenderFactory<EntityZ
 
     @Override
     public Render<? super EntityZephyr> createRenderFor (RenderManager manager) {
-        return new RenderEntityZephyr(manager);
+        return new RenderEntityZephyr(manager, name);
     }
 
 }
