@@ -88,8 +88,6 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
-import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
-import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
@@ -1069,7 +1067,7 @@ public class EntityEvents {
 			if (player.dimension == ModDimensions.diveToTheHeartID) {
 				diveToTheHeartTP(player, STATS);
 			} else if (player.dimension == ModDimensions.traverseTownID) {
-				traverseTownTP(player);
+				//traverseTownTP(player);
 				traverseTownSpawn(player);
 			}
 		}
@@ -1151,7 +1149,7 @@ public class EntityEvents {
 
 	private static final int TEXT_RADIUS = 3;
 
-	private void traverseTownTP(EntityPlayer player) {
+	/*private void traverseTownTP(EntityPlayer player) {
 		for (int i = 0; i < traverseTownTeleporters.length; i++) {
 			WorldTeleporter teleporter = traverseTownTeleporters[i]; // Individual teleporter
 			if (player.dimension == teleporter.fromDim) { // If player is in same dimension as the teleporter
@@ -1178,7 +1176,7 @@ public class EntityEvents {
 
 			}
 		}
-	}
+	}*/
 
 	private void traverseTownSpawn(EntityPlayer player) {
 		for (int i = 0; i < traverseTownSpawners.length; i++) {
@@ -1363,7 +1361,7 @@ public class EntityEvents {
 			IAbilities ABILITIES = player.getCapability(ModCapabilities.ABILITIES, null);
 
 			if (ABILITIES.getInvincible()) {
-				player.world.playSound(player, player.getPosition(), ModSounds.antidrive, SoundCategory.MASTER, 1F, 1F);
+				//player.world.playSound(player, player.getPosition(), ModSounds.antidrive, SoundCategory.MASTER, 1F, 1F);
 				event.setCanceled(true);
 			}
 		}
