@@ -1,29 +1,25 @@
 package uk.co.wehavecookies56.kk.client.gui.redesign;
 
+import java.awt.Color;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.item.ItemArmor;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import uk.co.wehavecookies56.kk.api.menu.IItemCategory;
 import uk.co.wehavecookies56.kk.api.menu.ItemCategory;
-import uk.co.wehavecookies56.kk.client.gui.GuiMenu_Items_Player;
 import uk.co.wehavecookies56.kk.client.sound.ModSounds;
 import uk.co.wehavecookies56.kk.common.capability.ModCapabilities;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemKeychain;
-import uk.co.wehavecookies56.kk.common.item.base.ItemRealKeyblade;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.server.EquipKeychain;
 import uk.co.wehavecookies56.kk.common.util.Utils;
-
-import java.awt.*;
 
 public class GuiKeychainListItem extends GuiButton {
 
@@ -50,7 +46,13 @@ public class GuiKeychainListItem extends GuiButton {
 		Color col = Color.decode(String.valueOf(colour));
 		GlStateManager.color(1, 1, 1, 1);
 		ItemCategory category = ItemCategory.TOOL;
-		ItemKeychain item = (ItemKeychain) stack.getItem();
+		
+		ItemKeychain item;
+		if(ItemStack.areItemStacksEqual(stack, new ItemStack(Items.AIR))) {
+			item = null;
+		} else {
+			item = (ItemKeychain) stack.getItem();
+		}
 		if (visible) {
 			RenderHelper.disableStandardItemLighting();
 			RenderHelper.enableGUIStandardItemLighting();
@@ -90,48 +92,52 @@ public class GuiKeychainListItem extends GuiButton {
 				}
 				drawTexturedModalRect((itemWidth * 2) - 17, 0, 148, 34, 17, 28);
 				GlStateManager.popMatrix();
-				float iconPosX = parent.width * 0.6374F;
-				float iconPosY = parent.height * 0.1833F;
-				float iconHeight = parent.height * 0.3148F;
-				RenderHelper.disableStandardItemLighting();
-				RenderHelper.enableGUIStandardItemLighting();
-				GlStateManager.pushMatrix();
-				GlStateManager.enableAlpha();
-				GlStateManager.translate(iconPosX, iconPosY, 0);
-				GlStateManager.scale((float) (0.0625F * iconHeight), (float) (0.0625F * iconHeight), 1);
-				Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(item.getKeyblade()), 0, 0);
-				GlStateManager.popMatrix();
-				float strPosX = parent.width * 0.6104F;
-				float strPosY = parent.height * 0.5185F;
-				float strNumPosX = parent.width * 0.7473F;
-				float magPosY = parent.height * 0.5657F;
-				String strengthStr = String.valueOf(((int) item.getKeyblade().getStrength()));
-				String magicStr = String.valueOf(((int) item.getKeyblade().getMagic()));
-				int strength = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + ((int) item.getKeyblade().getStrength());
-				int magic = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() + ((int) item.getKeyblade().getMagic());
-				String openBracketStr = " [  ";
-				String openBracketMag = " [  ";
-				String totalStr = String.valueOf(strength);
-				String totalMag = String.valueOf(magic);
-				if (totalStr.length() == 1) {
-					openBracketStr += " ";
+				
+				if(item != null) {
+					float iconPosX = parent.width * 0.6374F;
+					float iconPosY = parent.height * 0.1833F;
+					float iconHeight = parent.height * 0.3148F;
+					RenderHelper.disableStandardItemLighting();
+					RenderHelper.enableGUIStandardItemLighting();
+					GlStateManager.pushMatrix();
+					GlStateManager.enableAlpha();
+					GlStateManager.translate(iconPosX, iconPosY, 0);
+					GlStateManager.scale((float) (0.0625F * iconHeight), (float) (0.0625F * iconHeight), 1);
+					Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(item.getKeyblade()), 0, 0);
+					GlStateManager.popMatrix();
+					float strPosX = parent.width * 0.6104F;
+					float strPosY = parent.height * 0.5185F;
+					float strNumPosX = parent.width * 0.7473F;
+					float magPosY = parent.height * 0.5657F;
+					
+					String strengthStr = String.valueOf(((int) item.getKeyblade().getStrength()));
+					String magicStr = String.valueOf(((int) item.getKeyblade().getMagic()));
+					int strength = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getStrength() + ((int) item.getKeyblade().getStrength());
+					int magic = mc.player.getCapability(ModCapabilities.PLAYER_STATS, null).getMagic() + ((int) item.getKeyblade().getMagic());
+					String openBracketStr = " [  ";
+					String openBracketMag = " [  ";
+					String totalStr = String.valueOf(strength);
+					String totalMag = String.valueOf(magic);
+					if (totalStr.length() == 1) {
+						openBracketStr += " ";
+					}
+					if (totalMag.length() == 1) {
+						openBracketMag += " ";
+					}
+					drawString(mc.fontRenderer, "Strength", (int) strPosX, (int) strPosY, 0xEE8603);
+					drawString(mc.fontRenderer, strengthStr, (int) strNumPosX, (int) strPosY, 0xFFFFFF);
+					drawString(mc.fontRenderer, openBracketStr, (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr), (int) strPosY, 0xBF6004);
+					drawString(mc.fontRenderer, String.valueOf(strength), (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr), (int) strPosY, 0xFBEA21);
+					drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr) + mc.fontRenderer.getStringWidth(String.valueOf(strength)), (int) strPosY, 0xBF6004);
+					drawString(mc.fontRenderer, "Magic", (int) strPosX, (int) magPosY, 0xEE8603);
+					drawString(mc.fontRenderer, magicStr, (int) strNumPosX, (int) magPosY, 0xFFFFFF);
+					drawString(mc.fontRenderer, openBracketMag, (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr), (int) magPosY, 0xBF6004);
+					drawString(mc.fontRenderer, String.valueOf(magic), (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag), (int) magPosY, 0xFBEA21);
+					drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag) + mc.fontRenderer.getStringWidth(String.valueOf(magic)), (int) magPosY, 0xBF6004);
+					float tooltipPosX = parent.width * 0.3333F;
+					float tooltipPosY = parent.height * 0.8F;
+					mc.fontRenderer.drawSplitString(item.getKeyblade().description, (int) tooltipPosX + 3, (int) tooltipPosY + 3, (int) (parent.width * 0.46875F), 0x43B5E9);
 				}
-				if (totalMag.length() == 1) {
-					openBracketMag += " ";
-				}
-				drawString(mc.fontRenderer, "Strength", (int) strPosX, (int) strPosY, 0xEE8603);
-				drawString(mc.fontRenderer, strengthStr, (int) strNumPosX, (int) strPosY, 0xFFFFFF);
-				drawString(mc.fontRenderer, openBracketStr, (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr), (int) strPosY, 0xBF6004);
-				drawString(mc.fontRenderer, String.valueOf(strength), (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr), (int) strPosY, 0xFBEA21);
-				drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(strengthStr) + mc.fontRenderer.getStringWidth(openBracketStr) + mc.fontRenderer.getStringWidth(String.valueOf(strength)), (int) strPosY, 0xBF6004);
-				drawString(mc.fontRenderer, "Magic", (int) strPosX, (int) magPosY, 0xEE8603);
-				drawString(mc.fontRenderer, magicStr, (int) strNumPosX, (int) magPosY, 0xFFFFFF);
-				drawString(mc.fontRenderer, openBracketMag, (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr), (int) magPosY, 0xBF6004);
-				drawString(mc.fontRenderer, String.valueOf(magic), (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag), (int) magPosY, 0xFBEA21);
-				drawString(mc.fontRenderer, " ]", (int) strNumPosX + mc.fontRenderer.getStringWidth(magicStr) + mc.fontRenderer.getStringWidth(openBracketMag) + mc.fontRenderer.getStringWidth(String.valueOf(magic)), (int) magPosY, 0xBF6004);
-				float tooltipPosX = parent.width * 0.3333F;
-				float tooltipPosY = parent.height * 0.8F;
-				mc.fontRenderer.drawSplitString(item.getKeyblade().description, (int) tooltipPosX + 3, (int) tooltipPosY + 3, (int) (parent.width * 0.46875F), 0x43B5E9);
 			}
 			RenderHelper.disableStandardItemLighting();
 			RenderHelper.enableGUIStandardItemLighting();
@@ -153,13 +159,14 @@ public class GuiKeychainListItem extends GuiButton {
 			}
 			GlStateManager.popMatrix();
 			String label = "N/A";
-			if (item.getKeyblade() instanceof ItemKeyblade) {
+			if (item != null && item.getKeyblade() instanceof ItemKeyblade) {
 				ItemKeyblade itemRealKeyblade = (ItemKeyblade) item.getKeyblade();
 				label = (itemRealKeyblade.getAbility() != null) ? Utils.translateToLocal(itemRealKeyblade.getAbility().getName()): "N/A";
 			}
 			float centerX = (labelWidth / 2) - (mc.fontRenderer.getStringWidth(label) / 2);
 			drawString(mc.fontRenderer, label, (int) (x + width + centerX), y + 3, labelColour);
 		}
+		
 	}
 
 	@Override
