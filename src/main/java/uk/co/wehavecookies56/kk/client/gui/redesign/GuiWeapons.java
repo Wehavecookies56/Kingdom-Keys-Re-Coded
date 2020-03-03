@@ -58,13 +58,13 @@ public class GuiWeapons extends GuiScreen {
 		BiMap<Integer, ItemStack> keychainItems = HashBiMap.create();
 		
 		if(mc.player.inventory.getFirstEmptyStack() > -1){
-			keychainItems.put(0, mc.player.inventory.getStackInSlot(mc.player.inventory.getFirstEmptyStack()));
+			keychainItems.put(mc.player.inventory.getFirstEmptyStack(), mc.player.inventory.getStackInSlot(mc.player.inventory.getFirstEmptyStack()));
 		}
 		
 		for (int i = 0; i < mc.player.inventory.getSizeInventory(); i++) {
 			if (!ItemStack.areItemStacksEqual(mc.player.inventory.getStackInSlot(i), ItemStack.EMPTY)) {
 				if (mc.player.inventory.getStackInSlot(i).getItem() instanceof ItemKeychain) {
-					keychainItems.put(i+1, mc.player.inventory.getStackInSlot(i));
+					keychainItems.put(i, mc.player.inventory.getStackInSlot(i));
 				}
 			}
 
