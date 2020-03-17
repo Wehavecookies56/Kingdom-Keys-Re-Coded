@@ -85,7 +85,7 @@ public class MainConfig {
 		public String[] bannedItemsFreeDev = {};
 
 		@Config.Name("Keyblade given at start")
-		@Config.Comment("The registry name given here will determine the keyblade that the player starts with (set to minecraft:air to disable it)")
+		@Config.Comment("The registry name given here will determine the keyblade that the player starts with, you should set this to the keychain item if you don't want the keyblade to be lost (set to minecraft:air to disable it)")
 		public String starterKeyblade = "kk:" + Strings.WoodenKeyblade;
 
 	}

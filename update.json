@@ -1,7 +1,7 @@
 {
   "homepage": "http://minecraft.curseforge.com/projects/kingdom-keys-re-coded/files",
   "promos": {
-    "1.12.2-latest": "1.1.0.1",
+    "1.12.2-latest": "1.1.0.2",
     "1.12-latest": "0.9.2.1",
     "1.11.2-latest": "0.9.1",
     "1.10.2-latest": "0.9.0",
@@ -16,6 +16,7 @@
   },
 
   "1.12.2": {
+    "1.1.0.2": "New config options and some other small fixes",
     "1.1.0.1": "Small patch",
     "1.1.0.0": "Various bug fixes and WIP menu redesign",
     "1.0.0": "Big 1.0 update with all sorts of new features",
