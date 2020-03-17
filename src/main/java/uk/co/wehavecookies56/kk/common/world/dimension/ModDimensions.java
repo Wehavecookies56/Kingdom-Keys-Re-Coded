@@ -2,6 +2,7 @@ package uk.co.wehavecookies56.kk.common.world.dimension;
 
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
+import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
 
 /**
  * Created by Toby on 01/08/2016.
@@ -12,19 +13,18 @@ public class ModDimensions {
     public static int diveToTheHeartID, traverseTownID, destinyIslandsID;
 
     public static void init() {
-    //Not really working
-        //    if(ConfigHandler.StationOfAwakeningID.equals("auto"))
-        diveToTheHeartID = DimensionManager.getNextFreeDimId();
+        diveToTheHeartID = getDimIDFromString(MainConfig.worldgen.StationOfAwakeningID);
         diveToTheHeart = DimensionType.register("Dive to the Heart", "", diveToTheHeartID, WorldProviderDiveToTheHeart.class, false);
         DimensionManager.registerDimension(diveToTheHeartID, diveToTheHeart);
-        traverseTownID = DimensionManager.getNextFreeDimId();
+        traverseTownID = getDimIDFromString(MainConfig.worldgen.TraverseTownID);
         traverseTown = DimensionType.register("Traverse Town", "", traverseTownID, WorldProviderTraverseTown.class, false);
         DimensionManager.registerDimension(traverseTownID, traverseTown);
-        destinyIslandsID = DimensionManager.getNextFreeDimId();
+        destinyIslandsID = getDimIDFromString(MainConfig.worldgen.DestinyIslandsID);
         destinyIslands = DimensionType.register("Destiny Islands", "", destinyIslandsID, WorldProviderDestinyIslands.class, false);
         DimensionManager.registerDimension(destinyIslandsID, destinyIslands);
-        //else
-        //diveToTheHeartID = Integer.parseInt(ConfigHandler.StationOfAwakeningID);
+    }
 
+    static int getDimIDFromString(String string) {
+        return string.equals("auto") ? DimensionManager.getNextFreeDimId() : Integer.parseInt(string);
     }
 }

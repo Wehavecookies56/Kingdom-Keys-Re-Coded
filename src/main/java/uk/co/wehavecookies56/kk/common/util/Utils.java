@@ -237,7 +237,7 @@ public class Utils {
 		if (dimension == ModDimensions.diveToTheHeartID) {
 			idAndBlockPos.id = dimension;
 			idAndBlockPos.name = Strings.SoA;
-			idAndBlockPos.pos = new BlockPos(-1, 80, 7);
+			idAndBlockPos.pos = new BlockPos(-1, 65, 7);
 			idAndBlockPos.offset = new BlockPos(0, 0, 0);
 		
 		} else if (dimension == ModDimensions.traverseTownID) {
@@ -249,7 +249,7 @@ public class Utils {
 		} else if (dimension == ModDimensions.destinyIslandsID) {
 			idAndBlockPos.id = dimension;
 			idAndBlockPos.name = Strings.DestinyIslands;
-			idAndBlockPos.pos = new BlockPos(145, 27 + 60, 200);
+			idAndBlockPos.pos = new BlockPos(145, 87, 200);
 			idAndBlockPos.offset = new BlockPos(0, 60, 0);
 		}
 		return idAndBlockPos;

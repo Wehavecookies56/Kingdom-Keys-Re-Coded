@@ -81,6 +81,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.items.ItemStackHandler;
 import uk.co.wehavecookies56.kk.api.abilities.AbilityEvent;
@@ -88,6 +89,7 @@ import uk.co.wehavecookies56.kk.api.driveforms.DriveFormRegistry;
 import uk.co.wehavecookies56.kk.api.materials.MaterialRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.FreeDevRecipeRegistry;
 import uk.co.wehavecookies56.kk.api.recipes.RecipeRegistry;
+import uk.co.wehavecookies56.kk.client.gui.GuiOverlay;
 import uk.co.wehavecookies56.kk.common.KingdomKeys;
 import uk.co.wehavecookies56.kk.common.ability.ModAbilities;
 import uk.co.wehavecookies56.kk.common.capability.AbilitiesCapability.IAbilities;
@@ -108,6 +110,7 @@ import uk.co.wehavecookies56.kk.common.capability.TutorialsCapability.ITutorials
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryKeychain;
 import uk.co.wehavecookies56.kk.common.container.inventory.InventoryPotionsMenu;
 import uk.co.wehavecookies56.kk.common.core.handler.MainConfig;
+import uk.co.wehavecookies56.kk.common.core.handler.SpawningConfig;
 import uk.co.wehavecookies56.kk.common.core.helper.EntityHelper.MobType;
 import uk.co.wehavecookies56.kk.common.entity.EntityMovingVehicle;
 import uk.co.wehavecookies56.kk.common.entity.EntityXPGet;
@@ -381,18 +384,14 @@ public class EntityEvents {
 				tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
 			}
 		}
-
-		if (event.isEndConquered()) {
-			// BlockPos spawn = new BlockPos(192, 5, 161);
-
+		if (event.isEndConquered() && MainConfig.worldgen.EnableTraverseTownTP) {
+			KingdomKeys.logger.info("End is conquered, teleporting to Traverse Town");
 			IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(ModDimensions.traverseTownID);
 			DimTeleporter tp = new DimTeleporter(info.pos, info.id);
 
-			if (player.world.provider.getDimension() != info.id) {
+			if (player.world.provider.getDimension() != info.id)
 				player.changeDimension(info.id, tp);
-			} else {
-				tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
-			}
+			tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
 		}
 
 	}
@@ -431,9 +430,11 @@ public class EntityEvents {
 
 	@SubscribeEvent
 	public void potentialSpawns(WorldEvent.PotentialSpawns event) {
-		if (event.getType() == KingdomKeys.HEARTLESS || event.getType() == KingdomKeys.NOBODY) {
-			if (!WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).spawnHeartless)
-				event.setCanceled(true);
+		if (!SpawningConfig.startingHeartlessSpawn) {
+			if (event.getType() == KingdomKeys.HEARTLESS || event.getType() == KingdomKeys.NOBODY) {
+				if (!WorldSavedDataKingdomKeys.get(DimensionManager.getWorld(DimensionType.OVERWORLD.getId())).spawnHeartless)
+					event.setCanceled(true);
+			}
 		}
 	}
 
@@ -514,7 +515,13 @@ public class EntityEvents {
 			// First time player joins
 			FirstTimeJoinCapability.IFirstTimeJoin FTJ = event.getEntity().getCapability(ModCapabilities.FIRST_TIME_JOIN, null);
 			if (!FTJ.getFirstTimeJoin()) {
-				((EntityPlayer) event.getEntity()).inventory.addItemStackToInventory(new ItemStack(ModItems.WoodenKeyblade));
+				if (!MainConfig.items.starterKeyblade.equals("minecraft:air")) { //just skip it if it's air instead of adding air to the inventory
+					ItemStack starterStack = GameRegistry.makeItemStack(MainConfig.items.starterKeyblade, 0, 1, null);
+					if (!ItemStack.areItemStacksEqual(starterStack, ItemStack.EMPTY))
+						((EntityPlayer) event.getEntity()).inventory.addItemStackToInventory(starterStack);
+					else
+					KingdomKeys.logger.error("Invalid starting keyblade registry name supplied");
+				}
 				FTJ.setFirstTimeJoin(true);
 				FTJ.setPosX(((EntityPlayer) event.getEntity()).getPosition().getX());
 				FTJ.setPosY(((EntityPlayer) event.getEntity()).getPosition().getY());
@@ -1067,8 +1074,8 @@ public class EntityEvents {
 			if (player.dimension == ModDimensions.diveToTheHeartID) {
 				diveToTheHeartTP(player, STATS);
 			} else if (player.dimension == ModDimensions.traverseTownID) {
-				//traverseTownTP(player);
-				traverseTownSpawn(player);
+				traverseTownTP(player);
+				//traverseTownSpawn(player);
 			}
 		}
 		DriveStateCapability.IDriveState DS = event.player.getCapability(ModCapabilities.DRIVE_STATE, null);
@@ -1149,12 +1156,12 @@ public class EntityEvents {
 
 	private static final int TEXT_RADIUS = 3;
 
-	/*private void traverseTownTP(EntityPlayer player) {
+	private void traverseTownTP(EntityPlayer player) {
 		for (int i = 0; i < traverseTownTeleporters.length; i++) {
 			WorldTeleporter teleporter = traverseTownTeleporters[i]; // Individual teleporter
 			if (player.dimension == teleporter.fromDim) { // If player is in same dimension as the teleporter
 				if (player.getPosition().getX() > teleporter.fromPos.getX() - TEXT_RADIUS && player.getPosition().getX() < teleporter.fromPos.getX() + TEXT_RADIUS && player.getPosition().getZ() > teleporter.fromPos.getZ() - TEXT_RADIUS && player.getPosition().getZ() < teleporter.fromPos.getZ() + TEXT_RADIUS) {
-					GuiOverlay.teleport = teleporter; // Set gui info for teleporter
+					//GuiOverlay.teleport = teleporter; // Set gui info for teleporter
 
 					if (player.getPosition().equals(teleporter.fromPos)) { // If player is in the position
 						IDAndBlockPos info = Utils.getDimensionIDAndBlockPos(teleporter.toDim);
@@ -1162,7 +1169,7 @@ public class EntityEvents {
 
 						if (player.world.provider.getDimension() != info.id) {
 							player.changeDimension(info.id, tp);
-							GuiOverlay.teleport = null;
+							//GuiOverlay.teleport = null;
 						} else {
 							tp.placeEntity(player.getEntityWorld(), player, player.rotationYaw);
 							player.setPositionAndUpdate(teleporter.toPos.getX(), teleporter.toPos.getY(), teleporter.toPos.getZ());
@@ -1171,12 +1178,12 @@ public class EntityEvents {
 					break; // Break so it won't check for the next teleport (because you are near one so it
 							// doesn't need to check for another)
 				} else {
-					GuiOverlay.teleport = null;
+					//GuiOverlay.teleport = null;
 				}
 
 			}
 		}
-	}*/
+	}
 
 	private void traverseTownSpawn(EntityPlayer player) {
 		for (int i = 0; i < traverseTownSpawners.length; i++) {
@@ -1205,7 +1212,8 @@ public class EntityEvents {
 	}
 
 	private void diveToTheHeartTP(EntityPlayer player, IPlayerStats STATS) {
-		PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SOA_1), (EntityPlayerMP) player);
+		if (MainConfig.client.showTutorials)
+			PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SOA_1), (EntityPlayerMP) player);
 
 		if (player.getPosition().getX() == -13 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) { // Shield
 			if (!STATS.getChoice1().equals(Strings.Choice_Shield)) {
@@ -1213,7 +1221,8 @@ public class EntityEvents {
 				TextComponentTranslation shield = new TextComponentTranslation("Shield");
 				shield.getStyle().setColor(TextFormatting.YELLOW);
 				player.sendMessage(shield);
-				PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SHIELD_1, true), (EntityPlayerMP) player);
+				if (MainConfig.client.showTutorials)
+					PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SHIELD_1, true), (EntityPlayerMP) player);
 			}
 		} else if (player.getPosition().getX() == 11 && player.getPosition().getZ() == -1 && player.getPosition().getY() == 66) { // Staff
 			if (!STATS.getChoice1().equals(Strings.Choice_Staff)) {
@@ -1221,7 +1230,8 @@ public class EntityEvents {
 				TextComponentTranslation staff = new TextComponentTranslation("Staff");
 				staff.getStyle().setColor(TextFormatting.YELLOW);
 				player.sendMessage(staff);
-				PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_STAFF_1, true), (EntityPlayerMP) player);
+				if (MainConfig.client.showTutorials)
+					PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_STAFF_1, true), (EntityPlayerMP) player);
 			}
 		} else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == -13 && player.getPosition().getY() == 66) { // Sword
 			if (!STATS.getChoice1().equals(Strings.Choice_Sword)) {
@@ -1229,7 +1239,8 @@ public class EntityEvents {
 				TextComponentTranslation sword = new TextComponentTranslation("Sword");
 				sword.getStyle().setColor(TextFormatting.YELLOW);
 				player.sendMessage(sword);
-				PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SWORD_1, true), (EntityPlayerMP) player);
+				if (MainConfig.client.showTutorials)
+					PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_SWORD_1, true), (EntityPlayerMP) player);
 			}
 		} else if (player.getPosition().getX() == -1 && player.getPosition().getZ() == +10 && player.getPosition().getY() == 65) { // Door
 			if (player.dimension == ModDimensions.diveToTheHeartID) {

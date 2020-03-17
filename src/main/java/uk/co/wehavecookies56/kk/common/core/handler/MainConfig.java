@@ -13,6 +13,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemKeyblade;
 import uk.co.wehavecookies56.kk.common.item.base.ItemOrgWeapon;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Reference;
+import uk.co.wehavecookies56.kk.common.lib.Strings;
 
 /**
  * Created by Toby on 16/07/2017.
@@ -36,13 +37,28 @@ public class MainConfig {
 		@Config.Comment("Toggles whether the Station of Awakening should be enabled")
 		public boolean EnableStationOfAwakening = true;
 
+		@Config.RequiresMcRestart
 		@Config.Name("Station of Awakening ID")
-		@Config.Comment("Sets Station of Awakening's ID (default \"auto\")")
+		@Config.Comment("Sets Station of Awakening's dimension ID (default \"auto\")")
 		public String StationOfAwakeningID = "auto";
+
+		@Config.RequiresMcRestart
+		@Config.Name("Traverse Town ID")
+		@Config.Comment("Sets Traverse Town's dimension ID (default \"auto\")")
+		public String TraverseTownID = "auto";
+
+		@Config.RequiresMcRestart
+		@Config.Name("Destiny Islands ID")
+		@Config.Comment("Sets Destiny Islands's dimension ID (default \"auto\")")
+		public String DestinyIslandsID = "auto";
 
 		@Config.Name("Enable Synthesis Materials Ores")
 		@Config.Comment("Enables the ores that drop synthesis materials which are now replaced by mob drops")
 		public boolean EnableSynthesisOres = false;
+
+		@Config.Name("Enable Traverse Town teleport")
+		@Config.Comment("Enables the teleporting to Traverse Town when leaving the End")
+		public boolean EnableTraverseTownTP = true;
 
 	}
 
@@ -67,6 +83,10 @@ public class MainConfig {
 		@Config.Name("List of disabled items in free dev")
 		@Config.Comment("Add an item to disable it from being synthesised")
 		public String[] bannedItemsFreeDev = {};
+
+		@Config.Name("Keyblade given at start")
+		@Config.Comment("The registry name given here will determine the keyblade that the player starts with (set to minecraft:air to disable it)")
+		public String starterKeyblade = "kk:" + Strings.WoodenKeyblade;
 
 	}
 
@@ -93,9 +113,9 @@ public class MainConfig {
 		public HUD hud = new HUD();
 		public Sound sound = new Sound();
 
-		//@Config.Name("Tutorials pop up")
-		//@Config.Comment("Should tutorials pop up when you unlock them? Might leave you vulnerable in servers.")
-		//public boolean tutorialsPopup = true;
+		@Config.Name("Show tutorials")
+		@Config.Comment("Enable tutorials (WIP)")
+		public boolean showTutorials = false;
 
 		public class HUD {
 

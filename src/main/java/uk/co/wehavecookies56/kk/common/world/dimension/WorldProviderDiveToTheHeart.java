@@ -73,7 +73,7 @@ public class WorldProviderDiveToTheHeart extends WorldProvider {
 
     @Override
     public BlockPos getSpawnCoordinate() {
-        return new BlockPos(0, 64, 0);
+        return new BlockPos(-1, 65, 7);
     }
 
     @Override

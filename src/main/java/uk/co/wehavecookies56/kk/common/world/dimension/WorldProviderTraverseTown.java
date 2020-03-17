@@ -80,7 +80,7 @@ public class WorldProviderTraverseTown extends WorldProvider {
 
     @Override
     public BlockPos getSpawnCoordinate() {
-        return new BlockPos(0, 64, 0);
+        return new BlockPos(192, 5, 161);
     }
 
     @Override

@@ -25,6 +25,10 @@ public class SpawningConfig {
 	public static Nobody nobodies = new Nobody();
 	public static Others others = new Others();
 
+	@Config.Name("Spawn heartless and nobodies at start")
+	@Config.Comment("Enables spawning of heartless without requiring to defeat the Ender Dragon first")
+	public static boolean startingHeartlessSpawn = false;
+
 	@Config.RequiresMcRestart
 	@Config.Name("Enable all heartless spawns")
 	@Config.Comment("Toggle all heartless from spawning")

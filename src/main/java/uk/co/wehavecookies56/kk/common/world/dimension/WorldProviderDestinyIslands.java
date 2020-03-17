@@ -85,7 +85,7 @@ public class WorldProviderDestinyIslands extends WorldProvider {
 
     @Override
     public BlockPos getSpawnCoordinate() {
-        return new BlockPos(0, 15, 0);
+        return new BlockPos(145, 87, 200);
     }
 
     @Override
