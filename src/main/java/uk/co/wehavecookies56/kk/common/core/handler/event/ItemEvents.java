@@ -23,6 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
@@ -54,6 +55,7 @@ import uk.co.wehavecookies56.kk.common.item.base.ItemSpellOrb;
 import uk.co.wehavecookies56.kk.common.item.base.ItemSynthesisMaterial;
 import uk.co.wehavecookies56.kk.common.item.org.IOrgWeapon;
 import uk.co.wehavecookies56.kk.common.lib.Strings;
+import uk.co.wehavecookies56.kk.common.lib.Tutorial;
 import uk.co.wehavecookies56.kk.common.lib.Tutorials;
 import uk.co.wehavecookies56.kk.common.network.packet.PacketDispatcher;
 import uk.co.wehavecookies56.kk.common.network.packet.client.OpenTutorialGUI;
@@ -87,7 +89,9 @@ public class ItemEvents {
 
 			munny.addMunny(event.getItem().getItem().getTagCompound().getInteger("amount"));
 			PacketDispatcher.sendTo(new SyncMunnyData(munny), (EntityPlayerMP) event.getEntityPlayer());
-			PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getItem().getItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getEntityPlayer());
+			PacketDispatcher.sendTo(
+					new ShowOverlayPacket("munny", event.getItem().getItem().getTagCompound().getInteger("amount")),
+					(EntityPlayerMP) event.getEntityPlayer());
 
 		} else if (event.getItem().getItem().getItem() instanceof ItemHpOrb) {
 			if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND), ItemStack.EMPTY))
@@ -111,15 +115,17 @@ public class ItemEvents {
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
 				event.getItem().getItem().setCount(event.getItem().getItem().getCount() - 1);
 				EntityPlayer player = event.getEntityPlayer();
-				//System.out.println(event.getItem().getItem().getTagCompound().getInteger("amount"));
+				// System.out.println(event.getItem().getItem().getTagCompound().getInteger("amount"));
 				if (DRIVE.getInDrive()) {
 					DRIVE.addFP(event.getItem().getItem().getTagCompound().getInteger("amount"));
 				} else {
 					DRIVE.addDP(event.getItem().getItem().getTagCompound().getInteger("amount"));
 				}
 
-				PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) player);
-				PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)), (EntityPlayerMP) event.getEntityPlayer());
+				PacketDispatcher.sendTo(new SyncDriveData(player.getCapability(ModCapabilities.DRIVE_STATE, null)),
+						(EntityPlayerMP) player);
+				PacketDispatcher.sendTo(new SyncDriveInventory(player.getCapability(ModCapabilities.DRIVE_STATE, null)),
+						(EntityPlayerMP) event.getEntityPlayer());
 			}
 
 		} else if (event.getItem().getItem().getItem() == ModItems.MagicOrb) {
@@ -131,31 +137,55 @@ public class ItemEvents {
 				event.getItem().getItem().setCount(event.getItem().getItem().getCount() - 1);
 
 				STATS.addMP(event.getItem().getItem().getTagCompound().getInteger("amount"));
-				PacketDispatcher.sendTo(new SyncMagicData(event.getEntityPlayer().getCapability(ModCapabilities.MAGIC_STATE, null), STATS), (EntityPlayerMP) event.getEntityPlayer());
+				PacketDispatcher.sendTo(
+						new SyncMagicData(event.getEntityPlayer().getCapability(ModCapabilities.MAGIC_STATE, null),
+								STATS),
+						(EntityPlayerMP) event.getEntityPlayer());
 			}
 		} else if (event.getItem().getItem().getItem() instanceof ItemSynthesisMaterial) {
 			for (int i = 0; i < event.getEntityPlayer().inventory.getSizeInventory(); i++) {
-				if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().inventory.getStackInSlot(i), ItemStack.EMPTY)) {
+				if (!ItemStack.areItemStacksEqual(event.getEntityPlayer().inventory.getStackInSlot(i),
+						ItemStack.EMPTY)) {
 					if (event.getEntityPlayer().inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagL) {
-						IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+						IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i)
+								.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 						addSynthesisMaterialToBag(inv, event);
-					} else if (event.getEntityPlayer().inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagM) {
-						IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+					} else if (event.getEntityPlayer().inventory.getStackInSlot(i)
+							.getItem() == ModItems.SynthesisBagM) {
+						IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i)
+								.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 						addSynthesisMaterialToBag(inv, event);
 					}
 					if (event.getEntityPlayer().inventory.getStackInSlot(i).getItem() == ModItems.SynthesisBagS) {
-						IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+						IItemHandler inv = event.getEntityPlayer().inventory.getStackInSlot(i)
+								.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 						addSynthesisMaterialToBag(inv, event);
 					}
 				}
 			}
 		} else if (event.getItem().getItem().getItem() instanceof ItemSpellOrb) {
-			//PacketDispatcher.sendTo(new OpenTutorialGUI(Tutorials.TUTORIAL_MAGIC_1), (EntityPlayerMP) event.getEntityPlayer());
-			//event.getEntityPlayer().getCapability(ModCapabilities.TUTORIALS, null).setKnownTutorial(Tutorials.getTutorialById(Tutorials.TUTORIAL_MAGIC_1).getRoot().getTutorialID(), true);
-			//PacketDispatcher.sendTo(new SyncTutorials(event.getEntityPlayer().getCapability(ModCapabilities.TUTORIALS, null)), (EntityPlayerMP) event.getEntityPlayer());
-			PacketDispatcher.sendToServer(new TutorialsPacket(Tutorials.getTutorialById(Tutorials.TUTORIAL_MAGIC_1).getRoot().getTutorialID()));
+			if (!event.getItem().world.isRemote) {
+				EntityPlayer player = event.getEntityPlayer();
+				int id = Tutorials.getTutorialById(Tutorials.TUTORIAL_MAGIC_1).getRoot().getTutorialID();
+				if (!player.getCapability(ModCapabilities.TUTORIALS, null).getKnownTutorial(id)) {
+					Tutorial tutorial = Tutorials.getTutorialById(id);
+					player.sendMessage(new TextComponentTranslation("You unlocked a new tutorial: \"" + tutorial.getTutorialName() + "\""));
+					player.getCapability(ModCapabilities.TUTORIALS, null).setKnownTutorial(id, true);
+				}
+				PacketDispatcher.sendTo(new SyncTutorials(player.getCapability(ModCapabilities.TUTORIALS, null)), (EntityPlayerMP) player);
+			}
 		} else if (event.getItem().getItem().getItem() instanceof ItemDriveForm) {
-			PacketDispatcher.sendToServer(new TutorialsPacket(Tutorials.getTutorialById(Tutorials.TUTORIAL_DRIVE_1).getRoot().getTutorialID()));
+			if (!event.getItem().world.isRemote) {
+				EntityPlayer player = event.getEntityPlayer();
+				int id = Tutorials.getTutorialById(Tutorials.TUTORIAL_DRIVE_1).getRoot().getTutorialID();
+				if (!player.getCapability(ModCapabilities.TUTORIALS, null).getKnownTutorial(id)) {
+					Tutorial tutorial = Tutorials.getTutorialById(id);
+					player.sendMessage(new TextComponentTranslation("You unlocked a new tutorial: \"" + tutorial.getTutorialName() + "\""));
+					player.getCapability(ModCapabilities.TUTORIALS, null).setKnownTutorial(id, true);
+				}
+
+				PacketDispatcher.sendTo(new SyncTutorials(player.getCapability(ModCapabilities.TUTORIALS, null)),(EntityPlayerMP) player);
+			}
 		}
 
 	}
@@ -168,13 +198,17 @@ public class ItemEvents {
 				if (bagItem.getItem().equals(pickUp.getItem())) {
 					if (bagItem.hasTagCompound() && pickUp.hasTagCompound()) {
 						if (bagItem.getTagCompound().hasKey("material") && pickUp.getTagCompound().hasKey("material")) {
-							if (bagItem.getTagCompound().getString("material").equals(pickUp.getTagCompound().getString("material"))) {
+							if (bagItem.getTagCompound().getString("material")
+									.equals(pickUp.getTagCompound().getString("material"))) {
 								if (bagItem.getCount() < 64) {
 									if (bagItem.getCount() + pickUp.getCount() <= 64) {
-										ItemStack stack = new ItemStack(pickUp.copy().getItem(), pickUp.copy().getCount());
+										ItemStack stack = new ItemStack(pickUp.copy().getItem(),
+												pickUp.copy().getCount());
 										stack.setTagCompound(new NBTTagCompound());
-										stack.getTagCompound().setString("material", bagItem.getTagCompound().getString("material"));
-										stack.getTagCompound().setString("rank", bagItem.getTagCompound().getString("rank"));
+										stack.getTagCompound().setString("material",
+												bagItem.getTagCompound().getString("material"));
+										stack.getTagCompound().setString("rank",
+												bagItem.getTagCompound().getString("rank"));
 										inv.insertItem(j, stack, false);
 										pickUp.setCount(0);
 										return;
@@ -203,7 +237,11 @@ public class ItemEvents {
 	}
 
 	public static boolean areItemStacksEqual(@Nullable ItemStack stackA, @Nullable ItemStack stackB) {
-		return ItemStack.areItemStacksEqual(stackA, ItemStack.EMPTY) && ItemStack.areItemStacksEqual(stackB, ItemStack.EMPTY) || ((!ItemStack.areItemStacksEqual(stackA, ItemStack.EMPTY) && !ItemStack.areItemStacksEqual(stackB, ItemStack.EMPTY)) && isItemStackEqualExcludingStackSize(stackA, stackB));
+		return ItemStack.areItemStacksEqual(stackA, ItemStack.EMPTY)
+				&& ItemStack.areItemStacksEqual(stackB, ItemStack.EMPTY)
+				|| ((!ItemStack.areItemStacksEqual(stackA, ItemStack.EMPTY)
+						&& !ItemStack.areItemStacksEqual(stackB, ItemStack.EMPTY))
+						&& isItemStackEqualExcludingStackSize(stackA, stackB));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -213,7 +251,8 @@ public class ItemEvents {
 
 		for (ItemStack stack : MunnyRegistry.munnyValues.keySet()) {
 			if (areItemStacksEqual(stack, event.getItemStack())) {
-				event.getToolTip().add(TextFormatting.YELLOW + "Munny: " + MunnyRegistry.munnyValues.get(stack) * event.getItemStack().getCount());
+				event.getToolTip().add(TextFormatting.YELLOW + "Munny: "
+						+ MunnyRegistry.munnyValues.get(stack) * event.getItemStack().getCount());
 			}
 		}
 		// TODO Localize all this
@@ -237,8 +276,11 @@ public class ItemEvents {
 			double keyStrength = keyblade.getStrength() + sharpnessDamage;
 
 			String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "-";
-			tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * MainConfig.items.damageMultiplier + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade) + sharpnessDamage) + "]");
-			tooltip.add(TextFormatting.BLUE + "Magic: " + magicSymbol + keyblade.getMagic() * MainConfig.items.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(), 1, keyblade) + "]");
+			tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * MainConfig.items.damageMultiplier + " ["
+					+ (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade) + sharpnessDamage) + "]");
+			tooltip.add(TextFormatting.BLUE + "Magic: " + magicSymbol
+					+ keyblade.getMagic() * MainConfig.items.damageMultiplier + " ["
+					+ DamageCalculation.getMagicDamage(event.getEntityPlayer(), 1, keyblade) + "]");
 //			tooltip.add(TextFormatting.GREEN + "Ability: " + keyblade.getAbility() == null ? "---" : Utils.translateToLocal(keyblade.getAbility().getName()));
 			if (keyblade.getDescription() != null) {
 				if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
@@ -246,7 +288,8 @@ public class ItemEvents {
 					tooltip.add(keyblade.description);
 					tooltip.add("");
 				} else {
-					tooltip.add("Hold " + TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY + " for description");
+					tooltip.add("Hold " + TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY
+							+ " for description");
 				}
 			}
 			if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
@@ -262,7 +305,8 @@ public class ItemEvents {
 					}
 				}
 				for (EntityEquipmentSlot entityequipmentslot : EntityEquipmentSlot.values()) {
-					Multimap<String, AttributeModifier> multimap = event.getItemStack().getAttributeModifiers(entityequipmentslot);
+					Multimap<String, AttributeModifier> multimap = event.getItemStack()
+							.getAttributeModifiers(entityequipmentslot);
 
 					if (!multimap.isEmpty()) {
 						tooltip.add("");
@@ -272,8 +316,10 @@ public class ItemEvents {
 							boolean flag = false;
 
 							if (attributemodifier.getID() == UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF")) {
-								d0 = d0 + event.getEntityPlayer().getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
-								d0 = d0 + (double) EnchantmentHelper.getModifierForCreature(event.getItemStack(), EnumCreatureAttribute.UNDEFINED);
+								d0 = d0 + event.getEntityPlayer()
+										.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
+								d0 = d0 + (double) EnchantmentHelper.getModifierForCreature(event.getItemStack(),
+										EnumCreatureAttribute.UNDEFINED);
 								flag = true;
 							}
 
@@ -286,21 +332,32 @@ public class ItemEvents {
 							}
 
 							if (entry.getKey() == "generic.attackDamage") {
-								d1 += event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength();
+								d1 += event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null)
+										.getStrength();
 							}
 							if (flag) {
-								tooltip.add(Utils.translateToLocalFormatted("attribute.modifier.equals." + attributemodifier.getOperation(), new Object[] { ItemStack.DECIMALFORMAT.format(d1), Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
+								tooltip.add(Utils.translateToLocalFormatted(
+										"attribute.modifier.equals." + attributemodifier.getOperation(),
+										new Object[] { ItemStack.DECIMALFORMAT.format(d1),
+												Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
 							} else if (d0 > 0.0D) {
-								tooltip.add(TextFormatting.BLUE + Utils.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier.getOperation(), new Object[] { ItemStack.DECIMALFORMAT.format(d1), Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
+								tooltip.add(TextFormatting.BLUE + Utils.translateToLocalFormatted(
+										"attribute.modifier.plus." + attributemodifier.getOperation(),
+										new Object[] { ItemStack.DECIMALFORMAT.format(d1),
+												Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
 							} else if (d0 < 0.0D) {
 								d1 = d1 * -1.0D;
-								tooltip.add(TextFormatting.RED + Utils.translateToLocalFormatted("attribute.modifier.take." + attributemodifier.getOperation(), new Object[] { ItemStack.DECIMALFORMAT.format(d1), Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
+								tooltip.add(TextFormatting.RED + Utils.translateToLocalFormatted(
+										"attribute.modifier.take." + attributemodifier.getOperation(),
+										new Object[] { ItemStack.DECIMALFORMAT.format(d1),
+												Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
 							}
 						}
 					}
 				}
 			} else {
-				tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
+				tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY
+						+ " for more stats");
 			}
 		}
 
@@ -324,15 +381,20 @@ public class ItemEvents {
 
 				String magicSymbol = (keyblade.getMagic() > 0) ? "+" : "";
 
-				tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * MainConfig.items.damageMultiplier + " [" + (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade) + sharpnessDamage) + "]");
-				tooltip.add(TextFormatting.BLUE + "Magic: " + magicSymbol + keyblade.getMagic() * MainConfig.items.damageMultiplier + " [" + DamageCalculation.getMagicDamage(event.getEntityPlayer(), 1, keyblade) + "]");
+				tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength * MainConfig.items.damageMultiplier + " ["
+						+ (DamageCalculation.getStrengthDamage(event.getEntityPlayer(), keyblade) + sharpnessDamage)
+						+ "]");
+				tooltip.add(TextFormatting.BLUE + "Magic: " + magicSymbol
+						+ keyblade.getMagic() * MainConfig.items.damageMultiplier + " ["
+						+ DamageCalculation.getMagicDamage(event.getEntityPlayer(), 1, keyblade) + "]");
 				if (keyblade.getDescription() != null) {
 					if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
 						tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
 						tooltip.add(keyblade.description);
 						tooltip.add("");
 					} else {
-						tooltip.add("Hold " + TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY + " for description");
+						tooltip.add("Hold " + TextFormatting.GREEN + TextFormatting.ITALIC + "Shift"
+								+ TextFormatting.GRAY + " for description");
 					}
 				}
 				if (Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
@@ -349,7 +411,8 @@ public class ItemEvents {
 					}
 
 				} else {
-					tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
+					tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY
+							+ " for more stats");
 				}
 			}
 		}
@@ -375,15 +438,20 @@ public class ItemEvents {
 
 			String magicSymbol = (weapon.getMagic() > 0) ? "+" : "";
 
-			tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength + " (" + (DamageCalculation.getOrgStrengthDamage(event.getEntityPlayer(), event.getItemStack()) + sharpnessDamage) + ")");
-			tooltip.add(TextFormatting.BLUE + "Magic: " + magicSymbol + weapon.getMagic() + " (" + DamageCalculation.getMagicDamage(event.getEntityPlayer(), 1, weapon) + ")");
+			tooltip.add(TextFormatting.RED + "Strength: +" + keyStrength + " ("
+					+ (DamageCalculation.getOrgStrengthDamage(event.getEntityPlayer(), event.getItemStack())
+							+ sharpnessDamage)
+					+ ")");
+			tooltip.add(TextFormatting.BLUE + "Magic: " + magicSymbol + weapon.getMagic() + " ("
+					+ DamageCalculation.getMagicDamage(event.getEntityPlayer(), 1, weapon) + ")");
 			if (weapon.getDescription() != null) {
 				if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
 					tooltip.add("" + TextFormatting.WHITE + TextFormatting.UNDERLINE + "Description");
 					tooltip.add(weapon.getDescription());
 					tooltip.add("");
 				} else {
-					tooltip.add("Hold " + TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY + " for description");
+					tooltip.add("Hold " + TextFormatting.GREEN + TextFormatting.ITALIC + "Shift" + TextFormatting.GRAY
+							+ " for description");
 				}
 			}
 
@@ -400,7 +468,8 @@ public class ItemEvents {
 					}
 				}
 				for (EntityEquipmentSlot entityequipmentslot : EntityEquipmentSlot.values()) {
-					Multimap<String, AttributeModifier> multimap = event.getItemStack().getAttributeModifiers(entityequipmentslot);
+					Multimap<String, AttributeModifier> multimap = event.getItemStack()
+							.getAttributeModifiers(entityequipmentslot);
 					if (!multimap.isEmpty()) {
 						tooltip.add("");
 						for (Map.Entry<String, AttributeModifier> entry : multimap.entries()) {
@@ -409,8 +478,10 @@ public class ItemEvents {
 							boolean flag = false;
 
 							if (attributemodifier.getID() == UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF")) {
-								d0 = d0 + event.getEntityPlayer().getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
-								d0 = d0 + (double) EnchantmentHelper.getModifierForCreature(event.getItemStack(), EnumCreatureAttribute.UNDEFINED);
+								d0 = d0 + event.getEntityPlayer()
+										.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
+								d0 = d0 + (double) EnchantmentHelper.getModifierForCreature(event.getItemStack(),
+										EnumCreatureAttribute.UNDEFINED);
 								flag = true;
 							}
 
@@ -423,25 +494,37 @@ public class ItemEvents {
 							}
 
 							if (entry.getKey() == "generic.attackDamage") {
-								d1 += event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null).getStrength();
+								d1 += event.getEntityPlayer().getCapability(ModCapabilities.PLAYER_STATS, null)
+										.getStrength();
 							}
 							if (flag) {
-								tooltip.add(Utils.translateToLocalFormatted("attribute.modifier.equals." + attributemodifier.getOperation(), new Object[] { ItemStack.DECIMALFORMAT.format(d1), Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
+								tooltip.add(Utils.translateToLocalFormatted(
+										"attribute.modifier.equals." + attributemodifier.getOperation(),
+										new Object[] { ItemStack.DECIMALFORMAT.format(d1),
+												Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
 							} else if (d0 > 0.0D) {
-								tooltip.add(TextFormatting.BLUE + Utils.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier.getOperation(), new Object[] { ItemStack.DECIMALFORMAT.format(d1), Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
+								tooltip.add(TextFormatting.BLUE + Utils.translateToLocalFormatted(
+										"attribute.modifier.plus." + attributemodifier.getOperation(),
+										new Object[] { ItemStack.DECIMALFORMAT.format(d1),
+												Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
 							} else if (d0 < 0.0D) {
 								d1 = d1 * -1.0D;
-								tooltip.add(TextFormatting.RED + Utils.translateToLocalFormatted("attribute.modifier.take." + attributemodifier.getOperation(), new Object[] { ItemStack.DECIMALFORMAT.format(d1), Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
+								tooltip.add(TextFormatting.RED + Utils.translateToLocalFormatted(
+										"attribute.modifier.take." + attributemodifier.getOperation(),
+										new Object[] { ItemStack.DECIMALFORMAT.format(d1),
+												Utils.translateToLocal("attribute.name." + (String) entry.getKey()) }));
 							}
 						}
 					}
 				}
 			} else {
-				tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY + " for more stats");
+				tooltip.add("Hold " + TextFormatting.YELLOW + TextFormatting.ITALIC + "Alt" + TextFormatting.GRAY
+						+ " for more stats");
 			}
 		}
 
-		if (event.getItemStack().getItem() instanceof IOrgWeapon && event.getItemStack().getItem() != ModItems.DreamShield) {
+		if (event.getItemStack().getItem() instanceof IOrgWeapon
+				&& event.getItemStack().getItem() != ModItems.DreamShield) {
 			String member = ((IOrgWeapon) event.getItemStack().getItem()).getMember().toString();
 			tooltip.add(member.substring(0, 1) + member.substring(1, member.length()).toLowerCase());
 		}
@@ -452,7 +535,8 @@ public class ItemEvents {
 				event.getToolTip().add(TextFormatting.ITALIC + Utils.translateToLocal(Strings.HoldForInfo));
 			} else {
 				int x = 30;
-				String s = Utils.translateToLocal(Strings.GhostBloxDesc).replace("%s", Utils.translateToLocal(ModBlocks.GhostBlox.getTranslationKey() + ".name"));
+				String s = Utils.translateToLocal(Strings.GhostBloxDesc).replace("%s",
+						Utils.translateToLocal(ModBlocks.GhostBlox.getTranslationKey() + ".name"));
 				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
 				String[] splitS = s.split("\n");
 				for (String element : splitS)
@@ -465,7 +549,8 @@ public class ItemEvents {
 				event.getToolTip().add(TextFormatting.ITALIC + Utils.translateToLocal(Strings.HoldForInfo));
 			} else {
 				int x = 30;
-				String s = Utils.translateToLocal(Strings.DangerBloxDesc).replace("%s", Utils.translateToLocal(ModBlocks.DangerBlox.getTranslationKey() + ".name"));
+				String s = Utils.translateToLocal(Strings.DangerBloxDesc).replace("%s",
+						Utils.translateToLocal(ModBlocks.DangerBlox.getTranslationKey() + ".name"));
 				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
 				String[] splitS = s.split("\n");
 				for (String element : splitS)
@@ -478,7 +563,8 @@ public class ItemEvents {
 				event.getToolTip().add(TextFormatting.ITALIC + Utils.translateToLocal(Strings.HoldForInfo));
 			} else {
 				int x = 30;
-				String s = Utils.translateToLocal(Strings.BounceBloxDesc).replace("%s", Utils.translateToLocal(ModBlocks.BounceBlox.getTranslationKey() + ".name"));
+				String s = Utils.translateToLocal(Strings.BounceBloxDesc).replace("%s",
+						Utils.translateToLocal(ModBlocks.BounceBlox.getTranslationKey() + ".name"));
 				s = s.replaceAll("(.{" + x + ",}?)\\s+", "$1\n");
 				String[] splitS = s.split("\n");
 				for (String element : splitS)
@@ -519,31 +605,51 @@ public class ItemEvents {
 	@SubscribeEvent
 	public void onItemTossEvent(ItemTossEvent event) {
 		if (!event.getPlayer().world.isRemote) {
-			if (event.getPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive() && !event.getPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Anti)) {
+			if (event.getPlayer().getCapability(ModCapabilities.DRIVE_STATE, null).getInDrive() && !event.getPlayer()
+					.getCapability(ModCapabilities.DRIVE_STATE, null).getActiveDriveName().equals(Strings.Form_Anti)) {
 				event.setCanceled(true);
 				return;
 			}
 
-			if (event.getEntityItem().getItem().getItem() instanceof ItemKeyblade && (event.getEntityItem().getItem().getItem() != ModItems.WoodenKeyblade && event.getEntityItem().getItem().getItem() != ModItems.WoodenStick && event.getEntityItem().getItem().getItem() != ModItems.DreamSword && event.getEntityItem().getItem().getItem() != ModItems.DreamStaff)) {
+			if (event.getEntityItem().getItem().getItem() instanceof ItemKeyblade
+					&& (event.getEntityItem().getItem().getItem() != ModItems.WoodenKeyblade
+							&& event.getEntityItem().getItem().getItem() != ModItems.WoodenStick
+							&& event.getEntityItem().getItem().getItem() != ModItems.DreamSword
+							&& event.getEntityItem().getItem().getItem() != ModItems.DreamStaff)) {
 				event.getEntityItem().isDead = true;
-				event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);
-				if (!ItemStack.areItemStacksEqual(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null).getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY)) {
-					PacketDispatcher.sendTo(new SyncKeybladeData(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)), (EntityPlayerMP) event.getPlayer());
+				event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)
+						.setIsKeybladeSummoned(EnumHand.MAIN_HAND, false);
+				if (!ItemStack.areItemStacksEqual(event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)
+						.getInventoryKeychain().getStackInSlot(0), ItemStack.EMPTY)) {
+					PacketDispatcher.sendTo(
+							new SyncKeybladeData(
+									event.getPlayer().getCapability(ModCapabilities.SUMMON_KEYBLADE, null)),
+							(EntityPlayerMP) event.getPlayer());
 				}
 
 			} else if (event.getEntityItem().getItem().getItem() instanceof ItemMunny) {
 				event.setCanceled(true);
 				if (!event.getPlayer().world.isRemote) {
-					PacketDispatcher.sendTo(new ShowOverlayPacket("munny", event.getEntityItem().getItem().getTagCompound().getInteger("amount")), (EntityPlayerMP) event.getPlayer());
+					PacketDispatcher.sendTo(
+							new ShowOverlayPacket("munny",
+									event.getEntityItem().getItem().getTagCompound().getInteger("amount")),
+							(EntityPlayerMP) event.getPlayer());
 
-					event.getPlayer().getCapability(ModCapabilities.MUNNY, null).addMunny(event.getEntityItem().getItem().getTagCompound().getInteger("amount"));
+					event.getPlayer().getCapability(ModCapabilities.MUNNY, null)
+							.addMunny(event.getEntityItem().getItem().getTagCompound().getInteger("amount"));
 				}
 			}
-			if (event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).getMember() != Utils.OrgMember.NONE) {
-				if (event.getEntityItem().getItem().getItem() == event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
+			if (event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null)
+					.getMember() != Utils.OrgMember.NONE) {
+				if (event.getEntityItem().getItem().getItem() == event.getPlayer()
+						.getCapability(ModCapabilities.ORGANIZATION_XIII, null).currentWeapon()) {
 					event.getEntityItem().isDead = true;
-					event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null).setWeaponSummoned(EnumHand.MAIN_HAND, false);
-					PacketDispatcher.sendTo(new SyncOrgXIIIData(event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null)), (EntityPlayerMP) event.getPlayer());
+					event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null)
+							.setWeaponSummoned(EnumHand.MAIN_HAND, false);
+					PacketDispatcher.sendTo(
+							new SyncOrgXIIIData(
+									event.getPlayer().getCapability(ModCapabilities.ORGANIZATION_XIII, null)),
+							(EntityPlayerMP) event.getPlayer());
 				}
 			}
 		}
