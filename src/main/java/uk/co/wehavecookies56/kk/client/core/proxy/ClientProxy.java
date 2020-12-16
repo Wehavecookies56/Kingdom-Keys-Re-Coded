@@ -207,7 +207,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityAshes.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(),Strings.Ashes));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlazeofGlory.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.BlazeofGlory));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBurnout.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(),Strings.Burnout));
-		RenderingRegistry.registerEntityRenderingHandler(EntityCombustion.class,  new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Combustion));
+		RenderingRegistry.registerEntityRenderingHandler(EntityCombustion.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Combustion));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDoledrum.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.Doldrums));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDoubleEdge.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.DoubleEdge));
 		RenderingRegistry.registerEntityRenderingHandler(EntityEternalFlames.class, (IRenderFactory) new RenderEntityChakram(Minecraft.getMinecraft().getRenderManager(), Strings.EternalFlames));
